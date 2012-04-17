@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+
+  <rm:locator searchPathRef="localresources" failOnError="false"/>
+  <rm:locator searchPathRef="palladio-core" failOnError="false" />
+  <rm:locator searchPathRef="SDQ_Commons" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="SDQ_Commons" failOnError="false" pattern="^edu\.kit\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^org\.hibernate.*" />
+  <rm:locator searchPathRef="ProbeSpec" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="ProbeSpec" failOnError="false" pattern="^org\.jscience.*" />
+  <rm:locator searchPathRef="FeatureModel" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="WorkflowEngine" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
+  <rm:locator searchPathRef="mediniqvt" failOnError="false" pattern="^de\.ikv\.medini\.qvt\..*" />
+  <rm:locator searchPathRef="eclipse-release" failOnError="false" />
+  <rm:locator searchPathRef="orbit" failOnError="false" />
+  
+  
+  <rm:searchPath name="localresources">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="local">
+      <rm:uri format="file:///{0}/{1}/">
+        <bc:propertyRef key="workspace.root"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  
+  <rm:searchPath name="palladio-core">
+  <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+ 	<rm:property key="buckminster.source" value="false"/>
+    <rm:property key="buckminster.mutable" value="false"/>
+  	<rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/palladio/nightly/"/>
+  </rm:provider></rm:searchPath>
+  
+  <rm:searchPath name="SDQ_Commons">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+   	  <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/commons/releases/1.0/" />
+    </rm:provider>
+  </rm:searchPath>
+    <rm:searchPath name="SensorFramework">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+   	  <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/sensorframework/releases/1.0/" />
+    </rm:provider>
+  </rm:searchPath>
+      <rm:searchPath name="ProbeSpec">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+   	  <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/probespec/releases/1.0/" />
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="FeatureModel">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+   	  <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/featuremodel/releases/1.1/" />
+    </rm:provider>
+  </rm:searchPath>
+    <rm:searchPath name="WorkflowEngine">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+   	  <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/workflowengine/releases/1.3/" />
+    </rm:provider>
+  </rm:searchPath>
+    <rm:searchPath name="mediniqvt">
+  <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+ 	<rm:property key="buckminster.source" value="false"/>
+    <rm:property key="buckminster.mutable" value="false"/>
+  	<rm:uri format="http://www.ikv.de/qvt/update-site-indigo/"/>
+  </rm:provider></rm:searchPath>
+  
+  <!-- Eclipse Update Sites -->
+  <rm:searchPath name="eclipse-release">
+  <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+ 	<rm:property key="buckminster.source" value="false"/>
+    <rm:property key="buckminster.mutable" value="false"/>
+  	<rm:uri format="http://download.eclipse.org/releases/indigo/"/>
+  </rm:provider></rm:searchPath>
+  
+   <!-- Orbit -->
+  <rm:searchPath name="orbit">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/"/>
+    </rm:provider>
+  </rm:searchPath>
+  
+  
+</rm:rmap>
