@@ -3,8 +3,7 @@
       id="de.uka.ipd.sdq.dsexplore.feature"
       label="%label"
       version="3.3.0.qualifier"
-      provider-name="sdq.ipd.kit.edu"
-      plugin="de.uka.ipd.sdq.branding">
+      provider-name="sdq.ipd.kit.edu">
 
    <description url="http://sdq.ipd.kit.edu">
       The Palladio DSE Feature allows to optimise PCM instances for
@@ -412,14 +411,6 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <url>
-      <update label="Palladio Update Site" url="http://sdqweb.ipd.uka.de/eclipse/PCM/"/>
-   </url>
-
-   <includes
-         id="de.uka.ipd.sdq.dsexplore.feature.source"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
@@ -500,6 +491,8 @@ litigation.
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="de.uka.ipd.sdq.probespec.framework" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.simucomframework.simucomstatus" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.opt4j" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
