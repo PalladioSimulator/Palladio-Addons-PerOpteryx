@@ -615,13 +615,6 @@ litigation.
          unpack="false"/>
 
    <plugin
-         id="de.uka.ipd.sdq.simulation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.apache.commons.collections15"
          download-size="0"
          install-size="0"
