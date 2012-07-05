@@ -260,13 +260,13 @@ public class Starter {
 		
 		//printHeuristicStatistics();
 		
-		//printTimeSavings_CompareEachAWithEachB(200, FINAL_ITERATION);
-		
 		// calculate coverage time savings
-		//printTimeSavings(198, 198, true);
-		
+		System.out.println("***** COVERAGE *******");
+		printTimeSavings(200, 200, true);
+				
 		//calculate hypervolume time saving
-		//printTimeSavings(198, 198, false);
+		System.out.println("***** SIZE *******");
+		printTimeSavings(200, 200, false);
 		
 		//printCoverageForGivenIteration(200);
 		
@@ -279,7 +279,7 @@ public class Starter {
 		//printHypervolumeDifferenceForIteration(24);
 		
 		//printHypervolumeForAllIterations();
-		printHypervolumeDifferenceForAllIterations();
+		//printHypervolumeDifferenceForAllIterations();
 		
 		// mean, min, max, variance for all iterations
 		//printCoverageStatisticsForAllIterations();
@@ -297,8 +297,11 @@ public class Starter {
 		
 		
 		// configure which objective values to use and in which order. 
-		//int[] orderOfObjectives = {0, 1, 2};
-		//printFrontsForPISAAssessment(200, orderOfObjectives);
+//		int[] orderOfObjectives = {0, 1, 2};
+//		printFrontsForPISAAssessment(200, orderOfObjectives);
+		
+//		printStartAndEndTimesOfRuns(0,200,PATH_RUNS_A);
+//		printStartAndEndTimesOfRuns(0,200,PATH_RUNS_B);
 		
 		//System.out.println(getEvaluationsForIteration(PATH_RUNS_A, 0, ORIGIN_TO_BE_CHECKED, 200));
 		
@@ -318,6 +321,22 @@ public class Starter {
 		
 	}
 	
+	private static void printStartAndEndTimesOfRuns(int starGeneration, int lastGeneration, String resultsPath) {
+		System.out.println("Duration of runs, from iteration "+starGeneration+" to iteration "+lastGeneration+", for "+resultsPath);
+		
+		for (int j = 0; j <= RUNS.length -1; j++) {
+			int run = RUNS[j];
+			File fileStart = getFileForIteration(resultsPath, starGeneration, run);
+			File fileEnd = getFileForIteration(resultsPath, lastGeneration, run);
+			
+			System.out.println(fileStart.getName()+";"+fileEnd.getName());
+			
+		} 
+		
+		
+		
+	}
+
 	private static void printOverallParetoFront(String[] folders) {
 		ValueVectorHandler handler = new ValueVectorHandler();
 		
@@ -695,6 +714,31 @@ public class Starter {
 		List<Collection<ValueVector>> resultsOfAllRunsA = new ArrayList<Collection<ValueVector>>(RUNS.length);
 		List<Collection<ValueVector>> resultsOfAllRunsB = new ArrayList<Collection<ValueVector>>(RUNS.length);
 		
+		getFrontsForIteration(iteration, handler, resultsOfAllRunsA,
+				resultsOfAllRunsB);
+		
+		
+		Objectives constraints = determineOverallReferencePointForHypervolume(
+				resultsOfAllRunsA, resultsOfAllRunsB);
+		
+		for (int i = 0; i < resultsOfAllRunsA.size(); i++) {
+			
+			//System.out.println("Run "+(i + START_RUN)+" ************ ");
+			HypervolumeResult hyperVolumeResult = ValueVectorHandler.getHypervolume(resultsOfAllRunsA.get(i), resultsOfAllRunsB.get(i), constraints, handler.getObjectives(), true);
+			//System.out.println("Run " + (i + START_RUN) + " - Hypervolume of A over B: " + hyperVolumeDiff);
+			hypervolumeResults.add(hyperVolumeResult);
+			
+	
+		}
+		
+		return hypervolumeResults;
+	}
+
+	private static void getFrontsForIteration(int iteration,
+			ValueVectorHandler handler,
+			List<Collection<ValueVector>> resultsOfAllRunsA,
+			List<Collection<ValueVector>> resultsOfAllRunsB) {
+		
 		try {
 
 			for (int j = 0; j <= RUNS.length -1; j++) {
@@ -712,22 +756,6 @@ public class Starter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		Objectives constraints = determineOverallReferencePointForHypervolume(
-				resultsOfAllRunsA, resultsOfAllRunsB);
-		
-		for (int i = 0; i < resultsOfAllRunsA.size(); i++) {
-			
-			//System.out.println("Run "+(i + START_RUN)+" ************ ");
-			HypervolumeResult hyperVolumeResult = ValueVectorHandler.getHypervolume(resultsOfAllRunsA.get(i), resultsOfAllRunsB.get(i), constraints, handler.getObjectives(), true);
-			//System.out.println("Run " + (i + START_RUN) + " - Hypervolume of A over B: " + hyperVolumeDiff);
-			hypervolumeResults.add(hyperVolumeResult);
-			
-	
-		}
-		
-		return hypervolumeResults;
 	}
 
 	private static Objectives determineOverallReferencePointForHypervolume(
@@ -857,13 +885,23 @@ public class Starter {
 		 */
 	}
 
+	/**
+	 * 
+	 * @param fixedIterationOfB
+	 * @param finalIteration
+	 * @param isCalculateCoverage Use coverage, otherwise hypervolume is used (I think)
+	 */
 	private static void printTimeSavings(int fixedIterationOfB,
 			int finalIteration, boolean isCalculateCoverage) {
 
 		System.out.println(ValueVector.ORIGIN.A + ": " + PATH_RUNS_A);
 		System.out.println(ValueVector.ORIGIN.B + ": " + PATH_RUNS_B);
+		
 		ArrayList<Double> resultValues = new ArrayList<Double>();
 		ArrayList<Double> relativeResultValues = new ArrayList<Double>();
+		ArrayList<Double> iterationsA = new ArrayList<Double>();
+		ArrayList<Double> iterationsB = new ArrayList<Double>();
+		
 		ValueVectorHandler handler = new ValueVectorHandler();
 		
 		// determine overall reference point for hypervolume
@@ -881,7 +919,7 @@ public class Starter {
 			System.out.println("=================================");
 			System.out.println("Run: " + run + " ...");
 			printTimeSavings_TheInnerLoop(fixedIterationOfB, finalIteration,
-					run, run, resultValues, relativeResultValues, isCalculateCoverage, handler, constraints);
+					run, run, resultValues, relativeResultValues, iterationsA, iterationsB, isCalculateCoverage, handler, constraints);
 
 		}
 		System.out.println("===============\n" + "Overall absolute results: \n"
@@ -892,7 +930,17 @@ public class Starter {
 				+ max(relativeResultValues) + "\n" + "Min:\t"
 				+ min(relativeResultValues));
 
+		System.out.println("Absolute result values:");
+		System.out.println(resultValues);
+		
+		System.out.println("Relative result values:");
 		System.out.println(relativeResultValues);
+		
+		System.out.println("Iterations of A:");
+		System.out.println(iterationsA);
+		
+		System.out.println("Iterations of B:");
+		System.out.println(iterationsB);
 
 	}
 
@@ -902,15 +950,7 @@ public class Starter {
 		List<Collection<ValueVector>> resultsOfAllRunsA = new ArrayList<Collection<ValueVector>>(RUNS.length);
 		List<Collection<ValueVector>> resultsOfAllRunsB = new ArrayList<Collection<ValueVector>>(RUNS.length);
 		
-		for (int j = 0; j < RUNS.length; j++) {
-			int run = RUNS[j];
-			
-			// first pair element will contain front of run A, second of run B
-			Pair<Collection<ValueVector>,Collection<ValueVector>> frontsToCompare = getFrontsToCompare(fixedIterationOfB, run, handler);
-			
-			resultsOfAllRunsA.add(frontsToCompare.getFirst());
-			resultsOfAllRunsB.add(frontsToCompare.getSecond());
-		}
+		getFrontsForIteration(fixedIterationOfB, handler, resultsOfAllRunsA, resultsOfAllRunsB);
 		
 		constraints = determineOverallReferencePointForHypervolume(
 				resultsOfAllRunsA, resultsOfAllRunsB);
@@ -932,6 +972,8 @@ public class Starter {
 		System.out.println(ValueVector.ORIGIN.B + ": " + PATH_RUNS_B);
 		ArrayList<Double> resultValues = new ArrayList<Double>();
 		ArrayList<Double> relativeResultValues = new ArrayList<Double>();
+		ArrayList<Double> iterationsA = new ArrayList<Double>();
+		ArrayList<Double> iterationsB = new ArrayList<Double>();
 		
 		Objectives constraints = null;
 		if (!isCalculateCoverage){
@@ -947,7 +989,7 @@ public class Starter {
 				System.out.println("Run: " + runA + "," + runB + " ...");
 				printTimeSavings_TheInnerLoop(fixedIterationOfB,
 						finalIteration, runA, runB, resultValues,
-						relativeResultValues, isCalculateCoverage, handler, constraints);
+						relativeResultValues, iterationsA, iterationsB, isCalculateCoverage, handler, constraints);
 			}
 		}
 		System.out.println("===============\n" + "Overall absolute results: \n"
@@ -976,6 +1018,8 @@ public class Starter {
 			int finalIteration, int runA, int runB,
 			ArrayList<Double> resultValues,
 			ArrayList<Double> relativeResultValues,
+			ArrayList<Double> iterationsA,
+			ArrayList<Double> iterationsB,
 			boolean calculateCoverage,
 			ValueVectorHandler handler, Objectives constraints) {
 		
@@ -993,22 +1037,26 @@ public class Starter {
 			System.out.println("Run B found no feasible optimal candidates at the end, so find lowest run A with feasible candidate.");
 		}
 		
-		int iteration = 0;
-		for (; iteration <= finalIteration// & coverage < 0.5
-		; iteration++) {
-			File fileA = getFileForIteration(PATH_RUNS_A, iteration, runA);
+		int iterationX = 0;
+		for (; iterationX <= finalIteration// & coverage < 0.5
+		; iterationX++) {
+			File fileA = getFileForIteration(PATH_RUNS_A, iterationX, runA);
 			setA = handler.getFromFile(fileA,
 					ValueVector.ORIGIN.A);
 			
 			if (setB.size() == 0){
-				// if run B was empty, we just look for a non empty run A and then return results
+				// if run B was empty (no feasible candidates found), we just look for a non empty run A and then return results
 				if (setA.size() > 0){
-					double relativeResult = (finalIteration - iteration)/ (double) finalIteration;
+					double relativeResult = (finalIteration - iterationX)/ (double) finalIteration;
 					
 					System.out.println("Result: B (" + finalIteration + ") - A ("
-							+ iteration + "):\t" + (finalIteration - iteration));
+							+ iterationX + "):\t" + (finalIteration - iterationX));
 					System.out.println("Relative: \t "+relativeResult);
-					resultValues.add((double) (finalIteration - iteration));
+					
+					iterationsA.add((double) iterationX);
+					iterationsB.add((double) finalIteration);
+					
+					resultValues.add((double) (finalIteration - iterationX));
 					relativeResultValues.add(relativeResult);
 					return;
 				}
@@ -1033,52 +1081,94 @@ public class Starter {
 		
 		//XXX: Consider number of evaluations instead of number of iterations for time saving.
 		
-		iteration = iteration > finalIteration ? finalIteration : iteration;
+		iterationX = iterationX > finalIteration ? finalIteration : iterationX;
 		if (calculateCoverage){
-			System.out.println("A(" + iteration + ") covers B("
+			System.out.println("A(" + iterationX + ") covers B("
 				+ fixedIterationOfB + ") with coverage\t" + coverage);
 		} else {
-			System.out.println("A(" + iteration + ") larger than B("
+			System.out.println("A(" + iterationX + ") larger than B("
 				+ fixedIterationOfB + ") with difference\t" + (hypervolumeA.getHypervolumeDifference()));
 		}
 
 		
 		Collection<ValueVector> setBEarlier = null;
-		double coverage2 = Double.NEGATIVE_INFINITY;
+		double coverageB = Double.NEGATIVE_INFINITY;
 		HypervolumeResult hypervolumeB = new HypervolumeResult(0, 0, 0);
-		int iteration2;
+		int iterationY;
 		
 		// Need to put the other origin to setB now to compare to setBEarlier.
-		fileB = getFileForIteration(PATH_RUNS_B, fixedIterationOfB,
-				runB);
-		setB = handler.getFromFile(fileB, ValueVector.ORIGIN.A);
+		File fileToCompareBTo;
+		String compareBTo;
 		
-		for (iteration2 = 0; iteration2 <= finalIteration
+		if (iterationX < finalIteration){
+			fileToCompareBTo = getFileForIteration(PATH_RUNS_B, fixedIterationOfB,	runB);
+			compareBTo = "B("+ fixedIterationOfB + ")";
+		} else {
+			//If A at final iteration is worse than B, then find earliest B that is equivalent to A 
+			//    (not just equivalent to B's final iteration)
+			
+			Collection<ValueVector> setAEarlier = null;
+			double coverageAEarlier = Double.NEGATIVE_INFINITY;
+			HypervolumeResult hypervolumeAEarlier = new HypervolumeResult(0, 0, 0);
+			
+			// find smallest iteration of A that already covers A(finalIteration)
+			for (iterationX = 0; iterationX <= finalIteration; iterationX++) {
+
+				// turn around the value origins so that we can compare
+				// BEarlier and A later
+				File fileAEarlier = getFileForIteration(PATH_RUNS_A, iterationX, runA);
+				setAEarlier = handler.getFromFile(fileAEarlier,
+						ValueVector.ORIGIN.B);
+
+				if (calculateCoverage){
+					coverageAEarlier = ValueVectorHandler.getCoverage(setAEarlier, setA,
+							ValueVector.ORIGIN.B);
+					if(coverageAEarlier >= 0.5) {
+					//	Don't increment iteration counter
+						break;
+					}
+				} else {
+					hypervolumeAEarlier = ValueVectorHandler.getHypervolume(setAEarlier, setA, constraints, handler.getObjectives(), true);
+
+					if (hypervolumeAEarlier.getHypervolumeDifference() >= 0){
+						// do not increment counter
+						break;
+					}
+				}
+			}
+			if (calculateCoverage){
+				System.out.println("A(" + iterationX + ") covers A(" + finalIteration + ") with coverage\t" + coverageAEarlier);
+			} else {
+				System.out.println("A(" + iterationX + ") larger than A(" + finalIteration + ") with difference\t" + (hypervolumeAEarlier.getHypervolumeDifference()));
+			}
+			
+			fileToCompareBTo = getFileForIteration(PATH_RUNS_A, iterationX,	runA);
+			compareBTo = "A("+iterationX+")";
+			
+		}
+		
+		Collection<ValueVector> setToCompareBTo = handler.getFromFile(fileToCompareBTo, ValueVector.ORIGIN.A); 
+		
+		
+		for (iterationY = 0; iterationY <= finalIteration
 				//& coverage2 < 0.5
-				; iteration2++) {
+				; iterationY++) {
 
 			// turn around the value origins so that we can compare
 			// BEarlier and A later
-			File fileA = getFileForIteration(PATH_RUNS_B, iteration2, runB);
-			setBEarlier = handler.getFromFile(fileA,
+			File fileBEarlier = getFileForIteration(PATH_RUNS_B, iterationY, runB);
+			setBEarlier = handler.getFromFile(fileBEarlier,
 					ValueVector.ORIGIN.B);
 
-	
-			
-//			if(iteration2 == finalIteration){
-//				@SuppressWarnings("unused")
-//				int a = 123;
-//			}
-			
 			if (calculateCoverage){
-				coverage2 = ValueVectorHandler.getCoverage(setBEarlier, setB,
+				coverageB = ValueVectorHandler.getCoverage(setBEarlier, setToCompareBTo,
 						ValueVector.ORIGIN.B);
-				if(coverage2 >= 0.5) {
+				if(coverageB >= 0.5) {
 				//	Don't increment iteration counter
 					break;
 				}
 			} else {
-				hypervolumeB = ValueVectorHandler.getHypervolume(setBEarlier, setB, constraints, handler.getObjectives(), true);
+				hypervolumeB = ValueVectorHandler.getHypervolume(setBEarlier, setToCompareBTo, constraints, handler.getObjectives(), true);
 
 				if (hypervolumeB.getHypervolumeDifference() >= 0){
 					// do not increment counter
@@ -1088,33 +1178,35 @@ public class Starter {
 		}
 
 		if (calculateCoverage){
-			System.out.println("B(" + iteration2 + ") covers B("
-					+ fixedIterationOfB + ") with coverage\t" + coverage2);
+			System.out.println("B(" + iterationY + ") covers " + compareBTo + " with coverage\t" + coverageB);
 		} else {
-			System.out.println("B(" + iteration2 + ") larger than B("
-					+ fixedIterationOfB + ") with difference\t" + (hypervolumeB.getHypervolumeDifference()));
+			System.out.println("B(" + iterationY + ") larger than " + compareBTo + " with difference\t" + (hypervolumeB.getHypervolumeDifference()));
 		}
 		
-		//relative result always in relation to the slower one. 
-		double slowerIteration = iteration > iteration2 ? iteration : iteration2;
-		double relativeResult = (iteration2 - iteration)/ (double) slowerIteration;
+		//XXX relative result always in relation to the slower one? No, makes no sense, difficult to compare in that case
+		//double slowerIteration = iterationX > iterationY ? iterationX : iterationY;
+		double relativeResult = (iterationY - iterationX)/ (double) iterationY;
 		
-		System.out.println("Result: B (" + iteration2 + ") - A ("
-				+ iteration + "):\t" + (iteration2 - iteration));
-		System.out.println("Relative: "+relativeResult);
-		resultValues.add((double) (iteration2 - iteration));
+		System.out.println("Result: B (" + iterationY + ") - A ("
+				+ iterationX + "):\t" + (iterationY - iterationX));
+		System.out.println("Relative:\t "+relativeResult);
+		
+		resultValues.add((double) (iterationY - iterationX));
 		relativeResultValues.add(relativeResult);
+		
+		iterationsA.add((double) iterationX);
+		iterationsB.add((double) iterationY);
 
 		if (setBEarlier != null && setA != null) {
 			if (calculateCoverage){
 				double coverage3 = ValueVectorHandler.getCoverage(setA,
 						setBEarlier, ValueVector.ORIGIN.A);
-				System.out.println("Check: A(" + iteration + ") covers B ("
-						+ iteration2 + ") with coverage\t" + coverage3);
+				System.out.println("Check: A(" + iterationX + ") covers B ("
+						+ iterationY + ") with coverage\t" + coverage3);
 			} else {
 				HypervolumeResult hypervolumeCheck = ValueVectorHandler.getHypervolume(setA, setBEarlier, constraints, handler.getObjectives(), true);
-				System.out.println("Check: A(" + iteration + ") has volume \t"+hypervolumeCheck.getHyperVolumeA()+
-						"\nB ("+ iteration2 + ") has volume \t" + hypervolumeCheck.getHyperVolumeB());
+				System.out.println("Check: A(" + iterationX + ") has volume \t"+hypervolumeCheck.getHyperVolumeA()+
+						"\nB ("+ iterationY + ") has volume \t" + hypervolumeCheck.getHyperVolumeB());
 			}
 		} else {
 			System.out.println("No earlier iteration of B found.");
