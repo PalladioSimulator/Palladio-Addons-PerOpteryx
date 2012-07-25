@@ -84,6 +84,8 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	
 	private double throughput;
 	
+	private double maxUtilization;
+	
 	private double stdDeviation;
 
 	private ConfidenceInterval confidenceInterval; 
@@ -107,6 +109,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 
 	private SimuComQualityAttributeDeclaration qualityAttributeInfo;
 
+
 	
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore");
@@ -118,7 +121,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		super(pcmInstance);
 		this.run = run;
 		this.experiment = experiment;
-		this.usageSenarioName = usageScenario.getEntityName().replaceAll(" ", "_");
+		this.usageSenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
 		
 		this.objectiveToAspects = objectiveToAspect;
 		this.qualityAttributeInfo = qualityAttributeInfo;
@@ -133,10 +136,20 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		this.confidenceInterval = determineConfidenceInterval();
 		
 		this.results =  retrieveResults(pcmInstance);
-		
+		this.maxUtilization = calculateMaxUtil("CPU");
 		
 		logger.debug("Initialised SimuCom result");
 		
+	}
+
+	private double calculateMaxUtil(String resourceType) {
+		double maxUtil = 0.0;
+		for (UtilisationResult utilResult : this.results.getUtilisationResults_ResultDecoratorRepository()) {
+			if (utilResult.getEntityName().contains(resourceType) && maxUtil < utilResult.getResourceUtilisation()){
+				maxUtil = utilResult.getResourceUtilisation();
+			}
+		}
+		return maxUtil;
 	}
 
 	private double calculateThroughput(SensorAndMeasurements sam) throws AnalysisFailedException {
@@ -487,6 +500,8 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 				return this.meanValue;
 			} else if (EcoreUtil.equals(aspect.getDimension(), this.qualityAttributeInfo.getThroughput())){
 				return this.throughput;
+			} else if (EcoreUtil.equals(aspect.getDimension(), this.qualityAttributeInfo.getMaxUtilization())){
+				return this.maxUtilization;
 			}
 		} 
 		
@@ -576,7 +591,6 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		for (Iterator<Sensor> iterator = sensors.iterator(); iterator.hasNext();) {
 			Sensor sensor = iterator.next();
 			//logger.debug("Experiment has a sensor with ID "+sensor.getSensorID()+" and name "+sensor.getSensorName()+".");
-			//TODO: repeat the java name adjustment here (parentheses etc.)
 			if (sensor.getSensorName().contains(usageScenarioName)){
 				logger.debug("Found sensor for usage scenario "+usageScenarioName);
 				return sensor;

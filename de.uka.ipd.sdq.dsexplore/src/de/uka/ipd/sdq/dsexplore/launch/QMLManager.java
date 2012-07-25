@@ -246,7 +246,7 @@ public class QMLManager {
 			performanceConstraints.addAll(
 					pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getId()));
 			
-			List<EvaluationAspectWithContext> performanceCriteria = new ArrayList<EvaluationAspectWithContext>();
+			List<EvaluationAspectWithContext> performanceCriteria = new ArrayList<EvaluationAspectWithContext>(performanceObjectives.size()+performanceConstraints.size());
 			performanceCriteria.addAll(performanceObjectives);
 			performanceCriteria.addAll(performanceConstraints);
 			exts.clear();

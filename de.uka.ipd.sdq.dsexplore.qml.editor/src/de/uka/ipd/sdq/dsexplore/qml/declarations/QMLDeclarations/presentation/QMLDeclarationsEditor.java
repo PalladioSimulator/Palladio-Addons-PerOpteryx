@@ -978,9 +978,12 @@ public class QMLDeclarationsEditor
 		AddExtraResource("pathmap://PCM_MODELS/PCMStandardQMLContract.qmldeclarations");
 		AddExtraResource("pathmap://PCM_MODELS/PCMStandardQMLContractType.qmldeclarations");
 		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH);
+		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH);
+		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH);
 		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH);
 		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH);		
 		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH);
+		AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_MAX_UTIL_DEFINITION_PATH);
 	}
 	
 	private void AddExtraResource(String uri) {
