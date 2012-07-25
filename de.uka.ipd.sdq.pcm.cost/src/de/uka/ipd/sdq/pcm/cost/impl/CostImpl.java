@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.cost.impl;
 
 import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
+import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.CostImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.CostImpl#getTotalCost <em>Total Cost</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.CostImpl#getOperatingCost <em>Operating Cost</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.CostImpl#getInitialCost <em>Initial Cost</em>}</li>
  * </ul>
@@ -31,6 +33,16 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public abstract class CostImpl extends EObjectImpl implements Cost {
+	/**
+	 * The default value of the '{@link #getTotalCost() <em>Total Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalCost()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double TOTAL_COST_EDEFAULT = 0.0;
+
 	/**
 	 * The default value of the '{@link #getOperatingCost() <em>Operating Cost</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -95,10 +107,14 @@ public abstract class CostImpl extends EObjectImpl implements Cost {
 		return getAnnotatedElement() != null;
 	}
 
-	// TODO: implement this method to return the 'Annotated Element' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated not
+	 */
+	public double getTotalCost() {
+		return CostUtil.getTotalCost(this);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +149,8 @@ public abstract class CostImpl extends EObjectImpl implements Cost {
 			case costPackage.COST__ANNOTATED_ELEMENT:
 				if (resolve) return getAnnotatedElement();
 				return basicGetAnnotatedElement();
+			case costPackage.COST__TOTAL_COST:
+				return getTotalCost();
 			case costPackage.COST__OPERATING_COST:
 				return getOperatingCost();
 			case costPackage.COST__INITIAL_COST:
@@ -151,6 +169,8 @@ public abstract class CostImpl extends EObjectImpl implements Cost {
 		switch (featureID) {
 			case costPackage.COST__ANNOTATED_ELEMENT:
 				return isSetAnnotatedElement();
+			case costPackage.COST__TOTAL_COST:
+				return getTotalCost() != TOTAL_COST_EDEFAULT;
 			case costPackage.COST__OPERATING_COST:
 				return getOperatingCost() != OPERATING_COST_EDEFAULT;
 			case costPackage.COST__INITIAL_COST:

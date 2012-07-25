@@ -95,7 +95,7 @@ public class ProcessingResourceCostItemProvider
 	@Override
 	public String getText(Object object) {
 		ProcessingResourceCost processingResourceCost = (ProcessingResourceCost)object;
-		return getString("_UI_ProcessingResourceCost_type") + " " + processingResourceCost.getOperatingCost();
+		return getString("_UI_ProcessingResourceCost_type") + " " + processingResourceCost.getTotalCost();
 	}
 
 	/**

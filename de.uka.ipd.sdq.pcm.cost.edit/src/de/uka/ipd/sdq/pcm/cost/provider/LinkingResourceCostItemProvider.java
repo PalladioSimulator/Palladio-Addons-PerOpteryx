@@ -95,7 +95,7 @@ public class LinkingResourceCostItemProvider
 	@Override
 	public String getText(Object object) {
 		LinkingResourceCost linkingResourceCost = (LinkingResourceCost)object;
-		return getString("_UI_LinkingResourceCost_type") + " " + linkingResourceCost.getOperatingCost();
+		return getString("_UI_LinkingResourceCost_type") + " " + linkingResourceCost.getTotalCost();
 	}
 
 	/**

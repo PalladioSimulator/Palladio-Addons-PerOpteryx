@@ -65,6 +65,7 @@ public class CostItemProvider
 			super.getPropertyDescriptors(object);
 
 			addAnnotatedElementPropertyDescriptor(object);
+			addTotalCostPropertyDescriptor(object);
 			addOperatingCostPropertyDescriptor(object);
 			addInitialCostPropertyDescriptor(object);
 		}
@@ -89,6 +90,28 @@ public class CostItemProvider
 				 false,
 				 false,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Total Cost feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTotalCostPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Cost_totalCost_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Cost_totalCost_feature", "_UI_Cost_type"),
+				 costPackage.Literals.COST__TOTAL_COST,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -161,6 +184,7 @@ public class CostItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Cost.class)) {
+			case costPackage.COST__TOTAL_COST:
 			case costPackage.COST__OPERATING_COST:
 			case costPackage.COST__INITIAL_COST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

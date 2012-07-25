@@ -1,7 +1,10 @@
 package de.uka.ipd.sdq.pcm.cost.helper;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 
+import de.uka.ipd.sdq.pcm.cost.Cost;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.probfunction.math.IProbabilityFunctionFactory;
@@ -144,6 +147,61 @@ public class CostUtil {
 	
 	public void resetCache(){
 		this.stoExCache = new CostStoExCache(probFunctionFactory);
+	}
+
+	public static double getTotalCost(Cost cost) {
+		
+		CostRepository costRepository = getCostRepository(cost);
+		
+		double interest = costRepository.getInterest();
+		int numberOfYears = costRepository.getTimePeriodYears();
+		double operatingCost = cost.getOperatingCost();
+		double initialCost = cost.getInitialCost();
+		
+		return getTotalCost(initialCost, operatingCost, interest, numberOfYears);
+		
+	}
+
+	public static double getTotalCost(double initialCost, double operatingCost, 
+			double interest, int numberOfYears) {
+		double operatingCostWithInterest = 0;
+		
+		if (interest < 0 ){
+			logger.error("Negative interest rate not supported by cost evaluator");
+			return Double.NaN;
+		}
+		
+		if (numberOfYears == 0){
+			if (interest == 0 ){
+				logger.warn("Interest rate of 0 and no time period lead to infinite costs over time ");
+				return Double.POSITIVE_INFINITY;
+			} else {
+				operatingCostWithInterest = operatingCost/interest;
+			}
+		} else {
+			if (interest == 0){
+				operatingCostWithInterest = operatingCost * numberOfYears;
+
+			} else {
+				// Ordinary annuity formula from http://en.wikipedia.org/wiki/Annuity_%28finance_theory%29 for the principal P (or present value).
+				operatingCostWithInterest = operatingCost *  ((1 -  Math.pow(1 + interest, -1*numberOfYears)) / interest);
+			}
+		}
+		return initialCost + operatingCostWithInterest;
+	}
+
+	private static CostRepository getCostRepository(EObject object) {
+		
+		EObject container = object.eContainer();
+		
+		if (container == null) {
+			return null;
+		} else if (container instanceof CostRepository){
+			return (CostRepository) container;
+		} else {
+			return getCostRepository(container);
+		}
+
 	}
 	
 }

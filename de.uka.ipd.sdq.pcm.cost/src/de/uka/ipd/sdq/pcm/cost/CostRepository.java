@@ -53,15 +53,18 @@ public interface CostRepository extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Time Period Years</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Time period in which the operating costs are expected.
+	 * Time&nbsp;period&nbsp;in&nbsp;which&nbsp;the&nbsp;operating&nbsp;costs&nbsp;are&nbsp;expected.If the time period is zero it
+	 * is considered as not set and the perpetuitiy is caluclated, i.e. the total costs if the&nbsp;operating costs are due
+	 * infinitely long.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Time Period Years</em>' attribute.
 	 * @see #setTimePeriodYears(int)
 	 * @see de.uka.ipd.sdq.pcm.cost.costPackage#getCostRepository_TimePeriodYears()
-	 * @model required="true" ordered="false"
+	 * @model default="0" required="true" ordered="false"
 	 * @generated
 	 */
 	int getTimePeriodYears();

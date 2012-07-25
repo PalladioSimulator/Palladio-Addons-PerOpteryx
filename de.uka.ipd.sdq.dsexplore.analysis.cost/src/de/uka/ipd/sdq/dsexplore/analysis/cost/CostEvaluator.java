@@ -177,42 +177,6 @@ public class CostEvaluator implements IAnalysis{
 		return sum;
 	}
 	
-	/**
-	 * This calculates the perpetuity (see http://en.wikipedia.org/wiki/Present_value) cost.
-	 * @param pcmInstance
-	 * @param interest If interest <= 0, no operating cost are taken into account.
-	 * @param numberOfYears 
-	 * @return
-	 */
-	private double getTotalCost(double initialCost, double operatingCost, double interest, int numberOfYears){
-		
-		double operatingCostWithInterest = 0;
-		
-		if (interest < 0 ){
-			logger.error("Negative interest rate not supported by cost evaluator");
-			return Double.NaN;
-		}
-		
-		if (numberOfYears == 0){
-			if (interest == 0 ){
-				logger.warn("Interest rate of 0 and no time period lead to infinite costs over time ");
-				return Double.POSITIVE_INFINITY;
-			} else {
-				operatingCostWithInterest = operatingCost/interest;
-			}
-		} else {
-			if (interest == 0){
-				operatingCostWithInterest = operatingCost * numberOfYears;
-
-			} else {
-				// FIXME: Fix this calculation, results of course in negative values!
-				//operatingCostWithInterest = operatingCost * Math.pow( 1- (1 + interest), -1*numberOfYears);
-				throw new UnsupportedOperationException("Perpetuity for a number of years not yet implemented. Contact developers.");
-			}
-		}
-		return initialCost + operatingCostWithInterest;
-	}
-
 	private void updateCostModel(PCMInstance pcmInstance) {
 
 		List<Cost> allCosts = this.costModel.getCost();
@@ -373,7 +337,7 @@ public class CostEvaluator implements IAnalysis{
 		double initialCost = getInitialCost(pcm);
 		double operatingCost = getOperatingCost(pcm);
 		this.previousCostResults.put(pheno.getNumericID(), new CostAnalysisResult(
-				getTotalCost(initialCost, operatingCost, costModel.getInterest(), costModel.getTimePeriodYears()), initialCost, operatingCost, 
+				CostUtil.getTotalCost(initialCost, operatingCost, costModel.getInterest(), costModel.getTimePeriodYears()), initialCost, operatingCost, 
 				pcm, this.criterionToAspect, this.costQualityAttribute));
 		CostUtil.getInstance().resetCache();
 	}
