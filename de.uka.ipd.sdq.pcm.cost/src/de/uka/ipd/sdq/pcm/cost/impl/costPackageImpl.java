@@ -252,7 +252,7 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCost_OperatingCost() {
+	public EAttribute getCost_TotalCost() {
 		return (EAttribute)costEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -261,8 +261,17 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCost_InitialCost() {
+	public EAttribute getCost_OperatingCost() {
 		return (EAttribute)costEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCost_InitialCost() {
+		return (EAttribute)costEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -534,6 +543,7 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 
 		costEClass = createEClass(COST);
 		createEReference(costEClass, COST__ANNOTATED_ELEMENT);
+		createEAttribute(costEClass, COST__TOTAL_COST);
 		createEAttribute(costEClass, COST__OPERATING_COST);
 		createEAttribute(costEClass, COST__INITIAL_COST);
 
@@ -631,6 +641,7 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 
 		initEClass(costEClass, Cost.class, "Cost", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCost_AnnotatedElement(), theEcorePackage.getEObject(), null, "annotatedElement", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getCost_TotalCost(), ecorePackage.getEDouble(), "totalCost", null, 1, 1, Cost.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCost_OperatingCost(), ecorePackage.getEDouble(), "operatingCost", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCost_InitialCost(), ecorePackage.getEDouble(), "initialCost", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
@@ -664,7 +675,7 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 
 		initEClass(costRepositoryEClass, CostRepository.class, "CostRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCostRepository_Cost(), this.getCost(), null, "cost", null, 0, -1, CostRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCostRepository_TimePeriodYears(), ecorePackage.getEInt(), "timePeriodYears", null, 1, 1, CostRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getCostRepository_TimePeriodYears(), ecorePackage.getEInt(), "timePeriodYears", "0", 1, 1, CostRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCostRepository_Interest(), ecorePackage.getEDouble(), "interest", null, 1, 1, CostRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(componentCostPerInstanceEClass, ComponentCostPerInstance.class, "ComponentCostPerInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

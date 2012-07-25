@@ -35,6 +35,7 @@
         labelFeature="#//cost/Cost/initialCost">
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
           createChild="false" ecoreFeature="ecore:EReference cost.ecore#//Cost/annotatedElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute cost.ecore#//Cost/totalCost"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
           ecoreFeature="ecore:EAttribute cost.ecore#//Cost/operatingCost"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"

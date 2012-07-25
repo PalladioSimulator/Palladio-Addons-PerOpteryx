@@ -55,6 +55,9 @@ When using the Cost, you can read the initialCost to get the procurement cost fo
       <ownedAttribute xmi:id="_EAbrwCKpEd64q9HNdQ0aqw" name="annotatedElement" visibility="public" isReadOnly="true" isDerived="true">
         <type xmi:type="uml:Class" href="Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_HDDYUNYmEeGoH4oH8Tc2hA" name="totalCost" visibility="public" isReadOnly="true" isDerived="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="_6_drgPhsEd23O5YGd3Oe8g" name="operatingCost" visibility="public" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="_oaaYgPkHEd23O5YGd3Oe8g" annotatedElement="_6_drgPhsEd23O5YGd3Oe8g">
           <body>The value of this attributes has to be derived in subclasses. </body>
@@ -135,9 +138,14 @@ If we have FixedProcessingResourceCost for certain types of, for example, CPUs, 
       </ownedAttribute>
       <ownedAttribute xmi:id="_O1oVcGFGEeG1seYYX2YXPg" name="timePeriodYears" visibility="public">
         <ownedComment xmi:id="_Vr9UEGFGEeG1seYYX2YXPg" annotatedElement="_O1oVcGFGEeG1seYYX2YXPg">
-          <body>Time period in which the operating costs are expected.</body>
+          <body>Time&amp;nbsp;period&amp;nbsp;in&amp;nbsp;which&amp;nbsp;the&amp;nbsp;operating&amp;nbsp;costs&amp;nbsp;are&amp;nbsp;expected.If the time period is zero it&#xD;
+is considered as not set and the perpetuitiy is caluclated, i.e. the total costs if the&amp;nbsp;operating costs are due&#xD;
+infinitely long.</body>
         </ownedComment>
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_DZraEGFHEeGfc4IbyIDm7w">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:id="_sgEP8GFEEeGlHNaTUIdM5g" name="interest" visibility="public">
         <ownedComment xmi:id="_OHgrMGFGEeG1seYYX2YXPg" annotatedElement="_sgEP8GFEEeGlHNaTUIdM5g">
@@ -240,4 +248,5 @@ instance.</body>
   <Default:Documentation xmi:id="_lwi3QMG_EeCcG5_UlhoSUw" base_Comment="_ltVyQMG_EeCcG5_UlhoSUw"/>
   <Default:Documentation xmi:id="_OHqcMGFGEeG1seYYX2YXPg" base_Comment="_OHgrMGFGEeG1seYYX2YXPg"/>
   <Default:Documentation xmi:id="_VsGeAGFGEeG1seYYX2YXPg" base_Comment="_Vr9UEGFGEeG1seYYX2YXPg"/>
+  <Ecore:EAttribute xmi:id="_Nmmk4NYmEeGoH4oH8Tc2hA" base_Property="_HDDYUNYmEeGoH4oH8Tc2hA"/>
 </xmi:XMI>

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.Cost#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.cost.Cost#getTotalCost <em>Total Cost</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.Cost#getOperatingCost <em>Operating Cost</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.cost.Cost#getInitialCost <em>Initial Cost</em>}</li>
  * </ul>
@@ -47,6 +48,21 @@ public interface Cost extends EObject {
 	 * @generated
 	 */
 	EObject getAnnotatedElement();
+
+	/**
+	 * Returns the value of the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Total Cost</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Total Cost</em>' attribute.
+	 * @see de.uka.ipd.sdq.pcm.cost.costPackage#getCost_TotalCost()
+	 * @model required="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	double getTotalCost();
 
 	/**
 	 * Returns the value of the '<em><b>Operating Cost</b></em>' attribute.

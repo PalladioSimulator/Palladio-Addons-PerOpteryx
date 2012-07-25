@@ -106,7 +106,7 @@ public class ComponentCostPerInstanceItemProvider
 	@Override
 	public String getText(Object object) {
 		ComponentCostPerInstance componentCostPerInstance = (ComponentCostPerInstance)object;
-		return getString("_UI_ComponentCostPerInstance_type") + " " + componentCostPerInstance.getOperatingCost();
+		return getString("_UI_ComponentCostPerInstance_type") + " " + componentCostPerInstance.getTotalCost();
 	}
 
 	/**

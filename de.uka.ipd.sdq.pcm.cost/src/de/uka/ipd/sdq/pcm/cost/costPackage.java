@@ -88,13 +88,22 @@ public interface costPackage extends EPackage {
 	int COST__ANNOTATED_ELEMENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COST__TOTAL_COST = 1;
+
+	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COST__OPERATING_COST = 1;
+	int COST__OPERATING_COST = 2;
 
 	/**
 	 * The feature id for the '<em><b>Initial Cost</b></em>' attribute.
@@ -103,7 +112,7 @@ public interface costPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COST__INITIAL_COST = 2;
+	int COST__INITIAL_COST = 3;
 
 	/**
 	 * The number of structural features of the '<em>Cost</em>' class.
@@ -112,7 +121,7 @@ public interface costPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COST_FEATURE_COUNT = 3;
+	int COST_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.cost.impl.ComponentCostImpl <em>Component Cost</em>}' class.
@@ -132,6 +141,15 @@ public interface costPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_COST__ANNOTATED_ELEMENT = COST__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_COST__TOTAL_COST = COST__TOTAL_COST;
 
 	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
@@ -207,6 +225,15 @@ public interface costPackage extends EPackage {
 	int LINKING_RESOURCE_COST__ANNOTATED_ELEMENT = COST__ANNOTATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINKING_RESOURCE_COST__TOTAL_COST = COST__TOTAL_COST;
+
+	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,6 +287,15 @@ public interface costPackage extends EPackage {
 	 * @ordered
 	 */
 	int FIXED_LINKING_RESOURCE_COST__ANNOTATED_ELEMENT = LINKING_RESOURCE_COST__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_LINKING_RESOURCE_COST__TOTAL_COST = LINKING_RESOURCE_COST__TOTAL_COST;
 
 	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
@@ -317,6 +353,15 @@ public interface costPackage extends EPackage {
 	int PROCESSING_RESOURCE_COST__ANNOTATED_ELEMENT = COST__ANNOTATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_COST__TOTAL_COST = COST__TOTAL_COST;
+
+	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +415,15 @@ public interface costPackage extends EPackage {
 	 * @ordered
 	 */
 	int FIXED_PROCESSING_RESOURCE_COST__ANNOTATED_ELEMENT = PROCESSING_RESOURCE_COST__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_PROCESSING_RESOURCE_COST__TOTAL_COST = PROCESSING_RESOURCE_COST__TOTAL_COST;
 
 	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
@@ -445,6 +499,15 @@ public interface costPackage extends EPackage {
 	int VARIABLE_COST__ANNOTATED_ELEMENT = COST__ANNOTATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_COST__TOTAL_COST = COST__TOTAL_COST;
+
+	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -507,6 +570,15 @@ public interface costPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_LINKING_RESOURCE_COST__ANNOTATED_ELEMENT = VARIABLE_COST__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_LINKING_RESOURCE_COST__TOTAL_COST = VARIABLE_COST__TOTAL_COST;
 
 	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
@@ -598,6 +670,15 @@ public interface costPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_PROCESSING_RESOURCE_COST__ANNOTATED_ELEMENT = VARIABLE_COST__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_PROCESSING_RESOURCE_COST__TOTAL_COST = VARIABLE_COST__TOTAL_COST;
 
 	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
@@ -775,6 +856,15 @@ public interface costPackage extends EPackage {
 	int COMPONENT_COST_PER_INSTANCE__ANNOTATED_ELEMENT = COMPONENT_COST__ANNOTATED_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Total Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_COST_PER_INSTANCE__TOTAL_COST = COMPONENT_COST__TOTAL_COST;
+
+	/**
 	 * The feature id for the '<em><b>Operating Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -901,6 +991,17 @@ public interface costPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCost_AnnotatedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.cost.Cost#getTotalCost <em>Total Cost</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Total Cost</em>'.
+	 * @see de.uka.ipd.sdq.pcm.cost.Cost#getTotalCost()
+	 * @see #getCost()
+	 * @generated
+	 */
+	EAttribute getCost_TotalCost();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.cost.Cost#getOperatingCost <em>Operating Cost</em>}'.
@@ -1273,6 +1374,14 @@ public interface costPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COST__ANNOTATED_ELEMENT = eINSTANCE.getCost_AnnotatedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Total Cost</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COST__TOTAL_COST = eINSTANCE.getCost_TotalCost();
 
 		/**
 		 * The meta object literal for the '<em><b>Operating Cost</b></em>' attribute feature.

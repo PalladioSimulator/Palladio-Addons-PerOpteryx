@@ -28,6 +28,9 @@
         <details key="suppressedIsSetVisibility" value="true"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalCost" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        changeable="false" volatile="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatingCost" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         changeable="false" volatile="true" transient="true" derived="true">
@@ -104,9 +107,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cost" ordered="false" upperBound="-1"
         eType="#//Cost" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timePeriodYears" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Time period in which the operating costs are expected."/>
+        <details key="documentation" value="Time&amp;nbsp;period&amp;nbsp;in&amp;nbsp;which&amp;nbsp;the&amp;nbsp;operating&amp;nbsp;costs&amp;nbsp;are&amp;nbsp;expected.If the time period is zero it&#xD;&#xA;is considered as not set and the perpetuitiy is caluclated, i.e. the total costs if the&amp;nbsp;operating costs are due&#xD;&#xA;infinitely long."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interest" ordered="false"
