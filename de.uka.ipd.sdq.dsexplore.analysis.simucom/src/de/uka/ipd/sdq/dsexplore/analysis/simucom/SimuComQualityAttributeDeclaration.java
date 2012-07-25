@@ -39,6 +39,9 @@ public class SimuComQualityAttributeDeclaration extends AbstractPerformanceAttri
 		if(EcoreUtil.equals(dimension, this.throughputDimension) && aspect instanceof Mean) {
 			return true;
 		}
+		if(EcoreUtil.equals(dimension, this.maxUtilizationDimension)) {
+			return true;
+		}
 		return false;
 	}
 
