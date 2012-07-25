@@ -59,7 +59,7 @@ public interface Cost extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Cost</em>' attribute.
 	 * @see de.uka.ipd.sdq.pcm.cost.costPackage#getCost_TotalCost()
-	 * @model required="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	double getTotalCost();

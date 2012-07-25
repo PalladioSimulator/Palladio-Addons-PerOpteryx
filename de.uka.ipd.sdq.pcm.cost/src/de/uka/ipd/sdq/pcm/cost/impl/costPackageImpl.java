@@ -641,7 +641,7 @@ public class costPackageImpl extends EPackageImpl implements costPackage {
 
 		initEClass(costEClass, Cost.class, "Cost", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCost_AnnotatedElement(), theEcorePackage.getEObject(), null, "annotatedElement", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCost_TotalCost(), ecorePackage.getEDouble(), "totalCost", null, 1, 1, Cost.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getCost_TotalCost(), ecorePackage.getEDouble(), "totalCost", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCost_OperatingCost(), ecorePackage.getEDouble(), "operatingCost", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCost_InitialCost(), ecorePackage.getEDouble(), "initialCost", null, 1, 1, Cost.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
