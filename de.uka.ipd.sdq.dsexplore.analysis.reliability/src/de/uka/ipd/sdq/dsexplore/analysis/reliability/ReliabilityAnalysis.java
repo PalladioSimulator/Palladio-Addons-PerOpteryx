@@ -10,28 +10,33 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.ILaunchManager;
-import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
+import org.opt4j.core.InfeasibilityConstraint;
 import org.opt4j.core.Objective;
+import org.opt4j.core.SatisfactionConstraint;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.InfeasibilityConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.ObjectiveBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.SatisfactionConstraintBuilder;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedInfeasibilityConstraintBuilder;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedObjectiveBuilder;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedSatisfactionConstraintBuilder;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
 import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
+import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
 import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverWorkflowRunConfiguration;
+import de.uka.ipd.sdq.reliability.solver.pcm2markov.MarkovTransformationResult;
 import de.uka.ipd.sdq.reliability.solver.pcm2markov.Pcm2MarkovStrategy;
 import de.uka.ipd.sdq.reliability.solver.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
 import de.uka.ipd.sdq.reliability.solver.runconfig.RunPCMReliabilityAnalysisJob;
@@ -63,20 +68,16 @@ public class ReliabilityAnalysis implements IAnalysis {
 	
 	private PCMSolverWorkflowRunConfiguration lastPCMSolverConfiguration;
 	
-	private int iteration = -1;
-
 	private MDSDBlackboard blackboard;
 
 	private ReliabilitySolverQualityAttributeDeclaration reliabilityQualityAttribute = new ReliabilitySolverQualityAttributeDeclaration();
 	
-	//Constraint handling
-	private List<Constraint> constraints = new ArrayList<Constraint>();
-	private Map<Constraint, EvaluationAspectWithContext> constraintToAspect = new HashMap<Constraint, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
-
-	private List<Objective> objectives = new ArrayList<Objective>();
-	private Map<Objective, EvaluationAspectWithContext> objectiveToAspect = new HashMap<Objective, EvaluationAspectWithContext>(); 
+	//Criteria handling
+	private List<Criterion> criteriaList = new ArrayList<Criterion>();
+	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
 	
-	private Map<Long, Double> previousPofodResults = new HashMap<Long, Double>();
+	
+	private Map<Long, List<MarkovTransformationResult>> previousReliabilityResults = new HashMap<Long, List<MarkovTransformationResult>>();
 	
 	/**
 	 * {@inheritDoc}
@@ -86,15 +87,27 @@ public class ReliabilityAnalysis implements IAnalysis {
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, JobFailedException, UserCanceledException {
 		
-		iteration++;
-		
 		launchReliabilitySolver(pheno, monitor);
 		
 	}
 	
-	private IAnalysisResult retrieveReliabilitySolverResults(PCMPhenotype pheno)  {
+	private IAnalysisResult retrieveReliabilitySolverResults(PCMPhenotype pheno, UsageScenario scenario) throws AnalysisFailedException  {
 		
-		ReliabilityAnalysisResult result = new ReliabilityAnalysisResult(this.previousPofodResults.get(pheno.getNumericID()), this.lastPCMSolverConfiguration);
+		List<MarkovTransformationResult> results = this.previousReliabilityResults.get(pheno.getNumericID());
+		MarkovTransformationResult resultForScenario = null;
+		
+		for (MarkovTransformationResult markovTransformationResult : results) {
+			if (EMFHelper.checkIdentity(markovTransformationResult.getScenario(), scenario)){
+				resultForScenario = markovTransformationResult;
+				break;
+			}
+		}
+		if (resultForScenario == null){
+			throw new AnalysisFailedException("Cannot find reliability results. Contact developers.");
+		}
+		
+		
+		ReliabilityAnalysisResult result = new ReliabilityAnalysisResult(1 - resultForScenario.getSuccessProbability(), this.lastPCMSolverConfiguration);
 	
 		return result;
 	}
@@ -138,7 +151,7 @@ public class ReliabilityAnalysis implements IAnalysis {
 		//execute the job
 		solverJob.execute(monitor);
 		
-		this.previousPofodResults.put(pheno.getNumericID(), 1 - ((Pcm2MarkovStrategy)solverJob.getStrategy()).getSolvedValue().getSuccessProbability());
+		this.previousReliabilityResults.put(pheno.getNumericID(), ((Pcm2MarkovStrategy)solverJob.getStrategy()).getAllSolvedValues());
 		
 		logger.debug("Finished reliability solver analysis");
 		
@@ -151,10 +164,13 @@ public class ReliabilityAnalysis implements IAnalysis {
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException{
 		this.config = configuration;
 		
-		initialiseCriteria(configuration);
+		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
+		
+		initialiseCriteria(configuration, scenarios);
 	}
 	
-	private void initialiseCriteria(DSEWorkflowConfiguration configuration) throws CoreException{
+	private void initialiseCriteria(DSEWorkflowConfiguration configuration, List<UsageScenario> scenarios) throws CoreException{
 		UsageModel usageModel = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID)).getUsageModel();
 		
 		PCMDeclarationsReader reader = new PCMDeclarationsReader(
@@ -170,34 +186,63 @@ public class ReliabilityAnalysis implements IAnalysis {
 		
 		//Check constraint aspects and create Constraint-Objects for every Aspect
 		for (Iterator<EvaluationAspectWithContext> iterator = reliabilityAspects.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator
-					.next();
-			
-			
-			if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) {
+			EvaluationAspectWithContext aspectContext = iterator.next();
 
-						//Handle possible aspects here
-						if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) {
-							
-							if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-								Constraint c = reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, new InfeasibilityConstraintBuilder());
-								constraints.add(c);
-								constraintToAspect.put(c, aspectContext);
-							} else {
-								//instanceof Objective
-								Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, new ObjectiveBuilder());
-								objectives.add(o);
-								objectiveToAspect.put(o, aspectContext);
-								
-								Constraint c = reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, new SatisfactionConstraintBuilder()); 
-								constraints.add(c);
-								constraintToAspect.put(c, aspectContext);
-							}
+
+			if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) { 
+
+				//*********copied from AbstractLQNAnalysis.*********** 
+				//TODO: refactor QML handling. 
+
+				if(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
+					//The criterion refers to EVERY US since none is explicitly specified
+					for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
+						UsageScenario usageScenario = (UsageScenario) iterator2.next();
+
+						if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
+							InfeasibilityConstraint c = 
+									reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
+
+							criteriaList.add(c);
+							criterionToAspect.put(c, aspectContext);
 						} else {
-							//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well
-							throw new RuntimeException("Evaluation aspect not supported("+aspectContext.getEvaluationAspect()+")!");
-						}			
-				
+							//instanceof Objective
+							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario); 
+							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
+							criteriaList.add(o);
+							criterionToAspect.put(o, aspectContext); 
+
+							UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
+							SatisfactionConstraint c = 
+									reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder); 
+							criteriaList.add(c);
+							criterionToAspect.put(c, aspectContext);
+						}
+					}
+				} else {
+					if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+						UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+
+						InfeasibilityConstraint c = 
+								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
+						criteriaList.add(c);
+						criterionToAspect.put(c, aspectContext);
+					} else {
+						//instanceof Objective
+						UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
+						criteriaList.add(o);
+						criterionToAspect.put(o, aspectContext);
+
+						UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+
+						SatisfactionConstraint c = 
+								reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
+						criteriaList.add(c);
+						criterionToAspect.put(c, aspectContext);
+					}
+				}
 			} else {
 				throw new RuntimeException("Unsupported Requirement!");
 			}		
@@ -247,28 +292,31 @@ public class ReliabilityAnalysis implements IAnalysis {
 	public List<Criterion> getCriterions() throws CoreException {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		
-		//Objective o = new Objective(this.getQualityAttribute(), Objective.Sign.MIN);
-		criterions.addAll(objectives);
-		
-		criterions.addAll(constraints);
+		criterions.addAll(this.criteriaList);
 		
 		return criterions;
 	}
 	
-	//TODO: Support several usage scenarios.
 	@Override
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)
 			throws CoreException, AnalysisFailedException {
-		IAnalysisResult result = retrieveReliabilitySolverResults(pheno);
-	
-		//It is always the pofod, i.e. objective and constraint always have to refer to the MeanValue (-> no other aspects atm)
-		//If more possible aspects are added, the criterion needs to be examined here
-		return result;
+		
+		if (criterion instanceof UsageScenarioBasedCriterion){
+			IAnalysisResult result = retrieveReliabilitySolverResults(pheno, ((UsageScenarioBasedCriterion)criterion).getUsageScenario());
+			
+			//It is always the pofod, i.e. objective and constraint always have to refer to the MeanValue (-> no other aspects atm)
+			//If more possible aspects are added, the criterion needs to be examined here
+			return result;
+		} else {
+			throw new RuntimeException("Reliability criteria need to be defined for a usage scenario");
+		}
+		
+
 	}
 
 	@Override
 	public boolean hasObjectivePerUsageScenario() throws CoreException {
-		return false;
+		return true;
 	}
 
 
