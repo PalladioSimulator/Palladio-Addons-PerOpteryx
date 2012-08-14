@@ -39,6 +39,7 @@ import de.uka.ipd.sdq.reliability.solver.pcm2markov.MarkovTransformationResult;
 import de.uka.ipd.sdq.reliability.solver.pcm2markov.Pcm2MarkovStrategy;
 import de.uka.ipd.sdq.reliability.solver.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
 import de.uka.ipd.sdq.reliability.solver.runconfig.RunPCMReliabilityAnalysisJob;
+import de.uka.ipd.sdq.workflow.Blackboard;
 import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
 import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
@@ -67,15 +68,23 @@ public class ReliabilityAnalysis implements IAnalysis {
 	
 	private PCMSolverWorkflowRunConfiguration lastPCMSolverConfiguration;
 	
+	/**
+	 * The {@link Blackboard} to read the PCM models from.
+	 */
 	private MDSDBlackboard blackboard;
 
 	private ReliabilitySolverQualityAttributeDeclaration reliabilityQualityAttribute = new ReliabilitySolverQualityAttributeDeclaration();
 	
-	//Criteria handling
+	/**
+	 * Criteria handling.
+	 */
 	private List<Criterion> criteriaList = new ArrayList<Criterion>();
 	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
 	
 	
+	/**
+	 * Cache for previous reliability results.
+	 */
 	private Map<Long, List<MarkovTransformationResult>> previousReliabilityResults = new HashMap<Long, List<MarkovTransformationResult>>();
 	
 	/**
