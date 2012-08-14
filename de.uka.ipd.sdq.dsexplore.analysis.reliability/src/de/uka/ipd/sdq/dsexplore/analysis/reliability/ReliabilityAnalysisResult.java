@@ -28,24 +28,24 @@ public class ReliabilityAnalysisResult implements IAnalysisResult {
 	/**
 	 * Store the reliability result. If the number of exact decimal places has been limited in the
 	 * {@link PCMSolverWorkflowRunConfiguration}, the result is rounded to that value by cutting all following places. 
-	 * @param d
-	 * @param lastPCMSolverConfigurationconfiguration to determine whether to round the result. 
+	 * @param reliabilityValue The success probability.
+	 * @param lastPCMSolverConfiguration configuration to determine whether to round the result. 
 	 */
-	public ReliabilityAnalysisResult(double d, PCMSolverWorkflowRunConfiguration lastPCMSolverConfiguration) {
+	public ReliabilityAnalysisResult(double reliabilityValue, PCMSolverWorkflowRunConfiguration lastPCMSolverConfiguration) {
 		boolean limitedNumberOfExactDecimalPlaces = lastPCMSolverConfiguration.isNumberOfExactDecimalPlacesEnabled();
-		if (limitedNumberOfExactDecimalPlaces){
+		if (limitedNumberOfExactDecimalPlaces) {
 			// +1 to not loose any information, because the solver is accurate to at least the given number of places. 
-			int numberOfPlaces = lastPCMSolverConfiguration.getNumberOfExactDecimalPlaces()+1;
-			BigDecimal bigD = new BigDecimal(d);
+			int numberOfPlaces = lastPCMSolverConfiguration.getNumberOfExactDecimalPlaces() + 1;
+			BigDecimal bigD = new BigDecimal(reliabilityValue);
 			bigD = bigD.setScale(numberOfPlaces, RoundingMode.FLOOR);
-			d = bigD.doubleValue();
+			reliabilityValue = bigD.doubleValue();
 		}
-		this.pofod = d;
+		this.pofod = 1 - reliabilityValue;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * TODO: check correct criterion
+	 * TODO: check correct criterion.
 	 */
 	@Override
 	public double getValueFor(Criterion criterion)  {
@@ -55,13 +55,14 @@ public class ReliabilityAnalysisResult implements IAnalysisResult {
 
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * Not applicable to Reliability results. 
 	 * @return -1
 	 */
 	public double getUtilisationOfResource(ResourceContainer container,
-			ProcessingResourceSpecification resource)
-			 {
-		// TODO Implement
+			ProcessingResourceSpecification resource) {
+		// TODO Implement?
 		return -1;
 	}
 
