@@ -30,7 +30,7 @@ public class ReliabilitySolverQualityAttributeDeclaration implements IAnalysisQu
 	 */
 	@Override
 	public boolean canEvaluateAspectForDimension(EvaluationAspect aspect, Dimension dimension) {
-		if(aspect instanceof Value) {
+		if (aspect instanceof Value) {
 			return true;
 		}
 		return false;
