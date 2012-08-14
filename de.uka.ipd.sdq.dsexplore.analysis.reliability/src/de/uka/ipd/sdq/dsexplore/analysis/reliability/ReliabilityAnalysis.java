@@ -96,17 +96,17 @@ public class ReliabilityAnalysis implements IAnalysis {
 		MarkovTransformationResult resultForScenario = null;
 		
 		for (MarkovTransformationResult markovTransformationResult : results) {
-			if (EMFHelper.checkIdentity(markovTransformationResult.getScenario(), scenario)){
+			if (EMFHelper.checkIdentity(markovTransformationResult.getScenario(), scenario)) {
 				resultForScenario = markovTransformationResult;
 				break;
 			}
 		}
-		if (resultForScenario == null){
+		if (resultForScenario == null) {
 			throw new AnalysisFailedException("Cannot find reliability results. Contact developers.");
 		}
 		
 		
-		ReliabilityAnalysisResult result = new ReliabilityAnalysisResult(1 - resultForScenario.getSuccessProbability(), this.lastPCMSolverConfiguration);
+		ReliabilityAnalysisResult result = new ReliabilityAnalysisResult(resultForScenario.getSuccessProbability(), this.lastPCMSolverConfiguration);
 	
 		return result;
 	}
@@ -115,8 +115,7 @@ public class ReliabilityAnalysis implements IAnalysis {
 	 * Launches the LQN Solver.
 	 * @param monitor 
 	 * 
-	 * @param pcmInstance the instance of PCM
-	 * @throws AnalysisFailedException RunPCMAnalysisJob solver = new RunPCMAnalysisJob(configuration, true);
+	 * @param pheno the instance of PCM
 	 * @throws CoreException 
 	 * @throws UserCanceledException 
 	 * @throws JobFailedException 
@@ -150,7 +149,7 @@ public class ReliabilityAnalysis implements IAnalysis {
 		//execute the job
 		solverJob.execute(monitor);
 		
-		this.previousReliabilityResults.put(pheno.getNumericID(), ((Pcm2MarkovStrategy)solverJob.getStrategy()).getAllSolvedValues());
+		this.previousReliabilityResults.put(pheno.getNumericID(), ((Pcm2MarkovStrategy) solverJob.getStrategy()).getAllSolvedValues());
 		
 		logger.debug("Finished reliability solver analysis");
 		
@@ -160,17 +159,23 @@ public class ReliabilityAnalysis implements IAnalysis {
 	 * {@inheritDoc}
 	 * @see de.uka.ipd.sdq.dsexplore.analysis.IAnalysis#initialise(org.eclipse.debug.core.ILaunchConfiguration, java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException{
+	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.config = configuration;
 		
-		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
 		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
 		
 		initialiseCriteria(configuration, scenarios);
 	}
 	
-	private void initialiseCriteria(DSEWorkflowConfiguration configuration, List<UsageScenario> scenarios) throws CoreException{
-		UsageModel usageModel = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID)).getUsageModel();
+	/**
+	 * Initialize criteria, implementation for {@code #initialise(DSEWorkflowConfiguration)}.
+	 * @param configuration The workflow configuration
+	 * @param scenarios The scenarios that have been analyzed
+	 * @throws CoreException
+	 */
+	private void initialiseCriteria(DSEWorkflowConfiguration configuration, List<UsageScenario> scenarios) throws CoreException {
+		UsageModel usageModel = new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID)).getUsageModel();
 		
 		PCMDeclarationsReader reader = new PCMDeclarationsReader(
 				configuration.getRawConfiguration().getAttribute("qmlDefinitionFile", ""));
@@ -188,17 +193,17 @@ public class ReliabilityAnalysis implements IAnalysis {
 			EvaluationAspectWithContext aspectContext = iterator.next();
 
 
-			if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) { 
+			if (aspectContext.getRequirement() instanceof UsageScenarioRequirement) { 
 
 				//*********copied from AbstractLQNAnalysis.*********** 
 				//TODO: refactor QML handling. 
 
-				if(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
+				if (((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario() == null) {
 					//The criterion refers to EVERY US since none is explicitly specified
 					for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
 						UsageScenario usageScenario = (UsageScenario) iterator2.next();
 
-						if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
 							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
 							InfeasibilityConstraint c = 
 									reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
@@ -220,8 +225,8 @@ public class ReliabilityAnalysis implements IAnalysis {
 						}
 					}
 				} else {
-					if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-						UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+						UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 
 						InfeasibilityConstraint c = 
 								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
@@ -229,12 +234,12 @@ public class ReliabilityAnalysis implements IAnalysis {
 						criterionToAspect.put(c, aspectContext);
 					} else {
 						//instanceof Objective
-						UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+						UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
 						criteriaList.add(o);
 						criterionToAspect.put(o, aspectContext);
 
-						UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+						UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 
 						SatisfactionConstraint c = 
 								reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
@@ -264,11 +269,17 @@ public class ReliabilityAnalysis implements IAnalysis {
 //		}
 //	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public QualityAttribute getQualityAttribute() throws CoreException {
 		//return DSEConstantsContainer.POFOD_QUALITY;
 		return reliabilityQualityAttribute.getQualityAttribute();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean hasStatisticResults() throws CoreException {
 		return false;
 	}
@@ -296,8 +307,8 @@ public class ReliabilityAnalysis implements IAnalysis {
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)
 			throws AnalysisFailedException {
 		
-		if (criterion instanceof UsageScenarioBasedCriterion){
-			IAnalysisResult result = retrieveReliabilitySolverResults(pheno, ((UsageScenarioBasedCriterion)criterion).getUsageScenario());
+		if (criterion instanceof UsageScenarioBasedCriterion) {
+			IAnalysisResult result = retrieveReliabilitySolverResults(pheno, ((UsageScenarioBasedCriterion) criterion).getUsageScenario());
 			
 			//It is always the pofod, i.e. objective and constraint always have to refer to the MeanValue (-> no other aspects atm)
 			//If more possible aspects are added, the criterion needs to be examined here
