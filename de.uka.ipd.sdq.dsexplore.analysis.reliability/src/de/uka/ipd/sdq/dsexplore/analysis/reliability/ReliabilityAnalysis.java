@@ -22,7 +22,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
@@ -249,10 +248,6 @@ public class ReliabilityAnalysis implements IAnalysis {
 		}
 	}
 	
-	private boolean canEvaluateAspect(EvaluationAspect aspect, Dimension dimension){
-		return reliabilityQualityAttribute.canEvaluateAspectForDimension(aspect, dimension);
-	}
-	
 	//MOVED to PCMDeclarationsReader
 //	private Objective translateEvalAspectToObjective(EvaluationAspectWithContext aspect) {
 //		//Make sure, the aspect IS an objective
@@ -299,7 +294,7 @@ public class ReliabilityAnalysis implements IAnalysis {
 	
 	@Override
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)
-			throws CoreException, AnalysisFailedException {
+			throws AnalysisFailedException {
 		
 		if (criterion instanceof UsageScenarioBasedCriterion){
 			IAnalysisResult result = retrieveReliabilitySolverResults(pheno, ((UsageScenarioBasedCriterion)criterion).getUsageScenario());
