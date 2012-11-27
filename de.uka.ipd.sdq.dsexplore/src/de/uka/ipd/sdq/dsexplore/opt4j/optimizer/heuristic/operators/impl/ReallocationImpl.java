@@ -98,7 +98,7 @@ public class ReallocationImpl extends AbstractTactic {
 			UtilisationResult minUtilisationResult = resultsCache.getMinProcUtilisationResult(individual, resourceType);
 			UtilisationResult maxUtilisationResult = resultCache.getMaxProcUtilisationResult(individual, resourceType);
 			// create candidate
-			TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+			TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 			ProcessingResourceSpecification minProcessingResourceSpec = ((ProcessingResourceSpecificationResultImpl)minUtilisationResult).getProcessingResourceSpecification_ProcessingResourceSpecificationResult();
 			ProcessingResourceSpecification maxProcessingResourceSpec = ((ProcessingResourceSpecificationResultImpl)maxUtilisationResult).getProcessingResourceSpecification_ProcessingResourceSpecificationResult();
 			ResourceContainer targetResourceContainer = ((ResourceContainer)minProcessingResourceSpec.eContainer());
@@ -142,7 +142,6 @@ public class ReallocationImpl extends AbstractTactic {
 								targetResourceContainer));
 	 			
 				candidate.setCandidateWeight(getCandidateWeight(minUtilisationResult, maxUtilisationResult));
-				candidate.setHeuristic(this);
 				candidates.add(candidate);
 				increaseCounterOfGeneratedCandidates();
 			} 

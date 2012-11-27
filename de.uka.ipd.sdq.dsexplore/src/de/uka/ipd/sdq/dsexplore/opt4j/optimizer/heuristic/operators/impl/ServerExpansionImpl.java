@@ -137,7 +137,7 @@ public class ServerExpansionImpl extends AbstractTactic {
 			ProcessingResourceSpecificationResult maxUtilisationResult,
 			ResourceContainer resourceContainer) {
 		
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 		
 		
 		// check whether changing the multiplicity is allowed
@@ -154,7 +154,6 @@ public class ServerExpansionImpl extends AbstractTactic {
 						discreteChoice.setChosenValue(discreteChoice.getChosenValue() + 1);
 						
 						candidate.setCandidateWeight(getCandidateWeight(maxUtilisationResult));
-						candidate.setHeuristic(this);
 						candidates.add(candidate);
 						increaseCounterOfGeneratedCandidates();
 						
@@ -174,7 +173,7 @@ public class ServerExpansionImpl extends AbstractTactic {
 			ProcessingResourceSpecificationResult maxUtilisationResult,
 			ResourceContainer resourceContainer) {
 		
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 				
 		// 3. Get a new (unused) target resource container
 		// TODO: Must be one that some components of the current container can actually be moved to. This is 
@@ -213,7 +212,6 @@ public class ServerExpansionImpl extends AbstractTactic {
 		}
 		
 		candidate.setCandidateWeight(getCandidateWeight(maxUtilisationResult));
-		candidate.setHeuristic(this);
 		candidates.add(candidate);
 		increaseCounterOfGeneratedCandidates();
 	}

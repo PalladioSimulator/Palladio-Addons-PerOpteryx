@@ -32,16 +32,20 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
+import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.resourceenvironment.LinkingResource;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
+import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.AllocationServiceResult;
+import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.ServiceResult;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
@@ -68,6 +72,9 @@ public class ResultsWriter {
 	 * Formating string used for logging purposes
 	 */
 	private static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+	
+	private static Criterion performance = null;
+	
 	private String myfilename;
 	FileWriter fileWriter;
 	private List<Criterion> criteriaToSave;
@@ -233,7 +240,12 @@ public class ResultsWriter {
 		 //writeToLogFile(heuristic.getClass() + ";" + candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
 			StringBuilder builder = new StringBuilder(30);
-			builder.append(heuristic.getClass().getSimpleName()+";"+tacticsResultCandidate.getNumericID()+";"+tacticsResultCandidate.getParent().getNumericID()+";"+tacticsResultCandidate.getID()+";"+tacticsResultCandidate.getParent().getID()+";");
+			builder.append(heuristic.getClass().getSimpleName()+";"
+					+tacticsResultCandidate.getTacticsApplicationInfo()+";"
+					+tacticsResultCandidate.getNumericID()+";"
+					+tacticsResultCandidate.getParent().getNumericID()+";"
+					+tacticsResultCandidate.getID()+";"
+					+tacticsResultCandidate.getParent().getID()+";");
 			builder = printUtilResultLine(tacticsResultCandidate.getParent(), builder);
 			writeToLogFile(builder.toString()+"\n");
 		}
@@ -398,6 +410,12 @@ public class ResultsWriter {
 			}
 		}
 		
+		ResultDecoratorRepository performanceResults = ind.getObjectives().getResultDecoratorFor(performance);
+		List<ServiceResult> serviceResultList = performanceResults.getServiceResult_ResultDecoratorRepository();
+		for (ServiceResult serviceResult : serviceResultList) {
+			output.append(serviceResult.getMeanResponseTime()+";");
+		}
+		
 		//then confidences if available
 		if (ind.getPhenotype() instanceof PCMPhenotype){
 			for (Criterion o : criteriaWithConfidence) {
@@ -506,9 +524,20 @@ public class ResultsWriter {
 			DSEIndividual i = individuals.iterator().next();
 			
 			output = printObjectives(criterionsToSave,output);
+			
+			ResultDecoratorRepository performanceResults = i.getObjectives().getResultDecoratorFor(performance);
+			List<ServiceResult> serviceResultList = performanceResults.getServiceResult_ResultDecoratorRepository();
+			for (ServiceResult serviceResult : serviceResultList) {
+				if (serviceResult instanceof AllocationServiceResult){
+					AllocationServiceResult allocServiceResult = (AllocationServiceResult)serviceResult;
+					output.append("RT of SEFF for "+allocServiceResult.getAllocationContext_AllocationServiceResult().getEntityName()+"."+serviceResult.getServiceEffectSpecification_ServiceResult().getBasicComponent_ServiceEffectSpecification().getEntityName()+"."+serviceResult.getServiceEffectSpecification_ServiceResult().getDescribedService__SEFF().getEntityName()+";");
+				} else {
+					output.append("RT of SEFF for "+serviceResult.getServiceEffectSpecification_ServiceResult().getBasicComponent_ServiceEffectSpecification().getEntityName()+"."+serviceResult.getServiceEffectSpecification_ServiceResult().getDescribedService__SEFF().getEntityName()+";");
+				}
+			}
 		
 			output = determineAndPrintConfidenceIntervalHeadline(output, i.getObjectives(), criterionsToSave);
-		
+			
 			output.append(Opt4JStarter.getProblem().toString());
 		
 			output = printUtilisationHeadline(i,output);
@@ -616,6 +645,13 @@ public class ResultsWriter {
 	private static StringBuilder printObjectives(List<Criterion> criterionsToSave, StringBuilder output) {
 		for (Criterion entry : criterionsToSave) {
 			output.append(getDimensionName(entry) +";");
+			
+			if (entry.getName().contains(
+					new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName())) {
+					//DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY)) {
+				performance = entry;
+				break;
+			}
 		}
 
 		return output;

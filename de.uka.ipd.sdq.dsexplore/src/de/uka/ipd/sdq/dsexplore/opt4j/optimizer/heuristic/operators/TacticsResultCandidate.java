@@ -24,6 +24,9 @@ public class TacticsResultCandidate extends DSEIndividual{
 	 */
 	private ITactic heuristic;
 	
+	/** Additional String information on the applied tactic (e.g. which variant of the solution has been applied) to be printed in log files, */
+	private String appliedTacticsInformation = "";
+	
 	/**
 	 * Store the parent individual for analysis purposes. 
 	 * We could also just store the hash code of the parent, 
@@ -32,9 +35,11 @@ public class TacticsResultCandidate extends DSEIndividual{
 	 */
 	private DSEIndividual parent;
 	
-	public TacticsResultCandidate(DecisionSpace problem, DSEIndividual parent) {
+	public TacticsResultCandidate(DecisionSpace problem, DSEIndividual parent, ITactic appliedTactic, String info) {
 		super(problem);
 		this.parent = parent;
+		this.appliedTacticsInformation = info;
+		this.heuristic = appliedTactic;
 	}
 
 	/**
@@ -67,12 +72,9 @@ public class TacticsResultCandidate extends DSEIndividual{
 		return heuristic;
 	}
 	
-	/**
-	 * Sets heuristic that generated candidate
-	 * @param heuristic
-	 */
-	public void setHeuristic(ITactic heuristic) {
-		this.heuristic = heuristic;
+	/** Return additional String information on the applied tactic (e.g. which variant of the solution has been applied) to be printed in log files, */
+	public String getTacticsApplicationInfo(){
+		return this.appliedTacticsInformation;
 	}
 	
 	/**
@@ -88,5 +90,19 @@ public class TacticsResultCandidate extends DSEIndividual{
 	 */
 	public DSEIndividual getParent() {
 		return parent;
+	}
+
+	/** Override equals because tactics candidates with different ids should not be considered equal to be able to follow the course of candidate creation. 
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof TacticsResultCandidate)){
+			return false;
+		}
+		if (this.getNumericID() != ((TacticsResultCandidate)o).getNumericID()){
+			return false;
+		}
+		return super.equals(o);
 	}
 }

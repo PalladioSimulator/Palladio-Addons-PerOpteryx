@@ -37,7 +37,7 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 	protected void addNewProcRateCandidate(DSEIndividual individual, Collection<TacticsResultCandidate> candidates,
 			ProcessingResourceSpecificationResult utilisationResultToBeChanged, ProcessingResourceSpecification utilProcessingResourceToBeChanged) {
 		// 2. Copy current genotype
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 		// 3. Iterate through choices and find processing rate degree to change
 		boolean hasAppliedChange = false;
 		for (Choice choice : candidate.getGenotype()) {
@@ -73,7 +73,6 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 			ProcessingResourceSpecificationResult utilisationResultToBeChanged,
 			TacticsResultCandidate candidate) {
 		candidate.setCandidateWeight(getCandidateWeight(utilisationResultToBeChanged));
-		candidate.setHeuristic(this);
 		candidates.add(candidate);
 		increaseCounterOfGeneratedCandidates();
 	}
@@ -83,7 +82,7 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 			ProcessingResourceSpecificationResult maxUtilisationResult,
 			ProcessingResourceSpecification maxUtilProcessingResource) {
 		// 2. Copy current genotype
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 		// 3. Iterate through choices and find number of cores degree to change
 		for (Choice choice : candidate.getGenotype()) {
 			if (choice instanceof DiscreteRangeChoice && choice.getDegreeOfFreedomInstance() instanceof NumberOfCoresDegree) {

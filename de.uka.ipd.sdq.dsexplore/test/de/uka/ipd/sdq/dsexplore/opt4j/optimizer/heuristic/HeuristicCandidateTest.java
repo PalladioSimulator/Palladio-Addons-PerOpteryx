@@ -44,7 +44,7 @@ public class HeuristicCandidateTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		candidate = new TacticsResultCandidate(null, null);
+		candidate = new TacticsResultCandidate(null, null, null, "test");
 	}
 
 	/**

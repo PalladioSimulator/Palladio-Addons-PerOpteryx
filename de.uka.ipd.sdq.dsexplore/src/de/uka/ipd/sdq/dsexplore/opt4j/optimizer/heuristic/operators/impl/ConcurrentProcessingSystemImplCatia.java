@@ -844,7 +844,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	private TacticsResultCandidate createCPSCandidate(DSEIndividual i,
 			Pair<CompInfoResDemand, ResourceContainer> result) {
 		TacticsResultCandidate candidate = individualFactory
-				.buildCandidate(copy.copy(i.getGenotype()), i);
+				.buildCandidate(copy.copy(i.getGenotype()), i, this, "Realloc for CPS");
 
 		// apply change
 		for (Choice choice : candidate.getGenotype()) {
@@ -864,7 +864,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 						// set weight to one for now, maybe later find a better value.
 						candidate.setCandidateWeight(1);
-						candidate.setHeuristic(this);
 						increaseCounterOfGeneratedCandidates();
 						
 						logger.info("Applied CPS solution");
@@ -874,13 +873,13 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 				}
 			}
 		}
-		throw new RuntimeException("Changing the allocation of "+result.getFirst().ac.getEntityName()+" is not allowed with the current designdecision model.");
+		throw new RuntimeException("Changing the allocation of "+result.getFirst().ac.getEntityName()+" to server "+result.getSecond().getEntityName()+" is not allowed with the current designdecision model.");
 	}
 	
 	private TacticsResultCandidate createIncreasedCapacityCandidate(
 			DSEIndividual i, PassiveResource pr, int newCapacity) {
 		TacticsResultCandidate candidate = individualFactory
-				.buildCandidate(copy.copy(i.getGenotype()), i);
+				.buildCandidate(copy.copy(i.getGenotype()), i, this, "Increased Capacity");
 
 		// apply change
 		for (Choice choice : candidate.getGenotype()) {
@@ -897,7 +896,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 						// set weight to one for now, maybe later find a better value.
 						candidate.setCandidateWeight(1);
-						candidate.setHeuristic(this);
 						increaseCounterOfGeneratedCandidates();
 						
 						logger.info("Increased capacity of "+pr.getEntityName()+" to "+newCapacity);
@@ -915,7 +913,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			DSEIndividual i, ActiveResInfo resourceToChange,
 			boolean useProcessorSharing) {
 		TacticsResultCandidate candidate = individualFactory.buildCandidate(
-				copy.copy(i.getGenotype()), i);
+				copy.copy(i.getGenotype()), i, this, "Updated Scheduling");
 
 		// apply change
 		for (Choice choice : candidate.getGenotype()) {
@@ -945,7 +943,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 						// set weight to one for now, maybe later find a better
 						// value.
 						candidate.setCandidateWeight(1);
-						candidate.setHeuristic(this);
 						increaseCounterOfGeneratedCandidates();
 
 						logger.info("Changed scheduling policy of "+resourceToChange.type.getEntityName()+" of "

@@ -187,8 +187,7 @@ public class ReallocateForReduceLinkUsage extends AbstractTactic {
 		
 		List<TacticsResultCandidate> result = new ArrayList<TacticsResultCandidate>(1);
 		
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
-		candidate.setHeuristic(this);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 		candidate.setCandidateWeight(candidateWeight);
 		// find choice for the reallocated components degree
 		for (Choice choice : candidate.getGenotype()) {

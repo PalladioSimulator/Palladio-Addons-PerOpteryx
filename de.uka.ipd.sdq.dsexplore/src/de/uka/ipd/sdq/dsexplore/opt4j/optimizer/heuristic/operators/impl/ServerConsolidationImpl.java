@@ -132,7 +132,7 @@ public class ServerConsolidationImpl extends AbstractTactic {
 		double utilisation = minUtilisationResult.getResourceUtilisation();
 		ResourceContainer identifiedContainer = minUtilisationResult.getProcessingResourceSpecification_ProcessingResourceSpecificationResult().getResourceContainer_ProcessingResourceSpecification();		
 
-		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
+		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual, this, "");
 		
 		//Get components deployed to that resource container
 		DesignDecisionGenotype genotype = candidate.getGenotype();
@@ -201,7 +201,6 @@ public class ServerConsolidationImpl extends AbstractTactic {
 				//successfully redeployed all components
 				candidates.add(candidate);
 				candidate.setCandidateWeight(getCandidateWeight(minUtilisationResult));
-				candidate.setHeuristic(this);
 				increaseCounterOfGeneratedCandidates();
 				//XXX: consider to create several possible reallocations?
 			}

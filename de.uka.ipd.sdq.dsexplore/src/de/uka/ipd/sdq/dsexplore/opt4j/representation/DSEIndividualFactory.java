@@ -4,6 +4,9 @@ import org.opt4j.core.AbstractIndividualFactory;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.problem.Creator;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic;
+
+
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -52,8 +55,8 @@ public class DSEIndividualFactory extends AbstractIndividualFactory<DSEIndividua
 		return individual;
 	}
 	
-	public TacticsResultCandidate buildCandidate(Genotype genotype, DSEIndividual parent) {
-		TacticsResultCandidate individual = new TacticsResultCandidate(problem, parent);
+	public TacticsResultCandidate buildCandidate(Genotype genotype, DSEIndividual parent, ITactic appliedTactic, String info) {
+		TacticsResultCandidate individual = new TacticsResultCandidate(problem, parent, appliedTactic, info);
 		individual.setIndividualStatusListeners(individualStateListeners);
 		individual.setGenotype(genotype);
 		return individual;
