@@ -25,6 +25,7 @@ import org.opt4j.core.Value;
 
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
@@ -528,7 +529,7 @@ public class ResultsWriter {
 			ResultDecoratorRepository performanceResults = i.getObjectives().getResultDecoratorFor(performance);
 			List<ServiceResult> serviceResultList = performanceResults.getServiceResult_ResultDecoratorRepository();
 			for (ServiceResult serviceResult : serviceResultList) {
-				if (serviceResult instanceof AllocationServiceResult){
+				if (serviceResult instanceof AllocationServiceResult && ((AllocationServiceResult)serviceResult).getAllocationContext_AllocationServiceResult() != null){
 					AllocationServiceResult allocServiceResult = (AllocationServiceResult)serviceResult;
 					output.append("RT of SEFF for "+allocServiceResult.getAllocationContext_AllocationServiceResult().getEntityName()+"."+serviceResult.getServiceEffectSpecification_ServiceResult().getBasicComponent_ServiceEffectSpecification().getEntityName()+"."+serviceResult.getServiceEffectSpecification_ServiceResult().getDescribedService__SEFF().getEntityName()+";");
 				} else {
@@ -647,7 +648,7 @@ public class ResultsWriter {
 			output.append(getDimensionName(entry) +";");
 			
 			if (entry.getName().contains(
-					new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName())) {
+					QualityAttribute.PERFORMANCE_QUALITY.getName())) {
 					//DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY)) {
 				performance = entry;
 				break;
