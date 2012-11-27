@@ -159,6 +159,25 @@ public class DSEProblem {
 					AllocationContext ac = (AllocationContext)ad.getPrimaryChanged();
 					ResourceContainer rc = ac.getResourceContainer_AllocationContext();
 					choice.setChosenValue(rc);
+				} else if (dd instanceof SchedulingPolicyDegree){
+					
+					ProcessingResourceType procType = ((SchedulingPolicyDegree)dd).getProcessingresourcetype();
+					ResourceContainer rc = (ResourceContainer)dd.getPrimaryChanged();
+					
+					SchedulingPolicy policy = null;
+					
+					for (ProcessingResourceSpecification proc : rc.getActiveResourceSpecifications_ResourceContainer()) {
+						if (EMFHelper.checkIdentity(proc.getActiveResourceType_ActiveResourceSpecification(),procType)){
+							policy = proc.getSchedulingPolicy();
+							break;
+						}
+					}
+					if (policy == null){
+						throw new RuntimeException("Invalid degree of freedom "+dd.toString()+". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
+					}
+					choice.setChosenValue(policy);
+					genotype.add(choice);
+					
 				} else throwUnknownDegreeException(dd);
 				
 				//check if entity is in the domain
@@ -185,28 +204,6 @@ public class DSEProblem {
 				} else throwUnknownDegreeException(dd);
 				
 				genotype.add(choice);
-			} else if (dd instanceof SchedulingPolicyDegree){
-				
-				ClassChoice schedChoice = this.designDecisionFactory.createClassChoice();
-				schedChoice.setDegreeOfFreedomInstance(dd);
-				
-				ProcessingResourceType procType = ((SchedulingPolicyDegree)dd).getProcessingresourcetype();
-				ResourceContainer rc = (ResourceContainer)dd.getPrimaryChanged();
-				
-				SchedulingPolicy policy = null;
-				
-				for (ProcessingResourceSpecification proc : rc.getActiveResourceSpecifications_ResourceContainer()) {
-					if (EMFHelper.checkIdentity(proc.getActiveResourceType_ActiveResourceSpecification(),procType)){
-						policy = proc.getSchedulingPolicy();
-						break;
-					}
-				}
-				if (policy == null){
-					throw new RuntimeException("Invalid degree of freedom "+dd.toString()+". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
-				}
-				schedChoice.setChosenValue(policy);
-				genotype.add(schedChoice);
-				
 			} else if (dd instanceof DiscreteDegree){
 				DiscreteDegree degree = (DiscreteDegree)dd;
 				
