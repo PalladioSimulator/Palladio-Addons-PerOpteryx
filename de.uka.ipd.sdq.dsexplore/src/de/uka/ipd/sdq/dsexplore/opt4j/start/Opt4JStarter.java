@@ -449,8 +449,10 @@ public class Opt4JStarter {
 	
 	public static void tearDown(){
 		
-		for (ResultsWriter writer : writers) {
-			writer.close();
+		if (writers != null){
+			for (ResultsWriter writer : writers) {
+				writer.close();
+			}
 		}
 		
 		writers = null;
