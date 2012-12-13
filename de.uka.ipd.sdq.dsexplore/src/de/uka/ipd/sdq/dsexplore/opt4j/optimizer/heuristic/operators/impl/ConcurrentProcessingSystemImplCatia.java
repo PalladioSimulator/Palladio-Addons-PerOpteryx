@@ -17,6 +17,7 @@ import de.uka.ipd.sdq.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import de.uka.ipd.sdq.context.aggregatedUsageContext.ServiceExecutionContext;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.Pair;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.AbstractTactic;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
@@ -68,12 +69,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			Collection<Objective> objectives = Opt4JStarter.getDSEEvaluator()
 					.getObjectives();
 			for (Objective objective : objectives) {
-				//XXX: Read the dimension name from definition rather than the constants container
 				if (objective.getName().contains(
-						new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName())
-						|| objective.getName().contains(
-								new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getEntityName())) {
-						//DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY)) {
+						QualityAttribute.PERFORMANCE_QUALITY.getName())) {
 					this.performance = objective;
 					break;
 				}
