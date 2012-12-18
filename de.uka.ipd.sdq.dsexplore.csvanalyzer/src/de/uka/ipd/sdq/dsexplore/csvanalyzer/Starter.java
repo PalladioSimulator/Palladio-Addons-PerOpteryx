@@ -61,17 +61,17 @@ public class Starter {
 	 * Do not forget the trailing backslash.
 	 */
 	
-	// 3D
+//	// 3D
 //	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\pure evol\\";
 //	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\hybrid\\";
-	
+		
 	// performance and costs
 //	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly perf costs\\pure evol\\";
 //	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly perf costs\\hybrid\\";
 
 	// reliability and costs
-	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\pure evol\\";
-	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\hybrid\\";
+	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\pure evol\\";
+	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\hybrid\\";
 	
 	
 	
@@ -119,7 +119,7 @@ public class Starter {
 	//private static final String PATH_RUNS_A = "D:\\uka\\stud\\QaisNoorshams\\Evaluation\\Results\\scenario 1\\";
 	
 	// normal constraints = medium constraints (scenario S2) in diss
-	static final double[] INFEASIBILITY_CONSTRAINTS = { 0.0015, 2000.0, 3 };
+	//static final double[] INFEASIBILITY_CONSTRAINTS = { 0.0015, 2000.0, 3 };
 	//Szenario 2: Inf Constraint with Deb
 	//private static final String PATH_RUNS_A = "D:\\uka\\stud\\QaisNoorshams\\Evaluation\\Results\\scenario 2\\";
 	//Szenario 3: Inf Constraint with Fonseca
@@ -161,7 +161,8 @@ public class Starter {
 	//private static final String PATH_RUNS_A = "J:\\Results BRS Opt Approach Valid\\pure evol\\";
 	
 	//made up constraints for brs opt approach
-	//static final double[] INFEASIBILITY_CONSTRAINTS = { 1, 2500.0, 10 };
+	// [initial cost(MIN), response time:graphical only usage scenario (MIN), POFOD(MIN)]
+	static final double[] INFEASIBILITY_CONSTRAINTS = { 3500, 2, 6E-4};
 	
 	static final boolean HAS_INFEASIBILITY_CONSTRAINTS = false;
 	static final boolean HAS_SATISFACTION_CONSTRAINTS = false;
@@ -229,6 +230,10 @@ public class Starter {
 	enum Operator {
 		less, lessOrEqual, equal, greaterOrEqual, greater
 	};
+	
+	enum Indicator {
+		coverage, hypervolume, epsilon
+	};
 
 	static final String CSV_SEPARATOR = ";";
 
@@ -246,6 +251,8 @@ public class Starter {
 	public static void main(String[] args) {
 		System.out.println("CSVAnalyzer");
 		initLogger();
+		
+		try {
 
 //		if (NUMBER_OF_COLUMNS != INFEASIBILITY_CONSTRAINTS.length) { // weird
 //																		// construction
@@ -261,12 +268,16 @@ public class Starter {
 		//printHeuristicStatistics();
 		
 		// calculate coverage time savings
-		System.out.println("***** COVERAGE *******");
-		printTimeSavings(200, 200, true);
+//		System.out.println("***** COVERAGE *******");
+//		printTimeSavings(200, 200, true);
 				
-		//calculate hypervolume time saving
-		System.out.println("***** SIZE *******");
-		printTimeSavings(200, 200, false);
+//		//calculate hypervolume time saving
+//		System.out.println("***** SIZE *******");
+//		printTimeSavings(199, 199, Indicator.hypervolume);
+		
+//		//calculate epsilon indicator time saving
+//		System.out.println("***** EPSILON *******");
+//		printTimeSavings(199, 199, Indicator.epsilon);		
 		
 		//printCoverageForGivenIteration(200);
 		
@@ -285,7 +296,7 @@ public class Starter {
 		//printCoverageStatisticsForAllIterations();
 		//printCoverageOfLastIterations();
 		
-		//printCoverageForAllIterations();
+		printIndicatorForAllIterations(Indicator.epsilon);
 		
 		//printCoverageForGivenIteration(29);
 
@@ -319,9 +330,13 @@ public class Starter {
 		//String[] folders = { "D:\\uka\\stud\\AnneMartens\\thesis2\\trunk\\diss\\data\\BRS Opt Approach\\tactics\\"  };
 		//printOverallParetoFront(folders);
 		
+		} catch (NotEnoughFilesToGetIterationException e){
+			throw new RuntimeException(e);
+		}
+		
 	}
 	
-	private static void printStartAndEndTimesOfRuns(int starGeneration, int lastGeneration, String resultsPath) {
+	private static void printStartAndEndTimesOfRuns(int starGeneration, int lastGeneration, String resultsPath) throws NotEnoughFilesToGetIterationException {
 		System.out.println("Duration of runs, from iteration "+starGeneration+" to iteration "+lastGeneration+", for "+resultsPath);
 		
 		for (int j = 0; j <= RUNS.length -1; j++) {
@@ -427,14 +442,15 @@ public class Starter {
 	 * Only prints the front of PATH_RUNS_A. You need to configure which objective values 
 	 * to consider in the code of this method.
 	 * 
-	 * Note that the attainment function tool only supporst two dimensions.  
+	 * Note that the attainment function tool only supports two dimensions.  
 	 * 
 	 * Infinity values are ignored.
 	 * 
 	 * @param generation
 	 * @param orderOfObjectives configure which objective values to use and in which order. 
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
-	private static void printFrontsForPISAAssessment(int generation, int[] orderOfObjectives) {
+	private static void printFrontsForPISAAssessment(int generation, int[] orderOfObjectives) throws NotEnoughFilesToGetIterationException {
 		
 		System.out.println("Fronts for PISA tools, iteration "+generation+", for "+PATH_RUNS_A);
 		int countInfinites = 0;
@@ -494,15 +510,19 @@ public class Starter {
 
 	private static void printMaxValues() {
 		String maxValuesString = "[";
-		Objectives maxValues = getMaximumValues(PATH_RUNS_A,200);
-		for (Objective d : maxValues.getKeys()) {
-			maxValuesString += maxValues.get(d) + ", ";
+		try {
+			Objectives maxValues = getMaximumValues(PATH_RUNS_A,200);
+				for (Objective d : maxValues.getKeys()) {
+					maxValuesString += maxValues.get(d) + ", ";
+				}
+			System.out.println("Max value: "+maxValuesString+"]");
+		} catch (NotEnoughFilesToGetIterationException e){
+			throw new RuntimeException(e);
 		}
-		System.out.println("Max value: "+maxValuesString+"]");
 		
 	}
 
-	private static Objectives getMaximumValues(String pathRunsA, int i) {
+	private static Objectives getMaximumValues(String pathRunsA, int i) throws NotEnoughFilesToGetIterationException {
 		Objectives max = new Objectives(new ParetoDomination());
 		ValueVectorHandler handler = new ValueVectorHandler();
 		
@@ -802,10 +822,11 @@ public class Starter {
 	 * @param iteration
 	 * @param run
 	 * @return Pair with the front of run A in the first pair element and the front of run B in the second pair element.
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
 	private static Pair<Collection<ValueVector>, Collection<ValueVector>> getFrontsToCompare(
 			int iteration,
-			int run, ValueVectorHandler handler) {
+			int run, ValueVectorHandler handler) throws NotEnoughFilesToGetIterationException {
 		Pair<Collection<ValueVector>, Collection<ValueVector>> frontsToCompare = new Pair<Collection<ValueVector>, Collection<ValueVector>>();
 		
 		File fileA = getFileForIteration(PATH_RUNS_A, iteration, run); 
@@ -890,9 +911,10 @@ public class Starter {
 	 * @param fixedIterationOfB
 	 * @param finalIteration
 	 * @param isCalculateCoverage Use coverage, otherwise hypervolume is used (I think)
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
 	private static void printTimeSavings(int fixedIterationOfB,
-			int finalIteration, boolean isCalculateCoverage) {
+			int finalIteration, Indicator indicator) throws NotEnoughFilesToGetIterationException {
 
 		System.out.println(ValueVector.ORIGIN.A + ": " + PATH_RUNS_A);
 		System.out.println(ValueVector.ORIGIN.B + ": " + PATH_RUNS_B);
@@ -906,7 +928,7 @@ public class Starter {
 		
 		// determine overall reference point for hypervolume
 		Objectives constraints = null;
-		if (!isCalculateCoverage){
+		if (indicator == Indicator.hypervolume){
 			constraints = determineReferencePointForAllRunsAtIteration(
 					fixedIterationOfB, handler);
 		}
@@ -919,7 +941,7 @@ public class Starter {
 			System.out.println("=================================");
 			System.out.println("Run: " + run + " ...");
 			printTimeSavings_TheInnerLoop(fixedIterationOfB, finalIteration,
-					run, run, resultValues, relativeResultValues, iterationsA, iterationsB, isCalculateCoverage, handler, constraints);
+					run, run, resultValues, relativeResultValues, iterationsA, iterationsB, indicator, handler, constraints);
 
 		}
 		System.out.println("===============\n" + "Overall absolute results: \n"
@@ -964,9 +986,10 @@ public class Starter {
 	 *            for an iteartion i of A that covers this iteration of B
 	 * @param finalIteration
 	 * @param handler 
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
 	private static void printTimeSavings_CompareEachAWithEachB(
-			int fixedIterationOfB, int finalIteration, boolean isCalculateCoverage, ValueVectorHandler handler) {
+			int fixedIterationOfB, int finalIteration, Indicator indicator, ValueVectorHandler handler) throws NotEnoughFilesToGetIterationException {
 
 		System.out.println(ValueVector.ORIGIN.A + ": " + PATH_RUNS_A);
 		System.out.println(ValueVector.ORIGIN.B + ": " + PATH_RUNS_B);
@@ -976,7 +999,7 @@ public class Starter {
 		ArrayList<Double> iterationsB = new ArrayList<Double>();
 		
 		Objectives constraints = null;
-		if (!isCalculateCoverage){
+		if (indicator == Indicator.hypervolume){
 			constraints = determineReferencePointForAllRunsAtIteration(fixedIterationOfB, handler);
 		}
 		
@@ -989,7 +1012,7 @@ public class Starter {
 				System.out.println("Run: " + runA + "," + runB + " ...");
 				printTimeSavings_TheInnerLoop(fixedIterationOfB,
 						finalIteration, runA, runB, resultValues,
-						relativeResultValues, iterationsA, iterationsB, isCalculateCoverage, handler, constraints);
+						relativeResultValues, iterationsA, iterationsB, indicator, handler, constraints);
 			}
 		}
 		System.out.println("===============\n" + "Overall absolute results: \n"
@@ -1013,6 +1036,7 @@ public class Starter {
 	 * @param resultValues
 	 * @param relativeResultValues
 	 * @param constraints 
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
 	private static void printTimeSavings_TheInnerLoop(int fixedIterationOfB,
 			int finalIteration, int runA, int runB,
@@ -1020,10 +1044,11 @@ public class Starter {
 			ArrayList<Double> relativeResultValues,
 			ArrayList<Double> iterationsA,
 			ArrayList<Double> iterationsB,
-			boolean calculateCoverage,
-			ValueVectorHandler handler, Objectives constraints) {
+			Indicator indicator,
+			ValueVectorHandler handler, Objectives constraints) throws NotEnoughFilesToGetIterationException {
 		
 		double coverage = Double.NEGATIVE_INFINITY;
+		double epsilon = Double.NEGATIVE_INFINITY;
 		
 		HypervolumeResult hypervolumeA = new HypervolumeResult(0, 0, 0);
 
@@ -1062,37 +1087,48 @@ public class Starter {
 				}
 			} else {
 
-				if (calculateCoverage){
+				if (indicator == Indicator.coverage){
 					coverage = ValueVectorHandler.getCoverage(setA, setB, ORIGIN_TO_BE_CHECKED);
 					
 					if (coverage >= 0.5) {
 						//Don't increment iteration counter
 						break;
 					}
-				} else {
+				} else if (indicator == Indicator.hypervolume){
 					hypervolumeA = ValueVectorHandler.getHypervolume(setA, setB, constraints, handler.getObjectives(), true);
 					if (hypervolumeA.getHypervolumeDifference() >= 0){
 						// do not increment counter
 						break;
 					}
-				}
-			}
+				} else if (indicator == Indicator.epsilon){
+					epsilon = ValueVectorHandler.getEpsilon(setA, setB, handler.getObjectives());
+					if (epsilon <= 1){
+						// do not increment counter
+						break;
+					}					
+					
+				} else 
+					throw new RuntimeException("Unknown indicator.");			}
 		}
 		
 		//XXX: Consider number of evaluations instead of number of iterations for time saving.
 		
 		iterationX = iterationX > finalIteration ? finalIteration : iterationX;
-		if (calculateCoverage){
+		if (indicator == Indicator.coverage){
 			System.out.println("A(" + iterationX + ") covers B("
 				+ fixedIterationOfB + ") with coverage\t" + coverage);
-		} else {
+		} else if (indicator == Indicator.hypervolume){
 			System.out.println("A(" + iterationX + ") larger than B("
 				+ fixedIterationOfB + ") with difference\t" + (hypervolumeA.getHypervolumeDifference()));
-		}
+		} else {
+			System.out.println("Epsilon (A(" + iterationX + "), B("
+					+ fixedIterationOfB + ")) is \t" + epsilon);
+			}
 
 		
 		Collection<ValueVector> setBEarlier = null;
 		double coverageB = Double.NEGATIVE_INFINITY;
+		double epsilonB = Double.NEGATIVE_INFINITY;
 		HypervolumeResult hypervolumeB = new HypervolumeResult(0, 0, 0);
 		int iterationY;
 		
@@ -1109,6 +1145,7 @@ public class Starter {
 			
 			Collection<ValueVector> setAEarlier = null;
 			double coverageAEarlier = Double.NEGATIVE_INFINITY;
+			double epsilonAEarlier = Double.NEGATIVE_INFINITY;
 			HypervolumeResult hypervolumeAEarlier = new HypervolumeResult(0, 0, 0);
 			
 			// find smallest iteration of A that already covers A(finalIteration)
@@ -1120,26 +1157,34 @@ public class Starter {
 				setAEarlier = handler.getFromFile(fileAEarlier,
 						ValueVector.ORIGIN.B);
 
-				if (calculateCoverage){
+				if (indicator == Indicator.coverage){
 					coverageAEarlier = ValueVectorHandler.getCoverage(setAEarlier, setA,
 							ValueVector.ORIGIN.B);
 					if(coverageAEarlier >= 0.5) {
 					//	Don't increment iteration counter
 						break;
 					}
-				} else {
+				} else if (indicator == Indicator.hypervolume){
 					hypervolumeAEarlier = ValueVectorHandler.getHypervolume(setAEarlier, setA, constraints, handler.getObjectives(), true);
 
 					if (hypervolumeAEarlier.getHypervolumeDifference() >= 0){
 						// do not increment counter
 						break;
 					}
+				} else {
+					epsilonAEarlier = ValueVectorHandler.getEpsilon(setAEarlier, setA, handler.getObjectives());
+					if(epsilonAEarlier <= 1) {
+					//	Don't increment iteration counter
+						break;
+					}
 				}
 			}
-			if (calculateCoverage){
+			if (indicator == Indicator.coverage){
 				System.out.println("A(" + iterationX + ") covers A(" + finalIteration + ") with coverage\t" + coverageAEarlier);
-			} else {
+			} else if (indicator == Indicator.hypervolume){
 				System.out.println("A(" + iterationX + ") larger than A(" + finalIteration + ") with difference\t" + (hypervolumeAEarlier.getHypervolumeDifference()));
+			} else {
+				System.out.println("Epsilon(A(" + iterationX + "), A(" + finalIteration + ") is\t" + (epsilonAEarlier));
 			}
 			
 			fileToCompareBTo = getFileForIteration(PATH_RUNS_A, iterationX,	runA);
@@ -1160,27 +1205,35 @@ public class Starter {
 			setBEarlier = handler.getFromFile(fileBEarlier,
 					ValueVector.ORIGIN.B);
 
-			if (calculateCoverage){
+			if (indicator == Indicator.coverage){
 				coverageB = ValueVectorHandler.getCoverage(setBEarlier, setToCompareBTo,
 						ValueVector.ORIGIN.B);
 				if(coverageB >= 0.5) {
 				//	Don't increment iteration counter
 					break;
 				}
-			} else {
+			} else if (indicator == Indicator.hypervolume){
 				hypervolumeB = ValueVectorHandler.getHypervolume(setBEarlier, setToCompareBTo, constraints, handler.getObjectives(), true);
 
 				if (hypervolumeB.getHypervolumeDifference() >= 0){
 					// do not increment counter
 					break;
 				}
+			} else {
+				epsilonB = ValueVectorHandler.getEpsilon(setBEarlier, setToCompareBTo, handler.getObjectives());
+				if(epsilonB <= 1) {
+					//	Don't increment iteration counter
+						break;
+				}
 			}
 		}
 
-		if (calculateCoverage){
+		if (indicator == Indicator.coverage){
 			System.out.println("B(" + iterationY + ") covers " + compareBTo + " with coverage\t" + coverageB);
-		} else {
+		} else if (indicator == Indicator.hypervolume){
 			System.out.println("B(" + iterationY + ") larger than " + compareBTo + " with difference\t" + (hypervolumeB.getHypervolumeDifference()));
+		} else {
+			System.out.println("Epsilon(B(" + iterationY + "), " + compareBTo + " is \t" + epsilonB);
 		}
 		
 		//XXX relative result always in relation to the slower one? No, makes no sense, difficult to compare in that case
@@ -1198,15 +1251,17 @@ public class Starter {
 		iterationsB.add((double) iterationY);
 
 		if (setBEarlier != null && setA != null) {
-			if (calculateCoverage){
+			if (indicator == Indicator.coverage){
 				double coverage3 = ValueVectorHandler.getCoverage(setA,
 						setBEarlier, ValueVector.ORIGIN.A);
 				System.out.println("Check: A(" + iterationX + ") covers B ("
 						+ iterationY + ") with coverage\t" + coverage3);
-			} else {
+			} else if (indicator == Indicator.hypervolume){
 				HypervolumeResult hypervolumeCheck = ValueVectorHandler.getHypervolume(setA, setBEarlier, constraints, handler.getObjectives(), true);
 				System.out.println("Check: A(" + iterationX + ") has volume \t"+hypervolumeCheck.getHyperVolumeA()+
 						"\nB ("+ iterationY + ") has volume \t" + hypervolumeCheck.getHyperVolumeB());
+			} else {
+				System.out.println("Check for epsilon not yet implemented.");
 			}
 		} else {
 			System.out.println("No earlier iteration of B found.");
@@ -1250,8 +1305,9 @@ public class Starter {
 	 * Coverage t vs. t+1
 	 * 
 	 * @param pathOfRuns
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
-	private static void printCoverageForAOverTime(String pathOfRuns) {
+	private static void printCoverageForAOverTime(String pathOfRuns) throws NotEnoughFilesToGetIterationException {
 		System.out.println(ValueVector.ORIGIN.A + ": " + pathOfRuns);
 		System.out
 				.println("Iteration\tMeanCoverage\tStandard deviation\tMin\tMax\tof "
@@ -1281,7 +1337,7 @@ public class Starter {
 		}
 	}
 
-	private static void printCoverageStatisticsForAllIterations() {
+	private static void printCoverageStatisticsForAllIterations() throws NotEnoughFilesToGetIterationException {
 		// Print the coverage for all iterations between START_ITERATION and
 		// FINAL_ITERATION
 		// of the given runs.
@@ -1292,7 +1348,7 @@ public class Starter {
 				.println("Iteration\tMeanCoverage\tStandard deviation\tMin\tMax\tof "
 						+ ORIGIN_TO_BE_CHECKED);
 		for (int iteration = START_ITERATION; iteration <= FINAL_ITERATION; iteration++) {
-			coverageValues = getCoverageValuesOfAllRuns(iteration);
+			coverageValues = getIndicatorValuesOfAllRuns(iteration, Indicator.coverage);
 			System.out.println(iteration + "\t" + mean(coverageValues) + "\t"
 					+ standardDeviation(coverageValues) + "\t"
 					+ min(coverageValues) + "\t" + max(coverageValues));
@@ -1315,16 +1371,20 @@ public class Starter {
 		System.out.println("Iteration;" + headline + "of "
 				+ ORIGIN_TO_BE_CHECKED);
 		
-		coverageValues = getCoverageValuesOfAllRuns(Integer.MAX_VALUE);
-		String line = "lastIteration;";
-		for (Double coverageValue : coverageValues) {
-			line += coverageValue + ";";
+		try {
+			coverageValues = getIndicatorValuesOfAllRuns(Integer.MAX_VALUE, Indicator.coverage);
+			String line = "lastIteration;";
+			for (Double coverageValue : coverageValues) {
+				line += coverageValue + ";";
+			}
+			System.out.println(line);
+		} catch (NotEnoughFilesToGetIterationException e){
+			throw new RuntimeException(e);
 		}
-		System.out.println(line);
 		
 	}
 
-	private static void printCoverageForAllIterations() {
+	private static void printIndicatorForAllIterations(Indicator indicator) throws NotEnoughFilesToGetIterationException {
 		// Print the coverage for all iterations between START_ITERATION and
 		// FINAL_ITERATION
 		// of the given runs.
@@ -1343,7 +1403,7 @@ public class Starter {
 
 		for (int iteration = START_ITERATION; iteration <= FINAL_ITERATION; iteration++) {
 			try {
-				coverageValues = getCoverageValuesOfAllRuns(iteration);
+				coverageValues = getIndicatorValuesOfAllRuns(iteration, indicator);
 				String line = iteration + ";";
 				for (Double coverageValue : coverageValues) {
 					line += coverageValue + ";";
@@ -1362,9 +1422,11 @@ public class Starter {
 	 * Returns the coverage values for all runs between START_RUN and FINAL_RUN
 	 * 
 	 * @param iteration
+	 * @param indicator 
 	 * @return
+	 * @throws NotEnoughFilesToGetIterationException 
 	 */
-	private static Collection<Double> getCoverageValuesOfAllRuns(int iteration) {
+	private static Collection<Double> getIndicatorValuesOfAllRuns(int iteration, Indicator indicator) throws NotEnoughFilesToGetIterationException {
 		Collection<Double> coverageValues;
 		coverageValues = new ArrayList<Double>();
 		log("Iteration: "+iteration);
@@ -1379,16 +1441,21 @@ public class Starter {
 
 			log("RUN: "+run+", size Set A: " + setA.size() +", size Set: B " + setB.size());
 			
-			double coverage = ValueVectorHandler.getCoverage(setA, setB,
-					ORIGIN_TO_BE_CHECKED);
-			// System.out.println("Run " + run + " - Coverage of " +
-			// originToBeChecked + ": " + coverage);
-			coverageValues.add(coverage);
+			if (indicator == Indicator.coverage){
+				double coverage = ValueVectorHandler.getCoverage(setA, setB,
+						ORIGIN_TO_BE_CHECKED);
+				// System.out.println("Run " + run + " - Coverage of " +
+				// originToBeChecked + ": " + coverage);
+				coverageValues.add(coverage);
+			} else if (indicator == Indicator.epsilon){
+				double epsilon = ValueVectorHandler.getEpsilon(setA, setB, handler.getObjectives());
+				coverageValues.add(epsilon);
+			}
 		}
 		return coverageValues;
 	}
 
-	private static void printCoverageForGivenIteration(int givenIteration) {
+	private static void printCoverageForGivenIteration(int givenIteration) throws NotEnoughFilesToGetIterationException {
 		// Prints the coverage of iterations ITERATION of the given runs.
 		Collection<Double> coverageValues = new ArrayList<Double>();
 		System.out.println(ValueVector.ORIGIN.A + ": " + PATH_RUNS_A);
@@ -1583,12 +1650,12 @@ public class Starter {
 	}
 	
 	private static File getFileForIteration(String pathRuns, int iteration,
-			int run) {
+			int run) throws NotEnoughFilesToGetIterationException {
 		return getFileForIteration(pathRuns, iteration, run, FILENAME_REGEXP_PREFIX);
 	}
 	
 	private static int getNumberOfEvaluations(String pathRuns, int iteration,
-			int run, ValueVector.ORIGIN origin, ValueVectorHandler handler) {
+			int run, ValueVector.ORIGIN origin, ValueVectorHandler handler) throws NotEnoughFilesToGetIterationException {
 		
 		File allCandFile = getFileForIteration(pathRuns, iteration, run, FILENAME_REGEXP_PREFIX_ALL_CANDIDATES);
 		
@@ -1648,6 +1715,10 @@ public class Starter {
 				while ( true ){
 					evaluationsInCurrentIteration = getEvaluationsForIteration(pathRuns, run,
 							origin, i, handler);
+					if (evaluationsInCurrentIteration == -1){
+						//not enough data to get so many evaluations
+						return -1;
+					}
 					if (evaluationsInCurrentIteration >= desiredNumberOfEvaluations){
 						return i;
 					}
@@ -1656,7 +1727,7 @@ public class Starter {
 			} catch (Exception e){
 				// end of available files has been reached
 				System.out.println("Not enough evaluations in files for run "+run+" in folder "+pathRuns+".");
-				throw new RuntimeException("Not enough evaluations in files for run "+run+" in folder "+pathRuns+". Requested "+desiredNumberOfEvaluations+" evaluations.");
+				throw new RuntimeException("Not enough evaluations in files for run "+run+" in folder "+pathRuns+". Requested "+desiredNumberOfEvaluations+" evaluations.", e);
 			}
 		} else {
 			return startIteration;
@@ -1669,10 +1740,14 @@ public class Starter {
 		Integer evaluations = readIterationToEvaluationInfoFile(pathRuns, run, i);
 		
 		if (evaluations == null){
-			File allCandFile = getFileForIteration(pathRuns, i, run, FILENAME_REGEXP_PREFIX_ALL_CANDIDATES);
-			Collection<ValueVector> setAllCand = handler.getFromFile(allCandFile, origin, false);
-			createIterationToEvaluationsInfoFile(pathRuns, run, i, setAllCand.size());
-			evaluations = setAllCand.size(); 
+			try {
+				File allCandFile = getFileForIteration(pathRuns, i, run, FILENAME_REGEXP_PREFIX_ALL_CANDIDATES);
+				Collection<ValueVector> setAllCand = handler.getFromFile(allCandFile, origin, false);
+				createIterationToEvaluationsInfoFile(pathRuns, run, i, setAllCand.size());
+				evaluations = setAllCand.size(); 
+			} catch (NotEnoughFilesToGetIterationException e){
+				return -1;
+			}
 		}
 		return evaluations.intValue();
 		
@@ -1762,7 +1837,7 @@ public class Starter {
 	}
 
 	private static File getFileForIteration(String pathRuns, int iteration,
-			int run, String fileType) {
+			int run, String fileType) throws NotEnoughFilesToGetIterationException {
 
 		File dirFile = new File(pathRuns + run + "\\");
 		if (!dirFile.exists()) {
@@ -1820,7 +1895,7 @@ public class Starter {
 						
 						return allFilesList.get(lastIteration);
 					} else {
-						throw new RuntimeException("Not enough files to get iteration "+iteration+".");
+						throw new NotEnoughFilesToGetIterationException("Not enough files to get iteration "+iteration+".");
 					}
 				}
 			} else {
@@ -2175,4 +2250,17 @@ public class Starter {
 	
 
 	
+}
+
+class NotEnoughFilesToGetIterationException extends Exception{
+
+	public NotEnoughFilesToGetIterationException(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8918566272385419863L;
+
 }

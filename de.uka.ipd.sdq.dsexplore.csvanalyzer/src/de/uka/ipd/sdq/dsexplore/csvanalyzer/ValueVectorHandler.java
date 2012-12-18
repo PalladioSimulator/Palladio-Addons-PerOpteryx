@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import jmetal.qualityIndicator.Epsilon;
 import jmetal.qualityIndicator.Hypervolume;
 
 import org.opt4j.core.DoubleValue;
@@ -342,8 +343,8 @@ public class ValueVectorHandler {
 			isMinimisedObjective[i] = objectives.get(i).getSign().equals(Objective.Sign.MIN);
 		}
 				
-		double hyperA = hypervolume.hypervolume(frontA, referenceFront, numberOfObjectives, isMinimisedObjective);
-		double hyperB = hypervolume.hypervolume(frontB, referenceFront, numberOfObjectives, isMinimisedObjective);
+		double hyperA = hypervolume.hypervolume(frontA, referenceFront, numberOfObjectives);
+		double hyperB = hypervolume.hypervolume(frontB, referenceFront, numberOfObjectives);
 		
 		//System.out.println("Hypervolume of A: "+hyperA);
 		//System.out.println("Hypervolume of B: "+hyperB);
@@ -351,7 +352,7 @@ public class ValueVectorHandler {
 		Collection<ValueVector> setUnion = getParetoOptimalSet(setA, setB);
 		double[][] frontUnion = asDoubleArrays(setUnion, numberOfObjectives);
 		
-		double hyperUnion = hypervolume.hypervolume(frontUnion, referenceFront, numberOfObjectives, isMinimisedObjective);
+		double hyperUnion = hypervolume.hypervolume(frontUnion, referenceFront, numberOfObjectives);
 		//System.out.println("Hypervolume of Union: "+hyperUnion);
 		
 		
@@ -478,6 +479,22 @@ public class ValueVectorHandler {
 		
 		return objective;
 	}
+
+		public static double getEpsilon(Collection<ValueVector> setA,
+				Collection<ValueVector> setB, List<Objective> objectives) {
+
+			int numberOfObjectives = objectives.size();
+			
+			// convert to doubles
+			double[][] frontA = asDoubleArrays(setA,numberOfObjectives);
+			double[][] frontB = asDoubleArrays(setB,numberOfObjectives);
+			
+			Epsilon epsilon = new Epsilon();
+			
+			double epsilonResult = epsilon.epsilon(frontA, frontB, numberOfObjectives);
+			
+			return epsilonResult;
+		}
 
 
 }

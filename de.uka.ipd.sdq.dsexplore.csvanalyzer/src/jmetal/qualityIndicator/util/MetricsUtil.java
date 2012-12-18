@@ -1,18 +1,35 @@
-/**
- * MetricsUtil.java
- *
- * @author Juan J. Durillo
- * @version 1.0
- */
+//  MetricsUtil.java
+//
+//  Author:
+//       Antonio J. Nebro <antonio@lcc.uma.es>
+//       Juan J. Durillo <durillo@lcc.uma.es>
+//
+//  Copyright (c) 2011 Antonio J. Nebro, Juan J. Durillo
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Lesser General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Lesser General Public License for more details.
+// 
+//  You should have received a copy of the GNU Lesser General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package jmetal.qualityIndicator.util;
 
 import java.io.*;
 import java.util.*;
 
+//import jmetal.core.Solution;
+//import jmetal.core.SolutionSet;
+//import jmetal.util.NonDominatedSolutionList;
 
 /**
- * This class provides some facilities for metrics. 
+ * This class provides some utilities to compute quality indicators. 
  **/
 public class MetricsUtil {
   
@@ -70,7 +87,7 @@ public class MetricsUtil {
   public double [] getMaximumValues(double [][] front, int noObjectives) {
     double [] maximumValue = new double[noObjectives];
     for (int i = 0; i < noObjectives; i++)
-      maximumValue[i] =  Double.MIN_VALUE;
+      maximumValue[i] =  Double.NEGATIVE_INFINITY;
     
     
     for (int i =0; i < front.length;i++ ) {
@@ -198,27 +215,22 @@ public class MetricsUtil {
    * This method receives a normalized pareto front and return the inverted one.
    * This operation needed for minimization problems
    * @param front The pareto front to inverse
- * @param isMinimisedFront 
    * @return The inverted pareto front
    **/
-  public double[][] invertedFront(double [][] front, boolean[] isMinimisedFront) {
+  public double[][] invertedFront(double [][] front) {
     double [][] invertedFront = new double[front.length][];
     
     for (int i = 0; i < front.length; i++) {
-    	invertedFront[i] = new double[front[i].length];
-    	for (int j = 0; j < front[i].length; j++) {
-    		if (isMinimisedFront[j]){
-    			if (front[i][j] <= 1.0 && front[i][j]>= 0.0) {
-    				invertedFront[i][j] = 1.0 - front[i][j];
-    			} else if (front[i][j] > 1.0) {
-    				invertedFront[i][j] = 0.0;
-    			} else if (front[i][j] < 0.0) {
-    				invertedFront[i][j] = 1.0;
-    			}
-    		} else {
-    			invertedFront[i][j] = front[i][j];
-    		}
-    	} 
+      invertedFront[i] = new double[front[i].length];
+      for (int j = 0; j < front[i].length; j++) {
+        if (front[i][j] <= 1.0 && front[i][j]>= 0.0) {
+          invertedFront[i][j] = 1.0 - front[i][j];
+        } else if (front[i][j] > 1.0) {
+          invertedFront[i][j] = 0.0;
+        } else if (front[i][j] < 0.0) {
+          invertedFront[i][j] = 1.0;
+        }
+      }
     }
     return invertedFront;
   } // invertedFront
@@ -227,35 +239,69 @@ public class MetricsUtil {
    * Reads a set of non dominated solutions from a file
    * @param path The path of the file containing the data
    * @return A solution set
-   *//*
-  public SolutionSet readNonDominatedSolutionSet(String path) {
-    try {
-       Open the file 
-      FileInputStream fis   = new FileInputStream(path)     ;
-      InputStreamReader isr = new InputStreamReader(fis)    ;
-      BufferedReader br      = new BufferedReader(isr)      ;
-      
-      SolutionSet solutionSet = new NonDominatedSolutionList();
-      
-      String aux = br.readLine();
-      while (aux!= null) {
-        StringTokenizer st = new StringTokenizer(aux);
-        int i = 0;
-        Solution solution = new Solution(st.countTokens());
-        while (st.hasMoreTokens()) {
-          double value = (new Double(st.nextToken())).doubleValue();
-          solution.setObjective(i,value);
-          i++;
-        }
-        solutionSet.add(solution);
-        aux = br.readLine();
-      }
-      br.close();
-      return solutionSet;
-    } catch (Exception e) {
-      System.out.println("jmetal.qualityIndicator.util.readNonDominatedSolutionSet: "+path);
-      e.printStackTrace();
-    }
-    return null;
-  } // readNonDominatedSolutionSet
-*/} // MetricsUtil
+   */
+//  public SolutionSet readNonDominatedSolutionSet(String path) {
+//    try {
+//      /* Open the file */
+//      FileInputStream fis   = new FileInputStream(path)     ;
+//      InputStreamReader isr = new InputStreamReader(fis)    ;
+//      BufferedReader br      = new BufferedReader(isr)      ;
+//      
+//      SolutionSet solutionSet = new NonDominatedSolutionList();
+//      
+//      String aux = br.readLine();
+//      while (aux!= null) {
+//        StringTokenizer st = new StringTokenizer(aux);
+//        int i = 0;
+//        Solution solution = new Solution(st.countTokens());
+//        while (st.hasMoreTokens()) {
+//          double value = (new Double(st.nextToken())).doubleValue();
+//          solution.setObjective(i,value);
+//          i++;
+//        }
+//        solutionSet.add(solution);
+//        aux = br.readLine();
+//      }
+//      br.close();
+//      return solutionSet;
+//    } catch (Exception e) {
+//      System.out.println("jmetal.qualityIndicator.util.readNonDominatedSolutionSet: "+path);
+//      e.printStackTrace();
+//    }
+//    return null;
+//  } // readNonDominatedSolutionSet
+//  
+//	/**
+//	 * Reads a set of non dominated solutions from a file
+//	 * and store it in a existing non dominated solution set
+//	 * @param path The path of the file containing the data
+//	 * @return A solution set
+//	 */
+//	public void readNonDominatedSolutionSet(String path, NonDominatedSolutionList solutionSet) {
+//		try {
+//			/* Open the file */
+//			FileInputStream fis   = new FileInputStream(path)     ;
+//			InputStreamReader isr = new InputStreamReader(fis)    ;
+//			BufferedReader br      = new BufferedReader(isr)      ;	      	     
+//
+//			String aux = br.readLine();
+//			while (aux!= null) {
+//				StringTokenizer st = new StringTokenizer(aux);
+//				int i = 0;
+//				Solution solution = new Solution(st.countTokens());
+//				
+//				while (st.hasMoreTokens()) {
+//					double value = (new Double(st.nextToken())).doubleValue();
+//					solution.setObjective(i,value);
+//					i++;
+//				}
+//				solutionSet.add(solution);
+//				aux = br.readLine();
+//			}
+//			br.close();
+//		} catch (Exception e) {
+//			System.out.println("jmetal.qualityIndicator.util.readNonDominatedSolutionSet: "+path);
+//			e.printStackTrace();
+//		}
+//	}
+} // MetricsUtil
