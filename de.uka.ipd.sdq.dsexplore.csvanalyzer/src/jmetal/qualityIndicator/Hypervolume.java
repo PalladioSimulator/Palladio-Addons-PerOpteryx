@@ -1,32 +1,43 @@
-/**
- * Hypervolume.java
- *
- * @author Juan J. Durillo
- * @version 1.0
- */
+//  Hypervolume.java
+//
+//  Author:
+//       Antonio J. Nebro <antonio@lcc.uma.es>
+//       Juan J. Durillo <durillo@lcc.uma.es>
+//
+//  Copyright (c) 2011 Antonio J. Nebro, Juan J. Durillo
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Lesser General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Lesser General Public License for more details.
+// 
+//  You should have received a copy of the GNU Lesser General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 package jmetal.qualityIndicator;
 
 import java.util.*;
 import java.io.*;
 
-import de.uka.ipd.sdq.dsexplore.csvanalyzer.ValueVector;
-
 /**
- * This class implements the hypervolume metric. The code is the a Java version
- * of the orginal metric implementation by Eckart Zitzler from the jmetal framework and
- * adjusted for Opt4J. 
- * 
+ * This class implements the hypervolume indicator. The code is the a Java version
+ * of the original metric implementation by Eckart Zitzler.
  * It can be used also as a command line program just by typing
- * $java Hypervolume <solutionFrontFile> <trueFrontFile> <numberOfOjbectives>
+ * $java jmetal.qualityIndicator.Hypervolume <solutionFrontFile> <trueFrontFile> <numberOfOjbectives>
  * Reference: E. Zitzler and L. Thiele
- *           �Multiobjective Evolutionary Algorithms: A Comparative Case Study 
- *           and the Strength Pareto Approach,� 
+ *           Multiobjective Evolutionary Algorithms: A Comparative Case Study 
+ *           and the Strength Pareto Approach,
  *           IEEE Transactions on Evolutionary Computation, vol. 3, no. 4, 
- *           pp. 257�271, 1999.
+ *           pp. 257-271, 1999.
  */
 public class Hypervolume {
 
-  jmetal.qualityIndicator.util.MetricsUtil utils_;
+  public jmetal.qualityIndicator.util.MetricsUtil utils_;
   
   /**
   * Constructor
@@ -46,8 +57,8 @@ public class Hypervolume {
 
     betterInAnyObjective = 0;
     for (i = 0; i < noObjectives && point1[i] >= point2[i]; i++)
-      if (point1[i] > point2[i])
-	betterInAnyObjective = 1;
+      if (point1[i] > point2[i]) 
+      	betterInAnyObjective = 1;
     
     return ((i >= noObjectives) && (betterInAnyObjective>0));
   } //Dominates
@@ -65,7 +76,7 @@ public class Hypervolume {
   are collected; the points referenced by 'front[0..noPoints-1]' are
   considered; 'front' is resorted, such that 'front[0..n-1]' contains
   the nondominated points; n is returned */
-  int  filterNondominatedSet(double[][] invertedFront, int  noPoints, int  noObjectives){
+  int  filterNondominatedSet(double [][] front, int  noPoints, int  noObjectives){
     int  i, j;
     int  n;
 
@@ -74,15 +85,15 @@ public class Hypervolume {
     while (i < n) {
       j = i + 1;
       while (j < n) {
-        if (dominates(invertedFront[i], invertedFront[j], noObjectives)) {
+        if (dominates(front[i], front[j], noObjectives)) {
 	/* remove point 'j' */
 	  n--;
-	  swap(invertedFront, j, n);
-        } else if (dominates(invertedFront[j], invertedFront[i], noObjectives)) {
+	  swap(front, j, n);
+        } else if (dominates(front[j], front[i], noObjectives)) {
 	/* remove point 'i'; ensure that the point copied to index 'i'
 	   is considered in the next outer loop (thus, decrement i) */
 	  n--;
-	  swap(invertedFront, i, n);
+	  swap(front, i, n);
 	  i--;
 	  break;
         } else
@@ -131,7 +142,7 @@ public class Hypervolume {
     return n;
   } // ReduceNondominatedSet
 
-  double calculateHypervolume(double[][] invertedFront, int  noPoints,int  noObjectives){
+  public double calculateHypervolume(double [][] front, int  noPoints,int  noObjectives){
     int     n;
     double  volume, distance;
 
@@ -142,22 +153,22 @@ public class Hypervolume {
       int     noNondominatedPoints;
       double  tempVolume, tempDistance;
 
-      noNondominatedPoints = filterNondominatedSet(invertedFront, n, noObjectives - 1);
+      noNondominatedPoints = filterNondominatedSet(front, n, noObjectives - 1);
       tempVolume = 0;
       if (noObjectives < 3) {
         if (noNondominatedPoints < 1)  
           System.err.println("run-time error");
       
-        tempVolume = invertedFront[0][0];
+        tempVolume = front[0][0];
       } else
-        tempVolume = calculateHypervolume(invertedFront,
+        tempVolume = calculateHypervolume(front,
                                           noNondominatedPoints,
                                           noObjectives - 1);
       
-      tempDistance = surfaceUnchangedTo(invertedFront, n, noObjectives - 1);
+      tempDistance = surfaceUnchangedTo(front, n, noObjectives - 1);
       volume += tempVolume * (tempDistance - distance);
       distance = tempDistance;
-      n = reduceNondominatedSet(invertedFront, n, noObjectives - 1, distance);
+      n = reduceNondominatedSet(front, n, noObjectives - 1, distance);
     }
     return volume;
   } // CalculateHypervolume
@@ -196,12 +207,10 @@ public class Hypervolume {
    * @param paretoFront The pareto front
    * @param paretoTrueFront The true pareto front
    * @param numberOfObjectives Number of objectives of the pareto front
-   * @param isMinimisedFront whether the i-th front is a minimisation objective 
    */
-  public double hypervolume(double[][] paretoFront, 
-		  double[][] paretoTrueFront,
-          int numberOfObjectives,
-          boolean[] isMinimisedFront) {
+  public double hypervolume(double [][] paretoFront, 
+                            double [][] paretoTrueFront,
+                            int numberOfObjectives) {
     
     /**
      * Stores the maximum values of true pareto front.
@@ -227,9 +236,6 @@ public class Hypervolume {
     maximumValues = utils_.getMaximumValues(paretoTrueFront,numberOfObjectives);
     minimumValues = utils_.getMinimumValues(paretoTrueFront,numberOfObjectives);
     
-    //printArray(minimumValues,"Min");
-    //printArray(maximumValues,"Max");
-    
     // STEP 2. Get the normalized front
     normalizedFront = utils_.getNormalizedFront(paretoFront,
                                                 maximumValues,
@@ -237,32 +243,23 @@ public class Hypervolume {
     
     // STEP 3. Inverse the pareto front. This is needed because of the original
     //metric by Zitzler is for maximization problems
-    invertedFront = utils_.invertedFront(normalizedFront,
-            isMinimisedFront);
+    invertedFront = utils_.invertedFront(normalizedFront);
     
     // STEP4. The hypervolumen (control is passed to java version of Zitzler code)
     return this.calculateHypervolume(invertedFront,invertedFront.length,numberOfObjectives);
   }// hypervolume
-
-private void printArray(double[] values, String label) {
-	String minValuesString = "[";
-    for (double d : values) {
-		minValuesString += d+", ";
-	}
-    System.out.println(label+" values: "+minValuesString+"]");
-}
   
   /**
-   * This class can be invoked from the command line. Three params are required:
+   * This class can be invoqued from the command line. Three params are required:
    * 1) the name of the file containing the front,  
-   * 2) the name of the file containing the true Pareto front
+   * 2) the name of the file containig the true Pareto front
    * 3) the number of objectives
    */
-/*  public static void main(String args[]) {
+  public static void main(String args[]) {
     if (args.length < 2) {
-      System.err.println("Error using delta. Type: \n java hypervolume " +
-                         "<SolutionFrontFile>" +
-                         "<TrueFrontFile> + <numberOfObjectives>");
+      System.err.println("Error using Hypervolume. Usage: \n java jmetal.qualityIndicator.Hypervolume " +
+                         "<SolutionFrontFile> " +
+                         "<TrueFrontFile> " + "<numberOfObjectives>");
       System.exit(1);
     }
     
@@ -278,5 +275,5 @@ private void printArray(double[] values, String label) {
                                   (new Integer(args[2])).intValue());
     
     System.out.println(value);  
-  } // main*/
+  } // main
 } // Hypervolume
