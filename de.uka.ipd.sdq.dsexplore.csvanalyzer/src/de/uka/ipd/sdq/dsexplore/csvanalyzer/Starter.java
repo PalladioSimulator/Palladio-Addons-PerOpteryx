@@ -61,17 +61,17 @@ public class Starter {
 	 * Do not forget the trailing backslash.
 	 */
 	
-//	// 3D
-//	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\pure evol\\";
-//	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\hybrid\\";
+	// 3D
+	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\pure evol\\";
+	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\hybrid\\";
 		
 	// performance and costs
 //	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly perf costs\\pure evol\\";
 //	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly perf costs\\hybrid\\";
 
-	// reliability and costs
-	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\pure evol\\";
-	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\hybrid\\";
+//	// reliability and costs
+//	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\pure evol\\";
+//	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly rel costs\\hybrid\\";
 	
 	
 	
@@ -928,7 +928,7 @@ public class Starter {
 		
 		// determine overall reference point for hypervolume
 		Objectives constraints = null;
-		if (indicator == Indicator.hypervolume){
+		if (indicator == Indicator.hypervolume || indicator == Indicator.epsilon){
 			constraints = determineReferencePointForAllRunsAtIteration(
 					fixedIterationOfB, handler);
 		}
@@ -999,7 +999,7 @@ public class Starter {
 		ArrayList<Double> iterationsB = new ArrayList<Double>();
 		
 		Objectives constraints = null;
-		if (indicator == Indicator.hypervolume){
+		if (indicator == Indicator.hypervolume || indicator == Indicator.epsilon){
 			constraints = determineReferencePointForAllRunsAtIteration(fixedIterationOfB, handler);
 		}
 		
@@ -1101,7 +1101,7 @@ public class Starter {
 						break;
 					}
 				} else if (indicator == Indicator.epsilon){
-					epsilon = ValueVectorHandler.getEpsilon(setA, setB, handler.getObjectives());
+					epsilon = ValueVectorHandler.getEpsilon(setA, setB, constraints, handler.getObjectives(), true);
 					if (epsilon <= 1){
 						// do not increment counter
 						break;
@@ -1172,7 +1172,7 @@ public class Starter {
 						break;
 					}
 				} else {
-					epsilonAEarlier = ValueVectorHandler.getEpsilon(setAEarlier, setA, handler.getObjectives());
+					epsilonAEarlier = ValueVectorHandler.getEpsilon(setAEarlier, setA, constraints, handler.getObjectives(), true);
 					if(epsilonAEarlier <= 1) {
 					//	Don't increment iteration counter
 						break;
@@ -1220,7 +1220,7 @@ public class Starter {
 					break;
 				}
 			} else {
-				epsilonB = ValueVectorHandler.getEpsilon(setBEarlier, setToCompareBTo, handler.getObjectives());
+				epsilonB = ValueVectorHandler.getEpsilon(setBEarlier, setToCompareBTo, constraints, handler.getObjectives(), true);
 				if(epsilonB <= 1) {
 					//	Don't increment iteration counter
 						break;
@@ -1347,8 +1347,16 @@ public class Starter {
 		System.out
 				.println("Iteration\tMeanCoverage\tStandard deviation\tMin\tMax\tof "
 						+ ORIGIN_TO_BE_CHECKED);
+		
+		ValueVectorHandler handler = new ValueVectorHandler();
+//		Objectives constraints = null;
+//		if (indicator == Indicator.epsilon || indicator == Indicator.hypervolume){
+//			// determine overall reference point for hypervolume
+//			constraints = determineReferencePointForAllRunsAtIteration(Integer.MAX_VALUE, handler);
+//		}
+		
 		for (int iteration = START_ITERATION; iteration <= FINAL_ITERATION; iteration++) {
-			coverageValues = getIndicatorValuesOfAllRuns(iteration, Indicator.coverage);
+			coverageValues = getIndicatorValuesOfAllRuns(iteration, Indicator.coverage, handler, null);
 			System.out.println(iteration + "\t" + mean(coverageValues) + "\t"
 					+ standardDeviation(coverageValues) + "\t"
 					+ min(coverageValues) + "\t" + max(coverageValues));
@@ -1371,8 +1379,15 @@ public class Starter {
 		System.out.println("Iteration;" + headline + "of "
 				+ ORIGIN_TO_BE_CHECKED);
 		
+		ValueVectorHandler handler = new ValueVectorHandler();
+//		Objectives constraints = null;
+//		if (indicator == Indicator.epsilon || indicator == Indicator.hypervolume){
+//			// determine overall reference point for hypervolume
+//			constraints = determineReferencePointForAllRunsAtIteration(Integer.MAX_VALUE, handler);
+//		}
+		
 		try {
-			coverageValues = getIndicatorValuesOfAllRuns(Integer.MAX_VALUE, Indicator.coverage);
+			coverageValues = getIndicatorValuesOfAllRuns(Integer.MAX_VALUE, Indicator.coverage, handler, null);
 			String line = "lastIteration;";
 			for (Double coverageValue : coverageValues) {
 				line += coverageValue + ";";
@@ -1399,11 +1414,18 @@ public class Starter {
 		}
 		System.out.println("Iteration;" + headline + "of "
 				+ ORIGIN_TO_BE_CHECKED);
+		
+		ValueVectorHandler handler = new ValueVectorHandler();
+		Objectives constraints = null;
+		if (indicator == Indicator.epsilon || indicator == Indicator.hypervolume){
+			// determine overall reference point for hypervolume
+			constraints = determineReferencePointForAllRunsAtIteration(FINAL_ITERATION, handler);
+		}
 
 
 		for (int iteration = START_ITERATION; iteration <= FINAL_ITERATION; iteration++) {
 			try {
-				coverageValues = getIndicatorValuesOfAllRuns(iteration, indicator);
+				coverageValues = getIndicatorValuesOfAllRuns(iteration, indicator, handler, constraints);
 				String line = iteration + ";";
 				for (Double coverageValue : coverageValues) {
 					line += coverageValue + ";";
@@ -1423,17 +1445,18 @@ public class Starter {
 	 * 
 	 * @param iteration
 	 * @param indicator 
+	 * @param finalIteration: Last iteration to consider to calculate reference point for Epsilon indicator. 
 	 * @return
 	 * @throws NotEnoughFilesToGetIterationException 
 	 */
-	private static Collection<Double> getIndicatorValuesOfAllRuns(int iteration, Indicator indicator) throws NotEnoughFilesToGetIterationException {
+	private static Collection<Double> getIndicatorValuesOfAllRuns(int iteration, Indicator indicator, ValueVectorHandler handler, Objectives constraints) throws NotEnoughFilesToGetIterationException {
 		Collection<Double> coverageValues;
 		coverageValues = new ArrayList<Double>();
 		log("Iteration: "+iteration);
 		for (int j = 0; j <= RUNS.length -1; j++) {
 			int run = RUNS[j];
 			
-			ValueVectorHandler handler = new ValueVectorHandler();
+
 			Pair<Collection<ValueVector>, Collection<ValueVector>> frontsToCompare = getFrontsToCompare(iteration, run, handler);
 			
 			Collection<ValueVector> setA = frontsToCompare.getFirst();
@@ -1448,7 +1471,8 @@ public class Starter {
 				// originToBeChecked + ": " + coverage);
 				coverageValues.add(coverage);
 			} else if (indicator == Indicator.epsilon){
-				double epsilon = ValueVectorHandler.getEpsilon(setA, setB, handler.getObjectives());
+				
+				double epsilon = ValueVectorHandler.getEpsilon(setA, setB, constraints, handler.getObjectives(), true);
 				coverageValues.add(epsilon);
 			}
 		}

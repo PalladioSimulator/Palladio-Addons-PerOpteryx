@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 
 import jmetal.qualityIndicator.Epsilon;
 import jmetal.qualityIndicator.Hypervolume;
+import jmetal.qualityIndicator.util.MetricsUtil;
 
 import org.opt4j.core.DoubleValue;
 import org.opt4j.core.Objective;
@@ -266,73 +267,13 @@ public class ValueVectorHandler {
 			throw new RuntimeException("Number of columns must match infeasibility constraint array dimension, even if no constraints are considered.");
 		}
 		
-		Objectives constraints = new Objectives(new ParetoDomination());
-	
-		if (considerConstraints){
-			//if considerConstraints == true, we assume that all infeasible are already removed.
-//			for (Objectives constraint : infeasibilityConstraints) {
-//				constraints.add(constraint);
-//			}
-			constraints = infeasibilityConstraints;
-			//if constraints: determine minimal and maximum value using constraints
-			
-		} else {
-			// if no constraints: determine minimal and maximum value just like that
-			// --> put values in pareto true front, then Hypervolume will determine min and max
-			
-			//constraints = new ArrayList<Double>();
-			for (Objective constraint : objectives) {
-				constraints.add(constraint, 0);
-			}
-			
-			constraints = setToMaximumOfPopulation(setA, constraints);
-			constraints = setToMaximumOfPopulation(setB, constraints);
-			
-			System.out.println("Warning: Using reference values per run, the results may be not comparable because runs have different min and max values.");
-		}
-
-	
-//		String constraintsString = "[";
-//		for (double d : constraints) {
-//			constraintsString += d + ", ";
-//		}
-		//System.out.println("Reference values: "+constraintsString+"]");
-		
-		
 		// convert to doubles
 		double[][] frontA = asDoubleArrays(setA,numberOfObjectives);
 		double[][] frontB = asDoubleArrays(setB,numberOfObjectives);
 		
-		// make a reference front that contains the maximum and minimum values for each dimension and one 0 value
-		// reference front is thus a matrix size numberOfObjectives*numberOfObjectives
-		// in 2 d case: 
-		//  [ 0  c2 ]
-		//  [ c1 0  ]
-		// in 3d case: 
-		//  [ 0  c2  c3] 
-		//  [ c1 0   c3]  
-		//  [ c1 c2  0 ]  
-
-		
-		double[][] referenceFront = new double[numberOfObjectives][numberOfObjectives];
-
-		Iterator<Entry<Objective, Value<?>>> it = constraints.iterator();
-		int j = 0;
-		for (; it.hasNext();) {
-			Entry<Objective, Value<?>> constraintEntry = it.next();
-			
-//		for (int i = 0; i < constraints.size(); i++) {
-			for (int i = 0; i < constraints.size(); i++) {
-				if (j == i){
-					referenceFront[i][j] = 0.0;
-				} else {
-					referenceFront[i][j] = constraintEntry.getValue().getDouble();
-				}
-			} 
-			j++;
-		}
-		
-		//double[][] referenceFront = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
+		double[][] referenceFront = getReferenceFront(setA, setB,
+				infeasibilityConstraints, objectives, considerConstraints,
+				numberOfObjectives);
 		
 		
 		Hypervolume hypervolume = new Hypervolume();
@@ -385,6 +326,76 @@ public class ValueVectorHandler {
 		// assume 
 		
 
+	}
+
+	private static double[][] getReferenceFront(Collection<ValueVector> setA,
+			Collection<ValueVector> setB, Objectives infeasibilityConstraints,
+			List<Objective> objectives, boolean considerConstraints,
+			int numberOfObjectives) {
+		Objectives constraints = new Objectives(new ParetoDomination());
+	
+		if (considerConstraints){
+			//if considerConstraints == true, we assume that all infeasible are already removed.
+//			for (Objectives constraint : infeasibilityConstraints) {
+//				constraints.add(constraint);
+//			}
+			constraints = infeasibilityConstraints;
+			//if constraints: determine minimal and maximum value using constraints
+			
+		} else {
+			// if no constraints: determine minimal and maximum value just like that
+			// --> put values in pareto true front, then Hypervolume will determine min and max
+			
+			//constraints = new ArrayList<Double>();
+			for (Objective constraint : objectives) {
+				constraints.add(constraint, 0);
+			}
+			
+			constraints = setToMaximumOfPopulation(setA, constraints);
+			constraints = setToMaximumOfPopulation(setB, constraints);
+			
+			System.out.println("Warning: Using reference values per run, the results may be not comparable because runs have different min and max values.");
+		}
+
+	
+//		String constraintsString = "[";
+//		for (double d : constraints) {
+//			constraintsString += d + ", ";
+//		}
+		//System.out.println("Reference values: "+constraintsString+"]");
+		
+		
+		// make a reference front that contains the maximum and minimum values for each dimension and one 0 value
+		// reference front is thus a matrix size numberOfObjectives*numberOfObjectives
+		// in 2 d case: 
+		//  [ 0  c2 ]
+		//  [ c1 0  ]
+		// in 3d case: 
+		//  [ 0  c2  c3] 
+		//  [ c1 0   c3]  
+		//  [ c1 c2  0 ]  
+
+		
+		double[][] referenceFront = new double[numberOfObjectives][numberOfObjectives];
+
+		Iterator<Entry<Objective, Value<?>>> it = constraints.iterator();
+		int j = 0;
+		for (; it.hasNext();) {
+			Entry<Objective, Value<?>> constraintEntry = it.next();
+			
+//		for (int i = 0; i < constraints.size(); i++) {
+			for (int i = 0; i < constraints.size(); i++) {
+				if (j == i){
+					referenceFront[i][j] = 0.0;
+				} else {
+					referenceFront[i][j] = constraintEntry.getValue().getDouble();
+				}
+			} 
+			j++;
+		}
+		
+		//double[][] referenceFront = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
+		return referenceFront;
 	}
 
 	private static void removeInfeasible(Collection<ValueVector> setA,
@@ -481,19 +492,71 @@ public class ValueVectorHandler {
 	}
 
 		public static double getEpsilon(Collection<ValueVector> setA,
-				Collection<ValueVector> setB, List<Objective> objectives) {
-
+				Collection<ValueVector> setB, Objectives infeasibilityConstraints, List<Objective> objectives, boolean considerConstraints) {
+			
 			int numberOfObjectives = objectives.size();
 			
 			// convert to doubles
 			double[][] frontA = asDoubleArrays(setA,numberOfObjectives);
 			double[][] frontB = asDoubleArrays(setB,numberOfObjectives);
 			
+			
+			double[][] referenceFront = getReferenceFront(setA, setB,
+					infeasibilityConstraints, objectives, considerConstraints,
+					numberOfObjectives);
+			
+			return getNormalizedEpsilon(frontA, frontB, numberOfObjectives, referenceFront);
+		}
+		
+		private static double getJMetalEpsilon(double[][] frontA,
+				double[][] frontB, int numberOfObjectives) {
+
 			Epsilon epsilon = new Epsilon();
 			
 			double epsilonResult = epsilon.epsilon(frontA, frontB, numberOfObjectives);
 			
 			return epsilonResult;
+		}
+		
+		private static double getNormalizedEpsilon(double[][] frontA,
+				double[][] frontB, int numberOfObjectives, double[][] referenceFront){
+			
+		    /**
+		     * from jmetal Hypervolume for normalizing:
+		     * Stores the maximum values of true pareto front.
+		     */
+		    double[] maximumValues;
+		    
+		    /**
+		     * from jmetal Hypervolume for normalizing:
+		     * Stores the minimum values of the true pareto front.
+		     */
+		    double[] minimumValues;
+		    
+		    /**
+		     * mainly from jmetal Hypervolume for normalizing:
+		     * Stores the normalized front.
+		     */
+		    double [][] normalizedFrontA;
+		    double [][] normalizedFrontB;
+		    
+		    MetricsUtil utils_ = new MetricsUtil();
+			
+		    // from jmetal Hypervolume for normalizing: STEP 1. Obtain the maximum and minimum values of the Pareto front
+		    maximumValues = utils_.getMaximumValues(referenceFront,numberOfObjectives);
+		    minimumValues = utils_.getMinimumValues(referenceFront,numberOfObjectives);
+		    
+		    //  from jmetal Hypervolume for normalizing: STEP 2. Get the normalized front
+		    normalizedFrontA = utils_.getNormalizedFront(frontA,
+		                                                maximumValues,
+		                                                minimumValues);
+		    
+		    //  from jmetal Hypervolume for normalizing: STEP 2. Get the normalized front
+		    normalizedFrontB = utils_.getNormalizedFront(frontB,
+		                                                maximumValues,
+		                                                minimumValues);
+		    
+		    return getJMetalEpsilon(normalizedFrontA, normalizedFrontB, numberOfObjectives);
 		}
 
 
