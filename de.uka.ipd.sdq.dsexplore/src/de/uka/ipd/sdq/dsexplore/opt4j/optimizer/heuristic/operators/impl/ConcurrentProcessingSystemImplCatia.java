@@ -680,10 +680,24 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 							
 							//criticalPassiveResInfo.pr.getCapacity_PassiveResource().setSpecification("5");
 							//Note that the capacity is increased by adding 5 units to the current one
+							
+							
+							//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
+							if (criticalPassiveResInfo.rank > new Ranks().rankMinPassiveRes) {
+						    
+							//@author catia: RANKING STEP WITH SEMANTIC FACTOR = ()
+							
+							//if ((criticalPassiveResInfo.rank + ()) > new Ranks().rankMinCpu) {
+							
 							TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
 							listPairs.add(candidate);
 							
 							logger.info("The capacity of the passive resource " + criticalPassiveResInfo.pr.getEntityName() + " must be increased");
+							}
+							else{
+								discardedCandidates = discardedCandidates ++;
+								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+							}
 										
 							}
 					}
