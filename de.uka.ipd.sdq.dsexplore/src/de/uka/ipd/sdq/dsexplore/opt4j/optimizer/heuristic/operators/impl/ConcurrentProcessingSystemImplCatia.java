@@ -780,29 +780,37 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 				// Two candidates are evaluated: the first one in which Cx is redeployed on S1, and the second one in which Cx is redeployed on S2
 
 				//if ((getUnderUsedCPUList.size() != 0) && (depCompCpu.size() !=0)) {
-				if ((getUnderUsedCPUList.size() != 0)) {	
+				if (getUnderUsedCPUList.size() != 0) {
+					if (getOverUsedCPUList.size() != 0) {	
 					
-					for (ActiveResInfo element : getOverUsedCPUList) {			
-						List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, element.rc);					
-						if(compToBeRedeployed.size() !=0){					
-							logger.info("Redeploy component "
-									+ compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)).bc.getEntityName()
-									+ " in the following servers: ");					
-							for (ActiveResInfo el : getUnderUsedCPUList) {										
-								//@author catia: RANKING STEP
-								if (el.rank > new Ranks().rankMinCpu) {				
-									logger.info(el.rc.getEntityName());
-									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-									compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), el.rc);
-									listPairs.add(createCPSCandidate(i, p));
-								}
-							else {
-								discardedCandidates = discardedCandidates ++;
-								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+						for (ActiveResInfo elOver : getOverUsedCPUList) {			
+							List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, elOver.rc);					
+							if(compToBeRedeployed.size() !=0){					
+								logger.info("Redeploy component "
+										+ compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)).bc.getEntityName()
+										+ " in the following servers: ");					
+								for (ActiveResInfo elUnder : getUnderUsedCPUList) {										
+									
+									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
+									if (elUnder.rank > new Ranks().rankMinCpu) {
+								    
+									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)
+									//if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
+										
+										logger.info(elUnder.rc.getEntityName());
+										Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+										compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), elUnder.rc);
+										listPairs.add(createCPSCandidate(i, p));
+										
+									}
+								else {
+									discardedCandidates = discardedCandidates ++;
+									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+									}
 								}
 							}
+						
 						}
-					
 					}
 					
 				}
@@ -812,30 +820,35 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 				//if ((getUnderUsedHDDList.size() != 0) && (depCompHdd.size() !=0)) {
 				
 				if (getUnderUsedHDDList.size() != 0) {
-					
-					for (ActiveResInfo element : getOverUsedHDDList) {			
-						List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, element.rc);					
-						if(compToBeRedeployed.size() !=0){					
-							logger.info("Redeploy component "
-									+ compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)).bc.getEntityName()
-									+ " in the following servers: ");					
-							for (ActiveResInfo el : getUnderUsedCPUList) {										
-								//@author catia: RANKING STEP
-								if (el.rank > new Ranks().rankMinCpu) {				
-									logger.info(el.rc.getEntityName());
-									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-									compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), el.rc);
-									listPairs.add(createCPSCandidate(i, p));
-								}
-							else {
-								discardedCandidates = discardedCandidates ++;
-								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+					if (getOverUsedHDDList.size() != 0) {
+						
+						for (ActiveResInfo elOver : getOverUsedHDDList) {			
+							List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, elOver.rc);					
+							if(compToBeRedeployed.size() !=0){					
+								logger.info("Redeploy component "
+										+ compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)).bc.getEntityName()
+										+ " in the following servers: ");					
+								for (ActiveResInfo elUnder : getUnderUsedHDDList) {										
+									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
+									if (elUnder.rank > new Ranks().rankMinHdd) {
+										
+									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)
+									//if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
+										
+										logger.info(elUnder.rc.getEntityName());
+										Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+										compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), elUnder.rc);
+										listPairs.add(createCPSCandidate(i, p));
+									}
+								else {
+									discardedCandidates = discardedCandidates ++;
+									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+									}
 								}
 							}
+						
 						}
-					
 					}
-					
 				}
 
 			}
