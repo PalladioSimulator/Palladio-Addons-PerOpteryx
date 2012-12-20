@@ -56,6 +56,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 	private Objective performance;
 	
+	public int discardedCandidates = 0;
 	
 	protected static Logger logger = Logger
 			.getLogger(ConcurrentProcessingSystemImplCatia.class.getName());
@@ -132,6 +133,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 		for (ActiveResInfo el : list) {
 			if((el.type.getEntityName().equals("CPU")) && (el.utilisation > thresholdMaxCpu) && (el.queueLength > thresholdCpuQL)){
+				el.rank = el.utilisation - thresholdMaxCpu;
 				result.add(el);
 			}
 		}
@@ -147,6 +149,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 		for (ActiveResInfo el : list) {
 			if((el.type.getEntityName().equals("CPU")) && (el.utilisation < thresholdMinCpu)){
+				el.rank = thresholdMinCpu - el.utilisation;
 				result.add(el);
 			}
 		}
@@ -165,6 +168,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 		for (ActiveResInfo el : list) {
 			if((el.type.getEntityName().equals("HDD")) && (el.utilisation > thresholdMaxHdd) && (el.queueLength > thresholdHddQL)){
+				el.rank = el.utilisation - thresholdMaxHdd;
 				result.add(el);
 			}
 		}
@@ -180,6 +184,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 		for (ActiveResInfo el : list) {
 			if((el.type.getEntityName().equals("HDD")) && (el.utilisation < thresholdMinHdd)){
+				el.rank = thresholdMinHdd - el.utilisation;
 				result.add(el);
 			}
 		}
@@ -197,6 +202,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 		for (PassiveResInfo el : list) {
 			if((el.queueLength > thresholdPrQL) && (el.waitingTime > (el.holdingTime * 2))){
+				el.rank = el.waitingTime - (el.holdingTime * 2);
 				result.add(el);
 			}
 		}
@@ -455,7 +461,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 					activeResInfoList.add(new ActiveResInfo(resource.getResourceContainer_ProcessingResourceSpecification(),
 									resource.getActiveResourceType_ActiveResourceSpecification(),
 									activeProcUtilResult.getResourceUtilisation(),
-									activeProcUtilResult.getAverageQueueLength(), resource.getSchedulingPolicy().getId()));
+									activeProcUtilResult.getAverageQueueLength(), resource.getSchedulingPolicy().getId(), 0.0));
 
 				}
 				// Other possible results are for network:
@@ -648,7 +654,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 							//@author catia: (1) queue length, (2) waiting and (3) holding time of passive resources are currently set to pre-defined values
 							passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent
 											.getEntityName(), Integer.parseInt(passiveResource
-											.getCapacity_PassiveResource().getSpecification()), 0.8, 1.0, 0.4));
+											.getCapacity_PassiveResource().getSpecification()), 0.8, 1.0, 0.4, 0.0));
 						}
 						
 					}
@@ -761,6 +767,9 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			if (cps(activeResInfoList)) {
 				
 				//@author catia: solution of the antipattern CPS (Concurrent Processing Systems)
+				
+				List<ActiveResInfo> getOverUsedCPUList = getOverUsedCpu(activeResInfoList);
+				List<ActiveResInfo> getOverUsedHDDList = getOverUsedHDD(activeResInfoList);
 
 				List<ActiveResInfo> getUnderUsedCPUList = getUnderUsedCpu(activeResInfoList);
 				List<ActiveResInfo> getUnderUsedHDDList = getUnderUsedHDD(activeResInfoList);
@@ -770,45 +779,63 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 				// Es: Redeploy component Cx in one of the following servers: S1, S2
 				// Two candidates are evaluated: the first one in which Cx is redeployed on S1, and the second one in which Cx is redeployed on S2
 
-				if ((getUnderUsedCPUList.size() != 0) && (depCompCpu.size() !=0)) {
-					logger.info("Redeploy component "
-							+ depCompCpu.get(getCompMaxCPUdemand(depCompCpu)).bc.getEntityName()
-							+ " in the following servers: ");
-					for (ActiveResInfo el : getUnderUsedCPUList) {
-						//if (utilisationResult instanceof ProcessingResourceSpecificationResult) {
-							//ProcessingResourceSpecificationResult activeProcUtilResult = (ProcessingResourceSpecificationResult) utilisationResult;
-							// retrieve the processor for which this is the result
-							//ProcessingResourceSpecification resource = activeProcUtilResult.getProcessingresourcespecification();
-							logger
-									.info(//resource.getResourceContainer_ProcessingResourceSpecification()
-											el.rc.getEntityName());
-							Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-									depCompCpu.get(getCompMaxCPUdemand(depCompCpu)), el.rc);
-									//resource.getResourceContainer_ProcessingResourceSpecification());
-							listPairs.add(createCPSCandidate(i, p));
+				//if ((getUnderUsedCPUList.size() != 0) && (depCompCpu.size() !=0)) {
+				if ((getUnderUsedCPUList.size() != 0)) {	
+					
+					for (ActiveResInfo element : getOverUsedCPUList) {			
+						List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, element.rc);					
+						if(compToBeRedeployed.size() !=0){					
+							logger.info("Redeploy component "
+									+ compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)).bc.getEntityName()
+									+ " in the following servers: ");					
+							for (ActiveResInfo el : getUnderUsedCPUList) {										
+								//@author catia: RANKING STEP
+								if (el.rank > new Ranks().rankMinCpu) {				
+									logger.info(el.rc.getEntityName());
+									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+									compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), el.rc);
+									listPairs.add(createCPSCandidate(i, p));
+								}
+							else {
+								discardedCandidates = discardedCandidates ++;
+								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+								}
+							}
+						}
+					
 					}
+					
 				}
 
 				// @author catia: solution of the antipattern CPS - "Redeploy Action" with feature F1 : check the storage resource demand of the PCM components
 				// It means that the most hdd critical component is re-deployed on all under used hdd(s) available in the system, each redeployment action provides a new candidate (i.e. a pair p)
-
-				if ((getUnderUsedHDDList.size() != 0) && (depCompHdd.size() !=0)) {
-					logger.info("Redeploy component "
-							+ depCompHdd.get(getCompMaxHDDdemand(depCompHdd)).bc.getEntityName()
-							+ " in the following servers: ");
-					for (ActiveResInfo el : getUnderUsedHDDList) {
-						//if (utilisationResult instanceof ProcessingResourceSpecificationResult) {
-							//ProcessingResourceSpecificationResult activeProcUtilResult = (ProcessingResourceSpecificationResult) utilisationResult;
-							// retrieve the processor for which this is the result
-							//ProcessingResourceSpecification resource = activeProcUtilResult.getProcessingresourcespecification();
-							logger
-									.info(//resource.getResourceContainer_ProcessingResourceSpecification()
-											el.rc.getEntityName());
-							Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-									depCompHdd.get(getCompMaxHDDdemand(depCompHdd)), el.rc);
-									//resource.getResourceContainer_ProcessingResourceSpecification());
-							listPairs.add(createCPSCandidate(i, p));
+				//if ((getUnderUsedHDDList.size() != 0) && (depCompHdd.size() !=0)) {
+				
+				if (getUnderUsedHDDList.size() != 0) {
+					
+					for (ActiveResInfo element : getOverUsedHDDList) {			
+						List<CompInfoResDemand> compToBeRedeployed = deployedComponents(listCompIDs, element.rc);					
+						if(compToBeRedeployed.size() !=0){					
+							logger.info("Redeploy component "
+									+ compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)).bc.getEntityName()
+									+ " in the following servers: ");					
+							for (ActiveResInfo el : getUnderUsedCPUList) {										
+								//@author catia: RANKING STEP
+								if (el.rank > new Ranks().rankMinCpu) {				
+									logger.info(el.rc.getEntityName());
+									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+									compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), el.rc);
+									listPairs.add(createCPSCandidate(i, p));
+								}
+							else {
+								discardedCandidates = discardedCandidates ++;
+								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+								}
+							}
+						}
+					
 					}
+					
 				}
 
 			}

@@ -24,6 +24,9 @@ public class PassiveResInfo {
 	//LQN solution - holding time of the passive resource
 	double holdingTime;
 	
+	//rank of passive resources: predicted waiting time - 2 * holding time
+	double rank;
+	
 	//initial values
 	public PassiveResInfo(){
 		this.pr = null;
@@ -32,15 +35,17 @@ public class PassiveResInfo {
 		this.queueLength = 0.0;
 		this.waitingTime = 0.0;
 		this.holdingTime = 0.0;
+		this.rank = 0.0;
 	}
 	
-	public PassiveResInfo(PassiveResource pr, String c, int i, double q, double w, double h){
+	public PassiveResInfo(PassiveResource pr, String c, int i, double q, double w, double h, double r){
 		this.pr = pr;
 		this.component = c;
 		this.capacity = i;
 		this.queueLength = q;
 		this.waitingTime = w;
 		this.holdingTime = h;
+		this.rank = r;
 	}
 	
 	public PassiveResInfo(PassiveResInfo h){
@@ -50,6 +55,7 @@ public class PassiveResInfo {
 		this.queueLength = h.queueLength;
 		this.waitingTime = h.waitingTime;
 		this.holdingTime = h.holdingTime;
+		this.rank = h.rank;
 	}
 	
 	//print elements of PassiveResInfo type
@@ -59,7 +65,8 @@ public class PassiveResInfo {
 					    " capacity: " + this.capacity + ","+
 					    " QL: " + this.queueLength + ","+
 					    " WT: " + this.waitingTime + ","+
-					    " HT: " + this.holdingTime);
+					    " HT: " + this.holdingTime + ","+
+					    " rank: " + this.rank);
 		}
 
 }

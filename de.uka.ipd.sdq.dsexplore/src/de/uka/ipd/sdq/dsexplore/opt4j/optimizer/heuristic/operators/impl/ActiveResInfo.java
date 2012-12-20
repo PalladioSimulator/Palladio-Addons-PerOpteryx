@@ -24,6 +24,9 @@ public class ActiveResInfo {
 	//scheduling policy
 	String schedulingPolicy;
 	
+	//rank of active resources: predicted utilisation - required utilisation
+	double rank;
+	
 	//initial values
 	public ActiveResInfo(){
 		this.rc = null;
@@ -31,14 +34,16 @@ public class ActiveResInfo {
 		this.utilisation = 0.0;
 		this.queueLength = 0.0;
 		this.schedulingPolicy = "";
+		this.rank = 0.0;
 	}
 	
-	public ActiveResInfo(ResourceContainer rc, ProcessingResourceType processingResourceType, double u, double q, String s){
+	public ActiveResInfo(ResourceContainer rc, ProcessingResourceType processingResourceType, double u, double q, String s, double r){
 		this.rc = rc;
 		this.type = processingResourceType;
 		this.utilisation = u;
 		this.queueLength = q;
 		this.schedulingPolicy = s;
+		this.rank = r;
 	}
 	
 	public ActiveResInfo(ActiveResInfo h){
@@ -47,6 +52,7 @@ public class ActiveResInfo {
 		this.utilisation = h.utilisation;
 		this.queueLength = h.queueLength;
 		this.schedulingPolicy = h.schedulingPolicy;
+		this.rank = h.rank;
 	}
 	
 	//print elements of ActiveResInfo type
@@ -55,7 +61,8 @@ public class ActiveResInfo {
 					    " type " + this.type.getEntityName() + ","+
 					    " U: " + this.utilisation + ","+
 					    " QL: " + this.queueLength + ","+
-					    " scheduling " + this.schedulingPolicy);
+					    " scheduling " + this.schedulingPolicy + ","+
+					    " rank " + this.rank);
 		}
 
 }
