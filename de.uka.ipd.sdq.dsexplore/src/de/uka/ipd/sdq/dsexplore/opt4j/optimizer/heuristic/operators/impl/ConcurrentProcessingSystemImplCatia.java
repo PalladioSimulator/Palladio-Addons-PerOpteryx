@@ -17,6 +17,7 @@ import de.uka.ipd.sdq.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import de.uka.ipd.sdq.context.aggregatedUsageContext.ServiceExecutionContext;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.Pair;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.AntipatternsRankingMethod;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.AbstractTactic;
@@ -66,6 +67,17 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			DSEWorkflowConfiguration configuration) {
 		super(copy, individualFactory, configuration, new String[] {QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH,
 				QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH});
+		
+		AntipatternsRankingMethod rankingMethod = configuration.getRankingMethod();
+		
+		if (rankingMethod == AntipatternsRankingMethod.NO_RANKING){
+			// no ranking
+		} else if (rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+			// basic ranking
+		} else if (rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+			// semantic factor.
+		}
+		
 		try {
 			Collection<Objective> objectives = Opt4JStarter.getDSEEvaluator()
 					.getObjectives();

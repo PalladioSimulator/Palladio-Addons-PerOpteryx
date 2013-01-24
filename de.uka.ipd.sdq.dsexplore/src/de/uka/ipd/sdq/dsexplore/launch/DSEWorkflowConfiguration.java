@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.AntipatternsRankingMethod;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 import de.uka.ipd.sdq.workflow.pcm.configurations.AbstractPCMWorkflowRunConfiguration;
 
@@ -141,7 +142,7 @@ AbstractPCMWorkflowRunConfiguration {
 	private int maxNumberOfResourceContainers;
 	private int numberOfCandidatesPerAllocationLevel;
 	
-
+	private AntipatternsRankingMethod rankingMethod;
 	
 	public final String startTimestamp;
 
@@ -624,6 +625,20 @@ AbstractPCMWorkflowRunConfiguration {
 	public void setUseAntipatternKnowledge(boolean isUseAntipattern){
 		this.useAntipatternKnowledge = isUseAntipattern;
 	}
+	
+	/**
+	 * @return the rankingMethod
+	 */
+	public AntipatternsRankingMethod getRankingMethod() {
+		return rankingMethod;
+	}
+	/**
+	 * @param rankingMethod the rankingMethod to set
+	 */
+	public void setRankingMethod(AntipatternsRankingMethod rankingMethod) {
+		this.rankingMethod = rankingMethod;
+	}
+	
 	public boolean isStopOnInitialFailure() {
 		return this.stopOnInitialFailure;
 	}
@@ -646,6 +661,7 @@ AbstractPCMWorkflowRunConfiguration {
 	public void setResultsAsCSV(boolean resultsAsCVS){
 		this.resultsAsCSV = resultsAsCVS;
 	}
+
 
 
 }

@@ -18,6 +18,7 @@ import org.opt4j.core.Value;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.AntipatternsRankingMethod;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration.SearchMethod;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig;
@@ -131,6 +132,18 @@ public class DSEWorkflowConfigurationBuilder extends
 		
 		boolean isUseAntipattern = getBooleanAttribute(DSEConstantsContainer.USE_ANTIPATTERNS);
 		config.setUseAntipatternKnowledge(isUseAntipattern);
+		
+		boolean  isUseAntipatternsRanking = getBooleanAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_RANKING);
+		boolean  isUseAntipatternsRankingSemanticFactor = getBooleanAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_SEM_FACTOR);
+		if (isUseAntipatternsRanking){
+			if (isUseAntipatternsRankingSemanticFactor){
+				config.setRankingMethod(AntipatternsRankingMethod.SEMANTIC_FACTOR);
+			} else {
+				config.setRankingMethod(AntipatternsRankingMethod.BASIC_RANKING);
+			}
+		} else {
+			config.setRankingMethod(AntipatternsRankingMethod.NO_RANKING);
+		}
 		
 		/*
 		 * Starting Population

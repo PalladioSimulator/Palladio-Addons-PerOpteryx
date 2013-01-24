@@ -110,6 +110,10 @@ public class DSEConstantsContainer {
 
 	}
 	
+	public enum AntipatternsRankingMethod {
+		NO_RANKING, BASIC_RANKING, SEMANTIC_FACTOR;
+	}
+	
 	public static final String DESIGN_DECISIONS_ONLY = "designDecisionsOnly";
 	public static final String OPTIMISATION_ONLY = "optimisationOnly";
 	
@@ -160,6 +164,8 @@ public class DSEConstantsContainer {
 	public static final String USE_LINK_REALLOCATION = "Use Realocation for Link Usage Tactic";
 	
 	public static final String USE_ANTIPATTERNS = "Use antipattern knowledge";
+	public static final String USE_ANTIPATTERNS_RANKING = "Use antipattern ranking";;
+	public static final String USE_ANTIPATTERNS_SEM_FACTOR = "Use semantic factor for antipatterns";
 	
 	public final static String USE_STARTING_POPULATION_HEURISTIC = "Use starting population heuristic";
 	public final static String MIN_NUMBER_RESOURCE_CONTAINERS = "Minimum number of resource containers";
@@ -235,6 +241,7 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_DESIGN_DECISION_FILE = "";
 	/** Default URI for the QML criteria definitions file. */
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
+
 
 	
 	

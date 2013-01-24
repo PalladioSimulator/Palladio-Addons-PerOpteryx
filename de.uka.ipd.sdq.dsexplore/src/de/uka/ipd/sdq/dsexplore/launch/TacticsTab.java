@@ -136,7 +136,11 @@ public class TacticsTab extends FileNamesInputTab {
 	
 	/* Antipattern settings */
 	private Button useAntipatternsButton;
+	private Button useRankingButton;
+	private Button useRankingSemanticsButton;
 	private static final String USE_ANTIPATTERNS = "Use antipattern knowledge";
+	private static final String USE_ANTIPATTERNS_RANKING = "Use antipattern ranking";
+	private static final String USE_ANTIPATTERNS_RANKING_SEMANTIC_FACTOR = "Use semantic factor for ranking";
     private static final String ANTIPATTERNS_GROUP_NAME = "Antipattern Detection and Solution";
 	
     /* defaults */
@@ -147,6 +151,8 @@ public class TacticsTab extends FileNamesInputTab {
 	final static double SERVER_EXPANSION_WEIGHT_DEFAULT = 0.5;
 	
 	final static boolean  USE_ANTIPATTERNS_DEFAULT = false;
+	final static boolean USE_ANTIPATTERNS_RANKING_DEFAULT = false;
+	final static boolean USE_ANTIPATTERNS_SEM_FACTOR_DEFAULT = false;
 	final static boolean USE_LINK_REALLOCATION_DEFAULT = false;
 	
 	
@@ -506,6 +512,40 @@ public class TacticsTab extends FileNamesInputTab {
 			useAntipatternsButton.setSelection(true);
 			useAntipatternsButton.setText(USE_ANTIPATTERNS);
 			useAntipatternsButton.addSelectionListener(selectionListener);
+			useAntipatternsButton.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					// enable level and half-with fields if and only if check
+					// box is checked
+					updateAntipatternsSelection();
+				}
+
+			});
+			
+			useRankingButton = new Button(antipatternsGroup,
+					SWT.CHECK);
+			useRankingButton.setEnabled(true);
+			useRankingButton.setSelection(true);
+			useRankingButton.setText(USE_ANTIPATTERNS_RANKING);
+			useRankingButton.addSelectionListener(selectionListener); 
+			useRankingButton.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					// enable level and half-with fields if and only if check
+					// box is checked
+					updateAntipatternsSelection();
+				}
+
+			});
+			
+			useRankingSemanticsButton = new Button(antipatternsGroup,
+					SWT.CHECK);
+			useRankingSemanticsButton.setEnabled(true);
+			useRankingSemanticsButton.setSelection(true);
+			useRankingSemanticsButton.setText(USE_ANTIPATTERNS_RANKING_SEMANTIC_FACTOR);
+			useRankingSemanticsButton.addSelectionListener(selectionListener); 
+			
+			
 		}
 
 	}
@@ -563,6 +603,18 @@ public class TacticsTab extends FileNamesInputTab {
 			useAntipatternsButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_ANTIPATTERNS, USE_ANTIPATTERNS_DEFAULT));
 		} catch (CoreException e) {
 			RunConfigPlugin.errorLogger(getName(), USE_ANTIPATTERNS , e.getMessage());
+		}
+		
+		try {
+			useRankingButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_RANKING, USE_ANTIPATTERNS_RANKING_DEFAULT));
+		} catch (CoreException e) {
+			RunConfigPlugin.errorLogger(getName(), USE_ANTIPATTERNS_RANKING , e.getMessage());
+		}
+		
+		try {
+			useRankingSemanticsButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_SEM_FACTOR, USE_ANTIPATTERNS_SEM_FACTOR_DEFAULT));
+		} catch (CoreException e) {
+			RunConfigPlugin.errorLogger(getName(), USE_ANTIPATTERNS_RANKING_SEMANTIC_FACTOR , e.getMessage());
 		}
 		
 		try {
@@ -668,6 +720,8 @@ public class TacticsTab extends FileNamesInputTab {
 		configuration.setAttribute(DSEConstantsContainer.USE_LINK_REALLOCATION, useLinkReallocationButton.getSelection());
 		
 		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS, useAntipatternsButton.getSelection());
+		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_RANKING, useRankingButton.getSelection());
+		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_SEM_FACTOR, useRankingSemanticsButton.getSelection());
 	}
 
 	@Override
@@ -702,6 +756,8 @@ public class TacticsTab extends FileNamesInputTab {
 		configuration.setAttribute(DSEConstantsContainer.SERVER_EXPANSION_WEIGHT, Double.toString(SERVER_EXPANSION_WEIGHT_DEFAULT));
 		
 		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS, USE_ANTIPATTERNS_DEFAULT);
+		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_RANKING, USE_ANTIPATTERNS_RANKING_DEFAULT);
+		configuration.setAttribute(DSEConstantsContainer.USE_ANTIPATTERNS_SEM_FACTOR, USE_ANTIPATTERNS_SEM_FACTOR_DEFAULT);
 	}
 
 	/*
@@ -805,6 +861,7 @@ public class TacticsTab extends FileNamesInputTab {
 		updateReallocationSelection();
 		updateServerConsolidationSelection();
 		updateServerExpansionSelection();
+		updateAntipatternsSelection();
 	}
 	
 	private void updateServerConsolidationSelection() {
@@ -879,5 +936,17 @@ public class TacticsTab extends FileNamesInputTab {
 		processingRateWeight.setEnabled(selected);
 		TacticsTab.this
 				.updateLaunchConfigurationDialog();
+	}
+	
+	/**
+	 * 
+	 */
+	private void updateAntipatternsSelection() {
+		boolean selected = useAntipatternsButton.getSelection();
+		useRankingButton.setEnabled(selected);
+		
+		boolean rankingSelected = useRankingButton.getSelection();
+		useRankingSemanticsButton.setEnabled(rankingSelected);
+		TacticsTab.this.updateLaunchConfigurationDialog();
 	}
 }
