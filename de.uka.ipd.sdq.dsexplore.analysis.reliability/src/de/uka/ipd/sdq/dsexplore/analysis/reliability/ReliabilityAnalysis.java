@@ -15,8 +15,10 @@ import org.opt4j.core.InfeasibilityConstraint;
 import org.opt4j.core.Objective;
 import org.opt4j.core.SatisfactionConstraint;
 
+import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
@@ -54,8 +56,15 @@ import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
  * @author pmerkle, anne
  *
  */
-public class ReliabilityAnalysis implements IAnalysis {
+public class ReliabilityAnalysis extends AbstractAnalysis implements IAnalysis {
 	
+	public ReliabilityAnalysis(
+			IAnalysisQualityAttributeDeclaration qualityAttribute) {
+		super(new ReliabilitySolverQualityAttributeDeclaration());
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.reliability.ReliabilityAnalysis");
@@ -67,19 +76,6 @@ public class ReliabilityAnalysis implements IAnalysis {
 	private DSEWorkflowConfiguration config;
 	
 	private PCMSolverWorkflowRunConfiguration lastPCMSolverConfiguration;
-	
-	/**
-	 * The {@link Blackboard} to read the PCM models from.
-	 */
-	private MDSDBlackboard blackboard;
-
-	private ReliabilitySolverQualityAttributeDeclaration reliabilityQualityAttribute = new ReliabilitySolverQualityAttributeDeclaration();
-	
-	/**
-	 * Criteria handling.
-	 */
-	private List<Criterion> criteriaList = new ArrayList<Criterion>();
-	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
 	
 	
 	/**
@@ -171,121 +167,10 @@ public class ReliabilityAnalysis implements IAnalysis {
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.config = configuration;
 		
-		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
-		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
-		
-		initialiseCriteria(configuration, scenarios);
+		initialiseCriteria(configuration);
 	}
 	
-	/**
-	 * Initialize criteria, implementation for {@code #initialise(DSEWorkflowConfiguration)}.
-	 * @param configuration The workflow configuration
-	 * @param scenarios The scenarios that have been analyzed
-	 * @throws CoreException
-	 */
-	private void initialiseCriteria(DSEWorkflowConfiguration configuration, List<UsageScenario> scenarios) throws CoreException {
-		UsageModel usageModel = new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID)).getUsageModel();
-		
-		PCMDeclarationsReader reader = new PCMDeclarationsReader(
-				configuration.getRawConfiguration().getAttribute("qmlDefinitionFile", ""));
-		
-		List<Dimension> dimensions = this.reliabilityQualityAttribute.getDimensions();
-		
-		List<EvaluationAspectWithContext> reliabilityAspects = new ArrayList<EvaluationAspectWithContext>(6);
-		for (Dimension dimension : dimensions) {
-			reliabilityAspects.addAll(reader.getDimensionConstraintContextsForUsageModel(usageModel, dimension.getId()));
-			reliabilityAspects.addAll(reader.getDimensionObjectiveContextsForUsageModel(usageModel, dimension.getId()));
-		}
-		
-		//Check constraint aspects and create Constraint-Objects for every Aspect
-		for (Iterator<EvaluationAspectWithContext> iterator = reliabilityAspects.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator.next();
-
-
-			if (aspectContext.getRequirement() instanceof UsageScenarioRequirement) { 
-
-				//*********copied from AbstractLQNAnalysis.*********** 
-				//TODO: refactor QML handling. 
-
-				if (((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario() == null) {
-					//The criterion refers to EVERY US since none is explicitly specified
-					for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
-						UsageScenario usageScenario = (UsageScenario) iterator2.next();
-
-						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
-							InfeasibilityConstraint c = 
-									reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-
-							criteriaList.add(c);
-							criterionToAspect.put(c, aspectContext);
-						} else {
-							//instanceof Objective
-							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario); 
-							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-							criteriaList.add(o);
-							criterionToAspect.put(o, aspectContext); 
-
-							UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
-							SatisfactionConstraint c = 
-									reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder); 
-							criteriaList.add(c);
-							criterionToAspect.put(c, aspectContext);
-						}
-					}
-				} else {
-					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-						UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
-
-						InfeasibilityConstraint c = 
-								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-						criteriaList.add(c);
-						criterionToAspect.put(c, aspectContext);
-					} else {
-						//instanceof Objective
-						UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
-						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-						criteriaList.add(o);
-						criterionToAspect.put(o, aspectContext);
-
-						UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
-
-						SatisfactionConstraint c = 
-								reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
-						criteriaList.add(c);
-						criterionToAspect.put(c, aspectContext);
-					}
-				}
-			} else {
-				throw new RuntimeException("Unsupported Requirement!");
-			}		
-		}
-	}
 	
-	//MOVED to PCMDeclarationsReader
-//	private Objective translateEvalAspectToObjective(EvaluationAspectWithContext aspect) {
-//		//Make sure, the aspect IS an objective
-//		try {
-//			if(aspect.getDimension().getType().getRelationSemantics().getRelSem() == EnumRelationSemantics.DECREASING) {
-//				return new Objective(this.getQualityAttribute(), Objective.Sign.MIN);
-//			} else {
-//				//INCREASING
-//				return new Objective(this.getQualityAttribute(), Objective.Sign.MAX);
-//			}
-//		} catch (CoreException e) {
-//			e.printStackTrace();
-//			throw new RuntimeException("Could not get reliability quality attribute!");
-//		}
-//	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public QualityAttribute getQualityAttribute() throws CoreException {
-		//return DSEConstantsContainer.POFOD_QUALITY;
-		return reliabilityQualityAttribute.getQualityAttribute();
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -303,14 +188,6 @@ public class ReliabilityAnalysis implements IAnalysis {
 //		return objectives;
 //	}
 	
-	@Override
-	public List<Criterion> getCriterions() throws CoreException {
-		List<Criterion> criterions = new ArrayList<Criterion>();
-		
-		criterions.addAll(this.criteriaList);
-		
-		return criterions;
-	}
 	
 	@Override
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)

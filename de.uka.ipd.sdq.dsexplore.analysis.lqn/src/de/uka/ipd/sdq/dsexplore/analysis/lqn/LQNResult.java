@@ -470,7 +470,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 		}
 		logger.warn("No task or empty task for processor or empty activity results"
 				+ usageScenarioProcessor.getName()
-				+ ". Cannot determine response time, using NaN. Check your models or the LQNResult code.");
+				+ ". Cannot determine response time, using NaN. A possible cause is that the network is overloaded and the LQN analysis was aborted. Otherwise, check your models or the LQNResult code.");
 		return Double.NaN;
 	}
 
@@ -502,9 +502,11 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 			
 			if (object instanceof ActivityDefType && ((ActivityDefType)object).getName().equals(entryLevelCallId)){
 				// this is the entry level system call
-				OutputResultType activityResult = ((ActivityDefType)object).getResultActivity().get(0);
-				if (activityResult != null){
-					return activityResult;
+				if (((ActivityDefType)object).getResultActivity() != null && ((ActivityDefType)object).getResultActivity().size() > 0){
+					OutputResultType activityResult = ((ActivityDefType)object).getResultActivity().get(0);
+					if (activityResult != null){
+						return activityResult;
+					}
 				}
 			}
 		};

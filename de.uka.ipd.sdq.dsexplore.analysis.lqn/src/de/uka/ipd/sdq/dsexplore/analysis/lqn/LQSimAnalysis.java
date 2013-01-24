@@ -26,7 +26,7 @@ public class LQSimAnalysis extends AbstractLQNAnalysis {
 	@Override
 	protected LQNResult retrieveResult(PCMInstance pcm,
 			LqnModelType model, Criterion criterion) throws AnalysisFailedException {
-		LQSimAnalysisResult result = new LQSimAnalysisResult(model, pcm, criterion, this.criterionToAspect, this.lQNQualityAttribute);
+		LQSimAnalysisResult result = new LQSimAnalysisResult(model, pcm, criterion, this.criterionToAspect, (LQNQualityAttributeDeclaration)this.qualityAttribute);
 		return result;
 	}		
 

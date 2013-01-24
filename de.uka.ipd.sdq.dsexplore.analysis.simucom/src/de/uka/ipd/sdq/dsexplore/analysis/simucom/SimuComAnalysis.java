@@ -22,8 +22,10 @@ import org.opt4j.core.SatisfactionConstraint;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowLauncher;
 import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.SimuComJob;
+import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
@@ -65,8 +67,14 @@ import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
  * @author Anne
  *
  */
-public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysis {
+public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 	
+	public SimuComAnalysis() {
+		super(new SimuComQualityAttributeDeclaration());
+	}
+
+
+
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore");
@@ -79,14 +87,6 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 
 	private SimuComWorkflowConfiguration simuComWorkflowConfiguration;
 
-	private MDSDBlackboard blackboard;
-
-	private SimuComQualityAttributeDeclaration simuComQualityAttribute = new SimuComQualityAttributeDeclaration();
-	
-	//Criteria handling
-	private List<Criterion> criteriaList = new ArrayList<Criterion>();
-	private Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
-	
 	private int datasourceReloadCount = 1;
 	
 	/**
@@ -255,7 +255,7 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	  Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
 	  if (runs.size() > 0){
 		  ExperimentRun myrun = getLatestRun(runs);
-		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute);					  
+		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);					  
 	  } 
 	}
 	return result;
@@ -421,120 +421,21 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 		
 		this.initialExperimentName = this.config.getAttribute(SimuComConfig.EXPERIMENT_RUN, "");
 		
-		this.simuComWorkflowConfiguration = deriveConfiguration(this.config, ILaunchManager.RUN_MODE);
+		this.simuComWorkflowConfiguration = new DSESimuComWorkflowLauncher().deriveConfiguration(this.config);
 		this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
 		
-		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
-		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
+		
 //		this.objectives = new ArrayList<Objective>(scenarios.size());
 //		for (UsageScenario usageScenario : scenarios) {
 //			objectives.add(new UsageScenarioBasedObjective(this.getQualityAttribute(), Objective.Sign.MIN, usageScenario));
 //		}
 		
-		initialiseCriteria(pcmInstance, this.config, scenarios);
+		initialiseCriteria(configuration);
 	}
+
 	
-	/** 
-	 * TODO: document me!
-	 * 
-	 * @param pcmInstance
-	 * @param configuration
-	 * @param scenarios
-	 * @throws CoreException
-	 */
-	private void initialiseCriteria(PCMInstance pcmInstance, ILaunchConfiguration configuration, List<UsageScenario> scenarios) throws CoreException{
-		UsageModel usageModel = pcmInstance.getUsageModel();
-		
-		PCMDeclarationsReader reader = new PCMDeclarationsReader(
-				configuration.getAttribute("qmlDefinitionFile", ""));
-		
-		List<Dimension> dimensions = simuComQualityAttribute.getDimensions();
-		
-		List<EvaluationAspectWithContext> responseTimeAspects = new ArrayList<EvaluationAspectWithContext>(6);
-		for (Dimension dimension : dimensions) {
-			responseTimeAspects.addAll(reader.getDimensionConstraintContextsForUsageModel(usageModel, dimension.getId()));
-			responseTimeAspects.addAll(reader.getDimensionObjectiveContextsForUsageModel(usageModel, dimension.getId()));
-		}
-		
-		//Check constraint aspects and create Constraint-Objects for every Aspect
-		for (Iterator<EvaluationAspectWithContext> iterator = responseTimeAspects.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator
-					.next();
-			
-			if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) {  
-			
-						//handle possible aspects here
-						if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) {
-							
-							if(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
-								//The criterion refers to EVERY US since none is explicitly specified
-								for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
-									UsageScenario usageScenario = (UsageScenario) iterator2
-											.next();
-									if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-										UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
-										InfeasibilityConstraint c = 
-											reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-										
-										criteriaList.add(c);
-										criterionToAspect.put(c, aspectContext);
-									} else {
-										//instanceof Objective
-										UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario);
-										Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-										criteriaList.add(o);
-										criterionToAspect.put(o, aspectContext);
-										
-										UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
-										SatisfactionConstraint c = 
-											reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);								
-										criteriaList.add(c);
-										criterionToAspect.put(c, aspectContext);
-									}
-								}
-							} else {
-								UsageScenario usageScenario = ((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario();
-								
-								if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-									
-									UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
-									InfeasibilityConstraint c = 
-										reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-									criteriaList.add(c);
-									criterionToAspect.put(c, aspectContext);
-								} else {
-								//instanceof Objective
-									
-									UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario);
-									Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-									criteriaList.add(o);
-									criterionToAspect.put(o, aspectContext);
-									
-									UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
-									
-									SatisfactionConstraint c = 
-										reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);		
-									criteriaList.add(c);
-									criterionToAspect.put(c, aspectContext);
-								}
-								
-							}
-							
-							
-						} else {
-							//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well 
-							throw new RuntimeException("Evaluation aspect not supported("+aspectContext.getEvaluationAspect()+")!");
-						}			
-									
-			} else {
-				throw new RuntimeException("Unsupported Requirement!");
-			}
-		}
-	}
-	
-	private boolean canEvaluateAspect(EvaluationAspect aspect, Dimension dimension){
-		return simuComQualityAttribute.canEvaluateAspectForDimension(aspect, dimension);
-	}
+
+
 
 	//MOVED to PCMDeclarationsReader
 //	public UsageScenarioBasedObjective translateEvalAspectToObjective(EvaluationAspectWithContext aspect, UsageScenario usageScenario){
@@ -577,7 +478,7 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	@Override
 	public QualityAttribute getQualityAttribute() throws CoreException {
 		//return DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY;
-		return simuComQualityAttribute.getQualityAttribute();
+		return qualityAttribute.getQualityAttribute();
 }
 
 
@@ -586,16 +487,6 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	public boolean hasStatisticResults() throws CoreException {
 		return true;
 	}
-
-
-
-	@Override
-	public List<Criterion> getCriterions() throws CoreException {
-		List<Criterion> list = new ArrayList<Criterion>(); 
-		list.addAll(this.criteriaList);
-		return list;
-	}
-
 
 
 	@Override
@@ -613,4 +504,13 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	
 	
 
+}
+
+class DSESimuComWorkflowLauncher extends SimuComWorkflowLauncher{
+	
+	public SimuComWorkflowConfiguration deriveConfiguration(ILaunchConfiguration config) throws CoreException{
+		return super.deriveConfiguration(config, ILaunchManager.RUN_MODE);
+		
+	}
+	
 }
