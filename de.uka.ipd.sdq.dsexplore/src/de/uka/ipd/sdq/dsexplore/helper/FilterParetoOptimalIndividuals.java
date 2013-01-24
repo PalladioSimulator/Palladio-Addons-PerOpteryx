@@ -186,6 +186,7 @@ public class FilterParetoOptimalIndividuals {
 					} catch (NumberFormatException e) {
 						System.out.println("Line " + noOfLine + " column " + i
 								+ " is no double value, exiting");
+						in.close();
 						throw new Exception(e);
 					}
 				}
