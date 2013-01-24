@@ -65,6 +65,7 @@ public class QMLManager {
 	protected DSEAnalysisMethodTab costTab = null;
 	protected DSEAnalysisMethodTab pofodTab = null;
 	protected DSEAnalysisMethodTab performanceTab = null;
+	protected DSEAnalysisMethodTab securityTab = null;
 	
 	//Set to ensure uniqueness of entries
 	protected Set<EvaluationAspectWithContext> objectives = Collections.synchronizedSet(new HashSet<EvaluationAspectWithContext>(4));
@@ -92,6 +93,8 @@ public class QMLManager {
 				costTab = tab;
 			} else if(tab.getId().equals(QualityAttribute.RELIABILITY_QUALITY.getName())) {
 				pofodTab = tab;
+			} else if(tab.getId().equals(QualityAttribute.SECURITY_QUALITY.getName())) {
+				securityTab = tab;
 			}
 		}
 	}
@@ -231,6 +234,42 @@ public class QMLManager {
 				} else  {
 					pofodTab.activate(exts);
 					this.objectives.addAll(pofodObjectives);
+				}
+			}
+		}
+		//		Security 
+		{
+			List<EvaluationAspectWithContext> securityObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
+			List<EvaluationAspectWithContext> securityConstraints = pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
+			List<EvaluationAspectWithContext> securityCriteria = new ArrayList<EvaluationAspectWithContext>();
+			securityCriteria.addAll(securityObjectives);
+			securityCriteria.addAll(securityConstraints);
+			exts.clear();
+			init = 0;
+			//Get evaluators that can evaluate every aspect
+			for(EvaluationAspectWithContext aspect : securityCriteria) {
+				List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);			
+				if(init == 0) {
+					//initialize
+					exts.addAll(tmp_exts);
+					init++;
+				} else {
+					//calculate intersection
+					List<IExtension> removeList = new ArrayList<IExtension>();
+					for(IExtension e : exts) {					
+						if(!tmp_exts.contains(e)){
+							removeList.add(e);
+						}					
+					}
+					exts.removeAll(removeList);
+				}
+			}
+			if(securityTab != null) {
+				if(exts.size() == 0) {			
+					securityTab.deactivate();			
+				} else  {
+					securityTab.activate(exts);
+					this.objectives.addAll(securityObjectives);
 				}
 			}
 		}

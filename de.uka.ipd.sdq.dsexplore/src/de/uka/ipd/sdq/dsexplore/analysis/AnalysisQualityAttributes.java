@@ -33,6 +33,7 @@ public class AnalysisQualityAttributes {
 		attributes.add(QualityAttribute.PERFORMANCE_QUALITY);
 		attributes.add(QualityAttribute.RELIABILITY_QUALITY);
 		attributes.add(QualityAttribute.COST_QUALITY);
+		attributes.add(QualityAttribute.SECURITY_QUALITY);
 		
 		return attributes;
 		

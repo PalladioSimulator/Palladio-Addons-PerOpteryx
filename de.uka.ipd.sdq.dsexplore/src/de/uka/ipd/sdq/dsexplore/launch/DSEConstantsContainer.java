@@ -90,7 +90,10 @@ public class DSEConstantsContainer {
 			public String getPrettyName() { return "Costs"; }},
 		RELIABILITY_QUALITY { 
 			public String getName() { return "de.uka.ipd.sdq.dsexplore.reliability" ;		}
-			public String getPrettyName() { return "Reliability"; }};
+			public String getPrettyName() { return "Reliability"; }},
+		SECURITY_QUALITY {
+				public String getName() { return "de.uka.ipd.sdq.dsexplore.security" ;		}
+				public String getPrettyName() { return "Security"; }};	
 		
 		public abstract String getName();
 		
@@ -101,6 +104,8 @@ public class DSEConstantsContainer {
 				return RELIABILITY_QUALITY;
 			} else if (name.equals(COST_QUALITY.getName())){
 				return COST_QUALITY;
+			} else if (name.equals(SECURITY_QUALITY.getName())){
+				return SECURITY_QUALITY;
 			} else {
 				return null;
 			}

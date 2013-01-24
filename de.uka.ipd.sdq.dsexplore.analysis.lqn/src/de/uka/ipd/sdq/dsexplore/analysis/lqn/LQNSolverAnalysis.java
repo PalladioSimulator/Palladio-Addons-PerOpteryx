@@ -61,7 +61,7 @@ public class LQNSolverAnalysis extends AbstractLQNAnalysis {
 			LqnModelType model, Criterion criterion) throws AnalysisFailedException {
 		ILQNResult result;
 		if (hasConverged){
-			result = new LQNSolverAnalysisResult(model, pcm, criterion, this.criterionToAspect, this.lQNQualityAttribute);
+			result = new LQNSolverAnalysisResult(model, pcm, criterion, this.criterionToAspect, (LQNQualityAttributeDeclaration)this.qualityAttribute);
 		} else {
 			result = new LQNNotConvergedResult(pcm);
 			hasConverged = true;

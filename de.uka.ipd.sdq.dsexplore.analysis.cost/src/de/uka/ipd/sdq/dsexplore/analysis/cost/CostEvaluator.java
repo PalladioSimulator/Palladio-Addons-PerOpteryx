@@ -12,26 +12,17 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
-import org.opt4j.core.Objective;
 
+import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.InfeasibilityConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.ObjectiveBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.SatisfactionConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
 import de.uka.ipd.sdq.pcm.core.composition.ComposedStructure;
@@ -47,28 +38,23 @@ import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
 import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
-public class CostEvaluator implements IAnalysis{
+public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
+
+	public CostEvaluator() {
+		super(new CostSolverQualityAttributeDeclaration());
+	}
+
 
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.cost");
 	
 	private CostRepository costModel;
-	private MDSDBlackboard blackboard;
-	
-	private CostSolverQualityAttributeDeclaration costQualityAttribute = new CostSolverQualityAttributeDeclaration();
-
-	//Constraint handling
-	private List<Criterion> criteria = new ArrayList<Criterion>();
-	private Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
 	
 	private Map<Long, CostAnalysisResult> previousCostResults = new HashMap<Long, CostAnalysisResult>();
 	
@@ -338,15 +324,10 @@ public class CostEvaluator implements IAnalysis{
 		double operatingCost = getOperatingCost(pcm);
 		this.previousCostResults.put(pheno.getNumericID(), new CostAnalysisResult(
 				CostUtil.getTotalCost(initialCost, operatingCost, costModel.getInterest(), costModel.getTimePeriodYears()), initialCost, operatingCost, 
-				pcm, this.criterionToAspect, this.costQualityAttribute));
+				pcm, this.criterionToAspect, (CostSolverQualityAttributeDeclaration)this.qualityAttribute));
 		CostUtil.getInstance().resetCache();
 	}
 	
-	@Override
-	public QualityAttribute getQualityAttribute() throws CoreException {
-		//return DSEConstantsContainer.COST_QUALITY;
-		return costQualityAttribute.getQualityAttribute();
-	}
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
@@ -356,65 +337,6 @@ public class CostEvaluator implements IAnalysis{
 		
 		initialiseCriteria(configuration);
     }
-	
-	
-	private void initialiseCriteria(DSEWorkflowConfiguration configuration) throws CoreException{
-		
-		PCMInstance pcmInstance = getPCMInstance();
-		UsageModel usageModel = pcmInstance.getUsageModel();
-		
-		PCMDeclarationsReader reader = new PCMDeclarationsReader(
-				configuration.getRawConfiguration().getAttribute("qmlDefinitionFile", ""));
-		
-		List<Dimension> dimensions = this.costQualityAttribute.getDimensions();
-		
-		List<EvaluationAspectWithContext> costAspects = new ArrayList<EvaluationAspectWithContext>(6);
-		for (Dimension dimension : dimensions) {
-			costAspects.addAll(reader.getDimensionConstraintContextsForUsageModel(usageModel, dimension.getId()));
-			costAspects.addAll(reader.getDimensionObjectiveContextsForUsageModel(usageModel, dimension.getId()));
-		}
-		
-		
-		//Check constraint aspects and create Constraint-Objects for every Aspect
-		for (Iterator<EvaluationAspectWithContext> iterator = costAspects.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator
-					.next();
-			
-			if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) {				
-	
-						//Handle possible aspects here
-						if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) { 
-							
-							if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-								Constraint c = reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, new InfeasibilityConstraintBuilder());
-								criteria.add(c);
-								criterionToAspect.put(c, aspectContext);
-							} else {
-								//instanceof Objective
-								Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, new ObjectiveBuilder());
-								criteria.add(o);
-								criterionToAspect.put(o, aspectContext);
-								
-								Constraint c = reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, new SatisfactionConstraintBuilder()); 
-								criteria.add(c);
-								criterionToAspect.put(c, aspectContext);
-							}
-						} else {
-							//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well
-							throw new RuntimeException("Evaluation aspect not supported("+aspectContext.getEvaluationAspect()+")!");
-						}
-					
-				
-			} else {
-				throw new RuntimeException("Unsupported Requirement!");
-			}
-			
-		}
-	}
-	
-	private boolean canEvaluateAspect(EvaluationAspect aspect, Dimension dimension){
-		return costQualityAttribute.canEvaluateAspectForDimension(aspect, dimension);
-	}
 	
 
 	/**
@@ -431,10 +353,6 @@ public class CostEvaluator implements IAnalysis{
 		}
 		return cr;
 	}
-	
-	private PCMInstance getPCMInstance(){
-		return new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
-	}
 
 	@Override
 	public boolean hasStatisticResults() throws CoreException {
@@ -445,7 +363,7 @@ public class CostEvaluator implements IAnalysis{
 	public List<Criterion> getCriterions() throws CoreException {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		 
-		criterions.addAll(criteria);
+		criterions.addAll(criteriaList);
 
 		return criterions;
 	}

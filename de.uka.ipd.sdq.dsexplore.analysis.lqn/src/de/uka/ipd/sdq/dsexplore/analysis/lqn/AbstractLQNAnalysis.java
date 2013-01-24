@@ -2,7 +2,6 @@ package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -14,31 +13,14 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.opt4j.core.InfeasibilityConstraint;
-import org.opt4j.core.Objective;
-import org.opt4j.core.SatisfactionConstraint;
 
 import LqnCore.LqnModelType;
+import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.EntryLevelSystemCallInfeasibilityConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.EntryLevelSystemCallObjectiveBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.EntryLevelSystemCallSatisfactionConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedInfeasibilityConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedObjectiveBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedSatisfactionConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
 import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.RunPCMAnalysisJob;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
@@ -52,11 +34,9 @@ import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
 import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
 import de.uka.ipd.sdq.workflow.pcm.configurations.PCMWorkflowConfigurationBuilder;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
-public abstract class AbstractLQNAnalysis implements IAnalysis {
+public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IAnalysis {
 
 	/** Logger for log4j. */
 	protected static Logger logger = 
@@ -71,20 +51,15 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 	
 	protected int iteration = -1;
 
-	private MDSDBlackboard blackboard;
-
-	protected LQNQualityAttributeDeclaration lQNQualityAttribute = new LQNQualityAttributeDeclaration();
-	
-	//Criteria handling
-	private List<Criterion> criteriaList = new ArrayList<Criterion>();
-	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
-	
-
 	private Map<Long, String> previousResultFileName = new HashMap<Long, String>();
 	
 	// cache for LQN models so that they do not have to be loaded so often. Limited capacity (below) to not store too many models. 
 	private LinkedList<LqnModelType> recentModels = new LinkedList<LqnModelType>();
 	private static int RECENT_MODEL_CAPACITY = 10;
+	
+	public AbstractLQNAnalysis(){
+		super(new LQNQualityAttributeDeclaration());
+	}
 	
 	/**
 	 * {@inheritDoc}
@@ -100,7 +75,7 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 		
 		iteration++;
 		
-		PCMInstance pcm = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		PCMInstance pcm = getPCMInstance();
 		
 		try {
 			launchLQNSolver(pheno, monitor);
@@ -112,12 +87,12 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 		
 		
 	}
-	
+
 	/**
 	 * FIXME: Make this method independent of the blackboard state.  
 	 */
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion) throws AnalysisFailedException{
-		PCMInstance pcm = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		PCMInstance pcm = getPCMInstance();
 		IAnalysisResult result = retrieveLQNSolverResults(pheno, pcm,criterion);
 		return result;
 	}
@@ -241,10 +216,7 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.config = configuration.getRawConfiguration();
 		
-		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
-		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
-		
-		initialiseCriteria(this.config, scenarios);
+		initialiseCriteria(configuration);
 
 //		this.objectives = new ArrayList<Objective>(scenarios.size());
 //		for (UsageScenario usageScenario : scenarios) {
@@ -260,117 +232,9 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 
 	}
 	
-	private void initialiseCriteria(ILaunchConfiguration configuration, List<UsageScenario> scenarios) throws CoreException{
-		PCMInstance pcm = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
-		UsageModel usageModel = pcm.getUsageModel();
-		
-		PCMDeclarationsReader reader = new PCMDeclarationsReader( 
-				configuration.getAttribute("qmlDefinitionFile", ""));
-		
-		List<Dimension> dimensions = this.lQNQualityAttribute.getDimensions();
-		
-		List<EvaluationAspectWithContext> responseTimeAspect = new ArrayList<EvaluationAspectWithContext>(6);
-		for (Dimension dimension : dimensions) {
-			responseTimeAspect.addAll(reader.getDimensionConstraintContextsForUsageModel(usageModel, dimension.getId()));
-			responseTimeAspect.addAll(reader.getDimensionObjectiveContextsForUsageModel(usageModel, dimension.getId()));
-		}
-		
-		//Check constraint aspects and create Constraint-Objects for every Aspect
-		for (Iterator<EvaluationAspectWithContext> iterator = responseTimeAspect.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator
-					.next();
-			//handle possible aspects here
-			if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) {
-
-				if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) {  
-
-					if(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
-						//The criterion refers to EVERY US since none is explicitly specified
-						for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
-							UsageScenario usageScenario = (UsageScenario) iterator2
-							.next();
-
-							if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-								UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
-								InfeasibilityConstraint c = 
-									reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-
-								criteriaList.add(c);
-								criterionToAspect.put(c, aspectContext);
-							} else {
-								//instanceof Objective
-								UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario); 
-								Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-								criteriaList.add(o);
-								criterionToAspect.put(o, aspectContext); 
-
-								UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
-								SatisfactionConstraint c = 
-									reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder); 
-								criteriaList.add(c);
-								criterionToAspect.put(c, aspectContext);
-							}
-						}
-					} else {
-						if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
-							
-							InfeasibilityConstraint c = 
-								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-							criteriaList.add(c);
-							criterionToAspect.put(c, aspectContext);
-						} else {
-							//instanceof Objective
-							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
-							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
-							criteriaList.add(o);
-							criterionToAspect.put(o, aspectContext);
-
-							UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
-							
-							SatisfactionConstraint c = 
-								reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
-							criteriaList.add(c);
-							criterionToAspect.put(c, aspectContext);
-						}
-					}
-
-				} else if (aspectContext.getRequirement() instanceof EntryLevelSystemCallRequirement) {
-					if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-						EntryLevelSystemCallInfeasibilityConstraintBuilder builder = new EntryLevelSystemCallInfeasibilityConstraintBuilder(((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall());
-						InfeasibilityConstraint c = 
-							reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
-						criteriaList.add(c);
-						criterionToAspect.put(c, aspectContext);
-					} else {
-						//instanceof Objective
-						EntryLevelSystemCall entryLevelSystemCall = ((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall();
-						EntryLevelSystemCallObjectiveBuilder builder = new EntryLevelSystemCallObjectiveBuilder(entryLevelSystemCall);
-						
-						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, builder);
-						criteriaList.add(o);
-						criterionToAspect.put(o, aspectContext);
-
-						EntryLevelSystemCallSatisfactionConstraintBuilder satisBuilder = new EntryLevelSystemCallSatisfactionConstraintBuilder(entryLevelSystemCall);
-						SatisfactionConstraint c = 
-							reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, satisBuilder);
-						criteriaList.add(c);
-						criterionToAspect.put(c, aspectContext);
-					}
-
-				} else {
-					throw new RuntimeException("Unsupported Requirement!");
-				}
-			} else {
-				//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well
-				throw new RuntimeException("Evaluation aspect not supported("+aspectContext.getEvaluationAspect()+")!");
-			}
-		}
-	}
 	
-	private boolean canEvaluateAspect(EvaluationAspect aspect, Dimension dimension){
-		return lQNQualityAttribute.canEvaluateAspectForDimension(aspect, dimension);
-	}
+	
+	
 	
 	//MOVED to PCMDeclarationsReader
 //	public UsageScenarioBasedObjective translateEvalAspectToObjective(EvaluationAspectWithContext aspect, UsageScenario usageScenario){
@@ -388,19 +252,8 @@ public abstract class AbstractLQNAnalysis implements IAnalysis {
 //		}
 //	}
 	
-	public QualityAttribute getQualityAttribute() throws CoreException {
-		//return DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY;
-		return lQNQualityAttribute.getQualityAttribute();
-	}
-
 	public abstract boolean hasStatisticResults() throws CoreException;
 	
-	@Override
-	public List<Criterion> getCriterions() throws CoreException {
-		List<Criterion> list = new ArrayList<Criterion>();
-		list.addAll(this.criteriaList);
-		return list;
-	}
 	
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard){
