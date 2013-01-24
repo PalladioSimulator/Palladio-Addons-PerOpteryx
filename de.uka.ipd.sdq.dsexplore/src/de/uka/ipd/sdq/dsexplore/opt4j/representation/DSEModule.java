@@ -1,17 +1,14 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import org.opt4j.config.annotations.Name;
-import org.opt4j.core.Genotype;
 import org.opt4j.core.problem.Creator;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.core.problem.Evaluator;
 import org.opt4j.core.problem.ProblemModule;
-import org.opt4j.operator.crossover.Crossover;
 
 import com.google.inject.TypeLiteral;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.operator.UniformDesignDecisionGenotypeCrossover;
 
 
 public class DSEModule extends ProblemModule {
