@@ -256,6 +256,21 @@ public class ResultsWriter {
 		writeToLogFile(c.getHeuristic().getClass().getSimpleName() +";"+c.getNumericID()+";"+c.getParent().getNumericID()+ ";"+c.getID()+";"+c.getParent().getID()+";candidate returned\n");
 	}
 	
+	public void writeAntipatternsSummaryFile(
+			List<DSEIndividual> populationIndividuals, int iteration, long iterationDurationMillis) {
+		
+		// find best value == lowest
+		double lowestValue = Double.POSITIVE_INFINITY; 
+		for (DSEIndividual dseIndividual : populationIndividuals) {
+			double value = dseIndividual.getObjectives().getValueForCriterion(performance).getDouble();
+			if (value < lowestValue){
+				lowestValue = value;
+			}
+		}
+		
+		String entry = iteration + ";" + iterationDurationMillis + ";" + populationIndividuals.size() + ";" + lowestValue+";\n"; 
+		writeToLogFile(entry);
+	}
 	
 	/**
 	 * Writes String entry to log file in results directory. 
@@ -694,6 +709,9 @@ public class ResultsWriter {
 		}
 		return name;
 	}
+
+
+
 	
 
 

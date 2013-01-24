@@ -30,6 +30,10 @@ public class DSEListener implements OptimizerIterationListener {
 	private boolean asEMF;
 
 	private boolean asCSV;
+
+	private long startTimestampMillis;
+
+	private ResultsWriter writer;
 	
 	public DSEListener(IProgressMonitor monitor, DSEWorkflowConfiguration dseConfig) {
 		this.resultFolder = dseConfig.getResultFolder();
@@ -37,6 +41,11 @@ public class DSEListener implements OptimizerIterationListener {
 		this.asCSV = dseConfig.isResultsAsCSV();
 		this.monitor = monitor;
 		monitor.beginTask("DSE run", dseConfig.getMaxIterations());
+		
+		startTimestampMillis = System.currentTimeMillis();
+		this.writer = new ResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"antipatternsInfo");
+		String headline = "iteration;computing time in ms; number of candidates; best predicted value;\n"; 
+		writer.writeToLogFile(headline);				
 	}
 
 	@Override
@@ -69,7 +78,15 @@ public class DSEListener implements OptimizerIterationListener {
 		ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), this.resultFolder+"population", iteration, this.asEMF, this.asCSV, exceptionList);
 
 		//ResultsWriter.writeIndividualsToFile(individuals.getParetoOptimalIndividuals(), this.resultFolder+"ownOptimalCandidates", iteration, exceptionList);
-		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder+"archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);	
+		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder+"archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);
+		
+		long iterationDurationMillis = System.currentTimeMillis()-this.startTimestampMillis;
+		this.startTimestampMillis = System.currentTimeMillis();
+		
+		this.writer.writeAntipatternsSummaryFile(Opt4JStarter.getPopulationIndividuals(), iteration, iterationDurationMillis);
+		//computing time (time to complete iteration), number of candidates, best predicted value(RT).
+		
+		// specify which method (normal, ranking, ranking with semantic)
 	}
 
 
