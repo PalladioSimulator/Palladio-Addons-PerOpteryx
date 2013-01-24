@@ -31,4 +31,7 @@ public class QMLConstantsContainer {
 		QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH,
 		QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH
 	};
+	
+	// quick version, delete later
+	public static final String QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH = "pathmap://PCM_MODELS/Dimension_security.qmlcontracttype";
 }
