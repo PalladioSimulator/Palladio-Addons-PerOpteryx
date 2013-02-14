@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 import org.apache.log4j.Logger;
+import de.uka.ipd.sdq.pcm.repository.BasicComponent;
 import de.uka.ipd.sdq.pcm.repository.PassiveResource;
 
 public class PassiveResInfo {
@@ -10,7 +11,7 @@ public class PassiveResInfo {
 	PassiveResource pr;
 	
 	//component whose passive resource belongs to
-	String component;
+	BasicComponent bc;
 	
 	//capacity of the passive resource
 	int capacity;
@@ -30,7 +31,7 @@ public class PassiveResInfo {
 	//initial values
 	public PassiveResInfo(){
 		this.pr = null;
-		this.component = "";
+		this.bc = null;
 		this.capacity = 1;
 		this.queueLength = 0.0;
 		this.waitingTime = 0.0;
@@ -38,9 +39,9 @@ public class PassiveResInfo {
 		this.rank = 0.0;
 	}
 	
-	public PassiveResInfo(PassiveResource pr, String c, int i, double q, double w, double h, double r){
+	public PassiveResInfo(PassiveResource pr, BasicComponent c, int i, double q, double w, double h, double r){
 		this.pr = pr;
-		this.component = c;
+		this.bc = c;
 		this.capacity = i;
 		this.queueLength = q;
 		this.waitingTime = w;
@@ -50,7 +51,7 @@ public class PassiveResInfo {
 	
 	public PassiveResInfo(PassiveResInfo h){
 		this.pr = h.pr;
-		this.component = h.component;
+		this.bc = h.bc;
 		this.capacity = h.capacity;
 		this.queueLength = h.queueLength;
 		this.waitingTime = h.waitingTime;
@@ -61,7 +62,7 @@ public class PassiveResInfo {
 	//print elements of PassiveResInfo type
 	public void print(){
 			logger.info("PassiveRes " + this.pr.getEntityName() + ","+
-					    " component " + this.component + ","+
+					    " component " + this.bc.getEntityName() + ","+
 					    " capacity: " + this.capacity + ","+
 					    " QL: " + this.queueLength + ","+
 					    " WT: " + this.waitingTime + ","+

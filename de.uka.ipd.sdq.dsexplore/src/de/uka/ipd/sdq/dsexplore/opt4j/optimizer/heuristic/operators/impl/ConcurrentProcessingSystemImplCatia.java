@@ -27,7 +27,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
+//import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.CapacityDegree;
@@ -57,7 +57,9 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 	private Objective performance;
 	
-	public int discardedCandidates = 0;
+	//public int discardedCandidates = 0;
+	
+	private AntipatternsRankingMethod rankingMethod = null; 
 	
 	protected static Logger logger = Logger
 			.getLogger(ConcurrentProcessingSystemImplCatia.class.getName());
@@ -68,15 +70,16 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		super(copy, individualFactory, configuration, new String[] {QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH,
 				QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH});
 		
-		AntipatternsRankingMethod rankingMethod = configuration.getRankingMethod();
+		//rankingMethod = configuration.getRankingMethod();
+		this.rankingMethod = configuration.getRankingMethod(); 
 		
-		if (rankingMethod == AntipatternsRankingMethod.NO_RANKING){
+		//if (rankingMethod == AntipatternsRankingMethod.NO_RANKING){
 			// no ranking
-		} else if (rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+		//} else if (rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
 			// basic ranking
-		} else if (rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+		//} else if (rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
 			// semantic factor.
-		}
+		//}
 		
 		try {
 			Collection<Objective> objectives = Opt4JStarter.getDSEEvaluator()
@@ -293,7 +296,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	public boolean olb(List<ServiceInfo> list, PassiveResInfo criticPassiveRes) {
 		boolean result = false;
 		for (ServiceInfo el : list) {
-			if (el.compName.equals(criticPassiveRes.component)) {
+			if (el.compName.equals(criticPassiveRes.bc.getEntityName())) {
 				if (el.respT > el.userReq) {
 					result = true;
 				}
@@ -356,6 +359,17 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		return result;
 	}
 	
+	//@author catia: give the resource container on which a component is deployed
+		public ResourceContainer componentDeployNode(List<CompInfoResDemand> comp, BasicComponent bc) {
+			ResourceContainer result = null;
+			for (CompInfoResDemand compInfoResDemand : comp) {
+				if (compInfoResDemand.bc == bc) {
+					result = compInfoResDemand.rc;
+				}
+			}
+			return result;
+		}
+	
 	//@author catia: give the seffs provided by a basic component
 	public List<ServiceInfo> getSeffsOfComp(List<ServiceInfo> list, String comp) {
 		List<ServiceInfo> result = new ArrayList<ServiceInfo>(0);
@@ -409,9 +423,9 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 			ResultDecoratorRepository resultRepo = i.getObjectives().getResultDecoratorFor(this.performance);
 			
-			logger.info("---------------------------------------------------------------------");
-			logger.info("System response time: " + i.getObjectives().get(performance).getDouble());
-			logger.info("---------------------------------------------------------------------");
+			//logger.info("---------------------------------------------------------------------");
+			//logger.info("System response time: " + i.getObjectives().get(performance).getDouble());
+			//logger.info("---------------------------------------------------------------------");
 
 			// AM: response time of SEFFs
 			List<ServiceResult> serviceResultList = resultRepo.getServiceResult_ResultDecoratorRepository();
@@ -664,8 +678,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 						for (PassiveResource passiveResource : passiveResourceList) {
 
 							//@author catia: (1) queue length, (2) waiting and (3) holding time of passive resources are currently set to pre-defined values
-							passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent
-											.getEntityName(), Integer.parseInt(passiveResource
+							passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent, Integer.parseInt(passiveResource
 											.getCapacity_PassiveResource().getSpecification()), 0.8, 1.0, 0.4, 0.0));
 						}
 						
@@ -687,29 +700,48 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									
 						//@author catia: detection of the antipattern OLB - the rules are verified for each critical passive resource 
 						if (olb(serviceInfoList, criticalPassiveResInfo)) {
-										
-							//@author catia: solution of the antipattern OLB - "IncreaseCapacity" action
 							
+							//@author catia: solution of the antipattern OLB - "IncreaseCapacity" action
 							//criticalPassiveResInfo.pr.getCapacity_PassiveResource().setSpecification("5");
 							//Note that the capacity is increased by adding 5 units to the current one
 							
+							if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
+								
+								TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
+								listPairs.add(candidate);
+								
+							}
 							
-							//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
-							if (criticalPassiveResInfo.rank > new Ranks().rankMinPassiveRes) {
-						    
-							//@author catia: RANKING STEP WITH SEMANTIC FACTOR = ()
+							if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+								if (criticalPassiveResInfo.rank > new Ranks().rankMinPassiveRes) {
+									TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
+									listPairs.add(candidate);
+								}
+							}
 							
-							//if ((criticalPassiveResInfo.rank + ()) > new Ranks().rankMinCpu) {
-							
-							TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
-							listPairs.add(candidate);
+							if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+								//@author catia: semantic factor for the antipattern OLB: Utilization(resourceContainer) - Utilization(passive resource) 
+								
+								double olbSemanticFactor= 0.0;
+								
+								double utilResContainer= 0.0;
+								
+								if (componentDeployNode(listCompIDs, criticalPassiveResInfo.bc)!=null){
+									ResourceContainer rc = componentDeployNode(listCompIDs, criticalPassiveResInfo.bc);
+									for (ActiveResInfo activeResInfo: activeResInfoList){
+									if (activeResInfo.rc == rc){
+										utilResContainer = activeResInfo.utilisation;
+										}
+									}
+								}
+								
+								if ((criticalPassiveResInfo.rank + olbSemanticFactor) > new Ranks().rankMinCpu) {
+								TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
+								listPairs.add(candidate);
+								}
+							}
 							
 							logger.info("The capacity of the passive resource " + criticalPassiveResInfo.pr.getEntityName() + " must be increased");
-							}
-							else{
-								discardedCandidates = discardedCandidates ++;
-								//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
-							}
 										
 							}
 					}
@@ -830,7 +862,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 										
 									}
 								else {
-									discardedCandidates = discardedCandidates ++;
+									//discardedCandidates = discardedCandidates ++;
 									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
 									}
 								}
@@ -867,7 +899,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 										listPairs.add(createCPSCandidate(i, p));
 									}
 								else {
-									discardedCandidates = discardedCandidates ++;
+									//discardedCandidates = discardedCandidates ++;
 									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
 									}
 								}
