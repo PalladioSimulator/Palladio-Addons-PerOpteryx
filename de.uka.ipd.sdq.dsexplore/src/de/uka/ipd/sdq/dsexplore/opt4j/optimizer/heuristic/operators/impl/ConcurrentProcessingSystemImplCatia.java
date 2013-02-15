@@ -675,7 +675,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 				//@author catia: (1) queue length, (2) waiting and (3) holding time of passive resources are currently set to pre-defined values
 				passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent, Integer.parseInt(passiveResource
-						.getCapacity_PassiveResource().getSpecification()), 
+						.getCapacity_PassiveResource().getSpecification()),
+						passiveResourceResult.getResourceUtilisation(),
 						passiveResourceResult.getAverageQueueLength(), 
 						passiveResourceResult.getAverageWaitTime(),
 						passiveResourceResult.getAverageHoldingTime(), 
@@ -717,11 +718,13 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 							}
 							
 							if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
-								//@author catia: semantic factor for the antipattern OLB: Utilization(resourceContainer) - Utilization(passive resource) 
+								//@author catia: semantic factor for the antipattern OLB: |Utilization(resourceContainer) - Utilization(passive resource)| 
 								
 								double olbSemanticFactor= 0.0;
 								
 								double utilResContainer= 0.0;
+								
+								double utilPassiveRes= criticalPassiveResInfo.utilisation;
 								
 								if (componentDeployNode(listCompIDs, criticalPassiveResInfo.bc)!=null){
 									ResourceContainer rc = componentDeployNode(listCompIDs, criticalPassiveResInfo.bc);
@@ -732,7 +735,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									}
 								}
 								
-																
+								olbSemanticFactor = Math.abs(utilResContainer - utilPassiveRes);
+										
 								if ((criticalPassiveResInfo.rank + olbSemanticFactor) > new Ranks().rankMinCpu) {
 								TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
 								listPairs.add(candidate);

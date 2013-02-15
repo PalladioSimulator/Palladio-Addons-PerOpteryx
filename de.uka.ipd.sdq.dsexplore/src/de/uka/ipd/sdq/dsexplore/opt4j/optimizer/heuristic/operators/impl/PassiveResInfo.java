@@ -17,6 +17,9 @@ public class PassiveResInfo {
 	int capacity;
 	
 	//LQN solution - queue length of the passive resource
+	double utilisation;
+	
+	//LQN solution - queue length of the passive resource
 	double queueLength;
 	
 	//LQN solution - waiting time of the passive resource
@@ -33,16 +36,18 @@ public class PassiveResInfo {
 		this.pr = null;
 		this.bc = null;
 		this.capacity = 1;
+		this.utilisation = 0.0;
 		this.queueLength = 0.0;
 		this.waitingTime = 0.0;
 		this.holdingTime = 0.0;
 		this.rank = 0.0;
 	}
 	
-	public PassiveResInfo(PassiveResource pr, BasicComponent c, int i, double q, double w, double h, double r){
+	public PassiveResInfo(PassiveResource pr, BasicComponent c, int i, double u, double q, double w, double h, double r){
 		this.pr = pr;
 		this.bc = c;
 		this.capacity = i;
+		this.utilisation = u;
 		this.queueLength = q;
 		this.waitingTime = w;
 		this.holdingTime = h;
@@ -53,6 +58,7 @@ public class PassiveResInfo {
 		this.pr = h.pr;
 		this.bc = h.bc;
 		this.capacity = h.capacity;
+		this.utilisation = h.utilisation;
 		this.queueLength = h.queueLength;
 		this.waitingTime = h.waitingTime;
 		this.holdingTime = h.holdingTime;
@@ -64,6 +70,7 @@ public class PassiveResInfo {
 			logger.info("PassiveRes " + this.pr.getEntityName() + ","+
 					    " component " + this.bc.getEntityName() + ","+
 					    " capacity: " + this.capacity + ","+
+					    " utilisation: " + this.utilisation + ","+
 					    " QL: " + this.queueLength + ","+
 					    " WT: " + this.waitingTime + ","+
 					    " HT: " + this.holdingTime + ","+
