@@ -849,23 +849,27 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 								logger.info("Redeploy component "
 										+ compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)).bc.getEntityName()
 										+ " in the following servers: ");					
-								for (ActiveResInfo elUnder : getUnderUsedCPUList) {										
+								for (ActiveResInfo elUnder : getUnderUsedCPUList) {
 									
-									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
-									if (elUnder.rank > new Ranks().rankMinCpu) {
-								    
-									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)
-									//if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
-										
-										logger.info(elUnder.rc.getEntityName());
-										Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-										compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), elUnder.rc);
+									logger.info(elUnder.rc.getEntityName());
+									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+									compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), elUnder.rc);
+									
+									if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
 										listPairs.add(createCPSCandidate(i, p));
+									}
+									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
+									if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+										
+										if (elUnder.rank > new Ranks().rankMinCpu) {
+											listPairs.add(createCPSCandidate(i, p));	
+										}
 										
 									}
-								else {
-									//discardedCandidates = discardedCandidates ++;
-									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+									
+									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)									if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+										if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
+											listPairs.add(createCPSCandidate(i, p));
 									}
 								}
 							}
@@ -888,21 +892,28 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 								logger.info("Redeploy component "
 										+ compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)).bc.getEntityName()
 										+ " in the following servers: ");					
-								for (ActiveResInfo elUnder : getUnderUsedHDDList) {										
-									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
-									if (elUnder.rank > new Ranks().rankMinHdd) {
-										
-									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)
-									//if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
-										
-										logger.info(elUnder.rc.getEntityName());
-										Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
-										compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), elUnder.rc);
+								for (ActiveResInfo elUnder : getUnderUsedHDDList) {
+									
+									logger.info(elUnder.rc.getEntityName());
+									
+									Pair<CompInfoResDemand, ResourceContainer> p = new Pair<CompInfoResDemand, ResourceContainer>(
+									compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), elUnder.rc);
+									
+									if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
 										listPairs.add(createCPSCandidate(i, p));
 									}
-								else {
-									//discardedCandidates = discardedCandidates ++;
-									//logger.info("Ranking step - number of discarded candidates: " + discardedCandidates);
+									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
+									if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+										
+										if (elUnder.rank > new Ranks().rankMinHdd) {
+											listPairs.add(createCPSCandidate(i, p));	
+										}
+										
+									}
+									
+									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)									if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+										if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
+											listPairs.add(createCPSCandidate(i, p));
 									}
 								}
 							}
