@@ -489,7 +489,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									activeProcUtilResult.getResourceUtilisation(),
 									activeProcUtilResult.getAverageQueueLength(), resource.getSchedulingPolicy().getId(), 0.0));
 
-				}
+				} 
 				// Other possible results are for network:
 				// LinkingResourceResults or for the whole resource container:
 				// ResourceContainerResult, both are not yet filled with values.
@@ -667,26 +667,23 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			//@author catia: the list of passive resources is stored in the PassiveResInfo data structure
 			List<PassiveResInfo> passiveResInfoList = new ArrayList<PassiveResInfo>(repositoryList.size());
 
-			for (Repository repository : repositoryList) {
-				List<RepositoryComponent> repoComponents = repository
-						.getComponents__Repository();
-				for (RepositoryComponent repositoryComponent : repoComponents) {
-					if (repositoryComponent instanceof BasicComponent) {
-						BasicComponent basicComponent = (BasicComponent) repositoryComponent;
-						List<PassiveResource> passiveResourceList = basicComponent
-								.getPassiveResource_BasicComponent();
-						for (PassiveResource passiveResource : passiveResourceList) {
+			for (PassiveResourceResult passiveResourceResult : passiveResourceUtilResults) {
 
-							//@author catia: (1) queue length, (2) waiting and (3) holding time of passive resources are currently set to pre-defined values
-							passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent, Integer.parseInt(passiveResource
-											.getCapacity_PassiveResource().getSpecification()), 0.8, 1.0, 0.4, 0.0));
-						}
-						
-					}
-				}
+				PassiveResource passiveResource = passiveResourceResult.getPassiveResource_PassiveResourceResult();
+				double util = passiveResourceResult.getResourceUtilisation();
+				BasicComponent basicComponent = passiveResource.getBasicComponent_PassiveResource();
+
+				//@author catia: (1) queue length, (2) waiting and (3) holding time of passive resources are currently set to pre-defined values
+				passiveResInfoList.add(new PassiveResInfo(passiveResource, basicComponent, Integer.parseInt(passiveResource
+						.getCapacity_PassiveResource().getSpecification()), 
+						passiveResourceResult.getAverageQueueLength(), 
+						passiveResourceResult.getAverageWaitTime(),
+						passiveResourceResult.getAverageHoldingTime(), 
+						0.0));
 			}
+
 						
-			logger.info("List of Passive Resources: ");
+			logger.info("List of Used Passive Resources: ");
 			for (PassiveResInfo el : passiveResInfoList) {
 				el.print();
 			}
@@ -735,6 +732,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									}
 								}
 								
+																
 								if ((criticalPassiveResInfo.rank + olbSemanticFactor) > new Ranks().rankMinCpu) {
 								TacticsResultCandidate candidate = createIncreasedCapacityCandidate(i,criticalPassiveResInfo.pr, criticalPassiveResInfo.capacity + 5);
 								listPairs.add(candidate);

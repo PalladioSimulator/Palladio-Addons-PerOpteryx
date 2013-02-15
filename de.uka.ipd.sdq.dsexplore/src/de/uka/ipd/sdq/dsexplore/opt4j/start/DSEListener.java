@@ -80,8 +80,9 @@ public class DSEListener implements OptimizerIterationListener {
 		//ResultsWriter.writeIndividualsToFile(individuals.getParetoOptimalIndividuals(), this.resultFolder+"ownOptimalCandidates", iteration, exceptionList);
 		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder+"archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);
 		
-		long iterationDurationMillis = System.currentTimeMillis()-this.startTimestampMillis;
-		this.startTimestampMillis = System.currentTimeMillis();
+		long now = System.currentTimeMillis();
+		long iterationDurationMillis = now-this.startTimestampMillis;
+		this.startTimestampMillis = now;
 		
 		this.writer.writeAntipatternsSummaryFile(Opt4JStarter.getPopulationIndividuals(), iteration, iterationDurationMillis);
 		//computing time (time to complete iteration), number of candidates, best predicted value(RT).
