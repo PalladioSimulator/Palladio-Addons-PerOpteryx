@@ -280,7 +280,29 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		}
 		return result;
 	}
+	
+	//@author catia: get the seff with the highest throughput value among the list of seffs
+	public ServiceInfo getOverUsedSeff(List<ServiceInfo> list){
+		ServiceInfo result = list.get(0);
+		for (ServiceInfo el: list){
+			if(el.throughput > result.throughput){
+				result = el;
+			}
+		}
+		return result;
+	}
 
+	//@author catia: get the seff with the lowest throughput value among the list of seffs
+	public ServiceInfo getUnderUsedSeff(List<ServiceInfo> list){
+		ServiceInfo result = list.get(0);
+		for (ServiceInfo el: list){
+			if(el.throughput < result.throughput){
+				result = el;
+			}
+		}
+		return result;
+	}
+	
 	//@author catia: detection of the antipattern CPS (Concurrent Processing Systems)
 	public boolean cps(List<ActiveResInfo> list) {
 		boolean result = false;
@@ -297,7 +319,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		boolean result = false;
 		for (ServiceInfo el : list) {
 			if (el.compName.equals(criticPassiveRes.bc.getEntityName())) {
-				if (el.respT > el.userReq) {
+				if (el.respT > el.userRTreq) {
 					result = true;
 				}
 			}
@@ -433,13 +455,13 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			//@author catia: the list of SEFFs is stored in the ServiceInfo data structure
 			List<ServiceInfo> serviceInfoList = new ArrayList<ServiceInfo>(serviceResultList.size());
 				
-			//@author catia: user requirements for all services are currently set to 0.001
+			//@author catia: RT user requirement for all services is currently set to 0.001, TH user requirement for all services is currently set to 10.0 
 			
 			for (ServiceResult serviceResult : serviceResultList) {
 
 				serviceInfoList.add(new ServiceInfo(serviceResult.getServiceEffectSpecification_ServiceResult().getDescribedService__SEFF().getEntityName(),
 						serviceResult.getServiceEffectSpecification_ServiceResult().getBasicComponent_ServiceEffectSpecification().getEntityName(), 
-						0.001, serviceResult.getMeanResponseTime(), 0.0));
+						0.001, serviceResult.getMeanResponseTime(), 10.0, serviceResult.getThroughput(), Math.abs(10.0 - serviceResult.getThroughput()), 0.0));
 			}
 			
 			
@@ -796,12 +818,43 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 				
 				// @author catia: solution of the antipattern EP - "UnblockExecution" action
 				//maxUtilised.setSchedulingPolicy(SchedulingPolicy.PROCESSOR_SHARING);
-				listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,true));
-
+				
+				if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
+					listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,true));
+					logger.info("The scheduling policy of the active resource " + maxUtilised.rc.getEntityName() + " must be changed");	
+				}
+				
+				if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
+					
+					for (ServiceInfo s: seffsOfMaxUtilised){
+					if (s.rank > new Ranks().rankMinServiceTH) {
+						listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,true));
+						logger.info("The scheduling policy of the active resource " + maxUtilised.rc.getEntityName() + " must be changed");		
+					}
+					}
+					}
+				
+				if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
+					//@author catia: semantic factor for the antipattern EP: (|TH(seffA) - TH(seffB)|) / max{TH(seffA), TH(seffB)} 
+					
+					double epSemanticFactor= 0.0;
+					
+					ServiceInfo seffA = getOverUsedSeff(seffsOfMaxUtilised);
+					ServiceInfo seffB = getUnderUsedSeff(seffsOfMaxUtilised);
+					
+					epSemanticFactor = (Math.abs(seffA.throughput - seffB.throughput)) / seffA.throughput;
+					
+					for (ServiceInfo s: seffsOfMaxUtilised){
+							
+					if ((s.rank + epSemanticFactor) > new Ranks().rankMinServiceTH) {
+						listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,true));
+						logger.info("The scheduling policy of the active resource " + maxUtilised.rc.getEntityName() + " must be changed");
+					}
+					}
+					}
+				
 				//listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,SchedulingPolicy.DELAY));
 				//listPairs.add(createUpdatedSchedulingCandidate(i,maxUtilised,SchedulingPolicy.EXACT));
-				
-				logger.info("The scheduling policy of the active resource " + maxUtilised.rc.getEntityName() + " must be changed");
 			}
 			
 			logger.info("---------------------------------------------------------------------");

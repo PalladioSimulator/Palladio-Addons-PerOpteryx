@@ -11,4 +11,7 @@ public class Ranks {
 	//@author catia: rank value for min passive resources
 	public final double rankMinPassiveRes = 0.1;
 	
+	//@author catia: rank value for min service throughput
+	public final double rankMinServiceTH = 0.1;
+	
 }
