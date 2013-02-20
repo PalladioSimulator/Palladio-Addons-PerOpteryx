@@ -869,7 +869,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			
 			if(depCompHdd.size() !=0){
 				
-			CompInfoResDemand mostCriticalHdd =  depCompHdd.get(getCompMaxHDDdemand(depCompCpu));
+			CompInfoResDemand mostCriticalHdd =  depCompHdd.get(getCompMaxHDDdemand(depCompHdd));
 			logger.info("Most HDD critical");
 			mostCriticalHdd.print();
 			}
