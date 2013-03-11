@@ -57,8 +57,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 	private Objective performance;
 	
-	//public int discardedCandidates = 0;
-	
 	private AntipatternsRankingMethod rankingMethod = null; 
 	
 	protected static Logger logger = Logger
@@ -70,7 +68,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		super(copy, individualFactory, configuration, new String[] {QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH,
 				QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH});
 		
-		//rankingMethod = configuration.getRankingMethod();
 		this.rankingMethod = configuration.getRankingMethod(); 
 		
 		//if (rankingMethod == AntipatternsRankingMethod.NO_RANKING){
