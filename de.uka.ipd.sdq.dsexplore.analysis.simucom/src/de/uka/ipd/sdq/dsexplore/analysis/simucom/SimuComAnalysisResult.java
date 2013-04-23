@@ -26,6 +26,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
+import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
 import de.uka.ipd.sdq.pcm.core.composition.ComposedStructure;
 import de.uka.ipd.sdq.pcm.core.composition.CompositionFactory;
@@ -40,8 +41,8 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ResourceType;
 import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
 import de.uka.ipd.sdq.pcm.resultdecorator.ResultdecoratorFactory;
+import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.AllocationServiceResult;
 import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.RepositorydecoratorFactory;
-import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.ServiceResult;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.ActiveResourceUtilisationResult;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.PassiveResourceResult;
@@ -55,6 +56,7 @@ import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.pcmsolver.transformations.ContextWrapper;
 import de.uka.ipd.sdq.pcmsolver.transformations.EMFHelper;
+import de.uka.ipd.sdq.pcmsolver.transformations.PCMInstanceHelper;
 import de.uka.ipd.sdq.sensorframework.adapter.StateSensorToPieAdapter;
 import de.uka.ipd.sdq.sensorframework.adapter.StateSensorToTimeDeltaPieAdapter;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
@@ -284,7 +286,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 								externalCallsInContextWithSensorsList.add(externalCallInContextWithSensors);
 							}
 						
-							// map all result sensors to the SEFF they call
+							// map all result sensors to the SEFF they call (XXX no, this maps to the call they are issued from...)
 							externalCallInContextWithSensors.addSensor(sensor);
 							continue;
 						} 
@@ -308,13 +310,15 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		// get the average time for the SEFFs (careful: contains network)
 		// by getting the data of the chosen sensors from this.run
 		
+		Map<SeffAndAllocationContextPair,List<ExternalCallActionWithSensors>> validExternalCallsWithSensors = new HashMap<SeffAndAllocationContextPair,List<ExternalCallActionWithSensors>>(externalCallsInContextWithSensorsList.size());
+		
 		for (ExternalCallActionWithSensors externalCallActionWithSensors : externalCallsInContextWithSensorsList) {
 			List<Sensor> mySensors = externalCallActionWithSensors.getSensors();
 			
 			if (mySensors.size() > 0){
 			
 				//	create service result
-				ServiceResult myServiceResult = RepositorydecoratorFactory.eINSTANCE.createAllocationServiceResult();
+				//ServiceResult myServiceResult = RepositorydecoratorFactory.eINSTANCE.createAllocationServiceResult();
 			
 				//get SEFF for external call
 				
@@ -331,8 +335,12 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 				contextWrapper.setAssCtxList(assemblyContextHierarchy);
 				
 				ServiceEffectSpecification seff = contextWrapper.getNextSEFF(externalCallActionWithSensors.getExternalCall());
+				List<AssemblyContext> targetAssemblyContexts = PCMInstanceHelper.getHandlingAssemblyContexts(externalCallActionWithSensors.getExternalCall(), contextWrapper.getAssCtxList());
 				
-				myServiceResult.setServiceEffectSpecification_ServiceResult(seff);
+				AllocationContext targetAllocationContext = getAllocationContext(targetAssemblyContexts, pcmInstance);
+				
+				//myServiceResult.setServiceEffectSpecification_ServiceResult(seff);
+				externalCallActionWithSensors.setSeff(seff);
 				
 				double weightedAndCumulatedMeanResponseTime = 0;
 				int totalNumberOfMeasurements = 0;
@@ -341,21 +349,83 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 					 SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
 					 Collection<Measurement> measurements = results.getMeasurements();
 					 totalNumberOfMeasurements += measurements.size();
-					 weightedAndCumulatedMeanResponseTime += calculateValue(results, "mean", TimeseriesData.TIMESPAN) * totalNumberOfMeasurements;
+					 weightedAndCumulatedMeanResponseTime += calculateValue(results, "mean", TimeseriesData.TIMESPAN) * measurements.size();
 					 
 				}
 				double meanResponseTime = weightedAndCumulatedMeanResponseTime / totalNumberOfMeasurements;
-				myServiceResult.setMeanResponseTime(meanResponseTime);
+				//myServiceResult.setMeanResponseTime(meanResponseTime);
 				
-				repo.getServiceResult_ResultDecoratorRepository().add(myServiceResult);
+//				if (!Double.isNaN(meanResponseTime)){
+//					
+//					repo.getServiceResult_ResultDecoratorRepository().add(myServiceResult);
+//				}
+				
+				externalCallActionWithSensors.setResponseTime(meanResponseTime);
+				externalCallActionWithSensors.setNumberOfMeasurements(totalNumberOfMeasurements);
+				externalCallActionWithSensors.setAllocationContext(targetAllocationContext);
+				
+				if (!Double.isNaN(meanResponseTime)){
+					
+					SeffAndAllocationContextPair pair = new SeffAndAllocationContextPair(seff, targetAllocationContext); 
+					
+					if(validExternalCallsWithSensors.get(pair) == null){
+						validExternalCallsWithSensors.put(pair, new ArrayList<ExternalCallActionWithSensors>());
+						
+					}
+					
+					validExternalCallsWithSensors.get(pair).add(externalCallActionWithSensors);
+				}
 				
 			}
 		
 		}
 		
+		// FIXME: should aggregate results based on target AllocationContext and SEFF. But too difficult to get, so just use results for each call. 
+		for (SeffAndAllocationContextPair pair : validExternalCallsWithSensors.keySet()) {
+			
+			ServiceEffectSpecification seff = pair.getSeff();
+			
+//			create service result
+			AllocationServiceResult myServiceResult = RepositorydecoratorFactory.eINSTANCE.createAllocationServiceResult();
+			myServiceResult.setServiceEffectSpecification_ServiceResult(seff);
+			myServiceResult.setAllocationContext_AllocationServiceResult(pair.getAllocationContext());
+						
+			List<ExternalCallActionWithSensors> listOfCallsToSeff = validExternalCallsWithSensors.get(pair);
+			
+			double weightedAndCumulatedMeanResponseTime = 0;
+			int totalNumberOfMeasurements = 0;
+			
+			for (ExternalCallActionWithSensors externalCallToSeff : listOfCallsToSeff) {
+				weightedAndCumulatedMeanResponseTime += externalCallToSeff.getResponseTime() * externalCallToSeff.getNumberOfMeasurements();
+				totalNumberOfMeasurements += externalCallToSeff.getNumberOfMeasurements();
+			}
+			
+			myServiceResult.setMeanResponseTime(weightedAndCumulatedMeanResponseTime / totalNumberOfMeasurements);
+			
+			repo.getServiceResult_ResultDecoratorRepository().add(myServiceResult);
+		}
+		
 		
 	}
 
+
+	private AllocationContext getAllocationContext(
+			List<AssemblyContext> targetAssemblyContexts, PCMInstance pcmInstance) {
+		
+		List<AllocationContext> allocationContextList = pcmInstance.getAllocation().getAllocationContexts_Allocation();
+
+		for (AssemblyContext assemblyContext : targetAssemblyContexts) {
+
+			for (AllocationContext allocationContext : allocationContextList) {
+				if (allocationContext.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())){
+					return allocationContext;
+				}
+			}
+		}
+
+		logger.error("Cannot find allocation context for assembly context "+allocationContextList.get(0).getId() + " and/or children / parents.");
+		return null;
+	}
 
 	/**
 	 * retrieves active resource utils. 
@@ -889,6 +959,10 @@ class ExternalCallActionWithSensors {
 	private ExternalCallAction externalCallAction;
 	private AssemblyContextContext assemblyContext;
 	private List<Sensor> sensors;
+	private ServiceEffectSpecification seff = null;
+	private AllocationContext allocationContext = null;
+	private double responseTime = Double.NaN;
+	private int numberOfMeasurements = 0;
 
 	public ExternalCallActionWithSensors(ExternalCallAction e, AssemblyContextContext myAssemblyContext){
 		this.externalCallAction = e;
@@ -925,6 +999,38 @@ class ExternalCallActionWithSensors {
 			return false;
 		}
 		
+	}
+
+	public double getResponseTime() {
+		return responseTime;
+	}
+
+	public void setResponseTime(double responseTime) {
+		this.responseTime = responseTime;
+	}
+
+	public int getNumberOfMeasurements() {
+		return numberOfMeasurements;
+	}
+
+	public void setNumberOfMeasurements(int numberOfMeasurements) {
+		this.numberOfMeasurements = numberOfMeasurements;
+	}
+
+	public ServiceEffectSpecification getSeff() {
+		return seff;
+	}
+
+	public void setSeff(ServiceEffectSpecification seff) {
+		this.seff = seff;
+	}
+
+	public AllocationContext getAllocationContext() {
+		return allocationContext;
+	}
+
+	public void setAllocationContext(AllocationContext allocationContext) {
+		this.allocationContext = allocationContext;
 	}
 }
 
@@ -974,5 +1080,53 @@ class AssemblyContextContext {
 		this.parentAssemblyContext = assemblyContextContext;
 	}
 	
+	
+}
+
+class SeffAndAllocationContextPair {
+	public SeffAndAllocationContextPair(ServiceEffectSpecification seff,
+			AllocationContext allocationContext) {
+		super();
+		this.seff = seff;
+		this.allocationContext = allocationContext;
+	}
+	private ServiceEffectSpecification seff;
+	private AllocationContext allocationContext;
+	public ServiceEffectSpecification getSeff() {
+		return seff;
+	}
+	public void setSeff(ServiceEffectSpecification seff) {
+		this.seff = seff;
+	}
+	public AllocationContext getAllocationContext() {
+		return allocationContext;
+	}
+	public void setAllocationContext(AllocationContext allocationContext) {
+		this.allocationContext = allocationContext;
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		if (other instanceof SeffAndAllocationContextPair){
+			SeffAndAllocationContextPair otherPair = (SeffAndAllocationContextPair)other;
+			return (otherPair.seff.getBasicComponent_ServiceEffectSpecification().getId().equals(this.seff.getBasicComponent_ServiceEffectSpecification().getId())
+					&& otherPair.seff.getDescribedService__SEFF().getId().equals(this.seff.getDescribedService__SEFF().getId())
+					&& otherPair.getAllocationContext().getId().equals(this.allocationContext.getId()));
+		} else {
+			return false;
+		}
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+
+		return this.seff.getBasicComponent_ServiceEffectSpecification().hashCode() 
+				+ this.seff.getDescribedService__SEFF().hashCode()
+				+ this.allocationContext.hashCode();
+	}
+	
+
 	
 }

@@ -95,7 +95,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: find the max utilised cpu
-	public int getMaxUtilisedCpu(List<ActiveResInfo> list) {
+	private int getMaxUtilisedCpu(List<ActiveResInfo> list) {
 		int position = 0;
 		int temp = 0;
 		for (ActiveResInfo el : list) {
@@ -108,7 +108,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: find the max utilised hdd
-	public int getMaxUtilisedHdd(List<ActiveResInfo> list) {
+	private int getMaxUtilisedHdd(List<ActiveResInfo> list) {
 		int position = 0;
 		int temp = 0;
 		for (ActiveResInfo el : list) {
@@ -121,7 +121,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: find the max utilised active resource
-	public int getMaxUtilisedActiveRes(List<ActiveResInfo> list) {
+	private int getMaxUtilisedActiveRes(List<ActiveResInfo> list) {
 		int position = 0;
 		int temp = 0;
 		for (ActiveResInfo el : list) {
@@ -134,7 +134,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get over used CPU resources whose queue length exceeds a threshold
-	public List<ActiveResInfo> getOverUsedCpu(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getOverUsedCpu(List<ActiveResInfo> list){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for max CPU utilisation
@@ -153,7 +153,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get under used CPU resources
-	public List<ActiveResInfo> getUnderUsedCpu(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getUnderUsedCpu(List<ActiveResInfo> list){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for min CPU utilisation
@@ -169,7 +169,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get over used HDD resources whose queue length exceeds a threshold
-	public List<ActiveResInfo> getOverUsedHDD(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getOverUsedHDD(List<ActiveResInfo> list){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for max HDD utilisation
@@ -188,7 +188,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get under used HDD resources
-	public List<ActiveResInfo> getUnderUsedHDD(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getUnderUsedHDD(List<ActiveResInfo> list){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for min CPU utilisation
@@ -206,7 +206,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	//@author catia: get critical passive resources
 	//Assumption: a passive resource is considered "critical" if its queue length exceeds a threshold value
 	//and the waiting time is more than the double of the holding time
-	public List<PassiveResInfo> getCriticalPassiveRes(List<PassiveResInfo> list){
+	private List<PassiveResInfo> getCriticalPassiveRes(List<PassiveResInfo> list){
 		List<PassiveResInfo> result = new ArrayList<PassiveResInfo>(0);
 		
 		//@author catia: threshold value for max queue length of passive resources
@@ -222,7 +222,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: check if a component is already stored for its resource demand (cpu, hdd)
-	public boolean compOccurrence(List<CompInfoResDemand> list, AllocationContext a) {
+	private boolean compOccurrence(List<CompInfoResDemand> list, AllocationContext a) {
 		boolean value = false;
 		for (CompInfoResDemand compInfoResDemand : list) {
 			if (compInfoResDemand.ac == a) {
@@ -233,7 +233,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: increment the computation (cpu demand) of a component
-	public void incrementComputation(List<CompInfoResDemand> list,
+	private void incrementComputation(List<CompInfoResDemand> list,
 			AllocationContext b, double value) {
 		for (CompInfoResDemand compInfoResDemand : list) {
 			if (compInfoResDemand.ac == b) {
@@ -244,7 +244,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: increment the storage (hdd demand) of a component
-	public void incrementStorage(List<CompInfoResDemand> list,
+	private void incrementStorage(List<CompInfoResDemand> list,
 			AllocationContext b, double value) {
 		for (CompInfoResDemand compInfoResDemand : list) {
 			if (compInfoResDemand.ac == b) {
@@ -254,7 +254,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: update the frequency of a seff
-	public void updateFrequency (List<ServiceInfo> list, String seffName, String compName, double f){
+	private void updateFrequency (List<ServiceInfo> list, String seffName, String compName, double f){
 		for (ServiceInfo el: list){
 			if (el.serviceName.equals(seffName) && el.compName.equals(compName)){
 				el.frequency = f;
@@ -265,7 +265,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	//@author catia: check if the list of seffs is unbalanced
 	//Assumption - a list of seffs is considered "unbalanced" if the maximum and
 	//the minimum response time among them is higher than a threshold value 
-	public boolean unbalancedSeffs(List<ServiceInfo> list){
+	private boolean unbalancedSeffs(List<ServiceInfo> list){
 		boolean result = false;
 		// threshold value, i.e. the allowed gap between the maximum and the minimum response time of seffs
 		double gapRT = 0.5;
@@ -279,7 +279,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get the seff with the highest throughput value among the list of seffs
-	public ServiceInfo getOverUsedSeff(List<ServiceInfo> list){
+	private ServiceInfo getOverUsedSeff(List<ServiceInfo> list){
 		ServiceInfo result = list.get(0);
 		for (ServiceInfo el: list){
 			if(el.throughput > result.throughput){
@@ -290,7 +290,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: get the seff with the lowest throughput value among the list of seffs
-	public ServiceInfo getUnderUsedSeff(List<ServiceInfo> list){
+	private ServiceInfo getUnderUsedSeff(List<ServiceInfo> list){
 		ServiceInfo result = list.get(0);
 		for (ServiceInfo el: list){
 			if(el.throughput < result.throughput){
@@ -301,7 +301,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: detection of the antipattern CPS (Concurrent Processing Systems)
-	public boolean cps(List<ActiveResInfo> list) {
+	private boolean cps(List<ActiveResInfo> list) {
 		boolean result = false;
 		if ((getOverUsedCpu(list).size() != 0 && getUnderUsedCpu(list).size() != 0)
 				|| (getOverUsedHDD(list).size() != 0 && getUnderUsedHDD(list).size() != 0)) {
@@ -312,7 +312,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: detection of the antipattern OLB (One-Lane Bridge)
-	public boolean olb(List<ServiceInfo> list, PassiveResInfo criticPassiveRes) {
+	private boolean olb(List<ServiceInfo> list, PassiveResInfo criticPassiveRes) {
 		boolean result = false;
 		for (ServiceInfo el : list) {
 			if (el.compName.equals(criticPassiveRes.bc.getEntityName())) {
@@ -328,7 +328,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: detection of the antipattern EP (Extensive Processing)
-	public boolean ep(ActiveResInfo activeRes, List<ServiceInfo> list) {
+	private boolean ep(ActiveResInfo activeRes, List<ServiceInfo> list) {
 		boolean result = false;
 		if ( (activeRes.schedulingPolicy.equals("FCFS")) && (unbalancedSeffs(list))) {
 			result = true;
@@ -338,7 +338,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: find the component that requires the most high cpu demand
-	public int getCompMaxCPUdemand(List<CompInfoResDemand> list) {
+	private int getCompMaxCPUdemand(List<CompInfoResDemand> list) {
 		int position = 0;
 		int temp = 0;
 		for (CompInfoResDemand compInfoResDemand : list) {
@@ -353,7 +353,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: find the component that requires the most high hdd demand
-	public int getCompMaxHDDdemand(List<CompInfoResDemand> list) {
+	private int getCompMaxHDDdemand(List<CompInfoResDemand> list) {
 		int position = 0;
 		int temp = 0;
 		for (CompInfoResDemand compInfoResDemand : list) {
@@ -368,7 +368,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 
 	//@author catia: give the components deployed on a node
-	public List<CompInfoResDemand> deployedComponents(List<CompInfoResDemand> comp, ResourceContainer node) {
+	private List<CompInfoResDemand> deployedComponents(List<CompInfoResDemand> comp, ResourceContainer node) {
 		List<CompInfoResDemand> result = new ArrayList<CompInfoResDemand>(0);
 		for (CompInfoResDemand compInfoResDemand : comp) {
 			if (compInfoResDemand.rc == node) {
@@ -379,7 +379,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: give the resource container on which a component is deployed
-		public ResourceContainer componentDeployNode(List<CompInfoResDemand> comp, BasicComponent bc) {
+	private ResourceContainer componentDeployNode(List<CompInfoResDemand> comp, BasicComponent bc) {
 			ResourceContainer result = null;
 			for (CompInfoResDemand compInfoResDemand : comp) {
 				if (compInfoResDemand.bc == bc) {
@@ -390,7 +390,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		}
 	
 	//@author catia: give the seffs provided by a basic component
-	public List<ServiceInfo> getSeffsOfComp(List<ServiceInfo> list, String comp) {
+		private List<ServiceInfo> getSeffsOfComp(List<ServiceInfo> list, String comp) {
 		List<ServiceInfo> result = new ArrayList<ServiceInfo>(0);
 		for (ServiceInfo el : list) {
 			if (el.compName.equals(comp)) {
@@ -401,7 +401,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: provide the maximum response time among a list of seffs
-	public double getMaxRT(List<ServiceInfo> list) {
+	private double getMaxRT(List<ServiceInfo> list) {
 		double temp = 0.0;
 		for (ServiceInfo el : list) {
 				if (el.respT > temp) {
@@ -412,7 +412,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: provide the minimum response time among a list of seffs
-	public double getMinRT(List<ServiceInfo> list) {
+	private double getMinRT(List<ServiceInfo> list) {
 		double temp = getMaxRT(list);
 		for (ServiceInfo el : list) {
 				if (el.respT < temp) {
@@ -422,20 +422,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		return temp;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic#
-	 * doesMatchPrecondition
-	 * (de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual)
-	 */
-	public boolean doesMatchPrecondition(DSEIndividual i) {
-		return getSolution(i) != null;
-	}
-
-	public List<TacticsResultCandidate> getSolution(DSEIndividual i) {
+	private List<TacticsResultCandidate> getSolution(DSEIndividual i) {
 		// check that performance is optimised
 		if (performance != null
 				&& i.getObjectives().getResultDecoratorFor(this.performance) != null) {

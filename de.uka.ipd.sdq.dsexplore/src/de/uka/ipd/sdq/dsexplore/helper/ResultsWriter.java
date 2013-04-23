@@ -240,16 +240,23 @@ public class ResultsWriter {
 	public void writeTacticCandidateInfo(ITactic heuristic, Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic){
 		 //writeToLogFile(heuristic.getClass() + ";" + candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
-			StringBuilder builder = new StringBuilder(30);
-			builder.append(heuristic.getClass().getSimpleName()+";"
-					+tacticsResultCandidate.getTacticsApplicationInfo()+";"
-					+tacticsResultCandidate.getNumericID()+";"
-					+tacticsResultCandidate.getParent().getNumericID()+";"
-					+tacticsResultCandidate.getID()+";"
-					+tacticsResultCandidate.getParent().getID()+";");
-			builder = printUtilResultLine(tacticsResultCandidate.getParent(), builder);
-			writeToLogFile(builder.toString()+"\n");
+			writeTacticCandidateInfo(heuristic, tacticsResultCandidate);
 		}
+	}
+	
+
+
+	public void writeTacticCandidateInfo(ITactic heuristic,
+			TacticsResultCandidate tacticsResultCandidate) {
+		StringBuilder builder = new StringBuilder(30);
+		builder.append(heuristic.getClass().getSimpleName()+";"
+				+tacticsResultCandidate.getTacticsApplicationInfo()+";"
+				+tacticsResultCandidate.getNumericID()+";"
+				+tacticsResultCandidate.getParent().getNumericID()+";"
+				+tacticsResultCandidate.getID()+";"
+				+tacticsResultCandidate.getParent().getID()+";");
+		builder = printUtilResultLine(tacticsResultCandidate.getParent(), builder);
+		writeToLogFile(builder.toString()+"\n");
 	}
 
 	public void writeTacticManagerChoice(TacticsResultCandidate c){
@@ -709,6 +716,7 @@ public class ResultsWriter {
 		}
 		return name;
 	}
+
 
 
 
