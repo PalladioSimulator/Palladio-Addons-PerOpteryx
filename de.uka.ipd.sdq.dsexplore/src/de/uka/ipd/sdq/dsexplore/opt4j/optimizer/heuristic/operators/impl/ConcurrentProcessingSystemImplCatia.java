@@ -32,6 +32,7 @@ import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
@@ -435,6 +436,32 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
 			// AM: response time of SEFFs
 			List<ServiceResult> serviceResultList = resultRepo.getServiceResult_ResultDecoratorRepository();
+			
+			// AM: get all AllocationDegrees, which together define where components may be allocated to
+			List<DegreeOfFreedomInstance> dofList = i.getProblem().getDegreesOfFreedom();
+			List<AllocationDegree> allocationDegreeList = new ArrayList<AllocationDegree>(dofList.size() / 3);
+			for (DegreeOfFreedomInstance degreeOfFreedomInstance : dofList) {
+				if (degreeOfFreedomInstance instanceof AllocationDegree){
+					allocationDegreeList.add((AllocationDegree)degreeOfFreedomInstance);
+				}
+			}
+			
+			//example START
+			AllocationDegree exampleDegree = allocationDegreeList.get(0);
+			
+			// the component's allocation context:
+			AllocationContext exampleAllocationContext = (AllocationContext)exampleDegree.getPrimaryChanged();
+			
+			// the servers that the component may be allocation to:
+			List<EObject> serversAsEObjects= exampleDegree.getClassDesignOptions();
+			List<ResourceContainer> allowedContainers = new ArrayList<ResourceContainer>(serversAsEObjects.size());
+			for (AllocationDegree allocationDegree : allocationDegreeList) {
+				allowedContainers.add((ResourceContainer) allocationDegree);
+			}
+			
+			// allowedContainers now contains all servers that the component may be allocated to. 
+			// example END
+			
 
 			//@author catia: the list of SEFFs is stored in the ServiceInfo data structure
 			List<ServiceInfo> serviceInfoList = new ArrayList<ServiceInfo>(serviceResultList.size());
