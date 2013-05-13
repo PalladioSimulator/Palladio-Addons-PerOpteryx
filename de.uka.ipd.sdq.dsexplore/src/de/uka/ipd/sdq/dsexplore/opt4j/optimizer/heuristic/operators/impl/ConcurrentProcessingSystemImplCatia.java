@@ -455,8 +455,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			// the servers that the component may be allocation to:
 			List<EObject> serversAsEObjects= exampleDegree.getClassDesignOptions();
 			List<ResourceContainer> allowedContainers = new ArrayList<ResourceContainer>(serversAsEObjects.size());
-			for (AllocationDegree allocationDegree : allocationDegreeList) {
-				allowedContainers.add((ResourceContainer) allocationDegree);
+			for (EObject servers : serversAsEObjects) {
+				allowedContainers.add((ResourceContainer) servers);
 			}
 			
 			// allowedContainers now contains all servers that the component may be allocated to. 
