@@ -964,20 +964,29 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), elUnder.rc);
 									
 									if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
-										listPairs.add(createCPSCandidate(i, p));
+										TacticsResultCandidate result = createCPSCandidate(i, p);
+										if (result != null){
+											listPairs.add(result);
+										}
 									}
 									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
 									if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
 										
 										if (elUnder.rank > new Ranks().rankMinHdd) {
-											listPairs.add(createCPSCandidate(i, p));	
+											TacticsResultCandidate result = createCPSCandidate(i, p);
+											if (result != null){
+												listPairs.add(result);
+											}	
 										}
 										
 									}
 									
 									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)									if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
 										if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
-											listPairs.add(createCPSCandidate(i, p));
+											TacticsResultCandidate result = createCPSCandidate(i, p);
+											if (result != null){
+												listPairs.add(result);
+											}
 									}
 								}
 							}
@@ -1033,6 +1042,11 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 						classChoice.setChosenValue(EMFHelper.retrieveEntityByID(
 								((ClassDegree)classChoice.getDegreeOfFreedomInstance()).getClassDesignOptions(), 
 								result.getSecond()));
+						
+						if (classChoice.getChosenValue() == null){
+							logger.error("Antipattern solution chose a server for reallocation that is not a valid server to deploy this component to. Ignoring this candidate.");
+							return null;
+						}
 
 						// set weight to one for now, maybe later find a better value.
 						candidate.setCandidateWeight(1);

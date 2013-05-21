@@ -352,7 +352,12 @@ public class ResultsWriter {
 		List<Criterion> criteriaToSave = determineCriterionsToSave(firstIndividual);
 		List<Criterion> criteriaWithConfidence = determineCriteriaWithConfidenceInterval(firstIndividual);
 
-		output = prettyPrintHeadlineCSV(individuals, output, criteriaToSave);
+		try {
+			output = prettyPrintHeadlineCSV(individuals, output, criteriaToSave);
+		} catch (Exception e){
+			exceptionList.add(new Exception("Encountered problem when writing headline, skipped it", e));
+		}
+		
 		int counter = 0;
 
 		// content
