@@ -73,6 +73,9 @@ public class TacticOperatorsManager {
 			
 			// check for duplicates
 			for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
+				if (tacticsResultCandidate == null){
+					continue;
+				}
 				String newGenotype = tacticsResultCandidate.getGenotypeString();
 				String oldGenotype = individual.getGenotypeString();
 				if (oldGenotype.equals(newGenotype)){
