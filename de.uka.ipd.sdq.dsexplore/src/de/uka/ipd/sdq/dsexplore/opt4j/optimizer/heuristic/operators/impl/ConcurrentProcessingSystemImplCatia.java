@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.opt4j.core.Objective;
 import org.opt4j.core.Genotype;
+import org.opt4j.core.Objective;
 import org.opt4j.operator.copy.Copy;
 
 import de.uka.ipd.sdq.context.aggregatedUsageContext.AggregatedCommunication;
@@ -27,20 +27,18 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-//import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.repository.BasicComponent;
 import de.uka.ipd.sdq.pcm.repository.PassiveResource;
 import de.uka.ipd.sdq.pcm.repository.Repository;
-import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
 import de.uka.ipd.sdq.pcm.resourceenvironment.CommunicationLinkResourceSpecification;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
@@ -53,6 +51,7 @@ import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.Processin
 import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
 import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+//import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 
 public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 
@@ -135,7 +134,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get over used CPU resources whose queue length exceeds a threshold
-	private List<ActiveResInfo> getOverUsedCpu(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getOverUsedCpu(List<ActiveResInfo> list, DSEIndividual i, List<AllocationDegree> allocationDegreeList){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for max CPU utilisation
@@ -145,7 +144,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		double thresholdCpuQL = new Thresholds().thresholdCpuQL;
 		
 		for (ActiveResInfo el : list) {
-			if((el.type.getEntityName().equals("CPU")) && (el.utilisation > thresholdMaxCpu) && (el.queueLength > thresholdCpuQL)){
+			if((el.type.getEntityName().equals("CPU")) && (el.utilisation > thresholdMaxCpu) && (el.queueLength > thresholdCpuQL
+					&& isAllowedToRedeployFromOrToActiveResource(el, i, allocationDegreeList))){
 				el.rank = el.utilisation - thresholdMaxCpu;
 				result.add(el);
 			}
@@ -153,15 +153,33 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		return result;
 	}
 	
+	private boolean isAllowedToRedeployFromOrToActiveResource(ActiveResInfo el,
+			DSEIndividual i, List<AllocationDegree> allocationDegreeList) {
+		
+		for (AllocationDegree allocationDegree : allocationDegreeList) {
+			List<EObject> servers = allocationDegree.getClassDesignOptions();
+			for (EObject server : servers) {
+				if (EMFHelper.checkIdentity(el.rc, server)) {
+					// There is at least one allocation degree that also mentions this resource container 
+					return true;
+				}
+			}
+			
+		}
+		return false;
+
+	}
+
 	//@author catia: get under used CPU resources
-	private List<ActiveResInfo> getUnderUsedCpu(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getUnderUsedCpu(List<ActiveResInfo> list, DSEIndividual i, List<AllocationDegree> allocationDegreeList){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for min CPU utilisation
         double thresholdMinCpu = new Thresholds().thresholdMinCpu;
 		
 		for (ActiveResInfo el : list) {
-			if((el.type.getEntityName().equals("CPU")) && (el.utilisation < thresholdMinCpu)){
+			if((el.type.getEntityName().equals("CPU")) && (el.utilisation < thresholdMinCpu)
+					&& isAllowedToRedeployFromOrToActiveResource(el, i, allocationDegreeList)){
 				el.rank = thresholdMinCpu - el.utilisation;
 				result.add(el);
 			}
@@ -170,7 +188,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get over used HDD resources whose queue length exceeds a threshold
-	private List<ActiveResInfo> getOverUsedHDD(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getOverUsedHDD(List<ActiveResInfo> list, DSEIndividual i, List<AllocationDegree> allocationDegreeList){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for max HDD utilisation
@@ -180,7 +198,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		double thresholdHddQL = new Thresholds().thresholdHddQL;
 		
 		for (ActiveResInfo el : list) {
-			if((el.type.getEntityName().equals("HDD")) && (el.utilisation > thresholdMaxHdd) && (el.queueLength > thresholdHddQL)){
+			if((el.type.getEntityName().equals("HDD")) && (el.utilisation > thresholdMaxHdd) && (el.queueLength > thresholdHddQL)
+					&& isAllowedToRedeployFromOrToActiveResource(el, i, allocationDegreeList)){
 				el.rank = el.utilisation - thresholdMaxHdd;
 				result.add(el);
 			}
@@ -189,14 +208,15 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: get under used HDD resources
-	private List<ActiveResInfo> getUnderUsedHDD(List<ActiveResInfo> list){
+	private List<ActiveResInfo> getUnderUsedHDD(List<ActiveResInfo> list, DSEIndividual i, List<AllocationDegree> allocationDegreeList){
 		List<ActiveResInfo> result = new ArrayList<ActiveResInfo>(0);
 		
 		//@author catia: threshold value for min CPU utilisation
         double thresholdMinHdd = new Thresholds().thresholdMinHdd;
 		
 		for (ActiveResInfo el : list) {
-			if((el.type.getEntityName().equals("HDD")) && (el.utilisation < thresholdMinHdd)){
+			if((el.type.getEntityName().equals("HDD")) && (el.utilisation < thresholdMinHdd)
+					&& isAllowedToRedeployFromOrToActiveResource(el, i, allocationDegreeList)){
 				el.rank = thresholdMinHdd - el.utilisation;
 				result.add(el);
 			}
@@ -302,10 +322,10 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 	}
 	
 	//@author catia: detection of the antipattern CPS (Concurrent Processing Systems)
-	private boolean cps(List<ActiveResInfo> list) {
+	private boolean cps(List<ActiveResInfo> list, DSEIndividual i, List<AllocationDegree> allocationDegreeList) {
 		boolean result = false;
-		if ((getOverUsedCpu(list).size() != 0 && getUnderUsedCpu(list).size() != 0)
-				|| (getOverUsedHDD(list).size() != 0 && getUnderUsedHDD(list).size() != 0)) {
+		if ((getOverUsedCpu(list, i, allocationDegreeList).size() != 0 && getUnderUsedCpu(list, i, allocationDegreeList).size() != 0)
+				|| (getOverUsedHDD(list, i, allocationDegreeList).size() != 0 && getUnderUsedHDD(list, i, allocationDegreeList).size() != 0)) {
 			logger.info("The antipattern CONCURRENT PROCESSING SYSTEMS has been detected");
 			result = true;
 		}
@@ -437,32 +457,6 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			// AM: response time of SEFFs
 			List<ServiceResult> serviceResultList = resultRepo.getServiceResult_ResultDecoratorRepository();
 			
-			// AM: get all AllocationDegrees, which together define where components may be allocated to
-			List<DegreeOfFreedomInstance> dofList = i.getProblem().getDegreesOfFreedom();
-			List<AllocationDegree> allocationDegreeList = new ArrayList<AllocationDegree>(dofList.size() / 3);
-			for (DegreeOfFreedomInstance degreeOfFreedomInstance : dofList) {
-				if (degreeOfFreedomInstance instanceof AllocationDegree){
-					allocationDegreeList.add((AllocationDegree)degreeOfFreedomInstance);
-				}
-			}
-			
-			//example START
-			AllocationDegree exampleDegree = allocationDegreeList.get(0);
-			
-			// the component's allocation context:
-			AllocationContext exampleAllocationContext = (AllocationContext)exampleDegree.getPrimaryChanged();
-			
-			// the servers that the component may be allocation to:
-			List<EObject> serversAsEObjects= exampleDegree.getClassDesignOptions();
-			List<ResourceContainer> allowedContainers = new ArrayList<ResourceContainer>(serversAsEObjects.size());
-			for (EObject servers : serversAsEObjects) {
-				allowedContainers.add((ResourceContainer) servers);
-			}
-			
-			// allowedContainers now contains all servers that the component may be allocated to. 
-			// example END
-			
-
 			//@author catia: the list of SEFFs is stored in the ServiceInfo data structure
 			List<ServiceInfo> serviceInfoList = new ArrayList<ServiceInfo>(serviceResultList.size());
 				
@@ -886,17 +880,41 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 			}
 			
 			logger.info("---------------------------------------------------------------------");
+			
+			// AM: get all AllocationDegrees, which together define where components may be allocated to
+			List<DegreeOfFreedomInstance> dofList = i.getProblem().getDegreesOfFreedom();
+			List<AllocationDegree> allocationDegreeList = new ArrayList<AllocationDegree>(dofList.size() / 3);
+			for (DegreeOfFreedomInstance degreeOfFreedomInstance : dofList) {
+				if (degreeOfFreedomInstance instanceof AllocationDegree){
+					allocationDegreeList.add((AllocationDegree)degreeOfFreedomInstance);
+				}
+			}
+			
+//			//example START
+//			AllocationDegree exampleDegree = allocationDegreeList.get(0);
+//			
+//			// the component's allocation context:
+//			AllocationContext exampleAllocationContext = (AllocationContext)exampleDegree.getPrimaryChanged();
+//			
+//			// the servers that the component may be allocation to:
+//			List<EObject> serversAsEObjects= exampleDegree.getClassDesignOptions();
+//			List<ResourceContainer> allowedContainers = new ArrayList<ResourceContainer>(serversAsEObjects.size());
+//			for (EObject servers : serversAsEObjects) {
+//				allowedContainers.add((ResourceContainer) servers);
+//			}
+//			
+//			// allowedContainers now contains all servers that the component may be allocated to. 
 
 			//@author catia: detection of the antipattern CPS
-			if (cps(activeResInfoList)) {
+			if (cps(activeResInfoList, i, allocationDegreeList)) {
 				
 				//@author catia: solution of the antipattern CPS (Concurrent Processing Systems)
 				
-				List<ActiveResInfo> getOverUsedCPUList = getOverUsedCpu(activeResInfoList);
-				List<ActiveResInfo> getOverUsedHDDList = getOverUsedHDD(activeResInfoList);
+				List<ActiveResInfo> getOverUsedCPUList = getOverUsedCpu(activeResInfoList, i, allocationDegreeList);
+				List<ActiveResInfo> getOverUsedHDDList = getOverUsedHDD(activeResInfoList, i, allocationDegreeList);
 
-				List<ActiveResInfo> getUnderUsedCPUList = getUnderUsedCpu(activeResInfoList);
-				List<ActiveResInfo> getUnderUsedHDDList = getUnderUsedHDD(activeResInfoList);
+				List<ActiveResInfo> getUnderUsedCPUList = getUnderUsedCpu(activeResInfoList, i, allocationDegreeList);
+				List<ActiveResInfo> getUnderUsedHDDList = getUnderUsedHDD(activeResInfoList, i, allocationDegreeList);
 
 				// @author catia: solution of the antipattern CPS - "Redeploy Action" with feature F1 : check the computation resource demand of the PCM components
 				// It means that the most cpu critical component is re-deployed on all under used cpu(s) available in the system, each redeployment action provides a new candidate (i.e. a pair p)
