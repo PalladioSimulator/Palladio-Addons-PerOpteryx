@@ -920,20 +920,20 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									compToBeRedeployed.get(getCompMaxCPUdemand(compToBeRedeployed)), elUnder.rc);
 									
 									if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
-										listPairs.add(createCPSCandidate(i, p));
+										listPairs = createCPSCandidate(i, p, listPairs);
 									}
 									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
 									if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
 										
 										if (elUnder.rank > new Ranks().rankMinCpu) {
-											listPairs.add(createCPSCandidate(i, p));	
+											listPairs = createCPSCandidate(i, p, listPairs);
 										}
 										
 									}
 									
 									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)									if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
 										if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
-											listPairs.add(createCPSCandidate(i, p));
+											listPairs = createCPSCandidate(i, p, listPairs);
 									}
 								}
 							}
@@ -964,29 +964,20 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 									compToBeRedeployed.get(getCompMaxHDDdemand(compToBeRedeployed)), elUnder.rc);
 									
 									if (this.rankingMethod == AntipatternsRankingMethod.NO_RANKING){
-										TacticsResultCandidate result = createCPSCandidate(i, p);
-										if (result != null){
-											listPairs.add(result);
-										}
+										listPairs = createCPSCandidate(i, p, listPairs);
 									}
 									//@author catia: RANKING STEP WITHOUT SEMANTIC FACTOR
 									if (this.rankingMethod == AntipatternsRankingMethod.BASIC_RANKING){
 										
 										if (elUnder.rank > new Ranks().rankMinHdd) {
-											TacticsResultCandidate result = createCPSCandidate(i, p);
-											if (result != null){
-												listPairs.add(result);
-											}	
+											listPairs = createCPSCandidate(i, p, listPairs);	
 										}
 										
 									}
 									
 									//@author catia: RANKING STEP WITH SEMANTIC FACTOR = (element.utilisation - el.utilisation)									if (this.rankingMethod == AntipatternsRankingMethod.SEMANTIC_FACTOR){
 										if ((elUnder.rank + (elOver.utilisation - elUnder.utilisation)) > new Ranks().rankMinCpu) {
-											TacticsResultCandidate result = createCPSCandidate(i, p);
-											if (result != null){
-												listPairs.add(result);
-											}
+											listPairs = createCPSCandidate(i, p, listPairs);
 									}
 								}
 							}
@@ -1022,8 +1013,8 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 		
 	}
 
-	private TacticsResultCandidate createCPSCandidate(DSEIndividual i,
-			Pair<CompInfoResDemand, ResourceContainer> result) {
+	private List<TacticsResultCandidate> createCPSCandidate(DSEIndividual i,
+			Pair<CompInfoResDemand, ResourceContainer> result, List<TacticsResultCandidate> listPairs) {
 		TacticsResultCandidate candidate = individualFactory
 				.buildCandidate(copy.copy(i.getGenotype()), i, this, "Realloc for CPS");
 
@@ -1045,7 +1036,7 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 						
 						if (classChoice.getChosenValue() == null){
 							logger.error("Antipattern solution chose a server for reallocation that is not a valid server to deploy this component to. Ignoring this candidate.");
-							return null;
+							return listPairs;
 						}
 
 						// set weight to one for now, maybe later find a better value.
@@ -1053,13 +1044,15 @@ public class ConcurrentProcessingSystemImplCatia extends AbstractTactic {
 						increaseCounterOfGeneratedCandidates();
 						
 						logger.info("Applied CPS solution");
-						return candidate;
+						listPairs.add(candidate);
+						return listPairs;
 						
 					}
 				}
 			}
 		}
-		throw new RuntimeException("Changing the allocation of "+result.getFirst().ac.getEntityName()+" to server "+result.getSecond().getEntityName()+" is not allowed with the current designdecision model.");
+		logger.warn("Changing the allocation of "+result.getFirst().ac.getEntityName()+" to server "+result.getSecond().getEntityName()+" is not allowed with the current designdecision model.");
+		return listPairs;
 	}
 	
 	private TacticsResultCandidate createIncreasedCapacityCandidate(
