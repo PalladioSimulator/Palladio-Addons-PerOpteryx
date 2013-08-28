@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -48,6 +49,10 @@ import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
  */ 
  
 public class QMLManager {
+	
+	/** Logger for log4j. */
+	private static Logger logger = 
+		Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 	
 	protected List<DSEAnalysisMethodTab> tabs = new ArrayList<DSEAnalysisMethodTab>(); 
 	
@@ -239,7 +244,12 @@ public class QMLManager {
 		}
 		//		Security 
 		{
-			List<EvaluationAspectWithContext> securityObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
+			
+			/* try to load security. Fail with only a log statement if the dimension file is not there for compatibility with PCM 3.4*/
+			List<EvaluationAspectWithContext> securityObjectives = null;
+			try {
+			
+			securityObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
 			List<EvaluationAspectWithContext> securityConstraints = pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
 			List<EvaluationAspectWithContext> securityCriteria = new ArrayList<EvaluationAspectWithContext>();
 			securityCriteria.addAll(securityObjectives);
@@ -263,6 +273,11 @@ public class QMLManager {
 					}
 					exts.removeAll(removeList);
 				}
+			}
+			} catch (Exception e){
+				logger.warn("Security dimension file could not be loaded. Ignoring it.");
+				e.printStackTrace();
+				exts.clear();
 			}
 			if(securityTab != null) {
 				if(exts.size() == 0) {			
