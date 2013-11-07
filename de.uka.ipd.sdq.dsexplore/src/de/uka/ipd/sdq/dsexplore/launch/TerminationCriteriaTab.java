@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Text;
 import de.uka.ipd.sdq.dsexplore.DSEPluginActivator;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.tcfmoop.config.TerminationCriteriaNames;
-import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 
 /**
  * @author Atanas Dimitrov
@@ -1821,7 +1821,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_GENERAL_USE_TERMINATION_CRITERIA,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_GENERAL_USE_TERMINATION_CRITERIA,
 					e.getMessage());
 		}
@@ -1830,7 +1830,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.runInComparisionMode.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.TC_GENERAL_COMPARISION_MODE, false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_GENERAL_COMPARISION_MODE, e
 							.getMessage());
 		}
@@ -1843,7 +1843,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_COMPOSED_CRITERIA_ACTIVATE,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_COMPOSED_CRITERIA_ACTIVATE, e
 							.getMessage());
 		}
@@ -1852,7 +1852,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.composedExpression.setText(configuration.getAttribute(
 					DSEConstantsContainer.TC_COMPOSED_CRITERIA_EXPRESSION, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_COMPOSED_CRITERIA_EXPRESSION, e
 							.getMessage());
 		}
@@ -1862,7 +1862,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.maxGenNumActivate.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.TC_MAX_NUM_OF_GEN_ACTIVATE, false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_MAX_NUM_OF_GEN_ACTIVATE, e
 							.getMessage());
 		}
@@ -1871,7 +1871,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.maxGenNumSpinner.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.TC_MAX_NUM_OF_GEN_LIMIT, 1));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_MAX_NUM_OF_GEN_LIMIT, e
 							.getMessage());
 		}
@@ -1881,7 +1881,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.elapsedTimeActivate.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.TC_ELAPSED_TIME_ACTIVATE, false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_ELAPSED_TIME_ACTIVATE, e
 							.getMessage());
 		}
@@ -1895,7 +1895,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 				this.elapsedTimeCombo.select(1);
 			}
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_ELAPSED_TIME_TYPE, e.getMessage());
 		}
 
@@ -1903,7 +1903,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 			this.elapsedTimeSpinner.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.TC_ELAPSED_TIME_TIME_LIMIT, 1));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_ELAPSED_TIME_TIME_LIMIT, e
 							.getMessage());
 		}
@@ -1916,7 +1916,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_NO_NEW_CANDIDATES_ACTIVATE,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_NO_NEW_CANDIDATES_ACTIVATE, e
 							.getMessage());
 		}
@@ -1928,7 +1928,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_NO_NEW_CANDIDATES_ITERATIONS_WITHOUT,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_NO_NEW_CANDIDATES_ITERATIONS_WITHOUT,
@@ -1942,7 +1942,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 							DSEConstantsContainer.TC_SET_STABILITY_ACTIVATE,
 							false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_SET_STABILITY_ACTIVATE, e
 							.getMessage());
 		}
@@ -1956,7 +1956,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 				this.paretoOptimalSetStabilityCombo.select(1);
 			}
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(getName(),
 							DSEConstantsContainer.TC_SET_STABILITY_MODE, e
 									.getMessage());
@@ -1969,7 +1969,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_SET_STABILITY_MINIMUM_ITERATION_TO_SURVIVE,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_SET_STABILITY_MINIMUM_ITERATION_TO_SURVIVE,
@@ -1983,7 +1983,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_SET_STABILITY_NUMBER_OF_SURVIVORS_EXACT,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_SET_STABILITY_NUMBER_OF_SURVIVORS_EXACT,
@@ -1997,7 +1997,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_SET_STABILITY_NUMBER_OF_SURVIVORS_PERCENTAGE,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_SET_STABILITY_NUMBER_OF_SURVIVORS_PERCENTAGE,
@@ -2011,7 +2011,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 							DSEConstantsContainer.TC_MINIMAL_VALUES_ACTIVATE,
 							false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_MINIMAL_VALUES_ACTIVATE, e
 							.getMessage());
 		}
@@ -2023,7 +2023,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_MINIMAL_VALUES_CANDIDATES_TO_CONFORM,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_MINIMAL_VALUES_CANDIDATES_TO_CONFORM,
@@ -2040,7 +2040,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 							DSEConstantsContainer.TC_MINIMAL_VALUES_CONFIGURED_OBJECTIVES,
 							"");
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_MINIMAL_VALUES_CONFIGURED_OBJECTIVES,
@@ -2064,7 +2064,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_ACTIVATE,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),
+			LaunchConfigPlugin.errorLogger(getName(),
 					DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_ACTIVATE,
 					e.getMessage());
 		}
@@ -2076,7 +2076,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_PERCENTAGES_TO_COVER,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_PERCENTAGES_TO_COVER,
@@ -2090,7 +2090,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_PATH_TO_FRONT_FILE,
 									""));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_PARETO_FRONT_IS_REACHED_PATH_TO_FRONT_FILE,
@@ -2105,7 +2105,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_ACTIVATE,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_ACTIVATE,
@@ -2119,7 +2119,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_GENERATION_X,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_GENERATION_X,
@@ -2136,7 +2136,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 							DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_CONFIGURED_OBJECTIVES,
 							"");
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_SET_IMPROVEMENT_CONFIGURED_OBJECTIVES,
@@ -2161,7 +2161,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_ACTIVATE,
 									false));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_ACTIVATE,
@@ -2175,7 +2175,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_GENERATION_X,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_GENERATION_X,
@@ -2189,7 +2189,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 									DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_IMPROVEMENT,
 									1));
 		} catch (CoreException e) {
-			RunConfigPlugin
+			LaunchConfigPlugin
 					.errorLogger(
 							getName(),
 							DSEConstantsContainer.TC_INSIGNIFICANT_FRONT_CHANGE_IMPROVEMENT,
