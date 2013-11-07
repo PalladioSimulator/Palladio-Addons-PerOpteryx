@@ -67,6 +67,7 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.RVisualisationPlugin;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport.TimeseriesData;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnection;
+import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnectionImpl;
 import de.uka.ipd.sdq.statistics.PhiMixingBatchAlgorithm;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
@@ -558,9 +559,9 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	private double calculateValue(SensorAndMeasurements sam, String command, TimeseriesData whichData) throws AnalysisFailedException {
 		AnalysisFailedException error = null;
 		try {
-		if (RConnection.isEngineAvailable()){
+		if (RConnectionImpl.isEngineAvailable()){
 
-			RConnection rConnection = RConnection.getRConnection();
+			RConnection rConnection = RConnectionImpl.getRConnection();
 			String sensorName = storeMeasurementsInRVector(sam, sam.getSensor().getSensorID(), whichData, rConnection);
 			Vector<REXP> rResult = rConnection.execute(command+"(" + sensorName + ")\n");
 			if (rResult.size() > 0) {

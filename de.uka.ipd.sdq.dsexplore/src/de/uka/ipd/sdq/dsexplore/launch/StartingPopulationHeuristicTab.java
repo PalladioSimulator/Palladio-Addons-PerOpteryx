@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
 
 public class StartingPopulationHeuristicTab extends FileNamesInputTab {
@@ -155,25 +155,25 @@ public class StartingPopulationHeuristicTab extends FileNamesInputTab {
 		try {
 			useStartingPopulationHeuristicButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_STARTING_POPULATION_HEURISTIC, USE_STARTING_POPULATION_HEURISTIC_DEFAULT));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(), USE_STARTING_POPULATION_HEURISTIC , e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(), USE_STARTING_POPULATION_HEURISTIC , e.getMessage());
 		}
 		
 		try {
 			maxNumberOfResourceContainers.setText(configuration.getAttribute(DSEConstantsContainer.MAX_NUMBER_RESOURCE_CONTAINERS, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(), MAX_NUMBER_RESOURCE_CONTAINERS , e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(), MAX_NUMBER_RESOURCE_CONTAINERS , e.getMessage());
 		}
 		
 		try {
 			minNumberOfResourceContainers.setText(configuration.getAttribute(DSEConstantsContainer.MIN_NUMBER_RESOURCE_CONTAINERS, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(), MIN_NUMBER_RESOURCE_CONTAINERS , e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(), MIN_NUMBER_RESOURCE_CONTAINERS , e.getMessage());
 		}
 		
 		try {
 			numberOfCandidatesPerAllocationLevel.setText(configuration.getAttribute(DSEConstantsContainer.NUMBER_OF_CANDIDATES_PER_ALLOCATION_LEVEL, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(), NUMBER_OF_CANDIDATES_PER_ALLOCATION_LEVEL , e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(), NUMBER_OF_CANDIDATES_PER_ALLOCATION_LEVEL , e.getMessage());
 		}
 		updateSelections();
 	}
