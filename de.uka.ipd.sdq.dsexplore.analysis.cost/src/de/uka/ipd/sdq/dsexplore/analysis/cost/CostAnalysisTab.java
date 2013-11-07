@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
-import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class CostAnalysisTab extends de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab implements
@@ -94,7 +94,7 @@ public class CostAnalysisTab extends de.uka.ipd.sdq.workflow.pcm.runconfig.FileN
 			this.textCostModel.setText(configuration.getAttribute(
 					DSEConstantsContainer.COST_FILE, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.COST_FILE, e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.COST_FILE, e.getMessage());
 		}
 		
 //		try {

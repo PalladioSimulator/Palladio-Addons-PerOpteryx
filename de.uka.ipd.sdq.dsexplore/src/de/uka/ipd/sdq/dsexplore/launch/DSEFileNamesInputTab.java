@@ -12,7 +12,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
 
@@ -67,7 +67,7 @@ public class DSEFileNamesInputTab extends FileNamesInputTab {
 			String currentQMLPath = configuration.getAttribute(DSEConstantsContainer.QML_DEFINITION_FILE, "");
 			this.textQMLDefinitionFile.setText(currentQMLPath);
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.QML_DEFINITION_FILE, e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.QML_DEFINITION_FILE, e.getMessage());
 		}
 		
 		loadQML();

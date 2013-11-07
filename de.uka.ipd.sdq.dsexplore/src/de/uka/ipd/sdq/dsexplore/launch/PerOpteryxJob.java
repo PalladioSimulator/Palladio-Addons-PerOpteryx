@@ -2,16 +2,16 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import de.uka.ipd.sdq.workflow.ICompositeJob;
-import de.uka.ipd.sdq.workflow.OrderPreservingBlackboardCompositeJob;
-import de.uka.ipd.sdq.workflow.exceptions.RollbackFailedException;
+import de.uka.ipd.sdq.workflow.jobs.ICompositeJob;
+import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 import de.uka.ipd.sdq.workflow.pcm.jobs.PreparePCMBlackboardPartionJob;
 import de.uka.ipd.sdq.workflow.pcm.jobs.ValidatePCMModelsJob;
 
 public class PerOpteryxJob extends
-		OrderPreservingBlackboardCompositeJob<MDSDBlackboard> implements
+	SequentialBlackboardInteractingJob<MDSDBlackboard> implements
 		ICompositeJob {
 	
 	//DSECandidateConfiguration candidateConfig; 
@@ -46,8 +46,8 @@ public class PerOpteryxJob extends
 	}
 
 	@Override
-	public void rollback(IProgressMonitor monitor) throws RollbackFailedException {
-		super.rollback(monitor);
+	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
+		super.cleanup(monitor);
 		/*try {
 			this.candidateConfig.getRawConfiguration().delete();
 		} catch (CoreException e) {
