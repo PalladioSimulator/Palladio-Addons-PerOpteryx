@@ -2,11 +2,11 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
-import de.uka.ipd.sdq.workflow.jobs.IJob;
-import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
-import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
-import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
+import de.uka.ipd.sdq.workflow.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.IJob;
+import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
+import de.uka.ipd.sdq.workflow.exceptions.RollbackFailedException;
+import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
 import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
@@ -36,14 +36,15 @@ public class MoveInitialPCMModelPartitionJob implements IJob, IBlackboardInterac
 	}
 
 	@Override
-	public void setBlackboard(MDSDBlackboard blackboard) {
-		this.blackboard = blackboard;
-		
+	public void rollback(IProgressMonitor monitor)
+			throws RollbackFailedException {
+		this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 	}
 
 	@Override
-	public void cleanup(IProgressMonitor arg0) throws CleanupFailedException {
-		this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+	public void setBlackboard(MDSDBlackboard blackboard) {
+		this.blackboard = blackboard;
+		
 	}
 	
 	

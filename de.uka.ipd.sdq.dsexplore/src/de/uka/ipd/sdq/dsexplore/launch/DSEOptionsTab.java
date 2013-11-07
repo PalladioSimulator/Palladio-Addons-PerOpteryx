@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import de.uka.ipd.sdq.dsexplore.DSEPluginActivator;
-import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 import de.uka.ipd.sdq.workflow.pcm.ConstantsContainer;
 import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
@@ -324,19 +324,19 @@ public class DSEOptionsTab extends FileNamesInputTab {
 			maximumIterations.setText(configuration.getAttribute(
 					DSEConstantsContainer.MAX_ITERATIONS, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),"maximum iterations", e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),"maximum iterations", e.getMessage());
 		}
 		try {
 			numberOfIndividualsPerGeneration.setText(configuration.getAttribute(
 					DSEConstantsContainer.INDIVIDUALS_PER_GENERATION, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),"numberOfIndividualsPerGeneration", e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),"numberOfIndividualsPerGeneration", e.getMessage());
 		}
 		try {
 			crossoverRate.setText(configuration.getAttribute(
 					DSEConstantsContainer.CROSSOVER_RATE, "0.5"));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),"numberOfIndividualsPerGeneration", e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),"numberOfIndividualsPerGeneration", e.getMessage());
 		}
 		
 		try{
@@ -357,28 +357,28 @@ public class DSEOptionsTab extends FileNamesInputTab {
 			this.textGivenInstances.setText(configuration.getAttribute(
 					DSEConstantsContainer.PREDEFINED_INSTANCES, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.PREDEFINED_INSTANCES, e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.PREDEFINED_INSTANCES, e.getMessage());
 		}
 		
 		try {
 			this.textCacheInstances.setText(configuration.getAttribute(
 					DSEConstantsContainer.CACHE_INSTANCES, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.CACHE_INSTANCES, e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.CACHE_INSTANCES, e.getMessage());
 		}
 		
 		try {
 			this.textAllInstances.setText(configuration.getAttribute(
 					DSEConstantsContainer.ALL_CANDIDATES, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.ALL_CANDIDATES, e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.ALL_CANDIDATES, e.getMessage());
 		}
 		
 		try {
 			this.textArchiveInstances.setText(configuration.getAttribute(
 					DSEConstantsContainer.ARCHIVE_CANDIDATES, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.ARCHIVE_CANDIDATES, e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.ARCHIVE_CANDIDATES, e.getMessage());
 		}
 		
 		try {
@@ -401,7 +401,7 @@ public class DSEOptionsTab extends FileNamesInputTab {
 				this.textDesignDecisionFile.setText(fullName);
 			}
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.DESIGN_DECISION_FILE, e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.DESIGN_DECISION_FILE, e.getMessage());
 		}
 		try {
 			this.stopOnInitialFailure.setSelection(configuration.getAttribute(
@@ -419,7 +419,7 @@ public class DSEOptionsTab extends FileNamesInputTab {
 			numberOfDSERuns.setText(configuration.getAttribute(
 					DSEConstantsContainer.DSE_ITERATIONS, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),"number of DSE iterations", e.getMessage());
+			RunConfigPlugin.errorLogger(getName(),"number of DSE iterations", e.getMessage());
 		}
 		//loadQML();
 	}
