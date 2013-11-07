@@ -13,11 +13,11 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
-import de.uka.ipd.sdq.workflow.jobs.IJob;
-import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
-import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
-import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
+import de.uka.ipd.sdq.workflow.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.IJob;
+import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
+import de.uka.ipd.sdq.workflow.exceptions.RollbackFailedException;
+import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
 
@@ -119,6 +119,14 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 		return this.getClass().getName();
 	}
 
+	@Override
+	public void rollback(IProgressMonitor monitor)
+			throws RollbackFailedException {
+		// TODO Auto-generated method stub
+
+	}
+
+
 
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard) {
@@ -134,14 +142,6 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 			logger.error(message);
 			throw new UnsupportedOperationException(message);
 		}
-	}
-
-
-
-	@Override
-	public void cleanup(IProgressMonitor arg0) throws CleanupFailedException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

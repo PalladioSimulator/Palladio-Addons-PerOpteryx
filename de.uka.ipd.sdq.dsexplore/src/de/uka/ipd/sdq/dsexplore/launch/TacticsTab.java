@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
+import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
 import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
 
 public class TacticsTab extends FileNamesInputTab {
@@ -520,121 +520,121 @@ public class TacticsTab extends FileNamesInputTab {
 		try {
 			considerQMLBoundsButton.setSelection(configuration.getAttribute(DSEConstantsContainer.CONSIDER_QML_BOUNDS, CONSIDER_QML_BOUNDS_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), CONSIDER_QML_BOUNDS , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), CONSIDER_QML_BOUNDS , e.getMessage());
 		}
 		
 		try {
 			tacticsProbabilityText.setText(configuration.getAttribute(DSEConstantsContainer.TACTICS_PROBABILITY, ""+DSEConstantsContainer.TACTICS_PROBABILITY_DEFAULT ));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), TACTICS_PROBABILITY , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), TACTICS_PROBABILITY , e.getMessage());
 		}
 		
 		try {
 			useReallocationButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_REALLOCATION, USE_REALLOCATION_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), USE_REALLOCATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), USE_REALLOCATION , e.getMessage());
 		}
 		
 		try {
 			reallocationThresholdUtilisationDifference.setText(configuration.getAttribute(DSEConstantsContainer.REALLOCATION_UTILISATION_DIFFERENCE, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), REALLOCATION_UTILISATION_DIFFERENCE , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), REALLOCATION_UTILISATION_DIFFERENCE , e.getMessage());
 		}
 		
 		try {
 			reallocationWeight.setText(configuration.getAttribute(DSEConstantsContainer.REALLOCATION_WEIGHT, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), REALLOCATION_WEIGHT , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), REALLOCATION_WEIGHT , e.getMessage());
 		}
 		
 		try {
 			useProcessingRateButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_PROCESSING_RATE, USE_PROCESSING_RATE_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), USE_PROCESSING_RATE , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), USE_PROCESSING_RATE , e.getMessage());
 		}
 		
 		try {
 			useLinkReallocationButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_LINK_REALLOCATION, USE_LINK_REALLOCATION_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), REALLOCATION_FOR_LINK_USAGE , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), REALLOCATION_FOR_LINK_USAGE , e.getMessage());
 		}
 		
 		try {
 			useAntipatternsButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_ANTIPATTERNS, USE_ANTIPATTERNS_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), USE_ANTIPATTERNS , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), USE_ANTIPATTERNS , e.getMessage());
 		}
 		
 		try {
 			processingRateDecreaseFactor.setText(configuration.getAttribute(DSEConstantsContainer.PROCESSING_RATE_DECREASE_FACTOR, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), PROCESSING_RATE_DECREASE_FACTOR , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), PROCESSING_RATE_DECREASE_FACTOR , e.getMessage());
 		}
 		
 		try {
 			processingRateIncreaseFactor.setText(configuration.getAttribute(DSEConstantsContainer.PROCESSING_RATE_INCREASE_FACTOR, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), PROCESSING_RATE_INCREASE_FACTOR , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), PROCESSING_RATE_INCREASE_FACTOR , e.getMessage());
 		}
 		
 		try {
 			processingRateThresholdHighUtilisation.setText(configuration.getAttribute(DSEConstantsContainer.PROCESSING_RATE_THRESHOLD_HIGH_UTILISATION, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), PROCESSING_RATE_THRESHOLD_HIGH_UTILISATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), PROCESSING_RATE_THRESHOLD_HIGH_UTILISATION , e.getMessage());
 		}
 		
 		try {
 			processingRateThresholdLowUtilisation.setText(configuration.getAttribute(DSEConstantsContainer.PROCESSING_RATE_THRESHOLD_LOW_UTILISATION, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), PROCESSING_RATE_THRESHOLD_LOW_UTILISATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), PROCESSING_RATE_THRESHOLD_LOW_UTILISATION , e.getMessage());
 		}
 		
 		try {
 			processingRateWeight.setText(configuration.getAttribute(DSEConstantsContainer.PROCESSING_RATE_WEIGHT, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), PROCESSING_RATE_WEIGHT , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), PROCESSING_RATE_WEIGHT , e.getMessage());
 		}
 		
 		try {
 			useServerConsolidationButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_SERVER_CONSOLIDATION, USE_SERVER_CONSOLIDATION_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), USE_SERVER_CONSOLIDATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), USE_SERVER_CONSOLIDATION , e.getMessage());
 		}
 		
 		try {
 			serverConsolidationThresholdLowUtilisation.setText(configuration.getAttribute(DSEConstantsContainer.SERVER_CONSOLIDATION_THRESHOLD_LOW_UTILISATION, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), SERVER_CONSOLIDATION_THRESHOLD_LOW_UTILISATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), SERVER_CONSOLIDATION_THRESHOLD_LOW_UTILISATION , e.getMessage());
 		}
 		
 		try {
 			serverConsolidationWeight.setText(configuration.getAttribute(DSEConstantsContainer.SERVER_CONSOLIDATION_WEIGHT, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), SERVER_CONSOLIDATION_WEIGHT , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), SERVER_CONSOLIDATION_WEIGHT , e.getMessage());
 		}
 		
 		try {
 			useServerExpansionButton.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_SERVER_EXPANSION, USE_SERVER_EXPANSION_DEFAULT));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), USE_SERVER_EXPANSION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), USE_SERVER_EXPANSION , e.getMessage());
 		}
 		
 		try {
 			serverExpansionMaxNumberOfReplacements.setText(configuration.getAttribute(DSEConstantsContainer.SERVER_EXPANSION_MAX_NUMBER_OF_REPLACEMENTS, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_MAX_NUMBER_OF_REPLACEMENTS , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_MAX_NUMBER_OF_REPLACEMENTS , e.getMessage());
 		}
 		
 		try {
 			serverExpansionThresholdHighUtilisation.setText(configuration.getAttribute(DSEConstantsContainer.SERVER_EXPANSION_THRESHOLD_HIGH_UTILISATION, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_THRESHOLD_HIGH_UTILISATION , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_THRESHOLD_HIGH_UTILISATION , e.getMessage());
 		}
 		
 		try {
 			serverExpansionWeight.setText(configuration.getAttribute(DSEConstantsContainer.SERVER_EXPANSION_WEIGHT, ""));
 		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_WEIGHT , e.getMessage());
+			RunConfigPlugin.errorLogger(getName(), SERVER_EXPANSION_WEIGHT , e.getMessage());
 		}
 		
 		updateSelections();
