@@ -69,7 +69,9 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.RVisualisationPlugin;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport.TimeseriesData;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnection;
+import de.uka.ipd.sdq.statistics.ABatchAlgorithm;
 import de.uka.ipd.sdq.statistics.PhiMixingBatchAlgorithm;
+import de.uka.ipd.sdq.statistics.StaticBatchAlgorithm;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 
@@ -118,7 +120,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 
 	public SimuComAnalysisResult(ExperimentRun run, Experiment experiment, PCMInstance pcmInstance, 
 			UsageScenario usageScenario, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-			SimuComQualityAttributeDeclaration qualityAttributeInfo) 
+			SimuComQualityAttributeDeclaration qualityAttributeInfo, boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) 
 	throws AnalysisFailedException {
 		super(pcmInstance);
 		this.run = run;
@@ -135,7 +137,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		this.throughput = calculateThroughput(sam);
 		this.observations = sam.getMeasurements().size();
 		
-		this.confidenceInterval = determineConfidenceInterval();
+		this.confidenceInterval = determineConfidenceInterval(isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
 		
 		this.results =  retrieveResults(pcmInstance);
 		this.maxUtilization = calculateMaxUtil("CPU");
@@ -533,12 +535,18 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		
 	}
 
-	private ConfidenceInterval determineConfidenceInterval() throws AnalysisFailedException {
+	private ConfidenceInterval determineConfidenceInterval(boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) throws AnalysisFailedException {
 		ConfidenceInterval ci = null;
 		SensorAndMeasurements meas = getUsageScenarioMeasurements();
 		Sensor sensor = meas.getSensor();
 		if (sensor instanceof TimeSpanSensor){
-			PhiMixingBatchAlgorithm statisticChecker = new PhiMixingBatchAlgorithm();
+			
+			ABatchAlgorithm statisticChecker = null;
+			if (isAutomaticBatchSizeConfidenceIntervalAlgorithm){
+				statisticChecker = new PhiMixingBatchAlgorithm();
+			} else {
+				statisticChecker = new StaticBatchAlgorithm(batchSize, minNumberOfBatches);
+			}
 						
 			for (Measurement m : meas.getMeasurements()) {
 				TimeSpanMeasurement t = (TimeSpanMeasurement)m;

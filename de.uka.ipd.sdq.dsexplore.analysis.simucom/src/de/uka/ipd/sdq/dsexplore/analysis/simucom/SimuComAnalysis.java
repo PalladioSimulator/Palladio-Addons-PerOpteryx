@@ -192,12 +192,22 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 		int selectedDataSourceID = 
 			config.getAttribute(
 					SensorFrameworkConfig.DATASOURCE_ID, -1);
+		
+		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm = config.getAttribute(SimuComConfig.CONFIDENCE_USE_AUTOMATIC_BATCHES, false);
+		
+		String defaultBatchSize = ""+SimuComConfig.DEFAULT_CONFIDENCE_BATCH_SIZE;
+		int batchSize = Integer.valueOf((String)config.getAttribute(SimuComConfig.CONFIDENCE_BATCH_SIZE, defaultBatchSize));
+		
+		
+		String defaultMinNumberOfBatches = ""+SimuComConfig.DEFAULT_CONFIDENCE_MIN_NUMBER_OF_BATCHES;
+		int minNumberOfBatches = Integer.valueOf((String)config.getAttribute(SimuComConfig.CONFIDENCE_MIN_NUMBER_OF_BATCHES, defaultMinNumberOfBatches));
+		
 
 		// try the configured data source first. 
 		IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
 		if (factory != null){
 			result = findExperimentRunAndCreateResult(usageScenario,
-					experimentName, pcmInstance, factory);
+					experimentName, pcmInstance, factory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
 		}
 
 		if (result == null){
@@ -209,7 +219,7 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 					continue;
 				}
 				result = findExperimentRunAndCreateResult(usageScenario,
-						experimentName, pcmInstance, idaoFactory);
+						experimentName, pcmInstance, idaoFactory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
 
 				if (result != null){
 					logger.warn("Found matching experiment run for this candidate in data source "+idaoFactory.getName()+" "+idaoFactory.getDescription()+"(id: "+idaoFactory.getID()+"), using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
@@ -238,13 +248,17 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
  * @param experimentName The experiment name to match
  * @param pcmInstance The PCM instance to get the available resources and retrieve utilisation values. 
  * @param factory The access to the data source. 
+ * @param isAutomaticBatchSizeConfidenceIntervalAlgorithm 
+ * @param minNumberOfBatches 
+ * @param batchSize 
  * @return The instantiated {@link IStatisticAnalysisResult} for this experiment name, or <code>null</code> if no matching experiment run could be found. 
  * @throws AnalysisFailedException
  */
 private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 		UsageScenario usageScenario, String experimentName,
 		PCMInstance pcmInstance,
-		IDAOFactory factory) throws AnalysisFailedException {
+		IDAOFactory factory, 
+		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) throws AnalysisFailedException {
 	IStatisticAnalysisResult result = null;
 	//XXX: Quick fix: Assume that there is just one experiment with the name of the current PCM instance.
 	//Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName
@@ -255,7 +269,7 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	  Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
 	  if (runs.size() > 0){
 		  ExperimentRun myrun = getLatestRun(runs);
-		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute);					  
+		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);					  
 	  } 
 	}
 	return result;
