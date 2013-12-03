@@ -269,7 +269,10 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	  Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
 	  if (runs.size() > 0){
 		  ExperimentRun myrun = getLatestRun(runs);
-		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);					  
+		  //TODO: get number of warmup samples from SimuCom config
+		  int numberOfWarmupSamples = 100;
+		  logger.warn("Trying to removing "+numberOfWarmupSamples+" warmup samples when determining confidence interval results.");
+		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, numberOfWarmupSamples);					  
 	  } 
 	}
 	return result;

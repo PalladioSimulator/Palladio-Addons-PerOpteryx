@@ -97,6 +97,8 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	private double alpha = 0.95;
 
 	private long observations = 0;
+	
+	int numberOfWarmupSamplesRemoved = 0;
 
 	/** You must not use the usage scenario to navigate in the PCM, as the
 	 * model may not be longer valid for this result after the constructor call.
@@ -120,7 +122,9 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 
 	public SimuComAnalysisResult(ExperimentRun run, Experiment experiment, PCMInstance pcmInstance, 
 			UsageScenario usageScenario, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-			SimuComQualityAttributeDeclaration qualityAttributeInfo, boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) 
+			SimuComQualityAttributeDeclaration qualityAttributeInfo, 
+			boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches, 
+			int numberOfWarmupMeasurements) 
 	throws AnalysisFailedException {
 		super(pcmInstance);
 		this.run = run;
@@ -137,7 +141,18 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		this.throughput = calculateThroughput(sam);
 		this.observations = sam.getMeasurements().size();
 		
-		this.confidenceInterval = determineConfidenceInterval(isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
+		this.confidenceInterval = determineConfidenceInterval(isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, false, numberOfWarmupMeasurements);
+		ConfidenceInterval confidenceIntervalWithWarmup = determineConfidenceInterval(isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, true, numberOfWarmupMeasurements);
+		
+		if (!Double.isNaN(this.confidenceInterval.getMean()) && !Double.isNaN(confidenceIntervalWithWarmup.getMean())){
+			//choose the smaller one 
+			if (this.confidenceInterval.getLowerBound() < confidenceIntervalWithWarmup.getLowerBound()){
+				// confidence interval wih warmup is smaller
+				this.confidenceInterval = confidenceIntervalWithWarmup;
+				this.numberOfWarmupSamplesRemoved = numberOfWarmupMeasurements;
+				logger.info("Removed "+numberOfWarmupMeasurements+" warmup samples when calculating confidence interval for experiment "+this.experiment.getExperimentName());
+			}
+		}
 		
 		this.results =  retrieveResults(pcmInstance);
 		this.maxUtilization = calculateMaxUtil("CPU");
@@ -535,7 +550,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		
 	}
 
-	private ConfidenceInterval determineConfidenceInterval(boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) throws AnalysisFailedException {
+	private ConfidenceInterval determineConfidenceInterval(boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches, boolean isCutWarmupPeriod, int numberOfWarmupMeasurements) throws AnalysisFailedException {
 		ConfidenceInterval ci = null;
 		SensorAndMeasurements meas = getUsageScenarioMeasurements();
 		Sensor sensor = meas.getSensor();
@@ -547,10 +562,15 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 			} else {
 				statisticChecker = new StaticBatchAlgorithm(batchSize, minNumberOfBatches);
 			}
-						
+					
+			int warmupCount = 0;
 			for (Measurement m : meas.getMeasurements()) {
-				TimeSpanMeasurement t = (TimeSpanMeasurement)m;
-				statisticChecker.offerSample(t.getTimeSpan());
+				if (warmupCount >= numberOfWarmupMeasurements){
+					TimeSpanMeasurement t = (TimeSpanMeasurement)m;
+					statisticChecker.offerSample(t.getTimeSpan());
+				} else {
+					warmupCount++;
+				}
 			}
 			if (statisticChecker.hasValidBatches()){
 				ci = new SampleMeanEstimator().estimateConfidence(statisticChecker.getBatchMeans(),this.alpha);
@@ -913,6 +933,13 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	@Override
 	public ResultDecoratorRepository getResults() {
 		return this.results;
+	}
+
+	/**
+	 * @return the numberOfWarmupSamplesRemoved
+	 */
+	public int getNumberOfWarmupSamplesRemoved() {
+		return numberOfWarmupSamplesRemoved;
 	}
 	
 	/**Prepares to export the measurements of a time series sensor to R. 
