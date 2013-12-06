@@ -6,8 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.tcfmoop.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.junit4,
- org.opt4j;bundle-version="1.0.0"
+ org.opt4j;bundle-version="1.0.0",
+ org.junit;bundle-version="4.11.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.uka.ipd.sdq.tcfmoop.config,
