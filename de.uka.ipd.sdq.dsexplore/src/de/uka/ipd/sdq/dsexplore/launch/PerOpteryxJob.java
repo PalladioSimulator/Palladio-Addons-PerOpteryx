@@ -17,7 +17,7 @@ public class PerOpteryxJob extends
 	//DSECandidateConfiguration candidateConfig; 
 
 	public  PerOpteryxJob(DSEWorkflowConfiguration config, DSELaunch launch) throws CoreException {
-		super();
+		super(false);
 		
 		// 1. Load PCM Models into memory
 		this.addJob(new LoadPCMModelsIntoBlackboardJob(config));
