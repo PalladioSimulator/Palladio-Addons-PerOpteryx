@@ -78,7 +78,8 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 	private Map<Integer, String> previousExperimentNames = new HashMap<Integer, String>();
 
 	private SimuComWorkflowConfiguration simuComWorkflowConfiguration;
-
+	private SimuComConfig simuComConfig;
+	
 	private MDSDBlackboard blackboard;
 
 	private SimuComQualityAttributeDeclaration simuComQualityAttribute = new SimuComQualityAttributeDeclaration();
@@ -88,6 +89,8 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 	private Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>(); //This is needed to determine, what THE result is (Mean,  Variance, ...)
 	
 	private int datasourceReloadCount = 1;
+
+
 	
 	/**
 	 * Calls SimuCom. Before doing so, it calls the {@link ConfigurationHelper}
@@ -193,21 +196,18 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 			config.getAttribute(
 					SensorFrameworkConfig.DATASOURCE_ID, -1);
 		
-		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm = config.getAttribute(SimuComConfig.CONFIDENCE_USE_AUTOMATIC_BATCHES, false);
+		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm = this.simuComConfig.isAutomaticBatches();
+		double alpha = this.simuComConfig.getConfidenceLevel();
 		
-		String defaultBatchSize = ""+SimuComConfig.DEFAULT_CONFIDENCE_BATCH_SIZE;
-		int batchSize = Integer.valueOf((String)config.getAttribute(SimuComConfig.CONFIDENCE_BATCH_SIZE, defaultBatchSize));
-		
-		
-		String defaultMinNumberOfBatches = ""+SimuComConfig.DEFAULT_CONFIDENCE_MIN_NUMBER_OF_BATCHES;
-		int minNumberOfBatches = Integer.valueOf((String)config.getAttribute(SimuComConfig.CONFIDENCE_MIN_NUMBER_OF_BATCHES, defaultMinNumberOfBatches));
+		int batchSize = this.simuComConfig.getBatchSize();
+		int minNumberOfBatches = this.simuComConfig.getMinNumberOfBatches();
 		
 
 		// try the configured data source first. 
 		IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
 		if (factory != null){
 			result = findExperimentRunAndCreateResult(usageScenario,
-					experimentName, pcmInstance, factory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
+					experimentName, pcmInstance, factory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, alpha);
 		}
 
 		if (result == null){
@@ -219,7 +219,7 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 					continue;
 				}
 				result = findExperimentRunAndCreateResult(usageScenario,
-						experimentName, pcmInstance, idaoFactory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches);
+						experimentName, pcmInstance, idaoFactory, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, alpha);
 
 				if (result != null){
 					logger.warn("Found matching experiment run for this candidate in data source "+idaoFactory.getName()+" "+idaoFactory.getDescription()+"(id: "+idaoFactory.getID()+"), using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
@@ -258,7 +258,7 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 		UsageScenario usageScenario, String experimentName,
 		PCMInstance pcmInstance,
 		IDAOFactory factory, 
-		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches) throws AnalysisFailedException {
+		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches, double alpha) throws AnalysisFailedException {
 	IStatisticAnalysisResult result = null;
 	//XXX: Quick fix: Assume that there is just one experiment with the name of the current PCM instance.
 	//Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName
@@ -272,7 +272,7 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 		  //TODO: get number of warmup samples from SimuCom config
 		  int numberOfWarmupSamples = 200;
 		  logger.warn("Trying to removing "+numberOfWarmupSamples+" warmup samples when determining confidence interval results.");
-		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, numberOfWarmupSamples);					  
+		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, numberOfWarmupSamples, alpha);					  
 	  } 
 	}
 	return result;
@@ -436,10 +436,12 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 			throw ExceptionHelper.createNewCoreException("Error in initialisation: No Blackboard was set when initialising the SimuCom Analysis. Contact the developers.");
 		}
 		
-		this.initialExperimentName = this.config.getAttribute(SimuComConfig.EXPERIMENT_RUN, "");
-		
 		this.simuComWorkflowConfiguration = deriveConfiguration(this.config, ILaunchManager.RUN_MODE);
 		this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
+		
+		this.simuComConfig = (SimuComConfig)this.simuComWorkflowConfiguration.getSimulationConfiguration();
+		
+		this.initialExperimentName = this.simuComConfig.getNameExperimentRun(); 
 		
 		PCMInstance pcmInstance = new PCMInstance((PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
 		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();

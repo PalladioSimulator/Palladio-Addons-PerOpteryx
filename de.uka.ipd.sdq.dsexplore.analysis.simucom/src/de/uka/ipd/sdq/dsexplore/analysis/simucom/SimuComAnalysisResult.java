@@ -124,12 +124,14 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 			UsageScenario usageScenario, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
 			SimuComQualityAttributeDeclaration qualityAttributeInfo, 
 			boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm, int batchSize, int minNumberOfBatches, 
-			int numberOfWarmupMeasurements) 
+			int numberOfWarmupMeasurements, double alpha) 
 	throws AnalysisFailedException {
 		super(pcmInstance);
 		this.run = run;
 		this.experiment = experiment;
 		this.usageSenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
+		
+		this.alpha = alpha;
 		
 		this.objectiveToAspects = objectiveToAspect;
 		this.qualityAttributeInfo = qualityAttributeInfo;
