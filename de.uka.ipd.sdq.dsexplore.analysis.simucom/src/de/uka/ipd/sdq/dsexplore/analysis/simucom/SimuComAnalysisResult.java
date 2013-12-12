@@ -94,7 +94,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 
 	private ConfidenceInterval confidenceInterval; 
 	
-	private double alpha = 0.95;
+	private double alpha;
 
 	private long observations = 0;
 	
