@@ -197,7 +197,7 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 					SensorFrameworkConfig.DATASOURCE_ID, -1);
 		
 		boolean isAutomaticBatchSizeConfidenceIntervalAlgorithm = this.simuComConfig.isAutomaticBatches();
-		double alpha = this.simuComConfig.getConfidenceLevel();
+		double alpha = this.simuComConfig.getConfidenceLevel()/100.0;
 		
 		int batchSize = this.simuComConfig.getBatchSize();
 		int minNumberOfBatches = this.simuComConfig.getMinNumberOfBatches();
