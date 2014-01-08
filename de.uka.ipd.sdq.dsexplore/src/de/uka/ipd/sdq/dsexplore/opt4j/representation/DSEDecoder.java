@@ -414,6 +414,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		 */
 		if (choice instanceof ContinousRangeChoice){
 			result = ResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
+		} else if (designDecision instanceof SchedulingPolicyDegree){
+			// XXX: Quick fix for problem that simulation experiment names have a maximum length, and the names of FCFS "First-Come-First-Serve" make the experiment name so long that it does not fit and thus is cut and cannot be retrieved. 
+			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
+				result = ((Entity)((ClassChoice)choice).getChosenValue()).getId();
+			} else {
+				result = ((ClassChoice)choice).getChosenValue().toString();
+			}
 		} else if (choice instanceof ClassChoice){
 			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
 				result = ((Entity)((ClassChoice)choice).getChosenValue()).getEntityName();
@@ -487,7 +494,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			for (EObject option : options) {
 				if (option instanceof SchedulingPolicy){
 					SchedulingPolicy policy = (SchedulingPolicy)option;
-					if (policy.getEntityName().equals(decisionString));
+					//XXX: Quick fix for problem that simulation experiment names have a maximum length, and the names of FCFS "First-Come-First-Serve" make the experiment name so long that it does not fit and thus is cut and cannot be retrieved. 
+					if (policy.getId().equals(decisionString) || policy.getEntityName().equals(decisionString));
 					chosenPolicy = policy;
 				}
 			}

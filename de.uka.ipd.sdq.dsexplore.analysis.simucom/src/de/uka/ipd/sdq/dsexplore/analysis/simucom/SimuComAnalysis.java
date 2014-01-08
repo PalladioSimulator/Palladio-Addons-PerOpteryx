@@ -171,7 +171,7 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 
 
 	private String getExperimentName(PCMPhenotype pheno) {
-		return this.initialExperimentName+" "+pheno.getGenotypeID();
+		return this.initialExperimentName+" "+pheno.getNumericID()+" "+pheno.getGenotypeID();
 	}
 
 	
