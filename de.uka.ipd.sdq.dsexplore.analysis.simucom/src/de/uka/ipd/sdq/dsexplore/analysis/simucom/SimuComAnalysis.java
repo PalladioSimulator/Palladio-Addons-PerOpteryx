@@ -52,6 +52,7 @@ import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
+import de.uka.ipd.sdq.sensorframework.entities.dao.IExperimentDAO;
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
 import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
 import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
@@ -171,7 +172,7 @@ public class SimuComAnalysis extends SimuComWorkflowLauncher implements IAnalysi
 
 
 	private String getExperimentName(PCMPhenotype pheno) {
-		return this.initialExperimentName+" "+pheno.getNumericID()+" "+pheno.getGenotypeID();
+		return this.initialExperimentName+" "+pheno.getGenotypeID().hashCode()+" "+pheno.getGenotypeID();
 	}
 
 	
@@ -263,18 +264,33 @@ private IStatisticAnalysisResult findExperimentRunAndCreateResult(
 	//XXX: Quick fix: Assume that there is just one experiment with the name of the current PCM instance.
 	//Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName
 	//		+" RunNo. "+config.getAttribute(ConstantsContainer.RUN_NO, "0")).iterator();
-	Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName).iterator();
+	IExperimentDAO experimentDAO = factory.createExperimentDAO();
+	Experiment resultingExperiment = null;
+	Iterator<Experiment> it = experimentDAO.findByExperimentName(experimentName).iterator();
 	if (it.hasNext()){
-	  Experiment resultingExperiment = it.next();
-	  Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
-	  if (runs.size() > 0){
-		  ExperimentRun myrun = getLatestRun(runs);
-		  //TODO: get number of warmup samples from SimuCom config
-		  int numberOfWarmupSamples = 200;
-		  logger.warn("Trying to removing "+numberOfWarmupSamples+" warmup samples when determining confidence interval results.");
-		  result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, numberOfWarmupSamples, alpha);					  
-	  } 
+	  resultingExperiment = it.next();
 	}
+	
+	if (resultingExperiment == null){
+		// Try whether experiment names have been shortened
+		Collection<Experiment> experimentList= experimentDAO.getExperiments();
+		for (Experiment experiment : experimentList) {
+			if (experiment.getExperimentName().startsWith(experimentName))
+				resultingExperiment = experiment;
+		}
+	}
+	
+	if (resultingExperiment != null){
+		Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
+		if (runs.size() > 0){
+			ExperimentRun myrun = getLatestRun(runs);
+			//TODO: get number of warmup samples from SimuCom config
+			int numberOfWarmupSamples = 200;
+			logger.warn("Trying to removing "+numberOfWarmupSamples+" warmup samples when determining confidence interval results.");
+			result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, this.simuComQualityAttribute, isAutomaticBatchSizeConfidenceIntervalAlgorithm, batchSize, minNumberOfBatches, numberOfWarmupSamples, alpha);					  
+		}
+	}
+	
 	return result;
 }
 
