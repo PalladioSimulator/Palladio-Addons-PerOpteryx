@@ -69,6 +69,8 @@ import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.RVisualisationPlugin;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport.TimeseriesData;
 import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnection;
+import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.REngineHelper;
+import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.REngineHelper.TransferType;
 import de.uka.ipd.sdq.statistics.ABatchAlgorithm;
 import de.uka.ipd.sdq.statistics.PhiMixingBatchAlgorithm;
 import de.uka.ipd.sdq.statistics.StaticBatchAlgorithm;
@@ -661,7 +663,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		if (RConnection.isEngineAvailable()){
 
 			RConnection rConnection = RConnection.getRConnection();
-			String sensorName = storeMeasurementsInRVector(sam, sam.getSensor().getSensorID(), whichData, rConnection);
+			String sensorName = REngineHelper.storeMeasurementsInRVector(sam, (int)sam.getSensor().getSensorID(), whichData, TransferType.FILE, rConnection);
 			Vector<REXP> rResult = rConnection.execute(command+"(" + sensorName + ")\n");
 			if (rResult.size() > 0) {
 				if (rResult.get(0).rtype == REXP.REALSXP){
@@ -716,7 +718,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		return null;
 	}
 
-	/**Export the measurements of a sensor to R. 
+/*	*//**Export the measurements of a sensor to R. 
 	 * There are two alternatives. The measurements can be transferred 
 	 * via an array, which implies certain size restrictions. An alternative is
 	 * to use a temporary file. The behavior can only be switched in source 
@@ -730,7 +732,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	 * @param dataSelection the data element to save.
 	 * @param rConnection Connection to the R engine.
 	 * @return R variable name which contains the data.
-	 */
+	 *//*
 	protected static String storeMeasurementsInRVector(
 			final SensorAndMeasurements measurements, final long sensorNumber,
 			final TimeseriesData dataSelection, final RConnection rConnection) {
@@ -745,13 +747,14 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 			throw new RuntimeException("Unknown data element of time series.");
 		}
 
-		//if (TRANSFER_TYPE == TransferType.MEMORY) {
+		TransferType transferType = TransferType.FILE;
+		if (transferType == TransferType.MEMORY) {
 			// Activate to transfer data via memory
 			double[] measurementsArray = 
 				prepareExportToRByMemory(measurements, dataSelection);
 			rConnection.assign(sensorName, measurementsArray);
-		//}
-/*		if (TRANSFER_TYPE == TransferType.FILE) {
+		}
+		if (transferType == TransferType.FILE) {
 			// Activate to transfer data via temporary file
 			String rCommand = sensorName + " <- "
 				+ prepareExportToRByFile(measurements, dataSelection);
@@ -771,11 +774,11 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 					+ "R returned:\n" + rResults);
 			}
 
-		}*/
+		}
 		return sensorName;
 	}
 	
-	/**Prepares the export the measurements of a sensor to R. Therefore an 
+	*//**Prepares the export the measurements of a sensor to R. Therefore an 
 	 * array is filled with the measurements. 
 	 * 
 	 * Copied from 
@@ -788,7 +791,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	 * @return R command to read measurements. 
 	 *         Can be used to store data in a r vector.
 	 * @author Henning
-	 */
+	 *//*
 	private static double[] prepareExportToRByMemory(
 			final SensorAndMeasurements measurements,
 			final TimeseriesData dataSelection) {
@@ -808,7 +811,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		}
 		return measurementsArray;
 	}
-
+*/
 	/**
 	 * Get the utilisation of the passed resource
 	 */
