@@ -43,7 +43,7 @@ public class TacticOperatorsManager {
 		heuristics = TacticOperatorsFactory.getActivatedInstances(copy, individualFactory, configuration);
 		this.writer = new ResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"heuristicsInfo");
 		int numberOfGenes = Opt4JStarter.getProblem().getDesignDecisions().size();
-		String headline = "Tactic;Solution;Candidate numeric id;Parent numeric id;Candidate genome (several cols);";
+		String headline = "Tactic;Solution;Candidate numeric id;Candidate hash code;Parent numeric id;Candidate genome (several cols);";
 		for (int i = 0; i < numberOfGenes; i++){
 			headline += ";";
 	}

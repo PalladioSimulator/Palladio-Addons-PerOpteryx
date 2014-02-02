@@ -252,6 +252,7 @@ public class ResultsWriter {
 		builder.append(heuristic.getClass().getSimpleName()+";"
 				+tacticsResultCandidate.getTacticsApplicationInfo()+";"
 				+tacticsResultCandidate.getNumericID()+";"
+				+tacticsResultCandidate.getGenotypeString().hashCode()+";"
 				+tacticsResultCandidate.getParent().getNumericID()+";"
 				+tacticsResultCandidate.getID()+";"
 				+tacticsResultCandidate.getParent().getID()+";");
@@ -260,7 +261,12 @@ public class ResultsWriter {
 	}
 
 	public void writeTacticManagerChoice(TacticsResultCandidate c){
-		writeToLogFile(c.getHeuristic().getClass().getSimpleName() +";"+c.getNumericID()+";"+c.getParent().getNumericID()+ ";"+c.getID()+";"+c.getParent().getID()+";candidate returned\n");
+		writeToLogFile(c.getHeuristic().getClass().getSimpleName() +";"
+				+c.getNumericID()+";"
+				+c.getGenotypeString().hashCode()+";"
+				+c.getParent().getNumericID()+ ";"
+				+c.getID()+";"
+				+c.getParent().getID()+";candidate returned\n");
 	}
 	
 	public void writeAntipatternsSummaryFile(
