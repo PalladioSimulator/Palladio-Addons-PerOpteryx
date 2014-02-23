@@ -68,9 +68,8 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
 	 private Map<Integer, String> previousExperimentNames = new HashMap<Integer, String>();
 	 
 	 
-	public SimuLizarAnalysis(final SimuComWorkflowConfiguration configuration) {
+	public SimuLizarAnalysis() {
 		super(new SimuLizarQualityAttributeDeclaration());
-		this.configuration = configuration;
 	}
 
 	@Override
