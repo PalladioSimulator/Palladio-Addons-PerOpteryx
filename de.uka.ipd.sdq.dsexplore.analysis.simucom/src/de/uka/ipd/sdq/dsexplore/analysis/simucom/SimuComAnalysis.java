@@ -33,7 +33,7 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfa
 import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.DatasourceConfigurationInvalidException;
-import de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.SensorFrameworkRecorderConfiguration;
+import de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
@@ -176,7 +176,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         IStatisticAnalysisResult result = null;
         final int selectedDataSourceID =
                 config.getAttribute(
-                        SensorFrameworkRecorderConfiguration.DATASOURCE_ID, -1);
+                        SensorFrameworkRecorderConfigurationFactory.DATASOURCE_ID, -1);
 
         // try the configured data source first.
         final IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
