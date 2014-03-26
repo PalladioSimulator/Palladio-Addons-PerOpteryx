@@ -35,6 +35,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegree;
@@ -50,6 +51,7 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+import org.palladiosimulator.simulizar.pms.Intervall;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the 
@@ -99,6 +101,7 @@ public class DSEProblem {
 			DecisionSpace problem = loadProblem();
 			this.pcmProblem = problem;
 			this.initialGenotypeList = determineInitialGenotype(problem);
+			
 		}
 		
 		//TODO: mapping of design decisions to bounds. 
@@ -187,13 +190,23 @@ public class DSEProblem {
 				
 				genotype.add(choice);
 			} else if (dd instanceof ContinuousRangeDegree){
-				
+				/*
+				 * 
+				 */
 				ContinousRangeChoice choice = this.designDecisionFactory.createContinousRangeChoice();
 				choice.setDegreeOfFreedomInstance(dd);
 				
-				if (dd instanceof ContinuousProcessingRateDegree){
-					ContinuousProcessingRateDegree prd = (ContinuousProcessingRateDegree)dd;
+				// Monitoring Degree added
+				//added by Suman Jojiju
+				if(dd instanceof MonitoringDegree){
+					//MonitoringDegree mnrt = (MonitoringDegree) dd;
+					ContinuousRangeDegree crdobj = (ContinuousRangeDegree) dd;
+					//Intervall interval = (Intervall) (MonitoringDegree)crdobj.getPrimaryChanged();
+					//choice.setChosenValue(interval.getIntervall());
+					choice.setChosenValue(crdobj.getFrom());
 					
+				} else if (dd instanceof ContinuousProcessingRateDegree){
+					ContinuousProcessingRateDegree prd = (ContinuousProcessingRateDegree)dd;
 					ProcessingResourceSpecification rightPrs = getProcessingResourceSpec(prd);
 
 					if (rightPrs != null){
@@ -211,10 +224,11 @@ public class DSEProblem {
 				choice.setDegreeOfFreedomInstance(degree);
 				
 				EObject entity = degree.getPrimaryChanged();
-				
-				if (degree instanceof CapacityDegree){
+					
+			 if (degree instanceof CapacityDegree){
 					PassiveResource pr = (PassiveResource)entity;
 					choice.setChosenValue(Integer.valueOf(pr.getCapacity_PassiveResource().getSpecification()));
+					
 				} else if (degree instanceof NumberOfCoresDegree) {
 					ProcessingResourceSpecification prd = getProcessingResourceSpec((ProcessingResourceDegree)degree);
 					choice.setChosenValue(prd.getNumberOfReplicas());
@@ -281,9 +295,11 @@ public class DSEProblem {
 	private void initialiseProblem() {
 		this.pcmProblem = this.designDecisionFactory.createDecisionSpace();
 		List<DegreeOfFreedomInstance> dds = this.pcmProblem.getDegreesOfFreedom();
+		
 		//analyse PCM Instance and create design decisions
 		//TODO: could this be possible with a M2M transformation? 
 		//First, only get design decisions for making resources faster. 
+		
 		this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
 		DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
 		determineProcessingRateDecisions(dds,initialCandidate);
@@ -294,6 +310,8 @@ public class DSEProblem {
 		//determineSOAPOrRMIDecisions();
 		determineCapacityDecisions(dds,initialCandidate);
 		
+		
+		
 		//TODO: Check if the initial genotype is actually a valid genotype? 
 		//(this may not be the case if the degrees of freedom have been reduced for the optimisation?)
 		
@@ -301,6 +319,8 @@ public class DSEProblem {
 		this.initialGenotypeList.add(initialCandidate);
 
 	}
+	
+	
 
 
 
