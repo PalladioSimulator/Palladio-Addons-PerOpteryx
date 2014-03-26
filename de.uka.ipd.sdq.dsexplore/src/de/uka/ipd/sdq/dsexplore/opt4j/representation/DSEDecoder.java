@@ -39,6 +39,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ProcessingResourceDegree;
@@ -55,6 +56,7 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+import org.palladiosimulator.simulizar.pms.Intervall;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into 
@@ -75,6 +77,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	private double initialMTTF = Double.NaN;
 	/** @see #initialMTTF */
 	private double initialRate = Double.NaN;
+	private static double intervalTime = 0.0;
 
 	@Inject
 	public DSEDecoder(){
@@ -118,7 +121,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		 */
 		if (ProcessingRateDegree.class.isInstance(designDecision)){
 			this.applyChangeProcessingRateDecision((ProcessingRateDegree)designDecision, choice);
-		} else if (AssembledComponentDegree.class.isInstance(designDecision)){
+			
+			// Monitoring degree added
+			//added by Suman Jojiju
+		} else if(MonitoringDegree.class.isInstance(designDecision)) {
+			this.applyChangeMonitoringDecision((MonitoringDegree) designDecision,choice);
+			
+		}else if (AssembledComponentDegree.class.isInstance(designDecision)){
 			this.applyChangeAssembledComponentDecision((AssembledComponentDegree)designDecision, choice);
 		} else if (AllocationDegree.class.isInstance(designDecision)){
 			this.applyChangeAllocationDecision((AllocationDegree)designDecision, choice);
@@ -134,6 +143,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			logger.warn("There was an unrecognised design decision "+designDecision.getClass());
 		}
 	}
+
+	
 
 	private void applyChangeResourceContainerReplicationDegree(
 			ResourceContainerReplicationDegree designDecision, Choice choice) {
@@ -337,6 +348,23 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		rightPrs.setMTTF(mttf);
 		
 		logger.debug("Handling a "+designDecision.getClass()+", setting rate to "+newRate+" and MTTF to "+mttf+" (inital MTTF: "+this.initialMTTF+")");
+	}
+	
+	//added by Suman Jojiju
+	
+	private void applyChangeMonitoringDecision(MonitoringDegree designDecision,Choice choice) {
+		double newinterval = 0.0;
+		if (choice instanceof ContinousRangeChoice){
+			ContinousRangeChoice doubleGene = (ContinousRangeChoice)choice;
+			Intervall interval = (Intervall)designDecision.getPrimaryChanged();
+			newinterval = doubleGene.getChosenValue();
+			DSEDecoder.intervalTime = newinterval;
+			interval.setIntervall(newinterval);
+		}
+	}
+	
+	public static double returnInterval() {
+		return DSEDecoder.intervalTime;
 	}
 
 	private ProcessingResourceSpecification getProcessingRateSpecification(
@@ -543,4 +571,5 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		genotype.set(index, choice);
 	}
 
+	
 }
