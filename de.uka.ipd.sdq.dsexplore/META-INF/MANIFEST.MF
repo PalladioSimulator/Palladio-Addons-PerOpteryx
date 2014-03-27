@@ -24,13 +24,15 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.dsexplore.qml,
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.simulation;bundle-version="1.0.0",
- org.junit;bundle-version="4.11.0"
+ org.junit;bundle-version="4.11.0",
+ org.palladiosimulator.simulizar.pms
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
  de.uka.ipd.sdq.dsexplore.exception,
  de.uka.ipd.sdq.dsexplore.helper,
- de.uka.ipd.sdq.dsexplore.launch
+ de.uka.ipd.sdq.dsexplore.launch,
+ de.uka.ipd.sdq.dsexplore.opt4j.representation
 Bundle-ClassPath: .,
  log4j/
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
