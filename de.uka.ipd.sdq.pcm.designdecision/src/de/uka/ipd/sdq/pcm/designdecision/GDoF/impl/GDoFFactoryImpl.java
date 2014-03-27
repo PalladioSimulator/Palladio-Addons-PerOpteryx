@@ -31,7 +31,7 @@ public class GDoFFactoryImpl extends EFactoryImpl implements GDoFFactory {
 	 */
 	public static GDoFFactory init() {
 		try {
-			GDoFFactory theGDoFFactory = (GDoFFactory)EPackage.Registry.INSTANCE.getEFactory("http:///DesignDecision/GDoF.ecore"); 
+			GDoFFactory theGDoFFactory = (GDoFFactory)EPackage.Registry.INSTANCE.getEFactory(GDoFPackage.eNS_URI);
 			if (theGDoFFactory != null) {
 				return theGDoFFactory;
 			}

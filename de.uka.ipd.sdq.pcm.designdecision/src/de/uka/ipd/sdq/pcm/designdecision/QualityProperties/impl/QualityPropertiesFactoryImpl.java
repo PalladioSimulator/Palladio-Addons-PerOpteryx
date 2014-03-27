@@ -31,7 +31,7 @@ public class QualityPropertiesFactoryImpl extends EFactoryImpl implements Qualit
 	 */
 	public static QualityPropertiesFactory init() {
 		try {
-			QualityPropertiesFactory theQualityPropertiesFactory = (QualityPropertiesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///DesignDecision/QualityProperties.ecore"); 
+			QualityPropertiesFactory theQualityPropertiesFactory = (QualityPropertiesFactory)EPackage.Registry.INSTANCE.getEFactory(QualityPropertiesPackage.eNS_URI);
 			if (theQualityPropertiesFactory != null) {
 				return theQualityPropertiesFactory;
 			}
