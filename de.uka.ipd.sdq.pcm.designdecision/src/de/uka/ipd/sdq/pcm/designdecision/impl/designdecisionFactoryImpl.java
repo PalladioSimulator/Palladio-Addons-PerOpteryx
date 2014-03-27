@@ -31,7 +31,7 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 */
 	public static designdecisionFactory init() {
 		try {
-			designdecisionFactory thedesigndecisionFactory = (designdecisionFactory)EPackage.Registry.INSTANCE.getEFactory("http://sdq.ipd.uka.de/DesignDecision/2.0"); 
+			designdecisionFactory thedesigndecisionFactory = (designdecisionFactory)EPackage.Registry.INSTANCE.getEFactory(designdecisionPackage.eNS_URI);
 			if (thedesigndecisionFactory != null) {
 				return thedesigndecisionFactory;
 			}
@@ -88,6 +88,7 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 			case designdecisionPackage.EXCHANGE_COMPONENT_RULE: return createExchangeComponentRule();
 			case designdecisionPackage.ORDERED_INTEGER_DEGREE: return createOrderedIntegerDegree();
 			case designdecisionPackage.NUMBER_OF_CORES_AS_LIST_DEGREE: return createNumberOfCoresAsListDegree();
+			case designdecisionPackage.MONITORING_DEGREE: return createMonitoringDegree();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -371,6 +372,16 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	public NumberOfCoresAsListDegree createNumberOfCoresAsListDegree() {
 		NumberOfCoresAsListDegreeImpl numberOfCoresAsListDegree = new NumberOfCoresAsListDegreeImpl();
 		return numberOfCoresAsListDegree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MonitoringDegree createMonitoringDegree() {
+		MonitoringDegreeImpl monitoringDegree = new MonitoringDegreeImpl();
+		return monitoringDegree;
 	}
 
 	/**
