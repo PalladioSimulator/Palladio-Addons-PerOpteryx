@@ -278,6 +278,15 @@ public interface designdecisionFactory extends EFactory {
 	NumberOfCoresAsListDegree createNumberOfCoresAsListDegree();
 
 	/**
+	 * Returns a new object of class '<em>Monitoring Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Monitoring Degree</em>'.
+	 * @generated
+	 */
+	MonitoringDegree createMonitoringDegree();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

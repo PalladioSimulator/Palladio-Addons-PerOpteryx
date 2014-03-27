@@ -185,6 +185,8 @@ public class designdecisionValidator extends EObjectValidator {
 				return validateOrderedIntegerDegree((OrderedIntegerDegree)value, diagnostics, context);
 			case designdecisionPackage.NUMBER_OF_CORES_AS_LIST_DEGREE:
 				return validateNumberOfCoresAsListDegree((NumberOfCoresAsListDegree)value, diagnostics, context);
+			case designdecisionPackage.MONITORING_DEGREE:
+				return validateMonitoringDegree((MonitoringDegree)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -604,6 +606,15 @@ public class designdecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateNumberOfCoresAsListDegree(NumberOfCoresAsListDegree numberOfCoresAsListDegree, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(numberOfCoresAsListDegree, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMonitoringDegree(MonitoringDegree monitoringDegree, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(monitoringDegree, diagnostics, context);
 	}
 
 	/**
