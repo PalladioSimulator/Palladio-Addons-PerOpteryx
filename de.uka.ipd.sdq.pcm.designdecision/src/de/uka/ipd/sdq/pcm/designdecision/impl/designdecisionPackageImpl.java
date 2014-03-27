@@ -40,6 +40,7 @@ import de.uka.ipd.sdq.pcm.designdecision.FeatureGroupDegree;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureSubset;
 import de.uka.ipd.sdq.pcm.designdecision.GDoF.GDoFPackage;
 import de.uka.ipd.sdq.pcm.designdecision.GDoF.impl.GDoFPackageImpl;
+import de.uka.ipd.sdq.pcm.designdecision.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresDegree;
@@ -396,6 +397,13 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	private EClass numberOfCoresAsListDegreeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass monitoringDegreeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1163,6 +1171,15 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMonitoringDegree() {
+		return monitoringDegreeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public designdecisionFactory getdesigndecisionFactory() {
 		return (designdecisionFactory)getEFactoryInstance();
 	}
@@ -1304,6 +1321,8 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		createEAttribute(orderedIntegerDegreeEClass, ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
 
 		numberOfCoresAsListDegreeEClass = createEClass(NUMBER_OF_CORES_AS_LIST_DEGREE);
+
+		monitoringDegreeEClass = createEClass(MONITORING_DEGREE);
 	}
 
 	/**
@@ -1394,6 +1413,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		orderedIntegerDegreeEClass.getESuperTypes().add(this.getOrderedDataTypeDegree());
 		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getNumberOfCoresDegree());
 		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getOrderedIntegerDegree());
+		monitoringDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(degreeOfFreedomInstanceEClass, DegreeOfFreedomInstance.class, "DegreeOfFreedomInstance", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1523,6 +1543,8 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		initEAttribute(getOrderedIntegerDegree_ListOfIntegers(), ecorePackage.getEInt(), "listOfIntegers", null, 1, -1, OrderedIntegerDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(numberOfCoresAsListDegreeEClass, NumberOfCoresAsListDegree.class, "NumberOfCoresAsListDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(monitoringDegreeEClass, MonitoringDegree.class, "MonitoringDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
