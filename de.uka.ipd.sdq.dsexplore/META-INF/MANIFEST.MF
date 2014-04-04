@@ -4,7 +4,7 @@ Bundle-Name: Design Space Exploration (PerOpteryx)
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.DSEPluginActivator
-Require-Bundle: org.palladiosimulator.simulizar.pms;bundle-version="1.0.0"
+Require-Bundle: org.palladiosimulator.simulizar.pms;bundle-version="2.0.0"
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
