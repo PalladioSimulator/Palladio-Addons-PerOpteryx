@@ -13,6 +13,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.recorderspec.sensorframework.DatasourceConfigurationInvalidException;
+import org.palladiosimulator.recorderspec.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowLauncher;
@@ -32,8 +34,6 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjecti
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
 import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.DatasourceConfigurationInvalidException;
-import de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;

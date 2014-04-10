@@ -25,13 +25,12 @@ Require-Bundle: org.eclipse.ui,
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml,
- de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework;bundle-version="1.0.0",
  de.uka.ipd.sdq.completions;bundle-version="1.0.0",
- de.uka.ipd.sdq.pipesandfilters.framework;bundle-version="1.0.0",
  de.uka.ipd.sdq.simulation.abstractsimengine;bundle-version="1.0.0",
- de.uka.ipd.sdq.simulation;bundle-version="1.0.0"
+ de.uka.ipd.sdq.simulation;bundle-version="1.0.0",
+ org.palladiosimulator.recorderspec;bundle-version="2.0.1",
+ org.palladiosimulator.recorderspec.sensorframework;bundle-version="2.0.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simucom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework.launch
 Bundle-Vendor: sdq.ipd.uka.de
