@@ -12,29 +12,31 @@ import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 /**
- * This class represents the result of a LQN simulation analysis. 
+ * This class represents the result of a LQN simulation analysis.
  * 
  * @author pmerkle, martens
  *
  */
 public class LQSimAnalysisResult extends LQNResult implements IStatisticAnalysisResult {
-	
-	
-	public LQSimAnalysisResult(LqnModelType model, PCMInstance pcm, 
-			Criterion criterion, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-			LQNQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
-		super(pcm, model, criterion, objectiveToAspect, qualityAttributeInfo);
-
-	}
-	
-
-	public ConfidenceInterval getConfidenceInterval() {
-		return null;
-	}
 
 
-	public long getNumberOfObservations() {
-		return 0;
-	}
+    public LQSimAnalysisResult(final LqnModelType model, final PCMInstance pcm,
+            final Criterion criterion, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
+            final LQNQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
+        super(pcm, model, criterion, objectiveToAspect, qualityAttributeInfo);
+
+    }
+
+
+    @Override
+    public ConfidenceInterval getConfidenceInterval() {
+        return null;
+    }
+
+
+    @Override
+    public long getNumberOfObservations() {
+        return 0;
+    }
 
 }
