@@ -29,7 +29,8 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.simulation.abstractsimengine;bundle-version="1.0.0",
  de.uka.ipd.sdq.simulation;bundle-version="1.0.0",
  org.palladiosimulator.recorderspec;bundle-version="2.0.1",
- org.palladiosimulator.recorderspec.sensorframework;bundle-version="2.0.1"
+ org.palladiosimulator.recorderspec.sensorframework;bundle-version="2.0.1",
+ de.uka.ipd.sdq.context;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simucom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
