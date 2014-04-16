@@ -74,10 +74,6 @@ import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 
 public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult implements IStatisticAnalysisResult, IPerformanceAnalysisResult {
 
-	
-
-	
-
 	private ExperimentRun run;
 	
 	private double meanValue;
@@ -120,7 +116,8 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	
 	public SimuLizarAnalysisResult(ExperimentRun run, Experiment experiment, PCMInstance pcmInstance, 
 			UsageScenario usageScenario, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-			SimuLizarQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
+			SimuLizarQualityAttributeDeclaration qualityAttributeInfo) 
+	throws AnalysisFailedException {
 		super(pcmInstance);
 		this.run = run;
 		this.experiment = experiment;
@@ -141,11 +138,9 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.results =  retrieveResults(pcmInstance);
 		this.maxUtilization = calculateMaxUtil("CPU");
 		
-		logger.debug("Initialised SimuLizar result");
-		// TODO Auto-generated constructor stub
+		logger.debug("Initialised SimuCom result");
 	}
 
-	
 	private double calculateMaxUtil(String resourceType) {
 		double maxUtil = 0.0;
 		for (UtilisationResult utilResult : this.results.getUtilisationResults_ResultDecoratorRepository()) {

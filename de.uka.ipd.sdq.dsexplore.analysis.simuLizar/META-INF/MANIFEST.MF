@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SimuLizar
-Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.simuLizar;singleton:=true
+Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.simulizar;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.analysis.simulizar.Activator
 Require-Bundle: org.eclipse.ui,
@@ -10,11 +10,10 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.dsexplore.qml,
  org.eclipse.debug.core,
  de.uka.ipd.sdq.workflow.launchconfig,
- de.uka.ipd.sdq.workflow.pcm,
  de.uka.ipd.sdq.codegen.simucontroller,
+ de.uka.ipd.sdq.workflow.pcm,
  org.opt4j,
  de.uka.ipd.sdq.simucomframework,
- de.uka.ipd.sdq.probespec.framework,
  de.uka.ipd.sdq.simucomframework.simucomstatus;bundle-version="1.0.0",
  de.uka.ipd.sdq.simulation.abstractsimengine;bundle-version="1.0.0",
  org.apache.log4j,
@@ -25,8 +24,6 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.workflow.logging.console,
  de.uka.ipd.sdq.workflow,
- de.uka.ipd.sdq.pipesandfilters.framework,
- de.uka.ipd.sdq.pipesandfilters.framework.recorder.sensorframework,
  de.uka.ipd.sdq.sensorframework,
  de.uka.ipd.sdq.pcmsolver,
  de.uka.ipd.sdq.dsexplore.analysis.simucom,
@@ -36,7 +33,12 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.pcm.resultdecorator,
  org.rosuda.JRI,
  de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes,
- de.uka.ipd.sdq.completions
+ de.uka.ipd.sdq.completions,
+ org.palladiosimulator.simulizar.ui,
+ org.palladiosimulator.recorderspec;bundle-version="2.0.1",
+ org.palladiosimulator.recorderspec.sensorframework;bundle-version="2.0.1",
+ de.uka.ipd.sdq.context;bundle-version="2.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
+Import-Package: org.palladiosimulator.recorderspec.sensorframework
