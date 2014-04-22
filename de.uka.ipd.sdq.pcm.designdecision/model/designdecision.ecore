@@ -252,7 +252,11 @@
         lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresAsListDegree" eSuperTypes="#//NumberOfCoresDegree #//OrderedIntegerDegree"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MonitoringDegree" eSuperTypes="#//ContinuousRangeDegree"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MonitoringDegree" eSuperTypes="#//ContinuousRangeDegree">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MonitoringDegree  is a degree of freedom to choose the monitoring interval time. It refers to an Intervall as changebleEntity from EvaluationSpecification.pms model of SimuLizar. Interval range between &quot;from&quot; and &quot;to&quot;."/>
+    </eAnnotations>
+  </eClassifiers>
   <eSubpackages name="GDoF" nsURI="http:///DesignDecision/GDoF.ecore" nsPrefix="DesignDecision.GDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
