@@ -13,8 +13,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.recorderspec.sensorframework.DatasourceConfigurationInvalidException;
-import org.palladiosimulator.recorderspec.sensorframework.SensorFrameworkRecorderConfigurationFactory;
+import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
+import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowLauncher;
