@@ -6,11 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
-import de.uka.ipd.sdq.identifier.Identifier;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+
+import de.uka.ipd.sdq.identifier.Identifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,68 +35,68 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  */
 public interface Order extends Identifier {
 	/**
-	 * Returns the value of the '<em><b>Bigger Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Bigger Element</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bigger Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bigger Element</em>' reference.
-	 * @see #setBiggerElement(Element)
-	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getOrder_BiggerElement()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Bigger Element</em>' reference.
+     * @see #setBiggerElement(Element)
+     * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getOrder_BiggerElement()
+     * @model required="true" ordered="false"
+     * @generated
+     */
 	Element getBiggerElement();
 
 	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getBiggerElement <em>Bigger Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getBiggerElement <em>Bigger Element</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bigger Element</em>' reference.
-	 * @see #getBiggerElement()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Bigger Element</em>' reference.
+     * @see #getBiggerElement()
+     * @generated
+     */
 	void setBiggerElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Smaller Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Smaller Element</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Smaller Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Smaller Element</em>' reference.
-	 * @see #setSmallerElement(Element)
-	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getOrder_SmallerElement()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Smaller Element</em>' reference.
+     * @see #setSmallerElement(Element)
+     * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getOrder_SmallerElement()
+     * @model required="true" ordered="false"
+     * @generated
+     */
 	Element getSmallerElement();
 
 	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getSmallerElement <em>Smaller Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getSmallerElement <em>Smaller Element</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Smaller Element</em>' reference.
-	 * @see #getSmallerElement()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Smaller Element</em>' reference.
+     * @see #getSmallerElement()
+     * @generated
+     */
 	void setSmallerElement(Element value);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * self.biggerElement<>self.smallerElement
-	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
-	 * @param context The cache of context-specific information.
-	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.biggerElement<>self.smallerElement'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * self.biggerElement<>self.smallerElement
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.biggerElement<>self.smallerElement'"
+     * @generated
+     */
 	boolean BIGGERELEMENT_must_not_be_SMALLELEMENT(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Order

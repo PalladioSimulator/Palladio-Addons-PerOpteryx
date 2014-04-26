@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Variance;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class VarianceImpl extends PointEstimatorImpl implements Variance {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected VarianceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.VARIANCE;
-	}
+        return QMLContractPackage.Literals.VARIANCE;
+    }
 
 } //VarianceImpl

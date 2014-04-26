@@ -6,15 +6,13 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.util;
 
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
-
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
@@ -25,30 +23,30 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 public class QMLDeclarationsXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QMLDeclarationsXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		QMLDeclarationsPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        QMLDeclarationsPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the QMLDeclarationsResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the QMLDeclarationsResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //QMLDeclarationsXMLProcessor

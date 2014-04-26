@@ -6,9 +6,9 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile;
 
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
-
 import org.eclipse.emf.common.util.EList;
+
+import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,45 +35,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SimpleQMLProfile extends GenericQMLProfile {
 	/**
-	 * Returns the value of the '<em><b>Usage Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Usage Model</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Usage Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Usage Model</em>' reference.
-	 * @see #setUsageModel(UsageModel)
-	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getSimpleQMLProfile_UsageModel()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Usage Model</em>' reference.
+     * @see #setUsageModel(UsageModel)
+     * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getSimpleQMLProfile_UsageModel()
+     * @model required="true" ordered="false"
+     * @generated
+     */
 	UsageModel getUsageModel();
 
 	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile#getUsageModel <em>Usage Model</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile#getUsageModel <em>Usage Model</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Usage Model</em>' reference.
-	 * @see #getUsageModel()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Usage Model</em>' reference.
+     * @see #getUsageModel()
+     * @generated
+     */
 	void setUsageModel(UsageModel value);
 
 	/**
-	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
-	 * The list contents are of type {@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
+     * The list contents are of type {@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requirements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requirements</em>' containment reference list.
-	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getSimpleQMLProfile_Requirements()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Requirements</em>' containment reference list.
+     * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getSimpleQMLProfile_Requirements()
+     * @model containment="true" ordered="false"
+     * @generated
+     */
 	EList<Requirement> getRequirements();
 
 } // SimpleQMLProfile

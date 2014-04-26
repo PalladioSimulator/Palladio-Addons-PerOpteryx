@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.DeterministicEvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspectImpl implements DeterministicEvaluationAspect {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DeterministicEvaluationAspectImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.DETERMINISTIC_EVALUATION_ASPECT;
-	}
+        return QMLContractPackage.Literals.DETERMINISTIC_EVALUATION_ASPECT;
+    }
 
 } //DeterministicEvaluationAspectImpl

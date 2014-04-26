@@ -6,12 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
-
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,22 +23,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class ValueLiteralImpl extends IdentifierImpl implements ValueLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ValueLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.VALUE_LITERAL;
-	}
+        return QMLContractPackage.Literals.VALUE_LITERAL;
+    }
 
 } //ValueLiteralImpl

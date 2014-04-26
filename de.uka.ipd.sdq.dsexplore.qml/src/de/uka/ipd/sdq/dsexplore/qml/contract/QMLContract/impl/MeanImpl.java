@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Mean;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class MeanImpl extends PointEstimatorImpl implements Mean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.MEAN;
-	}
+        return QMLContractPackage.Literals.MEAN;
+    }
 
 } //MeanImpl

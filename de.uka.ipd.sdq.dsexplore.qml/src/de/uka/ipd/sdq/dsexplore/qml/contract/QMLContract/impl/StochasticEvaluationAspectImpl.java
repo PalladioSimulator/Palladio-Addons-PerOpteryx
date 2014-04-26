@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.StochasticEvaluationAspect;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class StochasticEvaluationAspectImpl extends EvaluationAspectImpl implements StochasticEvaluationAspect {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StochasticEvaluationAspectImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.STOCHASTIC_EVALUATION_ASPECT;
-	}
+        return QMLContractPackage.Literals.STOCHASTIC_EVALUATION_ASPECT;
+    }
 
 } //StochasticEvaluationAspectImpl

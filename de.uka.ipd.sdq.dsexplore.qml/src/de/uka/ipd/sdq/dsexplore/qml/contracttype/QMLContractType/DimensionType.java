@@ -30,29 +30,29 @@ import de.uka.ipd.sdq.identifier.Identifier;
  */
 public interface DimensionType extends Identifier {
 	/**
-	 * Returns the value of the '<em><b>Relation Semantics</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Relation Semantics</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Relation Semantics</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relation Semantics</em>' containment reference.
-	 * @see #setRelationSemantics(RelationSemantics)
-	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getDimensionType_RelationSemantics()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Relation Semantics</em>' containment reference.
+     * @see #setRelationSemantics(RelationSemantics)
+     * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getDimensionType_RelationSemantics()
+     * @model containment="true" ordered="false"
+     * @generated
+     */
 	RelationSemantics getRelationSemantics();
 
 	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType#getRelationSemantics <em>Relation Semantics</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType#getRelationSemantics <em>Relation Semantics</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Relation Semantics</em>' containment reference.
-	 * @see #getRelationSemantics()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Relation Semantics</em>' containment reference.
+     * @see #getRelationSemantics()
+     * @generated
+     */
 	void setRelationSemantics(RelationSemantics value);
 
 } // DimensionType

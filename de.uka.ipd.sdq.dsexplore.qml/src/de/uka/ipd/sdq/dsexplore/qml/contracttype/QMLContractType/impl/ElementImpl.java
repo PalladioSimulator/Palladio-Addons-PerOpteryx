@@ -6,12 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-
 import de.uka.ipd.sdq.pcm.core.entity.impl.EntityImpl;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,22 +23,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ElementImpl extends EntityImpl implements Element {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractTypePackage.Literals.ELEMENT;
-	}
+        return QMLContractTypePackage.Literals.ELEMENT;
+    }
 
 } //ElementImpl

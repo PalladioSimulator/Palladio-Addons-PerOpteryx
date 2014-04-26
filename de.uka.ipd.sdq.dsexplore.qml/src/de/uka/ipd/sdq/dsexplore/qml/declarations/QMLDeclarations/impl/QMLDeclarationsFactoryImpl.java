@@ -6,15 +6,15 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsFactory;
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDeclarationsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static QMLDeclarationsFactory init() {
-		try {
-			QMLDeclarationsFactory theQMLDeclarationsFactory = (QMLDeclarationsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///QMLDeclarations.ecore"); 
-			if (theQMLDeclarationsFactory != null) {
-				return theQMLDeclarationsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new QMLDeclarationsFactoryImpl();
-	}
+        try {
+            QMLDeclarationsFactory theQMLDeclarationsFactory = (QMLDeclarationsFactory)EPackage.Registry.INSTANCE.getEFactory(QMLDeclarationsPackage.eNS_URI);
+            if (theQMLDeclarationsFactory != null) {
+                return theQMLDeclarationsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new QMLDeclarationsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QMLDeclarationsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case QMLDeclarationsPackage.QML_DECLARATIONS: return createQMLDeclarations();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case QMLDeclarationsPackage.QML_DECLARATIONS: return createQMLDeclarations();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QMLDeclarations createQMLDeclarations() {
-		QMLDeclarationsImpl qmlDeclarations = new QMLDeclarationsImpl();
-		return qmlDeclarations;
-	}
+        QMLDeclarationsImpl qmlDeclarations = new QMLDeclarationsImpl();
+        return qmlDeclarations;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QMLDeclarationsPackage getQMLDeclarationsPackage() {
-		return (QMLDeclarationsPackage)getEPackage();
-	}
+        return (QMLDeclarationsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static QMLDeclarationsPackage getPackage() {
-		return QMLDeclarationsPackage.eINSTANCE;
-	}
+        return QMLDeclarationsPackage.eINSTANCE;
+    }
 
 } //QMLDeclarationsFactoryImpl

@@ -6,12 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationImpl;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,22 +23,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class GenericQMLContractImpl extends QMLDeclarationImpl implements GenericQMLContract {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected GenericQMLContractImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.GENERIC_QML_CONTRACT;
-	}
+        return QMLContractPackage.Literals.GENERIC_QML_CONTRACT;
+    }
 
 } //GenericQMLContractImpl

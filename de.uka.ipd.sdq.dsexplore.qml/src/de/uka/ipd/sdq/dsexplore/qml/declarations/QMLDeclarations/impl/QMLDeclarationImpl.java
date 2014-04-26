@@ -6,12 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
-
 import de.uka.ipd.sdq.pcm.core.entity.impl.EntityImpl;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,22 +23,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class QMLDeclarationImpl extends EntityImpl implements QMLDeclaration {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected QMLDeclarationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLDeclarationsPackage.Literals.QML_DECLARATION;
-	}
+        return QMLDeclarationsPackage.Literals.QML_DECLARATION;
+    }
 
 } //QMLDeclarationImpl
