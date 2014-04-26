@@ -23,190 +23,190 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EnumRelationSemantics implements Enumerator {
 	/**
-	 * The '<em><b>Decreasing</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Decreasing</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DECREASING_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #DECREASING_VALUE
+     * @generated
+     * @ordered
+     */
 	DECREASING(0, "decreasing", "decreasing"),
 
 	/**
-	 * The '<em><b>Increasing</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Increasing</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INCREASING_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #INCREASING_VALUE
+     * @generated
+     * @ordered
+     */
 	INCREASING(1, "increasing", "increasing");
 
 	/**
-	 * The '<em><b>Decreasing</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Decreasing</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Decreasing</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DECREASING
-	 * @model name="decreasing"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #DECREASING
+     * @model name="decreasing"
+     * @generated
+     * @ordered
+     */
 	public static final int DECREASING_VALUE = 0;
 
 	/**
-	 * The '<em><b>Increasing</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Increasing</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Increasing</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INCREASING
-	 * @model name="increasing"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #INCREASING
+     * @model name="increasing"
+     * @generated
+     * @ordered
+     */
 	public static final int INCREASING_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Enum Relation Semantics</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>Enum Relation Semantics</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static final EnumRelationSemantics[] VALUES_ARRAY =
 		new EnumRelationSemantics[] {
-			DECREASING,
-			INCREASING,
-		};
+            DECREASING,
+            INCREASING,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>Enum Relation Semantics</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>Enum Relation Semantics</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final List<EnumRelationSemantics> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumRelationSemantics get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EnumRelationSemantics result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            EnumRelationSemantics result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumRelationSemantics getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EnumRelationSemantics result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            EnumRelationSemantics result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Relation Semantics</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumRelationSemantics get(int value) {
-		switch (value) {
-			case DECREASING_VALUE: return DECREASING;
-			case INCREASING_VALUE: return INCREASING;
-		}
-		return null;
-	}
+        switch (value) {
+            case DECREASING_VALUE: return DECREASING;
+            case INCREASING_VALUE: return INCREASING;
+        }
+        return null;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EnumRelationSemantics(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getValue() {
-	  return value;
-	}
+      return value;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-	  return name;
-	}
+      return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLiteral() {
-	  return literal;
-	}
+      return literal;
+    }
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		return literal;
-	}
+        return literal;
+    }
 	
 } //EnumRelationSemantics

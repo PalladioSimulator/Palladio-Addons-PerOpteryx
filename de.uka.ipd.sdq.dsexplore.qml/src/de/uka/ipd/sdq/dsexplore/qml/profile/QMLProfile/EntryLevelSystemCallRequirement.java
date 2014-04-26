@@ -30,29 +30,29 @@ import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
  */
 public interface EntryLevelSystemCallRequirement extends Requirement {
 	/**
-	 * Returns the value of the '<em><b>Entry Level System Call</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Entry Level System Call</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entry Level System Call</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Entry Level System Call</em>' reference.
-	 * @see #setEntryLevelSystemCall(EntryLevelSystemCall)
-	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getEntryLevelSystemCallRequirement_EntryLevelSystemCall()
-	 * @model ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Entry Level System Call</em>' reference.
+     * @see #setEntryLevelSystemCall(EntryLevelSystemCall)
+     * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#getEntryLevelSystemCallRequirement_EntryLevelSystemCall()
+     * @model ordered="false"
+     * @generated
+     */
 	EntryLevelSystemCall getEntryLevelSystemCall();
 
 	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement#getEntryLevelSystemCall <em>Entry Level System Call</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement#getEntryLevelSystemCall <em>Entry Level System Call</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Entry Level System Call</em>' reference.
-	 * @see #getEntryLevelSystemCall()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Entry Level System Call</em>' reference.
+     * @see #getEntryLevelSystemCall()
+     * @generated
+     */
 	void setEntryLevelSystemCall(EntryLevelSystemCall value);
 
 } // EntryLevelSystemCallRequirement

@@ -6,18 +6,15 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
-
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,104 +31,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValues()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValues()
+     * @generated
+     * @ordered
+     */
 	protected EList<Element> values;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SetLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractPackage.Literals.SET_LITERAL;
-	}
+        return QMLContractPackage.Literals.SET_LITERAL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Element> getValues() {
-		if (values == null) {
-			values = new EObjectResolvingEList<Element>(Element.class, this, QMLContractPackage.SET_LITERAL__VALUES);
-		}
-		return values;
-	}
+        if (values == null) {
+            values = new EObjectResolvingEList<Element>(Element.class, this, QMLContractPackage.SET_LITERAL__VALUES);
+        }
+        return values;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case QMLContractPackage.SET_LITERAL__VALUES:
-				return getValues();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case QMLContractPackage.SET_LITERAL__VALUES:
+                return getValues();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case QMLContractPackage.SET_LITERAL__VALUES:
-				getValues().clear();
-				getValues().addAll((Collection<? extends Element>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case QMLContractPackage.SET_LITERAL__VALUES:
+                getValues().clear();
+                getValues().addAll((Collection<? extends Element>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case QMLContractPackage.SET_LITERAL__VALUES:
-				getValues().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case QMLContractPackage.SET_LITERAL__VALUES:
+                getValues().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case QMLContractPackage.SET_LITERAL__VALUES:
-				return values != null && !values.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case QMLContractPackage.SET_LITERAL__VALUES:
+                return values != null && !values.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SetLiteralImpl

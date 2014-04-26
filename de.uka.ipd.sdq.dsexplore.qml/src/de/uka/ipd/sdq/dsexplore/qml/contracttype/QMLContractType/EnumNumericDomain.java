@@ -23,190 +23,190 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EnumNumericDomain implements Enumerator {
 	/**
-	 * The '<em><b>Real</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Real</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #REAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #REAL_VALUE
+     * @generated
+     * @ordered
+     */
 	REAL(0, "real", "real"),
 
 	/**
-	 * The '<em><b>Integer</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Integer</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INTEGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #INTEGER_VALUE
+     * @generated
+     * @ordered
+     */
 	INTEGER(1, "integer", "integer");
 
 	/**
-	 * The '<em><b>Real</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Real</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Real</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #REAL
-	 * @model name="real"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #REAL
+     * @model name="real"
+     * @generated
+     * @ordered
+     */
 	public static final int REAL_VALUE = 0;
 
 	/**
-	 * The '<em><b>Integer</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Integer</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTEGER
-	 * @model name="integer"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #INTEGER
+     * @model name="integer"
+     * @generated
+     * @ordered
+     */
 	public static final int INTEGER_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static final EnumNumericDomain[] VALUES_ARRAY =
 		new EnumNumericDomain[] {
-			REAL,
-			INTEGER,
-		};
+            REAL,
+            INTEGER,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final List<EnumNumericDomain> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumNumericDomain get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EnumNumericDomain result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            EnumNumericDomain result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumNumericDomain getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EnumNumericDomain result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            EnumNumericDomain result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EnumNumericDomain get(int value) {
-		switch (value) {
-			case REAL_VALUE: return REAL;
-			case INTEGER_VALUE: return INTEGER;
-		}
-		return null;
-	}
+        switch (value) {
+            case REAL_VALUE: return REAL;
+            case INTEGER_VALUE: return INTEGER;
+        }
+        return null;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EnumNumericDomain(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getValue() {
-	  return value;
-	}
+      return value;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-	  return name;
-	}
+      return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLiteral() {
-	  return literal;
-	}
+      return literal;
+    }
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		return literal;
-	}
+        return literal;
+    }
 	
 } //EnumNumericDomain

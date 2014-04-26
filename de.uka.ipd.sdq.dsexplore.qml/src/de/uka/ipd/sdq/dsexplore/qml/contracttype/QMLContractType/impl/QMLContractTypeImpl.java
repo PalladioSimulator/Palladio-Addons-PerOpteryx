@@ -6,19 +6,16 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationImpl;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,104 +32,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContractType {
 	/**
-	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDimensions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDimensions()
+     * @generated
+     * @ordered
+     */
 	protected EList<Dimension> dimensions;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected QMLContractTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractTypePackage.Literals.QML_CONTRACT_TYPE;
-	}
+        return QMLContractTypePackage.Literals.QML_CONTRACT_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Dimension> getDimensions() {
-		if (dimensions == null) {
-			dimensions = new EObjectResolvingEList<Dimension>(Dimension.class, this, QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS);
-		}
-		return dimensions;
-	}
+        if (dimensions == null) {
+            dimensions = new EObjectResolvingEList<Dimension>(Dimension.class, this, QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS);
+        }
+        return dimensions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
-				return getDimensions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
+                return getDimensions();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
-				getDimensions().clear();
-				getDimensions().addAll((Collection<? extends Dimension>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
+                getDimensions().clear();
+                getDimensions().addAll((Collection<? extends Dimension>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
-				getDimensions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
+                getDimensions().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
-				return dimensions != null && !dimensions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS:
+                return dimensions != null && !dimensions.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //QMLContractTypeImpl

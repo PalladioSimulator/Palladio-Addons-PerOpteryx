@@ -6,19 +6,16 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-
-import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,104 +32,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class DimensionTypeRepositoryImpl extends IdentifierImpl implements DimensionTypeRepository {
 	/**
-	 * The cached value of the '{@link #getDimensionTypes() <em>Dimension Types</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDimensionTypes() <em>Dimension Types</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDimensionTypes()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDimensionTypes()
+     * @generated
+     * @ordered
+     */
 	protected EList<DimensionType> dimensionTypes;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DimensionTypeRepositoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return QMLContractTypePackage.Literals.DIMENSION_TYPE_REPOSITORY;
-	}
+        return QMLContractTypePackage.Literals.DIMENSION_TYPE_REPOSITORY;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<DimensionType> getDimensionTypes() {
-		if (dimensionTypes == null) {
-			dimensionTypes = new EObjectResolvingEList<DimensionType>(DimensionType.class, this, QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES);
-		}
-		return dimensionTypes;
-	}
+        if (dimensionTypes == null) {
+            dimensionTypes = new EObjectResolvingEList<DimensionType>(DimensionType.class, this, QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES);
+        }
+        return dimensionTypes;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
-				return getDimensionTypes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
+                return getDimensionTypes();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
-				getDimensionTypes().clear();
-				getDimensionTypes().addAll((Collection<? extends DimensionType>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
+                getDimensionTypes().clear();
+                getDimensionTypes().addAll((Collection<? extends DimensionType>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
-				getDimensionTypes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
+                getDimensionTypes().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
-				return dimensionTypes != null && !dimensionTypes.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case QMLContractTypePackage.DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES:
+                return dimensionTypes != null && !dimensionTypes.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //DimensionTypeRepositoryImpl
