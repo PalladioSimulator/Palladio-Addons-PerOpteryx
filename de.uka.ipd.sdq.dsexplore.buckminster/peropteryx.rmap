@@ -14,6 +14,7 @@
   <rm:locator searchPathRef="FeatureModel" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
   <rm:locator searchPathRef="WorkflowEngine" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
   <rm:locator searchPathRef="mediniqvt" failOnError="false" pattern="^de\.ikv\.medini\.qvt\..*" />
+  <rm:locator searchPathRef="simulizarsvn" failOnError="true" pattern="^org\.palladiosimulator\.simulizar.*" />
   <rm:locator searchPathRef="emf" failOnError="false" />
   <rm:locator searchPathRef="eclipse-juno" failOnError="false" />
   <rm:locator searchPathRef="orbit" failOnError="false" />
@@ -77,6 +78,15 @@
     <rm:property key="buckminster.mutable" value="false"/>
   	<rm:uri format="http://www.ikv.de/qvt/update-site-indigo/"/>
   </rm:provider></rm:searchPath>
+  
+  <!-- SimuLizar SVN -->
+  <rm:searchPath name="simulizarsvn">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
+      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Incubation/SimuLizar/trunk/{0}">
+      	<bc:propertyRef key="buckminster.component" />
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
   
   <!-- EMF Update Site -->
   <rm:searchPath name="emf">
