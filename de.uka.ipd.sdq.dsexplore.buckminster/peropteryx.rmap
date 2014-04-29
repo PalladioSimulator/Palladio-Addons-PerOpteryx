@@ -103,6 +103,7 @@
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/recorderframework/nightly/"/>
     </rm:provider>
+    </rm:searchPath>
   
   <!-- EMF Update Site -->
   <rm:searchPath name="emf">
