@@ -19,6 +19,7 @@
   <rm:locator searchPathRef="simulizarsvn" failOnError="true" pattern="^org\.palladiosimulator\.simulizar.*" />
   <rm:locator searchPathRef="emf" failOnError="false" />
   <rm:locator searchPathRef="eclipse-juno" failOnError="false" />
+  <rm:locator searchPathRef="kepler" failOnError="true" pattern="^org\.eclipse\..*" />
   <rm:locator searchPathRef="orbit" failOnError="false" />
   
   
@@ -120,6 +121,14 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="http://download.eclipse.org/releases/juno/"/>
+    </rm:provider>
+  </rm:searchPath>
+  
+  <rm:searchPath name="kepler">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="http://download.eclipse.org/releases/kepler/"/>
     </rm:provider>
   </rm:searchPath>
   
