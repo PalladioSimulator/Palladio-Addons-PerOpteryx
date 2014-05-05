@@ -5,7 +5,7 @@
   <rm:locator searchPathRef="palladio-core" failOnError="false" />
   <rm:locator searchPathRef="SDQ_Commons" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
   <rm:locator searchPathRef="SDQ_Commons" failOnError="false" pattern="^edu\.kit\.ipd\.sdq\..*" />
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.* />
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
   <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
   <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^org\.hibernate.*" />
   <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^org\.rosuda*" />
