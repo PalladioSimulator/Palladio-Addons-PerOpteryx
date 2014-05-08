@@ -10,7 +10,9 @@
   <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
   <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
   <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
-  <rm:locator searchPathRef="featuremodelsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.feature.*" />
+  <rm:locator searchPathRef="featuremodelsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.featureconfig.*" />
+  <rm:locator searchPathRef="featuremodelsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.featuremodel.*" />
+  <rm:locator searchPathRef="featureinstancesvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.featureinstance.*" />
   <rm:locator searchPathRef="thirdparty" failOnError="true" pattern="^org\.opt4j.*" />
   <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^de\.uka\.ipd\.sdq\..*" />
   <rm:locator searchPathRef="SensorFramework" failOnError="false" pattern="^org\.hibernate.*" />
@@ -109,6 +111,14 @@
   <rm:searchPath name="featuremodelsvn">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
       <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/FeatureModel/Core/trunk/{0}">
+      	<bc:propertyRef key="buckminster.component" />
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+
+  <rm:searchPath name="featureinstancesvn">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
+      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/FeatureModel/Addons/FeatureInstanceEditor/trunk/{0}">
       	<bc:propertyRef key="buckminster.component" />
       </rm:uri>
     </rm:provider>
