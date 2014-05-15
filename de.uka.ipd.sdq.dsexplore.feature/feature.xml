@@ -419,7 +419,7 @@ litigation.
       <import plugin="de.uka.ipd.sdq.context" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.statistics" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.pcmsolver" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.simucomframework" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.simucomframework" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.apache.log4j"/>
       <import plugin="de.uka.ipd.sdq.pcm" version="3.0.0" match="greaterOrEqual"/>
