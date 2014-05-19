@@ -68,7 +68,7 @@ public class AnalysisProxy implements IAnalysis {
 	}
 	
 	private IAnalysis loadDecoratedAnalysis() throws CoreException{
-		// obtain the extension of the choosen analysis method 
+		// obtain the extension of the chosen analysis method 
 		IExtension[] extensions = ExtensionHelper.loadAnalysisExtensions();
 		for (IExtension ext : extensions) {
 			IConfigurationElement[] elements = ext.getConfigurationElements();

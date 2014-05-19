@@ -58,8 +58,7 @@ import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
  */
 public class ReliabilityAnalysis extends AbstractAnalysis implements IAnalysis {
 	
-	public ReliabilityAnalysis(
-			IAnalysisQualityAttributeDeclaration qualityAttribute) {
+	public ReliabilityAnalysis() {
 		super(new ReliabilitySolverQualityAttributeDeclaration());
 		// TODO Auto-generated constructor stub
 	}
