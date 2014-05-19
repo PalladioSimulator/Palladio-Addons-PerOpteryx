@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simucom;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,8 +13,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.recorderframework.AbstractRecorderConfigurationFactory;
 import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 
@@ -39,6 +43,7 @@ import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
+import de.uka.ipd.sdq.simulation.AbstractSimulationConfig;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -93,7 +98,15 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         final String experimentName = getExperimentName(pheno);
         this.previousExperimentNames.put(pheno.getGenotypeID().hashCode(), experimentName);
-        this.simuComWorkflowConfiguration.getSimulationConfiguration().setNameBase(experimentName);
+        
+        ILaunchConfigurationWorkingCopy launchWorkingCopy = this.config.getWorkingCopy();
+        launchWorkingCopy.setAttribute(AbstractSimulationConfig.EXPERIMENT_RUN, experimentName);
+                
+        this.simuComWorkflowConfiguration = new DSESimuComWorkflowLauncher().deriveConfiguration(launchWorkingCopy);
+        this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
+        
+        //this.simuComWorkflowConfiguration.getSimulationConfiguration().setNameBase(experimentName);
+        //((AbstractRecorderConfigurationFactory)this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfigurationFactory()).setExperimentNameAndRunName(experimentName);
 
         System.gc();
 
@@ -115,7 +128,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         // IRecorderConfiguration recorderConfig = this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfig();
 
-        if (this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderName().contains("sensorframework")){
+        if (this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderName().toLowerCase().contains("sensorframework")){
 
             // Every few runs the datasource needs to be reloaded because the simulation will fail with OutOfmemoryError after ~300 simulations otherwise
             if (this.datasourceReloadCount >= 100 ){
@@ -340,10 +353,21 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
      * @param experimentDateTime
      * @return The {@link Date} of the {@link ExperimentRun}
      */
-    private long extractTimestamp(String experimentDateTime) {
+	private long extractTimestamp(String experimentDateTime) {
         //XXX fix this as soon as Bug 395 is fixed
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat();
+		try {
+			return dateFormat.parse(experimentDateTime).getTime();
+		} catch (ParseException e) {
+			logger.error("Cannot parse sensorframework experiment run String");
+			e.printStackTrace();
+			return 0;
+		}
+    	
+    	//return Date.parse(experimentDateTime);
 
-        //Cut the "Run " part.
+        /*//Cut the "Run " part.
         experimentDateTime = experimentDateTime.substring(4);
         final String[] experimentDateTimeArray = experimentDateTime.split(" ");
         final String month = experimentDateTimeArray[1];
@@ -386,7 +410,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         //The date in seconds since year 0.
         final long date = (((((year * 12) + monthNo) * 31 + day)* 24 + hour)*60 + minute ) * 60 + second;
 
-        return date;
+        return date;*/
     }
 
 
@@ -407,10 +431,6 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         }
 
         this.initialExperimentName = this.config.getAttribute(SimuComConfig.EXPERIMENT_RUN, "");
-
-        this.simuComWorkflowConfiguration = new DSESimuComWorkflowLauncher().deriveConfiguration(this.config);
-        this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
-
 
         //		this.objectives = new ArrayList<Objective>(scenarios.size());
         //		for (UsageScenario usageScenario : scenarios) {
