@@ -173,8 +173,13 @@ public class CostUtil {
 		
 		if (numberOfYears == 0){
 			if (interest == 0 ){
-				logger.warn("Interest rate of 0 and no time period lead to infinite costs over time ");
-				return Double.POSITIVE_INFINITY;
+				if (operatingCost > 0){
+					logger.warn("Interest rate of 0, no time period, and positive operating cost lead to infinite costs over time: Setting total cost to infinity.");
+					return Double.POSITIVE_INFINITY;
+				} else {
+					// No operating cost defined either. 
+					operatingCostWithInterest = 0; 
+				}
 			} else {
 				operatingCostWithInterest = operatingCost/interest;
 			}
