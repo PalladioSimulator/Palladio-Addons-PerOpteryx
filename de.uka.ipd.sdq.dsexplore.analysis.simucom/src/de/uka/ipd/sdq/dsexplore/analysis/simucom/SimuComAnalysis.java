@@ -120,7 +120,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
 
     /**
-     * Search in all open data sources whether there is already an experiment run with this name.
+     * Search in all open data sources whether there is already an experiment run with this name and check that it contains some results. 
      * @param experimentName
      * @return
      */
@@ -152,7 +152,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
                 if (experimentSet.size() > 0){
                     experiment = experimentSet.iterator().next();
 
-                    if (experiment.getExperimentRuns().size() > 0){
+                    if (experiment.getExperimentRuns().size() > 0 && experiment.getSensors().size() > 0 ){
                         return false;
                     }
 
@@ -356,7 +356,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 	private long extractTimestamp(String experimentDateTime) {
         //XXX fix this as soon as Bug 395 is fixed
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
 		try {
 			return dateFormat.parse(experimentDateTime).getTime();
 		} catch (ParseException e) {
