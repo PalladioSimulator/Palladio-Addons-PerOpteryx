@@ -341,7 +341,9 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         return latest;
     }
 
-
+    //FIXME: use constant from AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT
+    // as soon as the Recorderframework build has been fixed. 
+    public static final String EXPERIMENT_RUN_DATE_FORMAT = "yyyy/MM/dd HH:mm:ss:SSS";
 
     /**
      * Extract time stamps from the experimentDateTime string. This is just a
@@ -354,9 +356,10 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
      * @return The {@link Date} of the {@link ExperimentRun}
      */
 	private long extractTimestamp(String experimentDateTime) {
-        //XXX fix this as soon as Bug 395 is fixed
 		
-        SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
+		// FIXME: use constant from AbstractRecorderConfigurationFactory as soon as the Recorderframework build has been fixed. 
+		SimpleDateFormat dateFormat = new SimpleDateFormat(EXPERIMENT_RUN_DATE_FORMAT);
+        //SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
 		try {
 			return dateFormat.parse(experimentDateTime).getTime();
 		} catch (ParseException e) {
