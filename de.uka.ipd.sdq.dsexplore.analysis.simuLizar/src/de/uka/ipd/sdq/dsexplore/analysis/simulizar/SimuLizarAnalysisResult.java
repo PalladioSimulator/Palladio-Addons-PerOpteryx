@@ -85,7 +85,6 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	private double throughput;
 	
 	private double maxUtilization;
-	
 	private double stdDeviation;
 
 	private ConfidenceInterval confidenceInterval; 
@@ -109,6 +108,8 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	private SimuLizarQualityAttributeDeclaration qualityAttributeInfo;
 
+	private int sloViolations = 0;
+
 
 	
 	private static Logger logger = 
@@ -131,6 +132,7 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.stdDeviation = calculateValue(sam,"sd", TimeseriesData.TIMESPAN);
 		this.medianValue = calculateValue(sam,"median", TimeseriesData.TIMESPAN);
 		this.throughput = calculateThroughput(sam);
+		this.sloViolations = calculateNumberOfSloViolations();
 		this.observations = sam.getMeasurements().size();
 		
 		this.confidenceInterval = determineConfidenceInterval();
@@ -159,11 +161,24 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		
 		return numberOfMeasurements / duration;
 	}
+	private int calculateNumberOfSloViolations() throws AnalysisFailedException {
+
+		int totalNumberOfSLOViolations = 0;
+		Collection<Sensor> sensorList = this.experiment.getSensors();
+		for (Sensor sensor : sensorList) {
+			if(sensor.getSensorName().contains("SLO")) {
+			 SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
+			 totalNumberOfSLOViolations += calculateValue(results, "max", TimeseriesData.TIMESPAN);
+			}
+		}
+		return totalNumberOfSLOViolations;
+	}
+	
 
 	private ResultDecoratorRepository retrieveResults(PCMInstance pcmInstance) throws AnalysisFailedException {
 		
 		ResultDecoratorRepository repo = ResultdecoratorFactory.eINSTANCE.createResultDecoratorRepository();
-		retrieveResourceUtilisation(pcmInstance, repo);
+		//retrieveResourceUtilisation(pcmInstance, repo);
 		retrieveServiceResults(pcmInstance, repo);
 		retrievePassiveResourceUtil(repo, pcmInstance);
 		
