@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/1.0"
+            class="de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="designdecision"
+            class="de.uka.ipd.sdq.pcm.designdecision.util.designdecisionResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DesignDecision -->
+      <package
+            uri="http:///DesignDecision/GDoF.ecore"
+            class="de.uka.ipd.sdq.pcm.designdecision.GDoF.GDoFPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DesignDecision -->
+      <package
+            uri="http:///DesignDecision/QualityProperties.ecore"
+            class="de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityPropertiesPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated DesignDecision -->
+      <parser
+            type="qualityproperties"
+            class="de.uka.ipd.sdq.pcm.designdecision.QualityProperties.util.QualityPropertiesResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DesignDecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0"
+            class="de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated DesignDecision -->
+      <parser
+            type="resourcerepository"
+            class="de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryResourceFactoryImpl"/>
+   </extension>
+
+</plugin>
