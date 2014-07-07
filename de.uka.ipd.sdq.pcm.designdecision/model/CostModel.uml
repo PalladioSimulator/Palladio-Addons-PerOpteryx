@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/1" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Default/1 Default.profile.uml#_IN8k8MmBEdqBcN1R6EvWUw http://www.eclipse.org/uml2/schemas/Ecore/3 pathmap://UML_PROFILES/Ecore.profile.uml#_vy-HUYinEdqtvbnfB2L_5w">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 Default.profile.uml#_fNwoAAqoEd6-N_NOT9vsCA http://www.eclipse.org/uml2/schemas/Ecore/3 pathmap://UML_PROFILES/Ecore.profile.uml#_vy-HUYinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_p4CtAPhrEd23O5YGd3Oe8g" name="CostModel">
     <ownedComment xmi:id="_r9-OoLG-Ed6moe-uIL_C5w" annotatedElement="_p4CtAPhrEd23O5YGd3Oe8g">
       <body>The CostModel metamodel represents the cost of a software architecture and its alternatives. &#xD;
@@ -54,6 +54,9 @@ When using the Cost, you can read the initialCost to get the procurement cost fo
       </ownedComment>
       <ownedAttribute xmi:id="_EAbrwCKpEd64q9HNdQ0aqw" name="annotatedElement" visibility="public" isReadOnly="true" isDerived="true">
         <type xmi:type="uml:Class" href="Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_HDDYUNYmEeGoH4oH8Tc2hA" name="totalCost" visibility="public" isReadOnly="true" isDerived="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_6_drgPhsEd23O5YGd3Oe8g" name="operatingCost" visibility="public" isReadOnly="true" isDerived="true">
         <ownedComment xmi:id="_oaaYgPkHEd23O5YGd3Oe8g" annotatedElement="_6_drgPhsEd23O5YGd3Oe8g">
@@ -133,6 +136,26 @@ If we have FixedProcessingResourceCost for certain types of, for example, CPUs, 
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wzzgo_jsEd23O5YGd3Oe8g" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wzzgovjsEd23O5YGd3Oe8g"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_O1oVcGFGEeG1seYYX2YXPg" name="timePeriodYears" visibility="public">
+        <ownedComment xmi:id="_Vr9UEGFGEeG1seYYX2YXPg" annotatedElement="_O1oVcGFGEeG1seYYX2YXPg">
+          <body>Time&amp;nbsp;period&amp;nbsp;in&amp;nbsp;which&amp;nbsp;the&amp;nbsp;operating&amp;nbsp;costs&amp;nbsp;are&amp;nbsp;expected.If the time period is zero it&#xD;
+is considered as not set and the perpetuitiy is caluclated, i.e. the total costs if the&amp;nbsp;operating costs are due&#xD;
+infinitely long.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_DZraEGFHEeGfc4IbyIDm7w">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_sgEP8GFEEeGlHNaTUIdM5g" name="interest" visibility="public">
+        <ownedComment xmi:id="_OHgrMGFGEeG1seYYX2YXPg" annotatedElement="_sgEP8GFEEeGlHNaTUIdM5g">
+          <body>&lt;p>&#xD;
+    Assumed&amp;nbsp;interest&amp;nbsp;rate&amp;nbsp;per&amp;nbsp;year for calculating the present value based on the operating costs and&#xD;
+    the considered time frame in years given by timePeriodYears.&#xD;
+&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_wzzgoPjsEd23O5YGd3Oe8g" memberEnd="_wzzgofjsEd23O5YGd3Oe8g _wzzgpPjsEd23O5YGd3Oe8g">
       <ownedEnd xmi:id="_wzzgpPjsEd23O5YGd3Oe8g" name="" visibility="private" type="_vCZ0cPjsEd23O5YGd3Oe8g" association="_wzzgoPjsEd23O5YGd3Oe8g"/>
@@ -190,7 +213,7 @@ instance.</body>
     </profileApplication>
     <profileApplication xmi:id="_p4CtB_hrEd23O5YGd3Oe8g">
       <eAnnotations xmi:id="_p4CtCPhrEd23O5YGd3Oe8g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_IN8k8MmBEdqBcN1R6EvWUw"/>
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_fNwoAAqoEd6-N_NOT9vsCA"/>
       </eAnnotations>
       <appliedProfile href="Default.profile.uml#_a_S3wNWLEdiy4IqP8whjFA"/>
     </profileApplication>
@@ -223,4 +246,7 @@ instance.</body>
   <Ecore:EReference xmi:id="_oKiLsCIsEd-VcevKbl3Efg" isTransient="true" isVolatile="true" isUnsettable="true" xmlNamespace="" visibility="ReadOnly" base_Property="_T0k_MCIsEd-VcevKbl3Efg" referenceName="term"/>
   <Ecore:EReference xmi:id="_r6Og0CI9Ed-VcevKbl3Efg" isTransient="true" isVolatile="true" isUnsettable="true" visibility="ReadOnly" base_Property="_EAbrwCKpEd64q9HNdQ0aqw" referenceName="annotatedElement"/>
   <Default:Documentation xmi:id="_lwi3QMG_EeCcG5_UlhoSUw" base_Comment="_ltVyQMG_EeCcG5_UlhoSUw"/>
+  <Default:Documentation xmi:id="_OHqcMGFGEeG1seYYX2YXPg" base_Comment="_OHgrMGFGEeG1seYYX2YXPg"/>
+  <Default:Documentation xmi:id="_VsGeAGFGEeG1seYYX2YXPg" base_Comment="_Vr9UEGFGEeG1seYYX2YXPg"/>
+  <Ecore:EAttribute xmi:id="_Nmmk4NYmEeGoH4oH8Tc2hA" isTransient="true" isVolatile="true" base_Property="_HDDYUNYmEeGoH4oH8Tc2hA"/>
 </xmi:XMI>

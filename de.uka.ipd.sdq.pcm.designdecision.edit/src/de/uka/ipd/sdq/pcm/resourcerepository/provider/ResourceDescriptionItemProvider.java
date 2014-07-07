@@ -26,12 +26,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -70,8 +72,31 @@ public class ResourceDescriptionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addResourcesCanBeUsedIndividuallyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Resources Can Be Used Individually feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResourcesCanBeUsedIndividuallyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ResourceDescription_ResourcesCanBeUsedIndividually_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ResourceDescription_ResourcesCanBeUsedIndividually_feature", "_UI_ResourceDescription_type"),
+				 resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -124,7 +149,8 @@ public class ResourceDescriptionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ResourceDescription_type");
+		ResourceDescription resourceDescription = (ResourceDescription)object;
+		return getString("_UI_ResourceDescription_type") + " " + resourceDescription.getResourcesCanBeUsedIndividually();
 	}
 
 	/**
@@ -139,6 +165,9 @@ public class ResourceDescriptionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ResourceDescription.class)) {
+			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION:
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -166,7 +195,7 @@ public class ResourceDescriptionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
-				 ResourceenvironmentFactory.eINSTANCE.createProcessingResourceSpecification()));
+				 ResourceenvironmentFactory.eINSTANCE.createResourceContainer()));
 	}
 
 	/**

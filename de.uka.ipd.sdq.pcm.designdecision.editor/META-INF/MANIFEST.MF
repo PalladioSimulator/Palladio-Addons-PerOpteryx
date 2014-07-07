@@ -8,7 +8,11 @@ Bundle-Activator: de.uka.ipd.sdq.pcm.designdecision.presentation.DesignDecisionE
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.pcm.designdecision.presentation
+Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.presentation,
+ de.uka.ipd.sdq.pcm.designdecision.presentation,
+ de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation,
+ de.uka.ipd.sdq.pcm.designdecision.specific.presentation,
+ de.uka.ipd.sdq.pcm.resourcerepository.presentation
 Require-Bundle: de.uka.ipd.sdq.pcm.designdecision.edit;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
@@ -24,6 +28,8 @@ Require-Bundle: de.uka.ipd.sdq.pcm.designdecision.edit;visibility:=reexport,
  de.uka.ipd.sdq.featuremodel.editor;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.cost;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.cost.edit;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ de.uka.ipd.sdq.featuremodel.edit;visibility:=reexport,
  de.uka.ipd.sdq.pcm.resultdecorator;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.resultdecorator.edit;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

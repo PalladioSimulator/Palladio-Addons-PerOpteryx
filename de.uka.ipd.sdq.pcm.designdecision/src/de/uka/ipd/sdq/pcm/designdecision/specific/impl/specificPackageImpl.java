@@ -1032,7 +1032,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		assembledComponentDegreeEClass = createEClass(ASSEMBLED_COMPONENT_DEGREE);
 
 		capacityDegreeEClass = createEClass(CAPACITY_DEGREE);
-		
+
 		monitoringDegreeEClass = createEClass(MONITORING_DEGREE);
 	}
 
@@ -1208,7 +1208,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(assembledComponentDegreeEClass, AssembledComponentDegree.class, "AssembledComponentDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(capacityDegreeEClass, CapacityDegree.class, "CapacityDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		
+
 		initEClass(monitoringDegreeEClass, MonitoringDegree.class, "MonitoringDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 

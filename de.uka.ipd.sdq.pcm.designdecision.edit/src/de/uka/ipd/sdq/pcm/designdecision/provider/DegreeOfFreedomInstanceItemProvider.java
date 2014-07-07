@@ -63,6 +63,7 @@ public class DegreeOfFreedomInstanceItemProvider
 
 			addPrimaryChangedPropertyDescriptor(object);
 			addDofPropertyDescriptor(object);
+			addChangeableElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -103,6 +104,28 @@ public class DegreeOfFreedomInstanceItemProvider
 				 getString("_UI_DegreeOfFreedomInstance_dof_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_dof_feature", "_UI_DegreeOfFreedomInstance_type"),
 				 designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__DOF,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Changeable Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addChangeableElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DegreeOfFreedomInstance_changeableElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_changeableElements_feature", "_UI_DegreeOfFreedomInstance_type"),
+				 designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS,
 				 true,
 				 false,
 				 true,

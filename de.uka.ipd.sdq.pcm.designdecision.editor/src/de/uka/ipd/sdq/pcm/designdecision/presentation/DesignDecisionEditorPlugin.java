@@ -63,10 +63,10 @@ public final class DesignDecisionEditorPlugin extends EMFPlugin {
 				FeaturemodelEditPlugin.INSTANCE,
 				IdentifierEditPlugin.INSTANCE,
 				PalladioComponentModelEditPlugin.INSTANCE,
-				ProbabilityFunctionEditPlugin.INSTANCE,
 				ResultdecoratorEditPlugin.INSTANCE,
 				StoexEditPlugin.INSTANCE,
 				UnitsEditPlugin.INSTANCE,
+				ProbabilityFunctionEditPlugin.INSTANCE,
 			});
 	}
 

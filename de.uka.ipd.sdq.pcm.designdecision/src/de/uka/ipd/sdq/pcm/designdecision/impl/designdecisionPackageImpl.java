@@ -444,7 +444,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		candidatesEClass = createEClass(CANDIDATES);
 		createEReference(candidatesEClass, CANDIDATES__CANDIDATE);
 		createEReference(candidatesEClass, CANDIDATES__PROBLEM);
-
 	}
 
 	/**

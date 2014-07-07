@@ -2393,14 +2393,14 @@ public interface specificPackage extends EPackage {
 	int CAPACITY_DEGREE_FEATURE_COUNT = DISCRETE_RANGE_DEGREE_FEATURE_COUNT + 0;
 	
 	/**
-	 * The meta object id for the '{@link de.de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl <em>Monitoring Degree</em>}' class.
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl <em>Monitoring Degree</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getMonitoringDegree()
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getMonitoringDegree()
 	 * @generated
 	 */
-	int MONITORING_DEGREE = 44;
+	int MONITORING_DEGREE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2421,6 +2421,15 @@ public interface specificPackage extends EPackage {
 	int MONITORING_DEGREE__DOF = CONTINUOUS_RANGE_DEGREE__DOF;
 
 	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__CHANGEABLE_ELEMENTS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2437,6 +2446,15 @@ public interface specificPackage extends EPackage {
 	 * @ordered
 	 */
 	int MONITORING_DEGREE__LOWER_BOUND_INCLUDED = CONTINUOUS_RANGE_DEGREE__LOWER_BOUND_INCLUDED;
+
+	/**
+	 * The feature id for the '<em><b>Number Of Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__NUMBER_OF_STEPS = CONTINUOUS_RANGE_DEGREE__NUMBER_OF_STEPS;
 
 	/**
 	 * The feature id for the '<em><b>To</b></em>' attribute.
@@ -3582,11 +3600,11 @@ public interface specificPackage extends EPackage {
 		
 
 		/**
-		 * The meta object literal for the '{@link de.de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl <em>Monitoring Degree</em>}' class.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl <em>Monitoring Degree</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getMonitoringDegree()
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.MonitoringDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getMonitoringDegree()
 		 * @generated
 		 */
 		EClass MONITORING_DEGREE = eINSTANCE.getMonitoringDegree();
