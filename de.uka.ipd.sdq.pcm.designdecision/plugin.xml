@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://sdq.ipd.uka.de/DesignDecision/1.0"
+            uri="http://sdq.ipd.uka.de/DesignDecision/2.0"
             class="de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage"
             genModel="model/DesignDecision.genmodel"/>
    </extension>
@@ -21,6 +21,32 @@
       <parser
             type="designdecision"
             class="de.uka.ipd.sdq.pcm.designdecision.util.designdecisionResourceFactoryImpl"/>
+   </extension>
+   
+      <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/GDoF/2.0"
+            class="de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="gdof"
+            class="de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofResourceFactoryImpl"/>
+   </extension>
+   
+      <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0"
+            class="de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="resourcerepository"
+            class="de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryResourceFactoryImpl"/>
    </extension>
 
 </plugin>

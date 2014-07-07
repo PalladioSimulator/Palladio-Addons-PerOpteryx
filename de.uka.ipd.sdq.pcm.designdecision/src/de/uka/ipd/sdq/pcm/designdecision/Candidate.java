@@ -1,12 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
-import de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityProperty;
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -51,7 +48,7 @@ public interface Candidate extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Quality Property</b></em>' containment reference list.
-	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityProperty}.
+	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Quality Property</em>' containment reference list isn't clear,

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
@@ -42,7 +38,7 @@ public interface DiscreteRangeChoice extends Choice {
 	 * @return the value of the '<em>Chosen Value</em>' attribute.
 	 * @see #setChosenValue(int)
 	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDiscreteRangeChoice_ChosenValue()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	int getChosenValue();

@@ -10,17 +10,17 @@ import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 
-import de.uka.ipd.sdq.pcm.designdecision.GDoF.GDoFPackage;
-
-import de.uka.ipd.sdq.pcm.designdecision.GDoF.impl.GDoFPackageImpl;
-
-import de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityPropertiesPackage;
-
-import de.uka.ipd.sdq.pcm.designdecision.QualityProperties.impl.QualityPropertiesPackageImpl;
-
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
+import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
+
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl;
+
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl;
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
+import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceenvironmentPackage;
 
@@ -33,6 +33,7 @@ import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryValidator;
 
 import de.uka.ipd.sdq.pcm.resultdecorator.ResultdecoratorPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -116,20 +117,23 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI) instanceof designdecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI) : designdecisionPackage.eINSTANCE);
-		GDoFPackageImpl theGDoFPackage = (GDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GDoFPackage.eNS_URI) instanceof GDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GDoFPackage.eNS_URI) : GDoFPackage.eINSTANCE);
-		QualityPropertiesPackageImpl theQualityPropertiesPackage = (QualityPropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QualityPropertiesPackage.eNS_URI) instanceof QualityPropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QualityPropertiesPackage.eNS_URI) : QualityPropertiesPackage.eINSTANCE);
+		gdofPackageImpl thegdofPackage = (gdofPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) instanceof gdofPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) : gdofPackage.eINSTANCE);
+		qualitypropertiesPackageImpl thequalitypropertiesPackage = (qualitypropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI) instanceof qualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI) : qualitypropertiesPackage.eINSTANCE);
+		specificPackageImpl thespecificPackage = (specificPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theresourcerepositoryPackage.createPackageContents();
 		thedesigndecisionPackage.createPackageContents();
-		theGDoFPackage.createPackageContents();
-		theQualityPropertiesPackage.createPackageContents();
+		thegdofPackage.createPackageContents();
+		thequalitypropertiesPackage.createPackageContents();
+		thespecificPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theresourcerepositoryPackage.initializePackageContents();
 		thedesigndecisionPackage.initializePackageContents();
-		theGDoFPackage.initializePackageContents();
-		theQualityPropertiesPackage.initializePackageContents();
+		thegdofPackage.initializePackageContents();
+		thequalitypropertiesPackage.initializePackageContents();
+		thespecificPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -199,6 +203,15 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getResourceDescription_ResourcesCanBeUsedIndividually() {
+		return (EAttribute)resourceDescriptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public resourcerepositoryFactory getresourcerepositoryFactory() {
 		return (resourcerepositoryFactory)getEFactoryInstance();
 	}
@@ -228,6 +241,7 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		resourceDescriptionEClass = createEClass(RESOURCE_DESCRIPTION);
 		createEReference(resourceDescriptionEClass, RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION);
 		createEReference(resourceDescriptionEClass, RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION);
+		createEAttribute(resourceDescriptionEClass, RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY);
 	}
 
 	/**
@@ -269,7 +283,8 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 
 		initEClass(resourceDescriptionEClass, ResourceDescription.class, "ResourceDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getResourceDescription_FixedProcessingResourceCost_ResourceDescription(), thecostPackage.getFixedProcessingResourceCost(), null, "fixedProcessingResourceCost_ResourceDescription", null, 1, 1, ResourceDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getResourceDescription_ProcessingResourceSpecification_ResourceDescription(), theResourceenvironmentPackage.getProcessingResourceSpecification(), null, "processingResourceSpecification_ResourceDescription", null, 1, 1, ResourceDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getResourceDescription_ProcessingResourceSpecification_ResourceDescription(), theResourceenvironmentPackage.getResourceContainer(), null, "processingResourceSpecification_ResourceDescription", null, 1, 1, ResourceDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getResourceDescription_ResourcesCanBeUsedIndividually(), ecorePackage.getEInt(), "ResourcesCanBeUsedIndividually", null, 1, 1, ResourceDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		EOperation op = addEOperation(resourceDescriptionEClass, ecorePackage.getEBoolean(), "CostAndResourceMustMatch", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

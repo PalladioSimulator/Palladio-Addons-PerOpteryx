@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.resourcerepository.impl;
 
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
 
+import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 
 import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription;
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionImpl#getFixedProcessingResourceCost_ResourceDescription <em>Fixed Processing Resource Cost Resource Description</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionImpl#getProcessingResourceSpecification_ResourceDescription <em>Processing Resource Specification Resource Description</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionImpl#getResourcesCanBeUsedIndividually <em>Resources Can Be Used Individually</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,7 +69,27 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * @generated
 	 * @ordered
 	 */
-	protected ProcessingResourceSpecification processingResourceSpecification_ResourceDescription;
+	protected ResourceContainer processingResourceSpecification_ResourceDescription;
+
+	/**
+	 * The default value of the '{@link #getResourcesCanBeUsedIndividually() <em>Resources Can Be Used Individually</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourcesCanBeUsedIndividually()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RESOURCES_CAN_BE_USED_INDIVIDUALLY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getResourcesCanBeUsedIndividually() <em>Resources Can Be Used Individually</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResourcesCanBeUsedIndividually()
+	 * @generated
+	 * @ordered
+	 */
+	protected int resourcesCanBeUsedIndividually = RESOURCES_CAN_BE_USED_INDIVIDUALLY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,7 +158,7 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcessingResourceSpecification getProcessingResourceSpecification_ResourceDescription() {
+	public ResourceContainer getProcessingResourceSpecification_ResourceDescription() {
 		return processingResourceSpecification_ResourceDescription;
 	}
 
@@ -145,8 +167,8 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProcessingResourceSpecification_ResourceDescription(ProcessingResourceSpecification newProcessingResourceSpecification_ResourceDescription, NotificationChain msgs) {
-		ProcessingResourceSpecification oldProcessingResourceSpecification_ResourceDescription = processingResourceSpecification_ResourceDescription;
+	public NotificationChain basicSetProcessingResourceSpecification_ResourceDescription(ResourceContainer newProcessingResourceSpecification_ResourceDescription, NotificationChain msgs) {
+		ResourceContainer oldProcessingResourceSpecification_ResourceDescription = processingResourceSpecification_ResourceDescription;
 		processingResourceSpecification_ResourceDescription = newProcessingResourceSpecification_ResourceDescription;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION, oldProcessingResourceSpecification_ResourceDescription, newProcessingResourceSpecification_ResourceDescription);
@@ -160,7 +182,7 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProcessingResourceSpecification_ResourceDescription(ProcessingResourceSpecification newProcessingResourceSpecification_ResourceDescription) {
+	public void setProcessingResourceSpecification_ResourceDescription(ResourceContainer newProcessingResourceSpecification_ResourceDescription) {
 		if (newProcessingResourceSpecification_ResourceDescription != processingResourceSpecification_ResourceDescription) {
 			NotificationChain msgs = null;
 			if (processingResourceSpecification_ResourceDescription != null)
@@ -172,6 +194,27 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION, newProcessingResourceSpecification_ResourceDescription, newProcessingResourceSpecification_ResourceDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getResourcesCanBeUsedIndividually() {
+		return resourcesCanBeUsedIndividually;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResourcesCanBeUsedIndividually(int newResourcesCanBeUsedIndividually) {
+		int oldResourcesCanBeUsedIndividually = resourcesCanBeUsedIndividually;
+		resourcesCanBeUsedIndividually = newResourcesCanBeUsedIndividually;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY, oldResourcesCanBeUsedIndividually, resourcesCanBeUsedIndividually));
 	}
 
 	/**
@@ -227,6 +270,8 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 				return getFixedProcessingResourceCost_ResourceDescription();
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION:
 				return getProcessingResourceSpecification_ResourceDescription();
+			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY:
+				return getResourcesCanBeUsedIndividually();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,7 +288,10 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 				setFixedProcessingResourceCost_ResourceDescription((FixedProcessingResourceCost)newValue);
 				return;
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION:
-				setProcessingResourceSpecification_ResourceDescription((ProcessingResourceSpecification)newValue);
+				setProcessingResourceSpecification_ResourceDescription((ResourceContainer)newValue);
+				return;
+			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY:
+				setResourcesCanBeUsedIndividually((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,7 +309,10 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 				setFixedProcessingResourceCost_ResourceDescription((FixedProcessingResourceCost)null);
 				return;
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION:
-				setProcessingResourceSpecification_ResourceDescription((ProcessingResourceSpecification)null);
+				setProcessingResourceSpecification_ResourceDescription((ResourceContainer)null);
+				return;
+			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY:
+				setResourcesCanBeUsedIndividually(RESOURCES_CAN_BE_USED_INDIVIDUALLY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -279,8 +330,26 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 				return fixedProcessingResourceCost_ResourceDescription != null;
 			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION:
 				return processingResourceSpecification_ResourceDescription != null;
+			case resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY:
+				return resourcesCanBeUsedIndividually != RESOURCES_CAN_BE_USED_INDIVIDUALLY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ResourcesCanBeUsedIndividually: ");
+		result.append(resourcesCanBeUsedIndividually);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ResourceDescriptionImpl

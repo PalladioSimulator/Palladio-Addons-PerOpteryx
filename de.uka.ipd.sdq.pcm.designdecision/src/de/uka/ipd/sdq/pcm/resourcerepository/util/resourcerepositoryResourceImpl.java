@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.resourcerepository.util;
 
 import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 /**
@@ -17,7 +18,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @see de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryResourceFactoryImpl
  * @generated
  */
-public class resourcerepositoryResourceImpl extends XMLResourceImpl {
+public class resourcerepositoryResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->

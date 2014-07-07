@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.resourcerepository;
 
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
 
+import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getFixedProcessingResourceCost_ResourceDescription <em>Fixed Processing Resource Cost Resource Description</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getProcessingResourceSpecification_ResourceDescription <em>Processing Resource Specification Resource Description</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getResourcesCanBeUsedIndividually <em>Resources Can Be Used Individually</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,12 +71,12 @@ public interface ResourceDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Processing Resource Specification Resource Description</em>' containment reference.
-	 * @see #setProcessingResourceSpecification_ResourceDescription(ProcessingResourceSpecification)
+	 * @see #setProcessingResourceSpecification_ResourceDescription(ResourceContainer)
 	 * @see de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage#getResourceDescription_ProcessingResourceSpecification_ResourceDescription()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
-	ProcessingResourceSpecification getProcessingResourceSpecification_ResourceDescription();
+	ResourceContainer getProcessingResourceSpecification_ResourceDescription();
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getProcessingResourceSpecification_ResourceDescription <em>Processing Resource Specification Resource Description</em>}' containment reference.
@@ -84,7 +86,33 @@ public interface ResourceDescription extends EObject {
 	 * @see #getProcessingResourceSpecification_ResourceDescription()
 	 * @generated
 	 */
-	void setProcessingResourceSpecification_ResourceDescription(ProcessingResourceSpecification value);
+	void setProcessingResourceSpecification_ResourceDescription(ResourceContainer value);
+
+	/**
+	 * Returns the value of the '<em><b>Resources Can Be Used Individually</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Resources Can Be Used Individually</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Resources Can Be Used Individually</em>' attribute.
+	 * @see #setResourcesCanBeUsedIndividually(int)
+	 * @see de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage#getResourceDescription_ResourcesCanBeUsedIndividually()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	int getResourcesCanBeUsedIndividually();
+
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getResourcesCanBeUsedIndividually <em>Resources Can Be Used Individually</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resources Can Be Used Individually</em>' attribute.
+	 * @see #getResourcesCanBeUsedIndividually()
+	 * @generated
+	 */
+	void setResourcesCanBeUsedIndividually(int value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
@@ -43,7 +39,7 @@ public interface ClassChoice extends Choice {
 	 * @return the value of the '<em>Chosen Value</em>' reference.
 	 * @see #setChosenValue(EObject)
 	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getClassChoice_ChosenValue()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EObject getChosenValue();

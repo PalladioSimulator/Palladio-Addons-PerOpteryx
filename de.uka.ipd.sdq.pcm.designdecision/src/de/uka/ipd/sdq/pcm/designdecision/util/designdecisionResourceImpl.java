@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
