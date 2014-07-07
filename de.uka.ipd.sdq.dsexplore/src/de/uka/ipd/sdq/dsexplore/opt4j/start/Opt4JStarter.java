@@ -273,8 +273,8 @@ public class Opt4JStarter {
 				Optimizer opt = task.getInstance(Optimizer.class);
 				int iteration = opt.getIteration();
 
-				ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), dseConfig.getResultFolder()+"population", iteration, true, true, exceptions);
-				ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), dseConfig.getResultFolder()+"archiveCandidates", iteration, exceptions, true, true);	
+				//ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), dseConfig.getResultFolder()+"population", iteration, true, true, exceptions);
+				//ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), dseConfig.getResultFolder()+"archiveCandidates", iteration, exceptions, true, true);	
 
 			} catch (Exception e){
 				logger.error("Optimisation failed, I could not save the last results.");
