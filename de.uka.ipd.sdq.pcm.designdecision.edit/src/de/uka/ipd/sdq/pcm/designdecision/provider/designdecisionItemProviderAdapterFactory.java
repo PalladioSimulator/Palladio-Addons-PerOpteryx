@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.provider;
 
@@ -76,6 +72,75 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DiscreteRangeChoiceItemProvider discreteRangeChoiceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDiscreteRangeChoiceAdapter() {
+		if (discreteRangeChoiceItemProvider == null) {
+			discreteRangeChoiceItemProvider = new DiscreteRangeChoiceItemProvider(this);
+		}
+
+		return discreteRangeChoiceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.Choice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoiceItemProvider choiceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.Choice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChoiceAdapter() {
+		if (choiceItemProvider == null) {
+			choiceItemProvider = new ChoiceItemProvider(this);
+		}
+
+		return choiceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DegreeOfFreedomInstanceItemProvider degreeOfFreedomInstanceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDegreeOfFreedomInstanceAdapter() {
+		if (degreeOfFreedomInstanceItemProvider == null) {
+			degreeOfFreedomInstanceItemProvider = new DegreeOfFreedomInstanceItemProvider(this);
+		}
+
+		return degreeOfFreedomInstanceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ClassChoice} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,190 +184,6 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 		}
 
 		return continousRangeChoiceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousProcessingRateDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContinuousProcessingRateDegreeItemProvider continuousProcessingRateDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousProcessingRateDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContinuousProcessingRateDegreeAdapter() {
-		if (continuousProcessingRateDegreeItemProvider == null) {
-			continuousProcessingRateDegreeItemProvider = new ContinuousProcessingRateDegreeItemProvider(this);
-		}
-
-		return continuousProcessingRateDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContinuousRangeDegreeItemProvider continuousRangeDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContinuousRangeDegreeAdapter() {
-		if (continuousRangeDegreeItemProvider == null) {
-			continuousRangeDegreeItemProvider = new ContinuousRangeDegreeItemProvider(this);
-		}
-
-		return continuousRangeDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.AllocationDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AllocationDegreeItemProvider allocationDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.AllocationDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAllocationDegreeAdapter() {
-		if (allocationDegreeItemProvider == null) {
-			allocationDegreeItemProvider = new AllocationDegreeItemProvider(this);
-		}
-
-		return allocationDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ClassAsReferenceDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassAsReferenceDegreeItemProvider classAsReferenceDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ClassAsReferenceDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createClassAsReferenceDegreeAdapter() {
-		if (classAsReferenceDegreeItemProvider == null) {
-			classAsReferenceDegreeItemProvider = new ClassAsReferenceDegreeItemProvider(this);
-		}
-
-		return classAsReferenceDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AssembledComponentDegreeItemProvider assembledComponentDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAssembledComponentDegreeAdapter() {
-		if (assembledComponentDegreeItemProvider == null) {
-			assembledComponentDegreeItemProvider = new AssembledComponentDegreeItemProvider(this);
-		}
-
-		return assembledComponentDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiscreteRangeDegreeItemProvider discreteRangeDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDiscreteRangeDegreeAdapter() {
-		if (discreteRangeDegreeItemProvider == null) {
-			discreteRangeDegreeItemProvider = new DiscreteRangeDegreeItemProvider(this);
-		}
-
-		return discreteRangeDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiscreteRangeChoiceItemProvider discreteRangeChoiceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDiscreteRangeChoiceAdapter() {
-		if (discreteRangeChoiceItemProvider == null) {
-			discreteRangeChoiceItemProvider = new DiscreteRangeChoiceItemProvider(this);
-		}
-
-		return discreteRangeChoiceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ResourceContainerReplicationDegreeItemProvider resourceContainerReplicationDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createResourceContainerReplicationDegreeAdapter() {
-		if (resourceContainerReplicationDegreeItemProvider == null) {
-			resourceContainerReplicationDegreeItemProvider = new ResourceContainerReplicationDegreeItemProvider(this);
-		}
-
-		return resourceContainerReplicationDegreeItemProvider;
 	}
 
 	/**
@@ -372,351 +253,6 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 		}
 
 		return candidatesItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.FeatureGroupDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureGroupDegreeItemProvider featureGroupDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.FeatureGroupDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureGroupDegreeAdapter() {
-		if (featureGroupDegreeItemProvider == null) {
-			featureGroupDegreeItemProvider = new FeatureGroupDegreeItemProvider(this);
-		}
-
-		return featureGroupDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.FeatureSubset} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureSubsetItemProvider featureSubsetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.FeatureSubset}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureSubsetAdapter() {
-		if (featureSubsetItemProvider == null) {
-			featureSubsetItemProvider = new FeatureSubsetItemProvider(this);
-		}
-
-		return featureSubsetItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.OptionalFeatureDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OptionalFeatureDegreeItemProvider optionalFeatureDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.OptionalFeatureDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOptionalFeatureDegreeAdapter() {
-		if (optionalFeatureDegreeItemProvider == null) {
-			optionalFeatureDegreeItemProvider = new OptionalFeatureDegreeItemProvider(this);
-		}
-
-		return optionalFeatureDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteProcessingRateDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiscreteProcessingRateDegreeItemProvider discreteProcessingRateDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteProcessingRateDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDiscreteProcessingRateDegreeAdapter() {
-		if (discreteProcessingRateDegreeItemProvider == null) {
-			discreteProcessingRateDegreeItemProvider = new DiscreteProcessingRateDegreeItemProvider(this);
-		}
-
-		return discreteProcessingRateDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.CapacityDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CapacityDegreeItemProvider capacityDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.CapacityDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCapacityDegreeAdapter() {
-		if (capacityDegreeItemProvider == null) {
-			capacityDegreeItemProvider = new CapacityDegreeItemProvider(this);
-		}
-
-		return capacityDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.SchedulingPolicyDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SchedulingPolicyDegreeItemProvider schedulingPolicyDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.SchedulingPolicyDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSchedulingPolicyDegreeAdapter() {
-		if (schedulingPolicyDegreeItemProvider == null) {
-			schedulingPolicyDegreeItemProvider = new SchedulingPolicyDegreeItemProvider(this);
-		}
-
-		return schedulingPolicyDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ResourceSelectionDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ResourceSelectionDegreeItemProvider resourceSelectionDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ResourceSelectionDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createResourceSelectionDegreeAdapter() {
-		if (resourceSelectionDegreeItemProvider == null) {
-			resourceSelectionDegreeItemProvider = new ResourceSelectionDegreeItemProvider(this);
-		}
-
-		return resourceSelectionDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteComponentParamDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiscreteComponentParamDegreeItemProvider discreteComponentParamDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.DiscreteComponentParamDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDiscreteComponentParamDegreeAdapter() {
-		if (discreteComponentParamDegreeItemProvider == null) {
-			discreteComponentParamDegreeItemProvider = new DiscreteComponentParamDegreeItemProvider(this);
-		}
-
-		return discreteComponentParamDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousComponentParamDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContinuousComponentParamDegreeItemProvider continuousComponentParamDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ContinuousComponentParamDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContinuousComponentParamDegreeAdapter() {
-		if (continuousComponentParamDegreeItemProvider == null) {
-			continuousComponentParamDegreeItemProvider = new ContinuousComponentParamDegreeItemProvider(this);
-		}
-
-		return continuousComponentParamDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.StringComponentParamDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringComponentParamDegreeItemProvider stringComponentParamDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.StringComponentParamDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStringComponentParamDegreeAdapter() {
-		if (stringComponentParamDegreeItemProvider == null) {
-			stringComponentParamDegreeItemProvider = new StringComponentParamDegreeItemProvider(this);
-		}
-
-		return stringComponentParamDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsRangeDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NumberOfCoresAsRangeDegreeItemProvider numberOfCoresAsRangeDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsRangeDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNumberOfCoresAsRangeDegreeAdapter() {
-		if (numberOfCoresAsRangeDegreeItemProvider == null) {
-			numberOfCoresAsRangeDegreeItemProvider = new NumberOfCoresAsRangeDegreeItemProvider(this);
-		}
-
-		return numberOfCoresAsRangeDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegreeWithComponentChange} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ResourceContainerReplicationDegreeWithComponentChangeItemProvider resourceContainerReplicationDegreeWithComponentChangeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegreeWithComponentChange}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createResourceContainerReplicationDegreeWithComponentChangeAdapter() {
-		if (resourceContainerReplicationDegreeWithComponentChangeItemProvider == null) {
-			resourceContainerReplicationDegreeWithComponentChangeItemProvider = new ResourceContainerReplicationDegreeWithComponentChangeItemProvider(this);
-		}
-
-		return resourceContainerReplicationDegreeWithComponentChangeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.ExchangeComponentRule} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExchangeComponentRuleItemProvider exchangeComponentRuleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.ExchangeComponentRule}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExchangeComponentRuleAdapter() {
-		if (exchangeComponentRuleItemProvider == null) {
-			exchangeComponentRuleItemProvider = new ExchangeComponentRuleItemProvider(this);
-		}
-
-		return exchangeComponentRuleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.OrderedIntegerDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OrderedIntegerDegreeItemProvider orderedIntegerDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.OrderedIntegerDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOrderedIntegerDegreeAdapter() {
-		if (orderedIntegerDegreeItemProvider == null) {
-			orderedIntegerDegreeItemProvider = new OrderedIntegerDegreeItemProvider(this);
-		}
-
-		return orderedIntegerDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsListDegree} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NumberOfCoresAsListDegreeItemProvider numberOfCoresAsListDegreeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresAsListDegree}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNumberOfCoresAsListDegreeAdapter() {
-		if (numberOfCoresAsListDegreeItemProvider == null) {
-			numberOfCoresAsListDegreeItemProvider = new NumberOfCoresAsListDegreeItemProvider(this);
-		}
-
-		return numberOfCoresAsListDegreeItemProvider;
 	}
 
 	/**
@@ -818,34 +354,14 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 	 * @generated
 	 */
 	public void dispose() {
+		if (discreteRangeChoiceItemProvider != null) discreteRangeChoiceItemProvider.dispose();
+		if (choiceItemProvider != null) choiceItemProvider.dispose();
+		if (degreeOfFreedomInstanceItemProvider != null) degreeOfFreedomInstanceItemProvider.dispose();
 		if (classChoiceItemProvider != null) classChoiceItemProvider.dispose();
 		if (continousRangeChoiceItemProvider != null) continousRangeChoiceItemProvider.dispose();
-		if (continuousProcessingRateDegreeItemProvider != null) continuousProcessingRateDegreeItemProvider.dispose();
-		if (continuousRangeDegreeItemProvider != null) continuousRangeDegreeItemProvider.dispose();
-		if (allocationDegreeItemProvider != null) allocationDegreeItemProvider.dispose();
-		if (classAsReferenceDegreeItemProvider != null) classAsReferenceDegreeItemProvider.dispose();
-		if (assembledComponentDegreeItemProvider != null) assembledComponentDegreeItemProvider.dispose();
-		if (discreteRangeDegreeItemProvider != null) discreteRangeDegreeItemProvider.dispose();
-		if (discreteRangeChoiceItemProvider != null) discreteRangeChoiceItemProvider.dispose();
-		if (resourceContainerReplicationDegreeItemProvider != null) resourceContainerReplicationDegreeItemProvider.dispose();
 		if (decisionSpaceItemProvider != null) decisionSpaceItemProvider.dispose();
 		if (candidateItemProvider != null) candidateItemProvider.dispose();
 		if (candidatesItemProvider != null) candidatesItemProvider.dispose();
-		if (featureGroupDegreeItemProvider != null) featureGroupDegreeItemProvider.dispose();
-		if (featureSubsetItemProvider != null) featureSubsetItemProvider.dispose();
-		if (optionalFeatureDegreeItemProvider != null) optionalFeatureDegreeItemProvider.dispose();
-		if (discreteProcessingRateDegreeItemProvider != null) discreteProcessingRateDegreeItemProvider.dispose();
-		if (capacityDegreeItemProvider != null) capacityDegreeItemProvider.dispose();
-		if (schedulingPolicyDegreeItemProvider != null) schedulingPolicyDegreeItemProvider.dispose();
-		if (resourceSelectionDegreeItemProvider != null) resourceSelectionDegreeItemProvider.dispose();
-		if (discreteComponentParamDegreeItemProvider != null) discreteComponentParamDegreeItemProvider.dispose();
-		if (continuousComponentParamDegreeItemProvider != null) continuousComponentParamDegreeItemProvider.dispose();
-		if (stringComponentParamDegreeItemProvider != null) stringComponentParamDegreeItemProvider.dispose();
-		if (numberOfCoresAsRangeDegreeItemProvider != null) numberOfCoresAsRangeDegreeItemProvider.dispose();
-		if (resourceContainerReplicationDegreeWithComponentChangeItemProvider != null) resourceContainerReplicationDegreeWithComponentChangeItemProvider.dispose();
-		if (exchangeComponentRuleItemProvider != null) exchangeComponentRuleItemProvider.dispose();
-		if (orderedIntegerDegreeItemProvider != null) orderedIntegerDegreeItemProvider.dispose();
-		if (numberOfCoresAsListDegreeItemProvider != null) numberOfCoresAsListDegreeItemProvider.dispose();
 	}
 
 }

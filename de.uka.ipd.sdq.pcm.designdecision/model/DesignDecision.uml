@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/1" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Default/1 Default.profile.uml#_IN8k8MmBEdqBcN1R6EvWUw http://www.eclipse.org/uml2/schemas/Ecore/3 pathmap://UML_PROFILES/Ecore.profile.uml#_vy-HUYinEdqtvbnfB2L_5w">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 Default.profile.uml#_fNwoAAqoEd6-N_NOT9vsCA http://www.eclipse.org/uml2/schemas/Ecore/3 pathmap://UML_PROFILES/Ecore.profile.uml#_vy-HUYinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_RLu_MPzoEd2sBa2PoI_LqA" name="DesignDecision">
     <ownedComment xmi:id="_z7ZykLDqEd6XDa9JyFGB5Q" annotatedElement="_RLu_MPzoEd2sBa2PoI_LqA">
       <body>The DesignDecisions metamodel represents degrees of freedom that can be exploited for optimisation.&#xD;
@@ -15,7 +15,23 @@ All of the above mentioned elements are abstract and are subclassed for the diff
     <packageImport xmi:id="_RLu_NPzoEd2sBa2PoI_LqA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Class" xmi:id="_khi9UPzoEd2sBa2PoI_LqA" name="DegreeOfFreedomInstance" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_R-R1cPzzEd2sBa2PoI_LqA" name="DiscreteRangeChoice">
+      <ownedComment xmi:id="_SDm4ELDyEd6XDa9JyFGB5Q" annotatedElement="_R-R1cPzzEd2sBa2PoI_LqA">
+        <body>The DiscreteRangeChoice represents a choice for a DegreeOfFreedom with an integer range. &#xD;
+&#xD;
+TODO constraint:  The degreeOfFreedom of this Choice must be an DiscreteRangeDegree</body>
+      </ownedComment>
+      <generalization xmi:id="_USYmEPzzEd2sBa2PoI_LqA" general="_BHSOsPzpEd2sBa2PoI_LqA"/>
+      <ownedAttribute xmi:id="_Uuq5cPzzEd2sBa2PoI_LqA" name="chosenValue" visibility="public" isDerived="true">
+        <ownedComment xmi:id="_fZqmULEKEd6XDa9JyFGB5Q" annotatedElement="_Uuq5cPzzEd2sBa2PoI_LqA">
+          <body>The value chosen from the DegreeOfFreedom. &#xD;
+&#xD;
+TODO: constraint: chosenValue must be within the defined range. </body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_khi9UPzoEd2sBa2PoI_LqA" name="DegreeOfFreedomInstance">
       <ownedComment xmi:id="_qjX74PzzEd2sBa2PoI_LqA" annotatedElement="_khi9UPzoEd2sBa2PoI_LqA">
         <body>Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;
 &#xD;
@@ -30,8 +46,13 @@ The domain is defined in subclasses, because it may be either a set of PCM Entit
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Nj8gSVLEeChWKMqI1kkWw" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1Nj8gCVLEeChWKMqI1kkWw" value="1"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_4DHLQGPgEeKcHurOtHxxFg" name="changeableElements" visibility="private" association="_4C9aQGPgEeKcHurOtHxxFg">
+        <type xmi:type="uml:Class" href="Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4DHLQmPgEeKcHurOtHxxFg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4DHLQWPgEeKcHurOtHxxFg" value="1"/>
+      </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_BHSOsPzpEd2sBa2PoI_LqA" name="Choice" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_BHSOsPzpEd2sBa2PoI_LqA" name="Choice">
       <ownedComment xmi:id="_1CgHELD2Ed6XDa9JyFGB5Q" annotatedElement="_BHSOsPzpEd2sBa2PoI_LqA">
         <body>A Choice represents the choice of one value from the domain of a DegreeOfFreedom. The Choice links the DegreeOfFreedom for which it makes the choice. Additionally, it links one element of the domain of the DegreeOfFreedom. This linking is realised in subclasses of Choice, as it may be either PCM Entities or numbers. </body>
       </ownedComment>
@@ -41,39 +62,13 @@ The domain is defined in subclasses, because it may be either a set of PCM Entit
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
         </defaultValue>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_zO1FENr1EeGCM4O_kVKszQ" name="value" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaObject"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="_Cr1KofzpEd2sBa2PoI_LqA" name="degreeOfFreedomInstance" visibility="private" type="_khi9UPzoEd2sBa2PoI_LqA" association="_Cr1KoPzpEd2sBa2PoI_LqA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_Cr1KoPzpEd2sBa2PoI_LqA" memberEnd="_Cr1KofzpEd2sBa2PoI_LqA _Cr1KovzpEd2sBa2PoI_LqA">
       <ownedEnd xmi:id="_Cr1KovzpEd2sBa2PoI_LqA" name="" visibility="private" type="_BHSOsPzpEd2sBa2PoI_LqA" association="_Cr1KoPzpEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_2oEy8PzqEd2sBa2PoI_LqA" name="RangeDegree" isAbstract="true">
-      <ownedComment xmi:id="_gGSJ0LEMEd6XDa9JyFGB5Q" annotatedElement="_2oEy8PzqEd2sBa2PoI_LqA">
-        <body>This class represents DegreeOfFreedoms that have a range of numbers as their domain. The set of possile values of the degree of freedom is defined by the subclasses. In this class, the attributes upperBoundIncluded and lowerBoundIncluded define whether the endpoints defined by the subclasses are included in the domain or not (similar to mathematical intervals)</body>
-      </ownedComment>
-      <generalization xmi:id="_4KavcPzqEd2sBa2PoI_LqA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
-      <ownedAttribute xmi:id="_cYGlcPzyEd2sBa2PoI_LqA" name="upperBoundIncluded" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_0oQWoPzyEd2sBa2PoI_LqA" value="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_aSgK4PzyEd2sBa2PoI_LqA" name="lowerBoundIncluded" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_1driwPzyEd2sBa2PoI_LqA" value="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-        </defaultValue>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_3H9M4PzqEd2sBa2PoI_LqA" name="ClassDegree" isAbstract="true">
-      <ownedComment xmi:id="_AM1hcLELEd6XDa9JyFGB5Q" annotatedElement="_3H9M4PzqEd2sBa2PoI_LqA">
-        <body>This class represents DegreeOfFreedoms that have an enumeration domain. The set of possile values of the degree of freedom are referenced with the domainOfEntities property. Any kind of PCM element can be annotated here. Subclasses restrict the type of annotated elements with OCL constraints.</body>
-      </ownedComment>
-      <generalization xmi:id="_4agZ4PzqEd2sBa2PoI_LqA" general="_khi9UPzoEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_aB6ycLDyEd6XDa9JyFGB5Q" name="classDesignOptions" visibility="public" association="_aB49QLDyEd6XDa9JyFGB5Q">
-        <type xmi:type="uml:Class" href="Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aB8AkbDyEd6XDa9JyFGB5Q" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aB8AkLDyEd6XDa9JyFGB5Q" value="1"/>
-      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_eHYO4PzrEd2sBa2PoI_LqA" name="ClassChoice">
       <ownedComment xmi:id="_C9y40PzzEd2sBa2PoI_LqA" annotatedElement="_eHYO4PzrEd2sBa2PoI_LqA">
@@ -84,7 +79,7 @@ TODO constraint:  The degreeOfFreedom of this Choice must be an EnumerationDegre
 </body>
       </ownedComment>
       <generalization xmi:id="_tNhuoPzrEd2sBa2PoI_LqA" general="_BHSOsPzpEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_EbeOcLDyEd6XDa9JyFGB5Q" name="chosenValue" visibility="private" association="_EbZ9ALDyEd6XDa9JyFGB5Q">
+      <ownedAttribute xmi:id="_EbeOcLDyEd6XDa9JyFGB5Q" name="chosenValue" visibility="private" isDerived="true" association="_EbZ9ALDyEd6XDa9JyFGB5Q">
         <ownedComment xmi:id="_mwxWwLEKEd6XDa9JyFGB5Q" annotatedElement="_EbeOcLDyEd6XDa9JyFGB5Q">
           <body>TODO: constraint: Chosen entity must be in the domain of the EnumerationDegree;</body>
         </ownedComment>
@@ -101,7 +96,7 @@ TODO constraint:  The degreeOfFreedom of this Choice must be an EnumerationDegre
 TODO constraint:  The degreeOfFreedom of this Choice must be an ContinuousRangeDegree</body>
       </ownedComment>
       <generalization xmi:id="_mxY_YPzwEd2sBa2PoI_LqA" general="_BHSOsPzpEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_8nmoQPzxEd2sBa2PoI_LqA" name="chosenValue" visibility="public">
+      <ownedAttribute xmi:id="_8nmoQPzxEd2sBa2PoI_LqA" name="chosenValue" visibility="public" isDerived="true">
         <ownedComment xmi:id="_j5C7sLEKEd6XDa9JyFGB5Q" annotatedElement="_8nmoQPzxEd2sBa2PoI_LqA">
           <body>The double value chosen from the range of the DegreeOfFreedom. &#xD;
 &#xD;
@@ -109,82 +104,6 @@ TODO: constraint: chosenValue must be within the defined range. </body>
         </ownedComment>
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_6AUSYPzwEd2sBa2PoI_LqA" name="ContinuousProcessingRateDegree">
-      <ownedComment xmi:id="_-F-gMPzwEd2sBa2PoI_LqA" annotatedElement="_6AUSYPzwEd2sBa2PoI_LqA">
-        <body>ProcessingRateDegree represents a degree of freedom to choose the processing speed of a resource.  It refers to a ResourceContainer as changeableEntity, which is the server. Additionally, it refers to a ProcessingResourceType which determines whether the CPU respource or HDD resource is meant to be changed. The speed is assumed to range in a certain interval &quot;from&quot; to &quot;to&quot;.&#xD;
-&#xD;
-TODO OCL: The changeableEntity must be an ResourceContainer. </body>
-      </ownedComment>
-      <generalization xmi:id="_AeDK0PzxEd2sBa2PoI_LqA" general="_CC-r0PzyEd2sBa2PoI_LqA"/>
-      <generalization xmi:id="_Gq1nYEFdEd-8BKcv5MhVwA" general="_M_gtsMc9EeCAiqHxI6xyag"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_DVkKgPzxEd2sBa2PoI_LqA" name="AllocationDegree">
-      <ownedComment xmi:id="_97IQMPzyEd2sBa2PoI_LqA" annotatedElement="_DVkKgPzxEd2sBa2PoI_LqA">
-        <body>AllocationDegree represents a component allocation degree of freedom. It refers to an AllocationContext as changeableEntity, which is the mapping of a component to a server. The domain is a set of ResourceContainers (i.e. servers or hardware nodes) that can be put in the AllocationContext, i.e. in the mapping where the component is to be deployed. &#xD;
-&#xD;
-TODO OCL: The domainOfEntities must only contain ResourceContainer.  The changeableEntity must be an AllocationContext.</body>
-      </ownedComment>
-      <generalization xmi:id="_Pk_UwPzxEd2sBa2PoI_LqA" general="_gQHsQBmlEeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_FhsD0PzxEd2sBa2PoI_LqA" name="AssembledComponentDegree">
-      <ownedComment xmi:id="__o9rAPzyEd2sBa2PoI_LqA" annotatedElement="_FhsD0PzxEd2sBa2PoI_LqA">
-        <body>AssembledComponentDegree represents a component selection degree of freedom. It refers to an AssemblyContext as changeableEntity, which is the place in the software architecture in which different component implementations can be used (also called component frame in other component models). The domain is a set of RepositoryComponents that can be put in the AssemblyContext, i.e. in the defined place in the architecture. &#xD;
-&#xD;
-TODO OCL: The domainOfEntities must only contain RepositoryComponents.  The changeableEntity must be an AssemblyContext.</body>
-      </ownedComment>
-      <generalization xmi:id="_NILf4LDyEd6XDa9JyFGB5Q" general="_gQHsQBmlEeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_BBEi4PzyEd2sBa2PoI_LqA" name="DiscreteRangeDegree">
-      <ownedComment xmi:id="_623QYLEMEd6XDa9JyFGB5Q" annotatedElement="_BBEi4PzyEd2sBa2PoI_LqA">
-        <body>This class represents DegreeOfFreedoms that have a range of integer values as their domain. The set of possile values of the degree of freedom is defined as the integer interval between &quot;from&quot; and &quot;to&quot;.&#xD;
-&#xD;
-TODO OCL: from must be smaller that to. </body>
-      </ownedComment>
-      <generalization xmi:id="_C3WIAPzyEd2sBa2PoI_LqA" general="_2oEy8PzqEd2sBa2PoI_LqA"/>
-      <generalization xmi:id="_c-e4sN4vEeC1gLGNJBSMtA" general="_bB1l0N4vEeC1gLGNJBSMtA"/>
-      <ownedAttribute xmi:id="_XBoQAPzyEd2sBa2PoI_LqA" name="to" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_WK41QPzyEd2sBa2PoI_LqA" name="from" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_CC-r0PzyEd2sBa2PoI_LqA" name="ContinuousRangeDegree">
-      <ownedComment xmi:id="_8MOg0LEMEd6XDa9JyFGB5Q" annotatedElement="_CC-r0PzyEd2sBa2PoI_LqA">
-        <body>This class represents DegreeOfFreedoms that have a range of real values as their domain. The set of possile values of the degree of freedom is defined as the real interval between &quot;from&quot; and &quot;to&quot;.&#xD;
-&#xD;
-TODO OCL: from must be smaller that to. </body>
-      </ownedComment>
-      <generalization xmi:id="_DMB-kPzyEd2sBa2PoI_LqA" general="_2oEy8PzqEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_hQWGwPzyEd2sBa2PoI_LqA" name="to" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_f5IcMPzyEd2sBa2PoI_LqA" name="from" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_R-R1cPzzEd2sBa2PoI_LqA" name="DiscreteRangeChoice">
-      <ownedComment xmi:id="_SDm4ELDyEd6XDa9JyFGB5Q" annotatedElement="_R-R1cPzzEd2sBa2PoI_LqA">
-        <body>The DiscreteRangeChoice represents a choice for a DegreeOfFreedom with an integer range. &#xD;
-&#xD;
-TODO constraint:  The degreeOfFreedom of this Choice must be an DiscreteRangeDegree</body>
-      </ownedComment>
-      <generalization xmi:id="_USYmEPzzEd2sBa2PoI_LqA" general="_BHSOsPzpEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_Uuq5cPzzEd2sBa2PoI_LqA" name="chosenValue" visibility="public">
-        <ownedComment xmi:id="_fZqmULEKEd6XDa9JyFGB5Q" annotatedElement="_Uuq5cPzzEd2sBa2PoI_LqA">
-          <body>The value chosen from the DegreeOfFreedom. &#xD;
-&#xD;
-TODO: constraint: chosenValue must be within the defined range. </body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_aLDCkPzzEd2sBa2PoI_LqA" name="ResourceContainerReplicationDegree">
-      <ownedComment xmi:id="_Z0v6ULEMEd6XDa9JyFGB5Q" annotatedElement="_aLDCkPzzEd2sBa2PoI_LqA">
-        <body>Annotates a ResourceContainer and defines the number of replications of this container, together with all components deployed to it.</body>
-      </ownedComment>
-      <generalization xmi:id="_cdCTUPzzEd2sBa2PoI_LqA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_7dtWEPzzEd2sBa2PoI_LqA" name="DecisionSpace">
       <ownedComment xmi:id="_KRKVwLG-Ed6moe-uIL_C5w" annotatedElement="_7dtWEPzzEd2sBa2PoI_LqA">
@@ -252,118 +171,11 @@ TODO: constraint: chosenValue must be within the defined range. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EbmKQLDyEd6XDa9JyFGB5Q"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_aB49QLDyEd6XDa9JyFGB5Q" name="" memberEnd="_aB6ycLDyEd6XDa9JyFGB5Q _aB-c0LDyEd6XDa9JyFGB5Q">
-      <ownedEnd xmi:id="_aB-c0LDyEd6XDa9JyFGB5Q" name="" visibility="private" type="_3H9M4PzqEd2sBa2PoI_LqA" association="_aB49QLDyEd6XDa9JyFGB5Q">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aB_D4bDyEd6XDa9JyFGB5Q" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aB_D4LDyEd6XDa9JyFGB5Q"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_SUNWgLELEd6XDa9JyFGB5Q" name="" memberEnd="_SUPywLELEd6XDa9JyFGB5Q _SUS2ELELEd6XDa9JyFGB5Q">
       <ownedEnd xmi:id="_SUS2ELELEd6XDa9JyFGB5Q" name="" visibility="private" type="_khi9UPzoEd2sBa2PoI_LqA" association="_SUNWgLELEd6XDa9JyFGB5Q">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SUUEMLELEd6XDa9JyFGB5Q" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SUTdILELEd6XDa9JyFGB5Q"/>
       </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Nv8tIM3TEd6MbeRXRwIg2A" name="FeatureConfigDegree" isAbstract="true">
-      <generalization xmi:id="_QD5swM3TEd6MbeRXRwIg2A" general="_khi9UPzoEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_YD5CIM3TEd6MbeRXRwIg2A" name="FeatureGroupDegree">
-      <ownedComment xmi:id="_u6sI0M3VEd6MbeRXRwIg2A" annotatedElement="_YD5CIM3TEd6MbeRXRwIg2A">
-        <body>For a FeatureGroup with Fatures F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;
-&#xD;
-TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;
-</body>
-      </ownedComment>
-      <generalization xmi:id="_cuzSEM3TEd6MbeRXRwIg2A" general="_Nv8tIM3TEd6MbeRXRwIg2A"/>
-      <ownedAttribute xmi:id="_YBwpQM3VEd6MbeRXRwIg2A" name="featuregroup" visibility="private" association="_YBu0EM3VEd6MbeRXRwIg2A">
-        <type xmi:type="uml:Class" href="FeatureModel.uml#_5WogUHvvEdyOhKBWyuRGig"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YByecM3VEd6MbeRXRwIg2A" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YBx3YM3VEd6MbeRXRwIg2A" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_0wh60M3VEd6MbeRXRwIg2A" name="domainOfFeatureConfigCombinations" visibility="private" type="_xx60oM3VEd6MbeRXRwIg2A" aggregation="composite" association="_0wfekM3VEd6MbeRXRwIg2A">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0wjI8M3VEd6MbeRXRwIg2A" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0wih4M3VEd6MbeRXRwIg2A" value="1"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_g9VvEM3TEd6MbeRXRwIg2A" name="OptionalFeatureDegree">
-      <ownedComment xmi:id="_Le3JYM3VEd6MbeRXRwIg2A" annotatedElement="_g9VvEM3TEd6MbeRXRwIg2A">
-        <body>A boolean range: Selected or Eliminated (ignore default here). </body>
-      </ownedComment>
-      <generalization xmi:id="_iiERMM3TEd6MbeRXRwIg2A" general="_Nv8tIM3TEd6MbeRXRwIg2A"/>
-      <ownedAttribute xmi:id="_SIV-0M3VEd6MbeRXRwIg2A" name="simple" visibility="private" association="_SITikM3VEd6MbeRXRwIg2A">
-        <type xmi:type="uml:Class" href="FeatureModel.uml#_pgSc8KwPEd2RCOCuXmp_aA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SIXM8c3VEd6MbeRXRwIg2A" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SIXM8M3VEd6MbeRXRwIg2A" value="1"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_SITikM3VEd6MbeRXRwIg2A" memberEnd="_SIV-0M3VEd6MbeRXRwIg2A _SIZCIM3VEd6MbeRXRwIg2A">
-      <ownedEnd xmi:id="_SIZCIM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_g9VvEM3TEd6MbeRXRwIg2A" association="_SITikM3VEd6MbeRXRwIg2A">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SIaQQM3VEd6MbeRXRwIg2A" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SIZpMM3VEd6MbeRXRwIg2A"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_YBu0EM3VEd6MbeRXRwIg2A" memberEnd="_YBwpQM3VEd6MbeRXRwIg2A _YBzskM3VEd6MbeRXRwIg2A">
-      <ownedEnd xmi:id="_YBzskM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_YD5CIM3TEd6MbeRXRwIg2A" association="_YBu0EM3VEd6MbeRXRwIg2A">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YB06sc3VEd6MbeRXRwIg2A" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YB06sM3VEd6MbeRXRwIg2A"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_xx60oM3VEd6MbeRXRwIg2A" name="FeatureSubset">
-      <ownedAttribute xmi:id="_6SEQwM3VEd6MbeRXRwIg2A" name="feature" visibility="private" association="_6SCbkM3VEd6MbeRXRwIg2A">
-        <type xmi:type="uml:Class" href="FeatureModel.uml#_yRwvYHvvEdyOhKBWyuRGig"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6SFe4c3VEd6MbeRXRwIg2A" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6SFe4M3VEd6MbeRXRwIg2A"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_0wfekM3VEd6MbeRXRwIg2A" memberEnd="_0wh60M3VEd6MbeRXRwIg2A _0wk-IM3VEd6MbeRXRwIg2A">
-      <ownedEnd xmi:id="_0wk-IM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_YD5CIM3TEd6MbeRXRwIg2A" association="_0wfekM3VEd6MbeRXRwIg2A"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_6SCbkM3VEd6MbeRXRwIg2A" memberEnd="_6SEQwM3VEd6MbeRXRwIg2A _6SHUEM3VEd6MbeRXRwIg2A">
-      <ownedEnd xmi:id="_6SHUEM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_xx60oM3VEd6MbeRXRwIg2A" association="_6SCbkM3VEd6MbeRXRwIg2A">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6SIiMM3VEd6MbeRXRwIg2A" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6SH7IM3VEd6MbeRXRwIg2A"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_DfqE0EFdEd-8BKcv5MhVwA" name="ProcessingResourceDegree" isAbstract="true">
-      <generalization xmi:id="_2LS3YLW-Ed-iB5E5ZPm7Eg" general="_khi9UPzoEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_v7cg8Bo6EeCymqsKFYq-AA" name="processingresourcetype" visibility="public">
-        <type xmi:type="uml:Class" href="pcm.uml#_n2nAMOD4Edq8ysXH3gTiEg"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_IB12kEFdEd-8BKcv5MhVwA" name="DiscreteProcessingRateDegree">
-      <generalization xmi:id="_J2NXMEFdEd-8BKcv5MhVwA" general="_M_gtsMc9EeCAiqHxI6xyag"/>
-      <generalization xmi:id="_KMfJMEFdEd-8BKcv5MhVwA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_K6iiAEFdEd-8BKcv5MhVwA" name="numberOfSteps" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_LSJEoLUXEd-iB5E5ZPm7Eg" name="CapacityDegree">
-      <ownedComment xmi:id="_FCPEMLXEEd-iB5E5ZPm7Eg" annotatedElement="_LSJEoLUXEd-iB5E5ZPm7Eg">
-        <body>Capcity degree. Need to refer to a PassiveResource as changeable entity, plus a &#xD;
-&#xD;
-TODO: add OCL that changeable entity is PassiveResource. &#xD;
-&#xD;
-TODO conceptually: Currently the capacity of a passive resource is modelled at the type level. That is not useful for e.g. threadpools. CHange PCM!&#xD;
-If PCM is changed, put AssemblyContext as changeable entity and add a ref to PassiveResource here. Then TODO: add OCL for changeableEntity to be an AssemblyContext, plus the PassiveResource must be available in the encapsulated BasicComponent. </body>
-      </ownedComment>
-      <generalization xmi:id="_MlpT4LUXEd-iB5E5ZPm7Eg" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_X4zqMLUXEd-iB5E5ZPm7Eg" name="SchedulingPolicyDegree">
-      <generalization xmi:id="_GaQ6QLUYEd-iB5E5ZPm7Eg" general="_gQHsQBmlEeCymqsKFYq-AA"/>
-      <generalization xmi:id="_pom6QLW7Ed-iB5E5ZPm7Eg" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_EnlbsLUYEd-iB5E5ZPm7Eg" name="EnumDegree" isAbstract="true">
-      <ownedComment xmi:id="_LlU3YLW8Ed-iB5E5ZPm7Eg" annotatedElement="_EnlbsLUYEd-iB5E5ZPm7Eg">
-        <body>Construct to model a special type of enumerated degree of freedom where the domain of values is a subset of an enumeration in the metamodel. Each concrete subclass of EnumDegree must model the domain explicitly (refer to the concrete Enum to choose from). &#xD;
-&#xD;
-This class is actually superflous as it does not add any properties to its subclasses. It is just used to conceptually group this type of degree of freedom. Maybe it can be used to implement some OCL checks (with reflection?). </body>
-      </ownedComment>
-      <generalization xmi:id="_Fz0lULUYEd-iB5E5ZPm7Eg" general="_CzduEBmyEeCymqsKFYq-AA"/>
-      <ownedAttribute xmi:id="_ldBIIErrEeCgHJIR5Amnzw" name="enumeration" visibility="private" association="_lc5MUErrEeCgHJIR5Amnzw">
-        <type xmi:type="uml:Class" href="Ecore.uml#_SeWkDMX_EduPJbEsMYXjUQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ldEygErrEeCgHJIR5Amnzw" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ldDkYErrEeCgHJIR5Amnzw"/>
-      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k6PrUP7FEd-I0aX6Em3k2A" name="resourcerepository">
       <packagedElement xmi:type="uml:Class" xmi:id="_uJcl0P7FEd-I0aX6Em3k2A" name="ResourceDescriptionRepository">
@@ -382,15 +194,18 @@ This class is actually superflous as it does not add any properties to its subcl
             <body>self.fixedProcessingResourceCost_ResourceDescription.processingresourcespecification = self.processingresourcespecification</body>
           </specification>
         </ownedRule>
-        <ownedAttribute xmi:id="_NOo7YP72Ed-I0aX6Em3k2A" name="fixedProcessingResourceCost_ResourceDescription" visibility="private" aggregation="composite" association="_NOmfIP72Ed-I0aX6Em3k2A">
+        <ownedAttribute xmi:id="_NOo7YP72Ed-I0aX6Em3k2A" name="fixedProcessingResourceCost_ResourceDescription" visibility="public" aggregation="composite" association="_NOmfIP72Ed-I0aX6Em3k2A">
           <type xmi:type="uml:Class" href="CostModel.uml#_-Y5QAPhtEd23O5YGd3Oe8g"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NOqwkP72Ed-I0aX6Em3k2A" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NOqJgP72Ed-I0aX6Em3k2A" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_RuYdIP72Ed-I0aX6Em3k2A" name="processingResourceSpecification_ResourceDescription" visibility="private" aggregation="composite" association="_RuWn8P72Ed-I0aX6Em3k2A">
-          <type xmi:type="uml:Class" href="pcm.uml#_wru2gODnEdq8ysXH3gTiEg"/>
+        <ownedAttribute xmi:id="_RuYdIP72Ed-I0aX6Em3k2A" name="processingResourceSpecification_ResourceDescription" visibility="public" aggregation="composite" association="_RuWn8P72Ed-I0aX6Em3k2A">
+          <type xmi:type="uml:Class" href="pcm.uml#_qdz5sOD9Edq8ysXH3gTiEg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RuaSUP72Ed-I0aX6Em3k2A" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RuZrQP72Ed-I0aX6Em3k2A" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_z2Qc8GRnEeKYta_8KVcdAw" name="ResourcesCanBeUsedIndividually" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_NOmfIP72Ed-I0aX6Em3k2A" memberEnd="_NOo7YP72Ed-I0aX6Em3k2A _NOr-sP72Ed-I0aX6Em3k2A">
@@ -400,51 +215,13 @@ This class is actually superflous as it does not add any properties to its subcl
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_RuWn8P72Ed-I0aX6Em3k2A" memberEnd="_RuYdIP72Ed-I0aX6Em3k2A _RucHgP72Ed-I0aX6Em3k2A">
-        <ownedEnd xmi:id="_RucHgP72Ed-I0aX6Em3k2A" name="" visibility="private" type="_Acod8P71Ed-I0aX6Em3k2A" association="_RuWn8P72Ed-I0aX6Em3k2A"/>
+        <ownedEnd xmi:id="_RucHgP72Ed-I0aX6Em3k2A" name="" visibility="private" type="_Acod8P71Ed-I0aX6Em3k2A" association="_RuWn8P72Ed-I0aX6Em3k2A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iXeR4GRnEeKYta_8KVcdAw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iUDxgGRnEeKYta_8KVcdAw"/>
+        </ownedEnd>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_gQHsQBmlEeCymqsKFYq-AA" name="ClassAsReferenceDegree">
-      <ownedComment xmi:id="_Nl7BgBmmEeCymqsKFYq-AA" annotatedElement="_gQHsQBmlEeCymqsKFYq-AA">
-        <body>DoFs of this type are updated by updating this changeable element's reference to one of the Entities in the domainOfEntities.</body>
-      </ownedComment>
-      <generalization xmi:id="_jraHYBmlEeCymqsKFYq-AA" general="_3H9M4PzqEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mCrgwBmlEeCymqsKFYq-AA" name="ClassWithCopyDegree" isAbstract="true">
-      <ownedComment xmi:id="_NIA9gBmmEeCymqsKFYq-AA" annotatedElement="_mCrgwBmlEeCymqsKFYq-AA">
-        <body>DoFs of this type are updated by copying a one of the Entities in the domainOfEntities.&#xD;
-&#xD;
-</body>
-      </ownedComment>
-      <generalization xmi:id="_D9MzwBmmEeCymqsKFYq-AA" general="_3H9M4PzqEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_VhE6MBmmEeCymqsKFYq-AA" name="ResourceSelectionDegree">
-      <generalization xmi:id="_W-i9wBmmEeCymqsKFYq-AA" general="_mCrgwBmlEeCymqsKFYq-AA"/>
-      <generalization xmi:id="_-wLWABo5EeCymqsKFYq-AA" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_CzduEBmyEeCymqsKFYq-AA" name="UnorderedDegree" isAbstract="true">
-      <generalization xmi:id="_IJqWsBmyEeCymqsKFYq-AA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mJ9hkBmyEeCymqsKFYq-AA" name="DataTypeDegree" isAbstract="true">
-      <generalization xmi:id="_ni8GsBmyEeCymqsKFYq-AA" general="_khi9UPzoEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_RBFjABm1EeCymqsKFYq-AA" name="StringSetDegree" isAbstract="true">
-      <generalization xmi:id="_XUsPEBm1EeCymqsKFYq-AA" general="_CzduEBmyEeCymqsKFYq-AA"/>
-      <ownedAttribute xmi:id="_TeNFsBm1EeCymqsKFYq-AA" name="stringValues" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wc8HsBm1EeCymqsKFYq-AA" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Wc7goBm1EeCymqsKFYq-AA" value="1"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_rKrdcBo2EeCymqsKFYq-AA" name="DiscreteComponentParamDegree">
-      <generalization xmi:id="_s7sIEBo2EeCymqsKFYq-AA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_uFmWcBo2EeCymqsKFYq-AA" name="ContinuousComponentParamDegree">
-      <generalization xmi:id="_zALaEBo2EeCymqsKFYq-AA" general="_CC-r0PzyEd2sBa2PoI_LqA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_v-S9cBo2EeCymqsKFYq-AA" name="StringComponentParamDegree">
-      <generalization xmi:id="_ys4DkBo2EeCymqsKFYq-AA" general="_RBFjABm1EeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_Pnlb8CSWEeChWKMqI1kkWw" name="GDoF">
+    <packagedElement xmi:type="uml:Package" xmi:id="_Pnlb8CSWEeChWKMqI1kkWw" name="gdof">
       <packagedElement xmi:type="uml:Class" xmi:id="_UfRjoCSWEeChWKMqI1kkWw" name="DegreeOfFreedom">
         <ownedAttribute xmi:id="_k3n6sCrvEeCMvq9tQwTZGA" name="name" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -456,7 +233,7 @@ This class is actually superflous as it does not add any properties to its subcl
         </ownedAttribute>
         <ownedAttribute xmi:id="_tuI_0CSWEeChWKMqI1kkWw" name="changeableElementDescriptions" visibility="private" type="_WfhkICSWEeChWKMqI1kkWw" aggregation="composite" association="_tuHKoCSWEeChWKMqI1kkWw">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tuK1ACSWEeChWKMqI1kkWw" value="*"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tuKN8CSWEeChWKMqI1kkWw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tuKN8CSWEeChWKMqI1kkWw" value="1"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_bXS1QCSfEeChWKMqI1kkWw" name="interactionConstraints" visibility="private" association="_bXRAECSfEeChWKMqI1kkWw">
           <type xmi:type="uml:Class" href="Ecore.uml#_SeWjmMX_EduPJbEsMYXjUQ"/>
@@ -624,7 +401,7 @@ This query defines which instances of \function{changeableContainer}{$p_i$} are 
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1NlKoCVLEeChWKMqI1kkWw"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_dYZbsC3yEeCCDMFbLBj3cg" name="QualityProperties">
+    <packagedElement xmi:type="uml:Package" xmi:id="_dYZbsC3yEeCCDMFbLBj3cg" name="qualityproperties">
       <packagedElement xmi:type="uml:Class" xmi:id="_scyOoC33EeCCDMFbLBj3cg" name="NumericQualityProperty" isAbstract="true">
         <generalization xmi:id="_6avXQC33EeCCDMFbLBj3cg" general="_SuldAC31EeCCDMFbLBj3cg"/>
         <ownedAttribute xmi:id="_nuYT4C35EeCCDMFbLBj3cg" name="resultDecoratorRepository" visibility="public" association="_nuWesC35EeCCDMFbLBj3cg">
@@ -715,85 +492,334 @@ This query defines which instances of \function{changeableContainer}{$p_i$} are 
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rBZZQC34EeCCDMFbLBj3cg" value="1"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_lc5MUErrEeCgHJIR5Amnzw" memberEnd="_ldBIIErrEeCgHJIR5Amnzw _ldGnsErrEeCgHJIR5Amnzw">
-      <ownedEnd xmi:id="_ldGnsErrEeCgHJIR5Amnzw" name="" visibility="private" type="_EnlbsLUYEd-iB5E5ZPm7Eg" association="_lc5MUErrEeCgHJIR5Amnzw">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ldJD8UrrEeCgHJIR5Amnzw" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ldJD8ErrEeCgHJIR5Amnzw"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_2eDnQErrEeCgHJIR5Amnzw" name="UnorderedPrimitiveDegree" isAbstract="true">
-      <generalization xmi:id="_Gq5pUErsEeCgHJIR5Amnzw" general="_CzduEBmyEeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_x4HHwLOiEeC5aYz3xOaevA" name="NumberOfCoresAsRangeDegree">
-      <generalization xmi:id="_zAu8sLOiEeC5aYz3xOaevA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
-      <generalization xmi:id="_SoH7IN4qEeC1gLGNJBSMtA" general="_TwwXIN4qEeC1gLGNJBSMtA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_M_gtsMc9EeCAiqHxI6xyag" name="ProcessingRateDegree" isAbstract="true">
-      <generalization xmi:id="_Olnv4Mc9EeCAiqHxI6xyag" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_-lIqoMdDEeCAUr8TwCw8QA" name="InstanceSpecification1" classifier="_2eDnQErrEeCgHJIR5Amnzw"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_fWt5AMgCEeC9M6n9JKFGgw" name="ResourceContainerReplicationDegreeWithComponentChange">
-      <ownedComment xmi:id="_eNRvQMgDEeC9M6n9JKFGgw" annotatedElement="_fWt5AMgCEeC9M6n9JKFGgw">
-        <body>Resource Replication, but for each replication level the i-th referenced RepositoryComponent is put into the referenced&#xD;
+    <packagedElement xmi:type="uml:Package" xmi:id="_9PjDcNryEeGCM4O_kVKszQ" name="specific">
+      <packagedElement xmi:type="uml:Class" xmi:id="_BvM1AMgXEeC9M6n9JKFGgw" name="ExchangeComponentRule">
+        <ownedAttribute xmi:id="_gEAAUMgDEeC9M6n9JKFGgw" name="repositoryComponent" visibility="private" association="_gD9kEMgDEeC9M6n9JKFGgw">
+          <type xmi:type="uml:Class" href="pcm.uml#_rGa6kKBZEd24Bv0x9CNKpg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gECckMgDEeC9M6n9JKFGgw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gEB1gMgDEeC9M6n9JKFGgw" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ImgEAMgXEeC9M6n9JKFGgw" name="allocationContext" visibility="private" association="_Ime14MgXEeC9M6n9JKFGgw">
+          <type xmi:type="uml:Class" href="pcm.uml#_9nOFcOD7Edq8ysXH3gTiEg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ImgrEcgXEeC9M6n9JKFGgw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ImgrEMgXEeC9M6n9JKFGgw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_gQHsQBmlEeCymqsKFYq-AA" name="ClassAsReferenceDegree">
+        <ownedComment xmi:id="_Nl7BgBmmEeCymqsKFYq-AA" annotatedElement="_gQHsQBmlEeCymqsKFYq-AA">
+          <body>DoFs of this type are updated by updating this changeable element's reference to one of the Entities in the domainOfEntities.</body>
+        </ownedComment>
+        <generalization xmi:id="_jraHYBmlEeCymqsKFYq-AA" general="_3H9M4PzqEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_3H9M4PzqEd2sBa2PoI_LqA" name="ClassDegree" isAbstract="true">
+        <ownedComment xmi:id="_AM1hcLELEd6XDa9JyFGB5Q" annotatedElement="_3H9M4PzqEd2sBa2PoI_LqA">
+          <body>This class represents DegreeOfFreedoms that have an enumeration domain. The set of possile values of the degree of freedom are referenced with the domainOfEntities property. Any kind of PCM element can be annotated here. Subclasses restrict the type of annotated elements with OCL constraints.</body>
+        </ownedComment>
+        <generalization xmi:id="_4agZ4PzqEd2sBa2PoI_LqA" general="_khi9UPzoEd2sBa2PoI_LqA"/>
+        <ownedAttribute xmi:id="_aB6ycLDyEd6XDa9JyFGB5Q" name="classDesignOptions" visibility="public" association="_aB49QLDyEd6XDa9JyFGB5Q">
+          <type xmi:type="uml:Class" href="Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aB8AkbDyEd6XDa9JyFGB5Q" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aB8AkLDyEd6XDa9JyFGB5Q" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mCrgwBmlEeCymqsKFYq-AA" name="ClassWithCopyDegree" isAbstract="true">
+        <ownedComment xmi:id="_NIA9gBmmEeCymqsKFYq-AA" annotatedElement="_mCrgwBmlEeCymqsKFYq-AA">
+          <body>DoFs of this type are updated by copying a one of the Entities in the domainOfEntities.&#xD;
+&#xD;
+</body>
+        </ownedComment>
+        <generalization xmi:id="_D9MzwBmmEeCymqsKFYq-AA" general="_3H9M4PzqEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CC-r0PzyEd2sBa2PoI_LqA" name="ContinuousRangeDegree">
+        <ownedComment xmi:id="_8MOg0LEMEd6XDa9JyFGB5Q" annotatedElement="_CC-r0PzyEd2sBa2PoI_LqA">
+          <body>This class represents DegreeOfFreedoms that have a range of real values as their domain. The set of possile values of the degree of freedom is defined as the real interval between &quot;from&quot; and &quot;to&quot;.&#xD;
+&#xD;
+TODO OCL: from must be smaller that to. </body>
+        </ownedComment>
+        <generalization xmi:id="_DMB-kPzyEd2sBa2PoI_LqA" general="_2oEy8PzqEd2sBa2PoI_LqA"/>
+        <ownedAttribute xmi:id="_hQWGwPzyEd2sBa2PoI_LqA" name="to" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_f5IcMPzyEd2sBa2PoI_LqA" name="from" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mJ9hkBmyEeCymqsKFYq-AA" name="DataTypeDegree" isAbstract="true">
+        <generalization xmi:id="_ni8GsBmyEeCymqsKFYq-AA" general="_khi9UPzoEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bB1l0N4vEeC1gLGNJBSMtA" name="DiscreteDegree" isAbstract="true">
+        <generalization xmi:id="_dX9vsN4vEeC1gLGNJBSMtA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BBEi4PzyEd2sBa2PoI_LqA" name="DiscreteRangeDegree">
+        <ownedComment xmi:id="_623QYLEMEd6XDa9JyFGB5Q" annotatedElement="_BBEi4PzyEd2sBa2PoI_LqA">
+          <body>This class represents DegreeOfFreedoms that have a range of integer values as their domain. The set of possile values of the degree of freedom is defined as the integer interval between &quot;from&quot; and &quot;to&quot;.&#xD;
+&#xD;
+TODO OCL: from must be smaller that to. </body>
+        </ownedComment>
+        <generalization xmi:id="_C3WIAPzyEd2sBa2PoI_LqA" general="_2oEy8PzqEd2sBa2PoI_LqA"/>
+        <generalization xmi:id="_c-e4sN4vEeC1gLGNJBSMtA" general="_bB1l0N4vEeC1gLGNJBSMtA"/>
+        <ownedAttribute xmi:id="_XBoQAPzyEd2sBa2PoI_LqA" name="to" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_WK41QPzyEd2sBa2PoI_LqA" name="from" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EnlbsLUYEd-iB5E5ZPm7Eg" name="EnumDegree" isAbstract="true">
+        <ownedComment xmi:id="_LlU3YLW8Ed-iB5E5ZPm7Eg" annotatedElement="_EnlbsLUYEd-iB5E5ZPm7Eg">
+          <body>Construct to model a special type of enumerated degree of freedom where the domain of values is a subset of an enumeration in the metamodel. Each concrete subclass of EnumDegree must model the domain explicitly (refer to the concrete Enum to choose from). &#xD;
+&#xD;
+This class is actually superflous as it does not add any properties to its subclasses. It is just used to conceptually group this type of degree of freedom. Maybe it can be used to implement some OCL checks (with reflection?). </body>
+        </ownedComment>
+        <generalization xmi:id="_Fz0lULUYEd-iB5E5ZPm7Eg" general="_CzduEBmyEeCymqsKFYq-AA"/>
+        <ownedAttribute xmi:id="_ldBIIErrEeCgHJIR5Amnzw" name="enumeration" visibility="private" association="_lc5MUErrEeCgHJIR5Amnzw">
+          <type xmi:type="uml:Class" href="Ecore.uml#_SeWkDMX_EduPJbEsMYXjUQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ldEygErrEeCgHJIR5Amnzw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ldDkYErrEeCgHJIR5Amnzw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xGr2sN4nEeC1gLGNJBSMtA" name="OrderedDataTypeDegree" isAbstract="true">
+        <generalization xmi:id="_8MSnQN4pEeC1gLGNJBSMtA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_9RYR8N4nEeC1gLGNJBSMtA" name="OrderedIntegerDegree">
+        <generalization xmi:id="_DLF3UN4oEeC1gLGNJBSMtA" general="_xGr2sN4nEeC1gLGNJBSMtA"/>
+        <generalization xmi:id="_d7vyMN4vEeC1gLGNJBSMtA" general="_bB1l0N4vEeC1gLGNJBSMtA"/>
+        <ownedAttribute xmi:id="_9gdk4N4pEeC1gLGNJBSMtA" name="listOfIntegers" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__kM-QN4pEeC1gLGNJBSMtA" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__kMXMN4pEeC1gLGNJBSMtA" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2oEy8PzqEd2sBa2PoI_LqA" name="RangeDegree" isAbstract="true">
+        <ownedComment xmi:id="_gGSJ0LEMEd6XDa9JyFGB5Q" annotatedElement="_2oEy8PzqEd2sBa2PoI_LqA">
+          <body>This class represents DegreeOfFreedoms that have a range of numbers as their domain. The set of possile values of the degree of freedom is defined by the subclasses. In this class, the attributes upperBoundIncluded and lowerBoundIncluded define whether the endpoints defined by the subclasses are included in the domain or not (similar to mathematical intervals)</body>
+        </ownedComment>
+        <generalization xmi:id="_4KavcPzqEd2sBa2PoI_LqA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
+        <ownedAttribute xmi:id="_cYGlcPzyEd2sBa2PoI_LqA" name="upperBoundIncluded" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_0oQWoPzyEd2sBa2PoI_LqA" value="true">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_aSgK4PzyEd2sBa2PoI_LqA" name="lowerBoundIncluded" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_1driwPzyEd2sBa2PoI_LqA" value="true">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_K6iiAEFdEd-8BKcv5MhVwA" name="numberOfSteps" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g61oIWPgEeKcHurOtHxxFg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g61oIGPgEeKcHurOtHxxFg"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RBFjABm1EeCymqsKFYq-AA" name="StringSetDegree" isAbstract="true">
+        <generalization xmi:id="_XUsPEBm1EeCymqsKFYq-AA" general="_CzduEBmyEeCymqsKFYq-AA"/>
+        <ownedAttribute xmi:id="_TeNFsBm1EeCymqsKFYq-AA" name="stringValues" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wc8HsBm1EeCymqsKFYq-AA" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Wc7goBm1EeCymqsKFYq-AA" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CzduEBmyEeCymqsKFYq-AA" name="UnorderedDegree" isAbstract="true">
+        <generalization xmi:id="_IJqWsBmyEeCymqsKFYq-AA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2eDnQErrEeCgHJIR5Amnzw" name="UnorderedPrimitiveDegree" isAbstract="true">
+        <generalization xmi:id="_Gq5pUErsEeCgHJIR5Amnzw" general="_CzduEBmyEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_uFmWcBo2EeCymqsKFYq-AA" name="ContinuousComponentParamDegree">
+        <generalization xmi:id="_zALaEBo2EeCymqsKFYq-AA" general="_CC-r0PzyEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6AUSYPzwEd2sBa2PoI_LqA" name="ContinuousProcessingRateDegree">
+        <ownedComment xmi:id="_-F-gMPzwEd2sBa2PoI_LqA" annotatedElement="_6AUSYPzwEd2sBa2PoI_LqA">
+          <body>ProcessingRateDegree represents a degree of freedom to choose the processing speed of a resource.  It refers to a ResourceContainer as changeableEntity, which is the server. Additionally, it refers to a ProcessingResourceType which determines whether the CPU respource or HDD resource is meant to be changed. The speed is assumed to range in a certain interval &quot;from&quot; to &quot;to&quot;.&#xD;
+&#xD;
+TODO OCL: The changeableEntity must be an ResourceContainer. </body>
+        </ownedComment>
+        <generalization xmi:id="_AeDK0PzxEd2sBa2PoI_LqA" general="_CC-r0PzyEd2sBa2PoI_LqA"/>
+        <generalization xmi:id="_Gq1nYEFdEd-8BKcv5MhVwA" general="_M_gtsMc9EeCAiqHxI6xyag"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rKrdcBo2EeCymqsKFYq-AA" name="DiscreteComponentParamDegree">
+        <generalization xmi:id="_s7sIEBo2EeCymqsKFYq-AA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IB12kEFdEd-8BKcv5MhVwA" name="DiscreteProcessingRateDegree">
+        <generalization xmi:id="_J2NXMEFdEd-8BKcv5MhVwA" general="_M_gtsMc9EeCAiqHxI6xyag"/>
+        <generalization xmi:id="_KMfJMEFdEd-8BKcv5MhVwA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Nv8tIM3TEd6MbeRXRwIg2A" name="FeatureConfigDegree" isAbstract="true">
+        <generalization xmi:id="_QD5swM3TEd6MbeRXRwIg2A" general="_khi9UPzoEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YD5CIM3TEd6MbeRXRwIg2A" name="FeatureGroupDegree">
+        <ownedComment xmi:id="_u6sI0M3VEd6MbeRXRwIg2A" annotatedElement="_YD5CIM3TEd6MbeRXRwIg2A">
+          <body>For a FeatureGroup with Fatures F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;
+&#xD;
+TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;
+</body>
+        </ownedComment>
+        <generalization xmi:id="_cuzSEM3TEd6MbeRXRwIg2A" general="_Nv8tIM3TEd6MbeRXRwIg2A"/>
+        <ownedAttribute xmi:id="_YBwpQM3VEd6MbeRXRwIg2A" name="featuregroup" visibility="private" association="_YBu0EM3VEd6MbeRXRwIg2A">
+          <type xmi:type="uml:Class" href="FeatureModel.uml#_5WogUHvvEdyOhKBWyuRGig"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YByecM3VEd6MbeRXRwIg2A" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YBx3YM3VEd6MbeRXRwIg2A" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0wh60M3VEd6MbeRXRwIg2A" name="domainOfFeatureConfigCombinations" visibility="private" type="_xx60oM3VEd6MbeRXRwIg2A" aggregation="composite" association="_0wfekM3VEd6MbeRXRwIg2A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0wjI8M3VEd6MbeRXRwIg2A" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0wih4M3VEd6MbeRXRwIg2A" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xx60oM3VEd6MbeRXRwIg2A" name="FeatureSubset">
+        <ownedAttribute xmi:id="_6SEQwM3VEd6MbeRXRwIg2A" name="feature" visibility="private" association="_6SCbkM3VEd6MbeRXRwIg2A">
+          <type xmi:type="uml:Class" href="FeatureModel.uml#_yRwvYHvvEdyOhKBWyuRGig"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6SFe4c3VEd6MbeRXRwIg2A" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6SFe4M3VEd6MbeRXRwIg2A"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Oo5sgN4qEeC1gLGNJBSMtA" name="NumberOfCoresAsListDegree">
+        <generalization xmi:id="_V6GCMN4qEeC1gLGNJBSMtA" general="_TwwXIN4qEeC1gLGNJBSMtA"/>
+        <generalization xmi:id="_YWucsN4qEeC1gLGNJBSMtA" general="_9RYR8N4nEeC1gLGNJBSMtA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_x4HHwLOiEeC5aYz3xOaevA" name="NumberOfCoresAsRangeDegree">
+        <generalization xmi:id="_zAu8sLOiEeC5aYz3xOaevA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
+        <generalization xmi:id="_SoH7IN4qEeC1gLGNJBSMtA" general="_TwwXIN4qEeC1gLGNJBSMtA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TwwXIN4qEeC1gLGNJBSMtA" name="NumberOfCoresDegree" isAbstract="true">
+        <generalization xmi:id="_0zsIELOiEeC5aYz3xOaevA" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_g9VvEM3TEd6MbeRXRwIg2A" name="OptionalFeatureDegree">
+        <ownedComment xmi:id="_Le3JYM3VEd6MbeRXRwIg2A" annotatedElement="_g9VvEM3TEd6MbeRXRwIg2A">
+          <body>A boolean range: Selected or Eliminated (ignore default here). </body>
+        </ownedComment>
+        <generalization xmi:id="_iiERMM3TEd6MbeRXRwIg2A" general="_Nv8tIM3TEd6MbeRXRwIg2A"/>
+        <ownedAttribute xmi:id="_SIV-0M3VEd6MbeRXRwIg2A" name="simple" visibility="private" association="_SITikM3VEd6MbeRXRwIg2A">
+          <type xmi:type="uml:Class" href="FeatureModel.uml#_pgSc8KwPEd2RCOCuXmp_aA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SIXM8c3VEd6MbeRXRwIg2A" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SIXM8M3VEd6MbeRXRwIg2A" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_M_gtsMc9EeCAiqHxI6xyag" name="ProcessingRateDegree" isAbstract="true">
+        <generalization xmi:id="_Olnv4Mc9EeCAiqHxI6xyag" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DfqE0EFdEd-8BKcv5MhVwA" name="ProcessingResourceDegree" isAbstract="true">
+        <generalization xmi:id="_2LS3YLW-Ed-iB5E5ZPm7Eg" general="_khi9UPzoEd2sBa2PoI_LqA"/>
+        <ownedAttribute xmi:id="_v7cg8Bo6EeCymqsKFYq-AA" name="processingresourcetype" visibility="public">
+          <type xmi:type="uml:Class" href="pcm.uml#_n2nAMOD4Edq8ysXH3gTiEg"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aLDCkPzzEd2sBa2PoI_LqA" name="ResourceContainerReplicationDegree">
+        <ownedComment xmi:id="_Z0v6ULEMEd6XDa9JyFGB5Q" annotatedElement="_aLDCkPzzEd2sBa2PoI_LqA">
+          <body>Annotates a ResourceContainer and defines the number of replications of this container, together with all components deployed to it.</body>
+        </ownedComment>
+        <generalization xmi:id="_cdCTUPzzEd2sBa2PoI_LqA" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_fWt5AMgCEeC9M6n9JKFGgw" name="ResourceContainerReplicationDegreeWithComponentChange">
+        <ownedComment xmi:id="_eNRvQMgDEeC9M6n9JKFGgw" annotatedElement="_fWt5AMgCEeC9M6n9JKFGgw">
+          <body>Resource Replication, but for each replication level the i-th referenced RepositoryComponent is put into the referenced&#xD;
 allocation context, if fitting.</body>
+        </ownedComment>
+        <generalization xmi:id="_igGEwMgCEeC9M6n9JKFGgw" general="_aLDCkPzzEd2sBa2PoI_LqA"/>
+        <ownedAttribute xmi:id="_EIavIMgXEeC9M6n9JKFGgw" name="exchangeComponentRule" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" aggregation="composite" association="_EIKQcMgXEeC9M6n9JKFGgw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EJYYcMgXEeC9M6n9JKFGgw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EJXxYMgXEeC9M6n9JKFGgw"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VhE6MBmmEeCymqsKFYq-AA" name="ResourceSelectionDegree">
+        <generalization xmi:id="_W-i9wBmmEeCymqsKFYq-AA" general="_mCrgwBmlEeCymqsKFYq-AA"/>
+        <generalization xmi:id="_-wLWABo5EeCymqsKFYq-AA" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_X4zqMLUXEd-iB5E5ZPm7Eg" name="SchedulingPolicyDegree">
+        <generalization xmi:id="_GaQ6QLUYEd-iB5E5ZPm7Eg" general="_gQHsQBmlEeCymqsKFYq-AA"/>
+        <generalization xmi:id="_pom6QLW7Ed-iB5E5ZPm7Eg" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_v-S9cBo2EeCymqsKFYq-AA" name="StringComponentParamDegree">
+        <generalization xmi:id="_ys4DkBo2EeCymqsKFYq-AA" general="_RBFjABm1EeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DVkKgPzxEd2sBa2PoI_LqA" name="AllocationDegree">
+        <ownedComment xmi:id="_97IQMPzyEd2sBa2PoI_LqA" annotatedElement="_DVkKgPzxEd2sBa2PoI_LqA">
+          <body>AllocationDegree represents a component allocation degree of freedom. It refers to an AllocationContext as changeableEntity, which is the mapping of a component to a server. The domain is a set of ResourceContainers (i.e. servers or hardware nodes) that can be put in the AllocationContext, i.e. in the mapping where the component is to be deployed. &#xD;
+&#xD;
+TODO OCL: The domainOfEntities must only contain ResourceContainer.  The changeableEntity must be an AllocationContext.</body>
+        </ownedComment>
+        <generalization xmi:id="_Pk_UwPzxEd2sBa2PoI_LqA" general="_gQHsQBmlEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FhsD0PzxEd2sBa2PoI_LqA" name="AssembledComponentDegree">
+        <ownedComment xmi:id="__o9rAPzyEd2sBa2PoI_LqA" annotatedElement="_FhsD0PzxEd2sBa2PoI_LqA">
+          <body>AssembledComponentDegree represents a component selection degree of freedom. It refers to an AssemblyContext as changeableEntity, which is the place in the software architecture in which different component implementations can be used (also called component frame in other component models). The domain is a set of RepositoryComponents that can be put in the AssemblyContext, i.e. in the defined place in the architecture. &#xD;
+&#xD;
+TODO OCL: The domainOfEntities must only contain RepositoryComponents.  The changeableEntity must be an AssemblyContext.</body>
+        </ownedComment>
+        <generalization xmi:id="_NILf4LDyEd6XDa9JyFGB5Q" general="_gQHsQBmlEeCymqsKFYq-AA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_LSJEoLUXEd-iB5E5ZPm7Eg" name="CapacityDegree">
+        <ownedComment xmi:id="_FCPEMLXEEd-iB5E5ZPm7Eg" annotatedElement="_LSJEoLUXEd-iB5E5ZPm7Eg">
+          <body>Capcity degree. Need to refer to a PassiveResource as changeable entity, plus a &#xD;
+&#xD;
+TODO: add OCL that changeable entity is PassiveResource. &#xD;
+&#xD;
+TODO conceptually: Currently the capacity of a passive resource is modelled at the type level. That is not useful for e.g. threadpools. CHange PCM!&#xD;
+If PCM is changed, put AssemblyContext as changeable entity and add a ref to PassiveResource here. Then TODO: add OCL for changeableEntity to be an AssemblyContext, plus the PassiveResource must be available in the encapsulated BasicComponent. </body>
+        </ownedComment>
+        <generalization xmi:id="_MlpT4LUXEd-iB5E5ZPm7Eg" general="_BBEi4PzyEd2sBa2PoI_LqA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_EIKQcMgXEeC9M6n9JKFGgw" memberEnd="_EIavIMgXEeC9M6n9JKFGgw _EJlz0MgXEeC9M6n9JKFGgw">
+        <ownedEnd xmi:id="_EJlz0MgXEeC9M6n9JKFGgw" name="" visibility="private" type="_fWt5AMgCEeC9M6n9JKFGgw" association="_EIKQcMgXEeC9M6n9JKFGgw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EJwy8MgXEeC9M6n9JKFGgw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EJwL4MgXEeC9M6n9JKFGgw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_SITikM3VEd6MbeRXRwIg2A" memberEnd="_SIV-0M3VEd6MbeRXRwIg2A _SIZCIM3VEd6MbeRXRwIg2A">
+        <ownedEnd xmi:id="_SIZCIM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_g9VvEM3TEd6MbeRXRwIg2A" association="_SITikM3VEd6MbeRXRwIg2A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SIaQQM3VEd6MbeRXRwIg2A" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SIZpMM3VEd6MbeRXRwIg2A"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_6SCbkM3VEd6MbeRXRwIg2A" memberEnd="_6SEQwM3VEd6MbeRXRwIg2A _6SHUEM3VEd6MbeRXRwIg2A">
+        <ownedEnd xmi:id="_6SHUEM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_xx60oM3VEd6MbeRXRwIg2A" association="_6SCbkM3VEd6MbeRXRwIg2A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6SIiMM3VEd6MbeRXRwIg2A" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6SH7IM3VEd6MbeRXRwIg2A"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_0wfekM3VEd6MbeRXRwIg2A" memberEnd="_0wh60M3VEd6MbeRXRwIg2A _0wk-IM3VEd6MbeRXRwIg2A">
+        <ownedEnd xmi:id="_0wk-IM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_YD5CIM3TEd6MbeRXRwIg2A" association="_0wfekM3VEd6MbeRXRwIg2A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_YBu0EM3VEd6MbeRXRwIg2A" memberEnd="_YBwpQM3VEd6MbeRXRwIg2A _YBzskM3VEd6MbeRXRwIg2A">
+        <ownedEnd xmi:id="_YBzskM3VEd6MbeRXRwIg2A" name="" visibility="private" type="_YD5CIM3TEd6MbeRXRwIg2A" association="_YBu0EM3VEd6MbeRXRwIg2A">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YB06sc3VEd6MbeRXRwIg2A" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YB06sM3VEd6MbeRXRwIg2A"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_lc5MUErrEeCgHJIR5Amnzw" memberEnd="_ldBIIErrEeCgHJIR5Amnzw _ldGnsErrEeCgHJIR5Amnzw">
+        <ownedEnd xmi:id="_ldGnsErrEeCgHJIR5Amnzw" name="" visibility="private" type="_EnlbsLUYEd-iB5E5ZPm7Eg" association="_lc5MUErrEeCgHJIR5Amnzw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ldJD8UrrEeCgHJIR5Amnzw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ldJD8ErrEeCgHJIR5Amnzw"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_aB49QLDyEd6XDa9JyFGB5Q" name="" memberEnd="_aB6ycLDyEd6XDa9JyFGB5Q _aB-c0LDyEd6XDa9JyFGB5Q">
+        <ownedEnd xmi:id="_aB-c0LDyEd6XDa9JyFGB5Q" name="" visibility="private" type="_3H9M4PzqEd2sBa2PoI_LqA" association="_aB49QLDyEd6XDa9JyFGB5Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aB_D4bDyEd6XDa9JyFGB5Q" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aB_D4LDyEd6XDa9JyFGB5Q"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Ime14MgXEeC9M6n9JKFGgw" memberEnd="_ImgEAMgXEeC9M6n9JKFGgw _ImhSIMgXEeC9M6n9JKFGgw">
+        <ownedEnd xmi:id="_ImhSIMgXEeC9M6n9JKFGgw" name="" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" association="_Ime14MgXEeC9M6n9JKFGgw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Imh5McgXEeC9M6n9JKFGgw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Imh5MMgXEeC9M6n9JKFGgw"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gD9kEMgDEeC9M6n9JKFGgw" memberEnd="_gEAAUMgDEeC9M6n9JKFGgw _gEQfAMgDEeC9M6n9JKFGgw">
+        <ownedEnd xmi:id="_gEQfAMgDEeC9M6n9JKFGgw" name="" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" association="_gD9kEMgDEeC9M6n9JKFGgw">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gESUMMgDEeC9M6n9JKFGgw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gERtIMgDEeC9M6n9JKFGgw"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_4C9aQGPgEeKcHurOtHxxFg" name="" memberEnd="_4DHLQGPgEeKcHurOtHxxFg _4DHLQ2PgEeKcHurOtHxxFg">
+      <ownedComment xmi:id="_iPresGPhEeKcHurOtHxxFg" annotatedElement="_4C9aQGPgEeKcHurOtHxxFg">
+        <body>&lt;p>This association caches the changeable elements derived by the DegreeOfFreedom's selection rule. In principle, the value could be derived anew with each access. However, it will be easier and more performant to cache these values. Additionally, this allows manual definition of changeableElements during the development of generic DoF. &lt;/p></body>
       </ownedComment>
-      <generalization xmi:id="_igGEwMgCEeC9M6n9JKFGgw" general="_aLDCkPzzEd2sBa2PoI_LqA"/>
-      <ownedAttribute xmi:id="_EIavIMgXEeC9M6n9JKFGgw" name="exchangeComponentRule" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" aggregation="composite" association="_EIKQcMgXEeC9M6n9JKFGgw">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EJYYcMgXEeC9M6n9JKFGgw" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EJXxYMgXEeC9M6n9JKFGgw"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_gD9kEMgDEeC9M6n9JKFGgw" memberEnd="_gEAAUMgDEeC9M6n9JKFGgw _gEQfAMgDEeC9M6n9JKFGgw">
-      <ownedEnd xmi:id="_gEQfAMgDEeC9M6n9JKFGgw" name="" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" association="_gD9kEMgDEeC9M6n9JKFGgw">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gESUMMgDEeC9M6n9JKFGgw" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gERtIMgDEeC9M6n9JKFGgw"/>
+      <ownedEnd xmi:id="_4DHLQ2PgEeKcHurOtHxxFg" name="degreeOfFreedomInstance" visibility="private" type="_khi9UPzoEd2sBa2PoI_LqA" association="_4C9aQGPgEeKcHurOtHxxFg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4DHLRWPgEeKcHurOtHxxFg" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4DHLRGPgEeKcHurOtHxxFg"/>
       </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_BvM1AMgXEeC9M6n9JKFGgw" name="ExchangeComponentRule">
-      <ownedAttribute xmi:id="_gEAAUMgDEeC9M6n9JKFGgw" name="repositoryComponent" visibility="private" association="_gD9kEMgDEeC9M6n9JKFGgw">
-        <type xmi:type="uml:Class" href="pcm.uml#_rGa6kKBZEd24Bv0x9CNKpg"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gECckMgDEeC9M6n9JKFGgw" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gEB1gMgDEeC9M6n9JKFGgw" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_ImgEAMgXEeC9M6n9JKFGgw" name="allocationContext" visibility="private" association="_Ime14MgXEeC9M6n9JKFGgw">
-        <type xmi:type="uml:Class" href="pcm.uml#_9nOFcOD7Edq8ysXH3gTiEg"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ImgrEcgXEeC9M6n9JKFGgw" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ImgrEMgXEeC9M6n9JKFGgw"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_EIKQcMgXEeC9M6n9JKFGgw" memberEnd="_EIavIMgXEeC9M6n9JKFGgw _EJlz0MgXEeC9M6n9JKFGgw">
-      <ownedEnd xmi:id="_EJlz0MgXEeC9M6n9JKFGgw" name="" visibility="private" type="_fWt5AMgCEeC9M6n9JKFGgw" association="_EIKQcMgXEeC9M6n9JKFGgw">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EJwy8MgXEeC9M6n9JKFGgw" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EJwL4MgXEeC9M6n9JKFGgw" value="1"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Ime14MgXEeC9M6n9JKFGgw" memberEnd="_ImgEAMgXEeC9M6n9JKFGgw _ImhSIMgXEeC9M6n9JKFGgw">
-      <ownedEnd xmi:id="_ImhSIMgXEeC9M6n9JKFGgw" name="" visibility="private" type="_BvM1AMgXEeC9M6n9JKFGgw" association="_Ime14MgXEeC9M6n9JKFGgw">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Imh5McgXEeC9M6n9JKFGgw" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Imh5MMgXEeC9M6n9JKFGgw"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_xGr2sN4nEeC1gLGNJBSMtA" name="OrderedDataTypeDegree" isAbstract="true">
-      <generalization xmi:id="_8MSnQN4pEeC1gLGNJBSMtA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_9RYR8N4nEeC1gLGNJBSMtA" name="OrderedIntegerDegree">
-      <generalization xmi:id="_DLF3UN4oEeC1gLGNJBSMtA" general="_xGr2sN4nEeC1gLGNJBSMtA"/>
-      <generalization xmi:id="_d7vyMN4vEeC1gLGNJBSMtA" general="_bB1l0N4vEeC1gLGNJBSMtA"/>
-      <ownedAttribute xmi:id="_9gdk4N4pEeC1gLGNJBSMtA" name="listOfIntegers" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__kM-QN4pEeC1gLGNJBSMtA" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__kMXMN4pEeC1gLGNJBSMtA" value="1"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Oo5sgN4qEeC1gLGNJBSMtA" name="NumberOfCoresAsListDegree">
-      <generalization xmi:id="_V6GCMN4qEeC1gLGNJBSMtA" general="_TwwXIN4qEeC1gLGNJBSMtA"/>
-      <generalization xmi:id="_YWucsN4qEeC1gLGNJBSMtA" general="_9RYR8N4nEeC1gLGNJBSMtA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_TwwXIN4qEeC1gLGNJBSMtA" name="NumberOfCoresDegree" isAbstract="true">
-      <generalization xmi:id="_0zsIELOiEeC5aYz3xOaevA" general="_DfqE0EFdEd-8BKcv5MhVwA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_bB1l0N4vEeC1gLGNJBSMtA" name="DiscreteDegree" isAbstract="true">
-      <generalization xmi:id="_dX9vsN4vEeC1gLGNJBSMtA" general="_mJ9hkBmyEeCymqsKFYq-AA"/>
     </packagedElement>
     <profileApplication xmi:id="_RLu_NfzoEd2sBa2PoI_LqA">
       <eAnnotations xmi:id="_RLu_NvzoEd2sBa2PoI_LqA" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -803,7 +829,7 @@ allocation context, if fitting.</body>
     </profileApplication>
     <profileApplication xmi:id="_RLu_N_zoEd2sBa2PoI_LqA">
       <eAnnotations xmi:id="_RLu_OPzoEd2sBa2PoI_LqA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_IN8k8MmBEdqBcN1R6EvWUw"/>
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_fNwoAAqoEd6-N_NOT9vsCA"/>
       </eAnnotations>
       <appliedProfile href="Default.profile.uml#_a_S3wNWLEdiy4IqP8whjFA"/>
     </profileApplication>
@@ -849,12 +875,12 @@ allocation context, if fitting.</body>
   <Ecore:EPackage xmi:id="_pbEyMP7FEd-I0aX6Em3k2A" base_Package="_k6PrUP7FEd-I0aX6Em3k2A" packageName="resourcerepository" nsPrefix="resourcerepository" nsURI="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0" basePackage="de.uka.ipd.sdq.pcm" prefix="resourcerepository"/>
   <Default:Documentation xmi:id="_NIHEIBmmEeCymqsKFYq-AA" base_Comment="_NIA9gBmmEeCymqsKFYq-AA"/>
   <Default:Documentation xmi:id="_NmAhEBmmEeCymqsKFYq-AA" base_Comment="_Nl7BgBmmEeCymqsKFYq-AA"/>
-  <Ecore:EPackage xmi:id="_QbzHICSWEeChWKMqI1kkWw" base_Package="_Pnlb8CSWEeChWKMqI1kkWw"/>
+  <Ecore:EPackage xmi:id="_QbzHICSWEeChWKMqI1kkWw" base_Package="_Pnlb8CSWEeChWKMqI1kkWw" packageName="gdof" nsPrefix="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/2.0" basePackage="de.uka.ipd.sdq.pcm.designdecision" prefix="gdof"/>
   <Default:Documentation xmi:id="_XzYJ4CVgEeChWKMqI1kkWw" base_Comment="_XzT4cCVgEeChWKMqI1kkWw"/>
   <Default:Documentation xmi:id="_hoLr0CVgEeChWKMqI1kkWw" base_Comment="_hoGzUCVgEeChWKMqI1kkWw"/>
   <Default:Documentation xmi:id="_5lULYCrnEeCMvq9tQwTZGA" base_Comment="_5lLBcCrnEeCMvq9tQwTZGA"/>
   <Default:Documentation xmi:id="_GFVnUCrxEeCMvq9tQwTZGA" base_Comment="_GFL2UCrxEeCMvq9tQwTZGA"/>
-  <Ecore:EPackage xmi:id="_hKvr8C3yEeCCDMFbLBj3cg" base_Package="_dYZbsC3yEeCCDMFbLBj3cg" prefix=""/>
+  <Ecore:EPackage xmi:id="_hKvr8C3yEeCCDMFbLBj3cg" base_Package="_dYZbsC3yEeCCDMFbLBj3cg" packageName="qualityproperties" nsPrefix="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/2.0" basePackage="de.uka.ipd.sdq.pcm.designdecision" prefix="qualityproperties"/>
   <Ecore:EReference xmi:id="_VFm3YC34EeCCDMFbLBj3cg" base_Property="_R_TNwC34EeCCDMFbLBj3cg"/>
   <Default:Documentation xmi:id="_RgY80C37EeCCDMFbLBj3cg" base_Comment="_RgV5gC37EeCCDMFbLBj3cg"/>
   <Default:Documentation xmi:id="_Sxuo4C37EeCCDMFbLBj3cg" base_Comment="_Sxq-gC37EeCCDMFbLBj3cg"/>
@@ -862,4 +888,9 @@ allocation context, if fitting.</body>
   <Default:Documentation xmi:id="_XRRWUC37EeCCDMFbLBj3cg" base_Comment="_XROTAC37EeCCDMFbLBj3cg"/>
   <Default:Documentation xmi:id="_kFgd0C37EeCCDMFbLBj3cg" base_Comment="_kFdagC37EeCCDMFbLBj3cg"/>
   <Default:Documentation xmi:id="_eNUykMgDEeC9M6n9JKFGgw" base_Comment="_eNRvQMgDEeC9M6n9JKFGgw"/>
+  <Ecore:EPackage xmi:id="_BfzXsNrzEeGCM4O_kVKszQ" base_Package="_9PjDcNryEeGCM4O_kVKszQ" packageName="specific" nsPrefix="specific" nsURI="http://sdq.ipd.uka.de/DesignDecision/Specific/2.0" basePackage="de.uka.ipd.sdq.pcm.designdecision" prefix="specific"/>
+  <Default:Documentation xmi:id="_iP0ooGPhEeKcHurOtHxxFg" base_Comment="_iPresGPhEeKcHurOtHxxFg"/>
+  <Ecore:EAttribute xmi:id="_qTLNMGfVEeKQHNytJSTv1g" isTransient="true" isVolatile="true" base_Property="_Uuq5cPzzEd2sBa2PoI_LqA"/>
+  <Ecore:EAttribute xmi:id="_sfhwAGfVEeKQHNytJSTv1g" isTransient="true" isVolatile="true" base_Property="_8nmoQPzxEd2sBa2PoI_LqA"/>
+  <Ecore:EAttribute xmi:id="_OwwvIGfXEeKQHNytJSTv1g" isTransient="true" isVolatile="true" base_Property="_EbeOcLDyEd6XDa9JyFGB5Q"/>
 </xmi:XMI>

@@ -215,12 +215,12 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 				return createCapacityDegreeAdapter();
 			}
 			@Override
-			public Adapter caseDegreeOfFreedomInstance(DegreeOfFreedomInstance object) {
-				return createDegreeOfFreedomInstanceAdapter();
-			}
-			@Override
 			public Adapter caseMonitoringDegree(MonitoringDegree object) {
 				return createMonitoringDegreeAdapter();
+			}
+			@Override
+			public Adapter caseDegreeOfFreedomInstance(DegreeOfFreedomInstance object) {
+				return createDegreeOfFreedomInstanceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

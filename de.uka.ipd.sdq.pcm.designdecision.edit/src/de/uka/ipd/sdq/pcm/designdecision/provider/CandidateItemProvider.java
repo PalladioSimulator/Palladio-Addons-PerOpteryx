@@ -1,16 +1,13 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.provider;
 
 
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
-import de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityPropertiesFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -157,6 +154,16 @@ public class CandidateItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.CANDIDATE__CHOICES,
+				 designdecisionFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(designdecisionPackage.Literals.CANDIDATE__CHOICES,
+				 designdecisionFactory.eINSTANCE.createDiscreteRangeChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(designdecisionPackage.Literals.CANDIDATE__CHOICES,
 				 designdecisionFactory.eINSTANCE.createClassChoice()));
 
 		newChildDescriptors.add
@@ -166,23 +173,18 @@ public class CandidateItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(designdecisionPackage.Literals.CANDIDATE__CHOICES,
-				 designdecisionFactory.eINSTANCE.createDiscreteRangeChoice()));
+				(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY,
+				 qualitypropertiesFactory.eINSTANCE.createElementQualityProperty()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY,
-				 QualityPropertiesFactory.eINSTANCE.createElementQualityProperty()));
+				 qualitypropertiesFactory.eINSTANCE.createIntegerQualityProperty()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY,
-				 QualityPropertiesFactory.eINSTANCE.createIntegerQualityProperty()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY,
-				 QualityPropertiesFactory.eINSTANCE.createDoubleQualityProperty()));
+				 qualitypropertiesFactory.eINSTANCE.createDoubleQualityProperty()));
 	}
 
 	/**

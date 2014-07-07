@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -49,7 +50,7 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	 */
 	public static specificFactory init() {
 		try {
-			specificFactory thespecificFactory = (specificFactory)EPackage.Registry.INSTANCE.getEFactory("http://sdq.ipd.uka.de/DesignDecision/Specific/2.0"); 
+			specificFactory thespecificFactory = (specificFactory)EPackage.Registry.INSTANCE.getEFactory(specificPackage.eNS_URI);
 			if (thespecificFactory != null) {
 				return thespecificFactory;
 			}
@@ -332,7 +333,7 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	 * @generated
 	 */
 	public MonitoringDegree createMonitoringDegree() {
-		MonitoringDegree monitoringDegree = new MonitoringDegreeImpl();
+		MonitoringDegreeImpl monitoringDegree = new MonitoringDegreeImpl();
 		return monitoringDegree;
 	}
 

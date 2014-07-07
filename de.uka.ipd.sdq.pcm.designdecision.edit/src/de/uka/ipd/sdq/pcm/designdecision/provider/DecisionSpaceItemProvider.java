@@ -11,6 +11,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import java.util.Collection;
 import java.util.List;
 
@@ -154,102 +155,112 @@ public class DecisionSpaceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createContinuousRangeDegree()));
+				 designdecisionFactory.eINSTANCE.createDegreeOfFreedomInstance()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createContinuousProcessingRateDegree()));
+				 specificFactory.eINSTANCE.createClassAsReferenceDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createClassAsReferenceDegree()));
+				 specificFactory.eINSTANCE.createContinuousRangeDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createAllocationDegree()));
+				 specificFactory.eINSTANCE.createDiscreteRangeDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createAssembledComponentDegree()));
+				 specificFactory.eINSTANCE.createOrderedIntegerDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createDiscreteRangeDegree()));
+				 specificFactory.eINSTANCE.createContinuousComponentParamDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createResourceContainerReplicationDegree()));
+				 specificFactory.eINSTANCE.createContinuousProcessingRateDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createFeatureGroupDegree()));
+				 specificFactory.eINSTANCE.createDiscreteComponentParamDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createOptionalFeatureDegree()));
+				 specificFactory.eINSTANCE.createDiscreteProcessingRateDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createDiscreteProcessingRateDegree()));
+				 specificFactory.eINSTANCE.createFeatureGroupDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createCapacityDegree()));
+				 specificFactory.eINSTANCE.createNumberOfCoresAsListDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createSchedulingPolicyDegree()));
+				 specificFactory.eINSTANCE.createNumberOfCoresAsRangeDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createResourceSelectionDegree()));
+				 specificFactory.eINSTANCE.createOptionalFeatureDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createDiscreteComponentParamDegree()));
+				 specificFactory.eINSTANCE.createResourceContainerReplicationDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createContinuousComponentParamDegree()));
+				 specificFactory.eINSTANCE.createResourceContainerReplicationDegreeWithComponentChange()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createStringComponentParamDegree()));
+				 specificFactory.eINSTANCE.createResourceSelectionDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createNumberOfCoresAsRangeDegree()));
+				 specificFactory.eINSTANCE.createSchedulingPolicyDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createResourceContainerReplicationDegreeWithComponentChange()));
+				 specificFactory.eINSTANCE.createStringComponentParamDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createOrderedIntegerDegree()));
+				 specificFactory.eINSTANCE.createAllocationDegree()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
-				 designdecisionFactory.eINSTANCE.createNumberOfCoresAsListDegree()));
+				 specificFactory.eINSTANCE.createAssembledComponentDegree()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
+				 specificFactory.eINSTANCE.createCapacityDegree()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM,
+				 specificFactory.eINSTANCE.createMonitoringDegree()));
 	}
 
 	/**

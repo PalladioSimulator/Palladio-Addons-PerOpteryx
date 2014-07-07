@@ -31,7 +31,7 @@ public class resourcerepositoryFactoryImpl extends EFactoryImpl implements resou
 	 */
 	public static resourcerepositoryFactory init() {
 		try {
-			resourcerepositoryFactory theresourcerepositoryFactory = (resourcerepositoryFactory)EPackage.Registry.INSTANCE.getEFactory("http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0"); 
+			resourcerepositoryFactory theresourcerepositoryFactory = (resourcerepositoryFactory)EPackage.Registry.INSTANCE.getEFactory(resourcerepositoryPackage.eNS_URI);
 			if (theresourcerepositoryFactory != null) {
 				return theresourcerepositoryFactory;
 			}
