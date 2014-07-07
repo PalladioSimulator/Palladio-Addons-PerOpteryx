@@ -1,15 +1,12 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.QualityProperties.QualityProperty;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty;
 
 import java.util.Collection;
 
@@ -49,6 +46,7 @@ public class CandidateImpl extends EObjectImpl implements Candidate {
 	 * @ordered
 	 */
 	protected EList<Choice> choices;
+
 	/**
 	 * The cached value of the '{@link #getQualityProperty() <em>Quality Property</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,6 +56,7 @@ public class CandidateImpl extends EObjectImpl implements Candidate {
 	 * @ordered
 	 */
 	protected EList<QualityProperty> qualityProperty;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

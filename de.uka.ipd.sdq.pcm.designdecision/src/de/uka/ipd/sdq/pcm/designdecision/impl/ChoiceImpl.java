@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
@@ -26,13 +22,14 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#isActive <em>Is Active</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getValue <em>Value</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getDegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ChoiceImpl extends EObjectImpl implements Choice {
+public class ChoiceImpl extends EObjectImpl implements Choice {
 	/**
 	 * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +39,7 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 	 * @ordered
 	 */
 	protected static final boolean IS_ACTIVE_EDEFAULT = true;
+
 	/**
 	 * The cached value of the '{@link #isActive() <em>Is Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,6 +49,27 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 	 * @ordered
 	 */
 	protected boolean isActive = IS_ACTIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Object VALUE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Object value = VALUE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getDegreeOfFreedomInstance() <em>Degree Of Freedom Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,6 +79,7 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 	 * @ordered
 	 */
 	protected DegreeOfFreedomInstance degreeOfFreedomInstance;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +118,28 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		isActive = newIsActive;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__IS_ACTIVE, oldIsActive, isActive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @throws ClassCastException if the type is not matching
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Object newValue) {
+		Object oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__VALUE, oldValue, value));
 	}
 
 	/**
@@ -148,6 +190,8 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		switch (featureID) {
 			case designdecisionPackage.CHOICE__IS_ACTIVE:
 				return isActive();
+			case designdecisionPackage.CHOICE__VALUE:
+				return getValue();
 			case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
 				if (resolve) return getDegreeOfFreedomInstance();
 				return basicGetDegreeOfFreedomInstance();
@@ -165,6 +209,9 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		switch (featureID) {
 			case designdecisionPackage.CHOICE__IS_ACTIVE:
 				setIsActive((Boolean)newValue);
+				return;
+			case designdecisionPackage.CHOICE__VALUE:
+				setValue(newValue);
 				return;
 			case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
 				setDegreeOfFreedomInstance((DegreeOfFreedomInstance)newValue);
@@ -184,6 +231,9 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 			case designdecisionPackage.CHOICE__IS_ACTIVE:
 				setIsActive(IS_ACTIVE_EDEFAULT);
 				return;
+			case designdecisionPackage.CHOICE__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 			case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
 				setDegreeOfFreedomInstance((DegreeOfFreedomInstance)null);
 				return;
@@ -201,6 +251,8 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		switch (featureID) {
 			case designdecisionPackage.CHOICE__IS_ACTIVE:
 				return isActive != IS_ACTIVE_EDEFAULT;
+			case designdecisionPackage.CHOICE__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 			case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
 				return degreeOfFreedomInstance != null;
 		}
@@ -219,6 +271,8 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isActive: ");
 		result.append(isActive);
+		result.append(", value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

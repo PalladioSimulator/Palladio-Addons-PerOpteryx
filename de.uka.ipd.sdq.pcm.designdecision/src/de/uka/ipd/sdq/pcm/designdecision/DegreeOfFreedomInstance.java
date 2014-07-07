@@ -1,12 +1,10 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
-import de.uka.ipd.sdq.pcm.designdecision.GDoF.DegreeOfFreedom;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -26,11 +24,12 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged <em>Primary Changed</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof <em>Dof</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface DegreeOfFreedomInstance extends EObject {
@@ -85,5 +84,21 @@ public interface DegreeOfFreedomInstance extends EObject {
 	 * @generated
 	 */
 	void setDof(DegreeOfFreedom value);
+
+	/**
+	 * Returns the value of the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changeable Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Changeable Elements</em>' reference list.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_ChangeableElements()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EList<EObject> getChangeableElements();
 
 } // DegreeOfFreedomInstance

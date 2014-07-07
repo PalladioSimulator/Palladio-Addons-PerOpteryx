@@ -1,19 +1,11 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,16 +32,6 @@ public class ContinousRangeChoiceImpl extends ChoiceImpl implements ContinousRan
 	protected static final double CHOSEN_VALUE_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getChosenValue() <em>Chosen Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChosenValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected double chosenValue = CHOSEN_VALUE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -71,22 +53,19 @@ public class ContinousRangeChoiceImpl extends ChoiceImpl implements ContinousRan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not 
 	 */
 	public double getChosenValue() {
-		return chosenValue;
+		return ((Double)this.getValue()).doubleValue();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	public void setChosenValue(double newChosenValue) {
-		double oldChosenValue = chosenValue;
-		chosenValue = newChosenValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE, oldChosenValue, chosenValue));
+		this.setValue(new Double(newChosenValue));
 	}
 
 	/**
@@ -142,25 +121,10 @@ public class ContinousRangeChoiceImpl extends ChoiceImpl implements ContinousRan
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case designdecisionPackage.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE:
-				return chosenValue != CHOSEN_VALUE_EDEFAULT;
+				return getChosenValue() != CHOSEN_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (chosenValue: ");
-		result.append(chosenValue);
-		result.append(')');
-		return result.toString();
-	}
 
 } //ContinousRangeChoiceImpl

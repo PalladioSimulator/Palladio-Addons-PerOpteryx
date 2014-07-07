@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.resourcerepository;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -115,13 +116,22 @@ public interface resourcerepositoryPackage extends EPackage {
 	int RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Resources Can Be Used Individually</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY = 2;
+
+	/**
 	 * The number of structural features of the '<em>Resource Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_DESCRIPTION_FEATURE_COUNT = 2;
+	int RESOURCE_DESCRIPTION_FEATURE_COUNT = 3;
 
 
 	/**
@@ -176,6 +186,17 @@ public interface resourcerepositoryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getResourceDescription_ProcessingResourceSpecification_ResourceDescription();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getResourcesCanBeUsedIndividually <em>Resources Can Be Used Individually</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resources Can Be Used Individually</em>'.
+	 * @see de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription#getResourcesCanBeUsedIndividually()
+	 * @see #getResourceDescription()
+	 * @generated
+	 */
+	EAttribute getResourceDescription_ResourcesCanBeUsedIndividually();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -242,6 +263,14 @@ public interface resourcerepositoryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION = eINSTANCE.getResourceDescription_ProcessingResourceSpecification_ResourceDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Resources Can Be Used Individually</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY = eINSTANCE.getResourceDescription_ResourcesCanBeUsedIndividually();
 
 	}
 

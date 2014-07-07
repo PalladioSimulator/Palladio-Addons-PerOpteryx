@@ -1,18 +1,17 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-
-import de.uka.ipd.sdq.pcm.designdecision.GDoF.DegreeOfFreedom;
-
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -20,6 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +31,13 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl#getPrimaryChanged <em>Primary Changed</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl#getDof <em>Dof</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements DegreeOfFreedomInstance {
+public class DegreeOfFreedomInstanceImpl extends EObjectImpl implements DegreeOfFreedomInstance {
 	/**
 	 * The cached value of the '{@link #getPrimaryChanged() <em>Primary Changed</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +57,16 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected DegreeOfFreedom dof;
+
+	/**
+	 * The cached value of the '{@link #getChangeableElements() <em>Changeable Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChangeableElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EObject> changeableElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,6 +168,18 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EObject> getChangeableElements() {
+		if (changeableElements == null) {
+			changeableElements = new EObjectResolvingEList<EObject>(EObject.class, this, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS);
+		}
+		return changeableElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -165,6 +189,8 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF:
 				if (resolve) return getDof();
 				return basicGetDof();
+			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS:
+				return getChangeableElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,6 +200,7 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -182,6 +209,10 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 				return;
 			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF:
 				setDof((DegreeOfFreedom)newValue);
+				return;
+			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS:
+				getChangeableElements().clear();
+				getChangeableElements().addAll((Collection<? extends EObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,6 +232,9 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF:
 				setDof((DegreeOfFreedom)null);
 				return;
+			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS:
+				getChangeableElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +251,8 @@ public abstract class DegreeOfFreedomInstanceImpl extends EObjectImpl implements
 				return primaryChanged != null;
 			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF:
 				return dof != null;
+			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS:
+				return changeableElements != null && !changeableElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
