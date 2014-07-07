@@ -2,8 +2,11 @@ package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.genotype.IntegerGenotype;
@@ -16,16 +19,18 @@ import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.OrderedIntegerDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 
 
 /**
@@ -66,6 +71,13 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 					mutateEnum((ClassChoice)choice);
 				} else if (choice instanceof ContinousRangeChoice){
 					mutateContinous((ContinousRangeChoice)choice);
+				} else if (choice.getDegreeOfFreedomInstance().getDof() != null) {
+					// generic DoF, use value rule to get possible values.
+					Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+							choice.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable(),
+							choice.getDegreeOfFreedomInstance().getPrimaryChanged(), 
+							GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+					mutateDiscrete(choice, possibleValues);
 				} else {
 					throw new UnsupportedOperationException("Choice type "+choice+" not supported.");
 				}
@@ -73,6 +85,37 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 		}
 	}
 	
+	/**
+	 * FIXME: detection of old index must be improved, probably does not work for EObjects 
+	 * that are loaded from different places, for example. 
+	 * @param choice
+	 * @param possibleValues
+	 */
+	private void mutateDiscrete(Choice choice,
+			Collection<Object> possibleValues) {
+		
+		List<Object> list;
+		if (possibleValues instanceof List)
+		  list = (List<Object>)possibleValues;
+		else
+		  list = new ArrayList<Object>(possibleValues);
+		
+		// get old index
+		int index = -1;
+		int i = 0;
+		for (Object obj : list) {
+			if (choice.getValue().equals(obj)){
+				index = i;
+				break;
+			}
+			i++;
+		}
+		int newIndex = randomlySelectNewIndex(list, index);
+		
+		choice.setValue(list.get(newIndex));
+		
+	}
+
 	private int randomlySelectNewIndex(List<?> domain,
 			int oldIndex) {
 		//use mutateInteger as that one already realises a uniform distribution among the possible values with a certain rate. 

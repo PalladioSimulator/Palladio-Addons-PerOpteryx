@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -8,20 +10,26 @@ import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.OrderedIntegerDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 
 /**
  * The {@link DSECreator} is responsible for randomly creating genotypes 
@@ -107,6 +115,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 	public Choice createRandomChoice(DegreeOfFreedomInstance degree) {
 		designdecisionFactory factory = designdecisionFactoryImpl.init();
+		
 		Choice choice;
 		if (degree instanceof DiscreteDegree){
 			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice() ;
@@ -120,9 +129,30 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 			ClassChoice enumChoice = factory.createClassChoice();
 			enumChoice.setChosenValue(createRandomEntity((ClassDegree)degree));
 			choice = enumChoice;
+		} else if (degree.getDof() != null){
+			choice = factory.createChoice();
+			choice.setValue(createRandomValue(degree));
+			
 		} else throw new RuntimeException("Unknown degree "+degree.getClass().getName());
 		choice.setDegreeOfFreedomInstance(degree);
 		return choice;
+	}
+
+
+	private Object createRandomValue(DegreeOfFreedomInstance degree) {
+		Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+				degree.getDof().getPrimaryChangeable(),
+				degree.getPrimaryChanged(), 
+				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+		
+		List<Object> list;
+		if (possibleValues instanceof List)
+		  list = (List<Object>)possibleValues;
+		else
+		  list = new ArrayList<Object>(possibleValues);
+		
+		int index = this.random.nextInt(list.size());
+		return list.get(index);
 	}
 
 

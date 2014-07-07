@@ -7,11 +7,13 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
@@ -22,26 +24,29 @@ import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
 import de.uka.ipd.sdq.pcm.core.entity.Entity;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree;
-import de.uka.ipd.sdq.pcm.designdecision.CapacityDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteDegree;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.MonitoringDegree;
-import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.pcm.repository.BasicComponent;
 import de.uka.ipd.sdq.pcm.repository.PassiveResource;
 import de.uka.ipd.sdq.pcm.repository.Repository;
@@ -51,6 +56,7 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+
 import org.palladiosimulator.simulizar.pms.Intervall;
 
 /**
@@ -70,6 +76,7 @@ public class DSEProblem {
 	
 	private DecisionSpace pcmProblem;
 	private designdecisionFactory designDecisionFactory;
+	private specificFactory specificDesignDecisionFactory;
 	
 
 	private List<DesignDecisionGenotype> initialGenotypeList = null;
@@ -90,6 +97,7 @@ public class DSEProblem {
 		this.initialInstance = pcmInstance;
 		
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
+		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 		
 		if (newProblem){
 			initialiseProblem();
@@ -147,7 +155,19 @@ public class DSEProblem {
 		DesignDecisionGenotype genotype = new DesignDecisionGenotype();
 		
 		for (DegreeOfFreedomInstance dd : problem.getDegreesOfFreedom()) {
-			if (dd instanceof ClassDegree){
+
+			if (dd.getDof() != null){
+				EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
+				
+				Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
+				
+				Choice choice = this.designDecisionFactory.createChoice();
+				choice.setValue(value);
+				choice.setDegreeOfFreedomInstance(dd);
+				
+				genotype.add(choice);
+				
+			} else if (dd instanceof ClassDegree){
 
 				ClassChoice choice = this.designDecisionFactory.createClassChoice();
 				choice.setDegreeOfFreedomInstance(dd);
@@ -345,7 +365,7 @@ public class DSEProblem {
 					BasicComponent basicComponent = (BasicComponent)repositoryComponent;
 					List<PassiveResource> passiveResources = basicComponent.getPassiveResource_BasicComponent();
 					for (PassiveResource passiveResource : passiveResources) {
-						CapacityDegree capacityDegree = this.designDecisionFactory.createCapacityDegree();
+						CapacityDegree capacityDegree = this.specificDesignDecisionFactory.createCapacityDegree();
 						capacityDegree.setPrimaryChanged(passiveResource);
 						capacityDegree.setFrom(1);
 						capacityDegree.setTo(Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
@@ -394,7 +414,7 @@ public class DSEProblem {
 		
 		//each allocation context could be allocated on each container.
 		for (AllocationContext ac : acs) {
-			AllocationDegree ad = this.designDecisionFactory.createAllocationDegree();
+			AllocationDegree ad = this.specificDesignDecisionFactory.createAllocationDegree();
 			ad.setPrimaryChanged(ac);
 			ad.getClassDesignOptions().addAll(rcs);
 			dds.add(ad);
@@ -447,7 +467,7 @@ public class DSEProblem {
 			for (ProcessingResourceSpecification resource : resources) {
 				
 				//Create ContinuousProcessingRateDegree
-				ContinuousProcessingRateDegree decision = this.designDecisionFactory.createContinuousProcessingRateDegree();
+				ContinuousProcessingRateDegree decision = this.specificDesignDecisionFactory.createContinuousProcessingRateDegree();
 				decision.setLowerBoundIncluded(false);
 				double currentRate = CostUtil.getInstance().getDoubleFromSpecification(resource.getProcessingRate_ProcessingResourceSpecification().getSpecification());
 				//XXX initial assumption: the highest possible processingRate is 10 times the current one.

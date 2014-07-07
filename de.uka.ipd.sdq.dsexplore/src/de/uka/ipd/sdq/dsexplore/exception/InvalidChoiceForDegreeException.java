@@ -1,7 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.exception;
 
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 

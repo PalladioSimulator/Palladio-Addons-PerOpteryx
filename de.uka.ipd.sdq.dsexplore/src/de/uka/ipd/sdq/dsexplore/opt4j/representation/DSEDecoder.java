@@ -17,37 +17,38 @@ import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.Alternativ
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.dsexplore.helper.ResultsWriter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
 import de.uka.ipd.sdq.pcm.core.entity.Entity;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree;
-import de.uka.ipd.sdq.pcm.designdecision.CapacityDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
-import de.uka.ipd.sdq.pcm.designdecision.MonitoringDegree;
-import de.uka.ipd.sdq.pcm.designdecision.NumberOfCoresDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.RangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ResourceContainerReplicationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.repository.PassiveResource;
 import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
 import de.uka.ipd.sdq.pcm.resourceenvironment.LinkingResource;
@@ -56,6 +57,7 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+
 import org.palladiosimulator.simulizar.pms.Intervall;
 
 /**
@@ -91,11 +93,19 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		//get PCM Instance
 		PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
 		
+		//new transformation. Transition phase: Only for those DoF that are not explicitly modelled. 
+		GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();
+		
+		// later: only use new transformation. 
+		//trans.transform(pcm, genotype.getEMFCandidate());
+		
 		//adjust values as in genotype
 		for (Choice doubleGene : genotype) {
 			
-			applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene);
+			applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
 		}
+		
+
 		
 		String genotypeString = getGenotypeString(genotype);
 		
@@ -113,8 +123,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	 * @param designDecision
 	 * @param pcm
 	 * @param choice The new value the design decision should take. 
+	 * @param trans 
+	 * @param pcm 
 	 */
-	private void applyChange(DegreeOfFreedomInstance designDecision, Choice choice) {
+	private void applyChange(DegreeOfFreedomInstance designDecision, Choice choice, GenomeToCandidateModelTransformation trans, PCMInstance pcm) {
 		
 		/**
 		 * TODO Make the selection of the appropriate applyChange method more implicit. Maybe move the method to DesignDecision itself.  
@@ -140,8 +152,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		} else if (ResourceContainerReplicationDegree.class.isInstance(designDecision)){
 			this.applyChangeResourceContainerReplicationDegree((ResourceContainerReplicationDegree)designDecision, choice);
 		} else {
-			logger.warn("There was an unrecognised design decision "+designDecision.getClass());
+			try {
+				trans.transformChoice(pcm, choice);
+			} catch (Exception e){
+				logger.error("There was an unrecognised design decision "+designDecision.getClass()+ " or a problem when handling a generic DoF");
+				e.printStackTrace();
 		}
+	}
 	}
 
 	
@@ -434,25 +451,28 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	}
 	
 	public static String getDecisionString(Choice choice){
-		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
+//		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
 		
-		String result = "";
-		/**
-		 * TODO Make the selection of the appropriate applyChange method more implicit. Maybe move the method to DesignDecision itself.  
-		 */
-		if (choice instanceof ContinousRangeChoice){
-			result = ResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
-		} else if (choice instanceof ClassChoice){
-			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
-				result = ((Entity)((ClassChoice)choice).getChosenValue()).getEntityName();
-			} else {
-				result = ((ClassChoice)choice).getChosenValue().toString();
+		String result = choice.getValue().toString();
+		
+		if (choice.getValue() instanceof Entity){
+			Entity entity = (Entity)choice.getValue();
+			result = entity.getEntityName() + " (ID: "+entity.getId()+")";
 			}
-		} else if (choice instanceof DiscreteRangeChoice){
-			result = String.valueOf(((DiscreteRangeChoice)choice).getChosenValue());
-		} else {
-			logger.warn("There was an unrecognised design decision "+designDecision.getClass());
-		}
+		
+//		if (choice instanceof ContinousRangeChoice){
+//			result = ResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
+//		} else if (choice instanceof ClassChoice){
+//			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
+//				result = ((Entity)((ClassChoice)choice).getChosenValue()).getEntityName();
+//			} else {
+//				result = ((ClassChoice)choice).getChosenValue().toString();
+//			}
+//		} else if (choice instanceof DiscreteRangeChoice){
+//			result = String.valueOf(((DiscreteRangeChoice)choice).getChosenValue());
+//		} else {
+//			logger.warn("There was an unrecognised design decision "+designDecision.getClass());
+//		}
 		return result;
 	}
 

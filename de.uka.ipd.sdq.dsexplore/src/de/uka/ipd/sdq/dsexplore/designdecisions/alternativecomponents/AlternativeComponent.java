@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
@@ -19,7 +19,8 @@ import de.uka.ipd.sdq.pcm.core.composition.Connector;
 import de.uka.ipd.sdq.pcm.core.composition.ProvidedDelegationConnector;
 import de.uka.ipd.sdq.pcm.core.composition.RequiredDelegationConnector;
 import de.uka.ipd.sdq.pcm.core.entity.Entity;
-import de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.repository.OperationProvidedRole;
 import de.uka.ipd.sdq.pcm.repository.OperationRequiredRole;
@@ -122,7 +123,7 @@ public class AlternativeComponent  {
 	private AssembledComponentDegree createDesignDecision(
 			PCMInstance pcmInstance,
 			Entry<AssemblyContext, Map<RepositoryComponent, ComponentReplacer>> mappingEntry) {
-		AssembledComponentDegree decision = designdecisionFactoryImpl.eINSTANCE.createAssembledComponentDegree();
+		AssembledComponentDegree decision = specificFactoryImpl.eINSTANCE.createAssembledComponentDegree();
 		
 		//Set domain to be all alternative components, i.e. all RepositoryComponents in the mapping. 
 		decision.getClassDesignOptions().addAll(mappingEntry.getValue().keySet());
