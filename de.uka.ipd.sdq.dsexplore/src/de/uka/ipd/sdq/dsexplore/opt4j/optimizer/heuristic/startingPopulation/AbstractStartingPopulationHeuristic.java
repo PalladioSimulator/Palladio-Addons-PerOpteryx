@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
-import de.uka.ipd.sdq.pcm.designdecision.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 
@@ -46,7 +46,7 @@ public abstract class AbstractStartingPopulationHeuristic implements IStartingPo
 			
 			Collection<DegreeOfFreedomInstance> degreesOfFreedom = Opt4JStarter.getProblem().getDesignDecisions();
 			for (DegreeOfFreedomInstance DegreeOfFreedomInstance : degreesOfFreedom) {
-				if (DegreeOfFreedomInstance instanceof AllocationDegree) {
+				if (DegreeOfFreedomInstance instanceof de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree) {
 					AllocationDegree allocationDegree = (AllocationDegree) DegreeOfFreedomInstance;
 					for (EObject entity : allocationDegree.getClassDesignOptions()) {
 						if (entity instanceof ResourceContainer) {
@@ -73,7 +73,7 @@ public abstract class AbstractStartingPopulationHeuristic implements IStartingPo
 			Collection<DegreeOfFreedomInstance> degreesOfFreedom = Opt4JStarter.getProblem().getDesignDecisions();
 			for (DegreeOfFreedomInstance DegreeOfFreedomInstance : degreesOfFreedom) {
 				if (DegreeOfFreedomInstance instanceof AllocationDegree) {
-					AllocationDegree allocationDegree = (AllocationDegree) DegreeOfFreedomInstance;
+					de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree allocationDegree = (AllocationDegree) DegreeOfFreedomInstance;
 					EObject entity = allocationDegree.getPrimaryChanged();
 					if (entity instanceof AllocationContext) {
 						if (!allocationContexts.contains(entity)) {

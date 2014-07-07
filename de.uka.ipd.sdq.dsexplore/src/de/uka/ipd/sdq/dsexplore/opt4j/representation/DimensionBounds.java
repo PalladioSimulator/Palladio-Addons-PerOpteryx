@@ -5,11 +5,11 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import org.opt4j.genotype.Bounds;
 
-import de.uka.ipd.sdq.pcm.designdecision.ContinuousRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 
 @Deprecated
 class DimensionBounds implements Bounds<Double> {

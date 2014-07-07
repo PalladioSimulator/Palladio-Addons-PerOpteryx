@@ -2,7 +2,7 @@ package de.uka.ipd.sdq.dsexplore.helper;
 
 import de.uka.ipd.sdq.pcm.core.entity.Entity;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.ProcessingResourceDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 
 public class DegreeOfFreedomHelper {
 
