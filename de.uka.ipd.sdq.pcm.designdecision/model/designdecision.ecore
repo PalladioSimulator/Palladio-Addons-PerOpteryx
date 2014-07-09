@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="designdecision" nsURI="http://sdq.ipd.uka.de/DesignDecision/2.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="designdecision" nsURI="http://sdq.ipd.uka.de/DesignDecision/3.0"
     nsPrefix="designdecision">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The DesignDecisions metamodel represents degrees of freedom that can be exploited for optimisation.&#xD;&#xA;&#xD;&#xA;The core idea is each degree of freedom can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a Domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The actual making of a decision is represented in the Choice element. For a specific candidate architecture, one Choice for each DegreeOfFreedom in the Problem as to be made. The Choice contains a reference to the DegreeOfFreedom that it decides and a reference to a value from the DegreeOfFreedom's Domain that represent the selected value.  See the diagram &quot;Design and Choice&quot; for an overview of DegreeOfFreedom, Domain and Choice.&#xD;&#xA;&#xD;&#xA;All of the above mentioned elements are abstract and are subclassed for the different generic degrees of freedom. For example, the degree of freedom of &quot;component allocation&quot; is represented in the AllocationDegree. See the documentation of each subclass of design decision for details. The diagram AssembledComponentDegree visualises the subclassing for the example degree of freedom of &quot;component selection&quot;. &#xD;&#xA;&#xD;&#xA;"/>
@@ -108,7 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/2.0"
+  <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
@@ -170,7 +170,7 @@
           lowerBound="1" eType="#//gdof/ChangeableElementDescription"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/2.0"
+  <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
       nsPrefix="qualityproperties">
     <eClassifiers xsi:type="ecore:EClass" name="NumericQualityProperty" abstract="true"
         eSuperTypes="#//qualityproperties/QualityProperty">
@@ -230,7 +230,7 @@
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="resourcerepository" nsURI="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0"
+  <eSubpackages name="resourcerepository" nsURI="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/3.0"
       nsPrefix="resourcerepository">
     <eClassifiers xsi:type="ecore:EClass" name="ResourceDescriptionRepository">
       <eStructuralFeatures xsi:type="ecore:EReference" name="availableProcessingResources_ResourceRepository"
@@ -267,7 +267,7 @@
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="specific" nsURI="http://sdq.ipd.uka.de/DesignDecision/Specific/2.0"
+  <eSubpackages name="specific" nsURI="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0"
       nsPrefix="specific">
     <eClassifiers xsi:type="ecore:EClass" name="ExchangeComponentRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryComponent"

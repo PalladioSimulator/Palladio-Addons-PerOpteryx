@@ -65,6 +65,9 @@
       </wizard>
    </extension>
 
+null
+null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated DesignDecision -->
       <editor
@@ -93,6 +96,9 @@
       </wizard>
    </extension>
 
+null
+null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated DesignDecision -->
       <editor
@@ -121,6 +127,9 @@
       </wizard>
    </extension>
 
+null
+null
+null
    <extension point="org.eclipse.ui.editors">
       <editor
             id="de.uka.ipd.sdq.pcm.designdecision.presentation.designdecisionEditorID"
@@ -148,4 +157,7 @@
       </wizard>
    </extension>
 
+null
+null
+null
 </plugin>
