@@ -39,7 +39,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated DesignDecision -->
       <package
-            uri="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/2.0"
+            uri="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
             class="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage"
             genModel="model/DesignDecision.genmodel"/>
    </extension>
@@ -67,7 +67,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated DesignDecision -->
       <package
-            uri="http://sdq.ipd.uka.de/DesignDecision/Specific/2.0"
+            uri="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0"
             class="de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage"
             genModel="model/DesignDecision.genmodel"/>
    </extension>

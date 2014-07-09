@@ -43,7 +43,7 @@ public interface specificPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sdq.ipd.uka.de/DesignDecision/Specific/2.0";
+	String eNS_URI = "http://sdq.ipd.uka.de/DesignDecision/Specific/3.0";
 
 	/**
 	 * The package namespace name.

@@ -41,7 +41,7 @@ public interface resourcerepositoryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/2.0";
+	String eNS_URI = "http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/3.0";
 
 	/**
 	 * The package namespace name.
