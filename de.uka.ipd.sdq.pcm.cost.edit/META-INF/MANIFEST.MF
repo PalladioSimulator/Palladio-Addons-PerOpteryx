@@ -11,11 +11,7 @@ Export-Package: de.uka.ipd.sdq.pcm.cost.provider
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.pcm.cost;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
  de.uka.ipd.sdq.pcm.edit;bundle-version="[1.0.0,3.0.0]";visibility:=reexport,
- de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
- de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
- de.uka.ipd.sdq.units.edit;visibility:=reexport,
  org.eclipse.uml2.common.edit;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
