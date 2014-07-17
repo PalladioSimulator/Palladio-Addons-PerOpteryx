@@ -354,8 +354,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 	private long extractTimestamp(String experimentDateTime) {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
-        //SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
-		try {
+        try {
 			return dateFormat.parse(experimentDateTime).getTime();
 		} catch (ParseException e) {
 			logger.error("Cannot parse sensorframework experiment run String");
