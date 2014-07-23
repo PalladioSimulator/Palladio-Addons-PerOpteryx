@@ -714,7 +714,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	 * Get the utilisation of the passed resource
 	 */
 	private void getUtilisationOfResource(ActiveResourceUtilisationResult resultToFill, Entity container, ResourceType resourceType) throws AnalysisFailedException {
-		Sensor utilSensor = getSensorForResource(this.experiment, container, resourceType, "State of Core");
+		Sensor utilSensor = getSensorForResource(this.experiment, container, resourceType, "State of Active Resource");
 		Sensor demandedSensor = getSensorForResource(this.experiment, container, resourceType, "Demand");
 		
 		// for later when wait os available
