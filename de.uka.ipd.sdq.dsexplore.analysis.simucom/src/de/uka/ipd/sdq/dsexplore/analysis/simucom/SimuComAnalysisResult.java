@@ -606,7 +606,11 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		for (Iterator<Sensor> iterator = sensors.iterator(); iterator.hasNext();) {
 			Sensor sensor = iterator.next();
 			//logger.debug("Experiment has a sensor with ID "+sensor.getSensorID()+" and name "+sensor.getSensorName()+".");
-			if (sensor.getSensorName().contains(res.getEntityName())
+			if (
+					(sensor.getSensorName().contains(res.getEntityName()) 
+							|| /* special naming for linking resource */
+							sensor.getSensorName().contains("Linking Resource")
+							&& res.getEntityName().contains("LAN"))
 					&& sensor.getSensorName().contains(sensorTypeString)
 					&& sensor.getSensorName().contains(rc.getEntityName())){
 				logger.debug("Found sensor of "+sensorTypeString+" for the resource "+rc.getEntityName()+": "+res.getEntityName());
