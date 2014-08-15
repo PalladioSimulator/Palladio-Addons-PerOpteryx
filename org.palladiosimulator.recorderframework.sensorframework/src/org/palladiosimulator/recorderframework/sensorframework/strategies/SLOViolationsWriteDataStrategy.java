@@ -25,7 +25,6 @@ public class SLOViolationsWriteDataStrategy extends AbstractWriteDataStrategy {
         final Measure<Double, Duration> eventTimeMeasure = data.getMeasureForMetric(MetricDescriptionConstants.POINT_IN_TIME_METRIC);
         final Measure<Long, Dimensionless> sloViolationsMeasure = data.getMeasureForMetric(MetricDescriptionConstants.NUMBER_OF_SLO_VIOLATIONS);
         final long sloViolations = sloViolationsMeasure.longValue(Dimensionless.UNIT);
-        System.out.println("slo violations "+data);
         final double eventTime = eventTimeMeasure.doubleValue(SI.SECOND);
         run.addTimeSpanMeasurement((TimeSpanSensor)sensor, eventTime, sloViolations);
     }
