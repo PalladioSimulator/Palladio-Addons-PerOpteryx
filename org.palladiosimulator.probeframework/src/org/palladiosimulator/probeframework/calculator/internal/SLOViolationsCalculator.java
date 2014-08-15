@@ -20,7 +20,6 @@ import org.palladiosimulator.probeframework.measurement.ProbeMeasurement;
 import org.palladiosimulator.probeframework.probes.Probe;
 
 public class SLOViolationsCalculator extends TimeSpanCalculator {
-	
 	private long sloviolations = 0;
 	public static final double RESPONSE_TIME_LIMIT = 3.0;
 	
@@ -40,11 +39,11 @@ public class SLOViolationsCalculator extends TimeSpanCalculator {
         if(timeSpan > RESPONSE_TIME_LIMIT) {
         	this.sloviolations++;
         }
-        final Measure<Long, Dimensionless> timeSpanMeasure = Measure.valueOf(this.sloviolations, Dimensionless.UNIT);
+        final Measure<Long, Dimensionless> sloViolationsMeasure = Measure.valueOf(this.sloviolations, Dimensionless.UNIT);
         final Measurement endTimeMeasurement = probeMeasurements.get(1).getBasicMeasurement().getMeasurementForMetric(POINT_IN_TIME_METRIC);
         result.add(endTimeMeasurement);
-        final Measurement timeSpanMeasurement = new BasicMeasurement<Long, Dimensionless>(timeSpanMeasure,(BaseMetricDescription) ((MetricSetDescription) this.getMetricDesciption()).getSubsumedMetrics().get(1));
-        result.add(timeSpanMeasurement);
+        final Measurement sloViolationsMeasurement = new BasicMeasurement<Long, Dimensionless>(sloViolationsMeasure,(BaseMetricDescription) ((MetricSetDescription) this.getMetricDesciption()).getSubsumedMetrics().get(1));
+        result.add(sloViolationsMeasurement);
         return new TupleMeasurement(result, (MetricSetDescription) this.getMetricDesciption());
     }
 
