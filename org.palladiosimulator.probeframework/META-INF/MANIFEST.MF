@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ProbeFramework Framework Plug-in
+Bundle-SymbolicName: org.palladiosimulator.probeframework
+Bundle-Version: 2.0.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.jscience;bundle-version="4.1.3",
+ org.apache.log4j;bundle-version="1.2.13",
+ org.eclipse.emf.common,
+ org.palladiosimulator.commons;bundle-version="1.0.0";visibility:=reexport,
+ org.palladiosimulator.metricspec;bundle-version="1.0.0",
+ org.palladiosimulator.measurementframework;bundle-version="1.0.0",
+ org.palladiosimulator.edp2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.palladiosimulator.probeframework,
+ org.palladiosimulator.probeframework.calculator,
+ org.palladiosimulator.probeframework.exceptions,
+ org.palladiosimulator.probeframework.measurement,
+ org.palladiosimulator.probeframework.probes,
+ org.palladiosimulator.probeframework.probes.listener
+Bundle-Vendor: palladiosimulator.org
