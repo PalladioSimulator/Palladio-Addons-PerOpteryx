@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:identifier="http://sdq.ipd.uka.de/Identifier/1.0" identifier:id="_YFe2MOMbEeO68vqrPE6puQ" entityName="sloviolation">
-  <type xsi:type="QMLContractType:DimensionTypeNumeric" identifier:id="_ZymfUuMbEeO68vqrPE6puQ" domain="integer">
-    <relationSemantics identifier:id="_csSCMOMbEeO68vqrPE6puQ"/>
-  </type>
-  <unit identifier:id="_7FHQUOiWEeOZce65P5W34A" entityName="number"/>
-</QMLContractType:Dimension>
