@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.palladiosimulator.recorderframework.sensorframework"
+         point="org.palladiosimulator.recorderframework">
+      <recorder
+            configurationFactory="org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory"
+            launchConfigTab="org.palladiosimulator.recorderframework.sensorframework.launch.SensorFrameworkTab"
+            name="SensorFramework"
+            writeStrategy="org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorder">
+      </recorder>
+   </extension>
+
+</plugin>
