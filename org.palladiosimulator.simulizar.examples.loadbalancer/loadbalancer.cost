@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" timePeriodYears="24" interest="5.0"/>

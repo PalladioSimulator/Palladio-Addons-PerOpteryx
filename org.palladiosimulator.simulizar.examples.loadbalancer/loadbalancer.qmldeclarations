@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" xmlns:identifier="http://sdq.ipd.uka.de/Identifier/2.1" identifier:id="_GYoj8B1FEeSN3ISAUZnooA">
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" identifier:id="__Gb1MJyKEd-NNcIT2kpSGQ" entityName="PCMStandardQMLProfile" usageModel="overload.usagemodel#/">
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" identifier:id="__IEz85yKEd-NNcIT2kpSGQ" requireContract="#NEW_FqNZYaCrEd-s9uTaURbrKA" usageScenario="overload.usagemodel#_YtqF4AEqEeS7FKokKTKFow"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" identifier:id="NEW_FqNZYaCrEd-s9uTaURbrKA" entityName="Performance" contractType="pathmap://PCM_MODELS/PCMStandardQMLContractType.qmldeclarations#_r_iViKCrEd-s9uTaURbrKA">
+    <criteria xsi:type="QMLContract:Objective" identifier:id="_rJCJoB1FEeSN3ISAUZnooA" dimension="pathmap://PCM_MODELS/Dimension_sloviolation.qmlcontracttype#_YFe2MOMbEeO68vqrPE6puQ">
+      <aspects xsi:type="QMLContract:Value" identifier:id="_M12ChB1GEeSN3ISAUZnooA"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Constraint" identifier:id="_jYYj0R4hEeSHzPQJ_CIxbA" dimension="pathmap://PCM_MODELS/Dimension_sloviolation.qmlcontracttype#_YFe2MOMbEeO68vqrPE6puQ">
+      <aspects xsi:type="QMLContract:Value" identifier:id="_nRuz9B4hEeSHzPQJ_CIxbA">
+        <aspectRequirement xsi:type="QMLContract:Restriction" identifier:id="_oyPkcB4hEeSHzPQJ_CIxbA">
+          <aspectRequirementLiteral xsi:type="QMLContract:NumericLiteral" identifier:id="_qU5C8B4hEeSHzPQJ_CIxbA" value="800.0"/>
+        </aspectRequirement>
+      </aspects>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" identifier:id="_XIorkB70EeSeX-8P9IHQhg" dimension="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA">
+      <aspects xsi:type="QMLContract:Value" identifier:id="_6QHmFB_NEeStzcWQuXktug"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Constraint" identifier:id="_eQN3USBqEeSQ3ssR17v1vQ" dimension="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA">
+      <aspects xsi:type="QMLContract:Value" identifier:id="_hCaSJCBqEeSQ3ssR17v1vQ">
+        <aspectRequirement xsi:type="QMLContract:Restriction" identifier:id="_hwhVUCBqEeSQ3ssR17v1vQ">
+          <aspectRequirementLiteral xsi:type="QMLContract:NumericLiteral" identifier:id="_iv9ZECBqEeSQ3ssR17v1vQ" value="5000.0"/>
+        </aspectRequirement>
+      </aspects>
+    </criteria>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>
