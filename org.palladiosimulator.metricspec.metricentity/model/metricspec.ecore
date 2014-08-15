@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="metricspec" nsURI="http://palladiosimulator.org/MetricSpec/1.0"
+    nsPrefix="metricspec">
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore#//Identifier">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Identifier&amp;nbsp;for a certain measurable/observable state of the measured object. Identifiers"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="literal" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textualBaseMetricDescription"
+        ordered="false" lowerBound="1" eType="#//TextualBaseMetricDescription" eOpposite="#//TextualBaseMetricDescription/identifiers"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextualBaseMetricDescription" eSuperTypes="#//BaseMetricDescription">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="self.captureType = CaptureType::Identifier"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Identifier" containment="true" eOpposite="#//Identifier/textualBaseMetricDescription"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseMetricDescription" abstract="true"
+      eSuperTypes="#//MetricDescription">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A one-dimensional metric description."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="captureType" ordered="false"
+        lowerBound="1" eType="#//CaptureType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>&#xD;&#xA;    Determines the observable and capturable type for his metric.&#xD;&#xA;&lt;/p>"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
+        lowerBound="1" eType="#//DataType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Determines the kind of observable data for this metric. E.g. if it contains quantitative or qualitative data."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" ordered="false"
+        lowerBound="1" eType="#//Scale">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Determines the mathematical scale of the metric."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetricDescription" abstract="true" eSuperTypes="#//Description">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repository" lowerBound="1"
+        eType="#//MetricDescriptionRepository" eOpposite="#//MetricDescriptionRepository/metricDescriptions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Description" abstract="true" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textualDescription" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CaptureType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Type of the captured data. E.g. if the data describes identifiers, integer numbers or real numbers."/>
+    </eAnnotations>
+    <eLiterals name="Identifier">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Identifiers are textual representations for different observable states. Examples are 'very bad', 'bad', 'okay', 'good',&#xD;&#xA;'very good' in a questionaire, 'red', 'yellow', 'green' for a traffic light."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="IntegerNumber" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>&#xD;&#xA;    Unlimited integer numbers can contain integers in the range of [-\infty, ..., -1, 0, 1, ... , +\infty].&#xD;&#xA;&lt;/p>"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="RealNumber" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Real numbers can contain any real number in the range of [-\infty, ..., 0, ..., +infty], e.g. -0.28796398424897234897."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Scale">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Mathematical scales."/>
+    </eAnnotations>
+    <eLiterals name="Nominal">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Supports an equality operation on one-to-one object basis. Often used in conjunction with categorized data. Supported mathematical operations: =/≠. Mathematically, it is considered an unordered set.&#xD;&#xA;&#xD;&#xA;For example, dots with the colors RED, BLUE, and PURPLE can be related to their color but nothing more can be said."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Ordinal" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Supports&amp;nbsp;an&amp;nbsp;equality&amp;nbsp;operation&amp;nbsp;as&amp;nbsp;well&amp;nbsp;as&amp;nbsp;a&amp;nbsp;monotonic&amp;nbsp;increasing&amp;nbsp;order.&amp;nbsp;Supported&amp;nbsp;mathematical&amp;nbsp;operations:&amp;nbsp;=/≠&amp;nbsp;;&amp;nbsp;&amp;lt;/&amp;gt;.&amp;nbsp;Mathematically,&amp;nbsp;it&amp;nbsp;is&amp;nbsp;considered&amp;nbsp;an&amp;nbsp;ordered&amp;nbsp;set.&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;For&amp;nbsp;example,&amp;nbsp;the&amp;nbsp;rank&amp;nbsp;of&amp;nbsp;a&amp;nbsp;sports&amp;nbsp;team&amp;nbsp;in&amp;nbsp;a&amp;nbsp;18-members&amp;nbsp;league&amp;nbsp;is&amp;nbsp;on&amp;nbsp;an&amp;nbsp;ordinal&amp;nbsp;scale.&#xD;&#xA;However, the teams with the same difference in rank does not mean that&amp;nbsp;the difference of their&amp;nbsp;achievements or&#xD;&#xA;performance is/was equal."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Interval" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Supports the same as the ordinal scale but the magnitude of the difference between two values is comparable. Values can be negative. Supported mathematical operations: =/≠ ; &lt;/> ; +/− . Mathematically, it is considered an affine space or line.&#xD;&#xA;&#xD;&#xA;For example, the temperature in degress Celcius is an interval measure. If you have two temperatures you can quantify the difference."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Ratio" value="3">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Supports the same as an interval scale and additionally has an non-abitrary zero-point. Supported mathematical operations: =/≠ ; &lt;/> ; +/− ; ×/÷. Mathematically, it is considered a field.&#xD;&#xA;&#xD;&#xA;For example, the temperature in degress Fahrenheit is a ratio scale. It's zero point is non arbitrary as the particles which comprise matter at this temperature have zero kinetic energy."/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregationFunctionDescription" eSuperTypes="#//Description"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MetricSetDescription" eSuperTypes="#//MetricDescription">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A multi-dimensional metric description.&amp;nbsp; It is build by pointing to metric descriptions for the included dimensions."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsumedMetrics" unique="false"
+        lowerBound="1" upperBound="-1" eType="#//MetricDescription"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PersistenceKindOptions">
+    <eLiterals name="BinaryPreferred"/>
+    <eLiterals name="JSXmlPreferred" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericalBaseMetricDescription" eSuperTypes="#//BaseMetricDescription">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="self.captureType &lt;> CaptureType::Identifier"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultUnit" ordered="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The default unit to use for the measurements. Please note that&#xD;&#xA;there&amp;nbsp;is&amp;nbsp;no&amp;nbsp;unit&amp;nbsp;for&amp;nbsp;NominalMeasurements."/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//EJSUnit">
+        <eTypeArguments eClassifier="#//IJSQuantity"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="persistenceKind" ordered="false"
+        lowerBound="1" eType="#//PersistenceKindOptions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Kind of a data type. E.g. if it is quantitative or qualitative data."/>
+    </eAnnotations>
+    <eLiterals name="Quantitative"/>
+    <eLiterals name="Qualitative" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EJSUnit" instanceClassName="javax.measure.unit.Unit">
+    <eTypeParameters name="Q">
+      <eBounds eClassifier="#//IJSQuantity"/>
+    </eTypeParameters>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IJSQuantity" instanceClassName="javax.measure.quantity.Quantity"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MetricDescriptionRepository" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metricDescriptions" upperBound="-1"
+        eType="#//MetricDescription" containment="true" eOpposite="#//MetricDescription/repository"/>
+  </eClassifiers>
+</ecore:EPackage>
