@@ -25,7 +25,6 @@ import org.palladiosimulator.probeframework.probes.Probe;
 import org.palladiosimulator.probeframework.probes.TriggeredProbe;
 import org.palladiosimulator.simulizar.access.IModelAccess;
 import org.palladiosimulator.simulizar.metrics.aggregators.ResponseTimeAggregator;
-import org.palladiosimulator.simulizar.metrics.aggregators.SLOViolationsAggregator;
 import org.palladiosimulator.simulizar.pms.MeasurementSpecification;
 import org.palladiosimulator.simulizar.pms.PMSModel;
 import org.palladiosimulator.simulizar.pms.PerformanceMetricEnum;
@@ -197,17 +196,15 @@ public class ProbeFrameworkListener extends AbstractInterpreterListener {
 			final Calculator calculator = calculatorFactory
 					.buildResponseTimeCalculator(createMeasuringPoint(event),
 							probeList);
-			final Calculator sloviolationCalculator = calculatorFactory
-					.buildSloViolationsCalculator(createMeasuringPoint(event),
-							probeList);
+			calculatorFactory.buildSloViolationsCalculator(
+					createMeasuringPoint(event), probeList);
 
 			try {
 				final IMeasurementSourceListener aggregator = new ResponseTimeAggregator(
 						simuComModel, this.prmModel, measurementSpecification,
 						modelElement);
-				final IMeasurementSourceListener sloAggregator = new SLOViolationsAggregator();
 				calculator.addObserver(aggregator);
-				sloviolationCalculator.addObserver(sloAggregator);
+
 			} catch (final UnsupportedOperationException e) {
 				LOGGER.error(e);
 				throw new RuntimeException(e);
