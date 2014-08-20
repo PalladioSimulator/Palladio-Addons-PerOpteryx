@@ -82,24 +82,36 @@ public class ResponseTimeAggregator extends PRMRecorder implements
 					"This aggregator is currently not supported");
 		}
 
-		List<DegreeOfFreedomInstance> dof = Opt4JStarter.getProblem()
+		List<DegreeOfFreedomInstance> DOFI = Opt4JStarter.getProblem()
 				.getDesignDecisions();
-		for (DegreeOfFreedomInstance DegreeOfFreedomInstance : dof) {
-			if (DegreeOfFreedomInstance instanceof MonitoringDegree) {
-				MonitoringDegree monitoringDof = (MonitoringDegree) DegreeOfFreedomInstance;
+		for (DegreeOfFreedomInstance degreeOfFreedomInstance : DOFI) {
+			if (degreeOfFreedomInstance instanceof MonitoringDegree) {
+				MonitoringDegree monitoringDof = (MonitoringDegree) degreeOfFreedomInstance;
 				intervall = (Intervall) monitoringDof.getPrimaryChanged();
-				break;
+				if (intervall.getGuid().equalsIgnoreCase(
+						measurementSpecification.getTemporalRestriction()
+								.getGuid())) {
+
+					new PeriodicallyTriggeredSimulationEntity(model, 0.0,
+							intervall.getIntervall()) {
+
+						@Override
+						protected void triggerInternal() {
+							finalizeCurrentIntervall();
+						}
+					};
+					break;
+
+				}
 			}
 		}
+	}
 
-		new PeriodicallyTriggeredSimulationEntity(model, 0.0,
-				intervall.getIntervall()) {
+	// }
+	// }
 
-			@Override
-			protected void triggerInternal() {
-				finalizeCurrentIntervall();
-			}
-		};
+	public void getDesiredIntervalElement() {
+
 	}
 
 	/**
