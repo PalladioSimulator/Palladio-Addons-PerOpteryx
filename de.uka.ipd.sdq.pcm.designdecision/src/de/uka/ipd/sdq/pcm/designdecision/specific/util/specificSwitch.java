@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.util;
 
+import de.uka.ipd.sdq.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 
@@ -81,6 +82,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseClassAsReferenceDegree(classAsReferenceDegree);
 				if (result == null) result = caseClassDegree(classAsReferenceDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(classAsReferenceDegree);
+				if (result == null) result = caseNamedElement(classAsReferenceDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -88,6 +90,7 @@ public class specificSwitch<T> extends Switch<T> {
 				ClassDegree classDegree = (ClassDegree)theEObject;
 				T result = caseClassDegree(classDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(classDegree);
+				if (result == null) result = caseNamedElement(classDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,6 +99,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseClassWithCopyDegree(classWithCopyDegree);
 				if (result == null) result = caseClassDegree(classWithCopyDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(classWithCopyDegree);
+				if (result == null) result = caseNamedElement(classWithCopyDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,6 +109,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRangeDegree(continuousRangeDegree);
 				if (result == null) result = caseDataTypeDegree(continuousRangeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(continuousRangeDegree);
+				if (result == null) result = caseNamedElement(continuousRangeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,6 +118,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseRangeDegree(rangeDegree);
 				if (result == null) result = caseDataTypeDegree(rangeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(rangeDegree);
+				if (result == null) result = caseNamedElement(rangeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,6 +126,7 @@ public class specificSwitch<T> extends Switch<T> {
 				DataTypeDegree dataTypeDegree = (DataTypeDegree)theEObject;
 				T result = caseDataTypeDegree(dataTypeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(dataTypeDegree);
+				if (result == null) result = caseNamedElement(dataTypeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +135,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseDiscreteDegree(discreteDegree);
 				if (result == null) result = caseDataTypeDegree(discreteDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(discreteDegree);
+				if (result == null) result = caseNamedElement(discreteDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,6 +146,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDiscreteDegree(discreteRangeDegree);
 				if (result == null) result = caseDataTypeDegree(discreteRangeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(discreteRangeDegree);
+				if (result == null) result = caseNamedElement(discreteRangeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,6 +156,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseUnorderedDegree(enumDegree);
 				if (result == null) result = caseDataTypeDegree(enumDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(enumDegree);
+				if (result == null) result = caseNamedElement(enumDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -155,6 +165,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseUnorderedDegree(unorderedDegree);
 				if (result == null) result = caseDataTypeDegree(unorderedDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(unorderedDegree);
+				if (result == null) result = caseNamedElement(unorderedDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -163,6 +174,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseOrderedDataTypeDegree(orderedDataTypeDegree);
 				if (result == null) result = caseDataTypeDegree(orderedDataTypeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(orderedDataTypeDegree);
+				if (result == null) result = caseNamedElement(orderedDataTypeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,6 +185,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseOrderedDataTypeDegree(orderedIntegerDegree);
 				if (result == null) result = caseDataTypeDegree(orderedIntegerDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(orderedIntegerDegree);
+				if (result == null) result = caseNamedElement(orderedIntegerDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,6 +195,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseUnorderedDegree(stringSetDegree);
 				if (result == null) result = caseDataTypeDegree(stringSetDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(stringSetDegree);
+				if (result == null) result = caseNamedElement(stringSetDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -191,6 +205,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseUnorderedDegree(unorderedPrimitiveDegree);
 				if (result == null) result = caseDataTypeDegree(unorderedPrimitiveDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(unorderedPrimitiveDegree);
+				if (result == null) result = caseNamedElement(unorderedPrimitiveDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -201,6 +216,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRangeDegree(continuousComponentParamDegree);
 				if (result == null) result = caseDataTypeDegree(continuousComponentParamDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(continuousComponentParamDegree);
+				if (result == null) result = caseNamedElement(continuousComponentParamDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -213,6 +229,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseProcessingResourceDegree(continuousProcessingRateDegree);
 				if (result == null) result = caseDataTypeDegree(continuousProcessingRateDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(continuousProcessingRateDegree);
+				if (result == null) result = caseNamedElement(continuousProcessingRateDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -221,6 +238,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseProcessingRateDegree(processingRateDegree);
 				if (result == null) result = caseProcessingResourceDegree(processingRateDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(processingRateDegree);
+				if (result == null) result = caseNamedElement(processingRateDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -228,6 +246,7 @@ public class specificSwitch<T> extends Switch<T> {
 				ProcessingResourceDegree processingResourceDegree = (ProcessingResourceDegree)theEObject;
 				T result = caseProcessingResourceDegree(processingResourceDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(processingResourceDegree);
+				if (result == null) result = caseNamedElement(processingResourceDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,6 +258,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDiscreteDegree(discreteComponentParamDegree);
 				if (result == null) result = caseDataTypeDegree(discreteComponentParamDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(discreteComponentParamDegree);
+				if (result == null) result = caseNamedElement(discreteComponentParamDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -252,6 +272,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseProcessingResourceDegree(discreteProcessingRateDegree);
 				if (result == null) result = caseDataTypeDegree(discreteProcessingRateDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(discreteProcessingRateDegree);
+				if (result == null) result = caseNamedElement(discreteProcessingRateDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -259,6 +280,7 @@ public class specificSwitch<T> extends Switch<T> {
 				FeatureConfigDegree featureConfigDegree = (FeatureConfigDegree)theEObject;
 				T result = caseFeatureConfigDegree(featureConfigDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(featureConfigDegree);
+				if (result == null) result = caseNamedElement(featureConfigDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -267,6 +289,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseFeatureGroupDegree(featureGroupDegree);
 				if (result == null) result = caseFeatureConfigDegree(featureGroupDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(featureGroupDegree);
+				if (result == null) result = caseNamedElement(featureGroupDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -286,6 +309,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseOrderedDataTypeDegree(numberOfCoresAsListDegree);
 				if (result == null) result = caseDataTypeDegree(numberOfCoresAsListDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(numberOfCoresAsListDegree);
+				if (result == null) result = caseNamedElement(numberOfCoresAsListDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,6 +318,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseNumberOfCoresDegree(numberOfCoresDegree);
 				if (result == null) result = caseProcessingResourceDegree(numberOfCoresDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(numberOfCoresDegree);
+				if (result == null) result = caseNamedElement(numberOfCoresDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -307,6 +332,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseProcessingResourceDegree(numberOfCoresAsRangeDegree);
 				if (result == null) result = caseDataTypeDegree(numberOfCoresAsRangeDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(numberOfCoresAsRangeDegree);
+				if (result == null) result = caseNamedElement(numberOfCoresAsRangeDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -315,6 +341,7 @@ public class specificSwitch<T> extends Switch<T> {
 				T result = caseOptionalFeatureDegree(optionalFeatureDegree);
 				if (result == null) result = caseFeatureConfigDegree(optionalFeatureDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(optionalFeatureDegree);
+				if (result == null) result = caseNamedElement(optionalFeatureDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -326,6 +353,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDiscreteDegree(resourceContainerReplicationDegree);
 				if (result == null) result = caseDataTypeDegree(resourceContainerReplicationDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(resourceContainerReplicationDegree);
+				if (result == null) result = caseNamedElement(resourceContainerReplicationDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -338,6 +366,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDiscreteDegree(resourceContainerReplicationDegreeWithComponentChange);
 				if (result == null) result = caseDataTypeDegree(resourceContainerReplicationDegreeWithComponentChange);
 				if (result == null) result = caseDegreeOfFreedomInstance(resourceContainerReplicationDegreeWithComponentChange);
+				if (result == null) result = caseNamedElement(resourceContainerReplicationDegreeWithComponentChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -348,6 +377,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseProcessingResourceDegree(resourceSelectionDegree);
 				if (result == null) result = caseClassDegree(resourceSelectionDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(resourceSelectionDegree);
+				if (result == null) result = caseNamedElement(resourceSelectionDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -358,6 +388,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseProcessingResourceDegree(schedulingPolicyDegree);
 				if (result == null) result = caseClassDegree(schedulingPolicyDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(schedulingPolicyDegree);
+				if (result == null) result = caseNamedElement(schedulingPolicyDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -368,6 +399,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseUnorderedDegree(stringComponentParamDegree);
 				if (result == null) result = caseDataTypeDegree(stringComponentParamDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(stringComponentParamDegree);
+				if (result == null) result = caseNamedElement(stringComponentParamDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -377,6 +409,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClassAsReferenceDegree(allocationDegree);
 				if (result == null) result = caseClassDegree(allocationDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(allocationDegree);
+				if (result == null) result = caseNamedElement(allocationDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -386,6 +419,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseClassAsReferenceDegree(assembledComponentDegree);
 				if (result == null) result = caseClassDegree(assembledComponentDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(assembledComponentDegree);
+				if (result == null) result = caseNamedElement(assembledComponentDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -397,6 +431,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDiscreteDegree(capacityDegree);
 				if (result == null) result = caseDataTypeDegree(capacityDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(capacityDegree);
+				if (result == null) result = caseNamedElement(capacityDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -407,6 +442,7 @@ public class specificSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRangeDegree(monitoringDegree);
 				if (result == null) result = caseDataTypeDegree(monitoringDegree);
 				if (result == null) result = caseDegreeOfFreedomInstance(monitoringDegree);
+				if (result == null) result = caseNamedElement(monitoringDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -981,6 +1017,21 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMonitoringDegree(MonitoringDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

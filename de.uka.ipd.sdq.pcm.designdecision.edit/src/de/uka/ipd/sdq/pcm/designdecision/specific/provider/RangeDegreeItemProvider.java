@@ -29,13 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class RangeDegreeItemProvider
-	extends DataTypeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DataTypeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -138,8 +132,10 @@ public class RangeDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		RangeDegree rangeDegree = (RangeDegree)object;
-		return getString("_UI_RangeDegree_type") + " " + rangeDegree.isUpperBoundIncluded();
+		String label = ((RangeDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RangeDegree_type") :
+			getString("_UI_RangeDegree_type") + " " + label;
 	}
 
 	/**

@@ -6,6 +6,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 import de.uka.ipd.sdq.pcm.designdecision.provider.DegreeOfFreedomInstanceItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import java.util.Collection;
@@ -31,13 +32,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ProcessingResourceDegreeItemProvider
-	extends DegreeOfFreedomInstanceItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DegreeOfFreedomInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -94,7 +89,10 @@ public class ProcessingResourceDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ProcessingResourceDegree_type");
+		String label = ((ProcessingResourceDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProcessingResourceDegree_type") :
+			getString("_UI_ProcessingResourceDegree_type") + " " + label;
 	}
 
 	/**

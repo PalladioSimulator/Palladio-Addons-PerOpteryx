@@ -29,13 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ContinuousRangeDegreeItemProvider
-	extends RangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends RangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -126,8 +120,10 @@ public class ContinuousRangeDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ContinuousRangeDegree continuousRangeDegree = (ContinuousRangeDegree)object;
-		return getString("_UI_ContinuousRangeDegree_type") + " " + continuousRangeDegree.isUpperBoundIncluded();
+		String label = ((ContinuousRangeDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ContinuousRangeDegree_type") :
+			getString("_UI_ContinuousRangeDegree_type") + " " + label;
 	}
 
 	/**

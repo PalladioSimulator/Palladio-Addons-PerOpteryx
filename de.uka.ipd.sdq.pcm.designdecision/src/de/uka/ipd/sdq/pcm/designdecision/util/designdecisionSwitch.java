@@ -2,6 +2,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.identifier.Identifier;
+import de.uka.ipd.sdq.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.pcm.designdecision.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -81,6 +83,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 			case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE: {
 				DegreeOfFreedomInstance degreeOfFreedomInstance = (DegreeOfFreedomInstance)theEObject;
 				T result = caseDegreeOfFreedomInstance(degreeOfFreedomInstance);
+				if (result == null) result = caseNamedElement(degreeOfFreedomInstance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,12 +104,15 @@ public class designdecisionSwitch<T> extends Switch<T> {
 			case designdecisionPackage.DECISION_SPACE: {
 				DecisionSpace decisionSpace = (DecisionSpace)theEObject;
 				T result = caseDecisionSpace(decisionSpace);
+				if (result == null) result = casefeaturemodel_NamedElement(decisionSpace);
+				if (result == null) result = caseIdentifier(decisionSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case designdecisionPackage.CANDIDATE: {
 				Candidate candidate = (Candidate)theEObject;
 				T result = caseCandidate(candidate);
+				if (result == null) result = caseNamedElement(candidate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -240,6 +246,51 @@ public class designdecisionSwitch<T> extends Switch<T> {
 		return null;
 	}
 
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifier(Identifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casefeaturemodel_NamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
+		return null;
+	}
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.

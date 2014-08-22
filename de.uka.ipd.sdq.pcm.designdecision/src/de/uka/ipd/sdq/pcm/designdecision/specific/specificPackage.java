@@ -109,6 +109,15 @@ public interface specificPackage extends EPackage {
 	int CLASS_DEGREE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +171,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int CLASS_AS_REFERENCE_DEGREE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME = CLASS_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -219,6 +237,15 @@ public interface specificPackage extends EPackage {
 	int CLASS_WITH_COPY_DEGREE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__ENTITY_NAME = CLASS_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,6 +301,15 @@ public interface specificPackage extends EPackage {
 	int DATA_TYPE_DEGREE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +354,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int RANGE_DEGREE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -391,6 +436,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTINUOUS_RANGE_DEGREE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__ENTITY_NAME = RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -484,6 +538,15 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_DEGREE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -528,6 +591,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int DISCRETE_RANGE_DEGREE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__ENTITY_NAME = RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -621,6 +693,15 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_DEGREE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -665,6 +746,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int ENUM_DEGREE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -722,6 +812,15 @@ public interface specificPackage extends EPackage {
 	int ORDERED_DATA_TYPE_DEGREE = 11;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,6 +865,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int ORDERED_INTEGER_DEGREE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__ENTITY_NAME = DISCRETE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -823,6 +931,15 @@ public interface specificPackage extends EPackage {
 	int STRING_SET_DEGREE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -878,6 +995,15 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_PRIMITIVE_DEGREE = 14;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -922,6 +1048,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTINUOUS_COMPONENT_PARAM_DEGREE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1013,6 +1148,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTINUOUS_PROCESSING_RATE_DEGREE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1115,6 +1259,15 @@ public interface specificPackage extends EPackage {
 	int PROCESSING_RESOURCE_DEGREE = 18;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1170,6 +1323,15 @@ public interface specificPackage extends EPackage {
 	int PROCESSING_RATE_DEGREE = 17;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__ENTITY_NAME = PROCESSING_RESOURCE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1223,6 +1385,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int DISCRETE_COMPONENT_PARAM_DEGREE = 19;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1314,6 +1485,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int DISCRETE_PROCESSING_RATE_DEGREE = 20;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1416,6 +1596,15 @@ public interface specificPackage extends EPackage {
 	int FEATURE_CONFIG_DEGREE = 21;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1460,6 +1649,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int FEATURE_GROUP_DEGREE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__ENTITY_NAME = FEATURE_CONFIG_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1554,6 +1752,15 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_DEGREE = 25;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__ENTITY_NAME = PROCESSING_RESOURCE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1607,6 +1814,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int NUMBER_OF_CORES_AS_LIST_DEGREE = 24;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__ENTITY_NAME = NUMBER_OF_CORES_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1671,6 +1887,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int NUMBER_OF_CORES_AS_RANGE_DEGREE = 26;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1773,6 +1998,15 @@ public interface specificPackage extends EPackage {
 	int OPTIONAL_FEATURE_DEGREE = 27;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__ENTITY_NAME = FEATURE_CONFIG_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1826,6 +2060,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE = 28;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1917,6 +2160,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE = 29;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__ENTITY_NAME = RESOURCE_CONTAINER_REPLICATION_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2019,6 +2271,15 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_SELECTION_DEGREE = 30;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__ENTITY_NAME = CLASS_WITH_COPY_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2081,6 +2342,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int SCHEDULING_POLICY_DEGREE = 31;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2147,6 +2417,15 @@ public interface specificPackage extends EPackage {
 	int STRING_COMPONENT_PARAM_DEGREE = 32;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__ENTITY_NAME = STRING_SET_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2200,6 +2479,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int ALLOCATION_DEGREE = 33;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2257,6 +2545,15 @@ public interface specificPackage extends EPackage {
 	int ASSEMBLED_COMPONENT_DEGREE = 34;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2310,6 +2607,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int CAPACITY_DEGREE = 35;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2401,6 +2707,15 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 */
 	int MONITORING_DEGREE = 36;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.

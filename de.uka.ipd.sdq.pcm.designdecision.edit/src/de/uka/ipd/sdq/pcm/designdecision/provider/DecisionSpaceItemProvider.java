@@ -7,6 +7,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.provider;
 
 
+import de.uka.ipd.sdq.featuremodel.provider.NamedElementItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
@@ -38,13 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DecisionSpaceItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -119,7 +114,10 @@ public class DecisionSpaceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DecisionSpace_type");
+		String label = ((DecisionSpace)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DecisionSpace_type") :
+			getString("_UI_DecisionSpace_type") + " " + label;
 	}
 
 	/**

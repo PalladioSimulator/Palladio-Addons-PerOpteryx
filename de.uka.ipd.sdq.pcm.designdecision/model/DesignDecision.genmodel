@@ -102,7 +102,6 @@
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//gdof/StaticSelectionRule"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//gdof/DegreeOfFreedom">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute designdecision.ecore#//gdof/DegreeOfFreedom/name"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference designdecision.ecore#//gdof/DegreeOfFreedom/addedElements"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

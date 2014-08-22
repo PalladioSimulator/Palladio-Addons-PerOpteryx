@@ -30,13 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
-	extends ResourceContainerReplicationDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ResourceContainerReplicationDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -111,8 +105,10 @@ public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ResourceContainerReplicationDegreeWithComponentChange resourceContainerReplicationDegreeWithComponentChange = (ResourceContainerReplicationDegreeWithComponentChange)object;
-		return getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type") + " " + resourceContainerReplicationDegreeWithComponentChange.isUpperBoundIncluded();
+		String label = ((ResourceContainerReplicationDegreeWithComponentChange)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type") :
+			getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type") + " " + label;
 	}
 
 	/**

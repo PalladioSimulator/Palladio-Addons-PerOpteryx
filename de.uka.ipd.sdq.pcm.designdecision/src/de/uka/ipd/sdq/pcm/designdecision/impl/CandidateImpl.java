@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
+import de.uka.ipd.sdq.pcm.core.entity.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class CandidateImpl extends EObjectImpl implements Candidate {
+public class CandidateImpl extends NamedElementImpl implements Candidate {
 	/**
 	 * The cached value of the '{@link #getChoices() <em>Choices</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalFeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import java.util.Collection;
@@ -26,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class OptionalFeatureDegreeItemProvider
-	extends FeatureConfigDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends FeatureConfigDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -100,7 +95,10 @@ public class OptionalFeatureDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_OptionalFeatureDegree_type");
+		String label = ((OptionalFeatureDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OptionalFeatureDegree_type") :
+			getString("_UI_OptionalFeatureDegree_type") + " " + label;
 	}
 
 	/**

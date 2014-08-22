@@ -29,13 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StringSetDegreeItemProvider
-	extends UnorderedDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends UnorderedDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -92,7 +86,10 @@ public class StringSetDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StringSetDegree_type");
+		String label = ((StringSetDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_StringSetDegree_type") :
+			getString("_UI_StringSetDegree_type") + " " + label;
 	}
 
 	/**

@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
+import de.uka.ipd.sdq.pcm.core.entity.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
@@ -37,7 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class DegreeOfFreedomInstanceImpl extends EObjectImpl implements DegreeOfFreedomInstance {
+public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements DegreeOfFreedomInstance {
 	/**
 	 * The cached value of the '{@link #getPrimaryChanged() <em>Primary Changed</em>}' reference.
 	 * <!-- begin-user-doc -->

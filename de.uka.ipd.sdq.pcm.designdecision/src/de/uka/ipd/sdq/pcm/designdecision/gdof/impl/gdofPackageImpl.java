@@ -371,17 +371,8 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDegreeOfFreedom_Name() {
-		return (EAttribute)degreeOfFreedomEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getDegreeOfFreedom_AddedElements() {
-		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(1);
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -390,7 +381,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 	 * @generated
 	 */
 	public EReference getDegreeOfFreedom_ChangeableElementDescriptions() {
-		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(2);
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -399,7 +390,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 	 * @generated
 	 */
 	public EReference getDegreeOfFreedom_InteractionConstraints() {
-		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(3);
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -408,7 +399,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 	 * @generated
 	 */
 	public EReference getDegreeOfFreedom_PrimaryChangeable() {
-		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(4);
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -466,7 +457,6 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		staticSelectionRuleEClass = createEClass(STATIC_SELECTION_RULE);
 
 		degreeOfFreedomEClass = createEClass(DEGREE_OF_FREEDOM);
-		createEAttribute(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__NAME);
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__ADDED_ELEMENTS);
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
@@ -497,6 +487,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage)EPackage.Registry.INSTANCE.getEPackage(featuremodelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
@@ -505,6 +496,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		changeableElementDescriptionEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
 		valueRuleEClass.getESuperTypes().add(this.getOCLRule());
 		helperOCLDefinitionEClass.getESuperTypes().add(this.getOCLRule());
 		helperOCLDefinitionEClass.getESuperTypes().add(this.getStaticContextRule());
@@ -512,6 +504,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		instanceSelectionRuleEClass.getESuperTypes().add(this.getSelectionRule());
 		staticSelectionRuleEClass.getESuperTypes().add(this.getSelectionRule());
 		staticSelectionRuleEClass.getESuperTypes().add(this.getStaticContextRule());
+		degreeOfFreedomEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(changeableElementDescriptionEClass, ChangeableElementDescription.class, "ChangeableElementDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -541,7 +534,6 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		initEClass(staticSelectionRuleEClass, StaticSelectionRule.class, "StaticSelectionRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(degreeOfFreedomEClass, DegreeOfFreedom.class, "DegreeOfFreedom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDegreeOfFreedom_Name(), theTypesPackage.getString(), "name", null, 1, 1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDegreeOfFreedom_AddedElements(), theEcorePackage.getEClass(), null, "addedElements", null, 0, -1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDegreeOfFreedom_ChangeableElementDescriptions(), this.getChangeableElementDescription(), null, "changeableElementDescriptions", null, 1, -1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDegreeOfFreedom_InteractionConstraints(), theEcorePackage.getEOperation(), null, "interactionConstraints", null, 0, -1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.provider;
 
 
+import de.uka.ipd.sdq.pcm.core.entity.provider.NamedElementItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
@@ -35,13 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class CandidateItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -117,7 +112,10 @@ public class CandidateItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Candidate_type");
+		String label = ((Candidate)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Candidate_type") :
+			getString("_UI_Candidate_type") + " " + label;
 	}
 
 	/**

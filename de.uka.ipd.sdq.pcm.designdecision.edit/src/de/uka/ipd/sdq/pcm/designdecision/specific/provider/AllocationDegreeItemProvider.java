@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,13 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class AllocationDegreeItemProvider
-	extends ClassAsReferenceDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ClassAsReferenceDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,7 +69,10 @@ public class AllocationDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AllocationDegree_type");
+		String label = ((AllocationDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AllocationDegree_type") :
+			getString("_UI_AllocationDegree_type") + " " + label;
 	}
 
 	/**

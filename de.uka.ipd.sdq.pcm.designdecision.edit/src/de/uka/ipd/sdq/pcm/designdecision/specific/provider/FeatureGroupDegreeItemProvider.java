@@ -31,13 +31,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class FeatureGroupDegreeItemProvider
-	extends FeatureConfigDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends FeatureConfigDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -135,7 +129,10 @@ public class FeatureGroupDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_FeatureGroupDegree_type");
+		String label = ((FeatureGroupDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FeatureGroupDegree_type") :
+			getString("_UI_FeatureGroupDegree_type") + " " + label;
 	}
 
 	/**

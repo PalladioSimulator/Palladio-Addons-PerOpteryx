@@ -29,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="degreeOfFreedomInstance"
         ordered="false" lowerBound="1" eType="#//DegreeOfFreedomInstance"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance">
+  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance" eSuperTypes="../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The domain is defined in subclasses, because it may be either a set of PCM Entities (in the EnumerationDegree) or integer or double ranges (in the RangeDegree and its subclasses). "/>
     </eAnnotations>
@@ -64,14 +64,14 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace">
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="degreesOfFreedom" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//DegreeOfFreedomInstance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Candidate">
+  <eClassifiers xsi:type="ecore:EClass" name="Candidate" eSuperTypes="../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Candidate represents one solution candidate to the optimisation problem. It contains as many choices as there are DegreeOfFreedoms. "/>
     </eAnnotations>
@@ -110,7 +110,7 @@
   </eClassifiers>
   <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
-    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
+    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
           lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueRule" ordered="false"
@@ -156,9 +156,7 @@
           eType="#//gdof/ChangeableElementDescription"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//gdof/SelectionRule #//gdof/StaticContextRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
-          lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
@@ -302,7 +300,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RangeDegree" abstract="true" eSuperTypes="#//specific/DataTypeDegree">
+    <eClassifiers xsi:type="ecore:EClass" name="RangeDegree" abstract="true" eSuperTypes="#//specific/OrderedDataTypeDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This class represents DegreeOfFreedoms that have a range of numbers as their domain. The set of possile values of the degree of freedom is defined by the subclasses. In this class, the attributes upperBoundIncluded and lowerBoundIncluded define whether the endpoints defined by the subclasses are included in the domain or not (similar to mathematical intervals)"/>
       </eAnnotations>

@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof.impl;
 
+import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getAddedElements <em>Added Elements</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getInteractionConstraints <em>Interaction Constraints</em>}</li>
@@ -45,27 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
+public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFreedom {
 	/**
 	 * The cached value of the '{@link #getAddedElements() <em>Added Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -123,27 +103,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 	@Override
 	protected EClass eStaticClass() {
 		return gdofPackage.Literals.DEGREE_OF_FREEDOM;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.DEGREE_OF_FREEDOM__NAME, oldName, name));
 	}
 
 	/**
@@ -242,8 +201,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case gdofPackage.DEGREE_OF_FREEDOM__NAME:
-				return getName();
 			case gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				return getAddedElements();
 			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
@@ -266,9 +223,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case gdofPackage.DEGREE_OF_FREEDOM__NAME:
-				setName((String)newValue);
-				return;
 			case gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				getAddedElements().clear();
 				getAddedElements().addAll((Collection<? extends EClass>)newValue);
@@ -296,9 +250,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case gdofPackage.DEGREE_OF_FREEDOM__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				getAddedElements().clear();
 				return;
@@ -323,8 +274,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case gdofPackage.DEGREE_OF_FREEDOM__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				return addedElements != null && !addedElements.isEmpty();
 			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
@@ -335,22 +284,6 @@ public class DegreeOfFreedomImpl extends EObjectImpl implements DegreeOfFreedom 
 				return primaryChangeable != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //DegreeOfFreedomImpl

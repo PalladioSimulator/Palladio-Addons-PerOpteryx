@@ -7,6 +7,8 @@
 package de.uka.ipd.sdq.pcm.designdecision.provider;
 
 
+import de.uka.ipd.sdq.pcm.core.entity.provider.NamedElementItemProvider;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
 import java.util.Collection;
@@ -33,13 +35,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class DegreeOfFreedomInstanceItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -142,7 +138,10 @@ public class DegreeOfFreedomInstanceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DegreeOfFreedomInstance_type");
+		String label = ((DegreeOfFreedomInstance)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DegreeOfFreedomInstance_type") :
+			getString("_UI_DegreeOfFreedomInstance_type") + " " + label;
 	}
 
 	/**

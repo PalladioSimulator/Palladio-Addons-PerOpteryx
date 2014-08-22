@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
+import de.uka.ipd.sdq.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty;
 
 import org.eclipse.emf.common.util.EList;
@@ -29,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Candidate extends EObject {
+public interface Candidate extends EObject, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Choices</b></em>' containment reference list.
 	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.Choice}.

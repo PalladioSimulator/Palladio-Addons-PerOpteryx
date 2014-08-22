@@ -15,6 +15,7 @@ import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -68,7 +69,7 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 	 * @generated
 	 */
 	public ProcessingResourceType getProcessingresourcetype() {
-		if (processingresourcetype != null && processingresourcetype.eIsProxy()) {
+		if (processingresourcetype != null && ((EObject)processingresourcetype).eIsProxy()) {
 			InternalEObject oldProcessingresourcetype = (InternalEObject)processingresourcetype;
 			processingresourcetype = (ProcessingResourceType)eResolveProxy(oldProcessingresourcetype);
 			if (processingresourcetype != oldProcessingresourcetype) {

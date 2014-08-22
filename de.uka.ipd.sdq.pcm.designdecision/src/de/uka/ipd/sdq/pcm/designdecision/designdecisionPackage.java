@@ -2,6 +2,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
+import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
+import de.uka.ipd.sdq.pcm.core.entity.EntityPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -178,13 +180,22 @@ public interface designdecisionPackage extends EPackage {
 	int DISCRETE_RANGE_CHOICE_FEATURE_COUNT = CHOICE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME = EntityPackage.NAMED_ELEMENT__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED = 0;
+	int DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dof</b></em>' reference.
@@ -193,7 +204,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__DOF = 1;
+	int DEGREE_OF_FREEDOM_INSTANCE__DOF = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
@@ -202,7 +213,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS = 2;
+	int DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Degree Of Freedom Instance</em>' class.
@@ -211,7 +222,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT = 3;
+	int DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.ClassChoiceImpl <em>Class Choice</em>}' class.
@@ -334,13 +345,31 @@ public interface designdecisionPackage extends EPackage {
 	int DECISION_SPACE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_SPACE__ID = featuremodelPackage.NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_SPACE__NAME = featuremodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Degrees Of Freedom</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_SPACE__DEGREES_OF_FREEDOM = 0;
+	int DECISION_SPACE__DEGREES_OF_FREEDOM = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Decision Space</em>' class.
@@ -349,7 +378,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_SPACE_FEATURE_COUNT = 1;
+	int DECISION_SPACE_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidateImpl <em>Candidate</em>}' class.
@@ -362,13 +391,22 @@ public interface designdecisionPackage extends EPackage {
 	int CANDIDATE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CANDIDATE__ENTITY_NAME = EntityPackage.NAMED_ELEMENT__ENTITY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Choices</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CANDIDATE__CHOICES = 0;
+	int CANDIDATE__CHOICES = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Quality Property</b></em>' containment reference list.
@@ -377,7 +415,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CANDIDATE__QUALITY_PROPERTY = 1;
+	int CANDIDATE__QUALITY_PROPERTY = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Candidate</em>' class.
@@ -386,7 +424,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CANDIDATE_FEATURE_COUNT = 2;
+	int CANDIDATE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidatesImpl <em>Candidates</em>}' class.

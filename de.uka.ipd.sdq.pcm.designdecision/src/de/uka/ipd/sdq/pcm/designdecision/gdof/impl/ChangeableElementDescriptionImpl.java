@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof.impl;
 
+import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.SelectionRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ValueRule;
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ChangeableElementDescriptionImpl extends EObjectImpl implements ChangeableElementDescription {
+public class ChangeableElementDescriptionImpl extends NamedElementImpl implements ChangeableElementDescription {
 	/**
 	 * The cached value of the '{@link #getChangeable() <em>Changeable</em>}' reference.
 	 * <!-- begin-user-doc -->
