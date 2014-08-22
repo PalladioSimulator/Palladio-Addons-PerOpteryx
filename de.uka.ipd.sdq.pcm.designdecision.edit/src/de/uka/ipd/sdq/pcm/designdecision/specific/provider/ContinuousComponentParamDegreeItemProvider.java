@@ -25,13 +25,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ContinuousComponentParamDegreeItemProvider
-	extends ContinuousRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ContinuousRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,8 +70,10 @@ public class ContinuousComponentParamDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ContinuousComponentParamDegree continuousComponentParamDegree = (ContinuousComponentParamDegree)object;
-		return getString("_UI_ContinuousComponentParamDegree_type") + " " + continuousComponentParamDegree.isUpperBoundIncluded();
+		String label = ((ContinuousComponentParamDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ContinuousComponentParamDegree_type") :
+			getString("_UI_ContinuousComponentParamDegree_type") + " " + label;
 	}
 
 	/**

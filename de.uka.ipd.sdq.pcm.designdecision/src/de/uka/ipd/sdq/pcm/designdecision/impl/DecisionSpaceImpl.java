@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
+import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
@@ -33,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class DecisionSpaceImpl extends EObjectImpl implements DecisionSpace {
+public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace {
 	/**
 	 * The cached value of the '{@link #getDegreesOfFreedom() <em>Degrees Of Freedom</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import java.util.Collection;
@@ -26,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class SchedulingPolicyDegreeItemProvider
-	extends ClassAsReferenceDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ClassAsReferenceDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -100,7 +95,10 @@ public class SchedulingPolicyDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SchedulingPolicyDegree_type");
+		String label = ((SchedulingPolicyDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SchedulingPolicyDegree_type") :
+			getString("_UI_SchedulingPolicyDegree_type") + " " + label;
 	}
 
 	/**

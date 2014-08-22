@@ -27,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ContinuousProcessingRateDegreeItemProvider
-	extends ContinuousRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ContinuousRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -101,8 +95,10 @@ public class ContinuousProcessingRateDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ContinuousProcessingRateDegree continuousProcessingRateDegree = (ContinuousProcessingRateDegree)object;
-		return getString("_UI_ContinuousProcessingRateDegree_type") + " " + continuousProcessingRateDegree.isUpperBoundIncluded();
+		String label = ((ContinuousProcessingRateDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ContinuousProcessingRateDegree_type") :
+			getString("_UI_ContinuousProcessingRateDegree_type") + " " + label;
 	}
 
 	/**

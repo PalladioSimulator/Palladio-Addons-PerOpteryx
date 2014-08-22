@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,13 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ClassAsReferenceDegreeItemProvider
-	extends ClassDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ClassDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,7 +69,10 @@ public class ClassAsReferenceDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ClassAsReferenceDegree_type");
+		String label = ((ClassAsReferenceDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ClassAsReferenceDegree_type") :
+			getString("_UI_ClassAsReferenceDegree_type") + " " + label;
 	}
 
 	/**

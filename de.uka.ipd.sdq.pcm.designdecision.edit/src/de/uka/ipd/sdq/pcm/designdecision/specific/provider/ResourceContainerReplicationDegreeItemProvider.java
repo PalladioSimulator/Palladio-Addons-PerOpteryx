@@ -25,13 +25,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ResourceContainerReplicationDegreeItemProvider
-	extends DiscreteRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DiscreteRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,8 +70,10 @@ public class ResourceContainerReplicationDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ResourceContainerReplicationDegree resourceContainerReplicationDegree = (ResourceContainerReplicationDegree)object;
-		return getString("_UI_ResourceContainerReplicationDegree_type") + " " + resourceContainerReplicationDegree.isUpperBoundIncluded();
+		String label = ((ResourceContainerReplicationDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ResourceContainerReplicationDegree_type") :
+			getString("_UI_ResourceContainerReplicationDegree_type") + " " + label;
 	}
 
 	/**

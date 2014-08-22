@@ -7,6 +7,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.gdof.provider;
 
 
+import de.uka.ipd.sdq.featuremodel.provider.NamedElementItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import java.util.Collection;
 import java.util.List;
@@ -36,13 +37,7 @@ import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
  * @generated
  */
 public class ChangeableElementDescriptionItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -141,7 +136,10 @@ public class ChangeableElementDescriptionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ChangeableElementDescription_type");
+		String label = ((ChangeableElementDescription)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ChangeableElementDescription_type") :
+			getString("_UI_ChangeableElementDescription_type") + " " + label;
 	}
 
 	/**

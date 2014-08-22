@@ -2,6 +2,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof.util;
 
+import de.uka.ipd.sdq.featuremodel.NamedElement;
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -69,6 +71,8 @@ public class gdofSwitch<T> extends Switch<T> {
 			case gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION: {
 				ChangeableElementDescription changeableElementDescription = (ChangeableElementDescription)theEObject;
 				T result = caseChangeableElementDescription(changeableElementDescription);
+				if (result == null) result = caseNamedElement(changeableElementDescription);
+				if (result == null) result = caseIdentifier(changeableElementDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -132,6 +136,8 @@ public class gdofSwitch<T> extends Switch<T> {
 			case gdofPackage.DEGREE_OF_FREEDOM: {
 				DegreeOfFreedom degreeOfFreedom = (DegreeOfFreedom)theEObject;
 				T result = caseDegreeOfFreedom(degreeOfFreedom);
+				if (result == null) result = caseNamedElement(degreeOfFreedom);
+				if (result == null) result = caseIdentifier(degreeOfFreedom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -286,6 +292,36 @@ public class gdofSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDegreeOfFreedom(DegreeOfFreedom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifier(Identifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 

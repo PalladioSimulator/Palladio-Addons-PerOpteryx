@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
+import de.uka.ipd.sdq.pcm.core.entity.EntityPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
@@ -474,7 +475,9 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		qualitypropertiesPackage thequalitypropertiesPackage = (qualitypropertiesPackage)EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI);
 		resourcerepositoryPackage theresourcerepositoryPackage = (resourcerepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(resourcerepositoryPackage.eNS_URI);
 		specificPackage thespecificPackage = (specificPackage)EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI);
+		EntityPackage theEntityPackage = (EntityPackage)EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage)EPackage.Registry.INSTANCE.getEPackage(featuremodelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(thegdofPackage);
@@ -488,8 +491,11 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 
 		// Add supertypes to classes
 		discreteRangeChoiceEClass.getESuperTypes().add(this.getChoice());
+		degreeOfFreedomInstanceEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
+		decisionSpaceEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
+		candidateEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

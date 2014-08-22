@@ -29,13 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class OrderedIntegerDegreeItemProvider
-	extends DiscreteDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DiscreteDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -103,7 +97,10 @@ public class OrderedIntegerDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_OrderedIntegerDegree_type");
+		String label = ((OrderedIntegerDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OrderedIntegerDegree_type") :
+			getString("_UI_OrderedIntegerDegree_type") + " " + label;
 	}
 
 	/**

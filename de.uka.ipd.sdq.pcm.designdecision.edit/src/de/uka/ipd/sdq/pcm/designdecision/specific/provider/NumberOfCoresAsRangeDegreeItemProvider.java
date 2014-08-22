@@ -27,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class NumberOfCoresAsRangeDegreeItemProvider
-	extends DiscreteRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DiscreteRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -101,8 +95,10 @@ public class NumberOfCoresAsRangeDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		NumberOfCoresAsRangeDegree numberOfCoresAsRangeDegree = (NumberOfCoresAsRangeDegree)object;
-		return getString("_UI_NumberOfCoresAsRangeDegree_type") + " " + numberOfCoresAsRangeDegree.isUpperBoundIncluded();
+		String label = ((NumberOfCoresAsRangeDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_NumberOfCoresAsRangeDegree_type") :
+			getString("_UI_NumberOfCoresAsRangeDegree_type") + " " + label;
 	}
 
 	/**

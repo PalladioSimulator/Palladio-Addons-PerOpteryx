@@ -25,13 +25,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class MonitoringDegreeItemProvider
-	extends ContinuousRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ContinuousRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,8 +70,10 @@ public class MonitoringDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		MonitoringDegree monitoringDegree = (MonitoringDegree)object;
-		return getString("_UI_MonitoringDegree_type") + " " + monitoringDegree.isUpperBoundIncluded();
+		String label = ((MonitoringDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MonitoringDegree_type") :
+			getString("_UI_MonitoringDegree_type") + " " + label;
 	}
 
 	/**

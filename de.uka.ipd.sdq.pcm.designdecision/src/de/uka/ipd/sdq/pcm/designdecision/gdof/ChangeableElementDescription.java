@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof;
 
+import de.uka.ipd.sdq.featuremodel.NamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model
  * @generated
  */
-public interface ChangeableElementDescription extends EObject {
+public interface ChangeableElementDescription extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Changeable</b></em>' reference.
 	 * <!-- begin-user-doc -->

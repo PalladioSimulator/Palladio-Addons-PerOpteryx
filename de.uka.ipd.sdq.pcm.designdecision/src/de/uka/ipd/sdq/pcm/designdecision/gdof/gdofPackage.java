@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof;
 
+import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -66,13 +67,31 @@ public interface gdofPackage extends EPackage {
 	int CHANGEABLE_ELEMENT_DESCRIPTION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGEABLE_ELEMENT_DESCRIPTION__ID = featuremodelPackage.NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGEABLE_ELEMENT_DESCRIPTION__NAME = featuremodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Changeable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE = 0;
+	int CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value Rule</b></em>' containment reference.
@@ -81,7 +100,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE = 1;
+	int CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Selection Rule</b></em>' containment reference.
@@ -90,7 +109,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE = 2;
+	int CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Changeable Element Description</em>' class.
@@ -99,7 +118,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGEABLE_ELEMENT_DESCRIPTION_FEATURE_COUNT = 3;
+	int CHANGEABLE_ELEMENT_DESCRIPTION_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.OCLRuleImpl <em>OCL Rule</em>}' class.
@@ -417,13 +436,22 @@ public interface gdofPackage extends EPackage {
 	int DEGREE_OF_FREEDOM = 9;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM__ID = featuremodelPackage.NAMED_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__NAME = 0;
+	int DEGREE_OF_FREEDOM__NAME = featuremodelPackage.NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
@@ -432,7 +460,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__ADDED_ELEMENTS = 1;
+	int DEGREE_OF_FREEDOM__ADDED_ELEMENTS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
@@ -441,7 +469,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS = 2;
+	int DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
@@ -450,7 +478,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS = 3;
+	int DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
@@ -459,7 +487,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE = 4;
+	int DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Degree Of Freedom</em>' class.
@@ -468,7 +496,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_FEATURE_COUNT = 5;
+	int DEGREE_OF_FREEDOM_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 
 	/**
@@ -658,17 +686,6 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDegreeOfFreedom();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom#getName()
-	 * @see #getDegreeOfFreedom()
-	 * @generated
-	 */
-	EAttribute getDegreeOfFreedom_Name();
 
 	/**
 	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom#getAddedElements <em>Added Elements</em>}'.
@@ -899,14 +916,6 @@ public interface gdofPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DEGREE_OF_FREEDOM = eINSTANCE.getDegreeOfFreedom();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DEGREE_OF_FREEDOM__NAME = eINSTANCE.getDegreeOfFreedom_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Added Elements</b></em>' reference list feature.

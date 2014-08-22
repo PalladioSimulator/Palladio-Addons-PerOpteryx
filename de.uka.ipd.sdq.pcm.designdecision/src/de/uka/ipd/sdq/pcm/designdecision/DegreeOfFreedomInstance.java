@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
+import de.uka.ipd.sdq.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 
 import org.eclipse.emf.common.util.EList;
@@ -32,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DegreeOfFreedomInstance extends EObject {
+public interface DegreeOfFreedomInstance extends EObject, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Primary Changed</b></em>' reference.
 	 * <!-- begin-user-doc -->

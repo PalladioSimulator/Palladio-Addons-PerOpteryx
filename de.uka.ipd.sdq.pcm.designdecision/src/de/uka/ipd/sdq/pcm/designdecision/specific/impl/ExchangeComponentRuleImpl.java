@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -99,7 +100,7 @@ public class ExchangeComponentRuleImpl extends EObjectImpl implements ExchangeCo
 	 * @generated
 	 */
 	public AllocationContext getAllocationContext() {
-		if (allocationContext != null && allocationContext.eIsProxy()) {
+		if (allocationContext != null && ((EObject)allocationContext).eIsProxy()) {
 			InternalEObject oldAllocationContext = (InternalEObject)allocationContext;
 			allocationContext = (AllocationContext)eResolveProxy(oldAllocationContext);
 			if (allocationContext != oldAllocationContext) {

@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import java.util.Collection;
@@ -26,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class EnumDegreeItemProvider
-	extends UnorderedDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends UnorderedDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -89,7 +84,10 @@ public class EnumDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_EnumDegree_type");
+		String label = ((EnumDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_EnumDegree_type") :
+			getString("_UI_EnumDegree_type") + " " + label;
 	}
 
 	/**

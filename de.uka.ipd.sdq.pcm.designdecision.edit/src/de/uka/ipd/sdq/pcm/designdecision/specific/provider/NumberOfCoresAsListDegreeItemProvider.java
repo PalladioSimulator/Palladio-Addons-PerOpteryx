@@ -29,13 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class NumberOfCoresAsListDegreeItemProvider
-	extends NumberOfCoresDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NumberOfCoresDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -103,7 +97,10 @@ public class NumberOfCoresAsListDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_NumberOfCoresAsListDegree_type");
+		String label = ((NumberOfCoresAsListDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_NumberOfCoresAsListDegree_type") :
+			getString("_UI_NumberOfCoresAsListDegree_type") + " " + label;
 	}
 
 	/**

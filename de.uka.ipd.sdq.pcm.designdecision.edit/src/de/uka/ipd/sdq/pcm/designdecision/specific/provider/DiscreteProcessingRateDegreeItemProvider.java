@@ -27,13 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class DiscreteProcessingRateDegreeItemProvider
-	extends DiscreteRangeDegreeItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DiscreteRangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -101,8 +95,10 @@ public class DiscreteProcessingRateDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		DiscreteProcessingRateDegree discreteProcessingRateDegree = (DiscreteProcessingRateDegree)object;
-		return getString("_UI_DiscreteProcessingRateDegree_type") + " " + discreteProcessingRateDegree.isUpperBoundIncluded();
+		String label = ((DiscreteProcessingRateDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DiscreteProcessingRateDegree_type") :
+			getString("_UI_DiscreteProcessingRateDegree_type") + " " + label;
 	}
 
 	/**

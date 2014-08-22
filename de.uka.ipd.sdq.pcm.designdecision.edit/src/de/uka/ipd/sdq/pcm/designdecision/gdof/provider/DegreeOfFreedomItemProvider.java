@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.gdof.provider;
 
 
+import de.uka.ipd.sdq.featuremodel.provider.NamedElementItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofFactory;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
@@ -37,13 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DegreeOfFreedomItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -65,34 +60,11 @@ public class DegreeOfFreedomItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
 			addAddedElementsPropertyDescriptor(object);
 			addInteractionConstraintsPropertyDescriptor(object);
 			addPrimaryChangeablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DegreeOfFreedom_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedom_name_feature", "_UI_DegreeOfFreedom_type"),
-				 gdofPackage.Literals.DEGREE_OF_FREEDOM__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -228,9 +200,6 @@ public class DegreeOfFreedomItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DegreeOfFreedom.class)) {
-			case gdofPackage.DEGREE_OF_FREEDOM__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

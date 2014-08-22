@@ -6,6 +6,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 import de.uka.ipd.sdq.pcm.designdecision.provider.DegreeOfFreedomInstanceItemProvider;
 import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.DataTypeDegree;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,13 +29,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class DataTypeDegreeItemProvider
-	extends DegreeOfFreedomInstanceItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DegreeOfFreedomInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,7 +63,10 @@ public class DataTypeDegreeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataTypeDegree_type");
+		String label = ((DataTypeDegree)object).getEntityName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataTypeDegree_type") :
+			getString("_UI_DataTypeDegree_type") + " " + label;
 	}
 
 	/**
