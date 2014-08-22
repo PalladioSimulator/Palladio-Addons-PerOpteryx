@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -96,11 +97,20 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		//new transformation. Transition phase: Only for those DoF that are not explicitly modelled. 
 		GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();
 		
-		// later: only use new transformation. 
-		//trans.transform(pcm, genotype.getEMFCandidate());
+		// first use new transformation. 
+		List<Choice> notTransformedChoices;
+		try {
+			notTransformedChoices = trans.transform(pcm, genotype.getEMFCandidate());
+		} catch (Exception e) {
+			// try to continue for now
+			logger.warn("Error when executing GDoF transformation. I will try to ignore it and continue. Failure was:");
+			e.printStackTrace();
+			notTransformedChoices = genotype;
+		}
 		
-		//adjust values as in genotype
-		for (Choice doubleGene : genotype) {
+		// then, use old way for choices that have not been transformed, e.g. because there is no GDoF defined for them. 
+		// adjust values as in genotype
+		for (Choice doubleGene : notTransformedChoices) {
 			
 			applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
 		}

@@ -52,59 +52,75 @@ public class GenomeToCandidateModelTransformation {
 	 * The generic transformation method
 	 * @param rootElements The initial architecture model or the architecture model of any other candidate. 
 	 * @param candidate The decision vector to apply. 
+	 * @return The choices that have not been transformed, e.g. because no GDoF has been specified from them
 	 */
-	public void transform(List<EObject> rootElements, Candidate candidate){
+	public List<Choice> transform(List<EObject> rootElements, Candidate candidate){
 		
 		List<Choice> choices = candidate.getChoices();
+		List<Choice> notTransformedChoices = new ArrayList<Choice>(choices.size());
 		
 		for (Choice choice : choices) {
 
-			  transformChoice(rootElements, choice);
+			  boolean transSuccessful = transformChoice(rootElements, choice);
+			  if (!transSuccessful){
+				  notTransformedChoices.add(choice);
+			  }
 		}
+		return notTransformedChoices;
 		
 	}
 	
 	
 
-	public void transformChoice(List<EObject> rootElements, Choice choice) {
+	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
 		// is choice active?
 		if (choice.isActive()){
-		  
-		    DegreeOfFreedomInstance dofi = choice.getDegreeOfFreedomInstance();
-		    DegreeOfFreedom gdof = dofi.getDof();
-		    
-		    // Store for each CED which instances have been selected
-		    Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
-		    
-		    // set primary element
-		    EObject modelElement = dofi.getPrimaryChanged();
-		    
-		    EStructuralFeature property = gdof.getPrimaryChangeable().getChangeable();
-		    
-		    setProperty(modelElement, property, choice.getValue());
-		    
-		    List<EObject> modelElementList = new ArrayList<EObject>(1);
-		    modelElementList.add(modelElement);
-		    selectedModelElements.put(gdof.getPrimaryChangeable(),modelElementList);
-		    
-		    for (ChangeableElementDescription ced : gdof.getChangeableElementDescriptions()){
-		    	if (ced == gdof.getPrimaryChangeable())
-		    		continue;
-		    	
-			    Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
-		    	selectedModelElements.put(ced, changeableElements);
-		    	
-		    	EStructuralFeature changeableProperty = ced.getChangeable();
-		    	
-		    	for (EObject changeableElement : changeableElements) {
-					
-		    		Object newValue = valueRule(ced, changeableElement, rootElements);
-		    		setProperty(changeableElement, changeableProperty, newValue);
-		    		
+
+			DegreeOfFreedomInstance dofi = choice.getDegreeOfFreedomInstance();
+			DegreeOfFreedom gdof = dofi.getDof();
+
+			if (gdof != null) {
+
+				// Store for each CED which instances have been selected
+				Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
+
+				// set primary element
+				EObject modelElement = dofi.getPrimaryChanged();
+
+				//determine property to change using GDoF
+				EStructuralFeature property = gdof.getPrimaryChangeable().getChangeable();
+
+				setProperty(modelElement, property, choice.getValue());
+
+				List<EObject> modelElementList = new ArrayList<EObject>(1);
+				modelElementList.add(modelElement);
+				selectedModelElements.put(gdof.getPrimaryChangeable(),modelElementList);
+
+				for (ChangeableElementDescription ced : gdof.getChangeableElementDescriptions()){
+					if (ced == gdof.getPrimaryChangeable())
+						continue;
+
+					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
+					selectedModelElements.put(ced, changeableElements);
+
+					EStructuralFeature changeableProperty = ced.getChangeable();
+
+					for (EObject changeableElement : changeableElements) {
+
+						Object newValue = valueRule(ced, changeableElement, rootElements);
+						setProperty(changeableElement, changeableProperty, newValue);
+
+					}
+
 				}
-		    	
-		    }
-		  }
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			// not doing anything for an inactive choice is what is expected, so done for this one. 
+			return true;
+		}
 	}
 	
 	public static void setProperty(EObject changeableElement, EStructuralFeature property,
@@ -316,13 +332,14 @@ public class GenomeToCandidateModelTransformation {
 	 * PCM specific method to conveniently call the transformation
 	 * @param pcm
 	 * @param candidate
+	 * @return The choices that have not been transformed, e.g. because no GDoF has been specified from them
 	 */
-	public void transform(PCMInstance pcm, Candidate candidate){
+	public List<Choice>  transform(PCMInstance pcm, Candidate candidate){
 		
 		List<EObject> rootElements = getPCMRootElements(pcm);
 		
-		// TODO: add my resource repository with the alternative resources. Rename it first, bcause the repository of resource types is already named resource repository.
-		transform(rootElements, candidate);
+		// TODO: add my resource repository with the alternative resources. Rename it first, because the repository of resource types is already named resource repository.
+		return transform(rootElements, candidate);
 	}
 
 
@@ -348,12 +365,12 @@ public class GenomeToCandidateModelTransformation {
 	 * @param pcm
 	 * @param candidate
 	 */
-	public void transformChoice(PCMInstance pcm, Choice choice) {
+	public boolean transformChoice(PCMInstance pcm, Choice choice) {
 		
 		List<EObject> rootElements = getPCMRootElements(pcm);
 		
 		// TODO: add my resource repository with the alternative resources. Rename it first, bcause the repository of resource types is already named resource repository.
-		transformChoice(rootElements, choice);
+		return transformChoice(rootElements, choice);
 		
 	}
 
