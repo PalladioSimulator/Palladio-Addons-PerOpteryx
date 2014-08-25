@@ -25,6 +25,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.analysis.cost.OperationCost;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
 import de.uka.ipd.sdq.pcm.core.composition.ComposedStructure;
@@ -143,15 +144,15 @@ public class SimuLizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.maxUtilization = calculateMaxUtil("CPU");
 		
 	    this.averageUtilization = calculateAverageUtil("CPU");
-		operatingcost = this.averageUtilization * 4;
+		//operatingcost = this.averageUtilization * 0.073 * 1000;
+	    operatingcost = this.averageUtilization * (0.073/36) * 10 ;
 		
+		OperationCost.getInstance().setOperatingCost(operatingcost);
 		logger.debug("Initialised SimuLizar result");
 		
 	}
 	
-	public static double calculateOperatingCost() {
-		return operatingcost;
-	}
+	
 	private int calculateNumberOfSloViolations() throws AnalysisFailedException {
 
 		int totalNumberOfSLOViolations = 0;
