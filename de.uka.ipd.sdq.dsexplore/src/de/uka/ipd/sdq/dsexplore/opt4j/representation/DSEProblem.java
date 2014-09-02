@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.palladiosimulator.simulizar.pms.Intervall;
+import org.palladiosimulator.simulizar.pms.PMSModel;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
@@ -85,7 +87,6 @@ public class DSEProblem {
 
 	private DesignDecisionGenotype initialGenotype;
 
-	
 	/**
 	 * @param pcmInstance
 	 * @throws CoreException 
@@ -95,7 +96,6 @@ public class DSEProblem {
 		
 		boolean newProblem = dseConfig.isNewProblem();
 		this.initialInstance = pcmInstance;
-		
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 		
@@ -209,22 +209,20 @@ public class DSEProblem {
 				}
 				
 				genotype.add(choice);
+				
 			} else if (dd instanceof ContinuousRangeDegree){
 				/*
 				 * 
 				 */
+				ContinuousRangeDegree degree = (ContinuousRangeDegree) dd;
 				ContinousRangeChoice choice = this.designDecisionFactory.createContinousRangeChoice();
-				choice.setDegreeOfFreedomInstance(dd);
+				choice.setDegreeOfFreedomInstance(degree);
+				EObject entity = degree.getPrimaryChanged();
 				
-				// Monitoring Degree added
-				//added by Suman Jojiju
-				if(dd instanceof MonitoringDegree){
-					//MonitoringDegree mnrt = (MonitoringDegree) dd;
-					ContinuousRangeDegree crdobj = (ContinuousRangeDegree) dd;
-					//Intervall interval = (Intervall) (MonitoringDegree)crdobj.getPrimaryChanged();
-					//choice.setChosenValue(interval.getIntervall());
-					choice.setChosenValue(crdobj.getFrom());
-					
+				if(dd instanceof MonitoringDegree) {
+					Intervall interval = (Intervall) entity;
+					choice.setChosenValue(interval.getIntervall());
+			
 				} else if (dd instanceof ContinuousProcessingRateDegree){
 					ContinuousProcessingRateDegree prd = (ContinuousProcessingRateDegree)dd;
 					ProcessingResourceSpecification rightPrs = getProcessingResourceSpec(prd);
@@ -539,6 +537,8 @@ public class DSEProblem {
 		EMFHelper.saveToXMIFile(this.pcmProblem, filename);
 		
 	}
+	
+
 
 	
 	@Override
@@ -551,9 +551,13 @@ public class DSEProblem {
 			result += DegreeOfFreedomHelper.getDegreeDescription(designDecision)+";";
 		}
 		
+		
 		return result;
 		
 	}
+	
+	
+
 
 	
 	public void setInitialPopulation(List<DesignDecisionGenotype> population) throws CoreException{
