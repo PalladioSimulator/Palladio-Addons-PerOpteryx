@@ -16,7 +16,6 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.recorderframework.AbstractRecorderConfigurationFactory;
 import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 
@@ -87,10 +86,10 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
      * {@link IAnalysisResult} is a {@link SimuComAnalysisResult} which does not
      * store the results directly, but provides access to the underlying
      * sensorFramework data sources.
-     * 
+     *
      * {@inheritDoc}
      * @throws UserCanceledException
-     * 
+     *
      * @see de.uka.ipd.sdq.dsexplore.analysis.IAnalysis#analyse(PCMPhenotype, de.uka.ipd.sdq.dsexplore.PCMInstance)
      */
     @Override
@@ -98,13 +97,13 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         final String experimentName = getExperimentName(pheno);
         this.previousExperimentNames.put(pheno.getGenotypeID().hashCode(), experimentName);
-        
-        ILaunchConfigurationWorkingCopy launchWorkingCopy = this.config.getWorkingCopy();
+
+        final ILaunchConfigurationWorkingCopy launchWorkingCopy = this.config.getWorkingCopy();
         launchWorkingCopy.setAttribute(AbstractSimulationConfig.EXPERIMENT_RUN, experimentName);
-                
+
         this.simuComWorkflowConfiguration = new DSESimuComWorkflowLauncher().deriveConfiguration(launchWorkingCopy);
         this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
-        
+
         //this.simuComWorkflowConfiguration.getSimulationConfiguration().setNameBase(experimentName);
         //((AbstractRecorderConfigurationFactory)this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfigurationFactory()).setExperimentNameAndRunName(experimentName);
 
@@ -120,7 +119,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
 
     /**
-     * Search in all open data sources whether there is already an experiment run with this name and check that it contains some results. 
+     * Search in all open data sources whether there is already an experiment run with this name and check that it contains some results.
      * @param experimentName
      * @return
      */
@@ -172,7 +171,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
     /**
      * FIXME: This method should not depend on the state of the blackboard anymore... but it does at this time.
-     * 
+     *
      * @param pheno
      * @param usageScenario
      * @return
@@ -342,33 +341,33 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
     }
 
     //FIXME: use constant from AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT
-    // as soon as the Recorderframework build has been fixed. 
+    // as soon as the Recorderframework build has been fixed.
     public static final String EXPERIMENT_RUN_DATE_FORMAT = "yyyy/MM/dd HH:mm:ss:SSS";
 
     /**
      * Extract time stamps from the experimentDateTime string. This is just a
      * QuickFix because {@link ExperimentRun}s currently do not store their
      * time properly.
-     * 
+     *
      * Delete this method after Bug 395 is fixed.
-     * 
+     *
      * @param experimentDateTime
      * @return The {@link Date} of the {@link ExperimentRun}
      */
-	private long extractTimestamp(String experimentDateTime) {
-		
-		// FIXME: use constant from AbstractRecorderConfigurationFactory as soon as the Recorderframework build has been fixed. 
-		SimpleDateFormat dateFormat = new SimpleDateFormat(EXPERIMENT_RUN_DATE_FORMAT);
+    private long extractTimestamp(final String experimentDateTime) {
+
+        // FIXME: use constant from AbstractRecorderConfigurationFactory as soon as the Recorderframework build has been fixed.
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(EXPERIMENT_RUN_DATE_FORMAT);
         //SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
-		try {
-			return dateFormat.parse(experimentDateTime).getTime();
-		} catch (ParseException e) {
-			logger.error("Cannot parse sensorframework experiment run String");
-			e.printStackTrace();
-			return 0;
-		}
-    	
-    	//return Date.parse(experimentDateTime);
+        try {
+            return dateFormat.parse(experimentDateTime).getTime();
+        } catch (final ParseException e) {
+            logger.error("Cannot parse sensorframework experiment run String");
+            e.printStackTrace();
+            return 0;
+        }
+
+        //return Date.parse(experimentDateTime);
 
         /*//Cut the "Run " part.
         experimentDateTime = experimentDateTime.substring(4);
