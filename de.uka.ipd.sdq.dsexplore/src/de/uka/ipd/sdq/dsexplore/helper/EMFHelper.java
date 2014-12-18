@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -161,7 +162,7 @@ public class EMFHelper {
 	 *            the filename specifying the file to load from
 	 * @return The EObject loaded from the file
 	 */
-	public static EObject loadFromXMIFile(final String fileName) {
+	public static EObject loadFromXMIFile(final String fileName, EPackage ePackage) {
 		// Create a resource set to hold the resources.
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -174,10 +175,10 @@ public class EMFHelper {
 		// Register the package to ensure it is available during loading.
 		registerPackages(resourceSet);
 		
-		return loadFromXMIFile(fileName, resourceSet);
+		return loadFromXMIFile(fileName, resourceSet, ePackage);
 	}
 
-	public static EObject loadFromXMIFile(final String fileName, ResourceSet resourceSet){
+	public static EObject loadFromXMIFile(final String fileName, ResourceSet resourceSet, EPackage ePackage){
 		// Construct the URI for the instance file.
 		// The argument is treated as a file path only if it denotes an existing
 		// file. Otherwise, it's directly treated as a URL.
@@ -188,6 +189,7 @@ public class EMFHelper {
 		Resource resource = null;
 		// Demand load resource for this file.
 		try {
+			resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
 			resource = resourceSet.getResource(uri, true);
 		} catch (Exception e) {
 			Logger.getLogger("de.uka.ipd.sdq.dsexplore").error(e.getMessage());

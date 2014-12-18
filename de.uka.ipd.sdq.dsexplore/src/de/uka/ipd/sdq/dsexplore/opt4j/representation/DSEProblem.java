@@ -35,6 +35,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
@@ -135,7 +136,7 @@ public class DSEProblem {
 	private DecisionSpace loadProblem(String filename) throws CoreException{
 		ResourceSet pcmResourceSet = this.initialInstance.getAllocation().eResource().getResourceSet();
 		
-		EObject eproblem = EMFHelper.loadFromXMIFile(filename, pcmResourceSet);
+		EObject eproblem = EMFHelper.loadFromXMIFile(filename, pcmResourceSet, designdecisionPackage.eINSTANCE);
 		if (!(eproblem instanceof DecisionSpace)){
 			throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot read design decision file "+filename+". Please create a new one.", null));
 		}

@@ -33,6 +33,7 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
@@ -347,7 +348,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 	 */
 	private CostRepository getCostModel(DSEWorkflowConfiguration configuration) throws CoreException {
 		String costModelFileName = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, "");
-		CostRepository cr =  (CostRepository)EMFHelper.loadFromXMIFile(costModelFileName);
+		CostRepository cr =  (CostRepository)EMFHelper.loadFromXMIFile(costModelFileName, costPackage.eINSTANCE);
 		if (cr == null){
 			throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cost model "+costModelFileName+" could not be loaded.", null));
 		}
