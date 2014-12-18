@@ -10,13 +10,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import org.apache.commons.math.stat.descriptive.UnivariateStatistic;
+import org.apache.commons.math.stat.descriptive.moment.Mean;
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
+import org.apache.commons.math.stat.descriptive.rank.Max;
+import org.apache.commons.math.stat.descriptive.rank.Median;
+import org.apache.commons.math.stat.descriptive.rank.Min;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
-import org.rosuda.JRI.REXP;
 
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.AbstractPie;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.PieEntity;
@@ -64,10 +69,6 @@ import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.sensorframework.entities.SensorAndMeasurements;
 import de.uka.ipd.sdq.sensorframework.entities.TimeSpanMeasurement;
 import de.uka.ipd.sdq.sensorframework.entities.TimeSpanSensor;
-import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.RVisualisationPlugin;
-import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport.TimeseriesData;
-import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnection;
-import de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.utils.RConnectionImpl;
 import de.uka.ipd.sdq.statistics.PhiMixingBatchAlgorithm;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
@@ -110,7 +111,23 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 
 	private SimuComQualityAttributeDeclaration qualityAttributeInfo;
 
-
+    /**
+     * Identifier for subsets of data elements that belong to a single time series element.
+     * 
+     * Copied from de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport,
+     * will copy instead of import to not get a dependency on an R dependent plugin. 
+     * 
+     * @see TimeSeries
+     * @author groenda
+     */
+    private enum TimeseriesData {
+        /** The timespan value of the time series data point. */
+        TIMESPAN,
+        /** The eventtime value of the time series data point. */
+        EVENTTIME,
+        /** Both, the timespan and eventtime, of the time series data point. */
+        BOTH
+    }
 	
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore");
@@ -128,9 +145,9 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		this.qualityAttributeInfo = qualityAttributeInfo;
 		
 		SensorAndMeasurements sam = getUsageScenarioMeasurements();
-		this.meanValue = calculateValue(sam,"mean", TimeseriesData.TIMESPAN);
-		this.stdDeviation = calculateValue(sam,"sd", TimeseriesData.TIMESPAN);
-		this.medianValue = calculateValue(sam,"median", TimeseriesData.TIMESPAN);
+		this.meanValue =  calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean()); //calculateValue(sam,"mean", TimeseriesData.TIMESPAN);
+		this.stdDeviation = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new StandardDeviation());
+		this.medianValue = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Median());
 		this.throughput = calculateThroughput(sam);
 		this.observations = sam.getMeasurements().size();
 		
@@ -141,6 +158,12 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		
 		logger.debug("Initialised SimuCom result");
 		
+	}
+
+	private double calculateUnivariateStatistic(SensorAndMeasurements sam,
+			TimeseriesData timespan, UnivariateStatistic stat) {
+		double[] measurements = measurementsToDoubleArray(sam, timespan);
+		return stat.evaluate(measurements);
 	}
 
 	private double calculateMaxUtil(String resourceType) {
@@ -157,7 +180,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		int numberOfMeasurements = sam.getMeasurements().size();
 		// we assume that the last entry is the duration.
 		// still, no way to get the maximum time... because this is a collection.
-		double duration = calculateValue(sam,"max", TimeseriesData.EVENTTIME) - calculateValue(sam,"min", TimeseriesData.EVENTTIME);
+		double duration = calculateUnivariateStatistic(sam, TimeseriesData.EVENTTIME, new Max()) - calculateUnivariateStatistic(sam, TimeseriesData.EVENTTIME, new Min());
 		
 		return numberOfMeasurements / duration;
 	}
@@ -342,7 +365,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 					 SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
 					 Collection<Measurement> measurements = results.getMeasurements();
 					 totalNumberOfMeasurements += measurements.size();
-					 weightedAndCumulatedMeanResponseTime += calculateValue(results, "mean", TimeseriesData.TIMESPAN) * totalNumberOfMeasurements;
+					 weightedAndCumulatedMeanResponseTime += calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()) * totalNumberOfMeasurements;
 					 
 				}
 				double meanResponseTime = weightedAndCumulatedMeanResponseTime / totalNumberOfMeasurements;
@@ -444,9 +467,9 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 					SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
 
 					if (sensorName.contains("Hold time")){
-						passiveResourceResult.setAverageHoldingTime(calculateValue(results, "mean", TimeseriesData.TIMESPAN));
+						passiveResourceResult.setAverageHoldingTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
 					} else if (sensorName.contains("Wait time")){
-						passiveResourceResult.setAverageWaitTime(calculateValue(results, "mean", TimeseriesData.TIMESPAN));
+						passiveResourceResult.setAverageWaitTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
 					} else if (sensorName.contains("Util")){
 						// for passive resources, also consider the capacity when calculating the util
 						int capacity = Integer.parseInt(passiveResourceResult.getPassiveResource_PassiveResourceResult().getCapacity_PassiveResource().getSpecification());
@@ -556,36 +579,6 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 	}
 
 
-	private double calculateValue(SensorAndMeasurements sam, String command, TimeseriesData whichData) throws AnalysisFailedException {
-		AnalysisFailedException error = null;
-		try {
-		if (RConnectionImpl.isEngineAvailable()){
-
-			RConnection rConnection = RConnectionImpl.getRConnection();
-			String sensorName = storeMeasurementsInRVector(sam, sam.getSensor().getSensorID(), whichData, rConnection);
-			Vector<REXP> rResult = rConnection.execute(command+"(" + sensorName + ")\n");
-			if (rResult.size() > 0) {
-				if (rResult.get(0).rtype == REXP.REALSXP){
-					return rResult.get(0).asDouble();
-				} else {
-					error = new AnalysisFailedException("R engine returned a non-double when trying to calculate the mean value: "+rResult.get(0).asString());
-					logger.error(error.getMessage());
-				}
-			} else {
-				error = new AnalysisFailedException("Querying R engine returned an empty result. Maybe simulation time was too short and no results have been written to the response time sensor."); 
-				logger.error(error.getMessage());
-			}
-		} else {
-			error = new AnalysisFailedException("Could not connect to R engine! Check your R configuration.");
-			logger.error(error.getMessage());
-		}
-		} catch (ExceptionInInitializerError e) {
-			error = new AnalysisFailedException("Could not connect to R engine!  Check your R configuration.", e);
-			logger.error(error.getMessage());
-			logger.error(e.getMessage());
-		}
-		throw error;
-	}
 
 	private static Sensor getSensorForUsageScenario(Experiment exp, String usageScenarioName) {
 		Collection<Sensor> sensors = exp.getSensors();
@@ -621,87 +614,29 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		return null;
 	}
 
-	/**Export the measurements of a sensor to R. 
-	 * There are two alternatives. The measurements can be transferred 
-	 * via an array, which implies certain size restrictions. An alternative is
-	 * to use a temporary file. The behavior can only be switched in source 
-	 * code by the constant <code>TRANSFER_TYPE</code>.
-	 * Variable names in R are as follows:<br /> 
-	 *   For timespan data: "sensor" + #<br />
-	 *   For eventtime data: "sensor" + # + "_ET")<br />
-	 * 
-	 * @param measurements Measurements for a sensor.
-	 * @param sensorNumber number of the sensor vector in R.
-	 * @param dataSelection the data element to save.
-	 * @param rConnection Connection to the R engine.
-	 * @return R variable name which contains the data.
-	 */
-	protected static String storeMeasurementsInRVector(
-			final SensorAndMeasurements measurements, final long sensorNumber,
-			final TimeseriesData dataSelection, final RConnection rConnection) {
-		String sensorName = null;
-
-		if (dataSelection == TimeseriesData.TIMESPAN) {
-			sensorName = "sensor" + sensorNumber; 
-		} else 
-			if (dataSelection == TimeseriesData.EVENTTIME) {
-			sensorName = "sensor" + sensorNumber + "_ET";
-		} else {
-			throw new RuntimeException("Unknown data element of time series.");
-		}
-
-		//if (TRANSFER_TYPE == TransferType.MEMORY) {
-			// Activate to transfer data via memory
-			double[] measurementsArray = 
-				prepareExportToRByMemory(measurements, dataSelection);
-			rConnection.assign(sensorName, measurementsArray);
-		//}
-/*		if (TRANSFER_TYPE == TransferType.FILE) {
-			// Activate to transfer data via temporary file
-			String rCommand = sensorName + " <- "
-				+ prepareExportToRByFile(measurements, dataSelection);
-			Vector<REXP> result = rConnection.execute(rCommand);
-			// Error handling
-			if (!rConnection.getLastConsoleMessage().equalsIgnoreCase("Read " 
-					+ measurements.getMeasurements().size() + " items\n")) {
-				String rResults = "Executing command: '" + rCommand + "' with ";
-				for (REXP currentResult : result) {
-					rResults += "String: " + currentResult.asString() 
-						+ ", SymbolName: " + currentResult.asSymbolName() 
-						+ ", Type: " + currentResult.getType() + "\n";
-				}
-				RVisualisationPlugin.log(IStatus.INFO,
-					"Storing Measurements in R via file is most likely wrong. Last message "
-					+ "on the console was: " + rConnection.getLastConsoleMessage()
-					+ "R returned:\n" + rResults);
-			}
-
-		}*/
-		return sensorName;
-	}
 	
-	/**Prepares the export the measurements of a sensor to R. Therefore an 
-	 * array is filled with the measurements. 
+	/**An 
+	 * array is filled with data from measurements. 
 	 * 
 	 * Copied from 
 	 * de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport. 
 	 * TODO: Possibly make this public in RReport and use it properly or refactor it 
 	 * to a helper class.
 	 * 
+	 * XXX Keep this when using apache commons math. 
+	 * 
 	 * @param measurements Measurements for a sensor.
 	 * @param dataSelection the data element to save.
-	 * @return R command to read measurements. 
-	 *         Can be used to store data in a r vector.
-	 * @author Henning
+	 * @return array with one data element per Measurement
+	 * @author Henning, Anne
 	 */
-	private static double[] prepareExportToRByMemory(
+	private static double[] measurementsToDoubleArray(
 			final SensorAndMeasurements measurements,
 			final TimeseriesData dataSelection) {
 		double[] measurementsArray = 
 			new double[measurements.getMeasurements().size()];
 		if (measurements.getMeasurements().size() == Integer.MAX_VALUE) {
-			RVisualisationPlugin.log(IStatus.ERROR,
-					"Too many measurements. Results might be inaccurate.");
+			logger.error("Too many measurements. Results might be inaccurate.");
 		}
 		int position = 0;
 		for (Measurement time : measurements.getMeasurements()) {
@@ -739,7 +674,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 				resultToFill.setAverageWaitTime(Double.NaN);
 				
 				SensorAndMeasurements sam = run.getMeasurementsOfSensor(demandedSensor);
-				resultToFill.setDemandedTime(calculateValue(sam, "mean", TimeseriesData.TIMESPAN));
+				resultToFill.setDemandedTime(calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean()));
 			
 			} catch (RuntimeException e) {
 				// FIXME: The call "SensorAndMeasurements sam =
