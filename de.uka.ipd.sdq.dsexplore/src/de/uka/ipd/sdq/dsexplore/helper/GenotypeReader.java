@@ -45,6 +45,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.resourceenvironment.LinkingResource;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
@@ -175,7 +176,7 @@ public class GenotypeReader {
 		PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
 		ResourceSet pcmResourceSet = pcm.getAllocation().eResource().getResourceSet();
 				
-		EObject eCandidates = EMFHelper.loadFromXMIFile(filename, pcmResourceSet);
+		EObject eCandidates = EMFHelper.loadFromXMIFile(filename, pcmResourceSet, designdecisionPackage.eINSTANCE);
 		//EcoreUtil.resolveAll(eCandidates);
 		//FixDesignDecisionReferenceSwitch refSwitch = new FixDesignDecisionReferenceSwitch(Opt4JStarter.getProblem().getInitialInstance());
 		//refSwitch.doSwitch(eCandidates);
