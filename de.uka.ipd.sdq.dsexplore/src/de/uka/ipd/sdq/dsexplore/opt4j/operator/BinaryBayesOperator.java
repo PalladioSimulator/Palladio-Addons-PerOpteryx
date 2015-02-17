@@ -69,81 +69,11 @@ public class BinaryBayesOperator {
 		// Done ...
 		// Select the good individuals
 		Collection<Individual> GoodIndividuals = SelectorObject.getParents(10, this.Population);
-		
-		// Convert GoodIndividuals to list of DesignDecisionGenotype objects
-		List<DesignDecisionGenotype> DDGenotypeList = new ArrayList<DesignDecisionGenotype>();
-		Iterator IndividualIterator = GoodIndividuals.iterator();
-		for(int i=0; i< GoodIndividuals.size();i++){
-			Individual individual = (Individual) IndividualIterator.next();
-			DDGenotypeList.add((DesignDecisionGenotype) individual.getGenotype());
-		}
-		
-		// Now convert DDGenotypeList to a list of FinalBinaryGenotype objects
-		List<FinalBinaryGenotype> FBGenotypeList = new ArrayList<FinalBinaryGenotype>();
-		Adapter TranslatorObj = new Adapter();
-		for(int i=0;i<DDGenotypeList.size();i++){		
-			List<BinaryGenotype> IntermediateList = TranslatorObj.translateDesignDecisionGenotype(DDGenotypeList.get(i));
-			FinalBinaryGenotype FBObj = new FinalBinaryGenotype(IntermediateList);
-			FBGenotypeList.add(FBObj);
-		}
-		
-		// Now create a 2-D matrix using the info in FBGenotypeList.
-		// Each row corresponds to an individual
-		Integer[][] BinaryGenes = new Integer[FBGenotypeList.size()][FBGenotypeList.get(0).getBinaryGenotype().size()];
-		for(int i=0;i<FBGenotypeList.size();i++){
-			FBGenotypeList.get(i).getBinaryGenotype().toArray(BinaryGenes[i]);
-		}
-		// Finally convert BinaryGenes from Integer[][] to int[][]
-		int[][] BinaryGenesint = new int[BinaryGenes.length][BinaryGenes[0].length];
-		for(int i=0;i<BinaryGenes.length;i++){
-			for(int j=0;j< BinaryGenes[0].length;j++){
-				BinaryGenesint[i][j] = (int) BinaryGenes[i][j];
-			}
-		}
-		// Give BinaryGenes as input to getOffspring method in class MatingBayes
-		MatingBayes OffspringGenerator = new MatingBayes();
-		try {
-			int[][] Offspring = OffspringGenerator.getOffspring(BinaryGenesint);
-			// Got the Offspring !!!
-			// Now convert back to List of FBGenotype objects
-			List<FinalBinaryGenotype> FBGenotypeOffspringList = new ArrayList<FinalBinaryGenotype>();
-			for(int i=0;i<Offspring.length;i++){
-				List<Integer> GeneratedOffspringList = new ArrayList<Integer>();
-				for(int j=0;j<Offspring[0].length;j++){
-					GeneratedOffspringList.add(Offspring[i][j]);
-				}
-				// Create a FBGenotype object
-				FinalBinaryGenotype FBOffspringObj = new FinalBinaryGenotype();
-				FBOffspringObj.setBinaryGenotype(GeneratedOffspringList);
-				FBOffspringObj.setBitsPerDegree(FBGenotypeList.get(0).getBitsPerDegree());
-				FBOffspringObj.setOrderOfDegrees(FBGenotypeList.get(0).getOrderOfDegrees());
-				FBGenotypeOffspringList.add(FBOffspringObj);
-			}
-			// You have the list of Offsprings as a list of FinalBinaryGenotype Objects
-			// Now convert them to DesignDecisionGenotype object list
-			List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
-			for(int i = 0;i<FBGenotypeOffspringList.size();i++){
-				DDGenotypeOffspringList.add(TranslatorObj.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i)));
-			}
-			// Got the DesignDecisionGenotype list of Offsprings.
-			List<Individual> IndividualOffspringList = new ArrayList<Individual>();
-			for(int i = 0;i<DDGenotypeOffspringList.size();i++){
-				// Create a new Individual object
-				Individual IndividualObj = new Particle();
-				IndividualObj = (Individual) IndividualObj;
-				IndividualObj.setGenotype(DDGenotypeOffspringList.get(i));
-				IndividualOffspringList.add(IndividualObj);
-			}
-			this.Population.addAll(IndividualOffspringList);
-			this.Population.removeAll(SelectorObject.getLames(10, this.Population));
-			// End the process here ...
-		} catch (RserveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (REXPMismatchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		// Give GoodIndividuals as input to getOffspring method in MatingBayes class
+		MatingBayes BayesianOffspringGenerator = new MatingBayes();
+		Collection<Individual> NewIndividuals = BayesianOffspringGenerator.getOffspring(10, GoodIndividuals);
+		this.Population.addAll(NewIndividuals);
+		this.Population.removeAll(SelectorObject.getLames(10, this.Population));
+		// Ending the process here ...		
 	}	
 }
