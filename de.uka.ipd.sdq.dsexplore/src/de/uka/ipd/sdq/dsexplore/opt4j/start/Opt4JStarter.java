@@ -36,6 +36,7 @@ import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.Population;
 import org.opt4j.core.problem.Evaluator;
 import org.opt4j.optimizer.ea.EvolutionaryAlgorithmModule;
+import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.ScalingNsga2Module;
 //import org.opt4j.optimizer.ea.ScalingNsga2Module;
 import org.opt4j.optimizer.rs.RandomSearchModule;
@@ -52,6 +53,7 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
@@ -346,8 +348,21 @@ public class Opt4JStarter {
 			rsm.setBatchsize(config.getIndividualsPerGeneration());
 			rsm.setIterations(maxIterations);
 			modules.add(rsm);
-		} else {
-			EvolutionaryAlgorithmModule ea = new DSEEvolutionaryAlgorithmModule();
+		} else if (config.isEvolutionarySearch()){
+			EvolutionaryAlgorithmModule ea = null;
+			
+			if (config.isBayes()){
+				ea = new DSEEvolutionaryAlgorithmModule(){
+					@Override
+					public void config(){
+						super.config();
+						bind(Mating.class).to(MatingBayes.class);
+					}
+				};
+			} else {
+				ea = new DSEEvolutionaryAlgorithmModule();
+			}
+						
 			ea.setGenerations(maxIterations);
 			ea.setAlpha(individualsPerGeneration);
 			ea.setLambda((int) Math.floor(individualsPerGeneration / 2.0 + 0.5));
@@ -366,6 +381,8 @@ public class Opt4JStarter {
 			 * GUIModule gui = new GUIModule(); gui.setCloseOnStop(true);
 			 */
 			modules.add(ea);
+		} else {
+			throw new CoreException(new Status(Status.ERROR, Opt4JStarter.class.getName(), "Unknown selected search method, please update Opt4JStarter implementation."));
 		}
 	}
 

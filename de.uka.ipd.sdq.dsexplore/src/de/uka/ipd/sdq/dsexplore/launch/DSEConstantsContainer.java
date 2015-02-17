@@ -29,6 +29,7 @@ public class DSEConstantsContainer {
 	/** Suboptimal candidates are pruned from the search tree and not further 
 	 * explored per iteration.*/ 
 	public static final String SEARCH_RULE_OPT = "Rule-based search optimal only";
+	public static final String SEARCH_EVOLUTIONARY_WITH_BAYES = "Evolutionary search with Bayesian learning (experimental)";
 
 	/**
 	 * This must not be used as a key directly, but the quality attribute has to be appended.
@@ -134,6 +135,7 @@ public class DSEConstantsContainer {
 //	public static final String COST_CONSIDER_INITIAL = "DSE consider initial costs";
 //	public static final String COST_CONSIDER_OPERATING = "DSE consider opearting costs";
 	
+
 	/*
 	 * Configuration of heuristics
 	 */
@@ -240,6 +242,7 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_DESIGN_DECISION_FILE = "";
 	/** Default URI for the QML criteria definitions file. */
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
+
 
 	
 	

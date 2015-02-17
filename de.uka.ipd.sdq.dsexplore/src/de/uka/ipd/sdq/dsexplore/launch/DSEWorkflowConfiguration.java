@@ -39,7 +39,8 @@ AbstractPCMWorkflowRunConfiguration {
 		EVOLUTIONARY,
 		RANDOM,
 		RULE,
-		RULE_OPT
+		RULE_OPT, 
+		EVOLUTIONARY_WITH_BAYES
 	};
 	
 	private ILaunchConfiguration rawConfiguration;
@@ -170,8 +171,6 @@ AbstractPCMWorkflowRunConfiguration {
 	private String cacheInstancesFileName = "";
 	private String predefinedAllCandidatesFileName = "";
 	private String archiveCandidateFileName = "";
-
-
 
 
 	/**
@@ -350,6 +349,15 @@ AbstractPCMWorkflowRunConfiguration {
 				|| this.searchMethod == SearchMethod.RULE_OPT);
 	}
 	
+	public boolean isBayes() {
+		return this.searchMethod == SearchMethod.EVOLUTIONARY_WITH_BAYES;
+	}
+	
+	public boolean isEvolutionarySearch(){
+		return (this.searchMethod == SearchMethod.EVOLUTIONARY 
+				|| this.searchMethod == SearchMethod.EVOLUTIONARY_WITH_BAYES);
+	}
+	
 	/**
 	 * Returns whether the rule based search should explore the full search 
 	 * tree up to the depth given by the number of iterations. 
@@ -436,7 +444,7 @@ AbstractPCMWorkflowRunConfiguration {
 	public void setCrossoverRate(double crossoverRate) {
 		this.crossoverRate = crossoverRate;
 	}
-
+	
 	public boolean isConsiderQMLBoundsWhenApplyingHeuristics() {
 		return considerQMLBoundsWhenApplyingHeuristics;
 	}
@@ -649,6 +657,7 @@ AbstractPCMWorkflowRunConfiguration {
 	public void setResultsAsCSV(boolean resultsAsCVS){
 		this.resultsAsCSV = resultsAsCVS;
 	}
+
 
 
 }
