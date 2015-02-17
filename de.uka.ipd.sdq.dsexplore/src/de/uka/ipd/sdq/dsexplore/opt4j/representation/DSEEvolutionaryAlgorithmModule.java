@@ -6,6 +6,8 @@ import org.opt4j.operator.copy.Copy;
 import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.operator.mutate.Mutate;
 import org.opt4j.optimizer.ea.ConstantCrossoverRate;
+import org.opt4j.optimizer.ea.Coupler;
+import org.opt4j.optimizer.ea.CouplerUnique;
 import org.opt4j.optimizer.ea.CrossoverRate;
 import org.opt4j.optimizer.ea.EvolutionaryAlgorithmModule;
 import org.opt4j.optimizer.ea.Mating;
@@ -29,10 +31,16 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 	 */
 	@Override
 	public void config() {
-
+		
+/*       TODO try to get rid of NoDuplicatesEvolutionaryAlgorithm as I have found out that there is the CouplerUnique
+		 which should already do the intended, i.e. make sure that there are no duplicate candidates in the offspring 
+		 Need to implement the other feature of NoDuplicatesEvolutionaryAlgorithm, namely that a predefined starting population 
+		 can be used(?), differently. */
 		bindOptimizer(NoDuplicatesEvolutionaryAlgorithm.class);
+		bind(Coupler.class).to(CouplerUnique.class).in(SINGLETON);
+				
 		bind(Mating.class).to(MatingWithHeuristics.class).in(SINGLETON);
-
+		
 		bind(CrossoverRate.class).to(ConstantCrossoverRate.class).in(SINGLETON);
 		
 		bind(IndividualFactory.class).to(DSEIndividualFactory.class);
