@@ -165,6 +165,7 @@ public class DSEOptionsTab extends FileNamesInputTab {
 				DSEConstantsContainer.SEARCH_RANDOM,
 				DSEConstantsContainer.SEARCH_RULE,
 				DSEConstantsContainer.SEARCH_RULE_OPT,
+				DSEConstantsContainer.SEARCH_EVOLUTIONARY_WITH_BAYES
 				});
 		useHeuristics.setSize (400, 200);
 		useHeuristics.addModifyListener(modifyListener);
