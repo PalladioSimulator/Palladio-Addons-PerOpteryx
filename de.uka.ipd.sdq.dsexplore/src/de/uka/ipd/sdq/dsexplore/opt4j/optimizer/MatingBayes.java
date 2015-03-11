@@ -20,6 +20,8 @@ import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.MatingCrossoverMutate;
 import org.opt4j.optimizer.mopso.Particle;
 import org.opt4j.optimizer.ea.BasicMatingModule;
+import org.rosuda.JRI.Rengine;
+import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
@@ -30,24 +32,35 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
 
-/**
- * @ author Apoorv 
+/** This class is meant to contain methods
+ * that operate on a collection of Binary strings.
+ * These methods build a Bayesian Network out of the Binary Strings
+ * and sample out new Binary Strings. Each Binary String
+ * is actually a translated {@link DesignDecisionGenoytpe} ({@link FinalBinaryGenotype})   
+ * 
  */
 public class MatingBayes implements Mating{
 	
-	/* This class is meant to contain methods
-	 * that take a collection of Binary strings
-	 * as input, build a Bayesian Network out of them
-	 * and sample out new Binary Strings. Each Binary String
-	 * is actually a translated DesignDecisionGenoytpe
-	 */
 	
-
 	// Testing here ...
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[][] array = new int[3][9];
 		System.out.println(array.length);
+		
+		Rengine re=new Rengine(args, false, null);
+		
+		// Recommended, though not needed as such.
+		//if (!Rengine.versionCheck()) {System.exit(0);}
+		
+		// This just reports whether R was running and we connected to it, or whether we started it.
+		if (re.isStandAlone()) System.out.println("R initialised by java");
+		re.eval("library(bnlearn)");
+		re.eval("b = data.frame(matrix(c(1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0),nrow=10,ncol=3))");
+		org.rosuda.JRI.REXP a = re.eval("b");
+		re.eval("g = tabu(b)");
+		//org.rosuda.JRI.REXP a = re.eval("rbn(g,10,b)");
+		System.out.println(a.toString());
 
 	}
 	
@@ -91,10 +104,11 @@ public class MatingBayes implements Mating{
 	
 	// Methods here ...
 	
-	/* Create a method to process on the data 
+	/** A method to process on the data (which consists of 1s and 0s)
 	 * and sample new data from the learned 
-	 * Bayesian Structure. The new method getOffspring overrides the one 
-	 * in the parent class.
+	 * Bayesian Structure. This method first constructs a Bayesian
+	 * Network out of the input data and then samples new data out of it
+	 * and gives it as an output.
 	*/
 	public int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
 		/* This method learns the Bayesian Structure by considering
@@ -122,8 +136,16 @@ public class MatingBayes implements Mating{
 		    
 		// End of writing data
 		
-		
+		//<-------------------------------------------------->
 		// Start the connection to R software    
+		Rengine RserveStarter = new Rengine();
+		// This just reports whether R was running and we connected to it, or whether we started it.
+		if (RserveStarter.isStandAlone()) System.out.println("R initialised by java");
+		RserveStarter.eval("library(Rserve)");
+		RserveStarter.eval("Rserve()");
+		// This patch of code starts Rserve ... 
+		//<-------------------------------------------------->
+		// The next written code is intact ...
 		RConnection RCommunicator= new RConnection();   
 		RCommunicator.eval("source(\"C:/Users/Hp/Documents/R/Bayesopt.R\")");
 		RCommunicator.assign("z", Integer.toString(NumberOfGenomes));
@@ -149,6 +171,12 @@ public class MatingBayes implements Mating{
 		return FinalOffspring;		
 	}
 	
+	/** This method is similar to the {@link getSampledGenomes} method, the only difference being
+	 * that this method operates on a collection of {@link Individual} objects. The {@link Individual} objects
+	 * are converted to {@link Collection} of {@link DesignDecisionGenotype} objects, which are converted to {@link FinalBinaryGenotype}
+	 * objects. The {@link getSampledGenomes} is invoked on this list of {@link FinalBinaryGenotype} objects to output new solutions.
+	 * These are then converted systematically back to {@link Individual} type of objects
+	 */
 	@Override
 	public Collection<Individual> getOffspring(int Size, Collection<Individual> Parents){
 		
