@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Genotype;
 import org.opt4j.genotype.Bounds;
@@ -17,6 +18,7 @@ import org.opt4j.genotype.ListGenotype;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
@@ -30,13 +32,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
-
-//For all practical purposes, the Adapter is done and tested successfully !!!
+/**
+ * The {@link Adapter} contains methods to translate between {@link DesignDecisionGenotype} 
+ * and {@link FinalBinaryGenotype}. 
+ * @author Apoorv
+ *
+ */
 public class Adapter {
 	
 	String[] SERVERS = {"S1","S2","S3","S4"}; // Taken from getAllocatedServerBinaryRep method
 	String[] WEBSERVERS = {"A","B","C"}; // Change the names of the WebServers here. This is taken from getWebServerBinaryRep method
 	double[] SERVER_INTERVALS = {1,2,3,4}; // Specify the Server intervals here. Can be of any length. This is taken from getServerBinaryRep method
+	// The ContinuousProcessingRateArchiveStorage stores the various values of server speeds for the candidates
+	// given to translateDesignDecisionGenotype method. These stored values are then
+	// used by translateFinalBinaryGenotype to produce DesignDecisonGenotype
+	ArrayList<ArrayList<Double>> ContinuousProcessingRateArchiveStorage;
 	/* The Adapter class has the methods to convert 
 	 * a DesignDecisionGenotype genotype to a binary 
 	 * genotype and vice versa. The binary genotype
@@ -45,16 +55,27 @@ public class Adapter {
 	
 	// Constructor here
 	public Adapter(){
-		
+		this.ContinuousProcessingRateArchiveStorage = new ArrayList<ArrayList<Double>>();
+		for(int i=0; i< this.SERVER_INTERVALS.length;i++){
+			this.ContinuousProcessingRateArchiveStorage.add(new ArrayList<Double>());
+		}
 		
 	}
 	
 	// Testing here
 	
 	public static void main(String[] args){
+		ArrayList<ArrayList<Double>> some = new ArrayList<ArrayList<Double>>(); 
+		ArrayList<Double> some1 = new ArrayList<Double>();
+		some.add(some1);
+		some.get(0).add(1.0);
+		System.out.println(some.get(0).get(0));
+		Random r = new Random();
+		System.out.println(r.nextInt(10));
 		//DesignDecisionGenotype d = new DesignDecisionGenotype();
 		//List<Choice> genotype = d.getInternalList();
 		Candidate c = designdecisionFactory.eINSTANCE.createCandidate();
+		
 		EList<Choice> list = c.getChoices();
 		Choice choice = designdecisionFactory.eINSTANCE.createChoice();
 		//choice.setDegreeOfFreedomInstance(designdecisionFactory.eINSTANCE.createDegreeOfFreedomInstance());
@@ -66,11 +87,27 @@ public class Adapter {
 		list.add(choice);
 		/*-----------------------------------------------------------------*/
 		Choice choice1 = designdecisionFactory.eINSTANCE.createChoice();
-		choice1.setValue(2.89);
+		choice1.setValue(3.89);
 		ContinuousProcessingRateDegree dofi1 = specificFactory.eINSTANCE.createContinuousProcessingRateDegree();
 		dofi1.setEntityName("Server Speed");
 		choice1.setDegreeOfFreedomInstance(dofi1);
 		list.add(choice1);
+		
+		/*-----------------------------------------------------------------*/
+		Choice choice2 = designdecisionFactory.eINSTANCE.createChoice();
+		choice2.setValue(3.55);
+		ContinuousProcessingRateDegree dofi2 = specificFactory.eINSTANCE.createContinuousProcessingRateDegree();
+		dofi2.setEntityName("Server Speed");
+		choice2.setDegreeOfFreedomInstance(dofi2);
+		list.add(choice2);
+		
+		/*-----------------------------------------------------------------*/
+		Choice choice3 = designdecisionFactory.eINSTANCE.createChoice();
+		choice3.setValue(2.55);
+		ContinuousProcessingRateDegree dofi3 = specificFactory.eINSTANCE.createContinuousProcessingRateDegree();
+		dofi3.setEntityName("Server Speed");
+		choice3.setDegreeOfFreedomInstance(dofi3);
+		list.add(choice3);
 		
 		/* For initial testing of Adapter (for the file in the backup folder)
 		// Put into Candidate
@@ -92,6 +129,10 @@ public class Adapter {
 		System.out.println(DD.getInternalList().get(0).getDegreeOfFreedomInstance());
 		System.out.println(DD.getInternalList().get(1).getValue());
 		System.out.println(DD.getInternalList().get(1).getDegreeOfFreedomInstance());
+		System.out.println(DD.getInternalList().get(2).getValue());
+		System.out.println(DD.getInternalList().get(2).getDegreeOfFreedomInstance());
+		System.out.println(DD.getInternalList().get(3).getValue());
+		System.out.println(DD.getInternalList().get(3).getDegreeOfFreedomInstance());
 		/*
 		System.out.println(binarygenotype.get(0).getDegreeType());
 		System.out.println(binarygenotype.get(1).getDegreeType());
@@ -152,6 +193,11 @@ public class Adapter {
 	
 	// Methods here
 	// translateDesignDecisionGenotype method tested successfully ...
+	/**
+	 * This is a javadoc
+	 * @param DDGenotype
+	 * @return
+	 */
 	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype){
 		int SERVER_BITS_FOR_REPRESENTATION = 4;
 		int NUMBER_OF_WEBSERVERS = 3;
@@ -199,7 +245,18 @@ public class Adapter {
 				/* Now determine the interval in which ServerSpeed value lies
 				 * 
 				 */
+				
+				
 				List<Integer> ServerBinaryRep = getServerBinaryRep(ServerSpeed);
+				
+				// Add the server speed value at the proper place in the archive storage
+				for(int w=0;w<ServerBinaryRep.size();w++){
+					if(ServerBinaryRep.get(w) == 1){
+						this.ContinuousProcessingRateArchiveStorage.get(w).add(ServerSpeed);
+					}
+				}
+				//-------------------------------------------------------------------------
+				
 				BinaryGenotype ServerBinaryGenotypeObj = new BinaryGenotype(ServerBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.ContinuousProcessingRateDegree);
 				TranslatedGenotype.add(ServerBinaryGenotypeObj);
 			}
@@ -233,10 +290,14 @@ public class Adapter {
 
 	
 	// Tested successfully ...
+	
+	/** Translates the given {@link FinalBinaryGenotype} named FBGenotype to a 
+	 * {@link DesignDecisionGenotype}.
+	 * @param FBGenotype
+	 * @return
+	 */
 	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype){
-		/* Translates the given FinalBinaryGenotype named FBGenotype to 
-		 * a DesignDecisionGenotype.
-		 */
+		 
 		/* First create a list of BinaryGenotype Objects
 		 * 
 		 */
@@ -262,11 +323,22 @@ public class Adapter {
 				Choice ChoiceObject = designdecisionFactory.eINSTANCE.createChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
 					if(BinaryList.get(j) == 1){
-						/* Create a 
-						 * random value between
-						 * SERVER_INTERVALS[j] AND SERVER_INTERVALS[j-1] 
+						
+						// Old code -------------------------------------------
+						// /* Create a 
+						//  * random value between
+						//  * SERVER_INTERVALS[j] AND SERVER_INTERVALS[j-1] 
+						//  */
+						// double ServerSpeedValue = Math.random()*(SERVER_INTERVALS[j]-SERVER_INTERVALS[j-1])+SERVER_INTERVALS[j-1];
+						// ChoiceObject.setValue(ServerSpeedValue);
+					    // -----------------------------------------------------
+						
+						// New Code --------------------------------------------
+						/* Take out a random value from the archive storage 
+						 * from the jth ArrayList
 						 */
-						double ServerSpeedValue = Math.random()*(SERVER_INTERVALS[j]-SERVER_INTERVALS[j-1])+SERVER_INTERVALS[j-1];
+						Random rnum = new Random();
+						double ServerSpeedValue = (Double) this.ContinuousProcessingRateArchiveStorage.get(j).get(rnum.nextInt(this.ContinuousProcessingRateArchiveStorage.get(j).size()));
 						ChoiceObject.setValue(ServerSpeedValue);
 					}
 				}
