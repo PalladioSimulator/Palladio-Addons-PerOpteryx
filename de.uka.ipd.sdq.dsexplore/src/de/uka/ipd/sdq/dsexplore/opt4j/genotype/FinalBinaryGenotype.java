@@ -6,6 +6,13 @@ import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
 
+/**
+ * {@link FinalBinaryGenotype} is a genotype representation which contains the binary representation
+ * of a {@link DesignDecisionGenotype}. The {@link FinalBinaryGenotype} can be used for performing actual
+ * operations on the genotypes.
+ * @author Hp
+ *
+ */
 public class FinalBinaryGenotype {
 	/* This class holds the final representation of the binary genotype.
 	 * It contains 2 variables, Genotype and OrderOfDegrees.
@@ -19,9 +26,9 @@ public class FinalBinaryGenotype {
 	// Constructors here...
 	
 	public FinalBinaryGenotype(){
-		this.Genotype = Collections.emptyList();
-		this.OrderOfDegrees = Collections.emptyList();
-		this.BitsPerDegree = Collections.emptyList();
+		this.Genotype = new ArrayList<Integer>();
+		this.OrderOfDegrees = new ArrayList<TypeOfDegree>();
+		this.BitsPerDegree = new ArrayList<Integer>();
 	}
 	
 	public FinalBinaryGenotype(List<BinaryGenotype> list){
@@ -52,6 +59,18 @@ public class FinalBinaryGenotype {
 	
 	public List<Integer> getBitsPerDegree(){
 		return this.BitsPerDegree;
+	}
+	
+	public void setBinaryGenotype(List<Integer> Genotype){
+		this.Genotype = Genotype;
+	}
+	
+	public void setOrderOfDegrees(List<TypeOfDegree> OrderOfDegrees){
+		this.OrderOfDegrees = OrderOfDegrees;
+	}
+	
+	public void setBitsPerDegree(List<Integer> BitsPerDegree){
+		this.BitsPerDegree = BitsPerDegree;
 	}
 	
 

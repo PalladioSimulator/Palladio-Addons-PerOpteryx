@@ -10,6 +10,7 @@ import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Genotype;
 import org.opt4j.genotype.Bounds;
@@ -18,12 +19,18 @@ import org.opt4j.genotype.ListGenotype;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
+import de.uka.ipd.sdq.pcm.PcmFactory;
+import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
@@ -32,29 +39,97 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
+import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
+import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceenvironmentFactory;
+import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
+import de.uka.ipd.sdq.pcm.resourcetype.ResourcetypeFactory;
 /**
  * The {@link Adapter} contains methods to translate between {@link DesignDecisionGenotype} 
- * and {@link FinalBinaryGenotype}. 
+ * and {@link FinalBinaryGenotype}. In the conversion process, the following steps are
+ * involved:
+ * 
+ * <p>
+ * 1) The {@link DesignDecisionGenotype} (a list of {@link Choice} objects), is first converted to 
+ * a list of {@link BinaryGenotype} objects.
+ * <p>
+ *  2) The list of {@link BinaryGenotype} objects are converted to {@link FinalBinaryGenotype} object
+ *  using the {@link FinalBinaryGenotype} constructor. This is the final stage of the conversion where
+ *  we have obtained our end result (that of converting the {@link DesignDecisionGenotype} to a {@link FinalBinaryGenotype}).
+ *  <p>
+ *  For the retranslation process, we have to convert the {@link FinalBinaryGenotype} to a {@link DesignDecisionGenotype}. The 
+ *  process goes as follows:
+ *  
+ * <p>
+ * 1) {@link FinalBinaryGenotype} is converted to a list of {@link BinaryGenotype} objects
+ * <p>
+ * 2)This list is converted to a list of {@link Choice} objects and is used
+ * to construct a {@link DesignDecisionGenotype}
+ * 
+ *<p>
+ *NOTE: During the retranslation for the ContinuousProcessingRateDegree, we cannot assign
+ *the correct server speed value to the corresponding {@link Choice} object, because
+ * the binary representation gives us server speed intervals (instead of particular values).
+ * This problem is partially overcome by randomly assigning one of the previously used values of server speed
+ * (in a particular interval) during the initialization of the problem.
  * @author Apoorv
  *
  */
 public class Adapter {
 	
+	//<----------------------------------------------------------------------------------->
+	/*
+	// Orginal code
 	String[] SERVERS = {"S1","S2","S3","S4"}; // Taken from getAllocatedServerBinaryRep method
 	String[] WEBSERVERS = {"A","B","C"}; // Change the names of the WebServers here. This is taken from getWebServerBinaryRep method
 	double[] SERVER_INTERVALS = {1,2,3,4}; // Specify the Server intervals here. Can be of any length. This is taken from getServerBinaryRep method
-	// The ContinuousProcessingRateArchiveStorage stores the various values of server speeds for the candidates
-	// given to translateDesignDecisionGenotype method. These stored values are then
-	// used by translateFinalBinaryGenotype to produce DesignDecisonGenotype
+	*/
+	// New Code
+	// These have to be set in the constructor according to the Design
+	List<EObject> SERVERS; 
+	List<EObject> WEBSERVERS; 
+	double[] SERVER_INTERVALS; 
+	//<----------------------------------------------------------------------------------->
+	
+	/**The ContinuousProcessingRateArchiveStorage stores the 
+	 * various values of server speeds of the candidates 
+	 * given to translateDesignDecisionGenotype method. These stored values are then used by 
+	 * translateFinalBinaryGenotype (while retranslating the {@link ContinuousProcessingRateDegree}) to produce {@link DesignDecisonGenotype}
+	*/
 	ArrayList<ArrayList<Double>> ContinuousProcessingRateArchiveStorage;
-	/* The Adapter class has the methods to convert 
-	 * a DesignDecisionGenotype genotype to a binary 
-	 * genotype and vice versa. The binary genotype
-	 * is actually a int vector of 1s and 0s.
-	 */
+	DecisionSpace problemSpace;
 	
 	// Constructor here
-	public Adapter(){
+	public Adapter(DecisionSpace problemSpace){
+		// First create the SERVER_INTERVALS field.
+		this.problemSpace = problemSpace;
+		// Based on the problemSpace variable initialize the SERVERS,WEBSERVERS and SERVER_INTERVALS fields.
+		boolean traversed_ContinuousProcessingRateDegree = false;
+		boolean traversed_AllocationDegree = false;
+		boolean traversed_ResourceSelectionDegree = false;
+		for(DegreeOfFreedomInstance dofi: this.problemSpace.getDegreesOfFreedom()){
+			
+			if((dofi instanceof ContinuousProcessingRateDegree) && !traversed_ContinuousProcessingRateDegree){
+				// then set the SERVER_INTERVALS variable here
+				
+				double server_interval_lowerbound = ((ContinuousProcessingRateDegree) dofi).getFrom();
+				double server_interval_upperbound = ((ContinuousProcessingRateDegree) dofi).getTo();
+				// Currently code to create 4 equi_length intervals
+				double diff = (server_interval_upperbound - server_interval_lowerbound)/4;
+				for(int i = 0 ; i < 4 ; i++){
+					SERVER_INTERVALS[i] = server_interval_lowerbound + i*diff;
+				}
+				traversed_ContinuousProcessingRateDegree = true;
+			}else if(dofi instanceof AllocationDegree && !traversed_AllocationDegree){
+				// then set the SERVERS variable here
+				this.SERVERS = ((AllocationDegree) dofi).getClassDesignOptions();
+				traversed_AllocationDegree = true;
+			}else if(dofi instanceof ResourceSelectionDegree && !traversed_ResourceSelectionDegree){
+				// then set the WEBSERVERS variable here
+				this.WEBSERVERS = ((ResourceSelectionDegree) dofi).getClassDesignOptions();
+				traversed_ResourceSelectionDegree = true;
+			}
+		}
 		this.ContinuousProcessingRateArchiveStorage = new ArrayList<ArrayList<Double>>();
 		for(int i=0; i< this.SERVER_INTERVALS.length;i++){
 			this.ContinuousProcessingRateArchiveStorage.add(new ArrayList<Double>());
@@ -63,8 +138,42 @@ public class Adapter {
 	}
 	
 	// Testing here
-	
 	public static void main(String[] args){
+		
+		/*
+		ProcessingResourceType p = ResourcetypeFactory.eINSTANCE.createProcessingResourceType();
+		System.out.println(p.getResourceRepository_ResourceType());
+		System.out.println(p.getHardwareInducedFailureType__ProcessingResourceType());
+		// Testing about the DOFs
+		// Start by making a choice
+		DegreeOfFreedomInstance dofsi = designdecisionFactory.eINSTANCE.createDegreeOfFreedomInstance();
+		ClassChoice chois = designdecisionFactory.eINSTANCE.createClassChoice();
+		chois.setDegreeOfFreedomInstance(dofsi);
+		AllocationDegree ad = (AllocationDegree) dofsi;
+		ResourceSelectionDegree rsd = (ResourceSelectionDegree) dofsi;
+		AllocationContext ac = (AllocationContext) ad.getPrimaryChanged();
+		chois.setChosenValue(ac.getResourceContainer_AllocationContext());
+		ResourceContainer rc = ResourceenvironmentFactory.eINSTANCE.createResourceContainer();
+		ProcessingResourceSpecification prs = (ProcessingResourceSpecification) rc.getActiveResourceSpecifications_ResourceContainer();
+		System.out.println(dofsi.getDof());
+		System.out.println(dofsi.getEntityName());
+		System.out.println(dofsi.getChangeableElements());
+		System.out.println(dofsi.getPrimaryChanged());
+		
+		//DegreeOfFreedom dof = gdofFactory.eINSTANCE.createDegreeOfFreedom();
+		ContinuousProcessingRateDegree dof = specificFactoryImpl.eINSTANCE.createContinuousProcessingRateDegree();
+		dof.setFrom(0);
+		dof.setTo(10);
+		
+		ChangeableElementDescription ced = gdofFactory.eINSTANCE.createChangeableElementDescription();
+		dof.setPrimaryChanged(ced);
+		System.out.println(dof.getChangeableElements());
+		System.out.println(dof.getFrom() + dof.getTo());
+		System.out.println(dof.getPrimaryChanged());
+		//System.out.println(dof.getClassDesignOptions());
+		System.out.println(ced.getValueRule());
+		*/
+		// --------------------------
 		ArrayList<ArrayList<Double>> some = new ArrayList<ArrayList<Double>>(); 
 		ArrayList<Double> some1 = new ArrayList<Double>();
 		some.add(some1);
@@ -75,7 +184,6 @@ public class Adapter {
 		//DesignDecisionGenotype d = new DesignDecisionGenotype();
 		//List<Choice> genotype = d.getInternalList();
 		Candidate c = designdecisionFactory.eINSTANCE.createCandidate();
-		
 		EList<Choice> list = c.getChoices();
 		Choice choice = designdecisionFactory.eINSTANCE.createChoice();
 		//choice.setDegreeOfFreedomInstance(designdecisionFactory.eINSTANCE.createDegreeOfFreedomInstance());
@@ -121,7 +229,8 @@ public class Adapter {
 		*/
 		c.getChoices().addAll(list);
 		DesignDecisionGenotype d = new DesignDecisionGenotype(c);
-		Adapter a =new Adapter();
+		DecisionSpace ds = designdecisionFactory.eINSTANCE.createDecisionSpace();
+		Adapter a =new Adapter(ds);
 		List<BinaryGenotype> binarygenotype = a.translateDesignDecisionGenotype(d);
 		FinalBinaryGenotype F = new FinalBinaryGenotype(binarygenotype);
 		DesignDecisionGenotype DD = a.translateFinalBinaryGenotype(F);
@@ -133,6 +242,8 @@ public class Adapter {
 		System.out.println(DD.getInternalList().get(2).getDegreeOfFreedomInstance());
 		System.out.println(DD.getInternalList().get(3).getValue());
 		System.out.println(DD.getInternalList().get(3).getDegreeOfFreedomInstance());
+		System.out.println(((ContinuousProcessingRateDegree) DD.getInternalList().get(3).getDegreeOfFreedomInstance()).getFrom());
+		System.out.println(((ContinuousProcessingRateDegree) DD.getInternalList().get(3).getDegreeOfFreedomInstance()).getTo());
 		/*
 		System.out.println(binarygenotype.get(0).getDegreeType());
 		System.out.println(binarygenotype.get(1).getDegreeType());
@@ -192,27 +303,21 @@ public class Adapter {
 	}
 	
 	// Methods here
-	// translateDesignDecisionGenotype method tested successfully ...
 	/**
-	 * This is a javadoc
+	 * Translates the given {@link DesignDecisionGenotype} named DDGenotype 
+	 * to a {@link List} of {@link BinaryGenotype} objects. 
+	 * Each {@link BinaryGenotype} object holds 
+	 * the binary representation of a particular {@link Choice} object in the DDGenotype. 
+	 * The DDGenotype contains the private field "choices", which
+	 *  is actually a {@link List} of {@link Choice} objects. 
+	 *  Each {@link Choice} object is referenced to a particular DOF
 	 * @param DDGenotype
 	 * @return
 	 */
 	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype){
-		int SERVER_BITS_FOR_REPRESENTATION = 4;
-		int NUMBER_OF_WEBSERVERS = 3;
-		int NUMBER_OF_SERVERS = 4;
-		int NUMBER_OF_COMPONENTS = 3;
-		 
-		/* Translates the given DesignDecisionGenotype named DDGenotype to 
-		 * a list of BinaryGenotype objects. Each BinaryGenotype object holds
-		 * the binary representation of a particular Choice object in the DDGenotype
-		 * . The DDGenotype contains the private field "choices", which
-		 * is actually a list of Choice objects. Each Choice object is referenced
-		 * to a particular DOF
-		 */
+		
+		// ChoiceList contains the list of Choice objects in DDGenotype 
 		List<Choice> ChoiceList = DDGenotype.getInternalList();
-		// ChoiceList contains the list of Choice objects in DDGenotype
 		
 		/* The TranslatedGenotype list is a list of BinaryGenotype Objects. 
 		 * The for loop will convert each Choice in ChoiceList
@@ -228,24 +333,22 @@ public class Adapter {
 		 * and apply the conversion to it.
 		 */
 		Iterator<Choice> ChoiceIteratorInstance = ChoiceList.iterator();
-		//for(Choice ChoiceIterator: ChoiceList){
 		  for(int i=0; i < ChoiceList.size(); i++){
 			/* A comprehensive list of 
 			 * if-else statements corresponding to each
 			 * DOF.
 			 */
 			  Choice ChoiceIterator = ChoiceIteratorInstance.next();
-			//if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == "Server Speed"){
-			if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createContinuousProcessingRateDegree().getClass()){
-				/* If the Choice object is representing Server Speed (ContinuousProcessingRateDegree)
+			//if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createContinuousProcessingRateDegree().getClass()){
+			  if(ChoiceIterator.getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){	
+			  /* If the Choice object is representing Server Speed (ContinuousProcessingRateDegree)
 				 * then take the server speed value and convert to
 				 * binary number.
 				 */
 				double ServerSpeed=(Double) ChoiceIterator.getValue(); // Got the Server speed in double
-				/* Now determine the interval in which ServerSpeed value lies
-				 * 
+				/* Now determine the interval 
+				 * in which ServerSpeed value lies
 				 */
-				
 				
 				List<Integer> ServerBinaryRep = getServerBinaryRep(ServerSpeed);
 				
@@ -259,28 +362,26 @@ public class Adapter {
 				
 				BinaryGenotype ServerBinaryGenotypeObj = new BinaryGenotype(ServerBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.ContinuousProcessingRateDegree);
 				TranslatedGenotype.add(ServerBinaryGenotypeObj);
-			}
-			if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createResourceSelectionDegree().getClass()){
+			}else if(ChoiceIterator.getDegreeOfFreedomInstance() instanceof ResourceSelectionDegree){
 				// TODO Find the class corresponding to Webserver Selection. (Maybe it is the ResourceSelectionDegree?)
 				/* If the Choice object is representing WebServer Allocation
 				 * then take the Webserver and convert to
 				 * binary number.
 				 */
-				String WebServer=(String) ChoiceIterator.getValue(); // Got the WebServer in String
+				EObject WebServer= ((ClassChoice) ChoiceIterator).getChosenValue(); // Got the WebServer in EObject
 				List<Integer> WebServerBinaryRep = getWebServerBinaryRep(WebServer);
 				BinaryGenotype WebServerBinaryGenotypeObj = new BinaryGenotype(WebServerBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.ResourceSelectionDegree);
 				TranslatedGenotype.add(WebServerBinaryGenotypeObj);
-			}
-			if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createAllocationDegree().getClass()){
+			}else if(ChoiceIterator.getDegreeOfFreedomInstance() instanceof AllocationDegree){
 				/* If the Choice object is representing Component Allocation (AllocationDegree)
 				 * then take the Server and convert to
 				 * binary number.
 				 */
-				String AllocatedServer=(String) ChoiceIterator.getValue(); // Got the Component in String
+				EObject AllocatedServer= ((ClassChoice) ChoiceIterator).getChosenValue(); // Got the Component in EObject
 			    List<Integer> AllocatedServerBinaryRep = getAllocatedServerBinaryRep(AllocatedServer);
 				BinaryGenotype AllocatedServerBinaryGenotypeObj = new BinaryGenotype(AllocatedServerBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.AllocationDegree);			    
 			    TranslatedGenotype.add(AllocatedServerBinaryGenotypeObj);
-			}
+			}else throwOutOfScopeDegreeException(ChoiceIterator.getDegreeOfFreedomInstance());
 		}
 		 
 		return TranslatedGenotype;
@@ -288,9 +389,6 @@ public class Adapter {
 	
 	
 
-	
-	// Tested successfully ...
-	
 	/** Translates the given {@link FinalBinaryGenotype} named FBGenotype to a 
 	 * {@link DesignDecisionGenotype}.
 	 * @param FBGenotype
@@ -298,9 +396,7 @@ public class Adapter {
 	 */
 	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype){
 		 
-		/* First create a list of BinaryGenotype Objects
-		 * 
-		 */
+		// First create a list of BinaryGenotype Objects
 		List<BinaryGenotype> TranslatedBGObjects = new ArrayList<BinaryGenotype>();
 		for(int i=0; i < FBGenotype.getBitsPerDegree().size(); i++){
 			List<Integer> BinaryString = new ArrayList<Integer>();
@@ -346,28 +442,24 @@ public class Adapter {
 				DegreeObject.setEntityName("Server Speed");
 				ChoiceObject.setDegreeOfFreedomInstance(DegreeObject);
 				ChoiceObjectList.add(ChoiceObject);
-			}
-			
-			if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.ResourceSelectionDegree){
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.ResourceSelectionDegree){
 				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				Choice ChoiceObject = designdecisionFactory.eINSTANCE.createChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
 					if(BinaryList.get(j) == 1){
-						ChoiceObject.setValue(WEBSERVERS[j]);
+						((ClassChoice) ChoiceObject).setChosenValue(WEBSERVERS.get(j));
 					}
 				}
 				ResourceSelectionDegree DegreeObject = specificFactory.eINSTANCE.createResourceSelectionDegree(); 
 				DegreeObject.setEntityName("WebServer");
 				ChoiceObject.setDegreeOfFreedomInstance(DegreeObject);
 				ChoiceObjectList.add(ChoiceObject);
-			}
-			
-			if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.AllocationDegree){
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.AllocationDegree){
 				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				Choice ChoiceObject = designdecisionFactory.eINSTANCE.createChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
 					if(BinaryList.get(j) == 1){
-						ChoiceObject.setValue(SERVERS[j]);
+						((ClassChoice) ChoiceObject).setChosenValue(SERVERS.get(j));
 					}
 				}
 				AllocationDegree DegreeObject = specificFactory.eINSTANCE.createAllocationDegree(); 
@@ -384,7 +476,14 @@ public class Adapter {
 		return FinalDesignDecisionGenotype;
 	}
 	
-	// Testing done successfully for getServerBinaryRep function.
+	/**
+	 * Converts the input value of server speed
+	 * to a binary string according to the 
+	 * server-speed intervals specified in the field
+	 * SERVER_INTERVALS
+	 * @param serverSpeed
+	 * @return
+	 */
 	private List<Integer> getServerBinaryRep(double serverSpeed) {
 		 
 		boolean FOUNDINTERVAL = false;
@@ -402,17 +501,21 @@ public class Adapter {
 		return Result;
 	}
 	
-	// You have to write similar functions to get binary representation 
-	// of Webserver allocation and Component Allocation
-	
-	// Testing done for the getWebServerBinaryRep method
-	private List<Integer> getWebServerBinaryRep(String webServer) {
+	/**
+	 * Converts the input value of webServer (an EObject)
+	 * to a binary string according to the 
+	 * {@link List} of EObjects stored
+	 * in the field WEBSERVERS
+	 * @param webServer
+	 * @return
+	 */
+	private List<Integer> getWebServerBinaryRep(EObject webServer) {
 		// TODO Auto-generated method stub
 		
 		List<Integer> Result = new ArrayList<Integer>(); // For returning the final result
 		
-		for(int i=0;i<WEBSERVERS.length;i++){
-			if(webServer == WEBSERVERS[i]){
+		for(int i=0;i<WEBSERVERS.size();i++){
+			if(webServer.equals(WEBSERVERS.get(i))){
 				Result.add(1);
 			}else{
 				Result.add(0);
@@ -421,21 +524,31 @@ public class Adapter {
 		return Result;
 	}
 	
-
-	// Testing done for the getAllocatedServerBinaryRep method
-	private List<Integer> getAllocatedServerBinaryRep(String allocatedServer) {
+	/**
+	 * Converts the input value of allocatedServer (an EObject)
+	 * to a binary string according to the 
+	 * {@link List} of EObjects stored
+	 * in the field SERVERS
+	 * @param allocatedServer
+	 * @return
+	 */
+	private List<Integer> getAllocatedServerBinaryRep(EObject allocatedServer) {
 		// TODO Auto-generated method stub
 		
 		List<Integer> Result = new ArrayList<Integer>(); // For returning the final result
 		
-		for(int i=0;i<SERVERS.length;i++){
-			if(allocatedServer == SERVERS[i]){
+		for(int i=0;i<SERVERS.size();i++){
+			if(allocatedServer.equals(SERVERS.get(i))){
 				Result.add(1);
 			}else{
 				Result.add(0);
 			}
 		}
 		return Result;
+	}
+	
+	private void throwOutOfScopeDegreeException(DegreeOfFreedomInstance dd) {
+		throw new RuntimeException("The degree of freedom "+dd.toString()+" is out of scope for the current version of Adapter.");		
 	}
 	
 }

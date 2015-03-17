@@ -1,12 +1,20 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.genotype;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-
+/**
+ * One can view a {@link BinaryGenotype} object as the binary analogue of a {@link Choice} object.
+ * The {@link BinaryGenotype} object holds the corresponding binary representation 
+ * of the value stored in a {@link Choice} object.
+ * @author Hp
+ *
+ * @param <E>
+ */
 public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresentation<E> {
 	
 	
@@ -18,7 +26,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	
 	// Default values here ...
 	public BinaryGenotype(){
-		this.BinaryChoice = Collections.<E> emptyList();
+		this.BinaryChoice = new ArrayList<E>();
 		this.DegreeType = BinaryGenotypeRepresentation.TypeOfDegree.AllocationDegree;
 	}
 	
