@@ -1,7 +1,13 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.genotype;
 
 import java.util.List;
-
+/**
+ * An interface visualising the implementation
+ * of the {@link BinaryGenotype} class
+ * @author Hp
+ *
+ * @param <E>
+ */
 public interface BinaryGenotypeRepresentation<E> extends List<E> {
 
 	// Insert all possible values of the Degrees of Freedom which you can think of.

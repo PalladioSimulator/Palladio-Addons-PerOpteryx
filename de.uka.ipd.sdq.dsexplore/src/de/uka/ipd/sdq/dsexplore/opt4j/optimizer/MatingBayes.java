@@ -31,12 +31,14 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
+import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 
 /** This class is meant to contain methods
  * that operate on a collection of Binary strings.
  * These methods build a Bayesian Network out of the Binary Strings
  * and sample out new Binary Strings. Each Binary String
- * is actually a translated {@link DesignDecisionGenoytpe} ({@link FinalBinaryGenotype})   
+ * is actually a translated {@link DesignDecisionGenoytpe} (i.e a {@link FinalBinaryGenotype})   
  * 
  */
 public class MatingBayes implements Mating{
@@ -68,6 +70,7 @@ public class MatingBayes implements Mating{
 	private String SearchAlgorithm; // Specify whether 'tabu' or 'hc'
 	private String ScoreMethod; // Can be 'loglik', 'aic','bic',bde', 'k2'
 	private int IterationNumber; // Stores the Iteration number value
+	Adapter TranslatorObj;
 	/*
 	public MatingBayes(Crossover<Genotype> crossover, Mutate<Genotype> mutate,
 			Copy<Genotype> copy, Coupler coupler, CrossoverRate crossoverRate,
@@ -90,14 +93,17 @@ public class MatingBayes implements Mating{
 		this.SearchAlgorithm = "tabu";
 		this.ScoreMethod = "k2";
 		this.IterationNumber = 0;
+		DecisionSpace dspace = designdecisionFactory.eINSTANCE.createDecisionSpace();
+		this.TranslatorObj = new Adapter(dspace);
 	}
 	
-	public MatingBayes(int NumberOfGenomes,String SearchAlgorithm,String ScoreMethod, int IterationNumber){
+	public MatingBayes(int NumberOfGenomes,String SearchAlgorithm,String ScoreMethod, int IterationNumber, Adapter TranslatorObj){
 		// Create the MatingBayes object and initialize its data field.
 		this.NumberOfGenomes = NumberOfGenomes;
 		this.SearchAlgorithm = SearchAlgorithm;
 		this.ScoreMethod = ScoreMethod;
 		this.IterationNumber = IterationNumber;
+		this.TranslatorObj = TranslatorObj;
 	}
 	
 	
@@ -192,9 +198,9 @@ public class MatingBayes implements Mating{
 
 		// Now convert DDGenotypeList to a list of FinalBinaryGenotype objects
 		List<FinalBinaryGenotype> FBGenotypeList = new ArrayList<FinalBinaryGenotype>();
-		Adapter TranslatorObj = new Adapter();
+		//Adapter TranslatorObj = new Adapter();
 		for(int i=0;i<DDGenotypeList.size();i++){		
-			List<BinaryGenotype> IntermediateList = TranslatorObj.translateDesignDecisionGenotype(DDGenotypeList.get(i));
+			List<BinaryGenotype> IntermediateList = this.TranslatorObj.translateDesignDecisionGenotype(DDGenotypeList.get(i));
 			FinalBinaryGenotype FBObj = new FinalBinaryGenotype(IntermediateList);
 			FBGenotypeList.add(FBObj);
 		}
