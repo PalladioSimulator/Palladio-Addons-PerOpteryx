@@ -8,17 +8,23 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Genotype;
+import org.opt4j.core.IndividualFactory;
 import org.opt4j.genotype.Bounds;
 import org.opt4j.genotype.IntegerGenotype;
 import org.opt4j.genotype.ListGenotype;
 
+import com.google.inject.Inject;
+
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.PcmFactory;
 import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.specific.*;
@@ -44,6 +50,7 @@ import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
 import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceenvironmentFactory;
 import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.ResourcetypeFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 /**
  * The {@link Adapter} contains methods to translate between {@link DesignDecisionGenotype} 
  * and {@link FinalBinaryGenotype}. In the conversion process, the following steps are
@@ -77,6 +84,9 @@ import de.uka.ipd.sdq.pcm.resourcetype.ResourcetypeFactory;
  */
 public class Adapter {
 	
+	private static Logger logger = 
+			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter");
+	
 	//<----------------------------------------------------------------------------------->
 	/*
 	// Orginal code
@@ -88,7 +98,7 @@ public class Adapter {
 	// These have to be set in the constructor according to the Design
 	List<EObject> SERVERS; 
 	List<EObject> WEBSERVERS; 
-	double[] SERVER_INTERVALS; 
+	double[] SERVER_INTERVALS = {0,0,0,0}; 
 	//<----------------------------------------------------------------------------------->
 	
 	/**The ContinuousProcessingRateArchiveStorage stores the 
@@ -100,13 +110,18 @@ public class Adapter {
 	DecisionSpace problemSpace;
 	
 	// Constructor here
-	public Adapter(DecisionSpace problemSpace){
+	//@Inject
+	public Adapter(){
 		// First create the SERVER_INTERVALS field.
-		this.problemSpace = problemSpace;
+		//this.problemSpace = individualFactory.create().getProblem();
+		this.problemSpace = Opt4JStarter.getProblem().getEMFProblem();
+		logger.info("The problem is registered in Adapter");
+		logger.info(this.problemSpace.getDegreesOfFreedom().toString());
 		// Based on the problemSpace variable initialize the SERVERS,WEBSERVERS and SERVER_INTERVALS fields.
 		boolean traversed_ContinuousProcessingRateDegree = false;
 		boolean traversed_AllocationDegree = false;
 		boolean traversed_ResourceSelectionDegree = false;
+		
 		for(DegreeOfFreedomInstance dofi: this.problemSpace.getDegreesOfFreedom()){
 			
 			if((dofi instanceof ContinuousProcessingRateDegree) && !traversed_ContinuousProcessingRateDegree){
@@ -139,7 +154,8 @@ public class Adapter {
 	
 	// Testing here
 	public static void main(String[] args){
-		
+		DecisionSpace tproblemSpace = Opt4JStarter.getProblem().getEMFProblem();
+		System.out.println(tproblemSpace.getDegreesOfFreedom().toString());
 		/*
 		ProcessingResourceType p = ResourcetypeFactory.eINSTANCE.createProcessingResourceType();
 		System.out.println(p.getResourceRepository_ResourceType());
@@ -227,6 +243,7 @@ public class Adapter {
 			
 		System.out.println(binarygenotype);
 		*/
+		/*
 		c.getChoices().addAll(list);
 		DesignDecisionGenotype d = new DesignDecisionGenotype(c);
 		DecisionSpace ds = designdecisionFactory.eINSTANCE.createDecisionSpace();
@@ -339,6 +356,9 @@ public class Adapter {
 			 * DOF.
 			 */
 			  Choice ChoiceIterator = ChoiceIteratorInstance.next();
+			  //debug
+			  logger.debug(i);
+			  logger.info(ChoiceIterator.getDegreeOfFreedomInstance().toString());
 			//if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createContinuousProcessingRateDegree().getClass()){
 			  if(ChoiceIterator.getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){	
 			  /* If the Choice object is representing Server Speed (ContinuousProcessingRateDegree)
@@ -351,7 +371,7 @@ public class Adapter {
 				 */
 				
 				List<Integer> ServerBinaryRep = getServerBinaryRep(ServerSpeed);
-				
+				logger.info(ServerBinaryRep);
 				// Add the server speed value at the proper place in the archive storage
 				for(int w=0;w<ServerBinaryRep.size();w++){
 					if(ServerBinaryRep.get(w) == 1){
@@ -383,7 +403,7 @@ public class Adapter {
 			    TranslatedGenotype.add(AllocatedServerBinaryGenotypeObj);
 			}else throwOutOfScopeDegreeException(ChoiceIterator.getDegreeOfFreedomInstance());
 		}
-		 
+	 
 		return TranslatedGenotype;
 	}
 	
