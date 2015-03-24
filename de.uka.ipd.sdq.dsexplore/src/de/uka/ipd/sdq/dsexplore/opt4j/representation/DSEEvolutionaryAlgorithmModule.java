@@ -14,13 +14,14 @@ import org.opt4j.optimizer.ea.Mating;
 
 import com.google.inject.TypeLiteral;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.CopyDesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.UniformDesignDecisionGenotypeCrossover;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingWithHeuristics;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.NoDuplicatesEvolutionaryAlgorithm;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
-
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
 public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule {
 	
 
@@ -39,14 +40,17 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 		bindOptimizer(NoDuplicatesEvolutionaryAlgorithm.class);
 		bind(Coupler.class).to(CouplerUnique.class).in(SINGLETON);
 				
-		bind(Mating.class).to(MatingWithHeuristics.class).in(SINGLETON);
+		//bind(Mating.class).to(MatingWithHeuristics.class).in(SINGLETON);
+		bind(Mating.class).to(MatingBayes.class).in(SINGLETON);
 		
 		bind(CrossoverRate.class).to(ConstantCrossoverRate.class).in(SINGLETON);
 		
 		bind(IndividualFactory.class).to(DSEIndividualFactory.class);
 		
 		//CrossoverModule.addOperator
-		bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) UniformDesignDecisionGenotypeCrossover.class);
+		//bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) UniformDesignDecisionGenotypeCrossover.class);
+		bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) BinaryBayesOperator.class);
+		
 		//CrossoverModule.addCrossover(binder(),UniformDesignDecisionGenotypeCrossover.class);
 		//CrossoverModule.addCrossover(binder(),DesignDecisionCrossover.class);
 		
