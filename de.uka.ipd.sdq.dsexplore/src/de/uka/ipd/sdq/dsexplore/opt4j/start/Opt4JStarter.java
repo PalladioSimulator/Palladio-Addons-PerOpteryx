@@ -356,7 +356,7 @@ public class Opt4JStarter {
 					@Override
 					public void config(){
 						super.config();
-						bind(Mating.class).to(MatingBayes.class);
+						//bind(Mating.class).to(MatingBayes.class);
 					}
 				};
 			} else {

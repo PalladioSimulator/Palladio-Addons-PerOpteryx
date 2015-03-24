@@ -18,6 +18,7 @@ import org.opt4j.optimizer.ea.Coupler;
 import org.opt4j.optimizer.ea.CrossoverRate;
 import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.MatingCrossoverMutate;
+import org.opt4j.optimizer.ea.Pair;
 import org.opt4j.optimizer.mopso.Particle;
 import org.opt4j.optimizer.ea.BasicMatingModule;
 import org.rosuda.JRI.Rengine;
@@ -26,11 +27,20 @@ import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
+import com.google.inject.Inject;
+
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.BayesianCrossover;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.QMLBoundDependentTacticOperatorsManager;
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 
@@ -41,9 +51,15 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
  * is actually a translated {@link DesignDecisionGenoytpe} (i.e a {@link FinalBinaryGenotype})   
  * 
  */
-public class MatingBayes implements Mating{
+public class MatingBayes extends MatingCrossoverMutate{
 	
+	private TacticOperatorsManager heuristicManager;
+	//private BayesianCrossover crossover;
 	
+	public TacticOperatorsManager getHeuristicManager() {
+		return this.heuristicManager;
+	}
+	/*
 	// Testing here ...
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -65,117 +81,29 @@ public class MatingBayes implements Mating{
 		System.out.println(a.toString());
 
 	}
+	*/
 	
-	private int NumberOfGenomes; // Stores the number of Genomes one wants as output
-	private String SearchAlgorithm; // Specify whether 'tabu' or 'hc'
-	private String ScoreMethod; // Can be 'loglik', 'aic','bic',bde', 'k2'
-	private int IterationNumber; // Stores the Iteration number value
-	Adapter TranslatorObj;
-	/*
-	public MatingBayes(Crossover<Genotype> crossover, Mutate<Genotype> mutate,
-			Copy<Genotype> copy, Coupler coupler, CrossoverRate crossoverRate,
-			MutationRate mutationRate, Rand random,
-			IndividualFactory individualFactory) {
+	
+	// Create the constructor
+	@Inject
+	public MatingBayes(Crossover<Genotype> crossover, Mutate<Genotype> mutate, Copy<Genotype> copy,
+			Coupler coupler, CrossoverRate crossoverRate, MutationRate mutationRate, Rand random,
+			IndividualFactory individualFactory, 
+			/*noorshams: inject this, I don't want to break the "injection chain"*/
+			QMLBoundDependentTacticOperatorsManager qmlTacticManager
+			) {
 		super(crossover, mutate, copy, coupler, crossoverRate, mutationRate, random,
 				individualFactory);
-		// TODO Auto-generated constructor stub
-		this.NumberOfGenomes = 10;
-		this.SearchAlgorithm = "tabu";
-		this.ScoreMethod = "k2";
-		this.IterationNumber = 0;
-	}
-	*/
-	
-	// Create the constructors
-	public MatingBayes(){
-		// Default values
-		this.NumberOfGenomes = 10;
-		this.SearchAlgorithm = "tabu";
-		this.ScoreMethod = "k2";
-		this.IterationNumber = 0;
-		DecisionSpace dspace = designdecisionFactory.eINSTANCE.createDecisionSpace();
-		this.TranslatorObj = new Adapter(dspace);
-	}
-	
-	public MatingBayes(int NumberOfGenomes,String SearchAlgorithm,String ScoreMethod, int IterationNumber, Adapter TranslatorObj){
-		// Create the MatingBayes object and initialize its data field.
-		this.NumberOfGenomes = NumberOfGenomes;
-		this.SearchAlgorithm = SearchAlgorithm;
-		this.ScoreMethod = ScoreMethod;
-		this.IterationNumber = IterationNumber;
-		this.TranslatorObj = TranslatorObj;
+		if (Opt4JStarter.getDSEWorkflowConfig().isConsiderQMLBoundsWhenApplyingHeuristics()) {
+			heuristicManager = qmlTacticManager;
+		} else if (Opt4JStarter.getDSEWorkflowConfig().isUseHeuristics()){
+			heuristicManager = new TacticOperatorsManager(copy, (DSEIndividualFactory)individualFactory);
+		}
+		//this.crossover = crossover;
 	}
 	
 	
 	
-	// Methods here ...
-	
-	/** A method to process on the data (which consists of 1s and 0s)
-	 * and sample new data from the learned 
-	 * Bayesian Structure. This method first constructs a Bayesian
-	 * Network out of the input data and then samples new data out of it
-	 * and gives it as an output.
-	*/
-	public int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
-		/* This method learns the Bayesian Structure by considering
-		 * currentGenomes as the input data. The control is passed
-		 * to the R function in file Bayesopt.R, which learns the 
-		 * Bayesian Structure and samples new data.
-		*/
-		
-		// Copy currentGenomes to file data.txt
-		String file_name = "C:/Users/Hp/Documents/R/data.txt";
-		WriteFile data = new WriteFile(file_name,true);
-		for(int i=1;i<=currentGenomes.length;i++){
-		  	String myData = "     "+Integer.toString(currentGenomes[i-1][0]);
-		   	for(int idx=1;idx<=currentGenomes[0].length-1;idx++){	
-		   		myData = myData + "     "+Integer.toString(currentGenomes[i-1][idx]);        		       	
-		   	}
-		    
-		   	try {
-				data.writeToFile(myData);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		   	}
-		    
-		// End of writing data
-		
-		//<-------------------------------------------------->
-		// Start the connection to R software    
-		Rengine RserveStarter = new Rengine();
-		// This just reports whether R was running and we connected to it, or whether we started it.
-		if (RserveStarter.isStandAlone()) System.out.println("R initialised by java");
-		RserveStarter.eval("library(Rserve)");
-		RserveStarter.eval("Rserve()");
-		// This patch of code starts Rserve ... 
-		//<-------------------------------------------------->
-		// The next written code is intact ...
-		RConnection RCommunicator= new RConnection();   
-		RCommunicator.eval("source(\"C:/Users/Hp/Documents/R/Bayesopt.R\")");
-		RCommunicator.assign("z", Integer.toString(NumberOfGenomes));
-		RCommunicator.eval("z=strtoi(z)");
-		RCommunicator.assign("SearchAlgo", SearchAlgorithm);
-		RCommunicator.assign("ScoreMeth", ScoreMethod);
-		RCommunicator.assign("iteration", Integer.toString(IterationNumber));
-		RCommunicator.eval("iteration=strtoi(iteration)");
-		
-		double[][] Offspring= RCommunicator.eval("BayesNetOperator(z,SearchAlgo,iteration)").asDoubleMatrix();
-		// Convert double matrix to int matrix
-		int[][] FinalOffspring = new int[NumberOfGenomes][Offspring[1].length];
-		for(int i=0;i<NumberOfGenomes;i++){
-		   	for(int j=0;j<Offspring[1].length;j++){
-		   		if(Offspring[i][j]<=0){
-		   			FinalOffspring[i][j]=0;
-		   		}else{
-		   			FinalOffspring[i][j]=1;
-		   		}
-		   	}
-		   }
-		    
-		return FinalOffspring;		
-	}
 	
 	/** This method is similar to the {@link getSampledGenomes} method, the only difference being
 	 * that this method operates on a collection of {@link Individual} objects. The {@link Individual} objects
@@ -184,94 +112,52 @@ public class MatingBayes implements Mating{
 	 * These are then converted systematically back to {@link Individual} type of objects
 	 */
 	@Override
-	public Collection<Individual> getOffspring(int Size, Collection<Individual> Parents){
+	public Collection<Individual> getOffspring(int size, Collection<Individual> parents){
+		Collection<Individual> offspring = new ArrayList<Individual>();
+		Collection<Pair<Individual>> couples = coupler.getCouples((int) Math
+				.ceil(((double) size / 2)), new ArrayList<Individual>(parents));
 		
-
-		// Convert Parents to list of DesignDecisionGenotype objects
-		List<DesignDecisionGenotype> DDGenotypeList = new ArrayList<DesignDecisionGenotype>();
-		Iterator IndividualIterator = Parents.iterator();
-		for(int i=0; i< Parents.size();i++){
-			Individual individual = (Individual) IndividualIterator.next();
-			DDGenotypeList.add((DesignDecisionGenotype) individual.getGenotype());
+		List<Individual> parentslist = new ArrayList<Individual>();
+		for (Pair<Individual> couple : couples) {
+			Individual parent1 = couple.getFirst();
+			Individual parent2 = couple.getSecond();
+			parentslist.add(parent1);
+			parentslist.add(parent2);
 		}
-		
-
-		// Now convert DDGenotypeList to a list of FinalBinaryGenotype objects
-		List<FinalBinaryGenotype> FBGenotypeList = new ArrayList<FinalBinaryGenotype>();
-		//Adapter TranslatorObj = new Adapter();
-		for(int i=0;i<DDGenotypeList.size();i++){		
-			List<BinaryGenotype> IntermediateList = this.TranslatorObj.translateDesignDecisionGenotype(DDGenotypeList.get(i));
-			FinalBinaryGenotype FBObj = new FinalBinaryGenotype(IntermediateList);
-			FBGenotypeList.add(FBObj);
-		}
-
-		// Now create a 2-D matrix using the info in FBGenotypeList.
-		// Each row corresponds to an individual
-		Integer[][] BinaryGenes = new Integer[FBGenotypeList.size()][FBGenotypeList.get(0).getBinaryGenotype().size()];
-		for(int i=0;i<FBGenotypeList.size();i++){
-			FBGenotypeList.get(i).getBinaryGenotype().toArray(BinaryGenes[i]);
-		}
-		// Finally convert BinaryGenes from Integer[][] to int[][]
-		int[][] BinaryGenesint = new int[BinaryGenes.length][BinaryGenes[0].length];
-		for(int i=0;i<BinaryGenes.length;i++){
-			for(int j=0;j< BinaryGenes[0].length;j++){
-				BinaryGenesint[i][j] = (int) BinaryGenes[i][j];
-			}
-		}
-		
-		// Give BinaryGenesint as input to getSampledGenomes method in class MatingBayes
-		//MatingBayes OffspringGenerator = new MatingBayes();
-		this.NumberOfGenomes = Size;
-		try {
-			int[][] Offspring = getSampledGenomes(BinaryGenesint);
-			// Got the Offspring !!!
-			// Now convert back to List of FBGenotype objects
-			List<FinalBinaryGenotype> FBGenotypeOffspringList = new ArrayList<FinalBinaryGenotype>();
-			for(int i=0;i<Offspring.length;i++){
-				List<Integer> GeneratedOffspringList = new ArrayList<Integer>();
-				for(int j=0;j<Offspring[0].length;j++){
-					GeneratedOffspringList.add(Offspring[i][j]);
-				}
-				// Create a FBGenotype object
-				FinalBinaryGenotype FBOffspringObj = new FinalBinaryGenotype();
-				FBOffspringObj.setBinaryGenotype(GeneratedOffspringList);
-				FBOffspringObj.setBitsPerDegree(FBGenotypeList.get(0).getBitsPerDegree());
-				FBOffspringObj.setOrderOfDegrees(FBGenotypeList.get(0).getOrderOfDegrees());
-				FBGenotypeOffspringList.add(FBOffspringObj);
-			}	
-			// You have the list of Offsprings as a list of FinalBinaryGenotype Objects
-			// Now convert them to DesignDecisionGenotype object list
-			List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
-			for(int i = 0;i<FBGenotypeOffspringList.size();i++){
-				DDGenotypeOffspringList.add(TranslatorObj.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i)));
-			}
-			// Got the DesignDecisionGenotype list of Offsprings.
-			List<Individual> IndividualOffspringList = new ArrayList<Individual>();
-			for(int i = 0;i<DDGenotypeOffspringList.size();i++){
-				// Create a new Individual object
-				Individual IndividualObj = new Particle();
-				IndividualObj = (Individual) IndividualObj;
-				IndividualObj.setGenotype(DDGenotypeOffspringList.get(i));
-				IndividualOffspringList.add(IndividualObj);
-			}
-			return IndividualOffspringList;
-			// End the process here ...
-		} catch (RserveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (REXPMismatchException e) {
-				// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+		offspring = mate(parentslist);
+		// TODO: Size check
+		return offspring;
 	}
 
-	@Override
-	public Collection<Individual> getOffspring(int arg0, Individual... arg1) {
+
+	private Collection<Individual> mate(List<Individual> parentslist) {
 		// TODO Auto-generated method stub
-		// Implement this later.
-		return null;
-	}
+		// Convert parentslist to a list of Genotypes
+		List<Genotype> parentgenotypelist = new ArrayList<Genotype>();
+		for(int i = 0 ; i < parentslist.size() ; i++){
+			parentgenotypelist.add(parentslist.get(i).getGenotype());
+		}
+		// try to apply heuristics
+		// if not applicable: mutate
+		boolean useHeuristics = Opt4JStarter.getDSEWorkflowConfig().isUseHeuristics();
+		double tacticsProbability = Opt4JStarter.getDSEWorkflowConfig().getTacticsProbability();
+		
+		List<Individual> tacticsindividuals = new ArrayList<Individual>();
+		for(int i = 0 ; i < parentslist.size() ; i++){
+			if (useHeuristics && Math.random() < tacticsProbability){ 
+				tacticsindividuals.add(heuristicManager.getCandidate((DSEIndividual)parentslist.get(i)));
+			}
+		}
 
+		List<Genotype> offspring = ((BayesianCrossover<Genotype>) crossover).crossover(parentgenotypelist);
+		List<Individual> crossoverindividuals = new ArrayList<Individual>();
+		for(int j = 0 ; j < offspring.size() ; j++){
+			crossoverindividuals.add(individualFactory.create(offspring.get(j)));
+		}
+		List<Individual> individuals = new ArrayList<Individual>();
+		individuals.addAll(tacticsindividuals);
+		individuals.addAll(crossoverindividuals);
+		return individuals;
+	}
+	
 }
