@@ -58,8 +58,6 @@ import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 
-import org.palladiosimulator.simulizar.pms.Intervall;
-
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the 
  * current PCM instances and identifies the available design options to define 
