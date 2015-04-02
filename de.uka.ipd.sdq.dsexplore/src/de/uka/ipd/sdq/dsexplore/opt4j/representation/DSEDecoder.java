@@ -59,8 +59,6 @@ import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
 import de.uka.ipd.sdq.pcm.resourcetype.SchedulingPolicy;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 
-import org.palladiosimulator.simulizar.pms.Intervall;
-
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into 
  * proper PCM instances that can then be analysed.
@@ -383,10 +381,12 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		double newinterval = 0.0;
 		if (choice instanceof ContinousRangeChoice){
 			ContinousRangeChoice doubleGene = (ContinousRangeChoice)choice;
-			Intervall interval = (Intervall)designDecision.getPrimaryChanged();
+			//FIXME: cannot locate Intervall class in SimuLizar after pms has been renamed to prm. 
+			//Intervall interval = (Intervall)designDecision.getPrimaryChanged();
 			newinterval = doubleGene.getChosenValue();
 			DSEDecoder.intervalTime = newinterval;
-			interval.setIntervall(newinterval);
+			//interval.setIntervall(newinterval);
+			throw new UnsupportedOperationException("MonitoringDegree is not supported anymore after recent SimuLizar refactoring renaming the pms package to psm. Please update DSEDecoder.class and import the required Inervall file from where it is located now. Please also restore the Simulizar plugin dependencies as needed.");
 		}
 	}
 	
