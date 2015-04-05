@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.opt4j.common.random.Rand;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
@@ -53,6 +54,8 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
  */
 public class MatingBayes extends MatingCrossoverMutate{
 	
+	private static Logger logger = 
+			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.opimizer.MatingBayes");
 	private TacticOperatorsManager heuristicManager;
 	//private BayesianCrossover crossover;
 	
@@ -100,6 +103,7 @@ public class MatingBayes extends MatingCrossoverMutate{
 			heuristicManager = new TacticOperatorsManager(copy, (DSEIndividualFactory)individualFactory);
 		}
 		//this.crossover = crossover;
+		logger.info("Ended MatingBayes Constructor");
 	}
 	
 	
@@ -124,7 +128,14 @@ public class MatingBayes extends MatingCrossoverMutate{
 			parentslist.add(parent1);
 			parentslist.add(parent2);
 		}
+		logger.info("Line 131: MatingBayes");
 		offspring = mate(parentslist);
+		logger.info("Line 133: MatingBayes");
+		// Error here. Fix this.
+		while(offspring.size()> size){
+			offspring.remove( ((List<Individual>)offspring).get(0));
+		}
+		logger.info("Line 137: MatingBayes");
 		// TODO: Size check
 		return offspring;
 	}
@@ -148,8 +159,10 @@ public class MatingBayes extends MatingCrossoverMutate{
 				tacticsindividuals.add(heuristicManager.getCandidate((DSEIndividual)parentslist.get(i)));
 			}
 		}
-
+		logger.info("Line 160: MatingBayes");
 		List<Genotype> offspring = ((BayesianCrossover<Genotype>) crossover).crossover(parentgenotypelist);
+		//List<Genotype> offspring = ((BinaryBayesOperator) crossover).crossover(parentgenotypelist);
+		logger.info("Line 163: MatingBayes");
 		List<Individual> crossoverindividuals = new ArrayList<Individual>();
 		for(int j = 0 ; j < offspring.size() ; j++){
 			crossoverindividuals.add(individualFactory.create(offspring.get(j)));

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
 
 /**
@@ -19,6 +21,8 @@ public class FinalBinaryGenotype {
 	 * Genotype: This is the final binary representation
 	 * OrderOfDegrees: Corresponding order in which the Degrees are stored 
 	 */
+	private static Logger logger = 
+			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype");
 	private List<Integer> Genotype;
 	private List<TypeOfDegree> OrderOfDegrees;
 	private List<Integer> BitsPerDegree = new ArrayList<Integer>();
@@ -46,6 +50,7 @@ public class FinalBinaryGenotype {
 			DegreeList.add(list.get(i).getDegreeType());
 		}
 		this.OrderOfDegrees = DegreeList;
+		logger.info("Ended the FinalBinaryGenotype constructor");
 	}
 	// Methods here ...
 	
