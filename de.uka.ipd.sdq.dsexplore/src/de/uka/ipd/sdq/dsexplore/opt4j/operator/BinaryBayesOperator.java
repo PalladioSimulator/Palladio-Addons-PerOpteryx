@@ -15,9 +15,6 @@ import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.optimizer.ea.ElitismSelector;
 import org.opt4j.optimizer.ea.Pair;
 import org.opt4j.optimizer.mopso.Particle;
-import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
 
 import com.google.inject.Inject;
 
@@ -119,10 +116,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		//try {
 			try {
 				Offspring = getSampledGenomes(BinaryGenesint);
-			} catch (RserveException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (REXPMismatchException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -207,7 +201,12 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	 * and gives it as an output.
 	*/
 	
-	private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
+	private int[][] getSampledGenomes(int[][] currentGenomes) {
+		return null;
+	}
+	
+	
+	/*private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
 		
 		
 		int NumberOfGenomes = 10; // Stores the number of Genomes one wants as output
@@ -233,7 +232,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		   	}
 		    
 		// End of writing data
-		/*
+		
 		//<-------------------------------------------------->
 		// Start the connection to R software    
 		Rengine RserveStarter = new Rengine();
@@ -243,7 +242,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		RserveStarter.eval("Rserve()");
 		// This patch of code starts Rserve ... 
 		//<-------------------------------------------------->
-		*/
+		
 		// The next written code is intact ...
 		RConnection RCommunicator= new RConnection();   
 		RCommunicator.eval("source(\"C:/Users/Hp/Documents/R/Bayesopt.R\")");
@@ -268,7 +267,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		   }
 		    
 		return FinalOffspring;		
-	}
+	}*/
 	
 	/*
 	// For debugging
