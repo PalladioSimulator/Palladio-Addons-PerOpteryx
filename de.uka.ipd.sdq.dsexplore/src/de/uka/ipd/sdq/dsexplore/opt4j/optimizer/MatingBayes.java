@@ -22,11 +22,6 @@ import org.opt4j.optimizer.ea.MatingCrossoverMutate;
 import org.opt4j.optimizer.ea.Pair;
 import org.opt4j.optimizer.mopso.Particle;
 import org.opt4j.optimizer.ea.BasicMatingModule;
-import org.rosuda.JRI.Rengine;
-import org.rosuda.REngine.REXP;
-import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
 
 import com.google.inject.Inject;
 
