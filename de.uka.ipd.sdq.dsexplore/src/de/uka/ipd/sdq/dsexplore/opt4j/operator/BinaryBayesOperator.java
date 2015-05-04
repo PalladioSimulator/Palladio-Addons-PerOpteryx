@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +19,7 @@ import org.opt4j.optimizer.mopso.Particle;
 
 import com.google.inject.Inject;
 
+import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -200,7 +202,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	 * Network out of the input data and then samples new data out of it
 	 * and gives it as an output.
 	*/
-	
+	/*
 	private int[][] getSampledGenomes(int[][] currentGenomes) {
 		return null;
 	}
@@ -235,11 +237,11 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		
 		//<-------------------------------------------------->
 		// Start the connection to R software    
-		Rengine RserveStarter = new Rengine();
+		//Rengine RserveStarter = new Rengine();
 		// This just reports whether R was running and we connected to it, or whether we started it.
-		if (RserveStarter.isStandAlone()) System.out.println("R initialised by java");
-		RserveStarter.eval("library(Rserve)");
-		RserveStarter.eval("Rserve()");
+		//if (RserveStarter.isStandAlone()) System.out.println("R initialised by java");
+		//RserveStarter.eval("library(Rserve)");
+		//RserveStarter.eval("Rserve()");
 		// This patch of code starts Rserve ... 
 		//<-------------------------------------------------->
 		
@@ -268,23 +270,47 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		    
 		return FinalOffspring;		
 	}*/
+	*/
 	
-	/*
 	// For debugging
 	private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
-		Random random = new Random();
-		int rows = currentGenomes.length;
-		int columns = currentGenomes[0].length;
-		int[][] returnmatrix = new int[rows][columns];
+		// Learn Network Structure
+		//RandomSearch rs = new RandomSearch();
+		//int[][] Graph = rs.search(currentGenomes);
+		// Create a Directed Acyclic Graph ... Need to replace with an appropriate learning algo.
+		int[][] Graph = new int[27][27];
+		Graph[0][10]=1; // edge from 0th node to 10th node and so on ... 
+		Graph[0][26]=1;
+		Graph[5][10]=1;
 		
-		for(int i = 0 ; i < 10 ; i++){
-			for(int j = 0 ; j < columns ; j++){
-				returnmatrix[i][j] = random.nextInt(1);
+		// Uncomment this portion between the lines later
+		//<--------------------------------------------------------------------->
+		/*
+		// Write Graph to file ...
+		int index = random.nextInt(100);
+		String file_name = "C:/Users/Hp/Documents/R/Graph"+Integer.toString(index)+".txt";
+		WriteFile data = new WriteFile(file_name,true);
+		for(int i=1;i<=Graph.length;i++){
+		  	String myData = "     "+Integer.toString(Graph[i-1][0]);
+		   	for(int idx=1;idx<=Graph[0].length-1;idx++){	
+		   		myData = myData + "     "+Integer.toString(Graph[i-1][idx]);        		       	
+		   	}
+		    
+		   	try {
+				data.writeToFile(myData);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		
-		
+		   	}
+		    
+		// End of writing data
+		*/
+		//<--------------------------------------------------------------------->
+		BOAsampler boasampler = new BOAsampler(Graph, currentGenomes);
+		int[][] returnmatrix = boasampler.sample(10);
+		//logger.debug(returnmatrix);
 		return returnmatrix;
 	}
-	*/
+	
 }
