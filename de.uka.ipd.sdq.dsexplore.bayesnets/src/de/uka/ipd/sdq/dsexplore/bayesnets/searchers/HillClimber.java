@@ -3,42 +3,55 @@ package de.uka.ipd.sdq.dsexplore.bayesnets.searchers;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesEdge;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetwork;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetworkScore;
+import de.uka.ipd.sdq.dsexplore.bayesnets.utility.DrawGraph;
 
-
-// The process you have coded is flawed. Fix this ...
+// Tested successfully !!!
+// Gives different answers with different scores. This is expected, but then
+// which score to use ?!
 public class HillClimber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[][] DataMat = new int[1000][6];
+		int[][] DataMat = new int[100][27];
 		Random r = new Random();
 		for(int i=0;i<100;i++){
-			for(int j=0;j<6;j++){
+			for(int j=0;j<27;j++){
 				DataMat[i][j] = r.nextInt(2);
 			}
 			
 		}
 		HillClimber hc = new HillClimber();
-		int[][] graph = hc.search(DataMat);
+		int[][] graph = hc.search(DataMat,5);
 		for(int i=0;i<graph.length;i++){
 			for(int j=0;j<graph.length;j++){
 				System.out.print(graph[i][j]);
 			}
 			System.out.println();
 		}
+		
+		JFrame frame = new JFrame("Mini Tennis");
+		frame.add(new DrawGraph(graph));
+		frame.setSize(300, 300);
+		frame.setVisible(true);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		DrawGraph dg = new DrawGraph(graph);
+		dg.saveImage();
 	}
 	
-	public int[][] search(int[][] DataMatrix){
+	public int[][] search(int[][] DataMatrix, int MaxNoOfParents){
 		// Initialize the structure
 		BayesNetwork bn = new BayesNetwork(DataMatrix[0].length);
 		
 		// Create an empty structure
 		int[][] Graph = bn.createEmptyStructure();
 		BayesNetworkScore bns = new BayesNetworkScore(Graph,DataMatrix);
-		double GraphScore = bns.LogLik();
+		double GraphScore = bns.K2NetworkScore();
 		//System.out.println(GraphScore);
 		double maxscore = 0;
 		do{
@@ -76,17 +89,20 @@ public class HillClimber {
 						BayesNetwork bnw = new BayesNetwork(DataMatrix[0].length);
 						for(int m=0;m<3;m++){
 							if(m==0){
-								if(bnw.checkCycles(bayesEdge.addEdge(Graph, i, j))){
+								if(bnw.checkCycles(bayesEdge.addEdge(Graph, i, j)) && (bnw.getParents(bayesEdge.addEdge(Graph, i, j), j)).length<= MaxNoOfParents){
 									nextProbableGraphs.add(bayesEdge.addEdge(Graph, i, j));
 								}
 								
 							}else if(m==1){
-								if(bnw.checkCycles(bayesEdge.removeEdge(Graph, i, j))){
-									nextProbableGraphs.add(bayesEdge.removeEdge(Graph, i, j));
+								if(bnw.checkCycles(bayesEdge.addEdge(Graph, j, i)) && (bnw.getParents(bayesEdge.addEdge(Graph, j, i), i)).length<= MaxNoOfParents){
+									nextProbableGraphs.add(bayesEdge.addEdge(Graph, j, i));
 								}
+								
 							}else{
-								if(bnw.checkCycles(bayesEdge.reverseEdge(Graph, i, j))){
-									nextProbableGraphs.add(bayesEdge.reverseEdge(Graph, i, j));
+								if(Graph[i][j] == 1){
+									nextProbableGraphs.add(bayesEdge.removeEdge(Graph, i, j));
+								}else{
+									nextProbableGraphs.add(bayesEdge.removeEdge(Graph, j, i));
 								}
 								
 							}
@@ -105,7 +121,7 @@ public class HillClimber {
 							}
 							
 							BayesNetworkScore bns1 = new BayesNetworkScore(nextProbableGraphs.get(k),DataMatrix);
-							double IntermediateGraphScore = bns1.LogLik();
+							double IntermediateGraphScore = bns1.K2NetworkScore();
 							System.out.println(IntermediateGraphScore);
 							if(IntermediateGraphScore > GraphScore){
 								Graph = makeArrayCopy(nextProbableGraphs.get(k));
