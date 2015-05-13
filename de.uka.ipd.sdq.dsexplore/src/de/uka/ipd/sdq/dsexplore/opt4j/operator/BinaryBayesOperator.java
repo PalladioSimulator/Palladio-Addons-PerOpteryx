@@ -270,10 +270,10 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		    
 		return FinalOffspring;		
 	}*/
-	*/
+	
 	
 	// For debugging
-	private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
+	private int[][] getSampledGenomes(int[][] currentGenomes) {
 		// Learn Network Structure
 		//RandomSearch rs = new RandomSearch();
 		//int[][] Graph = rs.search(currentGenomes);
