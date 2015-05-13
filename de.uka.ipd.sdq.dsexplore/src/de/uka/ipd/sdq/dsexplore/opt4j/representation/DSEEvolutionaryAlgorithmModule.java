@@ -39,26 +39,15 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 		 can be used(?), differently. */
 		bindOptimizer(NoDuplicatesEvolutionaryAlgorithm.class);
 		bind(Coupler.class).to(CouplerUnique.class).in(SINGLETON);
-				
-		bind(Mating.class).to(MatingWithHeuristics.class).in(SINGLETON);
-		//bind(Mating.class).to(MatingBayes.class).in(SINGLETON);
 		
 		bind(CrossoverRate.class).to(ConstantCrossoverRate.class).in(SINGLETON);
 		
 		bind(IndividualFactory.class).to(DSEIndividualFactory.class);
 		
-		//CrossoverModule.addOperator
-		bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) UniformDesignDecisionGenotypeCrossover.class);
-		//bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) BinaryBayesOperator.class);
-		
-		//CrossoverModule.addCrossover(binder(),UniformDesignDecisionGenotypeCrossover.class);
-		//CrossoverModule.addCrossover(binder(),DesignDecisionCrossover.class);
-		
+	
 		bind(new TypeLiteral<Mutate<Genotype>>() {}).to((Class<? extends Mutate<Genotype>>) MutateDesignDecisionGenotype.class);
-		//MutateModule.addMutate(binder(),MutateDesignDecisionGenotype.class);
 		
 		bind(new TypeLiteral<Copy<Genotype>>() {}).to((Class<? extends Copy<Genotype>>) CopyDesignDecisionGenotype.class);
-		//CopyModule.addCopy(binder(), CopyDesignDecisionGenotype.class);
 
 		addOptimizerIterationListener(TerminationCriteriaManager.class);
 

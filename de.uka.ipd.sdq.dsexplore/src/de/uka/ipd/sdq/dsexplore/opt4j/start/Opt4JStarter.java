@@ -57,7 +57,9 @@ import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.UniformDesignDecisionGenotypeCrossover;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingWithHeuristics;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
@@ -365,7 +367,14 @@ public class Opt4JStarter {
 					}
 				};
 			} else {
-				ea = new DSEEvolutionaryAlgorithmModule();
+				ea = new DSEEvolutionaryAlgorithmModule(){
+					@Override
+					public void config(){
+						super.config();
+						bind(Mating.class).to(MatingWithHeuristics.class).in(SINGLETON);
+						bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) UniformDesignDecisionGenotypeCrossover.class);
+					}
+				};
 			}
 						
 			ea.setGenerations(maxIterations);
