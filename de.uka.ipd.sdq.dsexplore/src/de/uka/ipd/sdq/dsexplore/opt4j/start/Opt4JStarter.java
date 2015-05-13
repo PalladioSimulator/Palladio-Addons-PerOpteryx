@@ -17,6 +17,7 @@ import org.opt4j.common.archive.CrowdingArchive;
 import org.opt4j.common.archive.DefaultArchive;
 import org.opt4j.config.Task;
 import org.opt4j.config.Task.State;
+import org.opt4j.core.Genotype;
 //import org.opt4j.core.optimizer.Archive;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
@@ -35,6 +36,7 @@ import org.opt4j.core.optimizer.IndividualCompleter;
 import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.Population;
 import org.opt4j.core.problem.Evaluator;
+import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.optimizer.ea.EvolutionaryAlgorithmModule;
 import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.ScalingNsga2Module;
@@ -44,6 +46,7 @@ import org.opt4j.start.Opt4J;
 import org.opt4j.start.Opt4JTask;
 
 import com.google.inject.Module;
+import com.google.inject.TypeLiteral;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
@@ -53,6 +56,7 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
@@ -356,7 +360,8 @@ public class Opt4JStarter {
 					@Override
 					public void config(){
 						super.config();
-						//bind(Mating.class).to(MatingBayes.class);
+						bind(Mating.class).to(MatingBayes.class).in(SINGLETON);
+						bind(new TypeLiteral<Crossover<Genotype>>() {}).to((Class<? extends Crossover<Genotype>>) BinaryBayesOperator.class);
 					}
 				};
 			} else {
