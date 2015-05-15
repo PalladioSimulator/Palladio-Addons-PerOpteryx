@@ -1,34 +1,18 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.genotype;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.opt4j.core.Genotype;
-import org.opt4j.core.IndividualFactory;
-import org.opt4j.genotype.Bounds;
-import org.opt4j.genotype.IntegerGenotype;
-import org.opt4j.genotype.ListGenotype;
 
-import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.PcmFactory;
-import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
 import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -38,23 +22,10 @@ import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofFactory;
-import de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl;
-import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
-import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceenvironmentFactory;
-import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
-import de.uka.ipd.sdq.pcm.resourcetype.ResourcetypeFactory;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 /**
  * The {@link Adapter} contains methods to translate between {@link DesignDecisionGenotype} 
  * and {@link FinalBinaryGenotype}. In the conversion process, the following steps are
@@ -91,7 +62,7 @@ public class Adapter {
 	private static Logger logger = 
 			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter");
 	
-	// These have to be set in the constructor according to the Design
+	// These have to be set in the constructor according to the Design problem
 	List<EObject> SERVERS; 
 	List<EObject> WEBSERVERS; 
 	List<EObject> COMPONENTS;
@@ -103,8 +74,6 @@ public class Adapter {
 	 * given to translateDesignDecisionGenotype method. These stored values are then used by 
 	 * translateFinalBinaryGenotype (while retranslating the {@link ContinuousProcessingRateDegree}) to produce {@link DesignDecisonGenotype}
 	*/
-	//ArrayList<ArrayList<Double>> ContinuousProcessingRateArchiveStorage;
-	//Map<Integer, ArrayList<ArrayList<Double>>> ContinuousProcessingRateArchiveStorage;
 	Map<Integer, ArrayList<Object>> ContinuousProcessingRateArchiveStorage;
 	DecisionSpace problemSpace;
 	
@@ -113,23 +82,10 @@ public class Adapter {
 	public Adapter(){
 		this.ContinuousProcessingRateArchiveStorage = new HashMap<Integer, ArrayList<Object>>();
 		this.problemSpace = Opt4JStarter.getProblem().getEMFProblem();
-		List<DegreeOfFreedomInstance> DOFList = this.problemSpace.getDegreesOfFreedom();
 		
-		List<EObject> somelist = ((CapacityDegree) DOFList.get(7)).getChangeableElements();
-		List<EObject> somelista = ((AllocationDegree) DOFList.get(5)).getClassDesignOptions();
-		EObject somelist1 = DOFList.get(3).getPrimaryChanged();
 		logger.info("The problem is registered in Adapter");
-		logger.info(((ContinuousProcessingRateDegree)DOFList.get(0)).hashCode());
-		logger.info(((ContinuousProcessingRateDegree)DOFList.get(1)).hashCode());
-		logger.info(((ContinuousProcessingRateDegree)DOFList.get(2)).hashCode());
-		logger.info(somelist.toString());
-		logger.info(somelista.toString());
-		logger.info(this.problemSpace.getDegreesOfFreedom().toString());
-		logger.info(this.problemSpace.getDegreesOfFreedom().get(0).toString());
-		logger.info(((ContinuousProcessingRateDegree)DOFList.get(0)).toString());
 		
 		// Based on the problemSpace variable initialize the SERVERS,WEBSERVERS and SERVER_INTERVALS fields.
-		//boolean traversed_ContinuousProcessingRateDegree = false;
 		boolean traversed_AllocationDegree = false;
 		boolean traversed_ResourceSelectionDegree = false;
 		int count = 0;
@@ -145,7 +101,6 @@ public class Adapter {
 				for(int i = 0 ; i < 4 ; i++){
 					SERVER_INTERVALS[i] = server_interval_lowerbound + i*diff;
 				}
-				//traversed_ContinuousProcessingRateDegree = true;
 				// Also set the ContinuousProcessingRateArchiveStorage
 				ContinuousProcessingRateArchiveStorage.put(count, new ArrayList<Object>());
 				List<ArrayList<Double>> arrayList = new ArrayList<ArrayList<Double>>();
@@ -191,23 +146,10 @@ public class Adapter {
 						CAPACITYDEGREE_INTERVALS[i] = SERVER_INTERVALS[i];
 					}
 				}
-				logger.info(CAPACITYDEGREE_INTERVALS);
+				//logger.info(CAPACITYDEGREE_INTERVALS);
 			}
 			count++;
 		}
-		// For debugging
-		this.SERVER_INTERVALS[0] = 0.25;
-		this.SERVER_INTERVALS[1] = 3;
-		this.SERVER_INTERVALS[2] = 5;
-		this.SERVER_INTERVALS[3] = 9;
-		//--------------------------------
-		//this.ContinuousProcessingRateArchiveStorage = new ArrayList<ArrayList<Double>>();
-		//for(int i=0; i< this.SERVER_INTERVALS.length;i++){
-		//	this.ContinuousProcessingRateArchiveStorage.add(new ArrayList<Double>());
-		//	// For Debugging
-		//	this.ContinuousProcessingRateArchiveStorage.get(i).add(SERVER_INTERVALS[i]);
-		//}
-		
 		
 		
 	}
@@ -261,10 +203,6 @@ public class Adapter {
 			 * DOF.
 			 */
 			  Choice ChoiceIterator = ChoiceIteratorInstance.next();
-			  //debug
-			  logger.info(i);
-			  logger.info(ChoiceIterator.getDegreeOfFreedomInstance().toString());
-			//if(ChoiceIterator.getDegreeOfFreedomInstance().getClass() == specificFactory.eINSTANCE.createContinuousProcessingRateDegree().getClass()){
 			  if(ChoiceIterator.getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){	
 			  /* If the Choice object is representing Server Speed (ContinuousProcessingRateDegree)
 				 * then take the server speed value and convert to
@@ -276,7 +214,7 @@ public class Adapter {
 				 */
 				
 				List<Integer> ServerBinaryRep = getServerBinaryRep(ServerSpeed,i);
-				logger.info(ServerBinaryRep);
+				
 				// Add the server speed value at the proper place in the archive storage
 				for(int w=0;w<ServerBinaryRep.size();w++){
 					if(ServerBinaryRep.get(w) == 1){
@@ -284,7 +222,6 @@ public class Adapter {
 						((ArrayList<ArrayList<Double>>) this.ContinuousProcessingRateArchiveStorage.get(i).get(0)).get(w).add(ServerSpeed);
 					}
 				}
-				//-------------------------------------------------------------------------
 				
 				BinaryGenotype ServerBinaryGenotypeObj = new BinaryGenotype(ServerBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.ContinuousProcessingRateDegree);
 				TranslatedGenotype.add(ServerBinaryGenotypeObj);
@@ -327,12 +264,8 @@ public class Adapter {
 				 */
 				
 				List<Integer> capacityDegreeValueBinaryRep = getCapacityBinaryRep(capacityDegreeValue);
-				logger.info(capacityDegreeValueBinaryRep);
-				
-				//-------------------------------------------------------------------------
 				
 				BinaryGenotype capacityDegreeValueBinaryGenotypeObj = new BinaryGenotype(capacityDegreeValueBinaryRep, BinaryGenotypeRepresentation.TypeOfDegree.CapacityDegree);
-				logger.info("I am at line 463 in Adapter");
 				TranslatedGenotype.add(capacityDegreeValueBinaryGenotypeObj);
 			}else throwOutOfScopeDegreeException(ChoiceIterator.getDegreeOfFreedomInstance());
 		}
@@ -352,7 +285,7 @@ public class Adapter {
 	 * @return
 	 */
 	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype){
-		 logger.info("Line 483: FBGeno");
+		 
 		// First create a list of BinaryGenotype Objects
 		List<BinaryGenotype> TranslatedBGObjects = new ArrayList<BinaryGenotype>();
 		for(int i=0; i < FBGenotype.getBitsPerDegree().size(); i++){
@@ -363,7 +296,6 @@ public class Adapter {
 			BinaryGenotype BGObject = new BinaryGenotype(BinaryString, FBGenotype.getOrderOfDegrees().get(i));
 			TranslatedBGObjects.add(BGObject);
 		}
-		logger.info("Line 494: FBGeno");
 		// Now, TranslatedBGObjects is a list of BinaryGenotypeObjects
 		
 		//Make them compatible
@@ -372,12 +304,10 @@ public class Adapter {
 		 * we have to take each BinaryGenotype Object
 		 * and convert to corresponding Choice Objects
 		 */
-		logger.info("Line 503: FBGeno");
 		List<Choice> ChoiceObjectList = new ArrayList<Choice>();
-		// Problematic loop!!!
+		
 		for(int i = 0 ; i < TranslatedBGObjects.size() ; i++ ){
-			logger.info(TranslatedBGObjects.get(i).getDegreeType().toString());
-			//if(TranslatedBGObjects.get(i).getDegreeType().equals(TypeOfDegree.ContinuousProcessingRateDegree) ){
+			
 			if(TranslatedBGObjects.get(i).getDegreeType().toString() == "ContinuousProcessingRateDegree" ){
 				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				logger.info(BinaryList);
@@ -399,7 +329,7 @@ public class Adapter {
 						 * from the jth ArrayList
 						 */
 						Random rnum = new Random();
-						logger.info(this.ContinuousProcessingRateArchiveStorage.get(j).size());
+						//logger.info(this.ContinuousProcessingRateArchiveStorage.get(j).size());
 						
 						double ServerSpeedValue = (Double) ((ArrayList<ArrayList<Double>>) this.ContinuousProcessingRateArchiveStorage.get(i).get(0)).get(j).get(rnum.nextInt(((ArrayList<ArrayList<Double>>) this.ContinuousProcessingRateArchiveStorage.get(i).get(0)).get(j).size()));
 						ChoiceObject.setValue(ServerSpeedValue);

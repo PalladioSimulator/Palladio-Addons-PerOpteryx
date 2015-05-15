@@ -1,7 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.genotype;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +11,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.Type
  * {@link FinalBinaryGenotype} is a genotype representation which contains the binary representation
  * of a {@link DesignDecisionGenotype}. The {@link FinalBinaryGenotype} can be used for performing actual
  * operations on the genotypes.
- * @author Hp
+ * @author Apoorv
  *
  */
 public class FinalBinaryGenotype {
