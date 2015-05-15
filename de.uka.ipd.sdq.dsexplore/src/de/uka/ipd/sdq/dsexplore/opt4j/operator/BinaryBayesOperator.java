@@ -3,30 +3,23 @@ package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.opt4j.common.random.Rand;
-import org.opt4j.common.random.RandomJava;
-import org.opt4j.core.Individual;
-import org.opt4j.operator.crossover.Crossover;
-import org.opt4j.optimizer.ea.ElitismSelector;
 import org.opt4j.optimizer.ea.Pair;
-import org.opt4j.optimizer.mopso.Particle;
+import org.rosuda.REngine.REXPMismatchException;
+import org.rosuda.REngine.Rserve.RserveException;
 
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
+import de.uka.ipd.sdq.dsexplore.bayesnets.searchers.HillClimber;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
-import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
@@ -46,20 +39,16 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
  */
 public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGenotype> {
 	
-	//private Adapter adapter;
-	/*
-	private int NumberOfGenomes; // Stores the number of Genomes one wants as output
-	private String SearchAlgorithm; // Specify whether 'tabu' or 'hc'
-	private String ScoreMethod; // Can be 'loglik', 'aic','bic',bde', 'k2'
-	private int IterationNumber; // Stores the Iteration number value
-	*/
 	private static Logger logger = 
 			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator");
+	
 	private Rand random;
+	
+	private static int GraphNumber=0;
+	
 	@Inject
 	public BinaryBayesOperator(Rand random) {
 		this.random = random;
-		//this.adapter = adapter;
 	}
 	
 	@Override
@@ -71,19 +60,10 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	}
 	
 	
-	/*
-	// For debugging
-	@Override
-	public List<DesignDecisionGenotype> crossover(List<DesignDecisionGenotype> parents) {
-		List<DesignDecisionGenotype> list = new ArrayList<DesignDecisionGenotype>();
-		//list.add(parents.get(0));
-		//list.add(parents.get(1));
-		return list;
-	}
-	*/
 	
 	@Override
 	public List<DesignDecisionGenotype> crossover(List<DesignDecisionGenotype> parents) {
+		logger.info("BinaryBayesOperator.crossover: Entering ...");
 		// TODO Auto-generated method stub
 		Adapter adapter = new Adapter();
 		// Some trial method
@@ -95,11 +75,9 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		// Choice template done
 		List<FinalBinaryGenotype> FBGenotypeList = new ArrayList<FinalBinaryGenotype>();
 		for(int i = 0 ; i < parents.size() ; i++){
-			logger.info("I am at line 86 in BBOperator");
 			List<BinaryGenotype> BGenotypeList = adapter.translateDesignDecisionGenotype(parents.get(i));
 			FBGenotypeList.add(new FinalBinaryGenotype(BGenotypeList));
 		}
-		logger.info("Now I reached line 90 in BBOperator");
 		// Now create a 2-D matrix using the info in FBGenotypeList.
 		// Each row corresponds to an individual
 		Integer[][] BinaryGenes = new Integer[FBGenotypeList.size()][FBGenotypeList.get(0).getBinaryGenotype().size()];
@@ -113,102 +91,72 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 				BinaryGenesint[i][j] = (int) BinaryGenes[i][j];
 			}
 		}
-		logger.info("Now I reached line 104 in BBOperator");
 		int[][] Offspring = new int[10][BinaryGenesint[0].length];
-		//try {
-			try {
-				Offspring = getSampledGenomes(BinaryGenesint);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		Offspring = getSampledGenomes(BinaryGenesint);
+		// Got the Offspring !!!
+		// Now convert back to List of FBGenotype objects
+		List<FinalBinaryGenotype> FBGenotypeOffspringList = new ArrayList<FinalBinaryGenotype>();
+		for(int i=0;i<Offspring.length;i++){
+			List<Integer> GeneratedOffspringList = new ArrayList<Integer>();
+			for(int j=0;j<Offspring[0].length;j++){
+				GeneratedOffspringList.add(Offspring[i][j]);
 			}
-			// Got the Offspring !!!
-			// Now convert back to List of FBGenotype objects
-			logger.info("Now I reached line 109 in BBOperator");
-			logger.info(Offspring.toString());
-			List<FinalBinaryGenotype> FBGenotypeOffspringList = new ArrayList<FinalBinaryGenotype>();
-			for(int i=0;i<Offspring.length;i++){
-				List<Integer> GeneratedOffspringList = new ArrayList<Integer>();
-				for(int j=0;j<Offspring[0].length;j++){
-					GeneratedOffspringList.add(Offspring[i][j]);
+			// Create an FBGenotype object
+			FinalBinaryGenotype FBOffspringObj = new FinalBinaryGenotype();
+			FBOffspringObj.setBinaryGenotype(GeneratedOffspringList);
+			FBOffspringObj.setBitsPerDegree(FBGenotypeList.get(0).getBitsPerDegree());
+			FBOffspringObj.setOrderOfDegrees(FBGenotypeList.get(0).getOrderOfDegrees());
+			FBGenotypeOffspringList.add(FBOffspringObj);
+		}	
+		// You have the list of Offsprings as a list of FinalBinaryGenotype Objects
+		// Now convert them to DesignDecisionGenotype object list
+		List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
+		for(int i = 0;i<FBGenotypeOffspringList.size();i++){
+			DesignDecisionGenotype ddg = adapter.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i));
+			DesignDecisionGenotype ddgpure = new DesignDecisionGenotype();
+			for(int k = 0 ; k < ddg.size() ; k++){
+				if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){
+					ContinousRangeChoice purechoice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
+					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
+					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+					purechoice.setValue(ddg.get(k).getValue());
+				
+					ddgpure.add(purechoice);
+				}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ResourceSelectionDegree){
+					Choice purechoice = designdecisionFactory.eINSTANCE.createChoice();
+					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
+					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+					purechoice.setValue(ddg.get(k).getValue());
+				
+					ddgpure.add(purechoice);
+				}else if((ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AllocationDegree) || (ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AssembledComponentDegree)){
+					ClassChoice purechoice = designdecisionFactory.eINSTANCE.createClassChoice();
+					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
+					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+					purechoice.setValue(ddg.get(k).getValue());
+				
+					ddgpure.add(purechoice);
+				}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof CapacityDegree){
+					DiscreteRangeChoice purechoice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
+					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+					purechoice.setValue(ddg.get(k).getValue());
+				
+					ddgpure.add(purechoice);
 				}
-				// Create a FBGenotype object
-				FinalBinaryGenotype FBOffspringObj = new FinalBinaryGenotype();
-				FBOffspringObj.setBinaryGenotype(GeneratedOffspringList);
-				FBOffspringObj.setBitsPerDegree(FBGenotypeList.get(0).getBitsPerDegree());
-				FBOffspringObj.setOrderOfDegrees(FBGenotypeList.get(0).getOrderOfDegrees());
-				FBGenotypeOffspringList.add(FBOffspringObj);
-			}	
-			logger.info("Now I reached line 123 in BBOperator");
-			// You have the list of Offsprings as a list of FinalBinaryGenotype Objects
-			// Now convert them to DesignDecisionGenotype object list
-			List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
-			for(int i = 0;i<FBGenotypeOffspringList.size();i++){
-				DesignDecisionGenotype ddg = adapter.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i));
-				DesignDecisionGenotype ddgpure = new DesignDecisionGenotype();
-				for(int k = 0 ; k < ddg.size() ; k++){
-					if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){
-						ContinousRangeChoice purechoice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
-						purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-						purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
-						purechoice.setValue(ddg.get(k).getValue());
-					
-						ddgpure.add(purechoice);
-					}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ResourceSelectionDegree){
-						Choice purechoice = designdecisionFactory.eINSTANCE.createChoice();
-						purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-						purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
-						purechoice.setValue(ddg.get(k).getValue());
-					
-						ddgpure.add(purechoice);
-					}else if((ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AllocationDegree) || (ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AssembledComponentDegree)){
-						ClassChoice purechoice = designdecisionFactory.eINSTANCE.createClassChoice();
-						purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-						purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
-						purechoice.setValue(ddg.get(k).getValue());
-					
-						ddgpure.add(purechoice);
-					}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof CapacityDegree){
-						DiscreteRangeChoice purechoice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
-						purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-						purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
-						purechoice.setValue(ddg.get(k).getValue());
-					
-						ddgpure.add(purechoice);
-					}
-					
-				}
-				DDGenotypeOffspringList.add(ddgpure);
+				
 			}
-			logger.info("Now I reached line 130 in BBOperator");
-			// Got the DesignDecisionGenotype list of Offsprings.
-			logger.info(DDGenotypeOffspringList.get(0).get(0));
-			return DDGenotypeOffspringList;
-		//} catch (RserveException e) {
-		//		// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//} catch (REXPMismatchException e) {
-		//	// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//} catch (Exception e){
-		//	e.printStackTrace();
-		//} 
-		//return null;
+			DDGenotypeOffspringList.add(ddgpure);
+		}
+		// Got the DesignDecisionGenotype list of Offsprings.
+		logger.info("BinaryBayesOperator.crossover: returning ...");
+		return DDGenotypeOffspringList;
+			
 	}
 	
-	/** A method to process on the data (which consists of 1s and 0s)
-	 * and sample new data from the learned 
-	 * Bayesian Structure. This method first constructs a Bayesian
-	 * Network out of the input data and then samples new data out of it
-	 * and gives it as an output.
-	*/
+	
 	/*
-	private int[][] getSampledGenomes(int[][] currentGenomes) {
-		return null;
-	}
-	
-	
-	/*private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
+	private int[][] getSampledGenomes(int[][] currentGenomes) throws REXPMismatchException,RserveException{
 		
 		
 		int NumberOfGenomes = 10; // Stores the number of Genomes one wants as output
@@ -269,26 +217,41 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		   }
 		    
 		return FinalOffspring;		
-	}*/
+	}
+	*/
 	
-	
-	// For debugging
-	private int[][] getSampledGenomes(int[][] currentGenomes) {
-		// Learn Network Structure
-		//RandomSearch rs = new RandomSearch();
-		//int[][] Graph = rs.search(currentGenomes);
-		// Create a Directed Acyclic Graph ... Need to replace with an appropriate learning algo.
-		int[][] Graph = new int[27][27];
-		Graph[0][10]=1; // edge from 0th node to 10th node and so on ... 
-		Graph[0][26]=1;
-		Graph[5][10]=1;
-		
-		// Uncomment this portion between the lines later
+	/** A method to process on the data (which consists of 1s and 0s)
+	 * and sample new data from the learned 
+	 * Bayesian Structure. This method first constructs a Bayesian
+	 * Network out of the input data and then samples new data out of it
+	 * and gives it as an output.
+	*/
+	private int[][] getSampledGenomes(int[][] currentGenomes){
+		logger.info("BinaryBayesOperator.getSampledGenomes: Entering ...");
+		// Part1: Learn Network Structure
 		//<--------------------------------------------------------------------->
-		/*
-		// Write Graph to file ...
-		int index = random.nextInt(100);
-		String file_name = "C:/Users/Hp/Documents/R/Graph"+Integer.toString(index)+".txt";
+		HillClimber hc = new HillClimber();
+		int[][] Graph = hc.search(currentGenomes, 5); // 2nd argument is the maximum-number-of-parents-any-node-can-have constraint.
+		//<--------------------------------------------------------------------->
+		
+		
+		
+		// Part 2: If you want a constant structure, specify here ...
+		//<--------------------------------------------------------------------->
+		
+		//int[][] Graph = new int[27][27];
+		//Graph[0][10]=1; // edge from 0th node to 10th node and so on ... 
+		//Graph[0][26]=1;
+		//Graph[5][10]=1;
+		
+		//<--------------------------------------------------------------------->
+		
+		
+		
+		// Part3: Write Graph to file ...
+		//<--------------------------------------------------------------------->
+		int index = this.GraphNumber++;
+		String file_name = "C:/Users/Hp/runtime-EclipseApplication/Simple Tactics Example/PerOpteryx_results/Graph"+Integer.toString(index)+".txt";
 		WriteFile data = new WriteFile(file_name,true);
 		for(int i=1;i<=Graph.length;i++){
 		  	String myData = "     "+Integer.toString(Graph[i-1][0]);
@@ -303,13 +266,16 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 				e.printStackTrace();
 			}
 		   	}
-		    
 		// End of writing data
-		*/
+		//<--------------------------------------------------------------------->
+		
+		
+		
+		// Part4: Sample new data
 		//<--------------------------------------------------------------------->
 		BOAsampler boasampler = new BOAsampler(Graph, currentGenomes);
-		int[][] returnmatrix = boasampler.sample(10);
-		//logger.debug(returnmatrix);
+		int[][] returnmatrix = boasampler.sample(100);
+		logger.info("BinaryBayesOperator.crossover: Returning ...");
 		return returnmatrix;
 	}
 	
