@@ -3,6 +3,7 @@ package de.uka.ipd.sdq.dsexplore.analysis.simucom.tests;
 import java.util.Properties;
 
 import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComAnalysisSensorFrameworkResult;
 import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentImpl;
 import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentRunImpl;
@@ -26,7 +27,7 @@ public class SimuComAnalysisResultTest extends TestCase {
 		Experiment exp = new ExperimentImpl(null);
 		
 		//FIXME: add proper params
-		scr = new SimuComAnalysisResult(run, exp, pcmInstance, null, null, null);
+		scr = new SimuComAnalysisSensorFrameworkResult(run, exp, pcmInstance, null, null, null);
 		
 	}
 
