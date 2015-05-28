@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -15,7 +16,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.emf.common.util.EList;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.edp2.impl.RepositoryManager;
+import org.palladiosimulator.edp2.models.Repository.Repositories;
+import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 
@@ -123,43 +128,18 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
      * @param experimentName
      * @return
      */
-    private boolean isExperimentRunDoesNotExist(final String experimentName) {
-
-        // IRecorderConfiguration recorderConfig = this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfig();
-
-        if (this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderName().toLowerCase().contains("sensorframework")){
-
-            // Every few runs the datasource needs to be reloaded because the simulation will fail with OutOfmemoryError after ~300 simulations otherwise
-            if (this.datasourceReloadCount >= 100 ){
-                SensorFrameworkDataset.singleton().reload();
-                this.datasourceReloadCount = 0;
-            }
-            this.datasourceReloadCount++;
-
-            // Obtain DAOFactories. Search in any open data source.
-            final Collection<IDAOFactory> daoFactoryCollection = SensorFrameworkDataset.singleton().getDataSources();
-
-            for (final IDAOFactory daoFactory : daoFactoryCollection) {
-                if (daoFactory == null) {
-                    throw new DatasourceConfigurationInvalidException();
-                }
-
-                Experiment experiment;
-                // Find an existing or create a new Experiment
-                final Collection<Experiment> experimentSet = daoFactory.createExperimentDAO().findByExperimentName(experimentName);
-
-                if (experimentSet.size() > 0){
-                    experiment = experimentSet.iterator().next();
-
-                    if (experiment.getExperimentRuns().size() > 0 && experiment.getSensors().size() > 0 ){
-                        return false;
-                    }
-
-                }
-            }
-
+    private boolean isExperimentRunDoesNotExist(final String experimentName) throws CoreException {
+    	
+        if (config.getAttribute("persistenceFramework", "").equals("SensorFramework"))
+        {
+        	return !SimuComAnalysisSensorFrameworkResult.isExperimentRunExisting(experimentName, this.simuComWorkflowConfiguration, this.datasourceReloadCount);
         }
-        return true;
+        // In case the selected persistence framework is EDP2
+        else 
+        {
+        	return !SimuComAnalysisEDP2Result.isExperimentRunExisting(experimentName);
+        }
+        
     }
 
 
@@ -186,37 +166,85 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         final PCMInstance pcmInstance = new PCMInstance(pcmPartition);
 
         IStatisticAnalysisResult result = null;
-        final int selectedDataSourceID =
-                config.getAttribute(
-                        SensorFrameworkRecorderConfigurationFactory.DATASOURCE_ID, -1);
+        
+        // Decide whether it's SensorFramework or EDP2
+        if ("SensorFramework".equals(config.getAttribute("persistenceFramework", "")))
+        {
+        	final int selectedDataSourceID =
+                    config.getAttribute(SensorFrameworkRecorderConfigurationFactory.DATASOURCE_ID, -1);
+        	
+        	// try the configured data source first.
+            final IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
+            if (factory != null)
+            {
+                result = SimuComAnalysisSensorFrameworkResult.findExperimentRunAndCreateResult(usageScenario,
+                        experimentName, pcmInstance, factory, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
+            }
 
-        // try the configured data source first.
-        final IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
-        if (factory != null){
-            result = findExperimentRunAndCreateResult(usageScenario,
-                    experimentName, pcmInstance, factory);
-        }
+            if (result == null)
+            {
+                // try all other open data sources.
+                final Collection<IDAOFactory> daoFactories = SensorFrameworkDataset.singleton().getDataSources();
+                for (final IDAOFactory idaoFactory : daoFactories) {
+                    if (idaoFactory == factory){
+                        // we tried this one already
+                        continue;
+                    }
+                    result = SimuComAnalysisSensorFrameworkResult.findExperimentRunAndCreateResult(usageScenario,
+                            experimentName, pcmInstance, idaoFactory, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
 
-        if (result == null){
-            // try all other open data sources.
-            final Collection<IDAOFactory> daoFactories = SensorFrameworkDataset.singleton().getDataSources();
-            for (final IDAOFactory idaoFactory : daoFactories) {
-                if (idaoFactory == factory){
-                    // we tried this one already
-                    continue;
-                }
-                result = findExperimentRunAndCreateResult(usageScenario,
-                        experimentName, pcmInstance, idaoFactory);
-
-                if (result != null){
-                    logger.warn("Found matching experiment run for this candidate in data source "+idaoFactory.getName()+" "+idaoFactory.getDescription()+"(id: "+idaoFactory.getID()+"), using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
-                    break;
+                    if (result != null)
+                    {
+                        logger.warn("Found matching experiment run for this candidate in data source "+idaoFactory.getName()+" "+idaoFactory.getDescription()+"(id: "+idaoFactory.getID()+"), using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
+                        break;
+                    }
                 }
             }
         }
-
-
-        if (result == null){
+        // In case the selected persistence framework is EDP2
+        else 
+        {
+        	final String selectedDataSourceID = config.getAttribute("EDP2RepositoryID", "");
+        	
+        	// Get the repository with the given name frRepositoryository manager.
+        	EList<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
+        	Repository selectedRepo = null;
+        	for (int i = 0; i < repos.size(); ++i)
+        	{
+        		String s = repos.get(i).getId();
+        		if (s.equals(selectedDataSourceID))
+        		{
+        			selectedRepo = repos.get(i);
+        			result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, 
+        					experimentName, pcmInstance, repos.get(i), this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
+        		}
+        	}
+        	
+        	// If not found, try other data sources (same structure as above for the sensor framework)
+        	if (result == null)
+        	{
+        		for (Repository repo : repos)
+        		{
+        			if (repo == selectedRepo)
+        			{
+        				continue;
+        			}
+        			
+        			result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, 
+        					experimentName, pcmInstance, repo, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
+        			
+                    if (result != null)
+                    {
+                    	// Descriptions are removed here compared to the sensor framework version as multiple descriptions might exist
+                        logger.warn("Found matching experiment run for this candidate in data source " + repo.getId() + ", using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
+                        break;
+                    }
+        		}
+        	}
+        }
+        
+        if (result == null)
+        {
             final String errormessage = "There was no experiment run or no experiment for experiment named \""
                     +experimentName+"\" in any available data source after analysing the PCM instance \""
                     +experimentName+"\" of candidate "+pheno.getNumericID()+" "+pheno.getGenotypeID();
@@ -226,38 +254,6 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         return result;
     }
-
-
-    /**
-     * Tries to find a matching experiment run in the passed data source (via the passed <code>factory</code>). If a matching experiment run
-     * is found, a new {@link IStatisticAnalysisResult} is created for it. If not, <code>null</code> is returned.
-     * @param usageScenario The usage scenario to determine the response time values for.
-     * @param experimentName The experiment name to match
-     * @param pcmInstance The PCM instance to get the available resources and retrieve utilisation values.
-     * @param factory The access to the data source.
-     * @return The instantiated {@link IStatisticAnalysisResult} for this experiment name, or <code>null</code> if no matching experiment run could be found.
-     * @throws AnalysisFailedException
-     */
-    private IStatisticAnalysisResult findExperimentRunAndCreateResult(
-            final UsageScenario usageScenario, final String experimentName,
-            final PCMInstance pcmInstance,
-            final IDAOFactory factory) throws AnalysisFailedException {
-        IStatisticAnalysisResult result = null;
-        //XXX: Quick fix: Assume that there is just one experiment with the name of the current PCM instance.
-        //Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName
-        //		+" RunNo. "+config.getAttribute(ConstantsContainer.RUN_NO, "0")).iterator();
-        final Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName).iterator();
-        if (it.hasNext()){
-            final Experiment resultingExperiment = it.next();
-            final Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
-            if (runs.size() > 0){
-                final ExperimentRun myrun = getLatestRun(runs);
-                result = new SimuComAnalysisResult(myrun, resultingExperiment, pcmInstance, usageScenario, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
-            }
-        }
-        return result;
-    }
-
 
     private void launchSimuCom(final IProgressMonitor monitor)
             throws CoreException, AnalysisFailedException, UserCanceledException {
@@ -312,109 +308,6 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
     //		BasicConfigurator.resetConfiguration();
     //		LoggerHelper.initializeLogger(config);
     //	}
-
-
-    /**
-     * Get the latest Run from the {@link Collection} based on the getExperimentDateTime()
-     * value.
-     * @param runs A collection of {@link ExperimentRun}
-     * @return The latest run or the first in the collection if timestamps
-     * cannot properly be parsed.
-     */
-    private ExperimentRun getLatestRun(final Collection<ExperimentRun> runs) {
-        final Iterator<ExperimentRun> iterator = runs.iterator();
-        ExperimentRun latest = iterator.next();
-        //FIXME: Due to Bug 395, I cannot get the order of ExperimentRuns.
-        //Quickfix: Extract it from the (nasty) ExperimentDateTime String as a long.
-        long dateLatest = extractTimestamp(latest.getExperimentDateTime());
-        for (; iterator.hasNext();) {
-            final ExperimentRun experimentRun = iterator.next();
-            logger.debug("Looking at run "+experimentRun.getExperimentDateTime());
-            final long runDate = extractTimestamp(experimentRun.getExperimentDateTime());
-            if (dateLatest < runDate){
-                latest = experimentRun;
-                dateLatest = runDate;
-            }
-        }
-        logger.debug("Latest run: "+latest.getExperimentDateTime());
-        return latest;
-    }
-
-    //FIXME: use constant from AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT
-    // as soon as the Recorderframework build has been fixed.
-    public static final String EXPERIMENT_RUN_DATE_FORMAT = "yyyy/MM/dd HH:mm:ss:SSS";
-
-    /**
-     * Extract time stamps from the experimentDateTime string. This is just a
-     * QuickFix because {@link ExperimentRun}s currently do not store their
-     * time properly.
-     *
-     * Delete this method after Bug 395 is fixed.
-     *
-     * @param experimentDateTime
-     * @return The {@link Date} of the {@link ExperimentRun}
-     */
-    private long extractTimestamp(final String experimentDateTime) {
-
-        // FIXME: use constant from AbstractRecorderConfigurationFactory as soon as the Recorderframework build has been fixed.
-        final SimpleDateFormat dateFormat = new SimpleDateFormat(EXPERIMENT_RUN_DATE_FORMAT);
-        //SimpleDateFormat dateFormat = new SimpleDateFormat(AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT);
-        try {
-            return dateFormat.parse(experimentDateTime).getTime();
-        } catch (final ParseException e) {
-            logger.error("Cannot parse sensorframework experiment run String");
-            e.printStackTrace();
-            return 0;
-        }
-
-        //return Date.parse(experimentDateTime);
-
-        /*//Cut the "Run " part.
-        experimentDateTime = experimentDateTime.substring(4);
-        final String[] experimentDateTimeArray = experimentDateTime.split(" ");
-        final String month = experimentDateTimeArray[1];
-
-        //This is stupid, but what else to do with the nasty string...
-        int monthNo = 0;
-        if (month.equals("Jan")){
-            monthNo = 1;
-        } else if (month.equals("Feb")){
-            monthNo = 2;
-        } else if (month.equals("Mar")){
-            monthNo = 3;
-        } else if (month.equals("Apr")){
-            monthNo = 4;
-        } else if (month.equals("May")){
-            monthNo = 5;
-        } else if (month.equals("Jun")){
-            monthNo = 6;
-        } else if (month.equals("Jul")){
-            monthNo = 7;
-        } else if (month.equals("Aug")){
-            monthNo = 8;
-        } else if (month.equals("Sep")){
-            monthNo = 9;
-        } else if (month.equals("Oct")){
-            monthNo = 10;
-        } else if (month.equals("Nov")){
-            monthNo = 11;
-        } else {
-            monthNo = 12;
-        }
-
-        final int day = Integer.parseInt(experimentDateTimeArray[2]);
-        final String[] time = experimentDateTimeArray[3].split(":");
-        final int hour = Integer.parseInt(time[0]);
-        final int minute = Integer.parseInt(time[1]);
-        final int second = Integer.parseInt(time[2]);
-        final int year = Integer.parseInt(experimentDateTimeArray[5]);
-
-        //The date in seconds since year 0.
-        final long date = (((((year * 12) + monthNo) * 31 + day)* 24 + hour)*60 + minute ) * 60 + second;
-
-        return date;*/
-    }
-
 
 
     /**

@@ -74,42 +74,38 @@ import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 
 
-public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult implements IStatisticAnalysisResult, IPerformanceAnalysisResult {
-
-	private ExperimentRun run;
+abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult implements IStatisticAnalysisResult, IPerformanceAnalysisResult {
 	
-	private double meanValue;
+	protected double meanValue;
 
-	private Experiment experiment;
+	protected double medianValue; 
+	
+	protected double throughput;
+	
+	protected double maxUtilization;
+	
+	protected double stdDeviation;
 
-	private double medianValue; 
+	protected ConfidenceInterval confidenceInterval; 
 	
-	private double throughput;
-	
-	private double maxUtilization;
-	
-	private double stdDeviation;
+	protected double alpha = 0.95;
 
-	private ConfidenceInterval confidenceInterval; 
-	
-	private double alpha = 0.95;
-
-	private long observations = 0;
+	protected long observations = 0;
 
 	/** You must not use the usage scenario to navigate in the PCM, as the
 	 * model may not be longer valid for this result after the constructor call.
 	 */
-	private String usageSenarioName;
+	protected String usageScenarioName;
 
 	/**
 	 * Contains: resource utilisations
 	 * Should also contain: Passive resources. 
 	 */
-	private ResultDecoratorRepository results;
+	protected ResultDecoratorRepository results;
 
-	private Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
+	protected Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
 
-	private SimuComQualityAttributeDeclaration qualityAttributeInfo;
+	protected SimuComQualityAttributeDeclaration qualityAttributeInfo;
 
     /**
      * Identifier for subsets of data elements that belong to a single time series element.
@@ -120,7 +116,7 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
      * @see TimeSeries
      * @author groenda
      */
-    private enum TimeseriesData {
+    protected enum TimeseriesData {
         /** The timespan value of the time series data point. */
         TIMESPAN,
         /** The eventtime value of the time series data point. */
@@ -129,44 +125,18 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
         BOTH
     }
 	
-	private static Logger logger = 
+	protected static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore");
-
-	public SimuComAnalysisResult(ExperimentRun run, Experiment experiment, PCMInstance pcmInstance, 
-			UsageScenario usageScenario, Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-			SimuComQualityAttributeDeclaration qualityAttributeInfo) 
-	throws AnalysisFailedException {
-		super(pcmInstance);
-		this.run = run;
-		this.experiment = experiment;
-		this.usageSenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
-		
-		this.objectiveToAspects = objectiveToAspect;
-		this.qualityAttributeInfo = qualityAttributeInfo;
-		
-		SensorAndMeasurements sam = getUsageScenarioMeasurements();
-		this.meanValue =  calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean()); //calculateValue(sam,"mean", TimeseriesData.TIMESPAN);
-		this.stdDeviation = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new StandardDeviation());
-		this.medianValue = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Median());
-		this.throughput = calculateThroughput(sam);
-		this.observations = sam.getMeasurements().size();
-		
-		this.confidenceInterval = determineConfidenceInterval();
-		
-		this.results =  retrieveResults(pcmInstance);
-		this.maxUtilization = calculateMaxUtil("CPU");
-		
-		logger.debug("Initialised SimuCom result");
-		
+	
+	protected SimuComAnalysisResult(PCMInstance pcm) {
+		super(pcm);
 	}
 
-	private double calculateUnivariateStatistic(SensorAndMeasurements sam,
-			TimeseriesData timespan, UnivariateStatistic stat) {
-		double[] measurements = measurementsToDoubleArray(sam, timespan);
-		return stat.evaluate(measurements);
-	}
+	// Implemented individually in subclasses:
+	// - abstract protected double calculateUnivariateStatistic(TimeseriesData timespan, UnivariateStatistic stat);
+	// - abstract protected double calculateThroughput() throws AnalysisFailedException;
 
-	private double calculateMaxUtil(String resourceType) {
+	protected double calculateMaxUtil(String resourceType) {
 		double maxUtil = 0.0;
 		for (UtilisationResult utilResult : this.results.getUtilisationResults_ResultDecoratorRepository()) {
 			if (utilResult.getEntityName().contains(resourceType) && maxUtil < utilResult.getResourceUtilisation()){
@@ -176,25 +146,25 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		return maxUtil;
 	}
 
-	private double calculateThroughput(SensorAndMeasurements sam) throws AnalysisFailedException {
-		int numberOfMeasurements = sam.getMeasurements().size();
-		// we assume that the last entry is the duration.
-		// still, no way to get the maximum time... because this is a collection.
-		double duration = calculateUnivariateStatistic(sam, TimeseriesData.EVENTTIME, new Max()) - calculateUnivariateStatistic(sam, TimeseriesData.EVENTTIME, new Min());
-		
-		return numberOfMeasurements / duration;
-	}
-
-	private ResultDecoratorRepository retrieveResults(PCMInstance pcmInstance) throws AnalysisFailedException {
+	protected ResultDecoratorRepository retrieveResults(PCMInstance pcmInstance) throws AnalysisFailedException {
 		
 		ResultDecoratorRepository repo = ResultdecoratorFactory.eINSTANCE.createResultDecoratorRepository();
-		retrieveResourceUtilisation(pcmInstance, repo);
-		retrieveServiceResults(pcmInstance, repo);
-		retrievePassiveResourceUtil(repo, pcmInstance);
+		//FIXME : Not implemented for EDP2 yet -> commented for testing 
+		// The following three functions can be commented in as soon as they are implemented in 
+		// SimuComAnalysisEDP2Result. 
+		//retrieveResourceUtilisation(pcmInstance, repo);
+		//retrieveServiceResults(pcmInstance, repo);
+		//retrievePassiveResourceUtil(repo, pcmInstance);
 		
 		return repo;
 	}
 
+	// Persistency framework dependent part of the next method
+	abstract protected void retrieveServiceResultsFinish(PCMInstance pcmInstance, ResultDecoratorRepository repo, 
+								HashMap<String, ExternalCallAction> idToExternalCallMap,
+								Map<String, AssemblyContextContext> idToAssemblyContextMap,
+								List<String> completionComponentIdsToIgnore);
+	
 	/**
 	 * Quite ugly method to get the service results, because sensors only contain strings for identification, 
 	 * and because only external calls currently have results, not SEFFs (TODO: define right probes when optimizing, then refactor this).
@@ -274,112 +244,10 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		idToAssemblyContextMap.putAll(temporaryIdToAssemblyContextMap);
 		
 		//iterate through sensors and store the (ExternalCall,AssemblyContext) pairs with their sensors.
-		Collection<Sensor> sensorList = this.experiment.getSensors();
-		List<ExternalCallActionWithSensors> externalCallsInContextWithSensorsList = new LinkedList<ExternalCallActionWithSensors>();
 		
-		for (Sensor sensor : sensorList) {
-			String sensorName = sensor.getSensorName();
-			if (sensorName.contains("CallID")){
-				//current sensor is an ExternalCall sensor
-				
-				// parse external call id
-				if (sensorName.lastIndexOf(" ") < sensorName.length()-2 
-						&& sensorName.lastIndexOf(" ") > -1
-						&& sensorName.length() > 2){
-					String externalCallID = sensorName.substring(sensorName.lastIndexOf(" ")+1, sensorName.length()-1);
-				
-					// 	find the external call in the model
-					ExternalCallAction myCall = idToExternalCallMap.get(externalCallID);
-				
-					if (myCall != null){
-						
-						//retrieve AssemblyContext from sensor name
-						String assemblyContextID = sensorName.substring(sensorName.indexOf("AssemblyCtx")+13,sensorName.indexOf("CallID")-2);
-						AssemblyContextContext myAssemblyContext = idToAssemblyContextMap.get(assemblyContextID);
-						if (myAssemblyContext != null){
-							
-							ExternalCallActionWithSensors externalCallInContextWithSensors = new ExternalCallActionWithSensors(myCall, myAssemblyContext);
-							
-							//reuse pair if it already there
-							int index = externalCallsInContextWithSensorsList.indexOf(externalCallInContextWithSensors);
-							if (index > 0){
-								externalCallInContextWithSensors = externalCallsInContextWithSensorsList.get(index);
-							} else {
-								externalCallsInContextWithSensorsList.add(externalCallInContextWithSensors);
-							}
-						
-							// map all result sensors to the SEFF they call
-							externalCallInContextWithSensors.addSensor(sensor);
-							continue;
-						} 
-					} else {
-						// check if this is a completion component, if yes, ignore it and continue
-						String componentID = sensorName.substring(sensorName.indexOf("Component: ")+11,sensorName.indexOf("AssemblyCtx")-2);
-						if (completionComponentIdsToIgnore.contains(componentID)){
-							logger.info("Ignoring completion component sensor "+sensorName+" when reading in SimuCom results.");
-							continue;
-						}
-					} 
-				}
-				logger.warn("Cannot retrieve external call id from sensor. If this is a completion component, this is ok. Otherwise, sensor name labels must have changed. Contact developers if this sensors is needed. Sensor: "+sensorName);
-			} 
-			
-		}
-		
-		//FIXME: This all does not work if composite components themselves are used several times in the system, because then, the  AssemblyContexts of the inner components will not be unique anymore.  
-		
-		
-		// get the average time for the SEFFs (careful: contains network)
-		// by getting the data of the chosen sensors from this.run
-		
-		for (ExternalCallActionWithSensors externalCallActionWithSensors : externalCallsInContextWithSensorsList) {
-			List<Sensor> mySensors = externalCallActionWithSensors.getSensors();
-			
-			if (mySensors.size() > 0){
-			
-				//	create service result
-				ServiceResult myServiceResult = RepositorydecoratorFactory.eINSTANCE.createAllocationServiceResult();
-			
-				//get SEFF for external call
-				
-				ContextWrapper contextWrapper = new ContextWrapper(pcmInstance);
-				//set the AssemblyContext hierarchy
-				List<AssemblyContext> assemblyContextHierarchy = new ArrayList<AssemblyContext>(4);
-				AssemblyContextContext currentContext = externalCallActionWithSensors.getAssemblyContext();
-				while (currentContext != null) {
-					assemblyContextHierarchy.add(currentContext.getAssemblyContext());
-					currentContext = currentContext.getParentAssemblyContext();
-				}
-				//the currentContext needs to be last in the list.
-				Collections.reverse(assemblyContextHierarchy);
-				contextWrapper.setAssCtxList(assemblyContextHierarchy);
-				
-				ServiceEffectSpecification seff = contextWrapper.getNextSEFF(externalCallActionWithSensors.getExternalCall());
-				
-				myServiceResult.setServiceEffectSpecification_ServiceResult(seff);
-				
-				double weightedAndCumulatedMeanResponseTime = 0;
-				int totalNumberOfMeasurements = 0;
-				
-				for (Sensor sensor : mySensors) {
-					 SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
-					 Collection<Measurement> measurements = results.getMeasurements();
-					 totalNumberOfMeasurements += measurements.size();
-					 weightedAndCumulatedMeanResponseTime += calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()) * totalNumberOfMeasurements;
-					 
-				}
-				double meanResponseTime = weightedAndCumulatedMeanResponseTime / totalNumberOfMeasurements;
-				myServiceResult.setMeanResponseTime(meanResponseTime);
-				
-				repo.getServiceResult_ResultDecoratorRepository().add(myServiceResult);
-				
-			}
-		
-		}
-		
-		
+		// Delegated following code to subclasses
+		retrieveServiceResultsFinish(pcmInstance, repo, idToExternalCallMap, idToAssemblyContextMap, completionComponentIdsToIgnore);
 	}
-
 
 	/**
 	 * retrieves active resource utils. 
@@ -420,6 +288,10 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		return repo;
 	}
 
+	// Extracted from retrievePassiveResourceUtil
+	abstract protected Map<String, PassiveResourceResult> retrievePassiveResourceUtilFinish(Map<String, PassiveResourceResult> idsToPassiveResourceResult);
+	
+	// Extracted last part (see method above)
 	private Map<String, PassiveResourceResult> retrievePassiveResourceUtil(ResultDecoratorRepository repo, PCMInstance pcm) throws AnalysisFailedException{
 		
 		
@@ -453,63 +325,13 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 			}
 			
 		}
-		//iterate through sensors and store the (ExternalCall,AssemblyContext) pairs with their sensors.
-		Collection<Sensor> sensorList = this.experiment.getSensors();
 		
-		for (Sensor sensor : sensorList) {
-			String sensorName = sensor.getSensorName();
-			if (sensorName.contains("Passive Resource")){
-				String passiveResourceAndAssemblyContextID = sensorName.substring(sensorName.lastIndexOf(" ")+1);
-				PassiveResourceResult passiveResourceResult = idsToPassiveResourceResult.get(passiveResourceAndAssemblyContextID);
-				
-				if (passiveResourceResult != null){
-				
-					SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
-
-					if (sensorName.contains("Hold time")){
-						passiveResourceResult.setAverageHoldingTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-					} else if (sensorName.contains("Wait time")){
-						passiveResourceResult.setAverageWaitTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-					} else if (sensorName.contains("Util")){
-						// for passive resources, also consider the capacity when calculating the util
-						int capacity = Integer.parseInt(passiveResourceResult.getPassiveResource_PassiveResourceResult().getCapacity_PassiveResource().getSpecification());
-						retrieveUtilisationFromSensor(sensor, passiveResourceResult, capacity);
-						 
-					}
-				} else {
-					logger.warn("Unknown passive resource id "+passiveResourceAndAssemblyContextID+", ignoring this sensor.");
-				}
-			}
-			
-		}
-		
-		return idsToPassiveResourceResult;
+		return retrievePassiveResourceUtilFinish(idsToPassiveResourceResult);
 		
 	}
 
-	private ConfidenceInterval determineConfidenceInterval() throws AnalysisFailedException {
-		ConfidenceInterval ci = null;
-		SensorAndMeasurements meas = getUsageScenarioMeasurements();
-		Sensor sensor = meas.getSensor();
-		if (sensor instanceof TimeSpanSensor){
-			PhiMixingBatchAlgorithm statisticChecker = new PhiMixingBatchAlgorithm();
-						
-			for (Measurement m : meas.getMeasurements()) {
-				TimeSpanMeasurement t = (TimeSpanMeasurement)m;
-				statisticChecker.offerSample(t.getTimeSpan());
-			}
-			if (statisticChecker.hasValidBatches()){
-				ci = new SampleMeanEstimator().estimateConfidence(statisticChecker.getBatchMeans(),this.alpha);
-			} 
-			if (ci == null) {
-				ci = new ConfidenceInterval(Double.NaN, 0, Double.POSITIVE_INFINITY, this.alpha);
-			}
-			return ci;
-		} else {
-			logger.error("Sensor of usage scenario is not a time span sensor, cannot calculate statistics.");
-			return null;
-		}
-	}
+	// Implemented individually in subclasses
+	// abstract protected ConfidenceInterval determineConfidenceInterval() throws AnalysisFailedException;
 	
 
 	/**
@@ -564,208 +386,14 @@ public class SimuComAnalysisResult extends AbstractPerformanceAnalysisResult imp
 		return this.confidenceInterval;
 	}
 	
-	private SensorAndMeasurements getUsageScenarioMeasurements() throws AnalysisFailedException{
-		//Get usage scenario sensor. 
-		Sensor respTimeSensor = getSensorForUsageScenario(experiment, this.usageSenarioName);
-		if (respTimeSensor != null){
-			return run.getMeasurementsOfSensor(respTimeSensor);
-			
-		} else 
-			throw new AnalysisFailedException("Could not find sensor for usage scenario "+this.usageSenarioName);
-	}
-	
 	public double getMedianValue() {
 		return medianValue;
-	}
-
-
-
-	private static Sensor getSensorForUsageScenario(Experiment exp, String usageScenarioName) {
-		Collection<Sensor> sensors = exp.getSensors();
-		for (Iterator<Sensor> iterator = sensors.iterator(); iterator.hasNext();) {
-			Sensor sensor = iterator.next();
-			//logger.debug("Experiment has a sensor with ID "+sensor.getSensorID()+" and name "+sensor.getSensorName()+".");
-			if (sensor.getSensorName().contains(usageScenarioName)){
-				logger.debug("Found sensor for usage scenario "+usageScenarioName);
-				return sensor;
-			}
-		}
-		logger.error("No sensor found for usage scenario "+usageScenarioName);
-		return null;
-	}
-	
-	private static Sensor getSensorForResource(Experiment exp, Entity rc, ResourceType res, String sensorTypeString) {
-		Collection<Sensor> sensors = exp.getSensors();
-		for (Iterator<Sensor> iterator = sensors.iterator(); iterator.hasNext();) {
-			Sensor sensor = iterator.next();
-			//logger.debug("Experiment has a sensor with ID "+sensor.getSensorID()+" and name "+sensor.getSensorName()+".");
-			if (
-					(sensor.getSensorName().contains(res.getEntityName()) 
-							|| /* special naming for linking resource */
-							sensor.getSensorName().contains("Linking Resource")
-							&& res.getEntityName().contains("LAN"))
-					&& sensor.getSensorName().contains(sensorTypeString)
-					&& sensor.getSensorName().contains(rc.getEntityName())){
-				logger.debug("Found sensor of "+sensorTypeString+" for the resource "+rc.getEntityName()+": "+res.getEntityName());
-				return sensor;
-			}
-		}
-		logger.error("No sensor of "+sensorTypeString+" found for resource "+rc.getEntityName()+": "+res.getEntityName());
-		return null;
-	}
-
-	
-	/**An 
-	 * array is filled with data from measurements. 
-	 * 
-	 * Copied from 
-	 * de.uka.ipd.sdq.sensorframework.visualisation.rvisualisation.reports.RReport. 
-	 * TODO: Possibly make this public in RReport and use it properly or refactor it 
-	 * to a helper class.
-	 * 
-	 * XXX Keep this when using apache commons math. 
-	 * 
-	 * @param measurements Measurements for a sensor.
-	 * @param dataSelection the data element to save.
-	 * @return array with one data element per Measurement
-	 * @author Henning, Anne
-	 */
-	private static double[] measurementsToDoubleArray(
-			final SensorAndMeasurements measurements,
-			final TimeseriesData dataSelection) {
-		double[] measurementsArray = 
-			new double[measurements.getMeasurements().size()];
-		if (measurements.getMeasurements().size() == Integer.MAX_VALUE) {
-			logger.error("Too many measurements. Results might be inaccurate.");
-		}
-		int position = 0;
-		for (Measurement time : measurements.getMeasurements()) {
-			TimeSpanMeasurement tsm = (TimeSpanMeasurement) time;
-			measurementsArray[position++] = 
-				(dataSelection == TimeseriesData.EVENTTIME) 
-					? tsm.getEventTime() 
-					: tsm.getTimeSpan(); 
-		}
-		return measurementsArray;
 	}
 
 	/**
 	 * Get the utilisation of the passed resource
 	 */
-	private void getUtilisationOfResource(ActiveResourceUtilisationResult resultToFill, Entity container, ResourceType resourceType) throws AnalysisFailedException {
-		Sensor utilSensor = getSensorForResource(this.experiment, container, resourceType, "State of Active Resource");
-		Sensor demandedSensor = getSensorForResource(this.experiment, container, resourceType, "Demand");
-		
-		// for later when wait os available
-		//Sensor waitSensor = getSensorForResource(this.experiment, container, resource, "Wait");
-			
-		
-								
-		if (utilSensor != null /*&& waitSensor != null*/){
-			
-			try {
-				
-				retrieveUtilisationFromSensor(utilSensor, resultToFill,1);
-				
-				/*
-				SensorAndMeasurements sam = run.getMeasurementsOfSensor(waitSensor);
-				result.setAverageWaitTime(calculateValue(sam, "mean"));
-				*/
-				resultToFill.setAverageWaitTime(Double.NaN);
-				
-				SensorAndMeasurements sam = run.getMeasurementsOfSensor(demandedSensor);
-				resultToFill.setDemandedTime(calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean()));
-			
-			} catch (RuntimeException e) {
-				// FIXME: The call "SensorAndMeasurements sam =
-				// run.getMeasurementsOfSensor(sensor);" above sometimes results
-				// in a RuntimeException, because a State could not be
-				// deserialised. Better fix that porperly instead of catching
-				// the error here.
-				resultToFill.setResourceUtilisation(Double.NaN);
-				logger.error("A runtime exception occured while accessing the sendorframework. I'll try to ignore it and continue.");
-				e.printStackTrace();
-			} 
-		} else {
-			resultToFill.setResourceUtilisation(Double.NaN);
-			throw new AnalysisFailedException("Could not find sensor for resource "+container.getEntityName()+": "+resourceType.getEntityName());
-		}
-	}
-
-	/**
-	 * 
-	 * @param sensor
-	 * @param result
-	 * @param capacity The capacity of the resource, will divide busyFraction by this number to 
-	 */
-	private void retrieveUtilisationFromSensor(Sensor sensor,
-			UtilisationResult result, int capacity) {
-				SensorAndMeasurements sam = run.getMeasurementsOfSensor(sensor);
-				double busyFraction = 0;
-				
-		double totalTime = 0;
-		double weightedSumOfJobs = 0;
-		
-				if (sam.getMeasurements().size() > 0){
-					StateSensorToPieAdapter dataAdapter = new StateSensorToTimeDeltaPieAdapter(
-							sam);
-					AbstractPie pie = (AbstractPie) dataAdapter.getAdaptedObject();
-					Collection<PieEntity> pieParts = pie
-							.getEntities(Integer.MAX_VALUE);
-					double totalIdleTime = 0;
-					// 	I need to sum up all pie parts to get the 100% comparison
-				
-					double totalWeights = 0;
-					int maxNumberOfJobs = 0;
-				
-					for (Iterator<PieEntity> iterator = pieParts.iterator(); iterator
-					.hasNext();) {
-						PieEntity pieEntity = iterator.next();
-						totalTime += pieEntity.getValue();
-						totalWeights += pieEntity.getValue();
-
-						if (pieEntity.getLabel().contains("Idle")) {
-							// this returns a large number > 399
-							totalIdleTime = pieEntity.getValue();
-						} else {
-					String[] busyLabel = pieEntity.getLabel().split(" ");
-						if (busyLabel.length > 1){
-						try {
-							String numberOfJobsString = busyLabel[1];
-							int noOfJobs = Integer.parseInt(numberOfJobsString);
-							totalWeights += pieEntity.getValue();
-							weightedSumOfJobs += noOfJobs * pieEntity.getValue();
-							if (noOfJobs > maxNumberOfJobs){
-								maxNumberOfJobs = noOfJobs;
-							}
-						} catch (Exception e){
-							logger.warn("Cannot read in queue lengths, labels of the pie chart may have changed.");
-						}
-						} else {
-							logger.warn("Cannot read in queue lengths, labels of the pie chart may have changed.");
-						}
-				}
-
-					}
-					busyFraction = (1 - (totalIdleTime / totalTime));
-			//queue length including the active job.
-					result.setAverageQueueLength(weightedSumOfJobs / totalWeights);
-					result.setMaxQueueLength(maxNumberOfJobs);
-				}
-		if (capacity == 1){
-				result.setResourceUtilisation(busyFraction);
-		} else if (totalTime > 0){
-			/* if capacity is larger than 1 (for passive resources), calculate
-			   the interval below the line of current resource usage, which is 
-			   for each level of usage (noOfJobs) the time that it is active (x axis)
-			   times the noOfJobs. Thus, this corresponds to the weightedSumOfJobs value.
-			   Then divide by totalTime * capacity which is the maximum utilisation.
-			   A value of 100% then means that all free resources have been used all the time. 
-			*/
-			double util = weightedSumOfJobs / (totalTime * capacity);
-			result.setResourceUtilisation(util);
-			} 
-	}
+	abstract protected void getUtilisationOfResource(ActiveResourceUtilisationResult resultToFill, Entity container, ResourceType resourceType) throws AnalysisFailedException;
 	
 	@Override
 	public long getNumberOfObservations() {
