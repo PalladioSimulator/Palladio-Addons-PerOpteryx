@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.statistics,
  de.uka.ipd.sdq.pcmsolver;bundle-version="3.0.0",
  de.uka.ipd.sdq.pcm.resultdecorator;bundle-version="1.0.0",
- org.opt4j;bundle-version="1.0.0",
+ org.opt4j;bundle-version="2.5.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml,
  de.uka.ipd.sdq.completions;bundle-version="1.0.0",
@@ -29,8 +29,18 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.context;bundle-version="2.0.0",
  org.palladiosimulator.recorderframework;bundle-version="2.0.1",
  org.palladiosimulator.recorderframework.sensorframework;bundle-version="2.0.1",
- org.apache.commons.math;bundle-version="2.1.0"
+ org.apache.commons.math;bundle-version="2.1.0",
+ org.palladiosimulator.edp2,
+ org.palladiosimulator.edp2.dao;bundle-version="1.0.0",
+ org.palladiosimulator.metricspec,
+ org.jscience,
+ org.palladiosimulator.edp2.util
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simucom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: sdq.ipd.uka.de
+Import-Package: javax.measure,
+ javax.measure.converter,
+ org.palladiosimulator.edp2.impl,
+ org.palladiosimulator.edp2.models.ExperimentData,
+ org.palladiosimulator.edp2.models.Repository
