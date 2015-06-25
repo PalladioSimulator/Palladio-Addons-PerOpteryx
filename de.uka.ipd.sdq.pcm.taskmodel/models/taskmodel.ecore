@@ -50,13 +50,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositorycomponent" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//repository/RepositoryComponent">
+        lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The PCM component that this Task derives from. This association is needed to determine which tasks can be deployed on which hardware nodes (servers, ResourceContainers). The design decision model defines the allocation of components only. With this link, you can derive the allocation of tasks. Also, this link is needed to map the results of the optmisation back to the PCM model later. Results that allocate two Tasks belonging to the same PCM component to different servers is not valid in the PCM. "/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allocationcontext" ordered="false"
-        eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//allocation/AllocationContext">
+        eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//allocation/AllocationContext">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This association points to the AllocationContext of this Task the PCM model. Using it, you can determine the ResourceContainer (i.e. hardware node, the server) that this Task is deployed on. Use myTask.getAllocationcontext.getResourceContainer_AllocationContext to retrieve the hardware node. "/>
       </eAnnotations>
@@ -68,7 +68,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abstractaction" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//seff/AbstractAction">
+        lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//seff/AbstractAction">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The SEFF action that this Task was transformed from. "/>
       </eAnnotations>
