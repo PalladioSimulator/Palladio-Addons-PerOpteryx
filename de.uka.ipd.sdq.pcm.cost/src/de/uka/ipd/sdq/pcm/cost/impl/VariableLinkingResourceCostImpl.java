@@ -19,15 +19,18 @@ import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable Linking Resource Cost</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Variable Linking Resource Cost</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getLinkingresource <em>Linkingresource</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getBandwithInitialFactor <em>Bandwith Initial Factor</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getBandwidthOperatingFactor <em>Bandwidth Operating Factor</em>}</li>
+ * <li>{@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getLinkingresource <em>
+ * Linkingresource</em>}</li>
+ * <li>{@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getBandwithInitialFactor
+ * <em>Bandwith Initial Factor</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl#getBandwidthOperatingFactor
+ * <em>Bandwidth Operating Factor</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,8 +39,8 @@ import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 public class VariableLinkingResourceCostImpl extends VariableCostImpl implements VariableLinkingResourceCost {
     /**
      * The cached value of the '{@link #getLinkingresource() <em>Linkingresource</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getLinkingresource()
      * @generated
      * @ordered
@@ -45,9 +48,9 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     protected LinkingResource linkingresource;
 
     /**
-     * The default value of the '{@link #getBandwithInitialFactor() <em>Bandwith Initial Factor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The default value of the '{@link #getBandwithInitialFactor()
+     * <em>Bandwith Initial Factor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getBandwithInitialFactor()
      * @generated
      * @ordered
@@ -55,9 +58,9 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     protected static final double BANDWITH_INITIAL_FACTOR_EDEFAULT = 0.0;
 
     /**
-     * The cached value of the '{@link #getBandwithInitialFactor() <em>Bandwith Initial Factor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The cached value of the '{@link #getBandwithInitialFactor() <em>Bandwith Initial Factor</em>}
+     * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getBandwithInitialFactor()
      * @generated
      * @ordered
@@ -65,9 +68,10 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     protected double bandwithInitialFactor = BANDWITH_INITIAL_FACTOR_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getBandwidthOperatingFactor() <em>Bandwidth Operating Factor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The default value of the '{@link #getBandwidthOperatingFactor()
+     * <em>Bandwidth Operating Factor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     *
      * @see #getBandwidthOperatingFactor()
      * @generated
      * @ordered
@@ -75,9 +79,10 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     protected static final double BANDWIDTH_OPERATING_FACTOR_EDEFAULT = 0.0;
 
     /**
-     * The cached value of the '{@link #getBandwidthOperatingFactor() <em>Bandwidth Operating Factor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The cached value of the '{@link #getBandwidthOperatingFactor()
+     * <em>Bandwidth Operating Factor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     *
      * @see #getBandwidthOperatingFactor()
      * @generated
      * @ordered
@@ -85,8 +90,8 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     protected double bandwidthOperatingFactor = BANDWIDTH_OPERATING_FACTOR_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     protected VariableLinkingResourceCostImpl() {
@@ -94,8 +99,8 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
@@ -104,231 +109,253 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public double getBandwithInitialFactor() {
-        return bandwithInitialFactor;
+        return this.bandwithInitialFactor;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void setBandwithInitialFactor(final double newBandwithInitialFactor) {
-        final double oldBandwithInitialFactor = bandwithInitialFactor;
-        bandwithInitialFactor = newBandwithInitialFactor;
-        if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR, oldBandwithInitialFactor, bandwithInitialFactor));
+        final double oldBandwithInitialFactor = this.bandwithInitialFactor;
+        this.bandwithInitialFactor = newBandwithInitialFactor;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET,
+                    costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR, oldBandwithInitialFactor,
+                    this.bandwithInitialFactor));
         }
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public double getBandwidthOperatingFactor() {
-        return bandwidthOperatingFactor;
+        return this.bandwidthOperatingFactor;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void setBandwidthOperatingFactor(final double newBandwidthOperatingFactor) {
-        final double oldBandwidthOperatingFactor = bandwidthOperatingFactor;
-        bandwidthOperatingFactor = newBandwidthOperatingFactor;
-        if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR, oldBandwidthOperatingFactor, bandwidthOperatingFactor));
+        final double oldBandwidthOperatingFactor = this.bandwidthOperatingFactor;
+        this.bandwidthOperatingFactor = newBandwidthOperatingFactor;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET,
+                    costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR,
+                    oldBandwidthOperatingFactor, this.bandwidthOperatingFactor));
         }
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public LinkingResource getLinkingresource() {
-        if (linkingresource != null && linkingresource.eIsProxy()) {
-            final InternalEObject oldLinkingresource = (InternalEObject)linkingresource;
-            linkingresource = (LinkingResource)eResolveProxy(oldLinkingresource);
-            if (linkingresource != oldLinkingresource) {
-                if (eNotificationRequired()) {
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE, oldLinkingresource, linkingresource));
+        if (this.linkingresource != null && ((EObject) this.linkingresource).eIsProxy())
+        {
+            final InternalEObject oldLinkingresource = (InternalEObject) this.linkingresource;
+            this.linkingresource = (LinkingResource) this.eResolveProxy(oldLinkingresource);
+            if (this.linkingresource != oldLinkingresource)
+            {
+                if (this.eNotificationRequired()) {
+                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+                            costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE, oldLinkingresource,
+                            this.linkingresource));
                 }
             }
         }
-        return linkingresource;
+        return this.linkingresource;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     public LinkingResource basicGetLinkingresource() {
-        return linkingresource;
+        return this.linkingresource;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void setLinkingresource(final LinkingResource newLinkingresource) {
-        final LinkingResource oldLinkingresource = linkingresource;
-        linkingresource = newLinkingresource;
-        if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE, oldLinkingresource, linkingresource));
+        final LinkingResource oldLinkingresource = this.linkingresource;
+        this.linkingresource = newLinkingresource;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET,
+                    costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE, oldLinkingresource,
+                    this.linkingresource));
         }
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
+        switch (featureID)
+        {
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE:
             if (resolve) {
-                return getLinkingresource();
+                return this.getLinkingresource();
             }
-            return basicGetLinkingresource();
+            return this.basicGetLinkingresource();
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR:
-            return getBandwithInitialFactor();
+            return this.getBandwithInitialFactor();
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR:
-            return getBandwidthOperatingFactor();
+            return this.getBandwidthOperatingFactor();
         }
         return super.eGet(featureID, resolve, coreType);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
+        switch (featureID)
+        {
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE:
-            setLinkingresource((LinkingResource)newValue);
+            this.setLinkingresource((LinkingResource) newValue);
             return;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR:
-            setBandwithInitialFactor((Double)newValue);
+            this.setBandwithInitialFactor((Double) newValue);
             return;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR:
-            setBandwidthOperatingFactor((Double)newValue);
+            this.setBandwidthOperatingFactor((Double) newValue);
             return;
         }
         super.eSet(featureID, newValue);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public void eUnset(final int featureID) {
-        switch (featureID) {
+        switch (featureID)
+        {
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE:
-            setLinkingresource((LinkingResource)null);
+            this.setLinkingresource((LinkingResource) null);
             return;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR:
-            setBandwithInitialFactor(BANDWITH_INITIAL_FACTOR_EDEFAULT);
+            this.setBandwithInitialFactor(BANDWITH_INITIAL_FACTOR_EDEFAULT);
             return;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR:
-            setBandwidthOperatingFactor(BANDWIDTH_OPERATING_FACTOR_EDEFAULT);
+            this.setBandwidthOperatingFactor(BANDWIDTH_OPERATING_FACTOR_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public boolean eIsSet(final int featureID) {
-        switch (featureID) {
+        switch (featureID)
+        {
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE:
-            return linkingresource != null;
+            return this.linkingresource != null;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWITH_INITIAL_FACTOR:
-            return bandwithInitialFactor != BANDWITH_INITIAL_FACTOR_EDEFAULT;
+            return this.bandwithInitialFactor != BANDWITH_INITIAL_FACTOR_EDEFAULT;
         case costPackage.VARIABLE_LINKING_RESOURCE_COST__BANDWIDTH_OPERATING_FACTOR:
-            return bandwidthOperatingFactor != BANDWIDTH_OPERATING_FACTOR_EDEFAULT;
+            return this.bandwidthOperatingFactor != BANDWIDTH_OPERATING_FACTOR_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public int eBaseStructuralFeatureID(final int derivedFeatureID, final Class<?> baseClass) {
-        if (baseClass == LinkingResourceCost.class) {
-            switch (derivedFeatureID) {
-            case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE: return costPackage.LINKING_RESOURCE_COST__LINKINGRESOURCE;
-            default: return -1;
+        if (baseClass == LinkingResourceCost.class)
+        {
+            switch (derivedFeatureID)
+            {
+            case costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE:
+                return costPackage.LINKING_RESOURCE_COST__LINKINGRESOURCE;
+            default:
+                return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public int eDerivedStructuralFeatureID(final int baseFeatureID, final Class<?> baseClass) {
-        if (baseClass == LinkingResourceCost.class) {
-            switch (baseFeatureID) {
-            case costPackage.LINKING_RESOURCE_COST__LINKINGRESOURCE: return costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE;
-            default: return -1;
+        if (baseClass == LinkingResourceCost.class)
+        {
+            switch (baseFeatureID)
+            {
+            case costPackage.LINKING_RESOURCE_COST__LINKINGRESOURCE:
+                return costPackage.VARIABLE_LINKING_RESOURCE_COST__LINKINGRESOURCE;
+            default:
+                return -1;
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
     @Override
     public String toString() {
-        if (eIsProxy()) {
+        if (this.eIsProxy()) {
             return super.toString();
         }
 
         final StringBuffer result = new StringBuffer(super.toString());
         result.append(" (bandwithInitialFactor: ");
-        result.append(bandwithInitialFactor);
+        result.append(this.bandwithInitialFactor);
         result.append(", bandwidthOperatingFactor: ");
-        result.append(bandwidthOperatingFactor);
+        result.append(this.bandwidthOperatingFactor);
         result.append(')');
         return result.toString();
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated not
      */
     @Override
@@ -337,8 +364,8 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated not
      */
     @Override
@@ -347,17 +374,21 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated not
      */
     private double getThroughput() {
-        //TODO: what about longs and shorts and stuff here?
-        if ( this.getLinkingresource() != null
+        // TODO: what about longs and shorts and stuff here?
+        if (this.getLinkingresource() != null
                 && this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource() != null
-                && this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource().getThroughput_CommunicationLinkResourceSpecification() != null
-                && this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource().getThroughput_CommunicationLinkResourceSpecification().getSpecification() != null ) {
-            return CostUtil.getInstance().getDoubleFromSpecification(this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource().getThroughput_CommunicationLinkResourceSpecification().getSpecification());
+                && this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource()
+                .getThroughput_CommunicationLinkResourceSpecification() != null
+                && this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource()
+                .getThroughput_CommunicationLinkResourceSpecification().getSpecification() != null) {
+            return CostUtil.getInstance().getDoubleFromSpecification(
+                    this.getLinkingresource().getCommunicationLinkResourceSpecifications_LinkingResource()
+                    .getThroughput_CommunicationLinkResourceSpecification().getSpecification());
         }
         return 0;
     }
@@ -367,4 +398,4 @@ public class VariableLinkingResourceCostImpl extends VariableCostImpl implements
         return this.getLinkingresource();
     }
 
-} //VariableLinkingResourceCostImpl
+} // VariableLinkingResourceCostImpl

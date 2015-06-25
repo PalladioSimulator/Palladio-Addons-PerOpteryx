@@ -4,11 +4,10 @@ Bundle-Name: Cost Model Edit Support
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.cost.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.palladiosimulator.pcm.cost.provider.CostModelEditPlugin$Implementation
+Bundle-Activator: de.uka.ipd.sdq.pcm.cost.provider.CostModelEditPlugin$Implementation
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
-Export-Package: de.uka.ipd.sdq.pcm.cost.provider,
- org.palladiosimulator.pcm.cost.provider
+Export-Package: de.uka.ipd.sdq.pcm.cost.provider
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.pcm.cost;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
