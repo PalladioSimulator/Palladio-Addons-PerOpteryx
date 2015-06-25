@@ -24,7 +24,7 @@
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>CostModel.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="cost" basePackage="org.palladiosimulator.pcm"
+  <genPackages xsi:type="genmodel:GenPackage" prefix="cost" basePackage="de.uka.ipd.sdq.pcm"
       resource="XMI" disposableProviderFactory="true" ecorePackage="cost.ecore#/">
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="cost.ecore#//ComponentCost">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute cost.ecore#//ComponentCost/componentOperatingCost"/>

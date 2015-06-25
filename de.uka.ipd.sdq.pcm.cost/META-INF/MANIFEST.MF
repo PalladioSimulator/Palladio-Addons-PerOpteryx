@@ -25,10 +25,7 @@ Export-Package: de.uka.ipd.sdq.pcm.cost;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify,
-   de.uka.ipd.sdq.pcm.cost",
- org.palladiosimulator.pcm.cost,
- org.palladiosimulator.pcm.cost.impl,
- org.palladiosimulator.pcm.cost.util
+   de.uka.ipd.sdq.pcm.cost"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
