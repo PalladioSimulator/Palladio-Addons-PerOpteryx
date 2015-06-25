@@ -1,7 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
-import org.opt4j.core.InfeasibilityConstraint;
 import org.opt4j.core.Constraint.Direction;
+import org.opt4j.core.InfeasibilityConstraint;
 
 public class InfeasibilityConstraintBuilder {
 

@@ -10,6 +10,10 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourcetype.ResourceType;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -20,15 +24,11 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.UtilisationR
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
-import de.uka.ipd.sdq.pcm.resourcetype.ResourceType;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
 
 /**
  * Implements a server consolidation heuristic. This heuristic finds two

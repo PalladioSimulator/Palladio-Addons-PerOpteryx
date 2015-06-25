@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 
 @Deprecated
 public interface INewCandidates {

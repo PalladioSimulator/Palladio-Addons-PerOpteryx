@@ -1,9 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
 import org.opt4j.core.Constraint.Direction;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedInfeasibilityConstraint;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 
 public class UsageScenarioBasedInfeasibilityConstraintBuilder extends InfeasibilityConstraintBuilder{
 

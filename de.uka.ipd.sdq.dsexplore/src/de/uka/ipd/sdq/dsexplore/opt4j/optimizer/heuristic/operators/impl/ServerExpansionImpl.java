@@ -9,6 +9,11 @@ import java.util.Random;
 import org.eclipse.emf.ecore.EObject;
 import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.impl.ProcessingResourceSpecificationResultImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -18,17 +23,12 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.UtilisationR
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.impl.ProcessingResourceSpecificationResultImpl;
 
 /**
  * Implements a server expansion heuristic. This heuristic finds a

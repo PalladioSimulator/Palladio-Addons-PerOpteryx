@@ -4,8 +4,7 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures;
 
 import org.opt4j.core.InfeasibilityConstraint;
-
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 /**
  * Criterion tied to an UsageScenario.

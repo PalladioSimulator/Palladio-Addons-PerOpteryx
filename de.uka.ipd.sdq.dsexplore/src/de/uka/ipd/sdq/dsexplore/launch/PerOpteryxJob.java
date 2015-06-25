@@ -2,14 +2,14 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
+import org.palladiosimulator.analyzer.workflow.jobs.PreparePCMBlackboardPartitionJob;
+import org.palladiosimulator.analyzer.workflow.jobs.ValidatePCMModelsJob;
 
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.ICompositeJob;
 import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
-import de.uka.ipd.sdq.workflow.pcm.jobs.PreparePCMBlackboardPartitionJob;
-import de.uka.ipd.sdq.workflow.pcm.jobs.ValidatePCMModelsJob;
 
 public class PerOpteryxJob extends
 SequentialBlackboardInteractingJob<MDSDBlackboard> implements

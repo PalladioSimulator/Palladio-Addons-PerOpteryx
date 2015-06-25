@@ -2,9 +2,9 @@ package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallObjective;
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
 
 public class EntryLevelSystemCallObjectiveBuilder extends ObjectiveBuilder{
 

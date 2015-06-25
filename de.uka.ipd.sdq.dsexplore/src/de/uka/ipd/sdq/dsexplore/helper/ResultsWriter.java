@@ -22,6 +22,15 @@ import org.opt4j.core.IntegerValue;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.Value;
+import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
+import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
@@ -37,15 +46,6 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithConte
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
-import de.uka.ipd.sdq.pcm.resourceenvironment.LinkingResource;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
-import de.uka.ipd.sdq.pcm.resourcetype.ProcessingResourceType;
-import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 /**

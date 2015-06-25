@@ -1,7 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents;
 
-import de.uka.ipd.sdq.pcm.core.composition.AssemblyConnector;
-import de.uka.ipd.sdq.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 public class OutgoingAssemblyConnectorAdjuster implements ConnectorAdjuster {
 	

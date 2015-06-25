@@ -11,10 +11,10 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
-import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
 
 /**
  * The DSEFileNamesInputTab has additional QML logic.

@@ -1,8 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 
 import org.apache.log4j.Logger;
-
-import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 
 public class ServiceInfo {
 	

@@ -6,10 +6,9 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import org.eclipse.emf.common.util.EList;
-
-import LqnCore.ActivityDefType;
-import LqnCore.OutputResultType;
-import LqnCore.TaskType;
+import org.palladiosimulator.solver.lqn.ActivityDefType;
+import org.palladiosimulator.solver.lqn.OutputResultType;
+import org.palladiosimulator.solver.lqn.TaskType;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 

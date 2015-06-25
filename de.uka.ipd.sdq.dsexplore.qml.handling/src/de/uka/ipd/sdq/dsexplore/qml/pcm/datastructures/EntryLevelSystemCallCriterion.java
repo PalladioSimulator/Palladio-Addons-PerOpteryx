@@ -1,6 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures;
 
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 public interface EntryLevelSystemCallCriterion {
 

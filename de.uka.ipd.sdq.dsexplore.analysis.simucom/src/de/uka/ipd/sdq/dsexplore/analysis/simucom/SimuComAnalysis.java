@@ -1,12 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simucom;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -18,11 +13,13 @@ import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.emf.common.util.EList;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.impl.RepositoryManager;
-import org.palladiosimulator.edp2.models.Repository.Repositories;
 import org.palladiosimulator.edp2.models.Repository.Repository;
-import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowLauncher;
@@ -40,11 +37,7 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedInfeasibilityConstraint;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
-import de.uka.ipd.sdq.sensorframework.entities.Experiment;
-import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
 import de.uka.ipd.sdq.simulation.AbstractSimulationConfig;
@@ -52,8 +45,6 @@ import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
 /**
  * Starts a SimuCom Analysis for the design space exploration.

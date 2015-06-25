@@ -1,9 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.Apply;
 import org.opt4j.operator.neighbor.Neighbor;
 import org.opt4j.operator.normalize.NormalizeDouble;
-import org.opt4j.common.random.Rand;
 
 import com.google.inject.Singleton;
 

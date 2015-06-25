@@ -1,6 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 import org.apache.log4j.Logger;
-import de.uka.ipd.sdq.pcm.repository.PassiveResource;
+import org.palladiosimulator.pcm.repository.PassiveResource;
 
 public class PassiveResInfo {
 	

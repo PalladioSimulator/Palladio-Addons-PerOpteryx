@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.opt4j.core.DoubleValue;
 import org.opt4j.core.Value;
+import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
@@ -21,20 +22,19 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration.SearchMethod;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig;
+import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig.TimeType;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
 import de.uka.ipd.sdq.tcfmoop.config.InsignificantParetoFrontChangeConfig;
 import de.uka.ipd.sdq.tcfmoop.config.InsignificantSetQualityImprovementConfig;
+import de.uka.ipd.sdq.tcfmoop.config.InsignificantSetQualityImprovementConfig.UnresolvedValueDifference;
 import de.uka.ipd.sdq.tcfmoop.config.MaxGenerationNumberConfig;
 import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.NoNewParetoOptimalCandidatesFoundConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig;
-import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig.TimeType;
-import de.uka.ipd.sdq.tcfmoop.config.InsignificantSetQualityImprovementConfig.UnresolvedValueDifference;
 import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig.EvaluationMode;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
-import de.uka.ipd.sdq.workflow.pcm.ConstantsContainer;
 
 public class DSEWorkflowConfigurationBuilder extends
 		AbstractWorkflowConfigurationBuilder {

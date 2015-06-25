@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.helper.ExtensionHelper;
@@ -26,7 +27,6 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
 
 /**
  * The QMLManager component can be queried for getting the currently activated QML criteria. 

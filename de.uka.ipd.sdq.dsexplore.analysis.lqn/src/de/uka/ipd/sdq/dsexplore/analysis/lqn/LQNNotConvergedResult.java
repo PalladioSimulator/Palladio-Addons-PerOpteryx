@@ -1,14 +1,14 @@
 package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 
 import org.opt4j.core.Constraint;
+import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Objective;
-import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Objective.Sign;
+import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 public class LQNNotConvergedResult extends AbstractPerformanceAnalysisResult implements ILQNResult{

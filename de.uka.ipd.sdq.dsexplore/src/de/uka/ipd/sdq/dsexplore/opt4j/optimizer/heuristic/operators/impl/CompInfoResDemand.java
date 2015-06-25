@@ -1,8 +1,8 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 import org.apache.log4j.Logger;
-import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
-import de.uka.ipd.sdq.pcm.repository.BasicComponent;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 public class CompInfoResDemand {
 	

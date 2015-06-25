@@ -1,8 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.reliability;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,44 +9,27 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.opt4j.core.InfeasibilityConstraint;
-import org.opt4j.core.Objective;
-import org.opt4j.core.SatisfactionConstraint;
+import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.solver.reliability.pcm2markov.MarkovTransformationResult;
+import org.palladiosimulator.solver.reliability.pcm2markov.Pcm2MarkovStrategy;
+import org.palladiosimulator.solver.reliability.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
+import org.palladiosimulator.solver.reliability.runconfig.RunPCMReliabilityAnalysisJob;
+import org.palladiosimulator.solver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
+import org.palladiosimulator.solver.runconfig.PCMSolverWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
-import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedInfeasibilityConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedObjectiveBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedSatisfactionConstraintBuilder;
-import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
-import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverWorkflowRunConfiguration;
-import de.uka.ipd.sdq.reliability.solver.pcm2markov.MarkovTransformationResult;
-import de.uka.ipd.sdq.reliability.solver.pcm2markov.Pcm2MarkovStrategy;
-import de.uka.ipd.sdq.reliability.solver.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
-import de.uka.ipd.sdq.reliability.solver.runconfig.RunPCMReliabilityAnalysisJob;
-import de.uka.ipd.sdq.workflow.blackboard.Blackboard;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.configurations.PCMWorkflowConfigurationBuilder;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
 /**
  * Starts a reliability Solver Analysis for the design space exploration.

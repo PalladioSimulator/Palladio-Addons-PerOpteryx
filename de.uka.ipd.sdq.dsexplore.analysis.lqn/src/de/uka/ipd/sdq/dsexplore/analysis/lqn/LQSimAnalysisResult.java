@@ -3,12 +3,12 @@ package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 import java.util.Map;
 
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.solver.lqn.LqnModelType;
+import org.palladiosimulator.solver.models.PCMInstance;
 
-import LqnCore.LqnModelType;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 /**

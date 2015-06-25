@@ -1,10 +1,10 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
-import org.opt4j.core.Objective;
 import org.opt4j.core.Constraint.Direction;
+import org.opt4j.core.Objective;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 
 public class UsageScenarioBasedSatisfactionConstraintBuilder extends SatisfactionConstraintBuilder{
 

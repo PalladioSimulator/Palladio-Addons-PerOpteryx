@@ -1,9 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.exception;
 
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 
 /**
  * This exception is thrown if a {@link Choice} and the linked {@link DegreeOfFreedomInstance} 

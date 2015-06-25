@@ -8,13 +8,10 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
-import de.uka.ipd.sdq.workflow.pcm.configurations.AbstractPCMWorkflowRunConfiguration;
 
 /**
  * Configuration for a PerOpteryx run.

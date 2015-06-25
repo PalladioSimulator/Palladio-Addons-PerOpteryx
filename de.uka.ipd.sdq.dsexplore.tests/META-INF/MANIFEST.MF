@@ -9,9 +9,10 @@ Require-Bundle:
  org.apache.log4j,
  de.uka.ipd.sdq.sensorframework,
  de.uka.ipd.sdq.dsexplore.analysis.simucom;bundle-version="1.0.0",
- de.uka.ipd.sdq.pcmsolver;bundle-version="3.0.0",
- de.uka.ipd.sdq.pcm;bundle-version="3.2.0",
- de.uka.ipd.sdq.pcm.resultdecorator;bundle-version="1.0.0",
+ org.palladiosimulator.pcm;bundle-version="4.0.0",
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0"
+ de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
+ org.palladiosimulator.analyzer.resultdecorator;bundle-version="1.0.0",
+ org.palladiosimulator.solver;bundle-version="3.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

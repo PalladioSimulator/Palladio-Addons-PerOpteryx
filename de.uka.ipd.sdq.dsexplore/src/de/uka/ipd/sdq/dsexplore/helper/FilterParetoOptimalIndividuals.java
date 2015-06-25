@@ -14,9 +14,9 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.opt4j.core.Individual;
+import org.opt4j.core.Individual.State;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Value;
-import org.opt4j.core.Individual.State;
 import org.opt4j.core.domination.ParetoDomination;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;

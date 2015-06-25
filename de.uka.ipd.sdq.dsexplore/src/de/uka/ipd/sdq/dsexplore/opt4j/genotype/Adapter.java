@@ -10,10 +10,8 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 
-
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -23,6 +21,8 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
