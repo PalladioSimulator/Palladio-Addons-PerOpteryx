@@ -4,8 +4,8 @@
 package de.uka.ipd.sdq.dsexplore.qml.reader;
 
 import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;

@@ -1,8 +1,8 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
+import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Objective;
 import org.opt4j.core.SatisfactionConstraint;
-import org.opt4j.core.Constraint.Direction;
 
 public class SatisfactionConstraintBuilder {
 

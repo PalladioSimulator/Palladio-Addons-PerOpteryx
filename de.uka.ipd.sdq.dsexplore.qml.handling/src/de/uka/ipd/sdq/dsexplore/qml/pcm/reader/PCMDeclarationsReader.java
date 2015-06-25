@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.opt4j.core.SatisfactionConstraint;
 import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Objective.Sign;
+import org.opt4j.core.SatisfactionConstraint;
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
@@ -23,9 +25,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Objective;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Restriction;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SimpleQMLContract;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
-import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.InfeasibilityConstraintBuilder;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.ObjectiveBuilder;
@@ -33,8 +33,6 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.SatisfactionConst
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDeclarationsReader;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 
 /**
  * Reads PCM specific QML definitions. It is used by quality attribute evaluators to get

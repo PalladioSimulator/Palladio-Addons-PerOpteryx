@@ -2,9 +2,9 @@ package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
 
 public class UsageScenarioBasedObjectiveBuilder extends ObjectiveBuilder{
 

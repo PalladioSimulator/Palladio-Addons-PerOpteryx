@@ -15,6 +15,8 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -27,8 +29,6 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.OCLRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.SelectionRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.StaticSelectionRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ValueRule;
-import de.uka.ipd.sdq.pcm.repository.Repository;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
 
 /**
  * see also http://www.eclipse.org/articles/article.php?file=Article-EMF-Codegen-with-OCL/index.html

@@ -2,6 +2,8 @@ package de.uka.ipd.sdq.dsexplore.analysis;
 
 import org.opt4j.core.Criterion;
 
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
+
 
 /**
  * Class to store the results of a DSE analysis step.

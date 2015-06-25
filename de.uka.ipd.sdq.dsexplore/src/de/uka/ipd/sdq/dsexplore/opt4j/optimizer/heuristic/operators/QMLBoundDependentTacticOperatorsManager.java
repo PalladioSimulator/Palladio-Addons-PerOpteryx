@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.opt4j.core.Constraint;
+import org.opt4j.core.Genotype;
 import org.opt4j.core.InfeasibilityConstraint;
 import org.opt4j.core.SatisfactionConstraint;
 import org.opt4j.core.Value;
-import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
 
 import com.google.inject.Inject;

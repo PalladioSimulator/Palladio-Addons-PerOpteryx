@@ -1,10 +1,10 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder;
 
-import org.opt4j.core.InfeasibilityConstraint;
 import org.opt4j.core.Constraint.Direction;
+import org.opt4j.core.InfeasibilityConstraint;
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallInfeasibilityConstraint;
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
 
 public class EntryLevelSystemCallInfeasibilityConstraintBuilder extends InfeasibilityConstraintBuilder {
 

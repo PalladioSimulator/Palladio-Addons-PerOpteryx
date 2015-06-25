@@ -1,7 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents;
 
-import de.uka.ipd.sdq.pcm.core.composition.ProvidedDelegationConnector;
-import de.uka.ipd.sdq.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 
 public class ProvidedDelegationConnectorReplacer implements ConnectorAdjuster {
 	

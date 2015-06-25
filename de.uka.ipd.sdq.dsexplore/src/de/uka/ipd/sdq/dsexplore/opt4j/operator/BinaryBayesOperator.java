@@ -12,9 +12,7 @@ import org.opt4j.optimizer.ea.Pair;
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
-import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.CustomSampler;
 import de.uka.ipd.sdq.dsexplore.bayesnets.searchers.ChowLiuTree;
-import de.uka.ipd.sdq.dsexplore.bayesnets.searchers.HillClimber;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;

@@ -7,17 +7,23 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.opt4j.core.Objective;
 import org.opt4j.core.Genotype;
+import org.opt4j.core.Objective;
 import org.opt4j.operator.copy.Copy;
+import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
+import org.palladiosimulator.analyzer.resultdecorator.repositorydecorator.AllocationServiceResult;
+import org.palladiosimulator.analyzer.resultdecorator.repositorydecorator.ServiceResult;
+import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.solver.context.aggregatedUsageContext.AggregatedCommunication;
+import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
+import org.palladiosimulator.solver.context.aggregatedUsageContext.ServiceExecutionContext;
 
-import de.uka.ipd.sdq.context.aggregatedUsageContext.AggregatedCommunication;
-import de.uka.ipd.sdq.context.aggregatedUsageContext.ComputedAggregatedUsage;
-import de.uka.ipd.sdq.context.aggregatedUsageContext.ServiceExecutionContext;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.Pair;
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.AbstractTactic;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.UtilisationResultCacheAndHelper;
@@ -25,18 +31,11 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
-import de.uka.ipd.sdq.pcm.allocation.AllocationContext;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceContainer;
-import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
-import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.AllocationServiceResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.repositorydecorator.ServiceResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
 
 public class ReallocateForReduceLinkUsage extends AbstractTactic {
 
@@ -318,7 +317,7 @@ class ComponentAndServiceResult {
 			this.ratioRemoteCalls.add(rcRatio);
 		}
 		
-		// TODO: nur für remote calls über den Link of interest!!
+		// TODO: nur fï¿½r remote calls ï¿½ber den Link of interest!!
 		// TODO: calculate overall local vs remote ratio? No, sort these objects by which pair of component / RC has the highest ratio. Or any? 
 		
 	}

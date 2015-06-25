@@ -8,10 +8,9 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
-
-import de.uka.ipd.sdq.pcmsolver.runconfig.MainConfigTab;
-import de.uka.ipd.sdq.pcmsolver.runconfig.MessageStrings;
-import de.uka.ipd.sdq.workflow.pcm.runconfig.ConfigurationTab;
+import org.palladiosimulator.analyzer.workflow.runconfig.ConfigurationTab;
+import org.palladiosimulator.solver.runconfig.MainConfigTab;
+import org.palladiosimulator.solver.runconfig.MessageStrings;
 
 /**
  * Provides a configuration tab group for the LQNSim analysis method.

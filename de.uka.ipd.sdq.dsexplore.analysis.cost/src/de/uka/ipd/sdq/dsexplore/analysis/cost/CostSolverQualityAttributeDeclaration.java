@@ -3,8 +3,8 @@
  */
 package de.uka.ipd.sdq.dsexplore.analysis.cost;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;

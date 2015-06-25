@@ -3,20 +3,20 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Objective;
-import org.opt4j.core.Constraint;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.Value;
 import org.opt4j.core.domination.DominationStrategy;
+import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
+import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
-import de.uka.ipd.sdq.pcm.resultdecorator.ResultDecoratorRepository;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 public class DSEObjectives extends Objectives {

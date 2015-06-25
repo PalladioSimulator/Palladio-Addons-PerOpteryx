@@ -2,8 +2,7 @@ package de.uka.ipd.sdq.dsexplore.analysis;
 
 
 import org.opt4j.core.Phenotype;
-
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 /**
  * Just holds a PCM Instance and the evaluated ConfidenceIntervals, if available. 

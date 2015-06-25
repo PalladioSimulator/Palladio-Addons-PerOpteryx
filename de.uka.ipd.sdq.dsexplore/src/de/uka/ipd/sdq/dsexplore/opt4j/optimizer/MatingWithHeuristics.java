@@ -2,10 +2,11 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import org.opt4j.common.random.Rand;
+import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
-import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
 import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.operator.mutate.Mutate;
@@ -19,7 +20,8 @@ import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.QMLBoundDependentTacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.*;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 
 /**

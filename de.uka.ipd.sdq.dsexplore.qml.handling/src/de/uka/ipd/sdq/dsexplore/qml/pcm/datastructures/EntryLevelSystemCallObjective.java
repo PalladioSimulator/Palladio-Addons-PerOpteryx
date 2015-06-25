@@ -1,8 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures;
 
 import org.opt4j.core.Objective;
-
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 public class EntryLevelSystemCallObjective extends Objective  implements EntryLevelSystemCallCriterion{
 

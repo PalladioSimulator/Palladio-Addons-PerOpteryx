@@ -1,9 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -13,28 +11,27 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
+import org.palladiosimulator.solver.RunPCMAnalysisJob;
+import org.palladiosimulator.solver.lqn.LqnModelType;
+import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.runconfig.MessageStrings;
+import org.palladiosimulator.solver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
+import org.palladiosimulator.solver.runconfig.PCMSolverWorkflowRunConfiguration;
+import org.palladiosimulator.solver.transformations.SolverStrategy;
+import org.palladiosimulator.solver.transformations.pcm2lqn.LqnXmlHandler;
+import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnStrategy;
 
-import LqnCore.LqnModelType;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
-import de.uka.ipd.sdq.pcmsolver.RunPCMAnalysisJob;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pcmsolver.runconfig.MessageStrings;
-import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
-import de.uka.ipd.sdq.pcmsolver.runconfig.PCMSolverWorkflowRunConfiguration;
-import de.uka.ipd.sdq.pcmsolver.transformations.SolverStrategy;
-import de.uka.ipd.sdq.pcmsolver.transformations.pcm2lqn.LqnXmlHandler;
-import de.uka.ipd.sdq.pcmsolver.transformations.pcm2lqn.Pcm2LqnStrategy;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.pcm.configurations.PCMWorkflowConfigurationBuilder;
 
 public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IAnalysis {
 

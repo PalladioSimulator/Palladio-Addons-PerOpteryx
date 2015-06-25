@@ -1,9 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -17,28 +15,19 @@ import org.opt4j.operator.mutate.Mutate;
 import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.optimizer.ea.Coupler;
 import org.opt4j.optimizer.ea.CrossoverRate;
-import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.MatingCrossoverMutate;
 import org.opt4j.optimizer.ea.Pair;
-import org.opt4j.optimizer.mopso.Particle;
-import org.opt4j.optimizer.ea.BasicMatingModule;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
-import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.BayesianCrossover;
-import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.QMLBoundDependentTacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 
 /** This class is meant to contain methods
  * that operate on a collection of Binary strings.

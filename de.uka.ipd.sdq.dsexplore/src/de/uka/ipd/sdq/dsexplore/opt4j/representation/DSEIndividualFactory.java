@@ -4,7 +4,6 @@ import org.opt4j.core.AbstractIndividualFactory;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.problem.Creator;
 
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 

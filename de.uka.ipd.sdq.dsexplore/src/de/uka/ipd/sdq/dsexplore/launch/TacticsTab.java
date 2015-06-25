@@ -18,9 +18,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
-import de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab;
 
 public class TacticsTab extends FileNamesInputTab {
 	final static String TAB_NAME = "Tactics";
