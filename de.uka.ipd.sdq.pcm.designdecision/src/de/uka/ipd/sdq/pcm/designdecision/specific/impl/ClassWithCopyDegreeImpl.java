@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassWithCopyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class ClassWithCopyDegreeImpl extends ClassDegreeImpl implements ClassWithCopyDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassWithCopyDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ClassWithCopyDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.CLASS_WITH_COPY_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.CLASS_WITH_COPY_DEGREE;
+    }
 
 } //ClassWithCopyDegreeImpl

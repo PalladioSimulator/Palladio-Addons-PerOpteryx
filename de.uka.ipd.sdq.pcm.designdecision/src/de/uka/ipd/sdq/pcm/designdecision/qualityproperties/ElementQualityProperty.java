@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.qualityproperties;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Element Quality Property</b></em>'.

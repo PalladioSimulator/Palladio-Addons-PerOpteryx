@@ -7,9 +7,7 @@
 package de.uka.ipd.sdq.pcm.resourcerepository.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,15 +17,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @generated
  */
 public class resourcerepositoryResourceImpl extends XMIResourceImpl {
-	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param uri the URI of the new resource.
-	 * @generated
-	 */
-	public resourcerepositoryResourceImpl(URI uri) {
-		super(uri);
-	}
+    /**
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param uri the URI of the new resource.
+     * @generated
+     */
+    public resourcerepositoryResourceImpl(URI uri) {
+        super(uri);
+    }
 
 } //resourcerepositoryResourceImpl

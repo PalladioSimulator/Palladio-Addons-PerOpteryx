@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class DiscreteDegreeImpl extends DataTypeDegreeImpl implements DiscreteDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DiscreteDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected DiscreteDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.DISCRETE_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.DISCRETE_DEGREE;
+    }
 
 } //DiscreteDegreeImpl

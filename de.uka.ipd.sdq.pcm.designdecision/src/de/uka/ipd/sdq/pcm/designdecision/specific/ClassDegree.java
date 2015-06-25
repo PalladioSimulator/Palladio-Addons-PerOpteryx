@@ -6,11 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,20 +32,20 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ClassDegree extends DegreeOfFreedomInstance {
-	/**
-	 * Returns the value of the '<em><b>Class Design Options</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Design Options</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Design Options</em>' reference list.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getClassDegree_ClassDesignOptions()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	EList<EObject> getClassDesignOptions();
+    /**
+     * Returns the value of the '<em><b>Class Design Options</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Class Design Options</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Class Design Options</em>' reference list.
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getClassDegree_ClassDesignOptions()
+     * @model required="true" ordered="false"
+     * @generated
+     */
+    EList<EObject> getClassDesignOptions();
 
 } // ClassDegree

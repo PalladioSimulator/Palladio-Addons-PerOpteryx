@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl;
 
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ElementQualityProperty;
-
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
 import org.eclipse.emf.ecore.EClass;
+
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ElementQualityProperty;
+import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class ElementQualityPropertyImpl extends QualityPropertyImpl implements ElementQualityProperty {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ElementQualityPropertyImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ElementQualityPropertyImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return qualitypropertiesPackage.Literals.ELEMENT_QUALITY_PROPERTY;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return qualitypropertiesPackage.Literals.ELEMENT_QUALITY_PROPERTY;
+    }
 
 } //ElementQualityPropertyImpl

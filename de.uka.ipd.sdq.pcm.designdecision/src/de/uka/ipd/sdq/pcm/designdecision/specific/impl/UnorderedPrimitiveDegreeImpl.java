@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedPrimitiveDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class UnorderedPrimitiveDegreeImpl extends UnorderedDegreeImpl implements UnorderedPrimitiveDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnorderedPrimitiveDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected UnorderedPrimitiveDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.UNORDERED_PRIMITIVE_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.UNORDERED_PRIMITIVE_DEGREE;
+    }
 
 } //UnorderedPrimitiveDegreeImpl

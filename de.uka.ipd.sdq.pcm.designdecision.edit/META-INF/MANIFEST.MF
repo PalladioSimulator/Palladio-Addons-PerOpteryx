@@ -21,7 +21,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  de.uka.ipd.sdq.featuremodel;visibility:=reexport,
- de.uka.ipd.sdq.pcm.resultdecorator.edit;visibility:=reexport,
  de.uka.ipd.sdq.stoex;visibility:=reexport,
  de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
@@ -33,10 +32,8 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.featuremodel.edit;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
- de.uka.ipd.sdq.pcm;visibility:=reexport,
- de.uka.ipd.sdq.pcm.edit;visibility:=reexport,
- de.uka.ipd.sdq.pcm.resultdecorator;visibility:=reexport
+ org.palladiosimulator.pcm;visibility:=reexport,
+ org.palladiosimulator.pcm.edit;visibility:=reexport,
+ org.palladiosimulator.analyzer.resultdecorator;visibility:=reexport,
+ org.palladiosimulator.analyzer.resultdecorator.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Import-Package: de.uka.ipd.sdq.pcm.cost,
- de.uka.ipd.sdq.pcm.cost.provider,
- de.uka.ipd.sdq.pcm.resultdecorator.provider

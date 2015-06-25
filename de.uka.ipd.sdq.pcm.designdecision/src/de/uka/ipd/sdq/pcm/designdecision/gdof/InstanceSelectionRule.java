@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.gdof;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Instance Selection Rule</b></em>'.
@@ -24,30 +23,30 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
  * @generated
  */
 public interface InstanceSelectionRule extends SelectionRule {
-	/**
-	 * Returns the value of the '<em><b>Context Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Context Instance</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context Instance</em>' reference.
-	 * @see #setContextInstance(ChangeableElementDescription)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage#getInstanceSelectionRule_ContextInstance()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	ChangeableElementDescription getContextInstance();
+    /**
+     * Returns the value of the '<em><b>Context Instance</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context Instance</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Context Instance</em>' reference.
+     * @see #setContextInstance(ChangeableElementDescription)
+     * @see de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage#getInstanceSelectionRule_ContextInstance()
+     * @model ordered="false"
+     * @generated
+     */
+    ChangeableElementDescription getContextInstance();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.InstanceSelectionRule#getContextInstance <em>Context Instance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context Instance</em>' reference.
-	 * @see #getContextInstance()
-	 * @generated
-	 */
-	void setContextInstance(ChangeableElementDescription value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.InstanceSelectionRule#getContextInstance <em>Context Instance</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context Instance</em>' reference.
+     * @see #getContextInstance()
+     * @generated
+     */
+    void setContextInstance(ChangeableElementDescription value);
 
 } // InstanceSelectionRule

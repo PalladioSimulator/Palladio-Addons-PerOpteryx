@@ -7,11 +7,8 @@
 package de.uka.ipd.sdq.pcm.resourcerepository.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
@@ -22,26 +19,26 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @generated
  */
 public class resourcerepositoryResourceFactoryImpl extends ResourceFactoryImpl {
-	/**
-	 * Creates an instance of the resource factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public resourcerepositoryResourceFactoryImpl() {
-		super();
-	}
+    /**
+     * Creates an instance of the resource factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public resourcerepositoryResourceFactoryImpl() {
+        super();
+    }
 
-	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Resource createResource(URI uri) {
-		XMLResource result = new resourcerepositoryResourceImpl(uri);
-		return result;
-	}
+    /**
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Resource createResource(URI uri) {
+        XMLResource result = new resourcerepositoryResourceImpl(uri);
+        return result;
+    }
 
 } //resourcerepositoryResourceFactoryImpl
