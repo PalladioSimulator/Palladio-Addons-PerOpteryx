@@ -6,7 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.cost;
 
-import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->

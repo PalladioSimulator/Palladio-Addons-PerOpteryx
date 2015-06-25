@@ -6,8 +6,16 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.PcmPackage;
-import de.uka.ipd.sdq.pcm.allocation.AllocationPackage;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.palladiosimulator.pcm.PcmPackage;
+import org.palladiosimulator.pcm.allocation.AllocationPackage;
+import org.palladiosimulator.pcm.repository.RepositoryPackage;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
 
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.ComponentCostPerInstance;
@@ -23,19 +31,7 @@ import de.uka.ipd.sdq.pcm.cost.VariableLinkingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.costFactory;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
-
-import de.uka.ipd.sdq.pcm.repository.RepositoryPackage;
-
-import de.uka.ipd.sdq.pcm.resourceenvironment.ResourceenvironmentPackage;
-
 import de.uka.ipd.sdq.stoex.StoexPackage;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->

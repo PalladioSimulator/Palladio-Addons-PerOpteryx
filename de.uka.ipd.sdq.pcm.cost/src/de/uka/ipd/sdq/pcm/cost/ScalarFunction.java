@@ -6,9 +6,9 @@
  */
 package de.uka.ipd.sdq.pcm.cost;
 
-import de.uka.ipd.sdq.stoex.Term;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.uka.ipd.sdq.stoex.Term;
 
 /**
  * <!-- begin-user-doc -->

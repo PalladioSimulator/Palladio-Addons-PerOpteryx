@@ -6,7 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.cost;
 
-import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 
 /**
  * <!-- begin-user-doc -->

@@ -6,14 +6,24 @@
  */
 package de.uka.ipd.sdq.pcm.cost.util;
 
-import de.uka.ipd.sdq.pcm.cost.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.ComponentCostPerInstance;
+import de.uka.ipd.sdq.pcm.cost.Cost;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.cost.FixedLinkingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.LinkingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
+import de.uka.ipd.sdq.pcm.cost.VariableCost;
+import de.uka.ipd.sdq.pcm.cost.VariableLinkingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 
 /**
  * <!-- begin-user-doc -->

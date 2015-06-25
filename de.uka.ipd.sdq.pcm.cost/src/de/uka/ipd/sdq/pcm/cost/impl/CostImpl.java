@@ -6,15 +6,14 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.cost.Cost;
-import de.uka.ipd.sdq.pcm.cost.costPackage;
-import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import de.uka.ipd.sdq.pcm.cost.Cost;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
+import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 
 /**
  * <!-- begin-user-doc -->
