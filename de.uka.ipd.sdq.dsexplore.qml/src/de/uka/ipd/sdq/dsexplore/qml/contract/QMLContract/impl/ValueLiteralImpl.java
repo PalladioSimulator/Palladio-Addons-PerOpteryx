@@ -13,8 +13,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Literal</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
@@ -22,23 +21,23 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
  * @generated
  */
 public abstract class ValueLiteralImpl extends IdentifierImpl implements ValueLiteral {
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected ValueLiteralImpl() {
+    protected ValueLiteralImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractPackage.Literals.VALUE_LITERAL;
     }
 
-} //ValueLiteralImpl
+} // ValueLiteralImpl

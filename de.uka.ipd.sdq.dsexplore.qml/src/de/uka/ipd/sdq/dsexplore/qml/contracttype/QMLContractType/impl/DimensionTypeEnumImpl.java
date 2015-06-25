@@ -31,229 +31,263 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Dimension Type Enum</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Dimension Type Enum</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl#getOrder <em>Order</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl#getElements
+ * <em>Elements</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl#getOrder
+ * <em>Order</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class DimensionTypeEnumImpl extends DimensionTypeImpl implements DimensionTypeEnum {
-	/**
-     * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference
+     * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getElements()
      * @generated
      * @ordered
      */
-	protected EList<Element> elements;
+    protected EList<Element> elements;
 
-	/**
-     * The cached value of the '{@link #getOrder() <em>Order</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached value of the '{@link #getOrder() <em>Order</em>}' containment reference list. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getOrder()
      * @generated
      * @ordered
      */
-	protected EList<Order> order;
+    protected EList<Order> order;
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected DimensionTypeEnumImpl() {
+    protected DimensionTypeEnumImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractTypePackage.Literals.DIMENSION_TYPE_ENUM;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public EList<Element> getElements() {
-        if (elements == null) {
-            elements = new EObjectContainmentEList<Element>(Element.class, this, QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS);
+    @Override
+    public EList<Element> getElements() {
+        if (this.elements == null)
+        {
+            this.elements = new EObjectContainmentEList<Element>(Element.class, this,
+                    QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS);
         }
-        return elements;
+        return this.elements;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public EList<Order> getOrder() {
-        if (order == null) {
-            order = new EObjectContainmentEList<Order>(Order.class, this, QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER);
+    @Override
+    public EList<Order> getOrder() {
+        if (this.order == null)
+        {
+            this.order = new EObjectContainmentEList<Order>(Order.class, this,
+                    QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER);
         }
-        return order;
+        return this.order;
     }
 
-	/**
-     * The cached OCL expression body for the '{@link #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>ORDER can only exist with RELATIONSEMANTICS and vice versa</em>}' operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+    /**
+     * The cached OCL expression body for the '
+     * {@link #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+     * <em>ORDER can only exist with RELATIONSEMANTICS and vice versa</em>}' operation. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain,
+     *      java.util.Map)
      * @generated
      * @ordered
      */
-	protected static final String ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "(self.relationSemantics=null implies self.order->size()=0) and "+
-"(self.order->size()=0 implies self.relationSemantics=null)";
+    protected static final String ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "(self.relationSemantics=null implies self.order->size()=0) and "
+            +
+            "(self.order->size()=0 implies self.relationSemantics=null)";
 
-	/**
-     * The cached OCL invariant for the '{@link #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>ORDER can only exist with RELATIONSEMANTICS and vice versa</em>}' invariant operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+    /**
+     * The cached OCL invariant for the '
+     * {@link #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+     * <em>ORDER can only exist with RELATIONSEMANTICS and vice versa</em>}' invariant operation.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @see #ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(org.eclipse.emf.common.util.DiagnosticChain,
+     *      java.util.Map)
      * @generated
      * @ordered
      */
-	protected static Constraint ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
+    protected static Constraint ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public boolean ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null) {
-            OCL.Helper helper = EOCL_ENV.createOCLHelper();
+    @Override
+    public boolean ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa(final DiagnosticChain diagnostics,
+            final Map<Object, Object> context) {
+        if (ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null)
+        {
+            final OCL.Helper helper = EOCL_ENV.createOCLHelper();
             helper.setContext(QMLContractTypePackage.Literals.DIMENSION_TYPE_ENUM);
-            try {
-                ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper.createInvariant(ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
-            }
-            catch (ParserException pe) {
+            try
+            {
+                ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper
+                        .createInvariant(ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
+            } catch (final ParserException pe)
+            {
                 throw new UnsupportedOperationException(pe.getLocalizedMessage());
             }
         }
-        if (!EOCL_ENV.createQuery(ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
-                         QMLContractTypeValidator.DIMENSION_TYPE_ENUM__ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA,
-                         EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa", EObjectValidator.getObjectLabel(this, context) }),
-                         new Object [] { this }));
+        if (!EOCL_ENV.createQuery(
+                ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this))
+        {
+            if (diagnostics != null)
+            {
+                diagnostics
+                .add
+                (new BasicDiagnostic
+                        (
+                                Diagnostic.ERROR,
+                                QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
+                                QMLContractTypeValidator.DIMENSION_TYPE_ENUM__ORDER_CAN_ONLY_EXIST_WITH_RELATIONSEMANTICS_AND_VICE_VERSA,
+                                EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+                                        new Object[] { "ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa",
+                                        EObjectValidator.getObjectLabel(this, context) }),
+                                        new Object[] { this }));
             }
             return false;
         }
         return true;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
-                return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
-                return ((InternalEList<?>)getOrder()).basicRemove(otherEnd, msgs);
+    @Override
+    public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
+            final NotificationChain msgs) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
+            return ((InternalEList<?>) this.getElements()).basicRemove(otherEnd, msgs);
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
+            return ((InternalEList<?>) this.getOrder()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
-                return getElements();
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
-                return getOrder();
+    @Override
+    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
+            return this.getElements();
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
+            return this.getOrder();
         }
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
-                getElements().clear();
-                getElements().addAll((Collection<? extends Element>)newValue);
-                return;
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
-                getOrder().clear();
-                getOrder().addAll((Collection<? extends Order>)newValue);
-                return;
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(final int featureID, final Object newValue) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
+            this.getElements().clear();
+            this.getElements().addAll((Collection<? extends Element>) newValue);
+            return;
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
+            this.getOrder().clear();
+            this.getOrder().addAll((Collection<? extends Order>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
-                getElements().clear();
-                return;
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
-                getOrder().clear();
-                return;
+    @Override
+    public void eUnset(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
+            this.getElements().clear();
+            return;
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
+            this.getOrder().clear();
+            return;
         }
         super.eUnset(featureID);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
-                return elements != null && !elements.isEmpty();
-            case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
-                return order != null && !order.isEmpty();
+    @Override
+    public boolean eIsSet(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ELEMENTS:
+            return this.elements != null && !this.elements.isEmpty();
+        case QMLContractTypePackage.DIMENSION_TYPE_ENUM__ORDER:
+            return this.order != null && !this.order.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
-	/**
-     * The cached environment for evaluating OCL expressions.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached environment for evaluating OCL expressions. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
      * @generated
      * @ordered
      */
-	protected static final OCL EOCL_ENV = OCL.newInstance();
+    protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} //DimensionTypeEnumImpl
+} // DimensionTypeEnumImpl

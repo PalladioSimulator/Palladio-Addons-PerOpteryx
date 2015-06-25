@@ -28,263 +28,306 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContrac
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Order</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Order</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl#getBiggerElement <em>Bigger Element</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl#getSmallerElement <em>Smaller Element</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl#getBiggerElement
+ * <em>Bigger Element</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl#getSmallerElement
+ * <em>Smaller Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class OrderImpl extends IdentifierImpl implements Order {
-	/**
-     * The cached value of the '{@link #getBiggerElement() <em>Bigger Element</em>}' reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached value of the '{@link #getBiggerElement() <em>Bigger Element</em>}' reference. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getBiggerElement()
      * @generated
      * @ordered
      */
-	protected Element biggerElement;
+    protected Element biggerElement;
 
-	/**
+    /**
      * The cached value of the '{@link #getSmallerElement() <em>Smaller Element</em>}' reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getSmallerElement()
      * @generated
      * @ordered
      */
-	protected Element smallerElement;
+    protected Element smallerElement;
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected OrderImpl() {
+    protected OrderImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractTypePackage.Literals.ORDER;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public Element getBiggerElement() {
-        if (biggerElement != null && biggerElement.eIsProxy()) {
-            InternalEObject oldBiggerElement = (InternalEObject)biggerElement;
-            biggerElement = (Element)eResolveProxy(oldBiggerElement);
-            if (biggerElement != oldBiggerElement) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement, biggerElement));
+    @Override
+    public Element getBiggerElement() {
+        if (this.biggerElement != null && this.biggerElement.eIsProxy())
+        {
+            final InternalEObject oldBiggerElement = (InternalEObject) this.biggerElement;
+            this.biggerElement = (Element) this.eResolveProxy(oldBiggerElement);
+            if (this.biggerElement != oldBiggerElement)
+            {
+                if (this.eNotificationRequired()) {
+                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+                            QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement, this.biggerElement));
+                }
             }
         }
-        return biggerElement;
+        return this.biggerElement;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public Element basicGetBiggerElement() {
-        return biggerElement;
+    public Element basicGetBiggerElement() {
+        return this.biggerElement;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public void setBiggerElement(Element newBiggerElement) {
-        Element oldBiggerElement = biggerElement;
-        biggerElement = newBiggerElement;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement, biggerElement));
+    @Override
+    public void setBiggerElement(final Element newBiggerElement) {
+        final Element oldBiggerElement = this.biggerElement;
+        this.biggerElement = newBiggerElement;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__BIGGER_ELEMENT,
+                    oldBiggerElement, this.biggerElement));
+        }
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public Element getSmallerElement() {
-        if (smallerElement != null && smallerElement.eIsProxy()) {
-            InternalEObject oldSmallerElement = (InternalEObject)smallerElement;
-            smallerElement = (Element)eResolveProxy(oldSmallerElement);
-            if (smallerElement != oldSmallerElement) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement, smallerElement));
+    @Override
+    public Element getSmallerElement() {
+        if (this.smallerElement != null && this.smallerElement.eIsProxy())
+        {
+            final InternalEObject oldSmallerElement = (InternalEObject) this.smallerElement;
+            this.smallerElement = (Element) this.eResolveProxy(oldSmallerElement);
+            if (this.smallerElement != oldSmallerElement)
+            {
+                if (this.eNotificationRequired()) {
+                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+                            QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement, this.smallerElement));
+                }
             }
         }
-        return smallerElement;
+        return this.smallerElement;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public Element basicGetSmallerElement() {
-        return smallerElement;
+    public Element basicGetSmallerElement() {
+        return this.smallerElement;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public void setSmallerElement(Element newSmallerElement) {
-        Element oldSmallerElement = smallerElement;
-        smallerElement = newSmallerElement;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement, smallerElement));
+    @Override
+    public void setSmallerElement(final Element newSmallerElement) {
+        final Element oldSmallerElement = this.smallerElement;
+        this.smallerElement = newSmallerElement;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__SMALLER_ELEMENT,
+                    oldSmallerElement, this.smallerElement));
+        }
     }
 
-	/**
-     * The cached OCL expression body for the '{@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+    /**
+     * The cached OCL expression body for the '
+     * {@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+     * <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' operation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain,
+     *      java.util.Map)
      * @generated
      * @ordered
      */
-	protected static final String BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "self.biggerElement<>self.smallerElement";
+    protected static final String BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "self.biggerElement<>self.smallerElement";
 
-	/**
-     * The cached OCL invariant for the '{@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' invariant operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+    /**
+     * The cached OCL invariant for the '
+     * {@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+     * <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' invariant operation. <!-- begin-user-doc
+     * --> <!-- end-user-doc -->
+     *
+     * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain,
+     *      java.util.Map)
      * @generated
      * @ordered
      */
-	protected static Constraint BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
+    protected static Constraint BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public boolean BIGGERELEMENT_must_not_be_SMALLELEMENT(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null) {
-            OCL.Helper helper = EOCL_ENV.createOCLHelper();
+    @Override
+    public boolean BIGGERELEMENT_must_not_be_SMALLELEMENT(final DiagnosticChain diagnostics,
+            final Map<Object, Object> context) {
+        if (BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null)
+        {
+            final OCL.Helper helper = EOCL_ENV.createOCLHelper();
             helper.setContext(QMLContractTypePackage.Literals.ORDER);
-            try {
-                BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper.createInvariant(BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
-            }
-            catch (ParserException pe) {
+            try
+            {
+                BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper
+                        .createInvariant(BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
+            } catch (final ParserException pe)
+            {
                 throw new UnsupportedOperationException(pe.getLocalizedMessage());
             }
         }
-        if (!EOCL_ENV.createQuery(BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
-            if (diagnostics != null) {
+        if (!EOCL_ENV.createQuery(BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this))
+        {
+            if (diagnostics != null)
+            {
                 diagnostics.add
-                    (new BasicDiagnostic
+                (new BasicDiagnostic
                         (Diagnostic.ERROR,
-                         QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
-                         QMLContractTypeValidator.ORDER__BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT,
-                         EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "BIGGERELEMENT_must_not_be_SMALLELEMENT", EObjectValidator.getObjectLabel(this, context) }),
-                         new Object [] { this }));
+                                QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
+                                QMLContractTypeValidator.ORDER__BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT,
+                                EcorePlugin.INSTANCE.getString(
+                                        "_UI_GenericInvariant_diagnostic",
+                                        new Object[] { "BIGGERELEMENT_must_not_be_SMALLELEMENT",
+                                                EObjectValidator.getObjectLabel(this, context) }),
+                                                new Object[] { this }));
             }
             return false;
         }
         return true;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
-                if (resolve) return getBiggerElement();
-                return basicGetBiggerElement();
-            case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
-                if (resolve) return getSmallerElement();
-                return basicGetSmallerElement();
+    @Override
+    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
+            if (resolve) {
+                return this.getBiggerElement();
+            }
+            return this.basicGetBiggerElement();
+        case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
+            if (resolve) {
+                return this.getSmallerElement();
+            }
+            return this.basicGetSmallerElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
-                setBiggerElement((Element)newValue);
-                return;
-            case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
-                setSmallerElement((Element)newValue);
-                return;
+    @Override
+    public void eSet(final int featureID, final Object newValue) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
+            this.setBiggerElement((Element) newValue);
+            return;
+        case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
+            this.setSmallerElement((Element) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
-                setBiggerElement((Element)null);
-                return;
-            case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
-                setSmallerElement((Element)null);
-                return;
+    @Override
+    public void eUnset(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
+            this.setBiggerElement((Element) null);
+            return;
+        case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
+            this.setSmallerElement((Element) null);
+            return;
         }
         super.eUnset(featureID);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
-                return biggerElement != null;
-            case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
-                return smallerElement != null;
+    @Override
+    public boolean eIsSet(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.ORDER__BIGGER_ELEMENT:
+            return this.biggerElement != null;
+        case QMLContractTypePackage.ORDER__SMALLER_ELEMENT:
+            return this.smallerElement != null;
         }
         return super.eIsSet(featureID);
     }
 
-	/**
-     * The cached environment for evaluating OCL expressions.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached environment for evaluating OCL expressions. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
      * @generated
      * @ordered
      */
-	protected static final OCL EOCL_ENV = OCL.newInstance();
+    protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} //OrderImpl
+} // OrderImpl

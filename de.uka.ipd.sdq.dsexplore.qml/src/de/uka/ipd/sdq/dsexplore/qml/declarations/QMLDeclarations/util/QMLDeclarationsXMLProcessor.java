@@ -15,38 +15,38 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ *
  * @generated
  */
 public class QMLDeclarationsXMLProcessor extends XMLProcessor {
 
-	/**
-     * Public constructor to instantiate the helper.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public QMLDeclarationsXMLProcessor() {
+    public QMLDeclarationsXMLProcessor() {
         super((EPackage.Registry.INSTANCE));
         QMLDeclarationsPackage.eINSTANCE.eClass();
     }
-	
-	/**
+
+    /**
      * Register for "*" and "xml" file extensions the QMLDeclarationsResourceFactoryImpl factory.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected Map<String, Resource.Factory> getRegistrations() {
-        if (registrations == null) {
+    @Override
+    protected Map<String, Resource.Factory> getRegistrations() {
+        if (this.registrations == null)
+        {
             super.getRegistrations();
-            registrations.put(XML_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
-            registrations.put(STAR_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
+            this.registrations.put(XML_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
+            this.registrations.put(STAR_EXTENSION, new QMLDeclarationsResourceFactoryImpl());
         }
-        return registrations;
+        return this.registrations;
     }
 
-} //QMLDeclarationsXMLProcessor
+} // QMLDeclarationsXMLProcessor

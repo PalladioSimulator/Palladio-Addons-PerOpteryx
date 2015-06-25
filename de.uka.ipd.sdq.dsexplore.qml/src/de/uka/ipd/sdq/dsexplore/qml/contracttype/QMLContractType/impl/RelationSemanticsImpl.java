@@ -16,151 +16,163 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemanti
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Relation Semantics</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Relation Semantics</b></em>
+ * '. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl#getRelSem <em>Rel Sem</em>}</li>
+ * <li>
+ * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl#getRelSem
+ * <em>Rel Sem</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class RelationSemanticsImpl extends IdentifierImpl implements RelationSemantics {
-	/**
-     * The default value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The default value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getRelSem()
      * @generated
      * @ordered
      */
-	protected static final EnumRelationSemantics REL_SEM_EDEFAULT = EnumRelationSemantics.DECREASING;
+    protected static final EnumRelationSemantics REL_SEM_EDEFAULT = EnumRelationSemantics.DECREASING;
 
-	/**
-     * The cached value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     *
      * @see #getRelSem()
      * @generated
      * @ordered
      */
-	protected EnumRelationSemantics relSem = REL_SEM_EDEFAULT;
+    protected EnumRelationSemantics relSem = REL_SEM_EDEFAULT;
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected RelationSemanticsImpl() {
+    protected RelationSemanticsImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractTypePackage.Literals.RELATION_SEMANTICS;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public EnumRelationSemantics getRelSem() {
-        return relSem;
+    @Override
+    public EnumRelationSemantics getRelSem() {
+        return this.relSem;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public void setRelSem(EnumRelationSemantics newRelSem) {
-        EnumRelationSemantics oldRelSem = relSem;
-        relSem = newRelSem == null ? REL_SEM_EDEFAULT : newRelSem;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM, oldRelSem, relSem));
+    @Override
+    public void setRelSem(final EnumRelationSemantics newRelSem) {
+        final EnumRelationSemantics oldRelSem = this.relSem;
+        this.relSem = newRelSem == null ? REL_SEM_EDEFAULT : newRelSem;
+        if (this.eNotificationRequired()) {
+            this.eNotify(new ENotificationImpl(this, Notification.SET,
+                    QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM,
+                    oldRelSem, this.relSem));
+        }
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
-                return getRelSem();
+    @Override
+    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
+            return this.getRelSem();
         }
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
-                setRelSem((EnumRelationSemantics)newValue);
-                return;
+    @Override
+    public void eSet(final int featureID, final Object newValue) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
+            this.setRelSem((EnumRelationSemantics) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
-                setRelSem(REL_SEM_EDEFAULT);
-                return;
+    @Override
+    public void eUnset(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
+            this.setRelSem(REL_SEM_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
-                return relSem != REL_SEM_EDEFAULT;
+    @Override
+    public boolean eIsSet(final int featureID) {
+        switch (featureID)
+        {
+        case QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM:
+            return this.relSem != REL_SEM_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public String toString() {
-        if (eIsProxy()) return super.toString();
+    @Override
+    public String toString() {
+        if (this.eIsProxy()) {
+            return super.toString();
+        }
 
-        StringBuffer result = new StringBuffer(super.toString());
+        final StringBuffer result = new StringBuffer(super.toString());
         result.append(" (relSem: ");
-        result.append(relSem);
+        result.append(this.relSem);
         result.append(')');
         return result.toString();
     }
 
-} //RelationSemanticsImpl
+} // RelationSemanticsImpl

@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract;
 
+import org.eclipse.emf.ecore.EObject;
+
 import de.uka.ipd.sdq.identifier.Identifier;
 
 /**
@@ -22,5 +24,5 @@ import de.uka.ipd.sdq.identifier.Identifier;
  * @model abstract="true"
  * @generated
  */
-public interface ValueLiteral extends Identifier {
+public interface ValueLiteral extends EObject, Identifier {
 } // ValueLiteral

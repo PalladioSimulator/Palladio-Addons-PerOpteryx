@@ -12,8 +12,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.PointEstimator;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Point Estimator</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Point Estimator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
@@ -21,23 +20,23 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
  * @generated
  */
 public abstract class PointEstimatorImpl extends StochasticEvaluationAspectImpl implements PointEstimator {
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected PointEstimatorImpl() {
+    protected PointEstimatorImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractPackage.Literals.POINT_ESTIMATOR;
     }
 
-} //PointEstimatorImpl
+} // PointEstimatorImpl

@@ -9,6 +9,8 @@ package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.core.entity.NamedElement;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.AspectRequirement;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint;
@@ -36,685 +38,851 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Variance;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
 import de.uka.ipd.sdq.identifier.Identifier;
-import de.uka.ipd.sdq.pcm.core.entity.Entity;
-import de.uka.ipd.sdq.pcm.core.entity.NamedElement;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
- * starting with the actual class of the object
- * and proceeding up the inheritance hierarchy
- * until a non-null result is returned,
- * which is the result of the switch.
+ * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the
+ * call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for
+ * each class of the model, starting with the actual class of the object and proceeding up the
+ * inheritance hierarchy until a non-null result is returned, which is the result of the switch.
  * <!-- end-user-doc -->
+ *
  * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage
  * @generated
  */
 public class QMLContractSwitch<T> extends Switch<T> {
-	/**
-     * The cached model package
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected static QMLContractPackage modelPackage;
+    protected static QMLContractPackage modelPackage;
 
-	/**
-     * Creates an instance of the switch.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public QMLContractSwitch() {
-        if (modelPackage == null) {
+    public QMLContractSwitch() {
+        if (modelPackage == null)
+        {
             modelPackage = QMLContractPackage.eINSTANCE;
         }
     }
 
-	/**
-     * Checks whether this is a switch for the given package.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+    /**
+     * Checks whether this is a switch for the given package. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
      * @parameter ePackage the package in question.
      * @return whether this is a switch for the given package.
      * @generated
      */
     @Override
-    protected boolean isSwitchFor(EPackage ePackage) {
+    protected boolean isSwitchFor(final EPackage ePackage) {
         return ePackage == modelPackage;
     }
 
     /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
+     * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-	@Override
-    protected T doSwitch(int classifierID, EObject theEObject) {
-        switch (classifierID) {
-            case QMLContractPackage.SIMPLE_QML_CONTRACT: {
-                SimpleQMLContract simpleQMLContract = (SimpleQMLContract)theEObject;
-                T result = caseSimpleQMLContract(simpleQMLContract);
-                if (result == null) result = caseGenericQMLContract(simpleQMLContract);
-                if (result == null) result = caseQMLDeclaration(simpleQMLContract);
-                if (result == null) result = caseEntity(simpleQMLContract);
-                if (result == null) result = caseIdentifier(simpleQMLContract);
-                if (result == null) result = caseNamedElement(simpleQMLContract);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+    @Override
+    protected T doSwitch(final int classifierID, final EObject theEObject) {
+        switch (classifierID)
+        {
+        case QMLContractPackage.SIMPLE_QML_CONTRACT: {
+            final SimpleQMLContract simpleQMLContract = (SimpleQMLContract) theEObject;
+            T result = this.caseSimpleQMLContract(simpleQMLContract);
+            if (result == null) {
+                result = this.caseGenericQMLContract(simpleQMLContract);
             }
-            case QMLContractPackage.CRITERION: {
-                Criterion criterion = (Criterion)theEObject;
-                T result = caseCriterion(criterion);
-                if (result == null) result = caseIdentifier(criterion);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseQMLDeclaration(simpleQMLContract);
             }
-            case QMLContractPackage.EVALUATION_ASPECT: {
-                EvaluationAspect evaluationAspect = (EvaluationAspect)theEObject;
-                T result = caseEvaluationAspect(evaluationAspect);
-                if (result == null) result = caseIdentifier(evaluationAspect);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseEntity(simpleQMLContract);
             }
-            case QMLContractPackage.ASPECT_REQUIREMENT: {
-                AspectRequirement aspectRequirement = (AspectRequirement)theEObject;
-                T result = caseAspectRequirement(aspectRequirement);
-                if (result == null) result = caseIdentifier(aspectRequirement);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseIdentifier(simpleQMLContract);
             }
-            case QMLContractPackage.VALUE_LITERAL: {
-                ValueLiteral valueLiteral = (ValueLiteral)theEObject;
-                T result = caseValueLiteral(valueLiteral);
-                if (result == null) result = caseIdentifier(valueLiteral);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseNamedElement(simpleQMLContract);
             }
-            case QMLContractPackage.PERCENTILE: {
-                Percentile percentile = (Percentile)theEObject;
-                T result = casePercentile(percentile);
-                if (result == null) result = casePointEstimator(percentile);
-                if (result == null) result = caseStochasticEvaluationAspect(percentile);
-                if (result == null) result = caseEvaluationAspect(percentile);
-                if (result == null) result = caseIdentifier(percentile);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.POINT_ESTIMATOR: {
-                PointEstimator pointEstimator = (PointEstimator)theEObject;
-                T result = casePointEstimator(pointEstimator);
-                if (result == null) result = caseStochasticEvaluationAspect(pointEstimator);
-                if (result == null) result = caseEvaluationAspect(pointEstimator);
-                if (result == null) result = caseIdentifier(pointEstimator);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.CRITERION: {
+            final Criterion criterion = (Criterion) theEObject;
+            T result = this.caseCriterion(criterion);
+            if (result == null) {
+                result = this.caseIdentifier(criterion);
             }
-            case QMLContractPackage.STOCHASTIC_EVALUATION_ASPECT: {
-                StochasticEvaluationAspect stochasticEvaluationAspect = (StochasticEvaluationAspect)theEObject;
-                T result = caseStochasticEvaluationAspect(stochasticEvaluationAspect);
-                if (result == null) result = caseEvaluationAspect(stochasticEvaluationAspect);
-                if (result == null) result = caseIdentifier(stochasticEvaluationAspect);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.FREQUENCY: {
-                Frequency frequency = (Frequency)theEObject;
-                T result = caseFrequency(frequency);
-                if (result == null) result = caseStochasticEvaluationAspect(frequency);
-                if (result == null) result = caseEvaluationAspect(frequency);
-                if (result == null) result = caseIdentifier(frequency);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.EVALUATION_ASPECT: {
+            final EvaluationAspect evaluationAspect = (EvaluationAspect) theEObject;
+            T result = this.caseEvaluationAspect(evaluationAspect);
+            if (result == null) {
+                result = this.caseIdentifier(evaluationAspect);
             }
-            case QMLContractPackage.RANGE_VALUE: {
-                RangeValue rangeValue = (RangeValue)theEObject;
-                T result = caseRangeValue(rangeValue);
-                if (result == null) result = caseIdentifier(rangeValue);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.MEAN: {
-                Mean mean = (Mean)theEObject;
-                T result = caseMean(mean);
-                if (result == null) result = casePointEstimator(mean);
-                if (result == null) result = caseStochasticEvaluationAspect(mean);
-                if (result == null) result = caseEvaluationAspect(mean);
-                if (result == null) result = caseIdentifier(mean);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.ASPECT_REQUIREMENT: {
+            final AspectRequirement aspectRequirement = (AspectRequirement) theEObject;
+            T result = this.caseAspectRequirement(aspectRequirement);
+            if (result == null) {
+                result = this.caseIdentifier(aspectRequirement);
             }
-            case QMLContractPackage.VARIANCE: {
-                Variance variance = (Variance)theEObject;
-                T result = caseVariance(variance);
-                if (result == null) result = casePointEstimator(variance);
-                if (result == null) result = caseStochasticEvaluationAspect(variance);
-                if (result == null) result = caseEvaluationAspect(variance);
-                if (result == null) result = caseIdentifier(variance);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.NUMERIC_LITERAL: {
-                NumericLiteral numericLiteral = (NumericLiteral)theEObject;
-                T result = caseNumericLiteral(numericLiteral);
-                if (result == null) result = caseValueLiteral(numericLiteral);
-                if (result == null) result = caseIdentifier(numericLiteral);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.VALUE_LITERAL: {
+            final ValueLiteral valueLiteral = (ValueLiteral) theEObject;
+            T result = this.caseValueLiteral(valueLiteral);
+            if (result == null) {
+                result = this.caseIdentifier(valueLiteral);
             }
-            case QMLContractPackage.ENUM_LITERAL: {
-                EnumLiteral enumLiteral = (EnumLiteral)theEObject;
-                T result = caseEnumLiteral(enumLiteral);
-                if (result == null) result = caseValueLiteral(enumLiteral);
-                if (result == null) result = caseIdentifier(enumLiteral);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.SET_LITERAL: {
-                SetLiteral setLiteral = (SetLiteral)theEObject;
-                T result = caseSetLiteral(setLiteral);
-                if (result == null) result = caseValueLiteral(setLiteral);
-                if (result == null) result = caseIdentifier(setLiteral);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.PERCENTILE: {
+            final Percentile percentile = (Percentile) theEObject;
+            T result = this.casePercentile(percentile);
+            if (result == null) {
+                result = this.casePointEstimator(percentile);
             }
-            case QMLContractPackage.REFINED_QML_CONTRACT: {
-                RefinedQMLContract refinedQMLContract = (RefinedQMLContract)theEObject;
-                T result = caseRefinedQMLContract(refinedQMLContract);
-                if (result == null) result = caseGenericQMLContract(refinedQMLContract);
-                if (result == null) result = caseQMLDeclaration(refinedQMLContract);
-                if (result == null) result = caseEntity(refinedQMLContract);
-                if (result == null) result = caseIdentifier(refinedQMLContract);
-                if (result == null) result = caseNamedElement(refinedQMLContract);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseStochasticEvaluationAspect(percentile);
             }
-            case QMLContractPackage.VALUE: {
-                Value value = (Value)theEObject;
-                T result = caseValue(value);
-                if (result == null) result = caseDeterministicEvaluationAspect(value);
-                if (result == null) result = caseEvaluationAspect(value);
-                if (result == null) result = caseIdentifier(value);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseEvaluationAspect(percentile);
             }
-            case QMLContractPackage.DETERMINISTIC_EVALUATION_ASPECT: {
-                DeterministicEvaluationAspect deterministicEvaluationAspect = (DeterministicEvaluationAspect)theEObject;
-                T result = caseDeterministicEvaluationAspect(deterministicEvaluationAspect);
-                if (result == null) result = caseEvaluationAspect(deterministicEvaluationAspect);
-                if (result == null) result = caseIdentifier(deterministicEvaluationAspect);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseIdentifier(percentile);
             }
-            case QMLContractPackage.OBJECTIVE: {
-                Objective objective = (Objective)theEObject;
-                T result = caseObjective(objective);
-                if (result == null) result = caseCriterion(objective);
-                if (result == null) result = caseIdentifier(objective);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            case QMLContractPackage.CONSTRAINT: {
-                Constraint constraint = (Constraint)theEObject;
-                T result = caseConstraint(constraint);
-                if (result == null) result = caseCriterion(constraint);
-                if (result == null) result = caseIdentifier(constraint);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            return result;
+        }
+        case QMLContractPackage.POINT_ESTIMATOR: {
+            final PointEstimator pointEstimator = (PointEstimator) theEObject;
+            T result = this.casePointEstimator(pointEstimator);
+            if (result == null) {
+                result = this.caseStochasticEvaluationAspect(pointEstimator);
             }
-            case QMLContractPackage.RESTRICTION: {
-                Restriction restriction = (Restriction)theEObject;
-                T result = caseRestriction(restriction);
-                if (result == null) result = caseAspectRequirement(restriction);
-                if (result == null) result = caseIdentifier(restriction);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseEvaluationAspect(pointEstimator);
             }
-            case QMLContractPackage.GOAL: {
-                Goal goal = (Goal)theEObject;
-                T result = caseGoal(goal);
-                if (result == null) result = caseAspectRequirement(goal);
-                if (result == null) result = caseIdentifier(goal);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.caseIdentifier(pointEstimator);
             }
-            case QMLContractPackage.GENERIC_QML_CONTRACT: {
-                GenericQMLContract genericQMLContract = (GenericQMLContract)theEObject;
-                T result = caseGenericQMLContract(genericQMLContract);
-                if (result == null) result = caseQMLDeclaration(genericQMLContract);
-                if (result == null) result = caseEntity(genericQMLContract);
-                if (result == null) result = caseIdentifier(genericQMLContract);
-                if (result == null) result = caseNamedElement(genericQMLContract);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
+            if (result == null) {
+                result = this.defaultCase(theEObject);
             }
-            default: return defaultCase(theEObject);
+            return result;
+        }
+        case QMLContractPackage.STOCHASTIC_EVALUATION_ASPECT: {
+            final StochasticEvaluationAspect stochasticEvaluationAspect = (StochasticEvaluationAspect) theEObject;
+            T result = this.caseStochasticEvaluationAspect(stochasticEvaluationAspect);
+            if (result == null) {
+                result = this.caseEvaluationAspect(stochasticEvaluationAspect);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(stochasticEvaluationAspect);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.FREQUENCY: {
+            final Frequency frequency = (Frequency) theEObject;
+            T result = this.caseFrequency(frequency);
+            if (result == null) {
+                result = this.caseStochasticEvaluationAspect(frequency);
+            }
+            if (result == null) {
+                result = this.caseEvaluationAspect(frequency);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(frequency);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.RANGE_VALUE: {
+            final RangeValue rangeValue = (RangeValue) theEObject;
+            T result = this.caseRangeValue(rangeValue);
+            if (result == null) {
+                result = this.caseIdentifier(rangeValue);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.MEAN: {
+            final Mean mean = (Mean) theEObject;
+            T result = this.caseMean(mean);
+            if (result == null) {
+                result = this.casePointEstimator(mean);
+            }
+            if (result == null) {
+                result = this.caseStochasticEvaluationAspect(mean);
+            }
+            if (result == null) {
+                result = this.caseEvaluationAspect(mean);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(mean);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.VARIANCE: {
+            final Variance variance = (Variance) theEObject;
+            T result = this.caseVariance(variance);
+            if (result == null) {
+                result = this.casePointEstimator(variance);
+            }
+            if (result == null) {
+                result = this.caseStochasticEvaluationAspect(variance);
+            }
+            if (result == null) {
+                result = this.caseEvaluationAspect(variance);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(variance);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.NUMERIC_LITERAL: {
+            final NumericLiteral numericLiteral = (NumericLiteral) theEObject;
+            T result = this.caseNumericLiteral(numericLiteral);
+            if (result == null) {
+                result = this.caseValueLiteral(numericLiteral);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(numericLiteral);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.ENUM_LITERAL: {
+            final EnumLiteral enumLiteral = (EnumLiteral) theEObject;
+            T result = this.caseEnumLiteral(enumLiteral);
+            if (result == null) {
+                result = this.caseValueLiteral(enumLiteral);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(enumLiteral);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.SET_LITERAL: {
+            final SetLiteral setLiteral = (SetLiteral) theEObject;
+            T result = this.caseSetLiteral(setLiteral);
+            if (result == null) {
+                result = this.caseValueLiteral(setLiteral);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(setLiteral);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.REFINED_QML_CONTRACT: {
+            final RefinedQMLContract refinedQMLContract = (RefinedQMLContract) theEObject;
+            T result = this.caseRefinedQMLContract(refinedQMLContract);
+            if (result == null) {
+                result = this.caseGenericQMLContract(refinedQMLContract);
+            }
+            if (result == null) {
+                result = this.caseQMLDeclaration(refinedQMLContract);
+            }
+            if (result == null) {
+                result = this.caseEntity(refinedQMLContract);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(refinedQMLContract);
+            }
+            if (result == null) {
+                result = this.caseNamedElement(refinedQMLContract);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.VALUE: {
+            final Value value = (Value) theEObject;
+            T result = this.caseValue(value);
+            if (result == null) {
+                result = this.caseDeterministicEvaluationAspect(value);
+            }
+            if (result == null) {
+                result = this.caseEvaluationAspect(value);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(value);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.DETERMINISTIC_EVALUATION_ASPECT: {
+            final DeterministicEvaluationAspect deterministicEvaluationAspect = (DeterministicEvaluationAspect) theEObject;
+            T result = this.caseDeterministicEvaluationAspect(deterministicEvaluationAspect);
+            if (result == null) {
+                result = this.caseEvaluationAspect(deterministicEvaluationAspect);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(deterministicEvaluationAspect);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.OBJECTIVE: {
+            final Objective objective = (Objective) theEObject;
+            T result = this.caseObjective(objective);
+            if (result == null) {
+                result = this.caseCriterion(objective);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(objective);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.CONSTRAINT: {
+            final Constraint constraint = (Constraint) theEObject;
+            T result = this.caseConstraint(constraint);
+            if (result == null) {
+                result = this.caseCriterion(constraint);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(constraint);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.RESTRICTION: {
+            final Restriction restriction = (Restriction) theEObject;
+            T result = this.caseRestriction(restriction);
+            if (result == null) {
+                result = this.caseAspectRequirement(restriction);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(restriction);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.GOAL: {
+            final Goal goal = (Goal) theEObject;
+            T result = this.caseGoal(goal);
+            if (result == null) {
+                result = this.caseAspectRequirement(goal);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(goal);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        case QMLContractPackage.GENERIC_QML_CONTRACT: {
+            final GenericQMLContract genericQMLContract = (GenericQMLContract) theEObject;
+            T result = this.caseGenericQMLContract(genericQMLContract);
+            if (result == null) {
+                result = this.caseQMLDeclaration(genericQMLContract);
+            }
+            if (result == null) {
+                result = this.caseEntity(genericQMLContract);
+            }
+            if (result == null) {
+                result = this.caseIdentifier(genericQMLContract);
+            }
+            if (result == null) {
+                result = this.caseNamedElement(genericQMLContract);
+            }
+            if (result == null) {
+                result = this.defaultCase(theEObject);
+            }
+            return result;
+        }
+        default:
+            return this.defaultCase(theEObject);
         }
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Simple QML Contract</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Simple QML Contract</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Simple QML Contract</em>
+     * '. <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Simple QML Contract</em>
+     *         '.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseSimpleQMLContract(SimpleQMLContract object) {
+    public T caseSimpleQMLContract(final SimpleQMLContract object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Criterion</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Criterion</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Criterion</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseCriterion(Criterion object) {
+    public T caseCriterion(final Criterion object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Evaluation Aspect</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Evaluation Aspect</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseEvaluationAspect(EvaluationAspect object) {
+    public T caseEvaluationAspect(final EvaluationAspect object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Aspect Requirement</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Aspect Requirement</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Aspect Requirement</em>
+     * '. <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Aspect Requirement</em>
+     *         '.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseAspectRequirement(AspectRequirement object) {
+    public T caseAspectRequirement(final AspectRequirement object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Value Literal</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Value Literal</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseValueLiteral(ValueLiteral object) {
+    public T caseValueLiteral(final ValueLiteral object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Percentile</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Percentile</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Percentile</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T casePercentile(Percentile object) {
+    public T casePercentile(final Percentile object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Point Estimator</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Point Estimator</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T casePointEstimator(PointEstimator object) {
+    public T casePointEstimator(final PointEstimator object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Stochastic Evaluation Aspect</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Stochastic Evaluation Aspect</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '
+     * <em>Stochastic Evaluation Aspect</em>'. <!-- begin-user-doc --> This implementation returns
+     * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '
+     *         <em>Stochastic Evaluation Aspect</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseStochasticEvaluationAspect(StochasticEvaluationAspect object) {
+    public T caseStochasticEvaluationAspect(final StochasticEvaluationAspect object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Frequency</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Frequency</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Frequency</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseFrequency(Frequency object) {
+    public T caseFrequency(final Frequency object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Range Value</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Range Value</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Range Value</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseRangeValue(RangeValue object) {
+    public T caseRangeValue(final RangeValue object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Mean</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mean</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Mean</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseMean(Mean object) {
+    public T caseMean(final Mean object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Variance</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Variance</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Variance</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseVariance(Variance object) {
+    public T caseVariance(final Variance object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseNumericLiteral(NumericLiteral object) {
+    public T caseNumericLiteral(final NumericLiteral object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseEnumLiteral(EnumLiteral object) {
+    public T caseEnumLiteral(final EnumLiteral object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Set Literal</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Set Literal</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Set Literal</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseSetLiteral(SetLiteral object) {
+    public T caseSetLiteral(final SetLiteral object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Refined QML Contract</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Refined QML Contract</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '
+     * <em>Refined QML Contract</em>'. <!-- begin-user-doc --> This implementation returns null;
+     * returning a non-null result will terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '
+     *         <em>Refined QML Contract</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseRefinedQMLContract(RefinedQMLContract object) {
+    public T caseRefinedQMLContract(final RefinedQMLContract object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Value</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Value</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseValue(Value object) {
+    public T caseValue(final Value object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Deterministic Evaluation Aspect</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Deterministic Evaluation Aspect</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '
+     * <em>Deterministic Evaluation Aspect</em>'. <!-- begin-user-doc --> This implementation
+     * returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '
+     *         <em>Deterministic Evaluation Aspect</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseDeterministicEvaluationAspect(DeterministicEvaluationAspect object) {
+    public T caseDeterministicEvaluationAspect(final DeterministicEvaluationAspect object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Objective</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Objective</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Objective</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseObjective(Objective object) {
+    public T caseObjective(final Objective object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseConstraint(Constraint object) {
+    public T caseConstraint(final Constraint object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Restriction</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Restriction</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Restriction</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseRestriction(Restriction object) {
+    public T caseRestriction(final Restriction object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Goal</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Goal</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Goal</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseGoal(Goal object) {
+    public T caseGoal(final Goal object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Generic QML Contract</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic QML Contract</em>'.
+    /**
+     * Returns the result of interpreting the object as an instance of '
+     * <em>Generic QML Contract</em>'. <!-- begin-user-doc --> This implementation returns null;
+     * returning a non-null result will terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
+     * @return the result of interpreting the object as an instance of '
+     *         <em>Generic QML Contract</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseGenericQMLContract(GenericQMLContract object) {
+    public T caseGenericQMLContract(final GenericQMLContract object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseIdentifier(Identifier object) {
+    public T caseIdentifier(final Identifier object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseNamedElement(NamedElement object) {
+    public T caseNamedElement(final NamedElement object)
+    {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Entity</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseEntity(Entity object) {
+    public T caseEntity(final Entity object)
+    {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>QML Declaration</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+     * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>QML Declaration</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseQMLDeclaration(QMLDeclaration object) {
+    public T caseQMLDeclaration(final QMLDeclaration object) {
         return null;
     }
 
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!--
+     * begin-user-doc --> This implementation returns null; returning a non-null result will
+     * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
+     *
+     * @param object
+     *            the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-	@Override
-    public T defaultCase(EObject object) {
+    @Override
+    public T defaultCase(final EObject object) {
         return null;
     }
 
-} //QMLContractSwitch
+} // QMLContractSwitch

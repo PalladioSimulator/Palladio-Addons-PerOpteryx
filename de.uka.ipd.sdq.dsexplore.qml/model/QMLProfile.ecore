@@ -8,7 +8,7 @@
       <details key="documentation" value="&lt;p>&#xD;&#xA;    A profile defines requirements on an Usage Model.&#xD;&#xA;&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usageModel" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.pcm/model/pcm.ecore#//usagemodel/UsageModel"/>
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//usagemodel/UsageModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" ordered="false"
         upperBound="-1" eType="#//Requirement" containment="true"/>
   </eClassifiers>
@@ -60,13 +60,13 @@
       <details key="documentation" value="A&amp;nbsp;usage scenrio requirement is a requirement on an usage scenario."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usageScenario" ordered="false"
-        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.pcm/model/pcm.ecore#//usagemodel/UsageScenario"/>
+        eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//usagemodel/UsageScenario"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EntryLevelSystemCallRequirement" eSuperTypes="#//Requirement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A&amp;nbsp;entry&amp;nbsp;level&amp;nbsp;system&amp;nbsp;call&amp;nbsp;requirement&amp;nbsp;is&amp;nbsp;a&amp;nbsp;requirement&amp;nbsp;on&amp;nbsp;an&amp;nbsp;entry&amp;nbsp;level&amp;nbsp;system&amp;nbsp;call."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryLevelSystemCall" ordered="false"
-        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.pcm/model/pcm.ecore#//usagemodel/EntryLevelSystemCall"/>
+        eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//usagemodel/EntryLevelSystemCall"/>
   </eClassifiers>
 </ecore:EPackage>
