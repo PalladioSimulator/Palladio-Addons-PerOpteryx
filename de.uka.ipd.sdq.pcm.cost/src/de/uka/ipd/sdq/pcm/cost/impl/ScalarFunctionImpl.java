@@ -6,24 +6,21 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
-import de.uka.ipd.sdq.pcm.cost.costPackage;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.parser.MyPCMStoExLexer;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.parser.MyPCMStoExParser;
-
-import de.uka.ipd.sdq.stoex.Expression;
-import de.uka.ipd.sdq.stoex.Term;
-
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.palladiosimulator.pcm.stochasticexpressions.parser.MyPCMStoExLexer;
+import org.palladiosimulator.pcm.stochasticexpressions.parser.MyPCMStoExParser;
+
+import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
+import de.uka.ipd.sdq.stoex.Expression;
+import de.uka.ipd.sdq.stoex.Term;
 
 /**
  * <!-- begin-user-doc -->

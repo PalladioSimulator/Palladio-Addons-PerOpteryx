@@ -6,17 +6,14 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
-import de.uka.ipd.sdq.pcm.cost.costPackage;
-
-import de.uka.ipd.sdq.pcm.resourceenvironment.ProcessingResourceSpecification;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+
+import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 
 /**
  * <!-- begin-user-doc -->

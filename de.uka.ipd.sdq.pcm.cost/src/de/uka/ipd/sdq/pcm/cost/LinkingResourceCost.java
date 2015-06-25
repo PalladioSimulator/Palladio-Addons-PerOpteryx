@@ -6,7 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.cost;
 
-import de.uka.ipd.sdq.pcm.resourceenvironment.LinkingResource;
+import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 
 /**
  * <!-- begin-user-doc -->

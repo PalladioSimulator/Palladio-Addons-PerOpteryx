@@ -15,7 +15,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="componentInitialCost" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryComponent" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
+        lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cost" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -46,7 +46,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="LinkingResourceCost" abstract="true"
       eSuperTypes="#//Cost">
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkingresource" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//resourceenvironment/LinkingResource"/>
+        lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/LinkingResource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FixedProcessingResourceCost" eSuperTypes="#//ProcessingResourceCost #//Cost">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -60,7 +60,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProcessingResourceCost" abstract="true"
       eSuperTypes="#//Cost">
     <eStructuralFeatures xsi:type="ecore:EReference" name="processingresourcespecification"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//resourceenvironment/ProcessingResourceSpecification"/>
+        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ProcessingResourceSpecification"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableCost" abstract="true" eSuperTypes="#//Cost">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedInitialCost" ordered="false"
@@ -125,6 +125,6 @@
       <details key="documentation" value="ComponentCostPerInstance are also costs for components; however, they occur per instance of the referenced components. The&#xD;&#xA;referenced Allocation is used to determine the number of instances of the component, which is multiplied by the costs per&#xD;&#xA;instance."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allocation" ordered="false"
-        eType="ecore:EClass ../../de.uka.ipd.sdq.pcm/model/pcm.ecore#//allocation/Allocation"/>
+        eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//allocation/Allocation"/>
   </eClassifiers>
 </ecore:EPackage>

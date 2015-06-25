@@ -36,4 +36,31 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated CostModel-4.0 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.palladiosimulator.pcm.cost.presentation.costModelWizardID"
+            name="%_UI_costModelWizard_label"
+            class="org.palladiosimulator.pcm.cost.presentation.costModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/costModelFile.gif">
+         <description>%_UI_costModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated CostModel-4.0 -->
+      <editor
+            id="org.palladiosimulator.pcm.cost.presentation.costEditorID"
+            name="%_UI_costEditor_label"
+            icon="icons/full/obj16/costModelFile.gif"
+            extensions="cost"
+            class="org.palladiosimulator.pcm.cost.presentation.costEditor"
+            contributorClass="org.palladiosimulator.pcm.cost.presentation.costActionBarContributor">
+      </editor>
+   </extension>
 </plugin>

@@ -6,7 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.cost;
 
-import de.uka.ipd.sdq.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.allocation.Allocation;
 
 /**
  * <!-- begin-user-doc -->

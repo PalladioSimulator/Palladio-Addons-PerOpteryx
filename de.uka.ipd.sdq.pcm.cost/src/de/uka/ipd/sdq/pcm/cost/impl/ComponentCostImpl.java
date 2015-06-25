@@ -6,18 +6,15 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.cost.ComponentCost;
-import de.uka.ipd.sdq.pcm.cost.costPackage;
-
-import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 
 /**
  * <!-- begin-user-doc -->

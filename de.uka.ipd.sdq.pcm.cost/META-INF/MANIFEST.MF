@@ -25,13 +25,22 @@ Export-Package: de.uka.ipd.sdq.pcm.cost;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify,
-   de.uka.ipd.sdq.pcm.cost"
-Require-Bundle: de.uka.ipd.sdq.pcm;visibility:=reexport,
- de.uka.ipd.sdq.simucomframework.variables;bundle-version="1.0.0",
- org.eclipse.emf.ecore.xmi,
+   de.uka.ipd.sdq.pcm.cost",
+ org.palladiosimulator.pcm.cost,
+ org.palladiosimulator.pcm.cost.impl,
+ org.palladiosimulator.pcm.cost.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ de.uka.ipd.sdq.identifier;visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.13",
  de.uka.ipd.sdq.pcm.stochasticexpressions;bundle-version="2.0.0",
  de.uka.ipd.sdq.stoex.analyser;bundle-version="2.0.0",
  de.uka.ipd.sdq.simucomframework;bundle-version="1.0.0",
- de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0"
+ de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0",
+ de.uka.ipd.sdq.simucomframework.variables;bundle-version="1.0.0",
+ org.palladiosimulator.pcm;bundle-version="4.0.0";visibility:=reexport,
+ de.uka.ipd.sdq.probfunction;visibility:=reexport,
+ de.uka.ipd.sdq.stoex;visibility:=reexport,
+ de.uka.ipd.sdq.units;visibility:=reexport
 Bundle-ActivationPolicy: lazy

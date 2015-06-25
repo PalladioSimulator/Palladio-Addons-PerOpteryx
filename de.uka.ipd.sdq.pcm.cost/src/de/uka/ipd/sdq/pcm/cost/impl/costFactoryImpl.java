@@ -6,15 +6,22 @@
  */
 package de.uka.ipd.sdq.pcm.cost.impl;
 
-import de.uka.ipd.sdq.pcm.cost.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.ComponentCostPerInstance;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.cost.FixedLinkingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
+import de.uka.ipd.sdq.pcm.cost.VariableLinkingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
+import de.uka.ipd.sdq.pcm.cost.costFactory;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 
 /**
  * <!-- begin-user-doc -->
