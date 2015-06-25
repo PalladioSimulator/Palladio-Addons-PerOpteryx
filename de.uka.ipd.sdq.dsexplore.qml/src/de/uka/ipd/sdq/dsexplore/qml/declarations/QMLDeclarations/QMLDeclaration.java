@@ -6,11 +6,11 @@
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations;
 
-import de.uka.ipd.sdq.pcm.core.entity.Entity;
+import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.core.entity.Entity;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>QML Declaration</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>QML Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
  *
@@ -18,5 +18,5 @@ import de.uka.ipd.sdq.pcm.core.entity.Entity;
  * @model abstract="true"
  * @generated
  */
-public interface QMLDeclaration extends Entity {
+public interface QMLDeclaration extends EObject, Entity {
 } // QMLDeclaration

@@ -12,32 +12,32 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.DeterministicEvaluation
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Deterministic Evaluation Aspect</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Deterministic Evaluation Aspect</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspectImpl implements DeterministicEvaluationAspect {
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspectImpl implements
+DeterministicEvaluationAspect {
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	protected DeterministicEvaluationAspectImpl() {
+    protected DeterministicEvaluationAspectImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return QMLContractPackage.Literals.DETERMINISTIC_EVALUATION_ASPECT;
     }
 
-} //DeterministicEvaluationAspectImpl
+} // DeterministicEvaluationAspectImpl

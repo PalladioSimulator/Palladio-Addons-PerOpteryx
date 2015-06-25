@@ -17,83 +17,87 @@ import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ *
  * @generated
  */
 public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDeclarationsFactory {
-	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public static QMLDeclarationsFactory init() {
-        try {
-            QMLDeclarationsFactory theQMLDeclarationsFactory = (QMLDeclarationsFactory)EPackage.Registry.INSTANCE.getEFactory(QMLDeclarationsPackage.eNS_URI);
-            if (theQMLDeclarationsFactory != null) {
+    public static QMLDeclarationsFactory init() {
+        try
+        {
+            final QMLDeclarationsFactory theQMLDeclarationsFactory = (QMLDeclarationsFactory) EPackage.Registry.INSTANCE
+                    .getEFactory(QMLDeclarationsPackage.eNS_URI);
+            if (theQMLDeclarationsFactory != null)
+            {
                 return theQMLDeclarationsFactory;
             }
-        }
-        catch (Exception exception) {
+        } catch (final Exception exception)
+        {
             EcorePlugin.INSTANCE.log(exception);
         }
         return new QMLDeclarationsFactoryImpl();
     }
 
-	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public QMLDeclarationsFactoryImpl() {
+    public QMLDeclarationsFactoryImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	@Override
-	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case QMLDeclarationsPackage.QML_DECLARATIONS: return createQMLDeclarations();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    @Override
+    public EObject create(final EClass eClass) {
+        switch (eClass.getClassifierID())
+        {
+        case QMLDeclarationsPackage.QML_DECLARATIONS:
+            return this.createQMLDeclarations();
+        default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public QMLDeclarations createQMLDeclarations() {
-        QMLDeclarationsImpl qmlDeclarations = new QMLDeclarationsImpl();
+    @Override
+    public QMLDeclarations createQMLDeclarations() {
+        final QMLDeclarationsImpl qmlDeclarations = new QMLDeclarationsImpl();
         return qmlDeclarations;
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @generated
      */
-	public QMLDeclarationsPackage getQMLDeclarationsPackage() {
-        return (QMLDeclarationsPackage)getEPackage();
+    @Override
+    public QMLDeclarationsPackage getQMLDeclarationsPackage() {
+        return (QMLDeclarationsPackage) this.getEPackage();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
      * @deprecated
      * @generated
      */
-	@Deprecated
-	public static QMLDeclarationsPackage getPackage() {
+    @Deprecated
+    public static QMLDeclarationsPackage getPackage() {
         return QMLDeclarationsPackage.eINSTANCE;
     }
 
-} //QMLDeclarationsFactoryImpl
+} // QMLDeclarationsFactoryImpl
