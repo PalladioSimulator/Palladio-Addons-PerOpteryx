@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Discrete Processing Rate Degree</b></em>'.

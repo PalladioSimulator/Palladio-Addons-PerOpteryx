@@ -6,15 +6,13 @@
  */
 package de.uka.ipd.sdq.pcm.resourcerepository.util;
 
-import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
-
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
+
+import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents

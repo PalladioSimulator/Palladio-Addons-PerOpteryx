@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedDataTypeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class OrderedDataTypeDegreeImpl extends DataTypeDegreeImpl implements OrderedDataTypeDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OrderedDataTypeDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected OrderedDataTypeDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.ORDERED_DATA_TYPE_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.ORDERED_DATA_TYPE_DEGREE;
+    }
 
 } //OrderedDataTypeDegreeImpl

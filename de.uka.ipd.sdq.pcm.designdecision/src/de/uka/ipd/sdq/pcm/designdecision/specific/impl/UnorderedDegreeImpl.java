@@ -6,10 +6,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class UnorderedDegreeImpl extends DataTypeDegreeImpl implements UnorderedDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnorderedDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected UnorderedDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.UNORDERED_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.UNORDERED_DEGREE;
+    }
 
 } //UnorderedDegreeImpl

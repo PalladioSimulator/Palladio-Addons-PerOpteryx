@@ -2,10 +2,9 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
-import de.uka.ipd.sdq.featuremodel.NamedElement;
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
+import de.uka.ipd.sdq.featuremodel.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,20 +27,20 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface DecisionSpace extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Degrees Of Freedom</b></em>' containment reference list.
-	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Degrees Of Freedom</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Degrees Of Freedom</em>' containment reference list.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDecisionSpace_DegreesOfFreedom()
-	 * @model containment="true" required="true" ordered="false"
-	 * @generated
-	 */
-	EList<DegreeOfFreedomInstance> getDegreesOfFreedom();
+    /**
+     * Returns the value of the '<em><b>Degrees Of Freedom</b></em>' containment reference list.
+     * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Degrees Of Freedom</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Degrees Of Freedom</em>' containment reference list.
+     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDecisionSpace_DegreesOfFreedom()
+     * @model containment="true" required="true" ordered="false"
+     * @generated
+     */
+    EList<DegreeOfFreedomInstance> getDegreesOfFreedom();
 
 } // DecisionSpace

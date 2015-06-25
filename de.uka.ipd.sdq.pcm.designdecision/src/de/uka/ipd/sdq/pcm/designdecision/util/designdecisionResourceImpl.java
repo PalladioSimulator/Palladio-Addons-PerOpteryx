@@ -3,7 +3,6 @@
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
@@ -14,15 +13,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * @generated
  */
 public class designdecisionResourceImpl extends XMIResourceImpl {
-	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param uri the URI of the new resource.
-	 * @generated
-	 */
-	public designdecisionResourceImpl(URI uri) {
-		super(uri);
-	}
+    /**
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param uri the URI of the new resource.
+     * @generated
+     */
+    public designdecisionResourceImpl(URI uri) {
+        super(uri);
+    }
 
 } //designdecisionResourceImpl

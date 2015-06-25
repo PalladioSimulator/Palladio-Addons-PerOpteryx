@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Range Degree</b></em>'.
@@ -29,85 +28,85 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model abstract="true"
  * @generated
  */
-public interface RangeDegree extends DataTypeDegree {
-	/**
-	 * Returns the value of the '<em><b>Upper Bound Included</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Upper Bound Included</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bound Included</em>' attribute.
-	 * @see #setUpperBoundIncluded(boolean)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_UpperBoundIncluded()
-	 * @model default="true" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isUpperBoundIncluded();
+public interface RangeDegree extends OrderedDataTypeDegree {
+    /**
+     * Returns the value of the '<em><b>Upper Bound Included</b></em>' attribute.
+     * The default value is <code>"true"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Upper Bound Included</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Upper Bound Included</em>' attribute.
+     * @see #setUpperBoundIncluded(boolean)
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_UpperBoundIncluded()
+     * @model default="true" required="true" ordered="false"
+     * @generated
+     */
+    boolean isUpperBoundIncluded();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#isUpperBoundIncluded <em>Upper Bound Included</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper Bound Included</em>' attribute.
-	 * @see #isUpperBoundIncluded()
-	 * @generated
-	 */
-	void setUpperBoundIncluded(boolean value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#isUpperBoundIncluded <em>Upper Bound Included</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Upper Bound Included</em>' attribute.
+     * @see #isUpperBoundIncluded()
+     * @generated
+     */
+    void setUpperBoundIncluded(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Lower Bound Included</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Lower Bound Included</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Bound Included</em>' attribute.
-	 * @see #setLowerBoundIncluded(boolean)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_LowerBoundIncluded()
-	 * @model default="true" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isLowerBoundIncluded();
+    /**
+     * Returns the value of the '<em><b>Lower Bound Included</b></em>' attribute.
+     * The default value is <code>"true"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Lower Bound Included</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Lower Bound Included</em>' attribute.
+     * @see #setLowerBoundIncluded(boolean)
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_LowerBoundIncluded()
+     * @model default="true" required="true" ordered="false"
+     * @generated
+     */
+    boolean isLowerBoundIncluded();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#isLowerBoundIncluded <em>Lower Bound Included</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower Bound Included</em>' attribute.
-	 * @see #isLowerBoundIncluded()
-	 * @generated
-	 */
-	void setLowerBoundIncluded(boolean value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#isLowerBoundIncluded <em>Lower Bound Included</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Lower Bound Included</em>' attribute.
+     * @see #isLowerBoundIncluded()
+     * @generated
+     */
+    void setLowerBoundIncluded(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Number Of Steps</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Number Of Steps</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Number Of Steps</em>' attribute.
-	 * @see #setNumberOfSteps(int)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_NumberOfSteps()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	int getNumberOfSteps();
+    /**
+     * Returns the value of the '<em><b>Number Of Steps</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Number Of Steps</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Number Of Steps</em>' attribute.
+     * @see #setNumberOfSteps(int)
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getRangeDegree_NumberOfSteps()
+     * @model ordered="false"
+     * @generated
+     */
+    int getNumberOfSteps();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#getNumberOfSteps <em>Number Of Steps</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Number Of Steps</em>' attribute.
-	 * @see #getNumberOfSteps()
-	 * @generated
-	 */
-	void setNumberOfSteps(int value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree#getNumberOfSteps <em>Number Of Steps</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Number Of Steps</em>' attribute.
+     * @see #getNumberOfSteps()
+     * @generated
+     */
+    void setNumberOfSteps(int value);
 
 } // RangeDegree

@@ -17,39 +17,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface resourcerepositoryFactory extends EFactory {
-	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	resourcerepositoryFactory eINSTANCE = de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryFactoryImpl.init();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    resourcerepositoryFactory eINSTANCE = de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryFactoryImpl
+            .init();
 
-	/**
-	 * Returns a new object of class '<em>Resource Description Repository</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource Description Repository</em>'.
-	 * @generated
-	 */
-	ResourceDescriptionRepository createResourceDescriptionRepository();
+    /**
+     * Returns a new object of class '<em>Resource Description Repository</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resource Description Repository</em>'.
+     * @generated
+     */
+    ResourceDescriptionRepository createResourceDescriptionRepository();
 
-	/**
-	 * Returns a new object of class '<em>Resource Description</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource Description</em>'.
-	 * @generated
-	 */
-	ResourceDescription createResourceDescription();
+    /**
+     * Returns a new object of class '<em>Resource Description</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resource Description</em>'.
+     * @generated
+     */
+    ResourceDescription createResourceDescription();
 
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	resourcerepositoryPackage getresourcerepositoryPackage();
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    resourcerepositoryPackage getresourcerepositoryPackage();
 
 } //resourcerepositoryFactory

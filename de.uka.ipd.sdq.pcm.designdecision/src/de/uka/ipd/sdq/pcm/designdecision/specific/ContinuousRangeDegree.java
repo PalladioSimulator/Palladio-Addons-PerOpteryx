@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Continuous Range Degree</b></em>'.
@@ -31,56 +30,56 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @generated
  */
 public interface ContinuousRangeDegree extends RangeDegree {
-	/**
-	 * Returns the value of the '<em><b>To</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>To</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To</em>' attribute.
-	 * @see #setTo(double)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getContinuousRangeDegree_To()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	double getTo();
+    /**
+     * Returns the value of the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>To</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>To</em>' attribute.
+     * @see #setTo(double)
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getContinuousRangeDegree_To()
+     * @model required="true" ordered="false"
+     * @generated
+     */
+    double getTo();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree#getTo <em>To</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To</em>' attribute.
-	 * @see #getTo()
-	 * @generated
-	 */
-	void setTo(double value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree#getTo <em>To</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>To</em>' attribute.
+     * @see #getTo()
+     * @generated
+     */
+    void setTo(double value);
 
-	/**
-	 * Returns the value of the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>From</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' attribute.
-	 * @see #setFrom(double)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getContinuousRangeDegree_From()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	double getFrom();
+    /**
+     * Returns the value of the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>From</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>From</em>' attribute.
+     * @see #setFrom(double)
+     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getContinuousRangeDegree_From()
+     * @model required="true" ordered="false"
+     * @generated
+     */
+    double getFrom();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree#getFrom <em>From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' attribute.
-	 * @see #getFrom()
-	 * @generated
-	 */
-	void setFrom(double value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree#getFrom <em>From</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>From</em>' attribute.
+     * @see #getFrom()
+     * @generated
+     */
+    void setFrom(double value);
 
 } // ContinuousRangeDegree

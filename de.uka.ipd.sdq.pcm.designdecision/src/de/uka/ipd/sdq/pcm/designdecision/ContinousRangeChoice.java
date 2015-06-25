@@ -2,7 +2,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Continous Range Choice</b></em>'.
@@ -27,31 +26,31 @@ package de.uka.ipd.sdq.pcm.designdecision;
  * @generated
  */
 public interface ContinousRangeChoice extends Choice {
-	/**
-	 * Returns the value of the '<em><b>Chosen Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The double value chosen from the range of the DegreeOfFreedom. 
-	 * 
-	 * TODO: constraint: chosenValue must be within the defined range. 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Chosen Value</em>' attribute.
-	 * @see #setChosenValue(double)
-	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getContinousRangeChoice_ChosenValue()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	double getChosenValue();
+    /**
+     * Returns the value of the '<em><b>Chosen Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The double value chosen from the range of the DegreeOfFreedom. 
+     * 
+     * TODO: constraint: chosenValue must be within the defined range. 
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Chosen Value</em>' attribute.
+     * @see #setChosenValue(double)
+     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getContinousRangeChoice_ChosenValue()
+     * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+     * @generated
+     */
+    double getChosenValue();
 
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice#getChosenValue <em>Chosen Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Chosen Value</em>' attribute.
-	 * @see #getChosenValue()
-	 * @generated
-	 */
-	void setChosenValue(double value);
+    /**
+     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice#getChosenValue <em>Chosen Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Chosen Value</em>' attribute.
+     * @see #getChosenValue()
+     * @generated
+     */
+    void setChosenValue(double value);
 
 } // ContinousRangeChoice

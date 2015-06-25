@@ -65,22 +65,6 @@
       </wizard>
    </extension>
 
-null
-null
-null
-null
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated DesignDecision -->
-      <editor
-            id="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation.qualitypropertiesEditorID"
-            name="%_UI_qualitypropertiesEditor_label"
-            icon="icons/full/obj16/qualitypropertiesModelFile.gif"
-            extensions="qualityproperties"
-            class="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation.qualitypropertiesEditor"
-            contributorClass="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation.qualitypropertiesActionBarContributor">
-      </editor>
-   </extension>
-
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated DesignDecision -->
       <category
@@ -97,42 +81,6 @@ null
       </wizard>
    </extension>
 
-null
-null
-null
-null
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated DesignDecision -->
-      <editor
-            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofEditorID"
-            name="%_UI_gdofEditor_label"
-            icon="icons/full/obj16/gdofModelFile.gif"
-            extensions="gdof"
-            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofEditor"
-            contributorClass="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofActionBarContributor">
-      </editor>
-   </extension>
-
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated DesignDecision -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation.qualitypropertiesModelWizardID"
-            name="%_UI_qualitypropertiesModelWizard_label"
-            class="de.uka.ipd.sdq.pcm.designdecision.qualityproperties.presentation.qualitypropertiesModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/qualitypropertiesModelFile.gif">
-         <description>%_UI_qualitypropertiesModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-null
-null
-null
-null
    <extension point="org.eclipse.ui.editors">
       <editor
             id="de.uka.ipd.sdq.pcm.designdecision.presentation.designdecisionEditorID"
@@ -144,24 +92,4 @@ null
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated DesignDecision -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizardID"
-            name="%_UI_gdofModelWizard_label"
-            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/gdofModelFile.gif">
-         <description>%_UI_gdofModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-null
-null
-null
-null
 </plugin>
