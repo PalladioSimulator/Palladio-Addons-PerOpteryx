@@ -2,22 +2,22 @@ package de.uka.ipd.sdq.pcm.pcm2taskmodel.jobs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
+import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
+import org.palladiosimulator.solver.context.computed_allocation.ComputedAllocation;
+import org.palladiosimulator.solver.context.computed_usage.ComputedUsage;
+import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.transformations.SolverStrategy;
 
-import de.uka.ipd.sdq.context.aggregatedUsageContext.ComputedAggregatedUsage;
-import de.uka.ipd.sdq.context.computed_allocation.ComputedAllocation;
-import de.uka.ipd.sdq.context.computed_usage.ComputedUsage;
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig.PCM2TaskModelWorkflowRunConfiguration;
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.transformation.Pcm2TaskmodelStrategy;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pcmsolver.transformations.SolverStrategy;
-import de.uka.ipd.sdq.workflow.IBlackboardInteractingJob;
-import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
-import de.uka.ipd.sdq.workflow.exceptions.RollbackFailedException;
-import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
+import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
+import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
 public class RunPCM2TaskModelJob implements
 		IBlackboardInteractingJob<MDSDBlackboard> {
@@ -75,10 +75,10 @@ public class RunPCM2TaskModelJob implements
 	}
 
 	@Override
-	public void rollback(IProgressMonitor monitor)
-			throws RollbackFailedException {
+	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

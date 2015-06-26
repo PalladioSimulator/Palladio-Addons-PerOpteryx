@@ -8,7 +8,7 @@ import org.opt4j.core.Criterion;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 public class SecurityAnalysisResult implements IAnalysisResult {
 	

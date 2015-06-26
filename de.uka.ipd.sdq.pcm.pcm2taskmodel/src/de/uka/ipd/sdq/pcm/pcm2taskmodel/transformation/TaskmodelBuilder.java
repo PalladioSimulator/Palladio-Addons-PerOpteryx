@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import de.uka.ipd.sdq.pcm.reliability.FailureOccurrenceDescription;
-import de.uka.ipd.sdq.pcm.reliability.InternalFailureOccurrenceDescription;
-import de.uka.ipd.sdq.pcm.seff.InternalAction;
-import de.uka.ipd.sdq.pcm.seff.ResourceDemandingBehaviour;
-import de.uka.ipd.sdq.pcm.seff.StartAction;
+import org.palladiosimulator.pcm.reliability.FailureOccurrenceDescription;
+import org.palladiosimulator.pcm.reliability.InternalFailureOccurrenceDescription;
+import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
+import org.palladiosimulator.pcm.seff.StartAction;
+import org.palladiosimulator.solver.transformations.EMFHelper;
+
 import de.uka.ipd.sdq.pcm.taskmodel.Edge;
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;
 import de.uka.ipd.sdq.pcm.taskmodel.taskmodelFactory;
-import de.uka.ipd.sdq.pcmsolver.visitors.EMFHelper;
 
 public class TaskmodelBuilder {
 	

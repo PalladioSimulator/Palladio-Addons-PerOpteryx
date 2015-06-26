@@ -1,6 +1,6 @@
 package de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig;
 
-import de.uka.ipd.sdq.workflow.pcm.configurations.AbstractPCMWorkflowRunConfiguration;
+import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 
 public class PCM2TaskModelWorkflowRunConfiguration extends AbstractPCMWorkflowRunConfiguration {
 	

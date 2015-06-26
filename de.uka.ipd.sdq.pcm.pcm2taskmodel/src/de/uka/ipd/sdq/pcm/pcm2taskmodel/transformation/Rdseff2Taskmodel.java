@@ -6,24 +6,24 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.seff.AbstractAction;
+import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
+import org.palladiosimulator.pcm.seff.AbstractLoopAction;
+import org.palladiosimulator.pcm.seff.BranchAction;
+import org.palladiosimulator.pcm.seff.EmitEventAction;
+import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.ForkAction;
+import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.seff.InternalCallAction;
+import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
+import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
+import org.palladiosimulator.pcm.seff.StopAction;
+import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
+import org.palladiosimulator.pcm.seff.util.SeffSwitch;
+import org.palladiosimulator.solver.transformations.ContextWrapper;
 
-import de.uka.ipd.sdq.pcm.seff.AbstractAction;
-import de.uka.ipd.sdq.pcm.seff.AbstractBranchTransition;
-import de.uka.ipd.sdq.pcm.seff.AbstractLoopAction;
-import de.uka.ipd.sdq.pcm.seff.BranchAction;
-import de.uka.ipd.sdq.pcm.seff.EmitEventAction;
-import de.uka.ipd.sdq.pcm.seff.ExternalCallAction;
-import de.uka.ipd.sdq.pcm.seff.ForkAction;
-import de.uka.ipd.sdq.pcm.seff.InternalAction;
-import de.uka.ipd.sdq.pcm.seff.InternalCallAction;
-import de.uka.ipd.sdq.pcm.seff.ResourceDemandingBehaviour;
-import de.uka.ipd.sdq.pcm.seff.ResourceDemandingSEFF;
-import de.uka.ipd.sdq.pcm.seff.StopAction;
-import de.uka.ipd.sdq.pcm.seff.seff_performance.ParametricResourceDemand;
-import de.uka.ipd.sdq.pcm.seff.util.SeffSwitch;
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;
-import de.uka.ipd.sdq.pcmsolver.transformations.ContextWrapper;
 import de.uka.ipd.sdq.probfunction.Sample;
 import de.uka.ipd.sdq.probfunction.math.ManagedPMF;
 
@@ -55,7 +55,7 @@ public class Rdseff2Taskmodel extends SeffSwitch<List<Task>> {
 			return doSwitch(object.getSuccessor_AbstractAction());
 		} else {
 			ContextWrapper oldContextWrapper = (ContextWrapper)contextWrapper.clone();
-			contextWrapper = contextWrapper.getContextWrapperFor(object);
+			contextWrapper = contextWrapper.getContextWrapperFor(object).get(0);
 			
 			Rdseff2Taskmodel seffVisitor = new Rdseff2Taskmodel(contextWrapper, taskModel, builder, executionProbability);
 			List<Task> innerTasks = seffVisitor.doSwitch(seff);
