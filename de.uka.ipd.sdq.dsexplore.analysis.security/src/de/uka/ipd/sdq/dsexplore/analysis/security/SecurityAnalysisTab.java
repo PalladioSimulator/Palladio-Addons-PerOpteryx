@@ -1,24 +1,21 @@
 package de.uka.ipd.sdq.dsexplore.analysis.security;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
-import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
-public class SecurityAnalysisTab extends de.uka.ipd.sdq.workflow.pcm.runconfig.FileNamesInputTab implements
+public class SecurityAnalysisTab extends FileNamesInputTab implements
 		ILaunchConfigurationTab {
 
 	private Text textSecurityModel;

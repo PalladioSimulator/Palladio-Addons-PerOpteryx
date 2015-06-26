@@ -8,10 +8,9 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
-import de.uka.ipd.sdq.workflow.launchconfig.RunConfigPlugin;
-import de.uka.ipd.sdq.workflow.launchconfig.tabs.FileNamesInputTab;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class TaskmodelFileNamesInputTab extends FileNamesInputTab {

@@ -6,19 +6,19 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.visitors.UsageModelVisitor;
 
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig.PCM2TaskModelWorkflowRunConfiguration;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pcmsolver.visitors.UsageModelVisitor;
-import de.uka.ipd.sdq.workflow.IBlackboardInteractingJob;
-import de.uka.ipd.sdq.workflow.exceptions.JobFailedException;
-import de.uka.ipd.sdq.workflow.exceptions.RollbackFailedException;
-import de.uka.ipd.sdq.workflow.exceptions.UserCanceledException;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
+import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
+import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.blackboard.PCMResourceSetPartition;
-import de.uka.ipd.sdq.workflow.pcm.jobs.LoadPCMModelsIntoBlackboardJob;
 
 public class RunDSolverJob implements IBlackboardInteractingJob<MDSDBlackboard> {
 
@@ -81,15 +81,16 @@ public class RunDSolverJob implements IBlackboardInteractingJob<MDSDBlackboard> 
 		return this.getClass().getCanonicalName();
 	}
 
-	@Override
-	public void rollback(IProgressMonitor monitor)
-			throws RollbackFailedException {
-		// Auto-generated method stub
-	}
 
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard) {
 		this.blackboard = blackboard;
+		
+	}
+
+	@Override
+	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
+		// TODO Auto-generated method stub
 		
 	}
 

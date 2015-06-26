@@ -7,25 +7,25 @@ import java.util.List;
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
+import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
+import org.palladiosimulator.pcm.usagemodel.AbstractUserAction;
+import org.palladiosimulator.pcm.usagemodel.Branch;
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
+import org.palladiosimulator.pcm.usagemodel.Loop;
+import org.palladiosimulator.pcm.usagemodel.ScenarioBehaviour;
+import org.palladiosimulator.pcm.usagemodel.Start;
+import org.palladiosimulator.pcm.usagemodel.Stop;
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.pcm.usagemodel.util.UsagemodelSwitch;
+import org.palladiosimulator.solver.transformations.ContextWrapper;
+import org.palladiosimulator.solver.transformations.EMFHelper;
 
-import de.uka.ipd.sdq.pcm.repository.BasicComponent;
-import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
-import de.uka.ipd.sdq.pcm.seff.ResourceDemandingSEFF;
-import de.uka.ipd.sdq.pcm.seff.ServiceEffectSpecification;
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;
-import de.uka.ipd.sdq.pcm.usagemodel.AbstractUserAction;
-import de.uka.ipd.sdq.pcm.usagemodel.Branch;
-import de.uka.ipd.sdq.pcm.usagemodel.EntryLevelSystemCall;
-import de.uka.ipd.sdq.pcm.usagemodel.Loop;
-import de.uka.ipd.sdq.pcm.usagemodel.ScenarioBehaviour;
-import de.uka.ipd.sdq.pcm.usagemodel.Start;
-import de.uka.ipd.sdq.pcm.usagemodel.Stop;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageModel;
-import de.uka.ipd.sdq.pcm.usagemodel.UsageScenario;
-import de.uka.ipd.sdq.pcm.usagemodel.util.UsagemodelSwitch;
-import de.uka.ipd.sdq.pcmsolver.transformations.ContextWrapper;
-import de.uka.ipd.sdq.pcmsolver.visitors.EMFHelper;
 import de.uka.ipd.sdq.probfunction.Sample;
 import de.uka.ipd.sdq.probfunction.math.ManagedPMF;
 import de.uka.ipd.sdq.probfunction.math.exception.StringNotPDFException;
@@ -210,7 +210,7 @@ public class Pcm2TaskmodelUsagemodelSwitch extends UsagemodelSwitch<List<Task>> 
 	@Override
 	public List<Task> caseEntryLevelSystemCall(EntryLevelSystemCall object) {
 		
-		contextWrapper = contextWrapper.getContextWrapperFor(object);
+		contextWrapper = contextWrapper.getContextWrapperFor(object).get(0);
 
 		RepositoryComponent offeringComponent = contextWrapper.getAssCtx()
 				.getEncapsulatedComponent__AssemblyContext();

@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.pcm.pcm2taskmodel.transformation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,29 +10,31 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.Signature;
+import org.palladiosimulator.pcm.seff.AbstractAction;
+import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
+import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
+import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.transformations.ContextWrapper;
+import org.palladiosimulator.solver.transformations.EMFHelper;
+import org.palladiosimulator.solver.transformations.SolverStrategy;
 
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
-import de.uka.ipd.sdq.pcm.core.composition.AssemblyContext;
-import de.uka.ipd.sdq.pcm.core.entity.Entity;
-import de.uka.ipd.sdq.pcm.designdecision.AssembledComponentDegree;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedom;
-import de.uka.ipd.sdq.pcm.designdecision.Problem;
+import de.uka.ipd.sdq.identifier.Identifier;
+import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig.PCM2TaskModelWorkflowRunConfiguration;
-import de.uka.ipd.sdq.pcm.repository.BasicComponent;
-import de.uka.ipd.sdq.pcm.repository.Signature;
-import de.uka.ipd.sdq.pcm.seff.AbstractAction;
-import de.uka.ipd.sdq.pcm.seff.InternalAction;
-import de.uka.ipd.sdq.pcm.seff.ServiceEffectSpecification;
-import de.uka.ipd.sdq.pcm.seff.seff_performance.ParametricResourceDemand;
 import de.uka.ipd.sdq.pcm.taskmodel.Alternative;
 import de.uka.ipd.sdq.pcm.taskmodel.AlternativeTask;
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;
 import de.uka.ipd.sdq.pcm.taskmodel.taskmodelFactory;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
-import de.uka.ipd.sdq.pcmsolver.transformations.ContextWrapper;
-import de.uka.ipd.sdq.pcmsolver.transformations.EMFHelper;
-import de.uka.ipd.sdq.pcmsolver.transformations.SolverStrategy;
 
 public class Pcm2TaskmodelStrategy implements SolverStrategy {
 	
@@ -51,12 +52,12 @@ public class Pcm2TaskmodelStrategy implements SolverStrategy {
 		
 	}
 	
-	private Problem loadProblem(String filename, PCMInstance pcmInstance) {
+	private DecisionSpace loadProblem(String filename, PCMInstance pcmInstance) {
 		EObject eproblem = EMFHelper.loadFromXMIFile(filename);
-		if (!(eproblem instanceof Problem)){
+		if (!(eproblem instanceof DecisionSpace)){
 			throw new RuntimeException(new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot read design decision file "+filename+". Please create a new one.", null)));
 		}
-		Problem problem = (Problem)eproblem;
+		DecisionSpace problem = (DecisionSpace)eproblem;
 		//Adjust references with the right loaded model objects in memory?
 
 		FixDesignDecisionReferenceSwitch visitor = new FixDesignDecisionReferenceSwitch(pcmInstance);
@@ -88,12 +89,12 @@ public class Pcm2TaskmodelStrategy implements SolverStrategy {
 		usageModelSwitch.doSwitch(pcmInstance.getUsageModel());
 		
 		// determine alternatives
-		Problem problem = this.loadProblem(this.config.getDesignDecisionFileName(), pcmInstance);
+		DecisionSpace problem = this.loadProblem(this.config.getDesignDecisionFileName(), pcmInstance);
 		
-		for (DegreeOfFreedom dof : problem.getDesigndecision()) {
-			if (dof instanceof AssembledComponentDegree){
+		for (DegreeOfFreedomInstance dofi : problem.getDegreesOfFreedom()) {
+			if (dofi.getDof() instanceof AssembledComponentDegree){
 				
-				taskModel.getAlternative_TaskList().addAll(determineAlternativeComponents((AssembledComponentDegree)dof,pcmInstance));
+				taskModel.getAlternative_TaskList().addAll(determineAlternativeComponents((AssembledComponentDegree)dofi.getDof(),pcmInstance));
 				
 				// TODO: multiply alternative task if there are several tasks with the same internal action in the original.
 			}
@@ -104,12 +105,12 @@ public class Pcm2TaskmodelStrategy implements SolverStrategy {
 	private List<Alternative> determineAlternativeComponents(
 			AssembledComponentDegree dof, PCMInstance pcmInstance) {
 		
-		if (dof.getDomainOfEntities().size() > 1){
+		if (dof.getClassDesignOptions().size() > 1){
 
-			List<Alternative> results = new ArrayList<Alternative>(dof.getDomainOfEntities().size());
+			List<Alternative> results = new ArrayList<Alternative>(dof.getClassDesignOptions().size());
 			
 			// find each tasks to create an alternative for
-			AssemblyContext ac = (AssemblyContext)dof.getChangeableEntity();
+			AssemblyContext ac = (AssemblyContext)dof.getChangeableElements();
 			BasicComponent replaceableComp = null;
 			if (ac.getEncapsulatedComponent__AssemblyContext() instanceof BasicComponent){
 				replaceableComp = (BasicComponent)ac.getEncapsulatedComponent__AssemblyContext();
@@ -156,10 +157,10 @@ public class Pcm2TaskmodelStrategy implements SolverStrategy {
 			}
 			
 			
-			for (Entity entity : dof.getDomainOfEntities()) {
+			for (EObject entity : dof.getClassDesignOptions()) {
 				
 				// no alternative for the current component
-				if (entity.getId().equals(replaceableComp.getId()))
+				if (((Identifier) entity).getId().equals(replaceableComp.getId()))
 					continue;
 				
 				if (entity instanceof BasicComponent){
