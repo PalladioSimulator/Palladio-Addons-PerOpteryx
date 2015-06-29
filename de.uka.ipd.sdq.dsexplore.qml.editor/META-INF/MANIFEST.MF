@@ -19,11 +19,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
- org.palladiosimulator.pcm.edit;visibility:=reexport,
+ org.palladiosimulator.pcm.edit;bundle-version="4.0.0";visibility:=reexport,
  de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
- de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
- de.uka.ipd.sdq.units.edit;visibility:=reexport,
+ de.uka.ipd.sdq.stoex.edit;bundle-version="2.2.0";visibility:=reexport,
+ de.uka.ipd.sdq.units.edit;bundle-version="2.1.0";visibility:=reexport,
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
- org.palladiosimulator.editors.propertytabs,
- org.palladiosimulator.pcm.ui
+ org.palladiosimulator.editors.propertytabs;bundle-version="1.0.0",
+ org.palladiosimulator.pcm.ui;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
