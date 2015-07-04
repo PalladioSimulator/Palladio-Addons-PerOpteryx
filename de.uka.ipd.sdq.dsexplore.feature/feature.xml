@@ -3,6 +3,7 @@
       id="de.uka.ipd.sdq.dsexplore.feature"
       label="Palladio DSE (PerOpteryx)"
       version="4.0.0.qualifier"
+      plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
 
@@ -226,6 +227,13 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
 
    <plugin
          id="de.uka.ipd.sdq.dsexplore.bayesnets"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
