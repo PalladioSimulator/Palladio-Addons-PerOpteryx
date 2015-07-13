@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -27,6 +28,7 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
 
 /**
  * The QMLManager component can be queried for getting the currently activated QML criteria. 
@@ -71,9 +73,10 @@ public class QMLManager {
 	protected DSEAnalysisMethodTab pofodTab = null;
 	protected DSEAnalysisMethodTab performanceTab = null;
 	protected DSEAnalysisMethodTab securityTab = null;
+	protected DSEAnalysisMethodTab nqrTab = null;
 	
 	//Set to ensure uniqueness of entries
-	protected Set<EvaluationAspectWithContext> objectives = Collections.synchronizedSet(new HashSet<EvaluationAspectWithContext>(4));
+	protected Set<EvaluationAspectWithContext> objectives = Collections.synchronizedSet(new HashSet<EvaluationAspectWithContext>(5));
 	
 	public List<EvaluationAspectWithContext> getActivatedObjectives(){
 		List<EvaluationAspectWithContext> returnList = new ArrayList<EvaluationAspectWithContext>(this.objectives);
@@ -100,6 +103,8 @@ public class QMLManager {
 				pofodTab = tab;
 			} else if(tab.getId().equals(QualityAttribute.SECURITY_QUALITY.getName())) {
 				securityTab = tab;
+			} else if(tab.getId().equals(QualityAttribute.NQR_QUALITY.getName())) {
+				nqrTab = tab;
 			}
 		}
 	}
@@ -288,6 +293,63 @@ public class QMLManager {
 				}
 			}
 		}
+		//NQR		
+		{
+				
+				List<EvaluationAspectWithContext> nqrObjectives = new ArrayList<EvaluationAspectWithContext>();
+				List<EvaluationAspectWithContext> nqrConstraints = new ArrayList<EvaluationAspectWithContext>();
+				try {
+				QMLContractType contractTypeForUsageModel = pcmReader.getContractTypeForUsageModel(usageModel);
+				for (de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension dim: contractTypeForUsageModel.getDimensions())
+				{
+					nqrObjectives.addAll(pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dim.getId()));
+					nqrConstraints.addAll(pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dim.getId()));
+				}
+				List<EvaluationAspectWithContext> nqrCriteria = new ArrayList<EvaluationAspectWithContext>();
+				nqrCriteria.addAll(nqrObjectives);
+				nqrCriteria.addAll(nqrConstraints);
+				exts.clear();
+				IExtension[] availExts = Platform.getExtensionRegistry().getExtensionPoint(
+						"de.uka.ipd.sdq.dsexplore.analysis").getExtensions();
+				for (int i = 0; i < availExts.length; ++i)
+				{
+					IConfigurationElement[] elements = availExts[i].getConfigurationElements();
+					for (IConfigurationElement element : elements) {
+						if (element.getName().equals("analysis")) {
+							//return element.getAttribute("qualityAttribute");
+							if (element.getAttribute("qualityAttribute").equals("de.uka.ipd.sdq.dsexplore.nqr"))
+								exts.add(availExts[i]);
+						}
+					}
+				}
+				//exts.add(exti);
+				} catch (Exception e){
+					logger.warn("NQR dimension file could not be loaded. Ignoring it.");
+					e.printStackTrace();
+					exts.clear();
+				}
+				
+				//Get evaluators that can evaluate every aspect
+				boolean extentionIntersection = false;
+				for(EvaluationAspectWithContext aspect : nqrObjectives) {
+					List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);			
+					if(tmp_exts.size() > 0) {
+						extentionIntersection = true;
+						break;
+					}
+				}
+				if(nqrTab != null) {
+					if(exts.size() == 0 || extentionIntersection) {			
+						nqrTab.deactivate();			
+					} else  {
+						nqrTab.activate(exts);
+						for (EvaluationAspectWithContext eawc: nqrObjectives)
+							if (!objectives.contains(eawc))
+								objectives.add(eawc);
+					}
+				}
+			}
+		
 		//RESPONSE TIME bzw. Performance in general
 		{			
 			List<EvaluationAspectWithContext> performanceObjectives = 

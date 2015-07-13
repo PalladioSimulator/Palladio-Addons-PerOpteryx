@@ -29,11 +29,12 @@ public class AnalysisQualityAttributes {
 //			dimensions.add(reader.getDimension(dimensionDefinition));
 //		}
 //		return dimensions;
-		List<QualityAttribute> attributes = new ArrayList<QualityAttribute>(3);
+		List<QualityAttribute> attributes = new ArrayList<QualityAttribute>(5);
 		attributes.add(QualityAttribute.PERFORMANCE_QUALITY);
 		attributes.add(QualityAttribute.RELIABILITY_QUALITY);
 		attributes.add(QualityAttribute.COST_QUALITY);
 		attributes.add(QualityAttribute.SECURITY_QUALITY);
+		attributes.add(QualityAttribute.NQR_QUALITY);
 		
 		return attributes;
 		
