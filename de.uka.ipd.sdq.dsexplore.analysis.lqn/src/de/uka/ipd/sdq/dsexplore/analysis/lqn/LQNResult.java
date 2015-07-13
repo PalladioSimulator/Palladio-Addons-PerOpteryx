@@ -259,9 +259,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 							
 							OutputResultType processorResult = lqnResultProc.get(0);
 							
-							String utilString = (String)processorResult.getUtilization();
-							result.setResourceUtilisation(LQNUtils
-									.convertStringToDouble(utilString));
+							result.setResourceUtilisation(processorResult.getUtilization());
 							
 							// determine waiting times and service times by checking all result entries (contained in the first task)
 							double waitingTime = 0;
@@ -278,18 +276,15 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 									if (entryResults.size() > 0 ){
 										
 										OutputResultType entryResult = entryResults.get(0);
-										String throughputString = (String)entryResult.getThroughput();
 										
 										EList<ActivityPhasesType> entryPhaseActivities = entryType.getEntryPhaseActivities().getActivity();
 										if (entryPhaseActivities.size() > 0 ){
 											List<OutputResultType> activityResults = entryPhaseActivities.get(0).getResultActivity();
 											if (activityResults.size() > 0){
-												String waitingTimeString = (String)activityResults.get(0).getProcWaiting();
-												String serviceTimeString = (String)activityResults.get(0).getServiceTime();
 												
-												double throughput = LQNUtils.convertStringToDouble(throughputString);
-												double entryWaitingTime = LQNUtils.convertStringToDouble(waitingTimeString);
-												double entryServiceTime = LQNUtils.convertStringToDouble(serviceTimeString);
+												double throughput = entryResult.getThroughput();
+												double entryWaitingTime = activityResults.get(0).getProcWaiting();
+												double entryServiceTime = activityResults.get(0).getServiceTime();
 												
 												// only look at service times greater than one, because the others do not seem to have to wait.
 												// weight the current waiting time and service time by the current throughgput to get the overall times. 
@@ -319,7 +314,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 							}
 							
 
-							logger.debug("Resource "+processorID+" has utilisation "+utilString+ " and waiting time "+result.getAverageQueueLength());
+							logger.debug("Resource "+processorID+" has utilisation "+processorResult.getUtilization()+ " and waiting time "+result.getAverageQueueLength());
 						}
 						
 						//we can remove this element now and do not have to iterate over this one again in the next loop iterations. 
@@ -369,9 +364,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 
 								OutputResultType entryResult = entryResults
 										.get(0);
-								String throughputString = (String) entryResult
-										.getThroughput();
-								throughput += LQNUtils.convertStringToDouble(throughputString);
+								throughput += entryResult.getThroughput();
 							}
 						}
 						
@@ -427,14 +420,11 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 					if (task.getResultTask().size() > 0){
 						OutputResultType outputResult = task.getResultTask().get(0);
 
-						if (outputResult != null)
+						if (outputResult != null) {
 							responseTime = LQNUtils.getResponseTimeOfSubActivities(task);
-
-						if (outputResult.getSquaredCoeffVariation() != null) {
-							this.squaredCoeffVariance = LQNUtils
-							.convertStringToDouble((String) outputResult
-									.getSquaredCoeffVariation());
-						} 
+							this.squaredCoeffVariance = outputResult.getSquaredCoeffVariation();
+						}
+						
 						return responseTime;
 					}
 				}
@@ -463,7 +453,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 						criterion, usageScenarioProcessor);
 				
 				if (entryLevelCallActivityResult != null){
-					return LQNUtils.convertStringToDouble((String) entryLevelCallActivityResult.getServiceTime());
+					return entryLevelCallActivityResult.getServiceTime();
 				}
 				
 			} 
@@ -533,7 +523,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 			if (usageScenarioTask != null && usageScenarioTask.getResultTask().size()>0){
 				OutputResultType outputResult = usageScenarioTask.getResultTask().get(0);
 				if (outputResult != null){
-					return LQNUtils.convertStringToDouble((String)outputResult.getThroughput());
+					return outputResult.getThroughput();
 				}
 			}
 			
@@ -557,7 +547,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 						criterion, usageScenarioProcessor);
 				
 				if (entryLevelCallActivityResult != null){
-					return LQNUtils.convertStringToDouble((String) entryLevelCallActivityResult.getThroughput());
+					return entryLevelCallActivityResult.getThroughput();
 				}
 				
 			} 
