@@ -13,7 +13,7 @@ Export-Package: de.uka.ipd.sdq.nqr,
  de.uka.ipd.sdq.pcm.nqr.helper
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- de.uka.ipd.sdq.pcm;visibility:=reexport,
+ org.palladiosimulator.pcm;visibility:=reexport,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  de.uka.ipd.sdq.probfunction;visibility:=reexport,
  de.uka.ipd.sdq.dsexplore.qml;visibility:=reexport,

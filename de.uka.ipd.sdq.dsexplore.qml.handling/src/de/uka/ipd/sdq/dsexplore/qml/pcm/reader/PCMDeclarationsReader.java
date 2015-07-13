@@ -25,6 +25,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Objective;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Restriction;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SimpleQMLContract;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.InfeasibilityConstraintBuilder;
@@ -67,6 +68,23 @@ public class PCMDeclarationsReader {
 		this.PCMProfilePaths = new String[]{PCMProfilePath};
 		
 		init();		
+	}
+	
+	public QMLContractType getContractTypeForUsageModel(UsageModel usageModel)
+	{
+		for (SimpleQMLProfile sqc: pcmProfiles)
+		{
+			if (equalUsageModels(usageModel, sqc.getUsageModel()))
+				for (Requirement requirement : sqc.getRequirements()) {
+					for (GenericQMLContract contract : requirement.getRequireContract()) {
+						if (contract instanceof SimpleQMLContract) {
+							SimpleQMLContract simpleContract = (SimpleQMLContract) contract;
+							return simpleContract.getContractType();
+						}
+					}
+				}
+		}
+		return null;
 	}
 	
 	protected void init() {

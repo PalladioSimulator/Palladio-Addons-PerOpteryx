@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.nqr.NqrRepository#getNqr <em>Nqr</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqrRepository()
  * @model
