@@ -52,9 +52,7 @@ public class LQNUtils {
 			EList<OutputResultType> results = activity.getResultActivity();
 			for (OutputResultType outputResultType : results) {
 
-				time += LQNUtils
-						.convertStringToDouble((String) outputResultType
-								.getServiceTime());
+				time += outputResultType.getServiceTime();
 			}
 
 		}

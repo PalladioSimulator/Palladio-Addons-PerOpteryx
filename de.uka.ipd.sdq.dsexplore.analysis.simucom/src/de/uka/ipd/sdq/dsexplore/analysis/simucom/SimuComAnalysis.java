@@ -282,11 +282,14 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
                 break;
             } catch (final JobFailedException e) {
                 logger.error(e.getMessage());
-                if (numberOfTries > 0 && e.getCause().getMessage().contains("Couldn't find extension")){
-                    logger.warn("Trying to start SimuCom again.");
-                } else {
-                    throw new AnalysisFailedException(e);
+                if (e.getCause() != null){
+                	String causingErrorMessage = e.getCause().getMessage();
+                	if (numberOfTries > 0 && causingErrorMessage != null && causingErrorMessage.contains("Couldn't find extension")){
+                		logger.warn("Trying to start SimuCom again.");
+                		return;
+                	}
                 }
+                throw new AnalysisFailedException(e);
             }
         }
 
