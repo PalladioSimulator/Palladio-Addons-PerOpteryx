@@ -38,6 +38,7 @@ public class DSEConstantsContainer {
 	
 	/** Model filenames value */
 	public static final String COST_FILE = "costFile";
+	public static final String NQR_FILE = "nqrFile";
 	//public static final String SECURITY_FILE = "securityFile";
 	public static final String PREDEFINED_INSTANCES = "predefinedInstances";
 	public static final String CACHE_INSTANCES = "cacheInstances";
@@ -54,6 +55,7 @@ public class DSEConstantsContainer {
 	 * shows to the argument.
 	 */
 	public static final String[] COST_MODEL_EXTENSION = new String[] { "*.cost" };
+	public static final String[] NQR_MODEL_EXTENSION = new String[] { "*.nqr" };
 	
 	//public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
 	
@@ -94,7 +96,11 @@ public class DSEConstantsContainer {
 			public String getPrettyName() { return "Reliability"; }},
 		SECURITY_QUALITY {
 				public String getName() { return "de.uka.ipd.sdq.dsexplore.security" ;		}
-				public String getPrettyName() { return "Security"; }};	
+				public String getPrettyName() { return "Security"; }},	
+		NQR_QUALITY {
+					public String getName() { return "de.uka.ipd.sdq.dsexplore.nqr" ;		}
+					public String getPrettyName() { return "Non-quantifiable"; }};
+					
 		
 		public abstract String getName();
 		
@@ -107,6 +113,8 @@ public class DSEConstantsContainer {
 				return COST_QUALITY;
 			} else if (name.equals(SECURITY_QUALITY.getName())){
 				return SECURITY_QUALITY;
+			} else if (name.equals(NQR_QUALITY.getName())){
+				return NQR_QUALITY;
 			} else {
 				return null;
 			}
