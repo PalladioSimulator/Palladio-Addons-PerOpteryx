@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.analysis.nqr;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -10,8 +9,7 @@ import org.opt4j.core.Criterion;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
-import de.uka.ipd.sdq.pcmsolver.models.PCMInstance;
+import de.uka.ipd.sdq.pcm.nqr.helper.NqrUtil;
 
 public class NqrAnalysisResult implements IAnalysisResult {
 	
@@ -21,18 +19,14 @@ public class NqrAnalysisResult implements IAnalysisResult {
 
 	private Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
 	private NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration;
-	private Map<Criterion, Double> criterionToValueMap = new HashMap<Criterion, Double>();
+	private de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit;
 
-	public NqrAnalysisResult(Criterion crit, double val, Map<Criterion, EvaluationAspectWithContext> criterionToAspect, NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration) {
+	public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect, de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit, NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration) {
 		this.criterionToAspectMap = criterionToAspect;
 		this.nqrQualityDimensionDeclaration = nqrQualityDimensionDeclaration;
+		this.targetCrit = targetCrit;
 	}
 	
-	public void addCriterionResult(Criterion crit, double critValue)
-	{
-		criterionToValueMap.put(crit, critValue);
-	}
-
 	@Override
 	public double getValueFor(Criterion criterion)  {
 		EvaluationAspectWithContext aspect = this.criterionToAspectMap.get(criterion);
@@ -41,12 +35,14 @@ public class NqrAnalysisResult implements IAnalysisResult {
 			for (Dimension dim: nqrQualityDimensionDeclaration.getDimensions())
 			{
 				if (EcoreUtil.equals(aspect.getDimension(), dim))
+				{
 					nqrQualityDimensionDeclaration.getRequirement(dim);
-				return 42d;
+					return NqrUtil.getNqrValue(aspect.getCriterion(), targetCrit);
+				}
 			}
 		} 
 		
-		logger.warn("Unknown aspect for LQN result, adding NaN.");
+		logger.warn("Unknown aspect for Nqr result, adding NaN.");
 		return Double.NaN;
 	}
 

@@ -3,26 +3,17 @@
 package de.uka.ipd.sdq.nqr.impl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
-
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrPackage;
-
-import de.uka.ipd.sdq.pcm.repository.RepositoryComponent;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,11 +23,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getCriterion <em>Criterion</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -49,7 +40,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * @generated
 	 * @ordered
 	 */
-	protected RepositoryComponent annotatedElement;
+	protected org.palladiosimulator.pcm.repository.RepositoryComponent annotatedElement;
 
 	/**
 	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' containment reference list.
@@ -85,10 +76,10 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RepositoryComponent getAnnotatedElement() {
+	public org.palladiosimulator.pcm.repository.RepositoryComponent getAnnotatedElement() {
 		if (annotatedElement != null && ((EObject)annotatedElement).eIsProxy()) {
 			InternalEObject oldAnnotatedElement = (InternalEObject)annotatedElement;
-			annotatedElement = (RepositoryComponent)eResolveProxy(oldAnnotatedElement);
+			annotatedElement = (org.palladiosimulator.pcm.repository.RepositoryComponent)eResolveProxy(oldAnnotatedElement);
 			if (annotatedElement != oldAnnotatedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NqrPackage.NQR__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
@@ -102,7 +93,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RepositoryComponent basicGetAnnotatedElement() {
+	public org.palladiosimulator.pcm.repository.RepositoryComponent basicGetAnnotatedElement() {
 		return annotatedElement;
 	}
 
@@ -111,8 +102,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnnotatedElement(RepositoryComponent newAnnotatedElement) {
-		RepositoryComponent oldAnnotatedElement = annotatedElement;
+	public void setAnnotatedElement(org.palladiosimulator.pcm.repository.RepositoryComponent newAnnotatedElement) {
+		org.palladiosimulator.pcm.repository.RepositoryComponent oldAnnotatedElement = annotatedElement;
 		annotatedElement = newAnnotatedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NqrPackage.NQR__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
@@ -171,7 +162,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
-				setAnnotatedElement((RepositoryComponent)newValue);
+				setAnnotatedElement((org.palladiosimulator.pcm.repository.RepositoryComponent)newValue);
 				return;
 			case NqrPackage.NQR__CRITERION:
 				getCriterion().clear();
@@ -190,7 +181,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
-				setAnnotatedElement((RepositoryComponent)null);
+				setAnnotatedElement((org.palladiosimulator.pcm.repository.RepositoryComponent)null);
 				return;
 			case NqrPackage.NQR__CRITERION:
 				getCriterion().clear();
