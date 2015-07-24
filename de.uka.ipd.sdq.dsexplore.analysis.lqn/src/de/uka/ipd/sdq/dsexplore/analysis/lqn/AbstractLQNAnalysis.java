@@ -185,6 +185,8 @@ public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IA
 		SolverStrategy strategy = solverJob.getStrategy();
 		if (strategy instanceof Pcm2LqnStrategy){
 			this.previousResultFileName.put(pheno.getNumericID(), ((Pcm2LqnStrategy)strategy).getFilenameResultXML());
+		} else {
+			throw new AnalysisFailedException("PCM solver was not configured to use Pcm2Lqn. Please contact the developers. Strategy was: "+strategy);
 		}
 
 		try {
