@@ -30,7 +30,7 @@ public class SimuComAnalysisResultTest extends TestCase {
         final Experiment exp = new ExperimentImpl(null);
 
         //FIXME: add proper params
-        scr = new SimuComAnalysisSensorFrameworkResult(run, exp, pcmInstance, null, null, null);
+        //scr = new SimuComAnalysisSensorFrameworkResult(run, exp, pcmInstance, null, null, null);
 
     }
 
