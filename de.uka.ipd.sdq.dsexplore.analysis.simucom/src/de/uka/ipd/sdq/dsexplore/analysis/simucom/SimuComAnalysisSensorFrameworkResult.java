@@ -18,6 +18,8 @@ import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.commons.math.stat.descriptive.rank.Max;
 import org.apache.commons.math.stat.descriptive.rank.Median;
 import org.apache.commons.math.stat.descriptive.rank.Min;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.ILaunchConfiguration;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.analyzer.resultdecorator.repositorydecorator.RepositorydecoratorFactory;
@@ -31,7 +33,9 @@ import org.palladiosimulator.pcm.resourcetype.ResourceType;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.recorderframework.config.AbstractRecorderConfigurationFactory;
 import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
+import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
 
@@ -59,21 +63,24 @@ import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult {
 
     // SensorFramework-specific attributes pushed down from superclass
-    private final Experiment experiment;
     private final ExperimentRun run;
+    private final Experiment experiment;
 
-    public SimuComAnalysisSensorFrameworkResult(final ExperimentRun run, final Experiment experiment, final PCMInstance pcmInstance,
-            final UsageScenario usageScenario, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
-            final SimuComQualityAttributeDeclaration qualityAttributeInfo)
-                    throws AnalysisFailedException {
+    public SimuComAnalysisSensorFrameworkResult(UsageScenario usageScenario,
+			String experimentName, PCMInstance pcmInstance,
+			Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
+			SimuComQualityAttributeDeclaration qualityAttributeInfo, 
+			ILaunchConfiguration config)
+			
+                    throws AnalysisFailedException, CoreException {
         super(pcmInstance);
-
-        this.experiment = experiment;
-        this.run = run;
-
+        
+        this.experiment = findExperiment(experimentName, config);
+        this.run = getLatestRun(this.experiment);
+        
         this.usageScenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
 
-        this.objectiveToAspects = objectiveToAspect;
+        this.objectiveToAspects = criterionToAspect;
         this.qualityAttributeInfo = qualityAttributeInfo;
 
         this.results =  retrieveResults(pcmInstance);
@@ -90,88 +97,74 @@ public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult 
         logger.debug("Initialised SimuCom result");
     }
 
-    /**
-     * Tries to find a matching experiment run in all data sources available. If a matching experiment run
+
+    private static Experiment findExperiment(String experimentName,
+    		ILaunchConfiguration config) throws CoreException{
+
+    	final int selectedDataSourceID =
+    			config.getAttribute(SensorFrameworkRecorderConfigurationFactory.DATASOURCE_ID, -1);
+    	
+    	final IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
+
+    	//XXX: Quick fix: Assuming that there is just one experiment with the name of the current PCM instance.
+    	/* the Sensorframework cuts experiment names at a certain length, so need to check for the prefix*/
+    	Collection<Experiment> experiments = factory.createExperimentDAO().getExperiments();
+    	
+    	/* it happened that an empty list of experiments was returned even if there should be some. So reload in that case. */
+    	if (experiments.size() == 0){
+        	SensorFrameworkDataset.singleton().reload();
+        	experiments = factory.createExperimentDAO().getExperiments();
+    	}
+    	
+    	for (Experiment experiment : experiments) {
+			if (experimentName.startsWith(experiment.getExperimentName())){
+				return experiment;
+			}
+		}
+
+    	return null;
+    }
+
+
+
+
+	/**
+     * Tries to find a matching experiment run in the selected data source. If a matching experiment run
      * is found, <code>true</code>. If not, <code>false</code> is returned.
      * @param experimentName The experiment name to match
      * @param workflowConfig
      * @param datasourceReloadCount
+     * @param config 
      * @return <code>true</code> if experiment has been found, <code>false</code> otherwise
+     * @throws CoreException 
      */
-    static public boolean isExperimentRunExisting(final String experimentName, final SimuComWorkflowConfiguration workflowConfig, int datasourceReloadCount)
+    static public boolean isExperimentRunExisting(final String experimentName, final SimuComWorkflowConfiguration workflowConfig, int datasourceReloadCount, ILaunchConfiguration config) throws CoreException
     {
-        // IRecorderConfiguration recorderConfig = this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfig();
+    	// IRecorderConfiguration recorderConfig = this.simuComWorkflowConfiguration.getSimulationConfiguration().getRecorderConfig();
 
-        if (workflowConfig.getSimulationConfiguration().getRecorderName().toLowerCase().contains("sensorframework")){
+    	// Every few runs the datasource needs to be reloaded because the simulation will fail with OutOfmemoryError after ~300 simulations otherwise
+    	if (datasourceReloadCount >= 100 ){
+    		SensorFrameworkDataset.singleton().reload();
+    		datasourceReloadCount = 0;
+    	}
+    	datasourceReloadCount++;
 
-            // Every few runs the datasource needs to be reloaded because the simulation will fail with OutOfmemoryError after ~300 simulations otherwise
-            if (datasourceReloadCount >= 100 ){
-                SensorFrameworkDataset.singleton().reload();
-                datasourceReloadCount = 0;
-            }
-            datasourceReloadCount++;
+    	Experiment experiment = findExperiment(experimentName, config);
+    	
+    	if (experiment == null){
+    		return false;
+    	} else {
+    		ExperimentRun myRun = getLatestRun(experiment);
+    		if (myRun == null ){
+    			return false;
+    		} else {
+    			return true;
+    		}
+    	}
 
-            // Obtain DAOFactories. Search in any open data source.
-            final Collection<IDAOFactory> daoFactoryCollection = SensorFrameworkDataset.singleton().getDataSources();
-
-            for (final IDAOFactory daoFactory : daoFactoryCollection) {
-                if (daoFactory == null) {
-                    throw new DatasourceConfigurationInvalidException();
-                }
-
-                Experiment experiment;
-                // Find an existing or create a new Experiment
-                final Collection<Experiment> experimentSet = daoFactory.createExperimentDAO().findByExperimentName(experimentName);
-
-                if (experimentSet.size() > 0){
-                    experiment = experimentSet.iterator().next();
-
-                    if (experiment.getExperimentRuns().size() > 0 && experiment.getSensors().size() > 0 ){
-                        return true;
-                    }
-
-                }
-            }
-
-        }
-        return false;
     }
 
-    /**
-     * Tries to find a matching experiment run in the passed data source (via the passed <code>factory</code>). If a matching experiment run
-     * is found, a new {@link IStatisticAnalysisResult} is created for it. If not, <code>null</code> is returned.
-     * @param usageScenario The usage scenario to determine the response time values for.
-     * @param experimentName The experiment name to match
-     * @param pcmInstance The PCM instance to get the available resources and retrieve utilisation values.
-     * @param factory The access to the data source.
-     * @param criterionToAspect
-     * @param qualityAttribute
-     * @return The instantiated {@link IStatisticAnalysisResult} for this experiment name, or <code>null</code> if no matching experiment run could be found.
-     * @throws AnalysisFailedException
-     */
-    public static IStatisticAnalysisResult findExperimentRunAndCreateResult(
-            final UsageScenario usageScenario, final String experimentName,
-            final PCMInstance pcmInstance,
-            final IDAOFactory factory,
-            final Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
-            final SimuComQualityAttributeDeclaration qualityAttribute
-            ) throws AnalysisFailedException {
-        IStatisticAnalysisResult result = null;
-        //XXX: Quick fix: Assume that there is just one experiment with the name of the current PCM instance.
-        //Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName
-        //		+" RunNo. "+config.getAttribute(ConstantsContainer.RUN_NO, "0")).iterator();
-        final Iterator<Experiment> it = factory.createExperimentDAO().findByExperimentName(experimentName).iterator();
-        if (it.hasNext()){
-            final Experiment resultingExperiment = it.next();
-            final Collection<ExperimentRun> runs = resultingExperiment.getExperimentRuns();
-            if (runs.size() > 0){
-                final ExperimentRun myrun = getLatestRun(runs);
-                result = new SimuComAnalysisSensorFrameworkResult(myrun, resultingExperiment, pcmInstance, usageScenario, criterionToAspect, qualityAttribute);
-            }
-        }
-        return result;
-    }
-
+     
     private double calculateUnivariateStatistic(final SensorAndMeasurements sam, final TimeseriesData timespan, final UnivariateStatistic stat) {
         final double[] measurements = measurementsToDoubleArray(sam, timespan);
         return stat.evaluate(measurements);
@@ -195,35 +188,45 @@ public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult 
      * @return The latest run or the first in the collection if timestamps
      * cannot properly be parsed.
      */
-    private static ExperimentRun getLatestRun(final Collection<ExperimentRun> runs) {
-        final Iterator<ExperimentRun> iterator = runs.iterator();
-        ExperimentRun latest = iterator.next();
-        //FIXME: Due to Bug 395, I cannot get the order of ExperimentRuns.
-        //Quickfix: Extract it from the (nasty) ExperimentDateTime String as a long.
-        long dateLatest = extractTimestamp(latest.getExperimentDateTime());
-        for (; iterator.hasNext();) {
-            final ExperimentRun experimentRun = iterator.next();
-            logger.debug("Looking at run "+experimentRun.getExperimentDateTime());
-            final long runDate = extractTimestamp(experimentRun.getExperimentDateTime());
-            if (dateLatest < runDate){
-                latest = experimentRun;
-                dateLatest = runDate;
-            }
-        }
-        logger.debug("Latest run: "+latest.getExperimentDateTime());
-        return latest;
+    private static ExperimentRun getLatestRun(final Experiment currentExperiment) {
+
+    	final Collection<ExperimentRun> runs = currentExperiment.getExperimentRuns();
+
+    	final Iterator<ExperimentRun> iterator = runs.iterator();
+
+    	long dateLatest = 0;
+    	ExperimentRun latest = null;
+
+    	if (iterator.hasNext()){
+
+    		for (; iterator.hasNext();) {
+    			final ExperimentRun experimentRun = iterator.next();
+    			if (experimentRun.getMeasurements().size() != 0){
+    				logger.debug("Looking at run "+experimentRun.getExperimentDateTime());
+    				//FIXME: Due to Bug 395, I cannot get the order of ExperimentRuns.
+    				//Quickfix: Extract it from the (nasty) ExperimentDateTime String as a long.
+    				final long runDate = extractTimestamp(experimentRun.getExperimentDateTime());
+    				if (dateLatest < runDate){
+    					latest = experimentRun;
+    					dateLatest = runDate;
+    				}
+    			}
+    		}
+    		if (latest != null){
+    			logger.debug("Latest run: "+latest.getExperimentDateTime());
+    		}
+    		return latest;
+    	} else {
+    		return null;
+    	}
     }
 
-    //FIXME: use constant from AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT
-    // as soon as the Recorderframework build has been fixed.
-    public static final String EXPERIMENT_RUN_DATE_FORMAT = "yyyy/MM/dd HH:mm:ss:SSS";
+    public static final String EXPERIMENT_RUN_DATE_FORMAT = AbstractRecorderConfigurationFactory.EXPERIMENT_RUN_DATE_FORMAT;
 
     /**
      * Extract time stamps from the experimentDateTime string. This is just a
      * QuickFix because {@link ExperimentRun}s currently do not store their
      * time properly.
-     *
-     * Delete this method after Bug 395 is fixed.
      *
      * @param experimentDateTime
      * @return The {@link Date} of the {@link ExperimentRun}
