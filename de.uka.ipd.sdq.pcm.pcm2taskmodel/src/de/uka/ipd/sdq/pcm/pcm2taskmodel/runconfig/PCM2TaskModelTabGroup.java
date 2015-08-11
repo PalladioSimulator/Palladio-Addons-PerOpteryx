@@ -3,6 +3,7 @@ package de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.palladiosimulator.analyzer.workflow.runconfig.ConfigurationTab;
 
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.DebugEnabledCommonTab;
 
@@ -34,7 +35,7 @@ public class PCM2TaskModelTabGroup extends AbstractLaunchConfigurationTabGroup {
 
 		// Assemble the tab pages:
 		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
-				new TaskmodelFileNamesInputTab(), /*new CommonTab(), */ new DebugEnabledCommonTab() };
+				new TaskmodelFileNamesInputTab(), new ConfigurationTab(), new DebugEnabledCommonTab() };
 
 		// Do the setup:
 		setTabs(tabs);
