@@ -20,6 +20,7 @@ import org.palladiosimulator.pcm.usagemodel.Start;
 import org.palladiosimulator.pcm.usagemodel.Stop;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.pcm.usagemodel.UsagemodelFactory;
 import org.palladiosimulator.pcm.usagemodel.util.UsagemodelSwitch;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
 import org.palladiosimulator.solver.transformations.EMFHelper;
@@ -252,8 +253,7 @@ public class Pcm2TaskmodelUsagemodelSwitch extends UsagemodelSwitch<List<Task>> 
 	}
 
 	private Start getStartAction(ScenarioBehaviour object) {
-		Start startAction = (Start) EMFHelper.getObjectByType(object
-				.getActions_ScenarioBehaviour(), Start.class);
+		Start startAction = (Start) new EMFHelper().getElements(object, UsagemodelFactory.eINSTANCE.createStart().eClass());
 		return startAction;
 	}
 

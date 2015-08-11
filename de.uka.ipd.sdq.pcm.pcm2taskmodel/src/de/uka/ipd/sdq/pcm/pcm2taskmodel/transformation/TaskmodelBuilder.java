@@ -9,6 +9,7 @@ import org.palladiosimulator.pcm.reliability.FailureOccurrenceDescription;
 import org.palladiosimulator.pcm.reliability.InternalFailureOccurrenceDescription;
 import org.palladiosimulator.pcm.seff.InternalAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
+import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.StartAction;
 import org.palladiosimulator.solver.transformations.EMFHelper;
 
@@ -193,8 +194,8 @@ public class TaskmodelBuilder {
 	}
 	
 	public StartAction getStartAction(ResourceDemandingBehaviour behaviour) {
-		StartAction startAction = (StartAction) EMFHelper.getObjectByType(
-				behaviour.getSteps_Behaviour(), StartAction.class);
+		StartAction startAction = (StartAction) new EMFHelper().getElements(
+				behaviour, SeffFactory.eINSTANCE.createStartAction().eClass());
 		return startAction;
 	}
 

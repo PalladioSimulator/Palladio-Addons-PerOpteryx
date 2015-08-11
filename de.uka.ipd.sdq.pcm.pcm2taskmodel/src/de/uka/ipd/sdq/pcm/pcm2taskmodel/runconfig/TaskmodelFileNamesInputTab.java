@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Text;
 import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
+import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class TaskmodelFileNamesInputTab extends FileNamesInputTab {
@@ -50,7 +51,6 @@ public class TaskmodelFileNamesInputTab extends FileNamesInputTab {
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 		super.setDefaults(configuration);
 		
-		this.textTaskModelResult.setText(TASKMODEL_DEFAULT_OUTPUT);
 	}
 
 	@Override
@@ -61,14 +61,14 @@ public class TaskmodelFileNamesInputTab extends FileNamesInputTab {
 			this.textTaskModelFile.setText(configuration.getAttribute(
 					DSEConstantsContainer.DESIGN_DECISION_FILE, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),DSEConstantsContainer.DESIGN_DECISION_FILE, e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.DESIGN_DECISION_FILE, e.getMessage());
 		}
 		
 		try {
 			this.textTaskModelResult.setText(configuration.getAttribute(
 					TASKMODEL_OUTPUT, ""));
 		} catch (CoreException e) {
-			RunConfigPlugin.errorLogger(getName(),TASKMODEL_OUTPUT, e.getMessage());
+			LaunchConfigPlugin.errorLogger(getName(),TASKMODEL_OUTPUT, e.getMessage());
 		}
 	}
 
