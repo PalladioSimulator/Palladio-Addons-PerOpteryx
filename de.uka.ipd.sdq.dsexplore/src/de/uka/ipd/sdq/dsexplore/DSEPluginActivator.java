@@ -30,7 +30,7 @@ public class DSEPluginActivator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public DSEPluginActivator() {
-		plugin= this;
+		plugin = this;
 		
 	}
 
@@ -81,17 +81,13 @@ public class DSEPluginActivator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 	
-	public static String findFile(String file)
-	{
-		String result="";
-		try
-		{
-			
+	public static String findFile(String file) {
+		String result = "";
+		try {
+
 			URL url = FileLocator.find(getDefault().getBundle(), new Path(file), null);
-			result= FileLocator.toFileURL(url).getPath().toString();
-		}
-		catch(IOException ex)
-		{
+			result = FileLocator.toFileURL(url).getPath().toString();
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		return result;
