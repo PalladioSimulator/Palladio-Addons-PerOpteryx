@@ -18,6 +18,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
@@ -251,7 +252,8 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		// Part3: Write Graph to file ...
 		//<--------------------------------------------------------------------->
 		int index = this.GraphNumber++;
-		String file_name = "C:/Users/Hp/runtime-EclipseApplication/Simple Tactics Example/PerOpteryx_results/Graph"+Integer.toString(index)+".txt";
+		String file_name = Opt4JStarter.getDSEWorkflowConfig().getResultFolder() + "Graph"+Integer.toString(index)+".txt";
+		
 		WriteFile data = new WriteFile(file_name,true);
 		for(int i=1;i<=Graph.length;i++){
 		  	String myData = "     "+Integer.toString(Graph[i-1][0]);
