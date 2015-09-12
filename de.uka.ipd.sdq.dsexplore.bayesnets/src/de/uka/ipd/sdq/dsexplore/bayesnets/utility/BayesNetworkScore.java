@@ -4,12 +4,33 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class for calculating the score of a Bayesian Network. It
+ * contains various scoring techniques which the user can use at
+ * his/her own discretion.
+ * @author Apoorv
+ *
+ */
 public class BayesNetworkScore {
+/**
+ * Adjacency matrix for the Graph	
+ */
 private int[][] Graph;
+/**
+ * The data used to learn a Bayesian Network. It is assumed to be
+ * binary currently
+ */
 private int[][] Data;
 protected static final double SQTPI = 2.50662827463100050242E0; //for gamma function
 // Create the constructor here
 
+/**
+ * Constructor for the class. Initializes the Graph and Data fields
+ * @param int[][] GraphMatrix - Adjacency matrix for the Graph
+ * @param int[][] DataMatrix - Matrix for the Data containing 0 and 1.
+ * @return
+ * @author
+ */
 public BayesNetworkScore(int[][] GraphMatrix, int[][] DataMatrix){
 	/*// Copy GraphMatrix to Graph
 	for(int i = 0;i< GraphMatrix.length;i++){
@@ -98,6 +119,13 @@ public static void main(String[] args){
 
 // Start writing methods here
 
+
+/**
+ * Scores the network according to the K2 scoring technique
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double K2NetworkScore(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -218,6 +246,13 @@ public double K2NetworkScore(){
 }
 
 // The BDeu comes out to be positive!? Check this ...
+/**
+ * Scores the network according to the BDeu scoring technique. (Not
+ * recommended for use currently)
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double BDeuNetworkScore(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -336,7 +371,12 @@ public double BDeuNetworkScore(){
 	return score;
 }
 
-
+/**
+ * Scores the network using the log-likelihood technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double LogLik(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -456,7 +496,13 @@ public double LogLik(){
 	return score;
 }
 
-
+/**
+ * Scores the network according to the Bayesian Information Criterion
+ * (BIC) technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double BIC(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -487,7 +533,13 @@ public double BIC(){
 }
 
 
-
+/**
+ * Scores the network according to the Akaike Information Criterion
+ * (AIC) technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double AIC(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -518,7 +570,14 @@ public double AIC(){
 }
 
 
-
+/**
+ * Calculates the factorial of Number. If Number is too large,
+ * then Stirling's approximation formula is used.
+ * @param int Number - The number for which we have to calculate
+ * the factorial
+ * @return The factorial of the given Number
+ * @author Apoorv
+ */
 private double getFactorial(int Number){
 	if(Number == 1){
 		return 1;
@@ -536,6 +595,9 @@ private double getFactorial(int Number){
 
 /**
  * Returns the Gamma function of the argument.
+ * @param double x - argument
+ * @return Gamma(x)
+ * @author Apoorv
  */
 private double gamma(double x) {
 
