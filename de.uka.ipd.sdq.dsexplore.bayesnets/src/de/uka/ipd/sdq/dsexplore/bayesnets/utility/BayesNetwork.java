@@ -3,11 +3,22 @@ package de.uka.ipd.sdq.dsexplore.bayesnets.utility;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * This class is used for representing a Bayesian Network. It
+ * also contains many methods to operate on a given Bayesian Network.
+ * @author Apoorv
+ *
+ */
 public class BayesNetwork {
+/**
+ * The Number of variables/nodes the Bayesian network will have	
+ */
 private int NumberOfVariables;
 
 // Constructor
-
+/**
+ * The constructor for the class. Initialzes the number of variables.
+ */
 public BayesNetwork(int var){
 	NumberOfVariables = var;
 	
@@ -35,7 +46,14 @@ public static void main(String[] args){
 
 
 /*All Network functions will go here */
-
+/**
+ * Creates a random network structure. Currently, the network
+ * produced will mostly be a DAG (Directed Acyclic Graph), though
+ * it isn't guaranteed.
+ * @param No Parameters
+ * @return An int[][] adjacency matrix of the created Graph/Network
+ * @author Apoorv
+ */
 public int[][] createRandomStructure(){
 	int[][] Structure = new int[NumberOfVariables][NumberOfVariables];
 	Random rnum = new Random();
@@ -67,12 +85,26 @@ public int[][] createRandomStructure(){
 	return Structure;
 }
 
+/**
+ * Creates an empty network structure with no edges between the
+ * various nodes.
+ * @param No Parameters
+ * @return An int[][] adjacency matrix of the created Graph/Network
+ * @author Apoorv
+ */
 public int[][] createEmptyStructure(){
 	int[][] Structure = new int[NumberOfVariables][NumberOfVariables];
 	return Structure;
 }
 
-
+/**
+ * Removes the cycles (if they exist) in a given 
+ * network structure. For the logic of removing cycles, please see the
+ * comments in code.
+ * @param int[][] Graph - The Adjaceny matrix of the Bayesian Network
+ * @return An int[][] adjacency matrix of the result Graph/Network
+ * @author Apoorv
+ */
 public int[][] removeCycles(int[][] Graph) {
 	// TODO Auto-generated method stub
 	int[][] GraphCopy = new int[Graph.length][Graph.length];
@@ -157,6 +189,14 @@ public int[][] removeCycles(int[][] Graph) {
 	
 }
 
+/**
+ * This method checks the Graph for any cycles contained in it.
+ * If the Graph is acyclic, then it returns TRUE. Otherwise,
+ * it returns FALSE.
+ * @param int[][] Graph
+ * @return boolean - TRUE if Graph is acyclic, else FALSE
+ * @author Apoorv
+ */
 public boolean checkCycles(int[][] Graph){
 	boolean result;
 	// If graph is empty, return true
@@ -211,6 +251,13 @@ public boolean checkCycles(int[][] Graph){
 	return result;
 }
 
+/**
+ * This method removes all the leaves and roots contained in a Graph.
+ * It returns the resulting Graph to the user.
+ * @param int[][] Graph
+ * @return An int[][] adjacency matrix of the resulting Graph/Network
+ * @author Apoorv
+ */
 public int[][] removeLeavesAndRoots(int[][] Graph){
 	
 	// If the graph is empty, return the graph
@@ -320,6 +367,15 @@ public int[][] removeLeavesAndRoots(int[][] Graph){
 		
 }
 
+/**
+ * This method keeps a track of all the nodes which are removed 
+ * when we remove all the leaves and roots of the Graph. The indices of
+ * the removed leaves and roots are returned as an array of integers.
+ * @param int[][] Graph
+ * @return An int[] array of the removed leaves and roots of the 
+ * Graph/Network
+ * @author Apoorv
+ */
 public int[] getRemovedNodes(int[][] Graph){
 	
 	// If the graph is empty, return the graph
@@ -453,6 +509,14 @@ public int[] getRemovedNodes(int[][] Graph){
 		
 }
 
+/**
+ * Used to retrieve the list of Parents of the node Node.
+ * @param int[][] Graph - Adjacency matrix of the Bayesian Graph
+ * @param int Node - The node about which we want the information 
+ * about the parents.
+ * @return An int[] array of the indices of the parents of Node
+ * @author Apoorv
+ */
 public int[] getParents(int[][] Graph, int Node){
 	int[] ParentNodes = new int[Graph.length];
 	int CountParents=0;
@@ -479,6 +543,15 @@ public int[] getParents(int[][] Graph, int Node){
 	return FinalParentNodes; 
 }
 
+
+/**
+ * Used to retrieve the list of children of the node Node.
+ * @param int[][] Graph - Adjacency matrix of the Bayesian Graph
+ * @param int Node - The node about which we want the information 
+ * about the children.
+ * @return An int[] array of the indices of the children of Node
+ * @author Apoorv
+ */
 public int[] getChildren(int[][] Graph, int Node){
 	int[] ChildrenNodes = new int[Graph.length];
 	int CountChildren=0;
