@@ -9,7 +9,14 @@ import java.util.Random;
 
 
 /**
- * Used to generate data from a learned Bayesian Network
+ * Used to sample data from a learnt Bayesian Network. 
+ * <p><b> Algorithm description: </b> First the root node (i.e the node
+ * having no parents) is assigned a data value according to the probability
+ * parameters encoded in the network. Then, the children of the node
+ * are assigned values (given the parent node value) using conditional 
+ * probability parameters. This process continues until all nodes are 
+ * assigned some value.<p> The whole process is repeated as many 
+ * times as we want the number of offspring.
  * @author Apoorv
  *
  */
@@ -64,12 +71,27 @@ public class BOAsampler {
 			System.out.println(order.get(i).toString());
 		}
 	}
-	
+	/**
+	 * Constructor for the class.
+	 * @param Graph - An adjacency matrix representing the network/graph
+	 * @param DataMatrix - A matrix containing the data
+	 * @author Apoorv
+	 */
 	public BOAsampler(int[][] Graph, int[][] DataMatrix){
 		this.Graph = Graph;
 		this.DataMatrix = DataMatrix;
 	}
 	
+	
+	/**
+	 * Method to sample solutions/offspring/data-points from the 
+	 * Bayesian Network.
+	 * @param NumberOfSamples - The number of data-points/offspring 
+	 * one wants from the learnt Bayesian Network.
+	 * @return A matrix containing the sampled offspring/data-points.
+	 * Each row corresponds to an offspring/data-point.
+	 * @author Apoorv
+	 */
 	public int[][] sample(int NumberOfSamples){
 		
 		int n = DataMatrix[1].length; // No. of nodes/variables
@@ -211,6 +233,18 @@ public class BOAsampler {
 		return SampledData;
 	}
 	
+	/**
+	 * Assigns a value to the node using the given conditional 
+	 * probability table (CondProbTable) and the parent configuration 
+	 * (parentconfig).
+	 * @param NodeValue - Value of the node
+	 * @param CondProbTable - Conditional Probability Table encoded 
+	 * in the Bayesian Network parameters. Rows correspond to 
+	 * the parent configurations, and columns correspond to 
+	 * the values which the data can take.
+	 * @param parentconfig - The i<sup>th</sup> configuration
+	 * of the parents
+	 */
 	private int roullettewheelvalue(int NodeValue, int[][] CondProbTable,
 			int parentconfig) {
 		// TODO Auto-generated method stub
@@ -241,6 +275,16 @@ public class BOAsampler {
 		return kValue;
 	}
 
+	/**
+	 * Gives the order of nodes for carrying out the sampling (i.e 
+	 * assigning values to nodes) in the given network/graph.
+	 * @param Graph - The adjacency matrix representing the graph/network.
+	 * @return An ArrayList of ArrayList. The first internal ArrayList
+	 * corresponds to the list of nodes which are to be sampled first, 
+	 * the second ArrayList corresponds to the list of nodes which 
+	 * are to be sampled second and so on.
+	 * @author Apoorv
+	 */
 	private ArrayList<ArrayList<Integer>> getSamplingOrder(int[][] Graph){
 		ArrayList<ArrayList<Integer>> SamplingOrder = getOrder(Graph);
 		for(int i = SamplingOrder.size()-1; i>0;i--){
@@ -249,6 +293,9 @@ public class BOAsampler {
 		return SamplingOrder;
 	}
 	
+	/**
+	 * Have to see this. I forgot the functionality.
+	 */
 	private ArrayList<ArrayList<Integer>> getOrder(int[][] Graph){
 		ArrayList<ArrayList<Integer>> SamplingOrderNodeList = new ArrayList<ArrayList<Integer>>();
 		if(Graph == null){
@@ -282,6 +329,18 @@ public class BOAsampler {
 		}
 	}
 	
+	/**
+	 * Gives a list of all root nodes in the network/graph.
+	 * Root nodes are those nodes which don't have any other
+	 * node as its parent.
+	 * @param Graph - An adjacency matrix of the network/graph.
+	 * @return An ArrayList of Integer values. The integer values 
+	 * correspond to the indices of the root nodes.
+	 * @author Apoorv
+	 */
+	//TODO : Change the name of the method to something else. Current
+	// name suggests something different from what is really intended. 
+	// For example keep getAllRootNodes etc. or something similar.
 	public ArrayList<Integer> getAllParents(int[][] Graph){
 		ArrayList<Integer> AllParents = new ArrayList<Integer>();
 		for(int i=0;i<Graph.length;i++){
