@@ -11,9 +11,34 @@ import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetworkScore;
 
 // Done totally. Try for PerOpteryx ...
+/**
+ * ChowLiuTree is another algorithm for searching the space of Bayesian 
+ * networks quickly. It gives reasonable networks that model the data 
+ * quite well in shorter time than other algorithms like Hill Climber etc. 
+ * However, it only models Bayesian networks which have a tree structure.
+ * <p> <b>Here is the algorithm </b>: Calculate the mutual info. between
+ * all pairs of nodes in the network. Start with the pair of nodes having 
+ * the highest mutual info value and add an (undirected) edge between them.
+ * Look for the next highest mutual info pair of nodes, and add an 
+ * (undirected) edge between them iff adding the edge does not produce 
+ * cycles in the network. Carry on the process till you can add no more 
+ * edges. In the end, you get a Maximum Spanning Tree structure, which has 
+ * all edges which are undirected. In order to make the network/graph 
+ * directed, just choose a node at random in the structure, and assign 
+ * directions to all edges in such a way that they go away from the chosen 
+ * node.
+ * @author Apoorv
+ *
+ */
 public class ChowLiuTree {
 
+	/**
+	 * The matrix containing the data. Each row
+	 * represents a data instance.
+	 */
 	int[][] Data;
+	
+	// For testing purposes ...
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -55,12 +80,26 @@ public class ChowLiuTree {
 		System.out.println(bns1.BIC());
 	}
 	
+	/**
+	 * Constructor for the class.
+	 * @param Data - The matrix containing the data. Each row
+	 * represents a data instance.
+	 * @author Apoorv
+	 */
 	public ChowLiuTree(int[][] Data){
 		this.Data = Data;
 	}
 	
-	// The search is coded. Only thing remains - make the resulting graph into
-	// directed tree 
+	 
+	/**
+	 * This method searches the best bayesian networks 
+	 * in the search space using the chow liu algortihm. 
+	 * It returns the best Bayesian network (as an adjacency matrix) 
+	 * it has found over its search.
+	 * @param None
+	 * @return An Adjacency matrix of the best learnt Bayesian network. 
+	 * @author Apoorv
+	 */
 	public int[][] search(){
 		// Compute the mutual info between all pairs of nodes
 		int n=Data[0].length;
@@ -129,6 +168,14 @@ public class ChowLiuTree {
 		return ResultGraph;
 	}
 	
+	/**
+	 * This method calculates the mutual information between a pair of 
+	 * nodes Node1 and Node2.
+	 * @param Node1 - First node of the pair of nodes.
+	 * @param Node2 - Second node of the pair of nodes.
+	 * @return The mutual information as a double. 
+	 * @author Apoorv
+	 */ 
 	public double mutualInfo(int Node1, int Node2){
 		double Result = 0;
 		int[] r = determineNumOfStates();
@@ -143,6 +190,14 @@ public class ChowLiuTree {
 		return Result;
 	}
 
+	/**
+	 * Calculates the probability that <b>Node</b> takes on <b>Value</b>,
+	 * given the Data provided.
+	 * @param Node - A node in the graph/network
+	 * @param Value - Value of the data
+	 * @return The probability as a double value.
+	 * @author Apoorv 
+	 */
 	private double calcProb(int Node, int Value){
 		double Num = 0;
 		double Den = 0;
@@ -155,6 +210,17 @@ public class ChowLiuTree {
 		return Num/Den;
 	}
 	
+	/**
+	 * Calculates the probability that (<b>Node1</b> takes on <b>Value1</b>) 
+	 * AND (<b>Node2</b> takes on <b>Value2</b>) simultaneously,
+	 * given the Data provided.
+	 * @param Node1 - A node in the graph/network
+	 * @param Value1 - Value of the data corresponding to Node1
+	 * @param Node2 - A node in the graph/network
+	 * @param Value2 - Value of the data corresponding to Node2
+	 * @return The probability as a double value.
+	 * @author Apoorv 
+	 */
 	private double calcProb(int Node1, int Value1, int Node2, int Value2){
 		double Num = 0;
 		double Den = 0;
@@ -167,6 +233,14 @@ public class ChowLiuTree {
 		return Num/Den;
 	}
 	
+	/**
+	 * Calculates the number of distinct values each data dimension 
+	 * can take.
+	 * @param None 
+	 * @return The distinct states as an array. The array has the same 
+	 * length as a data matrix row.
+	 * @author Apoorv 
+	 */
 	private int[] determineNumOfStates(){
 		int[] Result = new int[Data[0].length];
 		for(int i = 0; i< Data[0].length;i++){
@@ -182,6 +256,16 @@ public class ChowLiuTree {
 	
 	// Note: only for undirected graphs (have a symmetric adjacency matrix)
 	// Its basically a BFS written recursively mostly ...
+	/**
+	 * Checks whether a path already exists between Node1 and Node2.
+	 * @param Node1 - A node in the Graph
+	 * @param Node2 - Another node in the Graph
+	 * @param Graph - Adjacency matrix of the Network
+	 * @param visitedNodes - List of the nodes which one can visit 
+	 * from Node1.
+	 * @return TRUE if path exists, FALSE if it doesn't.
+	 * @author Apoorv 
+	 */
 	private boolean checkPath(int Node1, int Node2, int[][] Graph, List<Integer> visitedNodes){
 		boolean Result = false;
 		visitedNodes.add(Node1);
@@ -200,6 +284,13 @@ public class ChowLiuTree {
 		return Result;
 	}
 
+	/**
+	 * Gets the neighbouring nodes of argument node
+	 * @param node - A node in the Graph
+	 * @param graph - Adjacency matrix of the Network
+	 * @return List of indices of all negihbouring nodes.
+	 * @author Apoorv 
+	 */
 	private List<Integer> getNeighbours(int node, int[][] graph) {
 		// TODO Auto-generated method stub
 		List<Integer> Neighbours = new ArrayList<Integer>();
@@ -211,7 +302,11 @@ public class ChowLiuTree {
 		return Neighbours;
 	}
 	
-	// sorts a matrix based on a particular column
+	/**
+	 *  Sorts a matrix based on a particular column
+	 *  @param Matrix - Any matrix
+	 *  @param Column - Index of the column of the matrix
+	 */
 	private double[][] sortMatrix(double[][] Matrix, final int Column){
 		Arrays.sort(Matrix, new java.util.Comparator<double[]>(){
 			public int compare(double[]a,double[]b){
@@ -225,6 +320,14 @@ public class ChowLiuTree {
 	// Graph is assumed to be undirected tree
 	//Node is the root node from which all directed edges 
 	// go away
+	/**
+	 *  Makes the undirected graph a directed graph
+	 *  @param Node - A node in the Graph
+	 *  @param Graph - An adjacency matrix of the network
+	 *  @param visitedNodes - The list of all nodes which can be visited
+	 *  from Node
+	 *  @author Apoorv
+	 */
 	private void makeDirected(int Node, int[][] Graph, List<Integer> visitedNodes){
 		visitedNodes.add(Node);
 		List<Integer> NeighboursOfNode = getNeighbours(Node,Graph);
