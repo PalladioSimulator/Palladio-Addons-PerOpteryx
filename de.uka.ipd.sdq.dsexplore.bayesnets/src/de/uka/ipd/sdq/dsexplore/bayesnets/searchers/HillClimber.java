@@ -13,6 +13,17 @@ import de.uka.ipd.sdq.dsexplore.bayesnets.utility.DrawGraph;
 // Tested successfully !!!
 // Gives different answers with different scores. This is expected, but then
 // which score to use ?!
+/**
+ * HillClimber is an algortihm which is used to search Bayesian
+ * networks that model the data very well. Here is a description: 
+ * For any pair of nodes, there can be an edge between them in 
+ * either direction, or there may not be an edge. Starting with an 
+ * empty network structure, the three options above are applied
+ * between every pair of nodes, and whatever option improves the 
+ * score of the network is kept.  
+ * @author Apoorv
+ *
+ */
 public class HillClimber {
 
 	public static void main(String[] args) {
@@ -44,6 +55,20 @@ public class HillClimber {
 		dg.saveImage();
 	}
 	
+	/**
+	 * This method searches the best bayesian networks 
+	 * in the search space using the hill climber algortihm. 
+	 * It returns the best Bayesian network it has found over
+	 * its search as an adjacency matrix.
+	 * @param DataMatrix - The matrix containing data. Each row
+	 * represents a data instance
+	 * @param MaxNoOfParents - The maximum number of parents any 
+	 * node in the network can have. In short, it is an upper bound
+	 * on the number of parents any node could have in the Bayesian 
+	 * network, while the search takes place.
+	 * @return An Adjacency matrix of the best learnt Bayesian network. 
+	 * @author Apoorv
+	 */
 	public int[][] search(int[][] DataMatrix, int MaxNoOfParents){
 		// Initialize the structure
 		BayesNetwork bn = new BayesNetwork(DataMatrix[0].length);
@@ -209,6 +234,14 @@ public class HillClimber {
 		
 	}
 	
+	/**
+	 * Method for copying an integer array. 
+	 * @param Array - An integer matrix.
+	 * @return Another integer matrix which holds the same values
+	 * as the argument of the method. This is stored at a different
+	 * memory location than the input matrix.
+	 * @author Apoorv
+	 */
 	private int[][] makeArrayCopy(int[][] Array){
 		int[][] ArrayCopy = new int[Array.length][Array[0].length];
 		for(int i=0 ; i < Array.length ; i++){
