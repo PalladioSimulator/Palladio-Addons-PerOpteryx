@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +41,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * @generated
 	 * @ordered
 	 */
-	protected org.palladiosimulator.pcm.repository.RepositoryComponent annotatedElement;
+	protected RepositoryComponent annotatedElement;
 
 	/**
 	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' containment reference list.
@@ -76,10 +77,10 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.palladiosimulator.pcm.repository.RepositoryComponent getAnnotatedElement() {
+	public RepositoryComponent getAnnotatedElement() {
 		if (annotatedElement != null && ((EObject)annotatedElement).eIsProxy()) {
 			InternalEObject oldAnnotatedElement = (InternalEObject)annotatedElement;
-			annotatedElement = (org.palladiosimulator.pcm.repository.RepositoryComponent)eResolveProxy(oldAnnotatedElement);
+			annotatedElement = (RepositoryComponent)eResolveProxy(oldAnnotatedElement);
 			if (annotatedElement != oldAnnotatedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NqrPackage.NQR__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
@@ -93,7 +94,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.palladiosimulator.pcm.repository.RepositoryComponent basicGetAnnotatedElement() {
+	public RepositoryComponent basicGetAnnotatedElement() {
 		return annotatedElement;
 	}
 
@@ -102,8 +103,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnnotatedElement(org.palladiosimulator.pcm.repository.RepositoryComponent newAnnotatedElement) {
-		org.palladiosimulator.pcm.repository.RepositoryComponent oldAnnotatedElement = annotatedElement;
+	public void setAnnotatedElement(RepositoryComponent newAnnotatedElement) {
+		RepositoryComponent oldAnnotatedElement = annotatedElement;
 		annotatedElement = newAnnotatedElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NqrPackage.NQR__ANNOTATED_ELEMENT, oldAnnotatedElement, annotatedElement));
@@ -162,7 +163,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
-				setAnnotatedElement((org.palladiosimulator.pcm.repository.RepositoryComponent)newValue);
+				setAnnotatedElement((RepositoryComponent)newValue);
 				return;
 			case NqrPackage.NQR__CRITERION:
 				getCriterion().clear();
@@ -181,7 +182,7 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
-				setAnnotatedElement((org.palladiosimulator.pcm.repository.RepositoryComponent)null);
+				setAnnotatedElement((RepositoryComponent)null);
 				return;
 			case NqrPackage.NQR__CRITERION:
 				getCriterion().clear();

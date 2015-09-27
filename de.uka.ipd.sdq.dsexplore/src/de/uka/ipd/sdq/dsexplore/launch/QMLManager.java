@@ -335,6 +335,11 @@ public class QMLManager {
 					List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);			
 					if(tmp_exts.size() > 0) {
 						extentionIntersection = true;
+						//break;
+					}
+					else
+					{
+						extentionIntersection = false;
 						break;
 					}
 				}
