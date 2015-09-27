@@ -5,6 +5,7 @@ package de.uka.ipd.sdq.nqr;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +34,12 @@ public interface Nqr extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference.
-	 * @see #setAnnotatedElement(org.palladiosimulator.pcm.repository.RepositoryComponent)
+	 * @see #setAnnotatedElement(RepositoryComponent)
 	 * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqr_AnnotatedElement()
 	 * @model required="true"
 	 * @generated
 	 */
-	org.palladiosimulator.pcm.repository.RepositoryComponent getAnnotatedElement();
+	RepositoryComponent getAnnotatedElement();
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.nqr.Nqr#getAnnotatedElement <em>Annotated Element</em>}' reference.
@@ -48,7 +49,7 @@ public interface Nqr extends EObject {
 	 * @see #getAnnotatedElement()
 	 * @generated
 	 */
-	void setAnnotatedElement(org.palladiosimulator.pcm.repository.RepositoryComponent value);
+	void setAnnotatedElement(RepositoryComponent value);
 
 	/**
 	 * Returns the value of the '<em><b>Criterion</b></em>' containment reference list.

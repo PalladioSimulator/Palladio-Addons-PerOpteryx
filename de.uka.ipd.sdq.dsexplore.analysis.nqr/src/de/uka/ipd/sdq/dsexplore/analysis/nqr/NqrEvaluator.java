@@ -24,6 +24,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrPackage;
 import de.uka.ipd.sdq.nqr.NqrRepository;
@@ -58,19 +59,23 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 //		{
 //			for (RepositoryComponent rc: ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent().getComponents__Repository())
 //			{
-				for (Nqr nqr: nqrModel.getNqr())
-				{
+				//for (Nqr nqr: nqrModel.getNqr())
+				//{
 					//if (rc.getId().equals(nqr.getAnnotatedElement().getId()))
-					if (doesNqrApply(nqr.getAnnotatedElement(), pheno.getPCMInstance()))
-					{
-						for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit: nqr.getCriterion())
-						{
-							previousNqrResults.put(pheno.getNumericID(), new NqrAnalysisResult(this.criterionToAspect, targetCrit, (NqrSolverQualityAttributeDeclaration)this.qualityAttribute));
-						}
-					}
-				}
-//			}
-//		}
+					//if (doesNqrApply(nqr.getAnnotatedElement(), pheno.getPCMInstance()))
+					//{
+						//for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit: nqr.getCriterion())
+						//{
+							List<Nqr> nqr = new ArrayList<Nqr>();
+							for (Nqr iter: nqrModel.getNqr())
+								if (doesNqrApply(iter.getAnnotatedElement(), pheno.getPCMInstance()))
+									nqr.add(iter);
+							previousNqrResults.put(pheno.getNumericID(), new NqrAnalysisResult(this.criterionToAspect, nqr, (NqrSolverQualityAttributeDeclaration)this.qualityAttribute));
+							//}
+							//}
+							//}
+//			//}
+//		//}
 	}
 	
 	/**
@@ -116,7 +121,11 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 		NqrSolverQualityAttributeDeclaration quality = ((NqrSolverQualityAttributeDeclaration)this.qualityAttribute);
 		for (Nqr nqr: nqrRep.getNqr())
 			for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion crit: nqr.getCriterion())
-				quality.addDimension(crit.getDimension());
+			{
+				Dimension d = crit.getDimension();
+				if (d != null && !quality.getDimensions().contains(d))
+					quality.addDimension(crit.getDimension());
+			}
 					
 		
 		initialiseCriteria(configuration);
