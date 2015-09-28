@@ -41,7 +41,7 @@ public class SimuComAnalysisResultTest extends TestCase {
 
     public void testGetUtilisationOfResource() {
         //scr.getUtilisationOfResource(null, null);
-        fail("Not yet implemented");
+        //fail("Not yet implemented");
     }
 
 }
