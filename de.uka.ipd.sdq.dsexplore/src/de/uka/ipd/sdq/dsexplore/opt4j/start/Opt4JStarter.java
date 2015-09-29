@@ -246,7 +246,7 @@ public class Opt4JStarter {
 						for (DesignDecisionGenotype designDecisionGenotype : archiveCandidates) {
 							Individual individual = dseBuilder.create(designDecisionGenotype);
 							completer.complete(individual);
-							archive.add(individual);
+							archive.update(individual);
 						}
 					} catch (Exception e) {
 						throw new CoreException(new Status(Status.ERROR,
