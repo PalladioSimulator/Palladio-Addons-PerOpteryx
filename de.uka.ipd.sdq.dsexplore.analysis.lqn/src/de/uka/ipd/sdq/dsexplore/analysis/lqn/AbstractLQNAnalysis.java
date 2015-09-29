@@ -124,15 +124,17 @@ public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IA
 		}
 				
 		if (model == null){
-			throw new AnalysisFailedException("LQN model "+resultFileName+" could not be loaded. See previous logging entries for details.");
-		}
-		
+			logger.error("LQN model "+resultFileName+" could not be loaded. See previous logging entries for details.");
+			return new LQNNotConvergedResult(pcm);
+		} 
+
 		// delete the oldest model from the recent model list; and add the current one. 
 		if (this.recentModels.size() >= RECENT_MODEL_CAPACITY){
 			this.recentModels.pollLast();
 		}
-		
+
 		this.recentModels.push(model);
+		
 		
 		ILQNResult result = retrieveResult(pcm, model, criterion);
 		return result;	
