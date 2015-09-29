@@ -592,6 +592,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             }
             schedChoice.setChosenValue(chosenPolicy);
             choice = schedChoice;
+        } else if (designDecision instanceof NumberOfCoresDegree){
+        	NumberOfCoresDegree numOfCoresDegree = (NumberOfCoresDegree)designDecision;
+        	DiscreteRangeChoice discreteRangeChoice = factory.createDiscreteRangeChoice();
+        	int numberOfCores = Integer.parseInt(decisionString);
+        	//TODO check that within range
+        	discreteRangeChoice.setChosenValue(numberOfCores);
+        	choice = discreteRangeChoice;
         } else {
             logger.warn("There was an unrecognised design decision "+designDecision.getClass());
             return null;
@@ -619,7 +626,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     private static Entity getEntityByName(final List<Entity> entities,
             final String decisionString) {
         for (final Entity entity : entities) {
-            if (entity.getEntityName().equals(decisionString)){
+            if (entity.getEntityName().equals(decisionString) || decisionString.contains(entity.getId())){
                 return entity;
             }
         }

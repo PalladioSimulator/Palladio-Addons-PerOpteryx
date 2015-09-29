@@ -215,7 +215,7 @@ public class IncreaseProcessingRateImpl extends AbstractProcessingRateTactic {
 
 		} else if (numberOfCoresDegree instanceof NumberOfCoresAsListDegree){
 			NumberOfCoresAsListDegree asListDegree = (NumberOfCoresAsListDegree)numberOfCoresDegree;
-			// find next smallest integer after the current one. Do not assume that the list is ordered, although it should be
+			// find next largest integer after the current one. Do not assume that the list is ordered, although it should be
 			int nextLargestInteger = Integer.MAX_VALUE;
 			int currentValue = discreteChoice.getChosenValue();
 			for (Integer value : asListDegree.getListOfIntegers()) {
