@@ -15,6 +15,9 @@ import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.commons.math.stat.descriptive.rank.Max;
 import org.apache.commons.math.stat.descriptive.rank.Median;
 import org.apache.commons.math.stat.descriptive.rank.Min;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
@@ -25,6 +28,7 @@ import org.palladiosimulator.edp2.impl.RepositoryManager;
 import org.palladiosimulator.edp2.models.ExperimentData.DataSeries;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentGroup;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun;
+import org.palladiosimulator.edp2.models.ExperimentData.ExperimentSetting;
 import org.palladiosimulator.edp2.models.ExperimentData.Measurement;
 import org.palladiosimulator.edp2.models.ExperimentData.MeasuringType;
 import org.palladiosimulator.edp2.models.Repository.Repository;
@@ -47,9 +51,9 @@ import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
 
     /**
-     * The experiment group represents an experiment with ONE setting and multiple runs.
+     * The experiment setting represents an experiment with ONE setting and multiple runs.
      */
-    private final ExperimentGroup experimentGroup;
+    private final ExperimentSetting experimentSetting;
 
     /**
      * The experiment run is the latest run in the experiment group above. As the experiment group only
@@ -71,13 +75,13 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @param qualityAttributeInfo
      * @throws AnalysisFailedException
      */
-    public SimuComAnalysisEDP2Result(final ExperimentRun run, final ExperimentGroup experiment, final PCMInstance pcmInstance,
+    public SimuComAnalysisEDP2Result(final ExperimentRun run, final ExperimentSetting experiment, final PCMInstance pcmInstance,
             final UsageScenario usageScenario, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
             final SimuComQualityAttributeDeclaration qualityAttributeInfo)
                     throws AnalysisFailedException {
         super(pcmInstance);
 
-        this.experimentGroup = experiment;
+        this.experimentSetting = experiment;
         this.run = run;
 
         this.usageScenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
@@ -98,44 +102,81 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         this.observations = values.length;
         this.confidenceInterval = determineConfidenceInterval(values);
 
-        logger.debug("Initialised SimuCom result");
+        logger.debug("Initialised SimuCom EDP2 result");
     }
 
     /**
-     * Tries to find a matching experiment run in all data sources available in the repository manager. If a matching experiment run
-     * is found, <code>true</code>. If not, <code>false</code> is returned.
-     * @param experimentName The experiment name to match
+     * Tries to find a matching experiment setting in all data sources available in the repository manager. If a matching experiment setting
+     * that contains at least one run is found, <code>true</code>. If not, <code>false</code> is returned.
+     * @param experimentSettingName The experiment name to match
      * @return <code>true</code> if experiment has been found, <code>false</code> otherwise
      */
-    static public boolean isExperimentRunExisting(final String experimentName)
-    {
-        // Get all available repositories
-        final EList<Repository> repositories = RepositoryManager.getCentralRepository().getAvailableRepositories();
-
-        // Iterate through all repositories
-        for (final Repository repo : repositories)
-        {
-            // Iterate through all experiment groups and find the one with the requested name
-            final EList<ExperimentGroup> currentExperimentGroups = repo.getExperimentGroups();
-            for (final ExperimentGroup curr : currentExperimentGroups)
-            {
-                // If match found, check if there are any runs
-                if (curr.getId().equals(experimentName))
-                {
-                    // Assuming that each experiment group only has ONE setting
-                    // NOTE: Change to loop if data structure is altered to find the matching setting
-                    final EList<ExperimentRun> expRuns = curr.getExperimentSettings().get(0).getExperimentRuns();
-
-                    // Return true if there are runs
-                    if (expRuns.size() > 0)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+    static public boolean isExperimentRunExisting(final String experimentName, final String experimentSettingName, Repository repo) {
+    	return (findExperimentRun(experimentName, experimentSettingName, repo) != null);
     }
+    
+    /**
+     * Tries to find a matching experiment setting in all data sources available in the repository manager. If a matching experiment setting
+     * that contains at least one run is found, it is returned. If not, <code>null</code> is returned.
+     * @param experimentSettingName The experiment name to match
+     * @param repo 
+     * @return The experiment setting if it has been found, <code>null</code> otherwise
+     */
+    static private ExperimentSetting findExperimentRun(final String experimentName, final String experimentSettingName, Repository repo)
+    {
+
+    	// Iterate through all experiment groups and find the one with the requested name
+    	final EList<ExperimentGroup> currentExperimentGroups = repo.getExperimentGroups();
+
+    	for (final ExperimentGroup curr : currentExperimentGroups)
+    	{
+    		if (experimentName.equals(curr.getPurpose())){ 
+
+    			final EList<ExperimentSetting> settings = curr.getExperimentSettings();
+
+    			for (ExperimentSetting experimentSetting : settings) {
+
+    				if (experimentSettingName.equals(experimentSetting.getDescription()))
+    				{
+    					// Assuming that each experiment group only has ONE setting
+    					// NOTE: Change to loop if data structure is altered to find the matching setting
+    					final EList<ExperimentRun> expRuns = experimentSetting.getExperimentRuns();
+
+    					// Return true if there are runs
+    					if (expRuns.size() > 0)
+    					{
+    						for (ExperimentRun experimentRun : expRuns) {
+								if (experimentRun.getMeasurement().size() > 0){
+									return experimentSetting;
+								}
+							}
+    						
+    					}
+    				}
+    			}
+    		}
+    	}
+
+    	return null;
+    }
+    
+	protected static Repository findSelectedEDP2Repository(final ILaunchConfiguration config) throws CoreException {
+    	final String selectedDataSourceID = config.getAttribute("EDP2RepositoryID", "");
+		
+		// Get the repository with the given name frRepositoryository manager.
+		EList<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
+
+		for (int i = 0; i < repos.size(); ++i)
+		{
+			String s = repos.get(i).getId();
+			if (s.equals(selectedDataSourceID))
+			{
+				return repos.get(i);
+				
+			}
+		}
+		return null;
+	}
 
     /**
      * Tries to find a matching experiment run in the passed data source (via the passed <code>Repository</code>). If a matching experiment run
@@ -150,32 +191,41 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @throws AnalysisFailedException
      */
     static public IStatisticAnalysisResult findExperimentRunAndCreateResult(
-            final UsageScenario usageScenario, final String experimentName,
+            final UsageScenario usageScenario,
+            final String experimentName,
+            final String experimentSettingName,
             final PCMInstance pcmInstance,
             final Repository repo,
             final Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
             final SimuComQualityAttributeDeclaration qualityAttribute
             ) throws AnalysisFailedException
     {
-        // Iterate through all experiment groups and find the one with the requested name
-        final EList<ExperimentGroup> currentExperimentGroups = repo.getExperimentGroups();
-        for (final ExperimentGroup curr : currentExperimentGroups)
-        {
-            if (curr.getPurpose().equals(experimentName))
-            {
-                // Assuming that each experiment group only has ONE setting
-                // NOTE: Change to loop if data structure is altered to find the matching setting
-                final EList<ExperimentRun> expRuns = curr.getExperimentSettings().get(0).getExperimentRuns();
+    	
+    	ExperimentSetting mySetting = findExperimentRun(experimentName, experimentSettingName, repo);
+    	
+    	
+    	if (mySetting != null){
+
+                final EList<ExperimentRun> expRuns = mySetting.getExperimentRuns();
 
                 // Find latest run
                 final Comparator<ExperimentRun> comp = new ExperimentRunComparator();
-                Collections.sort(expRuns, comp);
-                final ExperimentRun reqRun = expRuns.get(expRuns.size() - 1);
+                
+                /* sort so that the newest it at the beginning*/
+                ECollections.sort(expRuns, comp);
+                
+                ExperimentRun reqRun = null;
+                for (ExperimentRun experimentRun : expRuns) {
+                	if (experimentRun.getMeasurement().size() > 0){
+                		reqRun = experimentRun;
+                		break;
+                	}
+				}
 
                 // Return new instance of SimuComAnalysisEDP2Result for the requested run
-                return new SimuComAnalysisEDP2Result(reqRun, curr, pcmInstance, usageScenario, criterionToAspect, qualityAttribute);
-            }
-        }
+                return new SimuComAnalysisEDP2Result(reqRun, mySetting, pcmInstance, usageScenario, criterionToAspect, qualityAttribute);
+    	}
+
         return null;
     }
 
@@ -207,6 +257,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
     protected void getUtilisationOfResource(final ActiveResourceUtilisationResult resultToFill, final Entity container, final ResourceType resourceType)
             throws AnalysisFailedException
     {
+    	
         throw new UnsupportedOperationException();
     }
 
@@ -383,7 +434,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
 }
 
 /**
- * Comparator for ExperimentRuns to sort them ordered by start date in ascending order.
+ * Comparator for ExperimentRuns to sort them ordered by start date in descending order (newest first).
  * @author Shengjia Feng
  */
 class ExperimentRunComparator implements Comparator<ExperimentRun>
@@ -394,6 +445,6 @@ class ExperimentRunComparator implements Comparator<ExperimentRun>
     @Override
     public int compare(final ExperimentRun first, final ExperimentRun second)
     {
-        return first.getStartTime().compareTo(second.getStartTime());
+        return second.getStartTime().compareTo(first.getStartTime());
     }
 }

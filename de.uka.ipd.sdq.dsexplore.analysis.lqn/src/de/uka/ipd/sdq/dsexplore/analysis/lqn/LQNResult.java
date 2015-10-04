@@ -276,13 +276,13 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 									if (entryResults.size() > 0 ){
 										
 										OutputResultType entryResult = entryResults.get(0);
-										double throughput = entryResult.getThroughput();
 										
 										EList<ActivityPhasesType> entryPhaseActivities = entryType.getEntryPhaseActivities().getActivity();
 										if (entryPhaseActivities.size() > 0 ){
 											List<OutputResultType> activityResults = entryPhaseActivities.get(0).getResultActivity();
 											if (activityResults.size() > 0){
 												
+												double throughput = entryResult.getThroughput();
 												double entryWaitingTime = activityResults.get(0).getProcWaiting();
 												double entryServiceTime = activityResults.get(0).getServiceTime();
 												
@@ -420,13 +420,11 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 					if (task.getResultTask().size() > 0){
 						OutputResultType outputResult = task.getResultTask().get(0);
 
-						if (outputResult != null)
+						if (outputResult != null) {
 							responseTime = LQNUtils.getResponseTimeOfSubActivities(task);
-
-						if (outputResult.getSquaredCoeffVariation() > -1) {
-							this.squaredCoeffVariance = outputResult
-									.getSquaredCoeffVariation();
-						} 
+							this.squaredCoeffVariance = outputResult.getSquaredCoeffVariation();
+						}
+						
 						return responseTime;
 					}
 				}

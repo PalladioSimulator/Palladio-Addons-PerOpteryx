@@ -5,6 +5,12 @@ import java.util.Random;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetwork;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetworkScore;
 
+/**
+ * Searches randomly in the search space for Bayesian Networks.
+ * Yet to be implemented completely.
+ * @author Apoorv
+ *
+ */
 public class RandomSearch {
 
 	
@@ -29,6 +35,14 @@ public class RandomSearch {
 		}
 	}
 	
+	/**
+	 * This method searches the best bayesian networks 
+	 * in the search space. The search order is random.
+	 * @param DataMatrix - The matrix containing data. Each row
+	 * represents a data instance
+	 * @return An Adjacency matrix of the best learnt Bayesian network. 
+	 * @author Apoorv
+	 */
 	public int[][] search(int[][] DataMatrix){
 		// Initialize the structure
 		BayesNetwork bn = new BayesNetwork(DataMatrix[0].length);

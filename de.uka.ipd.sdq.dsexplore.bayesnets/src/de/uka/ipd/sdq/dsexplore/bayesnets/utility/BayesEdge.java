@@ -1,7 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.bayesnets.utility;
 
 /**
- * Contains utilities to make changes to edges 
+ * Contains utilities to make changes to edges of a Bayesian Network. 
+ * With this class, you can add, remove or reverse an edge between any
+ * two nodes in the Bayesian Network.  
  * @author Apoorv
  *
  */
@@ -20,6 +22,19 @@ public class BayesEdge {
 	}
 	
 	// Start writing methods here
+	/**
+	 * Adds an edge between node FromNode to node ToNode. Note that
+	 * the edge is directed and originates from FromNode and goes to 
+	 * ToNode.
+	 * @param int[][] Graph - The Bayesian network graph represented
+	 * as a Adjacency matrix. 
+	 * @param int FromNode - An integer value specifying the originating 
+	 * node
+	 * @param int ToNode - An integer value specifying the target node
+	 * @return The revised int[][] matrix representing the Graph. This
+	 * is stored in a different memory location than the input int[][] Graph
+	 * @author Apoorv
+	 */
 	public int[][] addEdge(int[][] Graph,int FromNode, int ToNode){
 		/*This method adds an edge from the node FromNode
 		 * to the node ToNode */
@@ -35,6 +50,20 @@ public class BayesEdge {
 		}
 	}
 	
+	/**
+	 * Removes an edge between node FromNode to node ToNode. Note that this
+	 * method removes the edge which is directed and originates from FromNode
+	 * and goes to ToNode. If no such directed edge exists, then the 
+	 * method prints out the appropriate message.
+	 * @param int[][] Graph - The Bayesian network graph represented
+	 * as a Adjacency matrix. 
+	 * @param int FromNode - An integer value specifying the originating 
+	 * node
+	 * @param int ToNode - An integer value specifying the target node
+	 * @return The revised int[][] matrix representing the Graph. This
+	 * is stored in a different memory location than the input int[][] Graph
+	 * @author Apoorv
+	 */
 	public int[][] removeEdge(int[][] Graph,int FromNode, int ToNode){
 		/*This method removes an edge from the node FromNode
 		 * to the node ToNode */
@@ -50,6 +79,18 @@ public class BayesEdge {
 		}
 	}
 	
+	/**
+	 * Reverses an edge between node FromNode to node ToNode. If no such
+	 * edge exists, then the appropriate message is displayed.
+	 * @param int[][] Graph - The Bayesian network graph represented
+	 * as a Adjacency matrix. 
+	 * @param int FromNode - An integer value specifying the originating 
+	 * node
+	 * @param int ToNode - An integer value specifying the target node
+	 * @return The revised int[][] matrix representing the Graph. This
+	 * is stored in a different memory location than the input int[][] Graph
+	 * @author Apoorv
+	 */
 	public int[][] reverseEdge(int[][] Graph,int FromNode, int ToNode){
 		/*This method removes an edge from the node FromNode
 		 * to the node ToNode */
@@ -65,7 +106,14 @@ public class BayesEdge {
 			return ResultGraph;
 		}
 	}
-	
+	/**
+	 * Method for copying an integer array. 
+	 * @param int[][] Array - An integer matrix.
+	 * @return Another integer matrix which holds the same values
+	 * as the argument of the method. This is stored at a different
+	 * memory location than the input matrix.
+	 * @author Apoorv
+	 */
 	private int[][] makeArrayCopy(int[][] Array){
 		int[][] ArrayCopy = new int[Array.length][Array[0].length];
 		for(int i=0 ; i < Array.length ; i++){

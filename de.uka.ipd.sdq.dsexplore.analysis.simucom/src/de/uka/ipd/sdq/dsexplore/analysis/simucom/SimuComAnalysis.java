@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simucom;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,11 +10,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
-import org.eclipse.emf.common.util.EList;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
-import org.palladiosimulator.edp2.impl.RepositoryManager;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
@@ -92,11 +89,15 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
     public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor) throws AnalysisFailedException, CoreException, UserCanceledException {
 
         final String experimentName = getExperimentName(pheno);
-        this.previousExperimentNames.put(pheno.getGenotypeID().hashCode(), experimentName);
+        final String experimentSettingName = getExperimentSettingName(pheno);
+        this.previousExperimentNames.put(pheno.getGenotypeID().hashCode(), experimentSettingName);
 
         final ILaunchConfigurationWorkingCopy launchWorkingCopy = this.config.getWorkingCopy();
+        
         launchWorkingCopy.setAttribute(AbstractSimulationConfig.EXPERIMENT_RUN, experimentName);
+        launchWorkingCopy.setAttribute(AbstractSimulationConfig.VARIATION_ID, experimentSettingName);
 
+        /* this method call already creates an empty run if EDP2 is used. */
         this.simuComWorkflowConfiguration = new DSESimuComWorkflowLauncher().deriveConfiguration(launchWorkingCopy);
         this.simuComWorkflowConfiguration.setOverwriteWithoutAsking(true);
 
@@ -105,7 +106,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         System.gc();
 
-        if (isExperimentRunDoesNotExist(experimentName)){
+        if (isExperimentRunDoesNotExist(experimentName, experimentSettingName)){
             launchSimuCom( monitor);
         }
 
@@ -116,27 +117,42 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
     /**
      * Search in all open data sources whether there is already an experiment run with this name and check that it contains some results.
-     * @param experimentName
+     * @param experimentSettingName
      * @return
      */
-    private boolean isExperimentRunDoesNotExist(final String experimentName) throws CoreException {
+    private boolean isExperimentRunDoesNotExist(final String experimentName, final String experimentSettingName) throws CoreException {
     	
         if (config.getAttribute("persistenceFramework", "").equals("SensorFramework"))
         {
-        	return !SimuComAnalysisSensorFrameworkResult.isExperimentRunExisting(experimentName, this.simuComWorkflowConfiguration, this.datasourceReloadCount);
+        	return !SimuComAnalysisSensorFrameworkResult.isExperimentRunExisting(experimentName, this.simuComWorkflowConfiguration, this.datasourceReloadCount, config);
         }
         // In case the selected persistence framework is EDP2
         else 
         {
-        	return !SimuComAnalysisEDP2Result.isExperimentRunExisting(experimentName);
+        	return !SimuComAnalysisEDP2Result.isExperimentRunExisting(experimentName, experimentSettingName, SimuComAnalysisEDP2Result.findSelectedEDP2Repository(config));
         }
         
     }
 
 
 
-    private String getExperimentName(final PCMPhenotype pheno) {
-        return this.initialExperimentName+" "+pheno.getGenotypeID();
+    private String getExperimentName(final PCMPhenotype pheno) throws CoreException {
+        if (config.getAttribute("persistenceFramework", "").equals("SensorFramework"))
+        {
+        	return this.initialExperimentName + " " + pheno.getGenotypeID();
+        }
+        // In case the selected persistence framework is EDP2
+        else 
+        {
+        	return this.initialExperimentName;
+        }
+        
+    }
+    
+    private String getExperimentSettingName(final PCMPhenotype pheno) throws CoreException {
+
+    	return pheno.getGenotypeID();
+        
     }
 
 
@@ -152,7 +168,8 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
     private IStatisticAnalysisResult retrieveSimuComResults(final PCMPhenotype pheno, final UsageScenario usageScenario)
             throws CoreException, AnalysisFailedException {
 
-        final String experimentName = this.previousExperimentNames.get(pheno.getGenotypeID().hashCode());
+        final String experimentName = this.getExperimentName(pheno);
+        final String experimentSettingName = this.getExperimentSettingName(pheno);
         final PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
         final PCMInstance pcmInstance = new PCMInstance(pcmPartition);
 
@@ -160,91 +177,48 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         
         // Decide whether it's SensorFramework or EDP2
         if ("SensorFramework".equals(config.getAttribute("persistenceFramework", "")))
-        {
-        	final int selectedDataSourceID =
-                    config.getAttribute(SensorFrameworkRecorderConfigurationFactory.DATASOURCE_ID, -1);
-        	
-        	// try the configured data source first.
-            final IDAOFactory factory = SensorFrameworkDataset.singleton().getDataSourceByID(selectedDataSourceID);
-            if (factory != null)
-            {
-                result = SimuComAnalysisSensorFrameworkResult.findExperimentRunAndCreateResult(usageScenario,
-                        experimentName, pcmInstance, factory, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
-            }
-
+        {        	
+                result = new SimuComAnalysisSensorFrameworkResult(usageScenario,
+                        experimentName, pcmInstance, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute, this.config);
+            
             if (result == null)
             {
-                // try all other open data sources.
-                final Collection<IDAOFactory> daoFactories = SensorFrameworkDataset.singleton().getDataSources();
-                for (final IDAOFactory idaoFactory : daoFactories) {
-                    if (idaoFactory == factory){
-                        // we tried this one already
-                        continue;
-                    }
-                    result = SimuComAnalysisSensorFrameworkResult.findExperimentRunAndCreateResult(usageScenario,
-                            experimentName, pcmInstance, idaoFactory, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
-
-                    if (result != null)
-                    {
-                        logger.warn("Found matching experiment run for this candidate in data source "+idaoFactory.getName()+" "+idaoFactory.getDescription()+"(id: "+idaoFactory.getID()+"), using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
-                        break;
-                    }
-                }
+                final String errormessage = "There was no experiment run or no experiment for experiment named \""
+                        +experimentName+"\" in the selected data source after analysing the PCM instance \""
+                        +experimentName+"\" of candidate "+pheno.getNumericID()+" "+pheno.getGenotypeID();
+                logger.error(errormessage);
+                throw new AnalysisFailedException(errormessage);
             }
+
+
         }
         // In case the selected persistence framework is EDP2
         else 
         {
-        	final String selectedDataSourceID = config.getAttribute("EDP2RepositoryID", "");
+
+        	Repository selectedRepo = SimuComAnalysisEDP2Result.findSelectedEDP2Repository(config);
         	
-        	// Get the repository with the given name frRepositoryository manager.
-        	EList<Repository> repos = RepositoryManager.getCentralRepository().getAvailableRepositories();
-        	Repository selectedRepo = null;
-        	for (int i = 0; i < repos.size(); ++i)
-        	{
-        		String s = repos.get(i).getId();
-        		if (s.equals(selectedDataSourceID))
-        		{
-        			selectedRepo = repos.get(i);
-        			result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, 
-        					experimentName, pcmInstance, repos.get(i), this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
-        		}
-        	}
+        	result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, experimentName,
+					experimentSettingName, pcmInstance, selectedRepo, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
         	
-        	// If not found, try other data sources (same structure as above for the sensor framework)
-        	if (result == null)
-        	{
-        		for (Repository repo : repos)
-        		{
-        			if (repo == selectedRepo)
-        			{
-        				continue;
-        			}
-        			
-        			result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, 
-        					experimentName, pcmInstance, repo, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
-        			
-                    if (result != null)
-                    {
-                    	// Descriptions are removed here compared to the sensor framework version as multiple descriptions might exist
-                        logger.warn("Found matching experiment run for this candidate in data source " + repo.getId() + ", using it as the result for this candidate. Unload all other data sources and restart the optimisation if this is not correct. Candidate: "+pheno.getNumericID()+" "+pheno.getGenotypeID());
-                        break;
-                    }
-        		}
-        	}
+            if (result == null)
+            {
+                final String errormessage = "There was no experiment named \""
+                        +experimentName+"\" with an experiment setting \""+experimentSettingName+"\""
+                        +" in the selected data source after analysing the PCM instance \""
+                        +experimentName+"\" of candidate "+pheno.getNumericID()+" "+pheno.getGenotypeID();
+                logger.error(errormessage);
+                throw new AnalysisFailedException(errormessage);
+            }
+        	
         }
         
-        if (result == null)
-        {
-            final String errormessage = "There was no experiment run or no experiment for experiment named \""
-                    +experimentName+"\" in any available data source after analysing the PCM instance \""
-                    +experimentName+"\" of candidate "+pheno.getNumericID()+" "+pheno.getGenotypeID();
-            logger.error(errormessage);
-            throw new AnalysisFailedException(errormessage);
-        }
+
 
         return result;
     }
+
+
 
     private void launchSimuCom(final IProgressMonitor monitor)
             throws CoreException, AnalysisFailedException, UserCanceledException {
@@ -282,11 +256,14 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
                 break;
             } catch (final JobFailedException e) {
                 logger.error(e.getMessage());
-                if (numberOfTries > 0 && e.getCause().getMessage().contains("Couldn't find extension")){
-                    logger.warn("Trying to start SimuCom again.");
-                } else {
-                    throw new AnalysisFailedException(e);
+                if (e.getCause() != null){
+                	String causingErrorMessage = e.getCause().getMessage();
+                	if (numberOfTries > 0 && causingErrorMessage != null && causingErrorMessage.contains("Couldn't find extension")){
+                		logger.warn("Trying to start SimuCom again.");
+                		return;
+                	}
                 }
+                throw new AnalysisFailedException(e);
             }
         }
 

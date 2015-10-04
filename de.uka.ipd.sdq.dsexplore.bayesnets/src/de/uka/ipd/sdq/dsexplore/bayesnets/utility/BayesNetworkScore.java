@@ -4,12 +4,33 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class for calculating the score of a Bayesian Network. It
+ * contains various scoring techniques which the user can use at
+ * his/her own discretion.
+ * @author Apoorv
+ *
+ */
 public class BayesNetworkScore {
+/**
+ * Adjacency matrix for the Graph	
+ */
 private int[][] Graph;
+/**
+ * The data used to learn a Bayesian Network. It is assumed to be
+ * binary currently
+ */
 private int[][] Data;
 protected static final double SQTPI = 2.50662827463100050242E0; //for gamma function
 // Create the constructor here
 
+/**
+ * Constructor for the class. Initializes the Graph and Data fields
+ * @param int[][] GraphMatrix - Adjacency matrix for the Graph
+ * @param int[][] DataMatrix - Matrix for the Data containing 0 and 1.
+ * @return
+ * @author
+ */
 public BayesNetworkScore(int[][] GraphMatrix, int[][] DataMatrix){
 	/*// Copy GraphMatrix to Graph
 	for(int i = 0;i< GraphMatrix.length;i++){
@@ -97,7 +118,18 @@ public static void main(String[] args){
 }
 
 // Start writing methods here
+// If you want to have an idea of how the score 
+// calculation is coded, please see the K2NetworkScore()
+// method in detail. It contains some comments and clarifications
+// which will make digestion of the code easier and faster. All other 
+// methods are coded in the same way.
 
+/**
+ * Scores the network according to the K2 scoring technique
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double K2NetworkScore(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -108,22 +140,42 @@ public double K2NetworkScore(){
 	int n = Data[1].length; // No. of nodes/variables
 	
 	int r = 2; // Number of states of the random variable Xi
+	// Currently, only binary variables are considered. Hence,
+	// for every variable Xi, the no. of states are 2.
 	
 	// Prepare matrix q. q[i] is the number of configurations which parents of
 	// Xi can take.
 	BayesNetwork BN = new BayesNetwork(n);
-	int[] q = new int[n];
+	int[] q = new int[n]; // initialize q array.
 	for(int i = 0;i<n;i++){
+		// for every Xi variable, calculate q[i].
+		// q[i] = r^(No. of parents of Xi)
 		q[i] = (int) Math.pow(r,(BN.getParents(Graph, i)).length);
 	}
 	
 	// create the w matrix which stores the configurations for the parents 
-	// of node Xi
+	// of node Xi. A heads up: it is stored in a little different way than 
+	// which normally/ automatically comes to the mind. w.get(i) will
+	// fetch the ith variable's (i.e Xi's) matrix. This matrix stores 
+	// the various configurations of its parents. However, note that
+	// a row represents a data variable, while a column represents
+	// a configuration of the parents. Thus, the matrix will have dimensions
+	// :- (No. of parents of variable Xi)*(2^(No. of parents of variable Xi))
+	
 	//int[][][] w = new int[n][n][(int) Math.pow(2, n)];
-	ArrayList<int[][]> w = new ArrayList<int[][]>();
-	for(int i = 0;i< n;i++){
+	ArrayList<int[][]> w = new ArrayList<int[][]>(); // Initialize w 
+	for(int i = 0;i< n;i++){ // Keep in mind - n is no. of variables/Xis  
 		// Create the wij matrix
 		int[][] w_inter = new int[BN.getParents(Graph, i).length][(int) Math.pow(2, BN.getParents(Graph, i).length)];
+		// w_inter corresponds to Xi's matrix.
+		// <--------------------------------------------------------------------->
+		// This code between the dotted lines
+		// fills in the w_inter matrix with all possible
+		// configurations. For example, 1st column is the 1st
+		// configuration (all zeroes), 2nd column is the 2nd config
+		// and so on. The ordering of parents is top-down. Which 
+		// means, the uppermost row contains the most significant bits
+		// while the lowermost row contains the least significant bits.
 		for(int j = 0;j< (BN.getParents(Graph, i)).length;j++){
 			int Threshold=(int) Math.pow(2,(BN.getParents(Graph, i)).length-(j+1));
 			int count = 1;
@@ -141,6 +193,7 @@ public double K2NetworkScore(){
 				count++;
 			}
 		}
+		// <---------------------------------------------------------------------->
 		w.add(w_inter);
 	}
 	// Created and stored the various configurations pertaining to various Xi nodes
@@ -148,9 +201,12 @@ public double K2NetworkScore(){
 	
 	// Now again create the 3 Dimensional matrix Nijk
 	//int[][][] N = new int[n][(int) Math.pow(2, n)][r];
+	// N.get(i) will give a matrix that corresponds to Nijk.
+	// Specifically, N.get(i)[j][k] will be equal to Nijk.
 	ArrayList<int[][]> N = new ArrayList<int[][]>();
-	for(int i = 0;i< n;i++){
-		int[][] N_inter = new int[q[i]][r];
+	for(int i = 0;i< n;i++){ // n:- No. of data variables
+		int[][] N_inter = new int[q[i]][r]; 
+		// The following for loop fills up N_inter appropriately.
 		for(int j = 0;j< q[i];j++){
 			for(int k=0;k< r;k++){
 				// Create a matrix for parents of node i (Xi)
@@ -218,6 +274,13 @@ public double K2NetworkScore(){
 }
 
 // The BDeu comes out to be positive!? Check this ...
+/**
+ * Scores the network according to the BDeu scoring technique. (Not
+ * recommended for use currently)
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double BDeuNetworkScore(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -336,7 +399,12 @@ public double BDeuNetworkScore(){
 	return score;
 }
 
-
+/**
+ * Scores the network using the log-likelihood technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double LogLik(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -456,7 +524,13 @@ public double LogLik(){
 	return score;
 }
 
-
+/**
+ * Scores the network according to the Bayesian Information Criterion
+ * (BIC) technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double BIC(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -487,7 +561,13 @@ public double BIC(){
 }
 
 
-
+/**
+ * Scores the network according to the Akaike Information Criterion
+ * (AIC) technique.
+ * @param No parameters
+ * @return The score of the network as a double
+ * @author Apoorv
+ */
 public double AIC(){
 	/*The NetworkScore method calculates the score of a given Bayesian
 	 * Network (stored in variable Graph) by using the given data (stored 
@@ -518,7 +598,14 @@ public double AIC(){
 }
 
 
-
+/**
+ * Calculates the factorial of Number. If Number is too large,
+ * then Stirling's approximation formula is used.
+ * @param int Number - The number for which we have to calculate
+ * the factorial
+ * @return The factorial of the given Number
+ * @author Apoorv
+ */
 private double getFactorial(int Number){
 	if(Number == 1){
 		return 1;
@@ -536,6 +623,9 @@ private double getFactorial(int Number){
 
 /**
  * Returns the Gamma function of the argument.
+ * @param double x - argument
+ * @return Gamma(x)
+ * @author Apoorv
  */
 private double gamma(double x) {
 

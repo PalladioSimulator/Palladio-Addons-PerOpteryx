@@ -9,7 +9,14 @@ import java.util.Random;
 
 
 /**
- * Used to generate data from a learned Bayesian Network
+ * Used to sample data from a learnt Bayesian Network. 
+ * <p><b> Algorithm description: </b> First the root node (i.e the node
+ * having no parents) is assigned a data value according to the probability
+ * parameters encoded in the network. Then, the children of the node
+ * are assigned values (given the parent node value) using conditional 
+ * probability parameters. This process continues until all nodes are 
+ * assigned some value.<p> The whole process is repeated as many 
+ * times as we want the number of offspring.
  * @author Apoorv
  *
  */
@@ -17,8 +24,8 @@ import java.util.Random;
 // TODO: In the roulettewheelvalue method, add code for handling 0/0 cases ... 
 public class BOAsampler {
 
-	int[][] Graph;
-	int[][] DataMatrix;
+	int[][] Graph; // Adjacency matrix
+	int[][] DataMatrix; // Each row represents a data point
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -64,12 +71,27 @@ public class BOAsampler {
 			System.out.println(order.get(i).toString());
 		}
 	}
-	
+	/**
+	 * Constructor for the class.
+	 * @param Graph - An adjacency matrix representing the network/graph
+	 * @param DataMatrix - A matrix containing the data
+	 * @author Apoorv
+	 */
 	public BOAsampler(int[][] Graph, int[][] DataMatrix){
 		this.Graph = Graph;
 		this.DataMatrix = DataMatrix;
 	}
 	
+	
+	/**
+	 * Method to sample solutions/offspring/data-points from the 
+	 * Bayesian Network.
+	 * @param NumberOfSamples - The number of data-points/offspring 
+	 * one wants from the learnt Bayesian Network.
+	 * @return A matrix containing the sampled offspring/data-points.
+	 * Each row corresponds to an offspring/data-point.
+	 * @author Apoorv
+	 */
 	public int[][] sample(int NumberOfSamples){
 		
 		int n = DataMatrix[1].length; // No. of nodes/variables
@@ -168,9 +190,16 @@ public class BOAsampler {
 			Nij.add(Nij_inter);
 		}
 		
-		int[][] SampledData = new int[NumberOfSamples][DataMatrix[0].length];
+		int[][] SampledData = new int[NumberOfSamples][DataMatrix[0].length]; // Intitialize
 		ArrayList<ArrayList<Integer>> Result = new ArrayList<ArrayList<Integer>>();
+		// SamplingOrder is the way the nodes should be sampled. The first ArrayList
+		// contains the indices of the nodes which should be sampled first, 
+		// the second ArrayList contains the indices of the nodes 
+		// which should be sampled second and so on ...
 		ArrayList<ArrayList<Integer>> SamplingOrder = getSamplingOrder(Graph);
+		// The following for loop fills in the Result variable. The first ArrayList
+		// in Result contains the first sampled datapoint, the second ArrayList 
+		// contains the second sampled datapoint and so on ... 
 		for(int i = 0; i < NumberOfSamples; i++){
 			int[] DataRow = new int[DataMatrix[0].length];
 			for(int j=0;j<SamplingOrder.size();j++){
@@ -179,10 +208,18 @@ public class BOAsampler {
 					//System.out.println("For : "+SamplingOrder.get(j).get(k));
 					int parentconfig;
 					if(j==0){
-						parentconfig = 0;
+						parentconfig = 0; // If it is the first level in the sampling
+										  // order, then there are no parents. In that
+										  // case set parentconfig to zero.
 					}else{
 						int[] parentslist = BN.getParents(Graph, SamplingOrder.get(j).get(k));
 						String binaryString = "";
+						// The following for loop calculates the binary configuration of the 
+						// parents of the node SamplingOrder.get(j).get(k). Note that
+						// the else block will always be executed after the if block is 
+						// executed at least once. Thus, note that DataRow won't be containing
+						// all zeros probably. After the first necessary if block execution, the 
+						// DataRow gets updated accordingly.
 						for(int index=0; index<parentslist.length;index++){
 							binaryString = binaryString+DataRow[parentslist[index]];
 						}
@@ -190,6 +227,7 @@ public class BOAsampler {
 					}
 					
 					int[][] ConditionalProbabilityMat = N.get(SamplingOrder.get(j).get(k));
+					// Assign the sampled value to the node SamplingOrder.get(j).get(k) accordingly in the following line.
 					DataRow[SamplingOrder.get(j).get(k)] = roullettewheelvalue(SamplingOrder.get(j).get(k),ConditionalProbabilityMat,parentconfig);
 					
 				}
@@ -211,36 +249,63 @@ public class BOAsampler {
 		return SampledData;
 	}
 	
+	/**
+	 * Assigns a value to the node using the given conditional 
+	 * probability table (CondProbTable) and the parent configuration 
+	 * (parentconfig).
+	 * @param NodeValue - Value of the node
+	 * @param CondProbTable - Conditional Probability Table encoded 
+	 * in the Bayesian Network parameters. Rows correspond to 
+	 * the parent configurations, and columns correspond to 
+	 * the values which the data can take.
+	 * @param parentconfig - The i<sup>th</sup> configuration
+	 * of the parents
+	 */
 	private int roullettewheelvalue(int NodeValue, int[][] CondProbTable,
 			int parentconfig) {
 		// TODO Auto-generated method stub
 		// Find Probabilities
-		double[] condprobmat = new double[CondProbTable[0].length];
+		// condprobmat is used to store the relevant row of CondProbTable matrix
+		double[] condprobmat = new double[CondProbTable[0].length]; 
 		double den =0;
 		for(int i=0;i<CondProbTable[0].length;i++){
 			condprobmat[i] = (double) CondProbTable[parentconfig][i];
 			den = den + CondProbTable[parentconfig][i];
 		}
+		// convert condprobmat values into probabilities
 		for(int i=0;i<condprobmat.length;i++){
 			condprobmat[i] = (condprobmat[i])/den ;
 		}
+		// Till now, condprobmat was like a probability distribution function (pdf)
+		// The following for loop converts it to a cumulative distribution function (cdf)
+		// The cdf will be helpful while applying the roullete wheel method ...
 		for(int i=1;i<condprobmat.length;i++){
 			condprobmat[i] = condprobmat[i]+condprobmat[i-1];
 		}
 		
 		// Apply roulette wheel strategy
-		double randNum = Math.random();
-		int kValue = 0;
+		double randNum = Math.random(); // Create a random number ...
+		int kValue = 0; // The value to be assigned to the node ...
 		for(int i=0;i<condprobmat.length;i++){
-			if(randNum <= condprobmat[i]){
-				kValue = i;
-				break;
+			if(randNum <= condprobmat[i]){ // if randNum falls in ith condprobmat
+				kValue = i;				   // interval, assign i as the value 
+				break;					   // to the kValue.
 			}
 		}
 		
 		return kValue;
 	}
 
+	/**
+	 * Gives the order of nodes for carrying out the sampling (i.e 
+	 * assigning values to nodes) in the given network/graph.
+	 * @param Graph - The adjacency matrix representing the graph/network.
+	 * @return An ArrayList of ArrayList. The first internal ArrayList
+	 * corresponds to the list of nodes which are to be sampled first, 
+	 * the second ArrayList corresponds to the list of nodes which 
+	 * are to be sampled second and so on.
+	 * @author Apoorv
+	 */
 	private ArrayList<ArrayList<Integer>> getSamplingOrder(int[][] Graph){
 		ArrayList<ArrayList<Integer>> SamplingOrder = getOrder(Graph);
 		for(int i = SamplingOrder.size()-1; i>0;i--){
@@ -249,20 +314,33 @@ public class BOAsampler {
 		return SamplingOrder;
 	}
 	
+	/**
+	 * This is a recursion applied to find the order of sampling that should
+	 * be applied to the graph. First, all root nodes are calculated for the 
+	 * Graph and stored. These are the nodes which should be sampled first.
+	 * Then, these nodes are separated from the graph by cutting their edges. 
+	 * The method is then called recursively on the new trimmed Graph. Thus, it 
+	 * extracts the order finally. Although, this function doesn't give order
+	 * in the way it is desired, the method {@link getSamplingOrder} uses the 
+	 * output from this method and gives the order correctly in the way desired.
+	 * @param Graph - An adjacency matrix of the network/Graph
+	 * @return ArrayList of (ArrayList of node indices)
+	 */
 	private ArrayList<ArrayList<Integer>> getOrder(int[][] Graph){
 		ArrayList<ArrayList<Integer>> SamplingOrderNodeList = new ArrayList<ArrayList<Integer>>();
 		if(Graph == null){
 			return SamplingOrderNodeList;
 		}else{
-			ArrayList<Integer> ListOfParents = getAllParents(Graph);
+			ArrayList<Integer> ListOfParents = getAllParents(Graph); // Returns root nodes
 			
 			// Now trim the Graph
 			int[][] TrimmedGraph = new int[Graph.length][Graph.length];
-			if( ( (Integer)ListOfParents.size() ).equals(((Integer)Graph.length)) ){
-				TrimmedGraph = null;
+			if( ( (Integer)ListOfParents.size() ).equals(((Integer)Graph.length)) ){ // Ending condition
+				TrimmedGraph = null;												 // for the recursion.
 			}else{
 				//int[][] TrimmedGraph = new int[Graph.length - ListOfParents.size()][Graph.length - ListOfParents.size()];
 				
+				// Actual trimming takes place in the following for loop.
 				for(int i=0;i<Graph.length;i++){
 					if(!ListOfParents.contains(i)){
 						for(int j=0;j<Graph.length;j++){
@@ -282,6 +360,18 @@ public class BOAsampler {
 		}
 	}
 	
+	/**
+	 * Gives a list of all root nodes in the network/graph.
+	 * Root nodes are those nodes which don't have any other
+	 * node as its parent.
+	 * @param Graph - An adjacency matrix of the network/graph.
+	 * @return An ArrayList of Integer values. The integer values 
+	 * correspond to the indices of the root nodes.
+	 * @author Apoorv
+	 */
+	//TODO : Change the name of the method to something else. Current
+	// name suggests something different from what is really intended. 
+	// For example keep getAllRootNodes etc. or something similar.
 	public ArrayList<Integer> getAllParents(int[][] Graph){
 		ArrayList<Integer> AllParents = new ArrayList<Integer>();
 		for(int i=0;i<Graph.length;i++){

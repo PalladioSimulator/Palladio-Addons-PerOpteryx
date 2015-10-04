@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.palladiosimulator.pcm.repository.RepositoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -206,7 +207,7 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		org.palladiosimulator.pcm.repository.RepositoryPackage theRepositoryPackage = (org.palladiosimulator.pcm.repository.RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(org.palladiosimulator.pcm.repository.RepositoryPackage.eNS_URI);
+		RepositoryPackage theRepositoryPackage = (RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(RepositoryPackage.eNS_URI);
 		QMLContractPackage theQMLContractPackage = (QMLContractPackage)EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI);
 
 		// Create type parameters

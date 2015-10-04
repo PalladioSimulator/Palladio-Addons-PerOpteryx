@@ -38,7 +38,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 	protected MDSDBlackboard blackboard;
 	
-	public IAnalysisQualityAttributeDeclaration qualityAttribute;
+	protected IAnalysisQualityAttributeDeclaration qualityAttribute;
 	
 	protected List<Criterion> criteriaList = new ArrayList<Criterion>();
 	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>();
@@ -78,15 +78,15 @@ public abstract class AbstractAnalysis implements IAnalysis{
 			//handle possible aspects here
 			if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) {
 
-				if(aspectContext.getRequirement() instanceof UsageScenarioRequirement) {  
+				if (aspectContext.getRequirement() instanceof UsageScenarioRequirement) {  
 
-					if(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
+					if (((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
 						//The criterion refers to EVERY US since none is explicitly specified
 						for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
 							UsageScenario usageScenario = (UsageScenario) iterator2
 									.next();
 
-							if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+							if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
 								UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
 								InfeasibilityConstraint c = 
 										reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
@@ -108,7 +108,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 							}
 						}
 					} else {
-						if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
 							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
 
 							InfeasibilityConstraint c = 
@@ -117,7 +117,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 							criterionToAspect.put(c, aspectContext);
 						} else {
 							//instanceof Objective
-							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
 							criteriaList.add(o);
 							criterionToAspect.put(o, aspectContext);
@@ -132,7 +132,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 					}
 
 				} else if (aspectContext.getRequirement() instanceof EntryLevelSystemCallRequirement) {
-					if(aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
 						EntryLevelSystemCallInfeasibilityConstraintBuilder builder = new EntryLevelSystemCallInfeasibilityConstraintBuilder(((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall());
 						InfeasibilityConstraint c = 
 								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
@@ -140,7 +140,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 						criterionToAspect.put(c, aspectContext);
 					} else {
 						//instanceof Objective
-						EntryLevelSystemCall entryLevelSystemCall = ((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall();
+						EntryLevelSystemCall entryLevelSystemCall = ((EntryLevelSystemCallRequirement) aspectContext.getRequirement()).getEntryLevelSystemCall();
 						EntryLevelSystemCallObjectiveBuilder builder = new EntryLevelSystemCallObjectiveBuilder(entryLevelSystemCall);
 
 						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, builder);
@@ -159,7 +159,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 				}
 			} else {
 				//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well
-				throw new RuntimeException("Evaluation aspect not supported("+aspectContext.getEvaluationAspect()+")!");
+				throw new RuntimeException("Evaluation aspect not supported(" + aspectContext.getEvaluationAspect() + ")!");
 			}
 		}
 	}
@@ -170,7 +170,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 
 	protected PCMInstance getPCMInstance() {
-		return new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
 	}
 	
 	@Override

@@ -49,12 +49,14 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 
 /**
@@ -242,7 +244,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
                 for (final AllocationContext allocationContext : allocationContextsOnServer) {
                     final AllocationContext allocationContextCopy = EcoreUtil.copy(allocationContext);
                     allocationContextCopy.setId(allocationContextCopy.getId()+i);
-                    allocationContextCopy.setEntityName(allocationContextCopy.getEntityName()+"Replica"+i);
+                    allocationContextCopy.setEntityName(allocationContextCopy.getEntityName() + "Replica" + i);
 
                     allocationContextCopy.setResourceContainer_AllocationContext(serverCopy);
 
@@ -250,6 +252,41 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
                 }
             }
         }
+        
+		// This part handles the
+		// ResourceContainerReplicationDegreeWithComponentChange, where
+		// additionally the assembled component is changed
+		// This is for example needed if a single instance of a component
+		// behaves differently than multiple ones (e.g. the multiple ones
+		// generate overhead when synchronizing information among each other).
+		// This was used in the 2012 ICPE PerOpteryx paper for modelling the
+		// remote diagnostic system.
+        if (designDecision instanceof ResourceContainerReplicationDegreeWithComponentChange) {
+			List<ExchangeComponentRule> exchangeComponentRules = ((ResourceContainerReplicationDegreeWithComponentChange) designDecision)
+					.getExchangeComponentRule();
+			int index = numberOfServers - designDecision.getFrom();
+			for (ExchangeComponentRule exchangeComponentRule : exchangeComponentRules) {
+				if (index >= 0 && index < exchangeComponentRule.getRepositoryComponent().size()) {
+					RepositoryComponent repoCompToUse = exchangeComponentRule.getRepositoryComponent().get(index);
+					AssemblyContext assemblyContextToChange = exchangeComponentRule.getAllocationContext()
+							.getAssemblyContext_AllocationContext();
+					RepositoryComponent currentComponent = assemblyContextToChange.getEncapsulatedComponent__AssemblyContext();
+					
+					//Do not replace component if it is already assembled.  
+					if (!EMFHelper.checkIdentity(currentComponent, repoCompToUse)) {
+						AlternativeComponent.getInstance().applyChange(assemblyContextToChange, repoCompToUse);
+					}
+				} else {
+					throw new ChoiceOutOfBoundsException(discreteChoice,
+							"Looking for index " + index
+									+ "in RepositoryComponents of ResourceContainerReplicationDegreeWithComponentChange "
+									+ "degree for number of servers "
+									+ numberOfServers + ", but no such component available");
+				}
+					
+			}
+
+		}
     }
 
     private List<AllocationContext> getAllocationContextsOnServer(
@@ -555,6 +592,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             }
             schedChoice.setChosenValue(chosenPolicy);
             choice = schedChoice;
+        } else if (designDecision instanceof NumberOfCoresDegree){
+        	NumberOfCoresDegree numOfCoresDegree = (NumberOfCoresDegree)designDecision;
+        	DiscreteRangeChoice discreteRangeChoice = factory.createDiscreteRangeChoice();
+        	int numberOfCores = Integer.parseInt(decisionString);
+        	//TODO check that within range
+        	discreteRangeChoice.setChosenValue(numberOfCores);
+        	choice = discreteRangeChoice;
         } else {
             logger.warn("There was an unrecognised design decision "+designDecision.getClass());
             return null;
@@ -582,7 +626,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     private static Entity getEntityByName(final List<Entity> entities,
             final String decisionString) {
         for (final Entity entity : entities) {
-            if (entity.getEntityName().equals(decisionString)){
+            if (entity.getEntityName().equals(decisionString) || decisionString.contains(entity.getId())){
                 return entity;
             }
         }

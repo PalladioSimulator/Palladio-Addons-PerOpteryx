@@ -64,7 +64,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace">
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
@@ -110,7 +110,7 @@
   </eClassifiers>
   <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
-    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
+    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
           lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueRule" ordered="false"
@@ -156,7 +156,7 @@
           eType="#//gdof/ChangeableElementDescription"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//gdof/SelectionRule #//gdof/StaticContextRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom">
+    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
@@ -366,14 +366,14 @@
         <details key="documentation" value="For a FeatureGroup with Fatures F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;&#xA;&#xD;&#xA;TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;&#xA;"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="featuregroup" ordered="false"
-          lowerBound="1"/>
+          lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//FeatureGroup"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="domainOfFeatureConfigCombinations"
           ordered="false" lowerBound="1" upperBound="-1" eType="#//specific/FeatureSubset"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureSubset">
       <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
-          upperBound="-1"/>
+          upperBound="-1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Feature"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresAsListDegree" eSuperTypes="#//specific/NumberOfCoresDegree #//specific/OrderedIntegerDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresDegree" abstract="true"
@@ -384,7 +384,7 @@
         <details key="documentation" value="A boolean range: Selected or Eliminated (ignore default here). "/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="simple" ordered="false"
-          lowerBound="1"/>
+          lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Simple"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ResourceContainerReplicationDegree"
         eSuperTypes="#//specific/DiscreteRangeDegree">
@@ -423,70 +423,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="MonitoringDegree  is a degree of freedom to choose the monitoring interval time. It refers to an Intervall as changebleEntity from EvaluationSpecification.pms model of SimuLizar. Interval range between &quot;from&quot; and &quot;to&quot;."/>
       </eAnnotations>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="UniversalDoF" nsURI="UniversalDoF">
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="#//UniversalDoF/MetamodelDescription.1"/>
-    <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
-      <eOperations name="listGDoFs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList"/>
-      <eOperations name="newGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdofs" upperBound="-1"
-          eType="#//UniversalDoF/GenericDoF" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" lowerBound="1"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" abstract="true">
-      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-      </eOperations>
-      <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//gdof/DegreeOfFreedom">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//gdof/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_dof_mappings" lowerBound="1"
-          eType="#//UniversalDoF/GDoF_to_DoF_Correspondence"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GDoF_to_DoF_Correspondence">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="genericdof" eType="#//UniversalDoF/GenericDoF"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="degreeoffreedom" eType="#//gdof/DegreeOfFreedom"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
-      <eOperations name="evaluateMetamodel" unique="false" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-      </eOperations>
-      <eOperations name="prepareGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="listGDoFs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList"/>
-      <eOperations name="listPreparedDoFs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList"/>
-      <eOperations name="removePreparedDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="prepareDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="newGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="constrainDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdofrepository" lowerBound="1"
-          eType="#//UniversalDoF/GDoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="supportedMetamodels"
-          upperBound="-1" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="preparedDoFs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

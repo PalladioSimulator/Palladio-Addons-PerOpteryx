@@ -123,8 +123,18 @@ public class EMFHelper {
      * @param fileName
      *            The filename where to save.
      */
-    public static void saveToXMIFile(final EObject modelToSave, final String fileName) {
+    public static void saveToXMIFile(final EObject modelToSave, final String fileName){
+    	
+    	saveToXMIFile(modelToSave, fileName, true);
+    }
 
+    /**
+     * Additional parameter mayRetry to detect to deep recursion. 
+     * @param modelToSave
+     * @param fileName
+     * @param mayRetry
+     */
+    private static void saveToXMIFile(final EObject modelToSave, final String fileName, boolean mayRetry){
         final Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
         logger.debug("Saving " + modelToSave.toString() + " to " + fileName);
@@ -136,19 +146,18 @@ public class EMFHelper {
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
         .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
                 new XMIResourceFactoryImpl());
+        
+        final URI myURI = URI.createURI(fileName);
 
-        final URI fileURI = URI.createFileURI(new File(fileName).getAbsolutePath());
-        final Resource resource = resourceSet.createResource(fileURI);
+        final Resource resource = resourceSet.createResource(myURI);
         resource.getContents().add(modelToSave);
-
-
 
         try {
             resource.save(Collections.EMPTY_MAP);
         } catch (final FileNotFoundException e){
-            if (fileName.length() > 250){
-                //try again with a shorter filename
-                saveToXMIFile(modelToSave, fileName.substring(0, fileName.indexOf("-"))+"-shortened-"+fileName.hashCode());
+            if (mayRetry && fileName.length() > 250){
+                //try again with a shorter filename, but just one more try (mayRetry = false). 
+                saveToXMIFile(modelToSave, fileName.substring(0, fileName.indexOf("-"))+"-shortened-"+fileName.hashCode(), false);
             }
         } catch (final IOException e) {
             logger.error(e.getMessage());

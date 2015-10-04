@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.nqr;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,7 @@ import org.opt4j.core.Criterion;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
+import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.pcm.nqr.helper.NqrUtil;
 
 public class NqrAnalysisResult implements IAnalysisResult {
@@ -19,17 +21,18 @@ public class NqrAnalysisResult implements IAnalysisResult {
 
 	private Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
 	private NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration;
-	private de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit;
+	private List<Nqr> nqr;
 
-	public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect, de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion targetCrit, NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration) {
+	public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect, List<Nqr> nqr, NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration) {
 		this.criterionToAspectMap = criterionToAspect;
 		this.nqrQualityDimensionDeclaration = nqrQualityDimensionDeclaration;
-		this.targetCrit = targetCrit;
+		this.nqr = nqr;
 	}
 	
 	@Override
 	public double getValueFor(Criterion criterion)  {
 		EvaluationAspectWithContext aspect = this.criterionToAspectMap.get(criterion);
+		double result = Integer.MIN_VALUE;
 		
 		if (aspect != null){
 			for (Dimension dim: nqrQualityDimensionDeclaration.getDimensions())
@@ -37,9 +40,15 @@ public class NqrAnalysisResult implements IAnalysisResult {
 				if (EcoreUtil.equals(aspect.getDimension(), dim))
 				{
 					nqrQualityDimensionDeclaration.getRequirement(dim);
-					return NqrUtil.getNqrValue(aspect.getCriterion(), targetCrit);
+					for (int i = 0; i < nqr.size(); ++i)
+						for (int j = 0; j < nqr.get(i).getCriterion().size(); ++j)
+						{
+							if (EcoreUtil.equals(dim, nqr.get(i).getCriterion().get(j).getDimension()))
+								result = NqrUtil.getNqrValue(aspect.getCriterion(), nqr.get(i).getCriterion().get(j));
+						}
 				}
 			}
+			return result;
 		} 
 		
 		logger.warn("Unknown aspect for Nqr result, adding NaN.");

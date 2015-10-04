@@ -14,13 +14,25 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Class for visualizing a Bayesian Network or a Graph.
+ * @author Apoorv
+ *
+ */
 public class DrawGraph extends JPanel{
-
+	/**
+	 * Adjacency matrix for the network/graph
+	 */
 	int[][] Graph;
 	
+	/**
+	 * Consructor for the class
+	 * @param Graph - Adjacency matrix for the network/graph
+	 */
 	public DrawGraph(int[][] Graph){
 		this.Graph = Graph;
 	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[][] gr = new int[4][4];
@@ -42,6 +54,12 @@ public class DrawGraph extends JPanel{
 		dg.saveImage();
 	}
 	
+	/**
+	 * Used for saving the image as a JPEG file.
+	 * @param None
+	 * @return Nothing
+	 * @author Apoorv
+	 */
 	public void saveImage(){
 		BufferedImage img = new BufferedImage(800, 500, BufferedImage.TYPE_INT_ARGB);
 		//BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -56,6 +74,7 @@ public class DrawGraph extends JPanel{
 			e.printStackTrace();
 		}
 	}
+	
 	
 	@Override
 	public void paint(Graphics g) {
@@ -87,6 +106,14 @@ public class DrawGraph extends JPanel{
 		
 	}
 	
+	/**
+	 * Gets the list of all nodes (children) to which 
+	 * the node Node points.
+	 * @param Node - Node in the Graph
+	 * @return An ArrayList of integers which are the indices of the 
+	 * target nodes
+	 * @author Apoorv
+	 */
 	public ArrayList<Integer> getTargetNodes(int Node){
 		ArrayList<Integer> TargetNodes = new ArrayList<Integer>();
 		for(int i=0;i<Graph.length;i++){
@@ -97,6 +124,15 @@ public class DrawGraph extends JPanel{
 		return TargetNodes;
 	}
 	
+	/**
+	 * Draws a circle with radius r and center (x,y)
+	 * @param g - Graphics2D object
+	 * @param x - x coordinate of circle center
+	 * @param y - y coordinate of circle center
+	 * @param r - radius of circle
+	 * @return Nothing
+	 * @author Apoorv
+	 */
 	public void drawCenteredCircle(Graphics2D g, int x, int y, int r) {
 		  x = x-(r/2);
 		  y = y-(r/2);
