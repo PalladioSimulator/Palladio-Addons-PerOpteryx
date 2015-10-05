@@ -108,10 +108,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedomMap" instanceClassName="java.util.Map$Entry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//gdof/DegreeOfFreedom"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//UniversalDoF/GenericDoF"/>
-  </eClassifiers>
   <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
@@ -428,6 +424,10 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="UniversalDoF" nsURI="UniversalDoF">
+    <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedomMap" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//gdof/DegreeOfFreedom"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//UniversalDoF/GenericDoF"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="#//UniversalDoF/MetamodelDescription.1"/>
     <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
       <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
@@ -453,7 +453,7 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//gdof/DoFRepository"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" lowerBound="1"
-          upperBound="-1" eType="#//GenericDoFToDegreeOfFreedomMap" containment="true"/>
+          upperBound="-1" eType="#//UniversalDoF/GenericDoFToDegreeOfFreedomMap" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
       <eOperations name="evaluateMetamodel" unique="false" eType="#//UniversalDoF/MetamodelDescription">
