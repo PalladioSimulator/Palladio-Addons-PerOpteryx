@@ -259,7 +259,8 @@
           ordered="false" lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm.cost/model/cost.ecore#//FixedProcessingResourceCost"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="processingResourceSpecification_ResourceDescription"
-          ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ResourceContainer" containment="true"/>
+          ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ResourceContainer"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ResourcesCanBeUsedIndividually"
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
@@ -269,7 +270,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExchangeComponentRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryComponent"
           ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContext" ordered="false" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//allocation/AllocationContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContext" ordered="false"
+          eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//allocation/AllocationContext"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ClassAsReferenceDegree" eSuperTypes="#//specific/ClassDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -421,69 +423,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="MonitoringDegree  is a degree of freedom to choose the monitoring interval time. It refers to an Intervall as changebleEntity from EvaluationSpecification.pms model of SimuLizar. Interval range between &quot;from&quot; and &quot;to&quot;."/>
       </eAnnotations>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="UniversalDoF" nsURI="UniversalDoF">
-    <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedomMap" instanceClassName="java.util.Map$Entry">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//gdof/DegreeOfFreedom"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//UniversalDoF/GenericDoF"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="#//UniversalDoF/MetamodelDescription.1"/>
-    <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
-      <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
-      <eOperations name="newGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdofs" upperBound="-1"
-          eType="#//UniversalDoF/GenericDoF" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" abstract="true">
-      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-      </eOperations>
-      <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//gdof/DegreeOfFreedom">
-        <eParameters name="gdof" eType="#//UniversalDoF/GenericDoF"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//gdof/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" lowerBound="1"
-          upperBound="-1" eType="#//UniversalDoF/GenericDoFToDegreeOfFreedomMap" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
-      <eOperations name="evaluateMetamodel" unique="false" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-      </eOperations>
-      <eOperations name="prepareGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
-      <eOperations name="listPreparedDoFs" upperBound="-1" eType="#//gdof/DegreeOfFreedom"/>
-      <eOperations name="removePreparedDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="prepareDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="newGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="constrainDoF" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdofrepository" lowerBound="1"
-          eType="#//UniversalDoF/GDoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="supportedMetamodels"
-          upperBound="-1" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//gdof/DegreeOfFreedom"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
