@@ -192,7 +192,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         }
 
         final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
-
+        
         // first reset the changes possibly made for earlier candidates
         final List<ResourceContainer> allServers = pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
         final List<ResourceContainer> previousReplicasToRemove = new ArrayList<ResourceContainer>();
@@ -229,9 +229,15 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             for (int i = 1; i < numberOfServers; i++){
                 // add a server, replicate all components on it.
 
-                final ResourceContainer serverCopy = EcoreUtil.copy(server);
+             	final ResourceContainer serverCopy = EcoreUtil.copy(server);
+             	
+             	// need to change the ids as all ids need to be unique. 
                 serverCopy.setId(serverCopy.getId()+i);
                 serverCopy.setEntityName(serverCopy.getEntityName()+"Replica"+i);
+                for (ProcessingResourceSpecification processor : serverCopy.getActiveResourceSpecifications_ResourceContainer()){
+                	processor.setId(processor.getId()+i);
+                }
+               
                 pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment().add(serverCopy);
 
                 // connect the new server copy to all linking resources that the old one is connected to
@@ -252,7 +258,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
                 }
             }
         }
-        
+
 		// This part handles the
 		// ResourceContainerReplicationDegreeWithComponentChange, where
 		// additionally the assembled component is changed
