@@ -38,6 +38,7 @@ import de.uka.ipd.sdq.sensorframework.SensorFrameworkDataset;
 import de.uka.ipd.sdq.sensorframework.entities.dao.IDAOFactory;
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
 import de.uka.ipd.sdq.simulation.AbstractSimulationConfig;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -260,9 +261,16 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
                 	String causingErrorMessage = e.getCause().getMessage();
                 	if (numberOfTries > 0 && causingErrorMessage != null && causingErrorMessage.contains("Couldn't find extension")){
                 		logger.warn("Trying to start SimuCom again.");
-                		return;
+                		continue;
                 	}
                 }
+                // try to roll back and clean up (e.g. delete temporary folder). This is not tested yet and may cause problems. 
+                try {
+					job.cleanup(monitor);
+				} catch (CleanupFailedException e1) {
+					logger.error("Cleanup of failed simucoim run failed, probably you need to clean up manually (e.g. delete temorary plugin);");
+					e1.printStackTrace();
+				}
                 throw new AnalysisFailedException(e);
             }
         }
