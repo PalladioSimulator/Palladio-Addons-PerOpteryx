@@ -52,7 +52,7 @@
         <details key="documentation" value="DoFs of this type are updated by updating this changeable element's reference to one of the Entities in the domainOfEntities."/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ClassDegree" abstract="true" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.designdecision/model/designdecision.ecore#//DegreeOfFreedomInstance">
+    <eClassifiers xsi:type="ecore:EClass" name="ClassDegree" abstract="true" eSuperTypes="genericdesigndecision.ecore#//DegreeOfFreedomInstance">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This class represents DegreeOfFreedoms that have an enumeration domain. The set of possile values of the degree of freedom are referenced with the domainOfEntities property. Any kind of PCM element can be annotated here. Subclasses restrict the type of annotated elements with OCL constraints."/>
       </eAnnotations>
@@ -87,7 +87,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfSteps" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataTypeDegree" abstract="true" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.designdecision/model/designdecision.ecore#//DegreeOfFreedomInstance"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataTypeDegree" abstract="true" eSuperTypes="genericdesigndecision.ecore#//DegreeOfFreedomInstance"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteDegree" abstract="true" eSuperTypes="#//specific/DataTypeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteRangeDegree" eSuperTypes="#//specific/RangeDegree #//specific/DiscreteDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -127,14 +127,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="ProcessingRateDegree" abstract="true"
         eSuperTypes="#//specific/ProcessingResourceDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessingResourceDegree" abstract="true"
-        eSuperTypes="../../de.uka.ipd.sdq.dsexplore.designdecision/model/designdecision.ecore#//DegreeOfFreedomInstance">
+        eSuperTypes="genericdesigndecision.ecore#//DegreeOfFreedomInstance">
       <eStructuralFeatures xsi:type="ecore:EReference" name="processingresourcetype"
           ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourcetype/ProcessingResourceType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteComponentParamDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteProcessingRateDegree" eSuperTypes="#//specific/DiscreteRangeDegree #//specific/ProcessingRateDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureConfigDegree" abstract="true"
-        eSuperTypes="../../de.uka.ipd.sdq.dsexplore.designdecision/model/designdecision.ecore#//DegreeOfFreedomInstance"/>
+        eSuperTypes="genericdesigndecision.ecore#//DegreeOfFreedomInstance"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureGroupDegree" eSuperTypes="#//specific/FeatureConfigDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="For a FeatureGroup with Features F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;&#xA;&#xD;&#xA;TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;&#xA;"/>
@@ -143,8 +143,7 @@
           ordered="false" lowerBound="1" upperBound="-1" eType="#//specific/FeatureSubset"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FeatureSubset">
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FeatureSubset"/>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresAsListDegree" eSuperTypes="#//specific/NumberOfCoresDegree #//specific/OrderedIntegerDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresDegree" abstract="true"
         eSuperTypes="#//specific/ProcessingResourceDegree"/>
