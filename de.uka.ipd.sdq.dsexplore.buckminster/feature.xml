@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.uka.ipd.sdq.dsexplore.buckminster"
+      label="PerOpteryx Palladio AddOn Buckminster Build Feature"
+      version="1.0.0.qualifier">
+
+   <includes
+         id="de.uka.ipd.sdq.dsexplore.feature"
+         version="0.0.0"/>
+
+   <plugin
+         id="de.uka.ipd.sdq.dsexplore.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
