@@ -64,8 +64,8 @@ public class Starter {
 	
 	// Bayesian
 	private static final String PREFIX_RUN_DIRS = "Run ";
-	private static final String PATH_RUNS_B = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Bayesian Approach\\Chow Liu Tree\\";
-	private static final String PATH_RUNS_A = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Evolutionary Algorithm\\";
+	private static final String PATH_RUNS_A = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Bayesian Approach\\Chow Liu Tree\\";
+	private static final String PATH_RUNS_B = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Evolutionary Algorithm\\";
 	
 	// Anne's previous experiments
 	//private static final String PREFIX_RUN_DIRS = "";
@@ -298,10 +298,10 @@ public class Starter {
 		//printHypervolumeDifferenceForAllIterations();
 		
 		// mean, min, max, variance for all iterations
-		//printCoverageStatisticsForAllIterations();
+		printCoverageStatisticsForAllIterations();
 		//printCoverageOfLastIterations();
 		
-		printIndicatorForAllIterations(Indicator.epsilon);
+		//printIndicatorForAllIterations(Indicator.epsilon);
 		
 		//printCoverageForGivenIteration(29);
 
