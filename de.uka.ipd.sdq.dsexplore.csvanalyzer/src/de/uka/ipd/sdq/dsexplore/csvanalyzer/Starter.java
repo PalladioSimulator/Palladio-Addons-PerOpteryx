@@ -42,8 +42,9 @@ public class Starter {
 	 * Need to set the number of genes to read in heuristic statistics.
 	 */
 	// private static final int NUMBER_OF_GENES = 26; // BRS Diss
-	private static final int NUMBER_OF_GENES = 11; // Hybrid experiment
+	//private static final int NUMBER_OF_GENES = 11; // Hybrid experiment
 	//private static final int NUMBER_OF_GENES = 14;
+	private static final int NUMBER_OF_GENES = 19; // Bayesian Learning
 
 	/**
 	 * The input folders. The folders need to contain folders for each run of
@@ -61,9 +62,13 @@ public class Starter {
 	 * Do not forget the trailing backslash.
 	 */
 	
-	// 3D
-	private static final String PATH_RUNS_A = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\pure evol\\";
-	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly 3D\\hybrid\\";
+	// Bayesian
+	private static final String PREFIX_RUN_DIRS = "Run ";
+	private static final String PATH_RUNS_B = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Bayesian Approach\\Chow Liu Tree\\";
+	private static final String PATH_RUNS_A = "C:\\Users\\Anne\\Documents\\paper\\2016\\PatwardhanKoziolek2016_Bayesian\\data\\Evolutionary Algorithm\\";
+	
+	// Anne's previous experiments
+	//private static final String PREFIX_RUN_DIRS = "";
 		
 	// performance and costs
 //	private static final String PATH_RUNS_B = "C:\\Hybrid-experiments\\hybrid graphicalOnly perf costs\\pure evol\\";
@@ -167,7 +172,7 @@ public class Starter {
 	static final boolean HAS_INFEASIBILITY_CONSTRAINTS = false;
 	static final boolean HAS_SATISFACTION_CONSTRAINTS = false;
 	
-	private static final int[] RUNS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	private static final int[] RUNS = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	//private static final int[] RUNS = {0, 1, 3, 4, 7, 8, 9};
 	//private static final int[] RUNS = {1};
 
@@ -180,7 +185,7 @@ public class Starter {
 
 
 	private static final int START_ITERATION = 0;
-	private static final int FINAL_ITERATION = 200; //Integer.MAX_VALUE; // final iteration = Integer.maxvalue means as far as data is available
+	private static final int FINAL_ITERATION = 198; //Integer.MAX_VALUE; // final iteration = Integer.maxvalue means as far as data is available
 
 	private static final String FILENAME_REGEXP_PREFIX = "archiveCandidates";
 	private static final String FILENAME_REGEXP_PREFIX_ALL_CANDIDATES = "allCandidates";
@@ -861,13 +866,13 @@ public class Starter {
 			int j = getRandomInt(0, RUNS.length - 1);
 			int randomIntA = RUNS[j];
 			
-			File fileA = getFilesOfDirectory(getPath(PATH_BOOTSTRAPPING, randomIntA),
+			File fileA = getFilesOfDirectory(createFileForPathAndRun(PATH_BOOTSTRAPPING, randomIntA),
 					FILENAME_REGEXP)[0];
 			Collection<ValueVector> setA = handler.getFromFile(fileA,
 					ValueVector.ORIGIN.A);
 			j = getRandomInt(0, RUNS.length - 1);
 			int randomIntB = RUNS[j]; 
-			File fileB = getFilesOfDirectory(getPath(PATH_BOOTSTRAPPING, randomIntB),
+			File fileB = getFilesOfDirectory(createFileForPathAndRun(PATH_BOOTSTRAPPING, randomIntB),
 					FILENAME_REGEXP)[0];
 			Collection<ValueVector> setB = handler.getFromFile(fileB,
 					ValueVector.ORIGIN.B);
@@ -1548,7 +1553,7 @@ public class Starter {
 			List<Date> iterationToTimestampList = getIterationToTimestampMapping(
 					run, FINAL_ITERATION, PATH_RUNS_A);
 
-			File dirFile = new File(PATH_RUNS_A + run + "\\");
+			File dirFile = createFileForPathAndRun(PATH_RUNS_A, run);
 			if (!dirFile.exists()) {
 				File[] dirsForRun = getAllMatchingFiles(run
 						+ DIRECTORY_NAME_REGEXP_PARTLY, new File(PATH_RUNS_A));
@@ -1638,7 +1643,7 @@ public class Starter {
 	private static List<Candidate> readInCandidates(File directory,
 			int iteration) {
 
-		File candidateFile = getFilesOfDirectory(directory.getAbsolutePath(),
+		File candidateFile = getFilesOfDirectory(directory,
 				FILENAME_REGEXP_PREFIX_ALL_CANDIDATES + iteration
 						+ FILENAME_REGEXP_SUFFIX)[0];
 
@@ -1816,7 +1821,7 @@ public class Starter {
 	}
 	
 	private static File getNewestFileForRun(String pathRuns, int run, String fileType){
-		File dirFile = new File(pathRuns + run + "\\");
+		File dirFile = createFileForPathAndRun(pathRuns, run);
 		
 		if (!dirFile.exists()) {
 			// partial runs
@@ -1836,6 +1841,10 @@ public class Starter {
 		} else {
 			return getLatestFileOfTypeFromDirectory(dirFile, fileType);
 		}
+	}
+
+	private static File createFileForPathAndRun(String pathRuns, int run) {
+		return new File(pathRuns + PREFIX_RUN_DIRS + run + "\\");
 	}
 
 	private static File getLatestFileFromSet(String fileType, File[] dirsForRun) {
@@ -1863,7 +1872,7 @@ public class Starter {
 	private static File getFileForIteration(String pathRuns, int iteration,
 			int run, String fileType) throws NotEnoughFilesToGetIterationException {
 
-		File dirFile = new File(pathRuns + run + "\\");
+		File dirFile = createFileForPathAndRun(pathRuns, run);
 		if (!dirFile.exists()) {
 			// partial runs
 			// get all files that match
@@ -1888,7 +1897,7 @@ public class Starter {
 						&& iteration <= absoluteEndIterationOfCurrentDir) {
 					// file that we look for is in this directory at position
 					// iteration - start
-					return getFilesOfDirectory(currentDir.toString(),
+					return getFilesOfDirectory(currentDir,
 							getRegExp(iteration
 									- absoluteStartIterationOfCurrentDir, fileType))[0];
 				}
@@ -1902,7 +1911,7 @@ public class Starter {
 			
 			if (getAllMatchingFiles(getRegExp(0, fileType), dirFile).length == 1){
 				if (getAllMatchingFiles(getRegExp(iteration, fileType), dirFile).length >= 1 ){
-					return getFilesOfDirectory(dirFile.toString(), getRegExp(iteration, fileType))[0];
+					return getFilesOfDirectory(dirFile, getRegExp(iteration, fileType))[0];
 				} else {
 					if (iteration == Integer.MAX_VALUE){
 						File[] allFiles = getAllMatchingFiles(getRegExp("[0-9]*", fileType), dirFile);
@@ -2140,21 +2149,20 @@ public class Starter {
 		return sum / set.size();
 	}
 
-	private static File[] getFilesOfDirectory(String dir,
-			final String filenameRegExp) {
-		File dirFile = new File(dir);
+	private static File[] getFilesOfDirectory(File dirFile, final String filenameRegExp) {
+
 		if (!dirFile.exists()) {
-			throw new IllegalArgumentException("Directory " + dir
+			throw new IllegalArgumentException("Directory " + dirFile.toString()
 					+ " does not exist.");
 		}
 		File[] file = getAllMatchingFiles(filenameRegExp, dirFile);
 		if (file.length < 1) {
-			throw new IllegalArgumentException("Directory " + dir
+			throw new IllegalArgumentException("Directory " + dirFile.toString()
 					+ " contains no files to compare for regex "
 					+ filenameRegExp);
 		}
 		if (file.length > 1) {
-			throw new IllegalArgumentException("Directory " + dir
+			throw new IllegalArgumentException("Directory " + dirFile.toString()
 					+ " contains multiple files to compare for regex "
 					+ filenameRegExp);
 		}
@@ -2178,11 +2186,6 @@ public class Starter {
 		};
 		File[] file = dirFile.listFiles(filter);
 		return file;
-	}
-
-	private static String getPath(String pathRun, int run) {
-		return pathRun + run + "\\";
-		// return pathRun + "\\";
 	}
 
 	private static String getRegExp(String iteration, String fileType) {
