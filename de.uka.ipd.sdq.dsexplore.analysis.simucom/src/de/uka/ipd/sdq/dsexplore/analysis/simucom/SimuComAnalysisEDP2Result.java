@@ -1,7 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simucom;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +44,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 
@@ -70,13 +70,13 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @param run The latest run of the experiment.
      * @param experiment The experiment (at the moment with only one experiment setting).
      * @param pcmInstance
-     * @param usageScenario
+     * @param pcmEntity
      * @param objectiveToAspect
      * @param qualityAttributeInfo
      * @throws AnalysisFailedException
      */
     public SimuComAnalysisEDP2Result(final ExperimentRun run, final ExperimentSetting experiment, final PCMInstance pcmInstance,
-            final UsageScenario usageScenario, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
+            final Entity pcmEntity, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
             final SimuComQualityAttributeDeclaration qualityAttributeInfo)
                     throws AnalysisFailedException {
         super(pcmInstance);
@@ -84,7 +84,11 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         this.experimentSetting = experiment;
         this.run = run;
 
-        this.usageScenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
+        if (pcmEntity instanceof Identifier && !(pcmEntity instanceof UsageScenario)){
+        	this.pcmEntityIdentifier = ((Identifier)pcmEntity).getId();
+        } else {
+        	this.pcmEntityIdentifier = pcmEntity.getEntityName();
+        }
 
         this.objectiveToAspects = objectiveToAspect;
         this.qualityAttributeInfo = qualityAttributeInfo;
@@ -94,11 +98,11 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         this.results =  retrieveResults(pcmInstance);
         this.maxUtilization = calculateMaxUtil("CPU");
 
-        final double[] values = this.getValuesForUsageScenario(usageScenario);
+        final double[] values = this.getValuesForPcmEntity(this.pcmEntityIdentifier);
         this.meanValue = calculateUnivariateStatistic(values, new Mean());
         this.stdDeviation = calculateUnivariateStatistic(values, new StandardDeviation());
         this.medianValue = calculateUnivariateStatistic(values, new Median());
-        this.throughput = calculateThroughput(this.getTimePointsForUsageScenario(usageScenario));
+        this.throughput = calculateThroughput(this.getTimePointsForPcmEntity(this.pcmEntityIdentifier));
         this.observations = values.length;
         this.confidenceInterval = determineConfidenceInterval(values);
 
@@ -181,7 +185,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
     /**
      * Tries to find a matching experiment run in the passed data source (via the passed <code>Repository</code>). If a matching experiment run
      * is found, a new {@link IStatisticAnalysisResult} is created for it. If not, <code>null</code> is returned.
-     * @param usageScenario The usage scenario to determine the response time values for.
+     * @param pcmEntity The usage scenario to determine the response time values for.
      * @param experimentName The experiment name to match
      * @param pcmInstance The PCM instance to get the available resources and retrieve utilisation values.
      * @param repo The access to the data source.
@@ -191,7 +195,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @throws AnalysisFailedException
      */
     static public IStatisticAnalysisResult findExperimentRunAndCreateResult(
-            final UsageScenario usageScenario,
+            final Entity pcmEntity,
             final String experimentName,
             final String experimentSettingName,
             final PCMInstance pcmInstance,
@@ -223,7 +227,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
 				}
 
                 // Return new instance of SimuComAnalysisEDP2Result for the requested run
-                return new SimuComAnalysisEDP2Result(reqRun, mySetting, pcmInstance, usageScenario, criterionToAspect, qualityAttribute);
+                return new SimuComAnalysisEDP2Result(reqRun, mySetting, pcmInstance, pcmEntity, criterionToAspect, qualityAttribute);
     	}
 
         return null;
@@ -288,27 +292,27 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
     }
 
     /**
-     * Retrieves the values for a given usage scenario.
+     * Retrieves the values for a given PCM entity identified by pcmEntityIdentifier.
      *
      * Note: See constraints for methods used.
-     * @param usageScenario The usage scenario to look for.
+     * @param pcmEntityIdentifier The entity to look for.
      * @return Returns the values as a double array or <code>null</code> if no matching measurement is found.
      */
-    private double[] getValuesForUsageScenario(final UsageScenario usageScenario)
+    private double[] getValuesForPcmEntity(final String pcmEntityIdentifier)
     {
-        return this.getValuesFromMeasurement(this.getUsageScenarioMeasurements(usageScenario));
+        return this.getValuesFromMeasurement(this.getPcmEntityMeasurements(pcmEntityIdentifier));
     }
 
     /**
-     * Retrieves the measuring time points for a given usage scenario.
+     * Retrieves the measuring time points for a given PCM entity identified by pcmEntityIdentifier.
      *
      * Note: See constraints for methods used.
-     * @param usageScenario The usage scenario to look for.
+     * @param pcmEntity The entity to look for.
      * @return Returns the time points as a double array or <code>null</code> if no matching measurement is found.
      */
-    private double[] getTimePointsForUsageScenario(final UsageScenario usageScenario)
+    private double[] getTimePointsForPcmEntity(final String pcmEntityIdentifier)
     {
-        return this.getTimePointsFromMeasurement(this.getUsageScenarioMeasurements(usageScenario));
+        return this.getTimePointsFromMeasurement(this.getPcmEntityMeasurements(pcmEntityIdentifier));
     }
 
     /**
@@ -385,10 +389,10 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
 
     /**
      * Finds the measurement representing the usage scenario.
-     * @param usageScenario
+     * @param pcmEntityIdentifier
      * @return measurement or <code>null</code> if no matching measurement found
      */
-    private Measurement getUsageScenarioMeasurements(final UsageScenario usageScenario)
+    private Measurement getPcmEntityMeasurements(final String pcmEntityIdentifier)
     {
         final EList<Measurement> measurements = run.getMeasurement();
         for (final Measurement m : measurements)
@@ -396,7 +400,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
             final MeasuringPoint measuringPoint = m.getMeasuringType().getMeasuringPoint();
             if (measuringPoint instanceof StringMeasuringPoint)
             {
-                if (isRequestedMeasurement(usageScenario.getEntityName(), ((StringMeasuringPoint) measuringPoint).getMeasuringPoint()))
+                if (isRequestedMeasurement(pcmEntityIdentifier, ((StringMeasuringPoint) measuringPoint).getMeasuringPoint()))
                 {
                     return m;
                 }

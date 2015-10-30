@@ -14,6 +14,7 @@ import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.models.Repository.Repository;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -31,6 +32,9 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.ConfigurationHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallCriterion;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallObjective;
+import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedInfeasibilityConstraint;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
@@ -161,12 +165,12 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
      * FIXME: This method should not depend on the state of the blackboard anymore... but it does at this time.
      *
      * @param pheno
-     * @param usageScenario
+     * @param entity
      * @return
      * @throws CoreException
      * @throws AnalysisFailedException
      */
-    private IStatisticAnalysisResult retrieveSimuComResults(final PCMPhenotype pheno, final UsageScenario usageScenario)
+    private IStatisticAnalysisResult retrieveSimuComResults(final PCMPhenotype pheno, final Entity entity)
             throws CoreException, AnalysisFailedException {
 
         final String experimentName = this.getExperimentName(pheno);
@@ -179,7 +183,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
         // Decide whether it's SensorFramework or EDP2
         if ("SensorFramework".equals(config.getAttribute("persistenceFramework", "")))
         {        	
-                result = new SimuComAnalysisSensorFrameworkResult(usageScenario,
+                result = new SimuComAnalysisSensorFrameworkResult(entity,
                         experimentName, pcmInstance, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute, this.config);
             
             if (result == null)
@@ -199,7 +203,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         	Repository selectedRepo = SimuComAnalysisEDP2Result.findSelectedEDP2Repository(config);
         	
-        	result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(usageScenario, experimentName,
+        	result = SimuComAnalysisEDP2Result.findExperimentRunAndCreateResult(entity, experimentName,
 					experimentSettingName, pcmInstance, selectedRepo, this.criterionToAspect, (SimuComQualityAttributeDeclaration)this.qualityAttribute);
         	
             if (result == null)
@@ -333,22 +337,19 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
     @Override
     public IStatisticAnalysisResult retrieveResultsFor(final PCMPhenotype pheno, final Criterion criterion) throws CoreException, AnalysisFailedException {
-        if(criterion instanceof UsageScenarioBasedObjective){
-            return this.retrieveSimuComResults(pheno, ((UsageScenarioBasedObjective)criterion).getUsageScenario());
-        } else if (criterion instanceof UsageScenarioBasedInfeasibilityConstraint) {
-            //Handle constraint here
-            // As the mean is default (for the value as well as the evaluation aspect of the constraint), no further action is required
-            //We allowed only mean constraint during the initialization
 
-            return this.retrieveSimuComResults(pheno, ((UsageScenarioBasedInfeasibilityConstraint)criterion).getUsageScenario());
-        } else if (criterion instanceof UsageScenarioBasedSatisfactionConstraint) {
-            //Handle constraint here
-            // As the mean is default (for the value as well as the evaluation aspect of the constraint), no further action is required
-            //We allowed only mean constraint during the initialization
-
-            return this.retrieveSimuComResults(pheno, ((UsageScenarioBasedSatisfactionConstraint)criterion).getUsageScenario());
-        }
-        throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore.analysis.simucom", "Cannot handle Criterion of type "+criterion.getClass()+". Required is UsageScenarioBasedObjective or UsageScenarioBasedConstraint."));
+        Entity entity = getPCMEntityForCriterion(criterion);
+        return this.retrieveSimuComResults(pheno, entity);
+        
+    }
+    
+    private Entity getPCMEntityForCriterion(final Criterion criterion) throws CoreException{
+    	 if(criterion instanceof UsageScenarioBasedCriterion){
+             return ((UsageScenarioBasedCriterion)criterion).getUsageScenario();
+         } else if (criterion instanceof EntryLevelSystemCallCriterion){
+        	 return ((EntryLevelSystemCallCriterion)criterion).getEntryLevelSystemCall();
+         }
+    	 throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore.analysis.simucom", "Cannot handle Criterion of type "+criterion.getClass()+". Required is UsageScenarioBasedCriterion or EntryLevelSystemCallCriterion."));
     }
 
 

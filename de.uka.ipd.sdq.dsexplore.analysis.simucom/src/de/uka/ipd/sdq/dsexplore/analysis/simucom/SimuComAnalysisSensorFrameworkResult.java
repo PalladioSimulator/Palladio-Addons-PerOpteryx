@@ -66,7 +66,7 @@ public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult 
     private final ExperimentRun run;
     private final Experiment experiment;
 
-    public SimuComAnalysisSensorFrameworkResult(UsageScenario usageScenario,
+    public SimuComAnalysisSensorFrameworkResult(Entity entity,
 			String experimentName, PCMInstance pcmInstance,
 			Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
 			SimuComQualityAttributeDeclaration qualityAttributeInfo, 
@@ -78,7 +78,7 @@ public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult 
         this.experiment = findExperiment(experimentName, config);
         this.run = getLatestRun(this.experiment);
         
-        this.usageScenarioName = usageScenario.getEntityName(); //.replaceAll(" ", "_");
+        this.pcmEntityIdentifier = entity.getEntityName(); //.replaceAll(" ", "_");
 
         this.objectiveToAspects = criterionToAspect;
         this.qualityAttributeInfo = qualityAttributeInfo;
@@ -172,12 +172,12 @@ public class SimuComAnalysisSensorFrameworkResult extends SimuComAnalysisResult 
 
     private SensorAndMeasurements getUsageScenarioMeasurements() throws AnalysisFailedException{
         //Get usage scenario sensor.
-        final Sensor respTimeSensor = getSensorForUsageScenario(experiment, this.usageScenarioName);
+        final Sensor respTimeSensor = getSensorForUsageScenario(experiment, this.pcmEntityIdentifier);
         if (respTimeSensor != null){
             return run.getMeasurementsOfSensor(respTimeSensor);
 
         } else {
-            throw new AnalysisFailedException("Could not find sensor for usage scenario "+this.usageScenarioName);
+            throw new AnalysisFailedException("Could not find sensor for usage scenario "+this.pcmEntityIdentifier);
         }
     }
 
