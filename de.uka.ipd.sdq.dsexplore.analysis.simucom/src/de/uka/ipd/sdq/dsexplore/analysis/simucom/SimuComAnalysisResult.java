@@ -68,7 +68,7 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
     /** You must not use the usage scenario to navigate in the PCM, as the
      * model may not be longer valid for this result after the constructor call.
      */
-    protected String usageScenarioName;
+    protected String pcmEntityIdentifier;
 
     /**
      * Contains: resource utilisations
