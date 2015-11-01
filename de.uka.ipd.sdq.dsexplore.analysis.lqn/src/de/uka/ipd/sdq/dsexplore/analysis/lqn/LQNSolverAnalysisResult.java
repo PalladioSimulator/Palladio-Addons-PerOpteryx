@@ -28,7 +28,7 @@ public class LQNSolverAnalysisResult extends LQNResult implements IStatisticAnal
 
 	}
 	
-	public ConfidenceInterval getConfidenceInterval() {
+	public ConfidenceInterval getConfidenceInterval(Criterion criterion) {
 		return null;
 	}
 

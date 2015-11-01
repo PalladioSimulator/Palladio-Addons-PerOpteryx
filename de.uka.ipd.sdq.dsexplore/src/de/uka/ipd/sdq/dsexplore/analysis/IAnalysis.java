@@ -99,7 +99,7 @@ public interface IAnalysis {
 	 * @return
 	 * @throws CoreException
 	 */
-	public abstract boolean hasStatisticResults() throws CoreException;
+	public abstract boolean hasStatisticResultsFor() throws CoreException;
 
 	/**
 	 * Can only be called after initialisation ({@link #initialise(MDSDBlackboard, ILaunchConfiguration, ILaunch, IProgressMonitor)}).

@@ -254,9 +254,7 @@ public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IA
 //		}
 //	}
 	
-	public abstract boolean hasStatisticResults() throws CoreException;
-	
-	
+
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard){
 		this.blackboard = blackboard;

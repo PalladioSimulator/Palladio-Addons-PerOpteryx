@@ -28,10 +28,6 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrPackage;
 import de.uka.ipd.sdq.nqr.NqrRepository;
-import de.uka.ipd.sdq.pcm.cost.ComponentCostPerType;
-import de.uka.ipd.sdq.pcm.cost.Cost;
-import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
-import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -131,10 +127,6 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 		initialiseCriteria(configuration);
 	}
 
-	@Override
-	public boolean hasStatisticResults() throws CoreException {
-		return false;
-	}
 
 	@Override
 	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)

@@ -295,6 +295,7 @@ public class PCMDeclarationsReader {
 		//Make sure, the aspect IS an objective
 		org.opt4j.core.Objective objective;
 		if(aspectContext.getDimension().getType().getRelationSemantics().getRelSem() == EnumRelationSemantics.DECREASING) {
+			//FIXME: the mapping of dimensions in QML and objectives in Opt4J ist broken: the quality attribute, such as dsexplore.performance is used here as a String, which means that two dimensions throughput and response time cannot be distinguished here.  
 			objective = builder.createObjective(qualityAttribute, org.opt4j.core.Objective.Sign.MIN);
 		} else {
 			//INCREASING

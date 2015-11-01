@@ -193,6 +193,9 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
         final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
         
+        boolean unrollReplication = true;
+        if (unrollReplication){
+
         // first reset the changes possibly made for earlier candidates
         final List<ResourceContainer> allServers = pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
         final List<ResourceContainer> previousReplicasToRemove = new ArrayList<ResourceContainer>();
@@ -258,7 +261,14 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
                 }
             }
         }
-
+        } else {
+        	//FIXME quickfix, assumes that number of cores is reset for every iteration by the numberofcores degree (i.e. assumes that degree preceeds this one in the designdecision file) 
+        	
+        	for (ProcessingResourceSpecification processingResourceSpec : server.getActiveResourceSpecifications_ResourceContainer()) {
+        		processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
+			}
+        }
+        
 		// This part handles the
 		// ResourceContainerReplicationDegreeWithComponentChange, where
 		// additionally the assembled component is changed
@@ -501,31 +511,30 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         return genotypeStringBuilder.toString();
     }
 
+    /**
+     * Returns the String that can be used to represent the choice. 
+     * Either toString or, for an Entity, a more speaking String. 
+     * @param choice the choice
+     * @return a String that can be used to represent this choice
+     */
     public static String getDecisionString(final Choice choice){
         //		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
 
         String result = choice.getValue().toString();
 
-        if (choice.getValue() instanceof Entity){
-            final Entity entity = (Entity)choice.getValue();
-            result = entity.getEntityName() + " (ID: "+entity.getId()+")";
+        if (choice.getValue() instanceof Entity) { 
+            result = getDecisionString((Entity) choice.getValue());
         }
 
-        //		if (choice instanceof ContinousRangeChoice){
-        //			result = ResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
-        //		} else if (choice instanceof ClassChoice){
-        //			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
-        //				result = ((Entity)((ClassChoice)choice).getChosenValue()).getEntityName();
-        //			} else {
-        //				result = ((ClassChoice)choice).getChosenValue().toString();
-        //			}
-        //		} else if (choice instanceof DiscreteRangeChoice){
-        //			result = String.valueOf(((DiscreteRangeChoice)choice).getChosenValue());
-        //		} else {
-        //			logger.warn("There was an unrecognised design decision "+designDecision.getClass());
-        //		}
         return result;
     }
+
+    /**
+     * Returns the string to represent this entity.
+     */
+	private static String getDecisionString(final Entity entity) {
+		return entity.getEntityName() + " (ID: " + entity.getId() + ")";
+	}
 
     /**
      * Calls getDoubleValueFor(String decisionString, DesignDecision designDecision)
@@ -586,10 +595,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             for (final EObject option : options) {
                 if (option instanceof SchedulingPolicy){
                     final SchedulingPolicy policy = (SchedulingPolicy)option;
-                    if (policy.getEntityName().equals(decisionString)) {
-                        ;
+                    if (policy.toString().equals(decisionString)) {
+                    	chosenPolicy = policy;
                     }
-                    chosenPolicy = policy;
+                    
                 }
             }
 
@@ -632,7 +641,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     private static Entity getEntityByName(final List<Entity> entities,
             final String decisionString) {
         for (final Entity entity : entities) {
-            if (entity.getEntityName().equals(decisionString) || decisionString.contains(entity.getId())){
+            if (getDecisionString(entity).equals(decisionString)){
                 return entity;
             }
         }

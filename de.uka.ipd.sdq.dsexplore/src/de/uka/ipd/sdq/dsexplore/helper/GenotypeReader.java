@@ -233,7 +233,7 @@ public class GenotypeReader {
             }
             final DSEObjectives objectives = readInObjectivesAndConfidence(
                     orderedObjectives, startIndexOfConfidence,
-                    numberOfConfidenceIntervals, lineArray);
+                    numberOfConfidenceIntervals, lineArray, headlineArray.length);
             results.add(objectives);
         }
         in.close();
@@ -352,7 +352,7 @@ public class GenotypeReader {
             if (hasObjectives){
                 final DSEObjectives objectives = readInObjectivesAndConfidence(
                         orderedObjectives, startIndexOfConfidence,
-                        numberOfConfidenceIntervals, lineArray);
+                        numberOfConfidenceIntervals, lineArray, startIndexOfGenotype);
 
                 //has utilisations?
                 if (resourceDescriptorsWithUtilResults.size() > 0 && performance != null){
@@ -563,12 +563,12 @@ public class GenotypeReader {
     private static DSEObjectives readInObjectivesAndConfidence(
             final List<List<CriterionAndEvaluator>> orderedObjectives,
             final int startIndexOfConfidence, final int numberOfConfidenceIntervals,
-            final String[] lineArray) throws CoreException {
+            final String[] lineArray, int startIndexOfGenotype) throws CoreException {
         //Read in objectives
         final DSEObjectives objectives = readInObjectives(lineArray, startIndexOfConfidence, orderedObjectives);
 
         //read in confidence
-        readInConfidenceIntervals(lineArray, startIndexOfConfidence, numberOfConfidenceIntervals, orderedObjectives, objectives);
+        readInConfidenceIntervals(lineArray, startIndexOfConfidence, numberOfConfidenceIntervals, orderedObjectives, objectives, startIndexOfGenotype);
         return objectives;
     }
 
@@ -627,12 +627,15 @@ public class GenotypeReader {
      * @param numberOfConfidenceIntervals
      * @param orderedObjectives
      * @param objectives
+     * @param startIndexOfGenotype 
      * @return
      * @throws CoreException
      */
     private static DSEObjectives readInConfidenceIntervals(final String[] lineArray,
             final int startIndexOfConfidence, final int numberOfConfidenceIntervals,
-            final List<List<CriterionAndEvaluator>> orderedObjectives, final DSEObjectives objectives) throws CoreException {
+            final List<List<CriterionAndEvaluator>> orderedObjectives, final DSEObjectives objectives,
+            // start index of genotype is not needed after PALLADIO-384 is fixed, I guess.  
+            int startIndexOfGenotype) throws CoreException {
 
         //read in confidence
         int index = startIndexOfConfidence;
@@ -642,7 +645,7 @@ public class GenotypeReader {
                 // only the first evaluator has to be handled because they all point to the same IAnalysis (e.g. SimuCom)
                 final CriterionAndEvaluator objectiveAndEvaluator = objectiveAndEvaluatorList.get(0);
 
-                if (objectiveAndEvaluator.getEvaluator().hasStatisticResults() && index < lineArray.length - 2){
+                if (objectiveAndEvaluator.getEvaluator().hasStatisticResultsFor() && index < lineArray.length - 2){
                     final String lowerConfidenceString = lineArray[index];
                     final String upperConfidenceString = lineArray[index+1];
                     final String alphaConfidenceString = lineArray[index+2];
@@ -653,6 +656,11 @@ public class GenotypeReader {
                     final ConfidenceInterval ci = readInConfidenceInterval(lowerConfidenceString, upperConfidenceString, alphaConfidenceString, value);
                     index = index +3;
                     objectives.addConfidence(objectiveAndEvaluator.getCriterion(), ci);
+                    
+                    if (index >= startIndexOfGenotype){
+                    	// this should not happen, but happens as long as PALLADIO-384 is not fixed (BRS Modacloud example with throughput and response time for the same call
+                    	break;                    	
+                    }
                 } else {
 
                 }

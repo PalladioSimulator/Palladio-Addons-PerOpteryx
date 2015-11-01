@@ -295,10 +295,10 @@ public class Starter {
 		//printHypervolumeDifferenceForIteration(24);
 		
 		//printHypervolumeForAllIterations();
-		//printHypervolumeDifferenceForAllIterations();
+		printHypervolumeDifferenceForAllIterations();
 		
 		// mean, min, max, variance for all iterations
-		printCoverageStatisticsForAllIterations();
+		//printCoverageStatisticsForAllIterations();
 		//printCoverageOfLastIterations();
 		
 		//printIndicatorForAllIterations(Indicator.epsilon);
@@ -628,7 +628,7 @@ public class Starter {
 		System.out.println(line+";"+mean);
 	}
 	
-	private static void printHypervolumeDifferenceForAllIterations() {
+	private static void printHypervolumeDifferenceForAllIterations() throws NotEnoughFilesToGetIterationException {
 		
 		// Print the coverage for all iterations between START_ITERATION and
 		// FINAL_ITERATION
@@ -653,7 +653,7 @@ public class Starter {
 	/**
 	 * Print the hypervolume difference for the last iteration only
 	 */
-	private static void printHypervolumeDifferenceOfLastIteration() {
+	private static void printHypervolumeDifferenceOfLastIteration() throws NotEnoughFilesToGetIterationException{
 		System.out.println(ValueVector.ORIGIN.A + ": " + PATH_RUNS_A);
 		System.out.println(ValueVector.ORIGIN.B + ": " + PATH_RUNS_B);
 
@@ -688,7 +688,7 @@ public class Starter {
 	/**
 	 * Print the hypervolume for all iterations.
 	 */
-	private static void printHypervolumeForAllIterations() {
+	private static void printHypervolumeForAllIterations() throws NotEnoughFilesToGetIterationException {
 		// Print the hypervolume for all iterations between START_ITERATION and
 		// FINAL_ITERATION
 		// of the given runs.

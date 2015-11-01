@@ -29,7 +29,7 @@ public class DSEObjectives extends Objectives {
 	
 	public void addResult(Objective o, IAnalysisResult result){
 		//this.detailedResults.put(o, result);
-		ConfidenceInterval ci = this.getConfidenceIntervalFromResult(result);
+		ConfidenceInterval ci = this.getConfidenceIntervalFromResult(result, o);
 		if (ci != null){
 			this.confidence.put(o, ci);
 		}
@@ -98,14 +98,15 @@ public class DSEObjectives extends Objectives {
 
 	/**
 	 * Can be null
+	 * @param o 
 	 * @param o
 	 * @return The confidence interval for the given Objective or null if it does not exist. 
 	 */
 	private ConfidenceInterval getConfidenceIntervalFromResult(
-			IAnalysisResult result) {
+			IAnalysisResult result, Objective o) {
 		if (result instanceof IStatisticAnalysisResult){
 			IStatisticAnalysisResult statisticResult = (IStatisticAnalysisResult) result;
-			ConfidenceInterval c = statisticResult.getConfidenceInterval();
+			ConfidenceInterval c = statisticResult.getConfidenceInterval(o);
 			return c;
 		} else {
 			return null;

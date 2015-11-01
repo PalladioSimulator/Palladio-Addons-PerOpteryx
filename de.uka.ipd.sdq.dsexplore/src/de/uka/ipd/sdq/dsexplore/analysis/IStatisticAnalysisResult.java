@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.analysis;
 
+import org.opt4j.core.Criterion;
+
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 public interface IStatisticAnalysisResult extends IAnalysisResult {
@@ -14,7 +16,7 @@ public interface IStatisticAnalysisResult extends IAnalysisResult {
 	
 	public double getCoefficientOfVariance();
 
-	public ConfidenceInterval getConfidenceInterval();
+	public ConfidenceInterval getConfidenceInterval(Criterion criterion);
 	
 	public long getNumberOfObservations();
 }

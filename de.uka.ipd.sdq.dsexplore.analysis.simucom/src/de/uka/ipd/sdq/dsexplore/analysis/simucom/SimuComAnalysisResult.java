@@ -42,6 +42,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
@@ -312,21 +313,27 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
      */
     @Override
     public double getValueFor(final Criterion criterion) {
-        final EvaluationAspectWithContext aspect = this.objectiveToAspects.get(criterion);
 
-        if (aspect != null){
-            if (EcoreUtil.equals(aspect.getDimension(), this.qualityAttributeInfo.getResponseTime())){
-                return this.meanValue;
-            } else if (EcoreUtil.equals(aspect.getDimension(), this.qualityAttributeInfo.getThroughput())){
-                return this.throughput;
-            } else if (EcoreUtil.equals(aspect.getDimension(), this.qualityAttributeInfo.getMaxUtilization())){
-                return this.maxUtilization;
-            }
-        }
+    	if (EcoreUtil.equals(getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())){
+    		return this.meanValue;
+    	} else if (EcoreUtil.equals(getDimensionForCriterion(criterion), this.qualityAttributeInfo.getThroughput())){
+    		return this.throughput;
+    	} else if (EcoreUtil.equals(getDimensionForCriterion(criterion), this.qualityAttributeInfo.getMaxUtilization())){
+    		return this.maxUtilization;
+    	}
 
         logger.warn("Unknown aspect for simu com result, adding NaN.");
         return Double.NaN;
     }
+
+	private Dimension getDimensionForCriterion(final Criterion criterion) {
+		final EvaluationAspectWithContext aspect = this.objectiveToAspects.get(criterion);
+		if (aspect != null){
+			return aspect.getDimension();
+		} else {
+			return null;
+		}
+	}
 
     @Override
     public double getMeanValue() {
@@ -351,15 +358,16 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
     }
 
     /**
-     * Retrieves the confidence interval. When called for the first time, this
-     * method calculates the confidence interval with the given level from the
-     * data stored in the usage scenario sensor.
-     * If no batch independence is given, the confidence interval is set to
-     * 0 to positive infinity.
+     * Retrieves the confidence interval for the Criterion. 
      */
     @Override
-    public ConfidenceInterval getConfidenceInterval(){
-        return this.confidenceInterval;
+    public ConfidenceInterval getConfidenceInterval(Criterion criterion){
+    	//Only the criterion that represents the mean value of this result has a confidence interval
+    	if (EcoreUtil.equals(getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())){
+    		return this.confidenceInterval;
+    	} else {
+    		return null;
+    	}
     }
 
     @Override

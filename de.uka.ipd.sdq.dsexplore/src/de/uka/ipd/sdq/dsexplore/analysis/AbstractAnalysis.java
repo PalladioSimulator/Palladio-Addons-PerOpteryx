@@ -181,5 +181,10 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 		return criterions;
 	}
+	
+	@Override
+	public boolean hasStatisticResultsFor() throws CoreException {
+		return false;
+	}
 
 }

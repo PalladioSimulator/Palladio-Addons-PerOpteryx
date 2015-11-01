@@ -23,7 +23,7 @@ public class LQNNotConvergedResult extends AbstractPerformanceAnalysisResult imp
 		}
 
 		@Override
-		public ConfidenceInterval getConfidenceInterval() {
+		public ConfidenceInterval getConfidenceInterval(Criterion criterion) {
 			return null;
 		}
 

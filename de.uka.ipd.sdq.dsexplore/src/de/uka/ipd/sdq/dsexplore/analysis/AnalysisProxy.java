@@ -98,8 +98,8 @@ public class AnalysisProxy implements IAnalysis {
 }
 
 	@Override
-	public boolean hasStatisticResults() throws CoreException {
-		return this.getDecoratedAnalysis().hasStatisticResults();
+	public boolean hasStatisticResultsFor() throws CoreException {
+		return this.getDecoratedAnalysis().hasStatisticResultsFor();
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class AnalysisProxy implements IAnalysis {
 
 	@Override
 	public boolean hasObjectivePerUsageScenario() throws CoreException {
-		if (ana != null){
+		if (ana != null) {
 			ana = loadDecoratedAnalysis();
 		}
 		//ana may be not initialised
