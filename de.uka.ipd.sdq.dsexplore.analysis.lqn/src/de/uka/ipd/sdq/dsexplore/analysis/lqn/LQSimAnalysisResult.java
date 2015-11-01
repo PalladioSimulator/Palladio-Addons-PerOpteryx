@@ -29,7 +29,7 @@ public class LQSimAnalysisResult extends LQNResult implements IStatisticAnalysis
 
 
     @Override
-    public ConfidenceInterval getConfidenceInterval() {
+    public ConfidenceInterval getConfidenceInterval(Criterion criterion) {
         return null;
     }
 

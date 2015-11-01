@@ -355,11 +355,6 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 	}
 
 	@Override
-	public boolean hasStatisticResults() throws CoreException {
-		return false;
-	}
-
-	@Override
 	public List<Criterion> getCriterions() throws CoreException {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		 

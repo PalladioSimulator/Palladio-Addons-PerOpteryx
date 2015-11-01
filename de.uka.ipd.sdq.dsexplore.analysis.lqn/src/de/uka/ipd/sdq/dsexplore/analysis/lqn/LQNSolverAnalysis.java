@@ -52,11 +52,6 @@ public class LQNSolverAnalysis extends AbstractLQNAnalysis {
 	}
 
 	@Override
-	public boolean hasStatisticResults() throws CoreException {
-		return false;
-	}
-	
-	@Override
 	protected ILQNResult retrieveResult(PCMInstance pcm,
 			LqnModelType model, Criterion criterion) throws AnalysisFailedException {
 		ILQNResult result;

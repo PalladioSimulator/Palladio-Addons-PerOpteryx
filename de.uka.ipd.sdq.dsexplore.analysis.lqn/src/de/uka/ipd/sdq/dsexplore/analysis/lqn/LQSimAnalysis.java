@@ -8,6 +8,7 @@ import org.palladiosimulator.solver.runconfig.MessageStrings;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 
 /**
  * Starts a LQN simulation analysis for the design space exploration.
@@ -15,7 +16,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
  * @author pmerkle, martens
  *
  */
-public class LQSimAnalysis extends AbstractLQNAnalysis {
+public class LQSimAnalysis extends AbstractLQNAnalysis  {
 
 	
 	@Override
@@ -30,11 +31,6 @@ public class LQSimAnalysis extends AbstractLQNAnalysis {
 		return result;
 	}		
 
-
-	@Override
-	public boolean hasStatisticResults() throws CoreException {
-		return false;
-	}
 
 	@Override
 	protected IAnalysisResult handleException(RuntimeException e, PCMInstance pcm) {
