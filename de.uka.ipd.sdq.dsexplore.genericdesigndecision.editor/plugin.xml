@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericdesigndecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="genericdesigndecision.presentation.GenericdesigndecisionModelWizardID"
+            name="%_UI_GenericdesigndecisionModelWizard_label"
+            class="genericdesigndecision.presentation.GenericdesigndecisionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GenericdesigndecisionModelFile.gif">
+         <description>%_UI_GenericdesigndecisionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericdesigndecision -->
+      <editor
+            id="genericdesigndecision.presentation.GenericdesigndecisionEditorID"
+            name="%_UI_GenericdesigndecisionEditor_label"
+            icon="icons/full/obj16/GenericdesigndecisionModelFile.gif"
+            extensions="genericdesigndecision"
+            class="genericdesigndecision.presentation.GenericdesigndecisionEditor"
+            contributorClass="genericdesigndecision.presentation.GenericdesigndecisionActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericdesigndecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="genericdesigndecision.GenericDoF.presentation.GenericDoFModelWizardID"
+            name="%_UI_GenericDoFModelWizard_label"
+            class="genericdesigndecision.GenericDoF.presentation.GenericDoFModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GenericDoFModelFile.gif">
+         <description>%_UI_GenericDoFModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericdesigndecision -->
+      <editor
+            id="genericdesigndecision.GenericDoF.presentation.GenericDoFEditorID"
+            name="%_UI_GenericDoFEditor_label"
+            icon="icons/full/obj16/GenericDoFModelFile.gif"
+            extensions="genericdof"
+            class="genericdesigndecision.GenericDoF.presentation.GenericDoFEditor"
+            contributorClass="genericdesigndecision.GenericDoF.presentation.GenericDoFActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericdesigndecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="genericdesigndecision.UniversalDoF.presentation.UniversalDoFModelWizardID"
+            name="%_UI_UniversalDoFModelWizard_label"
+            class="genericdesigndecision.UniversalDoF.presentation.UniversalDoFModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/UniversalDoFModelFile.gif">
+         <description>%_UI_UniversalDoFModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericdesigndecision -->
+      <editor
+            id="genericdesigndecision.UniversalDoF.presentation.UniversalDoFEditorID"
+            name="%_UI_UniversalDoFEditor_label"
+            icon="icons/full/obj16/UniversalDoFModelFile.gif"
+            extensions="universaldof"
+            class="genericdesigndecision.UniversalDoF.presentation.UniversalDoFEditor"
+            contributorClass="genericdesigndecision.UniversalDoF.presentation.UniversalDoFActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericdesigndecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="genericdesigndecision.qualityproperties.presentation.QualitypropertiesModelWizardID"
+            name="%_UI_QualitypropertiesModelWizard_label"
+            class="genericdesigndecision.qualityproperties.presentation.QualitypropertiesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/QualitypropertiesModelFile.gif">
+         <description>%_UI_QualitypropertiesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericdesigndecision -->
+      <editor
+            id="genericdesigndecision.qualityproperties.presentation.QualitypropertiesEditorID"
+            name="%_UI_QualitypropertiesEditor_label"
+            icon="icons/full/obj16/QualitypropertiesModelFile.gif"
+            extensions="qualityproperties"
+            class="genericdesigndecision.qualityproperties.presentation.QualitypropertiesEditor"
+            contributorClass="genericdesigndecision.qualityproperties.presentation.QualitypropertiesActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
