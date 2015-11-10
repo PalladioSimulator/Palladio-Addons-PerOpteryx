@@ -26,26 +26,15 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="degreeOfFreedomInstance"
-        ordered="false" lowerBound="1" eType="#//DegreeOfFreedomInstance"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The domain is defined in subclasses, because it may be either a set of metamodel-specific entities (e.g. in an EnumerationDegree) or integer or double ranges (e.g. in the RangeDegree and its subclasses). "/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChanged" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dof" ordered="false" lowerBound="1"
-        eType="#//GenericDoF/DegreeOfFreedom"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElements" ordered="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dofInstance" ordered="false"
+        lowerBound="1" eType="#//GenericDoF/DegreeOfFreedom"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassChoice" eSuperTypes="#//Choice">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The EnumerationChoice represents a choice for a DegreeOfFreedom that has a domain of metamodel-specific entities (i.e. a EnumerationDegree). &#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an EnumerationDegree&#xD;&#xA;&#xD;&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chosenValue" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="TODO: constraint: Chosen entity must be in the domain of the EnumerationDegree;"/>
@@ -68,8 +57,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="degreesOfFreedom" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DegreeOfFreedomInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dofInstances" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//GenericDoF/DegreeOfFreedom" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Candidate">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -108,11 +97,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eSubpackages name="GenericDoF" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
+  <eSubpackages name="GenericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="GenericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
-          lowerBound="1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+          lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueRule" ordered="false"
           lowerBound="1" eType="#//GenericDoF/ValueRule" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -129,7 +118,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ValueRule" eSuperTypes="#//GenericDoF/OCLRule"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLRule">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainOclQuery" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="helperDefinition" ordered="false"
           upperBound="-1" eType="#//GenericDoF/HelperOCLDefinition" containment="true"/>
     </eClassifiers>
@@ -140,7 +129,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticContextRule" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="contextClass" ordered="false"
-          eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SelectionRule" abstract="true" eSuperTypes="#//GenericDoF/OCLRule">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -158,12 +147,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//GenericDoF/SelectionRule #//GenericDoF/StaticContextRule"/>
     <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom">
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
-          upperBound="-1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+          upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
           ordered="false" lowerBound="1" upperBound="-1" eType="#//GenericDoF/ChangeableElementDescription"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interactionConstraints"
-          ordered="false" upperBound="-1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+          ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChangeable" ordered="false"
           lowerBound="1" eType="#//GenericDoF/ChangeableElementDescription"/>
     </eClassifiers>
@@ -177,22 +166,22 @@
     <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="#//UniversalDoF/AMetamodelDescription"/>
     <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
       <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
-      <eOperations name="newGDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="newGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="deleteGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofs" upperBound="-1"
           eType="#//UniversalDoF/GenericDoF" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
       <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AMetamodelDescription" abstract="true">
       <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+        <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
       <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//GenericDoF/DegreeOfFreedom">
         <eParameters name="gdof" eType="#//UniversalDoF/GenericDoF"/>
@@ -203,27 +192,27 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
       <eOperations name="evaluateMetamodel" unique="false" eType="#//UniversalDoF/MetamodelDescription">
-        <eParameters name="model" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+        <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
       </eOperations>
-      <eOperations name="prepareGDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="prepareGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
       <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
       <eOperations name="listPreparedDoFs" upperBound="-1" eType="#//GenericDoF/DegreeOfFreedom"/>
-      <eOperations name="removePreparedDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="removePreparedDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="prepareDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="dofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="prepareDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="newGDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
-        <eParameters name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="newGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="deleteGDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="deleteGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="constrainDoF" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eOperations name="constrainDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofrepository" lowerBound="1"
           eType="#//UniversalDoF/GDoFRepository"/>
@@ -232,7 +221,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//GenericDoF/DegreeOfFreedom"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
+  <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/"
       nsPrefix="qualityproperties">
     <eClassifiers xsi:type="ecore:EClass" name="NumericQualityProperty" abstract="true"
         eSuperTypes="#//qualityproperties/QualityProperty">
@@ -241,25 +230,25 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConfidenceInterval">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="confidenceLevel" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="the confidence level. Use values between 0 and 1. For instance use 0.95 to estimate the 95% confidence interval."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mean" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="the center of the confidence interval"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="the confidence interval's upper bound"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble">
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="the confidence interval's lower bound"/>
         </eAnnotations>
@@ -268,21 +257,21 @@
     <eClassifiers xsi:type="ecore:EClass" name="ElementQualityProperty" eSuperTypes="#//qualityproperties/QualityProperty"/>
     <eClassifiers xsi:type="ecore:EClass" name="IntegerQualityProperty" eSuperTypes="#//qualityproperties/NumericQualityProperty">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DoubleQualityProperty" eSuperTypes="#//qualityproperties/NumericQualityProperty">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QualityPrediction" abstract="true"
         interface="true">
       <eOperations name="evaluate" ordered="false" lowerBound="1" eType="#//qualityproperties/QualityProperty">
-        <eParameters name="model" ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+        <eParameters name="model" ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QualityProperty" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualityValue" ordered="false"
-          lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericdesigndecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/GenericDesignDecision/"
+            class="genericdesigndecision.GenericdesigndecisionPackage"
+            genModel="model/genericdesigndecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericdesigndecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
+            class="genericdesigndecision.GenericDoF.GenericDoFPackage"
+            genModel="model/genericdesigndecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericdesigndecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"
+            class="genericdesigndecision.UniversalDoF.UniversalDoFPackage"
+            genModel="model/genericdesigndecision.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericdesigndecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
+            class="genericdesigndecision.qualityproperties.QualitypropertiesPackage"
+            genModel="model/genericdesigndecision.genmodel"/>
+   </extension>
+
+</plugin>
