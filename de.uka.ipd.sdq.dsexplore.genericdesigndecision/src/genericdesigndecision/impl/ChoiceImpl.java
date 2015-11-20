@@ -3,10 +3,9 @@
 package genericdesigndecision.impl;
 
 import genericdesigndecision.Choice;
-
-import genericdesigndecision.GenericDoF.DegreeOfFreedom;
-
 import genericdesigndecision.GenericdesigndecisionPackage;
+
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 
 import org.eclipse.emf.common.notify.Notification;
 

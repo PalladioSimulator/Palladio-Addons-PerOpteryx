@@ -2,7 +2,7 @@
  */
 package genericdesigndecision;
 
-import genericdesigndecision.GenericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 
 import org.eclipse.emf.ecore.EObject;
 

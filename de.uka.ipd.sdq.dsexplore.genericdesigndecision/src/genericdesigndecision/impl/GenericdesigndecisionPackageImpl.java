@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.impl;
 
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Candidates;
 import genericdesigndecision.Choice;
@@ -9,21 +10,24 @@ import genericdesigndecision.ClassChoice;
 import genericdesigndecision.ContinousRangeChoice;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.DiscreteRangeChoice;
-
-import genericdesigndecision.GenericDoF.GenericDoFPackage;
-
-import genericdesigndecision.GenericDoF.impl.GenericDoFPackageImpl;
-
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.GenericdesigndecisionPackage;
 
-import genericdesigndecision.UniversalDoF.UniversalDoFPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
-import genericdesigndecision.UniversalDoF.impl.UniversalDoFPackageImpl;
+import genericdesigndecision.genericDoF.impl.GenericDoFPackageImpl;
+
+import genericdesigndecision.pcmsupport.PcmsupportPackage;
+
+import genericdesigndecision.pcmsupport.impl.PcmsupportPackageImpl;
 
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
 
 import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl;
+
+import genericdesigndecision.universalDoF.UniversalDoFPackage;
+
+import genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl;
 
 import genericdesigndecision.util.GenericdesigndecisionValidator;
 
@@ -94,6 +98,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	private EClass candidatesEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass adseProblemEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -143,18 +154,21 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericDoFPackageImpl theGenericDoFPackage = (GenericDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) instanceof GenericDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) : GenericDoFPackage.eINSTANCE);
 		UniversalDoFPackageImpl theUniversalDoFPackage = (UniversalDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) instanceof UniversalDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) : UniversalDoFPackage.eINSTANCE);
 		QualitypropertiesPackageImpl theQualitypropertiesPackage = (QualitypropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) instanceof QualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) : QualitypropertiesPackage.eINSTANCE);
+		PcmsupportPackageImpl thePcmsupportPackage = (PcmsupportPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) instanceof PcmsupportPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) : PcmsupportPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGenericdesigndecisionPackage.createPackageContents();
 		theGenericDoFPackage.createPackageContents();
 		theUniversalDoFPackage.createPackageContents();
 		theQualitypropertiesPackage.createPackageContents();
+		thePcmsupportPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGenericdesigndecisionPackage.initializePackageContents();
 		theGenericDoFPackage.initializePackageContents();
 		theUniversalDoFPackage.initializePackageContents();
 		theQualitypropertiesPackage.initializePackageContents();
+		thePcmsupportPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -350,6 +364,33 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getADSEProblem() {
+		return adseProblemEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getADSEProblem_AssociatedMetamodel() {
+		return (EReference)adseProblemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getADSEProblem_DecisionSpace() {
+		return (EReference)adseProblemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericdesigndecisionFactory getGenericdesigndecisionFactory() {
 		return (GenericdesigndecisionFactory)getEFactoryInstance();
 	}
@@ -398,6 +439,10 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		createEReference(candidatesEClass, CANDIDATES__CANDIDATE);
 		createEReference(candidatesEClass, CANDIDATES__PROBLEM);
 		createEOperation(candidatesEClass, CANDIDATES___NUMBER_OF_CHOICES_MUST_EQUAL_NUMBER_OF_DECISIONS__DIAGNOSTICCHAIN_MAP);
+
+		adseProblemEClass = createEClass(ADSE_PROBLEM);
+		createEReference(adseProblemEClass, ADSE_PROBLEM__ASSOCIATED_METAMODEL);
+		createEReference(adseProblemEClass, ADSE_PROBLEM__DECISION_SPACE);
 	}
 
 	/**
@@ -427,11 +472,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericDoFPackage theGenericDoFPackage = (GenericDoFPackage)EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI);
 		UniversalDoFPackage theUniversalDoFPackage = (UniversalDoFPackage)EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI);
 		QualitypropertiesPackage theQualitypropertiesPackage = (QualitypropertiesPackage)EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI);
+		PcmsupportPackage thePcmsupportPackage = (PcmsupportPackage)EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGenericDoFPackage);
 		getESubpackages().add(theUniversalDoFPackage);
 		getESubpackages().add(theQualitypropertiesPackage);
+		getESubpackages().add(thePcmsupportPackage);
 
 		// Create type parameters
 
@@ -476,6 +523,10 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(adseProblemEClass, ADSEProblem.class, "ADSEProblem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getADSEProblem_DecisionSpace(), this.getDecisionSpace(), null, "decisionSpace", null, 0, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

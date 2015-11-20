@@ -111,6 +111,12 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GenericdesigndecisionPackage.ADSE_PROBLEM: {
+				ADSEProblem adseProblem = (ADSEProblem)theEObject;
+				T result = caseADSEProblem(adseProblem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -217,6 +223,21 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCandidates(Candidates object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ADSE Problem</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ADSE Problem</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADSEProblem(ADSEProblem object) {
 		return null;
 	}
 

@@ -35,112 +35,111 @@
         <genParameters ecoreParameter="genericdesigndecision.ecore#//Candidates/numberOfChoicesMustEqualNumberOfDecisions/context"/>
       </genOperations>
     </genClasses>
-    <nestedGenPackages prefix="GenericDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
-        ecorePackage="genericdesigndecision.ecore#//GenericDoF">
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/ChangeableElementDescription">
+    <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//ADSEProblem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/associatedMetamodel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/decisionSpace"/>
+    </genClasses>
+    <nestedGenPackages prefix="GenericDoF" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//genericDoF">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/ChangeableElementDescription/changeable"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/ChangeableElementDescription/valueRule"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/ChangeableElementDescription/selectionRule"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription/changeable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription/valueRule"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription/selectionRule"/>
       </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/ValueRule"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/OCLRule">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//GenericDoF/OCLRule/mainOclQuery"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/OCLRule/helperDefinition"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ValueRule"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/OCLRule">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/OCLRule/mainOclQuery"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/OCLRule/helperDefinition"/>
       </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/HelperOCLDefinition"/>
-      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//GenericDoF/StaticContextRule">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/HelperOCLDefinition"/>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/StaticContextRule">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/StaticContextRule/contextClass"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/StaticContextRule/contextClass"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//GenericDoF/SelectionRule"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/DoFRepository">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/DoFRepository/dofs"/>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/SelectionRule"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/DoFRepository">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DoFRepository/dofs"/>
       </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/InstanceSelectionRule">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/InstanceSelectionRule">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/InstanceSelectionRule/contextInstance"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/InstanceSelectionRule/contextInstance"/>
       </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/StaticSelectionRule"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//GenericDoF/DegreeOfFreedom">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/StaticSelectionRule"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/DegreeOfFreedom/addedElements"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/DegreeOfFreedom/changeableElementDescriptions"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/addedElements"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/changeableElementDescriptions"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/DegreeOfFreedom/interactionConstraints"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/interactionConstraints"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//GenericDoF/DegreeOfFreedom/primaryChangeable"/>
-      </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="UniversalDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
-        ecorePackage="genericdesigndecision.ecore#//UniversalDoF">
-      <genClasses ecoreClass="genericdesigndecision.ecore#//UniversalDoF/GenericDoFToDegreeOfFreedomMap">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/GenericDoFToDegreeOfFreedomMap/value"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/GenericDoFToDegreeOfFreedomMap/key"/>
-      </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//UniversalDoF/MetamodelDescription"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/gdofs"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/listGDoFs"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/newGDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/newGDoF/gdofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/deleteGDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/GDoFRepository/deleteGDoF/gdofID"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//UniversalDoF/GenericDoF">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/GenericDoF/metamodel"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//UniversalDoF/GenericDoF/gdofID"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/dofrepository"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/gdof_to_dof"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/evaluateMetamodel">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/evaluateMetamodel/model"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/returnCorrespondingDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/AMetamodelDescription/returnCorrespondingDoF/gdof"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/gdofrepository"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/supportedMetamodels"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/preparedDoFs"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/evaluateMetamodel">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/evaluateMetamodel/model"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/prepareGDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/prepareGDoF/gdofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/listGDoFs"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/listPreparedDoFs"/>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/removePreparedDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/removePreparedDoF/dofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/prepareDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/prepareDoF/dofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/newGDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/newGDoF/gdofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/deleteGDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/deleteGDoF/gdofID"/>
-        </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/constrainDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//UniversalDoF/UniversalDoF/constrainDoF/dofID"/>
-        </genOperations>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChangeable"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Qualityproperties" basePackage="genericdesigndecision"
-        disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//qualityproperties">
+    <nestedGenPackages prefix="UniversalDoF" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//universalDoF">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GDoFRepository">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GDoFRepository/gdofs"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/GDoFRepository/listGDoFs"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/GDoFRepository/newGDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/GDoFRepository/newGDoF/gdofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/GDoFRepository/deleteGDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/GDoFRepository/deleteGDoF/gdofID"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GenericDoF">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//universalDoF/GenericDoF/gdofID"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/dofrepository"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/gddof_to_dof"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel/model"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/returnCorrespondingDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/returnCorrespondingDoF/gdof"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/UniversalDoF">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/UniversalDoF/gdofrepository"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/UniversalDoF/supportedMetamodels"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/UniversalDoF/preparedDoFs"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/evaluateMetamodel">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/evaluateMetamodel/model"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/prepareGDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/prepareGDoF/gdofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/listGDoFs"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/listPreparedDoFs"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/removePreparedDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/removePreparedDoF/dofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/prepareDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/prepareDoF/dofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/newGDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/newGDoF/gdofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/deleteGDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/deleteGDoF/gdofID"/>
+        </genOperations>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/UniversalDoF/constrainDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/constrainDoF/dofID"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom/key"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Qualityproperties" disposableProviderFactory="true"
+        ecorePackage="genericdesigndecision.ecore#//qualityproperties">
       <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty/confidenceInterval"/>
@@ -166,6 +165,10 @@
       <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//qualityproperties/QualityProperty">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//qualityproperties/QualityProperty/qualityValue"/>
       </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Pcmsupport" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//pcmsupport">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMMetamodelDescription"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMDSEProblem"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

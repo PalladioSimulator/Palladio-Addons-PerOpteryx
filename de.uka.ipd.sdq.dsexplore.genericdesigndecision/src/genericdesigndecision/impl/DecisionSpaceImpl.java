@@ -3,10 +3,9 @@
 package genericdesigndecision.impl;
 
 import genericdesigndecision.DecisionSpace;
-
-import genericdesigndecision.GenericDoF.DegreeOfFreedom;
-
 import genericdesigndecision.GenericdesigndecisionPackage;
+
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 
 import java.util.Collection;
 

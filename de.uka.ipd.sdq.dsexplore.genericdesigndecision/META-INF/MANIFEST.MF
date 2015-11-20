@@ -1,24 +1,28 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Generic Design Decision Model Plugin
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.genericdesigndecision;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: genericdesigndecision,
- genericdesigndecision.GenericDoF,
- genericdesigndecision.GenericDoF.impl,
- genericdesigndecision.GenericDoF.util,
- genericdesigndecision.UniversalDoF,
- genericdesigndecision.UniversalDoF.impl,
- genericdesigndecision.UniversalDoF.util,
+ genericdesigndecision.genericDoF,
+ genericdesigndecision.genericDoF.impl,
+ genericdesigndecision.genericDoF.util,
  genericdesigndecision.impl,
+ genericdesigndecision.pcmsupport,
+ genericdesigndecision.pcmsupport.impl,
+ genericdesigndecision.pcmsupport.util,
  genericdesigndecision.qualityproperties,
  genericdesigndecision.qualityproperties.impl,
  genericdesigndecision.qualityproperties.util,
+ genericdesigndecision.universalDoF,
+ genericdesigndecision.universalDoF.impl,
+ genericdesigndecision.universalDoF.util,
  genericdesigndecision.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.uka.ipd.sdq.dsexplore;bundle-version="1.3.0"
 Bundle-ActivationPolicy: lazy

@@ -39,7 +39,7 @@ public interface QualitypropertiesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0";
+	String eNS_URI = "http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/";
 
 	/**
 	 * The package namespace name.

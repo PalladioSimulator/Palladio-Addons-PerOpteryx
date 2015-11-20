@@ -2,17 +2,17 @@
  */
 package genericdesigndecision.qualityproperties.impl;
 
-import genericdesigndecision.GenericDoF.GenericDoFPackage;
-
-import genericdesigndecision.GenericDoF.impl.GenericDoFPackageImpl;
-
 import genericdesigndecision.GenericdesigndecisionPackage;
 
-import genericdesigndecision.UniversalDoF.UniversalDoFPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
-import genericdesigndecision.UniversalDoF.impl.UniversalDoFPackageImpl;
+import genericdesigndecision.genericDoF.impl.GenericDoFPackageImpl;
 
 import genericdesigndecision.impl.GenericdesigndecisionPackageImpl;
+
+import genericdesigndecision.pcmsupport.PcmsupportPackage;
+
+import genericdesigndecision.pcmsupport.impl.PcmsupportPackageImpl;
 
 import genericdesigndecision.qualityproperties.ConfidenceInterval;
 import genericdesigndecision.qualityproperties.DoubleQualityProperty;
@@ -23,6 +23,10 @@ import genericdesigndecision.qualityproperties.QualityPrediction;
 import genericdesigndecision.qualityproperties.QualityProperty;
 import genericdesigndecision.qualityproperties.QualitypropertiesFactory;
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
+
+import genericdesigndecision.universalDoF.UniversalDoFPackage;
+
+import genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -138,18 +142,21 @@ public class QualitypropertiesPackageImpl extends EPackageImpl implements Qualit
 		GenericdesigndecisionPackageImpl theGenericdesigndecisionPackage = (GenericdesigndecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) instanceof GenericdesigndecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) : GenericdesigndecisionPackage.eINSTANCE);
 		GenericDoFPackageImpl theGenericDoFPackage = (GenericDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) instanceof GenericDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) : GenericDoFPackage.eINSTANCE);
 		UniversalDoFPackageImpl theUniversalDoFPackage = (UniversalDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) instanceof UniversalDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) : UniversalDoFPackage.eINSTANCE);
+		PcmsupportPackageImpl thePcmsupportPackage = (PcmsupportPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) instanceof PcmsupportPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) : PcmsupportPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQualitypropertiesPackage.createPackageContents();
 		theGenericdesigndecisionPackage.createPackageContents();
 		theGenericDoFPackage.createPackageContents();
 		theUniversalDoFPackage.createPackageContents();
+		thePcmsupportPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theQualitypropertiesPackage.initializePackageContents();
 		theGenericdesigndecisionPackage.initializePackageContents();
 		theGenericDoFPackage.initializePackageContents();
 		theUniversalDoFPackage.initializePackageContents();
+		thePcmsupportPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theQualitypropertiesPackage.freeze();

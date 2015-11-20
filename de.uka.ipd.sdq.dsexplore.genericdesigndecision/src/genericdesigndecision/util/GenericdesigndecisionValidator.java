@@ -107,6 +107,8 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 				return validateCandidate((Candidate)value, diagnostics, context);
 			case GenericdesigndecisionPackage.CANDIDATES:
 				return validateCandidates((Candidates)value, diagnostics, context);
+			case GenericdesigndecisionPackage.ADSE_PROBLEM:
+				return validateADSEProblem((ADSEProblem)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -193,6 +195,15 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateCandidates_numberOfChoicesMustEqualNumberOfDecisions(Candidates candidates, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return candidates.numberOfChoicesMustEqualNumberOfDecisions(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateADSEProblem(ADSEProblem adseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(adseProblem, diagnostics, context);
 	}
 
 	/**

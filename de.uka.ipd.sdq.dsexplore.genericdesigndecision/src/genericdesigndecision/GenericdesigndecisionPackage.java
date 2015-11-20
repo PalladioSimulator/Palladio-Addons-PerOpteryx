@@ -453,6 +453,52 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 */
 	int CANDIDATES_OPERATION_COUNT = 1;
 
+	/**
+	 * The meta object id for the '{@link genericdesigndecision.impl.ADSEProblemImpl <em>ADSE Problem</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.impl.ADSEProblemImpl
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getADSEProblem()
+	 * @generated
+	 */
+	int ADSE_PROBLEM = 7;
+
+	/**
+	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__ASSOCIATED_METAMODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Decision Space</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__DECISION_SPACE = 1;
+
+	/**
+	 * The number of structural features of the '<em>ADSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>ADSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM_OPERATION_COUNT = 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
@@ -656,6 +702,38 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EOperation getCandidates__NumberOfChoicesMustEqualNumberOfDecisions__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for class '{@link genericdesigndecision.ADSEProblem <em>ADSE Problem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ADSE Problem</em>'.
+	 * @see genericdesigndecision.ADSEProblem
+	 * @generated
+	 */
+	EClass getADSEProblem();
+
+	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getAssociatedMetamodel <em>Associated Metamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Associated Metamodel</em>'.
+	 * @see genericdesigndecision.ADSEProblem#getAssociatedMetamodel()
+	 * @see #getADSEProblem()
+	 * @generated
+	 */
+	EReference getADSEProblem_AssociatedMetamodel();
+
+	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getDecisionSpace <em>Decision Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Decision Space</em>'.
+	 * @see genericdesigndecision.ADSEProblem#getDecisionSpace()
+	 * @see #getADSEProblem()
+	 * @generated
+	 */
+	EReference getADSEProblem_DecisionSpace();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -843,6 +921,32 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CANDIDATES___NUMBER_OF_CHOICES_MUST_EQUAL_NUMBER_OF_DECISIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCandidates__NumberOfChoicesMustEqualNumberOfDecisions__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '{@link genericdesigndecision.impl.ADSEProblemImpl <em>ADSE Problem</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see genericdesigndecision.impl.ADSEProblemImpl
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getADSEProblem()
+		 * @generated
+		 */
+		EClass ADSE_PROBLEM = eINSTANCE.getADSEProblem();
+
+		/**
+		 * The meta object literal for the '<em><b>Associated Metamodel</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADSE_PROBLEM__ASSOCIATED_METAMODEL = eINSTANCE.getADSEProblem_AssociatedMetamodel();
+
+		/**
+		 * The meta object literal for the '<em><b>Decision Space</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADSE_PROBLEM__DECISION_SPACE = eINSTANCE.getADSEProblem_DecisionSpace();
 
 	}
 

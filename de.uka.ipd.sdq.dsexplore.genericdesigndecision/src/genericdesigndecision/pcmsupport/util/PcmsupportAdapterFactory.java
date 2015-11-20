@@ -1,12 +1,12 @@
 /**
  */
-package genericdesigndecision.UniversalDoF.util;
+package genericdesigndecision.pcmsupport.util;
 
-import genericdesigndecision.GenericDoF.DegreeOfFreedom;
+import genericdesigndecision.ADSEProblem;
 
-import genericdesigndecision.UniversalDoF.*;
+import genericdesigndecision.pcmsupport.*;
 
-import java.util.Map;
+import genericdesigndecision.universalDoF.AMetamodelDescription;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -20,17 +20,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see genericdesigndecision.UniversalDoF.UniversalDoFPackage
+ * @see genericdesigndecision.pcmsupport.PcmsupportPackage
  * @generated
  */
-public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
+public class PcmsupportAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static UniversalDoFPackage modelPackage;
+	protected static PcmsupportPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -38,9 +38,9 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UniversalDoFAdapterFactory() {
+	public PcmsupportAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = UniversalDoFPackage.eINSTANCE;
+			modelPackage = PcmsupportPackage.eINSTANCE;
 		}
 	}
 
@@ -69,31 +69,23 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniversalDoFSwitch<Adapter> modelSwitch =
-		new UniversalDoFSwitch<Adapter>() {
+	protected PcmsupportSwitch<Adapter> modelSwitch =
+		new PcmsupportSwitch<Adapter>() {
 			@Override
-			public Adapter caseGenericDoFToDegreeOfFreedomMap(Map.Entry<GenericDoF, DegreeOfFreedom> object) {
-				return createGenericDoFToDegreeOfFreedomMapAdapter();
+			public Adapter casePCMMetamodelDescription(PCMMetamodelDescription object) {
+				return createPCMMetamodelDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseMetamodelDescription(MetamodelDescription object) {
-				return createMetamodelDescriptionAdapter();
-			}
-			@Override
-			public Adapter caseGDoFRepository(GDoFRepository object) {
-				return createGDoFRepositoryAdapter();
-			}
-			@Override
-			public Adapter caseGenericDoF(GenericDoF object) {
-				return createGenericDoFAdapter();
+			public Adapter casePCMDSEProblem(PCMDSEProblem object) {
+				return createPCMDSEProblemAdapter();
 			}
 			@Override
 			public Adapter caseAMetamodelDescription(AMetamodelDescription object) {
 				return createAMetamodelDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseUniversalDoF(UniversalDoF object) {
-				return createUniversalDoFAdapter();
+			public Adapter caseADSEProblem(ADSEProblem object) {
+				return createADSEProblemAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,69 +108,41 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Generic Do FTo Degree Of Freedom Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.pcmsupport.PCMMetamodelDescription <em>PCM Metamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see java.util.Map.Entry
+	 * @see genericdesigndecision.pcmsupport.PCMMetamodelDescription
 	 * @generated
 	 */
-	public Adapter createGenericDoFToDegreeOfFreedomMapAdapter() {
+	public Adapter createPCMMetamodelDescriptionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.UniversalDoF.MetamodelDescription <em>Metamodel Description</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.pcmsupport.PCMDSEProblem <em>PCMDSE Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.UniversalDoF.MetamodelDescription
+	 * @see genericdesigndecision.pcmsupport.PCMDSEProblem
 	 * @generated
 	 */
-	public Adapter createMetamodelDescriptionAdapter() {
+	public Adapter createPCMDSEProblemAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.UniversalDoF.GDoFRepository <em>GDo FRepository</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.UniversalDoF.GDoFRepository
-	 * @generated
-	 */
-	public Adapter createGDoFRepositoryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.UniversalDoF.GenericDoF <em>Generic Do F</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see genericdesigndecision.UniversalDoF.GenericDoF
-	 * @generated
-	 */
-	public Adapter createGenericDoFAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.UniversalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see genericdesigndecision.UniversalDoF.AMetamodelDescription
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription
 	 * @generated
 	 */
 	public Adapter createAMetamodelDescriptionAdapter() {
@@ -186,16 +150,16 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.UniversalDoF.UniversalDoF <em>Universal Do F</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.ADSEProblem <em>ADSE Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.UniversalDoF.UniversalDoF
+	 * @see genericdesigndecision.ADSEProblem
 	 * @generated
 	 */
-	public Adapter createUniversalDoFAdapter() {
+	public Adapter createADSEProblemAdapter() {
 		return null;
 	}
 
@@ -211,4 +175,4 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //UniversalDoFAdapterFactory
+} //PcmsupportAdapterFactory

@@ -2,7 +2,7 @@
  */
 package genericdesigndecision;
 
-import genericdesigndecision.GenericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface DecisionSpace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Dof Instances</b></em>' containment reference list.
-	 * The list contents are of type {@link genericdesigndecision.GenericDoF.DegreeOfFreedom}.
+	 * The list contents are of type {@link genericdesigndecision.genericDoF.DegreeOfFreedom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dof Instances</em>' containment reference list isn't clear,
