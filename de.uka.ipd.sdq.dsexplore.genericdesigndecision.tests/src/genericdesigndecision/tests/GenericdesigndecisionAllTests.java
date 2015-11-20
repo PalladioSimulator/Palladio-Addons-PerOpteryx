@@ -2,9 +2,11 @@
  */
 package genericdesigndecision.tests;
 
-import genericdesigndecision.UniversalDoF.tests.UniversalDoFTests;
+import genericdesigndecision.pcmsupport.tests.PcmsupportTests;
 
 import genericdesigndecision.qualityproperties.tests.QualitypropertiesTests;
+
+import genericdesigndecision.universalDoF.tests.UniversalDoFTests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -38,6 +40,7 @@ public class GenericdesigndecisionAllTests extends TestSuite {
 		suite.addTest(GenericdesigndecisionTests.suite());
 		suite.addTest(UniversalDoFTests.suite());
 		suite.addTest(QualitypropertiesTests.suite());
+		suite.addTest(PcmsupportTests.suite());
 		return suite;
 	}
 

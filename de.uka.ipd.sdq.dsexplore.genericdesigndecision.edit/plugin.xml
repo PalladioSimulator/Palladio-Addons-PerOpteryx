@@ -22,8 +22,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated genericdesigndecision -->
       <factory
-            uri="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
-            class="genericdesigndecision.GenericDoF.provider.GenericDoFItemProviderAdapterFactory"
+            uri="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
+            class="genericdesigndecision.genericDoF.provider.GenericDoFItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -36,7 +36,7 @@
       <!-- @generated genericdesigndecision -->
       <factory
             uri="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"
-            class="genericdesigndecision.UniversalDoF.provider.UniversalDoFItemProviderAdapterFactory"
+            class="genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -48,8 +48,21 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated genericdesigndecision -->
       <factory
-            uri="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
+            uri="http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/"
             class="genericdesigndecision.qualityproperties.provider.QualitypropertiesItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated genericdesigndecision -->
+      <factory
+            uri="http://sdq.ipd.uka.de/GenericDesignDecision/PCMSupport/"
+            class="genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

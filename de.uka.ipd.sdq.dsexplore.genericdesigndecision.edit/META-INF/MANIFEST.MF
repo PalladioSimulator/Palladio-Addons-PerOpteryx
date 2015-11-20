@@ -8,10 +8,11 @@ Bundle-Activator: genericdesigndecision.provider.GenericdesigndecisionEditPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: genericdesigndecision.GenericDoF.provider,
- genericdesigndecision.UniversalDoF.provider,
+Export-Package: genericdesigndecision.genericDoF.provider,
+ genericdesigndecision.pcmsupport.provider,
  genericdesigndecision.provider,
- genericdesigndecision.qualityproperties.provider
+ genericdesigndecision.qualityproperties.provider,
+ genericdesigndecision.universalDoF.provider
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore.genericdesigndecision;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport

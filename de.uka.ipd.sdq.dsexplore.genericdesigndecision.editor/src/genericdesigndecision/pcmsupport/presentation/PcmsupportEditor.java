@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.presentation;
+package genericdesigndecision.pcmsupport.presentation;
 
 
 import java.io.IOException;
@@ -154,11 +154,13 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import genericdesigndecision.provider.GenericdesigndecisionItemProviderAdapterFactory;
+import genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory;
 
 import genericdesigndecision.genericDoF.provider.GenericDoFItemProviderAdapterFactory;
 
-import genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory;
+import genericdesigndecision.presentation.GenericdesigndecisionEditorPlugin;
+
+import genericdesigndecision.provider.GenericdesigndecisionItemProviderAdapterFactory;
 
 import genericdesigndecision.qualityproperties.provider.QualitypropertiesItemProviderAdapterFactory;
 
@@ -168,12 +170,12 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Genericdesigndecision model editor.
+ * This is an example of a Pcmsupport model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GenericdesigndecisionEditor
+public class PcmsupportEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -335,18 +337,18 @@ public class GenericdesigndecisionEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(GenericdesigndecisionEditor.this);
+						getActionBarContributor().setActiveEditor(PcmsupportEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(GenericdesigndecisionEditor.this);
+						getActionBarContributor().setActiveEditor(PcmsupportEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == GenericdesigndecisionEditor.this) {
+				else if (p == PcmsupportEditor.this) {
 					handleActivate();
 				}
 			}
@@ -519,7 +521,7 @@ public class GenericdesigndecisionEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(GenericdesigndecisionEditor.this, false);
+										 getSite().getPage().closeEditor(PcmsupportEditor.this, false);
 									 }
 								 }
 							 });
@@ -530,7 +532,7 @@ public class GenericdesigndecisionEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == GenericdesigndecisionEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == PcmsupportEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -562,7 +564,7 @@ public class GenericdesigndecisionEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(GenericdesigndecisionEditor.this, false);
+				getSite().getPage().closeEditor(PcmsupportEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -692,7 +694,7 @@ public class GenericdesigndecisionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenericdesigndecisionEditor() {
+	public PcmsupportEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1034,7 +1036,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1068,7 +1070,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1097,7 +1099,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1122,7 +1124,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1149,7 +1151,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1192,7 +1194,7 @@ public class GenericdesigndecisionEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), GenericdesigndecisionEditor.this) {
+					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1412,8 +1414,8 @@ public class GenericdesigndecisionEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					GenericdesigndecisionEditor.this.setSelectionToViewer(selection);
-					GenericdesigndecisionEditor.this.setFocus();
+					PcmsupportEditor.this.setSelectionToViewer(selection);
+					PcmsupportEditor.this.setFocus();
 				}
 
 				@Override

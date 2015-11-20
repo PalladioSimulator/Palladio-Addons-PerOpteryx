@@ -40,9 +40,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="genericdesigndecision.GenericDoF.presentation.GenericDoFModelWizardID"
+            id="genericdesigndecision.genericDoF.presentation.GenericDoFModelWizardID"
             name="%_UI_GenericDoFModelWizard_label"
-            class="genericdesigndecision.GenericDoF.presentation.GenericDoFModelWizard"
+            class="genericdesigndecision.genericDoF.presentation.GenericDoFModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/GenericDoFModelFile.gif">
          <description>%_UI_GenericDoFModelWizard_description</description>
@@ -53,12 +53,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated genericdesigndecision -->
       <editor
-            id="genericdesigndecision.GenericDoF.presentation.GenericDoFEditorID"
+            id="genericdesigndecision.genericDoF.presentation.GenericDoFEditorID"
             name="%_UI_GenericDoFEditor_label"
             icon="icons/full/obj16/GenericDoFModelFile.gif"
             extensions="genericdof"
-            class="genericdesigndecision.GenericDoF.presentation.GenericDoFEditor"
-            contributorClass="genericdesigndecision.GenericDoF.presentation.GenericDoFActionBarContributor">
+            class="genericdesigndecision.genericDoF.presentation.GenericDoFEditor"
+            contributorClass="genericdesigndecision.genericDoF.presentation.GenericDoFActionBarContributor">
       </editor>
    </extension>
 
@@ -68,9 +68,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="genericdesigndecision.UniversalDoF.presentation.UniversalDoFModelWizardID"
+            id="genericdesigndecision.universalDoF.presentation.UniversalDoFModelWizardID"
             name="%_UI_UniversalDoFModelWizard_label"
-            class="genericdesigndecision.UniversalDoF.presentation.UniversalDoFModelWizard"
+            class="genericdesigndecision.universalDoF.presentation.UniversalDoFModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/UniversalDoFModelFile.gif">
          <description>%_UI_UniversalDoFModelWizard_description</description>
@@ -81,12 +81,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated genericdesigndecision -->
       <editor
-            id="genericdesigndecision.UniversalDoF.presentation.UniversalDoFEditorID"
+            id="genericdesigndecision.universalDoF.presentation.UniversalDoFEditorID"
             name="%_UI_UniversalDoFEditor_label"
             icon="icons/full/obj16/UniversalDoFModelFile.gif"
             extensions="universaldof"
-            class="genericdesigndecision.UniversalDoF.presentation.UniversalDoFEditor"
-            contributorClass="genericdesigndecision.UniversalDoF.presentation.UniversalDoFActionBarContributor">
+            class="genericdesigndecision.universalDoF.presentation.UniversalDoFEditor"
+            contributorClass="genericdesigndecision.universalDoF.presentation.UniversalDoFActionBarContributor">
       </editor>
    </extension>
 
@@ -115,6 +115,34 @@
             extensions="qualityproperties"
             class="genericdesigndecision.qualityproperties.presentation.QualitypropertiesEditor"
             contributorClass="genericdesigndecision.qualityproperties.presentation.QualitypropertiesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericdesigndecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="genericdesigndecision.pcmsupport.presentation.PcmsupportModelWizardID"
+            name="%_UI_PcmsupportModelWizard_label"
+            class="genericdesigndecision.pcmsupport.presentation.PcmsupportModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PcmsupportModelFile.gif">
+         <description>%_UI_PcmsupportModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericdesigndecision -->
+      <editor
+            id="genericdesigndecision.pcmsupport.presentation.PcmsupportEditorID"
+            name="%_UI_PcmsupportEditor_label"
+            icon="icons/full/obj16/PcmsupportModelFile.gif"
+            extensions="pcmsupport"
+            class="genericdesigndecision.pcmsupport.presentation.PcmsupportEditor"
+            contributorClass="genericdesigndecision.pcmsupport.presentation.PcmsupportActionBarContributor">
       </editor>
    </extension>
 

@@ -3,10 +3,7 @@
 package genericdesigndecision.provider;
 
 
-import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
-import genericdesigndecision.genericDoF.GenericDoFFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,8 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -25,15 +21,14 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.DecisionSpace} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.ADSEProblem} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DecisionSpaceItemProvider 
+public class ADSEProblemItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +42,7 @@ public class DecisionSpaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecisionSpaceItemProvider(AdapterFactory adapterFactory) {
+	public ADSEProblemItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,49 +57,54 @@ public class DecisionSpaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAssociatedMetamodelPropertyDescriptor(object);
+			addDecisionSpacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Associated Metamodel feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericdesigndecisionPackage.Literals.DECISION_SPACE__DOF_INSTANCES);
-		}
-		return childrenFeatures;
+	protected void addAssociatedMetamodelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADSEProblem_associatedMetamodel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADSEProblem_associatedMetamodel_feature", "_UI_ADSEProblem_type"),
+				 GenericdesigndecisionPackage.Literals.ADSE_PROBLEM__ASSOCIATED_METAMODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Decision Space feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns DecisionSpace.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DecisionSpace"));
+	protected void addDecisionSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADSEProblem_decisionSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADSEProblem_decisionSpace_feature", "_UI_ADSEProblem_type"),
+				 GenericdesigndecisionPackage.Literals.ADSE_PROBLEM__DECISION_SPACE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class DecisionSpaceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DecisionSpace_type");
+		return getString("_UI_ADSEProblem_type");
 	}
 	
 
@@ -129,12 +129,6 @@ public class DecisionSpaceItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(DecisionSpace.class)) {
-			case GenericdesigndecisionPackage.DECISION_SPACE__DOF_INSTANCES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -148,11 +142,6 @@ public class DecisionSpaceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GenericdesigndecisionPackage.Literals.DECISION_SPACE__DOF_INSTANCES,
-				 GenericDoFFactory.eINSTANCE.createDegreeOfFreedom()));
 	}
 
 	/**
