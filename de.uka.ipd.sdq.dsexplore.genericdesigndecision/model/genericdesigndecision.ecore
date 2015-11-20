@@ -27,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dofInstance" ordered="false"
-        lowerBound="1" eType="#//GenericDoF/DegreeOfFreedom"/>
+        lowerBound="1" eType="#//genericDoF/DegreeOfFreedom"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassChoice" eSuperTypes="#//Choice">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -58,7 +58,7 @@
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dofInstances" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//GenericDoF/DegreeOfFreedom" containment="true"/>
+        lowerBound="1" upperBound="-1" eType="#//genericDoF/DegreeOfFreedom" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Candidate">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -99,36 +99,35 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
-        eType="#//UniversalDoF/AMetamodelDescription"/>
+        eType="#//universalDoF/AMetamodelDescription"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="decisionSpace" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PCMDSEProblem" eSuperTypes="#//ADSEProblem"/>
-  <eSubpackages name="GenericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
-      nsPrefix="GenericDoF">
+  <eSubpackages name="genericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
+      nsPrefix="genericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
           lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueRule" ordered="false"
-          lowerBound="1" eType="#//GenericDoF/ValueRule" containment="true">
+          lowerBound="1" eType="#//genericDoF/ValueRule" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="&quot;The value rules are defined in the context of the selected instance of $p_i$'s container class.&quot;&#xD;&#xA;&#xD;&#xA;For each $p_i$, rules describe the set of all potential new values that $p_i$ may take in combination with any other change of the other change types for the metamodel at hand. For $p_i$, the description of all potential new values is an OCL query \function{valueRule}{$p_i$} which returns a range $R$ of possible values for \texttt{Properties} of \texttt{Type} \texttt{DataType}, or a set of model elements for \texttt{Properties} of \texttt{Type} \texttt{Class}. The value rules are defined in the context of the selected instance of $p_i$'s container class.&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;The value rules may also refer to other changeable elements $p_j, j &lt; i$. The restriction $j &lt; i$ here ensures that the allowed values can be determined by one pass through all \texttt{Properties}. While the new values of \texttt{Properties} of \texttt{Type} \texttt{Class} can always be defined generically on the meta model level, the values for \texttt{Properties} of \texttt{Type} \texttt{DataType} may depend on the model instance at hand. Then, a generic range is given on the meta model level, which can be restricted on the model instance level."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="selectionRule" ordered="false"
-          eType="#//GenericDoF/SelectionRule" containment="true">
+          eType="#//genericDoF/SelectionRule" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="&quot;The selection rules for the primary element can be defined in any context.&quot;"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueRule" eSuperTypes="#//GenericDoF/OCLRule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueRule" eSuperTypes="#//genericDoF/OCLRule"/>
     <eClassifiers xsi:type="ecore:EClass" name="OCLRule">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainOclQuery" ordered="false"
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="helperDefinition" ordered="false"
-          upperBound="-1" eType="#//GenericDoF/HelperOCLDefinition" containment="true"/>
+          upperBound="-1" eType="#//genericDoF/HelperOCLDefinition" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HelperOCLDefinition" eSuperTypes="#//GenericDoF/OCLRule #//GenericDoF/StaticContextRule">
+    <eClassifiers xsi:type="ecore:EClass" name="HelperOCLDefinition" eSuperTypes="#//genericDoF/OCLRule #//genericDoF/StaticContextRule">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Defines an additional operation in the context classifier, for use in formulating OCL queries and constraints. The mainOclQuery must be a &quot;def expression&quot;, taking the form of: &#xD;&#xA;&#xD;&#xA;     operation-name(parameters?) : type = expr&#xD;&#xA;&#xD;&#xA;"/>
       </eAnnotations>
@@ -137,41 +136,36 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="contextClass" ordered="false"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SelectionRule" abstract="true" eSuperTypes="#//GenericDoF/OCLRule">
+    <eClassifiers xsi:type="ecore:EClass" name="SelectionRule" abstract="true" eSuperTypes="#//genericDoF/OCLRule">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Properties cannot be directly selected in models based on EMOF. Thus, we select the changeable container \function{changeableContainer}{$p_i$}. &#xD;&#xA;&#xD;&#xA;&#x9;The default selection rule selects all instances of \function{changeableContainer}{$p_i$}. In that case, selectionRule is null. &#xD;&#xA;&#xD;&#xA;The GDoF may specify more specific rules that constrain which instances of \function{changeableContainer}{$p_i$} can be selected. For each changeable element, this can be expressed by an OCL query \function{selectionRule}{$p_i$} selecting the instances of this \texttt{Property}'s class \function{changeableContainer}{$p_i$}. &#xD;&#xA;&#xD;&#xA;This query defines which instances of \function{changeableContainer}{$p_i$} are possible, either statically or based on another selected instance of $C_j, j &lt; i$. In the latter case, the query is defined in the OCL context of the selected instance of $C_j$. To avoid cycles, only the values of preceding \texttt{Properties} $p_j, j &lt; i$ may be referenced. &#xD;&#xA;&#xD;&#xA;&#x9;The selection rules for the primary element can be defined in any context. They are executed for each instance of the metamodel element in whose context they are defined and the union of the results is the set of matching model elements."/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DoFRepository">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dofs" ordered="false"
-          upperBound="-1" eType="#//GenericDoF/DegreeOfFreedom" containment="true"/>
+          upperBound="-1" eType="#//genericDoF/DegreeOfFreedom" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectionRule" eSuperTypes="#//GenericDoF/SelectionRule">
+    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectionRule" eSuperTypes="#//genericDoF/SelectionRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="contextInstance" ordered="false"
-          eType="#//GenericDoF/ChangeableElementDescription"/>
+          eType="#//genericDoF/ChangeableElementDescription"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//GenericDoF/SelectionRule #//GenericDoF/StaticContextRule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//genericDoF/SelectionRule #//genericDoF/StaticContextRule"/>
     <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom">
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
-          ordered="false" lowerBound="1" upperBound="-1" eType="#//GenericDoF/ChangeableElementDescription"
+          ordered="false" lowerBound="1" upperBound="-1" eType="#//genericDoF/ChangeableElementDescription"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interactionConstraints"
           ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChangeable" ordered="false"
-          lowerBound="1" eType="#//GenericDoF/ChangeableElementDescription"/>
+          lowerBound="1" eType="#//genericDoF/ChangeableElementDescription"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="UniversalDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"
-      nsPrefix="UniversalDoF">
-    <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedomMap" instanceClassName="java.util.Map$Entry">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//GenericDoF/DegreeOfFreedom"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//UniversalDoF/GenericDoF"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="#//UniversalDoF/AMetamodelDescription"/>
+  <eSubpackages name="universalDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"
+      nsPrefix="universalDoF">
     <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
-      <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
+      <eOperations name="listGDoFs" upperBound="-1" eType="#//universalDoF/GenericDoF"/>
       <eOperations name="newGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
@@ -179,31 +173,31 @@
         <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofs" upperBound="-1"
-          eType="#//UniversalDoF/GenericDoF" containment="true"/>
+          eType="#//universalDoF/GenericDoF" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AMetamodelDescription" abstract="true">
-      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//UniversalDoF/MetamodelDescription">
+      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1">
         <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
-      <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//GenericDoF/DegreeOfFreedom">
-        <eParameters name="gdof" eType="#//UniversalDoF/GenericDoF"/>
+      <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//genericDoF/DegreeOfFreedom">
+        <eParameters name="gdof" eType="#//universalDoF/GenericDoF"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//GenericDoF/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" lowerBound="1"
-          upperBound="-1" eType="#//UniversalDoF/GenericDoFToDegreeOfFreedomMap" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//genericDoF/DoFRepository"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="gddof_to_dof" upperBound="-1"
+          eType="#//universalDoF/GenericDoFToDegreeOfFreedom" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
-      <eOperations name="evaluateMetamodel" unique="false" eType="#//UniversalDoF/MetamodelDescription">
+      <eOperations name="evaluateMetamodel" unique="false" eType="#//universalDoF/AMetamodelDescription">
         <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
       </eOperations>
       <eOperations name="prepareGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
-      <eOperations name="listGDoFs" upperBound="-1" eType="#//UniversalDoF/GenericDoF"/>
-      <eOperations name="listPreparedDoFs" upperBound="-1" eType="#//GenericDoF/DegreeOfFreedom"/>
+      <eOperations name="listGDoFs" upperBound="-1" eType="#//universalDoF/GenericDoF"/>
+      <eOperations name="listPreparedDoFs" upperBound="-1" eType="#//genericDoF/DegreeOfFreedom"/>
       <eOperations name="removePreparedDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
@@ -220,18 +214,14 @@
         <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofrepository" lowerBound="1"
-          eType="#//UniversalDoF/GDoFRepository"/>
+          eType="#//universalDoF/GDoFRepository"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="supportedMetamodels"
-          upperBound="-1" eType="#//UniversalDoF/MetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//GenericDoF/DegreeOfFreedom"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmMetamodel" eType="#//UniversalDoF/PCMMetamodel"/>
+          upperBound="-1" eType="#//universalDoF/AMetamodelDescription"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//genericDoF/DegreeOfFreedom"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PCMMetamodel">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Should be used as a Singleton"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm.designdecision/model/designdecision.ecore#//gdof/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" eType="#//UniversalDoF/GenericDoFToDegreeOfFreedomMap"/>
+    <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedom" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//universalDoF/GenericDoF"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//genericDoF/DegreeOfFreedom"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/"
@@ -287,5 +277,14 @@
           lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="pcmsupport" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/PCMSupport/"
+      nsPrefix="pcmsupport">
+    <eClassifiers xsi:type="ecore:EClass" name="PCMMetamodelDescription" eSuperTypes="#//universalDoF/AMetamodelDescription">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Should be used as a Singleton"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PCMDSEProblem" eSuperTypes="#//ADSEProblem"/>
   </eSubpackages>
 </ecore:EPackage>
