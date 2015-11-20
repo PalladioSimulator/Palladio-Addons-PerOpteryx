@@ -97,6 +97,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
+        eType="#//UniversalDoF/AMetamodelDescription"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decisionSpace" eType="#//DecisionSpace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PCMDSEProblem" eSuperTypes="#//ADSEProblem"/>
   <eSubpackages name="GenericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="GenericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
@@ -176,7 +182,6 @@
           eType="#//UniversalDoF/GenericDoF" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//UniversalDoF/MetamodelDescription"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AMetamodelDescription" abstract="true">
@@ -219,6 +224,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="supportedMetamodels"
           upperBound="-1" eType="#//UniversalDoF/MetamodelDescription"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//GenericDoF/DegreeOfFreedom"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmMetamodel" eType="#//UniversalDoF/PCMMetamodel"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PCMMetamodel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Should be used as a Singleton"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm.designdecision/model/designdecision.ecore#//gdof/DoFRepository"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" eType="#//UniversalDoF/GenericDoFToDegreeOfFreedomMap"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/"
