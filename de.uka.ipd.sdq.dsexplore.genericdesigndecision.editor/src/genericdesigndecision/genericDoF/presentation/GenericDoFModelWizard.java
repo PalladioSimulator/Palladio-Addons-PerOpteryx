@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.universalDoF.presentation;
+package genericdesigndecision.genericDoF.presentation;
 
 
 import java.util.ArrayList;
@@ -69,8 +69,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import genericdesigndecision.universalDoF.UniversalDoFFactory;
-import genericdesigndecision.universalDoF.UniversalDoFPackage;
+import genericdesigndecision.genericDoF.GenericDoFFactory;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
 
 
@@ -93,7 +93,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UniversalDoFModelWizard extends Wizard implements INewWizard {
+public class GenericDoFModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -101,7 +101,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -110,7 +110,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -118,7 +118,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniversalDoFPackage universalDoFPackage = UniversalDoFPackage.eINSTANCE;
+	protected GenericDoFPackage genericDoFPackage = GenericDoFPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -126,7 +126,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniversalDoFFactory universalDoFFactory = universalDoFPackage.getUniversalDoFFactory();
+	protected GenericDoFFactory genericDoFFactory = genericDoFPackage.getGenericDoFFactory();
 
 	/**
 	 * This is the file creation page.
@@ -134,7 +134,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniversalDoFModelWizardNewFileCreationPage newFileCreationPage;
+	protected GenericDoFModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -142,7 +142,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniversalDoFModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected GenericDoFModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -178,7 +178,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(GenericdesigndecisionEditorPlugin.INSTANCE.getImage("full/wizban/NewUniversalDoF")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(GenericdesigndecisionEditorPlugin.INSTANCE.getImage("full/wizban/NewGenericDoF")));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : universalDoFPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : genericDoFPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -210,8 +210,8 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)universalDoFPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = universalDoFFactory.create(eClass);
+		EClass eClass = (EClass)genericDoFPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = genericDoFFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -312,14 +312,14 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class UniversalDoFModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class GenericDoFModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public UniversalDoFModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public GenericDoFModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -359,7 +359,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class UniversalDoFModelWizardInitialObjectCreationPage extends WizardPage {
+	public class GenericDoFModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -387,7 +387,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public UniversalDoFModelWizardInitialObjectCreationPage(String pageId) {
+		public GenericDoFModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -572,10 +572,10 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new UniversalDoFModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_label"));
-		newFileCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_description"));
-		newFileCreationPage.setFileName(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new GenericDoFModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFModelWizard_label"));
+		newFileCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFModelWizard_description"));
+		newFileCreationPage.setFileName(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -601,7 +601,7 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -611,8 +611,8 @@ public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new UniversalDoFModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_label"));
+		initialObjectCreationPage = new GenericDoFModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFModelWizard_label"));
 		initialObjectCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

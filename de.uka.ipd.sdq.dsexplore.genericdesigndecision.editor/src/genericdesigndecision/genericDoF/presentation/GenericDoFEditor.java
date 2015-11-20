@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.universalDoF.presentation;
+package genericdesigndecision.genericDoF.presentation;
 
 
 import java.io.IOException;
@@ -154,8 +154,6 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory;
-
 import genericdesigndecision.genericDoF.provider.GenericDoFItemProviderAdapterFactory;
 
 import genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory;
@@ -166,16 +164,18 @@ import genericdesigndecision.provider.GenericdesigndecisionItemProviderAdapterFa
 
 import genericdesigndecision.qualityproperties.provider.QualitypropertiesItemProviderAdapterFactory;
 
+import genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory;
+
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a UniversalDoF model editor.
+ * This is an example of a GenericDoF model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UniversalDoFEditor
+public class GenericDoFEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -337,18 +337,18 @@ public class UniversalDoFEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(UniversalDoFEditor.this);
+						getActionBarContributor().setActiveEditor(GenericDoFEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(UniversalDoFEditor.this);
+						getActionBarContributor().setActiveEditor(GenericDoFEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == UniversalDoFEditor.this) {
+				else if (p == GenericDoFEditor.this) {
 					handleActivate();
 				}
 			}
@@ -521,7 +521,7 @@ public class UniversalDoFEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(UniversalDoFEditor.this, false);
+										 getSite().getPage().closeEditor(GenericDoFEditor.this, false);
 									 }
 								 }
 							 });
@@ -532,7 +532,7 @@ public class UniversalDoFEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == UniversalDoFEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == GenericDoFEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -564,7 +564,7 @@ public class UniversalDoFEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(UniversalDoFEditor.this, false);
+				getSite().getPage().closeEditor(GenericDoFEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -694,7 +694,7 @@ public class UniversalDoFEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UniversalDoFEditor() {
+	public GenericDoFEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1036,7 +1036,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1070,7 +1070,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1099,7 +1099,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1124,7 +1124,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1151,7 +1151,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1194,7 +1194,7 @@ public class UniversalDoFEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
+					new ViewerPane(getSite().getPage(), GenericDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1414,8 +1414,8 @@ public class UniversalDoFEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					UniversalDoFEditor.this.setSelectionToViewer(selection);
-					UniversalDoFEditor.this.setFocus();
+					GenericDoFEditor.this.setSelectionToViewer(selection);
+					GenericDoFEditor.this.setFocus();
 				}
 
 				@Override

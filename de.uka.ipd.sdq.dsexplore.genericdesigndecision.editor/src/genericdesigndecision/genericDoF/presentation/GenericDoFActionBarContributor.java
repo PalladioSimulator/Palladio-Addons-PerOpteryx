@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.universalDoF.presentation;
+package genericdesigndecision.genericDoF.presentation;
 
 import genericdesigndecision.presentation.GenericdesigndecisionEditorPlugin;
 
@@ -42,12 +42,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * This is the action bar contributor for the UniversalDoF model editor.
+ * This is the action bar contributor for the GenericDoF model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UniversalDoFActionBarContributor
+public class GenericDoFActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -150,7 +150,7 @@ public class UniversalDoFActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UniversalDoFActionBarContributor() {
+	public GenericDoFActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -165,8 +165,8 @@ public class UniversalDoFActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("universaldof-settings"));
-		toolBarManager.add(new Separator("universaldof-additions"));
+		toolBarManager.add(new Separator("genericdof-settings"));
+		toolBarManager.add(new Separator("genericdof-additions"));
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class UniversalDoFActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditor_menu"), "genericdesigndecision.universalDoFMenuID");
+		IMenuManager submenuManager = new MenuManager(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_GenericDoFEditor_menu"), "genericdesigndecision.genericDoFMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
