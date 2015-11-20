@@ -344,4 +344,12 @@
       <details key="documentation" value="A&amp;nbsp;contract&amp;nbsp;is&amp;nbsp;an&amp;nbsp;instance&amp;nbsp;of&amp;nbsp;a&amp;nbsp;contract&amp;nbsp;type&amp;nbsp;and&amp;nbsp;represents&amp;nbsp;a&amp;nbsp;particular&amp;nbsp;QoS&amp;nbsp;specification.&#xD;&#xA;It can be a simple definition or a refinement of another contract."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ScaleLiteral" eSuperTypes="#//ValueLiteral http://www.eclipse.org/emf/2002/Ecore#//ENamedElement">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType QMLContractType.ecore#//ENumber"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eGenericType eTypeParameter="#//ScaleLiteral/T"/>
+    </eStructuralFeatures>
+  </eClassifiers>
 </ecore:EPackage>

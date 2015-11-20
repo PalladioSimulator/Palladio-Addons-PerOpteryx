@@ -47,7 +47,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="relSem" ordered="false"
         lowerBound="1" eType="#//EnumRelationSemantics"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
   <eClassifiers xsi:type="ecore:EClass" name="Order" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore#//Identifier">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Orders&amp;nbsp;two&amp;nbsp;elements&amp;nbsp;directly&amp;nbsp;by&amp;nbsp;specifying one&amp;nbsp;bigger&amp;nbsp;than&amp;nbsp;the&amp;nbsp;other."/>
@@ -108,7 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="order" ordered="false"
         upperBound="-1" eType="#//Order" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Unit" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+  <eClassifiers xsi:type="ecore:EClass" name="Unit" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A unit can be of scalar type&amp;nbsp;or of ratio type."/>
     </eAnnotations>
@@ -188,7 +188,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionTypes" ordered="false"
         upperBound="-1" eType="#//DimensionType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Dimension" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+  <eClassifiers xsi:type="ecore:EClass" name="Dimension" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Dimensions characterize atomic QoS&amp;nbsp;aspects."/>
     </eAnnotations>
@@ -196,5 +196,36 @@
         eType="#//DimensionType" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" ordered="false" eType="#//Unit"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DimensionTypeScale" eSuperTypes="#//DimensionType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Dimensions characterize atomic QoS&amp;nbsp;aspects."/>
+    </eAnnotations>
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//ENumber"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scaleElements" lowerBound="1"
+        upperBound="-1" containment="true">
+      <eGenericType eTypeParameter="#//DimensionTypeScale/T"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" lowerBound="1" eType="#//EScaleOfMeasure"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EScaleOfMeasure">
+    <eLiterals name="ordinal" literal="ordinal"/>
+    <eLiterals name="nominal" value="1" literal="nominal"/>
+    <eLiterals name="ratio" value="2" literal="ration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ENumber" instanceClassName="java.lang.Number"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ScaleElement" eSuperTypes="#//Element">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Dimensions characterize atomic QoS&amp;nbsp;aspects."/>
+    </eAnnotations>
+    <eTypeParameters name="T">
+      <eBounds eClassifier="#//ENumber"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eGenericType eTypeParameter="#//ScaleElement/T"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" lowerBound="1" eType="#//EScaleOfMeasure"/>
   </eClassifiers>
 </ecore:EPackage>
