@@ -97,11 +97,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEProblem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="problem" lowerBound="1"
+        eType="#//DecisionSpace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emfInstance" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
         eType="#//universalDoF/AMetamodelDescription"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="decisionSpace" eType="#//DecisionSpace"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DSEProblem" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
+      abstract="true" interface="true"/>
   <eSubpackages name="genericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="genericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
@@ -177,20 +182,22 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AMetamodelDescription" abstract="true">
-      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1">
-        <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//universalDoF/Metamodel">
+        <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
       </eOperations>
-      <eOperations name="returnCorrespondingDoF" lowerBound="1" eType="#//genericDoF/DegreeOfFreedom">
+      <eOperations name="getCorrespondingDoF" lowerBound="1" eType="#//genericDoF/DegreeOfFreedom">
         <eParameters name="gdof" eType="#//universalDoF/GenericDoF"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//genericDoF/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gddof_to_dof" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" upperBound="-1"
           eType="#//universalDoF/GenericDoFToDegreeOfFreedom" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//universalDoF/Metamodel"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniversalDoF">
-      <eOperations name="evaluateMetamodel" unique="false" eType="#//universalDoF/AMetamodelDescription">
+      <eOperations name="evaluateMetamodel" unique="false" eType="#//universalDoF/Metamodel">
         <eParameters name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
       </eOperations>
       <eOperations name="prepareGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -222,6 +229,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToDegreeOfFreedom" instanceClassName="java.util.Map$Entry">
       <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//universalDoF/GenericDoF"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//genericDoF/DegreeOfFreedom"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="Metamodel">
+      <eLiterals name="PCM"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/QualityProperties/"

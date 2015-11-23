@@ -19,4 +19,5 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
  * @generated
  */
 public interface PCMMetamodelDescription extends AMetamodelDescription {
+
 } // PCMMetamodelDescription

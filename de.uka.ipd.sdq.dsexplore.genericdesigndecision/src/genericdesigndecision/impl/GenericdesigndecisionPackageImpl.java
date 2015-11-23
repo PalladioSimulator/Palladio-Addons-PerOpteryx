@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.impl;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Candidates;
@@ -103,6 +104,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * @generated
 	 */
 	private EClass adseProblemEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dseProblemEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -373,7 +381,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getADSEProblem_AssociatedMetamodel() {
+	public EReference getADSEProblem_Problem() {
 		return (EReference)adseProblemEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -382,8 +390,26 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getADSEProblem_DecisionSpace() {
+	public EReference getADSEProblem_EmfInstance() {
 		return (EReference)adseProblemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getADSEProblem_AssociatedMetamodel() {
+		return (EReference)adseProblemEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDSEProblem() {
+		return dseProblemEClass;
 	}
 
 	/**
@@ -441,8 +467,11 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		createEOperation(candidatesEClass, CANDIDATES___NUMBER_OF_CHOICES_MUST_EQUAL_NUMBER_OF_DECISIONS__DIAGNOSTICCHAIN_MAP);
 
 		adseProblemEClass = createEClass(ADSE_PROBLEM);
+		createEReference(adseProblemEClass, ADSE_PROBLEM__PROBLEM);
+		createEReference(adseProblemEClass, ADSE_PROBLEM__EMF_INSTANCE);
 		createEReference(adseProblemEClass, ADSE_PROBLEM__ASSOCIATED_METAMODEL);
-		createEReference(adseProblemEClass, ADSE_PROBLEM__DECISION_SPACE);
+
+		dseProblemEClass = createEClass(DSE_PROBLEM);
 	}
 
 	/**
@@ -488,6 +517,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		discreteRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
+		adseProblemEClass.getESuperTypes().add(this.getDSEProblem());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -525,8 +555,11 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(adseProblemEClass, ADSEProblem.class, "ADSEProblem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getADSEProblem_Problem(), this.getDecisionSpace(), null, "problem", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getADSEProblem_EmfInstance(), ecorePackage.getEModelElement(), null, "emfInstance", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getADSEProblem_DecisionSpace(), this.getDecisionSpace(), null, "decisionSpace", null, 0, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dseProblemEClass, DSEProblem.class, "DSEProblem", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

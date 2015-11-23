@@ -21,6 +21,7 @@ import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -76,6 +78,13 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * @generated
 	 */
 	private EClass genericDoFToDegreeOfFreedomEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum metamodelEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -220,6 +229,15 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGenericDoF_Name() {
+		return (EAttribute)genericDoFEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAMetamodelDescription() {
 		return aMetamodelDescriptionEClass;
 	}
@@ -238,8 +256,17 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAMetamodelDescription_Gddof_to_dof() {
+	public EReference getAMetamodelDescription_Gdof_to_dof() {
 		return (EReference)aMetamodelDescriptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAMetamodelDescription_Name() {
+		return (EAttribute)aMetamodelDescriptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -256,7 +283,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getAMetamodelDescription__ReturnCorrespondingDoF__GenericDoF() {
+	public EOperation getAMetamodelDescription__GetCorrespondingDoF__GenericDoF() {
 		return aMetamodelDescriptionEClass.getEOperations().get(1);
 	}
 
@@ -409,6 +436,15 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getMetamodel() {
+		return metamodelEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UniversalDoFFactory getUniversalDoFFactory() {
 		return (UniversalDoFFactory)getEFactoryInstance();
 	}
@@ -440,12 +476,14 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 
 		genericDoFEClass = createEClass(GENERIC_DO_F);
 		createEAttribute(genericDoFEClass, GENERIC_DO_F__GDOF_ID);
+		createEAttribute(genericDoFEClass, GENERIC_DO_F__NAME);
 
 		aMetamodelDescriptionEClass = createEClass(AMETAMODEL_DESCRIPTION);
 		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__DOFREPOSITORY);
-		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF);
+		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
+		createEAttribute(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__NAME);
 		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT);
-		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF);
+		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF);
 
 		universalDoFEClass = createEClass(UNIVERSAL_DO_F);
 		createEReference(universalDoFEClass, UNIVERSAL_DO_F__GDOFREPOSITORY);
@@ -464,6 +502,9 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		genericDoFToDegreeOfFreedomEClass = createEClass(GENERIC_DO_FTO_DEGREE_OF_FREEDOM);
 		createEReference(genericDoFToDegreeOfFreedomEClass, GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY);
 		createEReference(genericDoFToDegreeOfFreedomEClass, GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE);
+
+		// Create enums
+		metamodelEEnum = createEEnum(METAMODEL);
 	}
 
 	/**
@@ -512,15 +553,17 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 
 		initEClass(genericDoFEClass, GenericDoF.class, "GenericDoF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericDoF_GdofID(), ecorePackage.getEInt(), "gdofID", null, 0, 1, GenericDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenericDoF_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenericDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(aMetamodelDescriptionEClass, AMetamodelDescription.class, "AMetamodelDescription", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAMetamodelDescription_Dofrepository(), theGenericDoFPackage.getDoFRepository(), null, "dofrepository", null, 0, 1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAMetamodelDescription_Gddof_to_dof(), this.getGenericDoFToDegreeOfFreedom(), null, "gddof_to_dof", null, 0, -1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAMetamodelDescription_Gdof_to_dof(), this.getGenericDoFToDegreeOfFreedom(), null, "gdof_to_dof", null, 0, -1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAMetamodelDescription_Name(), this.getMetamodel(), "name", null, 0, 1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EObject(), null, "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EObject(), this.getMetamodel(), "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEModelElement(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getAMetamodelDescription__ReturnCorrespondingDoF__GenericDoF(), theGenericDoFPackage.getDegreeOfFreedom(), "returnCorrespondingDoF", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAMetamodelDescription__GetCorrespondingDoF__GenericDoF(), theGenericDoFPackage.getDegreeOfFreedom(), "getCorrespondingDoF", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGenericDoF(), "gdof", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(universalDoFEClass, UniversalDoF.class, "UniversalDoF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -528,7 +571,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		initEReference(getUniversalDoF_SupportedMetamodels(), this.getAMetamodelDescription(), null, "supportedMetamodels", null, 0, -1, UniversalDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUniversalDoF_PreparedDoFs(), theGenericDoFPackage.getDegreeOfFreedom(), null, "preparedDoFs", null, 0, 1, UniversalDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getUniversalDoF__EvaluateMetamodel__EModelElement(), this.getAMetamodelDescription(), "evaluateMetamodel", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getUniversalDoF__EvaluateMetamodel__EModelElement(), this.getMetamodel(), "evaluateMetamodel", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEModelElement(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getUniversalDoF__PrepareGDoF__int(), ecorePackage.getEBoolean(), "prepareGDoF", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -556,6 +599,10 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		initEClass(genericDoFToDegreeOfFreedomEClass, Map.Entry.class, "GenericDoFToDegreeOfFreedom", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGenericDoFToDegreeOfFreedom_Key(), this.getGenericDoF(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenericDoFToDegreeOfFreedom_Value(), theGenericDoFPackage.getDegreeOfFreedom(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(metamodelEEnum, Metamodel.class, "Metamodel");
+		addEEnumLiteral(metamodelEEnum, Metamodel.PCM);
 	}
 
 } //UniversalDoFPackageImpl

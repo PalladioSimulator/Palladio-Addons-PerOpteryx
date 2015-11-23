@@ -3,7 +3,6 @@
 package genericdesigndecision.pcmsupport;
 
 import genericdesigndecision.GenericdesigndecisionPackage;
-
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -78,13 +77,22 @@ public interface PcmsupportPackage extends EPackage {
 	int PCM_METAMODEL_DESCRIPTION__DOFREPOSITORY = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY;
 
 	/**
-	 * The feature id for the '<em><b>Gddof to dof</b></em>' map.
+	 * The feature id for the '<em><b>Gdof to dof</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION__GDDOF_TO_DOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF;
+	int PCM_METAMODEL_DESCRIPTION__GDOF_TO_DOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCM_METAMODEL_DESCRIPTION__NAME = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME;
 
 	/**
 	 * The number of structural features of the '<em>PCM Metamodel Description</em>' class.
@@ -105,13 +113,13 @@ public interface PcmsupportPackage extends EPackage {
 	int PCM_METAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT;
 
 	/**
-	 * The operation id for the '<em>Return Corresponding Do F</em>' operation.
+	 * The operation id for the '<em>Get Corresponding Do F</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF;
+	int PCM_METAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF;
 
 	/**
 	 * The number of operations of the '<em>PCM Metamodel Description</em>' class.
@@ -133,6 +141,24 @@ public interface PcmsupportPackage extends EPackage {
 	int PCMDSE_PROBLEM = 1;
 
 	/**
+	 * The feature id for the '<em><b>Problem</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCMDSE_PROBLEM__PROBLEM = GenericdesigndecisionPackage.ADSE_PROBLEM__PROBLEM;
+
+	/**
+	 * The feature id for the '<em><b>Emf Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCMDSE_PROBLEM__EMF_INSTANCE = GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE;
+
+	/**
 	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,15 +166,6 @@ public interface PcmsupportPackage extends EPackage {
 	 * @ordered
 	 */
 	int PCMDSE_PROBLEM__ASSOCIATED_METAMODEL = GenericdesigndecisionPackage.ADSE_PROBLEM__ASSOCIATED_METAMODEL;
-
-	/**
-	 * The feature id for the '<em><b>Decision Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PCMDSE_PROBLEM__DECISION_SPACE = GenericdesigndecisionPackage.ADSE_PROBLEM__DECISION_SPACE;
 
 	/**
 	 * The number of structural features of the '<em>PCMDSE Problem</em>' class.

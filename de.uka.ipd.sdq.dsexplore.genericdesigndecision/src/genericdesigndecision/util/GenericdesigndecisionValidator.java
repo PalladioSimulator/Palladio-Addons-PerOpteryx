@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -109,6 +111,8 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 				return validateCandidates((Candidates)value, diagnostics, context);
 			case GenericdesigndecisionPackage.ADSE_PROBLEM:
 				return validateADSEProblem((ADSEProblem)value, diagnostics, context);
+			case GenericdesigndecisionPackage.DSE_PROBLEM:
+				return validateDSEProblem((DSEProblem)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -204,6 +208,15 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateADSEProblem(ADSEProblem adseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(adseProblem, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDSEProblem(DSEProblem dseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)dseProblem, diagnostics, context);
 	}
 
 	/**

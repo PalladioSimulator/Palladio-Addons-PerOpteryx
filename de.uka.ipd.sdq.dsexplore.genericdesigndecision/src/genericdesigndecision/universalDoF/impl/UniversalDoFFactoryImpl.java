@@ -9,6 +9,7 @@ import genericdesigndecision.universalDoF.*;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -74,6 +75,36 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case UniversalDoFPackage.METAMODEL:
+				return createMetamodelFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case UniversalDoFPackage.METAMODEL:
+				return convertMetamodelToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GDoFRepository createGDoFRepository() {
 		GDoFRepositoryImpl gDoFRepository = new GDoFRepositoryImpl();
 		return gDoFRepository;
@@ -92,11 +123,10 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public UniversalDoF createUniversalDoF() {
-		UniversalDoFImpl universalDoF = new UniversalDoFImpl();
-		return universalDoF;
+		return UniversalDoFImpl.getUniversalDoFImpl();
 	}
 
 	/**
@@ -107,6 +137,26 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	public Map.Entry<GenericDoF, DegreeOfFreedom> createGenericDoFToDegreeOfFreedom() {
 		GenericDoFToDegreeOfFreedomImpl genericDoFToDegreeOfFreedom = new GenericDoFToDegreeOfFreedomImpl();
 		return genericDoFToDegreeOfFreedom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metamodel createMetamodelFromString(EDataType eDataType, String initialValue) {
+		Metamodel result = Metamodel.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMetamodelToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

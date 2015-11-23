@@ -39,7 +39,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/associatedMetamodel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/decisionSpace"/>
     </genClasses>
-    <nestedGenPackages prefix="GenericDoF" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//genericDoF">
+    <nestedGenPackages prefix="GenericDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
+        ecorePackage="genericdesigndecision.ecore#//genericDoF">
       <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription/changeable"/>
@@ -75,7 +76,11 @@
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChangeable"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="UniversalDoF" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//universalDoF">
+    <nestedGenPackages prefix="UniversalDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
+        ecorePackage="genericdesigndecision.ecore#//universalDoF">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="genericdesigndecision.ecore#//universalDoF/Metamodel">
+        <genEnumLiterals ecoreEnumLiteral="genericdesigndecision.ecore#//universalDoF/Metamodel/PCM"/>
+      </genEnums>
       <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GDoFRepository">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GDoFRepository/gdofs"/>
         <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/GDoFRepository/listGDoFs"/>
@@ -93,6 +98,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/dofrepository"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/gddof_to_dof"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/name"/>
         <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel">
           <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel/model"/>
         </genOperations>
@@ -138,8 +144,8 @@
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom/value"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Qualityproperties" disposableProviderFactory="true"
-        ecorePackage="genericdesigndecision.ecore#//qualityproperties">
+    <nestedGenPackages prefix="Qualityproperties" basePackage="genericdesigndecision"
+        disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//qualityproperties">
       <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty/confidenceInterval"/>
@@ -166,7 +172,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//qualityproperties/QualityProperty/qualityValue"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Pcmsupport" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#//pcmsupport">
+    <nestedGenPackages prefix="Pcmsupport" basePackage="genericdesigndecision" disposableProviderFactory="true"
+        ecorePackage="genericdesigndecision.ecore#//pcmsupport">
       <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMMetamodelDescription"/>
       <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMDSEProblem"/>
     </nestedGenPackages>

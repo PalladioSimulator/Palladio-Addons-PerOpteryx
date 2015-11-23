@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl#getGdofID <em>Gdof ID</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,6 +46,26 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	 * @ordered
 	 */
 	protected int gdofID = GDOF_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +112,34 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_F__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
 				return getGdofID();
+			case UniversalDoFPackage.GENERIC_DO_F__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +154,9 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 		switch (featureID) {
 			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
 				setGdofID((Integer)newValue);
+				return;
+			case UniversalDoFPackage.GENERIC_DO_F__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +173,9 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
 				setGdofID(GDOF_ID_EDEFAULT);
 				return;
+			case UniversalDoFPackage.GENERIC_DO_F__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +190,8 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 		switch (featureID) {
 			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
 				return gdofID != GDOF_ID_EDEFAULT;
+			case UniversalDoFPackage.GENERIC_DO_F__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +208,8 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (gdofID: ");
 		result.append(gdofID);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

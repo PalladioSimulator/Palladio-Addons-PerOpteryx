@@ -7,6 +7,7 @@ import genericdesigndecision.genericDoF.DoFRepository;
 
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -37,7 +38,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getDofrepository <em>Dofrepository</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getGddof_to_dof <em>Gddof to dof</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getGdof_to_dof <em>Gdof to dof</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,22 +56,45 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	protected DoFRepository dofrepository;
 
 	/**
-	 * The cached value of the '{@link #getGddof_to_dof() <em>Gddof to dof</em>}' map.
+	 * The cached value of the '{@link #getGdof_to_dof() <em>Gdof to dof</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGddof_to_dof()
+	 * @see #getGdof_to_dof()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<GenericDoF, DegreeOfFreedom> gddof_to_dof;
+	protected EMap<GenericDoF, DegreeOfFreedom> gdof_to_dof;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Metamodel NAME_EDEFAULT = Metamodel.PCM;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected Metamodel name = NAME_EDEFAULT;
+	
+	protected static AMetamodelDescription metamodelDescriptionSingleton;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
+		
 	}
 
 	/**
@@ -125,11 +150,11 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<GenericDoF, DegreeOfFreedom> getGddof_to_dof() {
-		if (gddof_to_dof == null) {
-			gddof_to_dof = new EcoreEMap<GenericDoF,DegreeOfFreedom>(UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM, GenericDoFToDegreeOfFreedomImpl.class, this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF);
+	public EMap<GenericDoF, DegreeOfFreedom> getGdof_to_dof() {
+		if (gdof_to_dof == null) {
+			gdof_to_dof = new EcoreEMap<GenericDoF,DegreeOfFreedom>(UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM, GenericDoFToDegreeOfFreedomImpl.class, this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
 		}
-		return gddof_to_dof;
+		return gdof_to_dof;
 	}
 
 	/**
@@ -137,10 +162,8 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void evaluateMetamodel(EObject model) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public Metamodel getName() {
+		return name;
 	}
 
 	/**
@@ -148,10 +171,27 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom returnCorrespondingDoF(GenericDoF gdof) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public void setName(Metamodel newName) {
+		Metamodel oldName = name;
+		name = newName == null ? NAME_EDEFAULT : newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract Metamodel evaluateMetamodel(EModelElement model);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DegreeOfFreedom getCorrespondingDoF(GenericDoF gdof) {
+		return gdof_to_dof.get(gdof);
 	}
 
 	/**
@@ -162,8 +202,8 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF:
-				return ((InternalEList<?>)getGddof_to_dof()).basicRemove(otherEnd, msgs);
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
+				return ((InternalEList<?>)getGdof_to_dof()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -179,9 +219,11 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY:
 				if (resolve) return getDofrepository();
 				return basicGetDofrepository();
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF:
-				if (coreType) return getGddof_to_dof();
-				else return getGddof_to_dof().map();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
+				if (coreType) return getGdof_to_dof();
+				else return getGdof_to_dof().map();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,8 +239,11 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY:
 				setDofrepository((DoFRepository)newValue);
 				return;
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF:
-				((EStructuralFeature.Setting)getGddof_to_dof()).set(newValue);
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
+				((EStructuralFeature.Setting)getGdof_to_dof()).set(newValue);
+				return;
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
+				setName((Metamodel)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -215,8 +260,11 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY:
 				setDofrepository((DoFRepository)null);
 				return;
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF:
-				getGddof_to_dof().clear();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
+				getGdof_to_dof().clear();
+				return;
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -232,8 +280,10 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 		switch (featureID) {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY:
 				return dofrepository != null;
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF:
-				return gddof_to_dof != null && !gddof_to_dof.isEmpty();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
+				return gdof_to_dof != null && !gdof_to_dof.isEmpty();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
+				return name != NAME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -247,12 +297,27 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT:
-				evaluateMetamodel((EObject)arguments.get(0));
-				return null;
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF:
-				return returnCorrespondingDoF((GenericDoF)arguments.get(0));
+				return evaluateMetamodel((EModelElement)arguments.get(0));
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF:
+				return getCorrespondingDoF((GenericDoF)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AMetamodelDescriptionImpl

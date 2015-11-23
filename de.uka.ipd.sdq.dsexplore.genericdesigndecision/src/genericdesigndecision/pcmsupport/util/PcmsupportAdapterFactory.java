@@ -2,8 +2,8 @@
  */
 package genericdesigndecision.pcmsupport.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
-
 import genericdesigndecision.pcmsupport.*;
 
 import genericdesigndecision.universalDoF.AMetamodelDescription;
@@ -84,6 +84,10 @@ public class PcmsupportAdapterFactory extends AdapterFactoryImpl {
 				return createAMetamodelDescriptionAdapter();
 			}
 			@Override
+			public Adapter caseDSEProblem(DSEProblem object) {
+				return createDSEProblemAdapter();
+			}
+			@Override
 			public Adapter caseADSEProblem(ADSEProblem object) {
 				return createADSEProblemAdapter();
 			}
@@ -146,6 +150,20 @@ public class PcmsupportAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAMetamodelDescriptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
+	 * @generated
+	 */
+	public Adapter createDSEProblemAdapter() {
 		return null;
 	}
 

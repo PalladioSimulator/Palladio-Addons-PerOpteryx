@@ -3,10 +3,11 @@
 package genericdesigndecision.universalDoF.impl;
 
 import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import genericdesigndecision.pcmsupport.PcmsupportFactory;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
@@ -26,6 +27,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,13 +78,17 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 */
 	protected DegreeOfFreedom preparedDoFs;
 
+	private static UniversalDoF universalDoFSingleton;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected UniversalDoFImpl() {
+	private UniversalDoFImpl() {
 		super();
+		//added for PCM support
+		supportedMetamodels.add(PcmsupportFactory.eINSTANCE.createPCMMetamodelDescription());
 	}
 
 	/**
@@ -183,12 +192,18 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public AMetamodelDescription evaluateMetamodel(EModelElement model) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public Metamodel evaluateMetamodel(EModelElement model) {
+		Metamodel mm = null;
+		
+		for (AMetamodelDescription ammd : supportedMetamodels) {
+			mm = ammd.evaluateMetamodel(model);
+			if(mm != null){
+				return mm;
+			}
+		}
+		throw new IllegalArgumentException("The metamodel of the model is not supported.");
 	}
 
 	/**
@@ -277,6 +292,13 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	public static UniversalDoF getUniversalDoF() {
+		if(universalDoFSingleton == null) {
+			universalDoFSingleton = new UniversalDoFImpl();
+		}
+			return universalDoFSingleton;
 	}
 
 	/**
@@ -389,6 +411,12 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				return constrainDoF((Integer)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	@Override
+	public DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) {
+		Metamodel metamodel = evaluateMetamodel(model);
+		return DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, model, metamodel);
 	}
 
 } //UniversalDoFImpl

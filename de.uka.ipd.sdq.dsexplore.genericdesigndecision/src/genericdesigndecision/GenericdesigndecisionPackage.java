@@ -454,6 +454,34 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int CANDIDATES_OPERATION_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEProblem()
+	 * @generated
+	 */
+	int DSE_PROBLEM = 8;
+
+	/**
+	 * The number of structural features of the '<em>DSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DSE_PROBLEM_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>DSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DSE_PROBLEM_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link genericdesigndecision.impl.ADSEProblemImpl <em>ADSE Problem</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -464,22 +492,31 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int ADSE_PROBLEM = 7;
 
 	/**
+	 * The feature id for the '<em><b>Problem</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__PROBLEM = DSE_PROBLEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Emf Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__EMF_INSTANCE = DSE_PROBLEM_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADSE_PROBLEM__ASSOCIATED_METAMODEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Decision Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM__DECISION_SPACE = 1;
+	int ADSE_PROBLEM__ASSOCIATED_METAMODEL = DSE_PROBLEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>ADSE Problem</em>' class.
@@ -488,7 +525,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADSE_PROBLEM_FEATURE_COUNT = 2;
+	int ADSE_PROBLEM_FEATURE_COUNT = DSE_PROBLEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>ADSE Problem</em>' class.
@@ -497,8 +534,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADSE_PROBLEM_OPERATION_COUNT = 0;
-
+	int ADSE_PROBLEM_OPERATION_COUNT = DSE_PROBLEM_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
@@ -712,6 +748,28 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EClass getADSEProblem();
 
 	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getProblem <em>Problem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Problem</em>'.
+	 * @see genericdesigndecision.ADSEProblem#getProblem()
+	 * @see #getADSEProblem()
+	 * @generated
+	 */
+	EReference getADSEProblem_Problem();
+
+	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getEmfInstance <em>Emf Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Emf Instance</em>'.
+	 * @see genericdesigndecision.ADSEProblem#getEmfInstance()
+	 * @see #getADSEProblem()
+	 * @generated
+	 */
+	EReference getADSEProblem_EmfInstance();
+
+	/**
 	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getAssociatedMetamodel <em>Associated Metamodel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -723,15 +781,15 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EReference getADSEProblem_AssociatedMetamodel();
 
 	/**
-	 * Returns the meta object for the reference '{@link genericdesigndecision.ADSEProblem#getDecisionSpace <em>Decision Space</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Decision Space</em>'.
-	 * @see genericdesigndecision.ADSEProblem#getDecisionSpace()
-	 * @see #getADSEProblem()
+	 * @return the meta object for class '<em>DSE Problem</em>'.
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
+	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
 	 * @generated
 	 */
-	EReference getADSEProblem_DecisionSpace();
+	EClass getDSEProblem();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -933,6 +991,22 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		EClass ADSE_PROBLEM = eINSTANCE.getADSEProblem();
 
 		/**
+		 * The meta object literal for the '<em><b>Problem</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADSE_PROBLEM__PROBLEM = eINSTANCE.getADSEProblem_Problem();
+
+		/**
+		 * The meta object literal for the '<em><b>Emf Instance</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADSE_PROBLEM__EMF_INSTANCE = eINSTANCE.getADSEProblem_EmfInstance();
+
+		/**
 		 * The meta object literal for the '<em><b>Associated Metamodel</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -941,12 +1015,14 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		EReference ADSE_PROBLEM__ASSOCIATED_METAMODEL = eINSTANCE.getADSEProblem_AssociatedMetamodel();
 
 		/**
-		 * The meta object literal for the '<em><b>Decision Space</b></em>' reference feature.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEProblem()
 		 * @generated
 		 */
-		EReference ADSE_PROBLEM__DECISION_SPACE = eINSTANCE.getADSEProblem_DecisionSpace();
+		EClass DSE_PROBLEM = eINSTANCE.getDSEProblem();
 
 	}
 

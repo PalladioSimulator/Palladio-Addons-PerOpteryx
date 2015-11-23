@@ -4,6 +4,7 @@ package genericdesigndecision.universalDoF;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -141,13 +142,22 @@ public interface UniversalDoFPackage extends EPackage {
 	int GENERIC_DO_F__GDOF_ID = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DO_F__NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Generic Do F</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DO_F_FEATURE_COUNT = 1;
+	int GENERIC_DO_F_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Generic Do F</em>' class.
@@ -178,13 +188,22 @@ public interface UniversalDoFPackage extends EPackage {
 	int AMETAMODEL_DESCRIPTION__DOFREPOSITORY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Gddof to dof</b></em>' map.
+	 * The feature id for the '<em><b>Gdof to dof</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF = 1;
+	int AMETAMODEL_DESCRIPTION__GDOF_TO_DOF = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AMETAMODEL_DESCRIPTION__NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>AMetamodel Description</em>' class.
@@ -193,7 +212,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION_FEATURE_COUNT = 2;
+	int AMETAMODEL_DESCRIPTION_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Evaluate Metamodel</em>' operation.
@@ -205,13 +224,13 @@ public interface UniversalDoFPackage extends EPackage {
 	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = 0;
 
 	/**
-	 * The operation id for the '<em>Return Corresponding Do F</em>' operation.
+	 * The operation id for the '<em>Get Corresponding Do F</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF = 1;
+	int AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF = 1;
 
 	/**
 	 * The number of operations of the '<em>AMetamodel Description</em>' class.
@@ -406,6 +425,17 @@ public interface UniversalDoFPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.universalDoF.Metamodel
+	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getMetamodel()
+	 * @generated
+	 */
+	int METAMODEL = 5;
+
+
+	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.GDoFRepository <em>GDo FRepository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -478,6 +508,17 @@ public interface UniversalDoFPackage extends EPackage {
 	EAttribute getGenericDoF_GdofID();
 
 	/**
+	 * Returns the meta object for the attribute '{@link genericdesigndecision.universalDoF.GenericDoF#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see genericdesigndecision.universalDoF.GenericDoF#getName()
+	 * @see #getGenericDoF()
+	 * @generated
+	 */
+	EAttribute getGenericDoF_Name();
+
+	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -499,35 +540,46 @@ public interface UniversalDoFPackage extends EPackage {
 	EReference getAMetamodelDescription_Dofrepository();
 
 	/**
-	 * Returns the meta object for the map '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGddof_to_dof <em>Gddof to dof</em>}'.
+	 * Returns the meta object for the map '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGdof_to_dof <em>Gdof to dof</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Gddof to dof</em>'.
-	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getGddof_to_dof()
+	 * @return the meta object for the map '<em>Gdof to dof</em>'.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getGdof_to_dof()
 	 * @see #getAMetamodelDescription()
 	 * @generated
 	 */
-	EReference getAMetamodelDescription_Gddof_to_dof();
+	EReference getAMetamodelDescription_Gdof_to_dof();
 
 	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EObject) <em>Evaluate Metamodel</em>}' operation.
+	 * Returns the meta object for the attribute '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getName()
+	 * @see #getAMetamodelDescription()
+	 * @generated
+	 */
+	EAttribute getAMetamodelDescription_Name();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement) <em>Evaluate Metamodel</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Evaluate Metamodel</em>' operation.
-	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EObject)
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement)
 	 * @generated
 	 */
 	EOperation getAMetamodelDescription__EvaluateMetamodel__EObject();
 
 	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#returnCorrespondingDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Return Corresponding Do F</em>}' operation.
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getCorrespondingDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Get Corresponding Do F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Return Corresponding Do F</em>' operation.
-	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#returnCorrespondingDoF(genericdesigndecision.universalDoF.GenericDoF)
+	 * @return the meta object for the '<em>Get Corresponding Do F</em>' operation.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getCorrespondingDoF(genericdesigndecision.universalDoF.GenericDoF)
 	 * @generated
 	 */
-	EOperation getAMetamodelDescription__ReturnCorrespondingDoF__GenericDoF();
+	EOperation getAMetamodelDescription__GetCorrespondingDoF__GenericDoF();
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.UniversalDoF <em>Universal Do F</em>}'.
@@ -697,6 +749,16 @@ public interface UniversalDoFPackage extends EPackage {
 	EReference getGenericDoFToDegreeOfFreedom_Value();
 
 	/**
+	 * Returns the meta object for enum '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Metamodel</em>'.
+	 * @see genericdesigndecision.universalDoF.Metamodel
+	 * @generated
+	 */
+	EEnum getMetamodel();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,6 +842,14 @@ public interface UniversalDoFPackage extends EPackage {
 		EAttribute GENERIC_DO_F__GDOF_ID = eINSTANCE.getGenericDoF_GdofID();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_DO_F__NAME = eINSTANCE.getGenericDoF_Name();
+
+		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl <em>AMetamodel Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -798,12 +868,20 @@ public interface UniversalDoFPackage extends EPackage {
 		EReference AMETAMODEL_DESCRIPTION__DOFREPOSITORY = eINSTANCE.getAMetamodelDescription_Dofrepository();
 
 		/**
-		 * The meta object literal for the '<em><b>Gddof to dof</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Gdof to dof</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference AMETAMODEL_DESCRIPTION__GDDOF_TO_DOF = eINSTANCE.getAMetamodelDescription_Gddof_to_dof();
+		EReference AMETAMODEL_DESCRIPTION__GDOF_TO_DOF = eINSTANCE.getAMetamodelDescription_Gdof_to_dof();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AMETAMODEL_DESCRIPTION__NAME = eINSTANCE.getAMetamodelDescription_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Evaluate Metamodel</b></em>' operation.
@@ -814,12 +892,12 @@ public interface UniversalDoFPackage extends EPackage {
 		EOperation AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = eINSTANCE.getAMetamodelDescription__EvaluateMetamodel__EObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Return Corresponding Do F</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Corresponding Do F</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation AMETAMODEL_DESCRIPTION___RETURN_CORRESPONDING_DO_F__GENERICDOF = eINSTANCE.getAMetamodelDescription__ReturnCorrespondingDoF__GenericDoF();
+		EOperation AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF = eINSTANCE.getAMetamodelDescription__GetCorrespondingDoF__GenericDoF();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl <em>Universal Do F</em>}' class.
@@ -952,6 +1030,16 @@ public interface UniversalDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE = eINSTANCE.getGenericDoFToDegreeOfFreedom_Value();
+
+		/**
+		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see genericdesigndecision.universalDoF.Metamodel
+		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getMetamodel()
+		 * @generated
+		 */
+		EEnum METAMODEL = eINSTANCE.getMetamodel();
 
 	}
 

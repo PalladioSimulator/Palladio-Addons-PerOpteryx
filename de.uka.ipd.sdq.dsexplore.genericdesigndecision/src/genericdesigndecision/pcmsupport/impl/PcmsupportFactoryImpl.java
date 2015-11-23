@@ -4,13 +4,17 @@ package genericdesigndecision.pcmsupport.impl;
 
 import genericdesigndecision.pcmsupport.*;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,10 +70,10 @@ public class PcmsupportFactoryImpl extends EFactoryImpl implements PcmsupportFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PCMMetamodelDescription createPCMMetamodelDescription() {
-		PCMMetamodelDescriptionImpl pcmMetamodelDescription = new PCMMetamodelDescriptionImpl();
+		PCMMetamodelDescriptionImpl pcmMetamodelDescription = (PCMMetamodelDescriptionImpl) PCMMetamodelDescriptionImpl.createMetamodelDescription();
 		return pcmMetamodelDescription;
 	}
 
@@ -101,6 +105,12 @@ public class PcmsupportFactoryImpl extends EFactoryImpl implements PcmsupportFac
 	@Deprecated
 	public static PcmsupportPackage getPackage() {
 		return PcmsupportPackage.eINSTANCE;
+	}
+
+	@Override
+	public PCMDSEProblem createPCMDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement emfInstance) throws CoreException {
+		PCMDSEProblem problem = new PCMDSEProblemImpl(dseConfig, emfInstance, PcmsupportFactory.eINSTANCE.createPCMMetamodelDescription());
+		return problem;
 	}
 
 } //PcmsupportFactoryImpl

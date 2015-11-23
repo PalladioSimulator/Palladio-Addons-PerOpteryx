@@ -9,6 +9,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Universal Do F</b></em>'.
@@ -102,7 +105,7 @@ public interface UniversalDoF extends EObject {
 	 * @model unique="false"
 	 * @generated
 	 */
-	AMetamodelDescription evaluateMetamodel(EModelElement model);
+	Metamodel evaluateMetamodel(EModelElement model);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,5 +170,7 @@ public interface UniversalDoF extends EObject {
 	 * @generated
 	 */
 	boolean constrainDoF(int dofID);
+	
+	DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model);
 
 } // UniversalDoF
