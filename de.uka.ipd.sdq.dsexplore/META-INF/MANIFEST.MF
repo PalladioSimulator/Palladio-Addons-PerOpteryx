@@ -18,13 +18,17 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
  org.palladiosimulator.analyzer.resultdecorator,
  org.palladiosimulator.solver;bundle-version="3.0.0",
- org.palladiosimulator.solver.context;bundle-version="2.0.0"
+ org.palladiosimulator.solver.context;bundle-version="2.0.0",
+ de.uka.ipd.sdq.dsexplore.genericdesigndecision
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
+ de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents,
  de.uka.ipd.sdq.dsexplore.exception,
+ de.uka.ipd.sdq.dsexplore.gdof,
  de.uka.ipd.sdq.dsexplore.helper,
  de.uka.ipd.sdq.dsexplore.launch,
+ de.uka.ipd.sdq.dsexplore.opt4j.genotype,
  de.uka.ipd.sdq.dsexplore.opt4j.representation
 Bundle-ClassPath: .,
  log4j/

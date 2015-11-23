@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EModelElement;
 import org.opt4j.common.archive.BoundedArchive;
 import org.opt4j.common.archive.CrowdingArchive;
 import org.opt4j.common.archive.DefaultArchive;
@@ -86,6 +87,8 @@ import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import genericdesigndecision.universalDoF.UniversalDoF;
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
 
 //import org.aopalliance.intercept.MethodInterceptor;
 
@@ -111,8 +114,9 @@ public class Opt4JStarter {
 
 	private static List<ResultsWriter> writers = null;
 	
-	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, PCMInstance pcmInstance, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
+	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, EModelElement model, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
 		
+		UniversalDoF universalDoF = UniversalDoFFactory.eINSTANCE.createUniversalDoF();
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
 		Collection<Module> modules = new ArrayList<Module>();
@@ -141,7 +145,7 @@ public class Opt4JStarter {
 		
 		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
 		
-		Opt4JStarter.problem = new DSEProblem(dseConfig, pcmInstance);
+		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, model);
 		if (dseConfig.isNewProblem()){
 			Opt4JStarter.problem.saveProblem();
 		} 
