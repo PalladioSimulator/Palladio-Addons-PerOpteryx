@@ -91,5 +91,35 @@
             contributorClass="de.uka.ipd.sdq.pcm.designdecision.presentation.designdecisionActionBarContributor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofAdapterFactory"
+            supportedTypes="de.uka.ipd.sdq.pcm.designdecision.editor.factory1"
+            uri="de.uka.ipd.sdq.pcm.designdecision.editor.factory1">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofEditor"
+            contributorClass="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofActionBarContributor"
+            default="false"
+            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofEditorID"
+            name="gdof">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.uka.ipd.sdq.pcm.designdecision.editor.category1"
+            name="name">
+      </category>
+      <wizard
+            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizard"
+            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizardID"
+            name="gdof">
+      </wizard>
+   </extension>
 
 </plugin>
