@@ -14,36 +14,24 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
    </description>
 
    <requires>
-      <import plugin="de.uka.ipd.sdq.workflow.mdsd"/>
-      <import plugin="de.uka.ipd.sdq.workflow"/>
-      <import plugin="de.uka.ipd.sdq.statistics"/>
       <import plugin="de.uka.ipd.sdq.simucomframework" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.bayesnets" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.analyzer.workflow" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.palladiosimulator.analyzer.resultdecorator"/>
       <import plugin="org.palladiosimulator.solver" version="3.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.solver.context" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.apache.log4j"/>
-      <import plugin="org.eclipse.debug.ui" version="3.4.1" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.workflow" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.workflow.mdsd" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.workflow.launchconfig" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.opt4j" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.qml.handling" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.solver.reliability" version="3.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="de.uka.ipd.sdq.codegen.simucontroller"/>
-      <import plugin="org.eclipse.debug.core"/>
       <import plugin="de.uka.ipd.sdq.sensorframework"/>
-      <import plugin="org.palladiosimulator.pcm"/>
       <import plugin="de.uka.ipd.sdq.sensorframework.adapter"/>
       <import plugin="de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes"/>
-      <import plugin="de.uka.ipd.sdq.simucomframework" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.opt4j" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.simulation.abstractsimengine" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.simulation" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.palladiosimulator.recorderframework" version="2.0.1" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.recorderframework.sensorframework" version="2.0.1" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.math" version="2.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.edp2"/>
@@ -69,10 +57,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="de.uka.ipd.sdq.identifier.edit"/>
       <import plugin="org.eclipse.uml2.common.edit"/>
-      <import plugin="org.palladiosimulator.pcm.edit"/>
       <import plugin="de.uka.ipd.sdq.probfunction.edit"/>
-      <import plugin="de.uka.ipd.sdq.stoex.edit"/>
-      <import plugin="de.uka.ipd.sdq.units.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
@@ -100,6 +85,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.palladiosimulator.pcm.edit" version="4.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.stoex.edit" version="2.2.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.units.edit" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.recorderframework" version="2.0.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
