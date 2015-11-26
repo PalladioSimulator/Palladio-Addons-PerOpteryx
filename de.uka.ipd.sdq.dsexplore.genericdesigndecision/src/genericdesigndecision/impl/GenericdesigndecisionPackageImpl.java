@@ -17,11 +17,6 @@ import genericdesigndecision.GenericdesigndecisionPackage;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import genericdesigndecision.genericDoF.impl.GenericDoFPackageImpl;
-
-import genericdesigndecision.pcmsupport.PcmsupportPackage;
-
-import genericdesigndecision.pcmsupport.impl.PcmsupportPackageImpl;
-
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
 
 import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl;
@@ -162,21 +157,18 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericDoFPackageImpl theGenericDoFPackage = (GenericDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) instanceof GenericDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) : GenericDoFPackage.eINSTANCE);
 		UniversalDoFPackageImpl theUniversalDoFPackage = (UniversalDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) instanceof UniversalDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) : UniversalDoFPackage.eINSTANCE);
 		QualitypropertiesPackageImpl theQualitypropertiesPackage = (QualitypropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) instanceof QualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) : QualitypropertiesPackage.eINSTANCE);
-		PcmsupportPackageImpl thePcmsupportPackage = (PcmsupportPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) instanceof PcmsupportPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) : PcmsupportPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGenericdesigndecisionPackage.createPackageContents();
 		theGenericDoFPackage.createPackageContents();
 		theUniversalDoFPackage.createPackageContents();
 		theQualitypropertiesPackage.createPackageContents();
-		thePcmsupportPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGenericdesigndecisionPackage.initializePackageContents();
 		theGenericDoFPackage.initializePackageContents();
 		theUniversalDoFPackage.initializePackageContents();
 		theQualitypropertiesPackage.initializePackageContents();
-		thePcmsupportPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -501,13 +493,11 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericDoFPackage theGenericDoFPackage = (GenericDoFPackage)EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI);
 		UniversalDoFPackage theUniversalDoFPackage = (UniversalDoFPackage)EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI);
 		QualitypropertiesPackage theQualitypropertiesPackage = (QualitypropertiesPackage)EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI);
-		PcmsupportPackage thePcmsupportPackage = (PcmsupportPackage)EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGenericDoFPackage);
 		getESubpackages().add(theUniversalDoFPackage);
 		getESubpackages().add(theQualitypropertiesPackage);
-		getESubpackages().add(thePcmsupportPackage);
 
 		// Create type parameters
 

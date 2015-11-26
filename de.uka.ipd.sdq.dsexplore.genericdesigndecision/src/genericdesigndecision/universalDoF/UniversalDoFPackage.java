@@ -221,7 +221,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = 0;
+	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT = 0;
 
 	/**
 	 * The operation id for the '<em>Get Corresponding Do F</em>' operation.
@@ -569,7 +569,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement)
 	 * @generated
 	 */
-	EOperation getAMetamodelDescription__EvaluateMetamodel__EObject();
+	EOperation getAMetamodelDescription__EvaluateMetamodel__EModelElement();
 
 	/**
 	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getCorrespondingDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Get Corresponding Do F</em>}' operation.
@@ -889,7 +889,7 @@ public interface UniversalDoFPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = eINSTANCE.getAMetamodelDescription__EvaluateMetamodel__EObject();
+		EOperation AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT = eINSTANCE.getAMetamodelDescription__EvaluateMetamodel__EModelElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Corresponding Do F</b></em>' operation.

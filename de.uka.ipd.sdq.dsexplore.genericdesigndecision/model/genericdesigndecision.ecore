@@ -288,13 +288,4 @@
           volatile="true" transient="true" derived="true"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="pcmsupport" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/PCMSupport/"
-      nsPrefix="pcmsupport">
-    <eClassifiers xsi:type="ecore:EClass" name="PCMMetamodelDescription" eSuperTypes="#//universalDoF/AMetamodelDescription">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Should be used as a Singleton"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PCMDSEProblem" eSuperTypes="#//ADSEProblem"/>
-  </eSubpackages>
 </ecore:EPackage>

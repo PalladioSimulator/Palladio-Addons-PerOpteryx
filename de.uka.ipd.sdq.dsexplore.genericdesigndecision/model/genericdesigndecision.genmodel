@@ -36,9 +36,11 @@
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//ADSEProblem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/problem"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/emfInstance"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/associatedMetamodel"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//ADSEProblem/decisionSpace"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//DSEProblem"/>
     <nestedGenPackages prefix="GenericDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
         ecorePackage="genericdesigndecision.ecore#//genericDoF">
       <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription">
@@ -93,17 +95,18 @@
       </genClasses>
       <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GenericDoF">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//universalDoF/GenericDoF/gdofID"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//universalDoF/GenericDoF/name"/>
       </genClasses>
       <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/dofrepository"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/gddof_to_dof"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/gdof_to_dof"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/name"/>
         <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel">
           <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/evaluateMetamodel/model"/>
         </genOperations>
-        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/returnCorrespondingDoF">
-          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/returnCorrespondingDoF/gdof"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/getCorrespondingDoF">
+          <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/AMetamodelDescription/getCorrespondingDoF/gdof"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/UniversalDoF">
@@ -171,11 +174,6 @@
       <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//qualityproperties/QualityProperty">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//qualityproperties/QualityProperty/qualityValue"/>
       </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Pcmsupport" basePackage="genericdesigndecision" disposableProviderFactory="true"
-        ecorePackage="genericdesigndecision.ecore#//pcmsupport">
-      <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMMetamodelDescription"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//pcmsupport/PCMDSEProblem"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

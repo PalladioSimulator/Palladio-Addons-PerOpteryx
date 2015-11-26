@@ -38,12 +38,4 @@
             genModel="model/genericdesigndecision.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated genericdesigndecision -->
-      <package
-            uri="http://sdq.ipd.uka.de/GenericDesignDecision/PCMSupport/"
-            class="genericdesigndecision.pcmsupport.PcmsupportPackage"
-            genModel="model/genericdesigndecision.genmodel"/>
-   </extension>
-
 </plugin>

@@ -8,6 +8,8 @@ import genericdesigndecision.GenericdesigndecisionPackage;
 
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import java.util.List;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -17,8 +19,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,6 +103,44 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 		newProblem = dseConfig.isNewProblem();
 	}
 
+	protected DecisionSpace loadProblem() {
+		final String filename = this.dseConfig.getDesignDecisionFileName();
+		DecisionSpace problem = null;
+        try {
+			problem = this.loadProblem(filename);
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			problem = null;
+		}
+		return problem;
+	}
+	
+	protected abstract DecisionSpace loadProblem(final String filename) throws CoreException;
+	
+	public abstract void saveProblem();
+	
+	protected abstract void initialiseProblem();
+	
+	protected abstract List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem);
+	
+	protected void throwUnknownDegreeException(final DegreeOfFreedomInstance dd) {
+        throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
+    }
+	
+	// TODO adapt to new Degree of Freedom implementation
+	@Override
+    public String toString(){
+
+        String result = "";
+
+        final List<DegreeOfFreedomInstance> decisions = this.problem.getDegreesOfFreedom();
+        for (final DegreeOfFreedomInstance designDecision : decisions) {
+            result += DegreeOfFreedomHelper.getDegreeDescription(designDecision)+";";
+        }
+        return result;
+    }
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

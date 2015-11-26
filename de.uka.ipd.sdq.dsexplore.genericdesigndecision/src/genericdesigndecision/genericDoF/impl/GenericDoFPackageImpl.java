@@ -18,11 +18,6 @@ import genericdesigndecision.genericDoF.StaticSelectionRule;
 import genericdesigndecision.genericDoF.ValueRule;
 
 import genericdesigndecision.impl.GenericdesigndecisionPackageImpl;
-
-import genericdesigndecision.pcmsupport.PcmsupportPackage;
-
-import genericdesigndecision.pcmsupport.impl.PcmsupportPackageImpl;
-
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
 
 import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl;
@@ -165,21 +160,18 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		GenericdesigndecisionPackageImpl theGenericdesigndecisionPackage = (GenericdesigndecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) instanceof GenericdesigndecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) : GenericdesigndecisionPackage.eINSTANCE);
 		UniversalDoFPackageImpl theUniversalDoFPackage = (UniversalDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) instanceof UniversalDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI) : UniversalDoFPackage.eINSTANCE);
 		QualitypropertiesPackageImpl theQualitypropertiesPackage = (QualitypropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) instanceof QualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) : QualitypropertiesPackage.eINSTANCE);
-		PcmsupportPackageImpl thePcmsupportPackage = (PcmsupportPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) instanceof PcmsupportPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) : PcmsupportPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGenericDoFPackage.createPackageContents();
 		theGenericdesigndecisionPackage.createPackageContents();
 		theUniversalDoFPackage.createPackageContents();
 		theQualitypropertiesPackage.createPackageContents();
-		thePcmsupportPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGenericDoFPackage.initializePackageContents();
 		theGenericdesigndecisionPackage.initializePackageContents();
 		theUniversalDoFPackage.initializePackageContents();
 		theQualitypropertiesPackage.initializePackageContents();
-		thePcmsupportPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGenericDoFPackage.freeze();
