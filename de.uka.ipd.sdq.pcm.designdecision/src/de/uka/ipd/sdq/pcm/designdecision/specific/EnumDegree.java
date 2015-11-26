@@ -21,40 +21,40 @@ import org.eclipse.emf.ecore.EEnum;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree#getEnumeration <em>Enumeration</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getEnumDegree()
  * @model abstract="true"
  * @generated
  */
 public interface EnumDegree extends UnorderedDegree {
-    /**
-     * Returns the value of the '<em><b>Enumeration</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Enumeration</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Enumeration</em>' reference.
-     * @see #setEnumeration(EEnum)
-     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getEnumDegree_Enumeration()
-     * @model ordered="false"
-     * @generated
-     */
-    EEnum getEnumeration();
+	/**
+	 * Returns the value of the '<em><b>Enumeration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enumeration</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enumeration</em>' reference.
+	 * @see #setEnumeration(EEnum)
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getEnumDegree_Enumeration()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EEnum getEnumeration();
 
-    /**
-     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree#getEnumeration <em>Enumeration</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Enumeration</em>' reference.
-     * @see #getEnumeration()
-     * @generated
-     */
-    void setEnumeration(EEnum value);
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree#getEnumeration <em>Enumeration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enumeration</em>' reference.
+	 * @see #getEnumeration()
+	 * @generated
+	 */
+	void setEnumeration(EEnum value);
 
 } // EnumDegree

@@ -13,15 +13,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * @generated
  */
 public class gdofResourceImpl extends XMIResourceImpl {
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param uri the URI of the new resource.
-     * @generated
-     */
-    public gdofResourceImpl(URI uri) {
-        super(uri);
-    }
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param uri the URI of the new resource.
+	 * @generated
+	 */
+	public gdofResourceImpl(URI uri) {
+		super(uri);
+	}
 
 } //gdofResourceImpl

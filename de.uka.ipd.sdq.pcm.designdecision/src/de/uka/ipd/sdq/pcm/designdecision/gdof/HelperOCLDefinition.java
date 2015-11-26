@@ -24,5 +24,6 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
  * @model
  * @generated
  */
-public interface HelperOCLDefinition extends OCLRule, StaticContextRule {
+public interface HelperOCLDefinition
+		extends OCLRule, StaticContextRule, genericdesigndecision.genericDoF.HelperOCLDefinition {
 } // HelperOCLDefinition

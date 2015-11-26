@@ -16,5 +16,5 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
  * @model
  * @generated
  */
-public interface ValueRule extends OCLRule {
+public interface ValueRule extends OCLRule, genericdesigndecision.genericDoF.ValueRule {
 } // ValueRule

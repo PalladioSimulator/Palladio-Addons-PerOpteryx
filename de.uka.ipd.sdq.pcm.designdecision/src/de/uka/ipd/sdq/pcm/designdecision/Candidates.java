@@ -2,11 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,70 +15,57 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getCandidate <em>Candidate</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getProblem <em>Problem</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getPcmCandidate <em>Pcm Candidate</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getPcmProblem <em>Pcm Problem</em>}</li>
+ * </ul>
  *
  * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getCandidates()
  * @model
  * @generated
  */
-public interface Candidates extends EObject {
-    /**
-     * Returns the value of the '<em><b>Candidate</b></em>' containment reference list.
-     * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.Candidate}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Candidate</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Candidate</em>' containment reference list.
-     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getCandidates_Candidate()
-     * @model containment="true" ordered="false"
-     * @generated
-     */
-    EList<Candidate> getCandidate();
+public interface Candidates extends genericdesigndecision.Candidates {
+	/**
+	 * Returns the value of the '<em><b>Pcm Candidate</b></em>' containment reference list.
+	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.Candidate}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pcm Candidate</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pcm Candidate</em>' containment reference list.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getCandidates_PcmCandidate()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Candidate> getPcmCandidate();
 
-    /**
-     * Returns the value of the '<em><b>Problem</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Problem</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Problem</em>' reference.
-     * @see #setProblem(DecisionSpace)
-     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getCandidates_Problem()
-     * @model required="true" ordered="false"
-     * @generated
-     */
-    DecisionSpace getProblem();
+	/**
+	 * Returns the value of the '<em><b>Pcm Problem</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pcm Problem</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pcm Problem</em>' reference.
+	 * @see #setPcmProblem(DecisionSpace)
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getCandidates_PcmProblem()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	DecisionSpace getPcmProblem();
 
-    /**
-     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getProblem <em>Problem</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Problem</em>' reference.
-     * @see #getProblem()
-     * @generated
-     */
-    void setProblem(DecisionSpace value);
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.candidate->forAll( c | c.choices->size() = self.problem.designdecision->size())
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean numberOfChoicesMustEqualNumberOfDecisions(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.Candidates#getPcmProblem <em>Pcm Problem</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pcm Problem</em>' reference.
+	 * @see #getPcmProblem()
+	 * @generated
+	 */
+	void setPcmProblem(DecisionSpace value);
 
 } // Candidates

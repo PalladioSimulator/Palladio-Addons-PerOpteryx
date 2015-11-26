@@ -16,5 +16,6 @@ package de.uka.ipd.sdq.pcm.designdecision.qualityproperties;
  * @model
  * @generated
  */
-public interface ElementQualityProperty extends QualityProperty {
+public interface ElementQualityProperty
+		extends QualityProperty, genericdesigndecision.qualityproperties.ElementQualityProperty {
 } // ElementQualityProperty

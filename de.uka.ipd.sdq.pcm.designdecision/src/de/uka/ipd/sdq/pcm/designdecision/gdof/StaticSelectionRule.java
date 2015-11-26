@@ -16,5 +16,6 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
  * @model
  * @generated
  */
-public interface StaticSelectionRule extends SelectionRule, StaticContextRule {
+public interface StaticSelectionRule
+		extends SelectionRule, StaticContextRule, genericdesigndecision.genericDoF.StaticSelectionRule {
 } // StaticSelectionRule

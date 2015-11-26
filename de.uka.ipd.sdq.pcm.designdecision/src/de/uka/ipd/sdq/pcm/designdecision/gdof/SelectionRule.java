@@ -28,5 +28,5 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
  * @model abstract="true"
  * @generated
  */
-public interface SelectionRule extends OCLRule {
+public interface SelectionRule extends OCLRule, genericdesigndecision.genericDoF.SelectionRule {
 } // SelectionRule
