@@ -1141,8 +1141,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 				.getEPackage(RepositoryPackage.eNS_URI);
 		AllocationPackage theAllocationPackage = (AllocationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AllocationPackage.eNS_URI);
-		designdecisionPackage thedesigndecisionPackage = (designdecisionPackage) EPackage.Registry.INSTANCE
-				.getEPackage(designdecisionPackage.eNS_URI);
+		gdofPackage thegdofPackage = (gdofPackage) EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		ResourcetypePackage theResourcetypePackage = (ResourcetypePackage) EPackage.Registry.INSTANCE
@@ -1156,11 +1155,11 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 
 		// Add supertypes to classes
 		classAsReferenceDegreeEClass.getESuperTypes().add(this.getClassDegree());
-		classDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
+		classDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
 		classWithCopyDegreeEClass.getESuperTypes().add(this.getClassDegree());
 		continuousRangeDegreeEClass.getESuperTypes().add(this.getRangeDegree());
 		rangeDegreeEClass.getESuperTypes().add(this.getOrderedDataTypeDegree());
-		dataTypeDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
+		dataTypeDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
 		discreteDegreeEClass.getESuperTypes().add(this.getDataTypeDegree());
 		discreteRangeDegreeEClass.getESuperTypes().add(this.getRangeDegree());
 		discreteRangeDegreeEClass.getESuperTypes().add(this.getDiscreteDegree());
@@ -1175,11 +1174,11 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		continuousProcessingRateDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
 		continuousProcessingRateDegreeEClass.getESuperTypes().add(this.getProcessingRateDegree());
 		processingRateDegreeEClass.getESuperTypes().add(this.getProcessingResourceDegree());
-		processingResourceDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
+		processingResourceDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
 		discreteComponentParamDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
 		discreteProcessingRateDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
 		discreteProcessingRateDegreeEClass.getESuperTypes().add(this.getProcessingRateDegree());
-		featureConfigDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
+		featureConfigDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
 		featureGroupDegreeEClass.getESuperTypes().add(this.getFeatureConfigDegree());
 		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getNumberOfCoresDegree());
 		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getOrderedIntegerDegree());

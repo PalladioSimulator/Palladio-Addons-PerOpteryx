@@ -27,24 +27,10 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="designdecision" basePackage="de.uka.ipd.sdq.pcm"
       resource="XMI" disposableProviderFactory="true" ecorePackage="designdecision.ecore#/">
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//DiscreteRangeChoice"/>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="designdecision.ecore#//Choice">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference designdecision.ecore#//Choice/degreeOfFreedomInstance"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="designdecision.ecore#//DegreeOfFreedomInstance">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference designdecision.ecore#//DegreeOfFreedomInstance/primaryChanged"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference designdecision.ecore#//DegreeOfFreedomInstance/dof"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference designdecision.ecore#//DegreeOfFreedomInstance/changeableElements"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="designdecision.ecore#//Choice"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//ClassChoice"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//ContinousRangeChoice"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//DecisionSpace">
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference designdecision.ecore#//DecisionSpace/degreesOfFreedom"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//DecisionSpace"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//Candidate">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference designdecision.ecore#//Candidate/pcmChoices"/>

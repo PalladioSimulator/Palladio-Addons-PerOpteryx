@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
@@ -29,7 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class ClassDegreeImpl extends DegreeOfFreedomInstanceImpl implements ClassDegree {
+public abstract class ClassDegreeImpl extends DegreeOfFreedomImpl implements ClassDegree {
 	/**
 	 * The cached value of the '{@link #getClassDesignOptions() <em>Class Design Options</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

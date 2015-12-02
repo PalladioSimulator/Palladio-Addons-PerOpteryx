@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,13 +109,58 @@ public interface specificPackage extends EPackage {
 	int CLASS_DEGREE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+	int CLASS_DEGREE__ID = gdofPackage.DEGREE_OF_FREEDOM__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__NAME = gdofPackage.DEGREE_OF_FREEDOM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__ADDED_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__INTERACTION_CONSTRAINTS = gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -124,25 +169,34 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE__PRIMARY_CHANGED = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED;
+	int CLASS_DEGREE__PRIMARY_CHANGED = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE__DOF = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF;
+	int CLASS_DEGREE__CHANGEABLE_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE__CHANGEABLE_ELEMENTS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS;
+	int CLASS_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DEGREE__PCM_PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -151,7 +205,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE__CLASS_DESIGN_OPTIONS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
+	int CLASS_DEGREE__CLASS_DESIGN_OPTIONS = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Class Degree</em>' class.
@@ -160,7 +214,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 1;
+	int CLASS_DEGREE_FEATURE_COUNT = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ClassAsReferenceDegreeImpl <em>Class As Reference Degree</em>}' class.
@@ -173,13 +227,58 @@ public interface specificPackage extends EPackage {
 	int CLASS_AS_REFERENCE_DEGREE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME = CLASS_DEGREE__ENTITY_NAME;
+	int CLASS_AS_REFERENCE_DEGREE__ID = CLASS_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__NAME = CLASS_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__ADDED_ELEMENTS = CLASS_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__INTERACTION_CONSTRAINTS = CLASS_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGEABLE = CLASS_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -191,22 +290,31 @@ public interface specificPackage extends EPackage {
 	int CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED = CLASS_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_AS_REFERENCE_DEGREE__DOF = CLASS_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS = CLASS_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_AS_REFERENCE_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -237,13 +345,58 @@ public interface specificPackage extends EPackage {
 	int CLASS_WITH_COPY_DEGREE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_WITH_COPY_DEGREE__ENTITY_NAME = CLASS_DEGREE__ENTITY_NAME;
+	int CLASS_WITH_COPY_DEGREE__ID = CLASS_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__NAME = CLASS_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__ADDED_ELEMENTS = CLASS_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__INTERACTION_CONSTRAINTS = CLASS_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__PRIMARY_CHANGEABLE = CLASS_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -255,22 +408,31 @@ public interface specificPackage extends EPackage {
 	int CLASS_WITH_COPY_DEGREE__PRIMARY_CHANGED = CLASS_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_WITH_COPY_DEGREE__DOF = CLASS_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_WITH_COPY_DEGREE__CHANGEABLE_ELEMENTS = CLASS_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_WITH_COPY_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -301,13 +463,58 @@ public interface specificPackage extends EPackage {
 	int DATA_TYPE_DEGREE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+	int DATA_TYPE_DEGREE__ID = gdofPackage.DEGREE_OF_FREEDOM__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__NAME = gdofPackage.DEGREE_OF_FREEDOM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__ADDED_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS = gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -316,25 +523,34 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_DEGREE__PRIMARY_CHANGED = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED;
+	int DATA_TYPE_DEGREE__PRIMARY_CHANGED = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_DEGREE__DOF = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF;
+	int DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS;
+	int DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Data Type Degree</em>' class.
@@ -343,7 +559,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
+	int DATA_TYPE_DEGREE_FEATURE_COUNT = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.RangeDegreeImpl <em>Range Degree</em>}' class.
@@ -416,13 +632,58 @@ public interface specificPackage extends EPackage {
 	int ORDERED_DATA_TYPE_DEGREE = 11;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_DATA_TYPE_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+	int ORDERED_DATA_TYPE_DEGREE__ID = DATA_TYPE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__NAME = DATA_TYPE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__ADDED_ELEMENTS = DATA_TYPE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS = DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -434,22 +695,31 @@ public interface specificPackage extends EPackage {
 	int ORDERED_DATA_TYPE_DEGREE__PRIMARY_CHANGED = DATA_TYPE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_DATA_TYPE_DEGREE__DOF = DATA_TYPE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ORDERED_DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Ordered Data Type Degree</em>' class.
@@ -461,13 +731,58 @@ public interface specificPackage extends EPackage {
 	int ORDERED_DATA_TYPE_DEGREE_FEATURE_COUNT = DATA_TYPE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_DEGREE__ENTITY_NAME = ORDERED_DATA_TYPE_DEGREE__ENTITY_NAME;
+	int RANGE_DEGREE__ID = ORDERED_DATA_TYPE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__NAME = ORDERED_DATA_TYPE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__ADDED_ELEMENTS = ORDERED_DATA_TYPE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = ORDERED_DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__INTERACTION_CONSTRAINTS = ORDERED_DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__PRIMARY_CHANGEABLE = ORDERED_DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -479,22 +794,31 @@ public interface specificPackage extends EPackage {
 	int RANGE_DEGREE__PRIMARY_CHANGED = ORDERED_DATA_TYPE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANGE_DEGREE__DOF = ORDERED_DATA_TYPE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RANGE_DEGREE__CHANGEABLE_ELEMENTS = ORDERED_DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = ORDERED_DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE = ORDERED_DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -533,13 +857,58 @@ public interface specificPackage extends EPackage {
 	int RANGE_DEGREE_FEATURE_COUNT = ORDERED_DATA_TYPE_DEGREE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINUOUS_RANGE_DEGREE__ENTITY_NAME = RANGE_DEGREE__ENTITY_NAME;
+	int CONTINUOUS_RANGE_DEGREE__ID = RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__NAME = RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__ADDED_ELEMENTS = RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__INTERACTION_CONSTRAINTS = RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGEABLE = RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -551,22 +920,31 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGED = RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTINUOUS_RANGE_DEGREE__DOF = RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENTS = RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE = RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -623,13 +1001,58 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_RANGE_DEGREE_FEATURE_COUNT = RANGE_DEGREE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+	int DISCRETE_DEGREE__ID = DATA_TYPE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__NAME = DATA_TYPE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__ADDED_ELEMENTS = DATA_TYPE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__INTERACTION_CONSTRAINTS = DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -641,22 +1064,31 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_DEGREE__PRIMARY_CHANGED = DATA_TYPE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_DEGREE__DOF = DATA_TYPE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DISCRETE_DEGREE__CHANGEABLE_ELEMENTS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_DEGREE__PCM_PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Discrete Degree</em>' class.
@@ -668,13 +1100,58 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_DEGREE_FEATURE_COUNT = DATA_TYPE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_RANGE_DEGREE__ENTITY_NAME = RANGE_DEGREE__ENTITY_NAME;
+	int DISCRETE_RANGE_DEGREE__ID = RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__NAME = RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS = RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS = RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE = RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -686,22 +1163,31 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED = RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_RANGE_DEGREE__DOF = RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS = RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE = RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -758,13 +1244,58 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_RANGE_DEGREE_FEATURE_COUNT = RANGE_DEGREE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNORDERED_DEGREE__ENTITY_NAME = DATA_TYPE_DEGREE__ENTITY_NAME;
+	int UNORDERED_DEGREE__ID = DATA_TYPE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__NAME = DATA_TYPE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__ADDED_ELEMENTS = DATA_TYPE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__INTERACTION_CONSTRAINTS = DATA_TYPE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -776,22 +1307,31 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_DEGREE__PRIMARY_CHANGED = DATA_TYPE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNORDERED_DEGREE__DOF = DATA_TYPE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int UNORDERED_DEGREE__CHANGEABLE_ELEMENTS = DATA_TYPE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DATA_TYPE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_DEGREE__PCM_PRIMARY_CHANGEABLE = DATA_TYPE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Unordered Degree</em>' class.
@@ -803,13 +1343,58 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_DEGREE_FEATURE_COUNT = DATA_TYPE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUM_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
+	int ENUM_DEGREE__ID = UNORDERED_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__NAME = UNORDERED_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__ADDED_ELEMENTS = UNORDERED_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__INTERACTION_CONSTRAINTS = UNORDERED_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -821,22 +1406,31 @@ public interface specificPackage extends EPackage {
 	int ENUM_DEGREE__PRIMARY_CHANGED = UNORDERED_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_DEGREE__DOF = UNORDERED_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ENUM_DEGREE__CHANGEABLE_ELEMENTS = UNORDERED_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_DEGREE__PCM_PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Enumeration</b></em>' reference.
@@ -867,13 +1461,58 @@ public interface specificPackage extends EPackage {
 	int ORDERED_INTEGER_DEGREE = 12;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_INTEGER_DEGREE__ENTITY_NAME = DISCRETE_DEGREE__ENTITY_NAME;
+	int ORDERED_INTEGER_DEGREE__ID = DISCRETE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__NAME = DISCRETE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__ADDED_ELEMENTS = DISCRETE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -885,22 +1524,31 @@ public interface specificPackage extends EPackage {
 	int ORDERED_INTEGER_DEGREE__PRIMARY_CHANGED = DISCRETE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_INTEGER_DEGREE__DOF = DISCRETE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ORDERED_INTEGER_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_INTEGER_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>List Of Integers</b></em>' attribute list.
@@ -931,13 +1579,58 @@ public interface specificPackage extends EPackage {
 	int STRING_SET_DEGREE = 13;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_SET_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
+	int STRING_SET_DEGREE__ID = UNORDERED_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__NAME = UNORDERED_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__ADDED_ELEMENTS = UNORDERED_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__INTERACTION_CONSTRAINTS = UNORDERED_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -949,22 +1642,31 @@ public interface specificPackage extends EPackage {
 	int STRING_SET_DEGREE__PRIMARY_CHANGED = UNORDERED_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_SET_DEGREE__DOF = UNORDERED_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STRING_SET_DEGREE__CHANGEABLE_ELEMENTS = UNORDERED_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET_DEGREE__PCM_PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>String Values</b></em>' attribute list.
@@ -995,13 +1697,58 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_PRIMITIVE_DEGREE = 14;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNORDERED_PRIMITIVE_DEGREE__ENTITY_NAME = UNORDERED_DEGREE__ENTITY_NAME;
+	int UNORDERED_PRIMITIVE_DEGREE__ID = UNORDERED_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__NAME = UNORDERED_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__ADDED_ELEMENTS = UNORDERED_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__INTERACTION_CONSTRAINTS = UNORDERED_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1013,22 +1760,31 @@ public interface specificPackage extends EPackage {
 	int UNORDERED_PRIMITIVE_DEGREE__PRIMARY_CHANGED = UNORDERED_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNORDERED_PRIMITIVE_DEGREE__DOF = UNORDERED_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int UNORDERED_PRIMITIVE_DEGREE__CHANGEABLE_ELEMENTS = UNORDERED_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = UNORDERED_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNORDERED_PRIMITIVE_DEGREE__PCM_PRIMARY_CHANGEABLE = UNORDERED_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Unordered Primitive Degree</em>' class.
@@ -1050,13 +1806,58 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_COMPONENT_PARAM_DEGREE = 15;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINUOUS_COMPONENT_PARAM_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__ID = CONTINUOUS_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__NAME = CONTINUOUS_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__ADDED_ELEMENTS = CONTINUOUS_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__INTERACTION_CONSTRAINTS = CONTINUOUS_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1068,22 +1869,31 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGED = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTINUOUS_COMPONENT_PARAM_DEGREE__DOF = CONTINUOUS_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CONTINUOUS_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENTS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_COMPONENT_PARAM_DEGREE__PCM_PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -1150,13 +1960,58 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_PROCESSING_RATE_DEGREE = 16;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINUOUS_PROCESSING_RATE_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__ID = CONTINUOUS_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__NAME = CONTINUOUS_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__ADDED_ELEMENTS = CONTINUOUS_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__INTERACTION_CONSTRAINTS = CONTINUOUS_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1168,22 +2023,31 @@ public interface specificPackage extends EPackage {
 	int CONTINUOUS_PROCESSING_RATE_DEGREE__PRIMARY_CHANGED = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTINUOUS_PROCESSING_RATE_DEGREE__DOF = CONTINUOUS_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CONTINUOUS_PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENTS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTINUOUS_PROCESSING_RATE_DEGREE__PCM_PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -1259,13 +2123,58 @@ public interface specificPackage extends EPackage {
 	int PROCESSING_RESOURCE_DEGREE = 18;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+	int PROCESSING_RESOURCE_DEGREE__ID = gdofPackage.DEGREE_OF_FREEDOM__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__NAME = gdofPackage.DEGREE_OF_FREEDOM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__ADDED_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__INTERACTION_CONSTRAINTS = gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1274,25 +2183,34 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGED = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED;
+	int PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGED = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__DOF = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF;
+	int PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENTS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS;
+	int PROCESSING_RESOURCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RESOURCE_DEGREE__PCM_PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Processingresourcetype</b></em>' reference.
@@ -1301,8 +2219,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT
-			+ 0;
+	int PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Processing Resource Degree</em>' class.
@@ -1311,7 +2228,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 1;
+	int PROCESSING_RESOURCE_DEGREE_FEATURE_COUNT = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ProcessingRateDegreeImpl <em>Processing Rate Degree</em>}' class.
@@ -1324,13 +2241,58 @@ public interface specificPackage extends EPackage {
 	int PROCESSING_RATE_DEGREE = 17;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RATE_DEGREE__ENTITY_NAME = PROCESSING_RESOURCE_DEGREE__ENTITY_NAME;
+	int PROCESSING_RATE_DEGREE__ID = PROCESSING_RESOURCE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__NAME = PROCESSING_RESOURCE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__ADDED_ELEMENTS = PROCESSING_RESOURCE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__INTERACTION_CONSTRAINTS = PROCESSING_RESOURCE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__PRIMARY_CHANGEABLE = PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1342,22 +2304,31 @@ public interface specificPackage extends EPackage {
 	int PROCESSING_RATE_DEGREE__PRIMARY_CHANGED = PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESSING_RATE_DEGREE__DOF = PROCESSING_RESOURCE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENTS = PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = PROCESSING_RESOURCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESSING_RATE_DEGREE__PCM_PRIMARY_CHANGEABLE = PROCESSING_RESOURCE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Processingresourcetype</b></em>' reference.
@@ -1388,13 +2359,58 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_COMPONENT_PARAM_DEGREE = 19;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_COMPONENT_PARAM_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
+	int DISCRETE_COMPONENT_PARAM_DEGREE__ID = DISCRETE_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__NAME = DISCRETE_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__ADDED_ELEMENTS = DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1406,22 +2422,31 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGED = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_COMPONENT_PARAM_DEGREE__DOF = DISCRETE_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DISCRETE_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_COMPONENT_PARAM_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -1488,13 +2513,58 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_PROCESSING_RATE_DEGREE = 20;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_PROCESSING_RATE_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
+	int DISCRETE_PROCESSING_RATE_DEGREE__ID = DISCRETE_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__NAME = DISCRETE_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__ADDED_ELEMENTS = DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1506,22 +2576,31 @@ public interface specificPackage extends EPackage {
 	int DISCRETE_PROCESSING_RATE_DEGREE__PRIMARY_CHANGED = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_PROCESSING_RATE_DEGREE__DOF = DISCRETE_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DISCRETE_PROCESSING_RATE_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISCRETE_PROCESSING_RATE_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -1597,13 +2676,58 @@ public interface specificPackage extends EPackage {
 	int FEATURE_CONFIG_DEGREE = 21;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONFIG_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+	int FEATURE_CONFIG_DEGREE__ID = gdofPackage.DEGREE_OF_FREEDOM__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__NAME = gdofPackage.DEGREE_OF_FREEDOM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__ADDED_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__INTERACTION_CONSTRAINTS = gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1612,25 +2736,34 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONFIG_DEGREE__PRIMARY_CHANGED = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED;
+	int FEATURE_CONFIG_DEGREE__PRIMARY_CHANGED = gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONFIG_DEGREE__DOF = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF;
+	int FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENTS = gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENTS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS;
+	int FEATURE_CONFIG_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONFIG_DEGREE__PCM_PRIMARY_CHANGEABLE = gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The number of structural features of the '<em>Feature Config Degree</em>' class.
@@ -1639,7 +2772,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONFIG_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
+	int FEATURE_CONFIG_DEGREE_FEATURE_COUNT = gdofPackage.DEGREE_OF_FREEDOM_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureGroupDegreeImpl <em>Feature Group Degree</em>}' class.
@@ -1652,13 +2785,58 @@ public interface specificPackage extends EPackage {
 	int FEATURE_GROUP_DEGREE = 22;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GROUP_DEGREE__ENTITY_NAME = FEATURE_CONFIG_DEGREE__ENTITY_NAME;
+	int FEATURE_GROUP_DEGREE__ID = FEATURE_CONFIG_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__NAME = FEATURE_CONFIG_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__ADDED_ELEMENTS = FEATURE_CONFIG_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__INTERACTION_CONSTRAINTS = FEATURE_CONFIG_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__PRIMARY_CHANGEABLE = FEATURE_CONFIG_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1670,22 +2848,31 @@ public interface specificPackage extends EPackage {
 	int FEATURE_GROUP_DEGREE__PRIMARY_CHANGED = FEATURE_CONFIG_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_GROUP_DEGREE__DOF = FEATURE_CONFIG_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_GROUP_DEGREE__CHANGEABLE_ELEMENTS = FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = FEATURE_CONFIG_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GROUP_DEGREE__PCM_PRIMARY_CHANGEABLE = FEATURE_CONFIG_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Featuregroup</b></em>' reference.
@@ -1753,13 +2940,58 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_DEGREE = 25;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_OF_CORES_DEGREE__ENTITY_NAME = PROCESSING_RESOURCE_DEGREE__ENTITY_NAME;
+	int NUMBER_OF_CORES_DEGREE__ID = PROCESSING_RESOURCE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__NAME = PROCESSING_RESOURCE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__ADDED_ELEMENTS = PROCESSING_RESOURCE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__INTERACTION_CONSTRAINTS = PROCESSING_RESOURCE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__PRIMARY_CHANGEABLE = PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1771,22 +3003,31 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_DEGREE__PRIMARY_CHANGED = PROCESSING_RESOURCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_OF_CORES_DEGREE__DOF = PROCESSING_RESOURCE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int NUMBER_OF_CORES_DEGREE__CHANGEABLE_ELEMENTS = PROCESSING_RESOURCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = PROCESSING_RESOURCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_DEGREE__PCM_PRIMARY_CHANGEABLE = PROCESSING_RESOURCE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Processingresourcetype</b></em>' reference.
@@ -1817,13 +3058,58 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_AS_LIST_DEGREE = 24;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_OF_CORES_AS_LIST_DEGREE__ENTITY_NAME = NUMBER_OF_CORES_DEGREE__ENTITY_NAME;
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__ID = NUMBER_OF_CORES_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__NAME = NUMBER_OF_CORES_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__ADDED_ELEMENTS = NUMBER_OF_CORES_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = NUMBER_OF_CORES_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__INTERACTION_CONSTRAINTS = NUMBER_OF_CORES_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__PRIMARY_CHANGEABLE = NUMBER_OF_CORES_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1835,22 +3121,31 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_AS_LIST_DEGREE__PRIMARY_CHANGED = NUMBER_OF_CORES_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_OF_CORES_AS_LIST_DEGREE__DOF = NUMBER_OF_CORES_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int NUMBER_OF_CORES_AS_LIST_DEGREE__CHANGEABLE_ELEMENTS = NUMBER_OF_CORES_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = NUMBER_OF_CORES_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_LIST_DEGREE__PCM_PRIMARY_CHANGEABLE = NUMBER_OF_CORES_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Processingresourcetype</b></em>' reference.
@@ -1890,13 +3185,58 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_AS_RANGE_DEGREE = 26;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_OF_CORES_AS_RANGE_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__ID = DISCRETE_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__NAME = DISCRETE_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__ADDED_ELEMENTS = DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -1908,22 +3248,31 @@ public interface specificPackage extends EPackage {
 	int NUMBER_OF_CORES_AS_RANGE_DEGREE__PRIMARY_CHANGED = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_OF_CORES_AS_RANGE_DEGREE__DOF = DISCRETE_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int NUMBER_OF_CORES_AS_RANGE_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_OF_CORES_AS_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -1999,13 +3348,58 @@ public interface specificPackage extends EPackage {
 	int OPTIONAL_FEATURE_DEGREE = 27;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONAL_FEATURE_DEGREE__ENTITY_NAME = FEATURE_CONFIG_DEGREE__ENTITY_NAME;
+	int OPTIONAL_FEATURE_DEGREE__ID = FEATURE_CONFIG_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__NAME = FEATURE_CONFIG_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__ADDED_ELEMENTS = FEATURE_CONFIG_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__INTERACTION_CONSTRAINTS = FEATURE_CONFIG_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__PRIMARY_CHANGEABLE = FEATURE_CONFIG_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2017,22 +3411,31 @@ public interface specificPackage extends EPackage {
 	int OPTIONAL_FEATURE_DEGREE__PRIMARY_CHANGED = FEATURE_CONFIG_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPTIONAL_FEATURE_DEGREE__DOF = FEATURE_CONFIG_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int OPTIONAL_FEATURE_DEGREE__CHANGEABLE_ELEMENTS = FEATURE_CONFIG_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = FEATURE_CONFIG_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_FEATURE_DEGREE__PCM_PRIMARY_CHANGEABLE = FEATURE_CONFIG_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Simple</b></em>' reference.
@@ -2063,13 +3466,58 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE = 28;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__ID = DISCRETE_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__NAME = DISCRETE_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__ADDED_ELEMENTS = DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2081,22 +3529,31 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE__PRIMARY_CHANGED = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE__DOF = DISCRETE_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -2163,13 +3620,58 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE = 29;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__ENTITY_NAME = RESOURCE_CONTAINER_REPLICATION_DEGREE__ENTITY_NAME;
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__ID = RESOURCE_CONTAINER_REPLICATION_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__NAME = RESOURCE_CONTAINER_REPLICATION_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__ADDED_ELEMENTS = RESOURCE_CONTAINER_REPLICATION_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__CHANGEABLE_ELEMENT_DESCRIPTIONS = RESOURCE_CONTAINER_REPLICATION_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__INTERACTION_CONSTRAINTS = RESOURCE_CONTAINER_REPLICATION_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__PRIMARY_CHANGEABLE = RESOURCE_CONTAINER_REPLICATION_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2181,22 +3683,31 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__PRIMARY_CHANGED = RESOURCE_CONTAINER_REPLICATION_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__DOF = RESOURCE_CONTAINER_REPLICATION_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__CHANGEABLE_ELEMENTS = RESOURCE_CONTAINER_REPLICATION_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = RESOURCE_CONTAINER_REPLICATION_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__PCM_PRIMARY_CHANGEABLE = RESOURCE_CONTAINER_REPLICATION_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -2274,13 +3785,58 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_SELECTION_DEGREE = 30;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_SELECTION_DEGREE__ENTITY_NAME = CLASS_WITH_COPY_DEGREE__ENTITY_NAME;
+	int RESOURCE_SELECTION_DEGREE__ID = CLASS_WITH_COPY_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__NAME = CLASS_WITH_COPY_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__ADDED_ELEMENTS = CLASS_WITH_COPY_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_WITH_COPY_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__INTERACTION_CONSTRAINTS = CLASS_WITH_COPY_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__PRIMARY_CHANGEABLE = CLASS_WITH_COPY_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2292,22 +3848,31 @@ public interface specificPackage extends EPackage {
 	int RESOURCE_SELECTION_DEGREE__PRIMARY_CHANGED = CLASS_WITH_COPY_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESOURCE_SELECTION_DEGREE__DOF = CLASS_WITH_COPY_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RESOURCE_SELECTION_DEGREE__CHANGEABLE_ELEMENTS = CLASS_WITH_COPY_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_WITH_COPY_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_SELECTION_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_WITH_COPY_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -2347,13 +3912,58 @@ public interface specificPackage extends EPackage {
 	int SCHEDULING_POLICY_DEGREE = 31;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEDULING_POLICY_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+	int SCHEDULING_POLICY_DEGREE__ID = CLASS_AS_REFERENCE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__NAME = CLASS_AS_REFERENCE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__ADDED_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__INTERACTION_CONSTRAINTS = CLASS_AS_REFERENCE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2365,22 +3975,31 @@ public interface specificPackage extends EPackage {
 	int SCHEDULING_POLICY_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCHEDULING_POLICY_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SCHEDULING_POLICY_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULING_POLICY_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -2420,13 +4039,58 @@ public interface specificPackage extends EPackage {
 	int STRING_COMPONENT_PARAM_DEGREE = 32;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_COMPONENT_PARAM_DEGREE__ENTITY_NAME = STRING_SET_DEGREE__ENTITY_NAME;
+	int STRING_COMPONENT_PARAM_DEGREE__ID = STRING_SET_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__NAME = STRING_SET_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__ADDED_ELEMENTS = STRING_SET_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = STRING_SET_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__INTERACTION_CONSTRAINTS = STRING_SET_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGEABLE = STRING_SET_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2438,22 +4102,31 @@ public interface specificPackage extends EPackage {
 	int STRING_COMPONENT_PARAM_DEGREE__PRIMARY_CHANGED = STRING_SET_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_COMPONENT_PARAM_DEGREE__DOF = STRING_SET_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STRING_COMPONENT_PARAM_DEGREE__CHANGEABLE_ELEMENTS = STRING_SET_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = STRING_SET_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_COMPONENT_PARAM_DEGREE__PCM_PRIMARY_CHANGEABLE = STRING_SET_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>String Values</b></em>' attribute list.
@@ -2484,13 +4157,58 @@ public interface specificPackage extends EPackage {
 	int ALLOCATION_DEGREE = 33;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOCATION_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+	int ALLOCATION_DEGREE__ID = CLASS_AS_REFERENCE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__NAME = CLASS_AS_REFERENCE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__ADDED_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__INTERACTION_CONSTRAINTS = CLASS_AS_REFERENCE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2502,22 +4220,31 @@ public interface specificPackage extends EPackage {
 	int ALLOCATION_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ALLOCATION_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ALLOCATION_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -2548,13 +4275,58 @@ public interface specificPackage extends EPackage {
 	int ASSEMBLED_COMPONENT_DEGREE = 34;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSEMBLED_COMPONENT_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+	int ASSEMBLED_COMPONENT_DEGREE__ID = CLASS_AS_REFERENCE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__NAME = CLASS_AS_REFERENCE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__ADDED_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__INTERACTION_CONSTRAINTS = CLASS_AS_REFERENCE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2566,22 +4338,31 @@ public interface specificPackage extends EPackage {
 	int ASSEMBLED_COMPONENT_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSEMBLED_COMPONENT_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ASSEMBLED_COMPONENT_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CLASS_AS_REFERENCE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSEMBLED_COMPONENT_DEGREE__PCM_PRIMARY_CHANGEABLE = CLASS_AS_REFERENCE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -2612,13 +4393,58 @@ public interface specificPackage extends EPackage {
 	int CAPACITY_DEGREE = 35;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CAPACITY_DEGREE__ENTITY_NAME = DISCRETE_RANGE_DEGREE__ENTITY_NAME;
+	int CAPACITY_DEGREE__ID = DISCRETE_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__NAME = DISCRETE_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__ADDED_ELEMENTS = DISCRETE_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__INTERACTION_CONSTRAINTS = DISCRETE_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2630,22 +4456,31 @@ public interface specificPackage extends EPackage {
 	int CAPACITY_DEGREE__PRIMARY_CHANGED = DISCRETE_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CAPACITY_DEGREE__DOF = DISCRETE_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int CAPACITY_DEGREE__CHANGEABLE_ELEMENTS = DISCRETE_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = DISCRETE_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPACITY_DEGREE__PCM_PRIMARY_CHANGEABLE = DISCRETE_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
@@ -2712,13 +4547,58 @@ public interface specificPackage extends EPackage {
 	int MONITORING_DEGREE = 36;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MONITORING_DEGREE__ENTITY_NAME = CONTINUOUS_RANGE_DEGREE__ENTITY_NAME;
+	int MONITORING_DEGREE__ID = CONTINUOUS_RANGE_DEGREE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__NAME = CONTINUOUS_RANGE_DEGREE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Added Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__ADDED_ELEMENTS = CONTINUOUS_RANGE_DEGREE__ADDED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interaction Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__INTERACTION_CONSTRAINTS = CONTINUOUS_RANGE_DEGREE__INTERACTION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -2730,22 +4610,31 @@ public interface specificPackage extends EPackage {
 	int MONITORING_DEGREE__PRIMARY_CHANGED = CONTINUOUS_RANGE_DEGREE__PRIMARY_CHANGED;
 
 	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONITORING_DEGREE__DOF = CONTINUOUS_RANGE_DEGREE__DOF;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int MONITORING_DEGREE__CHANGEABLE_ELEMENTS = CONTINUOUS_RANGE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = CONTINUOUS_RANGE_DEGREE__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MONITORING_DEGREE__PCM_PRIMARY_CHANGEABLE = CONTINUOUS_RANGE_DEGREE__PCM_PRIMARY_CHANGEABLE;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.

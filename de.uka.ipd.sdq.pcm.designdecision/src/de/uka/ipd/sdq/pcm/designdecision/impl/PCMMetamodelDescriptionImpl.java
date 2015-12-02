@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * @generated
  */
 public class PCMMetamodelDescriptionImpl extends AMetamodelDescriptionImpl implements PCMMetamodelDescription {
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,7 +36,7 @@ public class PCMMetamodelDescriptionImpl extends AMetamodelDescriptionImpl imple
 		this.gdof_to_dof = new EMap<GenericDoF, DegreeOfFreedom>();
 		//TODO add entries for mapping
 	}
-	
+
 	@Override
 	public Metamodel evaluateMetamodel(EModelElement model) {
 		//TODO
@@ -44,10 +44,10 @@ public class PCMMetamodelDescriptionImpl extends AMetamodelDescriptionImpl imple
 	}
 
 	public static AMetamodelDescription createMetamodelDescription() {
-		if(metamodelDescriptionSingleton == null) {
+		if (metamodelDescriptionSingleton == null) {
 			metamodelDescriptionSingleton = new PCMMetamodelDescriptionImpl();
 		}
-			return metamodelDescriptionSingleton;
+		return metamodelDescriptionSingleton;
 	}
 
 	/**

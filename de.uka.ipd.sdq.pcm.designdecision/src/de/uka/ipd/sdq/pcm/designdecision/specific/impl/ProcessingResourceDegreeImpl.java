@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -13,7 +14,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
-import de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
@@ -29,8 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomInstanceImpl
-		implements ProcessingResourceDegree {
+public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomImpl implements ProcessingResourceDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

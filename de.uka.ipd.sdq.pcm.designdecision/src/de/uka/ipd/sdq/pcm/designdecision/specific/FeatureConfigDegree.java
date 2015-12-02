@@ -6,7 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,5 +18,5 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
  * @model abstract="true"
  * @generated
  */
-public interface FeatureConfigDegree extends DegreeOfFreedomInstance {
+public interface FeatureConfigDegree extends DegreeOfFreedom {
 } // FeatureConfigDegree

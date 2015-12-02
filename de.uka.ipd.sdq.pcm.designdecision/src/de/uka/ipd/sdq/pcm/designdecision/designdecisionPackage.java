@@ -71,16 +71,6 @@ public interface designdecisionPackage extends EPackage {
 	designdecisionPackage eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl <em>Degree Of Freedom Instance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getDegreeOfFreedomInstance()
-	 * @generated
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE = 2;
-
-	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl <em>Choice</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,22 +108,13 @@ public interface designdecisionPackage extends EPackage {
 	int CHOICE__DOF_INSTANCE = GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE;
 
 	/**
-	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__DEGREE_OF_FREEDOM_INSTANCE = GenericdesigndecisionPackage.CHOICE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Choice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_FEATURE_COUNT = GenericdesigndecisionPackage.CHOICE_FEATURE_COUNT + 1;
+	int CHOICE_FEATURE_COUNT = GenericdesigndecisionPackage.CHOICE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.DiscreteRangeChoiceImpl <em>Discrete Range Choice</em>}' class.
@@ -173,15 +154,6 @@ public interface designdecisionPackage extends EPackage {
 	int DISCRETE_RANGE_CHOICE__DOF_INSTANCE = CHOICE__DOF_INSTANCE;
 
 	/**
-	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISCRETE_RANGE_CHOICE__DEGREE_OF_FREEDOM_INSTANCE = CHOICE__DEGREE_OF_FREEDOM_INSTANCE;
-
-	/**
 	 * The feature id for the '<em><b>Chosen Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,51 +172,6 @@ public interface designdecisionPackage extends EPackage {
 	int DISCRETE_RANGE_CHOICE_FEATURE_COUNT = CHOICE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME = EntityPackage.NAMED_ELEMENT__ENTITY_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Dof</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__DOF = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Degree Of Freedom Instance</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.ClassChoiceImpl <em>Class Choice</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,7 +179,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getClassChoice()
 	 * @generated
 	 */
-	int CLASS_CHOICE = 3;
+	int CLASS_CHOICE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -282,15 +209,6 @@ public interface designdecisionPackage extends EPackage {
 	int CLASS_CHOICE__DOF_INSTANCE = CHOICE__DOF_INSTANCE;
 
 	/**
-	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CHOICE__DEGREE_OF_FREEDOM_INSTANCE = CHOICE__DEGREE_OF_FREEDOM_INSTANCE;
-
-	/**
 	 * The feature id for the '<em><b>Chosen Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,7 +234,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getContinousRangeChoice()
 	 * @generated
 	 */
-	int CONTINOUS_RANGE_CHOICE = 4;
+	int CONTINOUS_RANGE_CHOICE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -346,15 +264,6 @@ public interface designdecisionPackage extends EPackage {
 	int CONTINOUS_RANGE_CHOICE__DOF_INSTANCE = CHOICE__DOF_INSTANCE;
 
 	/**
-	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTINOUS_RANGE_CHOICE__DEGREE_OF_FREEDOM_INSTANCE = CHOICE__DEGREE_OF_FREEDOM_INSTANCE;
-
-	/**
 	 * The feature id for the '<em><b>Chosen Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,7 +289,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getDecisionSpace()
 	 * @generated
 	 */
-	int DECISION_SPACE = 5;
+	int DECISION_SPACE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -410,22 +319,13 @@ public interface designdecisionPackage extends EPackage {
 	int DECISION_SPACE__DOF_INSTANCES = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Degrees Of Freedom</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_SPACE__DEGREES_OF_FREEDOM = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Decision Space</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_SPACE_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DECISION_SPACE_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidateImpl <em>Candidate</em>}' class.
@@ -435,7 +335,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getCandidate()
 	 * @generated
 	 */
-	int CANDIDATE = 6;
+	int CANDIDATE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
@@ -499,7 +399,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getCandidates()
 	 * @generated
 	 */
-	int CANDIDATES = 7;
+	int CANDIDATES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Candidate</b></em>' containment reference list.
@@ -554,7 +454,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMDSEProblem()
 	 * @generated
 	 */
-	int PCMDSE_PROBLEM = 8;
+	int PCMDSE_PROBLEM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Problem</b></em>' reference.
@@ -600,7 +500,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMMetamodelDescription()
 	 * @generated
 	 */
-	int PCM_METAMODEL_DESCRIPTION = 9;
+	int PCM_METAMODEL_DESCRIPTION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Dofrepository</b></em>' reference.
@@ -649,49 +549,6 @@ public interface designdecisionPackage extends EPackage {
 	EClass getDiscreteRangeChoice();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Degree Of Freedom Instance</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance
-	 * @generated
-	 */
-	EClass getDegreeOfFreedomInstance();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged <em>Primary Changed</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Primary Changed</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged()
-	 * @see #getDegreeOfFreedomInstance()
-	 * @generated
-	 */
-	EReference getDegreeOfFreedomInstance_PrimaryChanged();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof <em>Dof</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dof</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof()
-	 * @see #getDegreeOfFreedomInstance()
-	 * @generated
-	 */
-	EReference getDegreeOfFreedomInstance_Dof();
-
-	/**
-	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getChangeableElements <em>Changeable Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Changeable Elements</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getChangeableElements()
-	 * @see #getDegreeOfFreedomInstance()
-	 * @generated
-	 */
-	EReference getDegreeOfFreedomInstance_ChangeableElements();
-
-	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.Choice <em>Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,17 +557,6 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getChoice();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.Choice#getDegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Degree Of Freedom Instance</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.Choice#getDegreeOfFreedomInstance()
-	 * @see #getChoice()
-	 * @generated
-	 */
-	EReference getChoice_DegreeOfFreedomInstance();
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.ClassChoice <em>Class Choice</em>}'.
@@ -741,17 +587,6 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDecisionSpace();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.pcm.designdecision.DecisionSpace#getDegreesOfFreedom <em>Degrees Of Freedom</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Degrees Of Freedom</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DecisionSpace#getDegreesOfFreedom()
-	 * @see #getDecisionSpace()
-	 * @generated
-	 */
-	EReference getDecisionSpace_DegreesOfFreedom();
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.Candidate <em>Candidate</em>}'.
@@ -870,41 +705,6 @@ public interface designdecisionPackage extends EPackage {
 		EClass DISCRETE_RANGE_CHOICE = eINSTANCE.getDiscreteRangeChoice();
 
 		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl <em>Degree Of Freedom Instance</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getDegreeOfFreedomInstance()
-		 * @generated
-		 */
-		EClass DEGREE_OF_FREEDOM_INSTANCE = eINSTANCE.getDegreeOfFreedomInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Primary Changed</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED = eINSTANCE.getDegreeOfFreedomInstance_PrimaryChanged();
-
-		/**
-		 * The meta object literal for the '<em><b>Dof</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEGREE_OF_FREEDOM_INSTANCE__DOF = eINSTANCE.getDegreeOfFreedomInstance_Dof();
-
-		/**
-		 * The meta object literal for the '<em><b>Changeable Elements</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS = eINSTANCE
-				.getDegreeOfFreedomInstance_ChangeableElements();
-
-		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl <em>Choice</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -913,14 +713,6 @@ public interface designdecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CHOICE = eINSTANCE.getChoice();
-
-		/**
-		 * The meta object literal for the '<em><b>Degree Of Freedom Instance</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CHOICE__DEGREE_OF_FREEDOM_INSTANCE = eINSTANCE.getChoice_DegreeOfFreedomInstance();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.ClassChoiceImpl <em>Class Choice</em>}' class.
@@ -951,14 +743,6 @@ public interface designdecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DECISION_SPACE = eINSTANCE.getDecisionSpace();
-
-		/**
-		 * The meta object literal for the '<em><b>Degrees Of Freedom</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DECISION_SPACE__DEGREES_OF_FREEDOM = eINSTANCE.getDecisionSpace_DegreesOfFreedom();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidateImpl <em>Candidate</em>}' class.

@@ -14,19 +14,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A Choice represents the choice of one value from the domain of a DegreeOfFreedom. The Choice links the DegreeOfFreedom for which it makes the choice. Additionally, it links one element of the domain of the DegreeOfFreedom. This linking is realised in subclasses of Choice, as it may be either PCM Entities or numbers. "/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="degreeOfFreedomInstance"
-        ordered="false" lowerBound="1" eType="#//DegreeOfFreedomInstance"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The domain is defined in subclasses, because it may be either a set of PCM Entities (in the EnumerationDegree) or integer or double ranges (in the RangeDegree and its subclasses). "/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChanged" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dof" ordered="false" lowerBound="1"
-        eType="#//gdof/DegreeOfFreedom"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElements" ordered="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassChoice" eSuperTypes="#//Choice ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//ClassChoice">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -42,8 +29,6 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="degreesOfFreedom" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DegreeOfFreedomInstance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Candidate" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//Candidate">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -178,7 +163,7 @@
         <details key="documentation" value="DoFs of this type are updated by updating this changeable element's reference to one of the Entities in the domainOfEntities."/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ClassDegree" abstract="true" eSuperTypes="#//DegreeOfFreedomInstance">
+    <eClassifiers xsi:type="ecore:EClass" name="ClassDegree" abstract="true" eSuperTypes="#//gdof/DegreeOfFreedom">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This class represents DegreeOfFreedoms that have an enumeration domain. The set of possile values of the degree of freedom are referenced with the domainOfEntities property. Any kind of PCM element can be annotated here. Subclasses restrict the type of annotated elements with OCL constraints."/>
       </eAnnotations>
@@ -213,7 +198,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfSteps" ordered="false"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataTypeDegree" abstract="true" eSuperTypes="#//DegreeOfFreedomInstance"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataTypeDegree" abstract="true" eSuperTypes="#//gdof/DegreeOfFreedom"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteDegree" abstract="true" eSuperTypes="#//specific/DataTypeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteRangeDegree" eSuperTypes="#//specific/RangeDegree #//specific/DiscreteDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -253,14 +238,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="ProcessingRateDegree" abstract="true"
         eSuperTypes="#//specific/ProcessingResourceDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessingResourceDegree" abstract="true"
-        eSuperTypes="#//DegreeOfFreedomInstance">
+        eSuperTypes="#//gdof/DegreeOfFreedom">
       <eStructuralFeatures xsi:type="ecore:EReference" name="processingresourcetype"
           ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourcetype/ProcessingResourceType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteComponentParamDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteProcessingRateDegree" eSuperTypes="#//specific/DiscreteRangeDegree #//specific/ProcessingRateDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureConfigDegree" abstract="true"
-        eSuperTypes="#//DegreeOfFreedomInstance"/>
+        eSuperTypes="#//gdof/DegreeOfFreedom"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureGroupDegree" eSuperTypes="#//specific/FeatureConfigDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="For a FeatureGroup with Fatures F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;&#xA;&#xD;&#xA;TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;&#xA;"/>

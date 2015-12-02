@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import genericdesigndecision.GenericdesigndecisionPackage;
 import genericdesigndecision.genericDoF.DegreeOfFreedom;
@@ -26,7 +25,6 @@ import genericdesigndecision.genericDoF.DegreeOfFreedom;
  * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DecisionSpaceImpl#getDofInstances <em>Dof Instances</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DecisionSpaceImpl#getDegreesOfFreedom <em>Degrees Of Freedom</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,14 +39,6 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 	 * @ordered
 	 */
 	protected EList<DegreeOfFreedom> dofInstances;
-	/**
-	 * The cached value of the '{@link #getDegreesOfFreedom() <em>Degrees Of Freedom</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDegreesOfFreedom()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DegreeOfFreedomInstance> degreesOfFreedom;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,25 +76,10 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 	 * @generated
 	 */
 	@Override
-	public EList<DegreeOfFreedomInstance> getDegreesOfFreedom() {
-		if (degreesOfFreedom == null) {
-			degreesOfFreedom = new EObjectContainmentEList<DegreeOfFreedomInstance>(DegreeOfFreedomInstance.class, this,
-					designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM);
-		}
-		return degreesOfFreedom;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case designdecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 			return ((InternalEList<?>) getDofInstances()).basicRemove(otherEnd, msgs);
-		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-			return ((InternalEList<?>) getDegreesOfFreedom()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -118,8 +93,6 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 		switch (featureID) {
 		case designdecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 			return getDofInstances();
-		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-			return getDegreesOfFreedom();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,10 +109,6 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 			getDofInstances().clear();
 			getDofInstances().addAll((Collection<? extends DegreeOfFreedom>) newValue);
 			return;
-		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-			getDegreesOfFreedom().clear();
-			getDegreesOfFreedom().addAll((Collection<? extends DegreeOfFreedomInstance>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -154,9 +123,6 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 		case designdecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 			getDofInstances().clear();
 			return;
-		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-			getDegreesOfFreedom().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -170,8 +136,6 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 		switch (featureID) {
 		case designdecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 			return dofInstances != null && !dofInstances.isEmpty();
-		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-			return degreesOfFreedom != null && !degreesOfFreedom.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

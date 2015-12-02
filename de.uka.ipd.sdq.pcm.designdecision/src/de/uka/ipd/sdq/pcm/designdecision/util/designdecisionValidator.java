@@ -15,7 +15,6 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
@@ -103,8 +102,6 @@ public class designdecisionValidator extends EObjectValidator {
             return this.validateDiscreteRangeChoice((DiscreteRangeChoice) value, diagnostics, context);
         case designdecisionPackage.CHOICE:
             return this.validateChoice((Choice) value, diagnostics, context);
-        case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE:
-            return this.validateDegreeOfFreedomInstance((DegreeOfFreedomInstance) value, diagnostics, context);
         case designdecisionPackage.CLASS_CHOICE:
             return this.validateClassChoice((ClassChoice) value, diagnostics, context);
         case designdecisionPackage.CONTINOUS_RANGE_CHOICE:
@@ -129,16 +126,6 @@ public class designdecisionValidator extends EObjectValidator {
             final DiagnosticChain diagnostics,
             final Map<Object, Object> context) {
         return this.validate_EveryDefaultConstraint(discreteRangeChoice, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateDegreeOfFreedomInstance(final DegreeOfFreedomInstance degreeOfFreedomInstance,
-            final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(degreeOfFreedomInstance, diagnostics, context);
     }
 
     /**

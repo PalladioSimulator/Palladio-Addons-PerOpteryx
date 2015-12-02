@@ -9,7 +9,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
  * @model abstract="true"
  * @generated
  */
-public interface ClassDegree extends DegreeOfFreedomInstance {
+public interface ClassDegree extends DegreeOfFreedom {
 	/**
 	 * Returns the value of the '<em><b>Class Design Options</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.

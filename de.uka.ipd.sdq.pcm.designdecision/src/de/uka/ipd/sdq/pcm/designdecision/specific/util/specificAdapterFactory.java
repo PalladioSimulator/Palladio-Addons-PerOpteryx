@@ -6,13 +6,13 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.util;
 
+import de.uka.ipd.sdq.featuremodel.NamedElement;
+import de.uka.ipd.sdq.identifier.Identifier;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.palladiosimulator.pcm.core.entity.NamedElement;
-
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
@@ -290,13 +290,23 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIdentifier(Identifier object) {
+			return createIdentifierAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
 
 		@Override
-		public Adapter caseDegreeOfFreedomInstance(DegreeOfFreedomInstance object) {
-			return createDegreeOfFreedomInstanceAdapter();
+		public Adapter caseDegreeOfFreedom(DegreeOfFreedom object) {
+			return createDegreeOfFreedomAdapter();
+		}
+
+		@Override
+		public Adapter casegdof_DegreeOfFreedom(de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom object) {
+			return creategdof_DegreeOfFreedomAdapter();
 		}
 
 		@Override
@@ -792,19 +802,6 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}'.
-	 * <!-- begin-user-doc --> This default implementation
-	* returns null so that we can easily ignore cases; it's useful to ignore a case when
-	* inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance
-	 * @generated
-	 */
-	public Adapter createDegreeOfFreedomInstanceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree <em>Monitoring Degree</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
@@ -814,6 +811,20 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMonitoringDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.identifier.Identifier
+	 * @generated
+	 */
+	public Adapter createIdentifierAdapter() {
 		return null;
 	}
 
@@ -829,6 +840,34 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.DegreeOfFreedom <em>Degree Of Freedom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.DegreeOfFreedom
+	 * @generated
+	 */
+	public Adapter createDegreeOfFreedomAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom <em>Degree Of Freedom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom
+	 * @generated
+	 */
+	public Adapter creategdof_DegreeOfFreedomAdapter() {
 		return null;
 	}
 

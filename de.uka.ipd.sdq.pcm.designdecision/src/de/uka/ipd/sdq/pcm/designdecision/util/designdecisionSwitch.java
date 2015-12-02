@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -17,7 +18,6 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
@@ -93,15 +93,6 @@ public class designdecisionSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE: {
-			DegreeOfFreedomInstance degreeOfFreedomInstance = (DegreeOfFreedomInstance) theEObject;
-			T result = caseDegreeOfFreedomInstance(degreeOfFreedomInstance);
-			if (result == null)
-				result = caseNamedElement(degreeOfFreedomInstance);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case designdecisionPackage.CLASS_CHOICE: {
 			ClassChoice classChoice = (ClassChoice) theEObject;
 			T result = caseClassChoice(classChoice);
@@ -132,7 +123,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 			DecisionSpace decisionSpace = (DecisionSpace) theEObject;
 			T result = caseDecisionSpace(decisionSpace);
 			if (result == null)
-				result = casefeaturemodel_NamedElement(decisionSpace);
+				result = caseNamedElement(decisionSpace);
 			if (result == null)
 				result = caseGenericdesigndecision_DecisionSpace(decisionSpace);
 			if (result == null)
@@ -145,7 +136,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 			Candidate candidate = (Candidate) theEObject;
 			T result = caseCandidate(candidate);
 			if (result == null)
-				result = caseNamedElement(candidate);
+				result = caseEntity_NamedElement(candidate);
 			if (result == null)
 				result = caseGenericdesigndecision_Candidate(candidate);
 			if (result == null)
@@ -196,19 +187,6 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDiscreteRangeChoice(DiscreteRangeChoice object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Degree Of Freedom Instance</em>'.
-	 * <!-- begin-user-doc --> This implementation returns
-	 * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Degree Of Freedom Instance</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDegreeOfFreedomInstance(DegreeOfFreedomInstance object) {
 		return null;
 	}
 
@@ -359,19 +337,6 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Class Choice</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -418,14 +383,16 @@ public class designdecisionSwitch<T> extends Switch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casefeaturemodel_NamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
+	public T caseNamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
 		return null;
 	}
 
@@ -441,6 +408,21 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenericdesigndecision_DecisionSpace(genericdesigndecision.DecisionSpace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEntity_NamedElement(NamedElement object) {
 		return null;
 	}
 

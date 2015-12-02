@@ -8,7 +8,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
 
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
  * @model abstract="true"
  * @generated
  */
-public interface ProcessingResourceDegree extends DegreeOfFreedomInstance {
+public interface ProcessingResourceDegree extends DegreeOfFreedom {
 	/**
 	 * Returns the value of the '<em><b>Processingresourcetype</b></em>' reference.
 	 * <!-- begin-user-doc -->

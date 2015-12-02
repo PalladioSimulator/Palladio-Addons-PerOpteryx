@@ -5,7 +5,6 @@ package de.uka.ipd.sdq.pcm.designdecision.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.uml2.types.TypesPackage;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
@@ -19,7 +18,6 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription;
@@ -46,12 +44,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	private EClass discreteRangeChoiceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass degreeOfFreedomInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -208,53 +200,8 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	@Override
-	public EClass getDegreeOfFreedomInstance() {
-		return degreeOfFreedomInstanceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getDegreeOfFreedomInstance_PrimaryChanged() {
-		return (EReference) degreeOfFreedomInstanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getDegreeOfFreedomInstance_Dof() {
-		return (EReference) degreeOfFreedomInstanceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getDegreeOfFreedomInstance_ChangeableElements() {
-		return (EReference) degreeOfFreedomInstanceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getChoice() {
 		return choiceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getChoice_DegreeOfFreedomInstance() {
-		return (EReference) choiceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -282,15 +229,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	@Override
 	public EClass getDecisionSpace() {
 		return decisionSpaceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getDecisionSpace_DegreesOfFreedom() {
-		return (EReference) decisionSpaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -401,19 +339,12 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		discreteRangeChoiceEClass = createEClass(DISCRETE_RANGE_CHOICE);
 
 		choiceEClass = createEClass(CHOICE);
-		createEReference(choiceEClass, CHOICE__DEGREE_OF_FREEDOM_INSTANCE);
-
-		degreeOfFreedomInstanceEClass = createEClass(DEGREE_OF_FREEDOM_INSTANCE);
-		createEReference(degreeOfFreedomInstanceEClass, DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED);
-		createEReference(degreeOfFreedomInstanceEClass, DEGREE_OF_FREEDOM_INSTANCE__DOF);
-		createEReference(degreeOfFreedomInstanceEClass, DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS);
 
 		classChoiceEClass = createEClass(CLASS_CHOICE);
 
 		continousRangeChoiceEClass = createEClass(CONTINOUS_RANGE_CHOICE);
 
 		decisionSpaceEClass = createEClass(DECISION_SPACE);
-		createEReference(decisionSpaceEClass, DECISION_SPACE__DEGREES_OF_FREEDOM);
 
 		candidateEClass = createEClass(CANDIDATE);
 		createEReference(candidateEClass, CANDIDATE__PCM_CHOICES);
@@ -460,10 +391,9 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 				.getEPackage(specificPackage.eNS_URI);
 		GenericdesigndecisionPackage theGenericdesigndecisionPackage = (GenericdesigndecisionPackage) EPackage.Registry.INSTANCE
 				.getEPackage(GenericdesigndecisionPackage.eNS_URI);
-		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage) EPackage.Registry.INSTANCE
 				.getEPackage(featuremodelPackage.eNS_URI);
+		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 		UniversalDoFPackage theUniversalDoFPackage = (UniversalDoFPackage) EPackage.Registry.INSTANCE
 				.getEPackage(UniversalDoFPackage.eNS_URI);
 
@@ -481,7 +411,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		discreteRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		discreteRangeChoiceEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getDiscreteRangeChoice());
 		choiceEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getChoice());
-		degreeOfFreedomInstanceEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		classChoiceEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getClassChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
@@ -499,21 +428,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoice_DegreeOfFreedomInstance(), this.getDegreeOfFreedomInstance(), null,
-				"degreeOfFreedomInstance", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(degreeOfFreedomInstanceEClass, DegreeOfFreedomInstance.class, "DegreeOfFreedomInstance",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDegreeOfFreedomInstance_PrimaryChanged(), theEcorePackage.getEObject(), null,
-				"primaryChanged", null, 1, 1, DegreeOfFreedomInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDegreeOfFreedomInstance_Dof(), thegdofPackage.getDegreeOfFreedom(), null, "dof", null, 1, 1,
-				DegreeOfFreedomInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDegreeOfFreedomInstance_ChangeableElements(), theEcorePackage.getEObject(), null,
-				"changeableElements", null, 1, -1, DegreeOfFreedomInstance.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(classChoiceEClass, ClassChoice.class, "ClassChoice", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -523,9 +437,6 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 
 		initEClass(decisionSpaceEClass, DecisionSpace.class, "DecisionSpace", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDecisionSpace_DegreesOfFreedom(), this.getDegreeOfFreedomInstance(), null, "degreesOfFreedom",
-				null, 1, -1, DecisionSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(candidateEClass, Candidate.class, "Candidate", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

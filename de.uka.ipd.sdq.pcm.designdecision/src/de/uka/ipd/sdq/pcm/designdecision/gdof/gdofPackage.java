@@ -581,13 +581,31 @@ public interface gdofPackage extends EPackage {
 	int DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM__PRIMARY_CHANGED = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Pcm Primary Changeable</b></em>' reference.
@@ -596,7 +614,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Degree Of Freedom</em>' class.
@@ -605,7 +623,7 @@ public interface gdofPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int DEGREE_OF_FREEDOM_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription <em>Changeable Element Description</em>}'.

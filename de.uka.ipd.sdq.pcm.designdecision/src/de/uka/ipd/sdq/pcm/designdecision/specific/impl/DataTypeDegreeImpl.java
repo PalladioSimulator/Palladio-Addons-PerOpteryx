@@ -6,9 +6,9 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
+import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl;
 import org.eclipse.emf.ecore.EClass;
 
-import de.uka.ipd.sdq.pcm.designdecision.impl.DegreeOfFreedomInstanceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DataTypeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
@@ -19,7 +19,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class DataTypeDegreeImpl extends DegreeOfFreedomInstanceImpl implements DataTypeDegree {
+public abstract class DataTypeDegreeImpl extends DegreeOfFreedomImpl implements DataTypeDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

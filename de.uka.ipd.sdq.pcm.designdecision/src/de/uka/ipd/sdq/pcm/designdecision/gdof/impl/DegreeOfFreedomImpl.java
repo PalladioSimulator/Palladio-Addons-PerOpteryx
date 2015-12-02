@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -36,6 +37,8 @@ import genericdesigndecision.genericDoF.GenericDoFPackage;
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getInteractionConstraints <em>Interaction Constraints</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getPrimaryChangeable <em>Primary Changeable</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getPrimaryChanged <em>Primary Changed</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getChangeableElements <em>Changeable Elements</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getPcmChangeableElementDescriptions <em>Pcm Changeable Element Descriptions</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl#getPcmPrimaryChangeable <em>Pcm Primary Changeable</em>}</li>
  * </ul>
@@ -81,6 +84,26 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	 * @ordered
 	 */
 	protected genericdesigndecision.genericDoF.ChangeableElementDescription primaryChangeable;
+
+	/**
+	 * The cached value of the '{@link #getPrimaryChanged() <em>Primary Changed</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrimaryChanged()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject primaryChanged;
+
+	/**
+	 * The cached value of the '{@link #getChangeableElements() <em>Changeable Elements</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChangeableElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject changeableElements;
 
 	/**
 	 * The cached value of the '{@link #getPcmChangeableElementDescriptions() <em>Pcm Changeable Element Descriptions</em>}' containment reference list.
@@ -208,6 +231,91 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	 * @generated
 	 */
 	@Override
+	public EObject getPrimaryChanged() {
+		if (primaryChanged != null && primaryChanged.eIsProxy()) {
+			InternalEObject oldPrimaryChanged = (InternalEObject) primaryChanged;
+			primaryChanged = eResolveProxy(oldPrimaryChanged);
+			if (primaryChanged != oldPrimaryChanged) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
+			}
+		}
+		return primaryChanged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetPrimaryChanged() {
+		return primaryChanged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPrimaryChanged(EObject newPrimaryChanged) {
+		EObject oldPrimaryChanged = primaryChanged;
+		primaryChanged = newPrimaryChanged;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED,
+					oldPrimaryChanged, primaryChanged));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject getChangeableElements() {
+		if (changeableElements != null && changeableElements.eIsProxy()) {
+			InternalEObject oldChangeableElements = (InternalEObject) changeableElements;
+			changeableElements = eResolveProxy(oldChangeableElements);
+			if (changeableElements != oldChangeableElements) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS, oldChangeableElements,
+							changeableElements));
+			}
+		}
+		return changeableElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetChangeableElements() {
+		return changeableElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setChangeableElements(EObject newChangeableElements) {
+		EObject oldChangeableElements = changeableElements;
+		changeableElements = newChangeableElements;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS,
+					oldChangeableElements, changeableElements));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<ChangeableElementDescription> getPcmChangeableElementDescriptions() {
 		if (pcmChangeableElementDescriptions == null) {
 			pcmChangeableElementDescriptions = new EObjectContainmentEList<ChangeableElementDescription>(
@@ -292,6 +400,14 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 			if (resolve)
 				return getPrimaryChangeable();
 			return basicGetPrimaryChangeable();
+		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			if (resolve)
+				return getPrimaryChanged();
+			return basicGetPrimaryChanged();
+		case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			if (resolve)
+				return getChangeableElements();
+			return basicGetChangeableElements();
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS:
 			return getPcmChangeableElementDescriptions();
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE:
@@ -326,6 +442,12 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 			setPrimaryChangeable((genericdesigndecision.genericDoF.ChangeableElementDescription) newValue);
 			return;
+		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			setPrimaryChanged((EObject) newValue);
+			return;
+		case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			setChangeableElements((EObject) newValue);
+			return;
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS:
 			getPcmChangeableElementDescriptions().clear();
 			getPcmChangeableElementDescriptions().addAll((Collection<? extends ChangeableElementDescription>) newValue);
@@ -356,6 +478,12 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 			setPrimaryChangeable((genericdesigndecision.genericDoF.ChangeableElementDescription) null);
 			return;
+		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			setPrimaryChanged((EObject) null);
+			return;
+		case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			setChangeableElements((EObject) null);
+			return;
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS:
 			getPcmChangeableElementDescriptions().clear();
 			return;
@@ -381,6 +509,10 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 			return interactionConstraints != null && !interactionConstraints.isEmpty();
 		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 			return primaryChangeable != null;
+		case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			return primaryChanged != null;
+		case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			return changeableElements != null;
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_CHANGEABLE_ELEMENT_DESCRIPTIONS:
 			return pcmChangeableElementDescriptions != null && !pcmChangeableElementDescriptions.isEmpty();
 		case gdofPackage.DEGREE_OF_FREEDOM__PCM_PRIMARY_CHANGEABLE:
@@ -406,6 +538,10 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 				return GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
 			case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				return GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
+			case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+				return GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
+			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+				return GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 			default:
 				return -1;
 			}
@@ -430,6 +566,10 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 				return gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
 			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				return gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
+			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+				return gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
+			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+				return gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 			default:
 				return -1;
 			}

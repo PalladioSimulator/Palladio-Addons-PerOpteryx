@@ -2,7 +2,11 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EModelElement;
+
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,15 +42,6 @@ public interface designdecisionFactory extends EFactory {
 	 * @generated
 	 */
 	Choice createChoice();
-
-	/**
-	 * Returns a new object of class '<em>Degree Of Freedom Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Degree Of Freedom Instance</em>'.
-	 * @generated
-	 */
-	DegreeOfFreedomInstance createDegreeOfFreedomInstance();
 
 	/**
 	 * Returns a new object of class '<em>Class Choice</em>'.
@@ -101,6 +96,8 @@ public interface designdecisionFactory extends EFactory {
 	 * @generated
 	 */
 	PCMDSEProblem createPCMDSEProblem();
+	
+	PCMDSEProblem createPCMDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException;
 
 	/**
 	 * Returns a new object of class '<em>PCM Metamodel Description</em>'.

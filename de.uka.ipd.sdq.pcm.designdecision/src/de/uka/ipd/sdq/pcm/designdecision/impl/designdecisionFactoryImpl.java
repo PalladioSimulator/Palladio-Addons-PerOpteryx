@@ -2,23 +2,16 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.*;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import de.uka.ipd.sdq.pcm.designdecision.Candidate;
-import de.uka.ipd.sdq.pcm.designdecision.Candidates;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -63,8 +56,6 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 			return createDiscreteRangeChoice();
 		case designdecisionPackage.CHOICE:
 			return createChoice();
-		case designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE:
-			return createDegreeOfFreedomInstance();
 		case designdecisionPackage.CLASS_CHOICE:
 			return createClassChoice();
 		case designdecisionPackage.CONTINOUS_RANGE_CHOICE:
@@ -102,16 +93,6 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	public Choice createChoice() {
 		ChoiceImpl choice = new ChoiceImpl();
 		return choice;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DegreeOfFreedomInstance createDegreeOfFreedomInstance() {
-		DegreeOfFreedomInstanceImpl degreeOfFreedomInstance = new DegreeOfFreedomInstanceImpl();
-		return degreeOfFreedomInstance;
 	}
 
 	/**
@@ -170,17 +151,6 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 * @generated
 	 */
 	@Override
-	public PCMDSEProblem createPCMDSEProblem() {
-		PCMDSEProblemImpl pcmdseProblem = new PCMDSEProblemImpl();
-		return pcmdseProblem;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public PCMMetamodelDescription createPCMMetamodelDescription() {
 		PCMMetamodelDescriptionImpl pcmMetamodelDescription = new PCMMetamodelDescriptionImpl();
 		return pcmMetamodelDescription;
@@ -203,6 +173,23 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	@Deprecated
 	public static designdecisionPackage getPackage() {
 		return designdecisionPackage.eINSTANCE;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public PCMDSEProblem createPCMDSEProblem() {
+		return null;
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public PCMDSEProblem createPCMDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException {
+		return new PCMDSEProblemImpl(dseConfig, model, designdecisionFactory.eINSTANCE.createPCMMetamodelDescription());
 	}
 
 } // designdecisionFactoryImpl

@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -18,7 +19,6 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
@@ -84,11 +84,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseDegreeOfFreedomInstance(DegreeOfFreedomInstance object) {
-			return createDegreeOfFreedomInstanceAdapter();
-		}
-
-		@Override
 		public Adapter caseClassChoice(ClassChoice object) {
 			return createClassChoiceAdapter();
 		}
@@ -134,11 +129,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNamedElement(NamedElement object) {
-			return createNamedElementAdapter();
-		}
-
-		@Override
 		public Adapter caseGenericdesigndecision_ClassChoice(genericdesigndecision.ClassChoice object) {
 			return createGenericdesigndecision_ClassChoiceAdapter();
 		}
@@ -155,13 +145,18 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casefeaturemodel_NamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
-			return createfeaturemodel_NamedElementAdapter();
+		public Adapter caseNamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
+			return createNamedElementAdapter();
 		}
 
 		@Override
 		public Adapter caseGenericdesigndecision_DecisionSpace(genericdesigndecision.DecisionSpace object) {
 			return createGenericdesigndecision_DecisionSpaceAdapter();
+		}
+
+		@Override
+		public Adapter caseEntity_NamedElement(NamedElement object) {
+			return createEntity_NamedElementAdapter();
 		}
 
 		@Override
@@ -217,19 +212,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDiscreteRangeChoiceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}'.
-	 * <!-- begin-user-doc --> This default implementation
-	* returns null so that we can easily ignore cases; it's useful to ignore a case when
-	* inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance
-	 * @generated
-	 */
-	public Adapter createDegreeOfFreedomInstanceAdapter() {
 		return null;
 	}
 
@@ -430,19 +412,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.featuremodel.NamedElement <em>Named Element</em>}'.
-	 * <!-- begin-user-doc
-	* --> This default implementation returns null so that we can easily ignore cases; it's useful
-	* to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.featuremodel.NamedElement
-	 * @generated
-	 */
-	public Adapter createfeaturemodel_NamedElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link genericdesigndecision.DecisionSpace <em>Decision Space</em>}'.
 	 * <!-- begin-user-doc -->
 	* This default implementation returns null so that we can easily ignore cases;
@@ -453,6 +422,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenericdesigndecision_DecisionSpaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.palladiosimulator.pcm.core.entity.NamedElement
+	 * @generated
+	 */
+	public Adapter createEntity_NamedElementAdapter() {
 		return null;
 	}
 
