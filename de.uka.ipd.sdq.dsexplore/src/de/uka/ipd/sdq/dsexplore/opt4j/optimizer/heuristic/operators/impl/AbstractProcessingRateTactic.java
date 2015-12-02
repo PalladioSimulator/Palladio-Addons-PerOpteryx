@@ -17,10 +17,10 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 
 public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 
@@ -43,7 +43,7 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 		for (Choice choice : candidate.getGenotype()) {
 			if (choice instanceof ContinousRangeChoice) {
 				ContinousRangeChoice continousRangeChoice = (ContinousRangeChoice) choice;
-				DegreeOfFreedomInstance DegreeOfFreedomInstance = choice.getDegreeOfFreedomInstance();
+				DegreeOfFreedomInstance DegreeOfFreedomInstance = choice.getDofInstance();
 				if (DegreeOfFreedomInstance instanceof ContinuousProcessingRateDegree) {
 					ContinuousProcessingRateDegree processingRateDegree = (ContinuousProcessingRateDegree) DegreeOfFreedomInstance;
 					if (EMFHelper.checkIdentity(processingRateDegree.getPrimaryChanged(), utilProcessingResourceToBeChanged.getResourceContainer_ProcessingResourceSpecification())
@@ -86,9 +86,9 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 		TacticsResultCandidate candidate = individualFactory.buildCandidate(copy.copy(individual.getGenotype()), individual);
 		// 3. Iterate through choices and find number of cores degree to change
 		for (Choice choice : candidate.getGenotype()) {
-			if (choice instanceof DiscreteRangeChoice && choice.getDegreeOfFreedomInstance() instanceof NumberOfCoresDegree) {
+			if (choice instanceof DiscreteRangeChoice && choice.getDofInstance() instanceof NumberOfCoresDegree) {
 				DiscreteRangeChoice discreteChoice = (DiscreteRangeChoice)choice;
-				NumberOfCoresDegree numberOfCoresDegree = (NumberOfCoresDegree)choice.getDegreeOfFreedomInstance();
+				NumberOfCoresDegree numberOfCoresDegree = (NumberOfCoresDegree)choice.getDofInstance();
 				
 				// check if degree handles the resource to update
 				if (EMFHelper.checkIdentity(numberOfCoresDegree.getProcessingresourcetype(),maxUtilProcessingResource.getActiveResourceType_ActiveResourceSpecification())
