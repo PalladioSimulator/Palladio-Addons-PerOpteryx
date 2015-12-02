@@ -191,7 +191,9 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	public DegreeOfFreedom getCorrespondingDoF(GenericDoF gdof) {
-		return gdof_to_dof.get(gdof);
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -296,7 +298,7 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT:
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT:
 				return evaluateMetamodel((EModelElement)arguments.get(0));
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF:
 				return getCorrespondingDoF((GenericDoF)arguments.get(0));

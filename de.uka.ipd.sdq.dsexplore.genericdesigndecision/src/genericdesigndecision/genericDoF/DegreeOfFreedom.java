@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EOperation;
  *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
  *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getInteractionConstraints <em>Interaction Constraints</em>}</li>
  *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChangeable <em>Primary Changeable</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
  *
  * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom()
@@ -101,5 +103,57 @@ public interface DegreeOfFreedom extends EObject {
 	 * @generated
 	 */
 	void setPrimaryChangeable(ChangeableElementDescription value);
+
+	/**
+	 * Returns the value of the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primary Changed</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primary Changed</em>' reference.
+	 * @see #setPrimaryChanged(EObject)
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_PrimaryChanged()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EObject getPrimaryChanged();
+
+	/**
+	 * Sets the value of the '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Primary Changed</em>' reference.
+	 * @see #getPrimaryChanged()
+	 * @generated
+	 */
+	void setPrimaryChanged(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Changeable Elements</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changeable Elements</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Changeable Elements</em>' reference.
+	 * @see #setChangeableElements(EObject)
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_ChangeableElements()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EObject getChangeableElements();
+
+	/**
+	 * Sets the value of the '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Changeable Elements</em>' reference.
+	 * @see #getChangeableElements()
+	 * @generated
+	 */
+	void setChangeableElements(EObject value);
 
 } // DegreeOfFreedom

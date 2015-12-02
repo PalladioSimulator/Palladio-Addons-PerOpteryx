@@ -5,8 +5,8 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.pcmsupport.PcmsupportFactory;
 import genericdesigndecision.universalDoF.Metamodel;
 
 public class DSEProblemFactoryImpl extends EFactoryImpl implements DSEProblemFactory{
@@ -39,7 +39,7 @@ public class DSEProblemFactoryImpl extends EFactoryImpl implements DSEProblemFac
 		switch (metamodel) {
 			//added for PCM support
 			case PCM: try {
-							problem = PcmsupportFactory.eINSTANCE.createPCMDSEProblem(dseConfig, model);
+							problem = designdecisionFactory.eINSTANCE.createPCMDSEProblem(dseConfig, model);
 					} catch (CoreException e) {
 							e.printStackTrace();
 					}

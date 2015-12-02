@@ -5,7 +5,7 @@ package genericdesigndecision.impl;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
+import genericdesigndecision.genericDoF.DegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import java.util.List;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,18 +123,17 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	
 	protected abstract List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem);
 	
-	protected void throwUnknownDegreeException(final DegreeOfFreedomInstance dd) {
+	protected void throwUnknownDegreeException(final DegreeOfFreedom dd) {
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
     }
 	
-	// TODO adapt to new Degree of Freedom implementation
 	@Override
     public String toString(){
 
         String result = "";
 
-        final List<DegreeOfFreedomInstance> decisions = this.problem.getDegreesOfFreedom();
-        for (final DegreeOfFreedomInstance designDecision : decisions) {
+        final List<DegreeOfFreedom> decisions = this.problem.getDofInstances();
+        for (final DegreeOfFreedom designDecision : decisions) {
             result += DegreeOfFreedomHelper.getDegreeDescription(designDecision)+";";
         }
         return result;

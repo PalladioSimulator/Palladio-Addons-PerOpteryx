@@ -126,7 +126,7 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	 * @generated NOT
 	 */
 	public UniversalDoF createUniversalDoF() {
-		return UniversalDoFImpl.getUniversalDoFImpl();
+		return UniversalDoFImpl.getUniversalDoF();
 	}
 
 	/**

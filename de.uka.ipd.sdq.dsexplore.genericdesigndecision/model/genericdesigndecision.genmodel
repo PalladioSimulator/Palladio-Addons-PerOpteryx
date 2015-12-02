@@ -76,6 +76,10 @@
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/interactionConstraints"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChangeable"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChanged"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/changeableElements"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="UniversalDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"

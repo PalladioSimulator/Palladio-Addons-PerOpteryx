@@ -9,11 +9,6 @@ import genericdesigndecision.genericDoF.GenericDoFPackage;
 import genericdesigndecision.genericDoF.impl.GenericDoFPackageImpl;
 
 import genericdesigndecision.impl.GenericdesigndecisionPackageImpl;
-
-import genericdesigndecision.pcmsupport.PcmsupportPackage;
-
-import genericdesigndecision.pcmsupport.impl.PcmsupportPackageImpl;
-
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
 
 import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl;
@@ -136,21 +131,18 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		GenericdesigndecisionPackageImpl theGenericdesigndecisionPackage = (GenericdesigndecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) instanceof GenericdesigndecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI) : GenericdesigndecisionPackage.eINSTANCE);
 		GenericDoFPackageImpl theGenericDoFPackage = (GenericDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) instanceof GenericDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) : GenericDoFPackage.eINSTANCE);
 		QualitypropertiesPackageImpl theQualitypropertiesPackage = (QualitypropertiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) instanceof QualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI) : QualitypropertiesPackage.eINSTANCE);
-		PcmsupportPackageImpl thePcmsupportPackage = (PcmsupportPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) instanceof PcmsupportPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PcmsupportPackage.eNS_URI) : PcmsupportPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUniversalDoFPackage.createPackageContents();
 		theGenericdesigndecisionPackage.createPackageContents();
 		theGenericDoFPackage.createPackageContents();
 		theQualitypropertiesPackage.createPackageContents();
-		thePcmsupportPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theUniversalDoFPackage.initializePackageContents();
 		theGenericdesigndecisionPackage.initializePackageContents();
 		theGenericDoFPackage.initializePackageContents();
 		theQualitypropertiesPackage.initializePackageContents();
-		thePcmsupportPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theUniversalDoFPackage.freeze();
@@ -274,7 +266,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getAMetamodelDescription__EvaluateMetamodel__EObject() {
+	public EOperation getAMetamodelDescription__EvaluateMetamodel__EModelElement() {
 		return aMetamodelDescriptionEClass.getEOperations().get(0);
 	}
 
@@ -482,7 +474,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__DOFREPOSITORY);
 		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
 		createEAttribute(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__NAME);
-		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT);
+		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT);
 		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF);
 
 		universalDoFEClass = createEClass(UNIVERSAL_DO_F);
@@ -560,7 +552,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		initEReference(getAMetamodelDescription_Gdof_to_dof(), this.getGenericDoFToDegreeOfFreedom(), null, "gdof_to_dof", null, 0, -1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAMetamodelDescription_Name(), this.getMetamodel(), "name", null, 0, 1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EObject(), this.getMetamodel(), "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EModelElement(), this.getMetamodel(), "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEModelElement(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getAMetamodelDescription__GetCorrespondingDoF__GenericDoF(), theGenericDoFPackage.getDegreeOfFreedom(), "getCorrespondingDoF", 1, 1, IS_UNIQUE, IS_ORDERED);

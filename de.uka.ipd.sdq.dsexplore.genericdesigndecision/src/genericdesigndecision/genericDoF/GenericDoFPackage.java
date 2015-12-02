@@ -535,13 +535,31 @@ public interface GenericDoFPackage extends EPackage {
 	int DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM__PRIMARY_CHANGED = 4;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Degree Of Freedom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEGREE_OF_FREEDOM_FEATURE_COUNT = 4;
+	int DEGREE_OF_FREEDOM_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Degree Of Freedom</em>' class.
@@ -786,6 +804,28 @@ public interface GenericDoFPackage extends EPackage {
 	EReference getDegreeOfFreedom_PrimaryChangeable();
 
 	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Primary Changed</em>'.
+	 * @see genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged()
+	 * @see #getDegreeOfFreedom()
+	 * @generated
+	 */
+	EReference getDegreeOfFreedom_PrimaryChanged();
+
+	/**
+	 * Returns the meta object for the reference '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Changeable Elements</em>'.
+	 * @see genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements()
+	 * @see #getDegreeOfFreedom()
+	 * @generated
+	 */
+	EReference getDegreeOfFreedom_ChangeableElements();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1003,6 +1043,22 @@ public interface GenericDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE = eINSTANCE.getDegreeOfFreedom_PrimaryChangeable();
+
+		/**
+		 * The meta object literal for the '<em><b>Primary Changed</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEGREE_OF_FREEDOM__PRIMARY_CHANGED = eINSTANCE.getDegreeOfFreedom_PrimaryChanged();
+
+		/**
+		 * The meta object literal for the '<em><b>Changeable Elements</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS = eINSTANCE.getDegreeOfFreedom_ChangeableElements();
 
 	}
 

@@ -165,6 +165,10 @@
           ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChangeable" ordered="false"
           lowerBound="1" eType="#//genericDoF/ChangeableElementDescription"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChanged" ordered="false"
+          lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElements" ordered="false"
+          lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="universalDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"

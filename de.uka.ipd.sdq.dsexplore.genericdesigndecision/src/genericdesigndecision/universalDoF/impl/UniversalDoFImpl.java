@@ -3,7 +3,6 @@
 package genericdesigndecision.universalDoF.impl;
 
 import genericdesigndecision.genericDoF.DegreeOfFreedom;
-import genericdesigndecision.pcmsupport.PcmsupportFactory;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
@@ -31,6 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	private UniversalDoFImpl() {
 		super();
 		//added for PCM support
-		supportedMetamodels.add(PcmsupportFactory.eINSTANCE.createPCMMetamodelDescription());
+		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createPCMMetamodelDescription());
 	}
 
 	/**

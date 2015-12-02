@@ -385,6 +385,24 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDegreeOfFreedom_PrimaryChanged() {
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDegreeOfFreedom_ChangeableElements() {
+		return (EReference)degreeOfFreedomEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericDoFFactory getGenericDoFFactory() {
 		return (GenericDoFFactory)getEFactoryInstance();
 	}
@@ -439,6 +457,8 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
 		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE);
+		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__PRIMARY_CHANGED);
+		createEReference(degreeOfFreedomEClass, DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS);
 	}
 
 	/**
@@ -509,6 +529,8 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		initEReference(getDegreeOfFreedom_ChangeableElementDescriptions(), this.getChangeableElementDescription(), null, "changeableElementDescriptions", null, 1, -1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDegreeOfFreedom_InteractionConstraints(), ecorePackage.getEOperation(), null, "interactionConstraints", null, 0, -1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDegreeOfFreedom_PrimaryChangeable(), this.getChangeableElementDescription(), null, "primaryChangeable", null, 1, 1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDegreeOfFreedom_PrimaryChanged(), ecorePackage.getEObject(), null, "primaryChanged", null, 1, 1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDegreeOfFreedom_ChangeableElements(), ecorePackage.getEObject(), null, "changeableElements", null, 1, 1, DegreeOfFreedom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
 
 } //GenericDoFPackageImpl
