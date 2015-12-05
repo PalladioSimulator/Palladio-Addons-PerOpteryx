@@ -10,7 +10,7 @@ import com.google.inject.Provider;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import genericdesigndecision.DecisionSpace;
 
 public class DSEIndividualFactory extends AbstractIndividualFactory<DSEIndividual> {
 
@@ -20,7 +20,7 @@ public class DSEIndividualFactory extends AbstractIndividualFactory<DSEIndividua
 	public DSEIndividualFactory(Provider<DSEIndividual> individualProvider,
 			Creator<DesignDecisionGenotype> creator) {
 		super(individualProvider, creator);
-		this.problem = Opt4JStarter.getProblem().getEMFProblem();
+		this.problem = Opt4JStarter.getProblem().getProblem();
 	}
 	
 	/*

@@ -18,10 +18,8 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.CopyDesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.AbstractStartingPopulationHeuristic;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 
@@ -118,7 +116,7 @@ public class StartingPopulationHeuristicImpl extends AbstractStartingPopulationH
             for (final Choice choice : individual.getGenotype()) {
                 if (choice instanceof ContinousRangeChoice) {
                     final ContinousRangeChoice continousRangeChoice = (ContinousRangeChoice) choice;
-                    final DegreeOfFreedomInstance DegreeOfFreedomInstance = choice.getDegreeOfFreedomInstance();
+                    final ADegreeOfFreedom DegreeOfFreedomInstance = choice.getDofInstance();
                     if (DegreeOfFreedomInstance instanceof ContinuousProcessingRateDegree) {
                         final ContinuousProcessingRateDegree processingRateDegree = (ContinuousProcessingRateDegree) DegreeOfFreedomInstance;
                         // actually adjust processing rate. Respect
@@ -276,10 +274,10 @@ public class StartingPopulationHeuristicImpl extends AbstractStartingPopulationH
         for (final Choice choice : individual.getGenotype()) {
             if (choice instanceof ClassChoice) {
                 final ClassChoice ClassChoice = (ClassChoice)choice;
-                if (ClassChoice.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
+                if (ClassChoice.getDofInstance() instanceof AllocationDegree) {
                     if (iterationCounter == allocationContext) {
                         boolean foundMatchingServer = false;
-                        final DegreeOfFreedomInstance dof = ClassChoice.getDegreeOfFreedomInstance();
+                        final ADegreeOfFreedom dof = ClassChoice.getDofInstance();
                         if (dof instanceof AllocationDegree){
                             final List<EObject> domain = ((AllocationDegree) dof).getClassDesignOptions();
                             for (final EObject entity : domain) {

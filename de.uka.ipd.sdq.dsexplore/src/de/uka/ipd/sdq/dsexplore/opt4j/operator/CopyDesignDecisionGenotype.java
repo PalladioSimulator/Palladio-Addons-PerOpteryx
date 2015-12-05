@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.operator.copy.Copy;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import genericdesigndecision.Choice;
 
 public class CopyDesignDecisionGenotype implements Copy<DesignDecisionGenotype> {
 

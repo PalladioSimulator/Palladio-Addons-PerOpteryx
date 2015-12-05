@@ -4,11 +4,11 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import genericdesigndecision.DecisionSpace;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * The {@link DSEProblem} defines the problem.
@@ -16,9 +16,9 @@ import genericdesigndecision.genericDoF.DegreeOfFreedom;
  */
 public interface DSEProblem {
 
-    public List<DegreeOfFreedom> getDesignDecisions();
+    public List<ADegreeOfFreedom> getDesignDecisions();
     
-    public EModelElement getEmfInstance();
+    public EObject getEmfInstance();
     
     public DesignDecisionGenotype getGenotypeOfInitialInstance();
 
@@ -37,8 +37,10 @@ public interface DSEProblem {
      * @param degreeClass
      * @return The matching DegreeOfFreedomInstance from this problem.
      */
-    public DegreeOfFreedom getDegree(final Entity entity, final Class<? extends DegreeOfFreedom> degreeClass);
+    public ADegreeOfFreedom getDegree(final Entity entity, final Class<? extends ADegreeOfFreedom> degreeClass);
 
-    public DecisionSpace getEMFProblem();
+    public DecisionSpace getProblem();
+
+	public List<DesignDecisionGenotype> getInitialGenotypeList();
 
 }

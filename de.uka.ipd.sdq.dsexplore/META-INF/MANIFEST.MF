@@ -29,7 +29,8 @@ Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.helper,
  de.uka.ipd.sdq.dsexplore.launch,
  de.uka.ipd.sdq.dsexplore.opt4j.genotype,
- de.uka.ipd.sdq.dsexplore.opt4j.representation
+ de.uka.ipd.sdq.dsexplore.opt4j.representation,
+ de.uka.ipd.sdq.dsexplore.opt4j.start
 Bundle-ClassPath: .,
  log4j/
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

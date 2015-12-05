@@ -2,8 +2,6 @@ package de.uka.ipd.sdq.dsexplore.exception;
 
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 
 /**
  * This exception is thrown if a {@link Choice} and the linked {@link DegreeOfFreedomInstance} 
@@ -18,7 +16,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 public class InvalidChoiceForDegreeException extends RuntimeException {
 
 	public InvalidChoiceForDegreeException(Choice choice) {
-		super("Degree "+choice.getDegreeOfFreedomInstance().getClass().getName()+" and choice "+choice.getClass().getName()+" do not match!");
+		super("Degree "+choice.getDofInstance().getClass().getName()+" and choice "+choice.getClass().getName()+" do not match!");
 
 	}
 

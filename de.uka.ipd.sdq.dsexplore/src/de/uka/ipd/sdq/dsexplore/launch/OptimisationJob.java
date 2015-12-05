@@ -63,7 +63,7 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	    List<PCMInstance> instances = new ArrayList<PCMInstance>();
 	    instances.add(pcmInstance);
 	    
-	    Opt4JStarter.init(evaluators, this.dseConfig,getPCMInstance(), monitor, this.blackboard);
+	    Opt4JStarter.init(evaluators, this.dseConfig, getPCMInstance(), monitor, this.blackboard);
 	    
 	    if (this.dseConfig.hasCacheInstances()){
 	    	fillCacheWithValues(this.dseConfig.getCacheInstancesFileName());

@@ -1,7 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -46,14 +44,12 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 	private MutationRate mutationRate;
 	private Rand random;
 	
-
 	@Inject
 	public MutateDesignDecisionGenotype(Rand random, MutateInteger mutateInteger, MutateDouble mutateDouble, MutationRate rate){
 		 this.mutateDouble = mutateDouble;
 		 this.mutateInteger = mutateInteger;
 		 this.mutationRate = rate;
-		 this.random = random;
-		 
+		 this.random = random; 
 	}
 
 	/**

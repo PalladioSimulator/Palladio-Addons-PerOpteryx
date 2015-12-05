@@ -10,11 +10,11 @@ import org.opt4j.core.Genotype;
 import org.opt4j.genotype.ListGenotype;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.pcm.designdecision.Candidate;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import genericdesigndecision.Candidate;
+import genericdesigndecision.Choice;
+import genericdesigndecision.DecisionSpace;
+import genericdesigndecision.GenericdesigndecisionFactory;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	
@@ -32,7 +32,7 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	private long numericId = IndividualID.incID();
 	
 	public DesignDecisionGenotype() {
-		this.choices = designdecisionFactory.eINSTANCE.createCandidate();
+		this.choices = GenericdesigndecisionFactory.eINSTANCE.createCandidate();
 	}
 	
 	public DesignDecisionGenotype(Candidate emfCandidate){
@@ -45,11 +45,11 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	 */
 	public DesignDecisionGenotype(Candidate emfCandidate, DecisionSpace problem, DesignDecisionGenotype initialCandidateGenotype){
 		// sort by designdecision order (time doesnot matter so much as this is only done at optimisation startup)
-		this.choices = designdecisionFactory.eINSTANCE.createCandidate();
-		for (DegreeOfFreedomInstance dof : problem.getDegreesOfFreedom()) {
+		this.choices = GenericdesigndecisionFactory.eINSTANCE.createCandidate();
+		for (ADegreeOfFreedom dof : problem.getDofInstances()) {
 			boolean foundChoice = false;
 			for (Choice choice : emfCandidate.getChoices()) {
-				if (EMFHelper.checkIdentity(choice.getDegreeOfFreedomInstance(),dof)){
+				if (EMFHelper.checkIdentity(choice.getDofInstance(), dof)){
 					this.choices.getChoices().add(choice);
 					foundChoice = true;
 					break;
@@ -58,7 +58,7 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 			if (!foundChoice){
 				// if not found take from initial genotype
 				for (Choice choice : initialCandidateGenotype.getEMFCandidate().getChoices()) {
-					if (EcoreUtil.equals(choice.getDegreeOfFreedomInstance(),dof)){
+					if (EcoreUtil.equals(choice.getDofInstance(), dof)){
 						this.choices.getChoices().add((Choice)EcoreUtil.copy(choice));
 						foundChoice = true;
 						break;
@@ -69,7 +69,7 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	}
 
 	private DesignDecisionGenotype(List<Choice> internalList) {
-		this.choices = designdecisionFactory.eINSTANCE.createCandidate();
+		this.choices = GenericdesigndecisionFactory.eINSTANCE.createCandidate();
 		this.choices.getChoices().addAll(internalList);
 	}
 
@@ -205,8 +205,6 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	public long getNumericID() {
 		return this.numericId;
 	}
-
-
 
 }
 

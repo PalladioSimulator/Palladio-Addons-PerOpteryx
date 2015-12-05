@@ -9,7 +9,7 @@ import org.opt4j.core.Objectives;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import genericdesigndecision.DecisionSpace;
 
 
 public class DSEIndividual extends Individual {
@@ -22,7 +22,7 @@ public class DSEIndividual extends Individual {
 	}
 	
 	protected DSEIndividual(){
-		this.problem = Opt4JStarter.getProblem().getEMFProblem();
+		this.problem = Opt4JStarter.getProblem().getProblem();
 	}
 	
 	/** Logger for log4j. */

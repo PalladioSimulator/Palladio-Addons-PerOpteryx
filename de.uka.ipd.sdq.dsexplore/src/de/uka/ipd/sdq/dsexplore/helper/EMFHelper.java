@@ -286,7 +286,7 @@ public class EMFHelper {
 
     public static Candidates createEMFCandidates(final Collection<DSEIndividual> individuals) {
         final Candidates candidates = designdecisionFactory.eINSTANCE.createCandidates();
-        candidates.setProblem(Opt4JStarter.getProblem().getEMFProblem());
+        candidates.setProblem(Opt4JStarter.getProblem().getProblem());
 
         for (final DSEIndividual dseIndividual : individuals) {
             candidates.getCandidate().add(dseIndividual.getGenotype().getEMFCandidate());

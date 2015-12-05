@@ -273,11 +273,6 @@ public class Adapter {
 		return TranslatedGenotype;
 	}
 	
-	
-
-	
-
-	
 
 	/** Translates the given {@link FinalBinaryGenotype} named FBGenotype to a 
 	 * {@link DesignDecisionGenotype}.

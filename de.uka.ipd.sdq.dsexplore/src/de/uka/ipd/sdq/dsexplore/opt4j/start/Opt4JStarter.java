@@ -76,8 +76,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.RuleBasedSearchModule;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
-import de.uka.ipd.sdq.pcm.cost.CostRepository;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
+//import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 import de.uka.ipd.sdq.tcfmoop.config.InsignificantSetQualityImprovementConfig;
@@ -87,6 +86,7 @@ import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import genericdesigndecision.Choice;
 import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.UniversalDoFFactory;
 
@@ -513,7 +513,7 @@ public class Opt4JStarter {
 
 	public static Choice createRandomGene(int index, DesignDecisionGenotype genotype) {
 		if (Opt4JStarter.creator != null){
-			return Opt4JStarter.creator.createRandomChoice(genotype.get(index).getDegreeOfFreedomInstance());
+			return Opt4JStarter.creator.createRandomChoice(genotype.get(index).getDofInstance());
 		} else {
 			logger.error("Could not create random value as DSECreator is not available.");
 			throw new RuntimeException("Could not create random value as DSECreator is not available.");
