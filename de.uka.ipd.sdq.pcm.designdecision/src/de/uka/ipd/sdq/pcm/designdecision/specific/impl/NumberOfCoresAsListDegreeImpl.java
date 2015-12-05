@@ -6,18 +6,24 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.DataTypeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedDataTypeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AOrderedIntegerDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -26,20 +32,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.NumberOfCoresAsListDegreeImpl#getListOfIntegers <em>List Of Integers</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.NumberOfCoresAsListDegreeImpl#getProcessingresourcetype <em>Processingresourcetype</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl implements NumberOfCoresAsListDegree {
+public class NumberOfCoresAsListDegreeImpl extends AOrderedIntegerDegreeImpl implements NumberOfCoresAsListDegree {
 	/**
-	 * The cached value of the '{@link #getListOfIntegers() <em>List Of Integers</em>}' attribute list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getListOfIntegers()
+	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Integer> listOfIntegers;
+	protected ProcessingResourceType processingresourcetype;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -59,16 +66,47 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EList<Integer> getListOfIntegers() {
-		if (listOfIntegers == null) {
-			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this,
-					specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS);
+	public ProcessingResourceType getProcessingresourcetype() {
+		if (processingresourcetype != null && ((EObject) processingresourcetype).eIsProxy()) {
+			InternalEObject oldProcessingresourcetype = (InternalEObject) processingresourcetype;
+			processingresourcetype = (ProcessingResourceType) eResolveProxy(oldProcessingresourcetype);
+			if (processingresourcetype != oldProcessingresourcetype) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE,
+							oldProcessingresourcetype, processingresourcetype));
+			}
 		}
-		return listOfIntegers;
+		return processingresourcetype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcessingResourceType basicGetProcessingresourcetype() {
+		return processingresourcetype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setProcessingresourcetype(ProcessingResourceType newProcessingresourcetype) {
+		ProcessingResourceType oldProcessingresourcetype = processingresourcetype;
+		processingresourcetype = newProcessingresourcetype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
+					processingresourcetype));
 	}
 
 	/**
@@ -78,8 +116,10 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS:
-			return getListOfIntegers();
+		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE:
+			if (resolve)
+				return getProcessingresourcetype();
+			return basicGetProcessingresourcetype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -88,13 +128,11 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS:
-			getListOfIntegers().clear();
-			getListOfIntegers().addAll((Collection<? extends Integer>) newValue);
+		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE:
+			setProcessingresourcetype((ProcessingResourceType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -107,8 +145,8 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS:
-			getListOfIntegers().clear();
+		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE:
+			setProcessingresourcetype((ProcessingResourceType) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -121,8 +159,8 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS:
-			return listOfIntegers != null && !listOfIntegers.isEmpty();
+		case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE:
+			return processingresourcetype != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -133,28 +171,16 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == DataTypeDegree.class) {
+		if (baseClass == ProcessingResourceDegree.class) {
 			switch (derivedFeatureID) {
+			case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE:
+				return specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE;
 			default:
 				return -1;
 			}
 		}
-		if (baseClass == DiscreteDegree.class) {
+		if (baseClass == NumberOfCoresDegree.class) {
 			switch (derivedFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == OrderedDataTypeDegree.class) {
-			switch (derivedFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == OrderedIntegerDegree.class) {
-			switch (derivedFeatureID) {
-			case specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS:
-				return specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS;
 			default:
 				return -1;
 			}
@@ -168,28 +194,16 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == DataTypeDegree.class) {
+		if (baseClass == ProcessingResourceDegree.class) {
 			switch (baseFeatureID) {
+			case specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE:
+				return specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__PROCESSINGRESOURCETYPE;
 			default:
 				return -1;
 			}
 		}
-		if (baseClass == DiscreteDegree.class) {
+		if (baseClass == NumberOfCoresDegree.class) {
 			switch (baseFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == OrderedDataTypeDegree.class) {
-			switch (baseFeatureID) {
-			default:
-				return -1;
-			}
-		}
-		if (baseClass == OrderedIntegerDegree.class) {
-			switch (baseFeatureID) {
-			case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
-				return specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS;
 			default:
 				return -1;
 			}
@@ -197,20 +211,17 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public Choice determineInitialChoice() {
+		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		choice.setDofInstance(this);
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (listOfIntegers: ");
-		result.append(listOfIntegers);
-		result.append(')');
-		return result.toString();
+		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
+				.getAssociatedMetamodel();
+		final ProcessingResourceSpecification prd = pcmdescr.getProcessingResourceSpec(this);
+		choice.setChosenValue(prd.getNumberOfReplicas());
+
+		return choice;
 	}
 
 } // NumberOfCoresAsListDegreeImpl

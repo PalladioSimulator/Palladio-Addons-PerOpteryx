@@ -6,11 +6,11 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
-import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.DegreeOfFreedomImpl;
 import org.eclipse.emf.ecore.EClass;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureConfigDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class FeatureConfigDegreeImpl extends DegreeOfFreedomImpl implements FeatureConfigDegree {
+public abstract class FeatureConfigDegreeImpl extends ADegreeOfFreedomImpl implements FeatureConfigDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

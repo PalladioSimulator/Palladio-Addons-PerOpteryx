@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Discrete Processing Rate Degree</b></em>'.
@@ -16,6 +18,6 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface DiscreteProcessingRateDegree extends DiscreteRangeDegree, ProcessingRateDegree {
+public interface DiscreteProcessingRateDegree extends ADiscreteRangeDegree, ProcessingRateDegree {
 
 } // DiscreteProcessingRateDegree

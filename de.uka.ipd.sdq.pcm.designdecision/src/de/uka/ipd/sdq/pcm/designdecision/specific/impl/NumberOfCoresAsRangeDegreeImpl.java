@@ -11,12 +11,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -30,10 +37,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl implements NumberOfCoresAsRangeDegree {
+public class NumberOfCoresAsRangeDegreeImpl extends ADiscreteRangeDegreeImpl implements NumberOfCoresAsRangeDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
@@ -58,7 +66,8 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,7 +86,8 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProcessingResourceType basicGetProcessingresourcetype() {
@@ -85,7 +95,8 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -198,6 +209,19 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		choice.setDofInstance(this);
+
+		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
+				.getAssociatedMetamodel();
+		final ProcessingResourceSpecification prd = pcmdescr.getProcessingResourceSpec(this);
+		choice.setChosenValue(prd.getNumberOfReplicas());
+
+		return choice;
 	}
 
 } // NumberOfCoresAsRangeDegreeImpl

@@ -38,5 +38,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units;visibility:=reexport,
  de.uka.ipd.sdq.probfunction;visibility:=reexport,
  org.palladiosimulator.solver,
- de.uka.ipd.sdq.dsexplore
+ de.uka.ipd.sdq.dsexplore,
+ org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy

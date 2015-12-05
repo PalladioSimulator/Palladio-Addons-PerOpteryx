@@ -9,13 +9,18 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AClassWithCopyDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -29,10 +34,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl implements ResourceSelectionDegree {
+public class ResourceSelectionDegreeImpl extends AClassWithCopyDegreeImpl implements ResourceSelectionDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
@@ -57,7 +63,8 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -76,7 +83,8 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProcessingResourceType basicGetProcessingresourcetype() {
@@ -84,7 +92,8 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -185,6 +194,19 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
+		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
+				.getProperty(this.getPrimaryChanged(), property);
+
+		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		choice.setValue(value);
+		choice.setDofInstance(this);
+
+		return (choice);
 	}
 
 } // ResourceSelectionDegreeImpl

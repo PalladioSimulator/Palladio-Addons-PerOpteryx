@@ -35,42 +35,6 @@ public interface specificFactory extends EFactory {
 	ExchangeComponentRule createExchangeComponentRule();
 
 	/**
-	 * Returns a new object of class '<em>Class As Reference Degree</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class As Reference Degree</em>'.
-	 * @generated
-	 */
-	ClassAsReferenceDegree createClassAsReferenceDegree();
-
-	/**
-	 * Returns a new object of class '<em>Continuous Range Degree</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Continuous Range Degree</em>'.
-	 * @generated
-	 */
-	ContinuousRangeDegree createContinuousRangeDegree();
-
-	/**
-	 * Returns a new object of class '<em>Discrete Range Degree</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Discrete Range Degree</em>'.
-	 * @generated
-	 */
-	DiscreteRangeDegree createDiscreteRangeDegree();
-
-	/**
-	 * Returns a new object of class '<em>Ordered Integer Degree</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ordered Integer Degree</em>'.
-	 * @generated
-	 */
-	OrderedIntegerDegree createOrderedIntegerDegree();
-
-	/**
 	 * Returns a new object of class '<em>Continuous Component Param Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -24,6 +24,8 @@ import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 /**
@@ -369,6 +371,30 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Choice createRandomChoice() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Choice determineInitialChoice() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -528,20 +554,20 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == genericdesigndecision.genericDoF.DegreeOfFreedom.class) {
+		if (baseClass == ADegreeOfFreedom.class) {
 			switch (derivedFeatureID) {
 			case gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS;
 			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
 			case gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
 			case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
 			case gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED;
 			case gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
-				return GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
+				return GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 			default:
 				return -1;
 			}
@@ -556,19 +582,19 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == genericdesigndecision.genericDoF.DegreeOfFreedom.class) {
+		if (baseClass == ADegreeOfFreedom.class) {
 			switch (baseFeatureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				return gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				return gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
 				return gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				return gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED:
 				return gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
 				return gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS;
 			default:
 				return -1;

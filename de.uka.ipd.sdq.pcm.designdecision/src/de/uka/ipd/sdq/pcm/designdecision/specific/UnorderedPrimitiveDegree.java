@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AUnorderedDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Unordered Primitive Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model abstract="true"
  * @generated
  */
-public interface UnorderedPrimitiveDegree extends UnorderedDegree {
+public interface UnorderedPrimitiveDegree extends AUnorderedDegree {
 } // UnorderedPrimitiveDegree

@@ -6,27 +6,30 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.util;
 
-import de.uka.ipd.sdq.featuremodel.NamedElement;
-import de.uka.ipd.sdq.identifier.Identifier;
+import de.uka.ipd.sdq.pcm.designdecision.specific.*;
+import genericdesigndecision.genericDoF.AClassAsReferenceDegree;
+import genericdesigndecision.genericDoF.AClassDegree;
+import genericdesigndecision.genericDoF.AClassWithCopyDegree;
+import genericdesigndecision.genericDoF.AContinuousRangeDegree;
+import genericdesigndecision.genericDoF.ADataTypeDegree;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADiscreteDegree;
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+import genericdesigndecision.genericDoF.AOrderedDataTypeDegree;
+import genericdesigndecision.genericDoF.AOrderedIntegerDegree;
+import genericdesigndecision.genericDoF.ARangeDegree;
+import genericdesigndecision.genericDoF.AStringSetDegree;
+import genericdesigndecision.genericDoF.AUnorderedDegree;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassWithCopyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DataTypeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteComponentParamDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureConfigDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
@@ -36,18 +39,13 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalFeatureDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedDataTypeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringComponentParamDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.StringSetDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedPrimitiveDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
@@ -108,258 +106,15 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case specificPackage.CLASS_AS_REFERENCE_DEGREE: {
-			ClassAsReferenceDegree classAsReferenceDegree = (ClassAsReferenceDegree) theEObject;
-			T result = caseClassAsReferenceDegree(classAsReferenceDegree);
-			if (result == null)
-				result = caseClassDegree(classAsReferenceDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(classAsReferenceDegree);
-			if (result == null)
-				result = caseNamedElement(classAsReferenceDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(classAsReferenceDegree);
-			if (result == null)
-				result = caseIdentifier(classAsReferenceDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.CLASS_DEGREE: {
-			ClassDegree classDegree = (ClassDegree) theEObject;
-			T result = caseClassDegree(classDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(classDegree);
-			if (result == null)
-				result = caseNamedElement(classDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(classDegree);
-			if (result == null)
-				result = caseIdentifier(classDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.CLASS_WITH_COPY_DEGREE: {
-			ClassWithCopyDegree classWithCopyDegree = (ClassWithCopyDegree) theEObject;
-			T result = caseClassWithCopyDegree(classWithCopyDegree);
-			if (result == null)
-				result = caseClassDegree(classWithCopyDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(classWithCopyDegree);
-			if (result == null)
-				result = caseNamedElement(classWithCopyDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(classWithCopyDegree);
-			if (result == null)
-				result = caseIdentifier(classWithCopyDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.CONTINUOUS_RANGE_DEGREE: {
-			ContinuousRangeDegree continuousRangeDegree = (ContinuousRangeDegree) theEObject;
-			T result = caseContinuousRangeDegree(continuousRangeDegree);
-			if (result == null)
-				result = caseRangeDegree(continuousRangeDegree);
-			if (result == null)
-				result = caseOrderedDataTypeDegree(continuousRangeDegree);
-			if (result == null)
-				result = caseDataTypeDegree(continuousRangeDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(continuousRangeDegree);
-			if (result == null)
-				result = caseNamedElement(continuousRangeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(continuousRangeDegree);
-			if (result == null)
-				result = caseIdentifier(continuousRangeDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.RANGE_DEGREE: {
-			RangeDegree rangeDegree = (RangeDegree) theEObject;
-			T result = caseRangeDegree(rangeDegree);
-			if (result == null)
-				result = caseOrderedDataTypeDegree(rangeDegree);
-			if (result == null)
-				result = caseDataTypeDegree(rangeDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(rangeDegree);
-			if (result == null)
-				result = caseNamedElement(rangeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(rangeDegree);
-			if (result == null)
-				result = caseIdentifier(rangeDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.DATA_TYPE_DEGREE: {
-			DataTypeDegree dataTypeDegree = (DataTypeDegree) theEObject;
-			T result = caseDataTypeDegree(dataTypeDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(dataTypeDegree);
-			if (result == null)
-				result = caseNamedElement(dataTypeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(dataTypeDegree);
-			if (result == null)
-				result = caseIdentifier(dataTypeDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.DISCRETE_DEGREE: {
-			DiscreteDegree discreteDegree = (DiscreteDegree) theEObject;
-			T result = caseDiscreteDegree(discreteDegree);
-			if (result == null)
-				result = caseDataTypeDegree(discreteDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(discreteDegree);
-			if (result == null)
-				result = caseNamedElement(discreteDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(discreteDegree);
-			if (result == null)
-				result = caseIdentifier(discreteDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.DISCRETE_RANGE_DEGREE: {
-			DiscreteRangeDegree discreteRangeDegree = (DiscreteRangeDegree) theEObject;
-			T result = caseDiscreteRangeDegree(discreteRangeDegree);
-			if (result == null)
-				result = caseRangeDegree(discreteRangeDegree);
-			if (result == null)
-				result = caseDiscreteDegree(discreteRangeDegree);
-			if (result == null)
-				result = caseOrderedDataTypeDegree(discreteRangeDegree);
-			if (result == null)
-				result = caseDataTypeDegree(discreteRangeDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(discreteRangeDegree);
-			if (result == null)
-				result = caseNamedElement(discreteRangeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(discreteRangeDegree);
-			if (result == null)
-				result = caseIdentifier(discreteRangeDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.ENUM_DEGREE: {
-			EnumDegree enumDegree = (EnumDegree) theEObject;
-			T result = caseEnumDegree(enumDegree);
-			if (result == null)
-				result = caseUnorderedDegree(enumDegree);
-			if (result == null)
-				result = caseDataTypeDegree(enumDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(enumDegree);
-			if (result == null)
-				result = caseNamedElement(enumDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(enumDegree);
-			if (result == null)
-				result = caseIdentifier(enumDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.UNORDERED_DEGREE: {
-			UnorderedDegree unorderedDegree = (UnorderedDegree) theEObject;
-			T result = caseUnorderedDegree(unorderedDegree);
-			if (result == null)
-				result = caseDataTypeDegree(unorderedDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(unorderedDegree);
-			if (result == null)
-				result = caseNamedElement(unorderedDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(unorderedDegree);
-			if (result == null)
-				result = caseIdentifier(unorderedDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.ORDERED_DATA_TYPE_DEGREE: {
-			OrderedDataTypeDegree orderedDataTypeDegree = (OrderedDataTypeDegree) theEObject;
-			T result = caseOrderedDataTypeDegree(orderedDataTypeDegree);
-			if (result == null)
-				result = caseDataTypeDegree(orderedDataTypeDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(orderedDataTypeDegree);
-			if (result == null)
-				result = caseNamedElement(orderedDataTypeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(orderedDataTypeDegree);
-			if (result == null)
-				result = caseIdentifier(orderedDataTypeDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.ORDERED_INTEGER_DEGREE: {
-			OrderedIntegerDegree orderedIntegerDegree = (OrderedIntegerDegree) theEObject;
-			T result = caseOrderedIntegerDegree(orderedIntegerDegree);
-			if (result == null)
-				result = caseDiscreteDegree(orderedIntegerDegree);
-			if (result == null)
-				result = caseOrderedDataTypeDegree(orderedIntegerDegree);
-			if (result == null)
-				result = caseDataTypeDegree(orderedIntegerDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(orderedIntegerDegree);
-			if (result == null)
-				result = caseNamedElement(orderedIntegerDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(orderedIntegerDegree);
-			if (result == null)
-				result = caseIdentifier(orderedIntegerDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.STRING_SET_DEGREE: {
-			StringSetDegree stringSetDegree = (StringSetDegree) theEObject;
-			T result = caseStringSetDegree(stringSetDegree);
-			if (result == null)
-				result = caseUnorderedDegree(stringSetDegree);
-			if (result == null)
-				result = caseDataTypeDegree(stringSetDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(stringSetDegree);
-			if (result == null)
-				result = caseNamedElement(stringSetDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(stringSetDegree);
-			if (result == null)
-				result = caseIdentifier(stringSetDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case specificPackage.UNORDERED_PRIMITIVE_DEGREE: {
 			UnorderedPrimitiveDegree unorderedPrimitiveDegree = (UnorderedPrimitiveDegree) theEObject;
 			T result = caseUnorderedPrimitiveDegree(unorderedPrimitiveDegree);
 			if (result == null)
-				result = caseUnorderedDegree(unorderedPrimitiveDegree);
+				result = caseAUnorderedDegree(unorderedPrimitiveDegree);
 			if (result == null)
-				result = caseDataTypeDegree(unorderedPrimitiveDegree);
+				result = caseADataTypeDegree(unorderedPrimitiveDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(unorderedPrimitiveDegree);
-			if (result == null)
-				result = caseNamedElement(unorderedPrimitiveDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(unorderedPrimitiveDegree);
-			if (result == null)
-				result = caseIdentifier(unorderedPrimitiveDegree);
+				result = caseADegreeOfFreedom(unorderedPrimitiveDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -368,21 +123,15 @@ public class specificSwitch<T> extends Switch<T> {
 			ContinuousComponentParamDegree continuousComponentParamDegree = (ContinuousComponentParamDegree) theEObject;
 			T result = caseContinuousComponentParamDegree(continuousComponentParamDegree);
 			if (result == null)
-				result = caseContinuousRangeDegree(continuousComponentParamDegree);
+				result = caseAContinuousRangeDegree(continuousComponentParamDegree);
 			if (result == null)
-				result = caseRangeDegree(continuousComponentParamDegree);
+				result = caseARangeDegree(continuousComponentParamDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(continuousComponentParamDegree);
+				result = caseAOrderedDataTypeDegree(continuousComponentParamDegree);
 			if (result == null)
-				result = caseDataTypeDegree(continuousComponentParamDegree);
+				result = caseADataTypeDegree(continuousComponentParamDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(continuousComponentParamDegree);
-			if (result == null)
-				result = caseNamedElement(continuousComponentParamDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(continuousComponentParamDegree);
-			if (result == null)
-				result = caseIdentifier(continuousComponentParamDegree);
+				result = caseADegreeOfFreedom(continuousComponentParamDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -391,25 +140,19 @@ public class specificSwitch<T> extends Switch<T> {
 			ContinuousProcessingRateDegree continuousProcessingRateDegree = (ContinuousProcessingRateDegree) theEObject;
 			T result = caseContinuousProcessingRateDegree(continuousProcessingRateDegree);
 			if (result == null)
-				result = caseContinuousRangeDegree(continuousProcessingRateDegree);
+				result = caseAContinuousRangeDegree(continuousProcessingRateDegree);
 			if (result == null)
 				result = caseProcessingRateDegree(continuousProcessingRateDegree);
 			if (result == null)
-				result = caseRangeDegree(continuousProcessingRateDegree);
+				result = caseARangeDegree(continuousProcessingRateDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(continuousProcessingRateDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(continuousProcessingRateDegree);
+				result = caseAOrderedDataTypeDegree(continuousProcessingRateDegree);
 			if (result == null)
-				result = caseDataTypeDegree(continuousProcessingRateDegree);
+				result = caseADataTypeDegree(continuousProcessingRateDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(continuousProcessingRateDegree);
-			if (result == null)
-				result = caseNamedElement(continuousProcessingRateDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(continuousProcessingRateDegree);
-			if (result == null)
-				result = caseIdentifier(continuousProcessingRateDegree);
+				result = caseADegreeOfFreedom(continuousProcessingRateDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -420,13 +163,7 @@ public class specificSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseProcessingResourceDegree(processingRateDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(processingRateDegree);
-			if (result == null)
-				result = caseNamedElement(processingRateDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(processingRateDegree);
-			if (result == null)
-				result = caseIdentifier(processingRateDegree);
+				result = caseADegreeOfFreedom(processingRateDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -435,13 +172,7 @@ public class specificSwitch<T> extends Switch<T> {
 			ProcessingResourceDegree processingResourceDegree = (ProcessingResourceDegree) theEObject;
 			T result = caseProcessingResourceDegree(processingResourceDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(processingResourceDegree);
-			if (result == null)
-				result = caseNamedElement(processingResourceDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(processingResourceDegree);
-			if (result == null)
-				result = caseIdentifier(processingResourceDegree);
+				result = caseADegreeOfFreedom(processingResourceDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -450,23 +181,17 @@ public class specificSwitch<T> extends Switch<T> {
 			DiscreteComponentParamDegree discreteComponentParamDegree = (DiscreteComponentParamDegree) theEObject;
 			T result = caseDiscreteComponentParamDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = caseDiscreteRangeDegree(discreteComponentParamDegree);
+				result = caseADiscreteRangeDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = caseRangeDegree(discreteComponentParamDegree);
+				result = caseARangeDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = caseDiscreteDegree(discreteComponentParamDegree);
+				result = caseADiscreteDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(discreteComponentParamDegree);
+				result = caseAOrderedDataTypeDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = caseDataTypeDegree(discreteComponentParamDegree);
+				result = caseADataTypeDegree(discreteComponentParamDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(discreteComponentParamDegree);
-			if (result == null)
-				result = caseNamedElement(discreteComponentParamDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(discreteComponentParamDegree);
-			if (result == null)
-				result = caseIdentifier(discreteComponentParamDegree);
+				result = caseADegreeOfFreedom(discreteComponentParamDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -475,27 +200,21 @@ public class specificSwitch<T> extends Switch<T> {
 			DiscreteProcessingRateDegree discreteProcessingRateDegree = (DiscreteProcessingRateDegree) theEObject;
 			T result = caseDiscreteProcessingRateDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = caseDiscreteRangeDegree(discreteProcessingRateDegree);
+				result = caseADiscreteRangeDegree(discreteProcessingRateDegree);
 			if (result == null)
 				result = caseProcessingRateDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = caseRangeDegree(discreteProcessingRateDegree);
+				result = caseARangeDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = caseDiscreteDegree(discreteProcessingRateDegree);
+				result = caseADiscreteDegree(discreteProcessingRateDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(discreteProcessingRateDegree);
+				result = caseAOrderedDataTypeDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = caseDataTypeDegree(discreteProcessingRateDegree);
+				result = caseADataTypeDegree(discreteProcessingRateDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(discreteProcessingRateDegree);
-			if (result == null)
-				result = caseNamedElement(discreteProcessingRateDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(discreteProcessingRateDegree);
-			if (result == null)
-				result = caseIdentifier(discreteProcessingRateDegree);
+				result = caseADegreeOfFreedom(discreteProcessingRateDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -504,13 +223,7 @@ public class specificSwitch<T> extends Switch<T> {
 			FeatureConfigDegree featureConfigDegree = (FeatureConfigDegree) theEObject;
 			T result = caseFeatureConfigDegree(featureConfigDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(featureConfigDegree);
-			if (result == null)
-				result = caseNamedElement(featureConfigDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(featureConfigDegree);
-			if (result == null)
-				result = caseIdentifier(featureConfigDegree);
+				result = caseADegreeOfFreedom(featureConfigDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -521,13 +234,7 @@ public class specificSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseFeatureConfigDegree(featureGroupDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(featureGroupDegree);
-			if (result == null)
-				result = caseNamedElement(featureGroupDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(featureGroupDegree);
-			if (result == null)
-				result = caseIdentifier(featureGroupDegree);
+				result = caseADegreeOfFreedom(featureGroupDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -543,25 +250,19 @@ public class specificSwitch<T> extends Switch<T> {
 			NumberOfCoresAsListDegree numberOfCoresAsListDegree = (NumberOfCoresAsListDegree) theEObject;
 			T result = caseNumberOfCoresAsListDegree(numberOfCoresAsListDegree);
 			if (result == null)
+				result = caseAOrderedIntegerDegree(numberOfCoresAsListDegree);
+			if (result == null)
 				result = caseNumberOfCoresDegree(numberOfCoresAsListDegree);
 			if (result == null)
-				result = caseOrderedIntegerDegree(numberOfCoresAsListDegree);
+				result = caseADiscreteDegree(numberOfCoresAsListDegree);
+			if (result == null)
+				result = caseAOrderedDataTypeDegree(numberOfCoresAsListDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(numberOfCoresAsListDegree);
 			if (result == null)
-				result = caseDiscreteDegree(numberOfCoresAsListDegree);
+				result = caseADataTypeDegree(numberOfCoresAsListDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(numberOfCoresAsListDegree);
-			if (result == null)
-				result = caseDataTypeDegree(numberOfCoresAsListDegree);
-			if (result == null)
-				result = casegdof_DegreeOfFreedom(numberOfCoresAsListDegree);
-			if (result == null)
-				result = caseNamedElement(numberOfCoresAsListDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(numberOfCoresAsListDegree);
-			if (result == null)
-				result = caseIdentifier(numberOfCoresAsListDegree);
+				result = caseADegreeOfFreedom(numberOfCoresAsListDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -572,13 +273,7 @@ public class specificSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseProcessingResourceDegree(numberOfCoresDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(numberOfCoresDegree);
-			if (result == null)
-				result = caseNamedElement(numberOfCoresDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(numberOfCoresDegree);
-			if (result == null)
-				result = caseIdentifier(numberOfCoresDegree);
+				result = caseADegreeOfFreedom(numberOfCoresDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -587,27 +282,21 @@ public class specificSwitch<T> extends Switch<T> {
 			NumberOfCoresAsRangeDegree numberOfCoresAsRangeDegree = (NumberOfCoresAsRangeDegree) theEObject;
 			T result = caseNumberOfCoresAsRangeDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = caseDiscreteRangeDegree(numberOfCoresAsRangeDegree);
+				result = caseADiscreteRangeDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
 				result = caseNumberOfCoresDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = caseRangeDegree(numberOfCoresAsRangeDegree);
+				result = caseARangeDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = caseDiscreteDegree(numberOfCoresAsRangeDegree);
+				result = caseADiscreteDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(numberOfCoresAsRangeDegree);
+				result = caseAOrderedDataTypeDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = caseDataTypeDegree(numberOfCoresAsRangeDegree);
+				result = caseADataTypeDegree(numberOfCoresAsRangeDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(numberOfCoresAsRangeDegree);
-			if (result == null)
-				result = caseNamedElement(numberOfCoresAsRangeDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(numberOfCoresAsRangeDegree);
-			if (result == null)
-				result = caseIdentifier(numberOfCoresAsRangeDegree);
+				result = caseADegreeOfFreedom(numberOfCoresAsRangeDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -618,13 +307,7 @@ public class specificSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseFeatureConfigDegree(optionalFeatureDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(optionalFeatureDegree);
-			if (result == null)
-				result = caseNamedElement(optionalFeatureDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(optionalFeatureDegree);
-			if (result == null)
-				result = caseIdentifier(optionalFeatureDegree);
+				result = caseADegreeOfFreedom(optionalFeatureDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -633,23 +316,17 @@ public class specificSwitch<T> extends Switch<T> {
 			ResourceContainerReplicationDegree resourceContainerReplicationDegree = (ResourceContainerReplicationDegree) theEObject;
 			T result = caseResourceContainerReplicationDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = caseDiscreteRangeDegree(resourceContainerReplicationDegree);
+				result = caseADiscreteRangeDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = caseRangeDegree(resourceContainerReplicationDegree);
+				result = caseARangeDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = caseDiscreteDegree(resourceContainerReplicationDegree);
+				result = caseADiscreteDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(resourceContainerReplicationDegree);
+				result = caseAOrderedDataTypeDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = caseDataTypeDegree(resourceContainerReplicationDegree);
+				result = caseADataTypeDegree(resourceContainerReplicationDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(resourceContainerReplicationDegree);
-			if (result == null)
-				result = caseNamedElement(resourceContainerReplicationDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(resourceContainerReplicationDegree);
-			if (result == null)
-				result = caseIdentifier(resourceContainerReplicationDegree);
+				result = caseADegreeOfFreedom(resourceContainerReplicationDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -661,23 +338,17 @@ public class specificSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseResourceContainerReplicationDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = caseDiscreteRangeDegree(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseADiscreteRangeDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = caseRangeDegree(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseARangeDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = caseDiscreteDegree(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseADiscreteDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseAOrderedDataTypeDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = caseDataTypeDegree(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseADataTypeDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(resourceContainerReplicationDegreeWithComponentChange);
-			if (result == null)
-				result = caseNamedElement(resourceContainerReplicationDegreeWithComponentChange);
-			if (result == null)
-				result = caseDegreeOfFreedom(resourceContainerReplicationDegreeWithComponentChange);
-			if (result == null)
-				result = caseIdentifier(resourceContainerReplicationDegreeWithComponentChange);
+				result = caseADegreeOfFreedom(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -686,19 +357,13 @@ public class specificSwitch<T> extends Switch<T> {
 			ResourceSelectionDegree resourceSelectionDegree = (ResourceSelectionDegree) theEObject;
 			T result = caseResourceSelectionDegree(resourceSelectionDegree);
 			if (result == null)
-				result = caseClassWithCopyDegree(resourceSelectionDegree);
+				result = caseAClassWithCopyDegree(resourceSelectionDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(resourceSelectionDegree);
 			if (result == null)
-				result = caseClassDegree(resourceSelectionDegree);
+				result = caseAClassDegree(resourceSelectionDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(resourceSelectionDegree);
-			if (result == null)
-				result = caseNamedElement(resourceSelectionDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(resourceSelectionDegree);
-			if (result == null)
-				result = caseIdentifier(resourceSelectionDegree);
+				result = caseADegreeOfFreedom(resourceSelectionDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -707,19 +372,13 @@ public class specificSwitch<T> extends Switch<T> {
 			SchedulingPolicyDegree schedulingPolicyDegree = (SchedulingPolicyDegree) theEObject;
 			T result = caseSchedulingPolicyDegree(schedulingPolicyDegree);
 			if (result == null)
-				result = caseClassAsReferenceDegree(schedulingPolicyDegree);
+				result = caseAClassAsReferenceDegree(schedulingPolicyDegree);
 			if (result == null)
 				result = caseProcessingResourceDegree(schedulingPolicyDegree);
 			if (result == null)
-				result = caseClassDegree(schedulingPolicyDegree);
+				result = caseAClassDegree(schedulingPolicyDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(schedulingPolicyDegree);
-			if (result == null)
-				result = caseNamedElement(schedulingPolicyDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(schedulingPolicyDegree);
-			if (result == null)
-				result = caseIdentifier(schedulingPolicyDegree);
+				result = caseADegreeOfFreedom(schedulingPolicyDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -728,19 +387,13 @@ public class specificSwitch<T> extends Switch<T> {
 			StringComponentParamDegree stringComponentParamDegree = (StringComponentParamDegree) theEObject;
 			T result = caseStringComponentParamDegree(stringComponentParamDegree);
 			if (result == null)
-				result = caseStringSetDegree(stringComponentParamDegree);
+				result = caseAStringSetDegree(stringComponentParamDegree);
 			if (result == null)
-				result = caseUnorderedDegree(stringComponentParamDegree);
+				result = caseAUnorderedDegree(stringComponentParamDegree);
 			if (result == null)
-				result = caseDataTypeDegree(stringComponentParamDegree);
+				result = caseADataTypeDegree(stringComponentParamDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(stringComponentParamDegree);
-			if (result == null)
-				result = caseNamedElement(stringComponentParamDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(stringComponentParamDegree);
-			if (result == null)
-				result = caseIdentifier(stringComponentParamDegree);
+				result = caseADegreeOfFreedom(stringComponentParamDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -749,17 +402,11 @@ public class specificSwitch<T> extends Switch<T> {
 			AllocationDegree allocationDegree = (AllocationDegree) theEObject;
 			T result = caseAllocationDegree(allocationDegree);
 			if (result == null)
-				result = caseClassAsReferenceDegree(allocationDegree);
+				result = caseAClassAsReferenceDegree(allocationDegree);
 			if (result == null)
-				result = caseClassDegree(allocationDegree);
+				result = caseAClassDegree(allocationDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(allocationDegree);
-			if (result == null)
-				result = caseNamedElement(allocationDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(allocationDegree);
-			if (result == null)
-				result = caseIdentifier(allocationDegree);
+				result = caseADegreeOfFreedom(allocationDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -768,17 +415,11 @@ public class specificSwitch<T> extends Switch<T> {
 			AssembledComponentDegree assembledComponentDegree = (AssembledComponentDegree) theEObject;
 			T result = caseAssembledComponentDegree(assembledComponentDegree);
 			if (result == null)
-				result = caseClassAsReferenceDegree(assembledComponentDegree);
+				result = caseAClassAsReferenceDegree(assembledComponentDegree);
 			if (result == null)
-				result = caseClassDegree(assembledComponentDegree);
+				result = caseAClassDegree(assembledComponentDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(assembledComponentDegree);
-			if (result == null)
-				result = caseNamedElement(assembledComponentDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(assembledComponentDegree);
-			if (result == null)
-				result = caseIdentifier(assembledComponentDegree);
+				result = caseADegreeOfFreedom(assembledComponentDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -787,23 +428,17 @@ public class specificSwitch<T> extends Switch<T> {
 			CapacityDegree capacityDegree = (CapacityDegree) theEObject;
 			T result = caseCapacityDegree(capacityDegree);
 			if (result == null)
-				result = caseDiscreteRangeDegree(capacityDegree);
+				result = caseADiscreteRangeDegree(capacityDegree);
 			if (result == null)
-				result = caseRangeDegree(capacityDegree);
+				result = caseARangeDegree(capacityDegree);
 			if (result == null)
-				result = caseDiscreteDegree(capacityDegree);
+				result = caseADiscreteDegree(capacityDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(capacityDegree);
+				result = caseAOrderedDataTypeDegree(capacityDegree);
 			if (result == null)
-				result = caseDataTypeDegree(capacityDegree);
+				result = caseADataTypeDegree(capacityDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(capacityDegree);
-			if (result == null)
-				result = caseNamedElement(capacityDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(capacityDegree);
-			if (result == null)
-				result = caseIdentifier(capacityDegree);
+				result = caseADegreeOfFreedom(capacityDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -812,21 +447,15 @@ public class specificSwitch<T> extends Switch<T> {
 			MonitoringDegree monitoringDegree = (MonitoringDegree) theEObject;
 			T result = caseMonitoringDegree(monitoringDegree);
 			if (result == null)
-				result = caseContinuousRangeDegree(monitoringDegree);
+				result = caseAContinuousRangeDegree(monitoringDegree);
 			if (result == null)
-				result = caseRangeDegree(monitoringDegree);
+				result = caseARangeDegree(monitoringDegree);
 			if (result == null)
-				result = caseOrderedDataTypeDegree(monitoringDegree);
+				result = caseAOrderedDataTypeDegree(monitoringDegree);
 			if (result == null)
-				result = caseDataTypeDegree(monitoringDegree);
+				result = caseADataTypeDegree(monitoringDegree);
 			if (result == null)
-				result = casegdof_DegreeOfFreedom(monitoringDegree);
-			if (result == null)
-				result = caseNamedElement(monitoringDegree);
-			if (result == null)
-				result = caseDegreeOfFreedom(monitoringDegree);
-			if (result == null)
-				result = caseIdentifier(monitoringDegree);
+				result = caseADegreeOfFreedom(monitoringDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -846,181 +475,6 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExchangeComponentRule(ExchangeComponentRule object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class As Reference Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns
-	 * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class As Reference Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassAsReferenceDegree(ClassAsReferenceDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class Degree</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassDegree(ClassDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class With Copy Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class With Copy Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassWithCopyDegree(ClassWithCopyDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Continuous Range Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Continuous Range Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContinuousRangeDegree(ContinuousRangeDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Range Degree</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Range Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRangeDegree(RangeDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataTypeDegree(DataTypeDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Discrete Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Discrete Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDiscreteDegree(DiscreteDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Discrete Range Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Discrete Range Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDiscreteRangeDegree(DiscreteRangeDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Enum Degree</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Enum Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEnumDegree(EnumDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unordered Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unordered Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnorderedDegree(UnorderedDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ordered Data Type Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ordered Data Type Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrderedDataTypeDegree(OrderedDataTypeDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ordered Integer Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ordered Integer Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOrderedIntegerDegree(OrderedIntegerDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Set Degree</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Set Degree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringSetDegree(StringSetDegree object) {
 		return null;
 	}
 
@@ -1326,62 +780,197 @@ public class specificSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdentifier(Identifier object) {
+	public T caseADegreeOfFreedom(ADegreeOfFreedom object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>AData Type Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>AData Type Degree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElement(NamedElement object) {
+	public T caseADataTypeDegree(ADataTypeDegree object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>AUnordered Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>AUnordered Degree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDegreeOfFreedom(DegreeOfFreedom object) {
+	public T caseAUnorderedDegree(AUnorderedDegree object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>AOrdered Data Type Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>AOrdered Data Type Degree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casegdof_DegreeOfFreedom(de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom object) {
+	public T caseAOrderedDataTypeDegree(AOrderedDataTypeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ARange Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ARange Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseARangeDegree(ARangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AContinuous Range Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AContinuous Range Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAContinuousRangeDegree(AContinuousRangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ADiscrete Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ADiscrete Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADiscreteDegree(ADiscreteDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ADiscrete Range Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ADiscrete Range Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADiscreteRangeDegree(ADiscreteRangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AOrdered Integer Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AOrdered Integer Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAOrderedIntegerDegree(AOrderedIntegerDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassDegree(AClassDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass With Copy Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass With Copy Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassWithCopyDegree(AClassWithCopyDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass As Reference Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass As Reference Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassAsReferenceDegree(AClassAsReferenceDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AString Set Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AString Set Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAStringSetDegree(AStringSetDegree object) {
 		return null;
 	}
 

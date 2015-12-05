@@ -12,6 +12,7 @@ import org.palladiosimulator.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.*;
 import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
@@ -109,13 +110,18 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePCMDSEProblem(PCMDSEProblem object) {
-			return createPCMDSEProblemAdapter();
+		public Adapter caseDSEProblem(de.uka.ipd.sdq.pcm.designdecision.DSEProblem object) {
+			return createDSEProblemAdapter();
 		}
 
 		@Override
-		public Adapter casePCMMetamodelDescription(PCMMetamodelDescription object) {
-			return createPCMMetamodelDescriptionAdapter();
+		public Adapter caseMetamodelDescription(MetamodelDescription object) {
+			return createMetamodelDescriptionAdapter();
+		}
+
+		@Override
+		public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
+			return createGenomeToCandidateModelTransformationAdapter();
 		}
 
 		@Override
@@ -170,13 +176,24 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseDSEProblem(DSEProblem object) {
-			return createDSEProblemAdapter();
+		public Adapter caseGenericdesigndecision_DSEProblem(DSEProblem object) {
+			return createGenericdesigndecision_DSEProblemAdapter();
 		}
 
 		@Override
 		public Adapter caseADSEProblem(ADSEProblem object) {
 			return createADSEProblemAdapter();
+		}
+
+		@Override
+		public Adapter caseGenericdesigndecision_GenomeToCandidateModelTransformation(
+				de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation object) {
+			return createGenericdesigndecision_GenomeToCandidateModelTransformationAdapter();
+		}
+
+		@Override
+		public Adapter caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
+			return createAGenomeToCandidateModelTransformationAdapter();
 		}
 
 		@Override
@@ -296,34 +313,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCandidatesAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem <em>PCMDSE Problem</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem
-	 * @generated
-	 */
-	public Adapter createPCMDSEProblemAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription <em>PCM Metamodel Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription
-	 * @generated
-	 */
-	public Adapter createPCMMetamodelDescriptionAdapter() {
 		return null;
 	}
 
@@ -477,7 +466,49 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
 	 * @generated
 	 */
+	public Adapter createGenericdesigndecision_DSEProblemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.DSEProblem <em>DSE Problem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.DSEProblem
+	 * @generated
+	 */
 	public Adapter createDSEProblemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription <em>Metamodel Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription
+	 * @generated
+	 */
+	public Adapter createMetamodelDescriptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createGenomeToCandidateModelTransformationAdapter() {
 		return null;
 	}
 
@@ -496,6 +527,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createGenericdesigndecision_GenomeToCandidateModelTransformationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -506,6 +551,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAMetamodelDescriptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
 		return null;
 	}
 

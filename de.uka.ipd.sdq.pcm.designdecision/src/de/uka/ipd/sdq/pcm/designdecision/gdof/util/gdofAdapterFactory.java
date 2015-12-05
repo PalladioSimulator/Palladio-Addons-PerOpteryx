@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.uka.ipd.sdq.featuremodel.NamedElement;
 import de.uka.ipd.sdq.identifier.Identifier;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DoFRepository;
@@ -180,8 +181,8 @@ public class gdofAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseGenericDoF_DegreeOfFreedom(genericdesigndecision.genericDoF.DegreeOfFreedom object) {
-			return createGenericDoF_DegreeOfFreedomAdapter();
+		public Adapter caseADegreeOfFreedom(ADegreeOfFreedom object) {
+			return createADegreeOfFreedomAdapter();
 		}
 
 		@Override
@@ -493,16 +494,16 @@ public class gdofAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.DegreeOfFreedom <em>Degree Of Freedom</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom <em>ADegree Of Freedom</em>}'.
 	 * <!-- begin-user-doc -->
-	* This default implementation returns null so that we can easily ignore cases;
-	* it's useful to ignore a case when inheritance will catch all the cases anyway.
-	* <!-- end-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.genericDoF.DegreeOfFreedom
+	 * @see genericdesigndecision.genericDoF.ADegreeOfFreedom
 	 * @generated
 	 */
-	public Adapter createGenericDoF_DegreeOfFreedomAdapter() {
+	public Adapter createADegreeOfFreedomAdapter() {
 		return null;
 	}
 

@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AContinuousRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Continuous Processing Rate Degree</b></em>'.
@@ -22,5 +24,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface ContinuousProcessingRateDegree extends ContinuousRangeDegree, ProcessingRateDegree {
+public interface ContinuousProcessingRateDegree extends AContinuousRangeDegree, ProcessingRateDegree {
 } // ContinuousProcessingRateDegree

@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Capacity Degree</b></em>'.
@@ -25,5 +27,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface CapacityDegree extends DiscreteRangeDegree {
+public interface CapacityDegree extends ADiscreteRangeDegree {
 } // CapacityDegree

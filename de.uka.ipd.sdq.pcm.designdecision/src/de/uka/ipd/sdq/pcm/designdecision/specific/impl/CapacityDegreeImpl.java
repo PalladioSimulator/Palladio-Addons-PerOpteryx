@@ -7,9 +7,15 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.repository.PassiveResource;
 
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +24,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class CapacityDegreeImpl extends DiscreteRangeDegreeImpl implements CapacityDegree {
+public class CapacityDegreeImpl extends ADiscreteRangeDegreeImpl implements CapacityDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,6 +42,19 @@ public class CapacityDegreeImpl extends DiscreteRangeDegreeImpl implements Capac
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.CAPACITY_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		choice.setDofInstance(this);
+
+		final EObject entity = this.getPrimaryChanged();
+
+		final PassiveResource pr = (PassiveResource) entity;
+		choice.setChosenValue(Integer.valueOf(pr.getCapacity_PassiveResource().getSpecification()));
+
+		return choice;
 	}
 
 } //CapacityDegreeImpl

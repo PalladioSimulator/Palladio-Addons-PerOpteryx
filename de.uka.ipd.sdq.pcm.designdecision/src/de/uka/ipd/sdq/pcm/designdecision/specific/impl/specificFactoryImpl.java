@@ -11,13 +11,10 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset;
@@ -25,7 +22,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalFeatureDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
@@ -75,14 +71,6 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 		switch (eClass.getClassifierID()) {
 		case specificPackage.EXCHANGE_COMPONENT_RULE:
 			return createExchangeComponentRule();
-		case specificPackage.CLASS_AS_REFERENCE_DEGREE:
-			return createClassAsReferenceDegree();
-		case specificPackage.CONTINUOUS_RANGE_DEGREE:
-			return createContinuousRangeDegree();
-		case specificPackage.DISCRETE_RANGE_DEGREE:
-			return createDiscreteRangeDegree();
-		case specificPackage.ORDERED_INTEGER_DEGREE:
-			return createOrderedIntegerDegree();
 		case specificPackage.CONTINUOUS_COMPONENT_PARAM_DEGREE:
 			return createContinuousComponentParamDegree();
 		case specificPackage.CONTINUOUS_PROCESSING_RATE_DEGREE:
@@ -132,46 +120,6 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	public ExchangeComponentRule createExchangeComponentRule() {
 		ExchangeComponentRuleImpl exchangeComponentRule = new ExchangeComponentRuleImpl();
 		return exchangeComponentRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ClassAsReferenceDegree createClassAsReferenceDegree() {
-		ClassAsReferenceDegreeImpl classAsReferenceDegree = new ClassAsReferenceDegreeImpl();
-		return classAsReferenceDegree;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ContinuousRangeDegree createContinuousRangeDegree() {
-		ContinuousRangeDegreeImpl continuousRangeDegree = new ContinuousRangeDegreeImpl();
-		return continuousRangeDegree;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DiscreteRangeDegree createDiscreteRangeDegree() {
-		DiscreteRangeDegreeImpl discreteRangeDegree = new DiscreteRangeDegreeImpl();
-		return discreteRangeDegree;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OrderedIntegerDegree createOrderedIntegerDegree() {
-		OrderedIntegerDegreeImpl orderedIntegerDegree = new OrderedIntegerDegreeImpl();
-		return orderedIntegerDegree;
 	}
 
 	/**

@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AClassAsReferenceDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Scheduling Policy Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface SchedulingPolicyDegree extends ClassAsReferenceDegree, ProcessingResourceDegree {
+public interface SchedulingPolicyDegree extends AClassAsReferenceDegree, ProcessingResourceDegree {
 } // SchedulingPolicyDegree

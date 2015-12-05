@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AClassWithCopyDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Resource Selection Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface ResourceSelectionDegree extends ClassWithCopyDegree, ProcessingResourceDegree {
+public interface ResourceSelectionDegree extends AClassWithCopyDegree, ProcessingResourceDegree {
 } // ResourceSelectionDegree

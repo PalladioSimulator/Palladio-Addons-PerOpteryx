@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.uml2.types.TypesPackage;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
 import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
@@ -17,10 +16,11 @@ import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem;
-import de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription;
+import de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
@@ -31,6 +31,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl;
 import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
 import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 import de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryPackageImpl;
 
@@ -86,14 +87,21 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pcmdseProblemEClass = null;
+	private EClass dseProblemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pcmMetamodelDescriptionEClass = null;
+	private EClass metamodelDescriptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genomeToCandidateModelTransformationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -146,7 +154,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
+		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		gdofPackageImpl thegdofPackage = (gdofPackageImpl) (EPackage.Registry.INSTANCE
@@ -295,8 +303,8 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	@Override
-	public EClass getPCMDSEProblem() {
-		return pcmdseProblemEClass;
+	public EClass getDSEProblem() {
+		return dseProblemEClass;
 	}
 
 	/**
@@ -305,8 +313,18 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	@Override
-	public EClass getPCMMetamodelDescription() {
-		return pcmMetamodelDescriptionEClass;
+	public EClass getMetamodelDescription() {
+		return metamodelDescriptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGenomeToCandidateModelTransformation() {
+		return genomeToCandidateModelTransformationEClass;
 	}
 
 	/**
@@ -354,9 +372,11 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		createEReference(candidatesEClass, CANDIDATES__PCM_CANDIDATE);
 		createEReference(candidatesEClass, CANDIDATES__PCM_PROBLEM);
 
-		pcmdseProblemEClass = createEClass(PCMDSE_PROBLEM);
+		dseProblemEClass = createEClass(DSE_PROBLEM);
 
-		pcmMetamodelDescriptionEClass = createEClass(PCM_METAMODEL_DESCRIPTION);
+		metamodelDescriptionEClass = createEClass(METAMODEL_DESCRIPTION);
+
+		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
 	}
 
 	/**
@@ -420,8 +440,10 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		candidateEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 		candidateEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getCandidate());
 		candidatesEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getCandidates());
-		pcmdseProblemEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getADSEProblem());
-		pcmMetamodelDescriptionEClass.getESuperTypes().add(theUniversalDoFPackage.getAMetamodelDescription());
+		dseProblemEClass.getESuperTypes().add(theGenericdesigndecisionPackage.getADSEProblem());
+		metamodelDescriptionEClass.getESuperTypes().add(theUniversalDoFPackage.getAMetamodelDescription());
+		genomeToCandidateModelTransformationEClass.getESuperTypes()
+				.add(theGenericdesigndecisionPackage.getAGenomeToCandidateModelTransformation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT,
@@ -456,11 +478,14 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 				Candidates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(pcmdseProblemEClass, PCMDSEProblem.class, "PCMDSEProblem", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(dseProblemEClass, DSEProblem.class, "DSEProblem", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(pcmMetamodelDescriptionEClass, PCMMetamodelDescription.class, "PCMMetamodelDescription",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(metamodelDescriptionEClass, MetamodelDescription.class, "MetamodelDescription", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(genomeToCandidateModelTransformationEClass, GenomeToCandidateModelTransformation.class,
+				"GenomeToCandidateModelTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -2,13 +2,10 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.uml2.types.TypesPackage;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
 import org.palladiosimulator.pcm.allocation.AllocationPackage;
 import org.palladiosimulator.pcm.repository.RepositoryPackage;
@@ -25,18 +22,10 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertie
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassWithCopyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DataTypeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteComponentParamDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureConfigDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
@@ -46,23 +35,19 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalFeatureDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedDataTypeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringComponentParamDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.StringSetDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedPrimitiveDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
 import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 import de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryPackageImpl;
 
 /**
@@ -78,97 +63,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	private EClass exchangeComponentRuleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classAsReferenceDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classWithCopyDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass continuousRangeDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rangeDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dataTypeDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass discreteDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass discreteRangeDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass enumDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass unorderedDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass orderedDataTypeDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass orderedIntegerDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stringSetDegreeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -385,7 +279,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
+		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE
@@ -454,246 +348,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	@Override
 	public EReference getExchangeComponentRule_AllocationContext() {
 		return (EReference) exchangeComponentRuleEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClassAsReferenceDegree() {
-		return classAsReferenceDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClassDegree() {
-		return classDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getClassDegree_ClassDesignOptions() {
-		return (EReference) classDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClassWithCopyDegree() {
-		return classWithCopyDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getContinuousRangeDegree() {
-		return continuousRangeDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getContinuousRangeDegree_To() {
-		return (EAttribute) continuousRangeDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getContinuousRangeDegree_From() {
-		return (EAttribute) continuousRangeDegreeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getRangeDegree() {
-		return rangeDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRangeDegree_UpperBoundIncluded() {
-		return (EAttribute) rangeDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRangeDegree_LowerBoundIncluded() {
-		return (EAttribute) rangeDegreeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getRangeDegree_NumberOfSteps() {
-		return (EAttribute) rangeDegreeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDataTypeDegree() {
-		return dataTypeDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDiscreteDegree() {
-		return discreteDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDiscreteRangeDegree() {
-		return discreteRangeDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDiscreteRangeDegree_To() {
-		return (EAttribute) discreteRangeDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDiscreteRangeDegree_From() {
-		return (EAttribute) discreteRangeDegreeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getEnumDegree() {
-		return enumDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getEnumDegree_Enumeration() {
-		return (EReference) enumDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUnorderedDegree() {
-		return unorderedDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getOrderedDataTypeDegree() {
-		return orderedDataTypeDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getOrderedIntegerDegree() {
-		return orderedIntegerDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getOrderedIntegerDegree_ListOfIntegers() {
-		return (EAttribute) orderedIntegerDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getStringSetDegree() {
-		return stringSetDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getStringSetDegree_StringValues() {
-		return (EAttribute) stringSetDegreeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1020,43 +674,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		createEReference(exchangeComponentRuleEClass, EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT);
 		createEReference(exchangeComponentRuleEClass, EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT);
 
-		classAsReferenceDegreeEClass = createEClass(CLASS_AS_REFERENCE_DEGREE);
-
-		classDegreeEClass = createEClass(CLASS_DEGREE);
-		createEReference(classDegreeEClass, CLASS_DEGREE__CLASS_DESIGN_OPTIONS);
-
-		classWithCopyDegreeEClass = createEClass(CLASS_WITH_COPY_DEGREE);
-
-		continuousRangeDegreeEClass = createEClass(CONTINUOUS_RANGE_DEGREE);
-		createEAttribute(continuousRangeDegreeEClass, CONTINUOUS_RANGE_DEGREE__TO);
-		createEAttribute(continuousRangeDegreeEClass, CONTINUOUS_RANGE_DEGREE__FROM);
-
-		rangeDegreeEClass = createEClass(RANGE_DEGREE);
-		createEAttribute(rangeDegreeEClass, RANGE_DEGREE__UPPER_BOUND_INCLUDED);
-		createEAttribute(rangeDegreeEClass, RANGE_DEGREE__LOWER_BOUND_INCLUDED);
-		createEAttribute(rangeDegreeEClass, RANGE_DEGREE__NUMBER_OF_STEPS);
-
-		dataTypeDegreeEClass = createEClass(DATA_TYPE_DEGREE);
-
-		discreteDegreeEClass = createEClass(DISCRETE_DEGREE);
-
-		discreteRangeDegreeEClass = createEClass(DISCRETE_RANGE_DEGREE);
-		createEAttribute(discreteRangeDegreeEClass, DISCRETE_RANGE_DEGREE__TO);
-		createEAttribute(discreteRangeDegreeEClass, DISCRETE_RANGE_DEGREE__FROM);
-
-		enumDegreeEClass = createEClass(ENUM_DEGREE);
-		createEReference(enumDegreeEClass, ENUM_DEGREE__ENUMERATION);
-
-		unorderedDegreeEClass = createEClass(UNORDERED_DEGREE);
-
-		orderedDataTypeDegreeEClass = createEClass(ORDERED_DATA_TYPE_DEGREE);
-
-		orderedIntegerDegreeEClass = createEClass(ORDERED_INTEGER_DEGREE);
-		createEAttribute(orderedIntegerDegreeEClass, ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
-
-		stringSetDegreeEClass = createEClass(STRING_SET_DEGREE);
-		createEAttribute(stringSetDegreeEClass, STRING_SET_DEGREE__STRING_VALUES);
-
 		unorderedPrimitiveDegreeEClass = createEClass(UNORDERED_PRIMITIVE_DEGREE);
 
 		continuousComponentParamDegreeEClass = createEClass(CONTINUOUS_COMPONENT_PARAM_DEGREE);
@@ -1141,9 +758,8 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 				.getEPackage(RepositoryPackage.eNS_URI);
 		AllocationPackage theAllocationPackage = (AllocationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(AllocationPackage.eNS_URI);
-		gdofPackage thegdofPackage = (gdofPackage) EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		GenericDoFPackage theGenericDoFPackage = (GenericDoFPackage) EPackage.Registry.INSTANCE
+				.getEPackage(GenericDoFPackage.eNS_URI);
 		ResourcetypePackage theResourcetypePackage = (ResourcetypePackage) EPackage.Registry.INSTANCE
 				.getEPackage(ResourcetypePackage.eNS_URI);
 		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage) EPackage.Registry.INSTANCE
@@ -1154,50 +770,35 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		classAsReferenceDegreeEClass.getESuperTypes().add(this.getClassDegree());
-		classDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
-		classWithCopyDegreeEClass.getESuperTypes().add(this.getClassDegree());
-		continuousRangeDegreeEClass.getESuperTypes().add(this.getRangeDegree());
-		rangeDegreeEClass.getESuperTypes().add(this.getOrderedDataTypeDegree());
-		dataTypeDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
-		discreteDegreeEClass.getESuperTypes().add(this.getDataTypeDegree());
-		discreteRangeDegreeEClass.getESuperTypes().add(this.getRangeDegree());
-		discreteRangeDegreeEClass.getESuperTypes().add(this.getDiscreteDegree());
-		enumDegreeEClass.getESuperTypes().add(this.getUnorderedDegree());
-		unorderedDegreeEClass.getESuperTypes().add(this.getDataTypeDegree());
-		orderedDataTypeDegreeEClass.getESuperTypes().add(this.getDataTypeDegree());
-		orderedIntegerDegreeEClass.getESuperTypes().add(this.getDiscreteDegree());
-		orderedIntegerDegreeEClass.getESuperTypes().add(this.getOrderedDataTypeDegree());
-		stringSetDegreeEClass.getESuperTypes().add(this.getUnorderedDegree());
-		unorderedPrimitiveDegreeEClass.getESuperTypes().add(this.getUnorderedDegree());
-		continuousComponentParamDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
-		continuousProcessingRateDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
+		unorderedPrimitiveDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAUnorderedDegree());
+		continuousComponentParamDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAContinuousRangeDegree());
+		continuousProcessingRateDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAContinuousRangeDegree());
 		continuousProcessingRateDegreeEClass.getESuperTypes().add(this.getProcessingRateDegree());
 		processingRateDegreeEClass.getESuperTypes().add(this.getProcessingResourceDegree());
-		processingResourceDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
-		discreteComponentParamDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
-		discreteProcessingRateDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
+		processingResourceDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADegreeOfFreedom());
+		discreteComponentParamDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADiscreteRangeDegree());
+		discreteProcessingRateDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADiscreteRangeDegree());
 		discreteProcessingRateDegreeEClass.getESuperTypes().add(this.getProcessingRateDegree());
-		featureConfigDegreeEClass.getESuperTypes().add(thegdofPackage.getDegreeOfFreedom());
+		featureConfigDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADegreeOfFreedom());
 		featureGroupDegreeEClass.getESuperTypes().add(this.getFeatureConfigDegree());
+		numberOfCoresAsListDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAOrderedIntegerDegree());
 		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getNumberOfCoresDegree());
-		numberOfCoresAsListDegreeEClass.getESuperTypes().add(this.getOrderedIntegerDegree());
 		numberOfCoresDegreeEClass.getESuperTypes().add(this.getProcessingResourceDegree());
-		numberOfCoresAsRangeDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
+		numberOfCoresAsRangeDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADiscreteRangeDegree());
 		numberOfCoresAsRangeDegreeEClass.getESuperTypes().add(this.getNumberOfCoresDegree());
 		optionalFeatureDegreeEClass.getESuperTypes().add(this.getFeatureConfigDegree());
-		resourceContainerReplicationDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
+		resourceContainerReplicationDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADiscreteRangeDegree());
 		resourceContainerReplicationDegreeWithComponentChangeEClass.getESuperTypes()
 				.add(this.getResourceContainerReplicationDegree());
-		resourceSelectionDegreeEClass.getESuperTypes().add(this.getClassWithCopyDegree());
+		resourceSelectionDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAClassWithCopyDegree());
 		resourceSelectionDegreeEClass.getESuperTypes().add(this.getProcessingResourceDegree());
-		schedulingPolicyDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
+		schedulingPolicyDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAClassAsReferenceDegree());
 		schedulingPolicyDegreeEClass.getESuperTypes().add(this.getProcessingResourceDegree());
-		stringComponentParamDegreeEClass.getESuperTypes().add(this.getStringSetDegree());
-		allocationDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
-		assembledComponentDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
-		capacityDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
-		monitoringDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
+		stringComponentParamDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAStringSetDegree());
+		allocationDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAClassAsReferenceDegree());
+		assembledComponentDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAClassAsReferenceDegree());
+		capacityDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getADiscreteRangeDegree());
+		monitoringDegreeEClass.getESuperTypes().add(theGenericDoFPackage.getAContinuousRangeDegree());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(exchangeComponentRuleEClass, ExchangeComponentRule.class, "ExchangeComponentRule", !IS_ABSTRACT,
@@ -1208,78 +809,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEReference(getExchangeComponentRule_AllocationContext(), theAllocationPackage.getAllocationContext(), null,
 				"allocationContext", null, 0, 1, ExchangeComponentRule.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(classAsReferenceDegreeEClass, ClassAsReferenceDegree.class, "ClassAsReferenceDegree", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(classDegreeEClass, ClassDegree.class, "ClassDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassDegree_ClassDesignOptions(), theEcorePackage.getEObject(), null, "classDesignOptions",
-				null, 1, -1, ClassDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(classWithCopyDegreeEClass, ClassWithCopyDegree.class, "ClassWithCopyDegree", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(continuousRangeDegreeEClass, ContinuousRangeDegree.class, "ContinuousRangeDegree", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContinuousRangeDegree_To(), ecorePackage.getEDouble(), "to", null, 1, 1,
-				ContinuousRangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getContinuousRangeDegree_From(), ecorePackage.getEDouble(), "from", null, 1, 1,
-				ContinuousRangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(rangeDegreeEClass, RangeDegree.class, "RangeDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRangeDegree_UpperBoundIncluded(), ecorePackage.getEBoolean(), "upperBoundIncluded", "true", 1,
-				1, RangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRangeDegree_LowerBoundIncluded(), ecorePackage.getEBoolean(), "lowerBoundIncluded", "true", 1,
-				1, RangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRangeDegree_NumberOfSteps(), ecorePackage.getEInt(), "numberOfSteps", null, 0, 1,
-				RangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-
-		initEClass(dataTypeDegreeEClass, DataTypeDegree.class, "DataTypeDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(discreteDegreeEClass, DiscreteDegree.class, "DiscreteDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(discreteRangeDegreeEClass, DiscreteRangeDegree.class, "DiscreteRangeDegree", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDiscreteRangeDegree_To(), ecorePackage.getEInt(), "to", null, 1, 1, DiscreteRangeDegree.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				!IS_ORDERED);
-		initEAttribute(getDiscreteRangeDegree_From(), ecorePackage.getEInt(), "from", null, 1, 1,
-				DiscreteRangeDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(enumDegreeEClass, EnumDegree.class, "EnumDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnumDegree_Enumeration(), theEcorePackage.getEEnum(), null, "enumeration", null, 0, 1,
-				EnumDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(unorderedDegreeEClass, UnorderedDegree.class, "UnorderedDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(orderedDataTypeDegreeEClass, OrderedDataTypeDegree.class, "OrderedDataTypeDegree", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(orderedIntegerDegreeEClass, OrderedIntegerDegree.class, "OrderedIntegerDegree", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOrderedIntegerDegree_ListOfIntegers(), ecorePackage.getEInt(), "listOfIntegers", null, 1, -1,
-				OrderedIntegerDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(stringSetDegreeEClass, StringSetDegree.class, "StringSetDegree", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringSetDegree_StringValues(), theTypesPackage.getString(), "stringValues", null, 1, -1,
-				StringSetDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
 
 		initEClass(unorderedPrimitiveDegreeEClass, UnorderedPrimitiveDegree.class, "UnorderedPrimitiveDegree",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

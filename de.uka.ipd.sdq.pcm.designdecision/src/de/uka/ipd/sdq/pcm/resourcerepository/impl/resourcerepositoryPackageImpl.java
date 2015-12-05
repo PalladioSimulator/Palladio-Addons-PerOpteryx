@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.uml2.types.TypesPackage;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
 
@@ -34,6 +33,7 @@ import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryFactory;
 import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
 import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryValidator;
 import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -104,7 +104,7 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
+		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE

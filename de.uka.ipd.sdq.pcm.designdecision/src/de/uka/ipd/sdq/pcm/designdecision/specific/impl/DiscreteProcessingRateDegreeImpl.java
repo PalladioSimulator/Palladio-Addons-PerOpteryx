@@ -11,12 +11,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
+import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -30,10 +38,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl implements DiscreteProcessingRateDegree {
+public class DiscreteProcessingRateDegreeImpl extends ADiscreteRangeDegreeImpl implements DiscreteProcessingRateDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
@@ -58,7 +67,8 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,7 +87,8 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProcessingResourceType basicGetProcessingresourcetype() {
@@ -85,7 +96,8 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -198,6 +210,36 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		choice.setDofInstance(this);
+
+		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
+				.getAssociatedMetamodel();
+		final ProcessingResourceSpecification rightPrs = pcmdescr.getProcessingResourceSpec(this);
+
+		if (rightPrs != null) {
+			if (!this.isLowerBoundIncluded() || !this.isUpperBoundIncluded()) {
+				throw new RuntimeException(
+						"Only DiscreteProcessingRateDegrees with upper and lower bound included are supported so far, sorry. ");
+			}
+			final double rate = CostUtil.getInstance().getDoubleFromSpecification(
+					rightPrs.getProcessingRate_ProcessingResourceSpecification().getSpecification());
+			final double startStep = this.getFrom();
+			final double endStep = this.getTo();
+			final double stepwidth = (endStep - startStep) / this.getNumberOfSteps();
+
+			final double chosenStep = (rate - startStep) / stepwidth;
+			choice.setChosenValue((int) chosenStep);
+		} else {
+			throw new RuntimeException("Invalid degree of freedom " + this.toString()
+					+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
+		}
+
+		return choice;
 	}
 
 } // DiscreteProcessingRateDegreeImpl

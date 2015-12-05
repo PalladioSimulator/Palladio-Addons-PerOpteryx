@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import de.uka.ipd.sdq.featuremodel.NamedElement;
 import de.uka.ipd.sdq.identifier.Identifier;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DoFRepository;
@@ -197,7 +198,7 @@ public class gdofSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseNamedElement(degreeOfFreedom);
 			if (result == null)
-				result = caseGenericDoF_DegreeOfFreedom(degreeOfFreedom);
+				result = caseADegreeOfFreedom(degreeOfFreedom);
 			if (result == null)
 				result = caseIdentifier(degreeOfFreedom);
 			if (result == null)
@@ -508,17 +509,17 @@ public class gdofSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGenericDoF_DegreeOfFreedom(genericdesigndecision.genericDoF.DegreeOfFreedom object) {
+	public T caseADegreeOfFreedom(ADegreeOfFreedom object) {
 		return null;
 	}
 

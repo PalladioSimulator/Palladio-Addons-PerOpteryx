@@ -11,12 +11,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
+import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AContinuousRangeDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -30,11 +38,12 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ContinuousProcessingRateDegreeImpl extends ContinuousRangeDegreeImpl
+public class ContinuousProcessingRateDegreeImpl extends AContinuousRangeDegreeImpl
 		implements ContinuousProcessingRateDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
@@ -59,7 +68,8 @@ public class ContinuousProcessingRateDegreeImpl extends ContinuousRangeDegreeImp
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -78,7 +88,8 @@ public class ContinuousProcessingRateDegreeImpl extends ContinuousRangeDegreeImp
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProcessingResourceType basicGetProcessingresourcetype() {
@@ -86,7 +97,8 @@ public class ContinuousProcessingRateDegreeImpl extends ContinuousRangeDegreeImp
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -199,6 +211,27 @@ public class ContinuousProcessingRateDegreeImpl extends ContinuousRangeDegreeImp
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final ContinousRangeChoice choice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
+		choice.setDofInstance(this);
+
+		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
+				.getAssociatedMetamodel();
+		final ProcessingResourceSpecification rightPrs = pcmdescr.getProcessingResourceSpec(this);
+
+		if (rightPrs != null) {
+			final double rate = CostUtil.getInstance().getDoubleFromSpecification(
+					rightPrs.getProcessingRate_ProcessingResourceSpecification().getSpecification());
+			choice.setChosenValue(rate);
+		} else {
+			throw new RuntimeException("Invalid degree of freedom " + this.toString()
+					+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
+		}
+
+		return choice;
 	}
 
 } // ContinuousProcessingRateDegreeImpl

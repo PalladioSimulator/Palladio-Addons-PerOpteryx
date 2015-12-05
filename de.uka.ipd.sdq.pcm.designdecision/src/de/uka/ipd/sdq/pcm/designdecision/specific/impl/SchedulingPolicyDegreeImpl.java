@@ -11,11 +11,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
+import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 
+import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AClassAsReferenceDegreeImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -29,10 +38,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class SchedulingPolicyDegreeImpl extends ClassAsReferenceDegreeImpl implements SchedulingPolicyDegree {
+public class SchedulingPolicyDegreeImpl extends AClassAsReferenceDegreeImpl implements SchedulingPolicyDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getProcessingresourcetype()
 	 * @generated
 	 * @ordered
@@ -57,7 +67,8 @@ public class SchedulingPolicyDegreeImpl extends ClassAsReferenceDegreeImpl imple
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -76,7 +87,8 @@ public class SchedulingPolicyDegreeImpl extends ClassAsReferenceDegreeImpl imple
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProcessingResourceType basicGetProcessingresourcetype() {
@@ -84,7 +96,8 @@ public class SchedulingPolicyDegreeImpl extends ClassAsReferenceDegreeImpl imple
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -185,6 +198,35 @@ public class SchedulingPolicyDegreeImpl extends ClassAsReferenceDegreeImpl imple
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+		choice.setDofInstance(this);
+		final ProcessingResourceType procType = this.getProcessingresourcetype();
+		final ResourceContainer rc = (ResourceContainer) this.getPrimaryChanged();
+
+		SchedulingPolicy policy = null;
+
+		for (final ProcessingResourceSpecification proc : rc.getActiveResourceSpecifications_ResourceContainer()) {
+			if (EMFHelper.checkIdentity(proc.getActiveResourceType_ActiveResourceSpecification(), procType)) {
+				policy = proc.getSchedulingPolicy();
+				break;
+			}
+		}
+		if (policy == null) {
+			throw new RuntimeException("Invalid degree of freedom " + this.toString()
+					+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
+		}
+		choice.setChosenValue(policy);
+
+		//check if entity is in the domain
+		if (!EMFHelper.contains(this.getClassDesignOptions(), choice.getChosenValue())) {
+			throw new ChoiceOutOfBoundsException(choice, "Error when determining initial genotype");
+		}
+
+		return choice;
 	}
 
 } // SchedulingPolicyDegreeImpl

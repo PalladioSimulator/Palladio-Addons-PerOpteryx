@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Discrete Component Param Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface DiscreteComponentParamDegree extends DiscreteRangeDegree {
+public interface DiscreteComponentParamDegree extends ADiscreteRangeDegree {
 } // DiscreteComponentParamDegree

@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AClassAsReferenceDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Assembled Component Degree</b></em>'.
@@ -22,5 +24,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface AssembledComponentDegree extends ClassAsReferenceDegree {
+public interface AssembledComponentDegree extends AClassAsReferenceDegree {
 } // AssembledComponentDegree

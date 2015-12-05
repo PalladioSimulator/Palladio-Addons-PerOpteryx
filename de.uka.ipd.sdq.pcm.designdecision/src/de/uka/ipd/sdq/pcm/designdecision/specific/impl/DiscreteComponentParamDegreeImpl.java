@@ -7,9 +7,14 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +23,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class DiscreteComponentParamDegreeImpl extends DiscreteRangeDegreeImpl implements DiscreteComponentParamDegree {
+public class DiscreteComponentParamDegreeImpl extends ADiscreteRangeDegreeImpl implements DiscreteComponentParamDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,6 +41,19 @@ public class DiscreteComponentParamDegreeImpl extends DiscreteRangeDegreeImpl im
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.DISCRETE_COMPONENT_PARAM_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
+		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
+				.getProperty(this.getPrimaryChanged(), property);
+
+		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		choice.setValue(value);
+		choice.setDofInstance(this);
+
+		return (choice);
 	}
 
 } //DiscreteComponentParamDegreeImpl

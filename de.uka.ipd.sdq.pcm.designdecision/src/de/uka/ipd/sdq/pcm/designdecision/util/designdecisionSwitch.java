@@ -11,6 +11,7 @@ import org.palladiosimulator.pcm.core.entity.NamedElement;
 import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.*;
 import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
@@ -152,22 +153,38 @@ public class designdecisionSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case designdecisionPackage.PCMDSE_PROBLEM: {
-			PCMDSEProblem pcmdseProblem = (PCMDSEProblem) theEObject;
-			T result = casePCMDSEProblem(pcmdseProblem);
+		case designdecisionPackage.DSE_PROBLEM: {
+			de.uka.ipd.sdq.pcm.designdecision.DSEProblem dseProblem = (de.uka.ipd.sdq.pcm.designdecision.DSEProblem) theEObject;
+			T result = caseDSEProblem(dseProblem);
 			if (result == null)
-				result = caseADSEProblem(pcmdseProblem);
+				result = caseADSEProblem(dseProblem);
 			if (result == null)
-				result = caseDSEProblem(pcmdseProblem);
+				result = caseGenericdesigndecision_DSEProblem(dseProblem);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case designdecisionPackage.PCM_METAMODEL_DESCRIPTION: {
-			PCMMetamodelDescription pcmMetamodelDescription = (PCMMetamodelDescription) theEObject;
-			T result = casePCMMetamodelDescription(pcmMetamodelDescription);
+		case designdecisionPackage.METAMODEL_DESCRIPTION: {
+			MetamodelDescription metamodelDescription = (MetamodelDescription) theEObject;
+			T result = caseMetamodelDescription(metamodelDescription);
 			if (result == null)
-				result = caseAMetamodelDescription(pcmMetamodelDescription);
+				result = caseAMetamodelDescription(metamodelDescription);
+			if (result == null)
+				result = caseAGenomeToCandidateModelTransformation(metamodelDescription);
+			if (result == null)
+				result = caseGenericdesigndecision_GenomeToCandidateModelTransformation(metamodelDescription);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case designdecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION: {
+			GenomeToCandidateModelTransformation genomeToCandidateModelTransformation = (GenomeToCandidateModelTransformation) theEObject;
+			T result = caseGenomeToCandidateModelTransformation(genomeToCandidateModelTransformation);
+			if (result == null)
+				result = caseAGenomeToCandidateModelTransformation(genomeToCandidateModelTransformation);
+			if (result == null)
+				result = caseGenericdesigndecision_GenomeToCandidateModelTransformation(
+						genomeToCandidateModelTransformation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -277,32 +294,47 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>PCMDSE Problem</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>DSE Problem</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>PCMDSE Problem</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>DSE Problem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePCMDSEProblem(PCMDSEProblem object) {
+	public T caseDSEProblem(de.uka.ipd.sdq.pcm.designdecision.DSEProblem object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>PCM Metamodel Description</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Metamodel Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>PCM Metamodel Description</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Metamodel Description</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePCMMetamodelDescription(PCMMetamodelDescription object) {
+	public T caseMetamodelDescription(MetamodelDescription object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
 		return null;
 	}
 
@@ -467,7 +499,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDSEProblem(DSEProblem object) {
+	public T caseGenericdesigndecision_DSEProblem(DSEProblem object) {
 		return null;
 	}
 
@@ -483,6 +515,37 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseADSEProblem(ADSEProblem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericdesigndecision_GenomeToCandidateModelTransformation(
+			de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
 		return null;
 	}
 

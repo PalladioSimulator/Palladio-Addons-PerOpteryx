@@ -15,7 +15,7 @@ import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import genericdesigndecision.GenericdesigndecisionPackage;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Decision Space</b></em>'.
@@ -38,7 +38,7 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DegreeOfFreedom> dofInstances;
+	protected EList<ADegreeOfFreedom> dofInstances;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -63,9 +63,9 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 	 * @generated
 	 */
 	@Override
-	public EList<DegreeOfFreedom> getDofInstances() {
+	public EList<ADegreeOfFreedom> getDofInstances() {
 		if (dofInstances == null) {
-			dofInstances = new EObjectContainmentEList<DegreeOfFreedom>(DegreeOfFreedom.class, this,
+			dofInstances = new EObjectContainmentEList<ADegreeOfFreedom>(ADegreeOfFreedom.class, this,
 					designdecisionPackage.DECISION_SPACE__DOF_INSTANCES);
 		}
 		return dofInstances;
@@ -107,7 +107,7 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 		switch (featureID) {
 		case designdecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 			getDofInstances().clear();
-			getDofInstances().addAll((Collection<? extends DegreeOfFreedom>) newValue);
+			getDofInstances().addAll((Collection<? extends ADegreeOfFreedom>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

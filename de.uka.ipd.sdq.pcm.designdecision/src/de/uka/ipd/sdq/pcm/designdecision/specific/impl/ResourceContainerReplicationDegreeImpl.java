@@ -8,8 +8,12 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ResourceContainerReplicationDegreeImpl extends DiscreteRangeDegreeImpl
+public class ResourceContainerReplicationDegreeImpl extends ADiscreteRangeDegreeImpl
 		implements ResourceContainerReplicationDegree {
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,6 +41,16 @@ public class ResourceContainerReplicationDegreeImpl extends DiscreteRangeDegreeI
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		choice.setDofInstance(this);
+
+		choice.setChosenValue(1);
+
+		return choice;
 	}
 
 } //ResourceContainerReplicationDegreeImpl

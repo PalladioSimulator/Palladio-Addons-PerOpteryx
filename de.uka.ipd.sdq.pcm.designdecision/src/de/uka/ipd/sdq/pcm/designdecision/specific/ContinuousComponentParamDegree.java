@@ -6,6 +6,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AContinuousRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Continuous Component Param Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface ContinuousComponentParamDegree extends ContinuousRangeDegree {
+public interface ContinuousComponentParamDegree extends AContinuousRangeDegree {
 } // ContinuousComponentParamDegree

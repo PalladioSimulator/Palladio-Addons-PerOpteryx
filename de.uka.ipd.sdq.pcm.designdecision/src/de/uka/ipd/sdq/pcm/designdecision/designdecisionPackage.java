@@ -81,13 +81,13 @@ public interface designdecisionPackage extends EPackage {
 	int CHOICE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__IS_ACTIVE = GenericdesigndecisionPackage.CHOICE__IS_ACTIVE;
+	int CHOICE__ACTIVE = GenericdesigndecisionPackage.CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -127,13 +127,13 @@ public interface designdecisionPackage extends EPackage {
 	int DISCRETE_RANGE_CHOICE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_RANGE_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int DISCRETE_RANGE_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -182,13 +182,13 @@ public interface designdecisionPackage extends EPackage {
 	int CLASS_CHOICE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int CLASS_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -237,13 +237,13 @@ public interface designdecisionPackage extends EPackage {
 	int CONTINOUS_RANGE_CHOICE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINOUS_RANGE_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int CONTINOUS_RANGE_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -447,14 +447,14 @@ public interface designdecisionPackage extends EPackage {
 	int CANDIDATES_FEATURE_COUNT = GenericdesigndecisionPackage.CANDIDATES_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.PCMDSEProblemImpl <em>PCMDSE Problem</em>}' class.
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.DSEProblemImpl <em>DSE Problem</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.PCMDSEProblemImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMDSEProblem()
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.DSEProblemImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getDSEProblem()
 	 * @generated
 	 */
-	int PCMDSE_PROBLEM = 7;
+	int DSE_PROBLEM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Problem</b></em>' reference.
@@ -463,7 +463,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCMDSE_PROBLEM__PROBLEM = GenericdesigndecisionPackage.ADSE_PROBLEM__PROBLEM;
+	int DSE_PROBLEM__PROBLEM = GenericdesigndecisionPackage.ADSE_PROBLEM__PROBLEM;
 
 	/**
 	 * The feature id for the '<em><b>Emf Instance</b></em>' reference.
@@ -472,7 +472,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCMDSE_PROBLEM__EMF_INSTANCE = GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE;
+	int DSE_PROBLEM__EMF_INSTANCE = GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE;
 
 	/**
 	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
@@ -481,26 +481,26 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCMDSE_PROBLEM__ASSOCIATED_METAMODEL = GenericdesigndecisionPackage.ADSE_PROBLEM__ASSOCIATED_METAMODEL;
+	int DSE_PROBLEM__ASSOCIATED_METAMODEL = GenericdesigndecisionPackage.ADSE_PROBLEM__ASSOCIATED_METAMODEL;
 
 	/**
-	 * The number of structural features of the '<em>PCMDSE Problem</em>' class.
+	 * The number of structural features of the '<em>DSE Problem</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PCMDSE_PROBLEM_FEATURE_COUNT = GenericdesigndecisionPackage.ADSE_PROBLEM_FEATURE_COUNT + 0;
+	int DSE_PROBLEM_FEATURE_COUNT = GenericdesigndecisionPackage.ADSE_PROBLEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.PCMMetamodelDescriptionImpl <em>PCM Metamodel Description</em>}' class.
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl <em>Metamodel Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.PCMMetamodelDescriptionImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMMetamodelDescription()
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getMetamodelDescription()
 	 * @generated
 	 */
-	int PCM_METAMODEL_DESCRIPTION = 8;
+	int METAMODEL_DESCRIPTION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Dofrepository</b></em>' reference.
@@ -509,7 +509,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION__DOFREPOSITORY = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY;
+	int METAMODEL_DESCRIPTION__DOFREPOSITORY = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__DOFREPOSITORY;
 
 	/**
 	 * The feature id for the '<em><b>Gdof to dof</b></em>' map.
@@ -518,7 +518,7 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION__GDOF_TO_DOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF;
+	int METAMODEL_DESCRIPTION__GDOF_TO_DOF = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -527,16 +527,45 @@ public interface designdecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION__NAME = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME;
+	int METAMODEL_DESCRIPTION__NAME = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME;
 
 	/**
-	 * The number of structural features of the '<em>PCM Metamodel Description</em>' class.
+	 * The feature id for the '<em><b>Genome To Candidate Transformation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PCM_METAMODEL_DESCRIPTION_FEATURE_COUNT = UniversalDoFPackage.AMETAMODEL_DESCRIPTION_FEATURE_COUNT + 0;
+	int METAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION = UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION;
+
+	/**
+	 * The number of structural features of the '<em>Metamodel Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_DESCRIPTION_FEATURE_COUNT = UniversalDoFPackage.AMETAMODEL_DESCRIPTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl <em>Genome To Candidate Model Transformation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getGenomeToCandidateModelTransformation()
+	 * @generated
+	 */
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 9;
+
+	/**
+	 * The number of structural features of the '<em>Genome To Candidate Model Transformation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT
+			+ 0;
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
@@ -653,24 +682,34 @@ public interface designdecisionPackage extends EPackage {
 	EReference getCandidates_PcmProblem();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem <em>PCMDSE Problem</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.DSEProblem <em>DSE Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>PCMDSE Problem</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem
+	 * @return the meta object for class '<em>DSE Problem</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.DSEProblem
 	 * @generated
 	 */
-	EClass getPCMDSEProblem();
+	EClass getDSEProblem();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription <em>PCM Metamodel Description</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription <em>Metamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>PCM Metamodel Description</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.PCMMetamodelDescription
+	 * @return the meta object for class '<em>Metamodel Description</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription
 	 * @generated
 	 */
-	EClass getPCMMetamodelDescription();
+	EClass getMetamodelDescription();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	EClass getGenomeToCandidateModelTransformation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -797,24 +836,34 @@ public interface designdecisionPackage extends EPackage {
 		EReference CANDIDATES__PCM_PROBLEM = eINSTANCE.getCandidates_PcmProblem();
 
 		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.PCMDSEProblemImpl <em>PCMDSE Problem</em>}' class.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.DSEProblemImpl <em>DSE Problem</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.PCMDSEProblemImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMDSEProblem()
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.DSEProblemImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getDSEProblem()
 		 * @generated
 		 */
-		EClass PCMDSE_PROBLEM = eINSTANCE.getPCMDSEProblem();
+		EClass DSE_PROBLEM = eINSTANCE.getDSEProblem();
 
 		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.PCMMetamodelDescriptionImpl <em>PCM Metamodel Description</em>}' class.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl <em>Metamodel Description</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.PCMMetamodelDescriptionImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getPCMMetamodelDescription()
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getMetamodelDescription()
 		 * @generated
 		 */
-		EClass PCM_METAMODEL_DESCRIPTION = eINSTANCE.getPCMMetamodelDescription();
+		EClass METAMODEL_DESCRIPTION = eINSTANCE.getMetamodelDescription();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl <em>Genome To Candidate Model Transformation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getGenomeToCandidateModelTransformation()
+		 * @generated
+		 */
+		EClass GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getGenomeToCandidateModelTransformation();
 
 	}
 

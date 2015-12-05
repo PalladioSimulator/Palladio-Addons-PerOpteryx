@@ -7,9 +7,14 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AContinuousRangeDegreeImpl;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +23,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImpl
+public class ContinuousComponentParamDegreeImpl extends AContinuousRangeDegreeImpl
 		implements ContinuousComponentParamDegree {
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,6 +42,19 @@ public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImp
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.CONTINUOUS_COMPONENT_PARAM_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
+		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
+				.getProperty(this.getPrimaryChanged(), property);
+
+		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		choice.setValue(value);
+		choice.setDofInstance(this);
+
+		return (choice);
 	}
 
 } //ContinuousComponentParamDegreeImpl

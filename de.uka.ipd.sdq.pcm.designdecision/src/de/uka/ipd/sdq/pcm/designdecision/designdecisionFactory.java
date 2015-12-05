@@ -89,24 +89,33 @@ public interface designdecisionFactory extends EFactory {
 	Candidates createCandidates();
 
 	/**
-	 * Returns a new object of class '<em>PCMDSE Problem</em>'.
+	 * Returns a new object of class '<em>DSE Problem</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>PCMDSE Problem</em>'.
+	 * @return a new object of class '<em>DSE Problem</em>'.
 	 * @generated
 	 */
-	PCMDSEProblem createPCMDSEProblem();
-	
-	PCMDSEProblem createPCMDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException;
+	DSEProblem createDSEProblem();
 
 	/**
-	 * Returns a new object of class '<em>PCM Metamodel Description</em>'.
+	 * Returns a new object of class '<em>Metamodel Description</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>PCM Metamodel Description</em>'.
+	 * @return a new object of class '<em>Metamodel Description</em>'.
 	 * @generated
 	 */
-	PCMMetamodelDescription createPCMMetamodelDescription();
+	MetamodelDescription createMetamodelDescription();
+
+	/**
+	 * Returns a new object of class '<em>Genome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Genome To Candidate Model Transformation</em>'.
+	 * @generated
+	 */
+	GenomeToCandidateModelTransformation createGenomeToCandidateModelTransformation();
+
+	DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException;
 
 	/**
 	 * Returns the package supported by this factory.

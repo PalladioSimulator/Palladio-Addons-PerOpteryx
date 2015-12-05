@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedPrimitiveDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.genericDoF.impl.AUnorderedDegreeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +19,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class UnorderedPrimitiveDegreeImpl extends UnorderedDegreeImpl implements UnorderedPrimitiveDegree {
+public abstract class UnorderedPrimitiveDegreeImpl extends AUnorderedDegreeImpl implements UnorderedPrimitiveDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -3,42 +3,29 @@
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
-import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
-import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.start.*;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.PCMDSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import genericdesigndecision.DecisionSpace;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
-import genericdesigndecision.universalDoF.AMetamodelDescription;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,31 +35,26 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.opt4j.start.Opt4JStarter;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
-import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
-import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>PCMDSE Problem</b></em>'.
+ * An implementation of the model object '<em><b>DSE Problem</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem {
+public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 
 	private final designdecisionFactory designDecisionFactory;
 	private final specificFactory specificDesignDecisionFactory;
@@ -83,11 +65,10 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected PCMDSEProblemImpl() {
-		super();
-		this.pcmInstance = null;
+	public DSEProblemImpl() {
 		this.designDecisionFactory = null;
 		this.specificDesignDecisionFactory = null;
+		this.pcmInstance = null;
 	}
 
 	/**
@@ -97,14 +78,15 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 * @throws CoreException
 	 * @generated NOT
 	 */
-	public PCMDSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final EModelElement emfInstance,
-			AMetamodelDescription ammd) throws CoreException {
-		super(dseConfig, emfInstance, ammd);
+	public DSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final EModelElement emfInstance)
+			throws CoreException {
+		super(dseConfig, emfInstance);
 
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
+		this.associatedMetamodel = designDecisionFactory.createMetamodelDescription();
 
-		pcmInstance = transformEMFtoPCM(emfInstance);
+		pcmInstance = ((MetamodelDescription) this.associatedMetamodel).transformEMFtoPCM(emfInstance);
 
 		if (newProblem) {
 			initialiseProblem();
@@ -133,11 +115,6 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 		 */
 	}
 
-	private PCMInstance transformEMFtoPCM(EModelElement emfInstance) {
-		// TODO converts emfInstance into an object of class PCMInstance
-		return null;
-	}
-
 	@Override
 	protected DecisionSpace loadProblem(final String filename) throws CoreException {
 		final ResourceSet pcmResourceSet = this.pcmInstance.getAllocation().eResource().getResourceSet();
@@ -158,179 +135,18 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 		return problem;
 	}
 
-	// TODO should be rewritten without use of instanceof but inside pcm packages
 	@Override
 	protected List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) {
 		final DesignDecisionGenotype genotype = new DesignDecisionGenotype();
 
-		for (final DegreeOfFreedom dd : problem.getDofInstances()) {
-
-			//if (dd.getDof() != null) {
-			//TODO correct this if necessary
-			if (dd.getClass() != null) {
-				final EStructuralFeature property = dd.getPrimaryChangeable().getChangeable();
-
-				final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
-
-				final Choice choice = this.designDecisionFactory.createChoice();
-				choice.setValue(value);
-				choice.setDofInstance(dd);
-
-				genotype.add(choice);
-
-			} else if (dd instanceof ClassDegree) {
-
-				final ClassChoice choice = this.designDecisionFactory.createClassChoice();
-				choice.setDofInstance(dd);
-
-				if (dd instanceof AssembledComponentDegree) {
-					final AssembledComponentDegree acd = (AssembledComponentDegree) dd;
-					final AssemblyContext ac = (AssemblyContext) acd.getPrimaryChanged();
-					final RepositoryComponent rc = ac.getEncapsulatedComponent__AssemblyContext();
-					choice.setChosenValue(rc);
-				} else if (dd instanceof AllocationDegree) {
-					final AllocationDegree ad = (AllocationDegree) dd;
-					final AllocationContext ac = (AllocationContext) ad.getPrimaryChanged();
-					final ResourceContainer rc = ac.getResourceContainer_AllocationContext();
-					choice.setChosenValue(rc);
-				} else if (dd instanceof SchedulingPolicyDegree) {
-
-					final ProcessingResourceType procType = ((SchedulingPolicyDegree) dd).getProcessingresourcetype();
-					final ResourceContainer rc = (ResourceContainer) dd.getPrimaryChanged();
-
-					SchedulingPolicy policy = null;
-
-					for (final ProcessingResourceSpecification proc : rc
-							.getActiveResourceSpecifications_ResourceContainer()) {
-						if (EMFHelper.checkIdentity(proc.getActiveResourceType_ActiveResourceSpecification(),
-								procType)) {
-							policy = proc.getSchedulingPolicy();
-							break;
-						}
-					}
-					if (policy == null) {
-						throw new RuntimeException("Invalid degree of freedom " + dd.toString()
-								+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
-					}
-					choice.setChosenValue(policy);
-					genotype.add(choice);
-
-				} else {
-					super.throwUnknownDegreeException(dd);
-				}
-
-				//check if entity is in the domain
-				if (!EMFHelper.contains(((ClassDegree) dd).getClassDesignOptions(), choice.getChosenValue())) {
-					throw new ChoiceOutOfBoundsException(choice, "Error when determining initial genotype");
-				}
-
-				genotype.add(choice);
-			} else if (dd instanceof ContinuousRangeDegree) {
-				/*
-				 *
-				 */
-				final ContinousRangeChoice choice = this.designDecisionFactory.createContinousRangeChoice();
-				choice.setDofInstance(dd);
-
-				// Monitoring Degree added
-				//added by Suman Jojiju
-				if (dd instanceof MonitoringDegree) {
-					//MonitoringDegree mnrt = (MonitoringDegree) dd;
-					final ContinuousRangeDegree crdobj = (ContinuousRangeDegree) dd;
-					//Intervall interval = (Intervall) (MonitoringDegree)crdobj.getPrimaryChanged();
-					//choice.setChosenValue(interval.getIntervall());
-					choice.setChosenValue(crdobj.getFrom());
-
-				} else if (dd instanceof ContinuousProcessingRateDegree) {
-					final ContinuousProcessingRateDegree prd = (ContinuousProcessingRateDegree) dd;
-					final ProcessingResourceSpecification rightPrs = getProcessingResourceSpec(prd);
-
-					if (rightPrs != null) {
-						final double rate = CostUtil.getInstance().getDoubleFromSpecification(
-								rightPrs.getProcessingRate_ProcessingResourceSpecification().getSpecification());
-						choice.setChosenValue(rate);
-					} else {
-						throw new RuntimeException("Invalid degree of freedom " + dd.toString()
-								+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
-					}
-				} else {
-					throwUnknownDegreeException(dd);
-				}
-
-				genotype.add(choice);
-			} else if (dd instanceof DiscreteDegree) {
-				final DiscreteDegree degree = (DiscreteDegree) dd;
-
-				final DiscreteRangeChoice choice = this.designDecisionFactory.createDiscreteRangeChoice();
-				choice.setDofInstance(degree);
-
-				final EObject entity = degree.getPrimaryChanged();
-
-				if (degree instanceof CapacityDegree) {
-					final PassiveResource pr = (PassiveResource) entity;
-					choice.setChosenValue(Integer.valueOf(pr.getCapacity_PassiveResource().getSpecification()));
-
-				} else if (degree instanceof NumberOfCoresDegree) {
-					final ProcessingResourceSpecification prd = getProcessingResourceSpec(
-							(ProcessingResourceDegree) degree);
-					choice.setChosenValue(prd.getNumberOfReplicas());
-				} else if (degree instanceof DiscreteProcessingRateDegree) {
-
-					final DiscreteProcessingRateDegree prd = (DiscreteProcessingRateDegree) dd;
-
-					final ProcessingResourceSpecification rightPrs = getProcessingResourceSpec(prd);
-
-					if (rightPrs != null) {
-						if (!prd.isLowerBoundIncluded() || !prd.isUpperBoundIncluded()) {
-							throw new RuntimeException(
-									"Only DiscreteProcessingRateDegrees with upper and lower bound included are supported so far, sorry. ");
-						}
-						final double rate = CostUtil.getInstance().getDoubleFromSpecification(
-								rightPrs.getProcessingRate_ProcessingResourceSpecification().getSpecification());
-						final double startStep = prd.getFrom();
-						final double endStep = prd.getTo();
-						final double stepwidth = (endStep - startStep) / prd.getNumberOfSteps();
-
-						final double chosenStep = (rate - startStep) / stepwidth;
-						choice.setChosenValue((int) chosenStep);
-					} else {
-						throw new RuntimeException("Invalid degree of freedom " + dd.toString()
-								+ ". The referenced ProcessingResourceType is not available in the given ResourceContainer.");
-					}
-				} else if (degree instanceof ResourceContainerReplicationDegree) {
-					choice.setChosenValue(1);
-
-				} else {
-					throwUnknownDegreeException(dd);
-				}
-				genotype.add(choice);
-			} else {
-				throwUnknownDegreeException(dd);
-			}
+		for (final ADegreeOfFreedom dd : problem.getDofInstances()) {
+			genotype.add(dd.determineInitialChoice());
 		}
 
-		//determineProcessingRateDecisions(new ArrayList<DesignDecision>(), genotype);
-		//determineAssembledComponentsDecisions(new ArrayList<DesignDecision>(), genotype);
-		//determineAllocationDecisions(new ArrayList<DesignDecision>(), genotype);
 		final List<DesignDecisionGenotype> result = new ArrayList<DesignDecisionGenotype>();
 		result.add(genotype);
 		this.initialGenotype = genotype;
 		return result;
-	}
-
-	private ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd) {
-		final ResourceContainer rc = (ResourceContainer) prd.getPrimaryChanged();
-		final List<ProcessingResourceSpecification> prsList = rc.getActiveResourceSpecifications_ResourceContainer();
-		final ProcessingResourceType prt = prd.getProcessingresourcetype();
-
-		ProcessingResourceSpecification rightPrs = null;
-		for (final ProcessingResourceSpecification prs : prsList) {
-			if (EMFHelper.checkIdentity(prs.getActiveResourceType_ActiveResourceSpecification(), prt)) {
-				rightPrs = prs;
-				break;
-			}
-		}
-		return rightPrs;
 	}
 
 	/**
@@ -339,7 +155,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	@Override
 	protected void initialiseProblem() {
 		this.problem = this.designDecisionFactory.createDecisionSpace();
-		final List<DegreeOfFreedom> dds = this.problem.getDofInstances();
+		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
 
 		//analyse PCM Instance and create design decisions
 		//TODO: could this be possible with a M2M transformation?
@@ -371,8 +187,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 * @param dds
 	 * @param initialCandidate
 	 */
-	private void determineCapacityDecisions(final List<DegreeOfFreedom> dds,
-			final DesignDecisionGenotype genotype) {
+	private void determineCapacityDecisions(final List<ADegreeOfFreedom> dds, final DesignDecisionGenotype genotype) {
 
 		final List<Repository> repositories = this.pcmInstance.getRepositories();
 		for (final Repository repository : repositories) {
@@ -426,8 +241,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	//	}
 
 	//TODO: change this to two visitors that either create the design decision and initial genotype or just initial genotype.
-	private void determineAllocationDecisions(final List<DegreeOfFreedom> dds,
-			final DesignDecisionGenotype genotype) {
+	private void determineAllocationDecisions(final List<ADegreeOfFreedom> dds, final DesignDecisionGenotype genotype) {
 		final List<AllocationContext> acs = this.pcmInstance.getAllocation().getAllocationContexts_Allocation();
 		final List<ResourceContainer> rcs = this.pcmInstance.getResourceEnvironment()
 				.getResourceContainer_ResourceEnvironment();
@@ -451,7 +265,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 * Be sure to add one design decision and one gene in the initial genotype at once. The index is important.
 	 * @param genotypeIndex
 	 */
-	private void determineAssembledComponentsDecisions(final List<DegreeOfFreedom> dds,
+	private void determineAssembledComponentsDecisions(final List<ADegreeOfFreedom> dds,
 			final DesignDecisionGenotype genotype) {
 		final AlternativeComponent ac = AlternativeComponent.getInstance();
 		final List<AssembledComponentDegree> decisions = ac.generateDesignDecisions(this.pcmInstance);
@@ -478,7 +292,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 *
 	 * TODO: make configurable to also add {@link DiscreteProcessingRateDegree}s.
 	 */
-	private void determineProcessingRateDecisions(final List<DegreeOfFreedom> dds,
+	private void determineProcessingRateDecisions(final List<ADegreeOfFreedom> dds,
 			final DesignDecisionGenotype genotype) {
 		final List<ResourceContainer> resourceContainers = this.pcmInstance.getResourceEnvironment()
 				.getResourceContainer_ResourceEnvironment();
@@ -527,48 +341,6 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 		}
 	}
 
-	private DegreeOfFreedom getDesignDecision(final int index) {
-		return this.problem.getDofInstances().get(index);
-	}
-
-	@Override
-	public List<DegreeOfFreedom> getDesignDecisions() {
-		return this.problem.getDofInstances();
-	}
-
-	private PCMInstance getPcmInstance() {
-		return this.pcmInstance;
-	}
-
-	/**
-	 * Returns the degree of freedom of the type (or subtype) that has the given
-	 * entity as the changeableEntity.
-	 * @param entity
-	 * @param degreeClass
-	 * @return The matching DegreeOfFreedom runtime object from this problem.
-	 */
-	private DegreeOfFreedom getDoFInstance(final Entity entity,
-			final Class<? extends DegreeOfFreedom> degreeClass) {
-		final List<DegreeOfFreedom> degrees = this.problem.getDofInstances();
-		for (final DegreeOfFreedom DegreeOfFreedom : degrees) {
-
-			if (degreeClass.isInstance(DegreeOfFreedom)
-					&& DegreeOfFreedom.getPrimaryChanged().equals(entity)) {
-				return DegreeOfFreedom;
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public DesignDecisionGenotype getGenotypeOfInitialInstance() {
-		return this.initialGenotype;
-	}
-
-	public List<DesignDecisionGenotype> getInitialGenotypeList() {
-		return this.initialGenotypeList;
-	}
-
 	//potentially move to ADSEProblem
 	@Override
 	public void saveProblem() {
@@ -583,9 +355,8 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	}
 
 	@Override
-	public void setInitialPopulation(final List<DesignDecisionGenotype> population) throws CoreException {
-		this.initialGenotypeList = population;
-		Opt4JStarter.getDSECreator().setNumberOfNotEvaluatedPredefinedOnes(population.size());
+	public PCMInstance getPcmInstance() {
+		return this.pcmInstance;
 	}
 
 	/**
@@ -595,20 +366,7 @@ public class PCMDSEProblemImpl extends ADSEProblemImpl implements PCMDSEProblem 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return designdecisionPackage.Literals.PCMDSE_PROBLEM;
+		return designdecisionPackage.Literals.DSE_PROBLEM;
 	}
 
-	@Override
-	public DegreeOfFreedom getDegree(Entity entity, Class<? extends DegreeOfFreedom> degreeClass) {
-		// TODO Auto-generated method stub
-		//probably calls getDoFInstance
-		return null;
-	}
-
-	@Override
-	public DecisionSpace getEMFProblem() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-} //PCMDSEProblemImpl
+} //DSEProblemImpl

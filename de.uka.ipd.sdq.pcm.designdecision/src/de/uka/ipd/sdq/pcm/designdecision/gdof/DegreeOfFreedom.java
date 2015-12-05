@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.designdecision.gdof;
 
 import org.eclipse.emf.common.util.EList;
 import de.uka.ipd.sdq.featuremodel.NamedElement;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import de.uka.ipd.sdq.featuremodel.NamedElement;
  * @model
  * @generated
  */
-public interface DegreeOfFreedom extends NamedElement, genericdesigndecision.genericDoF.DegreeOfFreedom {
+public interface DegreeOfFreedom extends NamedElement, ADegreeOfFreedom {
 	/**
 	 * Returns the value of the '<em><b>Pcm Changeable Element Descriptions</b></em>' containment reference list.
 	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription}.

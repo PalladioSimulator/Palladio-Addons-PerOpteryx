@@ -4,8 +4,12 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AContinuousRangeDegreeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +18,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class MonitoringDegreeImpl extends ContinuousRangeDegreeImpl implements MonitoringDegree {
+public class MonitoringDegreeImpl extends AContinuousRangeDegreeImpl implements MonitoringDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +36,19 @@ public class MonitoringDegreeImpl extends ContinuousRangeDegreeImpl implements M
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.MONITORING_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final ContinousRangeChoice choice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
+		choice.setDofInstance(this);
+
+		//MonitoringDegree mnrt = (MonitoringDegree) dd;
+		//Intervall interval = (Intervall) (MonitoringDegree)crdobj.getPrimaryChanged();
+		//choice.setChosenValue(interval.getIntervall());
+		choice.setChosenValue(this.getFrom());
+
+		return choice;
 	}
 
 } //MonitoringDegreeImpl

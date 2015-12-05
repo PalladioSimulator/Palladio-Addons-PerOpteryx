@@ -66,10 +66,12 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 			return createCandidate();
 		case designdecisionPackage.CANDIDATES:
 			return createCandidates();
-		case designdecisionPackage.PCMDSE_PROBLEM:
-			return createPCMDSEProblem();
-		case designdecisionPackage.PCM_METAMODEL_DESCRIPTION:
-			return createPCMMetamodelDescription();
+		case designdecisionPackage.DSE_PROBLEM:
+			return createDSEProblem();
+		case designdecisionPackage.METAMODEL_DESCRIPTION:
+			return createMetamodelDescription();
+		case designdecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
+			return createGenomeToCandidateModelTransformation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -151,9 +153,20 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 * @generated
 	 */
 	@Override
-	public PCMMetamodelDescription createPCMMetamodelDescription() {
-		PCMMetamodelDescriptionImpl pcmMetamodelDescription = new PCMMetamodelDescriptionImpl();
-		return pcmMetamodelDescription;
+	public MetamodelDescription createMetamodelDescription() {
+		MetamodelDescriptionImpl metamodelDescription = new MetamodelDescriptionImpl();
+		return metamodelDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GenomeToCandidateModelTransformation createGenomeToCandidateModelTransformation() {
+		GenomeToCandidateModelTransformationImpl genomeToCandidateModelTransformation = new GenomeToCandidateModelTransformationImpl();
+		return genomeToCandidateModelTransformation;
 	}
 
 	/**
@@ -176,20 +189,23 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
-	public PCMDSEProblem createPCMDSEProblem() {
-		return null;
+	public DSEProblem createDSEProblem() {
+		DSEProblemImpl dseProblem = new DSEProblemImpl();
+		return dseProblem;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public PCMDSEProblem createPCMDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException {
-		return new PCMDSEProblemImpl(dseConfig, model, designdecisionFactory.eINSTANCE.createPCMMetamodelDescription());
+	@Override
+	public DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException {
+		return new DSEProblemImpl(dseConfig, model);
 	}
 
 } // designdecisionFactoryImpl

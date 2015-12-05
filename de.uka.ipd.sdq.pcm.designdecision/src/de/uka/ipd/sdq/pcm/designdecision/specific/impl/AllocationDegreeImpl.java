@@ -7,9 +7,17 @@
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.impl.AClassAsReferenceDegreeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +26,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class AllocationDegreeImpl extends ClassAsReferenceDegreeImpl implements AllocationDegree {
+public class AllocationDegreeImpl extends AClassAsReferenceDegreeImpl implements AllocationDegree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,6 +44,21 @@ public class AllocationDegreeImpl extends ClassAsReferenceDegreeImpl implements 
 	@Override
 	protected EClass eStaticClass() {
 		return specificPackage.Literals.ALLOCATION_DEGREE;
+	}
+
+	@Override
+	public Choice determineInitialChoice() {
+		final ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+		choice.setDofInstance(this);
+		final AllocationContext ac = (AllocationContext) this.getPrimaryChanged();
+		final ResourceContainer rc = ac.getResourceContainer_AllocationContext();
+		choice.setChosenValue(rc);
+
+		//check if entity is in the domain
+		if (!EMFHelper.contains(this.getClassDesignOptions(), choice.getChosenValue())) {
+			throw new ChoiceOutOfBoundsException(choice, "Error when determining initial genotype");
+		}
+		return choice;
 	}
 
 } //AllocationDegreeImpl

@@ -2,6 +2,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific;
 
+import genericdesigndecision.genericDoF.AContinuousRangeDegree;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Monitoring Degree</b></em>'.
@@ -16,5 +18,5 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * @model
  * @generated
  */
-public interface MonitoringDegree extends ContinuousRangeDegree {
+public interface MonitoringDegree extends AContinuousRangeDegree {
 } // MonitoringDegree

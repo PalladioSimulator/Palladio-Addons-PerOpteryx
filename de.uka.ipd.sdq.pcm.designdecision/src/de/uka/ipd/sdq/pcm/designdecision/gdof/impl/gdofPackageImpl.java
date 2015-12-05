@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.uml2.types.TypesPackage;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
 
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
@@ -165,7 +164,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
+		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE
@@ -487,7 +486,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		staticSelectionRuleEClass.getESuperTypes().add(this.getStaticContextRule());
 		staticSelectionRuleEClass.getESuperTypes().add(theGenericDoFPackage.getStaticSelectionRule());
 		degreeOfFreedomEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
-		degreeOfFreedomEClass.getESuperTypes().add(theGenericDoFPackage.getDegreeOfFreedom());
+		degreeOfFreedomEClass.getESuperTypes().add(theGenericDoFPackage.getADegreeOfFreedom());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(changeableElementDescriptionEClass, ChangeableElementDescription.class,
