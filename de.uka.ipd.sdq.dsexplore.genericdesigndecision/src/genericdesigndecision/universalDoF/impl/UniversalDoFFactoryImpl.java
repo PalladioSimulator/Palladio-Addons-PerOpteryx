@@ -2,8 +2,7 @@
  */
 package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
 
 import java.util.Map;
@@ -64,7 +63,7 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 			case UniversalDoFPackage.GDO_FREPOSITORY: return createGDoFRepository();
 			case UniversalDoFPackage.GENERIC_DO_F: return createGenericDoF();
 			case UniversalDoFPackage.UNIVERSAL_DO_F: return createUniversalDoF();
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM: return (EObject)createGenericDoFToDegreeOfFreedom();
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM: return (EObject)createGenericDoFToADegreeOfFreedom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -134,9 +133,9 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<GenericDoF, DegreeOfFreedom> createGenericDoFToDegreeOfFreedom() {
-		GenericDoFToDegreeOfFreedomImpl genericDoFToDegreeOfFreedom = new GenericDoFToDegreeOfFreedomImpl();
-		return genericDoFToDegreeOfFreedom;
+	public Map.Entry<GenericDoF, ADegreeOfFreedom> createGenericDoFToADegreeOfFreedom() {
+		GenericDoFToADegreeOfFreedomImpl genericDoFToADegreeOfFreedom = new GenericDoFToADegreeOfFreedomImpl();
+		return genericDoFToADegreeOfFreedom;
 	}
 
 	/**

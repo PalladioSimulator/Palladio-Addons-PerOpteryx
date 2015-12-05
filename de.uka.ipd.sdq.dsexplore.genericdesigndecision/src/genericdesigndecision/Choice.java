@@ -2,8 +2,7 @@
  */
 package genericdesigndecision;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.Choice#isIsActive <em>Is Active</em>}</li>
+ *   <li>{@link genericdesigndecision.Choice#isActive <em>Active</em>}</li>
  *   <li>{@link genericdesigndecision.Choice#getValue <em>Value</em>}</li>
  *   <li>{@link genericdesigndecision.Choice#getDofInstance <em>Dof Instance</em>}</li>
  * </ul>
@@ -30,31 +29,31 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Choice extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Is Active</b></em>' attribute.
+	 * Returns the value of the '<em><b>Active</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Active</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Active</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Active</em>' attribute.
-	 * @see #setIsActive(boolean)
-	 * @see genericdesigndecision.GenericdesigndecisionPackage#getChoice_IsActive()
+	 * @return the value of the '<em>Active</em>' attribute.
+	 * @see #setActive(boolean)
+	 * @see genericdesigndecision.GenericdesigndecisionPackage#getChoice_Active()
 	 * @model default="true" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIsActive();
+	boolean isActive();
 
 	/**
-	 * Sets the value of the '{@link genericdesigndecision.Choice#isIsActive <em>Is Active</em>}' attribute.
+	 * Sets the value of the '{@link genericdesigndecision.Choice#isActive <em>Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Active</em>' attribute.
-	 * @see #isIsActive()
+	 * @param value the new value of the '<em>Active</em>' attribute.
+	 * @see #isActive()
 	 * @generated
 	 */
-	void setIsActive(boolean value);
+	void setActive(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -91,12 +90,12 @@ public interface Choice extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dof Instance</em>' reference.
-	 * @see #setDofInstance(DegreeOfFreedom)
+	 * @see #setDofInstance(ADegreeOfFreedom)
 	 * @see genericdesigndecision.GenericdesigndecisionPackage#getChoice_DofInstance()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	DegreeOfFreedom getDofInstance();
+	ADegreeOfFreedom getDofInstance();
 
 	/**
 	 * Sets the value of the '{@link genericdesigndecision.Choice#getDofInstance <em>Dof Instance</em>}' reference.
@@ -106,6 +105,6 @@ public interface Choice extends EObject {
 	 * @see #getDofInstance()
 	 * @generated
 	 */
-	void setDofInstance(DegreeOfFreedom value);
+	void setDofInstance(ADegreeOfFreedom value);
 
 } // Choice

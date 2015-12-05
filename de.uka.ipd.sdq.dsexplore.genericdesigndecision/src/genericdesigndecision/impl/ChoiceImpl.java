@@ -4,9 +4,7 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.Choice;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -23,7 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.impl.ChoiceImpl#isIsActive <em>Is Active</em>}</li>
+ *   <li>{@link genericdesigndecision.impl.ChoiceImpl#isActive <em>Active</em>}</li>
  *   <li>{@link genericdesigndecision.impl.ChoiceImpl#getValue <em>Value</em>}</li>
  *   <li>{@link genericdesigndecision.impl.ChoiceImpl#getDofInstance <em>Dof Instance</em>}</li>
  * </ul>
@@ -32,24 +30,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	/**
-	 * The default value of the '{@link #isIsActive() <em>Is Active</em>}' attribute.
+	 * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsActive()
+	 * @see #isActive()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_ACTIVE_EDEFAULT = true;
+	protected static final boolean ACTIVE_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isIsActive() <em>Is Active</em>}' attribute.
+	 * The cached value of the '{@link #isActive() <em>Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsActive()
+	 * @see #isActive()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isActive = IS_ACTIVE_EDEFAULT;
+	protected boolean active = ACTIVE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -79,7 +77,7 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * @generated
 	 * @ordered
 	 */
-	protected DegreeOfFreedom dofInstance;
+	protected ADegreeOfFreedom dofInstance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,8 +103,8 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsActive() {
-		return isActive;
+	public boolean isActive() {
+		return active;
 	}
 
 	/**
@@ -114,11 +112,11 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsActive(boolean newIsActive) {
-		boolean oldIsActive = isActive;
-		isActive = newIsActive;
+	public void setActive(boolean newActive) {
+		boolean oldActive = active;
+		active = newActive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericdesigndecisionPackage.CHOICE__IS_ACTIVE, oldIsActive, isActive));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericdesigndecisionPackage.CHOICE__ACTIVE, oldActive, active));
 	}
 
 	/**
@@ -147,10 +145,10 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom getDofInstance() {
+	public ADegreeOfFreedom getDofInstance() {
 		if (dofInstance != null && dofInstance.eIsProxy()) {
 			InternalEObject oldDofInstance = (InternalEObject)dofInstance;
-			dofInstance = (DegreeOfFreedom)eResolveProxy(oldDofInstance);
+			dofInstance = (ADegreeOfFreedom)eResolveProxy(oldDofInstance);
 			if (dofInstance != oldDofInstance) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE, oldDofInstance, dofInstance));
@@ -164,7 +162,7 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom basicGetDofInstance() {
+	public ADegreeOfFreedom basicGetDofInstance() {
 		return dofInstance;
 	}
 
@@ -173,8 +171,8 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDofInstance(DegreeOfFreedom newDofInstance) {
-		DegreeOfFreedom oldDofInstance = dofInstance;
+	public void setDofInstance(ADegreeOfFreedom newDofInstance) {
+		ADegreeOfFreedom oldDofInstance = dofInstance;
 		dofInstance = newDofInstance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE, oldDofInstance, dofInstance));
@@ -188,8 +186,8 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GenericdesigndecisionPackage.CHOICE__IS_ACTIVE:
-				return isIsActive();
+			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
+				return isActive();
 			case GenericdesigndecisionPackage.CHOICE__VALUE:
 				return getValue();
 			case GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE:
@@ -207,14 +205,14 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GenericdesigndecisionPackage.CHOICE__IS_ACTIVE:
-				setIsActive((Boolean)newValue);
+			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
+				setActive((Boolean)newValue);
 				return;
 			case GenericdesigndecisionPackage.CHOICE__VALUE:
 				setValue(newValue);
 				return;
 			case GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE:
-				setDofInstance((DegreeOfFreedom)newValue);
+				setDofInstance((ADegreeOfFreedom)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,14 +226,14 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GenericdesigndecisionPackage.CHOICE__IS_ACTIVE:
-				setIsActive(IS_ACTIVE_EDEFAULT);
+			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
+				setActive(ACTIVE_EDEFAULT);
 				return;
 			case GenericdesigndecisionPackage.CHOICE__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 			case GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE:
-				setDofInstance((DegreeOfFreedom)null);
+				setDofInstance((ADegreeOfFreedom)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -249,8 +247,8 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GenericdesigndecisionPackage.CHOICE__IS_ACTIVE:
-				return isActive != IS_ACTIVE_EDEFAULT;
+			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
+				return active != ACTIVE_EDEFAULT;
 			case GenericdesigndecisionPackage.CHOICE__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 			case GenericdesigndecisionPackage.CHOICE__DOF_INSTANCE:
@@ -269,8 +267,8 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isActive: ");
-		result.append(isActive);
+		result.append(" (Active: ");
+		result.append(active);
 		result.append(", value: ");
 		result.append(value);
 		result.append(')');

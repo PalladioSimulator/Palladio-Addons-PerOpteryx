@@ -2,8 +2,10 @@
  */
 package genericdesigndecision.impl;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Candidates;
 import genericdesigndecision.Choice;
@@ -35,7 +37,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,6 +112,20 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	private EClass dseProblemEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genomeToCandidateModelTransformationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass aGenomeToCandidateModelTransformationEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -152,6 +170,10 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericdesigndecisionPackageImpl theGenericdesigndecisionPackage = (GenericdesigndecisionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GenericdesigndecisionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GenericdesigndecisionPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		GenericDoFPackageImpl theGenericDoFPackage = (GenericDoFPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) instanceof GenericDoFPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI) : GenericDoFPackage.eINSTANCE);
@@ -220,7 +242,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChoice_IsActive() {
+	public EAttribute getChoice_Active() {
 		return (EAttribute)choiceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -409,6 +431,24 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGenomeToCandidateModelTransformation() {
+		return genomeToCandidateModelTransformationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAGenomeToCandidateModelTransformation() {
+		return aGenomeToCandidateModelTransformationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericdesigndecisionFactory getGenericdesigndecisionFactory() {
 		return (GenericdesigndecisionFactory)getEFactoryInstance();
 	}
@@ -436,7 +476,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		createEAttribute(discreteRangeChoiceEClass, DISCRETE_RANGE_CHOICE__CHOSEN_VALUE);
 
 		choiceEClass = createEClass(CHOICE);
-		createEAttribute(choiceEClass, CHOICE__IS_ACTIVE);
+		createEAttribute(choiceEClass, CHOICE__ACTIVE);
 		createEAttribute(choiceEClass, CHOICE__VALUE);
 		createEReference(choiceEClass, CHOICE__DOF_INSTANCE);
 
@@ -464,6 +504,10 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		createEReference(adseProblemEClass, ADSE_PROBLEM__ASSOCIATED_METAMODEL);
 
 		dseProblemEClass = createEClass(DSE_PROBLEM);
+
+		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
+
+		aGenomeToCandidateModelTransformationEClass = createEClass(AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
 	}
 
 	/**
@@ -493,6 +537,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		GenericDoFPackage theGenericDoFPackage = (GenericDoFPackage)EPackage.Registry.INSTANCE.getEPackage(GenericDoFPackage.eNS_URI);
 		UniversalDoFPackage theUniversalDoFPackage = (UniversalDoFPackage)EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI);
 		QualitypropertiesPackage theQualitypropertiesPackage = (QualitypropertiesPackage)EPackage.Registry.INSTANCE.getEPackage(QualitypropertiesPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGenericDoFPackage);
@@ -508,15 +553,16 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		adseProblemEClass.getESuperTypes().add(this.getDSEProblem());
+		aGenomeToCandidateModelTransformationEClass.getESuperTypes().add(this.getGenomeToCandidateModelTransformation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDiscreteRangeChoice_ChosenValue(), ecorePackage.getEInt(), "chosenValue", null, 1, 1, DiscreteRangeChoice.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChoice_IsActive(), ecorePackage.getEBoolean(), "isActive", "true", 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getChoice_Active(), ecorePackage.getEBoolean(), "Active", "true", 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getChoice_Value(), ecorePackage.getEJavaObject(), "value", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getChoice_DofInstance(), theGenericDoFPackage.getDegreeOfFreedom(), null, "dofInstance", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoice_DofInstance(), theGenericDoFPackage.getADegreeOfFreedom(), null, "dofInstance", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(classChoiceEClass, ClassChoice.class, "ClassChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassChoice_ChosenValue(), ecorePackage.getEObject(), null, "chosenValue", null, 1, 1, ClassChoice.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -525,7 +571,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		initEAttribute(getContinousRangeChoice_ChosenValue(), ecorePackage.getEDouble(), "chosenValue", null, 1, 1, ContinousRangeChoice.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(decisionSpaceEClass, DecisionSpace.class, "DecisionSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDecisionSpace_DofInstances(), theGenericDoFPackage.getDegreeOfFreedom(), null, "dofInstances", null, 1, -1, DecisionSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDecisionSpace_DofInstances(), theGenericDoFPackage.getADegreeOfFreedom(), null, "dofInstances", null, 1, -1, DecisionSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(candidateEClass, Candidate.class, "Candidate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCandidate_Choices(), this.getChoice(), null, "choices", null, 0, -1, Candidate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -546,10 +592,14 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 
 		initEClass(adseProblemEClass, ADSEProblem.class, "ADSEProblem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getADSEProblem_Problem(), this.getDecisionSpace(), null, "problem", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getADSEProblem_EmfInstance(), ecorePackage.getEModelElement(), null, "emfInstance", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getADSEProblem_EmfInstance(), theEcorePackage.getEObject(), null, "emfInstance", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dseProblemEClass, DSEProblem.class, "DSEProblem", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(genomeToCandidateModelTransformationEClass, GenomeToCandidateModelTransformation.class, "GenomeToCandidateModelTransformation", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(aGenomeToCandidateModelTransformationEClass, AGenomeToCandidateModelTransformation.class, "AGenomeToCandidateModelTransformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

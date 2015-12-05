@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.util;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
@@ -103,6 +104,14 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDSEProblem(DSEProblem object) {
 				return createDSEProblemAdapter();
+			}
+			@Override
+			public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
+				return createGenomeToCandidateModelTransformationAdapter();
+			}
+			@Override
+			public Adapter caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
+				return createAGenomeToCandidateModelTransformationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -247,6 +256,34 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDSEProblemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createGenomeToCandidateModelTransformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
 		return null;
 	}
 

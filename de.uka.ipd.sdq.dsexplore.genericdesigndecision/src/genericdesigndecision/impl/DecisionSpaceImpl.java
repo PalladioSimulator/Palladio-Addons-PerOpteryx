@@ -4,9 +4,7 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,7 +41,7 @@ public class DecisionSpaceImpl extends MinimalEObjectImpl.Container implements D
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DegreeOfFreedom> dofInstances;
+	protected EList<ADegreeOfFreedom> dofInstances;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,9 +67,9 @@ public class DecisionSpaceImpl extends MinimalEObjectImpl.Container implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DegreeOfFreedom> getDofInstances() {
+	public EList<ADegreeOfFreedom> getDofInstances() {
 		if (dofInstances == null) {
-			dofInstances = new EObjectContainmentEList<DegreeOfFreedom>(DegreeOfFreedom.class, this, GenericdesigndecisionPackage.DECISION_SPACE__DOF_INSTANCES);
+			dofInstances = new EObjectContainmentEList<ADegreeOfFreedom>(ADegreeOfFreedom.class, this, GenericdesigndecisionPackage.DECISION_SPACE__DOF_INSTANCES);
 		}
 		return dofInstances;
 	}
@@ -115,7 +113,7 @@ public class DecisionSpaceImpl extends MinimalEObjectImpl.Container implements D
 		switch (featureID) {
 			case GenericdesigndecisionPackage.DECISION_SPACE__DOF_INSTANCES:
 				getDofInstances().clear();
-				getDofInstances().addAll((Collection<? extends DegreeOfFreedom>)newValue);
+				getDofInstances().addAll((Collection<? extends ADegreeOfFreedom>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

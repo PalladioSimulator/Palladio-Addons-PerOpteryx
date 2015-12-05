@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.util;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
@@ -122,6 +123,19 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 			case GenericdesigndecisionPackage.DSE_PROBLEM: {
 				DSEProblem dseProblem = (DSEProblem)theEObject;
 				T result = caseDSEProblem(dseProblem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericdesigndecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION: {
+				GenomeToCandidateModelTransformation genomeToCandidateModelTransformation = (GenomeToCandidateModelTransformation)theEObject;
+				T result = caseGenomeToCandidateModelTransformation(genomeToCandidateModelTransformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION: {
+				AGenomeToCandidateModelTransformation aGenomeToCandidateModelTransformation = (AGenomeToCandidateModelTransformation)theEObject;
+				T result = caseAGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
+				if (result == null) result = caseGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -261,6 +275,36 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDSEProblem(DSEProblem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
 		return null;
 	}
 

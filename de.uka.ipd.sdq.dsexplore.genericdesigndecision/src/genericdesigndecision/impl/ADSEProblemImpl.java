@@ -5,8 +5,9 @@ package genericdesigndecision.impl;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
+
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -14,14 +15,17 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.palladiosimulator.pcm.core.entity.Entity;
 
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +43,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
  * @generated
  */
 public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container implements ADSEProblem {
-
 	/**
 	 * The cached value of the '{@link #getProblem() <em>Problem</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -50,7 +53,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 */
 	protected DecisionSpace problem;
 
-    /**
+	/**
 	 * The cached value of the '{@link #getEmfInstance() <em>Emf Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,7 +61,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected EModelElement emfInstance;
+	protected EObject emfInstance;
 
 	/**
 	 * The cached value of the '{@link #getAssociatedMetamodel() <em>Associated Metamodel</em>}' reference.
@@ -88,17 +91,16 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 		newProblem = false;
 		associatedMetamodel = null;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected ADSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final EModelElement emfInstance, AMetamodelDescription associatedMetamodel) {
+	protected ADSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final EModelElement emfInstance) {
 		super();
 		this.dseConfig = dseConfig;
 		this.emfInstance = emfInstance;
-		this.associatedMetamodel = associatedMetamodel;
 		newProblem = dseConfig.isNewProblem();
 	}
 
@@ -108,7 +110,6 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
         try {
 			problem = this.loadProblem(filename);
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			problem = null;
 		}
@@ -123,22 +124,73 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	
 	protected abstract List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem);
 	
-	protected void throwUnknownDegreeException(final DegreeOfFreedom dd) {
+	protected void throwUnknownDegreeException(final ADegreeOfFreedom dd) {
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
     }
+	
+	protected ADegreeOfFreedom getDesignDecision(final int index) {
+		return this.problem.getDofInstances().get(index);
+	}
+
+	@Override
+	public List<ADegreeOfFreedom> getDesignDecisions() {
+		return this.problem.getDofInstances();
+	}
+
+	/**
+	 * Returns the degree of freedom of the type (or subtype) that has the given
+	 * entity as the changeableEntity.
+	 * @param entity
+	 * @param degreeClass
+	 * @return The matching DegreeOfFreedom runtime object from this problem.
+	 */
+	protected ADegreeOfFreedom getDoFInstance(final Entity entity,
+			final Class<? extends ADegreeOfFreedom> degreeClass) {
+		final List<ADegreeOfFreedom> degrees = this.problem.getDofInstances();
+		for (final ADegreeOfFreedom DegreeOfFreedom : degrees) {
+
+			if (degreeClass.isInstance(DegreeOfFreedom)
+					&& DegreeOfFreedom.getPrimaryChanged().equals(entity)) {
+				return DegreeOfFreedom;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public DesignDecisionGenotype getGenotypeOfInitialInstance() {
+		return this.initialGenotype;
+	}
+
+	public List<DesignDecisionGenotype> getInitialGenotypeList() {
+		return this.initialGenotypeList;
+	}
+	
+	@Override
+	public ADegreeOfFreedom getDegree(Entity entity, Class<? extends ADegreeOfFreedom> degreeClass) {
+		// TODO Auto-generated method stub
+		//probably calls getDoFInstance
+		return null;
+	}
+	
+	@Override
+	public void setInitialPopulation(final List<DesignDecisionGenotype> population) throws CoreException {
+		this.initialGenotypeList = population;
+		Opt4JStarter.getDSECreator().setNumberOfNotEvaluatedPredefinedOnes(population.size());
+	}
 	
 	@Override
     public String toString(){
 
         String result = "";
 
-        final List<DegreeOfFreedom> decisions = this.problem.getDofInstances();
-        for (final DegreeOfFreedom designDecision : decisions) {
+        final List<ADegreeOfFreedom> decisions = this.problem.getDofInstances();
+        for (final ADegreeOfFreedom designDecision : decisions) {
             result += DegreeOfFreedomHelper.getDegreeDescription(designDecision)+";";
         }
         return result;
     }
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,10 +244,10 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EModelElement getEmfInstance() {
+	public EObject getEmfInstance() {
 		if (emfInstance != null && emfInstance.eIsProxy()) {
 			InternalEObject oldEmfInstance = (InternalEObject)emfInstance;
-			emfInstance = (EModelElement)eResolveProxy(oldEmfInstance);
+			emfInstance = eResolveProxy(oldEmfInstance);
 			if (emfInstance != oldEmfInstance) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE, oldEmfInstance, emfInstance));
@@ -209,7 +261,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EModelElement basicGetEmfInstance() {
+	public EObject basicGetEmfInstance() {
 		return emfInstance;
 	}
 
@@ -218,8 +270,8 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEmfInstance(EModelElement newEmfInstance) {
-		EModelElement oldEmfInstance = emfInstance;
+	public void setEmfInstance(EObject newEmfInstance) {
+		EObject oldEmfInstance = emfInstance;
 		emfInstance = newEmfInstance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE, oldEmfInstance, emfInstance));
@@ -296,7 +348,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 				setProblem((DecisionSpace)newValue);
 				return;
 			case GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE:
-				setEmfInstance((EModelElement)newValue);
+				setEmfInstance((EObject)newValue);
 				return;
 			case GenericdesigndecisionPackage.ADSE_PROBLEM__ASSOCIATED_METAMODEL:
 				setAssociatedMetamodel((AMetamodelDescription)newValue);
@@ -317,7 +369,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 				setProblem((DecisionSpace)null);
 				return;
 			case GenericdesigndecisionPackage.ADSE_PROBLEM__EMF_INSTANCE:
-				setEmfInstance((EModelElement)null);
+				setEmfInstance((EObject)null);
 				return;
 			case GenericdesigndecisionPackage.ADSE_PROBLEM__ASSOCIATED_METAMODEL:
 				setAssociatedMetamodel((AMetamodelDescription)null);

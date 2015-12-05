@@ -39,7 +39,7 @@ public class DSEProblemFactoryImpl extends EFactoryImpl implements DSEProblemFac
 		switch (metamodel) {
 			//added for PCM support
 			case PCM: try {
-							problem = designdecisionFactory.eINSTANCE.createPCMDSEProblem(dseConfig, model);
+							problem = designdecisionFactory.eINSTANCE.createDSEProblem(dseConfig, model);
 					} catch (CoreException e) {
 							e.printStackTrace();
 					}

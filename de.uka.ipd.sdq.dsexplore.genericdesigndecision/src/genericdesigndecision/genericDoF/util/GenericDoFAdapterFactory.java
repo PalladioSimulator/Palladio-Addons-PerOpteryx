@@ -104,8 +104,60 @@ public class GenericDoFAdapterFactory extends AdapterFactoryImpl {
 				return createStaticSelectionRuleAdapter();
 			}
 			@Override
-			public Adapter caseDegreeOfFreedom(DegreeOfFreedom object) {
-				return createDegreeOfFreedomAdapter();
+			public Adapter caseADegreeOfFreedom(ADegreeOfFreedom object) {
+				return createADegreeOfFreedomAdapter();
+			}
+			@Override
+			public Adapter caseAClassAsReferenceDegree(AClassAsReferenceDegree object) {
+				return createAClassAsReferenceDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAClassDegree(AClassDegree object) {
+				return createAClassDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAClassWithCopyDegree(AClassWithCopyDegree object) {
+				return createAClassWithCopyDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAContinuousRangeDegree(AContinuousRangeDegree object) {
+				return createAContinuousRangeDegreeAdapter();
+			}
+			@Override
+			public Adapter caseARangeDegree(ARangeDegree object) {
+				return createARangeDegreeAdapter();
+			}
+			@Override
+			public Adapter caseADataTypeDegree(ADataTypeDegree object) {
+				return createADataTypeDegreeAdapter();
+			}
+			@Override
+			public Adapter caseADiscreteDegree(ADiscreteDegree object) {
+				return createADiscreteDegreeAdapter();
+			}
+			@Override
+			public Adapter caseADiscreteRangeDegree(ADiscreteRangeDegree object) {
+				return createADiscreteRangeDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAEnumDegree(AEnumDegree object) {
+				return createAEnumDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAUnorderedDegree(AUnorderedDegree object) {
+				return createAUnorderedDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAOrderedDataTypeDegree(AOrderedDataTypeDegree object) {
+				return createAOrderedDataTypeDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAOrderedIntegerDegree(AOrderedIntegerDegree object) {
+				return createAOrderedIntegerDegreeAdapter();
+			}
+			@Override
+			public Adapter caseAStringSetDegree(AStringSetDegree object) {
+				return createAStringSetDegreeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -254,16 +306,198 @@ public class GenericDoFAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.DegreeOfFreedom <em>Degree Of Freedom</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom <em>ADegree Of Freedom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.genericDoF.DegreeOfFreedom
+	 * @see genericdesigndecision.genericDoF.ADegreeOfFreedom
 	 * @generated
 	 */
-	public Adapter createDegreeOfFreedomAdapter() {
+	public Adapter createADegreeOfFreedomAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AClassAsReferenceDegree <em>AClass As Reference Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AClassAsReferenceDegree
+	 * @generated
+	 */
+	public Adapter createAClassAsReferenceDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AClassDegree <em>AClass Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AClassDegree
+	 * @generated
+	 */
+	public Adapter createAClassDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AClassWithCopyDegree <em>AClass With Copy Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AClassWithCopyDegree
+	 * @generated
+	 */
+	public Adapter createAClassWithCopyDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AContinuousRangeDegree <em>AContinuous Range Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AContinuousRangeDegree
+	 * @generated
+	 */
+	public Adapter createAContinuousRangeDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ARangeDegree <em>ARange Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.ARangeDegree
+	 * @generated
+	 */
+	public Adapter createARangeDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ADataTypeDegree <em>AData Type Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.ADataTypeDegree
+	 * @generated
+	 */
+	public Adapter createADataTypeDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ADiscreteDegree <em>ADiscrete Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.ADiscreteDegree
+	 * @generated
+	 */
+	public Adapter createADiscreteDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.ADiscreteRangeDegree <em>ADiscrete Range Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.ADiscreteRangeDegree
+	 * @generated
+	 */
+	public Adapter createADiscreteRangeDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AEnumDegree <em>AEnum Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AEnumDegree
+	 * @generated
+	 */
+	public Adapter createAEnumDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AUnorderedDegree <em>AUnordered Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AUnorderedDegree
+	 * @generated
+	 */
+	public Adapter createAUnorderedDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AOrderedDataTypeDegree <em>AOrdered Data Type Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AOrderedDataTypeDegree
+	 * @generated
+	 */
+	public Adapter createAOrderedDataTypeDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AOrderedIntegerDegree <em>AOrdered Integer Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AOrderedIntegerDegree
+	 * @generated
+	 */
+	public Adapter createAOrderedIntegerDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.genericDoF.AStringSetDegree <em>AString Set Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.genericDoF.AStringSetDegree
+	 * @generated
+	 */
+	public Adapter createAStringSetDegreeAdapter() {
 		return null;
 	}
 

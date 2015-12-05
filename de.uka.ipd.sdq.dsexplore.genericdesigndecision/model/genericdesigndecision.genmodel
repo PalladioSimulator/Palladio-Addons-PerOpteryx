@@ -3,7 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.uka.ipd.sdq.dsexplore.genericdesigndecision/src"
     modelPluginID="de.uka.ipd.sdq.dsexplore.genericdesigndecision" modelName="Genericdesigndecision"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="7.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>genericdesigndecision.ecore</foreignModel>
   <genPackages prefix="Genericdesigndecision" disposableProviderFactory="true" ecorePackage="genericdesigndecision.ecore#/">
     <genClasses ecoreClass="genericdesigndecision.ecore#//DiscreteRangeChoice">
@@ -68,18 +69,58 @@
             ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/InstanceSelectionRule/contextInstance"/>
       </genClasses>
       <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/StaticSelectionRule"/>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom">
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/addedElements"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/changeableElementDescriptions"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/addedElements"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/changeableElementDescriptions"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/interactionConstraints"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/interactionConstraints"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChangeable"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/primaryChangeable"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/primaryChanged"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/primaryChanged"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/DegreeOfFreedom/changeableElements"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/changeableElements"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom/createRandomChoice"/>
+      </genClasses>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ClassAsReferenceDegree"/>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/ClassDegree">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/ClassDegree/classDesignOptions"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//genericDoF/ClassDegree/createRandomChoice"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/ClassWithCopyDegree"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/ContinuousRangeDegree">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/ContinuousRangeDegree/to"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/ContinuousRangeDegree/from"/>
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//genericDoF/ContinuousRangeDegree/createRandomChoice"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/RangeDegree">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/RangeDegree/upperBoundIncluded"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/RangeDegree/lowerBoundIncluded"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/RangeDegree/numberOfSteps"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/DataTypeDegree">
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//genericDoF/DataTypeDegree/createRandomChoice"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/DiscreteDegree">
+        <genOperations ecoreOperation="genericdesigndecision.ecore#//genericDoF/DiscreteDegree/createRandomChoice"/>
+      </genClasses>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/DiscreteRangeDegree">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/DiscreteRangeDegree/to"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/DiscreteRangeDegree/from"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/EnumDegree">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//genericDoF/EnumDegree/enumeration"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/UnorderedDegree"/>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/OrderedDataTypeDegree"/>
+      <genClasses ecoreClass="genericdesigndecision.ecore#//genericDoF/OrderedIntegerDegree">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/OrderedIntegerDegree/listOfIntegers"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="genericdesigndecision.ecore#//genericDoF/StringSetDegree">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericdesigndecision.ecore#//genericDoF/StringSetDegree/stringValues"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="UniversalDoF" basePackage="genericdesigndecision" disposableProviderFactory="true"
@@ -144,11 +185,11 @@
           <genParameters ecoreParameter="genericdesigndecision.ecore#//universalDoF/UniversalDoF/constrainDoF/dofID"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom">
+      <genClasses ecoreClass="genericdesigndecision.ecore#//universalDoF/GenericDoFToADegreeOfFreedom">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom/key"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToADegreeOfFreedom/key"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToDegreeOfFreedom/value"/>
+            ecoreFeature="ecore:EReference genericdesigndecision.ecore#//universalDoF/GenericDoFToADegreeOfFreedom/value"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Qualityproperties" basePackage="genericdesigndecision"

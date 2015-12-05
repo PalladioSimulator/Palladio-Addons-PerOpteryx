@@ -2,8 +2,6 @@
  */
 package genericdesigndecision.universalDoF;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EModelElement;
@@ -11,6 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
+import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +24,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getGdofrepository <em>Gdofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getSupportedMetamodels <em>Supported Metamodels</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs <em>Prepared Do Fs</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getUniversalDoF()
@@ -31,6 +32,9 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
  * @generated
  */
 public interface UniversalDoF extends EObject {
+	
+	UniversalDoF eINSTANCE = genericdesigndecision.universalDoF.impl.UniversalDoFImpl.getUniversalDoF();
+	
 	/**
 	 * Returns the value of the '<em><b>Gdofrepository</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -82,12 +86,12 @@ public interface UniversalDoF extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Prepared Do Fs</em>' reference.
-	 * @see #setPreparedDoFs(DegreeOfFreedom)
+	 * @see #setPreparedDoFs(ADegreeOfFreedom)
 	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getUniversalDoF_PreparedDoFs()
 	 * @model
 	 * @generated
 	 */
-	DegreeOfFreedom getPreparedDoFs();
+	ADegreeOfFreedom getPreparedDoFs();
 
 	/**
 	 * Sets the value of the '{@link genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs <em>Prepared Do Fs</em>}' reference.
@@ -97,7 +101,33 @@ public interface UniversalDoF extends EObject {
 	 * @see #getPreparedDoFs()
 	 * @generated
 	 */
-	void setPreparedDoFs(DegreeOfFreedom value);
+	void setPreparedDoFs(ADegreeOfFreedom value);
+
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(ADSEProblem)
+	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getUniversalDoF_Target()
+	 * @model required="true"
+	 * @generated
+	 */
+	ADSEProblem getTarget();
+
+	/**
+	 * Sets the value of the '{@link genericdesigndecision.universalDoF.UniversalDoF#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(ADSEProblem value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,7 +135,7 @@ public interface UniversalDoF extends EObject {
 	 * @model unique="false"
 	 * @generated
 	 */
-	Metamodel evaluateMetamodel(EModelElement model);
+	Metamodel evaluateMetamodel(EObject model);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,7 +159,7 @@ public interface UniversalDoF extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<DegreeOfFreedom> listPreparedDoFs();
+	EList<ADegreeOfFreedom> listPreparedDoFs();
 
 	/**
 	 * <!-- begin-user-doc -->

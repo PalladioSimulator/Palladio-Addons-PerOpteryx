@@ -2,7 +2,7 @@
  */
 package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
@@ -21,19 +21,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Generic Do FTo Degree Of Freedom</b></em>'.
+ * An implementation of the model object '<em><b>Generic Do FTo ADegree Of Freedom</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<GenericDoF,DegreeOfFreedom> {
+public class GenericDoFToADegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<GenericDoF,ADegreeOfFreedom> {
 	/**
 	 * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,14 +52,14 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 * @ordered
 	 */
-	protected DegreeOfFreedom value;
+	protected ADegreeOfFreedom value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericDoFToDegreeOfFreedomImpl() {
+	protected GenericDoFToADegreeOfFreedomImpl() {
 		super();
 	}
 
@@ -70,7 +70,7 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM;
+		return UniversalDoFPackage.Literals.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 			key = (GenericDoF)eResolveProxy(oldKey);
 			if (key != oldKey) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY, oldKey, key));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY, oldKey, key));
 			}
 		}
 		return key;
@@ -108,7 +108,7 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 		GenericDoF oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY, oldKey, key));
 	}
 
 	/**
@@ -116,13 +116,13 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom getTypedValue() {
+	public ADegreeOfFreedom getTypedValue() {
 		if (value != null && value.eIsProxy()) {
 			InternalEObject oldValue = (InternalEObject)value;
-			value = (DegreeOfFreedom)eResolveProxy(oldValue);
+			value = (ADegreeOfFreedom)eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE, oldValue, value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE, oldValue, value));
 			}
 		}
 		return value;
@@ -133,7 +133,7 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom basicGetTypedValue() {
+	public ADegreeOfFreedom basicGetTypedValue() {
 		return value;
 	}
 
@@ -142,11 +142,11 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypedValue(DegreeOfFreedom newValue) {
-		DegreeOfFreedom oldValue = value;
+	public void setTypedValue(ADegreeOfFreedom newValue) {
+		ADegreeOfFreedom oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE, oldValue, value));
 	}
 
 	/**
@@ -157,10 +157,10 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY:
 				if (resolve) return getTypedKey();
 				return basicGetTypedKey();
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE:
 				if (resolve) return getTypedValue();
 				return basicGetTypedValue();
 		}
@@ -175,11 +175,11 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY:
 				setTypedKey((GenericDoF)newValue);
 				return;
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE:
-				setTypedValue((DegreeOfFreedom)newValue);
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE:
+				setTypedValue((ADegreeOfFreedom)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -193,11 +193,11 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY:
 				setTypedKey((GenericDoF)null);
 				return;
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE:
-				setTypedValue((DegreeOfFreedom)null);
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE:
+				setTypedValue((ADegreeOfFreedom)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -211,9 +211,9 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY:
 				return key != null;
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE:
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -271,7 +271,7 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom getValue() {
+	public ADegreeOfFreedom getValue() {
 		return getTypedValue();
 	}
 
@@ -280,8 +280,8 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom setValue(DegreeOfFreedom value) {
-		DegreeOfFreedom oldValue = getValue();
+	public ADegreeOfFreedom setValue(ADegreeOfFreedom value) {
+		ADegreeOfFreedom oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -292,9 +292,9 @@ public class GenericDoFToDegreeOfFreedomImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<GenericDoF, DegreeOfFreedom> getEMap() {
+	public EMap<GenericDoF, ADegreeOfFreedom> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<GenericDoF, DegreeOfFreedom>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<GenericDoF, ADegreeOfFreedom>)container.eGet(eContainmentFeature());
 	}
 
-} //GenericDoFToDegreeOfFreedomImpl
+} //GenericDoFToADegreeOfFreedomImpl

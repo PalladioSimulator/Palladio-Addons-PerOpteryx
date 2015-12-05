@@ -4,7 +4,6 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.ClassChoice;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;

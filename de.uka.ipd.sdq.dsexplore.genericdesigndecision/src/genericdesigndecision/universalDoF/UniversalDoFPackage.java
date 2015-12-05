@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.universalDoF;
 
+import genericdesigndecision.GenericdesigndecisionPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -185,7 +186,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION__DOFREPOSITORY = 0;
+	int AMETAMODEL_DESCRIPTION__DOFREPOSITORY = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Gdof to dof</b></em>' map.
@@ -194,7 +195,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION__GDOF_TO_DOF = 1;
+	int AMETAMODEL_DESCRIPTION__GDOF_TO_DOF = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -203,7 +204,16 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION__NAME = 2;
+	int AMETAMODEL_DESCRIPTION__NAME = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Genome To Candidate Transformation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>AMetamodel Description</em>' class.
@@ -212,7 +222,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION_FEATURE_COUNT = 3;
+	int AMETAMODEL_DESCRIPTION_FEATURE_COUNT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Evaluate Metamodel</em>' operation.
@@ -221,7 +231,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT = 0;
+	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Corresponding Do F</em>' operation.
@@ -230,7 +240,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF = 1;
+	int AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>AMetamodel Description</em>' class.
@@ -239,7 +249,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION_OPERATION_COUNT = 2;
+	int AMETAMODEL_DESCRIPTION_OPERATION_COUNT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl <em>Universal Do F</em>}' class.
@@ -279,13 +289,22 @@ public interface UniversalDoFPackage extends EPackage {
 	int UNIVERSAL_DO_F__PREPARED_DO_FS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSAL_DO_F__TARGET = 3;
+
+	/**
 	 * The number of structural features of the '<em>Universal Do F</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIVERSAL_DO_F_FEATURE_COUNT = 3;
+	int UNIVERSAL_DO_F_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Evaluate Metamodel</em>' operation.
@@ -378,14 +397,14 @@ public interface UniversalDoFPackage extends EPackage {
 	int UNIVERSAL_DO_F_OPERATION_COUNT = 9;
 
 	/**
-	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl <em>Generic Do FTo Degree Of Freedom</em>}' class.
+	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl <em>Generic Do FTo ADegree Of Freedom</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl
-	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoFToDegreeOfFreedom()
+	 * @see genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl
+	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoFToADegreeOfFreedom()
 	 * @generated
 	 */
-	int GENERIC_DO_FTO_DEGREE_OF_FREEDOM = 4;
+	int GENERIC_DO_FTO_ADEGREE_OF_FREEDOM = 4;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
@@ -394,7 +413,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY = 0;
+	int GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -403,26 +422,25 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE = 1;
+	int GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Generic Do FTo Degree Of Freedom</em>' class.
+	 * The number of structural features of the '<em>Generic Do FTo ADegree Of Freedom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DO_FTO_DEGREE_OF_FREEDOM_FEATURE_COUNT = 2;
+	int GENERIC_DO_FTO_ADEGREE_OF_FREEDOM_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Generic Do FTo Degree Of Freedom</em>' class.
+	 * The number of operations of the '<em>Generic Do FTo ADegree Of Freedom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_DO_FTO_DEGREE_OF_FREEDOM_OPERATION_COUNT = 0;
-
+	int GENERIC_DO_FTO_ADEGREE_OF_FREEDOM_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.
@@ -562,11 +580,22 @@ public interface UniversalDoFPackage extends EPackage {
 	EAttribute getAMetamodelDescription_Name();
 
 	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement) <em>Evaluate Metamodel</em>}' operation.
+	 * Returns the meta object for the containment reference '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGenomeToCandidateTransformation <em>Genome To Candidate Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Genome To Candidate Transformation</em>'.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getGenomeToCandidateTransformation()
+	 * @see #getAMetamodelDescription()
+	 * @generated
+	 */
+	EReference getAMetamodelDescription_GenomeToCandidateTransformation();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EObject) <em>Evaluate Metamodel</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Evaluate Metamodel</em>' operation.
-	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement)
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#evaluateMetamodel(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
 	EOperation getAMetamodelDescription__EvaluateMetamodel__EModelElement();
@@ -625,11 +654,22 @@ public interface UniversalDoFPackage extends EPackage {
 	EReference getUniversalDoF_PreparedDoFs();
 
 	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement) <em>Evaluate Metamodel</em>}' operation.
+	 * Returns the meta object for the reference '{@link genericdesigndecision.universalDoF.UniversalDoF#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#getTarget()
+	 * @see #getUniversalDoF()
+	 * @generated
+	 */
+	EReference getUniversalDoF_Target();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EObject) <em>Evaluate Metamodel</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Evaluate Metamodel</em>' operation.
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement)
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
 	EOperation getUniversalDoF__EvaluateMetamodel__EModelElement();
@@ -715,16 +755,16 @@ public interface UniversalDoFPackage extends EPackage {
 	EOperation getUniversalDoF__ConstrainDoF__int();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Generic Do FTo Degree Of Freedom</em>}'.
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Generic Do FTo ADegree Of Freedom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Generic Do FTo Degree Of Freedom</em>'.
+	 * @return the meta object for class '<em>Generic Do FTo ADegree Of Freedom</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyType="genericdesigndecision.universalDoF.GenericDoF"
-	 *        valueType="genericdesigndecision.genericDoF.DegreeOfFreedom"
+	 *        valueType="genericdesigndecision.genericDoF.ADegreeOfFreedom"
 	 * @generated
 	 */
-	EClass getGenericDoFToDegreeOfFreedom();
+	EClass getGenericDoFToADegreeOfFreedom();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
@@ -732,10 +772,10 @@ public interface UniversalDoFPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Key</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getGenericDoFToDegreeOfFreedom()
+	 * @see #getGenericDoFToADegreeOfFreedom()
 	 * @generated
 	 */
-	EReference getGenericDoFToDegreeOfFreedom_Key();
+	EReference getGenericDoFToADegreeOfFreedom_Key();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -743,10 +783,10 @@ public interface UniversalDoFPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getGenericDoFToDegreeOfFreedom()
+	 * @see #getGenericDoFToADegreeOfFreedom()
 	 * @generated
 	 */
-	EReference getGenericDoFToDegreeOfFreedom_Value();
+	EReference getGenericDoFToADegreeOfFreedom_Value();
 
 	/**
 	 * Returns the meta object for enum '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}'.
@@ -884,6 +924,14 @@ public interface UniversalDoFPackage extends EPackage {
 		EAttribute AMETAMODEL_DESCRIPTION__NAME = eINSTANCE.getAMetamodelDescription_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Genome To Candidate Transformation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION = eINSTANCE.getAMetamodelDescription_GenomeToCandidateTransformation();
+
+		/**
 		 * The meta object literal for the '<em><b>Evaluate Metamodel</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -932,6 +980,14 @@ public interface UniversalDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UNIVERSAL_DO_F__PREPARED_DO_FS = eINSTANCE.getUniversalDoF_PreparedDoFs();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNIVERSAL_DO_F__TARGET = eINSTANCE.getUniversalDoF_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Evaluate Metamodel</b></em>' operation.
@@ -1006,14 +1062,14 @@ public interface UniversalDoFPackage extends EPackage {
 		EOperation UNIVERSAL_DO_F___CONSTRAIN_DO_F__INT = eINSTANCE.getUniversalDoF__ConstrainDoF__int();
 
 		/**
-		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl <em>Generic Do FTo Degree Of Freedom</em>}' class.
+		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl <em>Generic Do FTo ADegree Of Freedom</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see genericdesigndecision.universalDoF.impl.GenericDoFToDegreeOfFreedomImpl
-		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoFToDegreeOfFreedom()
+		 * @see genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl
+		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoFToADegreeOfFreedom()
 		 * @generated
 		 */
-		EClass GENERIC_DO_FTO_DEGREE_OF_FREEDOM = eINSTANCE.getGenericDoFToDegreeOfFreedom();
+		EClass GENERIC_DO_FTO_ADEGREE_OF_FREEDOM = eINSTANCE.getGenericDoFToADegreeOfFreedom();
 
 		/**
 		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
@@ -1021,7 +1077,7 @@ public interface UniversalDoFPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY = eINSTANCE.getGenericDoFToDegreeOfFreedom_Key();
+		EReference GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__KEY = eINSTANCE.getGenericDoFToADegreeOfFreedom_Key();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -1029,7 +1085,7 @@ public interface UniversalDoFPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE = eINSTANCE.getGenericDoFToDegreeOfFreedom_Value();
+		EReference GENERIC_DO_FTO_ADEGREE_OF_FREEDOM__VALUE = eINSTANCE.getGenericDoFToADegreeOfFreedom_Value();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.

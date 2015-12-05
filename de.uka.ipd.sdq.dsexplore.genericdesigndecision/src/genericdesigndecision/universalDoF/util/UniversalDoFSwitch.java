@@ -2,8 +2,9 @@
  */
 package genericdesigndecision.universalDoF.util;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
 
 import java.util.Map;
@@ -85,6 +86,8 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION: {
 				AMetamodelDescription aMetamodelDescription = (AMetamodelDescription)theEObject;
 				T result = caseAMetamodelDescription(aMetamodelDescription);
+				if (result == null) result = caseAGenomeToCandidateModelTransformation(aMetamodelDescription);
+				if (result == null) result = caseGenomeToCandidateModelTransformation(aMetamodelDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -94,9 +97,9 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UniversalDoFPackage.GENERIC_DO_FTO_DEGREE_OF_FREEDOM: {
-				@SuppressWarnings("unchecked") Map.Entry<GenericDoF, DegreeOfFreedom> genericDoFToDegreeOfFreedom = (Map.Entry<GenericDoF, DegreeOfFreedom>)theEObject;
-				T result = caseGenericDoFToDegreeOfFreedom(genericDoFToDegreeOfFreedom);
+			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM: {
+				@SuppressWarnings("unchecked") Map.Entry<GenericDoF, ADegreeOfFreedom> genericDoFToADegreeOfFreedom = (Map.Entry<GenericDoF, ADegreeOfFreedom>)theEObject;
+				T result = caseGenericDoFToADegreeOfFreedom(genericDoFToADegreeOfFreedom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -165,17 +168,47 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Do FTo Degree Of Freedom</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Do FTo ADegree Of Freedom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Do FTo Degree Of Freedom</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Do FTo ADegree Of Freedom</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGenericDoFToDegreeOfFreedom(Map.Entry<GenericDoF, DegreeOfFreedom> object) {
+	public T caseGenericDoFToADegreeOfFreedom(Map.Entry<GenericDoF, ADegreeOfFreedom> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AGenome To Candidate Model Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
 		return null;
 	}
 

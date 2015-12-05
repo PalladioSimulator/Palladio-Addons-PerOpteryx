@@ -2,8 +2,9 @@
  */
 package genericdesigndecision.universalDoF.util;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
-
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
 
 import java.util.Map;
@@ -88,8 +89,16 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 				return createUniversalDoFAdapter();
 			}
 			@Override
-			public Adapter caseGenericDoFToDegreeOfFreedom(Map.Entry<GenericDoF, DegreeOfFreedom> object) {
-				return createGenericDoFToDegreeOfFreedomAdapter();
+			public Adapter caseGenericDoFToADegreeOfFreedom(Map.Entry<GenericDoF, ADegreeOfFreedom> object) {
+				return createGenericDoFToADegreeOfFreedomAdapter();
+			}
+			@Override
+			public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
+				return createGenomeToCandidateModelTransformationAdapter();
+			}
+			@Override
+			public Adapter caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
+				return createAGenomeToCandidateModelTransformationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -168,7 +177,7 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Generic Do FTo Degree Of Freedom</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Generic Do FTo ADegree Of Freedom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -177,7 +186,35 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createGenericDoFToDegreeOfFreedomAdapter() {
+	public Adapter createGenericDoFToADegreeOfFreedomAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createGenomeToCandidateModelTransformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
 		return null;
 	}
 

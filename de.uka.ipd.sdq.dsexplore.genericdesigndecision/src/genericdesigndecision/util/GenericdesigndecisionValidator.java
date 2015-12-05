@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.util;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
@@ -9,7 +10,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -113,6 +113,10 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 				return validateADSEProblem((ADSEProblem)value, diagnostics, context);
 			case GenericdesigndecisionPackage.DSE_PROBLEM:
 				return validateDSEProblem((DSEProblem)value, diagnostics, context);
+			case GenericdesigndecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
+				return validateGenomeToCandidateModelTransformation((GenomeToCandidateModelTransformation)value, diagnostics, context);
+			case GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
+				return validateAGenomeToCandidateModelTransformation((AGenomeToCandidateModelTransformation)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -217,6 +221,24 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateDSEProblem(DSEProblem dseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)dseProblem, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation genomeToCandidateModelTransformation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)genomeToCandidateModelTransformation, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation aGenomeToCandidateModelTransformation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(aGenomeToCandidateModelTransformation, diagnostics, context);
 	}
 
 	/**

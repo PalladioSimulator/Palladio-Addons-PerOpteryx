@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface DoFRepository extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Dofs</b></em>' containment reference list.
-	 * The list contents are of type {@link genericdesigndecision.genericDoF.DegreeOfFreedom}.
+	 * The list contents are of type {@link genericdesigndecision.genericDoF.ADegreeOfFreedom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dofs</em>' containment reference list isn't clear,
@@ -37,6 +37,6 @@ public interface DoFRepository extends EObject {
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<DegreeOfFreedom> getDofs();
+	EList<ADegreeOfFreedom> getDofs();
 
 } // DoFRepository

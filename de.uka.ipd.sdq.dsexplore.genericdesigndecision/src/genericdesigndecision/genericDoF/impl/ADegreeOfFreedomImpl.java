@@ -2,11 +2,16 @@
  */
 package genericdesigndecision.genericDoF.impl;
 
+import genericdesigndecision.Choice;
+
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
+import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,23 +32,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Degree Of Freedom</b></em>'.
+ * An implementation of the model object '<em><b>ADegree Of Freedom</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getAddedElements <em>Added Elements</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getInteractionConstraints <em>Interaction Constraints</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getPrimaryChangeable <em>Primary Changeable</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getPrimaryChanged <em>Primary Changed</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.impl.DegreeOfFreedomImpl#getChangeableElements <em>Changeable Elements</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getAddedElements <em>Added Elements</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getInteractionConstraints <em>Interaction Constraints</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getPrimaryChangeable <em>Primary Changeable</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getPrimaryChanged <em>Primary Changed</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.impl.ADegreeOfFreedomImpl#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements DegreeOfFreedom {
+public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements ADegreeOfFreedom {
 	/**
 	 * The cached value of the '{@link #getAddedElements() <em>Added Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -103,13 +108,15 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EObject changeableElements;
+	
+	protected Random random;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DegreeOfFreedomImpl() {
+	protected ADegreeOfFreedomImpl() {
 		super();
 	}
 
@@ -120,7 +127,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GenericDoFPackage.Literals.DEGREE_OF_FREEDOM;
+		return GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM;
 	}
 
 	/**
@@ -130,7 +137,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<EClass> getAddedElements() {
 		if (addedElements == null) {
-			addedElements = new EObjectResolvingEList<EClass>(EClass.class, this, GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS);
+			addedElements = new EObjectResolvingEList<EClass>(EClass.class, this, GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS);
 		}
 		return addedElements;
 	}
@@ -142,7 +149,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<ChangeableElementDescription> getChangeableElementDescriptions() {
 		if (changeableElementDescriptions == null) {
-			changeableElementDescriptions = new EObjectContainmentEList<ChangeableElementDescription>(ChangeableElementDescription.class, this, GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
+			changeableElementDescriptions = new EObjectContainmentEList<ChangeableElementDescription>(ChangeableElementDescription.class, this, GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
 		}
 		return changeableElementDescriptions;
 	}
@@ -154,7 +161,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<EOperation> getInteractionConstraints() {
 		if (interactionConstraints == null) {
-			interactionConstraints = new EObjectResolvingEList<EOperation>(EOperation.class, this, GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
+			interactionConstraints = new EObjectResolvingEList<EOperation>(EOperation.class, this, GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
 		}
 		return interactionConstraints;
 	}
@@ -170,7 +177,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 			primaryChangeable = (ChangeableElementDescription)eResolveProxy(oldPrimaryChangeable);
 			if (primaryChangeable != oldPrimaryChangeable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
 			}
 		}
 		return primaryChangeable;
@@ -194,7 +201,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 		ChangeableElementDescription oldPrimaryChangeable = primaryChangeable;
 		primaryChangeable = newPrimaryChangeable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
 	}
 
 	/**
@@ -208,7 +215,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 			primaryChanged = eResolveProxy(oldPrimaryChanged);
 			if (primaryChanged != oldPrimaryChanged) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
 			}
 		}
 		return primaryChanged;
@@ -232,7 +239,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 		EObject oldPrimaryChanged = primaryChanged;
 		primaryChanged = newPrimaryChanged;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
 	}
 
 	/**
@@ -246,7 +253,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 			changeableElements = eResolveProxy(oldChangeableElements);
 			if (changeableElements != oldChangeableElements) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS, oldChangeableElements, changeableElements));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS, oldChangeableElements, changeableElements));
 			}
 		}
 		return changeableElements;
@@ -270,8 +277,22 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 		EObject oldChangeableElements = changeableElements;
 		changeableElements = newChangeableElements;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS, oldChangeableElements, changeableElements));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS, oldChangeableElements, changeableElements));
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract Choice createRandomChoice();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract Choice determineInitialChoice();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,7 +302,7 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				return ((InternalEList<?>)getChangeableElementDescriptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -295,19 +316,19 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				return getAddedElements();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				return getChangeableElementDescriptions();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
 				return getInteractionConstraints();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				if (resolve) return getPrimaryChangeable();
 				return basicGetPrimaryChangeable();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED:
 				if (resolve) return getPrimaryChanged();
 				return basicGetPrimaryChanged();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
 				if (resolve) return getChangeableElements();
 				return basicGetChangeableElements();
 		}
@@ -323,25 +344,25 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				getAddedElements().clear();
 				getAddedElements().addAll((Collection<? extends EClass>)newValue);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				getChangeableElementDescriptions().clear();
 				getChangeableElementDescriptions().addAll((Collection<? extends ChangeableElementDescription>)newValue);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
 				getInteractionConstraints().clear();
 				getInteractionConstraints().addAll((Collection<? extends EOperation>)newValue);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				setPrimaryChangeable((ChangeableElementDescription)newValue);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED:
 				setPrimaryChanged((EObject)newValue);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
 				setChangeableElements((EObject)newValue);
 				return;
 		}
@@ -356,22 +377,22 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				getAddedElements().clear();
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				getChangeableElementDescriptions().clear();
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
 				getInteractionConstraints().clear();
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				setPrimaryChangeable((ChangeableElementDescription)null);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED:
 				setPrimaryChanged((EObject)null);
 				return;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
 				setChangeableElements((EObject)null);
 				return;
 		}
@@ -386,20 +407,36 @@ public class DegreeOfFreedomImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS:
 				return addedElements != null && !addedElements.isEmpty();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				return changeableElementDescriptions != null && !changeableElementDescriptions.isEmpty();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS:
 				return interactionConstraints != null && !interactionConstraints.isEmpty();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE:
 				return primaryChangeable != null;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGED:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED:
 				return primaryChanged != null;
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS:
 				return changeableElements != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //DegreeOfFreedomImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM___CREATE_RANDOM_CHOICE:
+				return createRandomChoice();
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE:
+				return determineInitialChoice();
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+} //ADegreeOfFreedomImpl

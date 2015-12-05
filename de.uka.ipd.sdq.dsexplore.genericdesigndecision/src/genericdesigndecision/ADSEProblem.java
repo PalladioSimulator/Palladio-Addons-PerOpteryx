@@ -3,9 +3,7 @@
 package genericdesigndecision;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
-
 import genericdesigndecision.universalDoF.AMetamodelDescription;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -62,12 +60,12 @@ public interface ADSEProblem extends EObject, DSEProblem {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Emf Instance</em>' reference.
-	 * @see #setEmfInstance(EModelElement)
+	 * @see #setEmfInstance(EObject)
 	 * @see genericdesigndecision.GenericdesigndecisionPackage#getADSEProblem_EmfInstance()
 	 * @model required="true"
 	 * @generated
 	 */
-	EModelElement getEmfInstance();
+	EObject getEmfInstance();
 
 	/**
 	 * Sets the value of the '{@link genericdesigndecision.ADSEProblem#getEmfInstance <em>Emf Instance</em>}' reference.
@@ -77,7 +75,7 @@ public interface ADSEProblem extends EObject, DSEProblem {
 	 * @see #getEmfInstance()
 	 * @generated
 	 */
-	void setEmfInstance(EModelElement value);
+	void setEmfInstance(EObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Associated Metamodel</b></em>' reference.

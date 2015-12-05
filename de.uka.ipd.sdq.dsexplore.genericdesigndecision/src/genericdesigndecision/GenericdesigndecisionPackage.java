@@ -79,13 +79,13 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int CHOICE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__IS_ACTIVE = 0;
+	int CHOICE__ACTIVE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -134,13 +134,13 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int DISCRETE_RANGE_CHOICE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISCRETE_RANGE_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int DISCRETE_RANGE_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -198,13 +198,13 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int CLASS_CHOICE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int CLASS_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -262,13 +262,13 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int CONTINOUS_RANGE_CHOICE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * The feature id for the '<em><b>Active</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTINOUS_RANGE_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+	int CONTINOUS_RANGE_CHOICE__ACTIVE = CHOICE__ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -537,6 +537,62 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int ADSE_PROBLEM_OPERATION_COUNT = DSE_PROBLEM_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getGenomeToCandidateModelTransformation()
+	 * @generated
+	 */
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 9;
+
+	/**
+	 * The number of structural features of the '<em>Genome To Candidate Model Transformation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Genome To Candidate Model Transformation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getAGenomeToCandidateModelTransformation()
+	 * @generated
+	 */
+	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 10;
+
+	/**
+	 * The number of structural features of the '<em>AGenome To Candidate Model Transformation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT = GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>AGenome To Candidate Model Transformation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT = GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -568,15 +624,15 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EClass getChoice();
 
 	/**
-	 * Returns the meta object for the attribute '{@link genericdesigndecision.Choice#isIsActive <em>Is Active</em>}'.
+	 * Returns the meta object for the attribute '{@link genericdesigndecision.Choice#isActive <em>Active</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Active</em>'.
-	 * @see genericdesigndecision.Choice#isIsActive()
+	 * @return the meta object for the attribute '<em>Active</em>'.
+	 * @see genericdesigndecision.Choice#isActive()
 	 * @see #getChoice()
 	 * @generated
 	 */
-	EAttribute getChoice_IsActive();
+	EAttribute getChoice_Active();
 
 	/**
 	 * Returns the meta object for the attribute '{@link genericdesigndecision.Choice#getValue <em>Value</em>}'.
@@ -792,6 +848,27 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EClass getDSEProblem();
 
 	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Genome To Candidate Model Transformation</em>'.
+	 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation"
+	 * @generated
+	 */
+	EClass getGenomeToCandidateModelTransformation();
+
+	/**
+	 * Returns the meta object for class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>AGenome To Candidate Model Transformation</em>'.
+	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @generated
+	 */
+	EClass getAGenomeToCandidateModelTransformation();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -843,12 +920,12 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		EClass CHOICE = eINSTANCE.getChoice();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Active</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Active</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHOICE__IS_ACTIVE = eINSTANCE.getChoice_IsActive();
+		EAttribute CHOICE__ACTIVE = eINSTANCE.getChoice_Active();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1023,6 +1100,26 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DSE_PROBLEM = eINSTANCE.getDSEProblem();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getGenomeToCandidateModelTransformation()
+		 * @generated
+		 */
+		EClass GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getGenomeToCandidateModelTransformation();
+
+		/**
+		 * The meta object literal for the '{@link genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getAGenomeToCandidateModelTransformation()
+		 * @generated
+		 */
+		EClass AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getAGenomeToCandidateModelTransformation();
 
 	}
 

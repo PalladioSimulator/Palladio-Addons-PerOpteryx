@@ -4,7 +4,6 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.ContinousRangeChoice;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

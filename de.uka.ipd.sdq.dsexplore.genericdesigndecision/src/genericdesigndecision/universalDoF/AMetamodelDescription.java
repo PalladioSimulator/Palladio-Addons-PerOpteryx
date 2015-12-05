@@ -2,12 +2,11 @@
  */
 package genericdesigndecision.universalDoF;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.DoFRepository;
-
 import org.eclipse.emf.common.util.EMap;
-
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,13 +21,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getDofrepository <em>Dofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGdof_to_dof <em>Gdof to dof</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getName <em>Name</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGenomeToCandidateTransformation <em>Genome To Candidate Transformation</em>}</li>
  * </ul>
  *
  * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getAMetamodelDescription()
  * @model abstract="true"
  * @generated
  */
-public interface AMetamodelDescription extends EObject {
+public interface AMetamodelDescription extends AGenomeToCandidateModelTransformation{
 	/**
 	 * Returns the value of the '<em><b>Dofrepository</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public interface AMetamodelDescription extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Gdof to dof</b></em>' map.
 	 * The key is of type {@link genericdesigndecision.universalDoF.GenericDoF},
-	 * and the value is of type {@link genericdesigndecision.genericDoF.DegreeOfFreedom},
+	 * and the value is of type {@link genericdesigndecision.genericDoF.ADegreeOfFreedom},
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gdof to dof</em>' map isn't clear,
@@ -67,10 +67,10 @@ public interface AMetamodelDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gdof to dof</em>' map.
 	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getAMetamodelDescription_Gdof_to_dof()
-	 * @model mapType="genericdesigndecision.universalDoF.GenericDoFToDegreeOfFreedom<genericdesigndecision.universalDoF.GenericDoF, genericdesigndecision.genericDoF.DegreeOfFreedom>"
+	 * @model mapType="genericdesigndecision.universalDoF.GenericDoFToADegreeOfFreedom<genericdesigndecision.universalDoF.GenericDoF, genericdesigndecision.genericDoF.ADegreeOfFreedom>"
 	 * @generated
 	 */
-	EMap<GenericDoF, DegreeOfFreedom> getGdof_to_dof();
+	EMap<GenericDoF, ADegreeOfFreedom> getGdof_to_dof();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -102,12 +102,38 @@ public interface AMetamodelDescription extends EObject {
 	void setName(Metamodel value);
 
 	/**
+	 * Returns the value of the '<em><b>Genome To Candidate Transformation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Genome To Candidate Transformation</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Genome To Candidate Transformation</em>' containment reference.
+	 * @see #setGenomeToCandidateTransformation(GenomeToCandidateModelTransformation)
+	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getAMetamodelDescription_GenomeToCandidateTransformation()
+	 * @model type="genericdesigndecision.GenomeToCandidateModelTransformation" containment="true" required="true"
+	 * @generated
+	 */
+	GenomeToCandidateModelTransformation getGenomeToCandidateTransformation();
+
+	/**
+	 * Sets the value of the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGenomeToCandidateTransformation <em>Genome To Candidate Transformation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Genome To Candidate Transformation</em>' containment reference.
+	 * @see #getGenomeToCandidateTransformation()
+	 * @generated
+	 */
+	void setGenomeToCandidateTransformation(GenomeToCandidateModelTransformation value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false" required="true"
 	 * @generated
 	 */
-	Metamodel evaluateMetamodel(EModelElement model);
+	Metamodel evaluateMetamodel(EObject model);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,6 +141,6 @@ public interface AMetamodelDescription extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
-	DegreeOfFreedom getCorrespondingDoF(GenericDoF gdof);
+	ADegreeOfFreedom getCorrespondingDoF(GenericDoF gdof);
 
 } // AMetamodelDescription

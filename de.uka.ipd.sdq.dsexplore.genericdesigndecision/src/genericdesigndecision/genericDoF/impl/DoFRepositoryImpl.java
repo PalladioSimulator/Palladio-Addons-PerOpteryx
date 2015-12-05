@@ -2,7 +2,7 @@
  */
 package genericdesigndecision.genericDoF.impl;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.DoFRepository;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
@@ -42,7 +42,7 @@ public class DoFRepositoryImpl extends MinimalEObjectImpl.Container implements D
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DegreeOfFreedom> dofs;
+	protected EList<ADegreeOfFreedom> dofs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,9 +68,9 @@ public class DoFRepositoryImpl extends MinimalEObjectImpl.Container implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DegreeOfFreedom> getDofs() {
+	public EList<ADegreeOfFreedom> getDofs() {
 		if (dofs == null) {
-			dofs = new EObjectContainmentEList<DegreeOfFreedom>(DegreeOfFreedom.class, this, GenericDoFPackage.DO_FREPOSITORY__DOFS);
+			dofs = new EObjectContainmentEList<ADegreeOfFreedom>(ADegreeOfFreedom.class, this, GenericDoFPackage.DO_FREPOSITORY__DOFS);
 		}
 		return dofs;
 	}
@@ -114,7 +114,7 @@ public class DoFRepositoryImpl extends MinimalEObjectImpl.Container implements D
 		switch (featureID) {
 			case GenericDoFPackage.DO_FREPOSITORY__DOFS:
 				getDofs().clear();
-				getDofs().addAll((Collection<? extends DegreeOfFreedom>)newValue);
+				getDofs().addAll((Collection<? extends ADegreeOfFreedom>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

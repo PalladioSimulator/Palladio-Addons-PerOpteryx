@@ -2,15 +2,22 @@
  */
 package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import genericdesigndecision.Candidate;
+import genericdesigndecision.Choice;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.genericDoF.ChangeableElementDescription;
 import genericdesigndecision.genericDoF.DoFRepository;
 
+import genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,13 +26,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,11 +45,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getDofrepository <em>Dofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getGdof_to_dof <em>Gdof to dof</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl#getGenomeToCandidateTransformation <em>Genome To Candidate Transformation</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Container implements AMetamodelDescription {
+public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelTransformationImpl implements AMetamodelDescription {
 	/**
 	 * The cached value of the '{@link #getDofrepository() <em>Dofrepository</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -63,7 +69,7 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<GenericDoF, DegreeOfFreedom> gdof_to_dof;
+	protected EMap<GenericDoF, ADegreeOfFreedom> gdof_to_dof;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -85,16 +91,53 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 */
 	protected Metamodel name = NAME_EDEFAULT;
 	
-	protected static AMetamodelDescription metamodelDescriptionSingleton;
+	/**
+	 * The cached value of the '{@link #getGenomeToCandidateTransformation() <em>Genome To Candidate Transformation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenomeToCandidateTransformation()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenomeToCandidateModelTransformation genomeToCandidateTransformation;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
-		
+	}
+	
+	@Override
+	public List<Choice> transform(List<EObject> rootElements, Candidate candidate) {
+		return this.genomeToCandidateTransformation.transform(rootElements, candidate);
+	}
+	
+	@Override
+	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
+		return this.genomeToCandidateTransformation.transformChoice(rootElements, choice);
+	}
+	
+	@Override
+	public void setProperty(EObject changeableElement, EStructuralFeature property, Object value) {
+		this.genomeToCandidateTransformation.setProperty(changeableElement, property, value);
+	}
+	
+	@Override
+	public Object getProperty(EObject changeableElement, EStructuralFeature property) {
+		return this.genomeToCandidateTransformation.getProperty(changeableElement, property);
+	}
+
+	@Override
+	public Object valueRule(ChangeableElementDescription ced, EObject changeableElement, List<EObject> rootElements) {
+		return this.genomeToCandidateTransformation.valueRule(ced, changeableElement, rootElements);
+	}
+	
+	@Override
+	public Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement, List<EObject> rootElements) {
+		return this.genomeToCandidateTransformation.valueRuleForCollection(ced, changeableElement, rootElements);
 	}
 
 	/**
@@ -150,9 +193,9 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<GenericDoF, DegreeOfFreedom> getGdof_to_dof() {
+	public EMap<GenericDoF, ADegreeOfFreedom> getGdof_to_dof() {
 		if (gdof_to_dof == null) {
-			gdof_to_dof = new EcoreEMap<GenericDoF,DegreeOfFreedom>(UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM, GenericDoFToDegreeOfFreedomImpl.class, this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
+			gdof_to_dof = new EcoreEMap<GenericDoF,ADegreeOfFreedom>(UniversalDoFPackage.Literals.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM, GenericDoFToADegreeOfFreedomImpl.class, this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
 		}
 		return gdof_to_dof;
 	}
@@ -181,19 +224,64 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public abstract Metamodel evaluateMetamodel(EModelElement model);
+	public GenomeToCandidateModelTransformation getGenomeToCandidateTransformation() {
+		return genomeToCandidateTransformation;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom getCorrespondingDoF(GenericDoF gdof) {
+	public NotificationChain basicSetGenomeToCandidateTransformation(GenomeToCandidateModelTransformation newGenomeToCandidateTransformation, NotificationChain msgs) {
+		GenomeToCandidateModelTransformation oldGenomeToCandidateTransformation = genomeToCandidateTransformation;
+		genomeToCandidateTransformation = newGenomeToCandidateTransformation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION, oldGenomeToCandidateTransformation, newGenomeToCandidateTransformation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGenomeToCandidateTransformation(GenomeToCandidateModelTransformation newGenomeToCandidateTransformation) {
+		if (newGenomeToCandidateTransformation != genomeToCandidateTransformation) {
+			NotificationChain msgs = null;
+			if (genomeToCandidateTransformation != null)
+				msgs = ((InternalEObject)genomeToCandidateTransformation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION, null, msgs);
+			if (newGenomeToCandidateTransformation != null)
+				msgs = ((InternalEObject)newGenomeToCandidateTransformation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION, null, msgs);
+			msgs = basicSetGenomeToCandidateTransformation(newGenomeToCandidateTransformation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION, newGenomeToCandidateTransformation, newGenomeToCandidateTransformation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metamodel evaluateMetamodel(EObject model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ADegreeOfFreedom getCorrespondingDoF(GenericDoF gdof) {
+		return this.gdof_to_dof.get(gdof);
 	}
 
 	/**
@@ -206,6 +294,8 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 		switch (featureID) {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF:
 				return ((InternalEList<?>)getGdof_to_dof()).basicRemove(otherEnd, msgs);
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION:
+				return basicSetGenomeToCandidateTransformation(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -226,6 +316,8 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 				else return getGdof_to_dof().map();
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
 				return getName();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION:
+				return getGenomeToCandidateTransformation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,6 +338,9 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 				return;
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
 				setName((Metamodel)newValue);
+				return;
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION:
+				setGenomeToCandidateTransformation((GenomeToCandidateModelTransformation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,6 +363,9 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION:
+				setGenomeToCandidateTransformation((GenomeToCandidateModelTransformation)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -286,6 +384,8 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 				return gdof_to_dof != null && !gdof_to_dof.isEmpty();
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__NAME:
 				return name != NAME_EDEFAULT;
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION:
+				return genomeToCandidateTransformation != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -299,7 +399,7 @@ public abstract class AMetamodelDescriptionImpl extends MinimalEObjectImpl.Conta
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT:
-				return evaluateMetamodel((EModelElement)arguments.get(0));
+				return evaluateMetamodel((EObject)arguments.get(0));
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF:
 				return getCorrespondingDoF((GenericDoF)arguments.get(0));
 		}

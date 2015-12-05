@@ -63,7 +63,6 @@ public class GenericDoFFactoryImpl extends EFactoryImpl implements GenericDoFFac
 			case GenericDoFPackage.DO_FREPOSITORY: return createDoFRepository();
 			case GenericDoFPackage.INSTANCE_SELECTION_RULE: return createInstanceSelectionRule();
 			case GenericDoFPackage.STATIC_SELECTION_RULE: return createStaticSelectionRule();
-			case GenericDoFPackage.DEGREE_OF_FREEDOM: return createDegreeOfFreedom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -137,16 +136,6 @@ public class GenericDoFFactoryImpl extends EFactoryImpl implements GenericDoFFac
 	public StaticSelectionRule createStaticSelectionRule() {
 		StaticSelectionRuleImpl staticSelectionRule = new StaticSelectionRuleImpl();
 		return staticSelectionRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DegreeOfFreedom createDegreeOfFreedom() {
-		DegreeOfFreedomImpl degreeOfFreedom = new DegreeOfFreedomImpl();
-		return degreeOfFreedom;
 	}
 
 	/**

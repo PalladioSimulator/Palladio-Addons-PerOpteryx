@@ -2,6 +2,7 @@
  */
 package genericdesigndecision.genericDoF;
 
+import genericdesigndecision.Choice;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -10,26 +11,26 @@ import org.eclipse.emf.ecore.EOperation;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Degree Of Freedom</b></em>'.
+ * A representation of the model object '<em><b>ADegree Of Freedom</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getAddedElements <em>Added Elements</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getInteractionConstraints <em>Interaction Constraints</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChangeable <em>Primary Changeable</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}</li>
- *   <li>{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getAddedElements <em>Added Elements</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getChangeableElementDescriptions <em>Changeable Element Descriptions</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getInteractionConstraints <em>Interaction Constraints</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getPrimaryChangeable <em>Primary Changeable</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
  *
- * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom()
- * @model
+ * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom()
+ * @model abstract="true"
  * @generated
  */
-public interface DegreeOfFreedom extends EObject {
+public interface ADegreeOfFreedom extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Added Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
@@ -40,7 +41,7 @@ public interface DegreeOfFreedom extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Added Elements</em>' reference list.
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_AddedElements()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_AddedElements()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -56,7 +57,7 @@ public interface DegreeOfFreedom extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Changeable Element Descriptions</em>' containment reference list.
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_ChangeableElementDescriptions()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_ChangeableElementDescriptions()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -72,7 +73,7 @@ public interface DegreeOfFreedom extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interaction Constraints</em>' reference list.
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_InteractionConstraints()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_InteractionConstraints()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -88,14 +89,14 @@ public interface DegreeOfFreedom extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary Changeable</em>' reference.
 	 * @see #setPrimaryChangeable(ChangeableElementDescription)
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_PrimaryChangeable()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_PrimaryChangeable()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	ChangeableElementDescription getPrimaryChangeable();
 
 	/**
-	 * Sets the value of the '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChangeable <em>Primary Changeable</em>}' reference.
+	 * Sets the value of the '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getPrimaryChangeable <em>Primary Changeable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Primary Changeable</em>' reference.
@@ -114,14 +115,14 @@ public interface DegreeOfFreedom extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primary Changed</em>' reference.
 	 * @see #setPrimaryChanged(EObject)
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_PrimaryChanged()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_PrimaryChanged()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	EObject getPrimaryChanged();
 
 	/**
-	 * Sets the value of the '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}' reference.
+	 * Sets the value of the '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getPrimaryChanged <em>Primary Changed</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Primary Changed</em>' reference.
@@ -140,14 +141,14 @@ public interface DegreeOfFreedom extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Changeable Elements</em>' reference.
 	 * @see #setChangeableElements(EObject)
-	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getDegreeOfFreedom_ChangeableElements()
+	 * @see genericdesigndecision.genericDoF.GenericDoFPackage#getADegreeOfFreedom_ChangeableElements()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	EObject getChangeableElements();
 
 	/**
-	 * Sets the value of the '{@link genericdesigndecision.genericDoF.DegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}' reference.
+	 * Sets the value of the '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#getChangeableElements <em>Changeable Elements</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Changeable Elements</em>' reference.
@@ -156,4 +157,20 @@ public interface DegreeOfFreedom extends EObject {
 	 */
 	void setChangeableElements(EObject value);
 
-} // DegreeOfFreedom
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	Choice createRandomChoice();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	Choice determineInitialChoice();
+
+} // ADegreeOfFreedom

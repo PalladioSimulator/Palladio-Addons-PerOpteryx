@@ -85,15 +85,6 @@ public interface GenericDoFFactory extends EFactory {
 	StaticSelectionRule createStaticSelectionRule();
 
 	/**
-	 * Returns a new object of class '<em>Degree Of Freedom</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Degree Of Freedom</em>'.
-	 * @generated
-	 */
-	DegreeOfFreedom createDegreeOfFreedom();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

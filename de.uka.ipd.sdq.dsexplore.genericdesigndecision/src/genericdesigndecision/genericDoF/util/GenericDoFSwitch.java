@@ -129,9 +129,121 @@ public class GenericDoFSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GenericDoFPackage.DEGREE_OF_FREEDOM: {
-				DegreeOfFreedom degreeOfFreedom = (DegreeOfFreedom)theEObject;
-				T result = caseDegreeOfFreedom(degreeOfFreedom);
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM: {
+				ADegreeOfFreedom aDegreeOfFreedom = (ADegreeOfFreedom)theEObject;
+				T result = caseADegreeOfFreedom(aDegreeOfFreedom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ACLASS_AS_REFERENCE_DEGREE: {
+				AClassAsReferenceDegree aClassAsReferenceDegree = (AClassAsReferenceDegree)theEObject;
+				T result = caseAClassAsReferenceDegree(aClassAsReferenceDegree);
+				if (result == null) result = caseAClassDegree(aClassAsReferenceDegree);
+				if (result == null) result = caseADegreeOfFreedom(aClassAsReferenceDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ACLASS_DEGREE: {
+				AClassDegree aClassDegree = (AClassDegree)theEObject;
+				T result = caseAClassDegree(aClassDegree);
+				if (result == null) result = caseADegreeOfFreedom(aClassDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ACLASS_WITH_COPY_DEGREE: {
+				AClassWithCopyDegree aClassWithCopyDegree = (AClassWithCopyDegree)theEObject;
+				T result = caseAClassWithCopyDegree(aClassWithCopyDegree);
+				if (result == null) result = caseAClassDegree(aClassWithCopyDegree);
+				if (result == null) result = caseADegreeOfFreedom(aClassWithCopyDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ACONTINUOUS_RANGE_DEGREE: {
+				AContinuousRangeDegree aContinuousRangeDegree = (AContinuousRangeDegree)theEObject;
+				T result = caseAContinuousRangeDegree(aContinuousRangeDegree);
+				if (result == null) result = caseARangeDegree(aContinuousRangeDegree);
+				if (result == null) result = caseAOrderedDataTypeDegree(aContinuousRangeDegree);
+				if (result == null) result = caseADataTypeDegree(aContinuousRangeDegree);
+				if (result == null) result = caseADegreeOfFreedom(aContinuousRangeDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ARANGE_DEGREE: {
+				ARangeDegree aRangeDegree = (ARangeDegree)theEObject;
+				T result = caseARangeDegree(aRangeDegree);
+				if (result == null) result = caseAOrderedDataTypeDegree(aRangeDegree);
+				if (result == null) result = caseADataTypeDegree(aRangeDegree);
+				if (result == null) result = caseADegreeOfFreedom(aRangeDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ADATA_TYPE_DEGREE: {
+				ADataTypeDegree aDataTypeDegree = (ADataTypeDegree)theEObject;
+				T result = caseADataTypeDegree(aDataTypeDegree);
+				if (result == null) result = caseADegreeOfFreedom(aDataTypeDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ADISCRETE_DEGREE: {
+				ADiscreteDegree aDiscreteDegree = (ADiscreteDegree)theEObject;
+				T result = caseADiscreteDegree(aDiscreteDegree);
+				if (result == null) result = caseADataTypeDegree(aDiscreteDegree);
+				if (result == null) result = caseADegreeOfFreedom(aDiscreteDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ADISCRETE_RANGE_DEGREE: {
+				ADiscreteRangeDegree aDiscreteRangeDegree = (ADiscreteRangeDegree)theEObject;
+				T result = caseADiscreteRangeDegree(aDiscreteRangeDegree);
+				if (result == null) result = caseARangeDegree(aDiscreteRangeDegree);
+				if (result == null) result = caseADiscreteDegree(aDiscreteRangeDegree);
+				if (result == null) result = caseAOrderedDataTypeDegree(aDiscreteRangeDegree);
+				if (result == null) result = caseADataTypeDegree(aDiscreteRangeDegree);
+				if (result == null) result = caseADegreeOfFreedom(aDiscreteRangeDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.AENUM_DEGREE: {
+				AEnumDegree aEnumDegree = (AEnumDegree)theEObject;
+				T result = caseAEnumDegree(aEnumDegree);
+				if (result == null) result = caseAUnorderedDegree(aEnumDegree);
+				if (result == null) result = caseADataTypeDegree(aEnumDegree);
+				if (result == null) result = caseADegreeOfFreedom(aEnumDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.AUNORDERED_DEGREE: {
+				AUnorderedDegree aUnorderedDegree = (AUnorderedDegree)theEObject;
+				T result = caseAUnorderedDegree(aUnorderedDegree);
+				if (result == null) result = caseADataTypeDegree(aUnorderedDegree);
+				if (result == null) result = caseADegreeOfFreedom(aUnorderedDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.AORDERED_DATA_TYPE_DEGREE: {
+				AOrderedDataTypeDegree aOrderedDataTypeDegree = (AOrderedDataTypeDegree)theEObject;
+				T result = caseAOrderedDataTypeDegree(aOrderedDataTypeDegree);
+				if (result == null) result = caseADataTypeDegree(aOrderedDataTypeDegree);
+				if (result == null) result = caseADegreeOfFreedom(aOrderedDataTypeDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.AORDERED_INTEGER_DEGREE: {
+				AOrderedIntegerDegree aOrderedIntegerDegree = (AOrderedIntegerDegree)theEObject;
+				T result = caseAOrderedIntegerDegree(aOrderedIntegerDegree);
+				if (result == null) result = caseADiscreteDegree(aOrderedIntegerDegree);
+				if (result == null) result = caseAOrderedDataTypeDegree(aOrderedIntegerDegree);
+				if (result == null) result = caseADataTypeDegree(aOrderedIntegerDegree);
+				if (result == null) result = caseADegreeOfFreedom(aOrderedIntegerDegree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericDoFPackage.ASTRING_SET_DEGREE: {
+				AStringSetDegree aStringSetDegree = (AStringSetDegree)theEObject;
+				T result = caseAStringSetDegree(aStringSetDegree);
+				if (result == null) result = caseAUnorderedDegree(aStringSetDegree);
+				if (result == null) result = caseADataTypeDegree(aStringSetDegree);
+				if (result == null) result = caseADegreeOfFreedom(aStringSetDegree);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -275,17 +387,212 @@ public class GenericDoFSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Degree Of Freedom</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ADegree Of Freedom</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDegreeOfFreedom(DegreeOfFreedom object) {
+	public T caseADegreeOfFreedom(ADegreeOfFreedom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass As Reference Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass As Reference Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassAsReferenceDegree(AClassAsReferenceDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassDegree(AClassDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AClass With Copy Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AClass With Copy Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAClassWithCopyDegree(AClassWithCopyDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AContinuous Range Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AContinuous Range Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAContinuousRangeDegree(AContinuousRangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ARange Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ARange Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseARangeDegree(ARangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AData Type Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AData Type Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADataTypeDegree(ADataTypeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ADiscrete Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ADiscrete Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADiscreteDegree(ADiscreteDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ADiscrete Range Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ADiscrete Range Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseADiscreteRangeDegree(ADiscreteRangeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AEnum Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AEnum Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAEnumDegree(AEnumDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AUnordered Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AUnordered Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAUnorderedDegree(AUnorderedDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AOrdered Data Type Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AOrdered Data Type Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAOrderedDataTypeDegree(AOrderedDataTypeDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AOrdered Integer Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AOrdered Integer Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAOrderedIntegerDegree(AOrderedIntegerDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>AString Set Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>AString Set Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAStringSetDegree(AStringSetDegree object) {
 		return null;
 	}
 

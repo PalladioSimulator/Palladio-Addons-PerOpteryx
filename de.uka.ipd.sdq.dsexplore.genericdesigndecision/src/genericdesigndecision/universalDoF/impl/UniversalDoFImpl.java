@@ -2,7 +2,6 @@
  */
 package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
@@ -20,17 +19,19 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,6 +44,7 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getGdofrepository <em>Gdofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getSupportedMetamodels <em>Supported Metamodels</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getPreparedDoFs <em>Prepared Do Fs</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,7 +78,17 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @generated
 	 * @ordered
 	 */
-	protected DegreeOfFreedom preparedDoFs;
+	protected ADegreeOfFreedom preparedDoFs;
+
+	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected ADSEProblem target;
 
 	private static UniversalDoF universalDoFSingleton;
 	
@@ -88,7 +100,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	private UniversalDoFImpl() {
 		super();
 		//added for PCM support
-		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createPCMMetamodelDescription());
+		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createMetamodelDescription());
 	}
 
 	/**
@@ -156,10 +168,10 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom getPreparedDoFs() {
+	public ADegreeOfFreedom getPreparedDoFs() {
 		if (preparedDoFs != null && preparedDoFs.eIsProxy()) {
 			InternalEObject oldPreparedDoFs = (InternalEObject)preparedDoFs;
-			preparedDoFs = (DegreeOfFreedom)eResolveProxy(oldPreparedDoFs);
+			preparedDoFs = (ADegreeOfFreedom)eResolveProxy(oldPreparedDoFs);
 			if (preparedDoFs != oldPreparedDoFs) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS, oldPreparedDoFs, preparedDoFs));
@@ -173,7 +185,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedom basicGetPreparedDoFs() {
+	public ADegreeOfFreedom basicGetPreparedDoFs() {
 		return preparedDoFs;
 	}
 
@@ -182,11 +194,60 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPreparedDoFs(DegreeOfFreedom newPreparedDoFs) {
-		DegreeOfFreedom oldPreparedDoFs = preparedDoFs;
+	public void setPreparedDoFs(ADegreeOfFreedom newPreparedDoFs) {
+		ADegreeOfFreedom oldPreparedDoFs = preparedDoFs;
 		preparedDoFs = newPreparedDoFs;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS, oldPreparedDoFs, preparedDoFs));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ADSEProblem getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (ADSEProblem)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.UNIVERSAL_DO_F__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ADSEProblem basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(ADSEProblem newTarget) {
+		ADSEProblem oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.UNIVERSAL_DO_F__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metamodel evaluateMetamodel(EObject model) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -233,7 +294,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DegreeOfFreedom> listPreparedDoFs() {
+	public EList<ADegreeOfFreedom> listPreparedDoFs() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -317,6 +378,9 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
 				if (resolve) return getPreparedDoFs();
 				return basicGetPreparedDoFs();
+			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -338,7 +402,10 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				getSupportedMetamodels().addAll((Collection<? extends AMetamodelDescription>)newValue);
 				return;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				setPreparedDoFs((DegreeOfFreedom)newValue);
+				setPreparedDoFs((ADegreeOfFreedom)newValue);
+				return;
+			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
+				setTarget((ADSEProblem)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -359,7 +426,10 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				getSupportedMetamodels().clear();
 				return;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				setPreparedDoFs((DegreeOfFreedom)null);
+				setPreparedDoFs((ADegreeOfFreedom)null);
+				return;
+			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
+				setTarget((ADSEProblem)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -379,6 +449,8 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				return supportedMetamodels != null && !supportedMetamodels.isEmpty();
 			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
 				return preparedDoFs != null;
+			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -392,7 +464,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case UniversalDoFPackage.UNIVERSAL_DO_F___EVALUATE_METAMODEL__EMODELELEMENT:
-				return evaluateMetamodel((EModelElement)arguments.get(0));
+				return evaluateMetamodel((EObject)arguments.get(0));
 			case UniversalDoFPackage.UNIVERSAL_DO_F___PREPARE_GDO_F__INT:
 				return prepareGDoF((Integer)arguments.get(0));
 			case UniversalDoFPackage.UNIVERSAL_DO_F___LIST_GDO_FS:
@@ -416,7 +488,8 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	@Override
 	public DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) {
 		Metamodel metamodel = evaluateMetamodel(model);
-		return DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, model, metamodel);
+		this.target = DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, model, metamodel);
+		return target;
 	}
 
 } //UniversalDoFImpl
