@@ -26,7 +26,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
-import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -39,6 +38,7 @@ import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -48,7 +48,6 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 	public CostEvaluator() {
 		super(new CostSolverQualityAttributeDeclaration());
 	}
-
 
 	/** Logger for log4j. */
 	private static Logger logger = 
@@ -337,7 +336,6 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 		
 		initialiseCriteria(configuration);
     }
-	
 
 	/**
 	 * returns a cost model or throws an exception. 

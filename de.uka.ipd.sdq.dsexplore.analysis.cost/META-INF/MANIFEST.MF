@@ -21,3 +21,4 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml
 Bundle-Vendor: sdq.ipd.uka.de
+Import-Package: de.uka.ipd.sdq.pcm.designdecision.helper
