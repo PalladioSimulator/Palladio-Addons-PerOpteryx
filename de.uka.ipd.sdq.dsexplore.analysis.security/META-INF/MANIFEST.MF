@@ -19,3 +19,4 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.palladiosimulator.solver;bundle-version="3.0.0",
  org.palladiosimulator.analyzer.workflow
 Bundle-Vendor: sdq.ipd.uka.de
+Import-Package: de.uka.ipd.sdq.pcm.designdecision.helper
