@@ -19,5 +19,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.solver;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: de.uka.ipd.sdq.workflow.launchconfig.tabs
+Import-Package: de.uka.ipd.sdq.pcm.designdecision.helper,
+ de.uka.ipd.sdq.workflow.launchconfig.tabs
 Bundle-Vendor: sdq.ipd.uka.de
