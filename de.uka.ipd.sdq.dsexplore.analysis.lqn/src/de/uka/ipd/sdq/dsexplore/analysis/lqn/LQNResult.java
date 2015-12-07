@@ -46,7 +46,6 @@ import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnHelper;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
@@ -205,7 +204,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 		}
 		
 		// results for passive resources
-		List<AllocationContext> allAssemblyContexts = EMFHelper.getAllUsedAllocationContexts(pcm.getAllocation());
+		List<AllocationContext> allAssemblyContexts = de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper.getAllUsedAllocationContexts(pcm.getAllocation());
 		for (AllocationContext allocContext : allAssemblyContexts) {
 			AssemblyContext assemblyContext = allocContext.getAssemblyContext_AllocationContext();
 			RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
