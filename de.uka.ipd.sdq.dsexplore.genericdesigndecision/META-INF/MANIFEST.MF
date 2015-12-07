@@ -32,7 +32,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore.genericdesigndecision
 Bundle-ActivationPolicy: lazy
 Import-Package: de.uka.ipd.sdq.pcm.designdecision,
- de.uka.ipd.sdq.pcm.designdecision.gdof,
+ de.uka.ipd.sdq.pcm.designdecision.helper,
  de.uka.ipd.sdq.pcm.designdecision.impl,
  de.uka.ipd.sdq.pcm.designdecision.specific,
  de.uka.ipd.sdq.pcm.designdecision.specific.impl,

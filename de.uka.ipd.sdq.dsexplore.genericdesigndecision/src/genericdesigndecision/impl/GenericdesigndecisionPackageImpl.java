@@ -109,6 +109,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass dseDecoderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass dseProblemEClass = null;
 
 	/**
@@ -422,6 +429,15 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDSEDecoder() {
+		return dseDecoderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDSEProblem() {
 		return dseProblemEClass;
 	}
@@ -503,6 +519,8 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		createEReference(adseProblemEClass, ADSE_PROBLEM__EMF_INSTANCE);
 		createEReference(adseProblemEClass, ADSE_PROBLEM__ASSOCIATED_METAMODEL);
 
+		dseDecoderEClass = createEClass(DSE_DECODER);
+
 		dseProblemEClass = createEClass(DSE_PROBLEM);
 
 		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
@@ -553,6 +571,7 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		adseProblemEClass.getESuperTypes().add(this.getDSEProblem());
+		adseProblemEClass.getESuperTypes().add(this.getDSEDecoder());
 		aGenomeToCandidateModelTransformationEClass.getESuperTypes().add(this.getGenomeToCandidateModelTransformation());
 
 		// Initialize classes, features, and operations; add parameters

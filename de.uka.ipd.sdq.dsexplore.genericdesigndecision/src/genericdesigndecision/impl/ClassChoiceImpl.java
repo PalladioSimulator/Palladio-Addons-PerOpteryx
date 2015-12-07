@@ -54,24 +54,19 @@ public class ClassChoiceImpl extends ChoiceImpl implements ClassChoice {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EObject basicGetChosenValue() {
-		// TODO: implement this method to return the 'Chosen Value' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return ((EObject) this.getValue());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setChosenValue(EObject newChosenValue) {
-		// TODO: implement this method to set the 'Chosen Value' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.setValue(newChosenValue);
 	}
 
 	/**

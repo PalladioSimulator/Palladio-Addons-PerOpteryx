@@ -52,23 +52,19 @@ public class DiscreteRangeChoiceImpl extends ChoiceImpl implements DiscreteRange
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public int getChosenValue() {
-		// TODO: implement this method to return the 'Chosen Value' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return ((Integer) this.getValue()).intValue();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setChosenValue(int newChosenValue) {
-		// TODO: implement this method to set the 'Chosen Value' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.setValue(new Integer(newChosenValue));
 	}
 
 	/**

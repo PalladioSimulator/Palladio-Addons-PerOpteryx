@@ -52,23 +52,19 @@ public class ContinousRangeChoiceImpl extends ChoiceImpl implements ContinousRan
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public double getChosenValue() {
-		// TODO: implement this method to return the 'Chosen Value' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return ((Double) this.getValue()).doubleValue();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setChosenValue(double newChosenValue) {
-		// TODO: implement this method to set the 'Chosen Value' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.setValue(new Double(newChosenValue));
 	}
 
 	/**

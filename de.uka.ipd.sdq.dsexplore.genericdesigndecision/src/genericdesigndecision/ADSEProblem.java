@@ -2,6 +2,7 @@
  */
 package genericdesigndecision;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import org.eclipse.emf.ecore.EObject;
@@ -21,10 +22,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see genericdesigndecision.GenericdesigndecisionPackage#getADSEProblem()
- * @model abstract="true" superTypes="genericdesigndecision.DSEProblem"
+ * @model abstract="true" superTypes="genericdesigndecision.DSEProblem genericdesigndecision.DSEDecoder"
  * @generated
  */
-public interface ADSEProblem extends EObject, DSEProblem {
+public interface ADSEProblem extends EObject, DSEProblem, DSEDecoder {
 	/**
 	 * Returns the value of the '<em><b>Problem</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface AMetamodelDescription extends AGenomeToCandidateModelTransformation{
+public interface AMetamodelDescription extends AGenomeToCandidateModelTransformation {
 	/**
 	 * Returns the value of the '<em><b>Dofrepository</b></em>' reference.
 	 * <!-- begin-user-doc -->

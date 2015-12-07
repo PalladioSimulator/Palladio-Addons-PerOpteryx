@@ -128,7 +128,8 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
     }
 	
-	protected ADegreeOfFreedom getDesignDecision(final int index) {
+	@Override
+	public ADegreeOfFreedom getDesignDecision(final int index) {
 		return this.problem.getDofInstances().get(index);
 	}
 

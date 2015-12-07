@@ -97,7 +97,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEProblem">
+  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEProblem #//DSEDecoder">
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" lowerBound="1"
         eType="#//DecisionSpace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="emfInstance" lowerBound="1"
@@ -105,6 +105,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
         eType="#//universalDoF/AMetamodelDescription"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DSEDecoder" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DSEProblem" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenomeToCandidateModelTransformation"
