@@ -1,7 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.exception;
 
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import genericdesigndecision.Choice;
 
 /**
  * This exception is thrown if a {@link Choice} and the linked {@link DegreeOfFreedomInstance} 

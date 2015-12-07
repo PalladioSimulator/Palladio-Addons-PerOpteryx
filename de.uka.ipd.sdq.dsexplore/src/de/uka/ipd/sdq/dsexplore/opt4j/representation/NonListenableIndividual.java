@@ -1,8 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-
-
+import genericdesigndecision.DecisionSpace;
 
 public class NonListenableIndividual extends DSEIndividual {
 	

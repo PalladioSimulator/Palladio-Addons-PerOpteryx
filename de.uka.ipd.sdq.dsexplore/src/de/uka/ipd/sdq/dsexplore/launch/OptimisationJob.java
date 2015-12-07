@@ -43,8 +43,6 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 		    this.evaluators = config.getEvaluators();
 	}
 
-
-
 	@Override
 	public void execute(IProgressMonitor monitor) throws JobFailedException,
 			UserCanceledException {

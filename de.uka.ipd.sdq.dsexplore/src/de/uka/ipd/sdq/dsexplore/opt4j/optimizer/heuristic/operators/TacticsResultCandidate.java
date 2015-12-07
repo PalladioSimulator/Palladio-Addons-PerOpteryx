@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators;
 import org.apache.log4j.Logger;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import genericdesigndecision.DecisionSpace;
 
 /**
  * HeuristicCandidate is used to manage the candidates generated

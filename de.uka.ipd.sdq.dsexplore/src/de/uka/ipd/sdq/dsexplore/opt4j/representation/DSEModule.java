@@ -24,7 +24,6 @@ public class DSEModule extends ProblemModule {
 		this.useGui = useGui;
 	}
 
-	//@Override
 	@Override
 	protected void config() {
 		

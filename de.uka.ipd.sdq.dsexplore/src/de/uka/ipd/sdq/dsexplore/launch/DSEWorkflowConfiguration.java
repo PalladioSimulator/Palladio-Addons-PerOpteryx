@@ -655,6 +655,4 @@ AbstractPCMWorkflowRunConfiguration {
 		this.resultsAsCSV = resultsAsCVS;
 	}
 
-
-
 }

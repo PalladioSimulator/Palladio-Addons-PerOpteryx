@@ -14,7 +14,6 @@ import genericdesigndecision.DecisionSpace;
 
 public class DSEIndividual extends Individual {
 
-
 	private DecisionSpace problem;
 
 	public DSEIndividual(DecisionSpace problem){
@@ -34,8 +33,6 @@ public class DSEIndividual extends Individual {
 	public DesignDecisionGenotype getGenotype(){
 		return (DesignDecisionGenotype)super.getGenotype();
 	}
-	
-
 
 	/**
 	 * Checks the equality of this and o. 
@@ -71,7 +68,6 @@ public class DSEIndividual extends Individual {
 				return otherGenotypeString.equals(myGenotypeString);
 			}
 		}
-		
 		
 	}
 

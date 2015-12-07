@@ -19,29 +19,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.palladiosimulator.pcm.allocation.Allocation;
-import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.allocation.AllocationPackage;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.entity.ComposedProvidingRequiringEntity;
-import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.pcm.parameter.ParameterPackage;
-import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.PassiveResource;
-import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
-import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
-import org.palladiosimulator.pcm.resourcetype.ResourcetypePackage;
-import org.palladiosimulator.pcm.seff.SeffPackage;
-import org.palladiosimulator.pcm.system.SystemPackage;
-import org.palladiosimulator.pcm.usagemodel.UsagemodelPackage;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.identifier.Identifier;
-import de.uka.ipd.sdq.pcm.designdecision.Candidates;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import genericdesigndecision.Candidates;
+import genericdesigndecision.GenericdesigndecisionFactory;
 
 /**
  * Also see {@link EcoreUtil} for more helper functions
@@ -53,7 +36,7 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 public class EMFHelper {
 
     /**
-     * Checks for two PCM model elements whether they are the same, i.e. whether
+     * Checks for two model elements whether they are the same, i.e. whether
      * they have the same ID. The model elements have to be derived from
      * Identifier. Note that two systems might use the same assembly contexts
      * and components, but still are two different systems. If one of the
@@ -115,7 +98,17 @@ public class EMFHelper {
         return removedAny;
     }
 
-    /**
+    public static Candidates createEMFCandidates(final Collection<DSEIndividual> individuals) {
+	    final Candidates candidates = GenericdesigndecisionFactory.eINSTANCE.createCandidates();
+	    candidates.setProblem(Opt4JStarter.getProblem().getProblem());
+	
+	    for (final DSEIndividual dseIndividual : individuals) {
+	        candidates.getCandidate().add(dseIndividual.getGenotype().getEMFCandidate());
+	    }
+	    return candidates;
+	}
+
+	/**
      * Save the given EObject to the file given by filename.
      *
      * @param modelToSave
@@ -225,120 +218,6 @@ public class EMFHelper {
         // }
         final EObject eObject = resource.getContents().iterator().next();
         return EcoreUtil.getRootContainer(eObject);
-    }
-
-    /**
-     * Copied From de.uka.ipd.sdq.pcmsolver.models.PCMInstance.
-     *
-     * @param resourceSet
-     *            The resource set to register all contained model packages
-     *            with.
-     */
-    private static void registerPackages(final ResourceSet resourceSet) {
-
-        resourceSet.getPackageRegistry().put(AllocationPackage.eNS_URI,
-                AllocationPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(ParameterPackage.eNS_URI,
-                ParameterPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(
-                ResourceenvironmentPackage.eNS_URI,
-                ResourceenvironmentPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(ResourcetypePackage.eNS_URI,
-                ResourcetypePackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(RepositoryPackage.eNS_URI,
-                RepositoryPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(SeffPackage.eNS_URI,
-                SeffPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(SystemPackage.eNS_URI,
-                SystemPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(UsagemodelPackage.eNS_URI,
-                UsagemodelPackage.eINSTANCE);
-
-    }
-
-    public static Entity retrieveEntityByID(final List<? extends EObject> entities, final EObject object){
-        if (object instanceof Entity){
-            final List<Entity> castedEntities = new ArrayList<Entity>();
-            for (final EObject eObject : entities) {
-                if (eObject instanceof Entity){
-                    castedEntities.add((Entity) eObject);
-                }
-            }
-            return retrieveEntityByID(castedEntities, ((Entity)object).getId());
-        }
-        return null;
-    }
-
-    public static Entity retrieveEntityByID(final List<? extends Entity> entities, final String id) {
-        for (final Entity entity : entities) {
-
-            if (entity.getId().equals(id)){
-                return entity;
-            }
-        }
-        return null;
-    }
-
-    public static int indexOfByID(final List<? extends Entity> entities, final String id) {
-        final Entity entity = retrieveEntityByID(entities, id);
-        return entities.indexOf(entity);
-    }
-
-    public static Candidates createEMFCandidates(final Collection<DSEIndividual> individuals) {
-        final Candidates candidates = designdecisionFactory.eINSTANCE.createCandidates();
-        candidates.setProblem(Opt4JStarter.getProblem().getProblem());
-
-        for (final DSEIndividual dseIndividual : individuals) {
-            candidates.getCandidate().add(dseIndividual.getGenotype().getEMFCandidate());
-        }
-        return candidates;
-    }
-
-    public static List<PassiveResource> getPassiveResources(final List<Repository> repositoryList){
-
-
-        final List<PassiveResource> passiveResourceList = new ArrayList<PassiveResource>(repositoryList.size());
-
-        for (final Repository repository : repositoryList) {
-            final List<RepositoryComponent> repoComponents = repository
-                    .getComponents__Repository();
-            for (final RepositoryComponent repositoryComponent : repoComponents) {
-                if (repositoryComponent instanceof BasicComponent) {
-                    final BasicComponent basicComponent = (BasicComponent) repositoryComponent;
-                    final List<PassiveResource> passiveResourceOfComponentList = basicComponent
-                            .getPassiveResource_BasicComponent();
-                    for (final PassiveResource passiveResource : passiveResourceOfComponentList) {
-
-                        passiveResourceList.add(passiveResource);
-                    }
-
-                }
-            }
-        }
-        return passiveResourceList;
-    }
-
-    /** Recursively get all contained AssemblyContexts in one flat list.
-     * */
-    public static List<AssemblyContext> getAllUsedAssemblyContexts(final ComposedProvidingRequiringEntity composite){
-        final List<AssemblyContext> resultList = new LinkedList<AssemblyContext>();
-
-        final List<AssemblyContext> currentAssemblyContexts = composite.getAssemblyContexts__ComposedStructure();
-        resultList.addAll(currentAssemblyContexts);
-
-        for (final AssemblyContext assemblyContext : currentAssemblyContexts) {
-            final RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
-            if (innerComponent instanceof ComposedProvidingRequiringEntity){
-                resultList.addAll(getAllUsedAssemblyContexts((ComposedProvidingRequiringEntity) innerComponent));
-            }
-        }
-        return resultList;
-
-    }
-
-    public static List<AllocationContext> getAllUsedAllocationContexts(
-            final Allocation allocation) {
-        return allocation.getAllocationContexts_Allocation();
     }
 
 }

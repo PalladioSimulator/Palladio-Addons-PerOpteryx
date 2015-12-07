@@ -1,9 +1,8 @@
 package de.uka.ipd.sdq.dsexplore.exception;
 
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import genericdesigndecision.ClassChoice;
+import genericdesigndecision.DiscreteRangeChoice;
 
 /**
  * Thrown in the value of a {@link Choice} is not contained in the corresponding {@link DegreeOfFreedomInstance}.

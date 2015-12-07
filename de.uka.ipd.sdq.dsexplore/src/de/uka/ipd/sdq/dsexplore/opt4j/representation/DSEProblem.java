@@ -43,4 +43,6 @@ public interface DSEProblem {
 
 	public List<DesignDecisionGenotype> getInitialGenotypeList();
 
+	public ADegreeOfFreedom getDesignDecision(int index);
+
 }

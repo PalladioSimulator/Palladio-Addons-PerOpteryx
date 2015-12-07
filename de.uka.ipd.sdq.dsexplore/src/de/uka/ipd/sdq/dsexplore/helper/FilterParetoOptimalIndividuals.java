@@ -22,7 +22,7 @@ import org.opt4j.core.domination.ParetoDomination;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.NonListenableIndividual;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
+import genericdesigndecision.DecisionSpace;
 
 public class FilterParetoOptimalIndividuals {
 

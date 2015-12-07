@@ -17,7 +17,7 @@ ICompositeJob {
 
     //DSECandidateConfiguration candidateConfig;
 
-    public  PerOpteryxJob(final DSEWorkflowConfiguration config, final DSELaunch launch) throws CoreException {
+    public PerOpteryxJob(final DSEWorkflowConfiguration config, final DSELaunch launch) throws CoreException {
         super(false);
 
         // 1. Load PCM Models into memory
