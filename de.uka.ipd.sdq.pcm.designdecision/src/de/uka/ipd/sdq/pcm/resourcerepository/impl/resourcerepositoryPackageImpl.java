@@ -20,8 +20,6 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl;
@@ -33,7 +31,6 @@ import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryFactory;
 import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
 import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryValidator;
 import genericdesigndecision.GenericdesigndecisionPackage;
-import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -104,16 +101,12 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(designdecisionPackage.eNS_URI) instanceof designdecisionPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI)
 						: designdecisionPackage.eINSTANCE);
-		gdofPackageImpl thegdofPackage = (gdofPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(gdofPackage.eNS_URI) instanceof gdofPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) : gdofPackage.eINSTANCE);
 		qualitypropertiesPackageImpl thequalitypropertiesPackage = (qualitypropertiesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(qualitypropertiesPackage.eNS_URI) instanceof qualitypropertiesPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI)
@@ -125,14 +118,12 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		// Create package meta-data objects
 		theresourcerepositoryPackage.createPackageContents();
 		thedesigndecisionPackage.createPackageContents();
-		thegdofPackage.createPackageContents();
 		thequalitypropertiesPackage.createPackageContents();
 		thespecificPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theresourcerepositoryPackage.initializePackageContents();
 		thedesigndecisionPackage.initializePackageContents();
-		thegdofPackage.initializePackageContents();
 		thequalitypropertiesPackage.initializePackageContents();
 		thespecificPackage.initializePackageContents();
 

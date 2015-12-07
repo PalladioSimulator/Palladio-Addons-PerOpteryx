@@ -4,11 +4,11 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.ContinousRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AContinuousRangeDegreeImpl;
 
 /**
@@ -40,7 +40,7 @@ public class MonitoringDegreeImpl extends AContinuousRangeDegreeImpl implements 
 
 	@Override
 	public Choice determineInitialChoice() {
-		final ContinousRangeChoice choice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
+		final ContinousRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
 		choice.setDofInstance(this);
 
 		//MonitoringDegree mnrt = (MonitoringDegree) dd;

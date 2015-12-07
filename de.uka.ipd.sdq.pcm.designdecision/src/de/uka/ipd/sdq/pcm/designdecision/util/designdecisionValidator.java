@@ -9,14 +9,8 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
-import de.uka.ipd.sdq.pcm.designdecision.Candidate;
-import de.uka.ipd.sdq.pcm.designdecision.Candidates;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import genericdesigndecision.Candidates;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
@@ -85,137 +79,6 @@ public class designdecisionValidator extends EObjectValidator {
     @Override
     protected EPackage getEPackage() {
         return designdecisionPackage.eINSTANCE;
-    }
-
-    /**
-     * Calls <code>validateXXX</code> for the corresponding classifier of the model. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected boolean validate(final int classifierID, final Object value, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        switch (classifierID)
-        {
-        case designdecisionPackage.DISCRETE_RANGE_CHOICE:
-            return this.validateDiscreteRangeChoice((DiscreteRangeChoice) value, diagnostics, context);
-        case designdecisionPackage.CHOICE:
-            return this.validateChoice((Choice) value, diagnostics, context);
-        case designdecisionPackage.CLASS_CHOICE:
-            return this.validateClassChoice((ClassChoice) value, diagnostics, context);
-        case designdecisionPackage.CONTINOUS_RANGE_CHOICE:
-            return this.validateContinousRangeChoice((ContinousRangeChoice) value, diagnostics, context);
-        case designdecisionPackage.DECISION_SPACE:
-            return this.validateDecisionSpace((DecisionSpace) value, diagnostics, context);
-        case designdecisionPackage.CANDIDATE:
-            return this.validateCandidate((Candidate) value, diagnostics, context);
-        case designdecisionPackage.CANDIDATES:
-            return this.validateCandidates((Candidates) value, diagnostics, context);
-        default:
-            return true;
-        }
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateDiscreteRangeChoice(final DiscreteRangeChoice discreteRangeChoice,
-            final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(discreteRangeChoice, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateChoice(final Choice choice, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(choice, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateClassChoice(final ClassChoice classChoice, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(classChoice, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateContinousRangeChoice(final ContinousRangeChoice continousRangeChoice,
-            final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(continousRangeChoice, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateDecisionSpace(final DecisionSpace decisionSpace, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(decisionSpace, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateCandidate(final Candidate candidate, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        return this.validate_EveryDefaultConstraint(candidate, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public boolean validateCandidates(final Candidates candidates, final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        if (!this.validate_NoCircularContainment(candidates, diagnostics, context)) {
-            return false;
-        }
-        boolean result = this.validate_EveryMultiplicityConforms(candidates, diagnostics, context);
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryDataValueConforms(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryReferenceIsContained(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryBidirectionalReferenceIsPaired(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryProxyResolves(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_UniqueID(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryKeyUnique(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validate_EveryMapEntryUnique(candidates, diagnostics, context);
-        }
-        if (result || diagnostics != null) {
-            result &= this.validateCandidates_numberOfChoicesMustEqualNumberOfDecisions(candidates, diagnostics,
-                    context);
-        }
-        return result;
     }
 
     /**

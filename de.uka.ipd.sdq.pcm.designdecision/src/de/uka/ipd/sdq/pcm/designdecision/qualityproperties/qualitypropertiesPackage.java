@@ -57,34 +57,6 @@ public interface qualitypropertiesPackage extends EPackage {
 			.init();
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.QualityPropertyImpl <em>Quality Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.QualityPropertyImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getQualityProperty()
-	 * @generated
-	 */
-	int QUALITY_PROPERTY = 6;
-
-	/**
-	 * The feature id for the '<em><b>Quality Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALITY_PROPERTY__QUALITY_VALUE = QualitypropertiesPackage.QUALITY_PROPERTY__QUALITY_VALUE;
-
-	/**
-	 * The number of structural features of the '<em>Quality Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALITY_PROPERTY_FEATURE_COUNT = QualitypropertiesPackage.QUALITY_PROPERTY_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.NumericQualityPropertyImpl <em>Numeric Quality Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,7 +73,7 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_QUALITY_PROPERTY__QUALITY_VALUE = QUALITY_PROPERTY__QUALITY_VALUE;
+	int NUMERIC_QUALITY_PROPERTY__QUALITY_VALUE = QualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__QUALITY_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Confidence Interval</b></em>' reference.
@@ -110,7 +82,7 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = QUALITY_PROPERTY_FEATURE_COUNT + 0;
+	int NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = QualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL;
 
 	/**
 	 * The feature id for the '<em><b>Result Decorator Repository</b></em>' reference.
@@ -119,16 +91,8 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = QUALITY_PROPERTY_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Pcm Confidence Interval</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL = QUALITY_PROPERTY_FEATURE_COUNT + 2;
+	int NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = QualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT
+			+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Numeric Quality Property</em>' class.
@@ -137,237 +101,7 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT = QUALITY_PROPERTY_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ConfidenceIntervalImpl <em>Confidence Interval</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ConfidenceIntervalImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getConfidenceInterval()
-	 * @generated
-	 */
-	int CONFIDENCE_INTERVAL = 1;
-
-	/**
-	 * The feature id for the '<em><b>Confidence Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL = QualitypropertiesPackage.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Mean</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIDENCE_INTERVAL__MEAN = QualitypropertiesPackage.CONFIDENCE_INTERVAL__MEAN;
-
-	/**
-	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIDENCE_INTERVAL__UPPER_BOUND = QualitypropertiesPackage.CONFIDENCE_INTERVAL__UPPER_BOUND;
-
-	/**
-	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIDENCE_INTERVAL__LOWER_BOUND = QualitypropertiesPackage.CONFIDENCE_INTERVAL__LOWER_BOUND;
-
-	/**
-	 * The number of structural features of the '<em>Confidence Interval</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIDENCE_INTERVAL_FEATURE_COUNT = QualitypropertiesPackage.CONFIDENCE_INTERVAL_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ElementQualityPropertyImpl <em>Element Quality Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ElementQualityPropertyImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getElementQualityProperty()
-	 * @generated
-	 */
-	int ELEMENT_QUALITY_PROPERTY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Quality Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_QUALITY_PROPERTY__QUALITY_VALUE = QUALITY_PROPERTY__QUALITY_VALUE;
-
-	/**
-	 * The number of structural features of the '<em>Element Quality Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_QUALITY_PROPERTY_FEATURE_COUNT = QUALITY_PROPERTY_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.IntegerQualityPropertyImpl <em>Integer Quality Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.IntegerQualityPropertyImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getIntegerQualityProperty()
-	 * @generated
-	 */
-	int INTEGER_QUALITY_PROPERTY = 3;
-
-	/**
-	 * The feature id for the '<em><b>Quality Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY__QUALITY_VALUE = NUMERIC_QUALITY_PROPERTY__QUALITY_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Confidence Interval</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL;
-
-	/**
-	 * The feature id for the '<em><b>Result Decorator Repository</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY;
-
-	/**
-	 * The feature id for the '<em><b>Pcm Confidence Interval</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL = NUMERIC_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY__VALUE = NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Integer Quality Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_QUALITY_PROPERTY_FEATURE_COUNT = NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.DoubleQualityPropertyImpl <em>Double Quality Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.DoubleQualityPropertyImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getDoubleQualityProperty()
-	 * @generated
-	 */
-	int DOUBLE_QUALITY_PROPERTY = 4;
-
-	/**
-	 * The feature id for the '<em><b>Quality Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY__QUALITY_VALUE = NUMERIC_QUALITY_PROPERTY__QUALITY_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Confidence Interval</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL;
-
-	/**
-	 * The feature id for the '<em><b>Result Decorator Repository</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY;
-
-	/**
-	 * The feature id for the '<em><b>Pcm Confidence Interval</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL = NUMERIC_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY__VALUE = NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Double Quality Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_QUALITY_PROPERTY_FEATURE_COUNT = NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction <em>Quality Prediction</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getQualityPrediction()
-	 * @generated
-	 */
-	int QUALITY_PREDICTION = 5;
-
-	/**
-	 * The number of structural features of the '<em>Quality Prediction</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALITY_PREDICTION_FEATURE_COUNT = QualitypropertiesPackage.QUALITY_PREDICTION_FEATURE_COUNT + 0;
+	int NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT = QualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.NumericQualityProperty <em>Numeric Quality Property</em>}'.
@@ -389,77 +123,6 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNumericQualityProperty_ResultDecoratorRepository();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.NumericQualityProperty#getPcmConfidenceInterval <em>Pcm Confidence Interval</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pcm Confidence Interval</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.NumericQualityProperty#getPcmConfidenceInterval()
-	 * @see #getNumericQualityProperty()
-	 * @generated
-	 */
-	EReference getNumericQualityProperty_PcmConfidenceInterval();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ConfidenceInterval <em>Confidence Interval</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Confidence Interval</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ConfidenceInterval
-	 * @generated
-	 */
-	EClass getConfidenceInterval();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ElementQualityProperty <em>Element Quality Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Element Quality Property</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ElementQualityProperty
-	 * @generated
-	 */
-	EClass getElementQualityProperty();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.IntegerQualityProperty <em>Integer Quality Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Integer Quality Property</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.IntegerQualityProperty
-	 * @generated
-	 */
-	EClass getIntegerQualityProperty();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.DoubleQualityProperty <em>Double Quality Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Double Quality Property</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.DoubleQualityProperty
-	 * @generated
-	 */
-	EClass getDoubleQualityProperty();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction <em>Quality Prediction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Quality Prediction</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction
-	 * @generated
-	 */
-	EClass getQualityPrediction();
-
-	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty <em>Quality Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Quality Property</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty
-	 * @generated
-	 */
-	EClass getQualityProperty();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -501,75 +164,6 @@ public interface qualitypropertiesPackage extends EPackage {
 		 */
 		EReference NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = eINSTANCE
 				.getNumericQualityProperty_ResultDecoratorRepository();
-
-		/**
-		 * The meta object literal for the '<em><b>Pcm Confidence Interval</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUMERIC_QUALITY_PROPERTY__PCM_CONFIDENCE_INTERVAL = eINSTANCE
-				.getNumericQualityProperty_PcmConfidenceInterval();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ConfidenceIntervalImpl <em>Confidence Interval</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ConfidenceIntervalImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getConfidenceInterval()
-		 * @generated
-		 */
-		EClass CONFIDENCE_INTERVAL = eINSTANCE.getConfidenceInterval();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ElementQualityPropertyImpl <em>Element Quality Property</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ElementQualityPropertyImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getElementQualityProperty()
-		 * @generated
-		 */
-		EClass ELEMENT_QUALITY_PROPERTY = eINSTANCE.getElementQualityProperty();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.IntegerQualityPropertyImpl <em>Integer Quality Property</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.IntegerQualityPropertyImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getIntegerQualityProperty()
-		 * @generated
-		 */
-		EClass INTEGER_QUALITY_PROPERTY = eINSTANCE.getIntegerQualityProperty();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.DoubleQualityPropertyImpl <em>Double Quality Property</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.DoubleQualityPropertyImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getDoubleQualityProperty()
-		 * @generated
-		 */
-		EClass DOUBLE_QUALITY_PROPERTY = eINSTANCE.getDoubleQualityProperty();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction <em>Quality Prediction</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getQualityPrediction()
-		 * @generated
-		 */
-		EClass QUALITY_PREDICTION = eINSTANCE.getQualityPrediction();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.QualityPropertyImpl <em>Quality Property</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.QualityPropertyImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl#getQualityProperty()
-		 * @generated
-		 */
-		EClass QUALITY_PROPERTY = eINSTANCE.getQualityProperty();
 
 	}
 

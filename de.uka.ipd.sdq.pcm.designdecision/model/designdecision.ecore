@@ -5,115 +5,21 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The DesignDecisions metamodel represents degrees of freedom that can be exploited for optimisation.&#xD;&#xA;&#xD;&#xA;The core idea is each degree of freedom can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a Domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The actual making of a decision is represented in the Choice element. For a specific candidate architecture, one Choice for each DegreeOfFreedom in the Problem as to be made. The Choice contains a reference to the DegreeOfFreedom that it decides and a reference to a value from the DegreeOfFreedom's Domain that represent the selected value.  See the diagram &quot;Design and Choice&quot; for an overview of DegreeOfFreedom, Domain and Choice.&#xD;&#xA;&#xD;&#xA;All of the above mentioned elements are abstract and are subclassed for the different generic degrees of freedom. For example, the degree of freedom of &quot;component allocation&quot; is represented in the AllocationDegree. See the documentation of each subclass of design decision for details. The diagram AssembledComponentDegree visualises the subclassing for the example degree of freedom of &quot;component selection&quot;. &#xD;&#xA;&#xD;&#xA;"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="DiscreteRangeChoice" eSuperTypes="#//Choice ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//DiscreteRangeChoice">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The DiscreteRangeChoice represents a choice for a DegreeOfFreedom with an integer range. &#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an DiscreteRangeDegree"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//Choice">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A Choice represents the choice of one value from the domain of a DegreeOfFreedom. The Choice links the DegreeOfFreedom for which it makes the choice. Additionally, it links one element of the domain of the DegreeOfFreedom. This linking is realised in subclasses of Choice, as it may be either PCM Entities or numbers. "/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassChoice" eSuperTypes="#//Choice ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//ClassChoice">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The EnumerationChoice represents a choice for a DegreeOfFreedom that has a domain of PCM Entities (i.e. a EnumerationDegree). &#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an EnumerationDegree&#xD;&#xA;&#xD;&#xA;"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContinousRangeChoice" eSuperTypes="#//Choice ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//ContinousRangeChoice">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The ContinuousRange represents a choice for a DegreeOfFreedom with a continuous domain.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an ContinuousRangeDegree"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//DecisionSpace">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Candidate" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//Candidate">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Candidate represents one solution candidate to the optimisation problem. It contains as many choices as there are DegreeOfFreedoms. "/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pcmChoices" upperBound="-1"
-        eType="#//Choice" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pcmQualityProperty" upperBound="-1"
-        eType="#//qualityproperties/QualityProperty" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Candidates" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//Candidates">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Candidates is the root element for specifying a set of solutions of the optimisation (or also any other candidate architecture). It contains one Candidate for each found solution."/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pcmCandidate" upperBound="-1"
-        eType="#//Candidate" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pcmProblem" ordered="false"
-        eType="#//DecisionSpace"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DSEProblem" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//ADSEProblem"/>
   <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//universalDoF/AMetamodelDescription"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenomeToCandidateModelTransformation"
       eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//AGenomeToCandidateModelTransformation"/>
-  <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
-      nsPrefix="gdof">
-    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/ChangeableElementDescription">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmValueRule" lowerBound="1"
-          eType="#//gdof/ValueRule" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmSelectionRule" eType="#//gdof/SelectionRule"
-          containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueRule" eSuperTypes="#//gdof/OCLRule ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/ValueRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OCLRule" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/OCLRule">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmHelperDefinition"
-          ordered="false" upperBound="-1" eType="#//gdof/HelperOCLDefinition" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HelperOCLDefinition" eSuperTypes="#//gdof/OCLRule #//gdof/StaticContextRule ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/HelperOCLDefinition">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Defines an additional operation in the context classifier, for use in formulating OCL queries and constraints. The mainOclQuery must be a &quot;def expression&quot;, taking the form of: &#xD;&#xA;&#xD;&#xA;     operation-name(parameters?) : type = expr&#xD;&#xA;&#xD;&#xA;"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StaticContextRule" abstract="true"
-        eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/StaticContextRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SelectionRule" abstract="true" eSuperTypes="#//gdof/OCLRule ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/SelectionRule">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Properties cannot be directly selected in models based on EMOF. Thus, we select the changeable container \function{changeableContainer}{$p_i$}. &#xD;&#xA;&#xD;&#xA;&#x9;The default selection rule selects all instances of \function{changeableContainer}{$p_i$}. In that case, selectionRule is null. &#xD;&#xA;&#xD;&#xA;The GDoF may specify more specific rules that constrain which instances of \function{changeableContainer}{$p_i$} can be selected. For each changeable element, this can be expressed by an OCL query \function{selectionRule}{$p_i$} selecting the instances of this \texttt{Property}'s class \function{changeableContainer}{$p_i$}. &#xD;&#xA;&#xD;&#xA;This query defines which instances of \function{changeableContainer}{$p_i$} are possible, either statically or based on another selected instance of $C_j, j &lt; i$. In the latter case, the query is defined in the OCL context of the selected instance of $C_j$. To avoid cycles, only the values of preceding \texttt{Properties} $p_j, j &lt; i$ may be referenced. &#xD;&#xA;&#xD;&#xA;&#x9;The selection rules for the primary element can be defined in any context. They are executed for each instance of the metamodel element in whose context they are defined and the union of the results is the set of matching model elements."/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DoFRepository" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/DoFRepository">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmDofs" ordered="false"
-          upperBound="-1" eType="#//gdof/DegreeOfFreedom" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectionRule" eSuperTypes="#//gdof/SelectionRule ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/InstanceSelectionRule">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmContextInstance" ordered="false"
-          eType="#//gdof/ChangeableElementDescription"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//gdof/SelectionRule #//gdof/StaticContextRule ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/StaticSelectionRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//genericDoF/ADegreeOfFreedom">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmChangeableElementDescriptions"
-          ordered="false" lowerBound="1" upperBound="-1" eType="#//gdof/ChangeableElementDescription"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmPrimaryChangeable"
-          ordered="false" lowerBound="1" eType="#//gdof/ChangeableElementDescription"/>
-    </eClassifiers>
-  </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
       nsPrefix="qualityproperties">
     <eClassifiers xsi:type="ecore:EClass" name="NumericQualityProperty" abstract="true"
-        eSuperTypes="#//qualityproperties/QualityProperty ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty">
+        eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/NumericQualityProperty">
       <eStructuralFeatures xsi:type="ecore:EReference" name="resultDecoratorRepository"
           ordered="false" eType="ecore:EClass platform:/plugin/org.palladiosimulator.analyzer.resultdecorator/model/resultdecorator.ecore#//ResultDecoratorRepository">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Result Decorator for Performance"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcmConfidenceInterval"
-          ordered="false" eType="#//qualityproperties/ConfidenceInterval"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConfidenceInterval" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/ConfidenceInterval"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ElementQualityProperty" eSuperTypes="#//qualityproperties/QualityProperty ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/ElementQualityProperty"/>
-    <eClassifiers xsi:type="ecore:EClass" name="IntegerQualityProperty" eSuperTypes="#//qualityproperties/NumericQualityProperty ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/IntegerQualityProperty"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DoubleQualityProperty" eSuperTypes="#//qualityproperties/NumericQualityProperty ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/DoubleQualityProperty"/>
-    <eClassifiers xsi:type="ecore:EClass" name="QualityPrediction" abstract="true"
-        interface="true" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/QualityPrediction"/>
-    <eClassifiers xsi:type="ecore:EClass" name="QualityProperty" abstract="true" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//qualityproperties/QualityProperty"/>
   </eSubpackages>
   <eSubpackages name="resourcerepository" nsURI="http://sdq.ipd.uka.de/DesignDecision/ResourceRepository/3.0"
       nsPrefix="resourcerepository">

@@ -9,12 +9,12 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
+import genericdesigndecision.Choice;
+import genericdesigndecision.DiscreteRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
@@ -46,7 +46,7 @@ public abstract class NumberOfCoresDegreeImpl extends ProcessingResourceDegreeIm
 
 	@Override
 	public Choice determineInitialChoice() {
-		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
 		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()

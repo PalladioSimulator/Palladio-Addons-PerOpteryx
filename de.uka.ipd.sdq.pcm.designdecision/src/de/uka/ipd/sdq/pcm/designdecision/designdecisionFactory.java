@@ -26,69 +26,6 @@ public interface designdecisionFactory extends EFactory {
 	designdecisionFactory eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Discrete Range Choice</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Discrete Range Choice</em>'.
-	 * @generated
-	 */
-	DiscreteRangeChoice createDiscreteRangeChoice();
-
-	/**
-	 * Returns a new object of class '<em>Choice</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Choice</em>'.
-	 * @generated
-	 */
-	Choice createChoice();
-
-	/**
-	 * Returns a new object of class '<em>Class Choice</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class Choice</em>'.
-	 * @generated
-	 */
-	ClassChoice createClassChoice();
-
-	/**
-	 * Returns a new object of class '<em>Continous Range Choice</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Continous Range Choice</em>'.
-	 * @generated
-	 */
-	ContinousRangeChoice createContinousRangeChoice();
-
-	/**
-	 * Returns a new object of class '<em>Decision Space</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Decision Space</em>'.
-	 * @generated
-	 */
-	DecisionSpace createDecisionSpace();
-
-	/**
-	 * Returns a new object of class '<em>Candidate</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Candidate</em>'.
-	 * @generated
-	 */
-	Candidate createCandidate();
-
-	/**
-	 * Returns a new object of class '<em>Candidates</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Candidates</em>'.
-	 * @generated
-	 */
-	Candidates createCandidates();
-
-	/**
 	 * Returns a new object of class '<em>DSE Problem</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,7 +2,14 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.solver.models.PCMInstance;
+
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.Candidate;
+import genericdesigndecision.Choice;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,4 +22,10 @@ import genericdesigndecision.AGenomeToCandidateModelTransformation;
  * @generated
  */
 public interface GenomeToCandidateModelTransformation extends AGenomeToCandidateModelTransformation {
+	
+	public List<Choice> transform(PCMInstance pcm, Candidate candidate);
+	
+	public List<EObject> getPCMRootElements(PCMInstance pcm);
+	
+	public boolean transformChoice(PCMInstance pcm, Choice choice);
 } // GenomeToCandidateModelTransformation

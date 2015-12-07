@@ -14,8 +14,6 @@ import org.palladiosimulator.pcm.resourcetype.ResourcetypePackage;
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl;
@@ -279,16 +277,12 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		featuremodelPackage.eINSTANCE.eClass();
 		GenericdesigndecisionPackage.eINSTANCE.eClass();
 		ResultdecoratorPackage.eINSTANCE.eClass();
-		GenericDoFPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(designdecisionPackage.eNS_URI) instanceof designdecisionPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI)
 						: designdecisionPackage.eINSTANCE);
-		gdofPackageImpl thegdofPackage = (gdofPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(gdofPackage.eNS_URI) instanceof gdofPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) : gdofPackage.eINSTANCE);
 		qualitypropertiesPackageImpl thequalitypropertiesPackage = (qualitypropertiesPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(qualitypropertiesPackage.eNS_URI) instanceof qualitypropertiesPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI)
@@ -301,14 +295,12 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		// Create package meta-data objects
 		thespecificPackage.createPackageContents();
 		thedesigndecisionPackage.createPackageContents();
-		thegdofPackage.createPackageContents();
 		thequalitypropertiesPackage.createPackageContents();
 		theresourcerepositoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thespecificPackage.initializePackageContents();
 		thedesigndecisionPackage.initializePackageContents();
-		thegdofPackage.initializePackageContents();
 		thequalitypropertiesPackage.initializePackageContents();
 		theresourcerepositoryPackage.initializePackageContents();
 

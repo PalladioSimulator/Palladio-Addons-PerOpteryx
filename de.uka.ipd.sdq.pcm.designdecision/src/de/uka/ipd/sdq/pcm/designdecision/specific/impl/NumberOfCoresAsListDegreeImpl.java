@@ -14,14 +14,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.DiscreteRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AOrderedIntegerDegreeImpl;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
@@ -213,7 +213,7 @@ public class NumberOfCoresAsListDegreeImpl extends AOrderedIntegerDegreeImpl imp
 
 	@Override
 	public Choice determineInitialChoice() {
-		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
 		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()

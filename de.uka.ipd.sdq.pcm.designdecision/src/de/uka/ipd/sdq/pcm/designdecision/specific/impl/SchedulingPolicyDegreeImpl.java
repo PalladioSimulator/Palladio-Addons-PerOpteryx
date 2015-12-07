@@ -17,13 +17,13 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.ClassChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AClassAsReferenceDegreeImpl;
 
 /**
@@ -202,7 +202,7 @@ public class SchedulingPolicyDegreeImpl extends AClassAsReferenceDegreeImpl impl
 
 	@Override
 	public Choice determineInitialChoice() {
-		final ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+		final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 		choice.setDofInstance(this);
 		final ProcessingResourceType procType = this.getProcessingresourcetype();
 		final ResourceContainer rc = (ResourceContainer) this.getPrimaryChanged();

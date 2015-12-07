@@ -2,15 +2,18 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofFactory;
+import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMDecoder;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.genericDoF.GenericDoFFactory;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
@@ -35,6 +38,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
  * @generated
  */
 public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implements MetamodelDescription {
+	
+	private PCMDecoder decoder;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,10 +48,11 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 	 */
 	protected MetamodelDescriptionImpl() {
 		super();
-		this.dofrepository = gdofFactory.eINSTANCE.createDoFRepository();
+		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 		this.name = Metamodel.PCM;
 		this.genomeToCandidateTransformation = designdecisionFactory.eINSTANCE
 				.createGenomeToCandidateModelTransformation();
+		this.decoder = new PCMDecoder();
 		this.gdof_to_dof = new EcoreEMap<GenericDoF, ADegreeOfFreedom>(
 				UniversalDoFPackage.Literals.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM, GenericDoFToADegreeOfFreedomImpl.class,
 				this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
@@ -104,6 +110,11 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 			}
 		}
 		return rightPrs;
+	}
+
+	@Override
+	public PCMPhenotype decode(PCMInstance pcmInstance, DesignDecisionGenotype genotype) {
+		return this.decoder.decode(pcmInstance, genotype);
 	}
 
 } //MetamodelDescriptionImpl

@@ -10,13 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ConfidenceInterval;
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.DoubleQualityProperty;
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.ElementQualityProperty;
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.IntegerQualityProperty;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.NumericQualityProperty;
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityPrediction;
-import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.QualityProperty;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
 
 /**
@@ -73,85 +67,9 @@ public class qualitypropertiesSwitch<T> extends Switch<T> {
 			NumericQualityProperty numericQualityProperty = (NumericQualityProperty) theEObject;
 			T result = caseNumericQualityProperty(numericQualityProperty);
 			if (result == null)
-				result = caseQualityProperty(numericQualityProperty);
-			if (result == null)
 				result = caseQualityproperties_NumericQualityProperty(numericQualityProperty);
 			if (result == null)
-				result = caseQualityproperties_QualityProperty(numericQualityProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.CONFIDENCE_INTERVAL: {
-			ConfidenceInterval confidenceInterval = (ConfidenceInterval) theEObject;
-			T result = caseConfidenceInterval(confidenceInterval);
-			if (result == null)
-				result = caseQualityproperties_ConfidenceInterval(confidenceInterval);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.ELEMENT_QUALITY_PROPERTY: {
-			ElementQualityProperty elementQualityProperty = (ElementQualityProperty) theEObject;
-			T result = caseElementQualityProperty(elementQualityProperty);
-			if (result == null)
-				result = caseQualityProperty(elementQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_ElementQualityProperty(elementQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_QualityProperty(elementQualityProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.INTEGER_QUALITY_PROPERTY: {
-			IntegerQualityProperty integerQualityProperty = (IntegerQualityProperty) theEObject;
-			T result = caseIntegerQualityProperty(integerQualityProperty);
-			if (result == null)
-				result = caseNumericQualityProperty(integerQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_IntegerQualityProperty(integerQualityProperty);
-			if (result == null)
-				result = caseQualityProperty(integerQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_NumericQualityProperty(integerQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_QualityProperty(integerQualityProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.DOUBLE_QUALITY_PROPERTY: {
-			DoubleQualityProperty doubleQualityProperty = (DoubleQualityProperty) theEObject;
-			T result = caseDoubleQualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = caseNumericQualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_DoubleQualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = caseQualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_NumericQualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = caseQualityproperties_QualityProperty(doubleQualityProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.QUALITY_PREDICTION: {
-			QualityPrediction qualityPrediction = (QualityPrediction) theEObject;
-			T result = caseQualityPrediction(qualityPrediction);
-			if (result == null)
-				result = caseQualityproperties_QualityPrediction(qualityPrediction);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case qualitypropertiesPackage.QUALITY_PROPERTY: {
-			QualityProperty qualityProperty = (QualityProperty) theEObject;
-			T result = caseQualityProperty(qualityProperty);
-			if (result == null)
-				result = caseQualityproperties_QualityProperty(qualityProperty);
+				result = caseQualityProperty(numericQualityProperty);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -175,84 +93,6 @@ public class qualitypropertiesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Confidence Interval</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Confidence Interval</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfidenceInterval(ConfidenceInterval object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Quality Property</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseElementQualityProperty(ElementQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Integer Quality Property</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Integer Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIntegerQualityProperty(IntegerQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Double Quality Property</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Double Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDoubleQualityProperty(DoubleQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Quality Prediction</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Quality Prediction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityPrediction(QualityPrediction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Quality Property</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityProperty(QualityProperty object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Quality Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -263,7 +103,7 @@ public class qualitypropertiesSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualityproperties_QualityProperty(genericdesigndecision.qualityproperties.QualityProperty object) {
+	public T caseQualityProperty(genericdesigndecision.qualityproperties.QualityProperty object) {
 		return null;
 	}
 
@@ -280,85 +120,6 @@ public class qualitypropertiesSwitch<T> extends Switch<T> {
 	 */
 	public T caseQualityproperties_NumericQualityProperty(
 			genericdesigndecision.qualityproperties.NumericQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Confidence Interval</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Confidence Interval</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityproperties_ConfidenceInterval(
-			genericdesigndecision.qualityproperties.ConfidenceInterval object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityproperties_ElementQualityProperty(
-			genericdesigndecision.qualityproperties.ElementQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Integer Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Integer Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityproperties_IntegerQualityProperty(
-			genericdesigndecision.qualityproperties.IntegerQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Double Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Double Quality Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityproperties_DoubleQualityProperty(
-			genericdesigndecision.qualityproperties.DoubleQualityProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Quality Prediction</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Quality Prediction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualityproperties_QualityPrediction(genericdesigndecision.qualityproperties.QualityPrediction object) {
 		return null;
 	}
 

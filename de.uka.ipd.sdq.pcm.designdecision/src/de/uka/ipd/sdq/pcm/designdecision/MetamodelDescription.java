@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
@@ -34,4 +36,6 @@ public interface MetamodelDescription extends AMetamodelDescription {
 	public boolean transformChoice(PCMInstance pcm, Choice choice);
 
 	public ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd);
+
+	PCMPhenotype decode(PCMInstance pcmInstance, DesignDecisionGenotype genotype);
 } // MetamodelDescription

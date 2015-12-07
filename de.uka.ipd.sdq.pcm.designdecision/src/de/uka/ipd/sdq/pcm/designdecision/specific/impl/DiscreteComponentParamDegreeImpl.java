@@ -9,10 +9,10 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
@@ -49,7 +49,7 @@ public class DiscreteComponentParamDegreeImpl extends ADiscreteRangeDegreeImpl i
 		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
 				.getProperty(this.getPrimaryChanged(), property);
 
-		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 		choice.setValue(value);
 		choice.setDofInstance(this);
 

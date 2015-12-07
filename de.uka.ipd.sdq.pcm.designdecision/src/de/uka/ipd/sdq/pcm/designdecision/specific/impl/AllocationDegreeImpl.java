@@ -11,12 +11,12 @@ import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.ClassChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AClassAsReferenceDegreeImpl;
 
 /**
@@ -48,7 +48,7 @@ public class AllocationDegreeImpl extends AClassAsReferenceDegreeImpl implements
 
 	@Override
 	public Choice determineInitialChoice() {
-		final ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+		final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 		choice.setDofInstance(this);
 		final AllocationContext ac = (AllocationContext) this.getPrimaryChanged();
 		final ResourceContainer rc = ac.getResourceContainer_AllocationContext();

@@ -3,17 +3,15 @@
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
+import de.uka.ipd.sdq.pcm.designdecision.helper.FixDesignDecisionReferenceSwitch;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
@@ -23,7 +21,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import genericdesigndecision.ClassChoice;
+import genericdesigndecision.ContinousRangeChoice;
 import genericdesigndecision.DecisionSpace;
+import genericdesigndecision.DiscreteRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.opt4j.core.problem.Decoder;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
@@ -54,7 +57,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
  *
  * @generated
  */
-public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
+public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem, Decoder<DesignDecisionGenotype, PCMPhenotype> {
 
 	private final designdecisionFactory designDecisionFactory;
 	private final specificFactory specificDesignDecisionFactory;
@@ -154,7 +157,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	 */
 	@Override
 	protected void initialiseProblem() {
-		this.problem = this.designDecisionFactory.createDecisionSpace();
+		this.problem = GenericdesigndecisionFactory.eINSTANCE.createDecisionSpace();
 		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
 
 		//analyse PCM Instance and create design decisions
@@ -205,7 +208,8 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 								Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
 						dds.add(capacityDegree);
 
-						final DiscreteRangeChoice choice = this.designDecisionFactory.createDiscreteRangeChoice();
+						final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE
+								.createDiscreteRangeChoice();
 						choice.setDofInstance(capacityDegree);
 						choice.setChosenValue(
 								Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
@@ -253,7 +257,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 			ad.getClassDesignOptions().addAll(rcs);
 			dds.add(ad);
 
-			final ClassChoice choice = this.designDecisionFactory.createClassChoice();
+			final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 			choice.setDofInstance(ad);
 			choice.setChosenValue(ac.getResourceContainer_AllocationContext());
 
@@ -275,7 +279,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 			final RepositoryComponent currentlyAssembledComponent = ((AssemblyContext) designDecision
 					.getPrimaryChanged()).getEncapsulatedComponent__AssemblyContext();
 
-			final ClassChoice choice = this.designDecisionFactory.createClassChoice();
+			final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 			choice.setDofInstance(designDecision);
 			choice.setChosenValue(currentlyAssembledComponent);
 			genotype.add(choice);
@@ -314,7 +318,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 				decision.setProcessingresourcetype(resource.getActiveResourceType_ActiveResourceSpecification());
 				dds.add(decision);
 
-				final ContinousRangeChoice choice = this.designDecisionFactory.createContinousRangeChoice();
+				final ContinousRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
 				choice.setDofInstance(decision);
 				choice.setChosenValue(currentRate);
 
@@ -367,6 +371,12 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	@Override
 	protected EClass eStaticClass() {
 		return designdecisionPackage.Literals.DSE_PROBLEM;
+	}
+
+	@Override
+	public PCMPhenotype decode(DesignDecisionGenotype genotype) {
+		MetamodelDescription pcm = (MetamodelDescription) this.getAssociatedMetamodel();
+		return pcm.decode(this.pcmInstance, genotype);
 	}
 
 } //DSEProblemImpl

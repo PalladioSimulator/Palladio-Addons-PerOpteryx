@@ -15,11 +15,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AStringSetDegreeImpl;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.Metamodel;
@@ -54,8 +53,7 @@ public class StringComponentParamDegreeImpl extends AStringSetDegreeImpl impleme
 
 	@Override
 	public Choice createRandomChoice() {
-		designdecisionFactory factory = designdecisionFactoryImpl.init();
-		Choice choice = factory.createChoice();
+		Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 
 		//target should be a PCM-related problem here
 		DSEProblem target = (DSEProblem) UniversalDoF.eINSTANCE.getTarget();
@@ -85,7 +83,7 @@ public class StringComponentParamDegreeImpl extends AStringSetDegreeImpl impleme
 		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
 				.getProperty(this.getPrimaryChanged(), property);
 
-		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 		choice.setValue(value);
 		choice.setDofInstance(this);
 

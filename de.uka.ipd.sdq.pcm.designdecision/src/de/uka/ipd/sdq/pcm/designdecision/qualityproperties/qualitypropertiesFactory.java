@@ -23,42 +23,6 @@ public interface qualitypropertiesFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Confidence Interval</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Confidence Interval</em>'.
-	 * @generated
-	 */
-	ConfidenceInterval createConfidenceInterval();
-
-	/**
-	 * Returns a new object of class '<em>Element Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Quality Property</em>'.
-	 * @generated
-	 */
-	ElementQualityProperty createElementQualityProperty();
-
-	/**
-	 * Returns a new object of class '<em>Integer Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Integer Quality Property</em>'.
-	 * @generated
-	 */
-	IntegerQualityProperty createIntegerQualityProperty();
-
-	/**
-	 * Returns a new object of class '<em>Double Quality Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Double Quality Property</em>'.
-	 * @generated
-	 */
-	DoubleQualityProperty createDoubleQualityProperty();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -10,11 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.DiscreteRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
 
 /**
@@ -46,7 +46,7 @@ public class CapacityDegreeImpl extends ADiscreteRangeDegreeImpl implements Capa
 
 	@Override
 	public Choice determineInitialChoice() {
-		final DiscreteRangeChoice choice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
 		final EObject entity = this.getPrimaryChanged();

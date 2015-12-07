@@ -32,7 +32,7 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenomeToCandidateModelTransformationImpl() {
+	public GenomeToCandidateModelTransformationImpl() {
 		super();
 	}
 
@@ -42,6 +42,7 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 	 * @param candidate
 	 * @return The choices that have not been transformed, e.g. because no GDoF has been specified from them
 	 */
+	@Override
 	public List<Choice> transform(PCMInstance pcm, Candidate candidate) {
 
 		List<EObject> rootElements = getPCMRootElements(pcm);
@@ -50,7 +51,8 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 		return transform(rootElements, candidate);
 	}
 
-	public static List<EObject> getPCMRootElements(PCMInstance pcm) {
+	@Override
+	public List<EObject> getPCMRootElements(PCMInstance pcm) {
 		List<EObject> rootElements = new ArrayList<EObject>();
 
 		List<Repository> repos = pcm.getRepositories();
@@ -69,6 +71,7 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 	 * @param pcm
 	 * @param candidate
 	 */
+	@Override
 	public boolean transformChoice(PCMInstance pcm, Choice choice) {
 
 		List<EObject> rootElements = getPCMRootElements(pcm);

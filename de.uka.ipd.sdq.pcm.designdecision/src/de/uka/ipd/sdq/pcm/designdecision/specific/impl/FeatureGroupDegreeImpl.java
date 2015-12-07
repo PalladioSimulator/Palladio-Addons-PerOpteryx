@@ -23,12 +23,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import de.uka.ipd.sdq.featuremodel.FeatureGroup;
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
@@ -220,8 +219,7 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 
 	@Override
 	public Choice createRandomChoice() {
-		designdecisionFactory factory = designdecisionFactoryImpl.init();
-		Choice choice = factory.createChoice();
+		Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 
 		//target should be a PCM-related problem here
 		DSEProblem target = (DSEProblem) UniversalDoF.eINSTANCE.getTarget();
@@ -251,7 +249,7 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
 				.getProperty(this.getPrimaryChanged(), property);
 
-		final Choice choice = designdecisionFactory.eINSTANCE.createChoice();
+		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 		choice.setValue(value);
 		choice.setDofInstance(this);
 

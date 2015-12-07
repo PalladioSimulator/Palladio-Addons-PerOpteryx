@@ -6,7 +6,6 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.util;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.*;
 import genericdesigndecision.genericDoF.AClassAsReferenceDegree;
 import genericdesigndecision.genericDoF.AClassDegree;
 import genericdesigndecision.genericDoF.AClassWithCopyDegree;
