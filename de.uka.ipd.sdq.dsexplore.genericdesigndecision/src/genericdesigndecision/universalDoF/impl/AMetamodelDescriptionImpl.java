@@ -398,7 +398,7 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT:
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT:
 				return evaluateMetamodel((EObject)arguments.get(0));
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF:
 				return getCorrespondingDoF((GenericDoF)arguments.get(0));

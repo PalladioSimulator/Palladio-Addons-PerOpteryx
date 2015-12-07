@@ -280,7 +280,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getAMetamodelDescription__EvaluateMetamodel__EModelElement() {
+	public EOperation getAMetamodelDescription__EvaluateMetamodel__EObject() {
 		return aMetamodelDescriptionEClass.getEOperations().get(0);
 	}
 
@@ -343,7 +343,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getUniversalDoF__EvaluateMetamodel__EModelElement() {
+	public EOperation getUniversalDoF__EvaluateMetamodel__EObject() {
 		return universalDoFEClass.getEOperations().get(0);
 	}
 
@@ -498,7 +498,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
 		createEAttribute(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__NAME);
 		createEReference(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION__GENOME_TO_CANDIDATE_TRANSFORMATION);
-		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EMODELELEMENT);
+		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT);
 		createEOperation(aMetamodelDescriptionEClass, AMETAMODEL_DESCRIPTION___GET_CORRESPONDING_DO_F__GENERICDOF);
 
 		universalDoFEClass = createEClass(UNIVERSAL_DO_F);
@@ -506,7 +506,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		createEReference(universalDoFEClass, UNIVERSAL_DO_F__SUPPORTED_METAMODELS);
 		createEReference(universalDoFEClass, UNIVERSAL_DO_F__PREPARED_DO_FS);
 		createEReference(universalDoFEClass, UNIVERSAL_DO_F__TARGET);
-		createEOperation(universalDoFEClass, UNIVERSAL_DO_F___EVALUATE_METAMODEL__EMODELELEMENT);
+		createEOperation(universalDoFEClass, UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT);
 		createEOperation(universalDoFEClass, UNIVERSAL_DO_F___PREPARE_GDO_F__INT);
 		createEOperation(universalDoFEClass, UNIVERSAL_DO_F___LIST_GDO_FS);
 		createEOperation(universalDoFEClass, UNIVERSAL_DO_F___LIST_PREPARED_DO_FS);
@@ -581,7 +581,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		initEAttribute(getAMetamodelDescription_Name(), this.getMetamodel(), "name", null, 0, 1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAMetamodelDescription_GenomeToCandidateTransformation(), theGenericdesigndecisionPackage.getGenomeToCandidateModelTransformation(), null, "genomeToCandidateTransformation", null, 1, 1, AMetamodelDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EModelElement(), this.getMetamodel(), "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAMetamodelDescription__EvaluateMetamodel__EObject(), this.getMetamodel(), "evaluateMetamodel", 1, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEcorePackage.getEObject(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getAMetamodelDescription__GetCorrespondingDoF__GenericDoF(), theGenericDoFPackage.getADegreeOfFreedom(), "getCorrespondingDoF", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -593,7 +593,7 @@ public class UniversalDoFPackageImpl extends EPackageImpl implements UniversalDo
 		initEReference(getUniversalDoF_PreparedDoFs(), theGenericDoFPackage.getADegreeOfFreedom(), null, "preparedDoFs", null, 0, 1, UniversalDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUniversalDoF_Target(), theGenericdesigndecisionPackage.getADSEProblem(), null, "target", null, 1, 1, UniversalDoF.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getUniversalDoF__EvaluateMetamodel__EModelElement(), this.getMetamodel(), "evaluateMetamodel", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getUniversalDoF__EvaluateMetamodel__EObject(), this.getMetamodel(), "evaluateMetamodel", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEcorePackage.getEObject(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getUniversalDoF__PrepareGDoF__int(), ecorePackage.getEBoolean(), "prepareGDoF", 0, 1, IS_UNIQUE, IS_ORDERED);

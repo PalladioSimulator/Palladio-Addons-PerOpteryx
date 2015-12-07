@@ -463,7 +463,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UniversalDoFPackage.UNIVERSAL_DO_F___EVALUATE_METAMODEL__EMODELELEMENT:
+			case UniversalDoFPackage.UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT:
 				return evaluateMetamodel((EObject)arguments.get(0));
 			case UniversalDoFPackage.UNIVERSAL_DO_F___PREPARE_GDO_F__INT:
 				return prepareGDoF((Integer)arguments.get(0));
