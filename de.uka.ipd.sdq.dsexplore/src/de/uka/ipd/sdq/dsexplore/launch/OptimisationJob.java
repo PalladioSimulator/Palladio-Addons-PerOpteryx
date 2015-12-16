@@ -6,10 +6,15 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.GenotypeReader;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
@@ -27,7 +32,6 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.launch.OptimisationJob");
 
-	private PCMInstance pcmInstance;
 	private List<IAnalysis> evaluators;
 	private Long startTimestampMillis;
 	
@@ -56,12 +60,8 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 				"maximal number of iterations: "+this.dseConfig.getMaxIterations()+"\n"+
 				"individuals per generation:" +this.dseConfig.getIndividualsPerGeneration()+"\n"+
 				"offspring per generation: individuals per generation / 2 rounded up.");
-		
-		pcmInstance = getPCMInstance();
-	    List<PCMInstance> instances = new ArrayList<PCMInstance>();
-	    instances.add(pcmInstance);
 	    
-	    Opt4JStarter.init(evaluators, this.dseConfig, getPCMInstance(), monitor, this.blackboard);
+	    Opt4JStarter.init(evaluators, this.dseConfig, getInputModel(), monitor, this.blackboard);
 	    
 	    if (this.dseConfig.hasCacheInstances()){
 	    	fillCacheWithValues(this.dseConfig.getCacheInstancesFileName());
@@ -124,17 +124,10 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 		
 	}
 	
-	private PCMInstance getPCMInstance(){
-		if (this.blackboard != null){
-			return new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
-		} else {
-			String message = "Internal error: Cannot retrieve PCM model if blackboard is not set. ";
-			logger.error(message);
-			throw new UnsupportedOperationException(message);
-		}
+	private EPackage getInputModel(String filename){		
+		return EMFHelper.loadModelFromXMIFile(filename);
 	}
-
-
+	
 
 	@Override
 	public void cleanup(IProgressMonitor arg0) throws CleanupFailedException {

@@ -3,13 +3,9 @@ package de.uka.ipd.sdq.dsexplore.helper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +15,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
@@ -157,10 +154,40 @@ public class EMFHelper {
         }
         // logger.debug("Saved " + fileURI);
     }
+    
+    
+    /**
+     * loads root element of ecore model persisted as XMI file and specified by given filename;
+     * intended to be used to load input architecture model, on which Peropteryx optimises
+     * @param fileName
+     * @return
+     */
+    public static EPackage loadModelFromXMIFile(final String modelFileName) {   
+    	final Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
+        logger.debug("Loading model from " + modelFileName);
+        
+    	final File file = new File(modelFileName);
+        final URI uri = file.isFile() ? URI.createFileURI(file.getAbsolutePath())
+                : URI.createURI(modelFileName);
+        Resource resource = new XMIResourceImpl(uri);
+        
+    	try {
+			resource.load(null);
+		} catch (IOException e) {
+			logger.error("loading failed with message: " + e.getMessage());
+			e.printStackTrace();
+		}
+    	EObject eObject = resource.getContents().get(0);
+    	EPackage model = (EPackage) eObject.eContents().get(0);
+    	
+    	EPackage model2 = (EPackage) EcoreUtil.getRootContainer(eObject);
+    	assert(checkIdentity(model, model2));
+    	
+    	return model;
+    }
 
     /**
-     * Copied From de.uka.ipd.sdq.pcmsolver.models.PCMInstance.
-     *
+     * 
      * @param fileName
      *            the filename specifying the file to load from
      * @return The EObject loaded from the file
@@ -174,9 +201,6 @@ public class EMFHelper {
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
         .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
                 new XMIResourceFactoryImpl());
-
-        // Register the package to ensure it is available during loading.
-        registerPackages(resourceSet);
 
         return loadFromXMIFile(fileName, resourceSet, ePackage);
     }

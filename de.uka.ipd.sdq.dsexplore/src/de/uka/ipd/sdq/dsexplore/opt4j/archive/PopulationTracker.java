@@ -9,11 +9,11 @@ import org.opt4j.config.Task;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualSet;
 import org.opt4j.core.IndividualSetListener;
+import org.opt4j.core.Phenotype;
 import org.opt4j.core.optimizer.Population;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.FilterParetoOptimalIndividuals;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 
@@ -87,7 +87,7 @@ public class PopulationTracker implements
 	 * @param pheno
 	 * @return the individual or null
 	 */
-	public DSEIndividual getIndividualForPhenotype(PCMPhenotype pheno){
+	public DSEIndividual getIndividualForPhenotype(Phenotype pheno){
 		for (DSEIndividual i : this.individuals) {
 			if (i.getPhenotype() != null && i.getPhenotype() == pheno){
 				return i;

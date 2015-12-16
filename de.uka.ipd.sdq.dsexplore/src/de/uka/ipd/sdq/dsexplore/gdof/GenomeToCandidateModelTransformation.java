@@ -36,9 +36,9 @@ public interface GenomeToCandidateModelTransformation {
 	public void setProperty(EObject changeableElement, EStructuralFeature property, Object value);
 	
 	public Object getProperty(EObject changeableElement, EStructuralFeature property);
-
+	
 	public Object valueRule(ChangeableElementDescription ced, EObject changeableElement, List<EObject> rootElements);
 	
-	public Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement, List<EObject> rootElements);
+	public Collection<Object> valueRuleForCollection(ChangeableElementDescription ced, EObject changeableElement, List<EObject> rootElements);
 
 }

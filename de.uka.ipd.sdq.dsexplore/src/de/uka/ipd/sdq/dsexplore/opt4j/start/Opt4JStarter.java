@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EPackage;
 import org.opt4j.common.archive.BoundedArchive;
 import org.opt4j.common.archive.CrowdingArchive;
 import org.opt4j.common.archive.DefaultArchive;
@@ -28,6 +28,7 @@ import org.opt4j.core.IndividualSetListener;
 //import org.opt4j.core.IndividualSet;
 //import org.opt4j.core.IndividualSetListener;
 import org.opt4j.core.Objective;
+import org.opt4j.core.Phenotype;
 //import org.opt4j.core.optimizer.Population;
 import org.opt4j.core.Value;
 import org.opt4j.core.domination.ConstraintDominationModule;
@@ -47,7 +48,6 @@ import org.opt4j.optimizer.ea.ScalingNsga2Module;
 import org.opt4j.optimizer.rs.RandomSearchModule;
 import org.opt4j.start.Opt4J;
 import org.opt4j.start.Opt4JTask;
-import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
@@ -64,13 +64,13 @@ import de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.UniformDesignDecisionGenotypeCrossover;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingBayes;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.MatingWithHeuristics;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvolutionaryAlgorithmModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEMutateModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
@@ -114,14 +114,19 @@ public class Opt4JStarter {
 
 	private static List<ResultsWriter> writers = null;
 	
-	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, EModelElement model, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
+	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, EPackage inputModel, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
 		
 		UniversalDoF universalDoF = UniversalDoFFactory.eINSTANCE.createUniversalDoF();
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
+		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, inputModel);
+		if (dseConfig.isNewProblem()){
+			Opt4JStarter.problem.saveProblem();
+		}
+		
 		Collection<Module> modules = new ArrayList<Module>();
 
-		DSEModule dseModule = new DSEModule();
+		ADSEModule dseModule = Opt4JStarter.problem.getAssociatedMetamodel().getDSEModule();
 		modules.add(dseModule);
 
 		addOptimisationModules(dseConfig.getMaxIterations(), dseConfig,
@@ -145,17 +150,12 @@ public class Opt4JStarter {
 		
 		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
 		
-		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, model);
-		if (dseConfig.isNewProblem()){
-			Opt4JStarter.problem.saveProblem();
-		} 
-		
 		GenotypeReader.setTask(task); //QUICKHACK
 		
-		DSEEvaluator ev = task.getInstance(DSEEvaluator.class);
-		ev.init(evaluators, monitor,blackboard, dseConfig.isStopOnInitialFailure());
+		DSEEvaluator<Phenotype> ev = task.getInstance(DSEEvaluator.class);
+		ev.init(evaluators, monitor, blackboard, dseConfig.isStopOnInitialFailure());
 		
-		//Termination Criteria Manager Initializitation if needed
+		//Termination Criteria Manager Initialization if needed
 		if(myDSEConfig.getUseTerminationCriteria()){
 			TerminationCriteriaManager tcm = task.getInstance(TerminationCriteriaManager.class);
 			
@@ -212,7 +212,7 @@ public class Opt4JStarter {
 	}
 
 	/**
-	 * Can only be called after calling {@link Opt4JStarter#init(List, DSEWorkflowConfiguration, PCMInstance, IProgressMonitor, MDSDBlackboard)}.
+	 * Can only be called after calling {@link Opt4JStarter#init(List, DSEWorkflowConfiguration, EPackage, IProgressMonitor, MDSDBlackboard)}.
 	 * @param listener
 	 * @param dseConfig
 	 * @param allCandidates may be null
@@ -272,7 +272,7 @@ public class Opt4JStarter {
 					"de.uka.ipd.sdq.dsexplore", 0, e.getMessage(), e));
 		} finally {
 
-			DSEEvaluator evaluator = task.getInstance(DSEEvaluator.class);
+			DSEEvaluator<Phenotype> evaluator = task.getInstance(DSEEvaluator.class);
 			List<Exception> exceptions = evaluator.getExceptionList();
 
 			try {
@@ -535,10 +535,10 @@ public class Opt4JStarter {
 	 * @return
 	 * @throws CoreException
 	 */
-	public static DSEEvaluator getDSEEvaluator() throws CoreException{
+	public static DSEEvaluator<Phenotype> getDSEEvaluator() throws CoreException{
 		Evaluator<?> e = task.getInstance(Evaluator.class);
 		if (e != null && e instanceof DSEEvaluator){
-			return (DSEEvaluator)e;
+			return (DSEEvaluator<Phenotype>) e;
 		} else {
 			throw new CoreException(new Status(Status.ERROR,
 					"de.uka.ipd.sdq.dsexplore", "Wrong initialisation of Evaluator: class DSEEvaluator expected, but found "+e == null ? "null" : e.getClass().getName()));
@@ -699,10 +699,6 @@ public class Opt4JStarter {
 				
 				break;
 			}
-
 		}
-
 	}
 }
-	
-		

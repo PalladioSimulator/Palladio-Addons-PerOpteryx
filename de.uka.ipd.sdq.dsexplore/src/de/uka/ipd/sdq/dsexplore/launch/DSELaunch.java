@@ -8,12 +8,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMLaunchConfigurationDelegate;
-import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
 
 import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.logging.console.LoggerAppenderStruct;
+import de.uka.ipd.sdq.workflow.mdsd.AbstractWorkflowBasedMDSDLaunchConfigurationDelegate;
 import de.uka.ipd.sdq.workflow.ui.WorkflowProcess;
 
 /**
@@ -26,7 +25,7 @@ import de.uka.ipd.sdq.workflow.ui.WorkflowProcess;
  * @author Anne
  *
  */
-public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflowConfiguration>{
+public class DSELaunch extends AbstractWorkflowBasedMDSDLaunchConfigurationDelegate<DSEWorkflowConfiguration> {
 	
 	WorkflowProcess myWorkflowProcess;
 	
@@ -97,8 +96,6 @@ public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflo
 		return loggerList;
 	}
 
-
-
 	@Override
 	protected IJob createWorkflowJob(
 			DSEWorkflowConfiguration config, ILaunch launch)
@@ -106,18 +103,16 @@ public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflo
 		return new PerOpteryxJob(config, this);
 	}
 
-
-
 	@Override
 	protected DSEWorkflowConfiguration deriveConfiguration(
 			ILaunchConfiguration configuration, String mode)
 			throws CoreException {
 		
 		AbstractWorkflowConfigurationBuilder builder;
-		builder = new PCMWorkflowConfigurationBuilder(configuration, mode);
+		//builder = new PCMWorkflowConfigurationBuilder(configuration, mode);
 		
 		DSEWorkflowConfiguration config = new DSEWorkflowConfiguration();
-		builder.fillConfiguration(config);
+		//builder.fillConfiguration(config);
 		
 		builder = new DSEWorkflowConfigurationBuilder(configuration, mode, this);
 		builder.fillConfiguration(config);
@@ -152,7 +147,7 @@ public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflo
 	
 	/** 
 	 * Get the Eclipse process used by the workflow engine. When called first, 
-	 * instatiate new process. Later return the same. 
+	 * instantiate new process. Later return the same. 
 	 * 
 	 * @param launch The ILaunch passed to this launch by Eclipse
 	 * @return The process used to execute this launch
@@ -166,6 +161,3 @@ public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflo
 	}
 	
 }
-
-
-

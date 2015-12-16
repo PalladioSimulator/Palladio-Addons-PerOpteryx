@@ -3,12 +3,14 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.CoreException;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualStateListener;
 import org.opt4j.core.Objectives;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
 
 
@@ -76,9 +78,19 @@ public class DSEIndividual extends Individual {
 	 * @return may be null if this individual does not have a genotype yet. 
 	 */
 	public String getGenotypeString() {
-		if (genotype instanceof DesignDecisionGenotype){
-			String genotypeString = DSEDecoder.getGenotypeString((DesignDecisionGenotype)genotype);
-			return genotypeString;
+		if (this.genotype instanceof DesignDecisionGenotype){
+			DesignDecisionGenotype g = (DesignDecisionGenotype) this.genotype;
+			final StringBuilder genotypeStringBuilder = new StringBuilder(100);
+			
+			for (final Choice choice : g) {
+				try {
+					genotypeStringBuilder.append(Opt4JStarter.getDSEDecoder().getDecisionString(choice) + ";");
+				} catch (CoreException e) {
+					logger.error("building genotype string failed: " + e.getMessage());
+					e.printStackTrace();
+				}
+			}
+		    return genotypeStringBuilder.toString();
 		} else {
 			throw new RuntimeException("DSEIndividual cannot handle arbitrary genotypes yet, fix the code");
 		}

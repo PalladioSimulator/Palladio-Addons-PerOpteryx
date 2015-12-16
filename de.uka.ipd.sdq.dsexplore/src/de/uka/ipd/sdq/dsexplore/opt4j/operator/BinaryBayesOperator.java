@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +18,11 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
+import genericdesigndecision.Choice;
+import genericdesigndecision.ClassChoice;
+import genericdesigndecision.ContinousRangeChoice;
+import genericdesigndecision.DiscreteRangeChoice;
+import genericdesigndecision.GenericdesigndecisionFactory;
 
 /**  
  * Operator to operate on a collection of 
@@ -63,7 +57,6 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	@Override
 	public List<DesignDecisionGenotype> crossover(List<DesignDecisionGenotype> parents) {
 		logger.info("BinaryBayesOperator.crossover: Entering ...");
-		// TODO Auto-generated method stub
 		Adapter adapter = new Adapter();
 		// Some trial method
 		DesignDecisionGenotype DDGTemplate = parents.get(0);
@@ -110,35 +103,35 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		// You have the list of Offsprings as a list of FinalBinaryGenotype Objects
 		// Now convert them to DesignDecisionGenotype object list
 		List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
-		for(int i = 0;i<FBGenotypeOffspringList.size();i++){
+		for(int i = 0; i<FBGenotypeOffspringList.size(); i++){
 			DesignDecisionGenotype ddg = adapter.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i));
 			DesignDecisionGenotype ddgpure = new DesignDecisionGenotype();
 			for(int k = 0 ; k < ddg.size() ; k++){
-				if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ContinuousProcessingRateDegree){
-					ContinousRangeChoice purechoice = designdecisionFactory.eINSTANCE.createContinousRangeChoice();
-					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+				if(ChoiceTemplate.get(k).getDofInstance() instanceof ContinuousProcessingRateDegree){
+					ContinousRangeChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
+					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
+					purechoice.setActive(ChoiceTemplate.get(k).isActive());
 					purechoice.setValue(ddg.get(k).getValue());
 				
 					ddgpure.add(purechoice);
-				}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ResourceSelectionDegree){
-					Choice purechoice = designdecisionFactory.eINSTANCE.createChoice();
-					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+				}else if(ChoiceTemplate.get(k).getDofInstance() instanceof ResourceSelectionDegree){
+					Choice purechoice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
+					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
+					purechoice.setActive(ChoiceTemplate.get(k).isActive());
 					purechoice.setValue(ddg.get(k).getValue());
 				
 					ddgpure.add(purechoice);
-				}else if((ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AllocationDegree) || (ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof AssembledComponentDegree)){
-					ClassChoice purechoice = designdecisionFactory.eINSTANCE.createClassChoice();
-					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+				}else if((ChoiceTemplate.get(k).getDofInstance() instanceof AllocationDegree) || (ChoiceTemplate.get(k).getDofInstance() instanceof AssembledComponentDegree)){
+					ClassChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
+					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
+					purechoice.setActive(ChoiceTemplate.get(k).isActive());
 					purechoice.setValue(ddg.get(k).getValue());
 				
 					ddgpure.add(purechoice);
-				}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof CapacityDegree){
-					DiscreteRangeChoice purechoice = designdecisionFactory.eINSTANCE.createDiscreteRangeChoice();
-					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
-					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
+				}else if(ChoiceTemplate.get(k).getDofInstance() instanceof CapacityDegree){
+					DiscreteRangeChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
+					purechoice.setActive(ChoiceTemplate.get(k).isActive());
 					purechoice.setValue(ddg.get(k).getValue());
 				
 					ddgpure.add(purechoice);

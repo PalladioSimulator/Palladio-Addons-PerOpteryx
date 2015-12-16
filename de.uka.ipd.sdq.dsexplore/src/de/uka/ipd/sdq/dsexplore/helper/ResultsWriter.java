@@ -32,7 +32,6 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic;
@@ -45,7 +44,6 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallCrite
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
-import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 /**

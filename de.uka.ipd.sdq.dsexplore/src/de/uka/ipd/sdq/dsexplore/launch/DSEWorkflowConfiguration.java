@@ -8,17 +8,15 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
+import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 
 /**
  * Configuration for a PerOpteryx run.
  * 
  * Contains different types of information:
- * <ul>
- * <li>Inherits the PCM model information</li>
  * <li>Contains information on the run, such as max iterations</li>
  * <li>Contains the raw ILaunchConfiguration in order to derive SimuCom and
  * PCMSolver configuration (TODO: refactor, make this a composite configuration
@@ -29,8 +27,7 @@ import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
  * @author martens
  * 
  */
-public class DSEWorkflowConfiguration extends
-AbstractPCMWorkflowRunConfiguration {
+public class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration /*AbstractPCMWorkflowRunConfiguration*/ {
 	
 	public enum SearchMethod{
 		EVOLUTIONARY,
@@ -313,22 +310,10 @@ AbstractPCMWorkflowRunConfiguration {
 	public double getMaxPOFOD() {
 		return maxPOFOD;
 	}
-
-	@Override
-	public String getErrorMessage() {
-		return null;
-	}
-
-	@Override
-	public void setDefaults() {
-		
-	}
 	
 	public ILaunchConfiguration getOriginalConfiguration(){
 		return this.originalConfig;
 	}
-
-
 
 	public boolean hasPredefinedInstances() throws CoreException {
 		return this.getPredefinedInstancesFileName() != "" 
@@ -653,6 +638,15 @@ AbstractPCMWorkflowRunConfiguration {
 	
 	public void setResultsAsCSV(boolean resultsAsCVS){
 		this.resultsAsCSV = resultsAsCVS;
+	}
+	@Override
+	public String getErrorMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setDefaults() {
+		// TODO Auto-generated method stub
 	}
 
 }

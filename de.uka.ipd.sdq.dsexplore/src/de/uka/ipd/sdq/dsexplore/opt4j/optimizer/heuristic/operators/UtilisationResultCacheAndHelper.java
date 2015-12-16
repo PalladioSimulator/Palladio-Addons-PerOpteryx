@@ -24,12 +24,10 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
+import genericdesigndecision.DecisionSpace;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * Cache for one individual. 
@@ -276,7 +274,6 @@ public class UtilisationResultCacheAndHelper {
 		return procUtils;
 	}
 	
-
 	
 	/**
 	 * Compares two UtilisationResults based on their resourceUtilisation.
@@ -298,15 +295,13 @@ public class UtilisationResultCacheAndHelper {
 		
 	}
 
-
-
 	public Set<ResourceType> getResourceTypes(DSEIndividual individual) {
 		
 		if (this.resourceTypes == null){
 			resourceTypes = new HashSet<ResourceType>();
 			
 			DecisionSpace problem = individual.getProblem();
-			for (DegreeOfFreedomInstance dof : problem.getDegreesOfFreedom()) {
+			for (ADegreeOfFreedom dof : problem.getDofInstances()) {
 				if (dof instanceof AllocationDegree){
 					List<EObject> entities = ((AllocationDegree) dof).getClassDesignOptions();
 					for (EObject entity : entities) {
@@ -324,16 +319,9 @@ public class UtilisationResultCacheAndHelper {
 					resourceTypes.add(((ProcessingResourceDegree) dof).getProcessingresourcetype());
 				}
 			}
-			
-		}
 		
+		}
 		return this.resourceTypes;
 	}
 	
 }
-
-
-
-
-
-

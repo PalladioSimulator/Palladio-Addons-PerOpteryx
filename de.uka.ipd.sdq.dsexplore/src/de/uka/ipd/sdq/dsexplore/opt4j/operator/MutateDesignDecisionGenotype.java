@@ -1,9 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.genotype.IntegerGenotype;
@@ -14,20 +10,8 @@ import org.opt4j.operator.mutate.MutationRate;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
-import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
+import genericdesigndecision.Choice;
 
 
 /**
@@ -60,134 +44,23 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 	public void mutate(DesignDecisionGenotype genotype, double mutationRate) {
 		for (Choice choice : genotype) {
 			if (random.nextDouble() < mutationRate) {
-				if (choice instanceof DiscreteRangeChoice){
-					mutateDiscrete((DiscreteRangeChoice)choice);
-				} else if (choice instanceof ClassChoice){
-					mutateEnum((ClassChoice)choice);
-				} else if (choice instanceof ContinousRangeChoice){
-					mutateContinous((ContinousRangeChoice)choice);
-				} else if (choice.getDegreeOfFreedomInstance().getDof() != null) {
-					// generic DoF, use value rule to get possible values.
-					Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
-							choice.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable(),
-							choice.getDegreeOfFreedomInstance().getPrimaryChanged(), 
-							GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
-					mutateDiscrete(choice, possibleValues);
-				} else {
+				if(choice.getDofInstance() == null) {
 					throw new UnsupportedOperationException("Choice type "+choice+" not supported.");
 				}
+				choice.mutate(this);
 			}
 		}
 	}
-	
-	/**
-	 * FIXME: detection of old index must be improved, probably does not work for EObjects 
-	 * that are loaded from different places, for example. 
-	 * @param choice
-	 * @param possibleValues
-	 */
-	private void mutateDiscrete(Choice choice,
-			Collection<Object> possibleValues) {
-		
-		List<Object> list;
-		if (possibleValues instanceof List)
-		  list = (List<Object>)possibleValues;
-		else
-		  list = new ArrayList<Object>(possibleValues);
-		
-		// get old index
-		int index = -1;
-		int i = 0;
-		for (Object obj : list) {
-			if (choice.getValue().equals(obj)){
-				index = i;
-				break;
-			}
-			i++;
-		}
-		int newIndex = randomlySelectNewIndex(list, index);
-		
-		choice.setValue(list.get(newIndex));
-		
+
+	public double mutateDouble(double oldValue, double lowerBound, double upperBound) {
+		DoubleGenotype doubleGenotype = new DoubleGenotype(lowerBound, upperBound);
+		doubleGenotype.add(oldValue);
+		this.mutateDouble.mutate(doubleGenotype, this.mutationRate.get());
+		double newValue = doubleGenotype.get(0);
+		return newValue;
 	}
 
-	private int randomlySelectNewIndex(List<?> domain,
-			int oldIndex) {
-		//use mutateInteger as that one already realises a uniform distribution among the possible values with a certain rate. 
-		int newIndex = mutateInteger(oldIndex, 0, domain.size()-1);
-		
-		//choose new value from the (size - 1) (all except old) values. 
-		//randomly choose an integer from [0,size-2]
-		//int newIndex = this.random.nextInt(enumDegree.getClassDesignOptions().size() -1);
-		//if new index is larger or equal than the old value's index, shift it by one, 
-		//to achieve a uniform distribution and not choose the old value again. 
-		//if (oldIndex <= newIndex){
-		//	newIndex ++;
-		//}
-
-		if (newIndex < 0 || newIndex >= domain.size()){
-			throw new RuntimeException("Error when mutating integer index value: Value is out of bounds!");
-		}
-		return newIndex;
-	}
-
-	/**
-	 * Calls {@link MutateDouble} for the given {@link Choice}.
-	 * @param choice
-	 */
-	private void mutateContinous(ContinousRangeChoice choice) {
-		DegreeOfFreedomInstance degree = choice.getDegreeOfFreedomInstance();
-		if (degree instanceof ContinuousRangeDegree){
-			ContinuousRangeDegree contDegree = (ContinuousRangeDegree)degree;
-			DoubleGenotype doubleList = new DoubleGenotype(contDegree.getFrom(),contDegree.getTo());
-			doubleList.add(choice.getChosenValue());
-			this.mutateDouble.mutate(doubleList, this.mutationRate.get());
-			double newValue = doubleList.get(0);
-			choice.setChosenValue(newValue);
-		} else throw new InvalidChoiceForDegreeException(choice);
-	}
-
-	/**
-	 * Mutates an enumeration design decision (i.e. without order) by randomly choosing a 
-	 * new (!= old) value from the design decision options.
-	 * 
-	 * @param choice
-	 */
-	private void mutateEnum(ClassChoice choice) {
-		DegreeOfFreedomInstance degree = choice.getDegreeOfFreedomInstance();
-		if (degree instanceof ClassDegree){
-			ClassDegree enumDegree = (ClassDegree) degree;
-			int oldIndex = enumDegree.getClassDesignOptions().indexOf(choice.getChosenValue());
-			if (oldIndex == -1){
-				throw new ChoiceOutOfBoundsException(choice, "Error when mutating individual, old choice was invalid");
-			}
-			//use mutateInteger as that one already realises a uniform distribution among the possible values with a certain rate. 
-			int newIndex = randomlySelectNewIndex(enumDegree.getClassDesignOptions(), oldIndex);
-			
-			choice.setChosenValue(enumDegree.getClassDesignOptions().get(newIndex));
-		}
-	}
-
-	/**
-	 * Calls {@link MutateInteger} for the given {@link Choice}. 
-	 * @param choice
-	 */
-	private void mutateDiscrete(DiscreteRangeChoice choice) {
-		DegreeOfFreedomInstance degree = choice.getDegreeOfFreedomInstance();
-		if (degree instanceof DiscreteRangeDegree) {
-			DiscreteRangeDegree discDegree = (DiscreteRangeDegree) degree;
-			int newValue = mutateInteger(choice.getChosenValue(), discDegree.getFrom(), discDegree.getTo());
-			choice.setChosenValue(newValue);
-		} else if (degree instanceof OrderedIntegerDegree){
-			OrderedIntegerDegree orderedIntegerDegree = (OrderedIntegerDegree) degree;
-			int currentIndex = orderedIntegerDegree.getListOfIntegers().indexOf(new Integer(choice.getChosenValue()));
-			int randomIndex = mutateInteger(currentIndex, 0,orderedIntegerDegree.getListOfIntegers().size()-1);
-			choice.setChosenValue(orderedIntegerDegree.getListOfIntegers().get(randomIndex));
-		} else throw new InvalidChoiceForDegreeException(choice);
-		
-	}
-
-	private int mutateInteger(int oldValue, int lowerBound, int upperBound) {
+	public int mutateInteger(int oldValue, int lowerBound, int upperBound) {
 		IntegerGenotype integerGenotype = new IntegerGenotype(lowerBound, upperBound);
 		integerGenotype.add(oldValue);
 		this.mutateInteger.mutate(integerGenotype, this.mutationRate.get());
