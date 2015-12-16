@@ -6,31 +6,20 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.uka.ipd.sdq.featuremodel.FeatureGroup;
-import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
-import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
-import genericdesigndecision.Choice;
-import genericdesigndecision.GenericdesigndecisionFactory;
-import genericdesigndecision.universalDoF.AMetamodelDescription;
-import genericdesigndecision.universalDoF.Metamodel;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -215,45 +204,6 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 			return domainOfFeatureConfigCombinations != null && !domainOfFeatureConfigCombinations.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public Choice createRandomChoice() {
-		Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
-
-		//target should be a PCM-related problem here
-		DSEProblem target = (DSEProblem) UniversalDoF.eINSTANCE.getTarget();
-		AMetamodelDescription descr = target.getAssociatedMetamodel();
-		assert (descr.getName().equals(Metamodel.PCM_VALUE));
-
-		Collection<Object> possibleValues = descr.valueRuleForCollection(this.getPrimaryChangeable(),
-				this.getPrimaryChanged(), ((MetamodelDescription) descr).getPCMRootElements(target.getPcmInstance()));
-
-		List<Object> list;
-		if (possibleValues instanceof List)
-			list = (List<Object>) possibleValues;
-		else
-			list = new ArrayList<Object>(possibleValues);
-
-		int index = this.random.nextInt(list.size());
-		Object value = list.get(index);
-
-		choice.setValue(value);
-		choice.setDofInstance(this);
-		return choice;
-	}
-
-	@Override
-	public Choice determineInitialChoice() {
-		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
-		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
-				.getProperty(this.getPrimaryChanged(), property);
-
-		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
-		choice.setValue(value);
-		choice.setDofInstance(this);
-
-		return (choice);
 	}
 
 } // FeatureGroupDegreeImpl

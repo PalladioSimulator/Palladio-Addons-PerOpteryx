@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.qualityproperties.util;
 
+import genericdesigndecision.qualityproperties.QualityProperty;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -67,7 +68,7 @@ public class qualitypropertiesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseQualityProperty(genericdesigndecision.qualityproperties.QualityProperty object) {
+		public Adapter caseQualityProperty(QualityProperty object) {
 			return createQualityPropertyAdapter();
 		}
 

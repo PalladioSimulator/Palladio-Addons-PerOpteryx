@@ -28,6 +28,7 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl;
@@ -115,7 +116,15 @@ public class PCMDecoder {
 
         //encapsulate as phenotype
         //return new PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
-        return new PCMPhenotype(pcm,genotypeString, genotype.getNumericID());
+        return new PCMPhenotype(pcm, genotypeString, genotype.getNumericID());
+    }
+    
+    private String getGenotypeString(DesignDecisionGenotype genotype) {
+    	final StringBuilder genotypeStringBuilder = new StringBuilder(100);
+    	for (final Choice choice : genotype) {
+    		genotypeStringBuilder.append(getDecisionString(choice) + ";");
+    	}
+    	return genotypeStringBuilder.toString();
     }
 
     /**
@@ -483,15 +492,7 @@ public class PCMDecoder {
 
     }
 
-    public static String getGenotypeString(final DesignDecisionGenotype genotype) {
-        final StringBuilder genotypeStringBuilder = new StringBuilder(100);
-        for (final Choice choice : genotype) {
-            genotypeStringBuilder.append(PCMDecoder.getDecisionString(choice)+";");
-        }
-        return genotypeStringBuilder.toString();
-    }
-
-    public static String getDecisionString(final Choice choice){
+    public String getDecisionString(final Choice choice){
         //		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
 
         String result = choice.getValue().toString();

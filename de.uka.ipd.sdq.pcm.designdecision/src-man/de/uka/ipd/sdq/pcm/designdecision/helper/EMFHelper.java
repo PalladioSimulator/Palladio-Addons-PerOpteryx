@@ -1,10 +1,7 @@
 package de.uka.ipd.sdq.pcm.designdecision.helper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,43 +40,6 @@ import org.palladiosimulator.pcm.usagemodel.UsagemodelPackage;
  *
  */
 public class EMFHelper extends de.uka.ipd.sdq.dsexplore.helper.EMFHelper{
-
-    /**
-     * Additional parameter mayRetry to detect to deep recursion. 
-     * @param modelToSave
-     * @param fileName
-     * @param mayRetry
-     */
-    private static void saveToXMIFile(final EObject modelToSave, final String fileName, boolean mayRetry){
-        final Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
-
-        logger.debug("Saving " + modelToSave.toString() + " to " + fileName);
-
-        // Create a resource set.
-        final ResourceSet resourceSet = new ResourceSetImpl();
-
-        // Register the default resource factory -- only needed for stand-alone!
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-        .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
-                new XMIResourceFactoryImpl());
-        
-        final URI myURI = URI.createURI(fileName);
-
-        final Resource resource = resourceSet.createResource(myURI);
-        resource.getContents().add(modelToSave);
-
-        try {
-            resource.save(Collections.EMPTY_MAP);
-        } catch (final FileNotFoundException e){
-            if (mayRetry && fileName.length() > 250){
-                //try again with a shorter filename, but just one more try (mayRetry = false). 
-                saveToXMIFile(modelToSave, fileName.substring(0, fileName.indexOf("-"))+"-shortened-"+fileName.hashCode(), false);
-            }
-        } catch (final IOException e) {
-            logger.error(e.getMessage());
-        }
-        // logger.debug("Saved " + fileURI);
-    }
 
     /**
      * Copied From de.uka.ipd.sdq.pcmsolver.models.PCMInstance.

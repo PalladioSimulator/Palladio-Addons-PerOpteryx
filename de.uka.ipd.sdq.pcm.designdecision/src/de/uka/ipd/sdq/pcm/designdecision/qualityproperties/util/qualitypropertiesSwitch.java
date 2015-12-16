@@ -6,6 +6,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.qualityproperties.util;
 
+import genericdesigndecision.qualityproperties.QualityProperty;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -103,7 +104,7 @@ public class qualitypropertiesSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualityProperty(genericdesigndecision.qualityproperties.QualityProperty object) {
+	public T caseQualityProperty(QualityProperty object) {
 		return null;
 	}
 

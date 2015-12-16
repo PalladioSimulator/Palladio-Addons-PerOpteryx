@@ -22,10 +22,10 @@ import genericdesigndecision.Choice;
  * @generated
  */
 public interface GenomeToCandidateModelTransformation extends AGenomeToCandidateModelTransformation {
-	
+
 	public List<Choice> transform(PCMInstance pcm, Candidate candidate);
-	
+
 	public List<EObject> getPCMRootElements(PCMInstance pcm);
-	
+
 	public boolean transformChoice(PCMInstance pcm, Choice choice);
 } // GenomeToCandidateModelTransformation

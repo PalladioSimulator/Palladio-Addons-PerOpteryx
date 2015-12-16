@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -69,6 +70,8 @@ public class designdecisionSwitch<T> extends Switch<T> {
 				result = caseADSEProblem(dseProblem);
 			if (result == null)
 				result = caseGenericdesigndecision_DSEProblem(dseProblem);
+			if (result == null)
+				result = caseDSEDecoder(dseProblem);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -160,6 +163,21 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenericdesigndecision_DSEProblem(DSEProblem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DSE Decoder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DSE Decoder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDSEDecoder(DSEDecoder object) {
 		return null;
 	}
 

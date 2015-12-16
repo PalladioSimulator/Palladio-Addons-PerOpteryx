@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.opt4j.core.problem.Decoder;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
@@ -57,7 +56,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
  *
  * @generated
  */
-public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem, Decoder<DesignDecisionGenotype, PCMPhenotype> {
+public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 
 	private final designdecisionFactory designDecisionFactory;
 	private final specificFactory specificDesignDecisionFactory;
@@ -355,7 +354,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem, Decod
 		//		(designdecisionPackage.eNS_URI,
 		//		 designdecisionPackage.eINSTANCE);
 
-		EMFHelper.saveToXMIFile(this.problem, filename);
+		de.uka.ipd.sdq.dsexplore.helper.EMFHelper.saveToXMIFile(this.problem, filename);
 	}
 
 	@Override

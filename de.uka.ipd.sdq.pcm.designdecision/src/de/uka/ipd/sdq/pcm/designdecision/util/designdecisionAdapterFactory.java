@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -85,6 +86,11 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseDSEDecoder(DSEDecoder object) {
+			return createDSEDecoderAdapter();
+		}
+
+		@Override
 		public Adapter caseADSEProblem(ADSEProblem object) {
 			return createADSEProblemAdapter();
 		}
@@ -134,6 +140,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenericdesigndecision_DSEProblemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder <em>DSE Decoder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder
+	 * @generated
+	 */
+	public Adapter createDSEDecoderAdapter() {
 		return null;
 	}
 

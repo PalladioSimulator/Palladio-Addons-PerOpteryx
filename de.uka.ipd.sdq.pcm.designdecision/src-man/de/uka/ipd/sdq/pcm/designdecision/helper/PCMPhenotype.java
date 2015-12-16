@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.pcm.designdecision.helper;
 
-
 import org.opt4j.core.Phenotype;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -10,7 +9,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
  *
  */
 public class PCMPhenotype implements Phenotype {
-	
 	
 	/**
 	 * Field to store the characteristic hash of the underlying genotype. This allows to detect duplicated genotypes and not evaluate one twice. 
@@ -50,5 +48,4 @@ public class PCMPhenotype implements Phenotype {
 	public PCMInstance getPCMInstance() {
 		return this.pcmInstance;
 	}
-
 }

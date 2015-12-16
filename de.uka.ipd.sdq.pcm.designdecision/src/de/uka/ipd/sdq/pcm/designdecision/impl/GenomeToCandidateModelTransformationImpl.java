@@ -30,7 +30,7 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public GenomeToCandidateModelTransformationImpl() {
 		super();

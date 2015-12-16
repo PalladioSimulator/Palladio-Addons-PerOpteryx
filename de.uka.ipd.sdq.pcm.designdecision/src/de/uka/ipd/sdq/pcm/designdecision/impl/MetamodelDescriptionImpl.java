@@ -6,10 +6,11 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
-import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
+import de.uka.ipd.sdq.pcm.designdecision.helper.DSEModule;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMDecoder;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
@@ -20,11 +21,13 @@ import genericdesigndecision.universalDoF.UniversalDoFPackage;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
 import genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.opt4j.core.Phenotype;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
@@ -38,25 +41,35 @@ import org.palladiosimulator.solver.models.PCMInstance;
  * @generated
  */
 public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implements MetamodelDescription {
-	
+
 	private PCMDecoder decoder;
+	
+	private static MetamodelDescription metamodelDescrSingleton;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected MetamodelDescriptionImpl() {
+	private MetamodelDescriptionImpl() {
 		super();
 		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 		this.name = Metamodel.PCM;
 		this.genomeToCandidateTransformation = designdecisionFactory.eINSTANCE
 				.createGenomeToCandidateModelTransformation();
 		this.decoder = new PCMDecoder();
+		this.dseModule = new DSEModule();
 		this.gdof_to_dof = new EcoreEMap<GenericDoF, ADegreeOfFreedom>(
 				UniversalDoFPackage.Literals.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM, GenericDoFToADegreeOfFreedomImpl.class,
 				this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
 		//TODO add entries for mapping
+	}
+	
+	public static MetamodelDescription getMetamodelDescription() {
+		if(metamodelDescrSingleton == null) {
+			metamodelDescrSingleton = new MetamodelDescriptionImpl();
+		}
+		return metamodelDescrSingleton;
 	}
 
 	@Override
@@ -104,7 +117,7 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 
 		ProcessingResourceSpecification rightPrs = null;
 		for (final ProcessingResourceSpecification prs : prsList) {
-			if (EMFHelper.checkIdentity(prs.getActiveResourceType_ActiveResourceSpecification(), prt)) {
+			if (de.uka.ipd.sdq.dsexplore.helper.EMFHelper.checkIdentity(prs.getActiveResourceType_ActiveResourceSpecification(), prt)) {
 				rightPrs = prs;
 				break;
 			}
@@ -115,6 +128,17 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 	@Override
 	public PCMPhenotype decode(PCMInstance pcmInstance, DesignDecisionGenotype genotype) {
 		return this.decoder.decode(pcmInstance, genotype);
+	}
+
+	@Override
+	public Collection<Object> getPossibleValues(ADegreeOfFreedom dof, ADSEProblem dseProblem) {
+		return this.genomeToCandidateTransformation.valueRuleForCollection(dof.getPrimaryChangeable(), dof.getPrimaryChanged(), 
+				this.getPCMRootElements( ((de.uka.ipd.sdq.pcm.designdecision.DSEProblem) dseProblem).getPcmInstance()));
+	}
+
+	@Override
+	public String getDecisionString(Choice choice) {
+		return this.decoder.getDecisionString(choice);
 	}
 
 } //MetamodelDescriptionImpl
