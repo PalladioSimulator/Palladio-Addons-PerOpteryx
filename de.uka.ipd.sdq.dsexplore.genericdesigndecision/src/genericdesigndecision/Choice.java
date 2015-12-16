@@ -3,7 +3,10 @@
 package genericdesigndecision;
 
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+
 import org.eclipse.emf.ecore.EObject;
+
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,5 +109,7 @@ public interface Choice extends EObject {
 	 * @generated
 	 */
 	void setDofInstance(ADegreeOfFreedom value);
+	
+	void mutate(MutateDesignDecisionGenotype mutator);
 
 } // Choice

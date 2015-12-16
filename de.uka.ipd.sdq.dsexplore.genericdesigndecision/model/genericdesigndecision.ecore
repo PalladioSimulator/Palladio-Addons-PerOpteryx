@@ -105,7 +105,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
         eType="#//universalDoF/AMetamodelDescription"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DSEDecoder" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder"
+  <eClassifiers xsi:type="ecore:EClass" name="DSEDecoder" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DSEProblem" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
       abstract="true" interface="true"/>
@@ -114,6 +114,8 @@
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="AGenomeToCandidateModelTransformation"
       abstract="true" eSuperTypes="#//GenomeToCandidateModelTransformation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DSEEvaluator" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator"
+      abstract="true" interface="true"/>
   <eSubpackages name="genericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="genericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">

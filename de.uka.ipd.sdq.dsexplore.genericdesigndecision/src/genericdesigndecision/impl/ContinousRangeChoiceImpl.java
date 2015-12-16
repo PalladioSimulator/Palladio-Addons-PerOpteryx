@@ -4,7 +4,14 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.ContinousRangeChoice;
 import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.AContinuousRangeDegree;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+
 import org.eclipse.emf.ecore.EClass;
+import org.opt4j.operator.mutate.MutateDouble;
+
+import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,6 +130,19 @@ public class ContinousRangeChoiceImpl extends ChoiceImpl implements ContinousRan
 				return getChosenValue() != CHOSEN_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	/**
+	 * Calls {@link MutateDouble} on the given mutator.
+	 * @param mutator
+	 */
+	public void mutate(MutateDesignDecisionGenotype mutator) {
+		ADegreeOfFreedom degree = this.getDofInstance();
+		if (degree instanceof AContinuousRangeDegree){
+			AContinuousRangeDegree contDegree = (AContinuousRangeDegree)degree;
+			double newValue = mutator.mutateDouble(this.getChosenValue(), contDegree.getFrom(), contDegree.getTo());
+			this.setChosenValue(newValue);
+		} else throw new InvalidChoiceForDegreeException(this);
 	}
 
 } //ContinousRangeChoiceImpl

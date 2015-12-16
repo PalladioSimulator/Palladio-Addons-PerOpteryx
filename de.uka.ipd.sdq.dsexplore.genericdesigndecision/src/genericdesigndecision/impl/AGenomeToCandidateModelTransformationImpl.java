@@ -150,7 +150,7 @@ public abstract class AGenomeToCandidateModelTransformationImpl extends MinimalE
 		
 	}
 	
-	public Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
+	public Collection<Object> valueRuleForCollection(ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
 		Object object = valueRule(ced, changeableElement, rootElements);
 		

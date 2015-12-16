@@ -3,9 +3,14 @@
 package genericdesigndecision.universalDoF;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.DoFRepository;
+
+import java.util.Collection;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
@@ -142,5 +147,11 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	 * @generated
 	 */
 	ADegreeOfFreedom getCorrespondingDoF(GenericDoF gdof);
+	
+	public Collection<Object> getPossibleValues(ADegreeOfFreedom dof, ADSEProblem dseProblem);
+	
+	public String getDecisionString(Choice choice);
+	
+	public ADSEModule getDSEModule();
 
 } // AMetamodelDescription

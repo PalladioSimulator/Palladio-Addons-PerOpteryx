@@ -4,7 +4,14 @@ package genericdesigndecision.impl;
 
 import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+import genericdesigndecision.genericDoF.AOrderedIntegerDegree;
+
 import org.eclipse.emf.ecore.EClass;
+
+import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,6 +130,21 @@ public class DiscreteRangeChoiceImpl extends ChoiceImpl implements DiscreteRange
 				return getChosenValue() != CHOSEN_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public void mutate(MutateDesignDecisionGenotype mutator) {
+		ADegreeOfFreedom degree = this.getDofInstance();
+		if (degree instanceof ADiscreteRangeDegree) {
+			ADiscreteRangeDegree discDegree = (ADiscreteRangeDegree) degree;
+			int newValue = mutator.mutateInteger(this.getChosenValue(), discDegree.getFrom(), discDegree.getTo());
+			this.setChosenValue(newValue);
+		} else if (degree instanceof AOrderedIntegerDegree){
+			AOrderedIntegerDegree orderedIntegerDegree = (AOrderedIntegerDegree) degree;
+			int currentIndex = orderedIntegerDegree.getListOfIntegers().indexOf(new Integer(this.getChosenValue()));
+			int randomIndex = mutator.mutateInteger(currentIndex, 0, orderedIntegerDegree.getListOfIntegers().size()-1);
+			this.setChosenValue(orderedIntegerDegree.getListOfIntegers().get(randomIndex));
+		} else throw new InvalidChoiceForDegreeException(this);
 	}
 
 } //DiscreteRangeChoiceImpl

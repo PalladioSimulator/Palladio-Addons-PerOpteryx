@@ -2,15 +2,19 @@
  */
 package genericdesigndecision.genericDoF.impl;
 
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
-
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
+import genericdesigndecision.universalDoF.AMetamodelDescription;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 import java.lang.reflect.InvocationTargetException;
-
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -29,6 +34,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -285,14 +291,44 @@ public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract Choice createRandomChoice();
+	public Choice createRandomChoice() {
+		Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
+
+		ADSEProblem target = UniversalDoF.eINSTANCE.getTarget();
+		AMetamodelDescription descr = target.getAssociatedMetamodel();
+
+		Collection<Object> possibleValues = descr.getPossibleValues(this, target);
+
+		List<Object> list;
+		if (possibleValues instanceof List)
+			list = (List<Object>) possibleValues;
+		else
+			list = new ArrayList<Object>(possibleValues);
+
+		int index = this.random.nextInt(list.size());
+		Object value = list.get(index);
+
+		choice.setValue(value);
+		choice.setDofInstance(this);
+		return choice;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract Choice determineInitialChoice();
+	public Choice determineInitialChoice() {
+		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
+		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
+				.getProperty(this.getPrimaryChanged(), property);
+
+		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
+		choice.setValue(value);
+		choice.setDofInstance(this);
+
+		return (choice);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -2,9 +2,17 @@
  */
 package genericdesigndecision.impl;
 
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.GenericdesigndecisionPackage;
+
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.universalDoF.UniversalDoF;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -12,6 +20,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -273,6 +283,41 @@ public class ChoiceImpl extends MinimalEObjectImpl.Container implements Choice {
 		result.append(value);
 		result.append(')');
 		return result.toString();
+	}
+
+	// standard generic mutation mechanism; should be overridden if new metamodel-specific choices are added
+	@Override
+	public void mutate(MutateDesignDecisionGenotype mutator) {
+		ADSEProblem dseProblem = UniversalDoF.eINSTANCE.getTarget();
+		Collection<Object> possibleValues = dseProblem.getAssociatedMetamodel().getPossibleValues(this.getDofInstance(), dseProblem);
+		
+		/**
+		 * FIXME: detection of old index must be improved, probably does not work for EObjects 
+		 * that are loaded from different places, for example.
+		 */
+		List<Object> list;
+		if (possibleValues instanceof List)
+		  list = (List<Object>)possibleValues;
+		else
+		  list = new ArrayList<Object>(possibleValues);
+		
+		// get old index
+		int oldIndex = -1;
+		int i = 0;
+		for (Object obj : list) {
+			if (this.getValue().equals(obj)){
+				oldIndex = i;
+				break;
+			}
+			i++;
+		}
+		
+		int newIndex = mutator.mutateInteger(oldIndex, 0, list.size()-1);
+		if (newIndex < 0 || newIndex >= list.size()){
+			throw new RuntimeException("Error when mutating integer index value: Value is out of bounds!");
+		}
+		
+		this.setValue(list.get(newIndex));
 	}
 
 } //ChoiceImpl

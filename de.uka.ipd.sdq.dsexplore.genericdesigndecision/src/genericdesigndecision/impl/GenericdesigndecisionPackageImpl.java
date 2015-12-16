@@ -3,6 +3,8 @@
 package genericdesigndecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
@@ -131,6 +133,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * @generated
 	 */
 	private EClass aGenomeToCandidateModelTransformationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dseEvaluatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -465,6 +474,15 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDSEEvaluator() {
+		return dseEvaluatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericdesigndecisionFactory getGenericdesigndecisionFactory() {
 		return (GenericdesigndecisionFactory)getEFactoryInstance();
 	}
@@ -526,6 +544,8 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
 
 		aGenomeToCandidateModelTransformationEClass = createEClass(AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
+
+		dseEvaluatorEClass = createEClass(DSE_EVALUATOR);
 	}
 
 	/**
@@ -614,11 +634,15 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		initEReference(getADSEProblem_EmfInstance(), theEcorePackage.getEObject(), null, "emfInstance", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(dseDecoderEClass, DSEDecoder.class, "DSEDecoder", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(dseProblemEClass, DSEProblem.class, "DSEProblem", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(genomeToCandidateModelTransformationEClass, GenomeToCandidateModelTransformation.class, "GenomeToCandidateModelTransformation", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(aGenomeToCandidateModelTransformationEClass, AGenomeToCandidateModelTransformation.class, "AGenomeToCandidateModelTransformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dseEvaluatorEClass, DSEEvaluator.class, "DSEEvaluator", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

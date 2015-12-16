@@ -3,6 +3,7 @@
 package genericdesigndecision.impl;
 
 import genericdesigndecision.ADSEProblem;
+import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
@@ -129,6 +130,11 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
     }
 	
 	@Override
+	public String getDecisionString(final Choice choice) {
+		return this.associatedMetamodel.getDecisionString(choice);
+	}
+	
+	@Override
 	public ADegreeOfFreedom getDesignDecision(final int index) {
 		return this.problem.getDofInstances().get(index);
 	}
@@ -165,13 +171,6 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 
 	public List<DesignDecisionGenotype> getInitialGenotypeList() {
 		return this.initialGenotypeList;
-	}
-	
-	@Override
-	public ADegreeOfFreedom getDegree(Entity entity, Class<? extends ADegreeOfFreedom> degreeClass) {
-		// TODO Auto-generated method stub
-		//probably calls getDoFInstance
-		return null;
 	}
 	
 	@Override
@@ -396,5 +395,5 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
 } //ADSEProblemImpl

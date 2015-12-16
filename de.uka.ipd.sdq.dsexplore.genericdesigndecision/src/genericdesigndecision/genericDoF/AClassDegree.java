@@ -3,7 +3,6 @@
 package genericdesigndecision.genericDoF;
 
 import genericdesigndecision.Choice;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;

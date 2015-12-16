@@ -3,6 +3,8 @@
 package genericdesigndecision.util;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
@@ -117,6 +119,13 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 				ADSEProblem adseProblem = (ADSEProblem)theEObject;
 				T result = caseADSEProblem(adseProblem);
 				if (result == null) result = caseDSEProblem(adseProblem);
+				if (result == null) result = caseDSEDecoder(adseProblem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericdesigndecisionPackage.DSE_DECODER: {
+				DSEDecoder dseDecoder = (DSEDecoder)theEObject;
+				T result = caseDSEDecoder(dseDecoder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,6 +145,12 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 				AGenomeToCandidateModelTransformation aGenomeToCandidateModelTransformation = (AGenomeToCandidateModelTransformation)theEObject;
 				T result = caseAGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
 				if (result == null) result = caseGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericdesigndecisionPackage.DSE_EVALUATOR: {
+				DSEEvaluator dseEvaluator = (DSEEvaluator)theEObject;
+				T result = caseDSEEvaluator(dseEvaluator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,6 +279,21 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DSE Decoder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DSE Decoder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDSEDecoder(DSEDecoder object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>DSE Problem</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -305,6 +335,21 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DSE Evaluator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DSE Evaluator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDSEEvaluator(DSEEvaluator object) {
 		return null;
 	}
 

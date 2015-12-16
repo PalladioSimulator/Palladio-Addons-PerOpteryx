@@ -3,8 +3,9 @@
 package genericdesigndecision.universalDoF.impl;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
-import genericdesigndecision.Candidate;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import genericdesigndecision.Choice;
+import genericdesigndecision.Candidate;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
 import genericdesigndecision.genericDoF.DoFRepository;
@@ -100,6 +101,8 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	 * @ordered
 	 */
 	protected GenomeToCandidateModelTransformation genomeToCandidateTransformation;
+	
+	protected ADSEModule dseModule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,6 +111,10 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
+	}
+	
+	public ADSEModule getDSEModule() {
+		return this.dseModule;
 	}
 	
 	@Override

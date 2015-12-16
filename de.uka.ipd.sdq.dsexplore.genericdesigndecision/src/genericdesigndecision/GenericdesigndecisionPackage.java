@@ -537,10 +537,10 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int ADSE_PROBLEM_OPERATION_COUNT = DSE_PROBLEM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder <em>DSE Decoder</em>}' class.
+	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder <em>DSE Decoder</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder
 	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEDecoder()
 	 * @generated
 	 */
@@ -619,6 +619,34 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @ordered
 	 */
 	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT = GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator <em>DSE Evaluator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEEvaluator()
+	 * @generated
+	 */
+	int DSE_EVALUATOR = 12;
+
+	/**
+	 * The number of structural features of the '<em>DSE Evaluator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DSE_EVALUATOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>DSE Evaluator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DSE_EVALUATOR_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
@@ -865,12 +893,12 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EReference getADSEProblem_AssociatedMetamodel();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder <em>DSE Decoder</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder <em>DSE Decoder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>DSE Decoder</em>'.
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder
-	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder"
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder
+	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder"
 	 * @generated
 	 */
 	EClass getDSEDecoder();
@@ -906,6 +934,17 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAGenomeToCandidateModelTransformation();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator <em>DSE Evaluator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DSE Evaluator</em>'.
+	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator
+	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator"
+	 * @generated
+	 */
+	EClass getDSEEvaluator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1131,10 +1170,10 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		EReference ADSE_PROBLEM__ASSOCIATED_METAMODEL = eINSTANCE.getADSEProblem_AssociatedMetamodel();
 
 		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder <em>DSE Decoder</em>}' class.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder <em>DSE Decoder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.dsexplore.opt4j.represention.DSEDecoder
+		 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder
 		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEDecoder()
 		 * @generated
 		 */
@@ -1169,6 +1208,16 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getAGenomeToCandidateModelTransformation();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator <em>DSE Evaluator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEEvaluator()
+		 * @generated
+		 */
+		EClass DSE_EVALUATOR = eINSTANCE.getDSEEvaluator();
 
 	}
 
