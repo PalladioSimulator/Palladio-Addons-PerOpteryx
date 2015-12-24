@@ -54,8 +54,8 @@ import com.google.inject.TypeLiteral;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
-import de.uka.ipd.sdq.dsexplore.helper.GenotypeReader;
-import de.uka.ipd.sdq.dsexplore.helper.ResultsWriter;
+import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
+import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
@@ -72,7 +72,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvolutionaryAlgorithmMod
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEMutateModule;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.RuleBasedSearchModule;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
@@ -86,6 +85,7 @@ import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.UniversalDoFFactory;
@@ -101,9 +101,9 @@ import genericdesigndecision.universalDoF.UniversalDoFFactory;
  */
 public class Opt4JStarter {
 	
-	private static DSEProblem problem = null;
+	private static ADSEProblem problem = null;
 	private static DSECreator creator = null;
-	
+	private static AGenotypeReader genotypeReader = null;	//QUICKHACK	
 	private static Opt4JTask task = null;
 	
 	private static DSEWorkflowConfiguration myDSEConfig = null;
@@ -112,7 +112,7 @@ public class Opt4JStarter {
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter");
 
-	private static List<ResultsWriter> writers = null;
+	private static List<AResultsWriter> writers = null;
 	
 	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, EPackage inputModel, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
 		
@@ -148,9 +148,10 @@ public class Opt4JStarter {
 		
 		openTask(modules);
 		
-		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
+		Opt4JStarter.writers = new LinkedList<AResultsWriter>();
 		
-		GenotypeReader.setTask(task); //QUICKHACK
+		Opt4JStarter.genotypeReader = Opt4JStarter.problem.getAssociatedMetamodel().getGenotypeReader();
+		Opt4JStarter.genotypeReader.setTask(task); //QUICKHACK
 		
 		DSEEvaluator<Phenotype> ev = task.getInstance(DSEEvaluator.class);
 		ev.init(evaluators, monitor, blackboard, dseConfig.isStopOnInitialFailure());
@@ -279,16 +280,16 @@ public class Opt4JStarter {
 
 				
 //				PopulationTracker allIndividuals = getAllIndividuals();
-//				ResultsWriter.printOutIndividuals(allIndividuals.getIndividuals(), "All Individuals");
+//				AResultsWriter.printOutIndividuals(allIndividuals.getIndividuals(), "All Individuals");
 //				
-//				ResultsWriter.printOutIndividuals(allIndividuals.getParetoOptimalIndividuals(), "Own Optimal Candidates");
+//				AResultsWriter.printOutIndividuals(allIndividuals.getParetoOptimalIndividuals(), "Own Optimal Candidates");
 
 				// final iteration as csv
 				Optimizer opt = task.getInstance(Optimizer.class);
 				int iteration = opt.getIteration();
 
-				//ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), dseConfig.getResultFolder()+"population", iteration, true, true, exceptions);
-				//ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), dseConfig.getResultFolder()+"archiveCandidates", iteration, exceptions, true, true);	
+				//AResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), dseConfig.getResultFolder()+"population", iteration, true, true, exceptions);
+				//AResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), dseConfig.getResultFolder()+"archiveCandidates", iteration, exceptions, true, true);	
 
 			} catch (Exception e){
 				logger.error("Optimisation failed, I could not save the last results.");
@@ -296,7 +297,9 @@ public class Opt4JStarter {
 			}
 			
 			String config = dseConfig.getOriginalConfiguration().getMemento();
-			ResultsWriter.writeStringToFile("config", config, listener.getIteration(), exceptions, ".txt");
+			
+			AResultsWriter writer = Opt4JStarter.getProblem().getWriter("opt4JStarter");
+			writer.writeStringToFile("config", config, listener.getIteration(), exceptions, ".txt");
 			
 			if (exceptions.size() > 0){
 				logger.warn("Errors occured during evaluation.");
@@ -487,7 +490,7 @@ public class Opt4JStarter {
 	public static void tearDown(){
 		
 		if (writers != null){
-			for (ResultsWriter writer : writers) {
+			for (AResultsWriter writer : writers) {
 				writer.close();
 			}
 		}
@@ -506,7 +509,7 @@ public class Opt4JStarter {
 	 * Can only be called after calling {@link Opt4JStarter#init(List, DSEWorkflowConfiguration, PCMInstance, IProgressMonitor, MDSDBlackboard)}.
 	 * @param writer
 	 */
-	public static void registerWriter(ResultsWriter writer) {
+	public static void registerWriter(AResultsWriter writer) {
 		writers.add(writer);
 		
 	}
@@ -526,7 +529,7 @@ public class Opt4JStarter {
 	 * If not, this returns null. 
 	 * @return the problem or null.
 	 */
-	public static DSEProblem getProblem() {
+	public static ADSEProblem getProblem() {
 		return problem;
 	}
 	
@@ -689,7 +692,7 @@ public class Opt4JStarter {
 					
 				if(filePath != null && !filePath.isEmpty()){
 					try {
-						((GivenParetoFrontIsReachedConfig) conf).setParetoFront(GenotypeReader.getObjectives(filePath));
+						((GivenParetoFrontIsReachedConfig) conf).setParetoFront(Opt4JStarter.genotypeReader.getObjectives(filePath, (ADSEProblem) problem, Opt4JStarter.getDSEEvaluator()));
 					} catch (InvalidConfigException e) {
 						e.printStackTrace();
 					}

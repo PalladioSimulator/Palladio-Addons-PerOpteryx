@@ -31,7 +31,7 @@ import org.opt4j.start.Constant;
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.helper.FilterParetoOptimalIndividuals;
-import de.uka.ipd.sdq.dsexplore.helper.ResultsWriter;
+import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
@@ -139,7 +139,7 @@ public class RuleBasedSearch extends AbstractOptimizer {
 			logger.warn("Stop condition was the configured maximum number of iterations, more rule applications may be possible. There were "+population.size()+" candidates in the final population.");
 		}
 		
-		ResultsWriter writer = new ResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"rule-based search results");
+		AResultsWriter writer = Opt4JStarter.getProblem().getWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder() + "rule-based search results");
 		for (Individual individual : this.archive) {
 			if (individual instanceof DSEIndividual){
 				DSEIndividual dseIndiv = (DSEIndividual)individual;

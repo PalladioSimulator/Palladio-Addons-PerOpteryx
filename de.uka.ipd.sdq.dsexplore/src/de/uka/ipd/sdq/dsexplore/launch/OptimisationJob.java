@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.GenotypeReader;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -25,6 +26,7 @@ import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlackboard> {
 	
@@ -69,15 +71,17 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	    
 		//TODO: extract this in a Builder?
 	    if (this.dseConfig.isOptimise()){//use predefined instances as initial population
-	    	List<DesignDecisionGenotype> genotypes = GenotypeReader.getGenotypes(this.dseConfig.getPredefinedInstancesFileName(), this.blackboard);
+	    	AGenotypeReader reader = Opt4JStarter.getProblem().getAssociatedMetamodel().getGenotypeReader();
+	    	
+	    	List<DesignDecisionGenotype> genotypes = reader.getGenotypes(this.dseConfig.getPredefinedInstancesFileName(), this.blackboard, Opt4JStarter.getProblem(), Opt4JStarter.getDSEEvaluator());
 
 	    	//read in all candidates file if there and add to cache
-	    	List<DesignDecisionGenotype> allCandidates = GenotypeReader.getGenotypes(this.dseConfig.getPredefinedAllCandidatesFileName(), this.blackboard);
+	    	List<DesignDecisionGenotype> allCandidates = reader.getGenotypes(this.dseConfig.getPredefinedAllCandidatesFileName(), this.blackboard, Opt4JStarter.getProblem(), Opt4JStarter.getDSEEvaluator());
 
 	    	// read in archive candidates file if there and add to cache. 
 	    	// Need to add them to Opt4J archive to ensure a proper continuation of an evolutionary search.
 	    	// The addition is done by Opt4JStarter (see below)
-	    	List<DesignDecisionGenotype> archiveCandidates = GenotypeReader.getGenotypes(this.dseConfig.getArchiveCandidateFileName(), this.blackboard);
+	    	List<DesignDecisionGenotype> archiveCandidates = reader.getGenotypes(this.dseConfig.getArchiveCandidateFileName(), this.blackboard, Opt4JStarter.getProblem(), Opt4JStarter.getDSEEvaluator());
 
 	    	Opt4JStarter.runOpt4JWithPopulation(this.dseConfig, monitor, genotypes, allCandidates, archiveCandidates);
 
@@ -107,10 +111,8 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	}
 
 	private List<DSEIndividual> fillCacheWithValues(String cacheInstancesFileName) throws CoreException {
-		return GenotypeReader.getIndividuals(cacheInstancesFileName, this.blackboard);
+		return Opt4JStarter.getProblem().getAssociatedMetamodel().getGenotypeReader().getIndividuals(cacheInstancesFileName, this.blackboard, Opt4JStarter.getProblem(), Opt4JStarter.getDSEEvaluator());
 	}
-
-
 
 	@Override
 	public String getName() {

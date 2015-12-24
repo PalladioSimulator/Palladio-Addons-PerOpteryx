@@ -10,6 +10,7 @@ import org.opt4j.core.Genotype;
 import org.opt4j.genotype.ListGenotype;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
@@ -194,7 +195,7 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 		return this.choices.getChoices().toArray(a);
 	}
 	
-	protected List<Choice> getInternalList(){
+	public List<Choice> getInternalList(){
 		return this.choices.getChoices();
 	}
 	
@@ -204,6 +205,15 @@ public class DesignDecisionGenotype implements ListGenotype<Choice> {
 	
 	public long getNumericID() {
 		return this.numericId;
+	}
+	
+	@Override
+	public String toString() {
+		final StringBuilder genotypeStringBuilder = new StringBuilder(100);
+    	for (final Choice choice : this) {
+    		genotypeStringBuilder.append(Opt4JStarter.getProblem().getAssociatedMetamodel().getDecisionString(choice) + ";");
+    	}
+    	return genotypeStringBuilder.toString();
 	}
 
 }

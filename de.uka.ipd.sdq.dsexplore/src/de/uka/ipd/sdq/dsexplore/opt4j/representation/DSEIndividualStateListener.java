@@ -4,20 +4,20 @@ import org.apache.log4j.Logger;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualStateListener;
 
-import de.uka.ipd.sdq.dsexplore.helper.ResultsWriter;
+import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 
 public class DSEIndividualStateListener implements IndividualStateListener {
 	
-	ResultsWriter writer;
+	AResultsWriter writer;
 
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualStateListener");
 	
 	public DSEIndividualStateListener(DSEWorkflowConfiguration dseConfig){
-		this.writer = new ResultsWriter(dseConfig.getResultFolder()+"allIndividualsDirectly");
+		this.writer = Opt4JStarter.getProblem().getWriter(dseConfig.getResultFolder() + "allIndividualsDirectly");
 		Opt4JStarter.registerWriter(this.writer);
 	}
 
@@ -38,7 +38,5 @@ public class DSEIndividualStateListener implements IndividualStateListener {
 		this.writer.close();
 		super.finalize();
 	}
-	
-	
 
 }

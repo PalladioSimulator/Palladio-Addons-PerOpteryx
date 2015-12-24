@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
@@ -20,7 +21,7 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  */
 public class DSECreator implements Creator<DesignDecisionGenotype> {
 
-	private DSEProblem problem;
+	private ADSEProblem problem;
 	
 	private int numberOfNotEvaluatedPredefinedOnes;
 

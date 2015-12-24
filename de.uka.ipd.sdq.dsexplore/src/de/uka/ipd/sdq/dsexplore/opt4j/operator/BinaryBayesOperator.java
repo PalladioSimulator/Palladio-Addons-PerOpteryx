@@ -3,6 +3,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.opt4j.common.random.Rand;
@@ -12,17 +13,12 @@ import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
 import de.uka.ipd.sdq.dsexplore.bayesnets.searchers.ChowLiuTree;
-import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.WriteFile;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import genericdesigndecision.Choice;
-import genericdesigndecision.ClassChoice;
-import genericdesigndecision.ContinousRangeChoice;
-import genericdesigndecision.DiscreteRangeChoice;
-import genericdesigndecision.GenericdesigndecisionFactory;
 
 /**  
  * Operator to operate on a collection of 
@@ -35,7 +31,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	private static Logger logger = 
 			Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.operator.BinaryBayesOperator");
 	
-	private Rand random;
+	private Random random;
 	
 	private static int GraphNumber=0;
 	
@@ -48,16 +44,12 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	public Pair<DesignDecisionGenotype> crossover(DesignDecisionGenotype arg0,
 			DesignDecisionGenotype arg1) {
 		// TODO Auto-generated method stub
-		
 		return null;
 	}
-	
-	
 	
 	@Override
 	public List<DesignDecisionGenotype> crossover(List<DesignDecisionGenotype> parents) {
 		logger.info("BinaryBayesOperator.crossover: Entering ...");
-		Adapter adapter = new Adapter();
 		// Some trial method
 		DesignDecisionGenotype DDGTemplate = parents.get(0);
 		List<Choice> ChoiceTemplate = new ArrayList<Choice>();
@@ -67,7 +59,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		// Choice template done
 		List<FinalBinaryGenotype> FBGenotypeList = new ArrayList<FinalBinaryGenotype>();
 		for(int i = 0 ; i < parents.size() ; i++){
-			List<BinaryGenotype> BGenotypeList = adapter.translateDesignDecisionGenotype(parents.get(i));
+			List<BinaryGenotype> BGenotypeList = Opt4JStarter.getProblem().translateDesignDecisionGenotype(parents.get(i));
 			FBGenotypeList.add(new FinalBinaryGenotype(BGenotypeList));
 		}
 		// Now create a 2-D matrix using the info in FBGenotypeList.
@@ -104,39 +96,15 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		// Now convert them to DesignDecisionGenotype object list
 		List<DesignDecisionGenotype> DDGenotypeOffspringList = new ArrayList<DesignDecisionGenotype>();
 		for(int i = 0; i<FBGenotypeOffspringList.size(); i++){
-			DesignDecisionGenotype ddg = adapter.translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i));
+			DesignDecisionGenotype ddg = Opt4JStarter.getProblem().translateFinalBinaryGenotype(FBGenotypeOffspringList.get(i));
 			DesignDecisionGenotype ddgpure = new DesignDecisionGenotype();
 			for(int k = 0 ; k < ddg.size() ; k++){
-				if(ChoiceTemplate.get(k).getDofInstance() instanceof ContinuousProcessingRateDegree){
-					ContinousRangeChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
-					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
-					purechoice.setActive(ChoiceTemplate.get(k).isActive());
-					purechoice.setValue(ddg.get(k).getValue());
+				Choice purechoice = ChoiceTemplate.get(k).getDofInstance().createChoice();
+				purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
+				purechoice.setActive(ChoiceTemplate.get(k).isActive());
+				purechoice.setValue(ddg.get(k).getValue());
 				
-					ddgpure.add(purechoice);
-				}else if(ChoiceTemplate.get(k).getDofInstance() instanceof ResourceSelectionDegree){
-					Choice purechoice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
-					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
-					purechoice.setActive(ChoiceTemplate.get(k).isActive());
-					purechoice.setValue(ddg.get(k).getValue());
-				
-					ddgpure.add(purechoice);
-				}else if((ChoiceTemplate.get(k).getDofInstance() instanceof AllocationDegree) || (ChoiceTemplate.get(k).getDofInstance() instanceof AssembledComponentDegree)){
-					ClassChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
-					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
-					purechoice.setActive(ChoiceTemplate.get(k).isActive());
-					purechoice.setValue(ddg.get(k).getValue());
-				
-					ddgpure.add(purechoice);
-				}else if(ChoiceTemplate.get(k).getDofInstance() instanceof CapacityDegree){
-					DiscreteRangeChoice purechoice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
-					purechoice.setDofInstance(ChoiceTemplate.get(k).getDofInstance());
-					purechoice.setActive(ChoiceTemplate.get(k).isActive());
-					purechoice.setValue(ddg.get(k).getValue());
-				
-					ddgpure.add(purechoice);
-				}
-				
+				ddgpure.add(purechoice);
 			}
 			DDGenotypeOffspringList.add(ddgpure);
 		}
@@ -228,8 +196,6 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		int[][] Graph = clt.search();
 		//<--------------------------------------------------------------------->
 		
-		
-		
 		// Part 2: If you want a constant structure, specify here ...
 		//<--------------------------------------------------------------------->
 		
@@ -239,8 +205,6 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		//Graph[5][10]=1;
 		
 		//<--------------------------------------------------------------------->
-		
-		
 		
 		// Part3: Write Graph to file ...
 		//<--------------------------------------------------------------------->
