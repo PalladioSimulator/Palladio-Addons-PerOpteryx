@@ -5,7 +5,6 @@ package genericdesigndecision.impl;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Candidate;
@@ -112,13 +111,6 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * @generated
 	 */
 	private EClass dseDecoderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dseProblemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -447,15 +439,6 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDSEProblem() {
-		return dseProblemEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGenomeToCandidateModelTransformation() {
 		return genomeToCandidateModelTransformationEClass;
 	}
@@ -539,8 +522,6 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 
 		dseDecoderEClass = createEClass(DSE_DECODER);
 
-		dseProblemEClass = createEClass(DSE_PROBLEM);
-
 		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
 
 		aGenomeToCandidateModelTransformationEClass = createEClass(AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
@@ -590,7 +571,6 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		discreteRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
-		adseProblemEClass.getESuperTypes().add(this.getDSEProblem());
 		adseProblemEClass.getESuperTypes().add(this.getDSEDecoder());
 		aGenomeToCandidateModelTransformationEClass.getESuperTypes().add(this.getGenomeToCandidateModelTransformation());
 
@@ -635,8 +615,6 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dseDecoderEClass, DSEDecoder.class, "DSEDecoder", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(dseProblemEClass, DSEProblem.class, "DSEProblem", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(genomeToCandidateModelTransformationEClass, GenomeToCandidateModelTransformation.class, "GenomeToCandidateModelTransformation", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 

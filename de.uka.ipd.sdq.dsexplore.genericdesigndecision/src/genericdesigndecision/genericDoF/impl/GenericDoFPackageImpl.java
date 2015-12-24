@@ -531,6 +531,15 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getADegreeOfFreedom__CreateChoice() {
+		return aDegreeOfFreedomEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAClassAsReferenceDegree() {
 		return aClassAsReferenceDegreeEClass;
 	}
@@ -841,6 +850,7 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		createEReference(aDegreeOfFreedomEClass, ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS);
 		createEOperation(aDegreeOfFreedomEClass, ADEGREE_OF_FREEDOM___CREATE_RANDOM_CHOICE);
 		createEOperation(aDegreeOfFreedomEClass, ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE);
+		createEOperation(aDegreeOfFreedomEClass, ADEGREE_OF_FREEDOM___CREATE_CHOICE);
 
 		aClassAsReferenceDegreeEClass = createEClass(ACLASS_AS_REFERENCE_DEGREE);
 
@@ -978,6 +988,8 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		initEOperation(getADegreeOfFreedom__CreateRandomChoice(), theGenericdesigndecisionPackage.getChoice(), "createRandomChoice", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getADegreeOfFreedom__DetermineInitialChoice(), theGenericdesigndecisionPackage.getChoice(), "determineInitialChoice", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getADegreeOfFreedom__CreateChoice(), theGenericdesigndecisionPackage.getChoice(), "createChoice", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(aClassAsReferenceDegreeEClass, AClassAsReferenceDegree.class, "AClassAsReferenceDegree", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

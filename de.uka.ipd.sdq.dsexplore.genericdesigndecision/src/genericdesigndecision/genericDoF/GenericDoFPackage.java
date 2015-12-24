@@ -581,13 +581,22 @@ public interface GenericDoFPackage extends EPackage {
 	int ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE = 1;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADEGREE_OF_FREEDOM___CREATE_CHOICE = 2;
+
+	/**
 	 * The number of operations of the '<em>ADegree Of Freedom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADEGREE_OF_FREEDOM_OPERATION_COUNT = 2;
+	int ADEGREE_OF_FREEDOM_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link genericdesigndecision.genericDoF.impl.AClassDegreeImpl <em>AClass Degree</em>}' class.
@@ -679,6 +688,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACLASS_DEGREE___DETERMINE_INITIAL_CHOICE = ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACLASS_DEGREE___CREATE_CHOICE = ADEGREE_OF_FREEDOM___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -790,6 +808,15 @@ public interface GenericDoFPackage extends EPackage {
 	int ACLASS_AS_REFERENCE_DEGREE___DETERMINE_INITIAL_CHOICE = ACLASS_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACLASS_AS_REFERENCE_DEGREE___CREATE_CHOICE = ACLASS_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -899,6 +926,15 @@ public interface GenericDoFPackage extends EPackage {
 	int ACLASS_WITH_COPY_DEGREE___DETERMINE_INITIAL_CHOICE = ACLASS_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACLASS_WITH_COPY_DEGREE___CREATE_CHOICE = ACLASS_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -999,6 +1035,15 @@ public interface GenericDoFPackage extends EPackage {
 	int ADATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE = ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADATA_TYPE_DEGREE___CREATE_CHOICE = ADEGREE_OF_FREEDOM___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1097,6 +1142,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int AORDERED_DATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE = ADATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AORDERED_DATA_TYPE_DEGREE___CREATE_CHOICE = ADATA_TYPE_DEGREE___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -1224,6 +1278,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int ARANGE_DEGREE___DETERMINE_INITIAL_CHOICE = AORDERED_DATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARANGE_DEGREE___CREATE_CHOICE = AORDERED_DATA_TYPE_DEGREE___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -1371,6 +1434,15 @@ public interface GenericDoFPackage extends EPackage {
 	int ACONTINUOUS_RANGE_DEGREE___DETERMINE_INITIAL_CHOICE = ARANGE_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACONTINUOUS_RANGE_DEGREE___CREATE_CHOICE = ARANGE_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1469,6 +1541,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADISCRETE_DEGREE___DETERMINE_INITIAL_CHOICE = ADATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADISCRETE_DEGREE___CREATE_CHOICE = ADATA_TYPE_DEGREE___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -1616,6 +1697,15 @@ public interface GenericDoFPackage extends EPackage {
 	int ADISCRETE_RANGE_DEGREE___DETERMINE_INITIAL_CHOICE = ARANGE_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADISCRETE_RANGE_DEGREE___CREATE_CHOICE = ARANGE_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1714,6 +1804,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUNORDERED_DEGREE___DETERMINE_INITIAL_CHOICE = ADATA_TYPE_DEGREE___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUNORDERED_DEGREE___CREATE_CHOICE = ADATA_TYPE_DEGREE___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -1825,6 +1924,15 @@ public interface GenericDoFPackage extends EPackage {
 	int AENUM_DEGREE___DETERMINE_INITIAL_CHOICE = AUNORDERED_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AENUM_DEGREE___CREATE_CHOICE = AUNORDERED_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1934,6 +2042,15 @@ public interface GenericDoFPackage extends EPackage {
 	int AORDERED_INTEGER_DEGREE___DETERMINE_INITIAL_CHOICE = ADISCRETE_DEGREE___DETERMINE_INITIAL_CHOICE;
 
 	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AORDERED_INTEGER_DEGREE___CREATE_CHOICE = ADISCRETE_DEGREE___CREATE_CHOICE;
+
+	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2041,6 +2158,15 @@ public interface GenericDoFPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASTRING_SET_DEGREE___DETERMINE_INITIAL_CHOICE = AUNORDERED_DEGREE___DETERMINE_INITIAL_CHOICE;
+
+	/**
+	 * The operation id for the '<em>Create Choice</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASTRING_SET_DEGREE___CREATE_CHOICE = AUNORDERED_DEGREE___CREATE_CHOICE;
 
 	/**
 	 * The operation id for the '<em>Create Random Choice</em>' operation.
@@ -2333,6 +2459,16 @@ public interface GenericDoFPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getADegreeOfFreedom__DetermineInitialChoice();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.genericDoF.ADegreeOfFreedom#createChoice() <em>Create Choice</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Choice</em>' operation.
+	 * @see genericdesigndecision.genericDoF.ADegreeOfFreedom#createChoice()
+	 * @generated
+	 */
+	EOperation getADegreeOfFreedom__CreateChoice();
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.genericDoF.AClassAsReferenceDegree <em>AClass As Reference Degree</em>}'.
@@ -2875,6 +3011,14 @@ public interface GenericDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE = eINSTANCE.getADegreeOfFreedom__DetermineInitialChoice();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Choice</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ADEGREE_OF_FREEDOM___CREATE_CHOICE = eINSTANCE.getADegreeOfFreedom__CreateChoice();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.genericDoF.impl.AClassAsReferenceDegreeImpl <em>AClass As Reference Degree</em>}' class.

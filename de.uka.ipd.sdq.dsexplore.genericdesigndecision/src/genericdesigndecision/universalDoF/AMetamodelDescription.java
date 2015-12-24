@@ -3,6 +3,10 @@
 package genericdesigndecision.universalDoF;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
@@ -11,6 +15,8 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.DoFRepository;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
@@ -31,9 +37,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getAMetamodelDescription()
  * @model abstract="true"
- * @generated
+ * @generated NOT
  */
-public interface AMetamodelDescription extends AGenomeToCandidateModelTransformation {
+public interface AMetamodelDescription extends AGenomeToCandidateModelTransformation, Adapter {
 	/**
 	 * Returns the value of the '<em><b>Dofrepository</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -153,5 +159,11 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	public String getDecisionString(Choice choice);
 	
 	public ADSEModule getDSEModule();
+	
+	public AAdapter getAdapter();
+	
+	public AGenotypeReader getGenotypeReader();
+	
+	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename, ADSEProblem problem);
 
 } // AMetamodelDescription

@@ -3,8 +3,15 @@
 package genericdesigndecision.universalDoF.impl;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import genericdesigndecision.Choice;
+import genericdesigndecision.DecisionSpace;
+import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
@@ -103,6 +110,10 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	protected GenomeToCandidateModelTransformation genomeToCandidateTransformation;
 	
 	protected ADSEModule dseModule;
+	
+	protected AAdapter adapter;
+	
+	protected AGenotypeReader genotypeReader;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,6 +124,48 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 		super();
 	}
 	
+	/**
+	 * Translates the given {@link DesignDecisionGenotype} named DDGenotype 
+	 * to a {@link List} of {@link BinaryGenotype} objects. 
+	 * Each {@link BinaryGenotype} object holds 
+	 * the binary representation of a particular {@link Choice} object in the DDGenotype. 
+	 * The DDGenotype contains the private field "choices", which
+	 *  is actually a {@link List} of {@link Choice} objects. 
+	 *  Each {@link Choice} object is referenced to a particular DOF
+	 * @param DDGenotype
+	 * @return
+	 */
+	@Override
+	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype, DecisionSpace decisionSpace) {
+		return this.adapter.translateDesignDecisionGenotype(DDGenotype, decisionSpace);
+	}
+	
+	/** Translates the given {@link FinalBinaryGenotype} named FBGenotype to a 
+	 * {@link DesignDecisionGenotype}.
+	 * @param FBGenotype
+	 * @return
+	 */
+	@Override
+	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype, DecisionSpace decisionSpace) {
+		return this.adapter.translateFinalBinaryGenotype(FBGenotype, decisionSpace);
+	}
+	
+	@Override
+	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename, ADSEProblem problem) {
+		return this.genotypeReader.loadGenotypesFromEMF(filename, problem);
+	}
+	
+	@Override
+	public AGenotypeReader getGenotypeReader() {
+		return this.genotypeReader;
+	}
+	
+	@Override
+	public AAdapter getAdapter() {
+		return this.adapter;
+	}
+	
+	@Override
 	public ADSEModule getDSEModule() {
 		return this.dseModule;
 	}

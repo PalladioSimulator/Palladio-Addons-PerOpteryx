@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
+ * The <b>AAdapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
  * @see genericdesigndecision.genericDoF.GenericDoFPackage

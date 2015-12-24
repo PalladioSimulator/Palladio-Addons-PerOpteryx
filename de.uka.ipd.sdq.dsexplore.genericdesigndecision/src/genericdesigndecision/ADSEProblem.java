@@ -2,9 +2,17 @@
  */
 package genericdesigndecision;
 
+import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
+
+import java.util.List;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see genericdesigndecision.GenericdesigndecisionPackage#getADSEProblem()
- * @model abstract="true" superTypes="genericdesigndecision.DSEProblem genericdesigndecision.DSEDecoder"
+ * @model abstract="true" superTypes="genericdesigndecision.DSEDecoder"
  * @generated
  */
-public interface ADSEProblem extends EObject, DSEProblem, DSEDecoder {
+public interface ADSEProblem extends EObject, DSEDecoder {
 	/**
 	 * Returns the value of the '<em><b>Problem</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -103,5 +111,28 @@ public interface ADSEProblem extends EObject, DSEProblem, DSEDecoder {
 	 * @generated
 	 */
 	void setAssociatedMetamodel(AMetamodelDescription value);
+	
+	public List<ADegreeOfFreedom> getDesignDecisions();
+    
+    public DesignDecisionGenotype getGenotypeOfInitialInstance();
+
+    public void saveProblem();
+
+    @Override
+    public String toString();
+
+    public void setInitialPopulation(final List<DesignDecisionGenotype> population) throws CoreException;
+
+	public List<DesignDecisionGenotype> getInitialGenotypeList();
+
+	public ADegreeOfFreedom getDesignDecision(int index);
+	
+	public AResultsWriter getWriter(String filename);
+
+	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype);
+
+	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype);
+
+	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename);
 
 } // ADSEProblem

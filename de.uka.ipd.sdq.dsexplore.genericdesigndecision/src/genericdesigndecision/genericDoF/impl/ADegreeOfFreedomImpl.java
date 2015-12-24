@@ -333,6 +333,15 @@ public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Choice createChoice() {
+		return GenericdesigndecisionFactory.eINSTANCE.createChoice();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -471,6 +480,8 @@ public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container 
 				return createRandomChoice();
 			case GenericDoFPackage.ADEGREE_OF_FREEDOM___DETERMINE_INITIAL_CHOICE:
 				return determineInitialChoice();
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM___CREATE_CHOICE:
+				return createChoice();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

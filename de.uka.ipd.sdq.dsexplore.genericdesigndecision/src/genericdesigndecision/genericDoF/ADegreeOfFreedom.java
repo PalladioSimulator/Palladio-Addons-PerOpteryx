@@ -173,4 +173,12 @@ public interface ADegreeOfFreedom extends EObject {
 	 */
 	Choice determineInitialChoice();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	Choice createChoice();
+
 } // ADegreeOfFreedom

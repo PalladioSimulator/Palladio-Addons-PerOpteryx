@@ -454,34 +454,6 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int CANDIDATES_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
-	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEProblem()
-	 * @generated
-	 */
-	int DSE_PROBLEM = 9;
-
-	/**
-	 * The number of structural features of the '<em>DSE Problem</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DSE_PROBLEM_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>DSE Problem</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DSE_PROBLEM_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link genericdesigndecision.impl.ADSEProblemImpl <em>ADSE Problem</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -490,51 +462,6 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @generated
 	 */
 	int ADSE_PROBLEM = 7;
-
-	/**
-	 * The feature id for the '<em><b>Problem</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM__PROBLEM = DSE_PROBLEM_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Emf Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM__EMF_INSTANCE = DSE_PROBLEM_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM__ASSOCIATED_METAMODEL = DSE_PROBLEM_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>ADSE Problem</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM_FEATURE_COUNT = DSE_PROBLEM_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>ADSE Problem</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADSE_PROBLEM_OPERATION_COUNT = DSE_PROBLEM_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder <em>DSE Decoder</em>}' class.
@@ -565,6 +492,51 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int DSE_DECODER_OPERATION_COUNT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Problem</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__PROBLEM = DSE_DECODER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Emf Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__EMF_INSTANCE = DSE_DECODER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Associated Metamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM__ASSOCIATED_METAMODEL = DSE_DECODER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>ADSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM_FEATURE_COUNT = DSE_DECODER_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>ADSE Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADSE_PROBLEM_OPERATION_COUNT = DSE_DECODER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,7 +544,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getGenomeToCandidateModelTransformation()
 	 * @generated
 	 */
-	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 10;
+	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 9;
 
 	/**
 	 * The number of structural features of the '<em>Genome To Candidate Model Transformation</em>' class.
@@ -600,7 +572,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getAGenomeToCandidateModelTransformation()
 	 * @generated
 	 */
-	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 11;
+	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = 10;
 
 	/**
 	 * The number of structural features of the '<em>AGenome To Candidate Model Transformation</em>' class.
@@ -628,7 +600,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEEvaluator()
 	 * @generated
 	 */
-	int DSE_EVALUATOR = 12;
+	int DSE_EVALUATOR = 11;
 
 	/**
 	 * The number of structural features of the '<em>DSE Evaluator</em>' class.
@@ -904,17 +876,6 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EClass getDSEDecoder();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>DSE Problem</em>'.
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
-	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
-	 * @generated
-	 */
-	EClass getDSEProblem();
-
-	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,16 +1139,6 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DSE_DECODER = eINSTANCE.getDSEDecoder();
-
-		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
-		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getDSEProblem()
-		 * @generated
-		 */
-		EClass DSE_PROBLEM = eINSTANCE.getDSEProblem();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation <em>Genome To Candidate Model Transformation</em>}' class.

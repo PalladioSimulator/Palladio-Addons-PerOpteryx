@@ -25,7 +25,9 @@ import org.palladiosimulator.pcm.core.entity.Entity;
 
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 
 /**
@@ -117,9 +119,22 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 		return problem;
 	}
 	
-	protected abstract DecisionSpace loadProblem(final String filename) throws CoreException;
+	@Override
+	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename) {
+		return this.getAssociatedMetamodel().loadGenotypesFromEMF(filename, this);
+	}
 	
-	public abstract void saveProblem();
+	@Override
+	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype){
+		return this.getAssociatedMetamodel().translateDesignDecisionGenotype(DDGenotype, this.problem);
+	}
+	
+	@Override
+	public DesignDecisionGenotype translateFinalBinaryGenotype(FinalBinaryGenotype FBGenotype){
+		return this.getAssociatedMetamodel().translateFinalBinaryGenotype(FBGenotype, this.problem);
+	}
+	
+	protected abstract DecisionSpace loadProblem(final String filename) throws CoreException;
 	
 	protected abstract void initialiseProblem();
 	
@@ -128,6 +143,18 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	protected void throwUnknownDegreeException(final ADegreeOfFreedom dd) {
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
     }
+	
+	@Override
+	public void saveProblem() {
+
+		final String filename = this.dseConfig.getDesignDecisionFileName();
+
+		//		resourceSet.getPackageRegistry().put
+		//		(designdecisionPackage.eNS_URI,
+		//		 designdecisionPackage.eINSTANCE);
+
+		de.uka.ipd.sdq.dsexplore.helper.EMFHelper.saveToXMIFile(this.problem, filename);
+	}
 	
 	@Override
 	public String getDecisionString(final Choice choice) {

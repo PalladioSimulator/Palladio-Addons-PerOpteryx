@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
@@ -201,6 +200,6 @@ public interface UniversalDoF extends EObject {
 	 */
 	boolean constrainDoF(int dofID);
 	
-	DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model);
+	ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model);
 
 } // UniversalDoF

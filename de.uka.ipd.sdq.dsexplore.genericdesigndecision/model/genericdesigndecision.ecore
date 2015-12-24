@@ -97,7 +97,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEProblem #//DSEDecoder">
+  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEDecoder">
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" lowerBound="1"
         eType="#//DecisionSpace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="emfInstance" lowerBound="1"
@@ -106,8 +106,6 @@
         eType="#//universalDoF/AMetamodelDescription"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DSEDecoder" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DSEProblem" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenomeToCandidateModelTransformation"
       instanceClassName="de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation"
@@ -167,6 +165,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ADegreeOfFreedom" abstract="true">
       <eOperations name="createRandomChoice" lowerBound="1" eType="#//Choice"/>
       <eOperations name="determineInitialChoice" lowerBound="1" eType="#//Choice"/>
+      <eOperations name="createChoice" lowerBound="1" eType="#//Choice"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"

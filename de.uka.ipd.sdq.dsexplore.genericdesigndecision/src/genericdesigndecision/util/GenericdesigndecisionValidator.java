@@ -5,7 +5,6 @@ package genericdesigndecision.util;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
 import java.util.Map;
@@ -115,8 +114,6 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 				return validateADSEProblem((ADSEProblem)value, diagnostics, context);
 			case GenericdesigndecisionPackage.DSE_DECODER:
 				return validateDSEDecoder((DSEDecoder)value, diagnostics, context);
-			case GenericdesigndecisionPackage.DSE_PROBLEM:
-				return validateDSEProblem((DSEProblem)value, diagnostics, context);
 			case GenericdesigndecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
 				return validateGenomeToCandidateModelTransformation((GenomeToCandidateModelTransformation)value, diagnostics, context);
 			case GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
@@ -227,15 +224,6 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateDSEDecoder(DSEDecoder dseDecoder, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)dseDecoder, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDSEProblem(DSEProblem dseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)dseProblem, diagnostics, context);
 	}
 
 	/**

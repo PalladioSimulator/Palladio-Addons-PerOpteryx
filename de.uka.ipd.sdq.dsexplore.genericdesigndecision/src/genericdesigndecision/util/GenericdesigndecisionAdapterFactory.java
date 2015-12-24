@@ -5,7 +5,6 @@ package genericdesigndecision.util;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import genericdesigndecision.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -17,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
+ * The <b>AAdapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
  * @see genericdesigndecision.GenericdesigndecisionPackage
@@ -106,10 +105,6 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDSEDecoder(DSEDecoder object) {
 				return createDSEDecoderAdapter();
-			}
-			@Override
-			public Adapter caseDSEProblem(DSEProblem object) {
-				return createDSEProblemAdapter();
 			}
 			@Override
 			public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
@@ -266,20 +261,6 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDSEDecoderAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
-	 * @generated
-	 */
-	public Adapter createDSEProblemAdapter() {
 		return null;
 	}
 

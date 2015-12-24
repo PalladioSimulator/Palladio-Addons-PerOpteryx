@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
@@ -90,7 +89,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 */
 	protected ADSEProblem target;
 
-	private static UniversalDoF universalDoFSingleton;
+	private static UniversalDoF universalDoFSingleton = null;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +100,8 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		super();
 		//added for PCM support
 		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createMetamodelDescription());
+		
+		//TODO fill gdof to dof mapping
 	}
 
 	/**
@@ -486,7 +487,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	}
 
 	@Override
-	public DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) {
+	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) {
 		Metamodel metamodel = evaluateMetamodel(model);
 		this.target = DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, model, metamodel);
 		return target;
