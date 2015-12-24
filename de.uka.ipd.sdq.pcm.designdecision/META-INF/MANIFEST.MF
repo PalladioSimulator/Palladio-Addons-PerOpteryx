@@ -43,4 +43,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.analyzer.workflow
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.inject.binder,
- org.apache.log4j
+ de.uka.ipd.sdq.dsexplore.qml.handling,
+ de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures,
+ de.uka.ipd.sdq.dsexplore.qml.pcm.reader,
+ de.uka.ipd.sdq.dsexplore.qml.reader,
+ de.uka.ipd.sdq.statistics.estimation,
+ org.apache.log4j,
+ org.palladiosimulator.pcm.resourceenvironment,
+ org.palladiosimulator.pcm.resourcetype,
+ org.palladiosimulator.solver.context.aggregatedUsageContext

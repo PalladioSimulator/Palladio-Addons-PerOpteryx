@@ -10,8 +10,8 @@ import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
-import de.uka.ipd.sdq.pcm.designdecision.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcm.designdecision.helper.ResultsWriter;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
@@ -118,6 +118,11 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	}
 
 	@Override
+	public ResultsWriter getWriter(String filename) {
+		return new ResultsWriter(filename, this.pcmInstance);
+	}
+
+	@Override
 	protected DecisionSpace loadProblem(final String filename) throws CoreException {
 		final ResourceSet pcmResourceSet = this.pcmInstance.getAllocation().eResource().getResourceSet();
 
@@ -129,8 +134,9 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 		final DecisionSpace problem = (DecisionSpace) eproblem;
 		//Adjust references with the right loaded model objects in memory?
 
-		final FixDesignDecisionReferenceSwitch visitor = new FixDesignDecisionReferenceSwitch(this.pcmInstance);
-		visitor.doSwitch(problem);
+		// TODO try it without using switch first
+		//final FixDesignDecisionReferenceSwitch visitor = new FixDesignDecisionReferenceSwitch(this.pcmInstance);
+		//visitor.doSwitch(problem);
 
 		EcoreUtil.resolveAll(eproblem);
 
@@ -342,19 +348,6 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 				;
 			}
 		}
-	}
-
-	//potentially move to ADSEProblem
-	@Override
-	public void saveProblem() {
-
-		final String filename = this.dseConfig.getDesignDecisionFileName();
-
-		//		resourceSet.getPackageRegistry().put
-		//		(designdecisionPackage.eNS_URI,
-		//		 designdecisionPackage.eINSTANCE);
-
-		de.uka.ipd.sdq.dsexplore.helper.EMFHelper.saveToXMIFile(this.problem, filename);
 	}
 
 	@Override

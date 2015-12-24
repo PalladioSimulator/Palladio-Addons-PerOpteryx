@@ -28,7 +28,6 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.pcm.designdecision.impl.GenomeToCandidateModelTransformationImpl;
@@ -65,9 +64,7 @@ import genericdesigndecision.universalDoF.UniversalDoF;
  * @author Anne
  *
  */
-public class PCMDecoder {
-
-    //private final DSEProblem problem;
+public class DSEDecoder {
 
     /** Logger for log4j. */
     private static Logger logger =
@@ -80,7 +77,7 @@ public class PCMDecoder {
     private static double intervalTime = 0.0;
 
     @Inject
-    public PCMDecoder(){
+    public DSEDecoder(){
         //XXX like this you can only set the problem once. Maybe don't save the reference.
         //this.problem = Opt4JStarter.problem;
     }
@@ -112,19 +109,11 @@ public class PCMDecoder {
             applyChange(doubleGene.getDofInstance(), doubleGene, trans, pcm);
         }
 
-        final String genotypeString = getGenotypeString(genotype);
+        final String genotypeString = genotype.toString();
 
         //encapsulate as phenotype
         //return new PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
         return new PCMPhenotype(pcm, genotypeString, genotype.getNumericID());
-    }
-    
-    private String getGenotypeString(DesignDecisionGenotype genotype) {
-    	final StringBuilder genotypeStringBuilder = new StringBuilder(100);
-    	for (final Choice choice : genotype) {
-    		genotypeStringBuilder.append(getDecisionString(choice) + ";");
-    	}
-    	return genotypeStringBuilder.toString();
     }
 
     /**
@@ -426,14 +415,14 @@ public class PCMDecoder {
             //FIXME: cannot locate Intervall class in SimuLizar after pms has been renamed to prm.
             //Intervall interval = (Intervall)designDecision.getPrimaryChanged();
             newinterval = doubleGene.getChosenValue();
-            PCMDecoder.intervalTime = newinterval;
+            DSEDecoder.intervalTime = newinterval;
             //interval.setIntervall(newinterval);
-            throw new UnsupportedOperationException("MonitoringDegree is not supported anymore after recent SimuLizar refactoring renaming the pms package to psm. Please update PCMDecoder.class and import the required Inervall file from where it is located now. Please also restore the Simulizar plugin dependencies as needed.");
+            throw new UnsupportedOperationException("MonitoringDegree is not supported anymore after recent SimuLizar refactoring renaming the pms package to psm. Please update DSEDecoder.class and import the required Inervall file from where it is located now. Please also restore the Simulizar plugin dependencies as needed.");
         }
     }
 
     public static double returnInterval() {
-        return PCMDecoder.intervalTime;
+        return DSEDecoder.intervalTime;
     }
 
     private ProcessingResourceSpecification getProcessingRateSpecification(
@@ -503,7 +492,7 @@ public class PCMDecoder {
         }
 
         //		if (choice instanceof ContinousRangeChoice){
-        //			result = ResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
+        //			result = AResultsWriter.formatDouble(((ContinousRangeChoice) choice).getChosenValue());
         //		} else if (choice instanceof ClassChoice){
         //			if (((ClassChoice) choice).getChosenValue() instanceof Entity){
         //				result = ((Entity)((ClassChoice)choice).getChosenValue()).getEntityName();

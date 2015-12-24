@@ -57,4 +57,9 @@ public class CapacityDegreeImpl extends ADiscreteRangeDegreeImpl implements Capa
 		return choice;
 	}
 
+	@Override
+	public Choice createChoice() {
+		return GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+	}
+
 } //CapacityDegreeImpl

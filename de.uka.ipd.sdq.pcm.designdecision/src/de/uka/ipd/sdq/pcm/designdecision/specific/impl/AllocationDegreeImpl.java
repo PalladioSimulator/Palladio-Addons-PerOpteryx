@@ -55,10 +55,15 @@ public class AllocationDegreeImpl extends AClassAsReferenceDegreeImpl implements
 		choice.setChosenValue(rc);
 
 		//check if entity is in the domain
-		if (!EMFHelper.contains(this.getClassDesignOptions(), choice.getChosenValue())) {
+		if (!de.uka.ipd.sdq.dsexplore.helper.EMFHelper.contains(this.getClassDesignOptions(), choice.getChosenValue())) {
 			throw new ChoiceOutOfBoundsException(choice, "Error when determining initial genotype");
 		}
 		return choice;
+	}
+
+	@Override
+	public Choice createChoice() {
+		return GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 	}
 
 } //AllocationDegreeImpl

@@ -50,7 +50,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedPrimitiveDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter
+ * <!-- begin-user-doc --> The <b>AAdapter Factory</b> for the model. It provides an adapter
  * <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage
  * @generated

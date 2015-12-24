@@ -58,6 +58,11 @@ public class ContinuousProcessingRateDegreeImpl extends AContinuousRangeDegreeIm
 		super();
 	}
 
+	@Override
+	public ContinousRangeChoice createChoice() {
+		return GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

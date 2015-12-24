@@ -3,7 +3,6 @@
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -15,7 +14,7 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter
+ * <!-- begin-user-doc --> The <b>AAdapter Factory</b> for the model. It provides an adapter
  * <code>createXXX</code> method for each class of the model. <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage
  * @generated
@@ -81,11 +80,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseGenericdesigndecision_DSEProblem(DSEProblem object) {
-			return createGenericdesigndecision_DSEProblemAdapter();
-		}
-
-		@Override
 		public Adapter caseDSEDecoder(DSEDecoder object) {
 			return createDSEDecoderAdapter();
 		}
@@ -127,20 +121,6 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem <em>DSE Problem</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem
-	 * @generated
-	 */
-	public Adapter createGenericdesigndecision_DSEProblemAdapter() {
-		return null;
 	}
 
 	/**
