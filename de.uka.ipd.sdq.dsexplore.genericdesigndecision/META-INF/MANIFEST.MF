@@ -29,13 +29,15 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.solver.context;bundle-version="2.0.0",
  de.uka.ipd.sdq.statistics;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.cost,
- de.uka.ipd.sdq.dsexplore.genericdesigndecision
+ de.uka.ipd.sdq.dsexplore.genericdesigndecision,
+ org.palladiosimulator.analyzer.workflow
 Bundle-ActivationPolicy: lazy
 Import-Package: de.uka.ipd.sdq.pcm.designdecision,
  de.uka.ipd.sdq.pcm.designdecision.helper,
  de.uka.ipd.sdq.pcm.designdecision.impl,
  de.uka.ipd.sdq.pcm.designdecision.specific,
  de.uka.ipd.sdq.pcm.designdecision.specific.impl,
+ de.uka.ipd.sdq.workflow.mdsd.blackboard,
  org.opt4j.start,
  org.palladiosimulator.pcm.resourceenvironment,
  org.palladiosimulator.solver.models

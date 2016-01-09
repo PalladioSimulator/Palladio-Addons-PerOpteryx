@@ -1,11 +1,14 @@
 package de.uka.ipd.sdq.dsexplore.genericdesigndecision.impl;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMWorkflowConfiguration;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.universalDoF.Metamodel;
 
@@ -34,16 +37,17 @@ public class DSEProblemFactoryImpl extends EFactoryImpl implements DSEProblemFac
 	}
 
 	@Override
-	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model, Metamodel metamodel) {
+	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition, Metamodel metamodel) {
 		ADSEProblem problem = null;
 		switch (metamodel) {
 			//added for PCM support
-			case PCM: try {
-							problem = designdecisionFactory.eINSTANCE.createDSEProblem(dseConfig, model);
-					} catch (CoreException e) {
+			case PCM: 
+				try {
+							problem = designdecisionFactory.eINSTANCE.createDSEProblem((PCMWorkflowConfiguration) dseConfig, (PCMResourceSetPartition) modelPartition);
+				} catch (CoreException e) {
 							e.printStackTrace();
-					}
-					break;
+				}
+				break;
 			default:
 				throw new IllegalArgumentException("This metamodel '" + metamodel.toString() + "' is not supported.");
 		}

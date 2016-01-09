@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
@@ -363,6 +364,14 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 			return universalDoFSingleton;
 	}
 
+	@Override
+	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition) {
+		Metamodel metamodel = dseConfig.getMetamodel();
+		
+		this.target = DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, modelPartition, metamodel);
+		return target;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,13 +493,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				return constrainDoF((Integer)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	@Override
-	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) {
-		Metamodel metamodel = evaluateMetamodel(model);
-		this.target = DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, model, metamodel);
-		return target;
 	}
 
 } //UniversalDoFImpl

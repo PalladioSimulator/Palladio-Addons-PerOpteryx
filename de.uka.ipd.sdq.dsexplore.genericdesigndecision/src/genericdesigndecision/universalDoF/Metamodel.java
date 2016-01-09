@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum Metamodel implements Enumerator {
+	
 	/**
 	 * The '<em><b>PCM</b></em>' literal object.
 	 * <!-- begin-user-doc -->

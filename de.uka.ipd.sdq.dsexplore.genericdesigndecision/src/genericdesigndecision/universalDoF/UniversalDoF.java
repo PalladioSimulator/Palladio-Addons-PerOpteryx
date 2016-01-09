@@ -4,10 +4,10 @@ package genericdesigndecision.universalDoF;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
@@ -31,6 +31,8 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  * @generated
  */
 public interface UniversalDoF extends EObject {
+	
+	public static final String INPUT_METAMODEL = "Meta-model of input model";
 	
 	UniversalDoF eINSTANCE = genericdesigndecision.universalDoF.impl.UniversalDoFImpl.getUniversalDoF();
 	
@@ -200,6 +202,6 @@ public interface UniversalDoF extends EObject {
 	 */
 	boolean constrainDoF(int dofID);
 	
-	ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model);
+	ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition);
 
 } // UniversalDoF
