@@ -4,9 +4,8 @@ package de.uka.ipd.sdq.pcm.designdecision;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EModelElement;
-
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMWorkflowConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +51,7 @@ public interface designdecisionFactory extends EFactory {
 	 */
 	GenomeToCandidateModelTransformation createGenomeToCandidateModelTransformation();
 
-	DSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, EModelElement model) throws CoreException;
+	DSEProblem createDSEProblem(PCMWorkflowConfiguration dseConfig, PCMResourceSetPartition pcmPartition) throws CoreException;
 
 	/**
 	 * Returns the package supported by this factory.

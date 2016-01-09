@@ -10,6 +10,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
@@ -26,8 +27,10 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
  * @generated
  */
 public interface MetamodelDescription extends AMetamodelDescription {
+	
+	public static final String PCM_METAMODEL = "Palladio Component Model (PCM)";
 
-	PCMInstance transformEMFtoPCM(EObject emfInstance);
+	PCMInstance transformEMFtoPCM(PCMResourceSetPartition pcmPartition);
 
 	public List<EObject> getPCMRootElements(PCMInstance pcm);
 

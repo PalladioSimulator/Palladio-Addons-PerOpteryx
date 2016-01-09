@@ -104,11 +104,13 @@ public class ResultsWriter extends de.uka.ipd.sdq.dsexplore.helper.AResultsWrite
 		}
 		return name;
 	}
-
+	
+	@Override
 	public void writeTacticManagerChoice(TacticsResultCandidate c){
 		writeToLogFile(c.getHeuristic().getClass().getSimpleName() +";"+c.getNumericID()+";"+c.getParent().getNumericID()+ ";"+c.getID()+";"+c.getParent().getID()+";candidate returned\n");
 	}
 	
+	@Override
 	public void writeTacticCandidateInfo(ITactic heuristic, Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic){
 		 //writeToLogFile(heuristic.getClass() + ";" + candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {

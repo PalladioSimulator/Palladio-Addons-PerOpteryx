@@ -32,7 +32,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
-import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.helper.CriterionAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
@@ -48,7 +47,6 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Candidates;
@@ -139,7 +137,7 @@ public class GenotypeReader extends AGenotypeReader {
      * @throws IOException
      */
     @Override
-    protected List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final MDSDBlackboard blackboard, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException {
+    protected List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException {
         final List<DSEIndividual> results = new LinkedList<DSEIndividual>();
 
         final List<ADegreeOfFreedom> decisionList = problem.getDesignDecisions();
@@ -233,8 +231,6 @@ public class GenotypeReader extends AGenotypeReader {
                 //if (Opt4JStarter.getDSEWorkflowConfig().getUseAntipatternKnowledge()){
                 if (Opt4JStarter.getDSEWorkflowConfig().isUseHeuristics()){
 
-                    //PCMResourceSetPartition analysisPartition = (PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-                    //PCMInstance model = new PCMInstance(analysisPartition);
                     final PCMInstance model = ((DSEProblem) problem).getPcmInstance();
 
                     //solve dependencies for performance

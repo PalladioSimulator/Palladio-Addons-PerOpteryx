@@ -7,7 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.pcm.designdecision,
+Export-Package: de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl,
+ de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl,
+ de.uka.ipd.sdq.pcm.designdecision,
  de.uka.ipd.sdq.pcm.designdecision.helper,
  de.uka.ipd.sdq.pcm.designdecision.impl,
  de.uka.ipd.sdq.pcm.designdecision.qualityproperties,
@@ -49,6 +51,8 @@ Import-Package: com.google.inject.binder,
  de.uka.ipd.sdq.dsexplore.qml.reader,
  de.uka.ipd.sdq.statistics.estimation,
  org.apache.log4j,
+ org.palladiosimulator.analyzer.completions,
+ org.palladiosimulator.pcm.repository,
  org.palladiosimulator.pcm.resourceenvironment,
  org.palladiosimulator.pcm.resourcetype,
  org.palladiosimulator.solver.context.aggregatedUsageContext

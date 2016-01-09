@@ -3,7 +3,6 @@
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
@@ -11,6 +10,8 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.helper.ResultsWriter;
 import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
@@ -35,7 +36,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -80,15 +80,15 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	 * @throws CoreException
 	 * @generated NOT
 	 */
-	public DSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final EModelElement emfInstance)
+	public DSEProblemImpl(final PCMWorkflowConfiguration dseConfig, final PCMResourceSetPartition pcmPartition)
 			throws CoreException {
-		super(dseConfig, emfInstance);
 
+		this.dseConfig = dseConfig;
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 		this.associatedMetamodel = designDecisionFactory.createMetamodelDescription();
 
-		pcmInstance = ((MetamodelDescription) this.associatedMetamodel).transformEMFtoPCM(emfInstance);
+		pcmInstance = ((MetamodelDescription) this.associatedMetamodel).transformEMFtoPCM(pcmPartition);
 
 		if (newProblem) {
 			initialiseProblem();

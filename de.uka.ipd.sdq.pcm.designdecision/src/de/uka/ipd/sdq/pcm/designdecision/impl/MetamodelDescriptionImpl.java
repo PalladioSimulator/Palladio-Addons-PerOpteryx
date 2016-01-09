@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -77,14 +78,13 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 
 	@Override
 	public Metamodel evaluateMetamodel(EObject model) {
-		//TODO
+		//TODO currently not needed, because GUI already specifies the metamodel in the configuration object
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public PCMInstance transformEMFtoPCM(EObject emfInstance) {
-		// TODO converts ecore model into an object of class PCMInstance
-		throw new UnsupportedOperationException();
+	public PCMInstance transformEMFtoPCM(PCMResourceSetPartition pcmPartition) {
+		return new PCMInstance(pcmPartition);
 	}
 
 	/**

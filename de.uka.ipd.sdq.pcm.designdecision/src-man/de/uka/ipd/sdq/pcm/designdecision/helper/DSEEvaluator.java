@@ -34,7 +34,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.helper.ConstraintAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.CriterionAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.ObjectiveAndEvaluator;
-import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
@@ -223,7 +223,7 @@ public class DSEEvaluator implements de.uka.ipd.sdq.dsexplore.opt4j.representati
 	}
 
 	private static void copyPCMPartitionToAnalysisSlot(MDSDBlackboard blackboard) {
-		// copy already varied PCM instance from MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID
+		// copy already varied PCM instance from MoveInitialModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID
 		// to analysis blackboard partition LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID
 		// TODO: vary the PCM model in its own blackboard partition so that the above assumption that each 
 		// candidate is evaluated right after decoding can be dropped, and even further, allow parallel 
@@ -234,7 +234,7 @@ public class DSEEvaluator implements de.uka.ipd.sdq.dsexplore.opt4j.representati
 		// clear any previous content.
 		analysisResourceSet.getResources().clear();
 		
-		PCMResourceSetPartition originalModelPartition = (PCMResourceSetPartition)blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		PCMResourceSetPartition originalModelPartition = (PCMResourceSetPartition)blackboard.getPartition(MoveInitialModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		EList<Resource> resourceList = originalModelPartition.getResourceSet().getResources();
 		
 		Copier copier = new Copier();
