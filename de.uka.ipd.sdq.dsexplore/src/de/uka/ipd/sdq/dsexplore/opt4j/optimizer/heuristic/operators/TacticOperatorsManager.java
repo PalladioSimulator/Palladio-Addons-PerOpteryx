@@ -36,7 +36,7 @@ public class TacticOperatorsManager {
 	public TacticOperatorsManager(Copy<Genotype> copy, DSEIndividualFactory individualFactory) {
 		DSEWorkflowConfiguration configuration = Opt4JStarter.getDSEWorkflowConfig();
 		heuristics = TacticOperatorsFactory.getActivatedInstances(copy, individualFactory, configuration);
-		this.writer = new AResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"heuristicsInfo");
+		this.writer = Opt4JStarter.getProblem().getWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"heuristicsInfo");
 		writer.writeToLogFile("Tactic;Candidate numeric id;Parent numeric id;Candidate genome (several cols);Parent genome (several cols);Utilization value and whether returned\n");
 	}
 	
@@ -45,16 +45,12 @@ public class TacticOperatorsManager {
 	 * @param individual
 	 * @return
 	 */
-	public List<TacticsResultCandidate> getAllCandidates(DSEIndividual individual) {
-		
-		//results cache for the current candidate. 
-		UtilisationResultCacheAndHelper resultsCache = new UtilisationResultCacheAndHelper(); 
-		
+	public List<TacticsResultCandidate> getAllCandidates(DSEIndividual individual) {		
 		
 		List<TacticsResultCandidate> result = new ArrayList<TacticsResultCandidate>();
 		Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic;
 		for (ITactic heuristic : heuristics) {
-			candidatesFromCurrentHeuristic = heuristic.getHeuristicCandidates(individual, resultsCache);
+			candidatesFromCurrentHeuristic = heuristic.getHeuristicCandidates(individual);
 			if (candidatesFromCurrentHeuristic.size() > 0) {
 				this.writer.writeTacticCandidateInfo(heuristic, candidatesFromCurrentHeuristic);
 				result.addAll(candidatesFromCurrentHeuristic);

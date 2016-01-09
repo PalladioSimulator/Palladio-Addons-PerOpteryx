@@ -21,6 +21,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration.SearchMethod;
+import de.uka.ipd.sdq.pcm.designdecision.helper.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig.TimeType;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
@@ -35,6 +36,7 @@ import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig.EvaluationM
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
 public class DSEWorkflowConfigurationBuilder extends
 		AbstractWorkflowConfigurationBuilder {
@@ -46,7 +48,25 @@ public class DSEWorkflowConfigurationBuilder extends
 			String mode, DSELaunch dseLaunch) throws CoreException {
 		super(configuration, mode);
 		this.dseLaunch = dseLaunch;
-		// TODO Auto-generated constructor stub
+	}
+	
+	public DSEWorkflowConfiguration createDSEWorkflowConfiguration() {
+		DSEWorkflowConfiguration config = null;
+		String metamodel = null;
+		try {
+			metamodel = this.configuration.getAttribute(UniversalDoF.INPUT_METAMODEL, "unspecified");
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		switch(metamodel) {
+		case de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription.PCM_METAMODEL: config = new PCMWorkflowConfiguration();
+		break;
+		//TODO add support for other metamodels as needed
+		case "unspecified":
+		default: throw new UnsupportedOperationException("Corresponding workflow configuration could not be found, contact developer.");
+		}
+		return config;
 	}
 
 	@Override

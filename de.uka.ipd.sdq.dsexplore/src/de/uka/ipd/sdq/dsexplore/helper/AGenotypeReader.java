@@ -23,7 +23,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import genericdesigndecision.ADSEProblem;
 
 public abstract class AGenotypeReader {
@@ -52,7 +51,7 @@ public abstract class AGenotypeReader {
      * found in the file.
      * @param blackboard
      */
-    public List<DesignDecisionGenotype> getGenotypes(final String filename, final MDSDBlackboard blackboard, final ADSEProblem dseProblem, final DSEEvaluator evaluator)
+    public List<DesignDecisionGenotype> getGenotypes(final String filename, final ADSEProblem dseProblem, final DSEEvaluator evaluator)
             throws CoreException {
 
         if ("".equals(filename)){
@@ -62,7 +61,7 @@ public abstract class AGenotypeReader {
         if (filename.contains("csv")) {
             try {
 
-                final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), blackboard, dseProblem, evaluator);
+                final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), dseProblem, evaluator);
                 final List<DesignDecisionGenotype> results = new ArrayList<DesignDecisionGenotype>(
                         individuals.size());
                 for (final DSEIndividual individual : individuals) {
@@ -92,12 +91,12 @@ public abstract class AGenotypeReader {
      * @return
      * @throws CoreException
      */
-    public List<DSEIndividual> getIndividuals(final String filename, final MDSDBlackboard blackboard, final ADSEProblem dseProblem, final DSEEvaluator evaluator) throws CoreException{
+    public List<DSEIndividual> getIndividuals(final String filename, final ADSEProblem dseProblem, final DSEEvaluator evaluator) throws CoreException{
 
         if (filename.contains("csv")) {
             try {
 
-                final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), blackboard, dseProblem, evaluator);
+                final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), dseProblem, evaluator);
                 return individuals;
 
             } catch( final Exception ex ) {
@@ -171,7 +170,7 @@ public abstract class AGenotypeReader {
      * @throws CoreException
      * @throws IOException
      */
-    protected abstract List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final MDSDBlackboard blackboard, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException;
+    protected abstract List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException;
 
     protected abstract List<DSEObjectives> readInPrettyPrintedObjectives(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException;
 }

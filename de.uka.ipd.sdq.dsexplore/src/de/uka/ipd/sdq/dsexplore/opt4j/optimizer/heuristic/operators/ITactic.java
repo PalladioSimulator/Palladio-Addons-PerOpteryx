@@ -45,10 +45,9 @@ public interface ITactic {
 	 * identical Java objects even if they represent the same EMF object).   
 	 * 
 	 * @param i The individual that should be improved
-	 * @param resultsCache 
 	 * @return Collection of improved individuals
 	 */
-	public List<TacticsResultCandidate> getHeuristicCandidates(DSEIndividual i, UtilisationResultCacheAndHelper resultsCache); 
+	public List<TacticsResultCandidate> getHeuristicCandidates(DSEIndividual i); 
 	
 	/**
 	 * Returns the number of generated candidates of this instance

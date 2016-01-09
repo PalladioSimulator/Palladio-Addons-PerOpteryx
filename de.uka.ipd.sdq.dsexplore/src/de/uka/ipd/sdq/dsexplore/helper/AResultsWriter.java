@@ -18,6 +18,8 @@ import org.opt4j.core.Criterion;
 import org.opt4j.core.Individual;
 import org.opt4j.core.Objective;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic;
+import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import genericdesigndecision.Candidates;
@@ -57,6 +59,10 @@ public abstract class AResultsWriter {
 			e.printStackTrace();
 		} 
 	}
+	
+	public abstract void writeTacticManagerChoice(TacticsResultCandidate c);
+	
+	public abstract void writeTacticCandidateInfo(ITactic heuristic, Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic);
 	
 	public void writeIndividual(DSEIndividual i) {
 		List<DSEIndividual> individualList = new ArrayList<DSEIndividual>(1);

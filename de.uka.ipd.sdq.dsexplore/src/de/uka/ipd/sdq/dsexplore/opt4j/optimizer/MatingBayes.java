@@ -23,7 +23,6 @@ import com.google.inject.Inject;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.operator.BayesianCrossover;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.QMLBoundDependentTacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
@@ -77,7 +76,7 @@ public class MatingBayes extends MatingCrossoverMutate{
 			Coupler coupler, CrossoverRate crossoverRate, MutationRate mutationRate, Rand random,
 			IndividualFactory individualFactory, 
 			/*noorshams: inject this, I don't want to break the "injection chain"*/
-			QMLBoundDependentTacticOperatorsManager qmlTacticManager
+			TacticOperatorsManager qmlTacticManager
 			) {
 		super(crossover, mutate, copy, coupler, crossoverRate, mutationRate, random,
 				individualFactory);

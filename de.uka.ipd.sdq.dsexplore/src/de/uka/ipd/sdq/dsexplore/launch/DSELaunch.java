@@ -108,13 +108,10 @@ public class DSELaunch extends AbstractWorkflowBasedMDSDLaunchConfigurationDeleg
 			ILaunchConfiguration configuration, String mode)
 			throws CoreException {
 		
-		AbstractWorkflowConfigurationBuilder builder;
-		//builder = new PCMWorkflowConfigurationBuilder(configuration, mode);
-		
-		DSEWorkflowConfiguration config = new DSEWorkflowConfiguration();
-		//builder.fillConfiguration(config);
-		
+		DSEWorkflowConfigurationBuilder builder;
+				
 		builder = new DSEWorkflowConfigurationBuilder(configuration, mode, this);
+		DSEWorkflowConfiguration config = builder.createDSEWorkflowConfiguration();
 		builder.fillConfiguration(config);
 		
 		config.setRawConfig(configuration);

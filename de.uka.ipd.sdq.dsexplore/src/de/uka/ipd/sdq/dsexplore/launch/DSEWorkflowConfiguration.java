@@ -8,10 +8,12 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-
+import org.eclipse.emf.ecore.EPackage;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
+import genericdesigndecision.universalDoF.Metamodel;
 
 /**
  * Configuration for a PerOpteryx run.
@@ -27,8 +29,18 @@ import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguratio
  * @author martens
  * 
  */
-public class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration /*AbstractPCMWorkflowRunConfiguration*/ {
+public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration implements Cloneable {
 	
+	/**
+	 * Specifies which metamodel this configuration belongs to.
+	 */
+	protected Metamodel metamodel;
+	
+	/**
+     * Contains All EPackages within or referenced by the metamodel of the input model.
+     */
+    public EPackage[] epackages;
+    
 	public enum SearchMethod{
 		EVOLUTIONARY,
 		RANDOM,
@@ -166,6 +178,18 @@ public class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfigurat
 	private String predefinedAllCandidatesFileName = "";
 	private String archiveCandidateFileName = "";
 
+	public DSEWorkflowConfiguration()  {
+		String DATE_FORMAT_NOW = "yyyy-MM-dd-HHmmss";
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+		this.startTimestamp = sdf.format(cal.getTime());
+	}
+	
+	/**
+	 * accumulates all files that store model parts relevant for successfully loading the model
+	 * @return the uris of the files necessary to successfully load the model
+	 */
+	public abstract List<String> getModelLoadFiles();
 
 	/**
 	 * @return the useStartingPopulationHeuristic
@@ -221,14 +245,6 @@ public class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfigurat
 	 */
 	public void setNumberOfCandidatesPerAllocationLevel(int numberOfCandidatesPerAllocationLevel) {
 		this.numberOfCandidatesPerAllocationLevel = numberOfCandidatesPerAllocationLevel;
-	}
-
-
-	public DSEWorkflowConfiguration()  {
-		String DATE_FORMAT_NOW = "yyyy-MM-dd-HHmmss";
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
-		this.startTimestamp = sdf.format(cal.getTime());
 	}
 	
 	public String getDecimalFormat() {
@@ -644,9 +660,18 @@ public class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfigurat
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Metamodel getMetamodel() {
+		return metamodel;
+	}
+	public void setMetamodel(Metamodel metamodel) {
+		this.metamodel = metamodel;
+	}
 	@Override
 	public void setDefaults() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 	}
+	
+	public abstract ResourceSetPartition preparePartition();
 
 }

@@ -57,6 +57,7 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
 import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.LoadModelIntoBlackboardJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -85,6 +86,7 @@ import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.universalDoF.UniversalDoF;
@@ -114,12 +116,12 @@ public class Opt4JStarter {
 
 	private static List<AResultsWriter> writers = null;
 	
-	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, EPackage inputModel, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
+	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
 		
 		UniversalDoF universalDoF = UniversalDoFFactory.eINSTANCE.createUniversalDoF();
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
-		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, inputModel);
+		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, blackboard.getPartition(LoadModelIntoBlackboardJob.MODEL_PARTITION_ID));
 		if (dseConfig.isNewProblem()){
 			Opt4JStarter.problem.saveProblem();
 		}

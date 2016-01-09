@@ -19,7 +19,8 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.palladiosimulator.analyzer.resultdecorator,
  org.palladiosimulator.solver;bundle-version="3.0.0",
  org.palladiosimulator.solver.context;bundle-version="2.0.0",
- de.uka.ipd.sdq.dsexplore.genericdesigndecision
+ de.uka.ipd.sdq.dsexplore.genericdesigndecision,
+ org.eclipse.emf.ecore
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
@@ -31,6 +32,7 @@ Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.opt4j.genotype,
  de.uka.ipd.sdq.dsexplore.opt4j.operator,
  de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators,
+ de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation,
  de.uka.ipd.sdq.dsexplore.opt4j.representation,
  de.uka.ipd.sdq.dsexplore.opt4j.start
 Bundle-ClassPath: .,

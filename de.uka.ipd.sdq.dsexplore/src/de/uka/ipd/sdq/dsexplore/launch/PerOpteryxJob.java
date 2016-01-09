@@ -16,11 +16,11 @@ ICompositeJob {
     public PerOpteryxJob(final DSEWorkflowConfiguration config, final DSELaunch launch) throws CoreException {
         super(false);
 
-        // 1. Load PCM Models into memory
-//        this.addJob(new LoadPCMModelsIntoBlackboardJob(config));
+        // 1. Load Models into memory
+        this.addJob(new LoadModelIntoBlackboardJob(config));
 
-        // 2. Validate PCM Models
-//        this.addJob(new ValidatePCMModelsJob(config));
+        // 2. Validate Models
+//        this.addJob(new ValidateModelJob(config));
 
         //TODO remove step 3 and 5, there should be no need
         //anymore to save the models under a different name.
@@ -29,10 +29,10 @@ ICompositeJob {
         //this.candidateConfig = createCandidateSetup(config);
 
         // 4. Copy initial instance to separate blackboard partition
-//        this.add(new MoveInitialPCMModelPartitionJob());
+        this.add(new MoveInitialModelPartitionJob());
 
-        // create the PCM partition anew but empty
-//        this.add(new PreparePCMBlackboardPartitionJob());
+        // create the partition anew but empty
+        this.add(new PrepareBlackboardPartitionJob(config));
 
         // 5. Load the candidate models again from updated files
         //this.addJob(new LoadPCMModelsIntoBlackboardJob(candidateConfig));
