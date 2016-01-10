@@ -51,7 +51,8 @@ public interface designdecisionFactory extends EFactory {
 	 */
 	GenomeToCandidateModelTransformation createGenomeToCandidateModelTransformation();
 
-	DSEProblem createDSEProblem(PCMWorkflowConfiguration dseConfig, PCMResourceSetPartition pcmPartition) throws CoreException;
+	DSEProblem createDSEProblem(PCMWorkflowConfiguration dseConfig, PCMResourceSetPartition pcmPartition)
+			throws CoreException;
 
 	/**
 	 * Returns the package supported by this factory.

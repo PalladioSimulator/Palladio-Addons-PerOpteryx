@@ -1,8 +1,7 @@
-/**
- */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.DSEProblem;
@@ -29,6 +28,9 @@ import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
+import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.SpecificDoF;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +85,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	public DSEProblemImpl(final PCMWorkflowConfiguration dseConfig, final PCMResourceSetPartition pcmPartition)
 			throws CoreException {
 
-		this.dseConfig = dseConfig;
+		super(dseConfig, pcmPartition);
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 		this.associatedMetamodel = designDecisionFactory.createMetamodelDescription();
@@ -91,7 +93,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 		pcmInstance = ((MetamodelDescription) this.associatedMetamodel).transformEMFtoPCM(pcmPartition);
 
 		if (newProblem) {
-			initialiseProblem();
+			initialiseProblem(dseConfig);
 		} else {
 			//Alternative Component has to be called to create the mapping for all AssemblyContexts and their roles,
 			//in order to be able to exchange implementations later. The design decisions calculated here are not kept, only
@@ -161,7 +163,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	 * Initialises the degrees of freedoms and at the same time determines the initial genotype.
 	 */
 	@Override
-	protected void initialiseProblem() {
+	protected void initialiseProblem(DSEWorkflowConfiguration dseConfig) {
 		this.problem = GenericdesigndecisionFactory.eINSTANCE.createDecisionSpace();
 		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
 
@@ -171,13 +173,30 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 
 		this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
 		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
-		determineProcessingRateDecisions(dds, initialCandidate);
-		//find equivalent components
-		determineAssembledComponentsDecisions(dds, initialCandidate);
-		determineAllocationDecisions(dds, initialCandidate);
+		
+		if(dseConfig.isUseGenericDoF()) {
+			ArrayList<GenericDoF> list = new ArrayList<GenericDoF>(dseConfig.getSelectedGenericDoFs());
+			dseConfig.getSelectedSpecificDoFs().clear();
+			for(GenericDoF g : list) {
+				dseConfig.addSpecificDoF(this.associatedMetamodel.getCorrespondingDoF(g));
+			}
+		}
+		
+		for(SpecificDoF d : dseConfig.getSelectedSpecificDoFs()) {
+			switch(d.getName()) {
+			case MetamodelDescriptionImpl.PCM_ALLOCATION_DOF: determineAllocationDecisions(dds, initialCandidate);
+			break;
+			case MetamodelDescriptionImpl.PCM_PROCESSING_RATE_DOF: determineProcessingRateDecisions(dds, initialCandidate);
+			break;
+			case MetamodelDescriptionImpl.PCM_CAPACITY_DOF: determineCapacityDecisions(dds, initialCandidate);
+			break;
+			case MetamodelDescriptionImpl.PCM_ALTERNATIVE_COMPONENT_DOF: determineAssembledComponentsDecisions(dds, initialCandidate);
+			break;
+			default: throw new IllegalArgumentException("PCM-specific degree of freedom could not be found");
+			}
+		}
 		//Quickfix: Add a Soap or RMI decision. This is not meta modelled.
 		//determineSOAPOrRMIDecisions();
-		determineCapacityDecisions(dds, initialCandidate);
 
 		//TODO: Check if the initial genotype is actually a valid genotype?
 		//(this may not be the case if the degrees of freedom have been reduced for the optimisation?)

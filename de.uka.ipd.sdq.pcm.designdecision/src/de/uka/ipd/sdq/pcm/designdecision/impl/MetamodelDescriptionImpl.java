@@ -16,19 +16,17 @@ import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
-import genericdesigndecision.genericDoF.GenericDoFFactory;
-import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.Metamodel;
-import genericdesigndecision.universalDoF.UniversalDoFPackage;
+import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
-import genericdesigndecision.universalDoF.impl.GenericDoFToADegreeOfFreedomImpl;
+import genericdesigndecision.universalDoF.impl.SpecificDoFImpl;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
@@ -55,7 +53,6 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 	 */
 	private MetamodelDescriptionImpl() {
 		super();
-		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 		this.name = Metamodel.PCM;
 		this.genomeToCandidateTransformation = designdecisionFactory.eINSTANCE
 				.createGenomeToCandidateModelTransformation();
@@ -63,10 +60,11 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 		this.dseModule = new DSEModule();
 		this.adapter = new Adapter();
 		this.genotypeReader = new GenotypeReader();
-		this.gdof_to_dof = new EcoreEMap<GenericDoF, ADegreeOfFreedom>(
-				UniversalDoFPackage.Literals.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM, GenericDoFToADegreeOfFreedomImpl.class,
-				this, UniversalDoFPackage.AMETAMODEL_DESCRIPTION__GDOF_TO_DOF);
-		//TODO add entries for mapping
+		
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.ALLOCATION_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_ALLOCATION_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.PROCESSING_RATE_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_PROCESSING_RATE_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.CAPACITY_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_CAPACITY_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.ALTERNATIVE_COMPONENT_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_ALTERNATIVE_COMPONENT_DOF));
 	}
 
 	public static MetamodelDescription getMetamodelDescription() {

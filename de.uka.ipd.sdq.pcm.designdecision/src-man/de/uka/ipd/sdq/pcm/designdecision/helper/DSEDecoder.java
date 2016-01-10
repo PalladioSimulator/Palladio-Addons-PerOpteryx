@@ -26,7 +26,6 @@ import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.Alternativ
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
-import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.GenomeToCandidateModelTransformation;
@@ -534,7 +533,7 @@ public class DSEDecoder {
             final AContinuousRangeDegree contDegree = (AContinuousRangeDegree) designDecision;
             final double d = Double.parseDouble(decisionString);
             if (!validRange(d, contDegree, contDegree.getFrom(), contDegree.getTo())){
-                throw ExceptionHelper.createNewCoreException("Error: Value "+d+" is not a valid value for degree "+designDecision+" "+DegreeOfFreedomHelper.getDegreeDescription(designDecision));
+                throw ExceptionHelper.createNewCoreException("Error: Value "+d+" is not a valid value for degree "+designDecision+" "+designDecision.getDegreeDescription());
             }
             final ContinousRangeChoice contChoice = factory.createContinousRangeChoice();
             contChoice.setChosenValue(d);
@@ -543,7 +542,7 @@ public class DSEDecoder {
             final ADiscreteRangeDegree discDegree = (ADiscreteRangeDegree) designDecision;
             final int i = Integer.parseInt(decisionString);
             if (!validRange(i, discDegree, discDegree.getFrom(), discDegree.getTo())){
-                throw ExceptionHelper.createNewCoreException("Error: Value "+i+"\" is not a valid value for degree "+designDecision+" "+DegreeOfFreedomHelper.getDegreeDescription(designDecision));
+                throw ExceptionHelper.createNewCoreException("Error: Value "+i+"\" is not a valid value for degree "+designDecision+" "+designDecision.getDegreeDescription());
             }
             final DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice();
             discChoice.setChosenValue(i);
@@ -553,7 +552,7 @@ public class DSEDecoder {
             final ClassChoice enumChoice = factory.createClassChoice();
             final Entity entity = getEntityFor((AClassDegree)designDecision, decisionString);
             if (entity == null){
-                throw ExceptionHelper.createNewCoreException("Error: Decision string \""+decisionString+"\" is not a valid value for degree "+designDecision+" "+DegreeOfFreedomHelper.getDegreeDescription(designDecision));
+                throw ExceptionHelper.createNewCoreException("Error: Decision string \""+decisionString+"\" is not a valid value for degree "+designDecision+" "+designDecision.getDegreeDescription());
             }
             enumChoice.setChosenValue(entity);
             choice = enumChoice;
@@ -574,7 +573,7 @@ public class DSEDecoder {
             }
 
             if (chosenPolicy == null){
-                throw ExceptionHelper.createNewCoreException("Error: Decision string \""+decisionString+"\" is not a valid value for degree "+designDecision+" "+DegreeOfFreedomHelper.getDegreeDescription(designDecision));
+                throw ExceptionHelper.createNewCoreException("Error: Decision string \""+decisionString+"\" is not a valid value for degree "+designDecision+" "+designDecision.getDegreeDescription());
             }
             schedChoice.setChosenValue(chosenPolicy);
             choice = schedChoice;

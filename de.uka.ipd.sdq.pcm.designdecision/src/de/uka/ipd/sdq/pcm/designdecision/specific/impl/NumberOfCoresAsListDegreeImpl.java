@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
@@ -54,6 +55,16 @@ public class NumberOfCoresAsListDegreeImpl extends AOrderedIntegerDegreeImpl imp
 	 */
 	protected NumberOfCoresAsListDegreeImpl() {
 		super();
+	}
+	
+	@Override
+	public String getDegreeDescription() {
+		String primaryChangeableName = this.getPrimaryChanged().toString();
+	    if (this.getPrimaryChanged() instanceof Entity){
+	        primaryChangeableName = ((Entity)this.getPrimaryChanged()).getEntityName();
+	    }
+
+	    return this.getClass().getSimpleName() + ":" + primaryChangeableName;
 	}
 
 	/**

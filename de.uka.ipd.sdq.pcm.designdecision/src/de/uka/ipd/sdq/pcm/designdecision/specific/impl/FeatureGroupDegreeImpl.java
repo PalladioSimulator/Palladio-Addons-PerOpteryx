@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.palladiosimulator.pcm.core.entity.Entity;
 
 import de.uka.ipd.sdq.featuremodel.FeatureGroup;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;

@@ -27,8 +27,16 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
  * @generated
  */
 public interface MetamodelDescription extends AMetamodelDescription {
-	
+
 	public static final String PCM_METAMODEL = "Palladio Component Model (PCM)";
+	
+	public static final String PCM_ALLOCATION_DOF = "PCM Allocation Degree";
+
+	public static final String PCM_ALTERNATIVE_COMPONENT_DOF = "PCM Alternative Component Degree";
+
+	public static final String PCM_CAPACITY_DOF = "PCM Capacity Degree";
+
+	public static final String PCM_PROCESSING_RATE_DOF = "PCM Processing Rate Degree";
 
 	PCMInstance transformEMFtoPCM(PCMResourceSetPartition pcmPartition);
 

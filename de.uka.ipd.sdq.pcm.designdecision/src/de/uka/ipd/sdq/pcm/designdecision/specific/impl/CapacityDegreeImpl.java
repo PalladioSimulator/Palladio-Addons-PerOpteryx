@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
@@ -60,6 +61,16 @@ public class CapacityDegreeImpl extends ADiscreteRangeDegreeImpl implements Capa
 	@Override
 	public Choice createChoice() {
 		return GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
+	}
+	
+	@Override
+	public String getDegreeDescription() {
+		String primaryChangeableName = this.getPrimaryChanged().toString();
+	    if (this.getPrimaryChanged() instanceof Entity){
+	        primaryChangeableName = ((Entity)this.getPrimaryChanged()).getEntityName();
+	    }
+
+	    return this.getClass().getSimpleName() + ":" + primaryChangeableName;
 	}
 
 } //CapacityDegreeImpl

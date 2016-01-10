@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
@@ -51,6 +52,16 @@ public class ResourceSelectionDegreeImpl extends AClassWithCopyDegreeImpl implem
 	 */
 	protected ResourceSelectionDegreeImpl() {
 		super();
+	}
+	
+	@Override
+	public String getDegreeDescription() {
+		String primaryChangeableName = this.getPrimaryChanged().toString();
+	    if (this.getPrimaryChanged() instanceof Entity){
+	        primaryChangeableName = ((Entity)this.getPrimaryChanged()).getEntityName();
+	    }
+
+	    return this.getClass().getSimpleName() + ":" + primaryChangeableName;
 	}
 
 	/**

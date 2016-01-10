@@ -95,7 +95,7 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
     
     public PCMWorkflowConfiguration() {
     	this.metamodel = Metamodel.PCM;
-    	this.epackages = new EPackage[] {
+    	this.setEpackages(new EPackage[] {
                 // Packages needed by QVT Transformations {{
                 EcorePackage.eINSTANCE,
                 IdentifierPackage.eINSTANCE,
@@ -107,7 +107,7 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
                 UsagemodelPackage.eINSTANCE, SystemPackage.eINSTANCE, ResourcetypePackage.eINSTANCE,
                 ResourceenvironmentPackage.eINSTANCE, AllocationPackage.eINSTANCE, StoexPackage.eINSTANCE,
                 CorePackage.eINSTANCE, CompletionsPackage.eINSTANCE, ReliabilityPackage.eINSTANCE,
-                QosReliabilityPackage.eINSTANCE, SeffReliabilityPackage.eINSTANCE };
+                QosReliabilityPackage.eINSTANCE, SeffReliabilityPackage.eINSTANCE });
     }
     
     @Override
@@ -118,7 +118,7 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
             LOGGER.debug("Initializing EPackages");
         }
 		
-		pcmPartition.initialiseResourceSetEPackages(this.epackages);
+		pcmPartition.initialiseResourceSetEPackages(this.getEpackages());
 		pcmPartition.loadModel(PCMWorkflowConfiguration.PCM_PALLADIO_PRIMITIVE_TYPE_REPOSITORY_URI);
         pcmPartition.loadModel(PCMWorkflowConfiguration.PCM_PALLADIO_RESOURCE_TYPE_URI);
         return pcmPartition;

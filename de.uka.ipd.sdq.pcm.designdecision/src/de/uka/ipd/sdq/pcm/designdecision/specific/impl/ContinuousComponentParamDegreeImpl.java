@@ -8,6 +8,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.palladiosimulator.pcm.core.entity.Entity;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
@@ -32,6 +33,16 @@ public class ContinuousComponentParamDegreeImpl extends AContinuousRangeDegreeIm
 	 */
 	protected ContinuousComponentParamDegreeImpl() {
 		super();
+	}
+	
+	@Override
+	public String getDegreeDescription() {
+		String primaryChangeableName = this.getPrimaryChanged().toString();
+	    if (this.getPrimaryChanged() instanceof Entity){
+	        primaryChangeableName = ((Entity)this.getPrimaryChanged()).getEntityName();
+	    }
+
+	    return this.getClass().getSimpleName() + ":" + primaryChangeableName;
 	}
 
 	/**

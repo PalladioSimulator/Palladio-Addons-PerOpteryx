@@ -8,10 +8,10 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
@@ -55,7 +55,8 @@ public class AllocationDegreeImpl extends AClassAsReferenceDegreeImpl implements
 		choice.setChosenValue(rc);
 
 		//check if entity is in the domain
-		if (!de.uka.ipd.sdq.dsexplore.helper.EMFHelper.contains(this.getClassDesignOptions(), choice.getChosenValue())) {
+		if (!de.uka.ipd.sdq.dsexplore.helper.EMFHelper.contains(this.getClassDesignOptions(),
+				choice.getChosenValue())) {
 			throw new ChoiceOutOfBoundsException(choice, "Error when determining initial genotype");
 		}
 		return choice;
@@ -64,6 +65,16 @@ public class AllocationDegreeImpl extends AClassAsReferenceDegreeImpl implements
 	@Override
 	public Choice createChoice() {
 		return GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
+	}
+	
+	@Override
+	public String getDegreeDescription() {
+		String primaryChangeableName = this.getPrimaryChanged().toString();
+	    if (this.getPrimaryChanged() instanceof Entity){
+	        primaryChangeableName = ((Entity)this.getPrimaryChanged()).getEntityName();
+	    }
+
+	    return this.getClass().getSimpleName() + ":" + primaryChangeableName;
 	}
 
 } //AllocationDegreeImpl

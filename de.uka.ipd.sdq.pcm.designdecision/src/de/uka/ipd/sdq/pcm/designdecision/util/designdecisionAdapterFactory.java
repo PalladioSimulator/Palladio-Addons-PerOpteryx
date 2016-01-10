@@ -65,7 +65,7 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected designdecisionSwitch<Adapter> modelSwitch = new designdecisionSwitch<Adapter>() {
 		@Override
-		public Adapter caseDSEProblem(de.uka.ipd.sdq.pcm.designdecision.DSEProblem object) {
+		public Adapter caseDSEProblem(DSEProblem object) {
 			return createDSEProblemAdapter();
 		}
 

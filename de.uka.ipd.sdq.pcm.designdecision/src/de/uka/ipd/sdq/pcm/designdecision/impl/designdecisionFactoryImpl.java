@@ -2,14 +2,12 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.*;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMWorkflowConfiguration;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -122,7 +120,8 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 * @generated NOT
 	 */
 	@Override
-	public DSEProblem createDSEProblem(PCMWorkflowConfiguration dseConfig, PCMResourceSetPartition pcmPartition) throws CoreException {
+	public DSEProblem createDSEProblem(PCMWorkflowConfiguration dseConfig, PCMResourceSetPartition pcmPartition)
+			throws CoreException {
 		return new DSEProblemImpl(dseConfig, pcmPartition);
 	}
 

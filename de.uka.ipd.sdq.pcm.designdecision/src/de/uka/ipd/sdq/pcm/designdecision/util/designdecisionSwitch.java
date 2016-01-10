@@ -63,7 +63,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case designdecisionPackage.DSE_PROBLEM: {
-			de.uka.ipd.sdq.pcm.designdecision.DSEProblem dseProblem = (de.uka.ipd.sdq.pcm.designdecision.DSEProblem) theEObject;
+			DSEProblem dseProblem = (DSEProblem) theEObject;
 			T result = caseDSEProblem(dseProblem);
 			if (result == null)
 				result = caseADSEProblem(dseProblem);
@@ -114,7 +114,7 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDSEProblem(de.uka.ipd.sdq.pcm.designdecision.DSEProblem object) {
+	public T caseDSEProblem(DSEProblem object) {
 		return null;
 	}
 

@@ -33,7 +33,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
 import de.uka.ipd.sdq.dsexplore.helper.CriterionAndEvaluator;
-import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
@@ -449,7 +448,7 @@ public class GenotypeReader extends AGenotypeReader {
             final String headlineEntry = headlineArray[i];
             for (final ADegreeOfFreedom decision : decisionList) {
                 //We could use an iterator here and directly delete all design decision that have been matched from the list, to make the subsequent steps faster.
-                if (DegreeOfFreedomHelper.getDegreeDescription(decision).contains(headlineEntry)){
+                if (decision.getDegreeDescription().contains(headlineEntry)){
                     orderedDesignDecisions.add(decision);
                     break;
                 }
