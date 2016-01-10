@@ -32,8 +32,6 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  */
 public interface UniversalDoF extends EObject {
 	
-	public static final String INPUT_METAMODEL = "Meta-model of input model";
-	
 	UniversalDoF eINSTANCE = genericdesigndecision.universalDoF.impl.UniversalDoFImpl.getUniversalDoF();
 	
 	/**
@@ -144,23 +142,15 @@ public interface UniversalDoF extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean prepareGDoF(int gdofID);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
 	EList<GenericDoF> listGDoFs();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
-	EList<ADegreeOfFreedom> listPreparedDoFs();
+	boolean newGDoF(String gdofName);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,40 +158,16 @@ public interface UniversalDoF extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean removePreparedDoF(int dofID);
+	boolean deleteGDoF(GenericDoF gdof);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
-	boolean prepareDoF(int dofID);
+	GenericDoF getGDoF(String gdofName);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	boolean newGDoF(int gdofID);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	boolean deleteGDoF(int gdofID);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	boolean constrainDoF(int dofID);
-	
 	ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition);
 
 } // UniversalDoF

@@ -17,7 +17,6 @@ import genericdesigndecision.genericDoF.DoFRepository;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -65,23 +64,6 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	 * @generated
 	 */
 	void setDofrepository(DoFRepository value);
-
-	/**
-	 * Returns the value of the '<em><b>Gdof to dof</b></em>' map.
-	 * The key is of type {@link genericdesigndecision.universalDoF.GenericDoF},
-	 * and the value is of type {@link genericdesigndecision.genericDoF.ADegreeOfFreedom},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Gdof to dof</em>' map isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gdof to dof</em>' map.
-	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getAMetamodelDescription_Gdof_to_dof()
-	 * @model mapType="genericdesigndecision.universalDoF.GenericDoFToADegreeOfFreedom<genericdesigndecision.universalDoF.GenericDoF, genericdesigndecision.genericDoF.ADegreeOfFreedom>"
-	 * @generated
-	 */
-	EMap<GenericDoF, ADegreeOfFreedom> getGdof_to_dof();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -146,13 +128,7 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	 */
 	Metamodel evaluateMetamodel(EObject model);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 * @generated
-	 */
-	ADegreeOfFreedom getCorrespondingDoF(GenericDoF gdof);
+	SpecificDoF getCorrespondingDoF(GenericDoF gdof);
 	
 	public Collection<Object> getPossibleValues(ADegreeOfFreedom dof, ADSEProblem dseProblem);
 	

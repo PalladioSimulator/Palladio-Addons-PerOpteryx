@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link genericdesigndecision.ADSEProblem#getProblem <em>Problem</em>}</li>
- *   <li>{@link genericdesigndecision.ADSEProblem#getEmfInstance <em>Emf Instance</em>}</li>
  *   <li>{@link genericdesigndecision.ADSEProblem#getAssociatedMetamodel <em>Associated Metamodel</em>}</li>
  * </ul>
  *
@@ -59,32 +58,6 @@ public interface ADSEProblem extends EObject, DSEDecoder {
 	 * @generated
 	 */
 	void setProblem(DecisionSpace value);
-
-	/**
-	 * Returns the value of the '<em><b>Emf Instance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Emf Instance</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Emf Instance</em>' reference.
-	 * @see #setEmfInstance(EObject)
-	 * @see genericdesigndecision.GenericdesigndecisionPackage#getADSEProblem_EmfInstance()
-	 * @model required="true"
-	 * @generated
-	 */
-	EObject getEmfInstance();
-
-	/**
-	 * Sets the value of the '{@link genericdesigndecision.ADSEProblem#getEmfInstance <em>Emf Instance</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Emf Instance</em>' reference.
-	 * @see #getEmfInstance()
-	 * @generated
-	 */
-	void setEmfInstance(EObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Associated Metamodel</b></em>' reference.

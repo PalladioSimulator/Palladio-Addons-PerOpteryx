@@ -20,33 +20,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl#getGdofID <em>Gdof ID</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GenericDoFImpl extends MinimalEObjectImpl.Container implements GenericDoF {
-	/**
-	 * The default value of the '{@link #getGdofID() <em>Gdof ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGdofID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int GDOF_ID_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getGdofID() <em>Gdof ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGdofID()
-	 * @generated
-	 * @ordered
-	 */
-	protected int gdofID = GDOF_ID_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,6 +54,11 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	protected GenericDoFImpl() {
 		super();
 	}
+	
+	public GenericDoFImpl(String gdofName) {
+		super();
+		this.name = gdofName;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,27 +68,6 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	@Override
 	protected EClass eStaticClass() {
 		return UniversalDoFPackage.Literals.GENERIC_DO_F;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getGdofID() {
-		return gdofID;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGdofID(int newGdofID) {
-		int oldGdofID = gdofID;
-		gdofID = newGdofID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.GENERIC_DO_F__GDOF_ID, oldGdofID, gdofID));
 	}
 
 	/**
@@ -136,8 +99,6 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
-				return getGdofID();
 			case UniversalDoFPackage.GENERIC_DO_F__NAME:
 				return getName();
 		}
@@ -152,9 +113,6 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
-				setGdofID((Integer)newValue);
-				return;
 			case UniversalDoFPackage.GENERIC_DO_F__NAME:
 				setName((String)newValue);
 				return;
@@ -170,9 +128,6 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
-				setGdofID(GDOF_ID_EDEFAULT);
-				return;
 			case UniversalDoFPackage.GENERIC_DO_F__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -188,8 +143,6 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
-				return gdofID != GDOF_ID_EDEFAULT;
 			case UniversalDoFPackage.GENERIC_DO_F__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -206,9 +159,7 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (gdofID: ");
-		result.append(gdofID);
-		result.append(", name: ");
+		result.append(" (name: ");
 		result.append(name);
 		result.append(')');
 		return result.toString();

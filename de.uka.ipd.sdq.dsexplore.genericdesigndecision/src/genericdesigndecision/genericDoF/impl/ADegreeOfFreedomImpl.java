@@ -312,6 +312,9 @@ public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container 
 		choice.setDofInstance(this);
 		return choice;
 	}
+	
+	@Override
+	public abstract String getDegreeDescription();
 
 	/**
 	 * <!-- begin-user-doc -->

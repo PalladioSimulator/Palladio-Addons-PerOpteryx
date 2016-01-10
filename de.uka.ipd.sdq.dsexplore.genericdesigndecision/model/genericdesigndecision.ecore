@@ -100,8 +100,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEDecoder">
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" lowerBound="1"
         eType="#//DecisionSpace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="emfInstance" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
         eType="#//universalDoF/AMetamodelDescription"/>
   </eClassifiers>
@@ -112,8 +110,6 @@
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="AGenomeToCandidateModelTransformation"
       abstract="true" eSuperTypes="#//GenomeToCandidateModelTransformation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DSEEvaluator" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator"
-      abstract="true" interface="true"/>
   <eSubpackages name="genericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="genericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">
@@ -265,18 +261,19 @@
   <eSubpackages name="universalDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/UniversalDoF/"
       nsPrefix="universalDoF">
     <eClassifiers xsi:type="ecore:EClass" name="GDoFRepository">
-      <eOperations name="listGDoFs" upperBound="-1" eType="#//universalDoF/GenericDoF"/>
-      <eOperations name="newGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eOperations name="addGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="gdofName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
       </eOperations>
       <eOperations name="deleteGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eParameters name="gdof" eType="#//universalDoF/GenericDoF"/>
+      </eOperations>
+      <eOperations name="getGDoF" eType="#//universalDoF/GenericDoF">
+        <eParameters name="gdofName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofs" upperBound="-1"
           eType="#//universalDoF/GenericDoF" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericDoF">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AMetamodelDescription" abstract="true"
@@ -284,12 +281,7 @@
       <eOperations name="evaluateMetamodel" unique="false" lowerBound="1" eType="#//universalDoF/Metamodel">
         <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       </eOperations>
-      <eOperations name="getCorrespondingDoF" lowerBound="1" eType="#//genericDoF/ADegreeOfFreedom">
-        <eParameters name="gdof" eType="#//universalDoF/GenericDoF"/>
-      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dofrepository" eType="#//genericDoF/DoFRepository"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gdof_to_dof" upperBound="-1"
-          eType="#//universalDoF/GenericDoFToADegreeOfFreedom" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//universalDoF/Metamodel"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="genomeToCandidateTransformation"
           lowerBound="1" eType="#//GenomeToCandidateModelTransformation" containment="true"/>
@@ -298,25 +290,15 @@
       <eOperations name="evaluateMetamodel" unique="false" eType="#//universalDoF/Metamodel">
         <eParameters name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       </eOperations>
-      <eOperations name="prepareGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      </eOperations>
       <eOperations name="listGDoFs" upperBound="-1" eType="#//universalDoF/GenericDoF"/>
-      <eOperations name="listPreparedDoFs" upperBound="-1" eType="#//genericDoF/ADegreeOfFreedom"/>
-      <eOperations name="removePreparedDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      </eOperations>
-      <eOperations name="prepareDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      </eOperations>
       <eOperations name="newGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eParameters name="gdofName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
       </eOperations>
       <eOperations name="deleteGDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="gdofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eParameters name="gdof" eType="#//universalDoF/GenericDoF"/>
       </eOperations>
-      <eOperations name="constrainDoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eParameters name="dofID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eOperations name="getGDoF" eType="#//universalDoF/GenericDoF">
+        <eParameters name="gdofName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="gdofrepository" lowerBound="1"
           eType="#//universalDoF/GDoFRepository"/>
@@ -325,10 +307,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="preparedDoFs" eType="#//genericDoF/ADegreeOfFreedom"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//ADSEProblem"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GenericDoFToADegreeOfFreedom" instanceClassName="java.util.Map$Entry">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//universalDoF/GenericDoF"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//genericDoF/ADegreeOfFreedom"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="Metamodel">
       <eLiterals name="PCM"/>

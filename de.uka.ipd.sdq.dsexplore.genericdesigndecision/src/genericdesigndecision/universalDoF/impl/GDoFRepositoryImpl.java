@@ -4,6 +4,7 @@ package genericdesigndecision.universalDoF.impl;
 
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements GDoFRepository {
+	
 	/**
 	 * The cached value of the '{@link #getGdofs() <em>Gdofs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -49,10 +51,14 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected GDoFRepositoryImpl() {
 		super();
+		this.addGDoF(ALLOCATION_DOF);
+		this.addGDoF(ALTERNATIVE_COMPONENT_DOF);
+		this.addGDoF(CAPACITY_DOF);
+		this.addGDoF(PROCESSING_RATE_DOF);
 	}
 
 	/**
@@ -80,34 +86,33 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<GenericDoF> listGDoFs() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean addGDoF(String gdofName) {
+		return (this.getGDoF(gdofName) != null) ? true: this.gdofs.add(UniversalDoFFactory.eINSTANCE.createGenericDoF(gdofName));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean newGDoF(int gdofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean deleteGDoF(GenericDoF gdof) {
+		return this.gdofs.remove(gdof);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean deleteGDoF(int gdofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public GenericDoF getGDoF(String gdofName) {
+		for (GenericDoF g : this.gdofs) {
+			if (g.getName().equalsIgnoreCase(gdofName)) {
+				return g;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -192,12 +197,12 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UniversalDoFPackage.GDO_FREPOSITORY___LIST_GDO_FS:
-				return listGDoFs();
-			case UniversalDoFPackage.GDO_FREPOSITORY___NEW_GDO_F__INT:
-				return newGDoF((Integer)arguments.get(0));
-			case UniversalDoFPackage.GDO_FREPOSITORY___DELETE_GDO_F__INT:
-				return deleteGDoF((Integer)arguments.get(0));
+			case UniversalDoFPackage.GDO_FREPOSITORY___ADD_GDO_F__STRING:
+				return addGDoF((String)arguments.get(0));
+			case UniversalDoFPackage.GDO_FREPOSITORY___DELETE_GDO_F__GENERICDOF:
+				return deleteGDoF((GenericDoF)arguments.get(0));
+			case UniversalDoFPackage.GDO_FREPOSITORY___GET_GDO_F__STRING:
+				return getGDoF((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

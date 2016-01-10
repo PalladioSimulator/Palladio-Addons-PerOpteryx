@@ -7,10 +7,10 @@ import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -101,8 +100,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		super();
 		//added for PCM support
 		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createMetamodelDescription());
-		
-		//TODO fill gdof to dof mapping
+		this.gdofrepository = UniversalDoFFactory.eINSTANCE.createGDoFRepository();
 	}
 
 	/**
@@ -244,20 +242,9 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Metamodel evaluateMetamodel(EObject model) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Metamodel evaluateMetamodel(EModelElement model) {
+	public Metamodel evaluateMetamodel(EObject model) {
 		Metamodel mm = null;
 		
 		for (AMetamodelDescription ammd : supportedMetamodels) {
@@ -272,89 +259,37 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean prepareGDoF(int gdofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<GenericDoF> listGDoFs() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return this.gdofrepository.getGdofs();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<ADegreeOfFreedom> listPreparedDoFs() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean newGDoF(String gdofName) {
+		return this.gdofrepository.addGDoF(gdofName);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean removePreparedDoF(int dofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean deleteGDoF(GenericDoF gdof) {
+		return this.gdofrepository.deleteGDoF(gdof);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean prepareDoF(int dofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean newGDoF(int gdofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean deleteGDoF(int gdofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean constrainDoF(int dofID) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public GenericDoF getGDoF(String gdofName) {
+		return this.gdofrepository.getGDoF(gdofName);
 	}
 
 	public static UniversalDoF getUniversalDoF() {
@@ -367,7 +302,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	@Override
 	public ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition) {
 		Metamodel metamodel = dseConfig.getMetamodel();
-		
 		this.target = DSEProblemFactory.eINSTANCE.createDSEProblem(dseConfig, modelPartition, metamodel);
 		return target;
 	}
@@ -475,22 +409,14 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		switch (operationID) {
 			case UniversalDoFPackage.UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT:
 				return evaluateMetamodel((EObject)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___PREPARE_GDO_F__INT:
-				return prepareGDoF((Integer)arguments.get(0));
 			case UniversalDoFPackage.UNIVERSAL_DO_F___LIST_GDO_FS:
 				return listGDoFs();
-			case UniversalDoFPackage.UNIVERSAL_DO_F___LIST_PREPARED_DO_FS:
-				return listPreparedDoFs();
-			case UniversalDoFPackage.UNIVERSAL_DO_F___REMOVE_PREPARED_DO_F__INT:
-				return removePreparedDoF((Integer)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___PREPARE_DO_F__INT:
-				return prepareDoF((Integer)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___NEW_GDO_F__INT:
-				return newGDoF((Integer)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___DELETE_GDO_F__INT:
-				return deleteGDoF((Integer)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___CONSTRAIN_DO_F__INT:
-				return constrainDoF((Integer)arguments.get(0));
+			case UniversalDoFPackage.UNIVERSAL_DO_F___NEW_GDO_F__STRING:
+				return newGDoF((String)arguments.get(0));
+			case UniversalDoFPackage.UNIVERSAL_DO_F___DELETE_GDO_F__GENERICDOF:
+				return deleteGDoF((GenericDoF)arguments.get(0));
+			case UniversalDoFPackage.UNIVERSAL_DO_F___GET_GDO_F__STRING:
+				return getGDoF((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

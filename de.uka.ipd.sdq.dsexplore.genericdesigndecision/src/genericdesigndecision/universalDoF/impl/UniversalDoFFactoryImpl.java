@@ -2,11 +2,7 @@
  */
 package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
-
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -63,7 +59,6 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 			case UniversalDoFPackage.GDO_FREPOSITORY: return createGDoFRepository();
 			case UniversalDoFPackage.GENERIC_DO_F: return createGenericDoF();
 			case UniversalDoFPackage.UNIVERSAL_DO_F: return createUniversalDoF();
-			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM: return (EObject)createGenericDoFToADegreeOfFreedom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -112,13 +107,23 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public GenericDoF createGenericDoF(String gdofName) {
+		GenericDoFImpl genericDoF = new GenericDoFImpl(gdofName);
+		return genericDoF;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GenericDoF createGenericDoF() {
 		GenericDoFImpl genericDoF = new GenericDoFImpl();
 		return genericDoF;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,16 +131,6 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	 */
 	public UniversalDoF createUniversalDoF() {
 		return UniversalDoFImpl.getUniversalDoF();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<GenericDoF, ADegreeOfFreedom> createGenericDoFToADegreeOfFreedom() {
-		GenericDoFToADegreeOfFreedomImpl genericDoFToADegreeOfFreedom = new GenericDoFToADegreeOfFreedomImpl();
-		return genericDoFToADegreeOfFreedom;
 	}
 
 	/**

@@ -4,11 +4,7 @@ package genericdesigndecision.universalDoF.util;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
-import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
-
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -87,10 +83,6 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUniversalDoF(UniversalDoF object) {
 				return createUniversalDoFAdapter();
-			}
-			@Override
-			public Adapter caseGenericDoFToADegreeOfFreedom(Map.Entry<GenericDoF, ADegreeOfFreedom> object) {
-				return createGenericDoFToADegreeOfFreedomAdapter();
 			}
 			@Override
 			public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
@@ -173,20 +165,6 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUniversalDoFAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Generic Do FTo ADegree Of Freedom</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createGenericDoFToADegreeOfFreedomAdapter() {
 		return null;
 	}
 

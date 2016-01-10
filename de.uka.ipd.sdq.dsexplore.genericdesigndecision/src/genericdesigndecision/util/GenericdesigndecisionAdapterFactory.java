@@ -4,7 +4,6 @@ package genericdesigndecision.util;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import genericdesigndecision.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -113,10 +112,6 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
 				return createAGenomeToCandidateModelTransformationAdapter();
-			}
-			@Override
-			public Adapter caseDSEEvaluator(DSEEvaluator object) {
-				return createDSEEvaluatorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -289,20 +284,6 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator <em>DSE Evaluator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator
-	 * @generated
-	 */
-	public Adapter createDSEEvaluatorAdapter() {
 		return null;
 	}
 

@@ -4,11 +4,7 @@ package genericdesigndecision.universalDoF.util;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
-import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.*;
-
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -97,12 +93,6 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UniversalDoFPackage.GENERIC_DO_FTO_ADEGREE_OF_FREEDOM: {
-				@SuppressWarnings("unchecked") Map.Entry<GenericDoF, ADegreeOfFreedom> genericDoFToADegreeOfFreedom = (Map.Entry<GenericDoF, ADegreeOfFreedom>)theEObject;
-				T result = caseGenericDoFToADegreeOfFreedom(genericDoFToADegreeOfFreedom);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -164,21 +154,6 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUniversalDoF(UniversalDoF object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Do FTo ADegree Of Freedom</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Do FTo ADegree Of Freedom</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGenericDoFToADegreeOfFreedom(Map.Entry<GenericDoF, ADegreeOfFreedom> object) {
 		return null;
 	}
 

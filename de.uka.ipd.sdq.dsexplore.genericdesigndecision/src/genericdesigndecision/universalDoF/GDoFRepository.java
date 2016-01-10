@@ -23,6 +23,15 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface GDoFRepository extends EObject {
+	
+	public static final String ALLOCATION_DOF = "Allocation Degree";
+
+	public static final String ALTERNATIVE_COMPONENT_DOF = "Alternative Component Degree";
+
+	public static final String CAPACITY_DOF = "Capacity Degree";
+
+	public static final String PROCESSING_RATE_DOF = "Processing Rate Degree";
+	
 	/**
 	 * Returns the value of the '<em><b>Gdofs</b></em>' containment reference list.
 	 * The list contents are of type {@link genericdesigndecision.universalDoF.GenericDoF}.
@@ -42,10 +51,10 @@ public interface GDoFRepository extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
-	EList<GenericDoF> listGDoFs();
+	boolean addGDoF(String gdofName);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,14 +62,14 @@ public interface GDoFRepository extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean newGDoF(int gdofID);
+	boolean deleteGDoF(GenericDoF gdof);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
-	boolean deleteGDoF(int gdofID);
+	GenericDoF getGDoF(String gdofName);
 
 } // GDoFRepository

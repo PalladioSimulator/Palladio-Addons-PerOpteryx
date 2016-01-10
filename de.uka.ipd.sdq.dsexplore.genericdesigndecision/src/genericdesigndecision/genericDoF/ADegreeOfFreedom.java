@@ -180,5 +180,7 @@ public interface ADegreeOfFreedom extends EObject {
 	 * @generated
 	 */
 	Choice createChoice();
+	
+	String getDegreeDescription();
 
 } // ADegreeOfFreedom
