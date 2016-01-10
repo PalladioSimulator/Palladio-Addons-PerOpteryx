@@ -36,6 +36,9 @@ import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig.EvaluationM
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.SpecificDoF;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
 public class DSEWorkflowConfigurationBuilder extends
@@ -54,7 +57,7 @@ public class DSEWorkflowConfigurationBuilder extends
 		DSEWorkflowConfiguration config = null;
 		String metamodel = null;
 		try {
-			metamodel = this.configuration.getAttribute(UniversalDoF.INPUT_METAMODEL, "unspecified");
+			metamodel = this.configuration.getAttribute(DSEWorkflowConfiguration.INPUT_METAMODEL, "unspecified");
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,6 +78,17 @@ public class DSEWorkflowConfigurationBuilder extends
 			throws CoreException {
 		
 		DSEWorkflowConfiguration config = (DSEWorkflowConfiguration)abstractConfiguration;
+		
+		config.setUseGenericDoF(this.configuration.getAttribute(DSEWorkflowConfiguration.USE_GENERICDOFS, true));
+		if(config.isUseGenericDoF()) {
+			for(GenericDoF g : this.configuration...) {
+				config.addGenericDoF(g);
+			}
+		} else {
+			for(SpecificDoF s : this.configuration...) {
+				config.addSpecificDoF(s);
+			}
+		}
 		
 		config.setOriginalConfig(this.configuration);
 		

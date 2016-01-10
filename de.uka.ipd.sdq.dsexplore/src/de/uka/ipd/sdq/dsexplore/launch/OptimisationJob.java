@@ -1,22 +1,12 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.dsexplore.helper.GenotypeReader;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
@@ -26,7 +16,6 @@ import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlackboard> {
 	
@@ -124,17 +113,11 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	public void setBlackboard(MDSDBlackboard blackboard) {
 		this.blackboard = blackboard;
 		
-	}
-	
-	private EPackage getInputModel(String filename){		
-		return EMFHelper.loadModelFromXMIFile(filename);
-	}
-	
+	}	
 
 	@Override
 	public void cleanup(IProgressMonitor arg0) throws CleanupFailedException {
 		// TODO Auto-generated method stub
-		
 	}
 	
 }

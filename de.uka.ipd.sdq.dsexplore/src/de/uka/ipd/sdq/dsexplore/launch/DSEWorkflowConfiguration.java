@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,7 +14,9 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
+import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
+import genericdesigndecision.universalDoF.SpecificDoF;
 
 /**
  * Configuration for a PerOpteryx run.
@@ -31,6 +34,9 @@ import genericdesigndecision.universalDoF.Metamodel;
  */
 public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration implements Cloneable {
 	
+	public static final String INPUT_METAMODEL = "Meta-model of input model";
+	public static final String USE_GENERICDOFS = "Use generic DoFs";
+	
 	/**
 	 * Specifies which metamodel this configuration belongs to.
 	 */
@@ -39,8 +45,51 @@ public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunC
 	/**
      * Contains All EPackages within or referenced by the metamodel of the input model.
      */
-    public EPackage[] epackages;
+    protected EPackage[] epackages;
     
+    protected boolean useGenericDoF;
+    
+    protected ArrayList<GenericDoF> selectedGenericDoFs;
+    
+    protected ArrayList<SpecificDoF> selectedSpecificDoFs;
+    
+    public boolean isUseGenericDoF() {
+		return useGenericDoF;
+	}
+	public void setUseGenericDoF(boolean useGenericDoF) {
+		this.useGenericDoF = useGenericDoF;
+	}
+
+	public List<GenericDoF> getSelectedGenericDoFs() {
+		return this.selectedGenericDoFs;
+	}
+	
+	public boolean addGenericDoF(GenericDoF dof) {
+		if(this.selectedGenericDoFs == null) {
+			this.selectedGenericDoFs = new ArrayList<GenericDoF>(10);
+		}
+		return this.selectedGenericDoFs.add(dof);
+	}
+	
+	public boolean removeGenericDoF(GenericDoF dof) {
+		return this.selectedGenericDoFs.remove(dof);
+	}
+	
+	public List<SpecificDoF> getSelectedSpecificDoFs() {
+		return this.selectedSpecificDoFs;
+	}
+	
+	public boolean addSpecificDoF(SpecificDoF dof) {
+		if(this.selectedSpecificDoFs == null) {
+			this.selectedSpecificDoFs = new ArrayList<SpecificDoF>(10);
+		}
+		return this.selectedSpecificDoFs.add(dof);
+	}
+
+	public boolean removeSpecificDoF(SpecificDoF dof) {
+		return this.selectedSpecificDoFs.remove(dof);
+	}
+
 	public enum SearchMethod{
 		EVOLUTIONARY,
 		RANDOM,
@@ -673,5 +722,11 @@ public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunC
 	}
 	
 	public abstract ResourceSetPartition preparePartition();
+	public EPackage[] getEpackages() {
+		return epackages;
+	}
+	public void setEpackages(EPackage[] epackages) {
+		this.epackages = epackages;
+	}
 
 }

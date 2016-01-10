@@ -86,7 +86,6 @@ import de.uka.ipd.sdq.tcfmoop.config.MinimalQualityCriteriaValueConfig;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.universalDoF.UniversalDoF;
