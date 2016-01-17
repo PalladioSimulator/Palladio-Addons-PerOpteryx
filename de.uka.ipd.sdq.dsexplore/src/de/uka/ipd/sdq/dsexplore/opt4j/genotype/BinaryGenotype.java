@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.genotype;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -11,51 +10,41 @@ import java.util.ListIterator;
  * The {@link BinaryGenotype} object holds the corresponding binary representation 
  * of the value stored in a {@link Choice} object.
  * @author Hp
- *
- * @param <E>
  */
-public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresentation<E> {
+public class BinaryGenotype implements BinaryGenotypeRepresentation<Binary> {
 	
 	
 	// Internal Fields	
-	private List<E> BinaryChoice; // It should be a list of only integer 1 and 0, instead of E 
-	private TypeOfDegree DegreeType;
-	
-	// Constructors here
-	
-	// Default values here ...
-	public BinaryGenotype(){
-		this.BinaryChoice = new ArrayList<E>();
-		this.DegreeType = BinaryGenotypeRepresentation.TypeOfDegree.AllocationDegree;
-	}
+	private List<Binary> BinaryChoice;
+	private String degreeType;		//type of degree is specific to the metamodel of the input model
 	
 	// A better constructor ...
-	public BinaryGenotype(List<E> BinaryChoice, TypeOfDegree DegreeType){
+	public BinaryGenotype(List<Binary> BinaryChoice, String degreeType){
 		this.BinaryChoice = BinaryChoice;
-		this.DegreeType = DegreeType;
+		this.degreeType = degreeType;
 	}
 	
 	@Override
-	public boolean add(E e) {
+	public boolean add(Binary e) {
 		// TODO Auto-generated method stub
 		boolean Result = BinaryChoice.add(e);
 		return Result;
 	}
 
 	@Override
-	public void add(int index, E element) {
+	public void add(int index, Binary element) {
 		// TODO Auto-generated method stub
 		BinaryChoice.add(index, element);
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends E> c) {
+	public boolean addAll(Collection<? extends Binary> c) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.addAll(c);
 	}
 
 	@Override
-	public boolean addAll(int index, Collection<? extends E> c) {
+	public boolean addAll(int index, Collection<? extends Binary> c) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.addAll(index, c);
 	}
@@ -79,7 +68,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public E get(int index) {
+	public Binary get(int index) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.get(index);
 	}
@@ -97,7 +86,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public Iterator<E> iterator() {
+	public Iterator<Binary> iterator() {
 		// TODO Auto-generated method stub
 		return BinaryChoice.iterator();
 	}
@@ -109,13 +98,13 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public ListIterator<E> listIterator() {
+	public ListIterator<Binary> listIterator() {
 		// TODO Auto-generated method stub
 		return BinaryChoice.listIterator();
 	}
 
 	@Override
-	public ListIterator<E> listIterator(int index) {
+	public ListIterator<Binary> listIterator(int index) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.listIterator(index);
 	}
@@ -127,7 +116,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public E remove(int index) {
+	public Binary remove(int index) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.remove(index);
 	}
@@ -145,7 +134,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public E set(int index, E element) {
+	public Binary set(int index, Binary element) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.set(index, element);
 	}
@@ -157,7 +146,7 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public List<E> subList(int fromIndex, int toIndex) {
+	public List<Binary> subList(int fromIndex, int toIndex) {
 		// TODO Auto-generated method stub
 		return BinaryChoice.subList(fromIndex, toIndex);
 	}
@@ -175,24 +164,23 @@ public class BinaryGenotype<E extends Number> implements BinaryGenotypeRepresent
 	}
 
 	@Override
-	public void setDegreeType(
-			de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree D) {
+	public void setDegreeType(String d) {
 		// TODO Auto-generated method stub
-		DegreeType = D;
+		degreeType = d;
 	}
 
 	@Override
-	public de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree getDegreeType() {
+	public String getDegreeType() {
 		// TODO Auto-generated method stub
-		return DegreeType;
+		return degreeType;
 	}
 	
-	public void setInternalList(List<E> list) {
+	public void setInternalList(List<Binary> list) {
 		// TODO Auto-generated method stub
 		this.BinaryChoice = list;
 	}
 	
-	public List<E> getInternalList() {
+	public List<Binary> getInternalList() {
 		// TODO Auto-generated method stub
 		return this.BinaryChoice;
 	}

@@ -10,6 +10,11 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
  */
 public class DSEConstantsContainer {
 	
+	public static final String INPUT_METAMODEL = "Meta-model of input model";
+	public static final String USE_GENERICDOFS = "Use generic DoFs";
+	public static final String GENERICDOFS = "Select generic DoFs";
+	public static final String SPECIFICDOFS = "Select specific DoFs";
+	
 	public static final String MAX_ITERATIONS = "maxIterations";
 	public static final String INDIVIDUALS_PER_GENERATION = "indivPerGeneration";
 	public static final String CROSSOVER_RATE = "crossover rate";
@@ -250,8 +255,5 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_DESIGN_DECISION_FILE = "";
 	/** Default URI for the QML criteria definitions file. */
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
-
-
-	
-	
+		
 }

@@ -9,22 +9,8 @@ import java.util.List;
  * @param <E>
  */
 public interface BinaryGenotypeRepresentation<E> extends List<E> {
-
-	// Insert all possible values of the Degrees of Freedom which you can think of.
-	enum TypeOfDegree{
-		 AllocationDegree, AssembledComponentDegree, CapacityDegree, ClassAsReferenceDegree, ClassDegree,
-		 ClassWithCopyDegree, ContinuousComponentParamDegree, ContinuousProcessingRateDegree, ContinuousRangeDegree,
-		 DataTypeDegree, DiscreteComponentParamDegree, DiscreteDegree, DiscreteProcessingRateDegree,
-		 DiscreteRangeDegree, EnumDegree, FeatureConfigDegree, FeatureGroupDegree,
-		 MonitoringDegree, NumberOfCoresAsListDegree, NumberOfCoresAsRangeDegree,
-		 NumberOfCoresDegree, OptionalFeatureDegree, OrderedDataTypeDegree,
-		 OrderedIntegerDegree, ProcessingRateDegree, ProcessingResourceDegree,
-		 RangeDegree, ResourceContainerReplicationDegree, ResourceContainerReplicationDegreeWithComponentChange,
-		 ResourceSelectionDegree, SchedulingPolicyDegree, StringComponentParamDegree,
-		 StringSetDegree, UnorderedDegree, UnorderedPrimitiveDegree
-	}
 	
 	// Abstract methods
-	public void setDegreeType(TypeOfDegree D);
-	public TypeOfDegree getDegreeType();
+	public void setDegreeType(String D);
+	public String getDegreeType();
 }

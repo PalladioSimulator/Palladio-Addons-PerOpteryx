@@ -34,9 +34,9 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		
 		qmlManager.addTabs(analysisTabs.toArray(new DSEAnalysisMethodTab[]{}));
 		
-		DSEFileNamesInputTab defaultTab = new DSEFileNamesInputTab(qmlManager);
+		DSEFileNamesInputTab defaultTab = new QML_PCMFileNamesInputTab(qmlManager);
 				
-		DSEOptionsTab optionsTab = new DSEOptionsTab();
+		DSEOptionsTab optionsTab = new PCM_DSEOptionsTab();
 		
 		TerminationCriteriaTab terminationTab = new TerminationCriteriaTab(qmlManager);
 		
@@ -53,14 +53,11 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 				
 		tabs.add(new DebugEnabledCommonTab());
 		
-		
-		
 		ILaunchConfigurationTab[] iTabs = new ILaunchConfigurationTab[tabs.size()];
 		for (int i = 0; i < iTabs.length; i++) {
 			iTabs[i] = tabs.get(i);
 		}
 		setTabs(iTabs);
-
 	}
 
 }

@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -17,53 +19,65 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
-import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
-
 import de.uka.ipd.sdq.dsexplore.DSEPluginActivator;
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
+import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.Metamodel;
+import genericdesigndecision.universalDoF.UniversalDoF;
 
-public class DSEOptionsTab extends FileNamesInputTab {
+public class DSEOptionsTab extends InputTab {
 	
-	private Text maximumIterations; 
+	protected Text maximumIterations; 
 
-	private Text numberOfIndividualsPerGeneration;
+	protected Text numberOfIndividualsPerGeneration;
 	
-	private Image icon;
+	protected Image icon;
 
-	//private Text meanResponseTimeRequirement;
+	//protected Text meanResponseTimeRequirement;
 
-	private Combo useHeuristics;
+	protected Combo useHeuristics;
 	
-	private Text crossoverRate;
+	protected Text crossoverRate;
 
-	//private Text maxCost;
+	//protected Text maxCost;
 
-	private Text textGivenInstances;
+	protected Text textGivenInstances;
 
-	private Button designDecisionsOnly;
+	protected Button designDecisionsOnly;
 
-	private Button optimisationOnly;
+	protected Button optimisationOnly;
 
-	private Text textDesignDecisionFile;
+	protected Text textDesignDecisionFile;
 
-	//private Text textQMLDefinitionFile;
+	//protected Text textQMLDefinitionFile;
 	
-	private Text textCacheInstances;
-	private Text textAllInstances;
-	private Text textArchiveInstances;
+	protected Text textCacheInstances;
+	protected Text textAllInstances;
+	protected Text textArchiveInstances;
 
-	private Button stopOnInitialFailure;
+	protected Button stopOnInitialFailure;
 
-	private Button outputAsEMF;
+	protected Button outputAsEMF;
 	
 	/**
 	 * Option to start a number of DSE runs on the same settings, to get several samples for the 
 	 * runs and be able to draw statistically valid conclusions.   
 	 */
-	private Text numberOfDSERuns; 
+	protected Text numberOfDSERuns; 
+	
+	protected Group radioGroup;
+	protected Button chooseGenericDof;
+	protected Button chooseSpecificDof;
+	protected List genericDofList;
+	protected List specificDofList;
+	protected Group genericChoices;
+	protected Group specificChoices;
+	
+	protected Metamodel metamodel;
 		
 	
 	//private QMLManager qmlManager;
@@ -188,7 +202,7 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		
 		final Group designDecisionOptions = new Group(container, SWT.NONE);
 		final GridLayout gldesignDecisionOptions = new GridLayout();
-		gldesignDecisionOptions.numColumns = 2;
+		gldesignDecisionOptions.numColumns = 3;
 		designDecisionOptions.setLayout(gldesignDecisionOptions);
 		designDecisionOptions.setText("Design decision options");
 		designDecisionOptions.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
@@ -210,6 +224,33 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		optimisationOnly.setEnabled(true);
 		optimisationOnly.setText("Only optimise, using pre-existing design decisions");
 		optimisationOnly.addSelectionListener(selectionListener);
+		
+		radioGroup = new Group(designDecisionOptions, SWT.RADIO);
+		final GridLayout glRadioGroup = new GridLayout();
+		glRadioGroup.numColumns = 2;
+		radioGroup.setLayout(glRadioGroup);
+		radioGroup.setText("degrees of freedom to apply");
+		radioGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+				true, false));
+		
+		genericChoices = new Group(radioGroup, SWT.BOLD | SWT.DEFAULT);
+		genericChoices.setText(DSEConstantsContainer.GENERICDOFS);
+		chooseGenericDof = new Button(genericChoices, SWT.RADIO);
+		chooseGenericDof.setEnabled(true);
+		chooseGenericDof.addSelectionListener(selectionListener);
+		genericDofList = new List(genericChoices, SWT.MULTI);
+		for (GenericDoF g : UniversalDoF.eINSTANCE.listGDoFs()) {
+			genericDofList.add(g.getName());
+		}
+		genericDofList.addSelectionListener(selectionListener);
+		
+		specificChoices = new Group(radioGroup, SWT.BOLD);
+		specificChoices.setText(DSEConstantsContainer.SPECIFICDOFS);
+		chooseSpecificDof = new Button(radioGroup, SWT.RADIO);
+		chooseSpecificDof.setEnabled(true);
+		chooseSpecificDof.addSelectionListener(selectionListener);
+		specificDofList = new List(specificChoices, SWT.MULTI);
+		specificDofList.addSelectionListener(selectionListener);
 		
 		/**
 		 * Add optional design decision input section
@@ -387,12 +428,22 @@ public class DSEOptionsTab extends FileNamesInputTab {
 					DSEConstantsContainer.DESIGN_DECISIONS_ONLY, false));
 		} catch (CoreException e) {
 			this.designDecisionsOnly.setSelection(false);
-	}
+		}
 		try {
 			this.optimisationOnly.setSelection(configuration.getAttribute(
 					DSEConstantsContainer.OPTIMISATION_ONLY, false));
 		} catch (CoreException e) {
 			this.optimisationOnly.setSelection(false);
+		}
+		try {
+			this.genericChoices.setEnabled(configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+		} catch (CoreException e){
+			this.genericChoices.setEnabled(true);
+		}
+		try {
+			this.specificChoices.setEnabled(!configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+		} catch (CoreException e){
+			this.specificChoices.setEnabled(false);
 		}
 		try {
 			this.textDesignDecisionFile.setText(configuration.getAttribute(
@@ -467,6 +518,18 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		configuration.setAttribute(
 				DSEConstantsContainer.OPTIMISATION_ONLY,
 				this.optimisationOnly.getSelection());
+		configuration.setAttribute(DSEConstantsContainer.USE_GENERICDOFS,
+				this.genericChoices.isEnabled());
+		ArrayList<String> stringList = new ArrayList<String>();
+		for (int i = 0; i < this.genericDofList.getSelection().length; i++) {
+			stringList.add(this.genericDofList.getSelection()[i]);
+		}
+		configuration.setAttribute(DSEConstantsContainer.GENERICDOFS, stringList);
+		stringList = new ArrayList<String>();
+		for (int i = 0; i < this.specificDofList.getSelection().length; i++) {
+			stringList.add(this.specificDofList.getSelection()[i]);
+		}
+		configuration.setAttribute(DSEConstantsContainer.SPECIFICDOFS, stringList);
 		configuration.setAttribute(
 				DSEConstantsContainer.DESIGN_DECISION_FILE, 
 				this.textDesignDecisionFile.getText());
@@ -561,6 +624,15 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		
 		if (this.designDecisionsOnly.getSelection() && this.optimisationOnly.getSelection()){
 			setErrorMessage("You cannot choose both \"design decisions only\" and \"optimisation only\", as nothing remains to be done.");
+			return false;
+		}
+		
+		if ((this.genericChoices.isEnabled() && this.genericDofList.getSelectionCount() == 0) || (this.specificChoices.isEnabled() && this.specificDofList.getSelectionCount() == 0)) {
+			setErrorMessage("You have to select at least one degree of freedom to enable proper optimisation.");
+			return false;
+		}
+		if (this.genericChoices.isEnabled() && this.specificChoices.isEnabled()) {
+			setErrorMessage("You cannot select generic and specific degrees at the same time.");
 			return false;
 		}
 		

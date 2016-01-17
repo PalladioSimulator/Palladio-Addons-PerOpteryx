@@ -301,10 +301,7 @@ public class DSEAnalysisMethodTab extends AbstractLaunchConfigurationTab {
 		} else {
 			configuration.setAttribute(DSEConstantsContainer.getAnalysisMethod(this.qualityAttributeId),
 					DSEConstantsContainer.NONE);
-		}
-		
-
-		
+		}		
 	}
 	
 	@Override

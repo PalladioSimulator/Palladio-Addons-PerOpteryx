@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.bayesnets.samplers.BOAsampler;
 import de.uka.ipd.sdq.dsexplore.bayesnets.searchers.ChowLiuTree;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Binary;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
@@ -64,24 +65,19 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		}
 		// Now create a 2-D matrix using the info in FBGenotypeList.
 		// Each row corresponds to an individual
-		Integer[][] BinaryGenes = new Integer[FBGenotypeList.size()][FBGenotypeList.get(0).getBinaryGenotype().size()];
+		Binary[][] BinaryGenes = new Binary[FBGenotypeList.size()][FBGenotypeList.get(0).getBinaryGenotype().size()];
 		for(int i=0;i<FBGenotypeList.size();i++){
 			FBGenotypeList.get(i).getBinaryGenotype().toArray(BinaryGenes[i]);
 		}
-		// Finally convert BinaryGenes from Integer[][] to int[][]
-		int[][] BinaryGenesint = new int[BinaryGenes.length][BinaryGenes[0].length];
-		for(int i=0;i<BinaryGenes.length;i++){
-			for(int j=0;j< BinaryGenes[0].length;j++){
-				BinaryGenesint[i][j] = (int) BinaryGenes[i][j];
-			}
-		}
-		int[][] Offspring = new int[100][BinaryGenesint[0].length];
-		Offspring = getSampledGenomes(BinaryGenesint,FBGenotypeList.get(0).getBitsPerDegree());
+		
+		Binary[][] Offspring = new Binary[100][BinaryGenes[0].length];
+		Offspring = getSampledGenomes(BinaryGenes, FBGenotypeList.get(0).getBitsPerDegree());
+		
 		// Got the Offspring !!!
 		// Now convert back to List of FBGenotype objects
 		List<FinalBinaryGenotype> FBGenotypeOffspringList = new ArrayList<FinalBinaryGenotype>();
 		for(int i=0;i<Offspring.length;i++){
-			List<Integer> GeneratedOffspringList = new ArrayList<Integer>();
+			List<Binary> GeneratedOffspringList = new ArrayList<Binary>();
 			for(int j=0;j<Offspring[0].length;j++){
 				GeneratedOffspringList.add(Offspring[i][j]);
 			}
@@ -180,19 +176,27 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 	}
 	*/
 	
-	/** A method to process on the data (which consists of 1s and 0s)
-	 * and sample new data from the learned 
+	/** A method to process on the data and sample new data from the learned 
 	 * Bayesian Structure. This method first constructs a Bayesian
 	 * Network out of the input data and then samples new data out of it
 	 * and gives it as an output.
 	*/
-	private int[][] getSampledGenomes(int[][] currentGenomes, List<Integer> bitsPerDegree){
+	private Binary[][] getSampledGenomes(Binary[][] currentGenomes, List<Integer> bitsPerDegree){
 		logger.info("BinaryBayesOperator.getSampledGenomes: Entering ...");
+		
+		// GDOF author Ferdinand: dont want to modify bayesnets code -> translate table of Binary values to table of of 1s and 0s
+		int[][] integerMatrix = new int[currentGenomes.length][currentGenomes[0].length];
+		for(int i=0;i<currentGenomes.length;i++){
+			for(int j=0;j< currentGenomes[0].length;j++){
+				integerMatrix[i][j] = (currentGenomes[i][j] == Binary.ACTIVE) ? 1 : 0;
+			}
+		}
+		
 		// Part1: Learn Network Structure
 		//<--------------------------------------------------------------------->
 		//HillClimber hc = new HillClimber();
 		//int[][] Graph = hc.search(currentGenomes, 5); // 2nd argument is the maximum-number-of-parents-any-node-can-have constraint.
-		ChowLiuTree clt = new ChowLiuTree(currentGenomes);
+		ChowLiuTree clt = new ChowLiuTree(integerMatrix);
 		int[][] Graph = clt.search();
 		//<--------------------------------------------------------------------->
 		
@@ -232,11 +236,20 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 		
 		// Part4: Sample new data
 		//<--------------------------------------------------------------------->
-		BOAsampler boasampler = new BOAsampler(Graph, currentGenomes);
+		BOAsampler boasampler = new BOAsampler(Graph, integerMatrix);
 		//CustomSampler cSampler = new CustomSampler(Graph, currentGenomes, bitsPerDegree);
-		int[][] returnmatrix = boasampler.sample(100);
+		int[][] integerResult = boasampler.sample(100);
 		logger.info("BinaryBayesOperator.crossover: Returning ...");
-		return returnmatrix;
+		
+		//dont want to modify bayesnets code -> retranslate table of of 1s and 0s to table of Binary values
+		Binary[][] returnMatrix = new Binary[integerResult.length][integerResult[0].length];
+		for(int i=0;i<integerResult.length;i++){
+			for(int j=0;j< integerResult[0].length;j++){
+				returnMatrix[i][j] = (integerResult[i][j] == 1) ? Binary.ACTIVE : Binary.INACTIVE;
+			}
+		}
+		
+		return returnMatrix;
 	}
 	
 }

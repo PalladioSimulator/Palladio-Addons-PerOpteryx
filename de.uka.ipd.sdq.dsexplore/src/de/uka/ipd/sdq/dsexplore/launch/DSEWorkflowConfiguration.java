@@ -34,9 +34,6 @@ import genericdesigndecision.universalDoF.SpecificDoF;
  */
 public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration implements Cloneable {
 	
-	public static final String INPUT_METAMODEL = "Meta-model of input model";
-	public static final String USE_GENERICDOFS = "Use generic DoFs";
-	
 	/**
 	 * Specifies which metamodel this configuration belongs to.
 	 */

@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.opt4j.core.Phenotype;
 import org.opt4j.start.Opt4JTask;
 
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
@@ -51,7 +52,7 @@ public abstract class AGenotypeReader {
      * found in the file.
      * @param blackboard
      */
-    public List<DesignDecisionGenotype> getGenotypes(final String filename, final ADSEProblem dseProblem, final DSEEvaluator evaluator)
+    public List<DesignDecisionGenotype> getGenotypes(final String filename, final ADSEProblem dseProblem, final DSEEvaluator<? extends Phenotype> evaluator)
             throws CoreException {
 
         if ("".equals(filename)){
@@ -91,7 +92,7 @@ public abstract class AGenotypeReader {
      * @return
      * @throws CoreException
      */
-    public List<DSEIndividual> getIndividuals(final String filename, final ADSEProblem dseProblem, final DSEEvaluator evaluator) throws CoreException{
+    public List<DSEIndividual> getIndividuals(final String filename, final ADSEProblem dseProblem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException{
 
         if (filename.contains("csv")) {
             try {
@@ -125,7 +126,7 @@ public abstract class AGenotypeReader {
      * @return
      * @throws CoreException
      */
-    public List<DSEObjectives> getObjectives (final String filename, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException{
+    public List<DSEObjectives> getObjectives (final String filename, final ADSEProblem problem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException{
 
         try {
 
@@ -170,7 +171,7 @@ public abstract class AGenotypeReader {
      * @throws CoreException
      * @throws IOException
      */
-    protected abstract List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException;
+    protected abstract List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException, IOException;
 
-    protected abstract List<DSEObjectives> readInPrettyPrintedObjectives(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException;
+    protected abstract List<DSEObjectives> readInPrettyPrintedObjectives(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException, IOException;
 }
