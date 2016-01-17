@@ -73,12 +73,6 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UniversalDoFPackage.GENERIC_DO_F: {
-				GenericDoF genericDoF = (GenericDoF)theEObject;
-				T result = caseGenericDoF(genericDoF);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION: {
 				AMetamodelDescription aMetamodelDescription = (AMetamodelDescription)theEObject;
 				T result = caseAMetamodelDescription(aMetamodelDescription);
@@ -90,6 +84,18 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 			case UniversalDoFPackage.UNIVERSAL_DO_F: {
 				UniversalDoF universalDoF = (UniversalDoF)theEObject;
 				T result = caseUniversalDoF(universalDoF);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UniversalDoFPackage.GENERIC_DO_F: {
+				GenericDoF genericDoF = (GenericDoF)theEObject;
+				T result = caseGenericDoF(genericDoF);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UniversalDoFPackage.SPECIFIC_DO_F: {
+				SpecificDoF specificDoF = (SpecificDoF)theEObject;
+				T result = caseSpecificDoF(specificDoF);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,21 +115,6 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGDoFRepository(GDoFRepository object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Do F</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Do F</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGenericDoF(GenericDoF object) {
 		return null;
 	}
 
@@ -154,6 +145,36 @@ public class UniversalDoFSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUniversalDoF(UniversalDoF object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Do F</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Do F</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericDoF(GenericDoF object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Specific Do F</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Specific Do F</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecificDoF(SpecificDoF object) {
 		return null;
 	}
 

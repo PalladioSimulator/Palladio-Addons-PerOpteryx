@@ -73,16 +73,20 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 				return createGDoFRepositoryAdapter();
 			}
 			@Override
-			public Adapter caseGenericDoF(GenericDoF object) {
-				return createGenericDoFAdapter();
-			}
-			@Override
 			public Adapter caseAMetamodelDescription(AMetamodelDescription object) {
 				return createAMetamodelDescriptionAdapter();
 			}
 			@Override
 			public Adapter caseUniversalDoF(UniversalDoF object) {
 				return createUniversalDoFAdapter();
+			}
+			@Override
+			public Adapter caseGenericDoF(GenericDoF object) {
+				return createGenericDoFAdapter();
+			}
+			@Override
+			public Adapter caseSpecificDoF(SpecificDoF object) {
+				return createSpecificDoFAdapter();
 			}
 			@Override
 			public Adapter caseGenomeToCandidateModelTransformation(GenomeToCandidateModelTransformation object) {
@@ -127,20 +131,6 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.GenericDoF <em>Generic Do F</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see genericdesigndecision.universalDoF.GenericDoF
-	 * @generated
-	 */
-	public Adapter createGenericDoFAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -165,6 +155,34 @@ public class UniversalDoFAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUniversalDoFAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.GenericDoF <em>Generic Do F</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.universalDoF.GenericDoF
+	 * @generated
+	 */
+	public Adapter createGenericDoFAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.SpecificDoF <em>Specific Do F</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see genericdesigndecision.universalDoF.SpecificDoF
+	 * @generated
+	 */
+	public Adapter createSpecificDoFAdapter() {
 		return null;
 	}
 

@@ -57,8 +57,9 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case UniversalDoFPackage.GDO_FREPOSITORY: return createGDoFRepository();
-			case UniversalDoFPackage.GENERIC_DO_F: return createGenericDoF();
 			case UniversalDoFPackage.UNIVERSAL_DO_F: return createUniversalDoF();
+			case UniversalDoFPackage.GENERIC_DO_F: return createGenericDoF();
+			case UniversalDoFPackage.SPECIFIC_DO_F: return createSpecificDoF();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -117,20 +118,30 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public UniversalDoF createUniversalDoF() {
+		return UniversalDoFImpl.getUniversalDoF();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GenericDoF createGenericDoF() {
 		GenericDoFImpl genericDoF = new GenericDoFImpl();
 		return genericDoF;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public UniversalDoF createUniversalDoF() {
-		return UniversalDoFImpl.getUniversalDoF();
+	public SpecificDoF createSpecificDoF() {
+		SpecificDoFImpl specificDoF = new SpecificDoFImpl();
+		return specificDoF;
 	}
 
 	/**

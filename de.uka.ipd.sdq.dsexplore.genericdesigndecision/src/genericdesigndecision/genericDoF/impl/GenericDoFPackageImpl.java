@@ -414,8 +414,26 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDoFRepository_Dofs() {
+	public EReference getDoFRepository_Sdofs() {
 		return (EReference)doFRepositoryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDoFRepository__DeleteSDoF__SpecificDoF() {
+		return doFRepositoryEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDoFRepository__GetSDoF__String() {
+		return doFRepositoryEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -834,7 +852,9 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		selectionRuleEClass = createEClass(SELECTION_RULE);
 
 		doFRepositoryEClass = createEClass(DO_FREPOSITORY);
-		createEReference(doFRepositoryEClass, DO_FREPOSITORY__DOFS);
+		createEReference(doFRepositoryEClass, DO_FREPOSITORY__SDOFS);
+		createEOperation(doFRepositoryEClass, DO_FREPOSITORY___DELETE_SDO_F__SPECIFICDOF);
+		createEOperation(doFRepositoryEClass, DO_FREPOSITORY___GET_SDO_F__STRING);
 
 		instanceSelectionRuleEClass = createEClass(INSTANCE_SELECTION_RULE);
 		createEReference(instanceSelectionRuleEClass, INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE);
@@ -918,6 +938,7 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		UniversalDoFPackage theUniversalDoFPackage = (UniversalDoFPackage)EPackage.Registry.INSTANCE.getEPackage(UniversalDoFPackage.eNS_URI);
 		GenericdesigndecisionPackage theGenericdesigndecisionPackage = (GenericdesigndecisionPackage)EPackage.Registry.INSTANCE.getEPackage(GenericdesigndecisionPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
@@ -970,7 +991,13 @@ public class GenericDoFPackageImpl extends EPackageImpl implements GenericDoFPac
 		initEClass(selectionRuleEClass, SelectionRule.class, "SelectionRule", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(doFRepositoryEClass, DoFRepository.class, "DoFRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDoFRepository_Dofs(), this.getADegreeOfFreedom(), null, "dofs", null, 0, -1, DoFRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDoFRepository_Sdofs(), theUniversalDoFPackage.getSpecificDoF(), null, "sdofs", null, 0, -1, DoFRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = initEOperation(getDoFRepository__DeleteSDoF__SpecificDoF(), ecorePackage.getEBoolean(), "deleteSDoF", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theUniversalDoFPackage.getSpecificDoF(), "sdof", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getDoFRepository__GetSDoF__String(), theUniversalDoFPackage.getSpecificDoF(), "getSDoF", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(instanceSelectionRuleEClass, InstanceSelectionRule.class, "InstanceSelectionRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstanceSelectionRule_ContextInstance(), this.getChangeableElementDescription(), null, "contextInstance", null, 0, 1, InstanceSelectionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

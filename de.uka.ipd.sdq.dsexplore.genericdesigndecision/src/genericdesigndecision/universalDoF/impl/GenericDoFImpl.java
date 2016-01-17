@@ -5,8 +5,10 @@ package genericdesigndecision.universalDoF.impl;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -94,6 +96,15 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean equals(GenericDoF gdof) {
+		return this.name.equalsIgnoreCase(gdof.getName());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -147,6 +158,20 @@ public class GenericDoFImpl extends MinimalEObjectImpl.Container implements Gene
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case UniversalDoFPackage.GENERIC_DO_F___EQUALS__GENERICDOF:
+				return equals((GenericDoF)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,6 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  * <ul>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getGdofrepository <em>Gdofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getSupportedMetamodels <em>Supported Metamodels</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs <em>Prepared Do Fs</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getTarget <em>Target</em>}</li>
  * </ul>
  *
@@ -31,7 +29,9 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  * @generated
  */
 public interface UniversalDoF extends EObject {
-	
+	/**
+	 * the singleton instance of the class UniversalDoF
+	 */
 	UniversalDoF eINSTANCE = genericdesigndecision.universalDoF.impl.UniversalDoFImpl.getUniversalDoF();
 	
 	/**
@@ -77,32 +77,6 @@ public interface UniversalDoF extends EObject {
 	EList<AMetamodelDescription> getSupportedMetamodels();
 
 	/**
-	 * Returns the value of the '<em><b>Prepared Do Fs</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Prepared Do Fs</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prepared Do Fs</em>' reference.
-	 * @see #setPreparedDoFs(ADegreeOfFreedom)
-	 * @see genericdesigndecision.universalDoF.UniversalDoFPackage#getUniversalDoF_PreparedDoFs()
-	 * @model
-	 * @generated
-	 */
-	ADegreeOfFreedom getPreparedDoFs();
-
-	/**
-	 * Sets the value of the '{@link genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs <em>Prepared Do Fs</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Prepared Do Fs</em>' reference.
-	 * @see #getPreparedDoFs()
-	 * @generated
-	 */
-	void setPreparedDoFs(ADegreeOfFreedom value);
-
-	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -142,15 +116,7 @@ public interface UniversalDoF extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<GenericDoF> listGDoFs();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
-	 * @generated
-	 */
-	boolean newGDoF(String gdofName);
+	boolean newGDoF(String name);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,10 +129,18 @@ public interface UniversalDoF extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model gdofNameDataType="org.eclipse.uml2.types.String"
+	 * @model
 	 * @generated
 	 */
-	GenericDoF getGDoF(String gdofName);
+	EList<GenericDoF> listGDoFs();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	GenericDoF getGDoF(String name);
 
 	ADSEProblem createDSEProblem(DSEWorkflowConfiguration dseConfig, ResourceSetPartition modelPartition);
 

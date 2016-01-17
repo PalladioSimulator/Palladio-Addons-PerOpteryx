@@ -88,13 +88,13 @@ public interface UniversalDoFPackage extends EPackage {
 	int GDO_FREPOSITORY_FEATURE_COUNT = 1;
 
 	/**
-	 * The operation id for the '<em>Add GDo F</em>' operation.
+	 * The operation id for the '<em>New GDo F</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GDO_FREPOSITORY___ADD_GDO_F__STRING = 0;
+	int GDO_FREPOSITORY___NEW_GDO_F__STRING = 0;
 
 	/**
 	 * The operation id for the '<em>Delete GDo F</em>' operation.
@@ -124,43 +124,6 @@ public interface UniversalDoFPackage extends EPackage {
 	int GDO_FREPOSITORY_OPERATION_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl <em>Generic Do F</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.impl.GenericDoFImpl
-	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoF()
-	 * @generated
-	 */
-	int GENERIC_DO_F = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DO_F__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Generic Do F</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DO_F_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Generic Do F</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_DO_F_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl <em>AMetamodel Description</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,7 +131,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getAMetamodelDescription()
 	 * @generated
 	 */
-	int AMETAMODEL_DESCRIPTION = 2;
+	int AMETAMODEL_DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Dofrepository</b></em>' reference.
@@ -216,13 +179,40 @@ public interface UniversalDoFPackage extends EPackage {
 	int AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Delete SDo F</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AMETAMODEL_DESCRIPTION___DELETE_SDO_F__SPECIFICDOF = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>List SDo Fs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AMETAMODEL_DESCRIPTION___LIST_SDO_FS = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get SDo F</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AMETAMODEL_DESCRIPTION___GET_SDO_F__STRING = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>AMetamodel Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AMETAMODEL_DESCRIPTION_OPERATION_COUNT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 1;
+	int AMETAMODEL_DESCRIPTION_OPERATION_COUNT = GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl <em>Universal Do F</em>}' class.
@@ -232,7 +222,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getUniversalDoF()
 	 * @generated
 	 */
-	int UNIVERSAL_DO_F = 3;
+	int UNIVERSAL_DO_F = 2;
 
 	/**
 	 * The feature id for the '<em><b>Gdofrepository</b></em>' reference.
@@ -253,22 +243,13 @@ public interface UniversalDoFPackage extends EPackage {
 	int UNIVERSAL_DO_F__SUPPORTED_METAMODELS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Prepared Do Fs</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIVERSAL_DO_F__PREPARED_DO_FS = 2;
-
-	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIVERSAL_DO_F__TARGET = 3;
+	int UNIVERSAL_DO_F__TARGET = 2;
 
 	/**
 	 * The number of structural features of the '<em>Universal Do F</em>' class.
@@ -277,7 +258,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIVERSAL_DO_F_FEATURE_COUNT = 4;
+	int UNIVERSAL_DO_F_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Evaluate Metamodel</em>' operation.
@@ -289,22 +270,13 @@ public interface UniversalDoFPackage extends EPackage {
 	int UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT = 0;
 
 	/**
-	 * The operation id for the '<em>List GDo Fs</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIVERSAL_DO_F___LIST_GDO_FS = 1;
-
-	/**
 	 * The operation id for the '<em>New GDo F</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIVERSAL_DO_F___NEW_GDO_F__STRING = 2;
+	int UNIVERSAL_DO_F___NEW_GDO_F__STRING = 1;
 
 	/**
 	 * The operation id for the '<em>Delete GDo F</em>' operation.
@@ -313,7 +285,16 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIVERSAL_DO_F___DELETE_GDO_F__GENERICDOF = 3;
+	int UNIVERSAL_DO_F___DELETE_GDO_F__GENERICDOF = 2;
+
+	/**
+	 * The operation id for the '<em>List GDo Fs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSAL_DO_F___LIST_GDO_FS = 3;
 
 	/**
 	 * The operation id for the '<em>Get GDo F</em>' operation.
@@ -334,6 +315,98 @@ public interface UniversalDoFPackage extends EPackage {
 	int UNIVERSAL_DO_F_OPERATION_COUNT = 5;
 
 	/**
+	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl <em>Generic Do F</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.universalDoF.impl.GenericDoFImpl
+	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoF()
+	 * @generated
+	 */
+	int GENERIC_DO_F = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DO_F__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Generic Do F</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DO_F_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Equals</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DO_F___EQUALS__GENERICDOF = 0;
+
+	/**
+	 * The number of operations of the '<em>Generic Do F</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_DO_F_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.SpecificDoFImpl <em>Specific Do F</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.universalDoF.impl.SpecificDoFImpl
+	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getSpecificDoF()
+	 * @generated
+	 */
+	int SPECIFIC_DO_F = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DO_F__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Specific Do F</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DO_F_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Equals</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DO_F___EQUALS__SPECIFICDOF = 0;
+
+	/**
+	 * The number of operations of the '<em>Specific Do F</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFIC_DO_F_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,7 +414,7 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getMetamodel()
 	 * @generated
 	 */
-	int METAMODEL = 4;
+	int METAMODEL = 5;
 
 
 	/**
@@ -366,14 +439,14 @@ public interface UniversalDoFPackage extends EPackage {
 	EReference getGDoFRepository_Gdofs();
 
 	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.GDoFRepository#addGDoF(java.lang.String) <em>Add GDo F</em>}' operation.
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.GDoFRepository#newGDoF(java.lang.String) <em>New GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Add GDo F</em>' operation.
-	 * @see genericdesigndecision.universalDoF.GDoFRepository#addGDoF(java.lang.String)
+	 * @return the meta object for the '<em>New GDo F</em>' operation.
+	 * @see genericdesigndecision.universalDoF.GDoFRepository#newGDoF(java.lang.String)
 	 * @generated
 	 */
-	EOperation getGDoFRepository__AddGDoF__String();
+	EOperation getGDoFRepository__NewGDoF__String();
 
 	/**
 	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Delete GDo F</em>}' operation.
@@ -394,27 +467,6 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGDoFRepository__GetGDoF__String();
-
-	/**
-	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.GenericDoF <em>Generic Do F</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Generic Do F</em>'.
-	 * @see genericdesigndecision.universalDoF.GenericDoF
-	 * @generated
-	 */
-	EClass getGenericDoF();
-
-	/**
-	 * Returns the meta object for the attribute '{@link genericdesigndecision.universalDoF.GenericDoF#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see genericdesigndecision.universalDoF.GenericDoF#getName()
-	 * @see #getGenericDoF()
-	 * @generated
-	 */
-	EAttribute getGenericDoF_Name();
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.AMetamodelDescription <em>AMetamodel Description</em>}'.
@@ -470,6 +522,36 @@ public interface UniversalDoFPackage extends EPackage {
 	EOperation getAMetamodelDescription__EvaluateMetamodel__EObject();
 
 	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF) <em>Delete SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete SDo F</em>' operation.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF)
+	 * @generated
+	 */
+	EOperation getAMetamodelDescription__DeleteSDoF__SpecificDoF();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#listSDoFs() <em>List SDo Fs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>List SDo Fs</em>' operation.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#listSDoFs()
+	 * @generated
+	 */
+	EOperation getAMetamodelDescription__ListSDoFs();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.AMetamodelDescription#getSDoF(java.lang.String) <em>Get SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get SDo F</em>' operation.
+	 * @see genericdesigndecision.universalDoF.AMetamodelDescription#getSDoF(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAMetamodelDescription__GetSDoF__String();
+
+	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.UniversalDoF <em>Universal Do F</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -502,17 +584,6 @@ public interface UniversalDoFPackage extends EPackage {
 	EReference getUniversalDoF_SupportedMetamodels();
 
 	/**
-	 * Returns the meta object for the reference '{@link genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs <em>Prepared Do Fs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Prepared Do Fs</em>'.
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#getPreparedDoFs()
-	 * @see #getUniversalDoF()
-	 * @generated
-	 */
-	EReference getUniversalDoF_PreparedDoFs();
-
-	/**
 	 * Returns the meta object for the reference '{@link genericdesigndecision.universalDoF.UniversalDoF#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,16 +603,6 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getUniversalDoF__EvaluateMetamodel__EObject();
-
-	/**
-	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#listGDoFs() <em>List GDo Fs</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>List GDo Fs</em>' operation.
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#listGDoFs()
-	 * @generated
-	 */
-	EOperation getUniversalDoF__ListGDoFs();
 
 	/**
 	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#newGDoF(java.lang.String) <em>New GDo F</em>}' operation.
@@ -564,6 +625,16 @@ public interface UniversalDoFPackage extends EPackage {
 	EOperation getUniversalDoF__DeleteGDoF__GenericDoF();
 
 	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#listGDoFs() <em>List GDo Fs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>List GDo Fs</em>' operation.
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#listGDoFs()
+	 * @generated
+	 */
+	EOperation getUniversalDoF__ListGDoFs();
+
+	/**
 	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.UniversalDoF#getGDoF(java.lang.String) <em>Get GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,6 +643,68 @@ public interface UniversalDoFPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getUniversalDoF__GetGDoF__String();
+
+	/**
+	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.GenericDoF <em>Generic Do F</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Do F</em>'.
+	 * @see genericdesigndecision.universalDoF.GenericDoF
+	 * @generated
+	 */
+	EClass getGenericDoF();
+
+	/**
+	 * Returns the meta object for the attribute '{@link genericdesigndecision.universalDoF.GenericDoF#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see genericdesigndecision.universalDoF.GenericDoF#getName()
+	 * @see #getGenericDoF()
+	 * @generated
+	 */
+	EAttribute getGenericDoF_Name();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.GenericDoF#equals(genericdesigndecision.universalDoF.GenericDoF) <em>Equals</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Equals</em>' operation.
+	 * @see genericdesigndecision.universalDoF.GenericDoF#equals(genericdesigndecision.universalDoF.GenericDoF)
+	 * @generated
+	 */
+	EOperation getGenericDoF__Equals__GenericDoF();
+
+	/**
+	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.SpecificDoF <em>Specific Do F</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Specific Do F</em>'.
+	 * @see genericdesigndecision.universalDoF.SpecificDoF
+	 * @generated
+	 */
+	EClass getSpecificDoF();
+
+	/**
+	 * Returns the meta object for the attribute '{@link genericdesigndecision.universalDoF.SpecificDoF#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see genericdesigndecision.universalDoF.SpecificDoF#getName()
+	 * @see #getSpecificDoF()
+	 * @generated
+	 */
+	EAttribute getSpecificDoF_Name();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.universalDoF.SpecificDoF#equals(genericdesigndecision.universalDoF.SpecificDoF) <em>Equals</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Equals</em>' operation.
+	 * @see genericdesigndecision.universalDoF.SpecificDoF#equals(genericdesigndecision.universalDoF.SpecificDoF)
+	 * @generated
+	 */
+	EOperation getSpecificDoF__Equals__SpecificDoF();
 
 	/**
 	 * Returns the meta object for enum '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}'.
@@ -625,12 +758,12 @@ public interface UniversalDoFPackage extends EPackage {
 		EReference GDO_FREPOSITORY__GDOFS = eINSTANCE.getGDoFRepository_Gdofs();
 
 		/**
-		 * The meta object literal for the '<em><b>Add GDo F</b></em>' operation.
+		 * The meta object literal for the '<em><b>New GDo F</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation GDO_FREPOSITORY___ADD_GDO_F__STRING = eINSTANCE.getGDoFRepository__AddGDoF__String();
+		EOperation GDO_FREPOSITORY___NEW_GDO_F__STRING = eINSTANCE.getGDoFRepository__NewGDoF__String();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete GDo F</b></em>' operation.
@@ -647,24 +780,6 @@ public interface UniversalDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GDO_FREPOSITORY___GET_GDO_F__STRING = eINSTANCE.getGDoFRepository__GetGDoF__String();
-
-		/**
-		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl <em>Generic Do F</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see genericdesigndecision.universalDoF.impl.GenericDoFImpl
-		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoF()
-		 * @generated
-		 */
-		EClass GENERIC_DO_F = eINSTANCE.getGenericDoF();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GENERIC_DO_F__NAME = eINSTANCE.getGenericDoF_Name();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl <em>AMetamodel Description</em>}' class.
@@ -709,6 +824,30 @@ public interface UniversalDoFPackage extends EPackage {
 		EOperation AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT = eINSTANCE.getAMetamodelDescription__EvaluateMetamodel__EObject();
 
 		/**
+		 * The meta object literal for the '<em><b>Delete SDo F</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AMETAMODEL_DESCRIPTION___DELETE_SDO_F__SPECIFICDOF = eINSTANCE.getAMetamodelDescription__DeleteSDoF__SpecificDoF();
+
+		/**
+		 * The meta object literal for the '<em><b>List SDo Fs</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AMETAMODEL_DESCRIPTION___LIST_SDO_FS = eINSTANCE.getAMetamodelDescription__ListSDoFs();
+
+		/**
+		 * The meta object literal for the '<em><b>Get SDo F</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AMETAMODEL_DESCRIPTION___GET_SDO_F__STRING = eINSTANCE.getAMetamodelDescription__GetSDoF__String();
+
+		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl <em>Universal Do F</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -735,14 +874,6 @@ public interface UniversalDoFPackage extends EPackage {
 		EReference UNIVERSAL_DO_F__SUPPORTED_METAMODELS = eINSTANCE.getUniversalDoF_SupportedMetamodels();
 
 		/**
-		 * The meta object literal for the '<em><b>Prepared Do Fs</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNIVERSAL_DO_F__PREPARED_DO_FS = eINSTANCE.getUniversalDoF_PreparedDoFs();
-
-		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -757,14 +888,6 @@ public interface UniversalDoFPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT = eINSTANCE.getUniversalDoF__EvaluateMetamodel__EObject();
-
-		/**
-		 * The meta object literal for the '<em><b>List GDo Fs</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation UNIVERSAL_DO_F___LIST_GDO_FS = eINSTANCE.getUniversalDoF__ListGDoFs();
 
 		/**
 		 * The meta object literal for the '<em><b>New GDo F</b></em>' operation.
@@ -783,12 +906,72 @@ public interface UniversalDoFPackage extends EPackage {
 		EOperation UNIVERSAL_DO_F___DELETE_GDO_F__GENERICDOF = eINSTANCE.getUniversalDoF__DeleteGDoF__GenericDoF();
 
 		/**
+		 * The meta object literal for the '<em><b>List GDo Fs</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation UNIVERSAL_DO_F___LIST_GDO_FS = eINSTANCE.getUniversalDoF__ListGDoFs();
+
+		/**
 		 * The meta object literal for the '<em><b>Get GDo F</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation UNIVERSAL_DO_F___GET_GDO_F__STRING = eINSTANCE.getUniversalDoF__GetGDoF__String();
+
+		/**
+		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.GenericDoFImpl <em>Generic Do F</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see genericdesigndecision.universalDoF.impl.GenericDoFImpl
+		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getGenericDoF()
+		 * @generated
+		 */
+		EClass GENERIC_DO_F = eINSTANCE.getGenericDoF();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_DO_F__NAME = eINSTANCE.getGenericDoF_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Equals</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_DO_F___EQUALS__GENERICDOF = eINSTANCE.getGenericDoF__Equals__GenericDoF();
+
+		/**
+		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.SpecificDoFImpl <em>Specific Do F</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see genericdesigndecision.universalDoF.impl.SpecificDoFImpl
+		 * @see genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl#getSpecificDoF()
+		 * @generated
+		 */
+		EClass SPECIFIC_DO_F = eINSTANCE.getSpecificDoF();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIFIC_DO_F__NAME = eINSTANCE.getSpecificDoF_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Equals</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SPECIFIC_DO_F___EQUALS__SPECIFICDOF = eINSTANCE.getSpecificDoF__Equals__SpecificDoF();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.Metamodel <em>Metamodel</em>}' enum.

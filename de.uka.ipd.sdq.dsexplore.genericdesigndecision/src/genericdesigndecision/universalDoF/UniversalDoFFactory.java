@@ -35,15 +35,6 @@ public interface UniversalDoFFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Generic Do F</em>'.
-	 * @generated
-	 */
-	GenericDoF createGenericDoF();
-
-	/**
-	 * Returns a new object of class '<em>Generic Do F</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Do F</em>'.
 	 * @generated NOT
 	 */
 	GenericDoF createGenericDoF(String gdofName);
@@ -56,6 +47,24 @@ public interface UniversalDoFFactory extends EFactory {
 	 * @generated
 	 */
 	UniversalDoF createUniversalDoF();
+
+	/**
+	 * Returns a new object of class '<em>Generic Do F</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Do F</em>'.
+	 * @generated
+	 */
+	GenericDoF createGenericDoF();
+
+	/**
+	 * Returns a new object of class '<em>Specific Do F</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specific Do F</em>'.
+	 * @generated
+	 */
+	SpecificDoF createSpecificDoF();
 
 	/**
 	 * Returns the package supported by this factory.

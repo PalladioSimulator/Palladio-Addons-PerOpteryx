@@ -13,8 +13,10 @@ import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
 import genericdesigndecision.genericDoF.DoFRepository;
+import genericdesigndecision.genericDoF.GenericDoFFactory;
 import genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GenericDoF;
@@ -109,6 +111,8 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
+		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
+		this.gdof_to_dof = new HashMap<GenericDoF, SpecificDoF>();
 	}
 	
 	/**
@@ -302,12 +306,42 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Metamodel evaluateMetamodel(EObject model) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
+		// currently not needed since metamodel of input model is already specified in the configuration by the GUI
 		throw new UnsupportedOperationException();
+	}
+
+	public boolean newSDoF(String name, Class<? extends ADegreeOfFreedom> degree) {
+		return this.dofrepository.newSDoF(name, degree);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean deleteSDoF(SpecificDoF sdof) {
+		return this.dofrepository.deleteSDoF(sdof);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<SpecificDoF> listSDoFs() {
+		return this.dofrepository.getSdofs();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SpecificDoF getSDoF(String name) {
+		return this.dofrepository.getSDoF(name);
 	}
 
 	/**
@@ -422,6 +456,12 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 		switch (operationID) {
 			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___EVALUATE_METAMODEL__EOBJECT:
 				return evaluateMetamodel((EObject)arguments.get(0));
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___DELETE_SDO_F__SPECIFICDOF:
+				return deleteSDoF((SpecificDoF)arguments.get(0));
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___LIST_SDO_FS:
+				return listSDoFs();
+			case UniversalDoFPackage.AMETAMODEL_DESCRIPTION___GET_SDO_F__STRING:
+				return getSDoF((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

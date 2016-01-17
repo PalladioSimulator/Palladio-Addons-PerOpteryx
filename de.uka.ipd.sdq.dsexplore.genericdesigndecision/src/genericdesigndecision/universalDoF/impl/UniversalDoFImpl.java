@@ -30,7 +30,6 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +41,6 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  * <ul>
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getGdofrepository <em>Gdofrepository</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getSupportedMetamodels <em>Supported Metamodels</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getPreparedDoFs <em>Prepared Do Fs</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.impl.UniversalDoFImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
@@ -68,16 +66,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @ordered
 	 */
 	protected EList<AMetamodelDescription> supportedMetamodels;
-
-	/**
-	 * The cached value of the '{@link #getPreparedDoFs() <em>Prepared Do Fs</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPreparedDoFs()
-	 * @generated
-	 * @ordered
-	 */
-	protected ADegreeOfFreedom preparedDoFs;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -168,44 +156,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ADegreeOfFreedom getPreparedDoFs() {
-		if (preparedDoFs != null && preparedDoFs.eIsProxy()) {
-			InternalEObject oldPreparedDoFs = (InternalEObject)preparedDoFs;
-			preparedDoFs = (ADegreeOfFreedom)eResolveProxy(oldPreparedDoFs);
-			if (preparedDoFs != oldPreparedDoFs) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS, oldPreparedDoFs, preparedDoFs));
-			}
-		}
-		return preparedDoFs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ADegreeOfFreedom basicGetPreparedDoFs() {
-		return preparedDoFs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPreparedDoFs(ADegreeOfFreedom newPreparedDoFs) {
-		ADegreeOfFreedom oldPreparedDoFs = preparedDoFs;
-		preparedDoFs = newPreparedDoFs;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS, oldPreparedDoFs, preparedDoFs));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ADSEProblem getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
@@ -271,7 +221,18 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @generated NOT
 	 */
 	public boolean newGDoF(String gdofName) {
-		return this.gdofrepository.addGDoF(gdofName);
+		boolean result = this.gdofrepository.newGDoF(gdofName);
+		
+//		this option is currently not necessary since gdof to dof mappings are specified in constructor code and not by the user through the GUI
+//		GenericDoF g = this.getGDoF(gdofName);
+//		if(g == null) return false;
+//		
+//		for(AMetamodelDescription mm : getSupportedMetamodels()) {
+//			result = result && mm.newGDoFMapping(g);
+//		}
+		
+		return result;
+		
 	}
 
 	/**
@@ -280,7 +241,15 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @generated NOT
 	 */
 	public boolean deleteGDoF(GenericDoF gdof) {
-		return this.gdofrepository.deleteGDoF(gdof);
+		boolean result = true;
+		
+//		this option is currently not necessary since gdof to dof mappings are specified in constructor code and not by the user through the GUI
+//		for(AMetamodelDescription mm : getSupportedMetamodels()) {
+//			result = result && mm.deleteGDoFMapping(gdof);
+//		}
+		
+		result = result && this.gdofrepository.deleteGDoF(gdof);
+		return result;
 	}
 
 	/**
@@ -319,9 +288,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				return basicGetGdofrepository();
 			case UniversalDoFPackage.UNIVERSAL_DO_F__SUPPORTED_METAMODELS:
 				return getSupportedMetamodels();
-			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				if (resolve) return getPreparedDoFs();
-				return basicGetPreparedDoFs();
 			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -345,9 +311,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				getSupportedMetamodels().clear();
 				getSupportedMetamodels().addAll((Collection<? extends AMetamodelDescription>)newValue);
 				return;
-			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				setPreparedDoFs((ADegreeOfFreedom)newValue);
-				return;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
 				setTarget((ADSEProblem)newValue);
 				return;
@@ -369,9 +332,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 			case UniversalDoFPackage.UNIVERSAL_DO_F__SUPPORTED_METAMODELS:
 				getSupportedMetamodels().clear();
 				return;
-			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				setPreparedDoFs((ADegreeOfFreedom)null);
-				return;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
 				setTarget((ADSEProblem)null);
 				return;
@@ -391,8 +351,6 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 				return gdofrepository != null;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__SUPPORTED_METAMODELS:
 				return supportedMetamodels != null && !supportedMetamodels.isEmpty();
-			case UniversalDoFPackage.UNIVERSAL_DO_F__PREPARED_DO_FS:
-				return preparedDoFs != null;
 			case UniversalDoFPackage.UNIVERSAL_DO_F__TARGET:
 				return target != null;
 		}
@@ -409,12 +367,12 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		switch (operationID) {
 			case UniversalDoFPackage.UNIVERSAL_DO_F___EVALUATE_METAMODEL__EOBJECT:
 				return evaluateMetamodel((EObject)arguments.get(0));
-			case UniversalDoFPackage.UNIVERSAL_DO_F___LIST_GDO_FS:
-				return listGDoFs();
 			case UniversalDoFPackage.UNIVERSAL_DO_F___NEW_GDO_F__STRING:
 				return newGDoF((String)arguments.get(0));
 			case UniversalDoFPackage.UNIVERSAL_DO_F___DELETE_GDO_F__GENERICDOF:
 				return deleteGDoF((GenericDoF)arguments.get(0));
+			case UniversalDoFPackage.UNIVERSAL_DO_F___LIST_GDO_FS:
+				return listGDoFs();
 			case UniversalDoFPackage.UNIVERSAL_DO_F___GET_GDO_F__STRING:
 				return getGDoF((String)arguments.get(0));
 		}

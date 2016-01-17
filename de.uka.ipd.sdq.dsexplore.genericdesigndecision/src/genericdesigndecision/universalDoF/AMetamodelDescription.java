@@ -17,6 +17,7 @@ import genericdesigndecision.genericDoF.DoFRepository;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getDofrepository <em>Dofrepository</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGdof_to_dof <em>Gdof to dof</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getName <em>Name</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.AMetamodelDescription#getGenomeToCandidateTransformation <em>Genome To Candidate Transformation</em>}</li>
  * </ul>
@@ -127,6 +127,32 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	 * @generated
 	 */
 	Metamodel evaluateMetamodel(EObject model);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean deleteSDoF(SpecificDoF sdof);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<SpecificDoF> listSDoFs();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	SpecificDoF getSDoF(String name);
+	
+	boolean newSDoF(String name, Class<? extends ADegreeOfFreedom> degree);
 
 	SpecificDoF getCorrespondingDoF(GenericDoF gdof);
 	

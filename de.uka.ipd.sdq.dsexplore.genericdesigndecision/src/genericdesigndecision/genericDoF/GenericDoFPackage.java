@@ -353,13 +353,13 @@ public interface GenericDoFPackage extends EPackage {
 	int DO_FREPOSITORY = 6;
 
 	/**
-	 * The feature id for the '<em><b>Dofs</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sdofs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DO_FREPOSITORY__DOFS = 0;
+	int DO_FREPOSITORY__SDOFS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Do FRepository</em>' class.
@@ -371,13 +371,31 @@ public interface GenericDoFPackage extends EPackage {
 	int DO_FREPOSITORY_FEATURE_COUNT = 1;
 
 	/**
+	 * The operation id for the '<em>Delete SDo F</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DO_FREPOSITORY___DELETE_SDO_F__SPECIFICDOF = 0;
+
+	/**
+	 * The operation id for the '<em>Get SDo F</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DO_FREPOSITORY___GET_SDO_F__STRING = 1;
+
+	/**
 	 * The number of operations of the '<em>Do FRepository</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DO_FREPOSITORY_OPERATION_COUNT = 0;
+	int DO_FREPOSITORY_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link genericdesigndecision.genericDoF.impl.InstanceSelectionRuleImpl <em>Instance Selection Rule</em>}' class.
@@ -2323,15 +2341,35 @@ public interface GenericDoFPackage extends EPackage {
 	EClass getDoFRepository();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link genericdesigndecision.genericDoF.DoFRepository#getDofs <em>Dofs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link genericdesigndecision.genericDoF.DoFRepository#getSdofs <em>Sdofs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dofs</em>'.
-	 * @see genericdesigndecision.genericDoF.DoFRepository#getDofs()
+	 * @return the meta object for the containment reference list '<em>Sdofs</em>'.
+	 * @see genericdesigndecision.genericDoF.DoFRepository#getSdofs()
 	 * @see #getDoFRepository()
 	 * @generated
 	 */
-	EReference getDoFRepository_Dofs();
+	EReference getDoFRepository_Sdofs();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.genericDoF.DoFRepository#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF) <em>Delete SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete SDo F</em>' operation.
+	 * @see genericdesigndecision.genericDoF.DoFRepository#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF)
+	 * @generated
+	 */
+	EOperation getDoFRepository__DeleteSDoF__SpecificDoF();
+
+	/**
+	 * Returns the meta object for the '{@link genericdesigndecision.genericDoF.DoFRepository#getSDoF(java.lang.String) <em>Get SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get SDo F</em>' operation.
+	 * @see genericdesigndecision.genericDoF.DoFRepository#getSDoF(java.lang.String)
+	 * @generated
+	 */
+	EOperation getDoFRepository__GetSDoF__String();
 
 	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.genericDoF.InstanceSelectionRule <em>Instance Selection Rule</em>}'.
@@ -2903,12 +2941,28 @@ public interface GenericDoFPackage extends EPackage {
 		EClass DO_FREPOSITORY = eINSTANCE.getDoFRepository();
 
 		/**
-		 * The meta object literal for the '<em><b>Dofs</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sdofs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DO_FREPOSITORY__DOFS = eINSTANCE.getDoFRepository_Dofs();
+		EReference DO_FREPOSITORY__SDOFS = eINSTANCE.getDoFRepository_Sdofs();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete SDo F</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DO_FREPOSITORY___DELETE_SDO_F__SPECIFICDOF = eINSTANCE.getDoFRepository__DeleteSDoF__SpecificDoF();
+
+		/**
+		 * The meta object literal for the '<em><b>Get SDo F</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DO_FREPOSITORY___GET_SDO_F__STRING = eINSTANCE.getDoFRepository__GetSDoF__String();
 
 		/**
 		 * The meta object literal for the '{@link genericdesigndecision.genericDoF.impl.InstanceSelectionRuleImpl <em>Instance Selection Rule</em>}' class.

@@ -21,6 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface GenericDoF extends EObject {
+	
+	public static final String ALLOCATION_DOF = "Allocation Degree";
+	public static final String ASSEMBLED_COMPONENT_DOF = "Assembled Component Degree";
+	public static final String CAPACITY_DOF = "Capacity Degree";
+	public static final String CONTINUOUS_PROCESSING_RATE_DOF = "Continuous Processing Rate Degree";
+	
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,5 +52,13 @@ public interface GenericDoF extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean equals(GenericDoF gdof);
 
 } // GenericDoF

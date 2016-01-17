@@ -4,22 +4,14 @@ package genericdesigndecision.universalDoF.impl;
 
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
-import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -55,10 +47,10 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	protected GDoFRepositoryImpl() {
 		super();
-		this.addGDoF(ALLOCATION_DOF);
-		this.addGDoF(ALTERNATIVE_COMPONENT_DOF);
-		this.addGDoF(CAPACITY_DOF);
-		this.addGDoF(PROCESSING_RATE_DOF);
+		this.newGDoF(GenericDoF.ALLOCATION_DOF);
+		this.newGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF);
+		this.newGDoF(GenericDoF.CAPACITY_DOF);
+		this.newGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF);
 	}
 
 	/**
@@ -86,10 +78,12 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public boolean addGDoF(String gdofName) {
-		return (this.getGDoF(gdofName) != null) ? true: this.gdofs.add(UniversalDoFFactory.eINSTANCE.createGenericDoF(gdofName));
+	public boolean newGDoF(String name) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -197,8 +191,8 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UniversalDoFPackage.GDO_FREPOSITORY___ADD_GDO_F__STRING:
-				return addGDoF((String)arguments.get(0));
+			case UniversalDoFPackage.GDO_FREPOSITORY___NEW_GDO_F__STRING:
+				return newGDoF((String)arguments.get(0));
 			case UniversalDoFPackage.GDO_FREPOSITORY___DELETE_GDO_F__GENERICDOF:
 				return deleteGDoF((GenericDoF)arguments.get(0));
 			case UniversalDoFPackage.GDO_FREPOSITORY___GET_GDO_F__STRING:

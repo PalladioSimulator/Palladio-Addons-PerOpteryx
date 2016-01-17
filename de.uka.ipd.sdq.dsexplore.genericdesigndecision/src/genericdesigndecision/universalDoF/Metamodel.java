@@ -27,7 +27,7 @@ public enum Metamodel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PCM(0, "PCM", "PCM");
+	PCM(0, "PCM", "Palladio Component Model (PCM)");
 
 	/**
 	 * The '<em><b>PCM</b></em>' literal value.
@@ -38,7 +38,7 @@ public enum Metamodel implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #PCM
-	 * @model
+	 * @model literal="Palladio Component Model (PCM)"
 	 * @generated
 	 * @ordered
 	 */
