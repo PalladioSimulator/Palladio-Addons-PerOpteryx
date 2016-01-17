@@ -186,11 +186,11 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 			switch(d.getName()) {
 			case MetamodelDescriptionImpl.PCM_ALLOCATION_DOF: determineAllocationDecisions(dds, initialCandidate);
 			break;
-			case MetamodelDescriptionImpl.PCM_PROCESSING_RATE_DOF: determineProcessingRateDecisions(dds, initialCandidate);
+			case MetamodelDescriptionImpl.PCM_CONTINUOUS_PROCESSING_RATE_DOF: determineProcessingRateDecisions(dds, initialCandidate);
 			break;
 			case MetamodelDescriptionImpl.PCM_CAPACITY_DOF: determineCapacityDecisions(dds, initialCandidate);
 			break;
-			case MetamodelDescriptionImpl.PCM_ALTERNATIVE_COMPONENT_DOF: determineAssembledComponentsDecisions(dds, initialCandidate);
+			case MetamodelDescriptionImpl.PCM_ASSEMBLED_COMPONENT_DOF: determineAssembledComponentsDecisions(dds, initialCandidate);
 			break;
 			default: throw new IllegalArgumentException("PCM-specific degree of freedom could not be found");
 			}

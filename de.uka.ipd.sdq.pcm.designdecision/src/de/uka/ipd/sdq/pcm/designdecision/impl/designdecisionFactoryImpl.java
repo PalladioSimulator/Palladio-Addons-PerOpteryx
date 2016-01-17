@@ -70,7 +70,7 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 */
 	@Override
 	public MetamodelDescription createMetamodelDescription() {
-		MetamodelDescription metamodelDescription = MetamodelDescriptionImpl.getMetamodelDescription();
+		MetamodelDescription metamodelDescription = MetamodelDescription.eINSTANCE;
 		return metamodelDescription;
 	}
 

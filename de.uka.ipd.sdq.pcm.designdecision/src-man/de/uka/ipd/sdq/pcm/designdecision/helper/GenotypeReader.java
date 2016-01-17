@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.DoubleValue;
+import org.opt4j.core.Phenotype;
 import org.opt4j.core.Value;
 import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorFactory;
@@ -82,7 +83,7 @@ public class GenotypeReader extends AGenotypeReader {
 
 	@Override
     //FIXME: copied from readInPrettyPrintedGenotypes. Refactor to use a proper serialisation!!
-    protected List<DSEObjectives> readInPrettyPrintedObjectives(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException {
+    protected List<DSEObjectives> readInPrettyPrintedObjectives(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException, IOException {
         final List<DSEObjectives> results = new ArrayList<DSEObjectives>();
 
         //order design decisions
@@ -136,7 +137,7 @@ public class GenotypeReader extends AGenotypeReader {
      * @throws IOException
      */
     @Override
-    protected List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator evaluator) throws CoreException, IOException {
+    protected List<DSEIndividual> readInPrettyPrintedIndividuals(final BufferedReader in, final ADSEProblem problem, final DSEEvaluator<? extends Phenotype> evaluator) throws CoreException, IOException {
         final List<DSEIndividual> results = new LinkedList<DSEIndividual>();
 
         final List<ADegreeOfFreedom> decisionList = problem.getDesignDecisions();

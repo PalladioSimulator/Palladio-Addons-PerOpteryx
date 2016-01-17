@@ -11,17 +11,19 @@ import de.uka.ipd.sdq.pcm.designdecision.helper.GenotypeReader;
 import de.uka.ipd.sdq.pcm.designdecision.helper.Adapter;
 import de.uka.ipd.sdq.pcm.designdecision.helper.DSEDecoder;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
-import genericdesigndecision.universalDoF.GDoFRepository;
+import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
-import genericdesigndecision.universalDoF.impl.SpecificDoFImpl;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 
 	private DSEDecoder decoder;
 
-	private static MetamodelDescription metamodelDescrSingleton;
+	private static MetamodelDescription metamodelDescrSingleton = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,10 +63,15 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 		this.adapter = new Adapter();
 		this.genotypeReader = new GenotypeReader();
 		
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.ALLOCATION_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_ALLOCATION_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.PROCESSING_RATE_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_PROCESSING_RATE_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.CAPACITY_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_CAPACITY_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GDoFRepository.ALTERNATIVE_COMPONENT_DOF), new SpecificDoFImpl(MetamodelDescription.PCM_ALTERNATIVE_COMPONENT_DOF));
+		this.dofrepository.newSDoF(MetamodelDescription.PCM_ALLOCATION_DOF, AllocationDegree.class);
+		this.dofrepository.newSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF, ContinuousProcessingRateDegree.class);
+		this.dofrepository.newSDoF(MetamodelDescription.PCM_CAPACITY_DOF, CapacityDegree.class);
+		this.dofrepository.newSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF, AssembledComponentDegree.class);
+		
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.ALLOCATION_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ALLOCATION_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.CAPACITY_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CAPACITY_DOF));
+		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF));
 	}
 
 	public static MetamodelDescription getMetamodelDescription() {

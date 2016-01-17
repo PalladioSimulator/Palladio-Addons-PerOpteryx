@@ -9,10 +9,11 @@ import java.util.Random;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Binary;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
-import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotypeRepresentation.TypeOfDegree;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
+import de.uka.ipd.sdq.pcm.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
@@ -200,17 +201,17 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				 * in which ServerSpeed value lies
 				 */
 				
-				List<Integer> ServerBinaryRep = getServerBinaryRep(ServerSpeed,i);
+				List<Binary> ServerBinaryRep = getServerBinaryRep(ServerSpeed,i);
 				
 				// Add the server speed value at the proper place in the archive storage
 				for(int w=0;w<ServerBinaryRep.size();w++){
-					if(ServerBinaryRep.get(w) == 1){
+					if(ServerBinaryRep.get(w).equals(Binary.ACTIVE)){
 						//this.ContinuousProcessingRateArchiveStorage.get(w).add(ServerSpeed);
 						((ArrayList<ArrayList<Double>>) this.ContinuousProcessingRateArchiveStorage.get(i).get(0)).get(w).add(ServerSpeed);
 					}
 				}
 				
-				BinaryGenotype<Integer> ServerBinaryGenotypeObj = new BinaryGenotype<Integer>(ServerBinaryRep, TypeOfDegree.ContinuousProcessingRateDegree);
+				BinaryGenotype ServerBinaryGenotypeObj = new BinaryGenotype(ServerBinaryRep, MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF.toString());
 				TranslatedGenotype.add(ServerBinaryGenotypeObj);
 			}else if(ChoiceIterator.getDofInstance() instanceof ResourceSelectionDegree){
 				// TODO Find the class corresponding to Webserver Selection. (Maybe it is the ResourceSelectionDegree?)
@@ -219,8 +220,8 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				 * binary number.
 				 */
 				EObject WebServer= ((ClassChoice) ChoiceIterator).getChosenValue(); // Got the WebServer in EObject
-				List<Integer> WebServerBinaryRep = getWebServerBinaryRep(WebServer);
-				BinaryGenotype<Integer> WebServerBinaryGenotypeObj = new BinaryGenotype<Integer>(WebServerBinaryRep, TypeOfDegree.ResourceSelectionDegree);
+				List<Binary> WebServerBinaryRep = getWebServerBinaryRep(WebServer);
+				BinaryGenotype WebServerBinaryGenotypeObj = new BinaryGenotype(WebServerBinaryRep, MetamodelDescription.PCM_RESOURCE_SELECTION_DOF.toString());
 				TranslatedGenotype.add(WebServerBinaryGenotypeObj);
 			}else if(ChoiceIterator.getDofInstance() instanceof AllocationDegree){
 				/* If the Choice object is representing Component Allocation (AllocationDegree)
@@ -228,8 +229,8 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				 * binary number.
 				 */
 				EObject AllocatedServer= ((ClassChoice) ChoiceIterator).getChosenValue(); // Got the Component in EObject
-			    List<Integer> AllocatedServerBinaryRep = getAllocatedServerBinaryRep(AllocatedServer);
-				BinaryGenotype<Integer> AllocatedServerBinaryGenotypeObj = new BinaryGenotype<Integer>(AllocatedServerBinaryRep, TypeOfDegree.AllocationDegree);			    
+			    List<Binary> AllocatedServerBinaryRep = getAllocatedServerBinaryRep(AllocatedServer);
+				BinaryGenotype AllocatedServerBinaryGenotypeObj = new BinaryGenotype(AllocatedServerBinaryRep, MetamodelDescription.PCM_ALLOCATION_DOF.toString());			    
 			    TranslatedGenotype.add(AllocatedServerBinaryGenotypeObj);
 			}else if(ChoiceIterator.getDofInstance() instanceof AssembledComponentDegree){
 				/* If the Choice object is representing AssembledComponentDegree 
@@ -237,8 +238,8 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				 * binary number.
 				 */
 				EObject AllocatedComponent= ((ClassChoice) ChoiceIterator).getChosenValue(); // Got the Component in EObject
-			    List<Integer> AllocatedComponentBinaryRep = getAllocatedComponentBinaryRep(AllocatedComponent);
-				BinaryGenotype<Integer> AllocatedComponentBinaryGenotypeObj = new BinaryGenotype<Integer>(AllocatedComponentBinaryRep, TypeOfDegree.AssembledComponentDegree);			    
+			    List<Binary> AllocatedComponentBinaryRep = getAllocatedComponentBinaryRep(AllocatedComponent);
+				BinaryGenotype AllocatedComponentBinaryGenotypeObj = new BinaryGenotype(AllocatedComponentBinaryRep, MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF.toString());			    
 			    TranslatedGenotype.add(AllocatedComponentBinaryGenotypeObj);
 			}else if(ChoiceIterator.getDofInstance() instanceof CapacityDegree){
 				/* If the Choice object is representing CapacityDegree 
@@ -250,9 +251,9 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				 * in which capacityDegreeValue value lies
 				 */
 				
-				List<Integer> capacityDegreeValueBinaryRep = getCapacityBinaryRep(capacityDegreeValue);
+				List<Binary> capacityDegreeValueBinaryRep = getCapacityBinaryRep(capacityDegreeValue);
 				
-				BinaryGenotype<Integer> capacityDegreeValueBinaryGenotypeObj = new BinaryGenotype<Integer>(capacityDegreeValueBinaryRep, TypeOfDegree.CapacityDegree);
+				BinaryGenotype capacityDegreeValueBinaryGenotypeObj = new BinaryGenotype(capacityDegreeValueBinaryRep, MetamodelDescription.PCM_CAPACITY_DOF.toString());
 				TranslatedGenotype.add(capacityDegreeValueBinaryGenotypeObj);
 			}else throwOutOfScopeDegreeException(ChoiceIterator.getDofInstance());
 		}
@@ -275,11 +276,11 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 		// First create a list of BinaryGenotype Objects
 		List<BinaryGenotype> TranslatedBGObjects = new ArrayList<BinaryGenotype>();
 		for(int i=0; i < FBGenotype.getBitsPerDegree().size(); i++){
-			List<Integer> BinaryString = new ArrayList<Integer>();
+			List<Binary> BinaryString = new ArrayList<Binary>();
 			for(int j = 0; j < FBGenotype.getBitsPerDegree().get(i); j++){
 				BinaryString.add(FBGenotype.getBinaryGenotype().remove(0));
 			}
-			BinaryGenotype<Integer> BGObject = new BinaryGenotype<Integer>(BinaryString, FBGenotype.getOrderOfDegrees().get(i));
+			BinaryGenotype BGObject = new BinaryGenotype(BinaryString, FBGenotype.getOrderOfDegrees().get(i));
 			TranslatedBGObjects.add(BGObject);
 		}
 		// Now, TranslatedBGObjects is a list of BinaryGenotypeObjects
@@ -294,12 +295,12 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 		
 		for(int i = 0 ; i < TranslatedBGObjects.size() ; i++ ){
 			
-			if(TranslatedBGObjects.get(i).getDegreeType().toString() == "ContinuousProcessingRateDegree" ){
-				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
+			if(TranslatedBGObjects.get(i).getDegreeType() == MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF.toString()){
+				List<Binary> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				logger.info(BinaryList);
 				ContinousRangeChoice ChoiceObject = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
-					if(BinaryList.get(j) == 1){
+					if(BinaryList.get(j) == Binary.ACTIVE){
 						
 						// Old code -------------------------------------------
 						// /* Create a 
@@ -328,11 +329,11 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				//DegreeObject.setEntityName("Server Speed");
 				ChoiceObject.setDofInstance(DegreeObject);
 				ChoiceObjectList.add((ContinousRangeChoice)ChoiceObject);
-			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.ResourceSelectionDegree){
-				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == MetamodelDescription.PCM_RESOURCE_SELECTION_DOF){
+				List<Binary> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				Choice ChoiceObject = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
-					if(BinaryList.get(j) == 1){
+					if(BinaryList.get(j) == Binary.ACTIVE){
 						((ClassChoice) ChoiceObject).setChosenValue(WEBSERVERS.get(j));
 					}
 				}
@@ -340,11 +341,11 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				//DegreeObject.setEntityName("WebServer");
 				ChoiceObject.setDofInstance(DegreeObject);
 				ChoiceObjectList.add(ChoiceObject);
-			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.AllocationDegree){
-				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == MetamodelDescription.PCM_ALLOCATION_DOF){
+				List<Binary> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				ClassChoice ChoiceObject = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
-					if(BinaryList.get(j) == 1){
+					if(BinaryList.get(j) == Binary.ACTIVE){
 						ChoiceObject.setChosenValue(SERVERS.get(j));
 					}
 				}
@@ -352,11 +353,11 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				//DegreeObject.setEntityName("Allocation Degree");
 				ChoiceObject.setDofInstance(DegreeObject);
 				ChoiceObjectList.add(ChoiceObject);
-			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.AssembledComponentDegree){
-				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF){
+				List<Binary> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				ClassChoice ChoiceObject = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
-					if(BinaryList.get(j) == 1){
+					if(BinaryList.get(j) == Binary.ACTIVE){
 						ChoiceObject.setChosenValue(COMPONENTS.get(j));
 					}
 				}
@@ -364,11 +365,11 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 				//DegreeObject.setEntityName("AssembledComponent Degree");
 				ChoiceObject.setDofInstance(DegreeObject);
 				ChoiceObjectList.add(ChoiceObject);
-			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.CapacityDegree){
-				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
+			}else if(TranslatedBGObjects.get(i).getDegreeType() == MetamodelDescription.PCM_CAPACITY_DOF){
+				List<Binary> BinaryList = TranslatedBGObjects.get(i).getInternalList();
 				DiscreteRangeChoice ChoiceObject = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
-					if(BinaryList.get(j) == 1){
+					if(BinaryList.get(j) == Binary.ACTIVE){
 						
 						// Old code -------------------------------------------
 						// /* Create a 
@@ -404,18 +405,18 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 	 * @param serverSpeed
 	 * @return
 	 */
-	private List<Integer> getServerBinaryRep(double serverSpeed, int key) {
+	private List<Binary> getServerBinaryRep(double serverSpeed, int key) {
 		Double[] Server_Intervals = new Double[((List<Double>) this.ContinuousProcessingRateArchiveStorage.get(key).get(1)).size()];
 		((List<Double>) this.ContinuousProcessingRateArchiveStorage.get(key).get(1)).toArray(Server_Intervals);
 		boolean FOUNDINTERVAL = false;
-		List<Integer> Result = new ArrayList<Integer>();
+		List<Binary> Result = new ArrayList<Binary>();
 		// TODO Auto-generated method stub
 		for(int i=0;i<Server_Intervals.length;i++){
 			if(serverSpeed< Server_Intervals[i] & !FOUNDINTERVAL){
-				Result.add(1);
+				Result.add(Binary.ACTIVE);
 				FOUNDINTERVAL = true;
 			}else{
-				Result.add(0);
+				Result.add(Binary.INACTIVE);
 			}
 		}
 		
@@ -430,16 +431,14 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 	 * @param webServer
 	 * @return
 	 */
-	private List<Integer> getWebServerBinaryRep(EObject webServer) {
-		// TODO Auto-generated method stub
-		
-		List<Integer> Result = new ArrayList<Integer>(); // For returning the final result
+	private List<Binary> getWebServerBinaryRep(EObject webServer) {		
+		List<Binary> Result = new ArrayList<Binary>(); // For returning the final result
 		
 		for(int i=0;i<WEBSERVERS.size();i++){
 			if(webServer.equals(WEBSERVERS.get(i))){
-				Result.add(1);
+				Result.add(Binary.ACTIVE);
 			}else{
-				Result.add(0);
+				Result.add(Binary.INACTIVE);
 			}
 		}
 		return Result;
@@ -453,46 +452,41 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 	 * @param allocatedServer
 	 * @return
 	 */
-	private List<Integer> getAllocatedServerBinaryRep(EObject allocatedServer) {
-		// TODO Auto-generated method stub
-		
-		List<Integer> Result = new ArrayList<Integer>(); // For returning the final result
+	private List<Binary> getAllocatedServerBinaryRep(EObject allocatedServer) {
+		List<Binary> Result = new ArrayList<Binary>(); // For returning the final result
 		
 		for(int i=0;i<SERVERS.size();i++){
 			if(allocatedServer.equals(SERVERS.get(i))){
-				Result.add(1);
+				Result.add(Binary.ACTIVE);
 			}else{
-				Result.add(0);
+				Result.add(Binary.INACTIVE);
 			}
 		}
 		return Result;
 	}
 	
-	private List<Integer> getAllocatedComponentBinaryRep(EObject allocatedComponent) {
-		// TODO Auto-generated method stub
-		List<Integer> Result = new ArrayList<Integer>(); // For returning the final result
+	private List<Binary> getAllocatedComponentBinaryRep(EObject allocatedComponent) {
+		List<Binary> Result = new ArrayList<Binary>(); // For returning the final result
 		
 		for(int i=0;i<COMPONENTS.size();i++){
 			if(allocatedComponent.equals(COMPONENTS.get(i))){
-				Result.add(1);
+				Result.add(Binary.ACTIVE);
 			}else{
-				Result.add(0);
+				Result.add(Binary.INACTIVE);
 			}
 		}
 		return Result;
 	}
 	
-	private List<Integer> getCapacityBinaryRep(double capacityDegreeValue) {
-		// TODO Auto-generated method stub
+	private List<Binary> getCapacityBinaryRep(double capacityDegreeValue) {
 		boolean FOUNDINTERVAL = false;
-		List<Integer> Result = new ArrayList<Integer>();
-		// TODO Auto-generated method stub
+		List<Binary> Result = new ArrayList<Binary>();
 		for(int i=0;i<CAPACITYDEGREE_INTERVALS.length;i++){
 			if(capacityDegreeValue< SERVER_INTERVALS[i] & !FOUNDINTERVAL){
-				Result.add(1);
+				Result.add(Binary.ACTIVE);
 				FOUNDINTERVAL = true;
 			}else{
-				Result.add(0);
+				Result.add(Binary.INACTIVE);
 			}
 		}
 		
@@ -509,26 +503,25 @@ public class Adapter extends de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter {
 	
 	private void makeCompatible(List<BinaryGenotype> bg){
 		for(int i = 0 ; i < bg.size() ; i++){
-			List<Integer> binaryList = bg.get(i).getInternalList();
-			if(!binaryList.contains(1)){
+			List<Binary> binaryList = bg.get(i).getInternalList();
+			if(!binaryList.contains(Binary.ACTIVE)){
 				// randomly set any element to 1
 				Random random = new Random();
-				binaryList.set(random.nextInt(binaryList.size()-1), 1);
+				binaryList.set(random.nextInt(binaryList.size()-1), Binary.ACTIVE);
 			}else{
 				int index = 0;
 				for(int j = 0 ; j < binaryList.size() ; j++){
-					if(binaryList.get(j) == 1){
+					if(binaryList.get(j) == Binary.ACTIVE){
 						index = j;
 					}
 				}
 				for(int j = 0 ; j < binaryList.size() ; j++){
 					if(j != index){
-						binaryList.set(j, 0);
+						binaryList.set(j, Binary.INACTIVE);
 					}
 				}
 				bg.get(i).setInternalList(binaryList);	
 			}
-			
 		}
 	}
 	

@@ -10,6 +10,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl;
+
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import genericdesigndecision.Candidate;
@@ -27,16 +29,26 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
  * @generated
  */
 public interface MetamodelDescription extends AMetamodelDescription {
-
-	public static final String PCM_METAMODEL = "Palladio Component Model (PCM)";
 	
+	/**
+	 * The singleton instance of the factory.
+	 */
+	MetamodelDescription eINSTANCE = MetamodelDescriptionImpl.getMetamodelDescription();
+	
+	// Insert all possible values of the Degrees of Freedom which you can think of.
 	public static final String PCM_ALLOCATION_DOF = "PCM Allocation Degree";
-
-	public static final String PCM_ALTERNATIVE_COMPONENT_DOF = "PCM Alternative Component Degree";
-
+	public static final String PCM_ASSEMBLED_COMPONENT_DOF = "PCM Assembled Component Degree";
 	public static final String PCM_CAPACITY_DOF = "PCM Capacity Degree";
-
-	public static final String PCM_PROCESSING_RATE_DOF = "PCM Processing Rate Degree";
+	public static final String PCM_CONTINUOUS_PROCESSING_RATE_DOF = "PCM Continuous Processing Rate Degree";
+	public static final String PCM_MONITORING_DOF = "PCM Monitoring Degree";
+	public static final String PCM_NUM_OF_CORES_AS_LIST_DOF = "PCM NumberOfCoresAsList Degree";
+	public static final String PCM_NUM_OF_CORES_AS_RANGE_DOF = "PCM NumberOfCoresAsRangeDegree";
+	public static final String PCM_NUM_OF_CORES_DOF = "PCM NumberOfCoresDegree";
+	public static final String PCM_SCHEDULING_POLICY_DOF = "PCM SchedulingPolicyDegree";
+	public static final String PCM_RESOURCE_SELECTION_DOF = "PCM ResourceSelectionDegree";
+	public static final String PCM_PROCESSINGRESOURCE_DOF = "PCM ProcessingResourceDegree";
+	public static final String PCM_RESOURCECONTAINER_REPLICATION_WITH_COMPONENT_CHANGE_DOF = "PCM ResourceContainerReplicationDegreeWithComponentChange";
+	public static final String PCM_RESOURCECONTAINER_REPLICATION_DOF = "PCM ResourceContainerReplicationDegree";
 
 	PCMInstance transformEMFtoPCM(PCMResourceSetPartition pcmPartition);
 
