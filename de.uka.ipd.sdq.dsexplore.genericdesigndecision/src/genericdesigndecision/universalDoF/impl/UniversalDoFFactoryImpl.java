@@ -98,10 +98,10 @@ public class UniversalDoFFactoryImpl extends EFactoryImpl implements UniversalDo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public GDoFRepository createGDoFRepository() {
-		GDoFRepositoryImpl gDoFRepository = new GDoFRepositoryImpl();
+		GDoFRepository gDoFRepository = GDoFRepository.eINSTANCE;
 		return gDoFRepository;
 	}
 

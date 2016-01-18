@@ -50,10 +50,11 @@ public class DoFRepositoryImpl extends MinimalEObjectImpl.Container implements D
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected DoFRepositoryImpl() {
 		super();
+		this.sdofs = this.getSdofs();
 	}
 
 	/**

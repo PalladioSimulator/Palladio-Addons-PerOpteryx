@@ -4,6 +4,7 @@ package genericdesigndecision.universalDoF.impl;
 
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -38,15 +39,18 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GenericDoF> gdofs;
+	protected EList<GenericDoF> gdofs = null;
+	
+	private static GDoFRepository gdofRepoSingleton = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected GDoFRepositoryImpl() {
+	private GDoFRepositoryImpl() {
 		super();
+		this.gdofs = this.getGdofs();
 		this.newGDoF(GenericDoF.ALLOCATION_DOF);
 		this.newGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF);
 		this.newGDoF(GenericDoF.CAPACITY_DOF);
@@ -61,6 +65,13 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	protected EClass eStaticClass() {
 		return UniversalDoFPackage.Literals.GDO_FREPOSITORY;
+	}
+
+	public static GDoFRepository getGDoFRepository() {
+		if (gdofRepoSingleton == null) {
+			gdofRepoSingleton = new GDoFRepositoryImpl();
+		}
+		return gdofRepoSingleton;
 	}
 
 	/**
@@ -78,12 +89,10 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean newGDoF(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return this.gdofs.add(UniversalDoFFactory.eINSTANCE.createGenericDoF(name));
 	}
 
 	/**

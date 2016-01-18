@@ -5,6 +5,8 @@ package genericdesigndecision.universalDoF;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import genericdesigndecision.universalDoF.impl.GDoFRepositoryImpl;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>GDo FRepository</b></em>'.
@@ -22,6 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface GDoFRepository extends EObject {
+	
+	/**
+	 * the singleton instance of the repository for generic degrees of freedom
+	 */
+	GDoFRepository eINSTANCE = GDoFRepositoryImpl.getGDoFRepository();
 
 	/**
 	 * Returns the value of the '<em><b>Gdofs</b></em>' containment reference list.

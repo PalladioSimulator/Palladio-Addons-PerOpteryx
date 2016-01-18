@@ -75,7 +75,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @generated
 	 * @ordered
 	 */
-	protected ADSEProblem target;
+	protected ADSEProblem target = null;
 
 	private static UniversalDoF universalDoFSingleton = null;
 	
@@ -86,9 +86,11 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 */
 	private UniversalDoFImpl() {
 		super();
+		this.gdofrepository = UniversalDoFFactory.eINSTANCE.createGDoFRepository();
+		this.supportedMetamodels = this.getSupportedMetamodels();
+		
 		//added for PCM support
 		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createMetamodelDescription());
-		this.gdofrepository = UniversalDoFFactory.eINSTANCE.createGDoFRepository();
 	}
 
 	/**
