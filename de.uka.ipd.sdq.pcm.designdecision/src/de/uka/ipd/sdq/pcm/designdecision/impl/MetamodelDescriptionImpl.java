@@ -20,9 +20,9 @@ import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
-import genericdesigndecision.universalDoF.UniversalDoF;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
 import java.util.Collection;
 import java.util.List;
@@ -68,10 +68,10 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 		this.dofrepository.newSDoF(MetamodelDescription.PCM_CAPACITY_DOF, CapacityDegree.class);
 		this.dofrepository.newSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF, AssembledComponentDegree.class);
 		
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.ALLOCATION_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ALLOCATION_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.CAPACITY_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CAPACITY_DOF));
-		this.gdof_to_dof.put(UniversalDoF.eINSTANCE.getGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ALLOCATION_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ALLOCATION_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CAPACITY_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_CAPACITY_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF), this.dofrepository.getSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF));
 	}
 
 	public static MetamodelDescription getMetamodelDescription() {
