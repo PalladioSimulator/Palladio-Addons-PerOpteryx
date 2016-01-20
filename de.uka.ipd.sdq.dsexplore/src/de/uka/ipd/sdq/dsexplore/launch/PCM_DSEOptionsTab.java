@@ -5,7 +5,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.swt.widgets.Composite;
 
-import de.uka.ipd.sdq.pcm.designdecision.impl.MetamodelDescriptionImpl;
+import de.uka.ipd.sdq.pcmsupport.designdecision.impl.MetamodelDescriptionImpl;
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.SpecificDoF;

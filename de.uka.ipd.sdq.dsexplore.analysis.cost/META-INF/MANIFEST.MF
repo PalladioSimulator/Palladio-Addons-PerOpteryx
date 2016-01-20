@@ -9,16 +9,15 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.eclipse.debug.core;bundle-version="3.5.0",
  de.uka.ipd.sdq.workflow;bundle-version="1.1.0",
  de.uka.ipd.sdq.workflow.mdsd;bundle-version="1.0.0",
- de.uka.ipd.sdq.pcm.cost;bundle-version="1.0.0",
  de.uka.ipd.sdq.workflow.launchconfig;bundle-version="1.1.0",
  org.palladiosimulator.pcm;bundle-version="4.0.0",
  org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
- org.palladiosimulator.analyzer.resultdecorator;bundle-version="1.0.0",
- org.palladiosimulator.solver;bundle-version="3.0.0",
  org.eclipse.debug.ui;bundle-version="3.5.1",
  org.eclipse.swt;bundle-version="3.5.1",
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml
+ de.uka.ipd.sdq.dsexplore.qml,
+ de.uka.ipd.sdq.pcm.cost,
+ de.uka.ipd.sdq.pcmsupport.designdecision
 Bundle-Vendor: sdq.ipd.uka.de
-Import-Package: de.uka.ipd.sdq.pcm.designdecision.helper
+Import-Package: org.palladiosimulator.solver.models

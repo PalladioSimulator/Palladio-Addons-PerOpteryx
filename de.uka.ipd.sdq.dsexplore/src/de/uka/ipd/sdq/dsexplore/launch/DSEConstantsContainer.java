@@ -12,8 +12,8 @@ public class DSEConstantsContainer {
 	
 	public static final String INPUT_METAMODEL = "Meta-model of input model";
 	public static final String USE_GENERICDOFS = "Use generic DoFs";
-	public static final String GENERICDOFS = "Select generic DoFs";
-	public static final String SPECIFICDOFS = "Select specific DoFs";
+	public static final String GENERICDOFS = "Select generic DoF(s):";
+	public static final String SPECIFICDOFS = "Select specific DoF(s):";
 	
 	public static final String MAX_ITERATIONS = "maxIterations";
 	public static final String INDIVIDUALS_PER_GENERATION = "indivPerGeneration";

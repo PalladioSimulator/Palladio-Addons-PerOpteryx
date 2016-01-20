@@ -271,7 +271,7 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
         final Map<String, PassiveResourceResult> idsToPassiveResourceResult = new HashMap<String, PassiveResourceResult>();
 
         // results for passive resources
-        final List<AssemblyContext> allAssemblyContexts = de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper.getAllUsedAssemblyContexts(pcm.getSystem());
+        final List<AssemblyContext> allAssemblyContexts = de.uka.ipd.sdq.pcmsupport.helper.EMFHelper.getAllUsedAssemblyContexts(pcm.getSystem());
         for (final AssemblyContext assemblyContext : allAssemblyContexts) {
             final RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
             if (innerComponent instanceof BasicComponent){

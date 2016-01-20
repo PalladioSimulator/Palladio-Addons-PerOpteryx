@@ -7,14 +7,14 @@ import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.ConcurrentProcessingSystemImplCatia;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.DecreaseProcessingRateImpl;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.IncreaseProcessingRateImpl;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.ReallocateForReduceLinkUsage;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.ReallocationImpl;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.ServerConsolidationImpl;
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl.ServerExpansionImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.ConcurrentProcessingSystemImplCatia;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.DecreaseProcessingRateImpl;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.IncreaseProcessingRateImpl;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.ReallocateForReduceLinkUsage;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.ReallocationImpl;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.ServerConsolidationImpl;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl.ServerExpansionImpl;
 
 public class TacticOperatorsFactory {
 	

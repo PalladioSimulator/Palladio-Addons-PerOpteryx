@@ -20,9 +20,9 @@ import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 
 /**
  * Copy of {@link EvolutionaryAlgorithm} that detects duplicates in the population and creates new random candidates

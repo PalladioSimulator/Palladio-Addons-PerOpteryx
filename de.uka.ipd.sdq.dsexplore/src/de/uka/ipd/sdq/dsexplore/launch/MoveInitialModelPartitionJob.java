@@ -13,7 +13,7 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 public class MoveInitialModelPartitionJob implements IJob, IBlackboardInteractingJob<MDSDBlackboard> {
 
-	public static final String INITIAL_PCM_MODEL_PARTITION_ID = "initialPCModelPartitionID";
+	public static final String INITIAL_MODEL_PARTITION_ID = "initialModelPartitionID";
 	MDSDBlackboard blackboard;
 	
 	public MoveInitialModelPartitionJob() {
@@ -26,7 +26,7 @@ public class MoveInitialModelPartitionJob implements IJob, IBlackboardInteractin
 		String id = LoadModelIntoBlackboardJob.MODEL_PARTITION_ID;
 		ResourceSetPartition partition = this.blackboard.getPartition(id);
 		this.blackboard.removePartition(id);
-		this.blackboard.addPartition(MoveInitialModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID, partition);
+		this.blackboard.addPartition(MoveInitialModelPartitionJob.INITIAL_MODEL_PARTITION_ID, partition);
 	}
 
 	@Override
@@ -42,6 +42,6 @@ public class MoveInitialModelPartitionJob implements IJob, IBlackboardInteractin
 
 	@Override
 	public void cleanup(IProgressMonitor arg0) throws CleanupFailedException {
-		this.blackboard.removePartition(MoveInitialModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		this.blackboard.removePartition(MoveInitialModelPartitionJob.INITIAL_MODEL_PARTITION_ID);
 	}
 }

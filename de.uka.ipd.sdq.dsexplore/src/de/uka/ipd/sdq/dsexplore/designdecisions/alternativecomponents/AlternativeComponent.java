@@ -26,8 +26,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EntityComparator;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import de.uka.ipd.sdq.pcmsupport.designdecision.specific.AssembledComponentDegree;
+import de.uka.ipd.sdq.pcmsupport.designdecision.specific.impl.specificFactoryImpl;
 
 //Singleton
 /**

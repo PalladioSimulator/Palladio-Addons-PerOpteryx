@@ -178,7 +178,4 @@ ILaunchConfigurationTab {
         }
         return true;
     }
-
-
-
 }

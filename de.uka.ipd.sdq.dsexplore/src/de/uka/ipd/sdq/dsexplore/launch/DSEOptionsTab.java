@@ -1,7 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.util.ArrayList;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -9,6 +8,7 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -17,6 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -70,14 +71,32 @@ public class DSEOptionsTab extends InputTab {
 	protected Text numberOfDSERuns; 
 	
 	protected Group radioGroup;
-	protected Button chooseGenericDof;
-	protected Button chooseSpecificDof;
+	protected Button selectGenericDof;
+	protected Button selectSpecificDof;
 	protected List genericDofList;
 	protected List specificDofList;
 	protected Group genericChoices;
 	protected Group specificChoices;
 	
 	protected Metamodel metamodel;
+	protected SelectionListener radioListener = new SelectionAdapter(){
+		
+	    @Override
+	    public void widgetSelected(final SelectionEvent e){
+	        super.widgetSelected(e);
+	        if(selectGenericDof.getSelection()){
+	            genericDofList.setEnabled(true);
+	            specificDofList.setEnabled(false);
+	            specificDofList.deselectAll();
+	            selectSpecificDof.setSelection(false);
+	        } else {
+	        	specificDofList.setEnabled(true);
+	        	genericDofList.setEnabled(false);
+	        	genericDofList.deselectAll();
+	        	selectGenericDof.setSelection(false);
+	        }
+	    }
+	};
 		
 	
 	//private QMLManager qmlManager;
@@ -225,32 +244,43 @@ public class DSEOptionsTab extends InputTab {
 		optimisationOnly.setText("Only optimise, using pre-existing design decisions");
 		optimisationOnly.addSelectionListener(selectionListener);
 		
-		radioGroup = new Group(designDecisionOptions, SWT.RADIO);
-		final GridLayout glRadioGroup = new GridLayout();
-		glRadioGroup.numColumns = 2;
-		radioGroup.setLayout(glRadioGroup);
-		radioGroup.setText("degrees of freedom to apply");
-		radioGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
-				true, false));
+		//---------------------------------------------------------
 		
-		genericChoices = new Group(radioGroup, SWT.BOLD | SWT.DEFAULT);
-		genericChoices.setText(DSEConstantsContainer.GENERICDOFS);
-		chooseGenericDof = new Button(genericChoices, SWT.RADIO);
-		chooseGenericDof.setEnabled(true);
-		chooseGenericDof.addSelectionListener(selectionListener);
-		genericDofList = new List(genericChoices, SWT.MULTI);
+		radioGroup = new Group(container, SWT.NONE);
+		radioGroup.setText("Degrees of freedom to apply");
+		GridLayout gl_radioGroup = new GridLayout(2, true);
+		gl_radioGroup.marginBottom = 5;
+		radioGroup.setLayout(gl_radioGroup);
+		GridData gd_radioGroup = new GridData(SWT.FILL, SWT.CENTER,
+				true, false);
+		radioGroup.setLayoutData(gd_radioGroup);
+		
+		selectGenericDof = new Button(radioGroup, SWT.RADIO);
+		selectGenericDof.setSelection(true);
+		selectGenericDof.setText(DSEConstantsContainer.GENERICDOFS);
+		selectGenericDof.setEnabled(true);
+		selectGenericDof.addSelectionListener(selectionListener);
+		selectGenericDof.addSelectionListener(radioListener);
+		
+		selectSpecificDof = new Button(radioGroup, SWT.RADIO);
+		selectSpecificDof.setText(DSEConstantsContainer.SPECIFICDOFS);
+		selectSpecificDof.addSelectionListener(selectionListener);
+		selectSpecificDof.addSelectionListener(radioListener);
+		
+		genericDofList = new List(radioGroup, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		genericDofList.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, true, 1, 1));
 		for (GenericDoF g : UniversalDoF.eINSTANCE.listGDoFs()) {
 			genericDofList.add(g.getName());
 		}
-		genericDofList.addSelectionListener(selectionListener);
 		
-		specificChoices = new Group(radioGroup, SWT.BOLD);
-		specificChoices.setText(DSEConstantsContainer.SPECIFICDOFS);
-		chooseSpecificDof = new Button(radioGroup, SWT.RADIO);
-		chooseSpecificDof.setEnabled(true);
-		chooseSpecificDof.addSelectionListener(selectionListener);
-		specificDofList = new List(specificChoices, SWT.MULTI);
-		specificDofList.addSelectionListener(selectionListener);
+		specificDofList = new List(radioGroup, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		specificDofList.setEnabled(false);
+		GridData gd_specificDofList = new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1);
+		specificDofList.setLayoutData(gd_specificDofList);
+		
+		radioGroup.setTabList(new Control[]{selectGenericDof, selectSpecificDof, genericDofList, specificDofList});
+		
+		//----------------------------------------------------------
 		
 		/**
 		 * Add optional design decision input section
@@ -555,6 +585,10 @@ public class DSEOptionsTab extends InputTab {
 		configuration.setAttribute(DSEConstantsContainer.DESIGN_DECISIONS_ONLY, false);
 		configuration.setAttribute(DSEConstantsContainer.OPTIMISATION_ONLY, false);
 		configuration.setAttribute(DSEConstantsContainer.SEARCH_METHOD, DSEConstantsContainer.SEARCH_EVOLUTIONARY);
+		
+		configuration.setAttribute(DSEConstantsContainer.USE_GENERICDOFS, true);
+		configuration.setAttribute(DSEConstantsContainer.GENERICDOFS, new ArrayList<String>(1));
+		configuration.setAttribute(DSEConstantsContainer.SPECIFICDOFS, new ArrayList<String>(1));
 	}
 	
 	/* (non-Javadoc)

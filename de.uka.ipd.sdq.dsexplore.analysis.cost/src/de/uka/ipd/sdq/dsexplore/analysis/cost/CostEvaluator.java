@@ -38,7 +38,7 @@ import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;

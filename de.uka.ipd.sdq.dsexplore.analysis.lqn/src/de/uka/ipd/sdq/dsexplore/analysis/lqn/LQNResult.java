@@ -204,7 +204,7 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 		}
 		
 		// results for passive resources
-		List<AllocationContext> allAssemblyContexts = de.uka.ipd.sdq.pcm.designdecision.helper.EMFHelper.getAllUsedAllocationContexts(pcm.getAllocation());
+		List<AllocationContext> allAssemblyContexts = de.uka.ipd.sdq.pcmsupport.helper.EMFHelper.getAllUsedAllocationContexts(pcm.getAllocation());
 		for (AllocationContext allocContext : allAssemblyContexts) {
 			AssemblyContext assemblyContext = allocContext.getAssemblyContext_AllocationContext();
 			RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
