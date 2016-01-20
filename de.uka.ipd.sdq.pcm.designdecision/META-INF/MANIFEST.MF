@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Design Decision Model Plug-in
-Bundle-SymbolicName: de.uka.ipd.sdq.pcm.designdecision;singleton:=true
+Bundle-SymbolicName: de.uka.ipd.sdq.pcmsupport.designdecision;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl,
- de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl,
- de.uka.ipd.sdq.pcm.designdecision,
- de.uka.ipd.sdq.pcm.designdecision.helper,
- de.uka.ipd.sdq.pcm.designdecision.impl,
- de.uka.ipd.sdq.pcm.designdecision.qualityproperties,
- de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl,
- de.uka.ipd.sdq.pcm.designdecision.qualityproperties.util,
- de.uka.ipd.sdq.pcm.designdecision.specific,
- de.uka.ipd.sdq.pcm.designdecision.specific.impl,
- de.uka.ipd.sdq.pcm.designdecision.specific.util,
- de.uka.ipd.sdq.pcm.designdecision.util,
- de.uka.ipd.sdq.pcm.resourcerepository,
- de.uka.ipd.sdq.pcm.resourcerepository.impl,
- de.uka.ipd.sdq.pcm.resourcerepository.util
+Export-Package: de.uka.ipd.sdq.pcmsupport.designdecision,
+ de.uka.ipd.sdq.pcmsupport.designdecision.impl,
+ de.uka.ipd.sdq.pcmsupport.designdecision.qualityproperties,
+ de.uka.ipd.sdq.pcmsupport.designdecision.qualityproperties.impl,
+ de.uka.ipd.sdq.pcmsupport.designdecision.qualityproperties.util,
+ de.uka.ipd.sdq.pcmsupport.designdecision.specific,
+ de.uka.ipd.sdq.pcmsupport.designdecision.specific.impl,
+ de.uka.ipd.sdq.pcmsupport.designdecision.specific.util,
+ de.uka.ipd.sdq.pcmsupport.designdecision.util,
+ de.uka.ipd.sdq.pcmsupport.helper,
+ de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.operators.impl,
+ de.uka.ipd.sdq.pcmsupport.opt4j.optimizer.heuristic.startingPopulation.impl,
+ de.uka.ipd.sdq.pcmsupport.resourcerepository,
+ de.uka.ipd.sdq.pcmsupport.resourcerepository.impl,
+ de.uka.ipd.sdq.pcmsupport.resourcerepository.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
