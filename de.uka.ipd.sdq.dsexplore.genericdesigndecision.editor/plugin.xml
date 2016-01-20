@@ -118,32 +118,4 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated genericdesigndecision -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="genericdesigndecision.pcmsupport.presentation.PcmsupportModelWizardID"
-            name="%_UI_PcmsupportModelWizard_label"
-            class="genericdesigndecision.pcmsupport.presentation.PcmsupportModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/PcmsupportModelFile.gif">
-         <description>%_UI_PcmsupportModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated genericdesigndecision -->
-      <editor
-            id="genericdesigndecision.pcmsupport.presentation.PcmsupportEditorID"
-            name="%_UI_PcmsupportEditor_label"
-            icon="icons/full/obj16/PcmsupportModelFile.gif"
-            extensions="pcmsupport"
-            class="genericdesigndecision.pcmsupport.presentation.PcmsupportEditor"
-            contributorClass="genericdesigndecision.pcmsupport.presentation.PcmsupportActionBarContributor">
-      </editor>
-   </extension>
-
 </plugin>

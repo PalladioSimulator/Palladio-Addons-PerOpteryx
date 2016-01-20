@@ -9,7 +9,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: genericdesigndecision.genericDoF.presentation,
- genericdesigndecision.pcmsupport.presentation,
  genericdesigndecision.presentation,
  genericdesigndecision.qualityproperties.presentation,
  genericdesigndecision.universalDoF.presentation
@@ -18,5 +17,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore.genericdesigndecision.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

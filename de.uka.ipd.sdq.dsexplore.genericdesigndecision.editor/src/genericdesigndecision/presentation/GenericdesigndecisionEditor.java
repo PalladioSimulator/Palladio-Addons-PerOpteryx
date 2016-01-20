@@ -157,13 +157,11 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import genericdesigndecision.provider.GenericdesigndecisionItemProviderAdapterFactory;
 
 import genericdesigndecision.genericDoF.provider.GenericDoFItemProviderAdapterFactory;
-
-import genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory;
-
 import genericdesigndecision.qualityproperties.provider.QualitypropertiesItemProviderAdapterFactory;
 
 import genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory;
 
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -713,7 +711,7 @@ public class GenericdesigndecisionEditor
 		adapterFactory.addAdapterFactory(new GenericDoFItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UniversalDoFItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new QualitypropertiesItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new PcmsupportItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

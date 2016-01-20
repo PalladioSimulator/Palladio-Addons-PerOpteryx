@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.pcmsupport.presentation;
+package genericdesigndecision.universalDoF.presentation;
 
 
 import java.io.IOException;
@@ -154,28 +154,26 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import genericdesigndecision.pcmsupport.provider.PcmsupportItemProviderAdapterFactory;
+import genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory;
 
 import genericdesigndecision.genericDoF.provider.GenericDoFItemProviderAdapterFactory;
-
 import genericdesigndecision.presentation.GenericdesigndecisionEditorPlugin;
 
 import genericdesigndecision.provider.GenericdesigndecisionItemProviderAdapterFactory;
 
 import genericdesigndecision.qualityproperties.provider.QualitypropertiesItemProviderAdapterFactory;
 
-import genericdesigndecision.universalDoF.provider.UniversalDoFItemProviderAdapterFactory;
-
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Pcmsupport model editor.
+ * This is an example of a UniversalDoF model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PcmsupportEditor
+public class UniversalDoFEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -337,18 +335,18 @@ public class PcmsupportEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(PcmsupportEditor.this);
+						getActionBarContributor().setActiveEditor(UniversalDoFEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(PcmsupportEditor.this);
+						getActionBarContributor().setActiveEditor(UniversalDoFEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == PcmsupportEditor.this) {
+				else if (p == UniversalDoFEditor.this) {
 					handleActivate();
 				}
 			}
@@ -521,7 +519,7 @@ public class PcmsupportEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(PcmsupportEditor.this, false);
+										 getSite().getPage().closeEditor(UniversalDoFEditor.this, false);
 									 }
 								 }
 							 });
@@ -532,7 +530,7 @@ public class PcmsupportEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == PcmsupportEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == UniversalDoFEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -564,7 +562,7 @@ public class PcmsupportEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(PcmsupportEditor.this, false);
+				getSite().getPage().closeEditor(UniversalDoFEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -694,7 +692,7 @@ public class PcmsupportEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PcmsupportEditor() {
+	public UniversalDoFEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -715,7 +713,7 @@ public class PcmsupportEditor
 		adapterFactory.addAdapterFactory(new GenericDoFItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UniversalDoFItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new QualitypropertiesItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new PcmsupportItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1036,7 +1034,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1070,7 +1068,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1099,7 +1097,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1124,7 +1122,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1151,7 +1149,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1194,7 +1192,7 @@ public class PcmsupportEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), PcmsupportEditor.this) {
+					new ViewerPane(getSite().getPage(), UniversalDoFEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1414,8 +1412,8 @@ public class PcmsupportEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					PcmsupportEditor.this.setSelectionToViewer(selection);
-					PcmsupportEditor.this.setFocus();
+					UniversalDoFEditor.this.setSelectionToViewer(selection);
+					UniversalDoFEditor.this.setFocus();
 				}
 
 				@Override

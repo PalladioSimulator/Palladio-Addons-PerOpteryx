@@ -1,6 +1,6 @@
 /**
  */
-package genericdesigndecision.pcmsupport.presentation;
+package genericdesigndecision.universalDoF.presentation;
 
 
 import java.util.ArrayList;
@@ -69,8 +69,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import genericdesigndecision.pcmsupport.PcmsupportFactory;
-import genericdesigndecision.pcmsupport.PcmsupportPackage;
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
+import genericdesigndecision.universalDoF.UniversalDoFPackage;
 import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
 
 
@@ -93,7 +93,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PcmsupportModelWizard extends Wizard implements INewWizard {
+public class UniversalDoFModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -101,7 +101,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -110,7 +110,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -118,7 +118,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PcmsupportPackage pcmsupportPackage = PcmsupportPackage.eINSTANCE;
+	protected UniversalDoFPackage universalDoFPackage = UniversalDoFPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -126,7 +126,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PcmsupportFactory pcmsupportFactory = pcmsupportPackage.getPcmsupportFactory();
+	protected UniversalDoFFactory universalDoFFactory = universalDoFPackage.getUniversalDoFFactory();
 
 	/**
 	 * This is the file creation page.
@@ -134,7 +134,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PcmsupportModelWizardNewFileCreationPage newFileCreationPage;
+	protected UniversalDoFModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -142,7 +142,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PcmsupportModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected UniversalDoFModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -178,7 +178,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(GenericdesigndecisionEditorPlugin.INSTANCE.getImage("full/wizban/NewPcmsupport")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(GenericdesigndecisionEditorPlugin.INSTANCE.getImage("full/wizban/NewUniversalDoF")));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : pcmsupportPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : universalDoFPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -210,8 +210,8 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)pcmsupportPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = pcmsupportFactory.create(eClass);
+		EClass eClass = (EClass)universalDoFPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = universalDoFFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -312,14 +312,14 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class PcmsupportModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class UniversalDoFModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public PcmsupportModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public UniversalDoFModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -359,7 +359,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class PcmsupportModelWizardInitialObjectCreationPage extends WizardPage {
+	public class UniversalDoFModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -387,7 +387,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public PcmsupportModelWizardInitialObjectCreationPage(String pageId) {
+		public UniversalDoFModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -571,10 +571,10 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new PcmsupportModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportModelWizard_label"));
-		newFileCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportModelWizard_description"));
-		newFileCreationPage.setFileName(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new UniversalDoFModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_label"));
+		newFileCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_description"));
+		newFileCreationPage.setFileName(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -600,7 +600,7 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -610,8 +610,8 @@ public class PcmsupportModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new PcmsupportModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_PcmsupportModelWizard_label"));
+		initialObjectCreationPage = new UniversalDoFModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_UniversalDoFModelWizard_label"));
 		initialObjectCreationPage.setDescription(GenericdesigndecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
