@@ -8,8 +8,7 @@ Bundle-Activator: de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditP
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.provider,
- de.uka.ipd.sdq.pcm.designdecision.provider,
+Export-Package: de.uka.ipd.sdq.pcm.designdecision.provider,
  de.uka.ipd.sdq.pcm.designdecision.qualityproperties.provider,
  de.uka.ipd.sdq.pcm.designdecision.specific.provider,
  de.uka.ipd.sdq.pcm.resourcerepository.provider
@@ -30,6 +29,8 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
  org.eclipse.uml2.common.edit;visibility:=reexport,
  de.uka.ipd.sdq.featuremodel.edit;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
+ de.uka.ipd.sdq.dsexplore.genericdesigndecision;visibility:=reexport,
+ de.uka.ipd.sdq.dsexplore.genericdesigndecision.edit;visibility:=reexport,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
  org.palladiosimulator.pcm;visibility:=reexport,
