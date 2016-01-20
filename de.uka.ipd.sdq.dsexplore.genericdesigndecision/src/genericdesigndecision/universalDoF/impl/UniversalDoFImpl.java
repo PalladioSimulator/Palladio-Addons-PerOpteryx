@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 
