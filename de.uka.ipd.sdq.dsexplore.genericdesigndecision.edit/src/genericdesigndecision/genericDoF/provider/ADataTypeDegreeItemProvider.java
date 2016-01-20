@@ -1,11 +1,7 @@
 /**
  */
-package genericdesigndecision.pcmsupport.provider;
+package genericdesigndecision.genericDoF.provider;
 
-
-import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
-
-import genericdesigndecision.universalDoF.provider.AMetamodelDescriptionItemProvider;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,24 +9,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.pcmsupport.PCMMetamodelDescription} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.ADataTypeDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PCMMetamodelDescriptionItemProvider extends AMetamodelDescriptionItemProvider {
+public class ADataTypeDegreeItemProvider extends ADegreeOfFreedomItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PCMMetamodelDescriptionItemProvider(AdapterFactory adapterFactory) {
+	public ADataTypeDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,17 +44,6 @@ public class PCMMetamodelDescriptionItemProvider extends AMetamodelDescriptionIt
 	}
 
 	/**
-	 * This returns PCMMetamodelDescription.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PCMMetamodelDescription"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +51,7 @@ public class PCMMetamodelDescriptionItemProvider extends AMetamodelDescriptionIt
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PCMMetamodelDescription_type");
+		return getString("_UI_ADataTypeDegree_type");
 	}
 	
 
@@ -95,17 +78,6 @@ public class PCMMetamodelDescriptionItemProvider extends AMetamodelDescriptionIt
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return GenericdesigndecisionEditPlugin.INSTANCE;
 	}
 
 }

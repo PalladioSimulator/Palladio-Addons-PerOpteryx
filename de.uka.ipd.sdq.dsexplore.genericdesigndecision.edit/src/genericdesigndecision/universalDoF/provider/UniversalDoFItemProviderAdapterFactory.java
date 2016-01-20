@@ -118,6 +118,29 @@ public class UniversalDoFItemProviderAdapterFactory extends UniversalDoFAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link genericdesigndecision.universalDoF.SpecificDoF} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpecificDoFItemProvider specificDoFItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link genericdesigndecision.universalDoF.SpecificDoF}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpecificDoFAdapter() {
+		if (specificDoFItemProvider == null) {
+			specificDoFItemProvider = new SpecificDoFItemProvider(this);
+		}
+
+		return specificDoFItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link genericdesigndecision.universalDoF.UniversalDoF} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,29 +161,6 @@ public class UniversalDoFItemProviderAdapterFactory extends UniversalDoFAdapterF
 		}
 
 		return universalDoFItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GenericDoFToDegreeOfFreedomItemProvider genericDoFToDegreeOfFreedomItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGenericDoFToDegreeOfFreedomAdapter() {
-		if (genericDoFToDegreeOfFreedomItemProvider == null) {
-			genericDoFToDegreeOfFreedomItemProvider = new GenericDoFToDegreeOfFreedomItemProvider(this);
-		}
-
-		return genericDoFToDegreeOfFreedomItemProvider;
 	}
 
 	/**
@@ -263,9 +263,9 @@ public class UniversalDoFItemProviderAdapterFactory extends UniversalDoFAdapterF
 	 */
 	public void dispose() {
 		if (gDoFRepositoryItemProvider != null) gDoFRepositoryItemProvider.dispose();
-		if (genericDoFItemProvider != null) genericDoFItemProvider.dispose();
 		if (universalDoFItemProvider != null) universalDoFItemProvider.dispose();
-		if (genericDoFToDegreeOfFreedomItemProvider != null) genericDoFToDegreeOfFreedomItemProvider.dispose();
+		if (genericDoFItemProvider != null) genericDoFItemProvider.dispose();
+		if (specificDoFItemProvider != null) specificDoFItemProvider.dispose();
 	}
 
 }

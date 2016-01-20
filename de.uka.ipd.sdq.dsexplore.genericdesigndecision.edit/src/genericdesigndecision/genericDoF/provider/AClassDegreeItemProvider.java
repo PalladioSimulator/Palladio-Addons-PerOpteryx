@@ -1,10 +1,9 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.genericDoF.provider;
 
 
-import genericdesigndecision.ContinousRangeChoice;
-import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,23 +13,21 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.ContinousRangeChoice} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.AClassDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
+public class AClassDegreeItemProvider extends ADegreeOfFreedomItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContinousRangeChoiceItemProvider(AdapterFactory adapterFactory) {
+	public AClassDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,42 +42,31 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addChosenValuePropertyDescriptor(object);
+			addClassDesignOptionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Chosen Value feature.
+	 * This adds a property descriptor for the Class Design Options feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addChosenValuePropertyDescriptor(Object object) {
+	protected void addClassDesignOptionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ContinousRangeChoice_chosenValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ContinousRangeChoice_chosenValue_feature", "_UI_ContinousRangeChoice_type"),
-				 GenericdesigndecisionPackage.Literals.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE,
+				 getString("_UI_AClassDegree_classDesignOptions_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AClassDegree_classDesignOptions_feature", "_UI_AClassDegree_type"),
+				 GenericDoFPackage.Literals.ACLASS_DEGREE__CLASS_DESIGN_OPTIONS,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns ContinousRangeChoice.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContinousRangeChoice"));
 	}
 
 	/**
@@ -91,8 +77,7 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		ContinousRangeChoice continousRangeChoice = (ContinousRangeChoice)object;
-		return getString("_UI_ContinousRangeChoice_type") + " " + continousRangeChoice.isActive();
+		return getString("_UI_AClassDegree_type");
 	}
 	
 
@@ -106,12 +91,6 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ContinousRangeChoice.class)) {
-			case GenericdesigndecisionPackage.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

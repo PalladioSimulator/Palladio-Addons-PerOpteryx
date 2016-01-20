@@ -5,9 +5,6 @@ package genericdesigndecision.provider;
 
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.GenericdesigndecisionPackage;
-
-import genericdesigndecision.genericDoF.GenericDoFFactory;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -148,11 +145,6 @@ public class DecisionSpaceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GenericdesigndecisionPackage.Literals.DECISION_SPACE__DOF_INSTANCES,
-				 GenericDoFFactory.eINSTANCE.createDegreeOfFreedom()));
 	}
 
 	/**

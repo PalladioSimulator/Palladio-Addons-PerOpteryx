@@ -1,10 +1,10 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.genericDoF.provider;
 
 
-import genericdesigndecision.ContinousRangeChoice;
-import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.AOrderedIntegerDegree;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,19 +18,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.ContinousRangeChoice} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.AOrderedIntegerDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
+public class AOrderedIntegerDegreeItemProvider extends ADiscreteDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContinousRangeChoiceItemProvider(AdapterFactory adapterFactory) {
+	public AOrderedIntegerDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,42 +45,31 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addChosenValuePropertyDescriptor(object);
+			addListOfIntegersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Chosen Value feature.
+	 * This adds a property descriptor for the List Of Integers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addChosenValuePropertyDescriptor(Object object) {
+	protected void addListOfIntegersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ContinousRangeChoice_chosenValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ContinousRangeChoice_chosenValue_feature", "_UI_ContinousRangeChoice_type"),
-				 GenericdesigndecisionPackage.Literals.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE,
+				 getString("_UI_AOrderedIntegerDegree_listOfIntegers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AOrderedIntegerDegree_listOfIntegers_feature", "_UI_AOrderedIntegerDegree_type"),
+				 GenericDoFPackage.Literals.AORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns ContinousRangeChoice.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContinousRangeChoice"));
 	}
 
 	/**
@@ -91,8 +80,7 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		ContinousRangeChoice continousRangeChoice = (ContinousRangeChoice)object;
-		return getString("_UI_ContinousRangeChoice_type") + " " + continousRangeChoice.isActive();
+		return getString("_UI_AOrderedIntegerDegree_type");
 	}
 	
 
@@ -107,8 +95,8 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ContinousRangeChoice.class)) {
-			case GenericdesigndecisionPackage.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE:
+		switch (notification.getFeatureID(AOrderedIntegerDegree.class)) {
+			case GenericDoFPackage.AORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

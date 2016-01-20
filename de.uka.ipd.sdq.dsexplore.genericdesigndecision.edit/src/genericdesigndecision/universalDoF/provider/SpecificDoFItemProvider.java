@@ -1,10 +1,12 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.universalDoF.provider;
 
 
-import genericdesigndecision.Choice;
-import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
+
+import genericdesigndecision.universalDoF.SpecificDoF;
+import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.Choice} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.universalDoF.SpecificDoF} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChoiceItemProvider 
+public class SpecificDoFItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +47,7 @@ public class ChoiceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChoiceItemProvider(AdapterFactory adapterFactory) {
+	public SpecificDoFItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,49 +62,25 @@ public class ChoiceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addActivePropertyDescriptor(object);
-			addValuePropertyDescriptor(object);
-			addDofInstancePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Active feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActivePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_Active_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_Active_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__ACTIVE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Choice_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_value_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__VALUE,
+				 getString("_UI_SpecificDoF_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpecificDoF_name_feature", "_UI_SpecificDoF_type"),
+				 UniversalDoFPackage.Literals.SPECIFIC_DO_F__NAME,
 				 true,
 				 false,
 				 false,
@@ -112,36 +90,14 @@ public class ChoiceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Dof Instance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDofInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Choice_dofInstance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_dofInstance_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__DOF_INSTANCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Choice.gif.
+	 * This returns SpecificDoF.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Choice"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SpecificDoF"));
 	}
 
 	/**
@@ -152,8 +108,10 @@ public class ChoiceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Choice choice = (Choice)object;
-		return getString("_UI_Choice_type") + " " + choice.isActive();
+		String label = ((SpecificDoF)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SpecificDoF_type") :
+			getString("_UI_SpecificDoF_type") + " " + label;
 	}
 	
 
@@ -168,9 +126,8 @@ public class ChoiceItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Choice.class)) {
-			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
-			case GenericdesigndecisionPackage.CHOICE__VALUE:
+		switch (notification.getFeatureID(SpecificDoF.class)) {
+			case UniversalDoFPackage.SPECIFIC_DO_F__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

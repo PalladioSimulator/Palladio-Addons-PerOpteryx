@@ -1,9 +1,10 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.genericDoF.provider;
 
 
-import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.ADiscreteRangeDegree;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,38 +12,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.ADSEProblem} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.ADiscreteRangeDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ADSEProblemItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ADiscreteRangeDegreeItemProvider extends ARangeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ADSEProblemItemProvider(AdapterFactory adapterFactory) {
+	public ADiscreteRangeDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,52 +45,52 @@ public class ADSEProblemItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProblemPropertyDescriptor(object);
-			addAssociatedMetamodelPropertyDescriptor(object);
+			addToPropertyDescriptor(object);
+			addFromPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Problem feature.
+	 * This adds a property descriptor for the To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProblemPropertyDescriptor(Object object) {
+	protected void addToPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADSEProblem_problem_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADSEProblem_problem_feature", "_UI_ADSEProblem_type"),
-				 GenericdesigndecisionPackage.Literals.ADSE_PROBLEM__PROBLEM,
+				 getString("_UI_ADiscreteRangeDegree_to_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADiscreteRangeDegree_to_feature", "_UI_ADiscreteRangeDegree_type"),
+				 GenericDoFPackage.Literals.ADISCRETE_RANGE_DEGREE__TO,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Associated Metamodel feature.
+	 * This adds a property descriptor for the From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAssociatedMetamodelPropertyDescriptor(Object object) {
+	protected void addFromPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADSEProblem_associatedMetamodel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADSEProblem_associatedMetamodel_feature", "_UI_ADSEProblem_type"),
-				 GenericdesigndecisionPackage.Literals.ADSE_PROBLEM__ASSOCIATED_METAMODEL,
+				 getString("_UI_ADiscreteRangeDegree_from_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADiscreteRangeDegree_from_feature", "_UI_ADiscreteRangeDegree_type"),
+				 GenericDoFPackage.Literals.ADISCRETE_RANGE_DEGREE__FROM,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -115,7 +103,8 @@ public class ADSEProblemItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ADSEProblem_type");
+		ADiscreteRangeDegree aDiscreteRangeDegree = (ADiscreteRangeDegree)object;
+		return getString("_UI_ADiscreteRangeDegree_type") + " " + aDiscreteRangeDegree.isUpperBoundIncluded();
 	}
 	
 
@@ -129,6 +118,13 @@ public class ADSEProblemItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ADiscreteRangeDegree.class)) {
+			case GenericDoFPackage.ADISCRETE_RANGE_DEGREE__TO:
+			case GenericDoFPackage.ADISCRETE_RANGE_DEGREE__FROM:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -142,17 +138,6 @@ public class ADSEProblemItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return GenericdesigndecisionEditPlugin.INSTANCE;
 	}
 
 }

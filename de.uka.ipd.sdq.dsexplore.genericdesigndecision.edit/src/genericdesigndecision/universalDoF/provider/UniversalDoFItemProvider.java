@@ -61,7 +61,7 @@ public class UniversalDoFItemProvider
 
 			addGdofrepositoryPropertyDescriptor(object);
 			addSupportedMetamodelsPropertyDescriptor(object);
-			addPreparedDoFsPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,19 +111,19 @@ public class UniversalDoFItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Prepared Do Fs feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreparedDoFsPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_UniversalDoF_preparedDoFs_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_UniversalDoF_preparedDoFs_feature", "_UI_UniversalDoF_type"),
-				 UniversalDoFPackage.Literals.UNIVERSAL_DO_F__PREPARED_DO_FS,
+				 getString("_UI_UniversalDoF_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UniversalDoF_target_feature", "_UI_UniversalDoF_type"),
+				 UniversalDoFPackage.Literals.UNIVERSAL_DO_F__TARGET,
 				 true,
 				 false,
 				 true,

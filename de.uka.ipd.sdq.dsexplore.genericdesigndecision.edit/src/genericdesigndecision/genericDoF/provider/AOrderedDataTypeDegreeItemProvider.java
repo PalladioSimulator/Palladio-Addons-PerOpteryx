@@ -1,10 +1,7 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.genericDoF.provider;
 
-
-import genericdesigndecision.ClassChoice;
-import genericdesigndecision.GenericdesigndecisionPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,23 +9,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.ClassChoice} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.AOrderedDataTypeDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassChoiceItemProvider extends ChoiceItemProvider {
+public class AOrderedDataTypeDegreeItemProvider extends ADataTypeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassChoiceItemProvider(AdapterFactory adapterFactory) {
+	public AOrderedDataTypeDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,42 +39,8 @@ public class ClassChoiceItemProvider extends ChoiceItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addChosenValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Chosen Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addChosenValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ClassChoice_chosenValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ClassChoice_chosenValue_feature", "_UI_ClassChoice_type"),
-				 GenericdesigndecisionPackage.Literals.CLASS_CHOICE__CHOSEN_VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns ClassChoice.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ClassChoice"));
 	}
 
 	/**
@@ -89,8 +51,7 @@ public class ClassChoiceItemProvider extends ChoiceItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		ClassChoice classChoice = (ClassChoice)object;
-		return getString("_UI_ClassChoice_type") + " " + classChoice.isActive();
+		return getString("_UI_AOrderedDataTypeDegree_type");
 	}
 	
 

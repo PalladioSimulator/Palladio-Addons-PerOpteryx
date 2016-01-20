@@ -62,29 +62,29 @@ public class GenericDoFItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addGdofIDPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Gdof ID feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGdofIDPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenericDoF_gdofID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDoF_gdofID_feature", "_UI_GenericDoF_type"),
-				 UniversalDoFPackage.Literals.GENERIC_DO_F__GDOF_ID,
+				 getString("_UI_GenericDoF_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDoF_name_feature", "_UI_GenericDoF_type"),
+				 UniversalDoFPackage.Literals.GENERIC_DO_F__NAME,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -108,8 +108,10 @@ public class GenericDoFItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		GenericDoF genericDoF = (GenericDoF)object;
-		return getString("_UI_GenericDoF_type") + " " + genericDoF.getGdofID();
+		String label = ((GenericDoF)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_GenericDoF_type") :
+			getString("_UI_GenericDoF_type") + " " + label;
 	}
 	
 
@@ -125,7 +127,7 @@ public class GenericDoFItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GenericDoF.class)) {
-			case UniversalDoFPackage.GENERIC_DO_F__GDOF_ID:
+			case UniversalDoFPackage.GENERIC_DO_F__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

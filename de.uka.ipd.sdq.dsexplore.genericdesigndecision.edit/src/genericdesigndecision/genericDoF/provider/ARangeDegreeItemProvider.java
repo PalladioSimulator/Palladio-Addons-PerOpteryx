@@ -1,10 +1,10 @@
 /**
  */
-package genericdesigndecision.provider;
+package genericdesigndecision.genericDoF.provider;
 
 
-import genericdesigndecision.Choice;
-import genericdesigndecision.GenericdesigndecisionPackage;
+import genericdesigndecision.genericDoF.ARangeDegree;
+import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,40 +12,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.Choice} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.ARangeDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChoiceItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ARangeDegreeItemProvider extends AOrderedDataTypeDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChoiceItemProvider(AdapterFactory adapterFactory) {
+	public ARangeDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,27 +45,27 @@ public class ChoiceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addActivePropertyDescriptor(object);
-			addValuePropertyDescriptor(object);
-			addDofInstancePropertyDescriptor(object);
+			addUpperBoundIncludedPropertyDescriptor(object);
+			addLowerBoundIncludedPropertyDescriptor(object);
+			addNumberOfStepsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Active feature.
+	 * This adds a property descriptor for the Upper Bound Included feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addActivePropertyDescriptor(Object object) {
+	protected void addUpperBoundIncludedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_Active_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_Active_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__ACTIVE,
+				 getString("_UI_ARangeDegree_upperBoundIncluded_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ARangeDegree_upperBoundIncluded_feature", "_UI_ARangeDegree_type"),
+				 GenericDoFPackage.Literals.ARANGE_DEGREE__UPPER_BOUND_INCLUDED,
 				 true,
 				 false,
 				 false,
@@ -90,58 +75,47 @@ public class ChoiceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature.
+	 * This adds a property descriptor for the Lower Bound Included feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
+	protected void addLowerBoundIncludedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_value_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__VALUE,
+				 getString("_UI_ARangeDegree_lowerBoundIncluded_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ARangeDegree_lowerBoundIncluded_feature", "_UI_ARangeDegree_type"),
+				 GenericDoFPackage.Literals.ARANGE_DEGREE__LOWER_BOUND_INCLUDED,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Dof Instance feature.
+	 * This adds a property descriptor for the Number Of Steps feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDofInstancePropertyDescriptor(Object object) {
+	protected void addNumberOfStepsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_dofInstance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_dofInstance_feature", "_UI_Choice_type"),
-				 GenericdesigndecisionPackage.Literals.CHOICE__DOF_INSTANCE,
+				 getString("_UI_ARangeDegree_numberOfSteps_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ARangeDegree_numberOfSteps_feature", "_UI_ARangeDegree_type"),
+				 GenericDoFPackage.Literals.ARANGE_DEGREE__NUMBER_OF_STEPS,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns Choice.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Choice"));
 	}
 
 	/**
@@ -152,8 +126,8 @@ public class ChoiceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Choice choice = (Choice)object;
-		return getString("_UI_Choice_type") + " " + choice.isActive();
+		ARangeDegree aRangeDegree = (ARangeDegree)object;
+		return getString("_UI_ARangeDegree_type") + " " + aRangeDegree.isUpperBoundIncluded();
 	}
 	
 
@@ -168,9 +142,10 @@ public class ChoiceItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Choice.class)) {
-			case GenericdesigndecisionPackage.CHOICE__ACTIVE:
-			case GenericdesigndecisionPackage.CHOICE__VALUE:
+		switch (notification.getFeatureID(ARangeDegree.class)) {
+			case GenericDoFPackage.ARANGE_DEGREE__UPPER_BOUND_INCLUDED:
+			case GenericDoFPackage.ARANGE_DEGREE__LOWER_BOUND_INCLUDED:
+			case GenericDoFPackage.ARANGE_DEGREE__NUMBER_OF_STEPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -187,17 +162,6 @@ public class ChoiceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return GenericdesigndecisionEditPlugin.INSTANCE;
 	}
 
 }

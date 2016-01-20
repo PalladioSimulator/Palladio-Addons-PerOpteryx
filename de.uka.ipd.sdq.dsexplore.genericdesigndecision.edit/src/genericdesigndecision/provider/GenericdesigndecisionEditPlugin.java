@@ -5,6 +5,7 @@ package genericdesigndecision.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the Genericdesigndecision edit plugin.
@@ -38,6 +39,7 @@ public final class GenericdesigndecisionEditPlugin extends EMFPlugin {
 	public GenericdesigndecisionEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

@@ -92,7 +92,7 @@ public class DiscreteRangeChoiceItemProvider extends ChoiceItemProvider {
 	@Override
 	public String getText(Object object) {
 		DiscreteRangeChoice discreteRangeChoice = (DiscreteRangeChoice)object;
-		return getString("_UI_DiscreteRangeChoice_type") + " " + discreteRangeChoice.isIsActive();
+		return getString("_UI_DiscreteRangeChoice_type") + " " + discreteRangeChoice.isActive();
 	}
 	
 

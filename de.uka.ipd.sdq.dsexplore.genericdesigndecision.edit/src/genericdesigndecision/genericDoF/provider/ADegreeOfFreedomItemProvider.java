@@ -3,7 +3,7 @@
 package genericdesigndecision.genericDoF.provider;
 
 
-import genericdesigndecision.genericDoF.DegreeOfFreedom;
+import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.GenericDoFFactory;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
@@ -30,12 +30,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.DegreeOfFreedom} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.ADegreeOfFreedom} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DegreeOfFreedomItemProvider 
+public class ADegreeOfFreedomItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class DegreeOfFreedomItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DegreeOfFreedomItemProvider(AdapterFactory adapterFactory) {
+	public ADegreeOfFreedomItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,6 +67,8 @@ public class DegreeOfFreedomItemProvider
 			addAddedElementsPropertyDescriptor(object);
 			addInteractionConstraintsPropertyDescriptor(object);
 			addPrimaryChangeablePropertyDescriptor(object);
+			addPrimaryChangedPropertyDescriptor(object);
+			addChangeableElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,9 +84,9 @@ public class DegreeOfFreedomItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DegreeOfFreedom_addedElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedom_addedElements_feature", "_UI_DegreeOfFreedom_type"),
-				 GenericDoFPackage.Literals.DEGREE_OF_FREEDOM__ADDED_ELEMENTS,
+				 getString("_UI_ADegreeOfFreedom_addedElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADegreeOfFreedom_addedElements_feature", "_UI_ADegreeOfFreedom_type"),
+				 GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__ADDED_ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -104,9 +106,9 @@ public class DegreeOfFreedomItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DegreeOfFreedom_interactionConstraints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedom_interactionConstraints_feature", "_UI_DegreeOfFreedom_type"),
-				 GenericDoFPackage.Literals.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS,
+				 getString("_UI_ADegreeOfFreedom_interactionConstraints_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADegreeOfFreedom_interactionConstraints_feature", "_UI_ADegreeOfFreedom_type"),
+				 GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS,
 				 true,
 				 false,
 				 true,
@@ -126,9 +128,53 @@ public class DegreeOfFreedomItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DegreeOfFreedom_primaryChangeable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedom_primaryChangeable_feature", "_UI_DegreeOfFreedom_type"),
-				 GenericDoFPackage.Literals.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE,
+				 getString("_UI_ADegreeOfFreedom_primaryChangeable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADegreeOfFreedom_primaryChangeable_feature", "_UI_ADegreeOfFreedom_type"),
+				 GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Primary Changed feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPrimaryChangedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADegreeOfFreedom_primaryChanged_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADegreeOfFreedom_primaryChanged_feature", "_UI_ADegreeOfFreedom_type"),
+				 GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__PRIMARY_CHANGED,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Changeable Elements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addChangeableElementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADegreeOfFreedom_changeableElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADegreeOfFreedom_changeableElements_feature", "_UI_ADegreeOfFreedom_type"),
+				 GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -149,7 +195,7 @@ public class DegreeOfFreedomItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericDoFPackage.Literals.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
+			childrenFeatures.add(GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -168,17 +214,6 @@ public class DegreeOfFreedomItemProvider
 	}
 
 	/**
-	 * This returns DegreeOfFreedom.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DegreeOfFreedom"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,7 +221,7 @@ public class DegreeOfFreedomItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DegreeOfFreedom_type");
+		return getString("_UI_ADegreeOfFreedom_type");
 	}
 	
 
@@ -201,8 +236,8 @@ public class DegreeOfFreedomItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DegreeOfFreedom.class)) {
-			case GenericDoFPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
+		switch (notification.getFeatureID(ADegreeOfFreedom.class)) {
+			case GenericDoFPackage.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -222,7 +257,7 @@ public class DegreeOfFreedomItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GenericDoFPackage.Literals.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS,
+				(GenericDoFPackage.Literals.ADEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS,
 				 GenericDoFFactory.eINSTANCE.createChangeableElementDescription()));
 	}
 

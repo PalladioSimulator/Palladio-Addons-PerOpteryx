@@ -4,11 +4,11 @@ package genericdesigndecision.genericDoF.provider;
 
 
 import genericdesigndecision.genericDoF.DoFRepository;
-import genericdesigndecision.genericDoF.GenericDoFFactory;
 import genericdesigndecision.genericDoF.GenericDoFPackage;
 
 import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
 
+import genericdesigndecision.universalDoF.UniversalDoFFactory;
 import java.util.Collection;
 import java.util.List;
 
@@ -79,7 +79,7 @@ public class DoFRepositoryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericDoFPackage.Literals.DO_FREPOSITORY__DOFS);
+			childrenFeatures.add(GenericDoFPackage.Literals.DO_FREPOSITORY__SDOFS);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +132,7 @@ public class DoFRepositoryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DoFRepository.class)) {
-			case GenericDoFPackage.DO_FREPOSITORY__DOFS:
+			case GenericDoFPackage.DO_FREPOSITORY__SDOFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -152,8 +152,8 @@ public class DoFRepositoryItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GenericDoFPackage.Literals.DO_FREPOSITORY__DOFS,
-				 GenericDoFFactory.eINSTANCE.createDegreeOfFreedom()));
+				(GenericDoFPackage.Literals.DO_FREPOSITORY__SDOFS,
+				 UniversalDoFFactory.eINSTANCE.createSpecificDoF()));
 	}
 
 	/**

@@ -1,10 +1,7 @@
 /**
  */
-package genericdesigndecision.pcmsupport.provider;
+package genericdesigndecision.genericDoF.provider;
 
-
-import genericdesigndecision.provider.ADSEProblemItemProvider;
-import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,24 +9,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.pcmsupport.PCMDSEProblem} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.genericDoF.AClassAsReferenceDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PCMDSEProblemItemProvider extends ADSEProblemItemProvider {
+public class AClassAsReferenceDegreeItemProvider extends AClassDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PCMDSEProblemItemProvider(AdapterFactory adapterFactory) {
+	public AClassAsReferenceDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,17 +44,6 @@ public class PCMDSEProblemItemProvider extends ADSEProblemItemProvider {
 	}
 
 	/**
-	 * This returns PCMDSEProblem.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PCMDSEProblem"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +51,7 @@ public class PCMDSEProblemItemProvider extends ADSEProblemItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PCMDSEProblem_type");
+		return getString("_UI_AClassAsReferenceDegree_type");
 	}
 	
 
@@ -94,17 +78,6 @@ public class PCMDSEProblemItemProvider extends ADSEProblemItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return GenericdesigndecisionEditPlugin.INSTANCE;
 	}
 
 }

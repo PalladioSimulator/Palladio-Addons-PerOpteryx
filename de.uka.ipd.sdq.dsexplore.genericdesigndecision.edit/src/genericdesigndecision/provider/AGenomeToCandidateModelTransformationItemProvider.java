@@ -1,22 +1,16 @@
 /**
  */
-package genericdesigndecision.universalDoF.provider;
+package genericdesigndecision.provider;
 
-
-import genericdesigndecision.provider.GenericdesigndecisionEditPlugin;
-
-import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -26,12 +20,12 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link java.util.Map.Entry} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.AGenomeToCandidateModelTransformation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GenericDoFToDegreeOfFreedomItemProvider 
+public class AGenomeToCandidateModelTransformationItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +39,7 @@ public class GenericDoFToDegreeOfFreedomItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenericDoFToDegreeOfFreedomItemProvider(AdapterFactory adapterFactory) {
+	public AGenomeToCandidateModelTransformationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,65 +54,8 @@ public class GenericDoFToDegreeOfFreedomItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addKeyPropertyDescriptor(object);
-			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Key feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addKeyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenericDoFToDegreeOfFreedom_key_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDoFToDegreeOfFreedom_key_feature", "_UI_GenericDoFToDegreeOfFreedom_type"),
-				 UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__KEY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenericDoFToDegreeOfFreedom_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenericDoFToDegreeOfFreedom_value_feature", "_UI_GenericDoFToDegreeOfFreedom_type"),
-				 UniversalDoFPackage.Literals.GENERIC_DO_FTO_DEGREE_OF_FREEDOM__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns GenericDoFToDegreeOfFreedom.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GenericDoFToDegreeOfFreedom"));
 	}
 
 	/**
@@ -129,8 +66,7 @@ public class GenericDoFToDegreeOfFreedomItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Map.Entry<?, ?> genericDoFToDegreeOfFreedom = (Map.Entry<?, ?>)object;
-		return "" + genericDoFToDegreeOfFreedom.getKey() + " -> " + genericDoFToDegreeOfFreedom.getValue();
+		return getString("_UI_AGenomeToCandidateModelTransformation_type");
 	}
 	
 

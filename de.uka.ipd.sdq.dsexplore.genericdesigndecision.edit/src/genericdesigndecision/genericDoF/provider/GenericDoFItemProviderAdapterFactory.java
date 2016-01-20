@@ -233,29 +233,6 @@ public class GenericDoFItemProviderAdapterFactory extends GenericDoFAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link genericdesigndecision.genericDoF.DegreeOfFreedom} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DegreeOfFreedomItemProvider degreeOfFreedomItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link genericdesigndecision.genericDoF.DegreeOfFreedom}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDegreeOfFreedomAdapter() {
-		if (degreeOfFreedomItemProvider == null) {
-			degreeOfFreedomItemProvider = new DegreeOfFreedomItemProvider(this);
-		}
-
-		return degreeOfFreedomItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,7 +338,6 @@ public class GenericDoFItemProviderAdapterFactory extends GenericDoFAdapterFacto
 		if (doFRepositoryItemProvider != null) doFRepositoryItemProvider.dispose();
 		if (instanceSelectionRuleItemProvider != null) instanceSelectionRuleItemProvider.dispose();
 		if (staticSelectionRuleItemProvider != null) staticSelectionRuleItemProvider.dispose();
-		if (degreeOfFreedomItemProvider != null) degreeOfFreedomItemProvider.dispose();
 	}
 
 }
