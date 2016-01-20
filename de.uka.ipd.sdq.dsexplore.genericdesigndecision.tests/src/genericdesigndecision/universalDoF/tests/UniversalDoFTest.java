@@ -16,15 +16,11 @@ import junit.textui.TestRunner;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement) <em>Evaluate Metamodel</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#prepareGDoF(int) <em>Prepare GDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EObject) <em>Evaluate Metamodel</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#newGDoF(java.lang.String) <em>New GDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Delete GDo F</em>}</li>
  *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#listGDoFs() <em>List GDo Fs</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#listPreparedDoFs() <em>List Prepared Do Fs</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#removePreparedDoF(int) <em>Remove Prepared Do F</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#prepareDoF(int) <em>Prepare Do F</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#newGDoF(int) <em>New GDo F</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(int) <em>Delete GDo F</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#constrainDoF(int) <em>Constrain Do F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.UniversalDoF#getGDoF(java.lang.String) <em>Get GDo F</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -101,26 +97,13 @@ public class UniversalDoFTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement) <em>Evaluate Metamodel</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EObject) <em>Evaluate Metamodel</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EModelElement)
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#evaluateMetamodel(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public void testEvaluateMetamodel__EModelElement() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#prepareGDoF(int) <em>Prepare GDo F</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#prepareGDoF(int)
-	 * @generated
-	 */
-	public void testPrepareGDoF__int() {
+	public void testEvaluateMetamodel__EObject() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
@@ -140,78 +123,39 @@ public class UniversalDoFTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#listPreparedDoFs() <em>List Prepared Do Fs</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#newGDoF(java.lang.String) <em>New GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#listPreparedDoFs()
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#newGDoF(java.lang.String)
 	 * @generated
 	 */
-	public void testListPreparedDoFs() {
+	public void testNewGDoF__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#removePreparedDoF(int) <em>Remove Prepared Do F</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Delete GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#removePreparedDoF(int)
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF)
 	 * @generated
 	 */
-	public void testRemovePreparedDoF__int() {
+	public void testDeleteGDoF__GenericDoF() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#prepareDoF(int) <em>Prepare Do F</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#getGDoF(java.lang.String) <em>Get GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#prepareDoF(int)
+	 * @see genericdesigndecision.universalDoF.UniversalDoF#getGDoF(java.lang.String)
 	 * @generated
 	 */
-	public void testPrepareDoF__int() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#newGDoF(int) <em>New GDo F</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#newGDoF(int)
-	 * @generated
-	 */
-	public void testNewGDoF__int() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(int) <em>Delete GDo F</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#deleteGDoF(int)
-	 * @generated
-	 */
-	public void testDeleteGDoF__int() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.UniversalDoF#constrainDoF(int) <em>Constrain Do F</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.UniversalDoF#constrainDoF(int)
-	 * @generated
-	 */
-	public void testConstrainDoF__int() {
+	public void testGetGDoF__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

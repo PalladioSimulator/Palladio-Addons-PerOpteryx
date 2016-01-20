@@ -2,8 +2,7 @@
  */
 package genericdesigndecision.tests;
 
-import genericdesigndecision.pcmsupport.tests.PcmsupportTests;
-
+import genericdesigndecision.genericDoF.tests.GenericDoFTests;
 import genericdesigndecision.qualityproperties.tests.QualitypropertiesTests;
 
 import genericdesigndecision.universalDoF.tests.UniversalDoFTests;
@@ -38,9 +37,9 @@ public class GenericdesigndecisionAllTests extends TestSuite {
 	public static Test suite() {
 		TestSuite suite = new GenericdesigndecisionAllTests("Genericdesigndecision Tests");
 		suite.addTest(GenericdesigndecisionTests.suite());
+		suite.addTest(GenericDoFTests.suite());
 		suite.addTest(UniversalDoFTests.suite());
 		suite.addTest(QualitypropertiesTests.suite());
-		suite.addTest(PcmsupportTests.suite());
 		return suite;
 	}
 

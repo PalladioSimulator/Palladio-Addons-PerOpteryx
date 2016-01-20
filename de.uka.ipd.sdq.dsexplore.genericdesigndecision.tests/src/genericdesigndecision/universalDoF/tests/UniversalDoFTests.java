@@ -33,6 +33,8 @@ public class UniversalDoFTests extends TestSuite {
 		TestSuite suite = new UniversalDoFTests("universalDoF Tests");
 		suite.addTestSuite(GDoFRepositoryTest.class);
 		suite.addTestSuite(UniversalDoFTest.class);
+		suite.addTestSuite(GenericDoFTest.class);
+		suite.addTestSuite(SpecificDoFTest.class);
 		return suite;
 	}
 

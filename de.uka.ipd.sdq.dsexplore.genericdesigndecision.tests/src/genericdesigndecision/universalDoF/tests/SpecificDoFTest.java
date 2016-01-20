@@ -2,7 +2,7 @@
  */
 package genericdesigndecision.universalDoF.tests;
 
-import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.SpecificDoF;
 import genericdesigndecision.universalDoF.UniversalDoFFactory;
 
 import junit.framework.TestCase;
@@ -11,25 +11,25 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Generic Do F</b></em>'.
+ * A test case for the model object '<em><b>Specific Do F</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link genericdesigndecision.universalDoF.GenericDoF#equals(genericdesigndecision.universalDoF.GenericDoF) <em>Equals</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.SpecificDoF#equals(genericdesigndecision.universalDoF.SpecificDoF) <em>Equals</em>}</li>
  * </ul>
  * </p>
  * @generated
  */
-public class GenericDoFTest extends TestCase {
+public class SpecificDoFTest extends TestCase {
 
 	/**
-	 * The fixture for this Generic Do F test case.
+	 * The fixture for this Specific Do F test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericDoF fixture = null;
+	protected SpecificDoF fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,36 +37,36 @@ public class GenericDoFTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(GenericDoFTest.class);
+		TestRunner.run(SpecificDoFTest.class);
 	}
 
 	/**
-	 * Constructs a new Generic Do F test case with the given name.
+	 * Constructs a new Specific Do F test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenericDoFTest(String name) {
+	public SpecificDoFTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Generic Do F test case.
+	 * Sets the fixture for this Specific Do F test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(GenericDoF fixture) {
+	protected void setFixture(SpecificDoF fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Generic Do F test case.
+	 * Returns the fixture for this Specific Do F test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GenericDoF getFixture() {
+	protected SpecificDoF getFixture() {
 		return fixture;
 	}
 
@@ -78,7 +78,7 @@ public class GenericDoFTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(UniversalDoFFactory.eINSTANCE.createGenericDoF());
+		setFixture(UniversalDoFFactory.eINSTANCE.createSpecificDoF());
 	}
 
 	/**
@@ -93,16 +93,16 @@ public class GenericDoFTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.GenericDoF#equals(genericdesigndecision.universalDoF.GenericDoF) <em>Equals</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.SpecificDoF#equals(genericdesigndecision.universalDoF.SpecificDoF) <em>Equals</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.GenericDoF#equals(genericdesigndecision.universalDoF.GenericDoF)
+	 * @see genericdesigndecision.universalDoF.SpecificDoF#equals(genericdesigndecision.universalDoF.SpecificDoF)
 	 * @generated
 	 */
-	public void testEquals__GenericDoF() {
+	public void testEquals__SpecificDoF() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
-} //GenericDoFTest
+} //SpecificDoFTest

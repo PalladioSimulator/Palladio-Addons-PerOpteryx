@@ -8,12 +8,15 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: genericdesigndecision.genericDoF.tests,
- genericdesigndecision.pcmsupport.tests,
  genericdesigndecision.qualityproperties.tests,
  genericdesigndecision.tests,
  genericdesigndecision.universalDoF.tests
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore.genericdesigndecision;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.junit;visibility:=reexport
+ org.junit;visibility:=reexport,
+ de.uka.ipd.sdq.dsexplore
 Bundle-ActivationPolicy: lazy
+Import-Package: de.uka.ipd.sdq.dsexplore.opt4j.representation

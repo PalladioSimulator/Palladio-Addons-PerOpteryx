@@ -31,6 +31,7 @@ public class GenericDoFTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new GenericDoFTests("genericDoF Tests");
+		suite.addTestSuite(DoFRepositoryTest.class);
 		return suite;
 	}
 

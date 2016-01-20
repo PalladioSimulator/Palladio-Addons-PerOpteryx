@@ -16,9 +16,9 @@ import junit.textui.TestRunner;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#listGDoFs() <em>List GDo Fs</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#newGDoF(int) <em>New GDo F</em>}</li>
- *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(int) <em>Delete GDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#newGDoF(java.lang.String) <em>New GDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Delete GDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.universalDoF.GDoFRepository#getGDoF(java.lang.String) <em>Get GDo F</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -95,39 +95,39 @@ public class GDoFRepositoryTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#listGDoFs() <em>List GDo Fs</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#newGDoF(java.lang.String) <em>New GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.GDoFRepository#listGDoFs()
+	 * @see genericdesigndecision.universalDoF.GDoFRepository#newGDoF(java.lang.String)
 	 * @generated
 	 */
-	public void testListGDoFs() {
+	public void testNewGDoF__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#newGDoF(int) <em>New GDo F</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF) <em>Delete GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.GDoFRepository#newGDoF(int)
+	 * @see genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(genericdesigndecision.universalDoF.GenericDoF)
 	 * @generated
 	 */
-	public void testNewGDoF__int() {
+	public void testDeleteGDoF__GenericDoF() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
 	}
 
 	/**
-	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(int) <em>Delete GDo F</em>}' operation.
+	 * Tests the '{@link genericdesigndecision.universalDoF.GDoFRepository#getGDoF(java.lang.String) <em>Get GDo F</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.universalDoF.GDoFRepository#deleteGDoF(int)
+	 * @see genericdesigndecision.universalDoF.GDoFRepository#getGDoF(java.lang.String)
 	 * @generated
 	 */
-	public void testDeleteGDoF__int() {
+	public void testGetGDoF__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

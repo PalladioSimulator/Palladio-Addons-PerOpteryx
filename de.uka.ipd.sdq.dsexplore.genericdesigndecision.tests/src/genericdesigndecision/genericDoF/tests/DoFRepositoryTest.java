@@ -13,6 +13,13 @@ import junit.textui.TestRunner;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Do FRepository</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link genericdesigndecision.genericDoF.DoFRepository#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF) <em>Delete SDo F</em>}</li>
+ *   <li>{@link genericdesigndecision.genericDoF.DoFRepository#getSDoF(java.lang.String) <em>Get SDo F</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class DoFRepositoryTest extends TestCase {
@@ -84,6 +91,32 @@ public class DoFRepositoryTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link genericdesigndecision.genericDoF.DoFRepository#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF) <em>Delete SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.genericDoF.DoFRepository#deleteSDoF(genericdesigndecision.universalDoF.SpecificDoF)
+	 * @generated
+	 */
+	public void testDeleteSDoF__SpecificDoF() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link genericdesigndecision.genericDoF.DoFRepository#getSDoF(java.lang.String) <em>Get SDo F</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see genericdesigndecision.genericDoF.DoFRepository#getSDoF(java.lang.String)
+	 * @generated
+	 */
+	public void testGetSDoF__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //DoFRepositoryTest
