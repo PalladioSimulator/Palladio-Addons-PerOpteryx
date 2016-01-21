@@ -6,8 +6,8 @@ import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartitio
 
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.universalDoF.Metamodel;

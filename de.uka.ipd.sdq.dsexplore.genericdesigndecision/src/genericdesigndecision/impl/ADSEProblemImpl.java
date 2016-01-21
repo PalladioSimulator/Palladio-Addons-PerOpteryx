@@ -89,7 +89,7 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected ADSEProblemImpl(final DSEWorkflowConfiguration dseConfig, final ResourceSetPartition emfPartition) {
+	protected ADSEProblemImpl(final DSEWorkflowConfiguration dseConfig, ResourceSetPartition emfPartition) {
 		super();
 		this.dseConfig = dseConfig;
 		this.emfPartition = emfPartition;
