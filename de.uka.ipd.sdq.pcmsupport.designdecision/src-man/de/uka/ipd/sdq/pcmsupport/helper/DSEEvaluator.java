@@ -35,7 +35,7 @@ import de.uka.ipd.sdq.dsexplore.helper.ObjectiveAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.launch.LoadModelIntoBlackboardJob;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;

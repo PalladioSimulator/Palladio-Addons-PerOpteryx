@@ -20,9 +20,9 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResul
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
+import de.uka.ipd.sdq.pcmsupport.APCMTactic;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ResourceContainerReplicationDegree;
-import de.uka.ipd.sdq.pcmsupport.helper.APCMTactic;
 import de.uka.ipd.sdq.pcmsupport.helper.EMFHelper;
 import de.uka.ipd.sdq.pcmsupport.helper.UtilisationResultCacheAndHelper;
 import genericdesigndecision.Choice;

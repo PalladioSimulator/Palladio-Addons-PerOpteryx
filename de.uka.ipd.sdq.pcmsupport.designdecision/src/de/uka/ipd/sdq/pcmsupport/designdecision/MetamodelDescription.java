@@ -12,9 +12,9 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import de.uka.ipd.sdq.pcmsupport.designdecision.impl.MetamodelDescriptionImpl;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.universalDoF.AMetamodelDescription;

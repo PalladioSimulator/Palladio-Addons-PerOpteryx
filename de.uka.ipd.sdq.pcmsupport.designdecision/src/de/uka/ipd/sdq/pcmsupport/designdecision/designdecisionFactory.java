@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EFactory;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 
-import de.uka.ipd.sdq.pcmsupport.helper.PCMWorkflowConfiguration;
+import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
 
 /**
  * <!-- begin-user-doc -->

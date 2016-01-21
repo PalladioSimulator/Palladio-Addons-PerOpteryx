@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import org.opt4j.core.Phenotype;
 import org.palladiosimulator.solver.models.PCMInstance;

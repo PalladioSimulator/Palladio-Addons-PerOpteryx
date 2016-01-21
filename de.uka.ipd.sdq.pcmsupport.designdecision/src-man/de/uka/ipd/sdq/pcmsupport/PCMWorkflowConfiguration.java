@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,7 +124,7 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
         return pcmPartition;
 	}
 
-    @Override
+	@Override
 	public List<String> getModelLoadFiles() {
 		ArrayList<String> files = new ArrayList<String>();
 		files.addAll(this.getPCMModelFiles());

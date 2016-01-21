@@ -2,8 +2,8 @@
  */
 package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
+import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.designdecision.*;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMWorkflowConfiguration;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.eclipse.core.runtime.CoreException;

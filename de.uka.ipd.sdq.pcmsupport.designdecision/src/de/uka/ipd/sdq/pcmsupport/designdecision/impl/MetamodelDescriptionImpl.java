@@ -3,6 +3,11 @@
 package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.pcmsupport.Adapter;
+import de.uka.ipd.sdq.pcmsupport.DSEDecoder;
+import de.uka.ipd.sdq.pcmsupport.DSEModule;
+import de.uka.ipd.sdq.pcmsupport.GenotypeReader;
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import de.uka.ipd.sdq.pcmsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionPackage;
@@ -11,11 +16,6 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.AssembledComponentDegre
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ProcessingResourceDegree;
-import de.uka.ipd.sdq.pcmsupport.helper.Adapter;
-import de.uka.ipd.sdq.pcmsupport.helper.DSEDecoder;
-import de.uka.ipd.sdq.pcmsupport.helper.DSEModule;
-import de.uka.ipd.sdq.pcmsupport.helper.GenotypeReader;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;

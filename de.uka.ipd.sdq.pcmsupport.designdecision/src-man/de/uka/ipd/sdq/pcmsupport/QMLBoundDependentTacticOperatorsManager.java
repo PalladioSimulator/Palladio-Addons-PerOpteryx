@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +26,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
+import de.uka.ipd.sdq.pcmsupport.helper.UtilisationResultCacheAndHelper;
 
 /**
  * Applies activated heuristics based on the constraint violation of an 

@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -43,6 +43,7 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ProcessingResourceDegre
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcmsupport.helper.EMFHelper;
 import genericdesigndecision.Choice;
 import genericdesigndecision.ClassChoice;
 import genericdesigndecision.ContinousRangeChoice;

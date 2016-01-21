@@ -1,9 +1,10 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.pcmsupport.designdecision.DSEProblem;
+import de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator;
 
 import org.opt4j.core.problem.Creator;
 import org.opt4j.core.problem.Decoder;

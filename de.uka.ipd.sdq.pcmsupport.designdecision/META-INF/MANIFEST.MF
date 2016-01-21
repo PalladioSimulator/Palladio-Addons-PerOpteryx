@@ -7,7 +7,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.pcmsupport.designdecision,
+Export-Package: de.uka.ipd.sdq.pcmsupport,
+ de.uka.ipd.sdq.pcmsupport.designdecision,
  de.uka.ipd.sdq.pcmsupport.designdecision.impl,
  de.uka.ipd.sdq.pcmsupport.designdecision.qualityproperties,
  de.uka.ipd.sdq.pcmsupport.designdecision.qualityproperties.impl,

@@ -7,6 +7,8 @@ import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
+import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.designdecision.DSEProblem;
 import de.uka.ipd.sdq.pcmsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionFactory;
@@ -20,8 +22,6 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.pcmsupport.helper.EMFHelper;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.helper.ResultsWriter;
 import genericdesigndecision.ClassChoice;
 import genericdesigndecision.ContinousRangeChoice;

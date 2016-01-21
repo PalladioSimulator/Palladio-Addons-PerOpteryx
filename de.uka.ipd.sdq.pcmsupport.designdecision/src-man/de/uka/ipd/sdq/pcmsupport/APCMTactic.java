@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.pcmsupport.helper;
+package de.uka.ipd.sdq.pcmsupport;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.AbstractTact
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.pcmsupport.helper.UtilisationResultCacheAndHelper;
 
 public abstract class APCMTactic extends AbstractTactic {
 
