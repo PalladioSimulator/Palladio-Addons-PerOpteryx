@@ -39,7 +39,8 @@ Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simucom
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: sdq.ipd.uka.de
-Import-Package: javax.measure,
+Import-Package: de.uka.ipd.sdq.pcmsupport.helper,
+ javax.measure,
  javax.measure.converter,
  org.palladiosimulator.edp2.impl,
  org.palladiosimulator.edp2.models.ExperimentData,

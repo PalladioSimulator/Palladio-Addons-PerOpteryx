@@ -13,7 +13,6 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
 import org.palladiosimulator.solver.RunPCMAnalysisJob;
-import org.palladiosimulator.solver.lqn.DocumentRoot;
 import org.palladiosimulator.solver.lqn.LqnModelType;
 import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.runconfig.MessageStrings;
