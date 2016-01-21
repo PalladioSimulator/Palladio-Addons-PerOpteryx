@@ -27,4 +27,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: sdq.ipd.uka.de
-Import-Package: de.uka.ipd.sdq.pcmsupport.helper
+Import-Package: de.uka.ipd.sdq.pcmsupport,
+ de.uka.ipd.sdq.pcmsupport.helper
