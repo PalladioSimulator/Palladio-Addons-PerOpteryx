@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated DesignDecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.pcmsupport.designdecision.presentation.designdecisionModelWizardID"
+            name="%_UI_designdecisionModelWizard_label"
+            class="de.uka.ipd.sdq.pcmsupport.designdecision.presentation.designdecisionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/designdecisionModelFile.gif">
+         <description>%_UI_designdecisionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated DesignDecision -->
+      <editor
+            id="de.uka.ipd.sdq.pcmsupport.designdecision.presentation.designdecisionEditorID"
+            name="%_UI_designdecisionEditor_label"
+            icon="icons/full/obj16/designdecisionModelFile.gif"
+            extensions="designdecision"
+            class="de.uka.ipd.sdq.pcmsupport.designdecision.presentation.designdecisionEditor"
+            contributorClass="de.uka.ipd.sdq.pcmsupport.designdecision.presentation.designdecisionActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated DesignDecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.pcmsupport.resourcerepository.presentation.resourcerepositoryModelWizardID"
+            name="%_UI_resourcerepositoryModelWizard_label"
+            class="de.uka.ipd.sdq.pcmsupport.resourcerepository.presentation.resourcerepositoryModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/resourcerepositoryModelFile.gif">
+         <description>%_UI_resourcerepositoryModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated DesignDecision -->
+      <editor
+            id="de.uka.ipd.sdq.pcmsupport.resourcerepository.presentation.resourcerepositoryEditorID"
+            name="%_UI_resourcerepositoryEditor_label"
+            icon="icons/full/obj16/resourcerepositoryModelFile.gif"
+            extensions="resourcerepository"
+            class="de.uka.ipd.sdq.pcmsupport.resourcerepository.presentation.resourcerepositoryEditor"
+            contributorClass="de.uka.ipd.sdq.pcmsupport.resourcerepository.presentation.resourcerepositoryActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated DesignDecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.pcmsupport.designdecision.specific.presentation.specificModelWizardID"
+            name="%_UI_specificModelWizard_label"
+            class="de.uka.ipd.sdq.pcmsupport.designdecision.specific.presentation.specificModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/specificModelFile.gif">
+         <description>%_UI_specificModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated DesignDecision -->
+      <editor
+            id="de.uka.ipd.sdq.pcmsupport.designdecision.specific.presentation.specificEditorID"
+            name="%_UI_specificEditor_label"
+            icon="icons/full/obj16/specificModelFile.gif"
+            extensions="specific"
+            class="de.uka.ipd.sdq.pcmsupport.designdecision.specific.presentation.specificEditor"
+            contributorClass="de.uka.ipd.sdq.pcmsupport.designdecision.specific.presentation.specificActionBarContributor">
+      </editor>
+   </extension>
+</plugin>
