@@ -11,7 +11,7 @@ import org.opt4j.core.Objective;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMPhenotype;
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.blackboard.Blackboard;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;

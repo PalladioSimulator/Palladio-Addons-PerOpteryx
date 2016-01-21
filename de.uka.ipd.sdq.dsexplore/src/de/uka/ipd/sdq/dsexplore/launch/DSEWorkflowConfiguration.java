@@ -35,7 +35,7 @@ import genericdesigndecision.universalDoF.SpecificDoF;
 public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunConfiguration implements Cloneable {
 	
 	/**
-	 * Specifies which metamodel this configuration belongs to.
+	 * Specifies which metamodel this configuration belongs to. Must be set in subclasses.
 	 */
 	protected Metamodel metamodel;
 	
@@ -58,6 +58,9 @@ public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunC
 	}
 
 	public List<GenericDoF> getSelectedGenericDoFs() {
+		if(this.selectedGenericDoFs == null) {
+			this.selectedGenericDoFs = new ArrayList<GenericDoF>(10);
+		}
 		return this.selectedGenericDoFs;
 	}
 	
@@ -73,6 +76,9 @@ public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunC
 	}
 	
 	public List<SpecificDoF> getSelectedSpecificDoFs() {
+		if(this.selectedSpecificDoFs == null) {
+			this.selectedSpecificDoFs = new ArrayList<SpecificDoF>(10);
+		}
 		return this.selectedSpecificDoFs;
 	}
 	

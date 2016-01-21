@@ -2,6 +2,8 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.palladiosimulator.analyzer.workflow.jobs.ValidatePCMModelsJob;
+
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.ICompositeJob;
 import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
@@ -20,7 +22,7 @@ ICompositeJob {
         this.addJob(new LoadModelIntoBlackboardJob(config));
 
         // 2. Validate Models
-//        this.addJob(new ValidateModelJob(config));
+        this.addJob(new ValidateModelsJob(config));
 
         //TODO remove step 3 and 5, there should be no need
         //anymore to save the models under a different name.

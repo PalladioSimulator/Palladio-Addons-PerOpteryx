@@ -75,8 +75,6 @@ public class DSEOptionsTab extends InputTab {
 	protected Button selectSpecificDof;
 	protected List genericDofList;
 	protected List specificDofList;
-	protected Group genericChoices;
-	protected Group specificChoices;
 	
 	protected Metamodel metamodel;
 	protected SelectionListener radioListener = new SelectionAdapter(){
@@ -272,11 +270,13 @@ public class DSEOptionsTab extends InputTab {
 		for (GenericDoF g : UniversalDoF.eINSTANCE.listGDoFs()) {
 			genericDofList.add(g.getName());
 		}
+		genericDofList.addSelectionListener(selectionListener);
 		
 		specificDofList = new List(radioGroup, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
 		specificDofList.setEnabled(false);
 		GridData gd_specificDofList = new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1);
 		specificDofList.setLayoutData(gd_specificDofList);
+		specificDofList.addSelectionListener(selectionListener);
 		
 		radioGroup.setTabList(new Control[]{selectGenericDof, selectSpecificDof, genericDofList, specificDofList});
 		
@@ -466,14 +466,14 @@ public class DSEOptionsTab extends InputTab {
 			this.optimisationOnly.setSelection(false);
 		}
 		try {
-			this.genericChoices.setEnabled(configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+			this.selectGenericDof.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
 		} catch (CoreException e){
-			this.genericChoices.setEnabled(true);
+			this.selectGenericDof.setEnabled(true);
 		}
 		try {
-			this.specificChoices.setEnabled(!configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+			this.selectSpecificDof.setSelection(!configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
 		} catch (CoreException e){
-			this.specificChoices.setEnabled(false);
+			this.selectSpecificDof.setSelection(false);
 		}
 		try {
 			this.textDesignDecisionFile.setText(configuration.getAttribute(
@@ -549,7 +549,7 @@ public class DSEOptionsTab extends InputTab {
 				DSEConstantsContainer.OPTIMISATION_ONLY,
 				this.optimisationOnly.getSelection());
 		configuration.setAttribute(DSEConstantsContainer.USE_GENERICDOFS,
-				this.genericChoices.isEnabled());
+				this.selectGenericDof.getSelection());
 		ArrayList<String> stringList = new ArrayList<String>();
 		for (int i = 0; i < this.genericDofList.getSelection().length; i++) {
 			stringList.add(this.genericDofList.getSelection()[i]);
@@ -661,12 +661,8 @@ public class DSEOptionsTab extends InputTab {
 			return false;
 		}
 		
-		if ((this.genericChoices.isEnabled() && this.genericDofList.getSelectionCount() == 0) || (this.specificChoices.isEnabled() && this.specificDofList.getSelectionCount() == 0)) {
+		if ((this.selectGenericDof.getSelection() && this.genericDofList.getSelectionCount() == 0) || (this.selectSpecificDof.getSelection() && this.specificDofList.getSelectionCount() == 0)) {
 			setErrorMessage("You have to select at least one degree of freedom to enable proper optimisation.");
-			return false;
-		}
-		if (this.genericChoices.isEnabled() && this.specificChoices.isEnabled()) {
-			setErrorMessage("You cannot select generic and specific degrees at the same time.");
 			return false;
 		}
 		

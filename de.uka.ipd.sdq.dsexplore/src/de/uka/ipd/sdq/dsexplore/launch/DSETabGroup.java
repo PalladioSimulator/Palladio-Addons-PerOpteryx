@@ -8,6 +8,8 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
+import de.uka.ipd.sdq.pcmsupport.representation.PCM_DSEOptionsTab;
+import de.uka.ipd.sdq.pcmsupport.representation.QML_PCMFileNamesInputTab;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.DebugEnabledCommonTab;
 
 /**

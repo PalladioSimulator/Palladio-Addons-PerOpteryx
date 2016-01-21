@@ -21,8 +21,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration.SearchMethod;
-import de.uka.ipd.sdq.pcmsupport.designdecision.impl.MetamodelDescriptionImpl;
-import de.uka.ipd.sdq.pcmsupport.helper.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig.TimeType;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
@@ -37,7 +35,6 @@ import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig.EvaluationM
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
-import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
 public class DSEWorkflowConfigurationBuilder extends
@@ -51,54 +48,12 @@ public class DSEWorkflowConfigurationBuilder extends
 		super(configuration, mode);
 		this.dseLaunch = dseLaunch;
 	}
-	
-	public DSEWorkflowConfiguration createDSEWorkflowConfiguration() {
-		DSEWorkflowConfiguration config = null;
-		Metamodel metamodel = null;
-		String name = null;
-		try {
-			name = this.configuration.getAttribute(DSEConstantsContainer.INPUT_METAMODEL, "unspecified");
-		} catch (CoreException e) {
-			e.printStackTrace();
-		}
-		//XXX workaround because enums are not supported by ILaunchConfiguration
-		metamodel = Metamodel.getByName(name);
-		
-		switch(metamodel) {
-		case PCM: config = new PCMWorkflowConfiguration();
-		break;
-		//TODO add support for other metamodels as needed here among others
-		
-		default: throw new UnsupportedOperationException("Corresponding workflow configuration could not be found, contact developer.");
-		}
-		return config;
-	}
 
 	@Override
 	public void fillConfiguration(AbstractWorkflowBasedRunConfiguration abstractConfiguration)
 			throws CoreException {
 		
 		DSEWorkflowConfiguration config = (DSEWorkflowConfiguration)abstractConfiguration;
-		
-		config.setUseGenericDoF(this.configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
-		if(config.isUseGenericDoF()) {
-			for(String gdof : this.configuration.getAttribute(DSEConstantsContainer.GENERICDOFS, new ArrayList<String>())) {
-				config.addGenericDoF(UniversalDoF.eINSTANCE.getGDoF(gdof));
-			}
-		} else {
-			switch(Metamodel.get(configuration.getAttribute(DSEConstantsContainer.INPUT_METAMODEL, 0))) {
-			case PCM: 
-				for(String sdof : this.configuration.getAttribute(DSEConstantsContainer.SPECIFICDOFS, new ArrayList<String>())) {
-					config.addSpecificDoF(MetamodelDescriptionImpl.getMetamodelDescription().getSDoF(sdof));
-				}
-			break;
-			default:
-				throw new IllegalArgumentException("This metamodel is not supported, contact developer.");
-			}
-		}
-		if (config.getSelectedGenericDoFs().size() == 0 && config.getSelectedSpecificDoFs().size() == 0) {
-			throw new IllegalArgumentException("The configuration does not specify any degrees.");
-		}
 		
 		config.setOriginalConfig(this.configuration);
 		
@@ -227,6 +182,16 @@ public class DSEWorkflowConfigurationBuilder extends
 		config.setStopOnInitialFailure(getBooleanAttribute(DSEConstantsContainer.STOP_ON_INITIAL_FAILURE));
 		config.setResultsAsEMF(getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_EMF));
 		config.setResultsAsCSV(!getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_EMF));
+		
+		config.setUseGenericDoF(this.configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+		if(config.isUseGenericDoF()) {
+			for(String gdof : this.configuration.getAttribute(DSEConstantsContainer.GENERICDOFS, new ArrayList<String>())) {
+				config.addGenericDoF(UniversalDoF.eINSTANCE.getGDoF(gdof));
+			}
+		}
+		if (config.getSelectedGenericDoFs().size() == 0 && config.getSelectedSpecificDoFs().size() == 0) {
+			throw new IllegalArgumentException("The configuration does not specify any degrees.");
+		}
 
 	}
 
