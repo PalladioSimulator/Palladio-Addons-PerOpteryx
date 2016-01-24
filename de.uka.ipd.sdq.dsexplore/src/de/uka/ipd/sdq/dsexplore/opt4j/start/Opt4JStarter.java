@@ -12,26 +12,15 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.opt4j.common.archive.BoundedArchive;
-import org.opt4j.common.archive.CrowdingArchive;
-import org.opt4j.common.archive.DefaultArchive;
-import org.opt4j.config.Task;
+import org.eclipse.emf.common.util.URI;
 import org.opt4j.config.Task.State;
 import org.opt4j.core.Genotype;
-//import org.opt4j.core.optimizer.Archive;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
-import org.opt4j.core.IndividualSet;
-import org.opt4j.core.IndividualSetListener;
-//import org.opt4j.core.IndividualFactory;
-//import org.opt4j.core.IndividualSet;
-//import org.opt4j.core.IndividualSetListener;
 import org.opt4j.core.Objective;
-//import org.opt4j.core.optimizer.Population;
 import org.opt4j.core.Value;
 import org.opt4j.core.domination.ConstraintDominationModule;
 import org.opt4j.core.domination.ConstraintDominationModule.Strategy;
-//import org.opt4j.core.optimizer.IndividualCompleter;
 import org.opt4j.core.optimizer.Archive;
 import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.IndividualCompleter;
@@ -42,7 +31,6 @@ import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.optimizer.ea.EvolutionaryAlgorithmModule;
 import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.ScalingNsga2Module;
-//import org.opt4j.optimizer.ea.ScalingNsga2Module;
 import org.opt4j.optimizer.rs.RandomSearchModule;
 import org.opt4j.start.Opt4J;
 import org.opt4j.start.Opt4JTask;
@@ -75,7 +63,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.RuleBasedSearchModule;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
-import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
@@ -292,7 +279,7 @@ public class Opt4JStarter {
 			}
 			
 			String config = dseConfig.getOriginalConfiguration().getMemento();
-			ResultsWriter.writeStringToFile("config", config, listener.getIteration(), exceptions, ".txt");
+			ResultsWriter.writeStringToFile(dseConfig.getResultFolder(), "config", config, listener.getIteration(), exceptions, ".txt");
 			
 			if (exceptions.size() > 0){
 				logger.warn("Errors occured during evaluation.");
@@ -681,7 +668,11 @@ public class Opt4JStarter {
 			
 			case GIVEN_PARETO_FRONT_IS_REACHED:
 
-				String filePath = ((GivenParetoFrontIsReachedConfig) conf).getParetoFrontFile();
+				String paretoFrontFile = ((GivenParetoFrontIsReachedConfig) conf).getParetoFrontFile();
+				URI filePath = URI.createURI(paretoFrontFile);
+				if (filePath == null || !filePath.isPlatform()){
+					filePath = URI.createFileURI(paretoFrontFile);
+				}
 					
 				if(filePath != null && !filePath.isEmpty()){
 					try {

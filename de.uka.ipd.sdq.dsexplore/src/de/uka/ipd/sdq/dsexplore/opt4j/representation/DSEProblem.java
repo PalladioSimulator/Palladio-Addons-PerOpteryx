@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -127,11 +128,11 @@ public class DSEProblem {
     }
 
     private DecisionSpace loadProblem() throws CoreException {
-        final String filename = this.dseConfig.getDesignDecisionFileName();
+        final URI filename = this.dseConfig.getDesignDecisionFileName();
         return this.loadProblem(filename);
     }
 
-    private DecisionSpace loadProblem(final String filename) throws CoreException{
+    private DecisionSpace loadProblem(final URI filename) throws CoreException{
         final ResourceSet pcmResourceSet = this.initialInstance.getAllocation().eResource().getResourceSet();
 
         final EObject eproblem = EMFHelper.loadFromXMIFile(filename, pcmResourceSet, designdecisionPackage.eINSTANCE);
@@ -155,7 +156,7 @@ public class DSEProblem {
 
         for (final DegreeOfFreedomInstance dd : problem.getDegreesOfFreedom()) {
 
-            if (dd.getDof() != null){
+            if (dd.getDof() != null) {
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
                 final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
@@ -166,13 +167,13 @@ public class DSEProblem {
 
                 genotype.add(choice);
 
-            } else if (dd instanceof ClassDegree){
+            } else if (dd instanceof ClassDegree) {
 
                 final ClassChoice choice = this.designDecisionFactory.createClassChoice();
                 choice.setDegreeOfFreedomInstance(dd);
 
-                if (dd instanceof AssembledComponentDegree){
-                    final AssembledComponentDegree acd = (AssembledComponentDegree)dd;
+                if (dd instanceof AssembledComponentDegree) {
+                    final AssembledComponentDegree acd = (AssembledComponentDegree) dd;
                     final AssemblyContext ac = (AssemblyContext)acd.getPrimaryChanged();
                     final RepositoryComponent rc = ac.getEncapsulatedComponent__AssemblyContext();
                     choice.setChosenValue(rc);
@@ -539,7 +540,7 @@ public class DSEProblem {
 
     public void saveProblem() {
 
-        final String filename = this.dseConfig.getDesignDecisionFileName();
+        final URI filename = this.dseConfig.getDesignDecisionFileName();
 
         //		resourceSet.getPackageRegistry().put
         //		(designdecisionPackage.eNS_URI,

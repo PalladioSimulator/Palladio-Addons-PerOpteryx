@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -86,14 +85,14 @@ public class GenotypeReader {
      * found in the file.
      * @param blackboard
      */
-    public static List<DesignDecisionGenotype> getGenotypes(final String filename, final MDSDBlackboard blackboard)
+    public static List<DesignDecisionGenotype> getGenotypes(final URI filename, final MDSDBlackboard blackboard)
             throws CoreException {
 
-        if ("".equals(filename)){
+        if (filename == null){
             return Collections.emptyList();
         }
 
-        if (filename.contains("csv")) {
+        if (filename.toString().contains("csv")) {
             try {
 
                 final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), blackboard);
@@ -110,7 +109,7 @@ public class GenotypeReader {
                         "Could not evaluate predefined instances. See nested Exceptions for cause. "
                                 + ex.getMessage(), ex);
             }
-        } else if (filename.contains("designdecision")) {
+        } else if (filename.toString().contains("designdecision")) {
             return loadGenotypesFromEMF(filename);
 
         } else {
@@ -126,9 +125,12 @@ public class GenotypeReader {
      * @return
      * @throws CoreException
      */
-    public static List<DSEIndividual> getIndividuals(final String filename, final MDSDBlackboard blackboard) throws CoreException{
+    public static List<DSEIndividual> getIndividuals(final URI filename, final MDSDBlackboard blackboard) throws CoreException{
 
-        if (filename.contains("csv")) {
+    	if (filename == null){
+    		return Collections.emptyList();
+    	}
+        if (filename.toString().contains("csv")) {
             try {
 
                 final List<DSEIndividual> individuals = readInPrettyPrintedIndividuals(getReaderFor(filename), blackboard);
@@ -137,7 +139,7 @@ public class GenotypeReader {
             } catch( final Exception ex ) {
                 throw ExceptionHelper.createNewCoreException("Could not evaluate predefined instances. See nested Exceptions for cause. "+ex.getMessage(), ex);
             }
-        } else if (filename.contains("designdecision")) {
+        } else if (filename.toString().contains("designdecision")) {
             final List<DesignDecisionGenotype> genotypes = loadGenotypesFromEMF(filename);
             final List<DSEIndividual> individuals = new ArrayList<DSEIndividual>(genotypes.size());
             for (final DesignDecisionGenotype designDecisionGenotype : genotypes) {
@@ -160,7 +162,7 @@ public class GenotypeReader {
      * @return
      * @throws CoreException
      */
-    public static List<DSEObjectives> getObjectives (final String filename) throws CoreException{
+    public static List<DSEObjectives> getObjectives (final URI filename) throws CoreException{
 
         try {
 
@@ -174,7 +176,7 @@ public class GenotypeReader {
     }
 
     private static List<DesignDecisionGenotype> loadGenotypesFromEMF(
-            final String filename) {
+            final URI filename) {
         final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
         final ResourceSet pcmResourceSet = pcm.getAllocation().eResource().getResourceSet();
 
@@ -241,18 +243,8 @@ public class GenotypeReader {
         return results;
     }
 
-    private static BufferedReader getReaderFor(String path) throws FileNotFoundException {
-        // if this is a platform URL, first resolve it to an absolute path
-        if (path.startsWith("platform:")){
-            try {
-                final URL solvedURL = FileLocator.resolve(new URL(path));
-                path =  solvedURL.getPath();
-            } catch (final Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        final File file = new File(path);
+    private static BufferedReader getReaderFor(URI fileLocation) throws FileNotFoundException {
+        final File file = new File(DSEFileWriter.getFilenameFor(fileLocation));
 
         final InputStreamReader ir = new InputStreamReader(
                 new FileInputStream( file ) );

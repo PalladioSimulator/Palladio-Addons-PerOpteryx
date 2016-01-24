@@ -139,7 +139,7 @@ public class RuleBasedSearch extends AbstractOptimizer {
 			logger.warn("Stop condition was the configured maximum number of iterations, more rule applications may be possible. There were "+population.size()+" candidates in the final population.");
 		}
 		
-		ResultsWriter writer = new ResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder()+"rule-based search results");
+		ResultsWriter writer = new ResultsWriter(Opt4JStarter.getDSEWorkflowConfig().getResultFolder(),"rule-based search results");
 		for (Individual individual : this.archive) {
 			if (individual instanceof DSEIndividual){
 				DSEIndividual dseIndiv = (DSEIndividual)individual;
