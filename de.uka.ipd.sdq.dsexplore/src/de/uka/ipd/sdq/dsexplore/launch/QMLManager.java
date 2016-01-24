@@ -34,6 +34,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType
  * The QMLManager component can be queried for getting the currently activated QML criteria. 
  * Based on the activated criteria, it de-/activates evaluators in the launch configuration 
  * tabs.
+ * 
+ * TODO: this class seems to slow-down the opening of the launch configuration tab tremendously and needs to be profiled. 
+ * TODO: this class and the QML plugin have their own methods to access files based on the filename Strings in the launch config. It would be better to add an abstraction layer (maybe use DSEWriter).  
  *
  * @author martens, noorshams
  *
@@ -119,7 +122,7 @@ public class QMLManager {
 	 */
 	public void processQMLFile(String qmlFilePath, String usageModelFilePath){
 		
-		if(currentQMLPath.equals(qmlFilePath) && currentUsageModelPath.equals(usageModelFilePath)) {
+		if (currentQMLPath.equals(qmlFilePath) && currentUsageModelPath.equals(usageModelFilePath)) {
 			return;
 		}
 		
@@ -131,35 +134,34 @@ public class QMLManager {
 		deactivateAllTabs();
 		
 		ResourceSet rs = new ResourceSetImpl();
-		if(!fileExists(usageModelFilePath)) {
-			diagnosis = "Could not load usage model! Please check the path!";
-			return;
-		}
-		URI uri;
-		if (URI.createURI(usageModelFilePath).isPlatform() || usageModelFilePath.indexOf("://") >= 0) { 
-			uri = URI.createURI(usageModelFilePath);
-		} else {
-			uri = URI.createFileURI(usageModelFilePath);
-		}
-		Resource r = (Resource) rs.getResource(uri, true);
-		List<?> contents = r.getContents();
-		UsageModel usageModel = null;
-		//Supposed to be exactly one element
-		for (Iterator<?> iterator = contents.iterator(); iterator.hasNext();) {
-			Object object = (Object) iterator.next();
-			if(object instanceof UsageModel) {
-				usageModel = (UsageModel) object;
-				break;
-			}			
-		}
-		if(usageModel == null){
-			diagnosis = "Could not load usage model! Please check the UsageModel file!";
-			
-			return;
-		}
 		
-		if(!fileExists(qmlFilePath) || 
-				!qmlFilePath.endsWith(DSEConstantsContainer.QML_DEFINITION_EXTENSION.substring(
+		UsageModel usageModel = null;
+		try {
+			URI uri = URI.createURI(usageModelFilePath);
+			if (!uri.isPlatform() && !(usageModelFilePath.indexOf("://") >= 0)) { 
+				uri = URI.createFileURI(usageModelFilePath);
+			}
+			Resource r = (Resource) rs.getResource(uri, true);
+			List<?> contents = r.getContents();
+			//Supposed to be exactly one element
+			for (Iterator<?> iterator = contents.iterator(); iterator.hasNext();) {
+				Object object = (Object) iterator.next();
+				if (object instanceof UsageModel) {
+					usageModel = (UsageModel) object;
+					break;
+				}			
+			}
+		} catch (Exception e) {
+			logger.error("Could not load usage model from " + usageModelFilePath + ". Error was: " + e.getClass() + " " + e.getMessage());
+			e.printStackTrace();
+		}
+		if (usageModel == null) {
+			diagnosis = "Could not load usage model from " + usageModelFilePath + "! Please check the UsageModel file and path!";
+			return;
+		}
+
+		if (!fileExists(qmlFilePath) 
+				|| !qmlFilePath.endsWith(DSEConstantsContainer.QML_DEFINITION_EXTENSION.substring(
 						DSEConstantsContainer.QML_DEFINITION_EXTENSION.lastIndexOf('.'), 
 						DSEConstantsContainer.QML_DEFINITION_EXTENSION.length()))) {
 			diagnosis = "Could not load qml definition model! Please check the path!";
@@ -408,7 +410,7 @@ public class QMLManager {
 			tab.deactivate();
 		}
 	}
-
+	
 	protected boolean fileExists(String path) {
 		// if this is a platform URL, first resolve it to an absolute path
 		if (path.startsWith("platform:")){
@@ -423,7 +425,8 @@ public class QMLManager {
 		File f = new File(path);
 		return f.exists();
 	}
-	
+
+
 	protected List<IExtension> getExtensionsThatEvaluateAspect(EvaluationAspectWithContext aspect) {
 		List<IExtension> exts = ExtensionHelper.loadAnalysisExtensions(aspect.getDimension().getId());
 		List<IExtension> return_list = new ArrayList<IExtension>(exts);

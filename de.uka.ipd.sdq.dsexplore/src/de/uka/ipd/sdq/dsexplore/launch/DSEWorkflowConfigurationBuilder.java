@@ -1,17 +1,21 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.emf.common.util.URI;
 import org.opt4j.core.DoubleValue;
 import org.opt4j.core.Value;
 import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
@@ -38,6 +42,11 @@ import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder
 
 public class DSEWorkflowConfigurationBuilder extends
 		AbstractWorkflowConfigurationBuilder {
+
+	/** Logger for log4j. */
+	private static Logger logger = 
+		Logger.getLogger("de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfigurationBuilder");
+
 	
 	/**XXX Quickfix to reset the loggers in the analysis Proxies */
 	DSELaunch dseLaunch;
@@ -63,10 +72,10 @@ public class DSEWorkflowConfigurationBuilder extends
 		config.setCrossoverRate(getDoubleAttribute(DSEConstantsContainer.CROSSOVER_RATE));
 		
 		
-		config.setPredefinedInstancesFileName(getStringAttribute(DSEConstantsContainer.PREDEFINED_INSTANCES));
-		config.setCacheInstancesFileName(getStringAttribute(DSEConstantsContainer.CACHE_INSTANCES));
-		config.setPredefinedAllCandidatesFileName(getStringAttribute(DSEConstantsContainer.ALL_CANDIDATES));
-		config.setArchiveCandidateFileName(getStringAttribute(DSEConstantsContainer.ARCHIVE_CANDIDATES));
+		config.setPredefinedInstancesFileName(getURIAttribute(DSEConstantsContainer.PREDEFINED_INSTANCES));
+		config.setCacheInstancesFileName(getURIAttribute(DSEConstantsContainer.CACHE_INSTANCES));
+		config.setPredefinedAllCandidatesFileName(getURIAttribute(DSEConstantsContainer.ALL_CANDIDATES));
+		config.setArchiveCandidateFileName(getURIAttribute(DSEConstantsContainer.ARCHIVE_CANDIDATES));
 		
 		
 		String searchMethod = getStringAttribute(DSEConstantsContainer.SEARCH_METHOD);
@@ -147,24 +156,16 @@ public class DSEWorkflowConfigurationBuilder extends
 		
 		
 		
-		String ddfilename = this.configuration.getAttribute(DSEConstantsContainer.DESIGN_DECISION_FILE, "");
-		if (ddfilename.length() == 0){
+		String ddfilenameString = this.configuration.getAttribute(DSEConstantsContainer.DESIGN_DECISION_FILE, "");
+		URI ddfilename;
+		if (ddfilenameString.length() != 0){
+			ddfilename = URI.createURI(ddfilenameString);
+		} else {
 			ddfilename = getDefaultDesignDecisionFileName();
 		}
 		config.setDesignDecisionFileName(ddfilename);
 		
-		//Write results "next to" allocation model file. 
-		String folderPathOnly = getPathToAllocation();
-		
-		String resultsPath = folderPathOnly+"PerOpteryx_results/";
-		File f = new File(resultsPath);
-		if (f.exists()){
-			if (!f.isDirectory()){
-				throw new CoreException(new Status(Status.ERROR,"de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfigurationBuilder","File "+resultsPath+" already exists and is not a directory, please rename that file."));
-			}
-		} else {
-			f.mkdir();
-		}
+		URI resultsPath = createOrReuseResultFolder();
 		
 		config.setResultFolder(resultsPath);
 		
@@ -186,6 +187,53 @@ public class DSEWorkflowConfigurationBuilder extends
 
 	}
 
+	private URI createOrReuseResultFolder() throws CoreException {
+		//Write results "next to" allocation model file. 
+		URI folderPathOnly = getPathToAllocation();
+		
+		URI resultsPath = folderPathOnly.appendSegment("PerOpteryx_results");
+		
+		if (resultsPath.isPlatform()) {
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IFolder resultFolder = workspace.getRoot().getFolder(new Path(resultsPath.toPlatformString(true)));
+
+			if (!resultFolder.exists()) {
+				resultFolder.create(true, true, null);
+			}
+		} else {
+			File f = new File(resultsPath.toFileString());
+			if (f.exists()){
+				if (!f.isDirectory()){
+					throw new CoreException(new Status(Status.ERROR,"de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfigurationBuilder","File "+resultsPath+" already exists and is not a directory, please rename that file."));
+				}
+			} else {
+				f.mkdir();
+			}
+		}
+		return resultsPath;
+	}
+
+	private URI getURIAttribute(final String constant) throws CoreException {
+		String asString = getStringAttribute(constant);
+		if (asString == null || "".equals(asString) ){
+			return null;
+		} else {
+			try{ 
+				URI uri = URI.createURI(asString);
+				if (uri == null || !uri.isPlatform()){
+					URI fileURI = URI.createFileURI(asString);
+					if (fileURI != null && fileURI.isFile()){
+						uri = fileURI;
+					}
+				}
+				return uri;
+			} catch (IllegalArgumentException e) {
+				logger.error("Launch configuration value '"+asString+"' is not a valid URI. Using null instead: "+e.getClass()+" "+e.getMessage());
+				return null;
+			}
+		}
+	}
+
 	private void addEvaluatorsIfSelected(ArrayList<IAnalysis> evaluators,
 			QualityAttribute d, DSEWorkflowConfiguration config) throws CoreException {
 	    
@@ -198,10 +246,10 @@ public class DSEWorkflowConfigurationBuilder extends
 	}
 
 
-	private String getPathToAllocation() throws CoreException {
+	private URI getPathToAllocation() throws CoreException {
 		String allocFileName = this.configuration.getAttribute(ConstantsContainer.ALLOCATION_FILE, "");
-		String folderPathOnly = getPathTo(allocFileName);
-		if ("".equals(folderPathOnly)){
+		URI folderPathOnly = getPathTo(allocFileName);
+		if (folderPathOnly == null){
 			throw new CoreException(new Status(Status.ERROR,"de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfigurationBuilder","Cannot determine path to allocation model to decide where to put the result files. Please check you allocation model."));
 		}
 		return folderPathOnly;
@@ -227,32 +275,21 @@ public class DSEWorkflowConfigurationBuilder extends
 	}
 	
 
-	private String getDefaultDesignDecisionFileName() throws CoreException {
+	private URI getDefaultDesignDecisionFileName() throws CoreException {
 		String problemName = this.configuration.getName();
-		return getPathToAllocation()+problemName+".designdecision";
+		return getPathToAllocation().appendSegment(problemName+".designdecision");
 	}
 	
 	/**returns the path including the last slash */
-	private String getPathTo(String fileURL){
-		// if this is a platform URL, first resolve it to an absolute path
-		if (fileURL.startsWith("platform:")){
-			try {
-				URL solvedURL = FileLocator.resolve(new URL(fileURL));
-				fileURL =  solvedURL.getPath();
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "";
-			} 
-		} 
-
-		// now this should be an absolute path, but it can have either slashes or backslashes
-		int indexBackslash = fileURL.lastIndexOf("\\");
-		int indexSlash = fileURL.lastIndexOf("/");
-		// the right directory separator is the one where the above results in the higher index (assuming that linux file systems do not allow backslashes in file names...)
-		int index = indexBackslash > indexSlash ? indexBackslash : indexSlash; 
-		String folderPath = fileURL.substring(0, index+1); 
-		return folderPath;
-
+	private URI getPathTo(String fileURL){
+		
+		URI myURI = URI.createURI(fileURL);
+		
+		if (myURI == null || !myURI.isPlatform()){
+			// if this is a device String such as C:\, transform it to the appropriate device URI
+			myURI =	URI.createFileURI(fileURL);
+		}
+		return myURI.trimSegments(1);
 	}
 	
 	private void addTerminationCriteriaSettings(DSEWorkflowConfiguration config) throws CoreException {

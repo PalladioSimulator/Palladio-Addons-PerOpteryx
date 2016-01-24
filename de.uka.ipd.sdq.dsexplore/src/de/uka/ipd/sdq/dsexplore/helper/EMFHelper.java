@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,15 +68,11 @@ public class EMFHelper {
         if (i1 == null || i2 == null) {
             return false;
         }
-        if (i1 instanceof Identifier && i2 instanceof Identifier){
-            if (((Identifier) i1).getId().equals(((Identifier) i2).getId())) {
-                // logger.debug("Two model elements match with Id: "+i1.getId());
-                return true;
-            } else {
-                return false;
-            }} else {
-                return EcoreUtil.equals(i1, i2);
-            }
+		if (i1 instanceof Identifier && i2 instanceof Identifier) {
+			return (((Identifier) i1).getId().equals(((Identifier) i2).getId())); 
+		} else {
+			return EcoreUtil.equals(i1, i2);
+		}
     }
 
     /**
@@ -88,7 +83,7 @@ public class EMFHelper {
      * @param i
      * @return true if there is an {@link Identifier} in coll with an id equal to i.getID().
      */
-    public static boolean contains(final Collection<? extends EObject> coll, final EObject i){
+    public static boolean contains(final Collection<? extends EObject> coll, final EObject i) {
         for (final EObject identifier : coll) {
             if (checkIdentity(identifier, i)){
                 return true;
@@ -123,7 +118,7 @@ public class EMFHelper {
      * @param fileName
      *            The filename where to save.
      */
-    public static void saveToXMIFile(final EObject modelToSave, final String fileName){
+    public static void saveToXMIFile(final EObject modelToSave, final URI fileName){
     	
     	saveToXMIFile(modelToSave, fileName, true);
     }
@@ -134,10 +129,10 @@ public class EMFHelper {
      * @param fileName
      * @param mayRetry
      */
-    private static void saveToXMIFile(final EObject modelToSave, final String fileName, boolean mayRetry){
+    private static void saveToXMIFile(final EObject modelToSave, final URI myURI, boolean mayRetry){
         final Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
-        logger.debug("Saving " + modelToSave.toString() + " to " + fileName);
+        logger.debug("Saving " + modelToSave.toString() + " to " + myURI);
 
         // Create a resource set.
         final ResourceSet resourceSet = new ResourceSetImpl();
@@ -147,20 +142,23 @@ public class EMFHelper {
         .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
                 new XMIResourceFactoryImpl());
         
-        final URI myURI = URI.createURI(fileName);
-
         final Resource resource = resourceSet.createResource(myURI);
         resource.getContents().add(modelToSave);
 
         try {
             resource.save(Collections.EMPTY_MAP);
         } catch (final FileNotFoundException e){
-            if (mayRetry && fileName.length() > 250){
+            if (mayRetry && myURI.toFileString().length() > 250){
                 //try again with a shorter filename, but just one more try (mayRetry = false). 
-                saveToXMIFile(modelToSave, fileName.substring(0, fileName.indexOf("-"))+"-shortened-"+fileName.hashCode(), false);
+            	String lastSegment = myURI.segment(myURI.segmentCount()-1);
+            	int lengthOfShortenedSegment = lastSegment.length() > 25 ? 25 : lastSegment.length() / 2; 
+            	String lastSegmentShortened = lastSegment.substring(0, lengthOfShortenedSegment);
+            	URI myShorterURI = myURI.trimSegments(1);
+            	myShorterURI = myShorterURI.appendSegment(lastSegmentShortened+"-shortened-"+myURI.toString().hashCode());
+                saveToXMIFile(modelToSave, myShorterURI, false);
             }
         } catch (final IOException e) {
-            logger.error(e.getMessage());
+            logger.error("Caught IOException:"+e.getClass()+": " + e.getMessage()+ " when trying to save to file "+myURI.toString());
         }
         // logger.debug("Saved " + fileURI);
     }
@@ -172,7 +170,7 @@ public class EMFHelper {
      *            the filename specifying the file to load from
      * @return The EObject loaded from the file
      */
-    public static EObject loadFromXMIFile(final String fileName, final EPackage ePackage) {
+    public static EObject loadFromXMIFile(final URI fileName, final EPackage ePackage) {
         // Create a resource set to hold the resources.
         final ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -188,14 +186,8 @@ public class EMFHelper {
         return loadFromXMIFile(fileName, resourceSet, ePackage);
     }
 
-    public static EObject loadFromXMIFile(final String fileName, final ResourceSet resourceSet, final EPackage ePackage){
-        // Construct the URI for the instance file.
-        // The argument is treated as a file path only if it denotes an existing
-        // file. Otherwise, it's directly treated as a URL.
-        final File file = new File(fileName);
-        final URI uri = file.isFile() ? URI.createFileURI(file.getAbsolutePath())
-                : URI.createURI(fileName);
-
+    public static EObject loadFromXMIFile(final URI uri, final ResourceSet resourceSet, final EPackage ePackage){
+        
         Resource resource = null;
         // Demand load resource for this file.
         try {
@@ -340,5 +332,16 @@ public class EMFHelper {
             final Allocation allocation) {
         return allocation.getAllocationContexts_Allocation();
     }
+
+    /**
+     * @deprecated use {@link #loadFromXMIFile(URI, EPackage)} instead 
+     */
+	public static EObject loadFromXMIFile(String fileName, EPackage ePackage) {
+		URI locationToLoadFrom = URI.createURI(fileName);
+		if (locationToLoadFrom == null || !locationToLoadFrom.isPlatform()){
+			locationToLoadFrom = URI.createFileURI(fileName);
+		}
+		return loadFromXMIFile(locationToLoadFrom, ePackage);
+	}
 
 }

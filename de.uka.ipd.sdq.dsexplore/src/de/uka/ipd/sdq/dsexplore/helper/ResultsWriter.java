@@ -1,11 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +11,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
 import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Individual;
@@ -68,17 +65,17 @@ public class ResultsWriter {
 	 * Formating string used for logging purposes
 	 */
 	private static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-	private String myfilename;
-	FileWriter fileWriter;
+	private URI fileLocation;
+	DSEFileWriter fileWriter;
 	private List<Criterion> criteriaToSave;
 	private List<Criterion> criteriaWithConfidence;
 	
-	public ResultsWriter(String filename) {
-		this.myfilename = filename+"_"+getTimeDateString()+".csv";
+	public ResultsWriter(URI folder, String filename) {
+		this.fileLocation = folder.appendSegment(filename+"_"+getTimeDateString()+".csv");
 		try {
-			this.fileWriter = new FileWriter(myfilename);
+			this.fileWriter = new DSEFileWriter(fileLocation);
 		} catch (IOException e) {
-			logger.error("Cannot write to file "+myfilename+" to store individuals. I will print them to the logger instead. Cause: "+e.getMessage());
+			logger.error("Cannot write to file "+fileLocation+" to store individuals. I will print them to the logger instead. Cause: "+e.getMessage());
 			e.printStackTrace();
 		} 
 	}
@@ -87,22 +84,24 @@ public class ResultsWriter {
 	/**
 	 * Write all individuals to new file (file current time in filename).
 	 * @param individuals
-	 * @param filename
+	 * @param lastSegment
 	 * @param iteration
 	 * @param exceptionList
 	 */
-	public static void writeDSEIndividualsToFile(Collection<DSEIndividual> individuals, String filename, int iteration, boolean asEMF,
+	public static void writeDSEIndividualsToFile(Collection<DSEIndividual> individuals, URI folder, String lastSegment, int iteration, boolean asEMF,
 			boolean asCVS, List<Exception> exceptionList){
 		
 		if (individuals.size() > 0){
 			if (asCVS){
 				StringBuilder results = addResultsToCSVString(individuals, exceptionList);
-				writeToNewFile(filename, results, iteration, exceptionList, ".csv");
+				writeToNewFile(folder, lastSegment, results, iteration, exceptionList, ".csv");
 			} 
 			if (asEMF){
 				// save as EMF files
 				Candidates candidates = EMFHelper.createEMFCandidates(individuals);
-				EMFHelper.saveToXMIFile(candidates, getFilenameForIteration(filename, iteration, ".designdecision"));
+				String filename = getFilenameForIteration(lastSegment, iteration, ".designdecision");
+				URI fileUri = folder.appendSegment(filename);
+				EMFHelper.saveToXMIFile(candidates, fileUri);
 			}
 		}
 	}
@@ -110,12 +109,12 @@ public class ResultsWriter {
 	/**
 	 * Write all individuals to new file (file current time in filename).
 	 * @param individuals
-	 * @param filename
+	 * @param folder
 	 * @param iteration
 	 * @param exceptionList
 	 * @param asEMF 
 	 */
-	public static void writeIndividualsToFile(Collection<Individual> individuals, String filename, int iteration,
+	public static void writeIndividualsToFile(Collection<Individual> individuals, URI folder, String filename, int iteration,
 			List<Exception> exceptionList, boolean asEMF, boolean asCSV){
 		List<DSEIndividual> dseIndList = new ArrayList<DSEIndividual>(individuals.size());
 		for (Individual ind : individuals) {
@@ -123,7 +122,7 @@ public class ResultsWriter {
 				dseIndList.add((DSEIndividual)ind);
 			}
 		}	
-		writeDSEIndividualsToFile(dseIndList, filename, iteration, asEMF, asCSV, exceptionList);
+		writeDSEIndividualsToFile(dseIndList, folder, filename, iteration, asEMF, asCSV, exceptionList);
 	}
 	
 
@@ -134,8 +133,8 @@ public class ResultsWriter {
 	 * @param iteration Is used for the filename
 	 * @param exceptionList
 	 */
-	public static void writeStringToFile(String filename, String content, int iteration, List<Exception> exceptionList, String fileEnding){
-		writeToNewFile(filename, new StringBuilder(content), iteration, exceptionList, fileEnding);
+	public static void writeStringToFile(URI folder, String filename, String content, int iteration, List<Exception> exceptionList, String fileEnding){
+		writeToNewFile(folder, filename, new StringBuilder(content), iteration, exceptionList, fileEnding);
 	}
 
 
@@ -222,9 +221,12 @@ public class ResultsWriter {
 	}
 
 
-
-	public String getFilename() {
-		return this.myfilename;
+	/**
+	 * returns the file location
+	 * @return file location as URI
+	 */
+	public URI getFilename() {
+		return this.fileLocation;
 	}
 
 
@@ -287,7 +289,7 @@ public class ResultsWriter {
 				this.fileWriter.close();
 				this.fileWriter = null;
 			} catch (IOException e) {
-				logger.error("Cannot close the file handle "+this.myfilename+". Your results might be lost. Cause: "+e.getMessage());
+				logger.error("Cannot close the file handle "+this.fileLocation+". Your results might be lost. Cause: "+e.getMessage());
 				e.printStackTrace();
 			}
 	
@@ -360,10 +362,12 @@ public class ResultsWriter {
 	}
 
 
-	private static void writeToNewFile(String filename, StringBuilder results, int iteration, List<Exception> exceptionList, String fileEnding) {
+	private static void writeToNewFile(URI folder, String filename, StringBuilder results, int iteration, List<Exception> exceptionList, String fileEnding) {
 		filename = getFilenameForIteration(filename, iteration, fileEnding);
+		URI fileURI = folder.appendSegment(filename);
+		
 		try {
-			BufferedWriter w = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(filename)));
+			DSEFileWriter w = new DSEFileWriter(fileURI);
 			
 			w.write(results.toString());
 			
@@ -639,7 +643,7 @@ public class ResultsWriter {
 				fileWriter.write(result.toString());
 				fileWriter.flush();
 			} catch (IOException e) {
-				logger.error("Cannot write to file "+this.myfilename+" Logging the result at level INFO now. Cause: "+e.getMessage());
+				logger.error("Cannot write to file "+this.fileLocation+" Logging the result at level INFO now. Cause: "+e.getMessage());
 				logger.info(result.toString());
 			}
 		} else {
@@ -657,8 +661,8 @@ public class ResultsWriter {
 		}
 		return name;
 	}
-	
-
 
 
 }
+
+

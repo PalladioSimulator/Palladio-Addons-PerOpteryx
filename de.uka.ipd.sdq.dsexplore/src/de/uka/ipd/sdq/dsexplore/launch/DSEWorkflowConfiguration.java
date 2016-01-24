@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.emf.common.util.URI;
 import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
@@ -62,8 +63,8 @@ AbstractPCMWorkflowRunConfiguration {
 	private boolean newProblem;
 	private boolean optimise;
 
-	private String designDecisionFileName;
-	private String resultFolder;
+	private URI designDecisionFileName;
+	private URI resultFolder;
 
 	private String configurationName;
 	
@@ -164,10 +165,10 @@ AbstractPCMWorkflowRunConfiguration {
 
 	private boolean resultsAsCSV;
 
-	private String predefinedInstancesFileName = "";
-	private String cacheInstancesFileName = "";
-	private String predefinedAllCandidatesFileName = "";
-	private String archiveCandidateFileName = "";
+	private URI predefinedInstancesFileName;
+	private URI cacheInstancesFileName;
+	private URI predefinedAllCandidatesFileName;
+	private URI archiveCandidateFileName;
 
 
 	/**
@@ -274,7 +275,7 @@ AbstractPCMWorkflowRunConfiguration {
 		this.optimise = optimise;
 	}
 
-	public void setDesignDecisionFileName(String designDecisionFileName) {
+	public void setDesignDecisionFileName(URI designDecisionFileName) {
 		this.designDecisionFileName = designDecisionFileName;
 	}
 
@@ -331,9 +332,9 @@ AbstractPCMWorkflowRunConfiguration {
 
 
 	public boolean hasPredefinedInstances() throws CoreException {
-		return this.getPredefinedInstancesFileName() != "" 
-			|| this.getPredefinedAllCandidatesFileName() != "" 
-			|| this.getArchiveCandidateFileName() != "" ;
+		return this.getPredefinedInstancesFileName() != null 
+			|| this.getPredefinedAllCandidatesFileName() != null 
+			|| this.getArchiveCandidateFileName() != null ;
 	}
  
 	public boolean isRandomSearch() {
@@ -366,35 +367,35 @@ AbstractPCMWorkflowRunConfiguration {
 		return this.searchMethod == SearchMethod.RULE;
 	}
 
-	public String getPredefinedInstancesFileName() {
+	public URI getPredefinedInstancesFileName() {
 		return this.predefinedInstancesFileName;
 	}
 	
-	public String getCacheInstancesFileName() {
+	public URI getCacheInstancesFileName() {
 		return this.cacheInstancesFileName;
 	}
 	
-	public String getPredefinedAllCandidatesFileName()  {
+	public URI getPredefinedAllCandidatesFileName()  {
 		return this.predefinedAllCandidatesFileName;
 	}
 	
-	public String getArchiveCandidateFileName()  {
+	public URI getArchiveCandidateFileName()  {
 		return this.archiveCandidateFileName;
 	}
 	
-	public void setPredefinedInstancesFileName(String name)  {
+	public void setPredefinedInstancesFileName(URI name)  {
 		this.predefinedInstancesFileName = name;
 	}
 	
-	public void setCacheInstancesFileName(String name) {
+	public void setCacheInstancesFileName(URI name) {
 		this.cacheInstancesFileName = name;
 	}
 	
-	public void setPredefinedAllCandidatesFileName(String name)  {
+	public void setPredefinedAllCandidatesFileName(URI name)  {
 		this.predefinedAllCandidatesFileName = name;
 	}
 	
-	public void setArchiveCandidateFileName(String name)  {
+	public void setArchiveCandidateFileName(URI name)  {
 		this.archiveCandidateFileName = name;
 	}
 	
@@ -404,7 +405,7 @@ AbstractPCMWorkflowRunConfiguration {
 		;
 	}
 
-	public String getDesignDecisionFileName(){
+	public URI getDesignDecisionFileName(){
 		return this.designDecisionFileName;
 	}
 	
@@ -423,14 +424,14 @@ AbstractPCMWorkflowRunConfiguration {
 	/**
 	 * @param resultFolder the resultFolder to set
 	 */
-	public void setResultFolder(String resultFolder) {
+	public void setResultFolder(URI resultFolder) {
 		this.resultFolder = resultFolder;
 	}
 
 	/**
 	 * @return the resultFolder
 	 */
-	public String getResultFolder() {
+	public URI getResultFolder() {
 		return resultFolder;
 	}
 

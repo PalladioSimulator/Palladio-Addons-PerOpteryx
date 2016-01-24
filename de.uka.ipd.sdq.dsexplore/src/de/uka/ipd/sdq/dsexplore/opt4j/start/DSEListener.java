@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.OptimizerIterationListener;
 
@@ -25,7 +26,7 @@ public class DSEListener implements OptimizerIterationListener {
 
 	private IProgressMonitor monitor;
 
-	private String resultFolder;
+	private URI resultFolder;
 
 	private boolean asEMF;
 
@@ -64,12 +65,12 @@ public class DSEListener implements OptimizerIterationListener {
 		
 		List<Exception> exceptionList = new ArrayList<Exception>();
 		
-		ResultsWriter.writeDSEIndividualsToFile(individuals.getIndividuals(), this.resultFolder+"allCandidates", iteration, this.asEMF, this.asCSV, exceptionList);
+		ResultsWriter.writeDSEIndividualsToFile(individuals.getIndividuals(), this.resultFolder, "allCandidates", iteration, this.asEMF, this.asCSV, exceptionList);
 		
-		ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), this.resultFolder+"population", iteration, this.asEMF, this.asCSV, exceptionList);
+		ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), this.resultFolder, "population", iteration, this.asEMF, this.asCSV, exceptionList);
 
 		//ResultsWriter.writeIndividualsToFile(individuals.getParetoOptimalIndividuals(), this.resultFolder+"ownOptimalCandidates", iteration, exceptionList);
-		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder+"archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);	
+		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder, "archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);	
 	}
 
 

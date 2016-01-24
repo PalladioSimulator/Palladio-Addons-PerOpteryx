@@ -67,7 +67,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		selector.init(alpha + lambda);
 		
 		final boolean useGeneratedStartingPopulation = Opt4JStarter.getDSEWorkflowConfig().getUseStartingPopulationHeuristic();
-		final boolean usePredefinedPopulation = Opt4JStarter.getDSEWorkflowConfig().getPredefinedInstancesFileName() != "";
+		final boolean usePredefinedPopulation = Opt4JStarter.getDSEWorkflowConfig().getPredefinedInstancesFileName() != null;
 		if (useGeneratedStartingPopulation && ! usePredefinedPopulation) {
 			DSEIndividual firstIndividual = (DSEIndividual) individualFactory.create();
 			StartingPopulationHeuristicImpl startingPopulationHelper = new StartingPopulationHeuristicImpl(Opt4JStarter.getDSEWorkflowConfig());

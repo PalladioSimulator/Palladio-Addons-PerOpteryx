@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -108,7 +109,7 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 
 	}
 
-	private List<DSEIndividual> fillCacheWithValues(String cacheInstancesFileName) throws CoreException {
+	private List<DSEIndividual> fillCacheWithValues(URI cacheInstancesFileName) throws CoreException {
 		return GenotypeReader.getIndividuals(cacheInstancesFileName, this.blackboard);
 	}
 

@@ -17,7 +17,7 @@ public class DSEIndividualStateListener implements IndividualStateListener {
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualStateListener");
 	
 	public DSEIndividualStateListener(DSEWorkflowConfiguration dseConfig){
-		this.writer = new ResultsWriter(dseConfig.getResultFolder()+"allIndividualsDirectly");
+		this.writer = new ResultsWriter(dseConfig.getResultFolder(),"allIndividualsDirectly");
 		Opt4JStarter.registerWriter(this.writer);
 	}
 
