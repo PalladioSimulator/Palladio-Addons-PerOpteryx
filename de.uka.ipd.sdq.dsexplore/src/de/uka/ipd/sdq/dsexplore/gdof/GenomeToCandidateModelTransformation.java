@@ -220,11 +220,11 @@ public class GenomeToCandidateModelTransformation {
 		
 		
 		List<HelperOCLDefinition> helpers = oclRule.getHelperDefinition();
-		
-		defineHelpers(helper, helpers);
-		
+
 		//FIXME for all instances
 		helper.setInstanceContext(contextInstance);
+		
+		defineHelpers(helper, helpers);
 		
 		//FIXME: Maybe fix problem by aligning the loaded java classes with the classes 
 		//from the loaded PCM model. Switch through all first. See DSEProblem for initial idea.
