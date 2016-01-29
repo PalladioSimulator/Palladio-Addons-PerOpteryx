@@ -344,7 +344,7 @@ public class Adapter {
 				ChoiceObjectList.add((ContinousRangeChoice)ChoiceObject);
 			}else if(TranslatedBGObjects.get(i).getDegreeType() == TypeOfDegree.ResourceSelectionDegree){
 				List<Integer> BinaryList = TranslatedBGObjects.get(i).getInternalList();
-				Choice ChoiceObject = designdecisionFactory.eINSTANCE.createChoice();
+				Choice ChoiceObject = designdecisionFactory.eINSTANCE.createClassChoice();
 				for(int j = 0; j < BinaryList.size(); j++){
 					if(BinaryList.get(j) == 1){
 						((ClassChoice) ChoiceObject).setChosenValue(WEBSERVERS.get(j));

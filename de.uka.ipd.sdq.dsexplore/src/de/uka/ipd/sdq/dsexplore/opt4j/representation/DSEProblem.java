@@ -151,7 +151,7 @@ public class DSEProblem {
     }
 
 
-    private List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) {
+    private List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) throws CoreException {
         final DesignDecisionGenotype genotype = new DesignDecisionGenotype();
 
         for (final DegreeOfFreedomInstance dd : problem.getDegreesOfFreedom()) {
@@ -160,9 +160,22 @@ public class DSEProblem {
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
                 final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
+                
+                final Choice choice;
+                if (value instanceof EObject) {
+                    choice = this.designDecisionFactory.createClassChoice();
+                    ((ClassChoice) choice).setChosenValue((EObject) value);
+                } else if (value instanceof Double) {
+                    choice = this.designDecisionFactory.createContinousRangeChoice();
+                    ((ContinousRangeChoice) choice).setChosenValue((Double) value);
+                } else if (value instanceof Integer) {
+                    choice = this.designDecisionFactory.createDiscreteRangeChoice();
+                    ((DiscreteRangeChoice) choice).setChosenValue((Integer) value);
+                } else {
+                	throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot cast " + value + " to an EObject, Integer, or Double. Please extend DSEProblem.determineInitialGenotype to handle your type of choice.", null));
+                }
 
-                final Choice choice = this.designDecisionFactory.createChoice();
-                choice.setValue(value);
+
                 choice.setDegreeOfFreedomInstance(dd);
 
                 genotype.add(choice);

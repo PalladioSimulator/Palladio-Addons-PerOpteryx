@@ -21,84 +21,84 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged <em>Primary Changed</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof <em>Dof</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getChangeableElements <em>Changeable Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance()
  * @model
  * @generated
  */
 public interface DegreeOfFreedomInstance extends EObject, NamedElement {
-    /**
-     * Returns the value of the '<em><b>Primary Changed</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Primary Changed</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Primary Changed</em>' reference.
-     * @see #setPrimaryChanged(EObject)
-     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_PrimaryChanged()
-     * @model required="true" ordered="false"
-     * @generated
-     */
-    EObject getPrimaryChanged();
+	/**
+	 * Returns the value of the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Primary Changed</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Primary Changed</em>' reference.
+	 * @see #setPrimaryChanged(EObject)
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_PrimaryChanged()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EObject getPrimaryChanged();
 
-    /**
-     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged <em>Primary Changed</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Primary Changed</em>' reference.
-     * @see #getPrimaryChanged()
-     * @generated
-     */
-    void setPrimaryChanged(EObject value);
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getPrimaryChanged <em>Primary Changed</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Primary Changed</em>' reference.
+	 * @see #getPrimaryChanged()
+	 * @generated
+	 */
+	void setPrimaryChanged(EObject value);
 
-    /**
-     * Returns the value of the '<em><b>Dof</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Dof</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Dof</em>' reference.
-     * @see #setDof(DegreeOfFreedom)
-     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_Dof()
-     * @model required="true" ordered="false"
-     * @generated
-     */
-    DegreeOfFreedom getDof();
+	/**
+	 * Returns the value of the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dof</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dof</em>' reference.
+	 * @see #setDof(DegreeOfFreedom)
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_Dof()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	DegreeOfFreedom getDof();
 
-    /**
-     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof <em>Dof</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Dof</em>' reference.
-     * @see #getDof()
-     * @generated
-     */
-    void setDof(DegreeOfFreedom value);
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance#getDof <em>Dof</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dof</em>' reference.
+	 * @see #getDof()
+	 * @generated
+	 */
+	void setDof(DegreeOfFreedom value);
 
-    /**
-     * Returns the value of the '<em><b>Changeable Elements</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Changeable Elements</em>' reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Changeable Elements</em>' reference list.
-     * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_ChangeableElements()
-     * @model required="true" ordered="false"
-     * @generated
-     */
-    EList<EObject> getChangeableElements();
+	/**
+	 * Returns the value of the '<em><b>Changeable Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changeable Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Changeable Elements</em>' reference list.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage#getDegreeOfFreedomInstance_ChangeableElements()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EList<EObject> getChangeableElements();
 
 } // DegreeOfFreedomInstance

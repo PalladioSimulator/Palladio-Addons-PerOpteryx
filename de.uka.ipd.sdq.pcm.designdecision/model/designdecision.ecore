@@ -10,14 +10,13 @@
       <details key="documentation" value="The DiscreteRangeChoice represents a choice for a DegreeOfFreedom with an integer range. &#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an DiscreteRangeDegree"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="chosenValue" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        volatile="true" transient="true" derived="true">
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The value chosen from the DegreeOfFreedom. &#xD;&#xA;&#xD;&#xA;TODO: constraint: chosenValue must be within the defined range. "/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Choice">
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A Choice represents the choice of one value from the domain of a DegreeOfFreedom. The Choice links the DegreeOfFreedom for which it makes the choice. Additionally, it links one element of the domain of the DegreeOfFreedom. This linking is realised in subclasses of Choice, as it may be either PCM Entities or numbers. "/>
     </eAnnotations>
@@ -25,7 +24,8 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="degreeOfFreedomInstance"
         ordered="false" lowerBound="1" eType="#//DegreeOfFreedomInstance"/>
   </eClassifiers>
@@ -45,8 +45,7 @@
       <details key="documentation" value="The EnumerationChoice represents a choice for a DegreeOfFreedom that has a domain of PCM Entities (i.e. a EnumerationDegree). &#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an EnumerationDegree&#xD;&#xA;&#xD;&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chosenValue" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
-        volatile="true" transient="true" derived="true">
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="TODO: constraint: Chosen entity must be in the domain of the EnumerationDegree;"/>
       </eAnnotations>
@@ -57,8 +56,7 @@
       <details key="documentation" value="The ContinuousRange represents a choice for a DegreeOfFreedom with a continuous domain.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;TODO constraint:  The degreeOfFreedom of this Choice must be an ContinuousRangeDegree"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="chosenValue" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
-        volatile="true" transient="true" derived="true">
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The double value chosen from the range of the DegreeOfFreedom. &#xD;&#xA;&#xD;&#xA;TODO: constraint: chosenValue must be within the defined range. "/>
       </eAnnotations>
