@@ -112,23 +112,38 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		designdecisionFactory factory = designdecisionFactoryImpl.init();
 		
 		Choice choice;
-		if (degree instanceof DiscreteDegree){
-			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice() ;
-			discChoice.setChosenValue(createIntegerValue((DiscreteDegree)degree));
+		if (degree instanceof DiscreteDegree) {
+			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice();
+			discChoice.setChosenValue(createIntegerValue((DiscreteDegree) degree));
 			choice = discChoice;
-		} else if (degree instanceof ContinuousRangeDegree){
+		} else if (degree instanceof ContinuousRangeDegree) {
 			ContinousRangeChoice contChoice = factory.createContinousRangeChoice();
-			contChoice.setChosenValue(createDoubleValue((ContinuousRangeDegree)degree));
+			contChoice.setChosenValue(createDoubleValue((ContinuousRangeDegree) degree));
 			choice = contChoice;
-		} else if (degree instanceof ClassDegree){
+		} else if (degree instanceof ClassDegree) {
 			ClassChoice enumChoice = factory.createClassChoice();
-			enumChoice.setChosenValue(createRandomEntity((ClassDegree)degree));
+			enumChoice.setChosenValue(createRandomEntity((ClassDegree) degree));
 			choice = enumChoice;
-		} else if (degree.getDof() != null){
-			choice = factory.createChoice();
-			choice.setValue(createRandomValue(degree));
-			
-		} else throw new RuntimeException("Unknown degree "+degree.getClass().getName());
+		} else if (degree.getDof() != null) {
+			Object chosenValue = createRandomValue(degree);
+			if (chosenValue instanceof EObject) {
+				ClassChoice classChoice = factory.createClassChoice();
+				classChoice.setChosenValue(classChoice);
+				choice = classChoice;
+			} else if (chosenValue instanceof Double) {
+				ContinousRangeChoice continuousNumberChoice = factory.createContinousRangeChoice();
+				continuousNumberChoice.setChosenValue(((Double) chosenValue).doubleValue());
+				choice = continuousNumberChoice;
+			} else if (chosenValue instanceof Integer) {
+				DiscreteRangeChoice integerNumberChoice = factory.createDiscreteRangeChoice();
+				integerNumberChoice.setChosenValue(((Integer) chosenValue).intValue());
+				choice = integerNumberChoice;
+			} else {
+				throw new RuntimeException("Cannot handle choice returned by GDoF transformation " + chosenValue.getClass().getName());
+			}
+		} else {
+			throw new RuntimeException("Unknown degree " + degree.getClass().getName());
+		}
 		choice.setDegreeOfFreedomInstance(degree);
 		return choice;
 	}
