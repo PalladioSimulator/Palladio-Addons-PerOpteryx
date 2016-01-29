@@ -24,57 +24,57 @@ import de.uka.ipd.sdq.featuremodel.FeatureGroup;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree#getFeaturegroup <em>Featuregroup</em>}</li>
  *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree#getDomainOfFeatureConfigCombinations <em>Domain Of Feature Config Combinations</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureGroupDegree()
  * @model
  * @generated
  */
 public interface FeatureGroupDegree extends FeatureConfigDegree {
-    /**
-     * Returns the value of the '<em><b>Featuregroup</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Featuregroup</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Featuregroup</em>' reference.
-     * @see #setFeaturegroup(FeatureGroup)
-     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureGroupDegree_Featuregroup()
-     * @model required="true" ordered="false"
-     * @generated
-     */
-    FeatureGroup getFeaturegroup();
+	/**
+	 * Returns the value of the '<em><b>Featuregroup</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Featuregroup</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Featuregroup</em>' reference.
+	 * @see #setFeaturegroup(FeatureGroup)
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureGroupDegree_Featuregroup()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	FeatureGroup getFeaturegroup();
 
-    /**
-     * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree#getFeaturegroup <em>Featuregroup</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Featuregroup</em>' reference.
-     * @see #getFeaturegroup()
-     * @generated
-     */
-    void setFeaturegroup(FeatureGroup value);
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree#getFeaturegroup <em>Featuregroup</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Featuregroup</em>' reference.
+	 * @see #getFeaturegroup()
+	 * @generated
+	 */
+	void setFeaturegroup(FeatureGroup value);
 
-    /**
-     * Returns the value of the '<em><b>Domain Of Feature Config Combinations</b></em>' containment reference list.
-     * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Domain Of Feature Config Combinations</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Domain Of Feature Config Combinations</em>' containment reference list.
-     * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureGroupDegree_DomainOfFeatureConfigCombinations()
-     * @model containment="true" required="true" ordered="false"
-     * @generated
-     */
-    EList<FeatureSubset> getDomainOfFeatureConfigCombinations();
+	/**
+	 * Returns the value of the '<em><b>Domain Of Feature Config Combinations</b></em>' containment reference list.
+	 * The list contents are of type {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Domain Of Feature Config Combinations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Domain Of Feature Config Combinations</em>' containment reference list.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureGroupDegree_DomainOfFeatureConfigCombinations()
+	 * @model containment="true" required="true" ordered="false"
+	 * @generated
+	 */
+	EList<FeatureSubset> getDomainOfFeatureConfigCombinations();
 
 } // FeatureGroupDegree

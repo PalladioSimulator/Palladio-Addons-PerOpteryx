@@ -15,26 +15,26 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @generated
  */
 public class designdecisionResourceFactoryImpl extends ResourceFactoryImpl {
-    /**
-     * Creates an instance of the resource factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public designdecisionResourceFactoryImpl() {
-        super();
-    }
+	/**
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public designdecisionResourceFactoryImpl() {
+		super();
+	}
 
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Resource createResource(URI uri) {
-        XMLResource result = new designdecisionResourceImpl(uri);
-        return result;
-    }
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Resource createResource(URI uri) {
+		XMLResource result = new designdecisionResourceImpl(uri);
+		return result;
+	}
 
 } //designdecisionResourceFactoryImpl

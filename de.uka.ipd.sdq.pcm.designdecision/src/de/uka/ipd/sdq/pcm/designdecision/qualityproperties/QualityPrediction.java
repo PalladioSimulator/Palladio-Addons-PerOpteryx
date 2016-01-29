@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface QualityPrediction extends EObject {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model required="true" ordered="false" modelRequired="true" modelMany="true" modelOrdered="false"
-     * @generated
-     */
-    QualityProperty evaluate(EList<EObject> model);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" modelRequired="true" modelMany="true" modelOrdered="false"
+	 * @generated
+	 */
+	QualityProperty evaluate(EList<EObject> model);
 
 } // QualityPrediction

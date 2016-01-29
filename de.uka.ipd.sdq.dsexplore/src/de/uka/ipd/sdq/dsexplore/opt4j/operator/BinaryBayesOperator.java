@@ -122,7 +122,7 @@ public class BinaryBayesOperator implements BayesianCrossover<DesignDecisionGeno
 				
 					ddgpure.add(purechoice);
 				}else if(ChoiceTemplate.get(k).getDegreeOfFreedomInstance() instanceof ResourceSelectionDegree){
-					Choice purechoice = designdecisionFactory.eINSTANCE.createChoice();
+					Choice purechoice = designdecisionFactory.eINSTANCE.createClassChoice();
 					purechoice.setDegreeOfFreedomInstance(ChoiceTemplate.get(k).getDegreeOfFreedomInstance());
 					purechoice.setIsActive(ChoiceTemplate.get(k).isActive());
 					purechoice.setValue(ddg.get(k).getValue());
