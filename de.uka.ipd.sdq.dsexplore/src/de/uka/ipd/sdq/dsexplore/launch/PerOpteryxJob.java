@@ -2,8 +2,6 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.palladiosimulator.analyzer.workflow.jobs.ValidatePCMModelsJob;
-
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.ICompositeJob;
 import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
@@ -12,9 +10,7 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 public class PerOpteryxJob extends
 SequentialBlackboardInteractingJob<MDSDBlackboard> implements
 ICompositeJob {
-
-    //DSECandidateConfiguration candidateConfig;
-
+	
     public PerOpteryxJob(final DSEWorkflowConfiguration config, final DSELaunch launch) throws CoreException {
         super(false);
 
@@ -22,13 +18,7 @@ ICompositeJob {
         this.addJob(new LoadModelIntoBlackboardJob(config));
 
         // 2. Validate Models
-        this.addJob(new ValidateModelsJob(config));
-
-        //TODO remove step 3 and 5, there should be no need
-        //anymore to save the models under a different name.
-        //Do I ever need the initial model?
-        // 3. Create model files for candidate models
-        //this.candidateConfig = createCandidateSetup(config);
+//        this.addJob(new ValidateModelsJob(config));
 
         // 4. Copy initial instance to separate blackboard partition
         this.add(new MoveInitialModelPartitionJob());

@@ -57,7 +57,7 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.AGenotypeReader;
 import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.launch.LoadModelIntoBlackboardJob;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTrackerModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -120,7 +120,7 @@ public class Opt4JStarter {
 		UniversalDoF universalDoF = UniversalDoFFactory.eINSTANCE.createUniversalDoF();
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
-		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, blackboard.getPartition(LoadModelIntoBlackboardJob.MODEL_PARTITION_ID));
+		Opt4JStarter.problem = universalDoF.createDSEProblem(dseConfig, blackboard.getPartition(MoveInitialModelPartitionJob.INITIAL_MODEL_PARTITION_ID));
 		if (dseConfig.isNewProblem()){
 			Opt4JStarter.problem.saveProblem();
 		}
@@ -154,7 +154,7 @@ public class Opt4JStarter {
 		Opt4JStarter.genotypeReader = Opt4JStarter.problem.getAssociatedMetamodel().getGenotypeReader();
 		Opt4JStarter.genotypeReader.setTask(task); //QUICKHACK
 		
-		DSEEvaluator<Phenotype> ev = task.getInstance(DSEEvaluator.class);
+		DSEEvaluator<Phenotype> ev = task.getInstance(problem.getAssociatedMetamodel().getDSEEvaluator());
 		ev.init(evaluators, monitor, blackboard, dseConfig.isStopOnInitialFailure());
 		
 		//Termination Criteria Manager Initialization if needed

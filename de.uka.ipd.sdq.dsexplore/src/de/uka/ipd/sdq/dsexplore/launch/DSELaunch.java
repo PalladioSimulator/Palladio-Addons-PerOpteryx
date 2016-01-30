@@ -106,7 +106,7 @@ public class DSELaunch extends AbstractWorkflowBasedMDSDLaunchConfigurationDeleg
 			ILaunchConfiguration configuration, String mode)
 			throws CoreException {
 		
-		DSEWorkflowConfigurationFactory factory = DSEWorkflowConfigurationFactory.eINSTANCE;
+		DSEPresentationFactory factory = DSEPresentationFactory.eINSTANCE;
 		
 		return factory.createDSEWorkflowConfiguration(configuration, mode, this);
 	}

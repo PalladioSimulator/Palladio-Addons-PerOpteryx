@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry excluding="de/uka/ipd/sdq/dsexplore/opt4j/representation/modulefinder/" kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="log4j" sourcepath="log4j"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/ferdinand/modeling-mars/eclipse/plugins/org.palladiosimulator.solver_3.0.0.201511051312.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

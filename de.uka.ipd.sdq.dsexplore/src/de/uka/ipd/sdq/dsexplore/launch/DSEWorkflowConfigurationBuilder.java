@@ -189,6 +189,7 @@ public class DSEWorkflowConfigurationBuilder extends
 				config.addGenericDoF(UniversalDoF.eINSTANCE.getGDoF(gdof));
 			}
 		}
+		
 		if (config.getSelectedGenericDoFs().size() == 0 && config.getSelectedSpecificDoFs().size() == 0) {
 			throw new IllegalArgumentException("The configuration does not specify any degrees.");
 		}

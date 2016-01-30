@@ -30,7 +30,7 @@ import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.UniversalDoF;
 
-public class DSEOptionsTab extends InputTab {
+public abstract class DSEOptionsTab extends InputTab {
 	
 	protected Text maximumIterations; 
 
@@ -88,6 +88,8 @@ public class DSEOptionsTab extends InputTab {
 	            specificDofList.deselectAll();
 	            selectSpecificDof.setSelection(false);
 	        } else {
+	        	selectSpecificDof.setSelection(true);
+	        	
 	        	specificDofList.setEnabled(true);
 	        	genericDofList.setEnabled(false);
 	        	genericDofList.deselectAll();
@@ -256,7 +258,6 @@ public class DSEOptionsTab extends InputTab {
 		selectGenericDof = new Button(radioGroup, SWT.RADIO);
 		selectGenericDof.setSelection(true);
 		selectGenericDof.setText(DSEConstantsContainer.GENERICDOFS);
-		selectGenericDof.setEnabled(true);
 		selectGenericDof.addSelectionListener(selectionListener);
 		selectGenericDof.addSelectionListener(radioListener);
 		
@@ -277,6 +278,7 @@ public class DSEOptionsTab extends InputTab {
 		GridData gd_specificDofList = new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1);
 		specificDofList.setLayoutData(gd_specificDofList);
 		specificDofList.addSelectionListener(selectionListener);
+		setSpecificDofs();
 		
 		radioGroup.setTabList(new Control[]{selectGenericDof, selectSpecificDof, genericDofList, specificDofList});
 		
@@ -371,6 +373,11 @@ public class DSEOptionsTab extends InputTab {
 		return "DSE Options";
 	}*/
 	
+	/**
+	 * metamodel-specific degrees are set; this method has to be implemented in subclasses
+	 */
+	protected abstract void setSpecificDofs();
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.debug.ui.AbstractLaunchConfigurationTab#getImage()
 	 */
@@ -467,14 +474,46 @@ public class DSEOptionsTab extends InputTab {
 		}
 		try {
 			this.selectGenericDof.setSelection(configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+			this.genericDofList.setEnabled(this.selectGenericDof.getSelection());
 		} catch (CoreException e){
-			this.selectGenericDof.setEnabled(true);
+			this.selectGenericDof.setSelection(true);
+			this.genericDofList.setEnabled(this.selectGenericDof.getSelection());
 		}
 		try {
 			this.selectSpecificDof.setSelection(!configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+			this.selectSpecificDof.setEnabled(this.selectSpecificDof.getSelection());
 		} catch (CoreException e){
 			this.selectSpecificDof.setSelection(false);
+			this.specificDofList.setEnabled(this.selectSpecificDof.getSelection());
 		}
+		
+		java.util.List<String> sList = null;
+		try {
+			sList = configuration.getAttribute(DSEConstantsContainer.GENERICDOFS, new ArrayList<String>(0));
+		} catch (CoreException e){
+			sList = new ArrayList<String>(0);
+		}
+		String[] sArray = new String[sList.size()];
+		int i = 0;
+		for (String s : sList) {
+			sArray[i] = s;
+			i++;
+		}
+		this.genericDofList.setSelection(sArray);
+		
+		try {
+			sList = configuration.getAttribute(DSEConstantsContainer.SPECIFICDOFS, new ArrayList<String>(0));
+		} catch (CoreException e){
+			sList = new ArrayList<String>(0);
+		}
+		sArray = new String[sList.size()];
+		i = 0;
+		for (String s : sList) {
+			sArray[i] = s;
+			i++;
+		}
+		this.specificDofList.setSelection(sArray);
+		
 		try {
 			this.textDesignDecisionFile.setText(configuration.getAttribute(
 					DSEConstantsContainer.DESIGN_DECISION_FILE, ""));
@@ -507,11 +546,11 @@ public class DSEOptionsTab extends InputTab {
 	}
 
 
-
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		//loadQML();
 		
+		configuration.setAttribute(DSEConstantsContainer.INPUT_METAMODEL, this.metamodel.getValue());
 		configuration.setAttribute(
 				DSEConstantsContainer.MAX_ITERATIONS,
 				this.maximumIterations.getText());

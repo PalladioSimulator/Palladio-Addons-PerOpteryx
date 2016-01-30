@@ -20,6 +20,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.LoadModelIntoBlackboardJob;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
@@ -170,7 +171,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 
 	protected PCMInstance getPCMInstance() {
-		return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadModelIntoBlackboardJob.MODEL_PARTITION_ID));
 	}
 	
 	@Override

@@ -8,6 +8,8 @@ import java.util.Random;
 import org.opt4j.core.Genotype;
 import org.opt4j.operator.copy.Copy;
 
+import com.google.inject.Inject;
+
 import de.uka.ipd.sdq.dsexplore.helper.AResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
@@ -33,6 +35,7 @@ public class TacticOperatorsManager {
 	 * @param copy Creates copy of genotypes
 	 * @param individualFactory Builds individual
 	 */
+	@Inject
 	public TacticOperatorsManager(Copy<Genotype> copy, DSEIndividualFactory individualFactory) {
 		DSEWorkflowConfiguration configuration = Opt4JStarter.getDSEWorkflowConfig();
 		heuristics = TacticOperatorsFactory.getActivatedInstances(copy, individualFactory, configuration);

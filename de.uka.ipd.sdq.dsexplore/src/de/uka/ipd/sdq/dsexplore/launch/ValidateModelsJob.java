@@ -21,7 +21,7 @@ import de.uka.ipd.sdq.identifier.IdentifierPackage;
 import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
 import de.uka.ipd.sdq.stoex.StoexPackage;
 import de.uka.ipd.sdq.units.UnitsPackage;
-import de.uka.ipd.sdq.workflow.jobs.IJob;
+
 import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import de.uka.ipd.sdq.workflow.mdsd.emf.CheckEMFConstraintsJob;
@@ -31,7 +31,7 @@ import de.uka.ipd.sdq.workflow.mdsd.validation.ShowValidationErrorsJob;
 import de.uka.ipd.sdq.errorhandling.SeverityEnum;
 
 // FIXME this class currently only works for PCM models; any other model will fail!
-public class ValidateModelsJob extends SequentialBlackboardInteractingJob<MDSDBlackboard> implements IJob {
+public class ValidateModelsJob extends SequentialBlackboardInteractingJob<MDSDBlackboard> {
 
 	// taken from ValidatePCMModelsJob
 	private static final String PCM_CHECK_FILENAME = "pcm";

@@ -42,5 +42,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-BuddyPolicy: dependent 
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy
-Import-Package: de.uka.ipd.sdq.pcmsupport.representation,
+Import-Package: de.uka.ipd.sdq.dsexplore.launch,
+ de.uka.ipd.sdq.pcmsupport.representation,
  org.palladiosimulator.analyzer.completions

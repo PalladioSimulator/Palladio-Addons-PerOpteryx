@@ -8,9 +8,8 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.pcmsupport.representation.PCM_DSEOptionsTab;
-import de.uka.ipd.sdq.pcmsupport.representation.QML_PCMFileNamesInputTab;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.DebugEnabledCommonTab;
+import genericdesigndecision.universalDoF.Metamodel;
 
 /**
  * Creates a Tab Group for the launch configuration.
@@ -36,9 +35,9 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		
 		qmlManager.addTabs(analysisTabs.toArray(new DSEAnalysisMethodTab[]{}));
 		
-		DSEFileNamesInputTab defaultTab = new QML_PCMFileNamesInputTab(qmlManager);
+		DSEFileNamesInputTab defaultTab = DSEPresentationFactory.eINSTANCE.createFileNamesInputTab(qmlManager, Metamodel.PCM);
 				
-		DSEOptionsTab optionsTab = new PCM_DSEOptionsTab();
+		DSEOptionsTab optionsTab = DSEPresentationFactory.eINSTANCE.createDSEOptionsTab(Metamodel.PCM);
 		
 		TerminationCriteriaTab terminationTab = new TerminationCriteriaTab(qmlManager);
 		
