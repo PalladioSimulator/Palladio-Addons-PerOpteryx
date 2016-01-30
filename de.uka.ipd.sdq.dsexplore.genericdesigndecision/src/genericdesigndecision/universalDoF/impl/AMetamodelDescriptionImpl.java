@@ -9,6 +9,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.ADSEProblem;
@@ -114,6 +115,8 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 		this.gdof_to_dof = new HashMap<GenericDoF, SpecificDoF>();
 	}
+	
+	public abstract Class<? extends DSEEvaluator> getDSEEvaluator();
 	
 	/**
 	 * Translates the given {@link DesignDecisionGenotype} named DDGenotype 

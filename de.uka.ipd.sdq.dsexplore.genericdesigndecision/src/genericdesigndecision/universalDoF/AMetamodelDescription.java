@@ -8,6 +8,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.AAdapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.Adapter;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Choice;
@@ -167,5 +168,7 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	public AGenotypeReader getGenotypeReader();
 	
 	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename, ADSEProblem problem);
+	
+	public Class<? extends DSEEvaluator> getDSEEvaluator();
 
 } // AMetamodelDescription
