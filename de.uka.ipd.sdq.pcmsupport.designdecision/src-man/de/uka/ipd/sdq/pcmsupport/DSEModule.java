@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.pcmsupport;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
-import de.uka.ipd.sdq.pcmsupport.designdecision.DSEProblem;
+import de.uka.ipd.sdq.pcmsupport.designdecision.impl.DSEProblemImpl;
 import de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator;
 
 import org.opt4j.core.problem.Creator;
@@ -23,7 +23,7 @@ public class DSEModule extends ADSEModule {
 		//bind(DSENeighbor.class).asEagerSingleton();
 		
 		Class<? extends Creator<?>> creator = DSECreator.class;
-		Class<? extends Decoder<?, ?>> decoder = DSEProblem.class;
+		Class<? extends Decoder<?, ?>> decoder = DSEProblemImpl.class;	//DSEProblem implements Decoder interface
 		Class<? extends Evaluator<?>> evaluator = DSEEvaluator.class;
 
 		bind(new TypeLiteral<Creator<DesignDecisionGenotype>>() {}).to((Class<? extends Creator<DesignDecisionGenotype>>) DSECreator.class);

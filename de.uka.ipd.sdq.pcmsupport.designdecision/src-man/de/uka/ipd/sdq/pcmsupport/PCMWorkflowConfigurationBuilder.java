@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
 
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
+import de.uka.ipd.sdq.pcmsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 
@@ -39,6 +41,14 @@ public class PCMWorkflowConfigurationBuilder extends AbstractWorkflowConfigurati
 		// accuracy analysis
 		config.setAccuracyInfluenceAnalysisEnabled(ConstantsContainer.DEFAULT_ANALYSE_ACCURACY);
 		config.setAccuracyInformationModelFile(ConstantsContainer.DEFAULT_ACCURACY_QUALITY_ANNOTATION_FILE);
+		
+		// add specific degrees if selected
+		config.setUseGenericDoF(this.configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+		if(!config.isUseGenericDoF()) {
+			for(String sdof : this.configuration.getAttribute(DSEConstantsContainer.SPECIFICDOFS, new ArrayList<String>())) {
+				config.addSpecificDoF(MetamodelDescription.eINSTANCE.getSDoF(sdof));
+			}
+		}
 	}
 
 	/** Read the PCM model filenames from this builder's launch configuration

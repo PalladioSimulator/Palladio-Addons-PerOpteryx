@@ -3,6 +3,7 @@
 package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.pcmsupport.Adapter;
 import de.uka.ipd.sdq.pcmsupport.DSEDecoder;
 import de.uka.ipd.sdq.pcmsupport.DSEModule;
@@ -154,6 +155,11 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 	@Override
 	public String getDecisionString(Choice choice) {
 		return this.decoder.getDecisionString(choice);
+	}
+
+	@Override
+	public Class<? extends DSEEvaluator> getDSEEvaluator() {
+		return de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator.class;
 	}
 
 } //MetamodelDescriptionImpl
