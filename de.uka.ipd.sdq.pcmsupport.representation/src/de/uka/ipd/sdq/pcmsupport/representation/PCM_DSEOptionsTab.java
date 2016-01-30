@@ -2,8 +2,6 @@ package de.uka.ipd.sdq.pcmsupport.representation;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.eclipse.swt.widgets.Composite;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEOptionsTab;
@@ -14,29 +12,27 @@ import genericdesigndecision.universalDoF.SpecificDoF;
 
 public class PCM_DSEOptionsTab extends DSEOptionsTab {
 
-	@Override
-	public void createControl(Composite parent) {
-		super.createControl(parent);
-		
-		for (SpecificDoF s : MetamodelDescription.eINSTANCE.listSDoFs()) {
-			specificDofList.add(s.getName());
-		}
-	}
-	
 	@Override 
 	public void initializeFrom(ILaunchConfiguration configuration) {
-		super.initializeFrom(configuration);
 		try {
-			this.metamodel = Metamodel.get(configuration.getAttribute(DSEConstantsContainer.INPUT_METAMODEL, 0));
+			if(configuration.getAttribute(DSEConstantsContainer.INPUT_METAMODEL, Metamodel.PCM_VALUE) != Metamodel.PCM_VALUE) {
+				throw new IllegalStateException("This representation tab is not intended to be used with metamodel of the launch configuration.");
+			}
 		} catch (CoreException e) {
 			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.INPUT_METAMODEL, e.getMessage());
 		}
+		super.initializeFrom(configuration);
 	}
 	
+	public PCM_DSEOptionsTab() {
+		this.metamodel = Metamodel.PCM;
+	}
+
 	@Override
-	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
-		super.performApply(configuration);
-		configuration.setAttribute(DSEConstantsContainer.INPUT_METAMODEL, this.metamodel.getValue());
+	protected void setSpecificDofs() {
+		for (SpecificDoF s : MetamodelDescription.eINSTANCE.listSDoFs()) {
+			specificDofList.add(s.getName());
+		}
 	}
 
 }
