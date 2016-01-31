@@ -50,6 +50,8 @@ public abstract class DSEWorkflowConfiguration extends AbstractWorkflowBasedRunC
     
     protected ArrayList<SpecificDoF> selectedSpecificDoFs;
     
+    public abstract String getCheckFilename();
+    
     public boolean isUseGenericDoF() {
 		return useGenericDoF;
 	}

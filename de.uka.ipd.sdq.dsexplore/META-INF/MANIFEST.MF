@@ -5,8 +5,8 @@ Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.DSEPluginActivator
 Require-Bundle: de.uka.ipd.sdq.errorhandling;bundle-version="1.0.0",
- de.uka.ipd.sdq.workflow.mdsd,
- de.uka.ipd.sdq.workflow,
+ de.uka.ipd.sdq.workflow.mdsd;bundle-version="2.1.0";visibility:=reexport,
+ de.uka.ipd.sdq.workflow;bundle-version="2.1.0";visibility:=reexport,
  org.opt4j,
  de.uka.ipd.sdq.dsexplore.qml.handling,
  de.uka.ipd.sdq.dsexplore.qml,

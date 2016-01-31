@@ -18,12 +18,12 @@ ICompositeJob {
         this.addJob(new LoadModelIntoBlackboardJob(config));
 
         // 2. Validate Models
-//        this.addJob(new ValidateModelsJob(config));
+        this.addJob(new ValidateModelsJob(config));
 
-        // 4. Copy initial instance to separate blackboard partition
+        // 3. Copy initial instance to separate blackboard partition
         this.add(new MoveInitialModelPartitionJob());
 
-        // create the partition anew but empty
+        // 4. create the partition anew but empty
         this.add(new PrepareBlackboardPartitionJob(config));
 
         // 5. Load the candidate models again from updated files

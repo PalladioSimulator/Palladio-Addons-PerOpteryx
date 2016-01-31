@@ -76,7 +76,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEMutateModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.RuleBasedSearchModule;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
-//import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 import de.uka.ipd.sdq.tcfmoop.config.InsignificantSetQualityImprovementConfig;
@@ -102,7 +101,7 @@ import genericdesigndecision.universalDoF.UniversalDoFFactory;
  */
 public class Opt4JStarter {
 	
-	private static ADSEProblem problem = null;
+	private static ADSEProblem<Phenotype> problem = null;
 	private static DSECreator creator = null;
 	private static AGenotypeReader genotypeReader = null;	//QUICKHACK	
 	private static Opt4JTask task = null;
@@ -154,7 +153,7 @@ public class Opt4JStarter {
 		Opt4JStarter.genotypeReader = Opt4JStarter.problem.getAssociatedMetamodel().getGenotypeReader();
 		Opt4JStarter.genotypeReader.setTask(task); //QUICKHACK
 		
-		DSEEvaluator<Phenotype> ev = task.getInstance(problem.getAssociatedMetamodel().getDSEEvaluator());
+		DSEEvaluator<Phenotype> ev = task.getInstance(problem.getDSEEvaluator());
 		ev.init(evaluators, monitor, blackboard, dseConfig.isStopOnInitialFailure());
 		
 		//Termination Criteria Manager Initialization if needed
@@ -274,7 +273,7 @@ public class Opt4JStarter {
 					"de.uka.ipd.sdq.dsexplore", 0, e.getMessage(), e));
 		} finally {
 
-			DSEEvaluator<Phenotype> evaluator = task.getInstance(DSEEvaluator.class);
+			DSEEvaluator<Phenotype> evaluator = Opt4JStarter.getDSEEvaluator();
 			List<Exception> exceptions = evaluator.getExceptionList();
 
 			try {
@@ -554,14 +553,8 @@ public class Opt4JStarter {
 	 * @return
 	 * @throws CoreException
 	 */
-	public static DSEDecoder getDSEDecoder() throws CoreException{
-		DSEDecoder e = task.getInstance(DSEDecoder.class);
-		if (e != null){
-			return e;
-		} else {
-			throw new CoreException(new Status(Status.ERROR,
-					"de.uka.ipd.sdq.dsexplore", "Wrong initialisation of Decoder: class DSEDecoder expected, but found null"));
-		}
+	public static DSEDecoder<?> getDSEDecoder() throws CoreException{
+		return Opt4JStarter.problem;
 	}
 
 	/**
@@ -693,7 +686,7 @@ public class Opt4JStarter {
 					
 				if(filePath != null && !filePath.isEmpty()){
 					try {
-						((GivenParetoFrontIsReachedConfig) conf).setParetoFront(Opt4JStarter.genotypeReader.getObjectives(filePath, (ADSEProblem) problem, Opt4JStarter.getDSEEvaluator()));
+						((GivenParetoFrontIsReachedConfig) conf).setParetoFront(Opt4JStarter.genotypeReader.getObjectives(filePath, (ADSEProblem<?>) problem, Opt4JStarter.getDSEEvaluator()));
 					} catch (InvalidConfigException e) {
 						e.printStackTrace();
 					}

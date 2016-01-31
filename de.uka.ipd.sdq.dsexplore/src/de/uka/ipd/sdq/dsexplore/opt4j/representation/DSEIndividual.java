@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.runtime.CoreException;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualStateListener;
 import org.opt4j.core.Objectives;
@@ -83,12 +82,7 @@ public class DSEIndividual extends Individual {
 			final StringBuilder genotypeStringBuilder = new StringBuilder(100);
 			
 			for (final Choice choice : g) {
-				try {
-					genotypeStringBuilder.append(Opt4JStarter.getDSEDecoder().getDecisionString(choice) + ";");
-				} catch (CoreException e) {
-					logger.error("building genotype string failed: " + e.getMessage());
-					e.printStackTrace();
-				}
+				genotypeStringBuilder.append(Opt4JStarter.getProblem().getDecisionString(choice) + ";");
 			}
 		    return genotypeStringBuilder.toString();
 		} else {

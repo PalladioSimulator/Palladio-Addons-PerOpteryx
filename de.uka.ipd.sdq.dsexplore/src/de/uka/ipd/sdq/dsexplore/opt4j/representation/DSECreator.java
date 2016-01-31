@@ -1,6 +1,8 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.List;
+
+import org.opt4j.core.Phenotype;
 import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
@@ -21,7 +23,7 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
  */
 public class DSECreator implements Creator<DesignDecisionGenotype> {
 
-	private ADSEProblem problem;
+	private ADSEProblem<Phenotype> problem;
 	
 	private int numberOfNotEvaluatedPredefinedOnes;
 
