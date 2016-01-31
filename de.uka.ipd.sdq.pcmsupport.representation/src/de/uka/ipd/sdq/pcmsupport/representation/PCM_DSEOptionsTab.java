@@ -13,6 +13,7 @@ import genericdesigndecision.universalDoF.SpecificDoF;
 public class PCM_DSEOptionsTab extends DSEOptionsTab {
 
 	@Override 
+	// enables early warning if launch configuration does not fit UI tab
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			if(configuration.getAttribute(DSEConstantsContainer.INPUT_METAMODEL, Metamodel.PCM_VALUE) != Metamodel.PCM_VALUE) {
