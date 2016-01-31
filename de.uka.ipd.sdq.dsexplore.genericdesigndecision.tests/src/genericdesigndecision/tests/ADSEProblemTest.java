@@ -3,7 +3,6 @@
 package genericdesigndecision.tests;
 
 import genericdesigndecision.ADSEProblem;
-
 import junit.framework.TestCase;
 
 /**
@@ -20,7 +19,7 @@ public abstract class ADSEProblemTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ADSEProblem fixture = null;
+	protected ADSEProblem<?> fixture = null;
 
 	/**
 	 * Constructs a new ADSE Problem test case with the given name.
@@ -38,7 +37,7 @@ public abstract class ADSEProblemTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(ADSEProblem fixture) {
+	protected void setFixture(ADSEProblem<?> fixture) {
 		this.fixture = fixture;
 	}
 
@@ -48,7 +47,7 @@ public abstract class ADSEProblemTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ADSEProblem getFixture() {
+	protected ADSEProblem<?> getFixture() {
 		return fixture;
 	}
 

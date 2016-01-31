@@ -20,7 +20,7 @@ public abstract class DSEDecoderTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DSEDecoder fixture = null;
+	protected DSEDecoder<?> fixture = null;
 
 	/**
 	 * Constructs a new DSE Decoder test case with the given name.
@@ -38,7 +38,7 @@ public abstract class DSEDecoderTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(DSEDecoder fixture) {
+	protected void setFixture(DSEDecoder<?> fixture) {
 		this.fixture = fixture;
 	}
 
@@ -48,7 +48,7 @@ public abstract class DSEDecoderTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DSEDecoder getFixture() {
+	protected DSEDecoder<?> getFixture() {
 		return fixture;
 	}
 

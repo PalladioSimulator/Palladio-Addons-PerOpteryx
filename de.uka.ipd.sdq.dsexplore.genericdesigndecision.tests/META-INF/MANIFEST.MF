@@ -17,6 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport,
- de.uka.ipd.sdq.dsexplore
+ de.uka.ipd.sdq.dsexplore,
+ org.opt4j
 Bundle-ActivationPolicy: lazy
 Import-Package: de.uka.ipd.sdq.dsexplore.opt4j.representation
