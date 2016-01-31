@@ -29,6 +29,7 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.helper.ConfigurationHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.LoadModelIntoBlackboardJob;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedInfeasibilityConstraint;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
@@ -235,7 +236,7 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis{
 
         final String featureConfigFile = this.simuComWorkflowConfiguration.getFeatureConfigFile();
         if (featureConfigFile != null && !"".equals(featureConfigFile)){
-            final ResourceSetPartition pcmPartition = this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+            final ResourceSetPartition pcmPartition = this.blackboard.getPartition(LoadModelIntoBlackboardJob.MODEL_PARTITION_ID);
             pcmPartition.loadModel(featureConfigFile);
         }
 
