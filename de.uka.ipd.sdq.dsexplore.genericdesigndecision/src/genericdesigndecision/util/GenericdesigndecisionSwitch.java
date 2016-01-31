@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+import org.opt4j.core.Phenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,14 +115,14 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case GenericdesigndecisionPackage.ADSE_PROBLEM: {
-				ADSEProblem adseProblem = (ADSEProblem)theEObject;
+				ADSEProblem<?> adseProblem = (ADSEProblem<?>)theEObject;
 				T result = caseADSEProblem(adseProblem);
 				if (result == null) result = caseDSEDecoder(adseProblem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GenericdesigndecisionPackage.DSE_DECODER: {
-				DSEDecoder dseDecoder = (DSEDecoder)theEObject;
+				DSEDecoder<?> dseDecoder = (DSEDecoder<?>)theEObject;
 				T result = caseDSEDecoder(dseDecoder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -136,6 +137,12 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 				AGenomeToCandidateModelTransformation aGenomeToCandidateModelTransformation = (AGenomeToCandidateModelTransformation)theEObject;
 				T result = caseAGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
 				if (result == null) result = caseGenomeToCandidateModelTransformation(aGenomeToCandidateModelTransformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericdesigndecisionPackage.PHENOTYPE: {
+				Phenotype phenotype = (Phenotype)theEObject;
+				T result = casePhenotype(phenotype);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -259,7 +266,7 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseADSEProblem(ADSEProblem object) {
+	public <P extends Phenotype> T caseADSEProblem(ADSEProblem<P> object) {
 		return null;
 	}
 
@@ -274,7 +281,7 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDSEDecoder(DSEDecoder object) {
+	public <P extends Phenotype> T caseDSEDecoder(DSEDecoder<P> object) {
 		return null;
 	}
 
@@ -305,6 +312,21 @@ public class GenericdesigndecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Phenotype</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Phenotype</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePhenotype(Phenotype object) {
 		return null;
 	}
 

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.opt4j.core.Phenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,13 +111,15 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 			case GenericdesigndecisionPackage.CANDIDATES:
 				return validateCandidates((Candidates)value, diagnostics, context);
 			case GenericdesigndecisionPackage.ADSE_PROBLEM:
-				return validateADSEProblem((ADSEProblem)value, diagnostics, context);
+				return validateADSEProblem((ADSEProblem<?>)value, diagnostics, context);
 			case GenericdesigndecisionPackage.DSE_DECODER:
-				return validateDSEDecoder((DSEDecoder)value, diagnostics, context);
+				return validateDSEDecoder((DSEDecoder<?>)value, diagnostics, context);
 			case GenericdesigndecisionPackage.GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
 				return validateGenomeToCandidateModelTransformation((GenomeToCandidateModelTransformation)value, diagnostics, context);
 			case GenericdesigndecisionPackage.AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION:
 				return validateAGenomeToCandidateModelTransformation((AGenomeToCandidateModelTransformation)value, diagnostics, context);
+			case GenericdesigndecisionPackage.PHENOTYPE:
+				return validatePhenotype((Phenotype)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -210,7 +213,7 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateADSEProblem(ADSEProblem adseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateADSEProblem(ADSEProblem<?> adseProblem, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(adseProblem, diagnostics, context);
 	}
 
@@ -219,7 +222,7 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDSEDecoder(DSEDecoder dseDecoder, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateDSEDecoder(DSEDecoder<?> dseDecoder, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)dseDecoder, diagnostics, context);
 	}
 
@@ -239,6 +242,15 @@ public class GenericdesigndecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation aGenomeToCandidateModelTransformation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(aGenomeToCandidateModelTransformation, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePhenotype(Phenotype phenotype, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)phenotype, diagnostics, context);
 	}
 
 	/**

@@ -35,11 +35,13 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.uml2.types.TypesPackage;
+import org.opt4j.core.Phenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,6 +126,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * @generated
 	 */
 	private EClass aGenomeToCandidateModelTransformationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass phenotypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -440,6 +449,15 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPhenotype() {
+		return phenotypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericdesigndecisionFactory getGenericdesigndecisionFactory() {
 		return (GenericdesigndecisionFactory)getEFactoryInstance();
 	}
@@ -498,6 +516,8 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		genomeToCandidateModelTransformationEClass = createEClass(GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
 
 		aGenomeToCandidateModelTransformationEClass = createEClass(AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION);
+
+		phenotypeEClass = createEClass(PHENOTYPE);
 	}
 
 	/**
@@ -534,14 +554,23 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		getESubpackages().add(theQualitypropertiesPackage);
 
 		// Create type parameters
+		ETypeParameter adseProblemEClass_P = addETypeParameter(adseProblemEClass, "P");
+		ETypeParameter dseDecoderEClass_P = addETypeParameter(dseDecoderEClass, "P");
 
 		// Set bounds for type parameters
+		EGenericType g1 = createEGenericType(this.getPhenotype());
+		adseProblemEClass_P.getEBounds().add(g1);
+		g1 = createEGenericType(this.getPhenotype());
+		dseDecoderEClass_P.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		discreteRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		classChoiceEClass.getESuperTypes().add(this.getChoice());
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
-		adseProblemEClass.getESuperTypes().add(this.getDSEDecoder());
+		g1 = createEGenericType(this.getDSEDecoder());
+		EGenericType g2 = createEGenericType(this.getPhenotype());
+		g1.getETypeArguments().add(g2);
+		adseProblemEClass.getEGenericSuperTypes().add(g1);
 		aGenomeToCandidateModelTransformationEClass.getESuperTypes().add(this.getGenomeToCandidateModelTransformation());
 
 		// Initialize classes, features, and operations; add parameters
@@ -572,8 +601,8 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 
 		EOperation op = initEOperation(getCandidates__NumberOfChoicesMustEqualNumberOfDecisions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "numberOfChoicesMustEqualNumberOfDecisions", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -583,11 +612,13 @@ public class GenericdesigndecisionPackageImpl extends EPackageImpl implements Ge
 		initEReference(getADSEProblem_Problem(), this.getDecisionSpace(), null, "problem", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getADSEProblem_AssociatedMetamodel(), theUniversalDoFPackage.getAMetamodelDescription(), null, "associatedMetamodel", null, 1, 1, ADSEProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dseDecoderEClass, DSEDecoder.class, "DSEDecoder", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dseDecoderEClass, DSEDecoder.class, "PCMDecoder", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(genomeToCandidateModelTransformationEClass, GenomeToCandidateModelTransformation.class, "GenomeToCandidateModelTransformation", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(aGenomeToCandidateModelTransformationEClass, AGenomeToCandidateModelTransformation.class, "AGenomeToCandidateModelTransformation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(phenotypeEClass, Phenotype.class, "Phenotype", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

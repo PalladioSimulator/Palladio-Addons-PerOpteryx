@@ -75,7 +75,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 	 * @generated
 	 * @ordered
 	 */
-	protected ADSEProblem target = null;
+	protected ADSEProblem target;
 
 	private static UniversalDoF universalDoFSingleton = null;
 	

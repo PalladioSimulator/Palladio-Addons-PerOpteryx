@@ -7,6 +7,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
+import org.opt4j.core.Phenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +31,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see genericdesigndecision.GenericdesigndecisionPackage#getADSEProblem()
- * @model abstract="true" superTypes="genericdesigndecision.DSEDecoder"
- * @generated
+ * @model abstract="true" superTypes="genericdesigndecision.DSEDecoder<genericdesigndecision.Phenotype>" PBounds="genericdesigndecision.Phenotype"
+ * @generated NOT
  */
-public interface ADSEProblem extends EObject, DSEDecoder {
+public interface ADSEProblem<P extends Phenotype> extends EObject, DSEDecoder<P> {
 	/**
 	 * Returns the value of the '<em><b>Problem</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -107,5 +109,9 @@ public interface ADSEProblem extends EObject, DSEDecoder {
 	public List<BinaryGenotype> translateDesignDecisionGenotype(DesignDecisionGenotype DDGenotype);
 
 	public List<DesignDecisionGenotype> loadGenotypesFromEMF(String filename);
+	
+	public Class<? extends DSEEvaluator> getDSEEvaluator();
+	
+	public String getDecisionString(final Choice choice);
 
 } // ADSEProblem

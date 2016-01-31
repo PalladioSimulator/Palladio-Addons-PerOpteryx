@@ -584,6 +584,34 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT = GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.opt4j.core.Phenotype <em>Phenotype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.opt4j.core.Phenotype
+	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getPhenotype()
+	 * @generated
+	 */
+	int PHENOTYPE = 11;
+
+	/**
+	 * The number of structural features of the '<em>Phenotype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHENOTYPE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Phenotype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHENOTYPE_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link genericdesigndecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -822,7 +850,7 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>DSE Decoder</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder
-	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder"
+	 * @model instanceClass="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder" typeParameters="P" PBounds="genericdesigndecision.Phenotype"
 	 * @generated
 	 */
 	EClass getDSEDecoder();
@@ -847,6 +875,17 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAGenomeToCandidateModelTransformation();
+
+	/**
+	 * Returns the meta object for class '{@link org.opt4j.core.Phenotype <em>Phenotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Phenotype</em>'.
+	 * @see org.opt4j.core.Phenotype
+	 * @model instanceClass="org.opt4j.core.Phenotype"
+	 * @generated
+	 */
+	EClass getPhenotype();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1092,6 +1131,16 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass AGENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getAGenomeToCandidateModelTransformation();
+
+		/**
+		 * The meta object literal for the '{@link org.opt4j.core.Phenotype <em>Phenotype</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.opt4j.core.Phenotype
+		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getPhenotype()
+		 * @generated
+		 */
+		EClass PHENOTYPE = eINSTANCE.getPhenotype();
 
 	}
 

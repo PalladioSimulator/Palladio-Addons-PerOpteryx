@@ -108,12 +108,12 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
-		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 		this.gdof_to_dof = new HashMap<GenericDoF, SpecificDoF>();
+		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 	}
 	
 	public abstract Class<? extends DSEEvaluator> getDSEEvaluator();

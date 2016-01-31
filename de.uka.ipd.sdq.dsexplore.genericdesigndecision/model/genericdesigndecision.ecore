@@ -97,19 +97,31 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true" eSuperTypes="#//DSEDecoder">
+  <eClassifiers xsi:type="ecore:EClass" name="ADSEProblem" abstract="true">
+    <eTypeParameters name="P">
+      <eBounds eClassifier="#//Phenotype"/>
+    </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" lowerBound="1"
         eType="#//DecisionSpace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associatedMetamodel" lowerBound="1"
         eType="#//universalDoF/AMetamodelDescription"/>
+    <eGenericSuperTypes eClassifier="#//DSEDecoder">
+      <eTypeArguments eClassifier="#//Phenotype"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DSEDecoder" instanceClassName="de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder"
-      abstract="true" interface="true"/>
+      abstract="true" interface="true">
+    <eTypeParameters name="P">
+      <eBounds eClassifier="#//Phenotype"/>
+    </eTypeParameters>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenomeToCandidateModelTransformation"
       instanceClassName="de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="AGenomeToCandidateModelTransformation"
       abstract="true" eSuperTypes="#//GenomeToCandidateModelTransformation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Phenotype" instanceClassName="org.opt4j.core.Phenotype"
+      abstract="true" interface="true"/>
   <eSubpackages name="genericDoF" nsURI="http://sdq.ipd.uka.de/GenericDesignDecision/GenericDoF/"
       nsPrefix="genericDoF">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription">

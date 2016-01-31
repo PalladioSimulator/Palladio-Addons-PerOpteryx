@@ -19,12 +19,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.opt4j.core.Phenotype;
 import org.palladiosimulator.pcm.core.entity.Entity;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.FinalBinaryGenotype;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
@@ -42,7 +44,7 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
  *
  * @generated
  */
-public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container implements ADSEProblem {
+public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjectImpl.Container implements ADSEProblem<P> {
 	/**
 	 * The cached value of the '{@link #getProblem() <em>Problem</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -106,6 +108,10 @@ public abstract class ADSEProblemImpl extends MinimalEObjectImpl.Container imple
 			problem = null;
 		}
 		return problem;
+	}
+	
+	public Class<? extends DSEEvaluator> getDSEEvaluator() {
+		return this.associatedMetamodel.getDSEEvaluator();
 	}
 	
 	@Override

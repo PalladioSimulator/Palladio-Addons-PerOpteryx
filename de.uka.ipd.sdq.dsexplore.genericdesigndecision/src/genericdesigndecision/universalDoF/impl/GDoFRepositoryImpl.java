@@ -39,7 +39,7 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GenericDoF> gdofs = null;
+	protected EList<GenericDoF> gdofs;
 	
 	private static GDoFRepository gdofRepoSingleton = null;
 

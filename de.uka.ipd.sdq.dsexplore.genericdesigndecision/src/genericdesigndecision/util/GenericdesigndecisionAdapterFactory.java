@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.opt4j.core.Phenotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,11 +99,11 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 				return createCandidatesAdapter();
 			}
 			@Override
-			public Adapter caseADSEProblem(ADSEProblem object) {
+			public <P extends Phenotype> Adapter caseADSEProblem(ADSEProblem<P> object) {
 				return createADSEProblemAdapter();
 			}
 			@Override
-			public Adapter caseDSEDecoder(DSEDecoder object) {
+			public <P extends Phenotype> Adapter caseDSEDecoder(DSEDecoder<P> object) {
 				return createDSEDecoderAdapter();
 			}
 			@Override
@@ -112,6 +113,10 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAGenomeToCandidateModelTransformation(AGenomeToCandidateModelTransformation object) {
 				return createAGenomeToCandidateModelTransformationAdapter();
+			}
+			@Override
+			public Adapter casePhenotype(Phenotype object) {
+				return createPhenotypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -284,6 +289,20 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.opt4j.core.Phenotype <em>Phenotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.opt4j.core.Phenotype
+	 * @generated
+	 */
+	public Adapter createPhenotypeAdapter() {
 		return null;
 	}
 

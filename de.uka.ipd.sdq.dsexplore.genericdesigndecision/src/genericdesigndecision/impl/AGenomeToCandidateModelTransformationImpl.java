@@ -74,8 +74,6 @@ public abstract class AGenomeToCandidateModelTransformationImpl extends MinimalE
 		return notTransformedChoices;
 		
 	}
-	
-	
 
 	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
 		// is choice active?
@@ -83,44 +81,39 @@ public abstract class AGenomeToCandidateModelTransformationImpl extends MinimalE
 
 			ADegreeOfFreedom dofi = choice.getDofInstance();
 
-			if (dofi != null) {
+			// Store for each CED which instances have been selected
+			Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
 
-				// Store for each CED which instances have been selected
-				Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
+			// set primary element
+			EObject modelElement = dofi.getPrimaryChanged();
 
-				// set primary element
-				EObject modelElement = dofi.getPrimaryChanged();
+			//determine property to change using GDoF
+			EStructuralFeature property = dofi.getPrimaryChangeable().getChangeable();
 
-				//determine property to change using GDoF
-				EStructuralFeature property = dofi.getPrimaryChangeable().getChangeable();
+			setProperty(modelElement, property, choice.getValue());
 
-				setProperty(modelElement, property, choice.getValue());
+			List<EObject> modelElementList = new ArrayList<EObject>(1);
+			modelElementList.add(modelElement);
+			selectedModelElements.put(dofi.getPrimaryChangeable(), modelElementList);
 
-				List<EObject> modelElementList = new ArrayList<EObject>(1);
-				modelElementList.add(modelElement);
-				selectedModelElements.put(dofi.getPrimaryChangeable(), modelElementList);
+			for (ChangeableElementDescription ced : dofi.getChangeableElementDescriptions()){
+				if (ced == dofi.getPrimaryChangeable())
+					continue;
 
-				for (ChangeableElementDescription ced : dofi.getChangeableElementDescriptions()){
-					if (ced == dofi.getPrimaryChangeable())
-						continue;
+				Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
+				selectedModelElements.put(ced, changeableElements);
 
-					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
-					selectedModelElements.put(ced, changeableElements);
+				EStructuralFeature changeableProperty = ced.getChangeable();
 
-					EStructuralFeature changeableProperty = ced.getChangeable();
+				for (EObject changeableElement : changeableElements) {
 
-					for (EObject changeableElement : changeableElements) {
-
-						Object newValue = valueRule(ced, changeableElement, rootElements);
-						setProperty(changeableElement, changeableProperty, newValue);
-
-					}
+					Object newValue = valueRule(ced, changeableElement, rootElements);
+					setProperty(changeableElement, changeableProperty, newValue);
 
 				}
-				return true;
-			} else {
-				return false;
 			}
+			return true;
+			
 		} else {
 			// not doing anything for an inactive choice is what is expected, so done for this one. 
 			return true;

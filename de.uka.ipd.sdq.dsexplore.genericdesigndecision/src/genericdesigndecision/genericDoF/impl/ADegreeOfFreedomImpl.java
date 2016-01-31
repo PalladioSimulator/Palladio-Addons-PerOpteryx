@@ -120,10 +120,11 @@ public abstract class ADegreeOfFreedomImpl extends MinimalEObjectImpl.Container 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ADegreeOfFreedomImpl() {
 		super();
+		this.random = new Random();
 	}
 
 	/**
