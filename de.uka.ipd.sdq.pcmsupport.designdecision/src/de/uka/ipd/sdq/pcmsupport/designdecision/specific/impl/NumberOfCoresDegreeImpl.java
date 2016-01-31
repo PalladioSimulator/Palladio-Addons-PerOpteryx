@@ -15,7 +15,6 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
 import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,8 +48,7 @@ public abstract class NumberOfCoresDegreeImpl extends ProcessingResourceDegreeIm
 		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
-		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
-				.getAssociatedMetamodel();
+		MetamodelDescription pcmdescr = MetamodelDescription.eINSTANCE;
 		final ProcessingResourceSpecification prd = pcmdescr.getProcessingResourceSpec(this);
 		choice.setChosenValue(prd.getNumberOfReplicas());
 

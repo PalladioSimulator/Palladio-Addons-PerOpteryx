@@ -4,6 +4,7 @@ package de.uka.ipd.sdq.pcmsupport.designdecision;
 
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import genericdesigndecision.ADSEProblem;
 
 /**
@@ -16,7 +17,7 @@ import genericdesigndecision.ADSEProblem;
  * @model
  * @generated
  */
-public interface DSEProblem extends ADSEProblem {
+public interface DSEProblem extends ADSEProblem<PCMPhenotype> {
 
 	public PCMInstance getPcmInstance();
 } // DSEProblem

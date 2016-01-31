@@ -15,13 +15,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 
+import de.uka.ipd.sdq.pcmsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AClassWithCopyDegreeImpl;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -210,8 +210,7 @@ public class ResourceSelectionDegreeImpl extends AClassWithCopyDegreeImpl implem
 	@Override
 	public Choice determineInitialChoice() {
 		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
-		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
-				.getProperty(this.getPrimaryChanged(), property);
+		final Object value = MetamodelDescription.eINSTANCE.getProperty(this.getPrimaryChanged(), property);
 
 		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 		choice.setValue(value);

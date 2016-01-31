@@ -25,7 +25,6 @@ import genericdesigndecision.Choice;
 import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -228,8 +227,7 @@ public class DiscreteProcessingRateDegreeImpl extends ADiscreteRangeDegreeImpl i
 		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
-		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
-				.getAssociatedMetamodel();
+		MetamodelDescription pcmdescr = MetamodelDescription.eINSTANCE;
 		final ProcessingResourceSpecification rightPrs = pcmdescr.getProcessingResourceSpec(this);
 
 		if (rightPrs != null) {

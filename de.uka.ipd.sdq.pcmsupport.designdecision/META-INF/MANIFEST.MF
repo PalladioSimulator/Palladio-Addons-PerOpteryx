@@ -43,7 +43,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common,
  de.uka.ipd.sdq.workflow.mdsd,
  de.uka.ipd.sdq.workflow,
- org.palladiosimulator.analyzer.workflow
+ org.palladiosimulator.analyzer.workflow,
+ de.uka.ipd.sdq.pcmsupport.designdecision,
+ de.uka.ipd.sdq.pcmsupport.analysis;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.inject.binder,
  de.uka.ipd.sdq.dsexplore.qml.handling,

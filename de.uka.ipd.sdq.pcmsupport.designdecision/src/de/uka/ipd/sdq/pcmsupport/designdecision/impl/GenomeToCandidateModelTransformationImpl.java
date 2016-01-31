@@ -80,6 +80,21 @@ public class GenomeToCandidateModelTransformationImpl extends AGenomeToCandidate
 		// TODO: add my resource repository with the alternative resources. Rename it first, because the repository of resource types is already named resource repository.
 		return transformChoice(rootElements, choice);
 	}
+	
+	/**
+	 * this method overrides the supermethod because PCM decoding uses two alternative transform mechanisms instead of the generic one in the superclass
+	 */
+	@Override
+	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
+		
+		try {
+			return super.transformChoice(rootElements, choice);
+		} catch (NullPointerException e) {
+			// if generic elements (e.g. primaryChangeable) have NOT been set by the pcm support developer the generic transform mechanism can not be used;
+			// instead return false & relay transforming task back to pcm-specific decoding mechanism
+			return false;
+		}
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

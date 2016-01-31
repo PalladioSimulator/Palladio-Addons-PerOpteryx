@@ -1,9 +1,12 @@
 package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
+
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+
+import com.google.inject.Inject;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 
@@ -20,7 +23,6 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ContinuousProcessingRat
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificFactory;
-import de.uka.ipd.sdq.pcmsupport.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.pcmsupport.helper.EMFHelper;
 import de.uka.ipd.sdq.pcmsupport.helper.ResultsWriter;
 import genericdesigndecision.ClassChoice;
@@ -60,7 +62,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
  *
  * @generated
  */
-public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
+public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSEProblem {
 
 	private final designdecisionFactory designDecisionFactory;
 	private final specificFactory specificDesignDecisionFactory;
@@ -69,30 +71,20 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DSEProblemImpl() {
-		this.designDecisionFactory = null;
-		this.specificDesignDecisionFactory = null;
-		this.pcmInstance = null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @param pcmInstance
 	 * @throws CoreException
 	 * @generated NOT
 	 */
+	@Inject
 	public DSEProblemImpl(final PCMWorkflowConfiguration dseConfig, final PCMResourceSetPartition pcmPartition)
 			throws CoreException {
 
 		super(dseConfig, pcmPartition);
-		this.designDecisionFactory = designdecisionFactoryImpl.init();
-		this.specificDesignDecisionFactory = specificFactoryImpl.init();
+		this.designDecisionFactory = designdecisionFactory.eINSTANCE;
+		this.specificDesignDecisionFactory = specificFactory.eINSTANCE;
 		this.associatedMetamodel = designDecisionFactory.createMetamodelDescription();
 
-		pcmInstance = ((MetamodelDescription) this.associatedMetamodel).transformEMFtoPCM(pcmPartition);
+		pcmInstance = MetamodelDescription.eINSTANCE.transformEMFtoPCM(pcmPartition);
 
 		if (newProblem) {
 			initialiseProblem(dseConfig);
@@ -393,7 +385,7 @@ public class DSEProblemImpl extends ADSEProblemImpl implements DSEProblem {
 
 	@Override
 	public PCMPhenotype decode(DesignDecisionGenotype genotype) {
-		MetamodelDescription pcm = (MetamodelDescription) this.getAssociatedMetamodel();
+		MetamodelDescription pcm = MetamodelDescription.eINSTANCE;
 		return pcm.decode(this.pcmInstance, genotype);
 	}
 

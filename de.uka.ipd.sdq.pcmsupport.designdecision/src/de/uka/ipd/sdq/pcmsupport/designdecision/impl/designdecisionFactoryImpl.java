@@ -107,12 +107,11 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public DSEProblem createDSEProblem() {
-		DSEProblemImpl dseProblem = new DSEProblemImpl();
-		return dseProblem;
+		throw new UnsupportedOperationException("This method should not have been called.");
 	}
 
 	/**

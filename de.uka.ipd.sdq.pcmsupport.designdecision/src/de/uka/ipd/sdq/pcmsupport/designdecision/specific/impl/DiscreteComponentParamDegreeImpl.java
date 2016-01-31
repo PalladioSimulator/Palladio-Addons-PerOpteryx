@@ -10,12 +10,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.palladiosimulator.pcm.core.entity.Entity;
 
+import de.uka.ipd.sdq.pcmsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.DiscreteComponentParamDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificPackage;
 import genericdesigndecision.Choice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.ADiscreteRangeDegreeImpl;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,8 +57,7 @@ public class DiscreteComponentParamDegreeImpl extends ADiscreteRangeDegreeImpl i
 	@Override
 	public Choice determineInitialChoice() {
 		final EStructuralFeature property = this.getPrimaryChangeable().getChangeable();
-		final Object value = UniversalDoF.eINSTANCE.getTarget().getAssociatedMetamodel()
-				.getProperty(this.getPrimaryChanged(), property);
+		final Object value = MetamodelDescription.eINSTANCE.getProperty(this.getPrimaryChanged(), property);
 
 		final Choice choice = GenericdesigndecisionFactory.eINSTANCE.createChoice();
 		choice.setValue(value);

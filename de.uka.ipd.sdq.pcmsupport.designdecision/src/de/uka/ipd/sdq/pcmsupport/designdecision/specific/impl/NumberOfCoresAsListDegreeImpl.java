@@ -24,7 +24,6 @@ import genericdesigndecision.Choice;
 import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AOrderedIntegerDegreeImpl;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -227,8 +226,7 @@ public class NumberOfCoresAsListDegreeImpl extends AOrderedIntegerDegreeImpl imp
 		final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createDiscreteRangeChoice();
 		choice.setDofInstance(this);
 
-		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
-				.getAssociatedMetamodel();
+		MetamodelDescription pcmdescr = MetamodelDescription.eINSTANCE;
 		final ProcessingResourceSpecification prd = pcmdescr.getProcessingResourceSpec(this);
 		choice.setChosenValue(prd.getNumberOfReplicas());
 

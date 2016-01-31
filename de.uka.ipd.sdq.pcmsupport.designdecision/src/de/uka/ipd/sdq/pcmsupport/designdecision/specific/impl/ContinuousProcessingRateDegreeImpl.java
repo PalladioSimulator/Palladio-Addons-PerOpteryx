@@ -25,7 +25,6 @@ import genericdesigndecision.Choice;
 import genericdesigndecision.ContinousRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.impl.AContinuousRangeDegreeImpl;
-import genericdesigndecision.universalDoF.UniversalDoF;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -234,8 +233,7 @@ public class ContinuousProcessingRateDegreeImpl extends AContinuousRangeDegreeIm
 		final ContinousRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
 		choice.setDofInstance(this);
 
-		MetamodelDescription pcmdescr = (MetamodelDescription) UniversalDoF.eINSTANCE.getTarget()
-				.getAssociatedMetamodel();
+		MetamodelDescription pcmdescr = MetamodelDescription.eINSTANCE;
 		final ProcessingResourceSpecification rightPrs = pcmdescr.getProcessingResourceSpec(this);
 
 		if (rightPrs != null) {

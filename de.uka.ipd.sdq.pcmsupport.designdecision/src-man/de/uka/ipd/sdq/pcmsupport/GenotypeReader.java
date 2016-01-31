@@ -95,7 +95,7 @@ public class GenotypeReader extends AGenotypeReader {
         }
         final String[] headlineArray = headline.split(SEPARATOR);
 
-        final List<CriterionAndEvaluator> objectiveList = ((de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator) evaluator).getCriterionAndEvaluatorList();
+        final List<CriterionAndEvaluator> objectiveList = ((de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator) evaluator).getCriterionAndEvaluatorList();
 
         //Empty list if no objectives are specified.
         final List<List<CriterionAndEvaluator>> orderedObjectives = getOrderedObjectiveCollection(headlineArray, objectiveList, problem);
@@ -152,7 +152,7 @@ public class GenotypeReader extends AGenotypeReader {
         final String[] headlineArray = headline.split(GenotypeReader.SEPARATOR);
 
         // the configured list of objectives
-        final List<CriterionAndEvaluator> objectiveList = ((de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator) evaluator).getCriterionAndEvaluatorList();
+        final List<CriterionAndEvaluator> objectiveList = ((de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator) evaluator).getCriterionAndEvaluatorList();
         // Empty list if no objectives are specified.
         // The inner lists must not be empty.
         // The inner lists contain all evaluators that are interested in one column of the result file. For example,
@@ -246,7 +246,7 @@ public class GenotypeReader extends AGenotypeReader {
                 }
 
                 //add objective to phenotype cache with genotype string
-                ((de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator) evaluator).addToPhenotypeCache(genotype.toString(), objectives);
+                ((de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator) evaluator).addToPhenotypeCache(genotype.toString(), objectives);
 
                 //add objectives to individual
                 individual.setObjectives(objectives);
@@ -299,7 +299,7 @@ public class GenotypeReader extends AGenotypeReader {
 
         for (final DSEIndividual individual : results) {
 
-            final de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator dseEvaluator = (de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator) task.getInstance(de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator.class);
+            final de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator dseEvaluator = (de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator) task.getInstance(de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator.class);
 
             final PCMPhenotype pheno = (PCMPhenotype) problem.decode(individual.getGenotype());
             individual.setPhenotype(pheno);
@@ -416,7 +416,7 @@ public class GenotypeReader extends AGenotypeReader {
         //read in genotype
         int decisionIndex = 0;
         for (int i = startIndexOfGenotype; i < lineArray.length && decisionIndex < orderedDesignDecisions.size(); i++) {
-            final Choice gene = DSEDecoder.getChoiceFor(lineArray[i], orderedDesignDecisions.get(decisionIndex));
+            final Choice gene = PCMDecoder.getChoiceFor(lineArray[i], orderedDesignDecisions.get(decisionIndex));
             genotype.add(gene);
             decisionIndex++;
         }

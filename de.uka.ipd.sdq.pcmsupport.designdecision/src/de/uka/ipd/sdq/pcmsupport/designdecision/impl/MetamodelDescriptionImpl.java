@@ -5,7 +5,7 @@ package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import de.uka.ipd.sdq.pcmsupport.Adapter;
-import de.uka.ipd.sdq.pcmsupport.DSEDecoder;
+import de.uka.ipd.sdq.pcmsupport.PCMDecoder;
 import de.uka.ipd.sdq.pcmsupport.DSEModule;
 import de.uka.ipd.sdq.pcmsupport.GenotypeReader;
 import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
@@ -45,7 +45,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
  */
 public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implements MetamodelDescription {
 
-	private DSEDecoder decoder;
+	private PCMDecoder decoder;
 
 	private static MetamodelDescription metamodelDescrSingleton = null;
 
@@ -59,7 +59,7 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 		this.name = Metamodel.PCM;
 		this.genomeToCandidateTransformation = designdecisionFactory.eINSTANCE
 				.createGenomeToCandidateModelTransformation();
-		this.decoder = new DSEDecoder();
+		this.decoder = new PCMDecoder();
 		this.dseModule = new DSEModule();
 		this.adapter = new Adapter();
 		this.genotypeReader = new GenotypeReader();
@@ -159,7 +159,7 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 
 	@Override
 	public Class<? extends DSEEvaluator> getDSEEvaluator() {
-		return de.uka.ipd.sdq.pcmsupport.helper.DSEEvaluator.class;
+		return de.uka.ipd.sdq.pcmsupport.analysis.DSEEvaluator.class;
 	}
 
 } //MetamodelDescriptionImpl

@@ -50,6 +50,9 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
     public static final URI PCM_PALLADIO_PRIMITIVE_TYPE_REPOSITORY_URI = URI
             .createURI("pathmap://PCM_MODELS/PrimitiveTypes.repository");
     
+ // taken from ValidatePCMModelsJob
+    private static final String PCM_CHECK_FILENAME = "pcm";
+    
 	/** Logger for this class. */
     private static final Logger LOGGER = Logger.getLogger(PCMWorkflowConfiguration.class);
 
@@ -315,7 +318,12 @@ public class PCMWorkflowConfiguration extends DSEWorkflowConfiguration {
         this.usageModelFile = usageModelFile;
     }
 
-    public boolean isOverwriteWithoutAsking() {
+    @Override
+	public String getCheckFilename() {
+		return PCMWorkflowConfiguration.PCM_CHECK_FILENAME;
+	}
+
+	public boolean isOverwriteWithoutAsking() {
         return overwriteWithoutAsking;
     }
 
