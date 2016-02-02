@@ -18,7 +18,8 @@ IBlackboardInteractingJob<MDSDBlackboard> {
      * ID of the blackboard partition containing the fully loaded model instance. The blackboard
      * partition is ensured to be of type {@link ResourceSetPartition}
      */
-    public static final String MODEL_PARTITION_ID = "dsexplore.blackboard.inputmodel.partition";
+	// FIXME this is just a workaround to avoid renaming commits to org.palladio - IMPORTANT!!
+    public static final String MODEL_PARTITION_ID = "org.palladiosimulator.pcmmodels.partition"; // "dsexplore.blackboard.inputmodel.partition";
     
 	/**
      * Constructor of the loader job

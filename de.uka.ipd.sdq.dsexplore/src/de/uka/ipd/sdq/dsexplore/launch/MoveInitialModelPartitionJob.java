@@ -13,7 +13,8 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 public class MoveInitialModelPartitionJob implements IJob, IBlackboardInteractingJob<MDSDBlackboard> {
 
-	public static final String INITIAL_MODEL_PARTITION_ID = "initialModelPartitionID";
+	// FIXME this is just a workaround to avoid renaming commits to org.palladio - IMPORTANT!!
+	public static final String INITIAL_MODEL_PARTITION_ID = "initialPCModelPartitionID"; // "initialModelPartitionID";
 	MDSDBlackboard blackboard;
 	
 	public MoveInitialModelPartitionJob() {
