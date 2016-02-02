@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -253,7 +256,16 @@ public class GenomeToCandidateModelTransformation {
 		try {
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
 				helper.setContext(helperOCLDefinition.getContextClass());
+				EList<EOperation> exists = helperOCLDefinition.getContextClass().getEAllOperations();
+				try {
 				helper.defineOperation(helperOCLDefinition.getMainOclQuery());
+				}catch (SemanticException e) {
+					if (!e.getMessage().contains("already defined in type")) {
+						throw e;
+					} else {
+						
+					}
+				}
 			}
 		}catch (ParserException e) {
 			e.printStackTrace();
