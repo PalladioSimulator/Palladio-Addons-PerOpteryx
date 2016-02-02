@@ -45,14 +45,14 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.workflow,
  org.palladiosimulator.analyzer.workflow,
  de.uka.ipd.sdq.pcmsupport.designdecision,
- de.uka.ipd.sdq.pcmsupport.analysis;bundle-version="1.0.0"
+ de.uka.ipd.sdq.pcmsupport.analysis;bundle-version="1.0.0",
+ de.uka.ipd.sdq.statistics;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.inject.binder,
  de.uka.ipd.sdq.dsexplore.qml.handling,
  de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures,
  de.uka.ipd.sdq.dsexplore.qml.pcm.reader,
  de.uka.ipd.sdq.dsexplore.qml.reader,
- de.uka.ipd.sdq.statistics.estimation,
  org.apache.log4j,
  org.palladiosimulator.analyzer.completions,
  org.palladiosimulator.pcm.repository,
