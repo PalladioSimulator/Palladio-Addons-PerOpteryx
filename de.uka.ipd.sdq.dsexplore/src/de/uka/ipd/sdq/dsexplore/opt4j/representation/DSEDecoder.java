@@ -91,6 +91,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
         //get PCM Instance
         final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
+        
+        //make local copy
 
         //new transformation. Transition phase: Only for those DoF that are not explicitly modelled.
         final GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();

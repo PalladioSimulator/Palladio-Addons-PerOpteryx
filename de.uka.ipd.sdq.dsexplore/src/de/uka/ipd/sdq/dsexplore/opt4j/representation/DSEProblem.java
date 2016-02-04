@@ -95,6 +95,8 @@ public class DSEProblem {
 
         final boolean newProblem = dseConfig.isNewProblem();
         this.initialInstance = pcmInstance;
+        //this.currentInstance = copyOf pcmInstance 
+        //EcoreUtil.Copier deep copy
 
         this.designDecisionFactory = designdecisionFactoryImpl.init();
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
@@ -539,6 +541,9 @@ public class DSEProblem {
 
 
     public PCMInstance getInitialInstance() {
+    	// TODO rename to getCurrentInstance, return latest copy
+    	// new method getCopyOfInitialInstance, which returns new copy of initialInstance
+    	// and saves new copy as currentInstance?
         return this.initialInstance;
     }
 
