@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
@@ -18,13 +22,15 @@ import genericdesigndecision.universalDoF.Metamodel;
  */
 public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 
+	private Shell shell;
+
 	/**
-	 * Actually creates the tabs.
-	 * @param dialog not needed
-	 * @param mode not needed
+	 * Actually creates the tabs for the launch configuration
 	 */
-	@Override
 	public void createTabs(final ILaunchConfigurationDialog dialog, final String mode) {
+	
+		// TODO only ask the first time when tabs are created
+		Metamodel metamodel = Metamodel.PCM;//showMMDialog();
 		
 		QMLManager qmlManager = new QMLManager();
 		
@@ -35,9 +41,9 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		
 		qmlManager.addTabs(analysisTabs.toArray(new DSEAnalysisMethodTab[]{}));
 		
-		DSEFileNamesInputTab defaultTab = DSEPresentationFactory.eINSTANCE.createFileNamesInputTab(qmlManager, Metamodel.PCM);
+		DSEFileNamesInputTab defaultTab = DSEPresentationFactory.eINSTANCE.createFileNamesInputTab(qmlManager, metamodel);
 				
-		DSEOptionsTab optionsTab = DSEPresentationFactory.eINSTANCE.createDSEOptionsTab(Metamodel.PCM);
+		DSEOptionsTab optionsTab = DSEPresentationFactory.eINSTANCE.createDSEOptionsTab(metamodel);
 		
 		TerminationCriteriaTab terminationTab = new TerminationCriteriaTab(qmlManager);
 		
@@ -46,9 +52,9 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		tabs.add(defaultTab); // Default tab
 		tabs.add(optionsTab);
 		tabs.add(terminationTab);
-
+	
 		tabs.addAll(analysisTabs);
-
+	
 		tabs.add(new TacticsTab());
 		tabs.add(new StartingPopulationHeuristicTab());
 				
@@ -61,4 +67,35 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		setTabs(iTabs);
 	}
 
+	/**
+	 * asks the user for the metamodel of the input model
+	 * @return the specified metamodel
+	 */
+	private Metamodel showMMDialog() {
+
+		Display display = PlatformUI.getWorkbench().getDisplay();
+
+		//Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		shell = new Shell(display, SWT.TITLE | SWT.MIN | SWT.CLOSE);
+		shell.setText("Metamodel dialog");
+
+		MetamodelDialog dialog = new MetamodelDialog(shell);
+		dialog.setBlockOnOpen(true);
+
+		int returnCode = dialog.open();
+
+		//      shell.pack();
+		//      shell.open();
+		//
+		//      while (!shell.isDisposed()) {
+		//        if (!display.readAndDispatch()) {
+		//          display.sleep();
+		//        }
+		//      }
+		//      
+		//      display.dispose();
+
+		return Metamodel.get(returnCode);
+	}
+	
 }

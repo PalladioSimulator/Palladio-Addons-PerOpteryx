@@ -21,7 +21,8 @@ Require-Bundle: de.uka.ipd.sdq.errorhandling;bundle-version="1.0.0",
  org.palladiosimulator.solver;bundle-version="3.0.0",
  org.palladiosimulator.solver.context;bundle-version="2.0.0",
  de.uka.ipd.sdq.dsexplore.genericdesigndecision,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.swt
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,

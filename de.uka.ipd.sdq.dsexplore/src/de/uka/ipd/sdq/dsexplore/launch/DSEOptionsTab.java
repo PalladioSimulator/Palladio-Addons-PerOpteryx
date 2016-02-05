@@ -262,6 +262,7 @@ public abstract class DSEOptionsTab extends InputTab {
 		selectGenericDof.addSelectionListener(radioListener);
 		
 		selectSpecificDof = new Button(radioGroup, SWT.RADIO);
+		selectSpecificDof.setSelection(false);
 		selectSpecificDof.setText(DSEConstantsContainer.SPECIFICDOFS);
 		selectSpecificDof.addSelectionListener(selectionListener);
 		selectSpecificDof.addSelectionListener(radioListener);
@@ -275,10 +276,9 @@ public abstract class DSEOptionsTab extends InputTab {
 		
 		specificDofList = new List(radioGroup, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
 		specificDofList.setEnabled(false);
-		GridData gd_specificDofList = new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1);
-		specificDofList.setLayoutData(gd_specificDofList);
-		specificDofList.addSelectionListener(selectionListener);
+		specificDofList.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, true, 1, 1));
 		setSpecificDofs();
+		specificDofList.addSelectionListener(selectionListener);
 		
 		radioGroup.setTabList(new Control[]{selectGenericDof, selectSpecificDof, genericDofList, specificDofList});
 		
@@ -481,7 +481,7 @@ public abstract class DSEOptionsTab extends InputTab {
 		}
 		try {
 			this.selectSpecificDof.setSelection(!configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
-			this.selectSpecificDof.setEnabled(this.selectSpecificDof.getSelection());
+			this.specificDofList.setEnabled(this.selectSpecificDof.getSelection());
 		} catch (CoreException e){
 			this.selectSpecificDof.setSelection(false);
 			this.specificDofList.setEnabled(this.selectSpecificDof.getSelection());
@@ -589,16 +589,19 @@ public abstract class DSEOptionsTab extends InputTab {
 				this.optimisationOnly.getSelection());
 		configuration.setAttribute(DSEConstantsContainer.USE_GENERICDOFS,
 				this.selectGenericDof.getSelection());
+		
 		ArrayList<String> stringList = new ArrayList<String>();
 		for (int i = 0; i < this.genericDofList.getSelection().length; i++) {
 			stringList.add(this.genericDofList.getSelection()[i]);
 		}
 		configuration.setAttribute(DSEConstantsContainer.GENERICDOFS, stringList);
+		
 		stringList = new ArrayList<String>();
 		for (int i = 0; i < this.specificDofList.getSelection().length; i++) {
 			stringList.add(this.specificDofList.getSelection()[i]);
 		}
 		configuration.setAttribute(DSEConstantsContainer.SPECIFICDOFS, stringList);
+		
 		configuration.setAttribute(
 				DSEConstantsContainer.DESIGN_DECISION_FILE, 
 				this.textDesignDecisionFile.getText());

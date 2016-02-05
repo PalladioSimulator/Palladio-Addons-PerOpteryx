@@ -9,7 +9,7 @@
             delegate="de.uka.ipd.sdq.dsexplore.launch.DSELaunch"
             id="de.uka.ipd.sdq.dsexplore.launchDSE"
             modes="run"
-            name="PCM Design Space Exploration"
+            name="Design Space Exploration"
             public="true">
       </launchConfigurationType>
    </extension>
@@ -25,7 +25,7 @@
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
             class="de.uka.ipd.sdq.dsexplore.launch.DSETabGroup"
-            description="Optimise a given PCM instance within certain degrees of freedom. For help, click the help button (?) in the bottom-left corner."
+            description="Optimise a given metamodel instance within certain degrees of freedom. For help, click the help button (?) in the bottom-left corner."
             helpContextId="de.uka.ipd.sdq.dsexplore.dse_launch_help"
             id="de.uka.ipd.sdq.dsexplore.DSETabGroup"
             type="de.uka.ipd.sdq.dsexplore.launchDSE">
