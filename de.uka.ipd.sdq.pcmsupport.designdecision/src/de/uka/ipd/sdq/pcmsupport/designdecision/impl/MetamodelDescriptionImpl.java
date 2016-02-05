@@ -24,8 +24,10 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.GDoFRepository;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;
+import genericdesigndecision.universalDoF.SpecificDoF;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -70,14 +72,21 @@ public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implemen
 		this.dofrepository.newSDoF(MetamodelDescription.PCM_CAPACITY_DOF, CapacityDegree.class);
 		this.dofrepository.newSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF, AssembledComponentDegree.class);
 
-		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ALLOCATION_DOF),
-				this.dofrepository.getSDoF(MetamodelDescription.PCM_ALLOCATION_DOF));
-		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF),
-				this.dofrepository.getSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF));
-		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CAPACITY_DOF),
-				this.dofrepository.getSDoF(MetamodelDescription.PCM_CAPACITY_DOF));
-		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF),
-				this.dofrepository.getSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF));
+		LinkedList<SpecificDoF> list0 = new LinkedList<SpecificDoF>();
+		list0.add(this.dofrepository.getSDoF(MetamodelDescription.PCM_ALLOCATION_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ALLOCATION_DOF), list0);
+		
+		LinkedList<SpecificDoF> list1 = new LinkedList<SpecificDoF>();
+		list1.add(this.dofrepository.getSDoF(MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF), list1);
+		
+		LinkedList<SpecificDoF> list2 = new LinkedList<SpecificDoF>();
+		list2.add(this.dofrepository.getSDoF(MetamodelDescription.PCM_CAPACITY_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.CAPACITY_DOF), list2);
+		
+		LinkedList<SpecificDoF> list3 = new LinkedList<SpecificDoF>();
+		list3.add(this.dofrepository.getSDoF(MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF));
+		this.gdof_to_dof.put(GDoFRepository.eINSTANCE.getGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF), list3);
 	}
 
 	public static MetamodelDescription getMetamodelDescription() {

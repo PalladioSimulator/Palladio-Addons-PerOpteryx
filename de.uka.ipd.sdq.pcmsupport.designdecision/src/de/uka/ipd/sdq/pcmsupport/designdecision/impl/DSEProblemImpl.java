@@ -87,7 +87,7 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 		pcmInstance = MetamodelDescription.eINSTANCE.transformEMFtoPCM(pcmPartition);
 
 		if (newProblem) {
-			initialiseProblem(dseConfig);
+			initialiseProblem();
 		} else {
 			//Alternative Component has to be called to create the mapping for all AssemblyContexts and their roles,
 			//in order to be able to exchange implementations later. The design decisions calculated here are not kept, only
@@ -153,28 +153,9 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 		return result;
 	}
 
-	/**
-	 * Initialises the degrees of freedoms and at the same time determines the initial genotype.
-	 */
 	@Override
-	protected void initialiseProblem(DSEWorkflowConfiguration dseConfig) {
-		this.problem = GenericdesigndecisionFactory.eINSTANCE.createDecisionSpace();
-		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
-
-		//analyse PCM Instance and create design decisions
-		//TODO: could this be possible with a M2M transformation?
-		//First, only get design decisions for making resources faster.
-
-		this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
+	protected DesignDecisionGenotype determineDegreesAndInitialGenotype(List<ADegreeOfFreedom> dds) {
 		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
-
-		if (dseConfig.isUseGenericDoF()) {
-			ArrayList<GenericDoF> list = new ArrayList<GenericDoF>(dseConfig.getSelectedGenericDoFs());
-			dseConfig.getSelectedSpecificDoFs().clear();
-			for (GenericDoF g : list) {
-				dseConfig.addSpecificDoF(this.associatedMetamodel.getCorrespondingDoF(g));
-			}
-		}
 
 		for (SpecificDoF d : dseConfig.getSelectedSpecificDoFs()) {
 			switch (d.getName()) {
@@ -194,14 +175,8 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 				throw new IllegalArgumentException("PCM-specific degree of freedom could not be found");
 			}
 		}
-		//Quickfix: Add a Soap or RMI decision. This is not meta modelled.
-		//determineSOAPOrRMIDecisions();
-
-		//TODO: Check if the initial genotype is actually a valid genotype?
-		//(this may not be the case if the degrees of freedom have been reduced for the optimisation?)
-
-		this.initialGenotypeList.add(initialCandidate);
-
+		
+		return initialCandidate;
 	}
 
 	/**
