@@ -155,7 +155,7 @@ public interface AMetamodelDescription extends AGenomeToCandidateModelTransforma
 	
 	boolean newSDoF(String name, Class<? extends ADegreeOfFreedom> degree);
 
-	SpecificDoF getCorrespondingDoF(GenericDoF gdof);
+	List<SpecificDoF> getCorrespondingDoFs(GenericDoF gdof);
 	
 	public Collection<Object> getPossibleValues(ADegreeOfFreedom dof, ADSEProblem dseProblem);
 	

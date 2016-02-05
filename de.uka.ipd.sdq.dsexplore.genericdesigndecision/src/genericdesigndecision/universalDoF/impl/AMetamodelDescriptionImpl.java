@@ -103,7 +103,7 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	
 	protected AGenotypeReader genotypeReader;
 	
-	protected HashMap<GenericDoF, SpecificDoF> gdof_to_dof;
+	protected HashMap<GenericDoF, List<SpecificDoF>> gdof_to_dof;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,7 +112,7 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	 */
 	protected AMetamodelDescriptionImpl() {
 		super();
-		this.gdof_to_dof = new HashMap<GenericDoF, SpecificDoF>();
+		this.gdof_to_dof = new HashMap<GenericDoF, List<SpecificDoF>>();
 		this.dofrepository = GenericDoFFactory.eINSTANCE.createDoFRepository();
 	}
 	
@@ -352,7 +352,8 @@ public abstract class AMetamodelDescriptionImpl extends AGenomeToCandidateModelT
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public SpecificDoF getCorrespondingDoF(GenericDoF gdof) {
+	@Override
+	public List<SpecificDoF> getCorrespondingDoFs(GenericDoF gdof) {
 		return this.gdof_to_dof.get(gdof);
 	}
 

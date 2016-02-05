@@ -5,10 +5,14 @@ package genericdesigndecision.impl;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.DecisionSpace;
+import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.GenericdesigndecisionPackage;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
+import genericdesigndecision.universalDoF.GenericDoF;
+import genericdesigndecision.universalDoF.SpecificDoF;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -131,7 +135,38 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	
 	protected abstract DecisionSpace loadProblem(final String filename) throws CoreException;
 	
-	protected abstract void initialiseProblem(DSEWorkflowConfiguration dseConfig);
+	/**
+	 * Initialises the degrees of freedoms and at the same time determines the initial genotype.
+	 */
+	protected void initialiseProblem() {
+		this.problem = GenericdesigndecisionFactory.eINSTANCE.createDecisionSpace();
+		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
+		
+		this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
+
+		if (dseConfig.isUseGenericDoF()) {
+			ArrayList<GenericDoF> list = new ArrayList<GenericDoF>(dseConfig.getSelectedGenericDoFs());
+			dseConfig.getSelectedSpecificDoFs().clear();
+			for (GenericDoF g : list) {
+				for(SpecificDoF sdof : this.associatedMetamodel.getCorrespondingDoFs(g)) {
+					dseConfig.addSpecificDoF(sdof);
+				}
+			}
+		}
+		
+		DesignDecisionGenotype initialCandidate = determineDegreesAndInitialGenotype(dds);
+		
+		//TODO: Check if the initial genotype is actually a valid genotype?
+		//(this may not be the case if the degrees of freedom have been reduced for the optimisation?)
+
+		this.initialGenotypeList.add(initialCandidate);
+	}
+	
+	/**
+	 * fills given list of degrees, determines and returns the initial genotype
+	 * @param dds degrees of freedom that are used to build the genotype; fills up during method call
+	 */
+	protected abstract DesignDecisionGenotype determineDegreesAndInitialGenotype(List<ADegreeOfFreedom> dds);
 	
 	protected abstract List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem);
 	
