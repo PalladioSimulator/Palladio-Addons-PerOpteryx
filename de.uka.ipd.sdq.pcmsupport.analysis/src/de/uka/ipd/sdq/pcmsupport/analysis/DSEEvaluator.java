@@ -223,8 +223,6 @@ public class DSEEvaluator implements de.uka.ipd.sdq.dsexplore.opt4j.representati
 	}
 
 	private static void copyPCMPartitionToAnalysisSlot(MDSDBlackboard blackboard) {
-		// copy already varied PCM instance from MoveInitialModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID
-		// to analysis blackboard partition LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID
 		// TODO: vary the PCM model in its own blackboard partition so that the above assumption that each 
 		// candidate is evaluated right after decoding can be dropped, and even further, allow parallel 
 		// blackboard partitions so that analyses can run in parallel. 
