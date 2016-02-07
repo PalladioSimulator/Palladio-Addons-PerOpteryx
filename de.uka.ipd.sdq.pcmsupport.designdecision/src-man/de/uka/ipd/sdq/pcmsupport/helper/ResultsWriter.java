@@ -32,6 +32,7 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EntryLevelSystemCallCrite
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedCriterion;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
+import de.uka.ipd.sdq.pcmsupport.PCMPhenotype;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
 public class ResultsWriter extends de.uka.ipd.sdq.dsexplore.helper.AResultsWriter {
@@ -252,6 +253,8 @@ public class ResultsWriter extends de.uka.ipd.sdq.dsexplore.helper.AResultsWrite
 		}
 		
 		output = printUtilResultLine(ind,output);
+		
+		output.append(((PCMPhenotype)ind.getPhenotype()).getNumericID()+";");
 		
 		output.append("\n");
 		return output;

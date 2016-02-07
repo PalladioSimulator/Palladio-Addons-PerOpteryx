@@ -472,8 +472,6 @@ public class PCMDecoder {
     }
 
     public String getDecisionString(final Choice choice){
-        //		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
-
         String result = choice.getValue().toString();
 
         if (choice.getValue() instanceof Entity){

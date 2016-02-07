@@ -2,7 +2,6 @@ package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 
@@ -32,7 +31,6 @@ import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
-import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.SpecificDoF;
 
 import java.util.ArrayList;
