@@ -178,11 +178,6 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	public void saveProblem() {
 
 		final String filename = this.dseConfig.getDesignDecisionFileName();
-
-		//		resourceSet.getPackageRegistry().put
-		//		(designdecisionPackage.eNS_URI,
-		//		 designdecisionPackage.eINSTANCE);
-
 		de.uka.ipd.sdq.dsexplore.helper.EMFHelper.saveToXMIFile(this.problem, filename);
 	}
 	
