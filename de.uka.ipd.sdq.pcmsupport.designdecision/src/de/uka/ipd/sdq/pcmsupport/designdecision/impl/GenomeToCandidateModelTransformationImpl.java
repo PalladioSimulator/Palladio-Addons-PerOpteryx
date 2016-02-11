@@ -4,7 +4,7 @@ package de.uka.ipd.sdq.pcmsupport.designdecision.impl;
 
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
-import genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl;
+import genericdesigndecision.universalDoF.impl.AGenomeToCandidateModelTransformationImpl;
 
 import java.util.ArrayList;
 import java.util.List;

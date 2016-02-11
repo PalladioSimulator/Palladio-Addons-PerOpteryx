@@ -7,9 +7,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 
 /**
  * <!-- begin-user-doc -->

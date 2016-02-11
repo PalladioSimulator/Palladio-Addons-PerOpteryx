@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 
 /**
