@@ -5,7 +5,6 @@ package genericdesigndecision.impl;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Candidates;
 import genericdesigndecision.Choice;
@@ -22,7 +21,7 @@ import genericdesigndecision.genericDoF.impl.GenericDoFPackageImpl;
 import genericdesigndecision.qualityproperties.QualitypropertiesPackage;
 
 import genericdesigndecision.qualityproperties.impl.QualitypropertiesPackageImpl;
-
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.universalDoF.UniversalDoFPackage;
 
 import genericdesigndecision.universalDoF.impl.UniversalDoFPackageImpl;

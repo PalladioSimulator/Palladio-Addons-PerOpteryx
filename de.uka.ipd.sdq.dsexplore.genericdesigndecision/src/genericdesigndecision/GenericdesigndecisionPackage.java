@@ -556,10 +556,10 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	int GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
+	 * The meta object id for the '{@link genericdesigndecision.universalDoF.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl
+	 * @see genericdesigndecision.universalDoF.impl.AGenomeToCandidateModelTransformationImpl
 	 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getAGenomeToCandidateModelTransformation()
 	 * @generated
 	 */
@@ -867,11 +867,11 @@ public interface GenericdesigndecisionPackage extends EPackage {
 	EClass getGenomeToCandidateModelTransformation();
 
 	/**
-	 * Returns the meta object for class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * Returns the meta object for class '{@link genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>AGenome To Candidate Model Transformation</em>'.
-	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @see genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation
 	 * @generated
 	 */
 	EClass getAGenomeToCandidateModelTransformation();
@@ -1123,10 +1123,10 @@ public interface GenericdesigndecisionPackage extends EPackage {
 		EClass GENOME_TO_CANDIDATE_MODEL_TRANSFORMATION = eINSTANCE.getGenomeToCandidateModelTransformation();
 
 		/**
-		 * The meta object literal for the '{@link genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
+		 * The meta object literal for the '{@link genericdesigndecision.universalDoF.impl.AGenomeToCandidateModelTransformationImpl <em>AGenome To Candidate Model Transformation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl
+		 * @see genericdesigndecision.universalDoF.impl.AGenomeToCandidateModelTransformationImpl
 		 * @see genericdesigndecision.impl.GenericdesigndecisionPackageImpl#getAGenomeToCandidateModelTransformation()
 		 * @generated
 		 */

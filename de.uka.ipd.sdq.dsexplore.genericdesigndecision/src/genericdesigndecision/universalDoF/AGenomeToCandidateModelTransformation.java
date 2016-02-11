@@ -1,8 +1,9 @@
 /**
  */
-package genericdesigndecision;
+package genericdesigndecision.universalDoF;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import genericdesigndecision.GenericdesigndecisionPackage;
 
 import org.eclipse.emf.ecore.EObject;
 

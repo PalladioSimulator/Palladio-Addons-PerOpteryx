@@ -1,8 +1,7 @@
 /**
  */
-package genericdesigndecision.impl;
+package genericdesigndecision.universalDoF.impl;
 
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Candidate;
 import genericdesigndecision.Choice;
 import genericdesigndecision.GenericdesigndecisionPackage;
@@ -14,6 +13,7 @@ import genericdesigndecision.genericDoF.OCLRule;
 import genericdesigndecision.genericDoF.SelectionRule;
 import genericdesigndecision.genericDoF.StaticSelectionRule;
 import genericdesigndecision.genericDoF.ValueRule;
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 
 import java.util.ArrayList;
 import java.util.Collection;

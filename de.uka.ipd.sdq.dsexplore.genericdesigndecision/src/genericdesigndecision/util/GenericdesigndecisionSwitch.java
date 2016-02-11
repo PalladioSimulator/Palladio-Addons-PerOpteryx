@@ -5,6 +5,7 @@ package genericdesigndecision.util;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import genericdesigndecision.*;
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

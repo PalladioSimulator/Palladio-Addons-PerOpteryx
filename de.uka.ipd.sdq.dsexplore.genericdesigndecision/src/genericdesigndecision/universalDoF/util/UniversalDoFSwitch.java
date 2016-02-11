@@ -3,7 +3,6 @@
 package genericdesigndecision.universalDoF.util;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.universalDoF.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

@@ -18,7 +18,6 @@ import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.ChangeableElementDescription;
 import genericdesigndecision.genericDoF.DoFRepository;
 import genericdesigndecision.genericDoF.GenericDoFFactory;
-import genericdesigndecision.impl.AGenomeToCandidateModelTransformationImpl;
 import genericdesigndecision.universalDoF.AMetamodelDescription;
 import genericdesigndecision.universalDoF.GenericDoF;
 import genericdesigndecision.universalDoF.Metamodel;

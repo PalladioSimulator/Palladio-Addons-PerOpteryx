@@ -10,7 +10,6 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.ADSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 import genericdesigndecision.ADSEProblem;
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.genericDoF.DoFRepository;

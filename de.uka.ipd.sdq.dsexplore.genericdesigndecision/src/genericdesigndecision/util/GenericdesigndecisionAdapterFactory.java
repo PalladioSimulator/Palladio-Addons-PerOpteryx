@@ -5,6 +5,7 @@ package genericdesigndecision.util;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEDecoder;
 import genericdesigndecision.*;
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -279,13 +280,13 @@ public class GenericdesigndecisionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link genericdesigndecision.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
+	 * Creates a new adapter for an object of class '{@link genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation <em>AGenome To Candidate Model Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see genericdesigndecision.AGenomeToCandidateModelTransformation
+	 * @see genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation
 	 * @generated
 	 */
 	public Adapter createAGenomeToCandidateModelTransformationAdapter() {
