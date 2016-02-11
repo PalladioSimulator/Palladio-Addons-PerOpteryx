@@ -23,14 +23,18 @@ import genericdesigndecision.universalDoF.Metamodel;
 public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 
 	private Shell shell;
+	private Metamodel metamodel;
+	private DSETabGroupWrapper wrapper;
+	
+	public DSETabGroup(Metamodel metamodel, DSETabGroupWrapper wrapper) {
+		this.metamodel = metamodel;
+		this.wrapper = wrapper;
+	}
 
 	/**
 	 * Actually creates the tabs for the launch configuration
 	 */
 	public void createTabs(final ILaunchConfigurationDialog dialog, final String mode) {
-	
-		// TODO only ask the first time when tabs are created
-		Metamodel metamodel = Metamodel.PCM;//showMMDialog();
 		
 		QMLManager qmlManager = new QMLManager();
 		
@@ -49,7 +53,7 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		
 		ArrayList<ILaunchConfigurationTab> tabs = new ArrayList<ILaunchConfigurationTab>();
 		
-		tabs.add(defaultTab); // Default tab
+		tabs.add(defaultTab);
 		tabs.add(optionsTab);
 		tabs.add(terminationTab);
 	
@@ -65,6 +69,17 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 			iTabs[i] = tabs.get(i);
 		}
 		setTabs(iTabs);
+	}
+
+	public void metamodelHasChanged(Metamodel metamodel, final ILaunchConfigurationDialog dialog, final String mode) {
+		this.metamodel = metamodel;
+		this.dispose();
+		this.setTabs(null);
+		createTabs(dialog, mode);
+	}
+
+	public Metamodel getMetamodel() {
+		return metamodel;
 	}
 
 	/**
@@ -97,5 +112,5 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 
 		return Metamodel.get(returnCode);
 	}
-	
+
 }

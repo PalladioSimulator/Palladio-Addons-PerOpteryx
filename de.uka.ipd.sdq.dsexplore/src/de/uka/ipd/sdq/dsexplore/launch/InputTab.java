@@ -19,7 +19,8 @@ import de.uka.ipd.sdq.workflow.launchconfig.ImageRegistryHelper;
  */
 public abstract class InputTab extends AbstractLaunchConfigurationTab {
 	
-	/** The id of this plug-in. TODO probably not correct anymore */
+	/** The id of this plug-in. */
+	//TODO should be corrected correspondingly
 	public static final String PLUGIN_ID = "org.palladiosimulator.analyzer.workflow";
 	/** The path to the image file for the tab icon. */
 	private static final String FILENAME_TAB_IMAGE_PATH = "icons/filenames_tab.gif";
@@ -55,13 +56,6 @@ public abstract class InputTab extends AbstractLaunchConfigurationTab {
 		container = new Composite(parent, SWT.NONE);
 		setControl(container);
 		container.setLayout(new GridLayout());
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getName()
-	 */
-	public String getName() {
-		return "Architecture Model(s)";
 	}
 
 	/* (non-Javadoc)

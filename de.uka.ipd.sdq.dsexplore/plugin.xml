@@ -24,7 +24,7 @@
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
-            class="de.uka.ipd.sdq.dsexplore.launch.DSETabGroup"
+            class="de.uka.ipd.sdq.dsexplore.launch.DummyTabGroup"
             description="Optimise a given metamodel instance within certain degrees of freedom. For help, click the help button (?) in the bottom-left corner."
             helpContextId="de.uka.ipd.sdq.dsexplore.dse_launch_help"
             id="de.uka.ipd.sdq.dsexplore.DSETabGroup"

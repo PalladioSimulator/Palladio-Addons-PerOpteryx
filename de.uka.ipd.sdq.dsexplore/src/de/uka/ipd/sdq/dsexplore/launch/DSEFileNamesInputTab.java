@@ -7,4 +7,10 @@ package de.uka.ipd.sdq.dsexplore.launch;
  */
 public abstract class DSEFileNamesInputTab extends InputTab {
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getName()
+	 */
+	public String getName() {
+		return "Architecture Model(s)";
+	}
 }
