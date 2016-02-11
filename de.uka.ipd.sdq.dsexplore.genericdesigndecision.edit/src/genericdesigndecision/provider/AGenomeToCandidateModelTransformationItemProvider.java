@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link genericdesigndecision.AGenomeToCandidateModelTransformation} object.
+ * This is the item provider adapter for a {@link genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
