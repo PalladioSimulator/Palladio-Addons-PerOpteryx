@@ -2,8 +2,7 @@
  */
 package genericdesigndecision.tests;
 
-import genericdesigndecision.AGenomeToCandidateModelTransformation;
-
+import genericdesigndecision.universalDoF.AGenomeToCandidateModelTransformation;
 import junit.framework.TestCase;
 
 /**
