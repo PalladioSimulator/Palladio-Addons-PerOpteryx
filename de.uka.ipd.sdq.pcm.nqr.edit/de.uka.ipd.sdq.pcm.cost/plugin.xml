@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://sdq.ipd.uka.de/CostModel/1.0"
+            class="de.uka.ipd.sdq.pcm.cost.costPackage"
+            genModel="model/CostModel-4.0.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated CostModel-4.0 -->
+      <parser
+            type="cost"
+            class="de.uka.ipd.sdq.pcm.cost.util.costResourceFactoryImpl"/>
+   </extension>
+
+</plugin>
