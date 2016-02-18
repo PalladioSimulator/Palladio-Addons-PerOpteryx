@@ -8,8 +8,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Nqr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="criterion" upperBound="-1"
-        eType="ecore:EClass ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//Criterion"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//ValueLiteral"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" lowerBound="1"
+        eType="ecore:EClass ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLContractType.ecore#//Dimension"/>
   </eClassifiers>
 </ecore:EPackage>

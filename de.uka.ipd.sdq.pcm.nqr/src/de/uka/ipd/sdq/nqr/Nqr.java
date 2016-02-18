@@ -2,8 +2,8 @@
  */
 package de.uka.ipd.sdq.nqr;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
-import org.eclipse.emf.common.util.EList;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
@@ -17,7 +17,8 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
  * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.nqr.Nqr#getAnnotatedElement <em>Annotated Element</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.nqr.Nqr#getCriterion <em>Criterion</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.nqr.Nqr#getValue <em>Value</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.nqr.Nqr#getDimension <em>Dimension</em>}</li>
  * </ul>
  *
  * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqr()
@@ -52,19 +53,55 @@ public interface Nqr extends EObject {
 	void setAnnotatedElement(RepositoryComponent value);
 
 	/**
-	 * Returns the value of the '<em><b>Criterion</b></em>' containment reference list.
-	 * The list contents are of type {@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion}.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Criterion</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Criterion</em>' containment reference list.
-	 * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqr_Criterion()
-	 * @model containment="true"
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(ValueLiteral)
+	 * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqr_Value()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Criterion> getCriterion();
+	ValueLiteral getValue();
+
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.nqr.Nqr#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(ValueLiteral value);
+
+	/**
+	 * Returns the value of the '<em><b>Dimension</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dimension</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dimension</em>' reference.
+	 * @see #setDimension(Dimension)
+	 * @see de.uka.ipd.sdq.nqr.NqrPackage#getNqr_Dimension()
+	 * @model required="true"
+	 * @generated
+	 */
+	Dimension getDimension();
+
+	/**
+	 * Sets the value of the '{@link de.uka.ipd.sdq.nqr.Nqr#getDimension <em>Dimension</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dimension</em>' reference.
+	 * @see #getDimension()
+	 * @generated
+	 */
+	void setDimension(Dimension value);
 
 } // Nqr

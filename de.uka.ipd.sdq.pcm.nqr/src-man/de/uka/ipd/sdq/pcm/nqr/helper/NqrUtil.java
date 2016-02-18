@@ -13,6 +13,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.NumericLiteral;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric;
@@ -25,19 +26,19 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemanti
 
 public class NqrUtil {
 
-	public static double getNqrValue(Criterion criterion, Criterion targetCrit)
+	public static double getNqrValue(Dimension criterionDim, Dimension targetDim, ValueLiteral value)
 	{
-		DimensionType type = criterion.getDimension().getType();
+		DimensionType type = criterionDim.getType();
 		RelationSemantics relSem = type.getRelationSemantics();
-		ValueLiteral targetLiteral = null;
+		ValueLiteral targetLiteral = value;
 
-		try{
+		/*try{
 			targetLiteral = targetCrit.getAspects().get(0).getAspectRequirement().getAspectRequirementLiteral();
 		}catch(RuntimeException e)
 		{
 			System.err.println("Criterion does not apply");
 			e.printStackTrace();
-		}
+		}*/
 		
 		double result;
 		
@@ -118,7 +119,7 @@ public class NqrUtil {
 		return result;
 	}
 	
-	public static Element[] getElementsForCriterium(Criterion criterion)
+	/*public static Element[] getElementsForCriterium(Criterion criterion)
 	{
 		DimensionType type = criterion.getDimension().getType();
 		RelationSemantics relSem = type.getRelationSemantics();
@@ -184,9 +185,9 @@ public class NqrUtil {
 		else
 			throw new RuntimeException("Wrong DimensionType!");
 		return result;
-	}
+	}*/
 	
-	public static HashMap<Element, Double> scoreElements(List<Element> elems)
+	/*public static HashMap<Element, Double> scoreElements(List<Element> elems)
 	{
 		HashMap<Element, Double> resultMap = new HashMap<Element, Double>();
 		double factor = 0.0;
@@ -194,7 +195,7 @@ public class NqrUtil {
 		for (int i = 0; i < elems.size(); ++i) 
 			resultMap.put(elems.get(i), factor * i);
 		return resultMap;
-	}
+	}*/
 	
 	public static ArrayList<Element> rankElements(List<Element> elems, List<Order> order, RelationSemantics relSem)
 	{
