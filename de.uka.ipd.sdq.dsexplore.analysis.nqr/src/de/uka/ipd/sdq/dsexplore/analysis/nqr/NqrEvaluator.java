@@ -116,13 +116,17 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 		this.nqrModel = nqrRep;
 		NqrSolverQualityAttributeDeclaration quality = ((NqrSolverQualityAttributeDeclaration)this.qualityAttribute);
 		for (Nqr nqr: nqrRep.getNqr())
-			for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion crit: nqr.getCriterion())
+		{
+			Dimension dim = nqr.getDimension();		
+			if (dim != null && !quality.getDimensions().contains(dim))
+				quality.addDimension(dim);
+		}
+			/*for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion crit: nqr.getCriterion())
 			{
 				Dimension d = crit.getDimension();
 				if (d != null && !quality.getDimensions().contains(d))
 					quality.addDimension(crit.getDimension());
-			}
-					
+			}*/
 		
 		initialiseCriteria(configuration);
 	}
