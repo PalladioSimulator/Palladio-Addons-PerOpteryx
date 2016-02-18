@@ -31,155 +31,138 @@ import de.uka.ipd.sdq.identifier.provider.IdentifierItemProvider;
  *
  * @generated
  */
-public class QMLDeclarationsItemProvider
-        extends IdentifierItemProvider {
-    /**
-     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    public QMLDeclarationsItemProvider(final AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+public class QMLDeclarationsItemProvider extends IdentifierItemProvider {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	public QMLDeclarationsItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-    /**
-     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(final Object object) {
-        if (this.itemPropertyDescriptors == null)
-        {
-            super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-        }
-        return this.itemPropertyDescriptors;
-    }
+		}
+		return itemPropertyDescriptors;
+	}
 
-    /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-     * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-     * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(final Object object) {
-        if (this.childrenFeatures == null)
-        {
-            super.getChildrenFeatures(object);
-            this.childrenFeatures.add(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS);
-        }
-        return this.childrenFeatures;
-    }
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+	 * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS);
+		}
+		return childrenFeatures;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(final Object object, final Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-        return super.getChildFeature(object, child);
-    }
+		return super.getChildFeature(object, child);
+	}
 
-    /**
-     * This returns QMLDeclarations.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object getImage(final Object object) {
-        return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/QMLDeclarations"));
-    }
+	/**
+	 * This returns QMLDeclarations.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/QMLDeclarations"));
+	}
 
-    /**
-     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     *
-     * @generated
-     */
-    @Override
-    public String getText(final Object object) {
-        final String label = ((QMLDeclarations) object).getId();
-        return label == null || label.length() == 0 ?
-                this.getString("_UI_QMLDeclarations_type") :
-                this.getString("_UI_QMLDeclarations_type") + " " + label;
-    }
+	/**
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
+		String label = ((QMLDeclarations) object).getId();
+		return label == null || label.length() == 0 ? getString("_UI_QMLDeclarations_type")
+				: getString("_UI_QMLDeclarations_type") + " " + label;
+	}
 
-    /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-     * . <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void notifyChanged(final Notification notification) {
-        this.updateChildren(notification);
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(QMLDeclarations.class))
-        {
-        case QMLDeclarationsPackage.QML_DECLARATIONS__QML_DECLARATIONS:
-            this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-            return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(QMLDeclarations.class)) {
+		case QMLDeclarationsPackage.QML_DECLARATIONS__QML_DECLARATIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
+		}
+		super.notifyChanged(notification);
+	}
 
-    /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
-     * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected void collectNewChildDescriptors(final Collection<Object> newChildDescriptors, final Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add
-                (this.createChildParameter
-                (QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
-                        QMLProfileFactory.eINSTANCE.createSimpleQMLProfile()));
+		newChildDescriptors.add(createChildParameter(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
+				QMLProfileFactory.eINSTANCE.createSimpleQMLProfile()));
 
-        newChildDescriptors.add
-                (this.createChildParameter
-                (QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
-                        QMLProfileFactory.eINSTANCE.createRefinedQMLProfile()));
+		newChildDescriptors.add(createChildParameter(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
+				QMLProfileFactory.eINSTANCE.createRefinedQMLProfile()));
 
-        newChildDescriptors.add
-                (this.createChildParameter
-                (QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
-                        QMLContractFactory.eINSTANCE.createSimpleQMLContract()));
+		newChildDescriptors.add(createChildParameter(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
+				QMLContractFactory.eINSTANCE.createSimpleQMLContract()));
 
-        newChildDescriptors.add
-                (this.createChildParameter
-                (QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
-                        QMLContractFactory.eINSTANCE.createRefinedQMLContract()));
+		newChildDescriptors.add(createChildParameter(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
+				QMLContractFactory.eINSTANCE.createRefinedQMLContract()));
 
-        newChildDescriptors.add
-                (this.createChildParameter
-                (QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
-                        QMLContractTypeFactory.eINSTANCE.createQMLContractType()));
-    }
+		newChildDescriptors.add(createChildParameter(QMLDeclarationsPackage.Literals.QML_DECLARATIONS__QML_DECLARATIONS,
+				QMLContractTypeFactory.eINSTANCE.createQMLContractType()));
+	}
 
-    /**
-     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return QMLProfileEditPlugin.INSTANCE;
-    }
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return QMLProfileEditPlugin.INSTANCE;
+	}
 
 }
