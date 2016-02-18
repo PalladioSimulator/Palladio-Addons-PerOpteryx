@@ -8,5 +8,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="qmlDeclarations" ordered="false"
         upperBound="-1" eType="#//QMLDeclaration" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QMLDeclaration" abstract="true" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QMLDeclaration" abstract="true" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
 </ecore:EPackage>
