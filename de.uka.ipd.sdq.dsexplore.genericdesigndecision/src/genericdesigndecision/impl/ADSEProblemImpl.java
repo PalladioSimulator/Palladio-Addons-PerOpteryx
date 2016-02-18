@@ -16,16 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Phenotype;
-import org.palladiosimulator.pcm.core.entity.Entity;
 
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.BinaryGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -133,7 +139,27 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 		return this.getAssociatedMetamodel().translateFinalBinaryGenotype(FBGenotype, this.problem);
 	}
 	
-	protected abstract DecisionSpace loadProblem(final String filename) throws CoreException;
+	protected DecisionSpace loadProblem(final String filename) throws CoreException {
+		final EObject eproblem = EMFHelper.loadFromXMIFile(filename, getResourceSet(), getEPackage());
+		if (!(eproblem instanceof DecisionSpace)) {
+			throw new CoreException(new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0,
+					"Cannot read design decision file " + filename + ". Please create a new one.", null));
+		}
+		final DecisionSpace problem = (DecisionSpace) eproblem;
+		//Adjust references with the right loaded model objects in memory?
+
+		// TODO try it without using switch first
+		//final FixDesignDecisionReferenceSwitch visitor = new FixDesignDecisionReferenceSwitch(this.pcmInstance);
+		//visitor.doSwitch(problem);
+
+		EcoreUtil.resolveAll(eproblem);
+
+		return problem;
+	}
+	
+	protected abstract EPackage getEPackage();
+
+	protected abstract ResourceSet getResourceSet();
 	
 	/**
 	 * Initialises the degrees of freedoms and at the same time determines the initial genotype.
@@ -168,8 +194,6 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	 */
 	protected abstract DesignDecisionGenotype determineDegreesAndInitialGenotype(List<ADegreeOfFreedom> dds);
 	
-	protected abstract List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem);
-	
 	protected void throwUnknownDegreeException(final ADegreeOfFreedom dd) {
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");
     }
@@ -203,13 +227,12 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	 * @param degreeClass
 	 * @return The matching DegreeOfFreedom runtime object from this problem.
 	 */
-	protected ADegreeOfFreedom getDoFInstance(final Entity entity,
+	protected ADegreeOfFreedom getDoFInstance(final EObject entity,
 			final Class<? extends ADegreeOfFreedom> degreeClass) {
 		final List<ADegreeOfFreedom> degrees = this.problem.getDofInstances();
 		for (final ADegreeOfFreedom DegreeOfFreedom : degrees) {
 
-			if (degreeClass.isInstance(DegreeOfFreedom)
-					&& DegreeOfFreedom.getPrimaryChanged().equals(entity)) {
+			if (degreeClass.isInstance(DegreeOfFreedom) && DegreeOfFreedom.getPrimaryChanged().equals(entity)) {
 				return DegreeOfFreedom;
 			}
 		}
@@ -251,6 +274,19 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	@Override
 	protected EClass eStaticClass() {
 		return GenericdesigndecisionPackage.Literals.ADSE_PROBLEM;
+	}
+
+	protected List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) {
+		final DesignDecisionGenotype genotype = new DesignDecisionGenotype();
+	
+		for (final ADegreeOfFreedom dd : problem.getDofInstances()) {
+			genotype.add(dd.determineInitialChoice());
+		}
+	
+		final List<DesignDecisionGenotype> result = new ArrayList<DesignDecisionGenotype>();
+		result.add(genotype);
+		this.initialGenotype = genotype;
+		return result;
 	}
 
 	/**
