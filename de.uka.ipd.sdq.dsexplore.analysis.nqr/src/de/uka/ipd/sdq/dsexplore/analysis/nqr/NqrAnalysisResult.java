@@ -41,11 +41,15 @@ public class NqrAnalysisResult implements IAnalysisResult {
 				{
 					nqrQualityDimensionDeclaration.getRequirement(dim);
 					for (int i = 0; i < nqr.size(); ++i)
-						for (int j = 0; j < nqr.get(i).getCriterion().size(); ++j)
+					{
+						if (EcoreUtil.equals(dim, nqr.get(i).getDimension()))
+							result = NqrUtil.getNqrValue(aspect.getCriterion().getDimension(), nqr.get(i).getDimension(), nqr.get(i).getValue());
+					}
+						/*for (int j = 0; j < nqr.get(i).getCriterion().size(); ++j)
 						{
 							if (EcoreUtil.equals(dim, nqr.get(i).getCriterion().get(j).getDimension()))
 								result = NqrUtil.getNqrValue(aspect.getCriterion(), nqr.get(i).getCriterion().get(j));
-						}
+						}*/
 				}
 			}
 			return result;
