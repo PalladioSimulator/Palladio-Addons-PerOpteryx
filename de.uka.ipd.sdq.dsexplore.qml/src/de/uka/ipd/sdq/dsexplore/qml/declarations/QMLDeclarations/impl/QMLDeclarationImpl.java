@@ -15,29 +15,25 @@ import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>QML Declaration</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public abstract class QMLDeclarationImpl extends EntityImpl implements QMLDeclaration {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected QMLDeclarationImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected QMLDeclarationImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return QMLDeclarationsPackage.Literals.QML_DECLARATION;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return QMLDeclarationsPackage.Literals.QML_DECLARATION;
+	}
 
 } // QMLDeclarationImpl
