@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -185,26 +186,7 @@ public class EMFHelper {
     	
     	return model;
     }
-
-    /**
-     * 
-     * @param fileName
-     *            the filename specifying the file to load from
-     * @return The EObject loaded from the file
-     */
-    public static EObject loadFromXMIFile(final String fileName, final EPackage ePackage) {
-        // Create a resource set to hold the resources.
-        final ResourceSet resourceSet = new ResourceSetImpl();
-
-        // Register the appropriate resource factory to handle all file
-        // extensions.
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-        .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
-                new XMIResourceFactoryImpl());
-
-        return loadFromXMIFile(fileName, resourceSet, ePackage);
-    }
-
+    
     public static EObject loadFromXMIFile(final String fileName, final ResourceSet resourceSet, final EPackage ePackage){
         // Construct the URI for the instance file.
         // The argument is treated as a file path only if it denotes an existing
@@ -244,4 +226,24 @@ public class EMFHelper {
         return EcoreUtil.getRootContainer(eObject);
     }
 
+	public static EObject loadFromXMIFile(final String fileName, final EPackage ePackage, EList<EPackage> epackages) {
+	    // Create a resource set to hold the resources.
+	    final ResourceSet resourceSet = new ResourceSetImpl();
+	
+	    // Register the appropriate resource factory to handle all file
+	    // extensions.
+	    resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+	    .put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+	
+	    // Register the package to ensure it is available during loading.
+	    registerPackages(resourceSet, epackages);
+	
+	    return loadFromXMIFile(fileName, resourceSet, ePackage);
+	}
+
+	private static void registerPackages(final ResourceSet resourceSet, EList<EPackage> epackages) {
+		for(EPackage epackage : epackages) {
+			resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
+		}
+	}
 }
