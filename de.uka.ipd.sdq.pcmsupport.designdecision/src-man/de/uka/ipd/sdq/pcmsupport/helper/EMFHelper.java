@@ -1,12 +1,9 @@
 package de.uka.ipd.sdq.pcmsupport.helper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,80 +36,31 @@ import org.palladiosimulator.pcm.usagemodel.UsagemodelPackage;
  * @author martens
  *
  */
-public class EMFHelper extends de.uka.ipd.sdq.dsexplore.helper.EMFHelper{
-
-    /**
-     * Copied From de.uka.ipd.sdq.pcmsolver.models.PCMInstance.
-     *
-     * @param fileName
-     *            the filename specifying the file to load from
-     * @return The EObject loaded from the file
-     */
-    public static EObject loadFromXMIFile(final String fileName, final EPackage ePackage) {
-        // Create a resource set to hold the resources.
-        final ResourceSet resourceSet = new ResourceSetImpl();
-
-        // Register the appropriate resource factory to handle all file
-        // extensions.
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-        .put(Resource.Factory.Registry.DEFAULT_EXTENSION,
-                new XMIResourceFactoryImpl());
-
-        // Register the package to ensure it is available during loading.
-        registerPackages(resourceSet);
-
-        return loadFromXMIFile(fileName, resourceSet, ePackage);
-    }
-
-    public static EObject loadFromXMIFile(final String fileName, final ResourceSet resourceSet, final EPackage ePackage){
-        // Construct the URI for the instance file.
-        // The argument is treated as a file path only if it denotes an existing
-        // file. Otherwise, it's directly treated as a URL.
-        final File file = new File(fileName);
-        final URI uri = file.isFile() ? URI.createFileURI(file.getAbsolutePath())
-                : URI.createURI(fileName);
-
-        Resource resource = null;
-        // Demand load resource for this file.
-        try {
-            resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
-            resource = resourceSet.getResource(uri, true);
-        } catch (final Exception e) {
-            Logger.getLogger("de.uka.ipd.sdq.dsexplore").error(e.getMessage());
-            return null;
-        }
-
-        // logger.debug("Loaded " + uri);
-
-        // if (!fileName.endsWith(".assembly") &&
-        // !fileName.endsWith("repository")) {
-        // // Validate the contents of the loaded resource.
-        // for (Iterator j = resource.getContents().iterator(); j.hasNext();) {
-        // EObject eObject = (EObject) j.next();
-        // Diagnostic diagnostic = Diagnostician.INSTANCE
-        // .validate(eObject);
-        // if (diagnostic.getSeverity() != Diagnostic.OK) {
-        // System.out.println();
-        // System.out.println(diagnostic.getMessage());
-        // // printDiagnostic(diagnostic, "");
-        //
-        // }
-        // }
-        // }
-        final EObject eObject = resource.getContents().iterator().next();
-        return EcoreUtil.getRootContainer(eObject);
-    }
-
-    /**
-     * Copied From de.uka.ipd.sdq.pcmsolver.models.PCMInstance.
-     *
+public class EMFHelper extends de.uka.ipd.sdq.dsexplore.helper.EMFHelper {
+	
+	public static EObject loadFromXMIFile(final String fileName, final EPackage ePackage) {
+	    // Create a resource set to hold the resources.
+	    final ResourceSet resourceSet = new ResourceSetImpl();
+	
+	    // Register the appropriate resource factory to handle all file
+	    // extensions.
+	    resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+	    .put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+	
+	    // Register the package to ensure it is available during loading.
+	    registerPackages(resourceSet);
+	
+	    return loadFromXMIFile(fileName, resourceSet, ePackage);
+	}
+	
+	/**
      * @param resourceSet
      *            The resource set to register all contained model packages
      *            with.
      */
-    private static void registerPackages(final ResourceSet resourceSet) {
+    public static void registerPackages(ResourceSet resourceSet) {
 
-        resourceSet.getPackageRegistry().put(AllocationPackage.eNS_URI,
+    	resourceSet.getPackageRegistry().put(AllocationPackage.eNS_URI,
                 AllocationPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(ParameterPackage.eNS_URI,
                 ParameterPackage.eINSTANCE);

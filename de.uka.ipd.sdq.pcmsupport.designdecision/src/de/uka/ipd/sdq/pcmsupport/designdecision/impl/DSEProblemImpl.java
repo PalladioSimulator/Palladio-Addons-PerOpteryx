@@ -22,27 +22,21 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.ContinuousProcessingRat
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificFactory;
-import de.uka.ipd.sdq.pcmsupport.helper.EMFHelper;
 import de.uka.ipd.sdq.pcmsupport.helper.ResultsWriter;
 import genericdesigndecision.ClassChoice;
 import genericdesigndecision.ContinousRangeChoice;
-import genericdesigndecision.DecisionSpace;
 import genericdesigndecision.DiscreteRangeChoice;
 import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
 import genericdesigndecision.universalDoF.SpecificDoF;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
@@ -115,40 +109,14 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	public ResultsWriter getWriter(String filename) {
 		return new ResultsWriter(filename, this.pcmInstance);
 	}
-
+	
 	@Override
-	protected DecisionSpace loadProblem(final String filename) throws CoreException {
-		final ResourceSet pcmResourceSet = this.pcmInstance.getAllocation().eResource().getResourceSet();
-
-		final EObject eproblem = EMFHelper.loadFromXMIFile(filename, pcmResourceSet, designdecisionPackage.eINSTANCE);
-		if (!(eproblem instanceof DecisionSpace)) {
-			throw new CoreException(new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0,
-					"Cannot read design decision file " + filename + ". Please create a new one.", null));
-		}
-		final DecisionSpace problem = (DecisionSpace) eproblem;
-		//Adjust references with the right loaded model objects in memory?
-
-		// TODO try it without using switch first
-		//final FixDesignDecisionReferenceSwitch visitor = new FixDesignDecisionReferenceSwitch(this.pcmInstance);
-		//visitor.doSwitch(problem);
-
-		EcoreUtil.resolveAll(eproblem);
-
-		return problem;
+	protected EPackage getEPackage() {
+		return designdecisionPackage.eINSTANCE;
 	}
-
-	@Override
-	protected List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) {
-		final DesignDecisionGenotype genotype = new DesignDecisionGenotype();
-
-		for (final ADegreeOfFreedom dd : problem.getDofInstances()) {
-			genotype.add(dd.determineInitialChoice());
-		}
-
-		final List<DesignDecisionGenotype> result = new ArrayList<DesignDecisionGenotype>();
-		result.add(genotype);
-		this.initialGenotype = genotype;
-		return result;
+	
+	protected ResourceSet getResourceSet() {
+		return this.pcmInstance.getAllocation().eResource().getResourceSet();
 	}
 
 	@Override
@@ -342,6 +310,11 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	}
 
 	@Override
+	public PCMPhenotype decode(DesignDecisionGenotype genotype) {
+		return MetamodelDescription.eINSTANCE.decode(this.pcmInstance, genotype);
+	}
+
+	@Override
 	public PCMInstance getPcmInstance() {
 		return this.pcmInstance;
 	}
@@ -354,12 +327,6 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	@Override
 	protected EClass eStaticClass() {
 		return designdecisionPackage.Literals.DSE_PROBLEM;
-	}
-
-	@Override
-	public PCMPhenotype decode(DesignDecisionGenotype genotype) {
-		MetamodelDescription pcm = MetamodelDescription.eINSTANCE;
-		return pcm.decode(this.pcmInstance, genotype);
 	}
 
 } //DSEProblemImpl
