@@ -157,7 +157,7 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 	 */
 	private NqrRepository getNqrModel(DSEWorkflowConfiguration configuration) throws CoreException {
 		String nqrModelFileName = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.NQR_FILE, "");
-		NqrRepository nqrr =  (NqrRepository)EMFHelper.loadFromXMIFile(nqrModelFileName, NqrPackage.eINSTANCE);
+		NqrRepository nqrr =  (NqrRepository)de.uka.ipd.sdq.pcmsupport.helper.EMFHelper.loadFromXMIFile(nqrModelFileName, NqrPackage.eINSTANCE);
 		if (nqrr == null){
 			throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Nqr model "+nqrModelFileName+" could not be loaded.", null));
 		}
