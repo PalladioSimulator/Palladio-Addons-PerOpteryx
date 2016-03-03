@@ -2,16 +2,14 @@ package de.uka.ipd.sdq.dsexplore.analysis.simucom.tests;
 
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComAnalysisResult;
-import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComAnalysisSensorFrameworkResult;
 import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentImpl;
 import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentRunImpl;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
+import junit.framework.TestCase;
 
 public class SimuComAnalysisResultTest extends TestCase {
 
@@ -29,8 +27,8 @@ public class SimuComAnalysisResultTest extends TestCase {
         final PCMInstance pcmInstance = new PCMInstance(config);
         final Experiment exp = new ExperimentImpl(null);
 
-        //FIXME: add proper params
-        //scr = new SimuComAnalysisSensorFrameworkResult(run, exp, pcmInstance, null, null, null);
+        // FIXME: add proper params
+        // scr = new SimuComAnalysisSensorFrameworkResult(run, exp, pcmInstance, null, null, null);
 
     }
 
@@ -40,10 +38,8 @@ public class SimuComAnalysisResultTest extends TestCase {
     }
 
     public void testGetUtilisationOfResource() {
-        //scr.getUtilisationOfResource(null, null);
-        //fail("Not yet implemented");
+        // scr.getUtilisationOfResource(null, null);
+        // fail("Not yet implemented");
     }
 
 }
-
-
