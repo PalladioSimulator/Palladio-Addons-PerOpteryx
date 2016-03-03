@@ -8,8 +8,7 @@
             launchConfigContribution="de.uka.ipd.sdq.dsexplore.analysis.simulizar.ui.configuration.InterpreterConfigurationTab"
             name="Simulizar Analysis"
             qualityAttribute="de.uka.ipd.sdq.dsexplore.performance"
-            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.simulizar.SimuLizarQualityAttributeDeclaration">
+            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComQualityAttributeDeclaration">
       </analysis>
    </extension>
-
 </plugin>
