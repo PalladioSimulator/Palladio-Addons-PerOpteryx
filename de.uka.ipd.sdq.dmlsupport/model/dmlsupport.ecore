@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dmlsupport" nsURI="http://sdq.ipd.uka.de/dmlsupport/" nsPrefix="dmlsupport">
+  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfigurationBuilder"/>
+  <eSubpackages name="designdecision" nsURI="http://sdq.ipd.uka.de/dmlsupport/designdecision"
+      nsPrefix="designdecision">
+    <eClassifiers xsi:type="ecore:EClass" name="DSEProblem"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription"/>
+  </eSubpackages>
+  <eSubpackages name="helper" nsURI="http://sdq.ipd.uka.de/dmlsupport/helper" nsPrefix="helper">
+    <eClassifiers xsi:type="ecore:EClass" name="DMLPhenotype"/>
+  </eSubpackages>
+  <eSubpackages name="representation" nsURI="http://sdq.ipd.uka.de/dmlsupport/representation"
+      nsPrefix="representation">
+    <eClassifiers xsi:type="ecore:EClass" name="DML_DSEOptionsTab"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DMLFileNamesInput"/>
+  </eSubpackages>
+</ecore:EPackage>
