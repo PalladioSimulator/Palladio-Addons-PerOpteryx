@@ -9,6 +9,7 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import de.uka.ipd.sdq.dsexplore.helper.LaunchConfigurationDialogProxy;
 import genericdesigndecision.universalDoF.Metamodel;
 
 public class DSETabGroupWrapper extends InputTab implements ILaunchConfigurationTab {
@@ -18,6 +19,7 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 	private DSEMetamodelTab dseMetamodelTab;
 	private DSETabGroup dseTabs;
 	private boolean canSave;
+	private ILaunchConfigurationDialog dialogProxy;
 	
 	public DSETabGroupWrapper(ILaunchConfigurationDialog dialog, String mode) {
 		super.setLaunchConfigurationDialog(dialog);
@@ -34,6 +36,10 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 		setControl(tabFolderContainer);
 		tabFolderContainer.setLayout(new GridLayout(1, true));
 		
+		createSubControl();
+	}
+
+	private void createSubControl() {
 		tabFolder = new CTabFolder(tabFolderContainer, SWT.BORDER | SWT.FLAT);
 		
 		// add metamodel tab
@@ -53,7 +59,8 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 	}
 
 	private void createTab(ILaunchConfigurationTab tab) {
-		tab.setLaunchConfigurationDialog(getLaunchConfigurationDialog());
+		//for each tab set the dialog to the dialog proxy
+		tab.setLaunchConfigurationDialog(dialogProxy);
 		tab.createControl(tabFolder);
 
 		CTabItem tabItem = new CTabItem(tabFolder, SWT.NULL);
@@ -63,17 +70,22 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 	
 	/**
 	 * processes all changes in the sub tabs when switching to another metamodel;
+	 * referenced DSETabGroup switches its metamodel and creates new DSETabs correspondingly;
+	 * sub UI elements are disposed and newly created;
 	 * during this process, calls to performApply() are of no effect
 	 * @param metamodel
 	 */
 	public void metamodelHasChanged(Metamodel metamodel) {
 		this.canSave = false;
-		Composite parent = tabFolderContainer.getParent();
-		tabFolder.dispose();
-		tabFolderContainer.dispose();
-		this.dseTabs.metamodelHasChanged(metamodel, getLaunchConfigurationDialog(), getLaunchConfigurationDialog().getMode());
-		createControl(parent);
+		//Composite parent = tabFolderContainer.getParent();
+		//tabFolder.dispose();
+		//tabFolderContainer.dispose();
+		//null values are not used anyway
+		this.dseTabs.metamodelHasChanged(metamodel, null, null);
+		createSubControl();
 		//canSave set to true here
+		super.setDirty(true);
+		super.updateLaunchConfigurationDialog();
 	}
 		
 	@Override
@@ -86,9 +98,10 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 	@Override
 	public void setLaunchConfigurationDialog(ILaunchConfigurationDialog dialog) {
 		super.setLaunchConfigurationDialog(dialog);
+		dialogProxy = new LaunchConfigurationDialogProxy(dialog, this);
 		ILaunchConfigurationTab[] tabs = this.dseTabs.getTabs();
 		for (int i = 0; i < tabs.length; i++) {
-			tabs[i].setLaunchConfigurationDialog(dialog);
+			tabs[i].setLaunchConfigurationDialog(dialogProxy);
 		}
 	}
 	
@@ -126,5 +139,30 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 	@Override
 	public String getName() {
 		return "Configuration Wrapper";
+	}
+	
+	@Override
+	public String getErrorMessage() {
+		String msg = null;
+		ILaunchConfigurationTab[] tabs = this.dseTabs.getTabs();
+		for (int i = 0; i < tabs.length; i++) {
+			msg = tabs[i].getErrorMessage();
+			if(msg == null) {
+				continue;
+			} else {
+				break;
+			}
+		}
+		return msg;
+	}
+	
+	@Override
+	public boolean isValid(ILaunchConfiguration launchConfig) {
+		boolean result = false;
+		ILaunchConfigurationTab[] tabs = this.dseTabs.getTabs();
+		for (int i = 0; i < tabs.length; i++) {
+			result &= tabs[i].isValid(launchConfig);
+		}
+		return result;
 	}
 }

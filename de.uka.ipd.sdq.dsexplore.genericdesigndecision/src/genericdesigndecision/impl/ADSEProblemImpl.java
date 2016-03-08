@@ -106,6 +106,13 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 		this.dseConfig = dseConfig;
 		this.emfPartition = emfPartition;
 		newProblem = dseConfig.isNewProblem();
+		
+		if(this.newProblem){
+			this.initialiseProblem();
+		} else {
+			problem = this.loadProblem();
+			this.initialGenotypeList = determineInitialGenotype(problem);
+		}
 	}
 
 	protected DecisionSpace loadProblem() {
@@ -166,8 +173,6 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	 */
 	protected void initialiseProblem() {
 		this.problem = GenericdesigndecisionFactory.eINSTANCE.createDecisionSpace();
-		final List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
-		
 		this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
 
 		if (dseConfig.isUseGenericDoF()) {
@@ -180,19 +185,19 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 			}
 		}
 		
-		DesignDecisionGenotype initialCandidate = determineDegreesAndInitialGenotype(dds);
+		instantiateDegrees();
+		determineInitialGenotype(problem);
 		
 		//TODO: Check if the initial genotype is actually a valid genotype?
 		//(this may not be the case if the degrees of freedom have been reduced for the optimisation?)
 
-		this.initialGenotypeList.add(initialCandidate);
+		this.initialGenotypeList.add(this.initialGenotype);
 	}
 	
 	/**
-	 * fills given list of degrees, determines and returns the initial genotype
-	 * @param dds degrees of freedom that are used to build the genotype; fills up during method call
+	 * spans the design space by adding DoFIs to it; which DoFs to consider is specified in the stored dseConfig
 	 */
-	protected abstract DesignDecisionGenotype determineDegreesAndInitialGenotype(List<ADegreeOfFreedom> dds);
+	protected abstract void instantiateDegrees();
 	
 	protected void throwUnknownDegreeException(final ADegreeOfFreedom dd) {
         throw new RuntimeException("Unknown degree of freedom "+dd.toString()+".");

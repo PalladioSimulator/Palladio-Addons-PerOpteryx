@@ -19,4 +19,5 @@ public interface DSEPresentationFactory extends EFactory {
 	public DSEOptionsTab createDSEOptionsTab(Metamodel mm);
 	
 	public DSEFileNamesInputTab createFileNamesInputTab(QMLManager qmlManager, Metamodel mm);
+
 }

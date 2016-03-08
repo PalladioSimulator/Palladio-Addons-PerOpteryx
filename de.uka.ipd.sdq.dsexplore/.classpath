@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry excluding="de/uka/ipd/sdq/dsexplore/opt4j/representation/modulefinder/" kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="log4j" sourcepath="log4j"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.palladiosimulator.analyzer.workflow_1.0.0.201602171827.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.antlr.runtime_4.3.0.v201502022030.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

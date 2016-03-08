@@ -1,7 +1,14 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import org.opt4j.config.annotations.Name;
+import org.opt4j.core.problem.Creator;
+import org.opt4j.core.problem.Decoder;
+import org.opt4j.core.problem.Evaluator;
 import org.opt4j.core.problem.ProblemModule;
+
+import com.google.inject.TypeLiteral;
+
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 
 
 public abstract class ADSEModule extends ProblemModule {
@@ -18,6 +25,25 @@ public abstract class ADSEModule extends ProblemModule {
 	}
 
 	@Override
-	protected abstract void config();
+	protected void config() {
+		//bind(DSENeighbor.class).asEagerSingleton();
+		
+		Class<? extends Creator<?>> creator = getCreatorClass();
+		Class<? extends Decoder<?, ?>> decoder = getDecoderClass();
+		Class<? extends Evaluator<?>> evaluator = getEvaluatorClass();
+
+		bind(new TypeLiteral<Creator<DesignDecisionGenotype>>() {}).to((Class<? extends Creator<DesignDecisionGenotype>>) DSECreator.class);
+
+		bindProblem(creator, decoder, evaluator);
+
+		//This did not work, so I moved it to Opt4JStarter.runTask(..)
+		//bindIndividualStateListener(DSEIndividualStateListener.class);
+	}
+
+	protected abstract Class<? extends Evaluator<?>> getEvaluatorClass();
+
+	protected abstract Class<? extends Decoder<?, ?>> getDecoderClass();
+
+	protected abstract Class<? extends Creator<?>> getCreatorClass();
 
 }

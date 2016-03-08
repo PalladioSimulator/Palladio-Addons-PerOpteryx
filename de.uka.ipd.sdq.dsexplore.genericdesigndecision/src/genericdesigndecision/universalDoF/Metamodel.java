@@ -27,8 +27,9 @@ public enum Metamodel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PCM(0, "PCM", "Palladio Component Model (PCM)");
-
+	PCM(0, "PCM", "Palladio Component Model (PCM)"),
+	
+	DML(1, "DML", "Descartes Modeling Language (DML)");
 	/**
 	 * The '<em><b>PCM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -43,6 +44,8 @@ public enum Metamodel implements Enumerator {
 	 * @ordered
 	 */
 	public static final int PCM_VALUE = 0;
+	
+	public static final int DML_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Metamodel</b></em>' enumerators.
@@ -53,6 +56,7 @@ public enum Metamodel implements Enumerator {
 	private static final Metamodel[] VALUES_ARRAY =
 		new Metamodel[] {
 			PCM,
+			DML,
 		};
 
 	/**
@@ -110,6 +114,7 @@ public enum Metamodel implements Enumerator {
 	public static Metamodel get(int value) {
 		switch (value) {
 			case PCM_VALUE: return PCM;
+			case DML_VALUE: return DML;
 		}
 		return null;
 	}

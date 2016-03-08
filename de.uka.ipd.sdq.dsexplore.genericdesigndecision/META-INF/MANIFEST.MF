@@ -27,6 +27,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.statistics;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.cost,
  org.palladiosimulator.analyzer.workflow,
- de.uka.ipd.sdq.pcmsupport.designdecision;bundle-version="1.3.0"
+ de.uka.ipd.sdq.pcmsupport.designdecision;bundle-version="1.3.0",
+ de.uka.ipd.sdq.dmlsupport;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: de.uka.ipd.sdq.workflow.mdsd.blackboard

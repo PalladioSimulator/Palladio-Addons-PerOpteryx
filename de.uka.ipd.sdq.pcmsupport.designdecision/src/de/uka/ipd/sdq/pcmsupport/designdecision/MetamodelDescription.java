@@ -32,7 +32,7 @@ import genericdesigndecision.universalDoF.AMetamodelDescription;
 public interface MetamodelDescription extends AMetamodelDescription {
 
 	/**
-	 * The singleton instance of the factory.
+	 * The singleton instance of the PCM metamodel description.
 	 */
 	MetamodelDescription eINSTANCE = MetamodelDescriptionImpl.getMetamodelDescription();
 

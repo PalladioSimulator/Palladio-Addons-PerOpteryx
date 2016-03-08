@@ -23,10 +23,6 @@ import de.uka.ipd.sdq.pcmsupport.designdecision.specific.DiscreteProcessingRateD
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcmsupport.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcmsupport.helper.ResultsWriter;
-import genericdesigndecision.ClassChoice;
-import genericdesigndecision.ContinousRangeChoice;
-import genericdesigndecision.DiscreteRangeChoice;
-import genericdesigndecision.GenericdesigndecisionFactory;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
 import genericdesigndecision.impl.ADSEProblemImpl;
 import genericdesigndecision.universalDoF.SpecificDoF;
@@ -38,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
@@ -71,7 +66,8 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	public DSEProblemImpl(final PCMWorkflowConfiguration dseConfig, final PCMResourceSetPartition pcmPartition)
 			throws CoreException {
 
-		super(dseConfig, pcmPartition);
+		this.dseConfig = dseConfig;
+		this.emfPartition = pcmPartition;
 		this.designDecisionFactory = designdecisionFactory.eINSTANCE;
 		this.specificDesignDecisionFactory = specificFactory.eINSTANCE;
 		this.associatedMetamodel = designDecisionFactory.createMetamodelDescription();
@@ -120,29 +116,27 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	}
 
 	@Override
-	protected DesignDecisionGenotype determineDegreesAndInitialGenotype(List<ADegreeOfFreedom> dds) {
-		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
+	protected void instantiateDegrees() {
+		List<ADegreeOfFreedom> dds = this.problem.getDofInstances();
 
 		for (SpecificDoF d : dseConfig.getSelectedSpecificDoFs()) {
 			switch (d.getName()) {
 			case MetamodelDescription.PCM_ALLOCATION_DOF:
-				determineAllocationDecisions(dds, initialCandidate);
+				determineAllocationDecisions(dds);
 				break;
 			case MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF:
-				determineProcessingRateDecisions(dds, initialCandidate);
+				determineProcessingRateDecisions(dds);
 				break;
 			case MetamodelDescription.PCM_CAPACITY_DOF:
-				determineCapacityDecisions(dds, initialCandidate);
+				determineCapacityDecisions(dds);
 				break;
 			case MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF:
-				determineAssembledComponentsDecisions(dds, initialCandidate);
+				determineAssembledComponentsDecisions(dds);
 				break;
 			default:
 				throw new IllegalArgumentException("PCM-specific degree of freedom could not be found");
 			}
 		}
-		
-		return initialCandidate;
 	}
 
 	/**
@@ -152,9 +146,8 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	 *
 	 * Otherwise, I would have to descend in all composed structures to find all {@link BasicComponent}s.
 	 * @param dds
-	 * @param initialCandidate
 	 */
-	private void determineCapacityDecisions(final List<ADegreeOfFreedom> dds, final DesignDecisionGenotype genotype) {
+	private void determineCapacityDecisions(final List<ADegreeOfFreedom> dds) {
 
 		final List<Repository> repositories = this.pcmInstance.getRepositories();
 		for (final Repository repository : repositories) {
@@ -168,17 +161,8 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 						final CapacityDegree capacityDegree = this.specificDesignDecisionFactory.createCapacityDegree();
 						capacityDegree.setPrimaryChanged(passiveResource);
 						capacityDegree.setFrom(1);
-						capacityDegree.setTo(
-								Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
+						capacityDegree.setTo(Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
 						dds.add(capacityDegree);
-
-						final DiscreteRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE
-								.createDiscreteRangeChoice();
-						choice.setDofInstance(capacityDegree);
-						choice.setChosenValue(
-								Integer.valueOf(passiveResource.getCapacity_PassiveResource().getSpecification()));
-
-						genotype.add(choice);
 					}
 				}
 			}
@@ -209,7 +193,7 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	//	}
 
 	//TODO: change this to two visitors that either create the design decision and initial genotype or just initial genotype.
-	private void determineAllocationDecisions(final List<ADegreeOfFreedom> dds, final DesignDecisionGenotype genotype) {
+	private void determineAllocationDecisions(final List<ADegreeOfFreedom> dds) {
 		final List<AllocationContext> acs = this.pcmInstance.getAllocation().getAllocationContexts_Allocation();
 		final List<ResourceContainer> rcs = this.pcmInstance.getResourceEnvironment()
 				.getResourceContainer_ResourceEnvironment();
@@ -220,48 +204,26 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 			ad.setPrimaryChanged(ac);
 			ad.getClassDesignOptions().addAll(rcs);
 			dds.add(ad);
-
-			final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
-			choice.setDofInstance(ad);
-			choice.setChosenValue(ac.getResourceContainer_AllocationContext());
-
-			genotype.add(choice);
 		}
 	}
 
-	/**
-	 * Be sure to add one design decision and one gene in the initial genotype at once. The index is important.
-	 * @param genotypeIndex
-	 */
-	private void determineAssembledComponentsDecisions(final List<ADegreeOfFreedom> dds,
-			final DesignDecisionGenotype genotype) {
+	private void determineAssembledComponentsDecisions(final List<ADegreeOfFreedom> dds) {
 		final AlternativeComponent ac = AlternativeComponent.getInstance();
 		final List<AssembledComponentDegree> decisions = ac.generateDesignDecisions(this.pcmInstance);
 
 		for (final AssembledComponentDegree designDecision : decisions) {
 			dds.add(designDecision);
-			final RepositoryComponent currentlyAssembledComponent = ((AssemblyContext) designDecision
-					.getPrimaryChanged()).getEncapsulatedComponent__AssemblyContext();
-
-			final ClassChoice choice = GenericdesigndecisionFactory.eINSTANCE.createClassChoice();
-			choice.setDofInstance(designDecision);
-			choice.setChosenValue(currentlyAssembledComponent);
-			genotype.add(choice);
-
 		}
-
 	}
 
 	/**
-	 * Be sure to add one design decision and one gene in the initial genotype at once. The index is important.
 	 * Creates {@link ContinuousProcessingRateDegree} decisions for each found processing resource.
 	 *
 	 * Also determines {@link SchedulingPolicyDegree}s.
 	 *
 	 * TODO: make configurable to also add {@link DiscreteProcessingRateDegree}s.
 	 */
-	private void determineProcessingRateDecisions(final List<ADegreeOfFreedom> dds,
-			final DesignDecisionGenotype genotype) {
+	private void determineProcessingRateDecisions(final List<ADegreeOfFreedom> dds) {
 		final List<ResourceContainer> resourceContainers = this.pcmInstance.getResourceEnvironment()
 				.getResourceContainer_ResourceEnvironment();
 		for (final ResourceContainer resourceContainer : resourceContainers) {
@@ -282,11 +244,6 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 				decision.setProcessingresourcetype(resource.getActiveResourceType_ActiveResourceSpecification());
 				dds.add(decision);
 
-				final ContinousRangeChoice choice = GenericdesigndecisionFactory.eINSTANCE.createContinousRangeChoice();
-				choice.setDofInstance(decision);
-				choice.setChosenValue(currentRate);
-
-				genotype.add(choice);
 
 				//Create SchedulingPolicyDegree (excluded here, not in default problem, can be modelled manually).
 				/*SchedulingPolicyDegree schedulingDecision = this.designDecisionFactory.createSchedulingPolicyDegree();

@@ -122,14 +122,14 @@ public abstract class AGenomeToCandidateModelTransformationImpl extends MinimalE
 	
 	public void setProperty(EObject changeableElement, EStructuralFeature property,
 			Object value) {
-		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
-		changeableElement.eSet(propertyInLoadedPCM, value);
+		EStructuralFeature propertyInLoadedModel = changeableElement.eClass().getEStructuralFeature(property.getName());
+		changeableElement.eSet(propertyInLoadedModel, value);
 		
 	}
 	
 	public Object getProperty(EObject changeableElement, EStructuralFeature property) {
-		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
-		return changeableElement.eGet(propertyInLoadedPCM);
+		EStructuralFeature propertyInLoadedModel = changeableElement.eClass().getEStructuralFeature(property.getName());
+		return changeableElement.eGet(propertyInLoadedModel);
 		
 	}
 
@@ -222,7 +222,7 @@ public abstract class AGenomeToCandidateModelTransformationImpl extends MinimalE
 		helper.setInstanceContext(contextInstance);
 		
 		//FIXME: Maybe fix problem by aligning the loaded java classes with the classes 
-		//from the loaded PCM model. Switch through all first. See DSEProblem for initial idea.
+		//from the loaded PCM model. Switch through all first.
 		Query query = createOCLQuery(oclRule, helper);
 		
 		return query;

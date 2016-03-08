@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 
+import de.uka.ipd.sdq.dmlsupport.DMLWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
@@ -47,6 +48,9 @@ public class DSEProblemFactoryImpl extends EFactoryImpl implements DSEProblemFac
 				} catch (CoreException e) {
 							e.printStackTrace();
 				}
+				break;
+			case DML:
+				problem = new de.uka.ipd.sdq.dmlsupport.designdecision.DSEProblem((DMLWorkflowConfiguration) dseConfig, modelPartition);
 				break;
 			default:
 				throw new IllegalArgumentException("This metamodel '" + metamodel.toString() + "' is not supported.");
