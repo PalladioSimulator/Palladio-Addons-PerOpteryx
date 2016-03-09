@@ -25,11 +25,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import de.uka.ipd.sdq.dmlsupport.designdecision.MetamodelDescription;
 import de.uka.ipd.sdq.dsexplore.genericdesigndecision.DSEProblemFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
+import dmlsupport.designdecision.DesigndecisionFactory;
+import dmlsupport.designdecision.MetamodelDescription;
 import genericdesigndecision.ADSEProblem;
 
 /**
@@ -93,7 +94,7 @@ public class UniversalDoFImpl extends MinimalEObjectImpl.Container implements Un
 		//added for PCM support
 		supportedMetamodels.add(designdecisionFactory.eINSTANCE.createMetamodelDescription());
 		//added for DML support
-		supportedMetamodels.add(MetamodelDescription.eINSTANCE);
+		supportedMetamodels.add(DesigndecisionFactory.eINSTANCE.createMetamodelDescription());
 	}
 
 	/**

@@ -326,8 +326,11 @@
           eType="#//universalDoF/GDoFRepository"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="supportedMetamodels"
           upperBound="-1" eType="#//universalDoF/AMetamodelDescription"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//ADSEProblem"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1">
+        <eGenericType eClassifier="#//ADSEProblem">
+          <eTypeArguments eClassifier="#//Phenotype"/>
+        </eGenericType>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="Metamodel">
       <eLiterals name="PCM" literal="Palladio Component Model (PCM)"/>

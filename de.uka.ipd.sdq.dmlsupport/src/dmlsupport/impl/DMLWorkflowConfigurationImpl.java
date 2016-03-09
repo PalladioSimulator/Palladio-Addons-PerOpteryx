@@ -1,11 +1,25 @@
-package de.uka.ipd.sdq.dmlsupport;
+/**
+ */
+package dmlsupport.impl;
+
+import dmlsupport.DMLWorkflowConfiguration;
+import dmlsupport.DmlsupportPackage;
 
 import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
-public class DMLWorkflowConfiguration extends DSEWorkflowConfiguration {
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>DML Workflow Configuration</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * @generated
+ */
+public class DMLWorkflowConfigurationImpl extends DSEWorkflowConfiguration implements DMLWorkflowConfiguration {
 
 	@Override
 	public String getCheckFilename() {
@@ -25,4 +39,4 @@ public class DMLWorkflowConfiguration extends DSEWorkflowConfiguration {
 		return null;
 	}
 
-}
+} //DMLWorkflowConfigurationImpl

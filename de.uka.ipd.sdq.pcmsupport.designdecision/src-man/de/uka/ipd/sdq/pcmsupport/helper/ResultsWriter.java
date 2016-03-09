@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.opt4j.core.Criterion;
-import org.opt4j.core.IntegerValue;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.Value;
@@ -301,28 +300,6 @@ public class ResultsWriter extends de.uka.ipd.sdq.dsexplore.helper.AResultsWrite
 			}
 		
 		}
-		return output;
-	}
-
-	private String formatValue(Value<?> value) {
-		
-		if (value instanceof IntegerValue){
-			IntegerValue intValue = (IntegerValue)value;
-			return String.valueOf(intValue);
-			
-		} else {
-			double d = value.getDouble();
-			return formatDouble(d);
-		}
-		
-	}
-
-	
-	private StringBuilder printObjectives(List<Criterion> criterionsToSave, StringBuilder output) {
-		for (Criterion entry : criterionsToSave) {
-			output.append(getDimensionName(entry) +";");
-		}
-
 		return output;
 	}
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/de.uka.ipd.sdq.dmlsupport/src" modelPluginID="de.uka.ipd.sdq.dmlsupport"
+    modelName="Dmlsupport" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.genmodel#//genericdesigndecision ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>dmlsupport.ecore</foreignModel>
+  <genPackages prefix="Dmlsupport" disposableProviderFactory="true" ecorePackage="dmlsupport.ecore#/">
+    <genClasses ecoreClass="dmlsupport.ecore#//DMLWorkflowConfiguration"/>
+    <genClasses ecoreClass="dmlsupport.ecore#//DMLWorkflowConfigurationBuilder"/>
+    <genClasses ecoreClass="dmlsupport.ecore#//DSEWorkflowConfiguration"/>
+    <genClasses ecoreClass="dmlsupport.ecore#//AbstractWorkflowConfigurationBuilder"/>
+    <nestedGenPackages prefix="Designdecision" disposableProviderFactory="true" ecorePackage="dmlsupport.ecore#//designdecision">
+      <genClasses ecoreClass="dmlsupport.ecore#//designdecision/DSEProblem"/>
+      <genClasses ecoreClass="dmlsupport.ecore#//designdecision/MetamodelDescription"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Helper" disposableProviderFactory="true" ecorePackage="dmlsupport.ecore#//helper">
+      <genClasses ecoreClass="dmlsupport.ecore#//helper/DMLPhenotype"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Representation" disposableProviderFactory="true" ecorePackage="dmlsupport.ecore#//representation">
+      <genClasses ecoreClass="dmlsupport.ecore#//representation/DML_DSEOptionsTab"/>
+      <genClasses ecoreClass="dmlsupport.ecore#//representation/DMLFileNamesInput"/>
+      <genClasses ecoreClass="dmlsupport.ecore#//representation/DSEOptionsTab"/>
+      <genClasses ecoreClass="dmlsupport.ecore#//representation/DSEFileNamesInputTab"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

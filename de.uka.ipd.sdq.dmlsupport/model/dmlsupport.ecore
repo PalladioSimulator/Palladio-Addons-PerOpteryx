@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dmlsupport" nsURI="http://sdq.ipd.uka.de/dmlsupport/" nsPrefix="dmlsupport">
-  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfiguration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfigurationBuilder"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfiguration" eSuperTypes="#//DSEWorkflowConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DMLWorkflowConfigurationBuilder" eSuperTypes="#//AbstractWorkflowConfigurationBuilder"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DSEWorkflowConfiguration" instanceClassName="de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractWorkflowConfigurationBuilder"
+      instanceClassName="de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder"/>
   <eSubpackages name="designdecision" nsURI="http://sdq.ipd.uka.de/dmlsupport/designdecision"
       nsPrefix="designdecision">
-    <eClassifiers xsi:type="ecore:EClass" name="DSEProblem"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DSEProblem">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//ADSEProblem">
+        <eTypeArguments eClassifier="#//helper/DMLPhenotype"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MetamodelDescription" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//universalDoF/AMetamodelDescription"/>
   </eSubpackages>
   <eSubpackages name="helper" nsURI="http://sdq.ipd.uka.de/dmlsupport/helper" nsPrefix="helper">
-    <eClassifiers xsi:type="ecore:EClass" name="DMLPhenotype"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DMLPhenotype" eSuperTypes="../../de.uka.ipd.sdq.dsexplore.genericdesigndecision/model/genericdesigndecision.ecore#//Phenotype"/>
   </eSubpackages>
   <eSubpackages name="representation" nsURI="http://sdq.ipd.uka.de/dmlsupport/representation"
       nsPrefix="representation">
-    <eClassifiers xsi:type="ecore:EClass" name="DML_DSEOptionsTab"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DMLFileNamesInput"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DML_DSEOptionsTab" eSuperTypes="#//representation/DSEOptionsTab"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DMLFileNamesInput" eSuperTypes="#//representation/DSEFileNamesInputTab"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DSEOptionsTab" instanceClassName="de.uka.ipd.sdq.dsexplore.launch.DSEOptionsTab"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DSEFileNamesInputTab" instanceClassName="de.uka.ipd.sdq.dsexplore.launch.DSEFileNamesInputTab"/>
   </eSubpackages>
 </ecore:EPackage>

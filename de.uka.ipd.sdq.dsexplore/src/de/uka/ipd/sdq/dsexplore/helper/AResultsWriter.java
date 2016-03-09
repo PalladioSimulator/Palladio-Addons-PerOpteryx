@@ -16,7 +16,9 @@ import org.apache.log4j.Logger;
 import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Individual;
+import org.opt4j.core.IntegerValue;
 import org.opt4j.core.Objective;
+import org.opt4j.core.Value;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.ITactic;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResultCandidate;
@@ -345,6 +347,27 @@ public abstract class AResultsWriter {
 		} else {
 			logger.info(result.toString());
 		}
+	}
+	
+	public String formatValue(Value<?> value) {
+		
+		if (value instanceof IntegerValue){
+			IntegerValue intValue = (IntegerValue)value;
+			return String.valueOf(intValue);
+			
+		} else {
+			double d = value.getDouble();
+			return formatDouble(d);
+		}
+	}
+
+	
+	public StringBuilder printObjectives(List<Criterion> criterionsToSave, StringBuilder output) {
+		for (Criterion entry : criterionsToSave) {
+			output.append(getDimensionName(entry) +";");
+		}
+
+		return output;
 	}
 	
 }

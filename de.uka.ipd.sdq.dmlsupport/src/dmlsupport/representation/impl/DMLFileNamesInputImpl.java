@@ -1,16 +1,20 @@
-package de.uka.ipd.sdq.dmlsupport.representation;
+/**
+ */
+package dmlsupport.representation.impl;
 
+import dmlsupport.representation.DMLFileNamesInput;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-
 import de.uka.ipd.sdq.dsexplore.launch.DSEFileNamesInputTab;
-import de.uka.ipd.sdq.dsexplore.launch.QMLManager;
 
-public class DMLFileNamesInputTab extends DSEFileNamesInputTab {
-
-	public DMLFileNamesInputTab(QMLManager qmlManager) {
-		// TODO Auto-generated constructor stub
-	}
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>DML File Names Input</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * @generated
+ */
+public class DMLFileNamesInputImpl extends DSEFileNamesInputTab implements DMLFileNamesInput {
 
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
@@ -24,4 +28,4 @@ public class DMLFileNamesInputTab extends DSEFileNamesInputTab {
 		
 	}
 
-}
+} //DMLFileNamesInputImpl

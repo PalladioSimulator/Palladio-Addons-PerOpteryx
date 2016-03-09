@@ -4,13 +4,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
-import de.uka.ipd.sdq.dmlsupport.DMLWorkflowConfigurationBuilder;
-import de.uka.ipd.sdq.dmlsupport.representation.DMLFileNamesInputTab;
-import de.uka.ipd.sdq.dmlsupport.representation.DML_DSEOptionsTab;
 import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfiguration;
 import de.uka.ipd.sdq.pcmsupport.PCMWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.pcmsupport.representation.PCM_DSEOptionsTab;
 import de.uka.ipd.sdq.pcmsupport.representation.QML_PCMFileNamesInputTab;
+import dmlsupport.DmlsupportFactory;
+import dmlsupport.impl.DMLWorkflowConfigurationBuilderImpl;
+import dmlsupport.representation.RepresentationFactory;
 import genericdesigndecision.universalDoF.Metamodel;
 
 /**
@@ -73,10 +73,10 @@ public class DSEPresentationFactoryImpl extends EFactoryImpl implements DSEPrese
 			}
 		break;
 		
-		case DML: dseConfig = new de.uka.ipd.sdq.dmlsupport.DMLWorkflowConfiguration();
+		case DML: dseConfig = DmlsupportFactory.eINSTANCE.createDMLWorkflowConfiguration();
 			try {
 				//set DML-specific parts of configuration
-				DMLWorkflowConfigurationBuilder dmlBuilder = new DMLWorkflowConfigurationBuilder(configuration, mode);
+				DMLWorkflowConfigurationBuilderImpl dmlBuilder = DmlsupportFactory.eINSTANCE.createDMLWorkflowConfigurationBuilder(configuration, mode);
 				dmlBuilder.fillConfiguration(dseConfig);
 			} catch (CoreException e) {
 				e.printStackTrace();
@@ -104,7 +104,7 @@ public class DSEPresentationFactoryImpl extends EFactoryImpl implements DSEPrese
 		switch(mm.getValue()) {
 		case Metamodel.PCM_VALUE: 	return new PCM_DSEOptionsTab();
 		
-		case Metamodel.DML_VALUE:	return new DML_DSEOptionsTab();
+		case Metamodel.DML_VALUE:	return RepresentationFactory.eINSTANCE.createDML_DSEOptionsTab();
 		
 		default: throw new IllegalArgumentException(exceptionMessage);
 		}
@@ -115,7 +115,7 @@ public class DSEPresentationFactoryImpl extends EFactoryImpl implements DSEPrese
 		switch(mm.getValue()) {
 		case Metamodel.PCM_VALUE:	return new QML_PCMFileNamesInputTab(qmlManager);
 		
-		case Metamodel.DML_VALUE: 	return new DMLFileNamesInputTab(qmlManager);
+		case Metamodel.DML_VALUE: 	return RepresentationFactory.eINSTANCE.createDMLFileNamesInput(qmlManager);
 		
 		default: throw new IllegalArgumentException(exceptionMessage);
 		}

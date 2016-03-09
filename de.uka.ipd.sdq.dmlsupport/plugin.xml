@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated dmlsupport -->
+      <package
+            uri="http://sdq.ipd.uka.de/dmlsupport/"
+            class="dmlsupport.DmlsupportPackage"
+            genModel="model/dmlsupport.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated dmlsupport -->
+      <package
+            uri="http://sdq.ipd.uka.de/dmlsupport/designdecision"
+            class="dmlsupport.designdecision.DesigndecisionPackage"
+            genModel="model/dmlsupport.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated dmlsupport -->
+      <package
+            uri="http://sdq.ipd.uka.de/dmlsupport/helper"
+            class="dmlsupport.helper.HelperPackage"
+            genModel="model/dmlsupport.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated dmlsupport -->
+      <package
+            uri="http://sdq.ipd.uka.de/dmlsupport/representation"
+            class="dmlsupport.representation.RepresentationPackage"
+            genModel="model/dmlsupport.genmodel"/>
+   </extension>
+
+</plugin>
