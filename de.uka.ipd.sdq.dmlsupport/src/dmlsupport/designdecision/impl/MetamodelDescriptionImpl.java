@@ -7,6 +7,7 @@ import dmlsupport.designdecision.MetamodelDescription;
 import genericdesigndecision.ADSEProblem;
 import genericdesigndecision.Choice;
 import genericdesigndecision.genericDoF.ADegreeOfFreedom;
+import genericdesigndecision.universalDoF.Metamodel;
 import genericdesigndecision.universalDoF.impl.AMetamodelDescriptionImpl;
 
 import java.util.Collection;
@@ -25,6 +26,10 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator;
 public class MetamodelDescriptionImpl extends AMetamodelDescriptionImpl implements MetamodelDescription {
 
 	private static MetamodelDescription metamodelDescrSingleton = null;
+	
+	private MetamodelDescriptionImpl() {
+		this.name = Metamodel.DML;
+	}
 	
 	public static MetamodelDescription getMetamodelDescription() {
 		if(metamodelDescrSingleton == null) {

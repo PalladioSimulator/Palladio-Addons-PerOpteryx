@@ -11,6 +11,6 @@ public abstract class DSEFileNamesInputTab extends InputTab {
 	 * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getName()
 	 */
 	public String getName() {
-		return "Architecture Model(s)";
+		return "Model(s)";
 	}
 }

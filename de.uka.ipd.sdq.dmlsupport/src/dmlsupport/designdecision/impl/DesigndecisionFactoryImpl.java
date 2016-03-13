@@ -81,7 +81,7 @@ public class DesigndecisionFactoryImpl extends EFactoryImpl implements Designdec
 	 * @generated
 	 */
 	public MetamodelDescription createMetamodelDescription() {
-		MetamodelDescriptionImpl metamodelDescription = new MetamodelDescriptionImpl();
+		MetamodelDescription metamodelDescription = MetamodelDescription.eINSTANCE;
 		return metamodelDescription;
 	}
 

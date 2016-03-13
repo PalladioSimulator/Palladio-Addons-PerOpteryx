@@ -36,10 +36,10 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 		setControl(tabFolderContainer);
 		tabFolderContainer.setLayout(new GridLayout(1, true));
 		
-		createSubControl();
+		createSubControls();
 	}
 
-	private void createSubControl() {
+	private void createSubControls() {
 		tabFolder = new CTabFolder(tabFolderContainer, SWT.BORDER | SWT.FLAT);
 		
 		// add metamodel tab
@@ -82,7 +82,7 @@ public class DSETabGroupWrapper extends InputTab implements ILaunchConfiguration
 		//tabFolderContainer.dispose();
 		//null values are not used anyway
 		this.dseTabs.metamodelHasChanged(metamodel, null, null);
-		createSubControl();
+		createSubControls();
 		//canSave set to true here
 		super.setDirty(true);
 		super.updateLaunchConfigurationDialog();

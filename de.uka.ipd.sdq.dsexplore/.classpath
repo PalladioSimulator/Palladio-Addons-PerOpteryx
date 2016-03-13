@@ -6,5 +6,8 @@
 	<classpathentry exported="true" kind="lib" path="log4j" sourcepath="log4j"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.palladiosimulator.analyzer.workflow_1.0.0.201602171827.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.antlr.runtime_4.3.0.v201502022030.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.eclipse.emf.mwe.core_1.3.13.v201512160556.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/org.eclipse.wst.common.emf_1.2.400.v201505132009.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ferdinand/.p2/pool/plugins/javax.xml.bind.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

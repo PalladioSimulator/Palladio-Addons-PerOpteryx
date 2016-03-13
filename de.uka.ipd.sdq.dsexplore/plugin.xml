@@ -27,7 +27,7 @@
             class="de.uka.ipd.sdq.dsexplore.launch.DummyTabGroup"
             description="Optimise a given metamodel instance within certain degrees of freedom. For help, click the help button (?) in the bottom-left corner."
             helpContextId="de.uka.ipd.sdq.dsexplore.dse_launch_help"
-            id="de.uka.ipd.sdq.dsexplore.DSETabGroup"
+            id="de.uka.ipd.sdq.dsexplore.DummyTabGroup"
             type="de.uka.ipd.sdq.dsexplore.launchDSE">
       </launchConfigurationTabGroup>
    </extension>

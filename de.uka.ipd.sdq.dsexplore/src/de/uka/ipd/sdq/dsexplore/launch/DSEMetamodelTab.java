@@ -63,9 +63,6 @@ public class DSEMetamodelTab extends InputTab {
 					metamodel = newMetamodel;
 					DSEMetamodelTab.this.dseTabGroupWrapper.metamodelHasChanged(metamodel);
 				}
-				
-				// XXX for testing only!
-				DSEMetamodelTab.this.dseTabGroupWrapper.metamodelHasChanged(metamodel);
 			}
 		});
 	}

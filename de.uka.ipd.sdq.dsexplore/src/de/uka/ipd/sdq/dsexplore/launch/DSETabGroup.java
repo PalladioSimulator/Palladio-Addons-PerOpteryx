@@ -85,6 +85,7 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 	/**
 	 * asks the user for the metamodel of the input model
 	 * @return the specified metamodel
+	 * @deprecated
 	 */
 	private Metamodel showMMDialog() {
 
