@@ -205,7 +205,6 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 	
 	@Override
 	public void saveProblem() {
-
 		final String filename = this.dseConfig.getDesignDecisionFileName();
 		de.uka.ipd.sdq.dsexplore.helper.EMFHelper.saveToXMIFile(this.problem, filename);
 	}
