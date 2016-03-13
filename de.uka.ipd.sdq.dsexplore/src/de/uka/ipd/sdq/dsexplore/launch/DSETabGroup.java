@@ -26,6 +26,10 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 	private Metamodel metamodel;
 	private DSETabGroupWrapper wrapper;
 	
+	public DSETabGroup() {
+		this.metamodel = Metamodel.PCM;
+	}
+	
 	public DSETabGroup(Metamodel metamodel, DSETabGroupWrapper wrapper) {
 		this.metamodel = metamodel;
 		this.wrapper = wrapper;
