@@ -40,6 +40,7 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 /**
@@ -121,18 +122,20 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 
 		for (SpecificDoF d : dseConfig.getSelectedSpecificDoFs()) {
 			switch (d.getName()) {
-			case MetamodelDescription.PCM_ALLOCATION_DOF:
-				determineAllocationDecisions(dds);
-				break;
 			case MetamodelDescription.PCM_CONTINUOUS_PROCESSING_RATE_DOF:
 				determineProcessingRateDecisions(dds);
-				break;
-			case MetamodelDescription.PCM_CAPACITY_DOF:
-				determineCapacityDecisions(dds);
 				break;
 			case MetamodelDescription.PCM_ASSEMBLED_COMPONENT_DOF:
 				determineAssembledComponentsDecisions(dds);
 				break;
+			case MetamodelDescription.PCM_ALLOCATION_DOF:
+				determineAllocationDecisions(dds);
+				break;
+			case MetamodelDescription.PCM_CAPACITY_DOF:
+				determineCapacityDecisions(dds);
+				break;
+			
+			//option to add MonitoringDegree, SchedulingPolicyDegree, NumberOfCoresDegree, DiscreteProcessingRateDegree, ResourceContainerReplicationDegree
 			default:
 				throw new IllegalArgumentException("PCM-specific degree of freedom could not be found");
 			}
@@ -219,8 +222,6 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	/**
 	 * Creates {@link ContinuousProcessingRateDegree} decisions for each found processing resource.
 	 *
-	 * Also determines {@link SchedulingPolicyDegree}s.
-	 *
 	 * TODO: make configurable to also add {@link DiscreteProcessingRateDegree}s.
 	 */
 	private void determineProcessingRateDecisions(final List<ADegreeOfFreedom> dds) {
@@ -243,25 +244,33 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 				decision.setPrimaryChanged(resourceContainer);
 				decision.setProcessingresourcetype(resource.getActiveResourceType_ActiveResourceSpecification());
 				dds.add(decision);
-
-
-				//Create SchedulingPolicyDegree (excluded here, not in default problem, can be modelled manually).
-				/*SchedulingPolicyDegree schedulingDecision = this.designDecisionFactory.createSchedulingPolicyDegree();
-				SchedulingPolicy currentPolicy = resource.getSchedulingPolicy();
+			}
+		}
+	}
+	
+	/**
+	 * Creates {@link SchedulingPolicyDegree} decisions for each found processing resource.
+	 * This method is currently not called, because the degree is not included in default problem, it can be modelled manually.
+	 * @param dds
+	 */
+	private void determineSchedulingDecisions(final List<ADegreeOfFreedom> dds) {
+		
+		final List<ResourceContainer> resourceContainers = this.pcmInstance.getResourceEnvironment()
+				.getResourceContainer_ResourceEnvironment();
+		for (final ResourceContainer resourceContainer : resourceContainers) {
+			final List<ProcessingResourceSpecification> resources = resourceContainer
+					.getActiveResourceSpecifications_ResourceContainer();
+			for (final ProcessingResourceSpecification resource : resources) {
 				
-				schedulingDecision.getDomainOfAllowedSchedulingPolicies().add(SchedulingPolicy.FCFS);
-				schedulingDecision.getDomainOfAllowedSchedulingPolicies().add(SchedulingPolicy.PROCESSOR_SHARING);
+				SchedulingPolicyDegree schedulingDecision = this.specificDesignDecisionFactory.createSchedulingPolicyDegree();
+				SchedulingPolicy currentPolicy = resource.getSchedulingPolicy();
+
+				//XXX
+				//schedulingDecision.getDomainOfAllowedSchedulingPolicies().add(SchedulingPolicy.FCFS);
+				//schedulingDecision.getDomainOfAllowedSchedulingPolicies().add(SchedulingPolicy.PROCESSOR_SHARING);
 				schedulingDecision.setPrimaryChanged(resourceContainer);
 				schedulingDecision.setProcessingresourcetype(resource.getActiveResourceType_ActiveResourceSpecification());
 				dds.add(schedulingDecision);
-				
-				SchedulingPolicyChoice schedulingChoice = this.designDecisionFactory.createSchedulingPolicyChoice();
-				schedulingChoice.setDegreeOfFreedomInstance(schedulingDecision);
-				schedulingChoice.setChosenValue(currentPolicy);
-				
-				genotype.add(schedulingChoice);*/
-
-				;
 			}
 		}
 	}

@@ -65,7 +65,7 @@ public class ContinuousProcessingRateDegreeImpl extends AContinuousRangeDegreeIm
 			primaryChangeableName = ((Entity) this.getPrimaryChanged()).getEntityName();
 		}
 
-		return this.getClass().getSimpleName() + ":" + primaryChangeableName;
+		return this.getClass().getSimpleName() + ":" + primaryChangeableName + ":" + this.getProcessingresourcetype().getEntityName();
 	}
 
 	@Override
