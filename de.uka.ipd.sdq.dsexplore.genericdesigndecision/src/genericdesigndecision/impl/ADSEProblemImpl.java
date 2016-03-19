@@ -83,7 +83,7 @@ public abstract class ADSEProblemImpl<P extends Phenotype> extends MinimalEObjec
 
     protected DesignDecisionGenotype initialGenotype = null;
     
-    protected final boolean newProblem;
+    protected boolean newProblem;
     
 	/**
 	 * <!-- begin-user-doc -->

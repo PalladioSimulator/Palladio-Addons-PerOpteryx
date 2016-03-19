@@ -67,6 +67,7 @@ public class DSEProblemImpl extends ADSEProblemImpl<PCMPhenotype> implements DSE
 	public DSEProblemImpl(final PCMWorkflowConfiguration dseConfig, final PCMResourceSetPartition pcmPartition)
 			throws CoreException {
 
+		this.newProblem = dseConfig.isNewProblem();
 		this.dseConfig = dseConfig;
 		this.emfPartition = pcmPartition;
 		this.designDecisionFactory = designdecisionFactory.eINSTANCE;

@@ -13,4 +13,5 @@ package dmlsupport;
  * @generated
  */
 public interface DMLWorkflowConfiguration {
+	public static final String DML_CHECK_FILENAME = "dml";
 } // DMLWorkflowConfiguration

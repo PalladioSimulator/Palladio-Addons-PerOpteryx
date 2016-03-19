@@ -3,8 +3,14 @@
 package dmlsupport.impl;
 
 import dmlsupport.DMLWorkflowConfigurationBuilder;
+import dmlsupport.representation.impl.ConstantsContainer;
+
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
+
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 
@@ -23,8 +29,25 @@ public class DMLWorkflowConfigurationBuilderImpl extends AbstractWorkflowConfigu
 
 	@Override
 	public void fillConfiguration(AbstractWorkflowBasedRunConfiguration configuration) throws CoreException {
-		// TODO Auto-generated method stub
+		DMLWorkflowConfigurationImpl config = (DMLWorkflowConfigurationImpl) configuration;
 		
+		setDMLFilenames(config);
+		
+		config.setUseGenericDoF(this.configuration.getAttribute(DSEConstantsContainer.USE_GENERICDOFS, true));
+		if(!config.isUseGenericDoF()) {
+			for(String sdof : this.configuration.getAttribute(DSEConstantsContainer.SPECIFICDOFS, new ArrayList<String>())) {
+				config.addSpecificDoF(dmlsupport.designdecision.MetamodelDescription.eINSTANCE.getSDoF(sdof));
+			}
+		}
+	}
+
+	private void setDMLFilenames(DMLWorkflowConfigurationImpl config) throws CoreException {
+		config.setAdaptionPointsFile(getStringAttribute(ConstantsContainer.ADAPTION_POINTS_FILE));
+		config.setAdaptionProcessFile(getStringAttribute(ConstantsContainer.ADAPTION_PROCESS_FILE));
+		config.setUsageProfileFile(getStringAttribute(ConstantsContainer.USAGE_PROFILE_FILE));
+		config.setApplicationArchFile(getStringAttribute(ConstantsContainer.APP_ARCH_FILE));
+		config.setDeploymentFile(getStringAttribute(ConstantsContainer.DEPLOYMENT_FILE));
+		config.setResourceLandscapeFile(getStringAttribute(ConstantsContainer.RESOURCE_LANDSCAPE_FILE));
 	}
 
 } //DMLWorkflowConfigurationBuilderImpl

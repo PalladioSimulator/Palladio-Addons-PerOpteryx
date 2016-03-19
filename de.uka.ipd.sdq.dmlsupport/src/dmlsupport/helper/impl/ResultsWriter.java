@@ -20,7 +20,6 @@ public class ResultsWriter extends AResultsWriter {
 
 	public ResultsWriter(String filename) {
 		super(filename);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -37,8 +36,7 @@ public class ResultsWriter extends AResultsWriter {
 
 	@Override
 	protected String getDimensionName(Criterion criterion) {
-		// TODO Auto-generated method stub
-		return null;
+		return "quality dimension dummy:" + criterion.getName();
 	}
 
 	@Override

@@ -51,10 +51,11 @@ public class GDoFRepositoryImpl extends MinimalEObjectImpl.Container implements 
 	private GDoFRepositoryImpl() {
 		super();
 		this.gdofs = this.getGdofs();
-		this.newGDoF(GenericDoF.ALLOCATION_DOF);
-		this.newGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF);
-		this.newGDoF(GenericDoF.CAPACITY_DOF);
 		this.newGDoF(GenericDoF.CONTINUOUS_PROCESSING_RATE_DOF);
+		this.newGDoF(GenericDoF.ASSEMBLED_COMPONENT_DOF);
+		this.newGDoF(GenericDoF.ALLOCATION_DOF);
+		this.newGDoF(GenericDoF.CAPACITY_DOF);
+		
 	}
 
 	/**
