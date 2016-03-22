@@ -3,18 +3,22 @@ package de.uka.ipd.sdq.dsexplore.gdof;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -106,12 +110,24 @@ public class GenomeToCandidateModelTransformation {
 					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
 					selectedModelElements.put(ced, changeableElements);
 
+					//fehler nach requiredRoles, ab ced connectorsToUpdateRequired durchklicken
 					EStructuralFeature changeableProperty = ced.getChangeable();
 
 					for (EObject changeableElement : changeableElements) {
 
 						Object newValue = valueRule(ced, changeableElement, rootElements);
-						setProperty(changeableElement, changeableProperty, newValue);
+						//FIXME create loop to set properties if @newValue is a set
+						//Set<Object> set = new HashSet<Object>();
+						if (newValue instanceof HashSet<?>) {
+							Set<?> s = (HashSet<?>) newValue;
+							for (Object val: s) {
+								setProperty(changeableElement, changeableProperty, val);
+							}
+						} else {
+							setProperty(changeableElement, changeableProperty, newValue);
+						}
+						
+						
 
 					}
 
@@ -143,6 +159,14 @@ public class GenomeToCandidateModelTransformation {
 			List<EObject> rootElements) {
 		
 		ValueRule oclValueRule = ced.getValueRule();
+
+		EObject test = (EObject) changeableElement;
+		EClass cla = test.eClass();
+		EList<EStructuralFeature> struct = cla.getEAllStructuralFeatures();
+//		EStructuralFeature a =  struct.get(0);
+//		boolean bla = false;
+//		bla = struct.contains(a);
+		
 		
 		Query parsedQuery = parseInstanceContextOCL(oclValueRule, changeableElement, rootElements);
 		return parsedQuery.evaluate(changeableElement);
@@ -229,6 +253,12 @@ public class GenomeToCandidateModelTransformation {
 		
 		defineHelpers(helper, helpers);
 		
+		
+//		if (!oclRule.getHelperDefinition().isEmpty() && oclRule.getHelperDefinition() != null ) {
+//			String helpOCL = oclRule.getHelperDefinition().get(0).getMainOclQuery();
+//			String mainOCL = oclRule.getMainOclQuery();
+//		}
+		//oclRule.setMainOclQuery("self.requiringAssemblyContext_AssemblyConnector.encapsulatedComponent__AssemblyContext.requiredRoles_InterfaceRequiringEntity->select(rr| self.providedRole_AssemblyConnector.providedInterface__OperationProvidedRole = rr.oclAsType(repository::OperationRequiredRole).requiredInterface__OperationRequiredRole)");
 		//FIXME: Maybe fix problem by aligning the loaded java classes with the classes 
 		//from the loaded PCM model. Switch through all first. See DSEProblem for initial idea.
 		Query query = createOCLQuery(oclRule, helper);
@@ -256,14 +286,14 @@ public class GenomeToCandidateModelTransformation {
 		try {
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
 				helper.setContext(helperOCLDefinition.getContextClass());
-				EList<EOperation> exists = helperOCLDefinition.getContextClass().getEAllOperations();
+				//EList<EOperation> exists = helperOCLDefinition.getContextClass().getEAllOperations();
 				try {
 				helper.defineOperation(helperOCLDefinition.getMainOclQuery());
 				}catch (SemanticException e) {
 					if (!e.getMessage().contains("already defined in type")) {
 						throw e;
 					} else {
-						
+						System.out.println("already defined in type");
 					}
 				}
 			}
@@ -277,6 +307,12 @@ public class GenomeToCandidateModelTransformation {
 		try {
 			OCLExpression oclExpresssion = helper.createQuery(oclRule.getMainOclQuery());
 			Query query = OCL_ENV.createQuery(oclExpresssion);
+			//String s = oclRule.getHelperDefinition().get(0).getMainOclQuery();
+			//OCLExpression col2 = helper.createQuery(s);
+			//String c = helper.getOCL().getConstraints().get(0).getSpecification().getBodyExpression().toString();
+			//Query ne = OCL_ENV.createQuery(c);
+			//OCLExpression oclex = helper.createQuery(c);
+			
 			return query;
 		} catch (ParserException e) {
 			e.printStackTrace();
