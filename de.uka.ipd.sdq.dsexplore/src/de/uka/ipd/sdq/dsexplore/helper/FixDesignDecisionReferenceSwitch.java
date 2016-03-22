@@ -150,6 +150,7 @@ public class FixDesignDecisionReferenceSwitch extends designdecisionSwitch<EObje
         try {
             for (final DegreeOfFreedomInstance dd : object.getDegreesOfFreedom()) {
                 doSwitch(dd);
+                //this.genericSwitch.doSwitch(dd.getDof());
             };
         } catch (final ClassCastException e){
             logger.error("Class cast exception when visiting .designdecision model. Please check your model for validity using the Ecore tree editor. References might be broken.");
