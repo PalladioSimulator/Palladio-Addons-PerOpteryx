@@ -158,7 +158,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
-          ordered="false" lowerBound="1" upperBound="-1" eType="#//gdof/ChangeableElementDescription"
+          lowerBound="1" upperBound="-1" eType="#//gdof/ChangeableElementDescription"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interactionConstraints"
           ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
