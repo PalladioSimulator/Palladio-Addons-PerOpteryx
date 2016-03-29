@@ -5,12 +5,21 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.delegate.OCLSettingDelegate.Changeable;
 import org.opt4j.core.problem.Creator;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.helper.FixGDOFReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -19,6 +28,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
@@ -128,7 +138,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 			Object chosenValue = createRandomValue(degree);
 			if (chosenValue instanceof EObject) {
 				ClassChoice classChoice = factory.createClassChoice();
-				classChoice.setChosenValue(classChoice);
+				classChoice.setChosenValue((EObject)chosenValue);
 				choice = classChoice;
 			} else if (chosenValue instanceof Double) {
 				ContinousRangeChoice continuousNumberChoice = factory.createContinousRangeChoice();
@@ -150,9 +160,80 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 
 	private Object createRandomValue(DegreeOfFreedomInstance degree) {
+		//EObject obj = degree.getPrimaryChanged();
+		//FIXME ---START SWITCH TEST---
+		
+		EObject eTarget = degree.getPrimaryChanged();
+		ChangeableElementDescription dofPrimaryChangeable = degree.getDof().getPrimaryChangeable();
+		
+//		final FixGDOFReferenceSwitch genericSwitch = new FixGDOFReferenceSwitch(Opt4JStarter.getProblem().getInitialInstance());
+//		genericSwitch.blabla(degree);
+		
+////		EStructuralFeature property = dofPrimaryChangeable.getChangeable();
+////		eTarget.eClass().setName("primaryChanged");
+//		
+//		
+//		
+////		for (EStructuralFeature eTargetFeature : eTarget.eClass().getEStructuralFeatures()) {
+////			if (eTargetFeature.getName().equals(property.getName())) {
+////				eTarget.eUnset(eTargetFeature);
+////				eTarget.eSet(property, property.getEGenericType());
+////				
+//////				dofPrimaryChangeable.setChangeable(eTargetFeature);
+////			}
+////		}
+////		
+////		
+//		//EObject neuesPrimaryChanged = degree.getDof().getPrimaryChangeable();
+//    	//final List<AssemblyContext> acs = this.initialInstance.getSystem().getAssemblyContexts__ComposedStructure();
+//		
+//    	EStructuralFeature property = degree.getDof().getPrimaryChangeable().getChangeable();
+//    	
+//    	//--
+//    	PCMInstance iniInstance = Opt4JStarter.getProblem().getInitialInstance();
+//    	EList<AssemblyContext> pcmass = iniInstance.getSystem().getAssemblyContexts__ComposedStructure();
+//    	boolean found = false;
+//    	for (AssemblyContext a : pcmass) {
+//    		for(EStructuralFeature f : a.eClass().getEStructuralFeatures()) {
+//    			if(f.getName().equals(property.getName())) {
+//    				
+//    				System.out.println("Property:            "+property.toString());
+//    				System.out.println("ini Instance System: "+f.toString());
+//    				
+//    				EGenericType egen = property.getEGenericType();
+//    				
+//    				EStructuralFeature blaa = (EStructuralFeature) eTarget.eGet(f);
+//    				
+//    				eTarget.eClass().eSet(property, egen.getERawType());
+//    				eTarget.eSet(property, a.getEncapsulatedComponent__AssemblyContext());
+////    				dofPrimaryChangeable.setChangeable(f);
+//    				found = true;
+//    				//degree.getDof().getPrimaryChangeable().setChangeable(f);
+//    				//a.eClass().eSet(changable1, a);
+//    				break;
+//    			}
+//    		}
+//    			if (found) {
+//    				break;
+//    			}
+//    	}
+    	//--
+    	
+//    	EList<EStructuralFeature> featuresOld = objectWithOldValue.eClass().getEStructuralFeatures();
+//    	String nameNewValue = newValueFeat.getName();
+//    	
+//    	for (EStructuralFeature feature : featuresOld) {
+//    		String nameOldVal = feature.getName();
+//    		if (nameOldVal.equals(nameNewValue)) {
+//    			featuresOld.remove(feature);
+//    			featuresOld.add(newValueFeat);
+//    			break;
+//    		}
+//    	}
+		// ---END SWITCH TEST---
 		Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
-				degree.getDof().getPrimaryChangeable(),
-				degree.getPrimaryChanged(), 
+			dofPrimaryChangeable,
+				eTarget, 
 				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
 		
 		List<Object> list;
