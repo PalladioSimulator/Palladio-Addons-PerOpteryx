@@ -9,13 +9,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -86,6 +89,23 @@ public class GenomeToCandidateModelTransformation {
 			DegreeOfFreedomInstance dofi = choice.getDegreeOfFreedomInstance();
 			DegreeOfFreedom gdof = dofi.getDof();
 
+//			//FIXME ---START SWITCH TEST---
+//			EObject objectWithOldValue = dofi.getPrimaryChanged();
+//	    	//final List<AssemblyContext> acs = this.initialInstance.getSystem().getAssemblyContexts__ComposedStructure();
+//	    	EStructuralFeature newValueFeat = dofi.getDof().getPrimaryChangeable().getChangeable();
+//	    	EList<EStructuralFeature> featuresOld = objectWithOldValue.eClass().getEStructuralFeatures();
+//	    	String nameNewValue = newValueFeat.getName();
+//	    	
+//	    	for (EStructuralFeature feature : featuresOld) {
+//	    		String nameOldVal = feature.getName();
+//	    		if (nameOldVal.equals(nameNewValue)) {
+//	    			featuresOld.remove(feature);
+//	    			featuresOld.add(newValueFeat);
+//	    			break;
+//	    		}
+//	    	}
+//			// ---END SWITCH TEST---
+			
 			if (gdof != null) {
 
 				// Store for each CED which instances have been selected
@@ -110,7 +130,7 @@ public class GenomeToCandidateModelTransformation {
 					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
 					selectedModelElements.put(ced, changeableElements);
 
-					//fehler nach requiredRoles, ab ced connectorsToUpdateRequired durchklicken
+					//fehler nach requiredRoles, ab ced connectorsToUpdateRequired durchklicken FIXME
 					EStructuralFeature changeableProperty = ced.getChangeable();
 
 					for (EObject changeableElement : changeableElements) {
@@ -158,11 +178,26 @@ public class GenomeToCandidateModelTransformation {
 	public static Object valueRule(ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements) {
 		
+		//FIXME switching references, just quick fix
 		ValueRule oclValueRule = ced.getValueRule();
 
 		EObject test = (EObject) changeableElement;
 		EClass cla = test.eClass();
 		EList<EStructuralFeature> struct = cla.getEAllStructuralFeatures();
+//		Iterator<EStructuralFeature> i = struct.iterator();
+//		while(i.hasNext()) {
+//			EStructuralFeature feature = i.next();
+//			String featureName = feature.getName();
+//			EClass ec = feature.getEContainingClass();
+//			Resource eref =  ec.eResource();
+//			List <EObject> conts = eref.getContents();
+//			Iterator<EObject> ii = conts.iterator();
+//			while(ii.hasNext()) {
+//				EObject bla =ii.next();
+//				
+//			}
+//			System.out.println(featureName);
+//		}
 //		EStructuralFeature a =  struct.get(0);
 //		boolean bla = false;
 //		bla = struct.contains(a);
@@ -175,6 +210,9 @@ public class GenomeToCandidateModelTransformation {
 	
 	public static Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
+		//FIXME switching references, just quick fix
+		EObject test = ced.eContainer();
+		EObject test23 =  test.eContainer();
 		Object object = valueRule(ced, changeableElement, rootElements);
 		
 		if (object instanceof Collection<?>){

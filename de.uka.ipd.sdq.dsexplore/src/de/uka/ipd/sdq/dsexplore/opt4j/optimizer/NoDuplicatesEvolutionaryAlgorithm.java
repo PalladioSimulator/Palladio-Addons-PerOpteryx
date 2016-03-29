@@ -116,13 +116,17 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			if (sizeBefore > sizeAfter){
 				int maximumTries = 100; //we do not want to get stuck here...
 				count = sizeAfter;
-				while (count < sizeBefore && count < maximumTries + sizeAfter){
+				int duplicates = 0;
+				//FIXME grenze für versuche oder wenn es begrenzte kombinationen gibt?
+				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < 100){
 					Individual i = individualFactory.create();
 					if (!population.contains(i)){
 						completer.complete(i);
 						population.add(i);
 						count ++;
-					} 
+					} else {
+						duplicates ++;
+					}
 				}
 			}
 
