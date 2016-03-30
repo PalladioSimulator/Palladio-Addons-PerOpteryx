@@ -32,6 +32,8 @@ import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
  */
 public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	
+	//FIXME maybe adjust the maximum number of duplicates
+	private static final int MAX_DUPLICATES = 100;
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.optimizer.NoDuplicatesEvolutionaryAlgorithm");
@@ -117,8 +119,8 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				int maximumTries = 100; //we do not want to get stuck here...
 				count = sizeAfter;
 				int duplicates = 0;
-				//FIXME grenze für versuche oder wenn es begrenzte kombinationen gibt?
-				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < 100){
+				
+				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
 					Individual i = individualFactory.create();
 					if (!population.contains(i)){
 						completer.complete(i);
@@ -127,6 +129,9 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 					} else {
 						duplicates ++;
 					}
+				}
+				if (duplicates == MAX_DUPLICATES ) {
+					logger.warn("Stopped candidate creation after finding "+duplicates+" duplicates.");
 				}
 			}
 
