@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<declarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contracttype="http://sdq.ipd.kit.edu/QML/contracttype/1.0" xmlns:declarations="http://sdq.ipd.uka.de/QML/declarations/1.0" xmlns:identifier="http://sdq.ipd.uka.de/Identifier/1.0" identifier:id="_r_iVh6CrEd-s9uTaURbrKA">
+  <qmlDeclarations xsi:type="contracttype:QMLContractType" identifier:id="_r_iViKCrEd-s9uTaURbrKA" name="PCMContractType" dimensions="Dimension_responsetime.dimensions#_r_iVkKCrEd-s9uTaURbrKA Dimension_pofod.dimensions#_r_iVjaCrEd-s9uTaURbrKA Dimension_cost.dimensions#_r_iViqCrEd-s9uTaURbrKA Dimension_throughput.dimensions#_r_iVkKCrEd-s9uTaURbrKA2 Dimension_initialcost.dimensions#_r_iViqCrEd-s9uTaURinicost Dimension_maxCPUUtilization.dimensions#_YhNVUMioEeCp_vzD4x7GMA Dimension_operatingcost.dimensions#_r_iViqCrEd-s9uTaURopcost"/>
+</declarations:QMLDeclarations>

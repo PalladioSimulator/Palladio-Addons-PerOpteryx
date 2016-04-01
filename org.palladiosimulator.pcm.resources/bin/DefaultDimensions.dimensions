@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dimensions:DimensionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dimensions="http://sdq.ipd.kit.edu/QML/dimensions/1.0" xmlns:dimensiontypes="http://sdq.ipd.kit.edu/QML/dimensiontypes/1.0" id="_1o-xQMwcEeWFq8ls6X8Eqg">
+  <dimensions id="_m4uzkMwdEeWFq8ls6X8Eqg" name="cost">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_8t_2sMwdEeWJTYg0PrlxBg" name="initial cost">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_AIzJoMweEeWJTYg0PrlxBg" name="maxCPUUtilization">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_fLZ7gswdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_EB_BsMweEeWJTYg0PrlxBg" name="operating cost">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_IZaU8MweEeWJTYg0PrlxBg" name="POFOD">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_Mm_vsMweEeWJTYg0PrlxBg" name="response time">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_QCNSUMweEeWJTYg0PrlxBg" name="Security">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_aTrXkswdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+  <dimensions id="_WCgA0MweEeWJTYg0PrlxBg" name="throughput">
+    <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensionTypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+  </dimensions>
+</dimensions:DimensionRepository>

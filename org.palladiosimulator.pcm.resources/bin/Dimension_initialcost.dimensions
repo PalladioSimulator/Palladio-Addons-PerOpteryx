@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dimensions:Dimension xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dimensions="http://sdq.ipd.kit.edu/QML/dimensions/1.0" xmlns:dimensiontypes="http://sdq.ipd.kit.edu/QML/dimensiontypes/1.0" id="_r_iViqCrEd-s9uTaURinicost" name="initial cost">
+  <type xsi:type="dimensiontypes:DimensionTypeNumeric" href="pathmap://PCM_MODELS/DefaultDimensiontypes.dimensiontypes#_BABiAcwdEeWFq8ls6X8Eqg"/>
+</dimensions:Dimension>
