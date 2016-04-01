@@ -5,13 +5,13 @@ package de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures;
 
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
+import de.uka.ipd.sdq.dsexplore.qml.contract.Criterion;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.contract.GenericQMLContract;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
+import de.uka.ipd.sdq.dsexplore.qml.profile.GenericQMLProfile;
+import de.uka.ipd.sdq.dsexplore.qml.profile.Requirement;
 
 /**
  * This class is used to provide necessary information on a QML {@link EvaluationAspect},

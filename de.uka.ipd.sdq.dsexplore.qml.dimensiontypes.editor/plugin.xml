@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dimensiontypes -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.dsexplore.qml.dimensiontypes.presentation.DimensiontypesModelWizardID"
+            name="%_UI_DimensiontypesModelWizard_label"
+            class="de.uka.ipd.sdq.dsexplore.qml.dimensiontypes.presentation.DimensiontypesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DimensiontypesModelFile.gif">
+         <description>%_UI_DimensiontypesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dimensiontypes -->
+      <editor
+            id="de.uka.ipd.sdq.dsexplore.qml.dimensiontypes.presentation.DimensiontypesEditorID"
+            name="%_UI_DimensiontypesEditor_label"
+            icon="icons/full/obj16/DimensiontypesModelFile.gif"
+            extensions="dimensiontypes"
+            class="de.uka.ipd.sdq.dsexplore.qml.dimensiontypes.presentation.DimensiontypesEditor"
+            contributorClass="de.uka.ipd.sdq.dsexplore.qml.dimensiontypes.presentation.DimensiontypesActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

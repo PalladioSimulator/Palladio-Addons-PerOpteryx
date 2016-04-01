@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.Platform;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 
 public class ExtensionHelper {
 	

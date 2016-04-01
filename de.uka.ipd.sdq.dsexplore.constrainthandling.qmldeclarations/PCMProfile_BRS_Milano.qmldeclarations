@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" xmlns:identifier="http://sdq.ipd.uka.de/Identifier/1.0" identifier:id="__FjEYJyKEd-NNcIT2kpSGQ">
-  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" identifier:id="__Gb1MJyKEd-NNcIT2kpGSQ" entityName="PCMProfile" usageModel="file:/D:/code/Palladio.Examples_trunk/PCM3.3_BRS_Optimisation_Milano/brs.usagemodel#/">
-    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" identifier:id="__IEz85yKEd-NNcIT2kpGQS" requireContract="QMLContract:SimpleQMLContract PCMObjectives.qmldeclarations#_FqNZYaCrEd-s9uTaURbrKA" usageScenario="file:/D:/code/Palladio.Examples_trunk/PCM3.3_BRS_Optimisation_Milano/brs.usagemodel#_qhsIYNpBEdyxgfK4Hy_RFA"/>
+<declarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contract="http://sdq.ipd.kit.edu/QML/contract/1.0" xmlns:declarations="http://sdq.ipd.uka.de/QML/declarations/1.0" xmlns:profile="http://sdq.ipd.kit.edu/QML/profile/1.0" xmlns:identifier="http://sdq.ipd.uka.de/Identifier/1.0" identifier:id="__FjEYJyKEd-NNcIT2kpSGQ">
+  <qmlDeclarations xsi:type="profile:SimpleQMLProfile" identifier:id="__Gb1MJyKEd-NNcIT2kpGSQ" name="PCMProfile" usageModel="file:/D:/code/Palladio.Examples_trunk/PCM3.3_BRS_Optimisation_Milano/brs.usagemodel#/">
+    <requirements xsi:type="profile:UsageScenarioRequirement" identifier:id="__IEz85yKEd-NNcIT2kpGQS" requireContract="contract:SimpleQMLContract PCMObjectives.qmldeclarations#_FqNZYaCrEd-s9uTaURbrKA" usageScenario="file:/D:/code/Palladio.Examples_trunk/PCM3.3_BRS_Optimisation_Milano/brs.usagemodel#_qhsIYNpBEdyxgfK4Hy_RFA"/>
   </qmlDeclarations>
-</QMLDeclarations:QMLDeclarations>
+</declarations:QMLDeclarations>

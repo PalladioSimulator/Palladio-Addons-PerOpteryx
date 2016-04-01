@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarationsPackage;
 
 /**
  * Reads the Dimension defined in the file. Be sure the definition 

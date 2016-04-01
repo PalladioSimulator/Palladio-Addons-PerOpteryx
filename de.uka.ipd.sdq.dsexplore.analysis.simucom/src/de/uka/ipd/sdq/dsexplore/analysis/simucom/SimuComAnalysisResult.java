@@ -42,7 +42,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.sensorframework.entities.Sensor;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;

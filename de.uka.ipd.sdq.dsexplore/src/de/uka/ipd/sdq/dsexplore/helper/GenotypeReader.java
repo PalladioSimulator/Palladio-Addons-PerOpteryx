@@ -298,8 +298,8 @@ public class GenotypeReader {
                 if (objectiveAndEvaluatorList.size()>0){
                     final CriterionAndEvaluator first = objectiveAndEvaluatorList.get(0);
                     //XXX: Read the dimension name from definition rather than the constants container
-                    if (ResultsWriter.getDimensionName(first.getCriterion()).contains(new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName())
-                            || ResultsWriter.getDimensionName(first.getCriterion()).contains(new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getEntityName())){
+                    if (ResultsWriter.getDimensionName(first.getCriterion()).contains(new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getName())
+                            || ResultsWriter.getDimensionName(first.getCriterion()).contains(new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getName())){
                         performance = first.getCriterion();
                         break;
                     }

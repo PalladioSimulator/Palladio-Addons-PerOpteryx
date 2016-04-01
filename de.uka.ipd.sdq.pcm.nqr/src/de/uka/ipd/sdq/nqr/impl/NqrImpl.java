@@ -2,17 +2,28 @@
  */
 package de.uka.ipd.sdq.nqr.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.Criterion;
+
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrPackage;
+
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
@@ -24,8 +35,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
  * </p>
  * <ul>
  *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getValue <em>Value</em>}</li>
- *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.nqr.impl.NqrImpl#getCriterion <em>Criterion</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,24 +52,14 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	protected RepositoryComponent annotatedElement;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getCriterion()
 	 * @generated
 	 * @ordered
 	 */
-	protected ValueLiteral value;
-
-	/**
-	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDimension()
-	 * @generated
-	 * @ordered
-	 */
-	protected Dimension dimension;
+	protected EList<Criterion> criterion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,80 +123,11 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueLiteral getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValue(ValueLiteral newValue, NotificationChain msgs) {
-		ValueLiteral oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NqrPackage.NQR__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<Criterion> getCriterion() {
+		if (criterion == null) {
+			criterion = new EObjectContainmentEList<Criterion>(Criterion.class, this, NqrPackage.NQR__CRITERION);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(ValueLiteral newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NqrPackage.NQR__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NqrPackage.NQR__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NqrPackage.NQR__VALUE, newValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dimension getDimension() {
-		if (dimension != null && dimension.eIsProxy()) {
-			InternalEObject oldDimension = (InternalEObject)dimension;
-			dimension = (Dimension)eResolveProxy(oldDimension);
-			if (dimension != oldDimension) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NqrPackage.NQR__DIMENSION, oldDimension, dimension));
-			}
-		}
-		return dimension;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dimension basicGetDimension() {
-		return dimension;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDimension(Dimension newDimension) {
-		Dimension oldDimension = dimension;
-		dimension = newDimension;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NqrPackage.NQR__DIMENSION, oldDimension, dimension));
+		return criterion;
 	}
 
 	/**
@@ -207,8 +138,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NqrPackage.NQR__VALUE:
-				return basicSetValue(null, msgs);
+			case NqrPackage.NQR__CRITERION:
+				return ((InternalEList<?>)getCriterion()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -224,11 +155,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
 				if (resolve) return getAnnotatedElement();
 				return basicGetAnnotatedElement();
-			case NqrPackage.NQR__VALUE:
-				return getValue();
-			case NqrPackage.NQR__DIMENSION:
-				if (resolve) return getDimension();
-				return basicGetDimension();
+			case NqrPackage.NQR__CRITERION:
+				return getCriterion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,11 +173,9 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
 				setAnnotatedElement((RepositoryComponent)newValue);
 				return;
-			case NqrPackage.NQR__VALUE:
-				setValue((ValueLiteral)newValue);
-				return;
-			case NqrPackage.NQR__DIMENSION:
-				setDimension((Dimension)newValue);
+			case NqrPackage.NQR__CRITERION:
+				getCriterion().clear();
+				getCriterion().addAll((Collection<? extends Criterion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,11 +192,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
 				setAnnotatedElement((RepositoryComponent)null);
 				return;
-			case NqrPackage.NQR__VALUE:
-				setValue((ValueLiteral)null);
-				return;
-			case NqrPackage.NQR__DIMENSION:
-				setDimension((Dimension)null);
+			case NqrPackage.NQR__CRITERION:
+				getCriterion().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -286,10 +209,8 @@ public class NqrImpl extends MinimalEObjectImpl.Container implements Nqr {
 		switch (featureID) {
 			case NqrPackage.NQR__ANNOTATED_ELEMENT:
 				return annotatedElement != null;
-			case NqrPackage.NQR__VALUE:
-				return value != null;
-			case NqrPackage.NQR__DIMENSION:
-				return dimension != null;
+			case NqrPackage.NQR__CRITERION:
+				return criterion != null && !criterion.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

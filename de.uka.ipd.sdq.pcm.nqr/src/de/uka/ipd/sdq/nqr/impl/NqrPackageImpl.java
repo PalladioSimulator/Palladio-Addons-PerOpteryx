@@ -2,17 +2,21 @@
  */
 package de.uka.ipd.sdq.nqr.impl;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContractPackage;
+
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrFactory;
 import de.uka.ipd.sdq.nqr.NqrPackage;
 import de.uka.ipd.sdq.nqr.NqrRepository;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.palladiosimulator.pcm.PcmPackage;
+
 import org.palladiosimulator.pcm.repository.RepositoryPackage;
 
 /**
@@ -83,9 +87,8 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		QMLDeclarationsPackage.eINSTANCE.eClass();
+		PcmPackage.eINSTANCE.eClass();
 		QMLContractPackage.eINSTANCE.eClass();
-		QMLContractTypePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theNqrPackage.createPackageContents();
@@ -143,17 +146,8 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNqr_Value() {
+	public EReference getNqr_Criterion() {
 		return (EReference)nqrEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNqr_Dimension() {
-		return (EReference)nqrEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -189,8 +183,7 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 
 		nqrEClass = createEClass(NQR);
 		createEReference(nqrEClass, NQR__ANNOTATED_ELEMENT);
-		createEReference(nqrEClass, NQR__VALUE);
-		createEReference(nqrEClass, NQR__DIMENSION);
+		createEReference(nqrEClass, NQR__CRITERION);
 	}
 
 	/**
@@ -219,7 +212,6 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 		// Obtain other dependent packages
 		RepositoryPackage theRepositoryPackage = (RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(RepositoryPackage.eNS_URI);
 		QMLContractPackage theQMLContractPackage = (QMLContractPackage)EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI);
-		QMLContractTypePackage theQMLContractTypePackage = (QMLContractTypePackage)EPackage.Registry.INSTANCE.getEPackage(QMLContractTypePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -233,8 +225,7 @@ public class NqrPackageImpl extends EPackageImpl implements NqrPackage {
 
 		initEClass(nqrEClass, Nqr.class, "Nqr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNqr_AnnotatedElement(), theRepositoryPackage.getRepositoryComponent(), null, "annotatedElement", null, 1, 1, Nqr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNqr_Value(), theQMLContractPackage.getValueLiteral(), null, "value", null, 1, 1, Nqr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNqr_Dimension(), theQMLContractTypePackage.getDimension(), null, "dimension", null, 1, 1, Nqr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNqr_Criterion(), theQMLContractPackage.getCriterion(), null, "criterion", null, 0, -1, Nqr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

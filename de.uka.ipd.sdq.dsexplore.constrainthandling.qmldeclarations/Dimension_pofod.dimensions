@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dimensions:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dimensions="http://sdq.ipd.kit.edu/QML/dimensions/1.0" xmlns:dimensiontypes="http://sdq.ipd.kit.edu/QML/dimensiontypes/1.0"  xmlns:identifier="http://sdq.ipd.uka.de/Identifier/1.0" identifier:id="_r_iVjaCrEd-s9uTaURbrKA" name="POFOD">
+  <type xsi:type="dimensiontypes:DimensionTypeNumeric" identifier:id="_wbxmtLBWEd-7u-Jl-Efv2Q">
+    <relationSemantics identifier:id="_wbxmtbBWEd-7u-Jl-Efv2Q"/>
+  </type>
+</dimensions:Dimension>

@@ -20,10 +20,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.opt4j;bundle-version="1.0.0",
  org.opt4j,
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml,
  org.palladiosimulator.solver.lqn;bundle-version="2.0.0",
  org.palladiosimulator.solver.context;bundle-version="2.0.0",
- org.palladiosimulator.solver;bundle-version="3.0.0"
+ org.palladiosimulator.solver;bundle-version="3.0.0",
+ de.uka.ipd.sdq.dsexplore.qml.contract,
+ de.uka.ipd.sdq.dsexplore.qml.dimensions.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: sdq.ipd.uka.de

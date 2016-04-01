@@ -13,10 +13,12 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.workflow.launchconfig;bundle-version="1.1.0",
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml,
  org.palladiosimulator.solver.reliability;bundle-version="3.1.0",
  org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
- org.palladiosimulator.solver;bundle-version="3.0.0"
+ org.palladiosimulator.solver;bundle-version="3.0.0",
+ de.uka.ipd.sdq.dsexplore.qml.contract,
+ de.uka.ipd.sdq.dsexplore.qml.dimensions,
+ org.palladiosimulator.pcm;bundle-version="4.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: de.uka.ipd.sdq.workflow.launchconfig.tabs

@@ -20,8 +20,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.EntryLevelSystemCallInfeasibilityConstraintBuilder;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.EntryLevelSystemCallObjectiveBuilder;
@@ -30,8 +30,8 @@ import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBase
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedObjectiveBuilder;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.builder.UsageScenarioBasedSatisfactionConstraintBuilder;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
+import de.uka.ipd.sdq.dsexplore.qml.profile.EntryLevelSystemCallRequirement;
+import de.uka.ipd.sdq.dsexplore.qml.profile.UsageScenarioRequirement;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public abstract class AbstractAnalysis implements IAnalysis{
@@ -86,7 +86,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 							UsageScenario usageScenario = (UsageScenario) iterator2
 									.next();
 
-							if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+							if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.Constraint) {
 								UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
 								InfeasibilityConstraint c = 
 										reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
@@ -108,7 +108,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 							}
 						}
 					} else {
-						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.Constraint) {
 							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
 
 							InfeasibilityConstraint c = 
@@ -132,7 +132,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 					}
 
 				} else if (aspectContext.getRequirement() instanceof EntryLevelSystemCallRequirement) {
-					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
+					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.Constraint) {
 						EntryLevelSystemCallInfeasibilityConstraintBuilder builder = new EntryLevelSystemCallInfeasibilityConstraintBuilder(((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall());
 						InfeasibilityConstraint c = 
 								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);

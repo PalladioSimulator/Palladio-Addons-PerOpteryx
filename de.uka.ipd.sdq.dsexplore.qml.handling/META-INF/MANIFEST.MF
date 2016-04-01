@@ -6,8 +6,14 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.qml.handling.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- de.uka.ipd.sdq.dsexplore.qml,
- org.opt4j;bundle-version="1.0.0"
+ org.opt4j;bundle-version="1.0.0",
+ de.uka.ipd.sdq.dsexplore.qml.contract,
+ de.uka.ipd.sdq.dsexplore.qml.contracttype,
+ de.uka.ipd.sdq.dsexplore.qml.declarations,
+ de.uka.ipd.sdq.dsexplore.qml.dimensions,
+ de.uka.ipd.sdq.dsexplore.qml.dimensiontypes,
+ de.uka.ipd.sdq.dsexplore.qml.units,
+ de.uka.ipd.sdq.dsexplore.qml.profile
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.uka.ipd.sdq.dsexplore.qml.handling,

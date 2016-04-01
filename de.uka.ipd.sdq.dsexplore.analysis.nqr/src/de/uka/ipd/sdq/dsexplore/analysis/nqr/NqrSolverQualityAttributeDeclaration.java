@@ -10,11 +10,11 @@ import java.util.Map;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Value;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.contract.Value;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
+import de.uka.ipd.sdq.dsexplore.qml.profile.Requirement;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 
 /**

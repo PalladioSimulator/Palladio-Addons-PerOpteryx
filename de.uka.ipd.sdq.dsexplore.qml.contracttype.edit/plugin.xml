@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated QMLContractType -->
+      <factory
+            uri="http://sdq.ipd.kit.edu/QML/contracttype/1.0"
+            class="de.uka.ipd.sdq.dsexplore.qml.contracttype.provider.QMLContractTypeItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated QMLContractType -->
+      <extender
+            uri="http://sdq.ipd.kit.edu/QML/dimensiontypes/1.0"
+            class="de.uka.ipd.sdq.dsexplore.qml.contracttype.provider.QMLContractTypeItemProviderAdapterFactory$DimensiontypesChildCreationExtender"/>
+      <extender
+            uri="http://sdq.ipd.uka.de/QML/declarations/1.0"
+            class="de.uka.ipd.sdq.dsexplore.qml.contracttype.provider.QMLContractTypeItemProviderAdapterFactory$QMLDeclarationsChildCreationExtender"/>
+   </extension>
+
+</plugin>

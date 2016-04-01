@@ -8,8 +8,8 @@ import org.opt4j.operator.copy.Copy;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 
 public abstract class AbstractTactic implements ITactic {

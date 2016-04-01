@@ -28,7 +28,7 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.reader.PCMDeclarationsReader;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
 /**
  * The QMLManager component can be queried for getting the currently activated QML criteria. 
@@ -302,7 +302,7 @@ public class QMLManager {
 				List<EvaluationAspectWithContext> nqrConstraints = new ArrayList<EvaluationAspectWithContext>();
 				try {
 				QMLContractType contractTypeForUsageModel = pcmReader.getContractTypeForUsageModel(usageModel);
-				for (de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension dim: contractTypeForUsageModel.getDimensions())
+				for (de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension dim: contractTypeForUsageModel.getDimensions())
 				{
 					nqrObjectives.addAll(pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dim.getId()));
 					nqrConstraints.addAll(pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dim.getId()));

@@ -1316,7 +1316,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 
 						String[] items = new String[objectivesList.size()];
 						for (int index = 0; index < objectivesList.size(); index++) {
-							items[index] = objectivesList.get(index).getCriterion().getDimension().getEntityName() + "-" + objectivesList.get(index).getCriterion().getId();
+							items[index] = objectivesList.get(index).getCriterion().getDimension().getName() + "-" + objectivesList.get(index).getCriterion().getId();
 						}
 						objectivesCombo.setItems(items);
 						objectivesCombo.select(0);
@@ -1601,7 +1601,7 @@ public class TerminationCriteriaTab extends AbstractLaunchConfigurationTab {
 
 						String[] items = new String[objectivesList.size()];
 						for (int index = 0; index < objectivesList.size(); index++) {
-							items[index] = objectivesList.get(index).getCriterion().getDimension().getEntityName() + "-" + objectivesList.get(index).getCriterion().getId();
+							items[index] = objectivesList.get(index).getCriterion().getDimension().getName() + "-" + objectivesList.get(index).getCriterion().getId();
 						}
 
 						objectivesCombo.setItems(items);

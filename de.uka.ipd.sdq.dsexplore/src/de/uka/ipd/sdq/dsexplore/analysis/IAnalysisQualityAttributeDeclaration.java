@@ -6,8 +6,8 @@ package de.uka.ipd.sdq.dsexplore.analysis;
 import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 
 /**
  * This class is to be implemented by extensions of de.uka.ipd.sdq.dsexplore.analysis.

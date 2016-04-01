@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLDeclarations -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.dsexplore.qml.declarations.presentation.QMLDeclarationsModelWizardID"
+            name="%_UI_QMLDeclarationsModelWizard_label"
+            class="de.uka.ipd.sdq.dsexplore.qml.declarations.presentation.QMLDeclarationsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/QMLDeclarationsModelFile.gif">
+         <description>%_UI_QMLDeclarationsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLDeclarations -->
+      <editor
+            id="de.uka.ipd.sdq.dsexplore.qml.declarations.presentation.QMLDeclarationsEditorID"
+            name="%_UI_QMLDeclarationsEditor_label"
+            icon="icons/full/obj16/QMLDeclarationsModelFile.gif"
+            extensions="qmldeclarations"
+            class="de.uka.ipd.sdq.dsexplore.qml.declarations.presentation.QMLDeclarationsEditor"
+            contributorClass="de.uka.ipd.sdq.dsexplore.qml.declarations.presentation.QMLDeclarationsActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

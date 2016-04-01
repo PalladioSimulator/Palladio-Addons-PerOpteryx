@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dimensions -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.dsexplore.qml.dimensions.presentation.DimensionsModelWizardID"
+            name="%_UI_DimensionsModelWizard_label"
+            class="de.uka.ipd.sdq.dsexplore.qml.dimensions.presentation.DimensionsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DimensionsModelFile.gif">
+         <description>%_UI_DimensionsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dimensions -->
+      <editor
+            id="de.uka.ipd.sdq.dsexplore.qml.dimensions.presentation.DimensionsEditorID"
+            name="%_UI_DimensionsEditor_label"
+            icon="icons/full/obj16/DimensionsModelFile.gif"
+            extensions="dimensions"
+            class="de.uka.ipd.sdq.dsexplore.qml.dimensions.presentation.DimensionsEditor"
+            contributorClass="de.uka.ipd.sdq.dsexplore.qml.dimensions.presentation.DimensionsActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

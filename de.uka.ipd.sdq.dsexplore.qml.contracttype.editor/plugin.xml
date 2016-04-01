@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLContractType -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.dsexplore.qml.contracttype.presentation.QMLContractTypeModelWizardID"
+            name="%_UI_QMLContractTypeModelWizard_label"
+            class="de.uka.ipd.sdq.dsexplore.qml.contracttype.presentation.QMLContractTypeModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/QMLContractTypeModelFile.gif">
+         <description>%_UI_QMLContractTypeModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLContractType -->
+      <editor
+            id="de.uka.ipd.sdq.dsexplore.qml.contracttype.presentation.QMLContractTypeEditorID"
+            name="%_UI_QMLContractTypeEditor_label"
+            icon="icons/full/obj16/QMLContractTypeModelFile.gif"
+            extensions="qmlcontracttype"
+            class="de.uka.ipd.sdq.dsexplore.qml.contracttype.presentation.QMLContractTypeEditor"
+            contributorClass="de.uka.ipd.sdq.dsexplore.qml.contracttype.presentation.QMLContractTypeActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -24,7 +24,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 import de.uka.ipd.sdq.nqr.Nqr;
 import de.uka.ipd.sdq.nqr.NqrPackage;
 import de.uka.ipd.sdq.nqr.NqrRepository;
@@ -116,17 +116,13 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 		this.nqrModel = nqrRep;
 		NqrSolverQualityAttributeDeclaration quality = ((NqrSolverQualityAttributeDeclaration)this.qualityAttribute);
 		for (Nqr nqr: nqrRep.getNqr())
-		{
-			Dimension dim = nqr.getDimension();		
-			if (dim != null && !quality.getDimensions().contains(dim))
-				quality.addDimension(dim);
-		}
-			/*for (de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion crit: nqr.getCriterion())
+			for (de.uka.ipd.sdq.dsexplore.qml.contract.Criterion crit: nqr.getCriterion())
 			{
 				Dimension d = crit.getDimension();
 				if (d != null && !quality.getDimensions().contains(d))
 					quality.addDimension(crit.getDimension());
-			}*/
+			}
+					
 		
 		initialiseCriteria(configuration);
 	}

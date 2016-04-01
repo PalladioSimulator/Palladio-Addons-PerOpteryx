@@ -3,8 +3,8 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators;
 import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.dimensions.Dimension;
 
 /**
  * 

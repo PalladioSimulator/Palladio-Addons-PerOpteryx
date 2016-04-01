@@ -15,7 +15,9 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.eclipse.swt;bundle-version="3.5.1",
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml,
+ de.uka.ipd.sdq.dsexplore.qml.contract,
+ de.uka.ipd.sdq.dsexplore.qml.contracttype,
+ de.uka.ipd.sdq.dsexplore.qml.dimensions,
  org.palladiosimulator.solver;bundle-version="3.0.0",
  org.palladiosimulator.analyzer.workflow
 Bundle-Vendor: sdq.ipd.uka.de

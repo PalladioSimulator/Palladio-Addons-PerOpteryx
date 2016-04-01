@@ -657,7 +657,7 @@ public class ResultsWriter {
 	
 	public static String getDimensionName(Criterion criterion){
 		EvaluationAspectWithContext qmlCriterion = PCMDeclarationsReader.retranslateCriterionToEvaluationAspect(criterion);
-		String name = qmlCriterion.getDimension().getEntityName();
+		String name = qmlCriterion.getDimension().getName();
 		if (criterion instanceof UsageScenarioBasedCriterion){
 			name += ":"+((UsageScenarioBasedCriterion)criterion).getUsageScenario().getEntityName();
 		} else if (criterion instanceof EntryLevelSystemCallCriterion){

@@ -112,22 +112,13 @@ public interface NqrPackage extends EPackage {
 	int NQR__ANNOTATED_ELEMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Criterion</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NQR__VALUE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Dimension</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NQR__DIMENSION = 2;
+	int NQR__CRITERION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Nqr</em>' class.
@@ -136,7 +127,7 @@ public interface NqrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NQR_FEATURE_COUNT = 3;
+	int NQR_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Nqr</em>' class.
@@ -191,26 +182,15 @@ public interface NqrPackage extends EPackage {
 	EReference getNqr_AnnotatedElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.uka.ipd.sdq.nqr.Nqr#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.nqr.Nqr#getCriterion <em>Criterion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see de.uka.ipd.sdq.nqr.Nqr#getValue()
+	 * @return the meta object for the containment reference list '<em>Criterion</em>'.
+	 * @see de.uka.ipd.sdq.nqr.Nqr#getCriterion()
 	 * @see #getNqr()
 	 * @generated
 	 */
-	EReference getNqr_Value();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.nqr.Nqr#getDimension <em>Dimension</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dimension</em>'.
-	 * @see de.uka.ipd.sdq.nqr.Nqr#getDimension()
-	 * @see #getNqr()
-	 * @generated
-	 */
-	EReference getNqr_Dimension();
+	EReference getNqr_Criterion();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -272,20 +252,12 @@ public interface NqrPackage extends EPackage {
 		EReference NQR__ANNOTATED_ELEMENT = eINSTANCE.getNqr_AnnotatedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Criterion</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NQR__VALUE = eINSTANCE.getNqr_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Dimension</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NQR__DIMENSION = eINSTANCE.getNqr_Dimension();
+		EReference NQR__CRITERION = eINSTANCE.getNqr_Criterion();
 
 	}
 
