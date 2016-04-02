@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+>
+   <extension
+         point="de.uka.ipd.sdq.dsexplore.analysis">
+      <analysis
+            delegate="de.uka.ipd.sdq.dsexplore.analysis.experimentautomation.ExperimentAutomationAnalysis"
+            launchConfigContribution="de.uka.ipd.sdq.dsexplore.analysis.experimentautomation.launch.ExperimentAutomationTab"
+            name="Experiment Automation Analysis"
+            qualityAttribute="de.uka.ipd.sdq.dsexplore.performance"
+            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComQualityAttributeDeclaration">
+      </analysis>
+   </extension>
+</plugin>
