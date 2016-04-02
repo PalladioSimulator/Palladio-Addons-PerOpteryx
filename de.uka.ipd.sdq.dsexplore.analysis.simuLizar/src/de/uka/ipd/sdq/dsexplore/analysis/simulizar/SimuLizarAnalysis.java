@@ -1,7 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -15,7 +13,6 @@ import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.impl.RepositoryManager;
-import org.palladiosimulator.edp2.models.ExperimentData.ExperimentDataFactory;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentGroup;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentSetting;
 import org.palladiosimulator.edp2.models.Repository.Repository;
@@ -38,7 +35,6 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedInfeasibilityConstraint;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedSatisfactionConstraint;
-import de.uka.ipd.sdq.simucomframework.SimuComConfig;
 import de.uka.ipd.sdq.simulation.AbstractSimulationConfig;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
@@ -53,50 +49,45 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
      */
     private ILaunchConfiguration config;
 
-    private String initialExperimentName;
-    private Map<Integer, String> previousExperimentNames = new HashMap<Integer, String>();
-
-    private SimuLizarWorkflowConfiguration simuLizarWorkflowConfiguration;
+    private SimuLizarWorkflowConfiguration simuLizarWorkflowConfig;
+    protected String experimentRunName = "";
 
     public SimuLizarAnalysis() {
         super(new SimuComQualityAttributeDeclaration());
     }
 
-    private String getExperimentName(PCMPhenotype pheno) {
-        return this.initialExperimentName + " " + pheno.getGenotypeID();
-    }
-
     @Override
     public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
             throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
-        String experimentName = getExperimentName(pheno);
+        experimentRunName = getExperimentName(pheno);
         ILaunchConfigurationWorkingCopy configCopy = config.copy("ConfigCopy");
-        configCopy.setAttribute(AbstractSimulationConfig.VARIATION_ID, experimentName);
-        this.simuLizarWorkflowConfiguration = new DSESimuLizarWorkflowLauncher().deriveConfiguration(configCopy);
-        this.simuLizarWorkflowConfiguration.setOverwriteWithoutAsking(true);
-        this.previousExperimentNames.put(pheno.getGenotypeID().hashCode(), experimentName);
+        configCopy.setAttribute(AbstractSimulationConfig.VARIATION_ID, experimentRunName);
+        this.simuLizarWorkflowConfig = new DSESimuLizarWorkflowLauncher().deriveConfiguration(configCopy);
+        this.simuLizarWorkflowConfig.setOverwriteWithoutAsking(true);
         launchSimuLizar(monitor);
+    }
+
+    protected String getExperimentName(PCMPhenotype pheno) {
+        return pheno.getGenotypeID();
     }
 
     @Override
     public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
-        this.previousExperimentNames.clear();
         this.config = configuration.getRawConfiguration();
         if (blackboard == null) {
             throw ExceptionHelper.createNewCoreException(
                     "Error in initialisation: No Blackboard was set when initialising the SimuLizar Analysis. Contact the developers.");
         }
 
-        this.initialExperimentName = this.config.getAttribute(SimuComConfig.EXPERIMENT_RUN, "");
         initialiseCriteria(configuration);
     }
 
     private void launchSimuLizar(IProgressMonitor monitor)
             throws CoreException, AnalysisFailedException, UserCanceledException, JobFailedException {
 
-        PCMInterpreterRootCompositeJob job = new PCMInterpreterRootCompositeJob(this.simuLizarWorkflowConfiguration);
+        PCMInterpreterRootCompositeJob job = new PCMInterpreterRootCompositeJob(this.simuLizarWorkflowConfig);
         LOGGER.info("Starting experiment "
-                + this.simuLizarWorkflowConfiguration.getSimulationConfiguration().getNameExperimentRun());
+                + this.simuLizarWorkflowConfig.getSimulationConfiguration().getNameExperimentRun());
         job.setBlackboard(blackboard);
         job.execute(monitor);
 
@@ -113,16 +104,14 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
     }
 
-    private IStatisticAnalysisResult retrieveSimuComResults(PCMPhenotype pheno, UsageScenario usageScenario)
+    protected IStatisticAnalysisResult retrieveSimuComResults(PCMPhenotype pheno, UsageScenario usageScenario)
             throws CoreException, AnalysisFailedException {
-
-        String experimentRunName = getExperimentName(pheno);
 
         PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard
                 .getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
         PCMInstance pcmInstance = new PCMInstance(pcmPartition);
 
-        Optional<IStatisticAnalysisResult> result = createResult(usageScenario, experimentRunName, pcmInstance);
+        Optional<IStatisticAnalysisResult> result = createResult(usageScenario, pcmInstance);
 
         if (result.isPresent()) {
             return result.get();
@@ -135,8 +124,8 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
         }
     }
 
-    private Optional<IStatisticAnalysisResult> createResult(UsageScenario usageScenario, String experimentRunName,
-            PCMInstance pcmInstance) throws AnalysisFailedException {
+    protected Optional<IStatisticAnalysisResult> createResult(UsageScenario usageScenario, PCMInstance pcmInstance)
+            throws AnalysisFailedException {
 
         String repositoryId = "";
         try {
@@ -147,20 +136,22 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
         }
         Optional<IStatisticAnalysisResult> result = Optional.empty();
         final Repository repository = RepositoryManager.getRepositoryFromUUID(repositoryId);
-        final ExperimentGroup experimentGroup = this.getExperimentGroup(repository,
-                this.simuLizarWorkflowConfiguration.getSimulationConfiguration().getNameBase());
-        final ExperimentSetting experimentSetting = this.getExperimentSetting(experimentGroup,
-                this.simuLizarWorkflowConfiguration.getSimulationConfiguration().getVariationId());
-        int lastExperimentRun = experimentSetting.getExperimentRuns().size() - 1;
-        if (lastExperimentRun >= 0) {
-            org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun experimentRun = experimentSetting
-                    .getExperimentRuns().get(lastExperimentRun);
-            IStatisticAnalysisResult simuLizarResult = new SimuLizarAnalysisEDP2Result(experimentRun, experimentSetting,
-                    pcmInstance, usageScenario, this.criterionToAspect,
-                    (SimuComQualityAttributeDeclaration) this.qualityAttribute);
-            result = Optional.ofNullable(simuLizarResult);
-        } else {
-            LOGGER.debug("There is no experiment run.");
+        if (repository != null) {
+            final ExperimentGroup experimentGroup = this.getExperimentGroup(repository,
+                    this.simuLizarWorkflowConfig.getSimulationConfiguration().getNameBase());
+            final ExperimentSetting experimentSetting = this.getExperimentSetting(experimentGroup,
+                    this.simuLizarWorkflowConfig.getSimulationConfiguration().getVariationId());
+            int lastExperimentRun = experimentSetting.getExperimentRuns().size() - 1;
+            if (lastExperimentRun >= 0) {
+                org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun experimentRun = experimentSetting
+                        .getExperimentRuns().get(lastExperimentRun);
+                IStatisticAnalysisResult simuLizarResult = new SimuLizarAnalysisEDP2Result(experimentRun,
+                        experimentSetting, pcmInstance, usageScenario, this.criterionToAspect,
+                        (SimuComQualityAttributeDeclaration) this.qualityAttribute);
+                result = Optional.ofNullable(simuLizarResult);
+            } else {
+                LOGGER.debug("There is no experiment run.");
+            }
         }
         return result;
     }
@@ -171,17 +162,9 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
         if (criterion instanceof UsageScenarioBasedObjective) {
             return this.retrieveSimuComResults(pheno, ((UsageScenarioBasedObjective) criterion).getUsageScenario());
         } else if (criterion instanceof UsageScenarioBasedInfeasibilityConstraint) {
-            // Handle constraint here
-            // As the mean is default (for the value as well as the evaluation
-            // aspect of the constraint), no further action is required
-            // We allowed only mean constraint during the initialization
             return this.retrieveSimuComResults(pheno,
                     ((UsageScenarioBasedInfeasibilityConstraint) criterion).getUsageScenario());
         } else if (criterion instanceof UsageScenarioBasedSatisfactionConstraint) {
-            // Handle constraint here
-            // As the mean is default (for the value as well as the evaluation
-            // aspect of the constraint), no further action is required
-            // We allowed only mean constraint during the initialization
             return this.retrieveSimuComResults(pheno,
                     ((UsageScenarioBasedSatisfactionConstraint) criterion).getUsageScenario());
         }
@@ -190,7 +173,7 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
                         + ". Required is UsageScenarioBasedObjective or UsageScenarioBasedConstraint."));
     }
 
-    private ExperimentGroup getExperimentGroup(final Repository repository, final String purpose) {
+    protected ExperimentGroup getExperimentGroup(final Repository repository, final String purpose) {
         for (final ExperimentGroup experimentGroup : repository.getExperimentGroups()) {
             if (experimentGroup.getPurpose().equals(purpose)) {
                 return experimentGroup;
@@ -199,17 +182,13 @@ public class SimuLizarAnalysis extends AbstractAnalysis implements IAnalysis {
         throw new IllegalArgumentException("Could not find experiment group with purpose \"" + purpose + "\"");
     }
 
-    private ExperimentSetting getExperimentSetting(final ExperimentGroup experimentGroup, final String variationId) {
+    protected ExperimentSetting getExperimentSetting(final ExperimentGroup experimentGroup, final String variationId) {
         for (final ExperimentSetting expSetting : experimentGroup.getExperimentSettings()) {
             if (expSetting.getDescription().equals(variationId)) {
                 return expSetting;
             }
         }
-
-        ExperimentSetting experimentSetting = ExperimentDataFactory.eINSTANCE.createExperimentSetting();
-        experimentSetting.setDescription(variationId);
-        experimentSetting.setExperimentGroup(experimentGroup);
-        return experimentSetting;
+        throw new IllegalArgumentException("Could not find experiment setting with purpose \"" + variationId + "\"");
     }
 
     class DSESimuLizarWorkflowLauncher extends PCMInterpreterLauncher {
