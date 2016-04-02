@@ -47,7 +47,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 import de.uka.ipd.sdq.statistics.estimation.SampleMeanEstimator;
 
@@ -88,12 +87,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         this.experimentSetting = experiment;
         this.run = run;
 
-        if (pcmEntity instanceof Identifier && !(pcmEntity instanceof UsageScenario)) {
-            this.pcmEntityIdentifier = ((Identifier) pcmEntity).getId();
-        } else {
-            this.pcmEntityIdentifier = pcmEntity.getEntityName();
-            this.usageScenario = (UsageScenario) pcmEntity;
-        }
+        this.usageScenario = (UsageScenario) pcmEntity;
 
         this.objectiveToAspects = objectiveToAspect;
         this.qualityAttributeInfo = qualityAttributeInfo;
@@ -103,11 +97,11 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         this.results = retrieveResults(pcmInstance);
         this.maxUtilization = calculateMaxUtil("CPU");
 
-        final double[] values = this.getValuesForPcmEntity(this.pcmEntityIdentifier);
+        final double[] values = this.getValuesForPcmEntity();
         this.meanValue = calculateUnivariateStatistic(values, new Mean());
         this.stdDeviation = calculateUnivariateStatistic(values, new StandardDeviation());
         this.medianValue = calculateUnivariateStatistic(values, new Median());
-        this.throughput = calculateThroughput(this.getTimePointsForPcmEntity(this.pcmEntityIdentifier));
+        this.throughput = calculateThroughput(this.getTimePointsForPcmEntity());
         this.observations = values.length;
         this.confidenceInterval = determineConfidenceInterval(values);
 
@@ -311,8 +305,8 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @return Returns the values as a double array or <code>null</code> if no matching measurement
      *         is found.
      */
-    private double[] getValuesForPcmEntity(final String pcmEntityIdentifier) {
-        return this.getValuesFromMeasurement(this.getPcmEntityMeasurements(pcmEntityIdentifier));
+    private double[] getValuesForPcmEntity() {
+        return this.getValuesFromMeasurement(this.getPcmEntityMeasurements());
     }
 
     /**
@@ -325,8 +319,8 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
      * @return Returns the time points as a double array or <code>null</code> if no matching
      *         measurement is found.
      */
-    private double[] getTimePointsForPcmEntity(final String pcmEntityIdentifier) {
-        return this.getTimePointsFromMeasurement(this.getPcmEntityMeasurements(pcmEntityIdentifier));
+    private double[] getTimePointsForPcmEntity() {
+        return this.getTimePointsFromMeasurement(this.getPcmEntityMeasurements());
     }
 
     /**
@@ -403,7 +397,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
         return result;
     }
 
-    private Measurement getPcmEntityMeasurements(final String pcmEntityIdentifier) {
+    private Measurement getPcmEntityMeasurements() {
         for (final Measurement m : run.getMeasurement()) {
             final MeasuringPoint measuringPoint = m.getMeasuringType().getMeasuringPoint();
             if (checkPCMMeasuringPoint(this.usageScenario, measuringPoint)
