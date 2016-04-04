@@ -98,7 +98,7 @@ public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
         ILaunch launch = new Launch(config, ILaunchManager.DEBUG_MODE, null);
         try {
             IJob job = workflowLauncher.createWorkflowJob(experimentAutomationConfig, launch);
-            if (job instanceof AbstractExtendableJob) {
+            if (job instanceof RunExperimentAutomationJob) {
                 AbstractExtendableJob<MDSDBlackboard> experimentAutomationJob = (RunExperimentAutomationJob) job;
                 experimentAutomationJob.setBlackboard(blackboard);
                 experimentAutomationJob.execute(monitor);
