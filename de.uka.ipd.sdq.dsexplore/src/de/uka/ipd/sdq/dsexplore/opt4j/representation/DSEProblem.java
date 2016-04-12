@@ -2,10 +2,12 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -162,6 +164,10 @@ public class DSEProblem {
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
                 final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
+                //FIXME SubSystem Degree -> changeable is a set of AllocationContexts
+                //EList<Object> acs = (EList<Object>) values;
+                //for (Object value : acs) {
+                	
                 
                 final Choice choice;
                 if (value instanceof EObject) {
@@ -181,7 +187,7 @@ public class DSEProblem {
                 choice.setDegreeOfFreedomInstance(dd);
 
                 genotype.add(choice);
-
+                //}
             } else if (dd instanceof ClassDegree) {
 
                 final ClassChoice choice = this.designDecisionFactory.createClassChoice();
