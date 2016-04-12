@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.debug.internal.ui.views.launch.DebugElementHelper;
 import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -56,7 +57,6 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.ValueRule;
 public class GenomeToCandidateModelTransformation {
 	
 	private static final org.eclipse.ocl.ecore.OCL OCL_ENV = org.eclipse.ocl.ecore.OCL.newInstance();
-
 	
 	/**
 	 * The generic transformation method
@@ -178,12 +178,12 @@ public class GenomeToCandidateModelTransformation {
 	public static Object valueRule(ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements) {
 		
-		//FIXME switching references, just quick fix
-		ValueRule oclValueRule = ced.getValueRule();
 
-		EObject test = (EObject) changeableElement;
-		EClass cla = test.eClass();
-		EList<EStructuralFeature> struct = cla.getEAllStructuralFeatures();
+		ValueRule oclValueRule = ced.getValueRule();
+//
+//		EObject test = (EObject) changeableElement;
+//		EClass cla = test.eClass();
+//		EList<EStructuralFeature> struct = cla.getEAllStructuralFeatures();
 //		Iterator<EStructuralFeature> i = struct.iterator();
 //		while(i.hasNext()) {
 //			EStructuralFeature feature = i.next();
@@ -211,8 +211,8 @@ public class GenomeToCandidateModelTransformation {
 	public static Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
 		//FIXME switching references, just quick fix
-		EObject test = ced.eContainer();
-		EObject test23 =  test.eContainer();
+//		EObject test = ced.eContainer();
+//		EObject test23 =  test.eContainer();
 		Object object = valueRule(ced, changeableElement, rootElements);
 		
 		if (object instanceof Collection<?>){
@@ -283,7 +283,6 @@ public class GenomeToCandidateModelTransformation {
 			EObject contextInstance, List<EObject> rootElements)  { 
 		Helper helper = OCL_ENV.createOCLHelper();
 		
-		
 		List<HelperOCLDefinition> helpers = oclRule.getHelperDefinition();
 
 		//FIXME for all instances
@@ -324,7 +323,6 @@ public class GenomeToCandidateModelTransformation {
 		try {
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
 				helper.setContext(helperOCLDefinition.getContextClass());
-				//EList<EOperation> exists = helperOCLDefinition.getContextClass().getEAllOperations();
 				try {
 				helper.defineOperation(helperOCLDefinition.getMainOclQuery());
 				}catch (SemanticException e) {
