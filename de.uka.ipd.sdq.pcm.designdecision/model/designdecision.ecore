@@ -33,12 +33,15 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The domain is defined in subclasses, because it may be either a set of PCM Entities (in the EnumerationDegree) or integer or double ranges (in the RangeDegree and its subclasses). "/>
     </eAnnotations>
+    <eOperations name="decoratorModelTypeMustMatchRequiredDecorator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChanged" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dof" ordered="false" lowerBound="1"
         eType="#//gdof/DegreeOfFreedom"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElements" ordered="false"
         lowerBound="1" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decoratorModel" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassChoice" eSuperTypes="#//Choice">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -155,6 +158,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//gdof/SelectionRule #//gdof/StaticContextRule"/>
     <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
+      <eAnnotations>
+        <details key="documentation" value="TODO Daniel requiredDecoratorModel erläutern"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="addedElements" ordered="false"
           upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeableElementDescriptions"
@@ -164,7 +170,10 @@
           ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChangeable" ordered="false"
           lowerBound="1" eType="#//gdof/ChangeableElementDescription"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requiredDecoratorModel"
+          upperBound="-1" eType="#//gdof/DecoratorModelDescription"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DecoratorModelDescription"/>
   </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
       nsPrefix="qualityproperties">
