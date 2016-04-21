@@ -243,6 +243,7 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//specific/AssembledComponentDegree"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//specific/CapacityDegree"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//specific/MonitoringDegree"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="designdecision.ecore#//specific/ATNumberOfReplicaDegree"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

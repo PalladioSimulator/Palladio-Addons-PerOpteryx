@@ -12,30 +12,29 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unordered Degree</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Unordered Degree</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
 public abstract class UnorderedDegreeImpl extends DataTypeDegreeImpl implements UnorderedDegree {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnorderedDegreeImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected UnorderedDegreeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return specificPackage.Literals.UNORDERED_DEGREE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return specificPackage.Literals.UNORDERED_DEGREE;
+    }
 
-} //UnorderedDegreeImpl
+} // UnorderedDegreeImpl
