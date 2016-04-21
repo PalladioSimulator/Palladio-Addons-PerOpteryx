@@ -31,101 +31,102 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPack
  * @generated
  */
 public class QualityPropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	public QualityPropertyItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+    /**
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public QualityPropertyItemProvider(final AdapterFactory adapterFactory) {
+        super(adapterFactory);
+    }
 
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    /**
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(final Object object) {
+        if (this.itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-			addQualityValuePropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+            this.addQualityValuePropertyDescriptor(object);
+        }
+        return this.itemPropertyDescriptors;
+    }
 
-	/**
-	 * This adds a property descriptor for the Quality Value feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	protected void addQualityValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_QualityProperty_qualityValue_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_QualityProperty_qualityValue_feature",
-						"_UI_QualityProperty_type"),
-				qualitypropertiesPackage.Literals.QUALITY_PROPERTY__QUALITY_VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
+    /**
+     * This adds a property descriptor for the Quality Value feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    protected void addQualityValuePropertyDescriptor(final Object object) {
+        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+                this.getString("_UI_QualityProperty_qualityValue_feature"),
+                this.getString("_UI_PropertyDescriptor_description", "_UI_QualityProperty_qualityValue_feature",
+                        "_UI_QualityProperty_type"),
+                qualitypropertiesPackage.Literals.QUALITY_PROPERTY__QUALITY_VALUE, true, false, false,
+                ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    }
 
-	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		Object labelValue = ((QualityProperty) object).getQualityValue();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_QualityProperty_type")
-				: getString("_UI_QualityProperty_type") + " " + label;
-	}
+    /**
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     *
+     * @generated
+     */
+    @Override
+    public String getText(final Object object) {
+        final Object labelValue = ((QualityProperty) object).getQualityValue();
+        final String label = labelValue == null ? null : labelValue.toString();
+        return label == null || label.length() == 0 ? this.getString("_UI_QualityProperty_type")
+                : this.getString("_UI_QualityProperty_type") + " " + label;
+    }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
+     * . <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public void notifyChanged(final Notification notification) {
+        this.updateChildren(notification);
 
-		switch (notification.getFeatureID(QualityProperty.class)) {
-		case qualitypropertiesPackage.QUALITY_PROPERTY__QUALITY_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(QualityProperty.class)) {
+        case qualitypropertiesPackage.QUALITY_PROPERTY__QUALITY_VALUE:
+            this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        }
+        super.notifyChanged(notification);
+    }
 
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
+     * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(final Collection<Object> newChildDescriptors, final Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DesignDecisionEditPlugin.INSTANCE;
-	}
+    /**
+     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return DesignDecisionEditPlugin.INSTANCE;
+    }
 
 }

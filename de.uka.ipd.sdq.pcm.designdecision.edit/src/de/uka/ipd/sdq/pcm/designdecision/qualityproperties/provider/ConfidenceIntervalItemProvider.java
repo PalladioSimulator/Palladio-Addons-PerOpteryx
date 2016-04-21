@@ -31,163 +31,164 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPack
  * @generated
  */
 public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	public ConfidenceIntervalItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+    /**
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    public ConfidenceIntervalItemProvider(final AdapterFactory adapterFactory) {
+        super(adapterFactory);
+    }
 
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    /**
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(final Object object) {
+        if (this.itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-			addConfidenceLevelPropertyDescriptor(object);
-			addMeanPropertyDescriptor(object);
-			addUpperBoundPropertyDescriptor(object);
-			addLowerBoundPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+            this.addConfidenceLevelPropertyDescriptor(object);
+            this.addMeanPropertyDescriptor(object);
+            this.addUpperBoundPropertyDescriptor(object);
+            this.addLowerBoundPropertyDescriptor(object);
+        }
+        return this.itemPropertyDescriptors;
+    }
 
-	/**
-	 * This adds a property descriptor for the Confidence Level feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConfidenceLevelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_confidenceLevel_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ConfidenceInterval_confidenceLevel_feature", "_UI_ConfidenceInterval_type"),
-				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
-	}
+    /**
+     * This adds a property descriptor for the Confidence Level feature. <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    protected void addConfidenceLevelPropertyDescriptor(final Object object) {
+        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+                this.getString("_UI_ConfidenceInterval_confidenceLevel_feature"),
+                this.getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_confidenceLevel_feature",
+                        "_UI_ConfidenceInterval_type"),
+                qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, true, false, false,
+                ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+    }
 
-	/**
-	 * This adds a property descriptor for the Mean feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	protected void addMeanPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ConfidenceInterval_mean_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_mean_feature",
-						"_UI_ConfidenceInterval_type"),
-				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__MEAN, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
-	}
+    /**
+     * This adds a property descriptor for the Mean feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    protected void addMeanPropertyDescriptor(final Object object) {
+        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+                this.getString("_UI_ConfidenceInterval_mean_feature"),
+                this.getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_mean_feature",
+                        "_UI_ConfidenceInterval_type"),
+                qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__MEAN, true, false, false,
+                ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+    }
 
-	/**
-	 * This adds a property descriptor for the Upper Bound feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_upperBound_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_upperBound_feature",
-								"_UI_ConfidenceInterval_type"),
-				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__UPPER_BOUND, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
-	}
+    /**
+     * This adds a property descriptor for the Upper Bound feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    protected void addUpperBoundPropertyDescriptor(final Object object) {
+        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+                this.getString("_UI_ConfidenceInterval_upperBound_feature"),
+                this.getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_upperBound_feature",
+                        "_UI_ConfidenceInterval_type"),
+                qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__UPPER_BOUND, true, false, false,
+                ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+    }
 
-	/**
-	 * This adds a property descriptor for the Lower Bound feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_lowerBound_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_lowerBound_feature",
-								"_UI_ConfidenceInterval_type"),
-				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__LOWER_BOUND, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
-	}
+    /**
+     * This adds a property descriptor for the Lower Bound feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    protected void addLowerBoundPropertyDescriptor(final Object object) {
+        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+                this.getString("_UI_ConfidenceInterval_lowerBound_feature"),
+                this.getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_lowerBound_feature",
+                        "_UI_ConfidenceInterval_type"),
+                qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__LOWER_BOUND, true, false, false,
+                ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+    }
 
-	/**
-	 * This returns ConfidenceInterval.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConfidenceInterval"));
-	}
+    /**
+     * This returns ConfidenceInterval.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public Object getImage(final Object object) {
+        return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/ConfidenceInterval"));
+    }
 
-	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		ConfidenceInterval confidenceInterval = (ConfidenceInterval) object;
-		return getString("_UI_ConfidenceInterval_type") + " " + confidenceInterval.getConfidenceLevel();
-	}
+    /**
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     *
+     * @generated
+     */
+    @Override
+    public String getText(final Object object) {
+        final ConfidenceInterval confidenceInterval = (ConfidenceInterval) object;
+        return this.getString("_UI_ConfidenceInterval_type") + " " + confidenceInterval.getConfidenceLevel();
+    }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
+     * . <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public void notifyChanged(final Notification notification) {
+        this.updateChildren(notification);
 
-		switch (notification.getFeatureID(ConfidenceInterval.class)) {
-		case qualitypropertiesPackage.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL:
-		case qualitypropertiesPackage.CONFIDENCE_INTERVAL__MEAN:
-		case qualitypropertiesPackage.CONFIDENCE_INTERVAL__UPPER_BOUND:
-		case qualitypropertiesPackage.CONFIDENCE_INTERVAL__LOWER_BOUND:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(ConfidenceInterval.class)) {
+        case qualitypropertiesPackage.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL:
+        case qualitypropertiesPackage.CONFIDENCE_INTERVAL__MEAN:
+        case qualitypropertiesPackage.CONFIDENCE_INTERVAL__UPPER_BOUND:
+        case qualitypropertiesPackage.CONFIDENCE_INTERVAL__LOWER_BOUND:
+            this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        }
+        super.notifyChanged(notification);
+    }
 
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
+     * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(final Collection<Object> newChildDescriptors, final Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DesignDecisionEditPlugin.INSTANCE;
-	}
+    /**
+     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     *
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return DesignDecisionEditPlugin.INSTANCE;
+    }
 
 }

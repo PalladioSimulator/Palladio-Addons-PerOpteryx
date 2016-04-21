@@ -431,5 +431,6 @@
         <details key="documentation" value="MonitoringDegree  is a degree of freedom to choose the monitoring interval time. It refers to an Intervall as changebleEntity from EvaluationSpecification.pms model of SimuLizar. Interval range between &quot;from&quot; and &quot;to&quot;."/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
   </eSubpackages>
 </ecore:EPackage>
