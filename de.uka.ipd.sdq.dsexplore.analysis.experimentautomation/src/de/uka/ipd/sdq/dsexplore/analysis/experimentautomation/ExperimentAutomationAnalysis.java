@@ -32,13 +32,12 @@ import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComQualityAttributeDeclarat
 import de.uka.ipd.sdq.dsexplore.analysis.simulizar.SimuLizarAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.simulizar.SimuLizarAnalysisEDP2Result;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.workflow.extension.AbstractExtendableJob;
 import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
+
     /** Logger for log4j. */
     private final static Logger LOGGER = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.experimentautomation");
     private static MemoryDatasource MEMORY_DATASOURCE = AbstractsimulationFactory.eINSTANCE.createMemoryDatasource();
@@ -52,31 +51,32 @@ public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
     }
 
     @Override
-    public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
+    public void initialise(final DSEWorkflowConfiguration configuration) throws CoreException {
         this.config = configuration.getRawConfiguration();
         initialiseCriteria(configuration);
     }
 
     @Override
-    public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
+    public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor)
             throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 
-        DSEExperimentAutomationWorkflowLauncher workflowLauncher = new DSEExperimentAutomationWorkflowLauncher();
+        final DSEExperimentAutomationWorkflowLauncher workflowLauncher = new DSEExperimentAutomationWorkflowLauncher();
         this.initialiseExperimentAutomationConfig(workflowLauncher, pheno);
         this.launchExperimentAutomation(monitor, workflowLauncher);
 
     }
 
-    private void initialiseExperimentAutomationConfig(DSEExperimentAutomationWorkflowLauncher workflowLauncher,
-            PCMPhenotype pheno) throws CoreException {
-        this.experimentAutomationConfig = workflowLauncher.deriveConfiguration(config);
-        experimentRunName = getExperimentName(pheno);
-        Experiment experiment = this.experimentAutomationConfig.getExperiments().get(0);
+    private void initialiseExperimentAutomationConfig(final DSEExperimentAutomationWorkflowLauncher workflowLauncher,
+            final PCMPhenotype pheno) throws CoreException {
+        this.experimentAutomationConfig = workflowLauncher.deriveConfiguration(this.config);
+        this.experimentAutomationConfig.setLoadModels(false);
+        this.experimentRunName = getExperimentName(pheno);
+        final Experiment experiment = this.experimentAutomationConfig.getExperiments().get(0);
         experiment.getInitialModel().setAllocation(pheno.getPCMInstance().getAllocation());
 
         experiment.getToolConfiguration().stream().filter(sc -> sc instanceof AbstractSimulationConfiguration)
                 .map(sc -> (AbstractSimulationConfiguration) sc).forEach(sc -> {
-                    sc.setName(experimentRunName);
+                    sc.setName(this.experimentRunName);
                     if (sc.getDatasource() instanceof MemoryDatasource) {
                         if (RepositoryManager.getRepositoryFromUUID(MEMORY_DATASOURCE.getId()) == null) {
                             MEMORY_DATASOURCE = AbstractsimulationFactory.eINSTANCE.createMemoryDatasource();
@@ -85,54 +85,55 @@ public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
                     }
                 });
 
-        Optional<AbstractSimulationConfiguration> abstractSimulationConfiguration = experiment.getToolConfiguration()
-                .stream().filter(sc -> sc instanceof AbstractSimulationConfiguration).findFirst()
+        final Optional<AbstractSimulationConfiguration> abstractSimulationConfiguration = experiment
+                .getToolConfiguration().stream().filter(sc -> sc instanceof AbstractSimulationConfiguration).findFirst()
                 .map(sc -> (AbstractSimulationConfiguration) sc);
 
         this.toolConfig = abstractSimulationConfiguration
                 .orElse(SimulizartooladapterFactoryImpl.init().createSimuLizarConfiguration());
     }
 
-    private void launchExperimentAutomation(IProgressMonitor monitor,
-            DSEExperimentAutomationWorkflowLauncher workflowLauncher) {
-        ILaunch launch = new Launch(config, ILaunchManager.DEBUG_MODE, null);
+    private void launchExperimentAutomation(final IProgressMonitor monitor,
+            final DSEExperimentAutomationWorkflowLauncher workflowLauncher) {
+        final ILaunch launch = new Launch(this.config, ILaunchManager.DEBUG_MODE, null);
         try {
-            IJob job = workflowLauncher.createWorkflowJob(experimentAutomationConfig, launch);
+            final IJob job = workflowLauncher.createWorkflowJob(this.experimentAutomationConfig, launch);
             if (job instanceof RunExperimentAutomationJob) {
-                AbstractExtendableJob<MDSDBlackboard> experimentAutomationJob = (RunExperimentAutomationJob) job;
-                experimentAutomationJob.setBlackboard(blackboard);
+                final RunExperimentAutomationJob experimentAutomationJob = (RunExperimentAutomationJob) job;
+                experimentAutomationJob.setBlackboard(this.blackboard);
                 experimentAutomationJob.execute(monitor);
             } else {
                 LOGGER.debug("The created Job is not an ExperimentAutomationJob.");
             }
-        } catch (CoreException e) {
+        } catch (final CoreException e) {
             LOGGER.error(e.getMessage());
-        } catch (JobFailedException e) {
+        } catch (final JobFailedException e) {
             LOGGER.error(e.getMessage());
-        } catch (UserCanceledException e) {
+        } catch (final UserCanceledException e) {
             LOGGER.error(e.getMessage());
         }
     }
 
     @Override
-    protected Optional<IStatisticAnalysisResult> createResult(UsageScenario usageScenario, PCMInstance pcmInstance)
-            throws AnalysisFailedException {
+    protected Optional<IStatisticAnalysisResult> createResult(final UsageScenario usageScenario,
+            final PCMInstance pcmInstance) throws AnalysisFailedException {
 
         Optional<IStatisticAnalysisResult> result = Optional.empty();
         String repositoryId = "";
-        EDP2Datasource datasource = this.toolConfig.getDatasource();
+        final EDP2Datasource datasource = this.toolConfig.getDatasource();
         repositoryId = datasource.getId();
-        Experiment experiment = this.experimentAutomationConfig.getExperiments().get(0);
+        final Experiment experiment = this.experimentAutomationConfig.getExperiments().get(0);
         final Repository repository = RepositoryManager.getRepositoryFromUUID(repositoryId);
         if (repository != null) {
             final ExperimentGroup experimentGroup = this.getExperimentGroup(repository,
                     this.getExperimentPurpose(experiment));
-            final ExperimentSetting experimentSetting = this.getExperimentSetting(experimentGroup, experimentRunName);
-            int lastExperimentRun = experimentSetting.getExperimentRuns().size() - 1;
+            final ExperimentSetting experimentSetting = this.getExperimentSetting(experimentGroup,
+                    this.experimentRunName);
+            final int lastExperimentRun = experimentSetting.getExperimentRuns().size() - 1;
             if (lastExperimentRun >= 0) {
-                org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun experimentRun = experimentSetting
+                final org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun experimentRun = experimentSetting
                         .getExperimentRuns().get(lastExperimentRun);
-                IStatisticAnalysisResult simuLizarResult = new SimuLizarAnalysisEDP2Result(experimentRun,
+                final IStatisticAnalysisResult simuLizarResult = new SimuLizarAnalysisEDP2Result(experimentRun,
                         experimentSetting, pcmInstance, usageScenario, this.criterionToAspect,
                         (SimuComQualityAttributeDeclaration) this.qualityAttribute);
                 result = Optional.ofNullable(simuLizarResult);
@@ -143,8 +144,8 @@ public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
         return result;
     }
 
-    private String getExperimentPurpose(Experiment experiment) {
-        StringBuilder stringBuilder = new StringBuilder(experiment.getName());
+    private String getExperimentPurpose(final Experiment experiment) {
+        final StringBuilder stringBuilder = new StringBuilder(experiment.getName());
         stringBuilder.append(" [");
         stringBuilder.append(experiment.getId());
         stringBuilder.append("]");
@@ -164,7 +165,8 @@ public class ExperimentAutomationAnalysis extends SimuLizarAnalysis {
 
     class DSEExperimentAutomationWorkflowLauncher extends ExperimentAutomationWorkflowLauncher {
 
-        public ExperimentAutomationConfiguration deriveConfiguration(ILaunchConfiguration config) throws CoreException {
+        public ExperimentAutomationConfiguration deriveConfiguration(final ILaunchConfiguration config)
+                throws CoreException {
             return super.deriveConfiguration(config, ILaunchManager.RUN_MODE);
 
         }
