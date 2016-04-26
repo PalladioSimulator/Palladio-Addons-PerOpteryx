@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+
+  <rm:property key="resolveFrom" value="release"/>
+
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" />
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
+  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
+
+  <rm:redirect pattern="^org\.palladiosimulator\.solver.*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap"/>
+  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/SimuCom/trunk/org.palladiosimulator.simucom.buckminster/simucom.rmap"/>
+
+  <rm:searchPath name="peropteryxsvn">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
+      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Addons/PerOpteryx/trunk/{0}">
+      	<bc:propertyRef key="buckminster.component" />
+      </rm:uri>
+    </rm:provider>
+    <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/nightly/"/>
+    </rm:provider>
+    <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/releases/latest/"/>
+    </rm:provider>      
+  </rm:searchPath>
+  
+</rm:rmap>
