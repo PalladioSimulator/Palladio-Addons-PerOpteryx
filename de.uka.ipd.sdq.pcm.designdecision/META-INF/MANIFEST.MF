@@ -52,12 +52,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.pcm;visibility:=reexport,
  org.palladiosimulator.analyzer.resultdecorator;visibility:=reexport,
  de.uka.ipd.sdq.stoex;visibility:=reexport,
- de.uka.ipd.sdq.featuremodel;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  de.uka.ipd.sdq.dsexplore.qml;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.cost;bundle-version="1.0.0";visibility:=reexport,
  org.opt4j;bundle-version="2.5.0",
  org.eclipse.uml2.types;visibility:=reexport,
  de.uka.ipd.sdq.units;visibility:=reexport,
- de.uka.ipd.sdq.probfunction;visibility:=reexport
+ de.uka.ipd.sdq.probfunction;visibility:=reexport,
+ de.uka.ipd.sdq.featuremodel;visibility:=reexport
 Bundle-ActivationPolicy: lazy

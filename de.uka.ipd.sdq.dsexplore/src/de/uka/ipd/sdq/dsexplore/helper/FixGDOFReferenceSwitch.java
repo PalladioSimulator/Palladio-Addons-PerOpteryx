@@ -9,7 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.SeffPackage;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -19,6 +22,9 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.HelperOCLDefinition;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofSwitch;
+import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription;
+import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
+import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
 
 public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 
@@ -41,12 +47,42 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     }
     
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
+    	org.palladiosimulator.pcm.system.System system = this.initialInstance.getSystem();
 
+    	
+    	
+    	EClass rdrEClass = null;
+    	EClass rdEclass = null;
+    	EList<EObject> decos = dofi.getDecoratorModel();
+    	for (EObject dec : decos) {
+    		if (dec instanceof ResourceDescriptionRepositoryImpl) {
+    			ResourceDescriptionRepository rdr = (ResourceDescriptionRepository)dec;
+    			rdrEClass = rdr.eClass();
+    			EList<ResourceDescription> resourceDes = rdr.getAvailableProcessingResources_ResourceRepository();
+    			for (ResourceDescription rd : resourceDes) {
+    				rdEclass = rd.eClass();
+    			EList<ProcessingResourceSpecification> ars = rd.getProcessingResourceSpecification_ResourceDescription().getActiveResourceSpecifications_ResourceContainer();
+    			for (ProcessingResourceSpecification sd : ars) {
+    				System.out.println(sd.getProcessingRate_ProcessingResourceSpecification().toString());
+    			}
+    			}
+    		}
+    		
+    	}
+    	
+    	//------- nice code starts here
     	DegreeOfFreedom dof = dofi.getDof();
     	for (ChangeableElementDescription ced : dof.getChangeableElementDescriptions()) {
 
 	    		for (HelperOCLDefinition helpDef : ced.getValueRule().getHelperDefinition()) {
 
+	    			EClass help = helpDef.getContextClass();
+	    			if(help.getName().equals("ResourceDescriptionRepository")) {
+	    				helpDef.setContextClass(rdrEClass);
+	    			}else if (help.getName().equals("ResourceDescription")) {
+	    				helpDef.setContextClass(rdEclass);
+	    			}
+	    			
 	    			doContextClassSwitch(helpDef);  			
 
 	    		}
@@ -64,6 +100,8 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private void doContextClassSwitch(HelperOCLDefinition helpDef) {
 		EClass helperClass = helpDef.getContextClass();
 		EPackage container = (EPackage) helperClass.eContainer();
+		EPackage concontainer = (EPackage) container.eContainer();
+		concontainer.getESubpackages();
 		System.out.println(container.getName());
 		if (container.getName().equals("composition")) {
 			doCompositionSwich(helpDef);
@@ -100,9 +138,10 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
                  "Please implement Swich for: "+helpDef.getContextClass().getName());
 	}
 	private void doResourceenvironmentSwitch(HelperOCLDefinition helpDef) {
-		// TODO Auto-generated method stub
-		logger.error(
-                "Please implement Swich for: "+helpDef.getContextClass().getName());
+		ResourceEnvironment re = this.initialInstance.getResourceEnvironment();
+		EList<EObject> contents = re.eContents();
+		EList<EClass> superTypes = re.eClass().getEAllSuperTypes();
+		switchClasses(helpDef, contents, superTypes);
 	}
 	private void doSystemSwitch(HelperOCLDefinition helpDef) {
 		EClass systemClass = this.initialInstance.getSystem().eClass();

@@ -2,8 +2,13 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.delegate.OCLSettingDelegate.Changeable;
+import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
 import org.opt4j.core.optimizer.Archive;
@@ -20,9 +25,12 @@ import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 
 /**
  * Copy of {@link EvolutionaryAlgorithm} that detects duplicates in the population and creates new random candidates
@@ -80,8 +88,55 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		
 		int count = 0;
 		while (population.size() < alpha && count < alpha + 200) {
+//			//FIXME clean up!!
+			
+//			Individual i = individualFactory.create();
+//			Genotype g = i.getGenotype();
+//			DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
+//			Object val = ddg.get(0).getValue();
+//			EList<EObject> elements = ddg.get(0).getDegreeOfFreedomInstance().getChangeableElements();
+//			EObject eval = (EObject)val;
+//			boolean found = false;
+//			for (EObject eo : elements) {
+//				if (eval.equals(eo)) {
+//					found = true;
+//					break;
+//				}
+//			}
 			Individual i = individualFactory.create();
-			if (!population.contains(i)){
+			Genotype g = i.getGenotype();
+			DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
+			boolean found = false;
+			
+			for (Choice c : ddg) {
+				found = false;
+				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+				EObject value = (EObject) c.getValue();
+				
+				Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
+				
+				//if first chosen it is the primary
+				//if (population.isEmpty()) {
+					String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
+					key = key+"$";
+					key = key.replace(".", "_");
+					key = key.toLowerCase();
+					Object chosen = c.getValue();
+					chosenValues.put(key, chosen);
+					GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
+				//}
+				
+				for (EObject eo : elements) {
+					if (value.equals(eo)) {
+						found = true;
+						break;
+					} 
+				}
+				if (!found && elements.isEmpty()) {
+					found = true;
+				}
+			}
+			if (!population.contains(i) && found){
 				population.add(i);
 			}
 			count ++;
@@ -121,8 +176,39 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				int duplicates = 0;
 				
 				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
+					//FIXME clean up!!
+//					Individual i = individualFactory.create();
+//					Genotype g = i.getGenotype();
+//					DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
+//					Object val = ddg.get(0).getValue();
+//					EList<EObject> elements = ddg.get(0).getDegreeOfFreedomInstance().getChangeableElements();
+//					EObject eval = (EObject)val;
+//					boolean found = false;
+//					for (EObject eo : elements) {
+//						if (eval.equals(eo)) {
+//							found = true;
+//							break;
+//						}
+//					}
 					Individual i = individualFactory.create();
-					if (!population.contains(i)){
+					Genotype g = i.getGenotype();
+					DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
+					boolean found = false;
+					
+					for (Choice c : ddg) {
+						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+						EObject value = (EObject) c.getValue();
+
+						
+						for (EObject eo : elements) {
+							if (value.equals(eo)) {
+								found = true;
+								break;
+							} 
+						}
+						if (!found && !elements.isEmpty()) break;
+					}
+					if (!population.contains(i) && found){
 						completer.complete(i);
 						population.add(i);
 						count ++;

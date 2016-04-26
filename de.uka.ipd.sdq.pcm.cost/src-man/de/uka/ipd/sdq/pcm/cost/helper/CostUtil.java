@@ -152,9 +152,12 @@ public class CostUtil {
 	public static double getTotalCost(Cost cost) {
 		
 		CostRepository costRepository = getCostRepository(cost);
-		
-		double interest = costRepository.getInterest();
-		int numberOfYears = costRepository.getTimePeriodYears();
+		int numberOfYears = 0;
+		double interest = 1.0;
+		if (costRepository != null) {
+			interest = costRepository.getInterest();
+			numberOfYears = costRepository.getTimePeriodYears();
+		}
 		double operatingCost = cost.getOperatingCost();
 		double initialCost = cost.getInitialCost();
 		

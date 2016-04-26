@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import org.eclipse.emf.ecore.util.Switch;
@@ -17,6 +18,9 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.util.designdecisionSwitch;
 
@@ -157,7 +161,22 @@ public class FixDesignDecisionReferenceSwitch extends designdecisionSwitch<EObje
         try {
             for (final DegreeOfFreedomInstance dd : object.getDegreesOfFreedom()) {
                 doSwitch(dd);
+                // DegreeOfFreedom dof = dd.getDof();
+                // dof.eResource();
+                DegreeOfFreedom dof = dd.getDof();
+
+                if (dof != null) {
+//                    EList<ChangeableElementDescription> test = dof.getChangeableElementDescriptions();
+                    // this.genericSwitch.doSwitch(dof);
+                    // this.genericSwitch.doSwitch(ipfer);
+
+                    this.genericSwitch.switchReferences(dd);
+                    // this.fixGenericSwitch.doSwitch(dof);
+                    // this.genericSwitch.doSwitch(dof.getPrimaryChangeable());
+                    // this.fixGenericSwitch.defaultCase(dof);
+                }
             }
+            ;
         } catch (final ClassCastException e) {
             logger.error(
                     "Class cast exception when visiting .designdecision model. Please check your model for validity using the Ecore tree editor. References might be broken.");

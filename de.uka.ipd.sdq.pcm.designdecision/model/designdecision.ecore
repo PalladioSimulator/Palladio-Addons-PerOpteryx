@@ -29,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="degreeOfFreedomInstance"
         ordered="false" lowerBound="1" eType="#//DegreeOfFreedomInstance"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedomInstance" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Each degree of freedom of the system architecture can be represented by a DegreeOfFreedom element. Each DegreeOfFreedom has two parts: It links a model element that is the changeable entity in this DegreeOfFreedom, and it specifies a domain of possible values that the model element can take. &#xD;&#xA;&#xD;&#xA;The domain is defined in subclasses, because it may be either a set of PCM Entities (in the EnumerationDegree) or integer or double ranges (in the RangeDegree and its subclasses). "/>
     </eAnnotations>
@@ -65,14 +65,14 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionSpace" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Problem represents the optimisation problem definition. It contains the DegreeOfFreedoms that make up this optimisation problem. "/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="degreesOfFreedom" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//DegreeOfFreedomInstance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Candidate" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Candidate" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Candidate represents one solution candidate to the optimisation problem. It contains as many choices as there are DegreeOfFreedoms. "/>
     </eAnnotations>
@@ -111,7 +111,7 @@
   </eClassifiers>
   <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
-    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="changeable" ordered="false"
           lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueRule" ordered="false"
@@ -157,7 +157,7 @@
           eType="#//gdof/ChangeableElementDescription"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticSelectionRule" eSuperTypes="#//gdof/SelectionRule #//gdof/StaticContextRule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="DegreeOfFreedom" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eAnnotations>
         <details key="documentation" value="TODO Daniel requiredDecoratorModel erläutern"/>
       </eAnnotations>
@@ -171,9 +171,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="primaryChangeable" ordered="false"
           lowerBound="1" eType="#//gdof/ChangeableElementDescription"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredDecoratorModel"
-          upperBound="-1" eType="#//gdof/DecoratorModelDescription"/>
+          upperBound="-1" eType="#//gdof/DecoratorModelDescription" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DecoratorModelDescription"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DecoratorModelDescription" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referedDecorator" ordered="false"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="qualityproperties" nsURI="http://sdq.ipd.uka.de/DesignDecision/QualityProperties/3.0"
       nsPrefix="qualityproperties">
@@ -263,10 +266,10 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fixedProcessingResourceCost_ResourceDescription"
-          ordered="false" lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.pcm.cost/model/cost.ecore#//FixedProcessingResourceCost"
+          ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.pcm.cost/model/cost.ecore#//FixedProcessingResourceCost"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="processingResourceSpecification_ResourceDescription"
-          ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ResourceContainer"
+          ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//resourceenvironment/ResourceContainer"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ResourcesCanBeUsedIndividually"
           ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -276,9 +279,9 @@
       nsPrefix="specific">
     <eClassifiers xsi:type="ecore:EClass" name="ExchangeComponentRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryComponent"
-          ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
+          ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="allocationContext" ordered="false"
-          eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//allocation/AllocationContext"/>
+          eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//allocation/AllocationContext"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ClassAsReferenceDegree" eSuperTypes="#//specific/ClassDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -362,7 +365,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ProcessingResourceDegree" abstract="true"
         eSuperTypes="#//DegreeOfFreedomInstance">
       <eStructuralFeatures xsi:type="ecore:EReference" name="processingresourcetype"
-          ordered="false" lowerBound="1" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//resourcetype/ProcessingResourceType"/>
+          ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//resourcetype/ProcessingResourceType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteComponentParamDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="DiscreteProcessingRateDegree" eSuperTypes="#//specific/DiscreteRangeDegree #//specific/ProcessingRateDegree"/>
@@ -373,14 +376,14 @@
         <details key="documentation" value="For a FeatureGroup with Fatures F1, F2, F3 and range 2 to 3 the options are (F1,F2), (F1,F3), (F1,F2,F3). &#xD;&#xA;&#xD;&#xA;TODO define neighbourhood here.  Maybe (F1,F3) and (F1,F2,F3)  are closer to each other than (F1,F2) and (F1,F3). Partial order?&#xD;&#xA;"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="featuregroup" ordered="false"
-          lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//FeatureGroup"/>
+          lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//FeatureGroup"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="domainOfFeatureConfigCombinations"
           ordered="false" lowerBound="1" upperBound="-1" eType="#//specific/FeatureSubset"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureSubset">
       <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
-          upperBound="-1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Feature"/>
+          upperBound="-1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Feature"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresAsListDegree" eSuperTypes="#//specific/NumberOfCoresDegree #//specific/OrderedIntegerDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="NumberOfCoresDegree" abstract="true"
@@ -391,7 +394,7 @@
         <details key="documentation" value="A boolean range: Selected or Eliminated (ignore default here). "/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="simple" ordered="false"
-          lowerBound="1" eType="ecore:EClass ../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Simple"/>
+          lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//Simple"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ResourceContainerReplicationDegree"
         eSuperTypes="#//specific/DiscreteRangeDegree">
@@ -431,6 +434,5 @@
         <details key="documentation" value="MonitoringDegree  is a degree of freedom to choose the monitoring interval time. It refers to an Intervall as changebleEntity from EvaluationSpecification.pms model of SimuLizar. Interval range between &quot;from&quot; and &quot;to&quot;."/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -3,6 +3,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
@@ -48,6 +49,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 	private DSEProblem problem;
 	private Random random;
+	
 	
 	private int numberOfNotEvaluatedPredefinedOnes;
 
@@ -173,6 +175,9 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		  list = new ArrayList<Object>(possibleValues);
 		
 		int index = this.random.nextInt(list.size());
+		
+		
+		
 		return list.get(index);
 	}
 

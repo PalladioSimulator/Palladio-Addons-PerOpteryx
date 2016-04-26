@@ -19,261 +19,242 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#isActive <em>Is Active</em>}</li>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getValue <em>Value</em>}</li>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getDegreeOfFreedomInstance
- * <em>Degree Of Freedom Instance</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#isActive <em>Is Active</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.ChoiceImpl#getDegreeOfFreedomInstance <em>Degree Of Freedom Instance</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ChoiceImpl extends EObjectImpl implements Choice {
-    /**
-     * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #isActive()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean IS_ACTIVE_EDEFAULT = true;
+	/**
+	 * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #isActive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ACTIVE_EDEFAULT = true;
 
-    /**
-     * The cached value of the '{@link #isActive() <em>Is Active</em>}' attribute. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #isActive()
-     * @generated
-     * @ordered
-     */
-    protected boolean isActive = IS_ACTIVE_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #isActive() <em>Is Active</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #isActive()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isActive = IS_ACTIVE_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
-     *
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
-    protected static final Object VALUE_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Object VALUE_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getDegreeOfFreedomInstance()
-     * <em>Degree Of Freedom Instance</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     *
-     * @see #getDegreeOfFreedomInstance()
-     * @generated
-     * @ordered
-     */
-    protected DegreeOfFreedomInstance degreeOfFreedomInstance;
+	/**
+	 * The cached value of the '{@link #getDegreeOfFreedomInstance()
+	 * <em>Degree Of Freedom Instance</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
+	 * @see #getDegreeOfFreedomInstance()
+	 * @generated
+	 * @ordered
+	 */
+	protected DegreeOfFreedomInstance degreeOfFreedomInstance;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected ChoiceImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoiceImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return designdecisionPackage.Literals.CHOICE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return designdecisionPackage.Literals.CHOICE;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean isActive() {
-        return this.isActive;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isActive() {
+		return isActive;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setIsActive(final boolean newIsActive) {
-        final boolean oldIsActive = this.isActive;
-        this.isActive = newIsActive;
-        if (this.eNotificationRequired()) {
-            this.eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__IS_ACTIVE,
-                    oldIsActive, this.isActive));
-        }
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsActive(boolean newIsActive) {
+		boolean oldIsActive = isActive;
+		isActive = newIsActive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__IS_ACTIVE, oldIsActive,
+					isActive));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated not
-     */
-    @Override
-    public abstract Object getValue();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated not
+	 */
+	@Override
+	public abstract Object getValue();
 
-    /**
-     * <!-- begin-user-doc -->
-     *
-     * @throws ClassCastException
-     *             if the type is not matching <!-- end-user-doc -->
-     * @generated not
-     */
-    @Override
-    public abstract void setValue(Object newValue);
+	/**
+	 * <!-- begin-user-doc -->
+	 *
+	 * @throws ClassCastException
+	 *             if the type is not matching <!-- end-user-doc -->
+	 * @generated not
+	 */
+	@Override
+	public abstract void setValue(Object newValue);
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public DegreeOfFreedomInstance getDegreeOfFreedomInstance() {
-        if (this.degreeOfFreedomInstance != null && this.degreeOfFreedomInstance.eIsProxy()) {
-            final InternalEObject oldDegreeOfFreedomInstance = (InternalEObject) this.degreeOfFreedomInstance;
-            this.degreeOfFreedomInstance = (DegreeOfFreedomInstance) this.eResolveProxy(oldDegreeOfFreedomInstance);
-            if (this.degreeOfFreedomInstance != oldDegreeOfFreedomInstance) {
-                if (this.eNotificationRequired()) {
-                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-                            designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
-                            this.degreeOfFreedomInstance));
-                }
-            }
-        }
-        return this.degreeOfFreedomInstance;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DegreeOfFreedomInstance getDegreeOfFreedomInstance() {
+		if (degreeOfFreedomInstance != null && degreeOfFreedomInstance.eIsProxy()) {
+			InternalEObject oldDegreeOfFreedomInstance = (InternalEObject) degreeOfFreedomInstance;
+			degreeOfFreedomInstance = (DegreeOfFreedomInstance) eResolveProxy(oldDegreeOfFreedomInstance);
+			if (degreeOfFreedomInstance != oldDegreeOfFreedomInstance) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
+							degreeOfFreedomInstance));
+			}
+		}
+		return degreeOfFreedomInstance;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public DegreeOfFreedomInstance basicGetDegreeOfFreedomInstance() {
-        return this.degreeOfFreedomInstance;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DegreeOfFreedomInstance basicGetDegreeOfFreedomInstance() {
+		return degreeOfFreedomInstance;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setDegreeOfFreedomInstance(final DegreeOfFreedomInstance newDegreeOfFreedomInstance) {
-        final DegreeOfFreedomInstance oldDegreeOfFreedomInstance = this.degreeOfFreedomInstance;
-        this.degreeOfFreedomInstance = newDegreeOfFreedomInstance;
-        if (this.eNotificationRequired()) {
-            this.eNotify(new ENotificationImpl(this, Notification.SET,
-                    designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
-                    this.degreeOfFreedomInstance));
-        }
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDegreeOfFreedomInstance(DegreeOfFreedomInstance newDegreeOfFreedomInstance) {
+		DegreeOfFreedomInstance oldDegreeOfFreedomInstance = degreeOfFreedomInstance;
+		degreeOfFreedomInstance = newDegreeOfFreedomInstance;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
+					degreeOfFreedomInstance));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case designdecisionPackage.CHOICE__IS_ACTIVE:
-            return this.isActive();
-        case designdecisionPackage.CHOICE__VALUE:
-            return this.getValue();
-        case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
-            if (resolve) {
-                return this.getDegreeOfFreedomInstance();
-            }
-            return this.basicGetDegreeOfFreedomInstance();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case designdecisionPackage.CHOICE__IS_ACTIVE:
+			return isActive();
+		case designdecisionPackage.CHOICE__VALUE:
+			return getValue();
+		case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
+			if (resolve)
+				return getDegreeOfFreedomInstance();
+			return basicGetDegreeOfFreedomInstance();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case designdecisionPackage.CHOICE__IS_ACTIVE:
-            this.setIsActive((Boolean) newValue);
-            return;
-        case designdecisionPackage.CHOICE__VALUE:
-            this.setValue(newValue);
-            return;
-        case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
-            this.setDegreeOfFreedomInstance((DegreeOfFreedomInstance) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case designdecisionPackage.CHOICE__IS_ACTIVE:
+			setIsActive((Boolean) newValue);
+			return;
+		case designdecisionPackage.CHOICE__VALUE:
+			setValue(newValue);
+			return;
+		case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
+			setDegreeOfFreedomInstance((DegreeOfFreedomInstance) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.CHOICE__IS_ACTIVE:
-            this.setIsActive(IS_ACTIVE_EDEFAULT);
-            return;
-        case designdecisionPackage.CHOICE__VALUE:
-            this.setValue(VALUE_EDEFAULT);
-            return;
-        case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
-            this.setDegreeOfFreedomInstance((DegreeOfFreedomInstance) null);
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.CHOICE__IS_ACTIVE:
+			setIsActive(IS_ACTIVE_EDEFAULT);
+			return;
+		case designdecisionPackage.CHOICE__VALUE:
+			setValue(VALUE_EDEFAULT);
+			return;
+		case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
+			setDegreeOfFreedomInstance((DegreeOfFreedomInstance) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.CHOICE__IS_ACTIVE:
-            return this.isActive != IS_ACTIVE_EDEFAULT;
-        case designdecisionPackage.CHOICE__VALUE:
-            return VALUE_EDEFAULT == null ? this.getValue() != null : !VALUE_EDEFAULT.equals(this.getValue());
-        case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
-            return this.degreeOfFreedomInstance != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.CHOICE__IS_ACTIVE:
+			return isActive != IS_ACTIVE_EDEFAULT;
+		case designdecisionPackage.CHOICE__VALUE:
+			return VALUE_EDEFAULT == null ? getValue() != null : !VALUE_EDEFAULT.equals(getValue());
+		case designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE:
+			return degreeOfFreedomInstance != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (this.eIsProxy()) {
-            return super.toString();
-        }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
 
-        final StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (isActive: ");
-        result.append(this.isActive);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isActive: ");
+		result.append(isActive);
+		result.append(')');
+		return result.toString();
+	}
 
 } // ChoiceImpl
