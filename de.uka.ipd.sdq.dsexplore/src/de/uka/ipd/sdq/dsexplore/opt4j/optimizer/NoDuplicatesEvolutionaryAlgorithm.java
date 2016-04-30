@@ -113,18 +113,18 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
 				EObject value = (EObject) c.getValue();
 				
-				Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
-				
-				//if first chosen it is the primary
-				//if (population.isEmpty()) {
-					String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
-					key = key+"$";
-					key = key.replace(".", "_");
-					key = key.toLowerCase();
-					Object chosen = c.getValue();
-					chosenValues.put(key, chosen);
-					GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
-				//}
+//				Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
+//				
+//				//if first chosen it is the primary
+//				//if (population.isEmpty()) {
+//					String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
+//					key = key+"$";
+//					key = key.replace(".", "_");
+//					key = key.toLowerCase();
+//					Object chosen = c.getValue();
+//					chosenValues.put(key, chosen);
+//					GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
+//				//}
 				
 				for (EObject eo : elements) {
 					if (value.equals(eo)) {

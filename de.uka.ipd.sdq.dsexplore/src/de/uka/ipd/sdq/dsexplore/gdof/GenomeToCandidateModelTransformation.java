@@ -100,8 +100,23 @@ public class GenomeToCandidateModelTransformation {
 	
 	private static final org.eclipse.ocl.ecore.OCL OCL_ENV = org.eclipse.ocl.ecore.OCL.newInstance();
 	public static Map<String, Object> chosenValues;
-
+	private static Map<String, Object> decorator;
 	
+	public static Map<String, Object> getDecorator() {
+		if (decorator == null) {
+			decorator = new HashMap<String, Object>();
+		}
+		return decorator;
+	}
+
+
+
+	public static void setDecorator(Map<String, Object> decorator) {
+		GenomeToCandidateModelTransformation.decorator = decorator;
+	}
+
+
+
 	public static Map<String, Object> getChosenValues() {
 		if (chosenValues == null) {
 			chosenValues = new HashMap<String, Object>();
@@ -176,8 +191,34 @@ public class GenomeToCandidateModelTransformation {
 				//determine property to change using GDoF
 				EStructuralFeature property = gdof.getPrimaryChangeable().getChangeable();
 
+				//FIXME testing get old Value
+				EStructuralFeature propertyInLoadedPCM = modelElement.eClass().getEStructuralFeature(property.getName());
+				Object oldChoice = modelElement.eGet(propertyInLoadedPCM);
+				
+				//debug only FIXME
+				EList<Object> oldChoiceList = new BasicEList<Object>();
+				if (oldChoice instanceof EList) {
+					for (Object o : (EList<?>)oldChoice) {
+						chosenValues.put("oldValue$", o);
+						break;
+					}
+//					for (Object eo : (EList<?>)oldChoice) {
+//						oldChoiceList.add(eo);
+//					}
+				} else {
+					chosenValues.put("oldValue$", oldChoice);
+				}
+				chosenValues.put("changeable$", modelElement);
 				
 				Object value = choice.getValue();
+				//FIXME turnn current value to "oldValue" before!
+				//Object oldValue = chosenValues.get("choiceValue$");
+				
+				
+				//FIXME testing get choice Value
+				chosenValues.put("choiceValue$", value);
+				
+				
 				if (value instanceof VariableUsageImpl || value instanceof ProcessingResourceSpecificationImpl) {
 					//VariableUsage vu = (VariableUsage)value;
 					EList<Object> list = new BasicEList<Object>();
@@ -203,7 +244,8 @@ public class GenomeToCandidateModelTransformation {
 					for (EObject changeableElement : changeableElements) {
 
 						Object newValue = valueRule(ced, changeableElement, rootElements);
-						chosenValues.put(ced.getName().replace(".", "_").toLowerCase(), newValue);
+						//FIXME chosenValues.put(ced.getName().replace(".", "_").toLowerCase(), newValue);
+						
 						//FIXME create loop to set properties if @newValue is a set
 						//Set<Object> set = new HashSet<Object>();
 						if (newValue instanceof HashSet<?>) {
@@ -238,6 +280,15 @@ public class GenomeToCandidateModelTransformation {
 			Object value) {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
 		//FIXME if copy then create a method for this, or maybe there is one?
+		String keyForChanged = null;
+		if (decorator.containsValue(changeableElement)) {
+			for (String key : decorator.keySet()) {
+				if (decorator.get(key).equals(changeableElement)) {
+					keyForChanged = key;
+					break;
+				}
+			}
+		}
 		if (value instanceof  PCMRandomVariableImpl) {
 			PCMRandomVariable varCopy = CoreFactory.eINSTANCE.createPCMRandomVariable();
 			String spec = ((PCMRandomVariableImpl) value).getSpecification();
@@ -248,6 +299,7 @@ public class GenomeToCandidateModelTransformation {
 			Collection<Object> col = new ArrayList<Object>();
 			col = (Collection<Object>)value;
 			Collection<Object> copy = copier.copyAll(col);
+			copier.copyReferences();
 			changeableElement.eSet(propertyInLoadedPCM, copy);
 		} else if (value instanceof FixedProcessingResourceCostImpl) {
 			FixedProcessingResourceCost fpr = costFactory.eINSTANCE.createFixedProcessingResourceCost();
@@ -258,6 +310,10 @@ public class GenomeToCandidateModelTransformation {
 			changeableElement.eSet(propertyInLoadedPCM, col);
 		} else {
 			changeableElement.eSet(propertyInLoadedPCM, value);
+		}
+		if (keyForChanged != null) {
+			decorator.remove(keyForChanged);
+			decorator.put(keyForChanged, changeableElement);
 		}
 	}
 	
@@ -451,8 +507,8 @@ public class GenomeToCandidateModelTransformation {
 	}
 
 	private static Query setEvaluationEnvironment(Query query) {
-		DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
-		EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
+//		DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
+//		EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
 		
 		//dfd
 		Set<String> keys = GenomeToCandidateModelTransformation.getChosenValues().keySet();
@@ -460,20 +516,18 @@ public class GenomeToCandidateModelTransformation {
 			query.getEvaluationEnvironment().add(key, GenomeToCandidateModelTransformation.getChosenValues().get(key));
 		}
 		//lndlfk
-		for (DegreeOfFreedomInstance dofi : dofis) {
-			EList<EObject> decorators = dofi.getDecoratorModel();
-			for (EObject decorator : decorators) {
+		if (!decorator.isEmpty()) {
+			for (String key : decorator.keySet()) {
+				EObject dec = (EObject) decorator.get(key);
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
-				String decoratorName = decorator.eClass().getName();
-				String lowerCaseName = decoratorName.toLowerCase();
-				String varName = lowerCaseName+"$";
-				contextVar.setName(varName);
-				contextVar.setType(decorator.eClass());
-				if (query.getEvaluationEnvironment().getValueOf(varName) == null) {
-					query.getEvaluationEnvironment().add(varName, decorator);
+				contextVar.setName(key);
+				contextVar.setType(dec.eClass());
+				if (query.getEvaluationEnvironment().getValueOf(key) == null) {
+					query.getEvaluationEnvironment().add(key, dec);
 					
 				}
 			}
+			
 		}
 		
 		return query;
@@ -484,17 +538,17 @@ public class GenomeToCandidateModelTransformation {
 	private static void defineHelpers(Helper helper, List<HelperOCLDefinition> helpers) {
 		try {
 			//FIXME clean up -> only test code
-			DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
-			EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
-			for (DegreeOfFreedomInstance dofi : dofis) {
-				EList<EObject> decorators = dofi.getDecoratorModel();
-				for (EObject decorator : decorators) {
+//			DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
+//			EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
+//			for (DegreeOfFreedomInstance dofi : dofis) {
+//				EList<EObject> decorators = dofi.getDecoratorModel();
+			if (!decorator.isEmpty()) {
+				Set<String> keys = decorator.keySet();
+				for (String key : keys) {
+					EObject dec = (EObject) decorator.get(key);
 					Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
-					String decoratorName = decorator.eClass().getName();
-					String lowerCaseName = decoratorName.toLowerCase();
-					String varName = lowerCaseName+"$";
-					contextVar.setName(varName);
-					contextVar.setType(decorator.eClass());
+					contextVar.setName(key);
+					contextVar.setType(dec.eClass());
 					
 					if (OCL_ENV.getEnvironment().lookup(contextVar.getName()) == null) {
 						OCL_ENV.getEnvironment().addElement(contextVar.getName(), contextVar, true);
@@ -508,8 +562,17 @@ public class GenomeToCandidateModelTransformation {
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
 				contextVar.setName(key);
 				Object val = GenomeToCandidateModelTransformation.getChosenValues().get(key);
-				EObject value = (EObject)GenomeToCandidateModelTransformation.getChosenValues().get(key);
-				contextVar.setType(value.eClass());
+				if (val instanceof List<?>) {
+					EList<?> valList = (EList<?>) val;
+					for (Object first : valList) {
+						contextVar.setType(((EObject) first).eClass());
+						break;
+					}
+				} else {
+				
+					EObject value = (EObject)GenomeToCandidateModelTransformation.getChosenValues().get(key);
+					contextVar.setType(value.eClass());
+				}
 				OCL_ENV.getEnvironment().addElement(key, contextVar, true);
 			}
 			// <----------

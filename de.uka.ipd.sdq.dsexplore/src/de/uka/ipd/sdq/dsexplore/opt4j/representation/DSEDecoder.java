@@ -21,6 +21,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -544,6 +545,14 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         	String chosenVal = random.getSpecification().toString();
         	String entityName = choice.getDegreeOfFreedomInstance().getEntityName().toString();
         	result = entityName+" (Value: "+chosenVal+ ")";
+        }
+        if (choice.getValue() instanceof ProcessingResourceSpecificationImpl) {
+        	ProcessingResourceSpecification prs = (ProcessingResourceSpecification) choice.getValue();
+        	
+        	String id = prs.getId();
+        	Double mttf = prs.getMTTF();
+        	Double mttr = prs.getMTTR();
+        	result = "prs (id: "+id+") (mttf: "+mttf+") (mttr: "+mttr+")";
         }
         return result;
     }

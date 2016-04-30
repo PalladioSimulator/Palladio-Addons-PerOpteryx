@@ -8,6 +8,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.repository.Repository;
@@ -17,6 +19,10 @@ import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.SeffPackage;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.cost.impl.CostImpl;
+import de.uka.ipd.sdq.pcm.cost.impl.CostRepositoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
@@ -47,13 +53,22 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     }
     
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
-    	org.palladiosimulator.pcm.system.System system = this.initialInstance.getSystem();
-
+//    	org.palladiosimulator.pcm.system.System system = this.initialInstance.getSystem();
+    	//first, set the decorators if there are any
+    	EList<EObject> decos = dofi.getDecoratorModel();
+    	for (EObject deco : decos) {
+    		String name = deco.eClass().getName().toLowerCase()+'$';
+    		GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
+    		
+    	}
     	
     	
+    	//FIXME cleanup
     	EClass rdrEClass = null;
     	EClass rdEclass = null;
-    	EList<EObject> decos = dofi.getDecoratorModel();
+//    	EClass crEclass = null;
+//    	EReference costRef = null;
+    	
     	for (EObject dec : decos) {
     		if (dec instanceof ResourceDescriptionRepositoryImpl) {
     			ResourceDescriptionRepository rdr = (ResourceDescriptionRepository)dec;
@@ -67,6 +82,16 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     			}
     			}
     		}
+//    		else if (dec instanceof CostRepositoryImpl) {
+//    			CostRepository cr = (CostRepository) dec;
+//    			EList<EStructuralFeature> featList = cr.eClass().getEAllStructuralFeatures();
+//    			crEclass = cr.eClass();
+//    			for (EStructuralFeature eo : featList) {
+//    				if (eo.getName().equals("cost")) {
+//    					costRef = (EReference) eo;
+//    				}
+//    			}
+//    		}
     		
     	}
     	
@@ -74,6 +99,12 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	DegreeOfFreedom dof = dofi.getDof();
     	for (ChangeableElementDescription ced : dof.getChangeableElementDescriptions()) {
 
+    		//FIXME cleanup
+//    		if (ced.getChangeable().getName().equals("cost")) {
+//    			ced.setChangeable(costRef);
+//    		}
+    		
+    		
 	    		for (HelperOCLDefinition helpDef : ced.getValueRule().getHelperDefinition()) {
 
 	    			EClass help = helpDef.getContextClass();
@@ -138,6 +169,8 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
                  "Please implement Swich for: "+helpDef.getContextClass().getName());
 	}
 	private void doResourceenvironmentSwitch(HelperOCLDefinition helpDef) {
+		 logger.error(
+                 "Please implement Swich for: "+helpDef.getContextClass().getName());
 		ResourceEnvironment re = this.initialInstance.getResourceEnvironment();
 		EList<EObject> contents = re.eContents();
 		EList<EClass> superTypes = re.eClass().getEAllSuperTypes();
