@@ -24,6 +24,9 @@ import de.uka.ipd.sdq.dsexplore.launch.IResultsHandlerLaunchConfigSettings;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import options.Option;
 import options.OptionRepository;
 import options.OptionsFactory;
@@ -122,7 +125,16 @@ public class ResultsHandler implements IResultsHandler {
 		PeropteryxcandidatesFactory factory = PeropteryxcandidatesFactory.eINSTANCE;
 		for (int i = 0; i < individual.getGenotype().size(); i++) {
 			Choice choice = individual.getGenotype().get(i);
-			PerOpteryxOption o = factory.createPerOpteryxOption();
+			PerOpteryxOption o = null;
+			if (choice instanceof DiscreteRangeChoice) {
+				o = factory.createPerOpteryxDiscreteRangeOption();
+			} else if (choice instanceof ContinousRangeChoice) {
+				o = factory.createPerOpteryxContinuousRangeOption();
+			} else if (choice instanceof ClassChoice) {
+				o = factory.createPerOpteryxClassOption();
+			} else {
+				//TODO: throw meaningful exception
+			}
 			prepareOption(o);
 			o.setPrimaryChanged(choice.getDegreeOfFreedomInstance().getPrimaryChanged());
 			o.setValue(choice.getValue());
