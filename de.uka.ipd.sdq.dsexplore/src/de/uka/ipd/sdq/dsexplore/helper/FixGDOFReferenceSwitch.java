@@ -167,6 +167,17 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private void doSubsystemSwitch(HelperOCLDefinition helpDef) {
 		 logger.error(
                  "Please implement Swich for: "+helpDef.getContextClass().getName());
+			List<Repository> repositories = this.initialInstance.getRepositories();
+			EList<EObject> contents = new BasicEList<EObject>();
+			EList<EClass> superTypes = new BasicEList<EClass>();
+			for (Repository repository : repositories) {
+				contents.addAll(repository.eContents());
+			}
+			for (EObject content : contents) {
+				superTypes.addAll(content.eClass().getEAllSuperTypes());
+			}
+			switchClasses(helpDef, contents, superTypes);
+		 
 	}
 	private void doResourceenvironmentSwitch(HelperOCLDefinition helpDef) {
 		 logger.error(

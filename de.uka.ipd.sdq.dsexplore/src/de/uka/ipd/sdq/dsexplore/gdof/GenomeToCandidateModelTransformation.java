@@ -542,7 +542,7 @@ public class GenomeToCandidateModelTransformation {
 //			EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
 //			for (DegreeOfFreedomInstance dofi : dofis) {
 //				EList<EObject> decorators = dofi.getDecoratorModel();
-			if (!decorator.isEmpty()) {
+			if (decorator != null && !decorator.isEmpty()) {
 				Set<String> keys = decorator.keySet();
 				for (String key : keys) {
 					EObject dec = (EObject) decorator.get(key);
@@ -578,6 +578,8 @@ public class GenomeToCandidateModelTransformation {
 			// <----------
 
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
+				//FIXME Debug
+				System.out.println("Debug: "+ helperOCLDefinition.getMainOclQuery());
 				helper.setContext(helperOCLDefinition.getContextClass());
 
 				
