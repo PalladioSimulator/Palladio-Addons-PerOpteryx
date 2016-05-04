@@ -2,18 +2,26 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegate.Changeable;
 import org.opt4j.core.problem.Creator;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.allocation.AllocationFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
@@ -168,6 +176,11 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 			degree.getPrimaryChanged(), 
 				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
 		
+		if (possibleValues instanceof Collection<?>) {
+			possibleValues = checkForNewObject(possibleValues);
+		}
+		
+		
 		List<Object> list;
 		if (possibleValues instanceof List)
 		  list = (List<Object>)possibleValues;
@@ -179,6 +192,40 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		
 		
 		return list.get(index);
+	}
+
+
+	private Collection<Object> checkForNewObject(Collection<Object> possibleValues) {
+		Collection<Object> newPossibleValues = new ArrayList<>();
+		
+		for (Object list : possibleValues) {
+			if (list instanceof Collection<?>) {
+				Collection<?> newObjectValues = new ArrayList<>();
+				newObjectValues = (Collection<?>) list;
+				for (Object o : newObjectValues) {
+					if (o.toString().startsWith("Class::")) {
+						String className = o.toString().replace("Class::", "");
+						if (className.equals("AllocationContext")) {
+							AllocationContext newAC = AllocationFactory.eINSTANCE.createAllocationContext();
+							for (Object value : newObjectValues) {
+								if (value instanceof AssemblyContextImpl) {
+									newAC.setAssemblyContext_AllocationContext((AssemblyContext)value);
+								} else if (value instanceof String && !value.equals(o)) {
+									newAC.setId((String)value);
+								} else if (value instanceof ResourceContainerImpl) {
+									newAC.setResourceContainer_AllocationContext((ResourceContainer)value);
+								}
+							}
+							
+							newPossibleValues.add(newAC);
+						}
+					}
+				}
+			}
+		}
+		if (newPossibleValues.isEmpty()) return possibleValues;
+		return newPossibleValues;
+		
 	}
 
 

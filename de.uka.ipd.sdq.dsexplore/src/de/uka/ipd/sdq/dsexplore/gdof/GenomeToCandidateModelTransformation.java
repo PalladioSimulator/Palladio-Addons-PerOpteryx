@@ -281,7 +281,7 @@ public class GenomeToCandidateModelTransformation {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
 		//FIXME if copy then create a method for this, or maybe there is one?
 		String keyForChanged = null;
-		if (decorator.containsValue(changeableElement)) {
+		if (decorator != null && decorator.containsValue(changeableElement)) {
 			for (String key : decorator.keySet()) {
 				if (decorator.get(key).equals(changeableElement)) {
 					keyForChanged = key;
@@ -516,7 +516,7 @@ public class GenomeToCandidateModelTransformation {
 			query.getEvaluationEnvironment().add(key, GenomeToCandidateModelTransformation.getChosenValues().get(key));
 		}
 		//lndlfk
-		if (!decorator.isEmpty()) {
+		if (decorator != null && !decorator.isEmpty()) {
 			for (String key : decorator.keySet()) {
 				EObject dec = (EObject) decorator.get(key);
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
