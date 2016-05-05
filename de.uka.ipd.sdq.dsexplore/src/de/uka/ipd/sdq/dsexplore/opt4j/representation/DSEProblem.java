@@ -16,9 +16,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
+import org.eclipse.ocl.utilities.OCLFactory;
+import org.modelversioning.emfprofile.EMFProfileFactory;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.core.CoreFactory;
+import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
+import org.palladiosimulator.pcm.parameter.ParameterFactory;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisationType;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
@@ -26,6 +34,7 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.impl.ParameterImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
@@ -162,7 +171,9 @@ public class DSEProblem {
 
         return problem;
     }
-
+    private boolean isNumeric(String s) {  
+	    return s.matches("[-+]?\\d*\\.?\\d+");  
+	} 
 
     private List<DesignDecisionGenotype> determineInitialGenotype(final DecisionSpace problem) throws CoreException {
         final DesignDecisionGenotype genotype = new DesignDecisionGenotype();
@@ -192,7 +203,7 @@ public class DSEProblem {
                 } else if (value instanceof Integer) {
                     choice = this.designDecisionFactory.createDiscreteRangeChoice();
                     ((DiscreteRangeChoice) choice).setChosenValue((Integer) value);
-                } else if (value instanceof Collection<?>) {    	
+                } else if (value instanceof Collection<?>) {
                 	choice = this.designDecisionFactory.createClassChoice();
                 	Random generator = new Random();
                 	EList<?> val = (EList<?>)value;
@@ -204,7 +215,15 @@ public class DSEProblem {
 //                	VariableCharacterisationType type = varChar.getType();
                 	
                 	((ClassChoice) choice).setChosenValue( (EObject) val.get(i));
-            	} else {
+                	
+                } else if (value instanceof String) {
+                	int i = 0;
+                	if (isNumeric((String)value)) {
+                		i = Integer.parseInt((String)value);
+                	}
+                	choice = this.designDecisionFactory.createDiscreteRangeChoice();
+                    ((DiscreteRangeChoice) choice).setChosenValue((Integer) i);
+                } else {
                 	throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot cast " + value + " to an EObject, Integer, or Double. Please extend DSEProblem.determineInitialGenotype to handle your type of choice.", null));
                 }
 

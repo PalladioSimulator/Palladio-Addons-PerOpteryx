@@ -308,7 +308,12 @@ public class GenomeToCandidateModelTransformation {
 			Collection<Object> col = new ArrayList<Object>();
 			col.add(fpr);
 			changeableElement.eSet(propertyInLoadedPCM, col);
-		} else {
+		} else if (property.getName().equals("specification") && value instanceof Integer) {
+			String newVal = value.toString();
+			changeableElement.eSet(propertyInLoadedPCM, newVal);
+		}
+		
+		else {
 			changeableElement.eSet(propertyInLoadedPCM, value);
 		}
 		if (keyForChanged != null) {
@@ -562,6 +567,7 @@ public class GenomeToCandidateModelTransformation {
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
 				contextVar.setName(key);
 				Object val = GenomeToCandidateModelTransformation.getChosenValues().get(key);
+				if (val instanceof Integer || val instanceof String) continue;
 				if (val instanceof List<?>) {
 					EList<?> valList = (EList<?>) val;
 					for (Object first : valList) {

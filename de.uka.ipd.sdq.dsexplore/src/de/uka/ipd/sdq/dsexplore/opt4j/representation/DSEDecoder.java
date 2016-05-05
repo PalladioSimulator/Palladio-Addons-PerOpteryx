@@ -533,26 +533,29 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             result = getDecisionString((Entity) choice.getValue());
         }
 
-        if (choice.getValue() instanceof VariableUsageImpl) {
+        else if (choice.getValue() instanceof VariableUsageImpl) {
         	VariableUsage vu = (VariableUsage)choice.getValue();
         	String ref = vu.getNamedReference__VariableUsage().getReferenceName().toString();
         	String spec = vu.getVariableCharacterisation_VariableUsage().get(0).getSpecification_VariableCharacterisation().getSpecification().toString();
         	String type = vu.getVariableCharacterisation_VariableUsage().get(0).getType().toString();
         	result = "(ref: "+ref+") (type: "+type+") (spec: "+spec+")";
         }
-        if (choice.getValue() instanceof PCMRandomVariableImpl) {
+        else if (choice.getValue() instanceof PCMRandomVariableImpl) {
         	PCMRandomVariable random = (PCMRandomVariable) choice.getValue();
         	String chosenVal = random.getSpecification().toString();
         	String entityName = choice.getDegreeOfFreedomInstance().getEntityName().toString();
         	result = entityName+" (Value: "+chosenVal+ ")";
         }
-        if (choice.getValue() instanceof ProcessingResourceSpecificationImpl) {
+        else if (choice.getValue() instanceof ProcessingResourceSpecificationImpl) {
         	ProcessingResourceSpecification prs = (ProcessingResourceSpecification) choice.getValue();
         	
         	String id = prs.getId();
         	Double mttf = prs.getMTTF();
         	Double mttr = prs.getMTTR();
         	result = "prs (id: "+id+") (mttf: "+mttf+") (mttr: "+mttr+")";
+        }
+        else if (choice.getDegreeOfFreedomInstance().getDof().getName().contains("Information")) {
+        	result = "Requests: "+choice.getValue().toString();
         }
         return result;
     }

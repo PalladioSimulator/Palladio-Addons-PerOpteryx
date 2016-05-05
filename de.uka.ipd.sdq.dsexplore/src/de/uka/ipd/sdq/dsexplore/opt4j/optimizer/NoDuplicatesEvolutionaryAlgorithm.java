@@ -111,6 +111,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			for (Choice c : ddg) {
 				found = false;
 				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+				if (c.getValue() instanceof Integer) {
+					found = true;
+					break;
+				}
 				EObject value = (EObject) c.getValue();
 				
 //				Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
@@ -197,6 +201,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 					
 					for (Choice c : ddg) {
 						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+						if (c.getValue() instanceof Integer) {
+							found = true;
+							break;
+						}
 						EObject value = (EObject) c.getValue();
 
 						
