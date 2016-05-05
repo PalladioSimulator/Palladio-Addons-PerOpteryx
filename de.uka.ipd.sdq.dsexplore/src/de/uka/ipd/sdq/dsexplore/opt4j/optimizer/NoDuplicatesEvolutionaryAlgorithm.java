@@ -106,14 +106,13 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			Individual i = individualFactory.create();
 			Genotype g = i.getGenotype();
 			DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
-			boolean found = false;
+			boolean found = true;
 			
 			for (Choice c : ddg) {
-				found = false;
+				if (!found) break;
 				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
 				if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
-					found = true;
-					break;
+					continue;
 				}
 				EObject value = (EObject) c.getValue();
 				
@@ -131,14 +130,15 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 //				//}
 				
 				for (EObject eo : elements) {
+					found = false;
 					if (value.equals(eo)) {
 						found = true;
 						break;
 					} 
 				}
-				if (!found && elements.isEmpty()) {
-					found = true;
-				}
+//				if (!found && elements.isEmpty()) {
+//					found = true;
+//				}
 			}
 			if (!population.contains(i) && found){
 				population.add(i);
@@ -197,24 +197,39 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 					Individual i = individualFactory.create();
 					Genotype g = i.getGenotype();
 					DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
-					boolean found = false;
+					boolean found = true;
 					
 					for (Choice c : ddg) {
+						if (!found) break;
 						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
 						if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
-							found = true;
-							break;
+							continue;
 						}
 						EObject value = (EObject) c.getValue();
-
+						
+//						Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
+//						
+//						//if first chosen it is the primary
+//						//if (population.isEmpty()) {
+//							String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
+//							key = key+"$";
+//							key = key.replace(".", "_");
+//							key = key.toLowerCase();
+//							Object chosen = c.getValue();
+//							chosenValues.put(key, chosen);
+//							GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
+//						//}
 						
 						for (EObject eo : elements) {
+							found = false;
 							if (value.equals(eo)) {
 								found = true;
 								break;
 							} 
 						}
-						if (!found && !elements.isEmpty()) break;
+//						if (!found && elements.isEmpty()) {
+//							found = true;
+//						}
 					}
 					if (!population.contains(i) && found){
 						completer.complete(i);

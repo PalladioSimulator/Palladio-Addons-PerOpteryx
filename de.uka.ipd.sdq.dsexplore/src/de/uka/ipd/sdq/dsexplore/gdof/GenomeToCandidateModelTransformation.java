@@ -585,7 +585,7 @@ public class GenomeToCandidateModelTransformation {
 
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
 				//FIXME Debug
-				System.out.println("Debug: "+ helperOCLDefinition.getMainOclQuery());
+				//System.out.println("Debug: "+ helperOCLDefinition.getMainOclQuery());
 				helper.setContext(helperOCLDefinition.getContextClass());
 
 				
@@ -595,7 +595,7 @@ public class GenomeToCandidateModelTransformation {
 					if (!e.getMessage().contains("already defined in type")) {
 						throw e;
 					} else {
-						System.out.println("already defined in type");
+						//System.out.println("already defined in type");
 					}
 				}
 			}
