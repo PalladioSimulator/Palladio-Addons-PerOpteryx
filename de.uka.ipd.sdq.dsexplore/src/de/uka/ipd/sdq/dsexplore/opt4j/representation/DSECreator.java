@@ -219,8 +219,29 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 							
 							newPossibleValues.add(newAC);
 						}
+					} 
+				}
+			} else if (list.toString().startsWith("interval")) {
+				double min = 0;
+				double max = 0;
+				double steps = 0;
+				for (Object val : possibleValues) {
+					if (val.toString().startsWith("minValue")) {
+						min = Double.parseDouble((val.toString().replace("minValue:", "")));
+					} else if (val.toString().startsWith("maxValue")) {
+						max = Double.parseDouble((val.toString().replace("maxValue:", "")));
+					} else if (val.toString().startsWith("steps")) {
+						steps = Double.parseDouble((val.toString().replace("steps:", "")));
 					}
 				}
+				double value = min;
+				while(value <= max) {
+					value = Math.ceil(value);
+					int intValue = (int)value;
+					newPossibleValues.add(intValue);
+					value += steps;
+				}
+				break;
 			}
 		}
 		if (newPossibleValues.isEmpty()) return possibleValues;

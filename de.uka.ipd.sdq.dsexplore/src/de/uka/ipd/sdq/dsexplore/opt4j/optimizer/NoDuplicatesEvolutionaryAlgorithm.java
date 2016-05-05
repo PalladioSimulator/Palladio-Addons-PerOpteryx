@@ -111,7 +111,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			for (Choice c : ddg) {
 				found = false;
 				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
-				if (c.getValue() instanceof Integer) {
+				if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
 					found = true;
 					break;
 				}
@@ -201,7 +201,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 					
 					for (Choice c : ddg) {
 						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
-						if (c.getValue() instanceof Integer) {
+						if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
 							found = true;
 							break;
 						}
