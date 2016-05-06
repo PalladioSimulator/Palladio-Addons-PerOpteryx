@@ -554,7 +554,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         	Double mttr = prs.getMTTR();
         	result = "prs (id: "+id+") (mttf: "+mttf+") (mttr: "+mttr+")";
         }
-        else if (choice.getDegreeOfFreedomInstance().getDof().getName().contains("Information")) {
+        else if (choice.getDegreeOfFreedomInstance().getDof() != null &&
+        		choice.getDegreeOfFreedomInstance().getDof().getName().contains("Information")) {
         	result = "Requests: "+choice.getValue().toString();
         }
         return result;
