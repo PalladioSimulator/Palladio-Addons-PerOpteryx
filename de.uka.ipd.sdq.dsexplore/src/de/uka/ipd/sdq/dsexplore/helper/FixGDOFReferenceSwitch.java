@@ -8,30 +8,28 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.palladiosimulator.pcm.allocation.Allocation;
-import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.SeffPackage;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
-import de.uka.ipd.sdq.pcm.cost.CostRepository;
-import de.uka.ipd.sdq.pcm.cost.impl.CostImpl;
-import de.uka.ipd.sdq.pcm.cost.impl.CostRepositoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.HelperOCLDefinition;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofSwitch;
-import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription;
-import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
-import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
 
+/**
+ * This class does a reference switch because the context references which are set in the helper definitions 
+ * of the value and selection rules are references of the meta model and not of the loaded pcm instance.
+ * 
+ * 
+ * @author Daniel Sachsenmaier
+ *
+ */
 public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 
 	protected static Logger logger = Logger.getLogger(FixGDOFReferenceSwitch.class.getName());
@@ -52,8 +50,15 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	return object;
     }
     
+    /**
+     * This method switches the reference from the second loaded instance to the references of the current instance.
+     * 
+     * @param dofi is the degree of freedom instance for which value rules, selection rules and
+     * 		  helper definitions the references should be switched
+     * @return the current degree of freedom instance
+     */
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
-//    	org.palladiosimulator.pcm.system.System system = this.initialInstance.getSystem();
+   
     	//first, set the decorators if there are any
     	EList<EObject> decos = dofi.getDecoratorModel();
     	for (EObject deco : decos) {
@@ -62,72 +67,33 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     		
     	}
     	
-    	
-    	//FIXME cleanup
-    	EClass rdrEClass = null;
-    	EClass rdEclass = null;
-//    	EClass crEclass = null;
-//    	EReference costRef = null;
-    	
-    	for (EObject dec : decos) {
-    		if (dec instanceof ResourceDescriptionRepositoryImpl) {
-    			ResourceDescriptionRepository rdr = (ResourceDescriptionRepository)dec;
-    			rdrEClass = rdr.eClass();
-    			EList<ResourceDescription> resourceDes = rdr.getAvailableProcessingResources_ResourceRepository();
-    			for (ResourceDescription rd : resourceDes) {
-    				rdEclass = rd.eClass();
-    			EList<ProcessingResourceSpecification> ars = rd.getProcessingResourceSpecification_ResourceDescription().getActiveResourceSpecifications_ResourceContainer();
-    			for (ProcessingResourceSpecification sd : ars) {
-    				System.out.println(sd.getProcessingRate_ProcessingResourceSpecification().toString());
-    			}
-    			}
-    		}
-//    		else if (dec instanceof CostRepositoryImpl) {
-//    			CostRepository cr = (CostRepository) dec;
-//    			EList<EStructuralFeature> featList = cr.eClass().getEAllStructuralFeatures();
-//    			crEclass = cr.eClass();
-//    			for (EStructuralFeature eo : featList) {
-//    				if (eo.getName().equals("cost")) {
-//    					costRef = (EReference) eo;
-//    				}
-//    			}
-//    		}
-    		
-    	}
-    	
-    	//------- nice code starts here
     	DegreeOfFreedom dof = dofi.getDof();
+    	
+    	//iterate through the changeable element description to switch references  for all helper
     	for (ChangeableElementDescription ced : dof.getChangeableElementDescriptions()) {
-
-    		//FIXME cleanup
-//    		if (ced.getChangeable().getName().equals("cost")) {
-//    			ced.setChangeable(costRef);
-//    		}
     		
-    		
-	    		for (HelperOCLDefinition helpDef : ced.getValueRule().getHelperDefinition()) {
+    		//change context class in helpers of the value rule
+    		for (HelperOCLDefinition helpDef : ced.getValueRule().getHelperDefinition()) {
+    			
+    			doContextClassSwitch(helpDef);  			
 
-	    			EClass help = helpDef.getContextClass();
-	    			if(help.getName().equals("ResourceDescriptionRepository")) {
-	    				helpDef.setContextClass(rdrEClass);
-	    			}else if (help.getName().equals("ResourceDescription")) {
-	    				helpDef.setContextClass(rdEclass);
-	    			}
-	    			
-	    			doContextClassSwitch(helpDef);  			
+    		}
+    		//change context class in helpers of the selection rule
+    		if (ced.getSelectionRule() != null) { 
+	    		for (HelperOCLDefinition helpDef : ced.getSelectionRule().getHelperDefinition()) {
+
+	    			doContextClassSwitch(helpDef);
 
 	    		}
-	    		//change context class in selection rules
-	    		if (ced.getSelectionRule() != null) { 
-		    		for (HelperOCLDefinition helpDef : ced.getSelectionRule().getHelperDefinition()) {
-
-		    			doContextClassSwitch(helpDef);
-
-		    		}
-	    		}
+    		}
     	}
     	return dofi;
     }
+    /**
+     * Select the correct method to get all the features, types and values of the model
+     * 
+     * @param helpDef is the helper definition for which the context class should be switched
+     */
 	private void doContextClassSwitch(HelperOCLDefinition helpDef) {
 		EClass helperClass = helpDef.getContextClass();
 		EPackage container = (EPackage) helperClass.eContainer();
@@ -162,6 +128,9 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 			doAllocationSwitch(helpDef);
 		} else if (container.getName().equals("subsystem")) {
 			doSubsystemSwitch(helpDef);
+		} else {
+			logger.error(
+	                 "Please implement Swich for: "+helpDef.getContextClass().getName());
 		}
 	}
 	private void doSubsystemSwitch(HelperOCLDefinition helpDef) {

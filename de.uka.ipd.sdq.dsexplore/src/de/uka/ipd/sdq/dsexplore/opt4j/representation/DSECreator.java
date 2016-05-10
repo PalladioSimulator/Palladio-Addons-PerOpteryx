@@ -194,7 +194,15 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		return list.get(index);
 	}
 
-
+	/**
+	 * TODO adapt for more elements
+	 * 
+	 * This method creates a new object or an interval from a set of elements or numbers which was defined in ocl
+	 * The key word to indicate a new object is "Class::[ObjecName]"
+	 * The key work to indicate a interval is "interval" 
+	 * @param possibleValues the set returned from the ocl query
+	 * @return the collection with the new created objects if there was a object set, the input parameter otherwise
+	 */
 	private Collection<Object> checkForNewObject(Collection<Object> possibleValues) {
 		Collection<Object> newPossibleValues = new ArrayList<>();
 		

@@ -182,17 +182,10 @@ public class DSEProblem {
 
             if (dd.getDof() != null) {
             	
-            	DegreeOfFreedom dof = dd.getDof();
-            	ChangeableElementDescription ced = dof.getPrimaryChangeable();
-            	EStructuralFeature esf = ced.getChangeable();
-            	
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
                 final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
-                //FIXME SubSystem Degree -> changeable is a set of AllocationContexts
-                //EList<Object> acs = (EList<Object>) values;
-                //for (Object value : acs) 
-                
+                 
                 final Choice choice;
                 if (value instanceof EObject) {
                     choice = this.designDecisionFactory.createClassChoice();
@@ -209,13 +202,12 @@ public class DSEProblem {
                 	EList<?> val = (EList<?>)value;
                 	int i = generator.nextInt(val.size());
 
-//                	VariableUsage varUs = (VariableUsage) val.get(i);
-//                	VariableCharacterisation varChar = varUs.getVariableCharacterisation_VariableUsage().get(0);
-//                	AbstractNamedReference nameRef = varUs.getNamedReference__VariableUsage();
-//                	VariableCharacterisationType type = varChar.getType();
-                	
                 	((ClassChoice) choice).setChosenValue( (EObject) val.get(i));
-                	
+                /*
+                 * If the value is a string then it is assumed that it is a specification value and it is parsed to
+                 * an integer.
+                 * TODO maybe it is necessary to check if its an integer or a double value.
+                 */
                 } else if (value instanceof String) {
                 	int i = 0;
                 	if (isNumeric((String)value)) {
@@ -231,7 +223,7 @@ public class DSEProblem {
                 choice.setDegreeOfFreedomInstance(dd);
 
                 genotype.add(choice);
-                //}
+                
             } else if (dd instanceof ClassDegree) {
 
                 final ClassChoice choice = this.designDecisionFactory.createClassChoice();

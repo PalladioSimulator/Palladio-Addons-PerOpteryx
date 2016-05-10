@@ -63,10 +63,17 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.costFactory;
+import de.uka.ipd.sdq.pcm.cost.impl.ComponentCostImpl;
+import de.uka.ipd.sdq.pcm.cost.impl.ComponentCostPerInstanceImpl;
 import de.uka.ipd.sdq.pcm.cost.impl.CostRepositoryImpl;
+import de.uka.ipd.sdq.pcm.cost.impl.FixedLinkingResourceCostImpl;
 import de.uka.ipd.sdq.pcm.cost.impl.FixedProcessingResourceCostImpl;
+import de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl;
+import de.uka.ipd.sdq.pcm.cost.impl.VariableProcessingResourceCostImpl;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
@@ -99,33 +106,56 @@ import de.uka.ipd.sdq.stoex.AbstractNamedReference;
 public class GenomeToCandidateModelTransformation {
 	
 	private static final org.eclipse.ocl.ecore.OCL OCL_ENV = org.eclipse.ocl.ecore.OCL.newInstance();
+	
+	// we need this to store the old and new values as variables to use it in the ocl queries
 	public static Map<String, Object> chosenValues;
+	
+	/**
+	 *  in this map the decorators which were selected in the dofi are stored to use them in the ocl queries.
+	 *  Name is always the model name without spaces and small with an "$" at the end. For example "UsageModel"
+	 *  would be "usagemodel$"
+	 */
 	private static Map<String, Object> decorator;
 	
+	/**
+	 * With this method you can get a map of set decorators.
+	 * @return a map of decorators with String as key and Object as value.
+	 */
 	public static Map<String, Object> getDecorator() {
 		if (decorator == null) {
 			decorator = new HashMap<String, Object>();
 		}
 		return decorator;
 	}
-
-
-
+	
+	/**
+	 * Set a new decorator to use it as a variable in the ocl queries.
+	 * @param decorator is a map of String and Object tuples. The string is the variable name
+	 * 	      for the decorator. The name is always the model name but with all characters small and no spaces.
+	 *        and with "$" at the end.
+	 * 	      For example "UsageModel" would be "usagemodel$"
+	 *        The Object is the model which was selected in the dofi.
+	 */
 	public static void setDecorator(Map<String, Object> decorator) {
 		GenomeToCandidateModelTransformation.decorator = decorator;
 	}
 
-
-
+	/**
+	 * 
+	 * 
+	 * @return 
+	 */
 	public static Map<String, Object> getChosenValues() {
 		if (chosenValues == null) {
 			chosenValues = new HashMap<String, Object>();
 		}
 		return chosenValues;
 	}
-
-
-
+	
+	/**
+	 * 
+	 * @param chosenValues
+	 */
 	public static void setChosenValues(Map<String, Object> chosenValues) {
 		GenomeToCandidateModelTransformation.chosenValues = chosenValues;
 	}
@@ -155,30 +185,12 @@ public class GenomeToCandidateModelTransformation {
 	}
 	
 	
-
 	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
 		// is choice active?
 		if (choice.isActive()){
 
 			DegreeOfFreedomInstance dofi = choice.getDegreeOfFreedomInstance();
 			DegreeOfFreedom gdof = dofi.getDof();
-
-//			//FIXME ---START SWITCH TEST---
-//			EObject objectWithOldValue = dofi.getPrimaryChanged();
-//	    	//final List<AssemblyContext> acs = this.initialInstance.getSystem().getAssemblyContexts__ComposedStructure();
-//	    	EStructuralFeature newValueFeat = dofi.getDof().getPrimaryChangeable().getChangeable();
-//	    	EList<EStructuralFeature> featuresOld = objectWithOldValue.eClass().getEStructuralFeatures();
-//	    	String nameNewValue = newValueFeat.getName();
-//	    	
-//	    	for (EStructuralFeature feature : featuresOld) {
-//	    		String nameOldVal = feature.getName();
-//	    		if (nameOldVal.equals(nameNewValue)) {
-//	    			featuresOld.remove(feature);
-//	    			featuresOld.add(newValueFeat);
-//	    			break;
-//	    		}
-//	    	}
-//			// ---END SWITCH TEST---
 			
 			if (gdof != null) {
 
@@ -195,16 +207,13 @@ public class GenomeToCandidateModelTransformation {
 				EStructuralFeature propertyInLoadedPCM = modelElement.eClass().getEStructuralFeature(property.getName());
 				Object oldChoice = modelElement.eGet(propertyInLoadedPCM);
 				
-				//debug only FIXME
-				EList<Object> oldChoiceList = new BasicEList<Object>();
+				// FIXME just a quick fix
+				// Can a choice be a list? if yes then change this.
 				if (oldChoice instanceof EList) {
 					for (Object o : (EList<?>)oldChoice) {
 						chosenValues.put("oldValue$", o);
 						break;
 					}
-//					for (Object eo : (EList<?>)oldChoice) {
-//						oldChoiceList.add(eo);
-//					}
 				} else {
 					chosenValues.put("oldValue$", oldChoice);
 				}
@@ -213,6 +222,24 @@ public class GenomeToCandidateModelTransformation {
 				Object value = choice.getValue();
 				//FIXME turnn current value to "oldValue" before!
 				//Object oldValue = chosenValues.get("choiceValue$");
+				
+				//FIXME DEBUG -->
+				Object oc = chosenValues.get("oldValue$");
+				if(oc instanceof ProcessingResourceSpecificationImpl) {
+					ProcessingResourceSpecification prs = (ProcessingResourceSpecification)oc;
+					System.out.println("oldChoice: "+prs.getId());
+					
+					CostRepository costrepo = (CostRepository) decorator.get("costrepository$");
+					EList<?> cost = costrepo.getCost();
+					for (Object c : cost) {
+						if(c instanceof FixedProcessingResourceCostImpl) {
+							FixedProcessingResourceCost fprc2 = (FixedProcessingResourceCost)c;
+							System.out.println("CostRepo: "+fprc2.getProcessingresourcespecification().getId());
+						}
+					}
+				}
+				
+				//<--
 				
 				
 				//FIXME testing get choice Value
@@ -251,7 +278,14 @@ public class GenomeToCandidateModelTransformation {
 						if (newValue instanceof HashSet<?>) {
 							Set<?> s = (HashSet<?>) newValue;
 							for (Object val: s) {
-								if (((EObject) val).eContainer() instanceof CostRepositoryImpl) {
+								// FIXME maybe this has side effects, it checks it the HashSet is a CostRepository
+								if (val instanceof FixedProcessingResourceCostImpl ||
+										val instanceof VariableProcessingResourceCostImpl ||
+										val instanceof ComponentCostImpl ||
+										val instanceof FixedLinkingResourceCostImpl ||
+										val instanceof VariableLinkingResourceCostImpl ||
+										val instanceof ComponentCostPerInstanceImpl) {
+									
 									setProperty(changeableElement, changeableProperty, newValue);
 									break;
 								}
@@ -333,29 +367,7 @@ public class GenomeToCandidateModelTransformation {
 		
 
 		ValueRule oclValueRule = ced.getValueRule();
-//
-//		EObject test = (EObject) changeableElement;
-//		EClass cla = test.eClass();
-//		EList<EStructuralFeature> struct = cla.getEAllStructuralFeatures();
-//		Iterator<EStructuralFeature> i = struct.iterator();
-//		while(i.hasNext()) {
-//			EStructuralFeature feature = i.next();
-//			String featureName = feature.getName();
-//			EClass ec = feature.getEContainingClass();
-//			Resource eref =  ec.eResource();
-//			List <EObject> conts = eref.getContents();
-//			Iterator<EObject> ii = conts.iterator();
-//			while(ii.hasNext()) {
-//				EObject bla =ii.next();
-//				
-//			}
-//			System.out.println(featureName);
-//		}
-//		EStructuralFeature a =  struct.get(0);
-//		boolean bla = false;
-//		bla = struct.contains(a);
-		
-		
+
 		Query parsedQuery = parseInstanceContextOCL(oclValueRule, changeableElement, rootElements);
 		
 		return parsedQuery.evaluate(changeableElement);
@@ -364,47 +376,9 @@ public class GenomeToCandidateModelTransformation {
 	
 	public static Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
-		//FIXME clean up ------->
-		EObject eo = changeableElement;
-		if(eo instanceof AssemblyContextImpl) {
-			AssemblyContext ac = (AssemblyContext)eo;
-			BasicComponent bc = (BasicComponent)ac.getEncapsulatedComponent__AssemblyContext();
-			EList<VariableUsage> bla = bc.getComponentParameterUsage_ImplementationComponentType();
-			//EList<VariableUsage> bla = ac.getConfigParameterUsages__AssemblyContext();
-			for(VariableUsage va : bla) {
-				EList<VariableCharacterisation> hj = va.getVariableCharacterisation_VariableUsage();
-				for(VariableCharacterisation vc : hj) {
-					String eins = vc.getSpecification_VariableCharacterisation().toString();
-					String zwei = vc.getType().toString();
-					System.out.println(eins+" | "+zwei);
-				}
 
-			}
-		}
-		if(eo instanceof PassiveResourceImpl) {
-			PassiveResource pr = (PassiveResource)eo;
-			EList<PassiveResource> prs = pr.getBasicComponent_PassiveResource().getPassiveResource_BasicComponent();
-			for(PassiveResource p : prs) {
-			EList<EObject> contents = p.eContents();
-			String result = p.getEntityName();
-			for(EObject cont : contents) {
-				result = result+" | "+cont.toString();
-			}
-			System.out.println(result);
-			}
-		}
-		// <----------
 		Object object = valueRule(ced, changeableElement, rootElements);
-//		EObject eo = (EObject)object;
-//		if(eo instanceof AssemblyContextImpl) {
-//			AssemblyContext ac = (AssemblyContext)eo;
-//			EList<VariableUsage> bla = ac.getConfigParameterUsages__AssemblyContext();
-//			for(VariableUsage va : bla) {
-//				EList<VariableCharacterisation> hj = va.getVariableCharacterisation_VariableUsage();
-//				String ja = hj.toString();
-//				System.out.println(ja);
-//			}
-//		}
+
 		if (object instanceof Collection<?>){
 			return (Collection<Object>)object;
 		} else {
@@ -480,14 +454,6 @@ public class GenomeToCandidateModelTransformation {
 		//FIXME for all instances
 		helper.setInstanceContext(contextInstance);
 		
-		
-		
-		
-//		if (!oclRule.getHelperDefinition().isEmpty() && oclRule.getHelperDefinition() != null ) {
-//			String helpOCL = oclRule.getHelperDefinition().get(0).getMainOclQuery();
-//			String mainOCL = oclRule.getMainOclQuery();
-//		}
-		//oclRule.setMainOclQuery("self.requiringAssemblyContext_AssemblyConnector.encapsulatedComponent__AssemblyContext.requiredRoles_InterfaceRequiringEntity->select(rr| self.providedRole_AssemblyConnector.providedInterface__OperationProvidedRole = rr.oclAsType(repository::OperationRequiredRole).requiredInterface__OperationRequiredRole)");
 		//FIXME: Maybe fix problem by aligning the loaded java classes with the classes 
 		//from the loaded PCM model. Switch through all first. See DSEProblem for initial idea.
 		Query query = createOCLQuery(oclRule, helper);
@@ -512,9 +478,7 @@ public class GenomeToCandidateModelTransformation {
 	}
 
 	private static Query setEvaluationEnvironment(Query query) {
-//		DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
-//		EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
-		
+
 		//dfd
 		Set<String> keys = GenomeToCandidateModelTransformation.getChosenValues().keySet();
 		for (String key : keys) {
@@ -542,11 +506,8 @@ public class GenomeToCandidateModelTransformation {
 
 	private static void defineHelpers(Helper helper, List<HelperOCLDefinition> helpers) {
 		try {
-			//FIXME clean up -> only test code
-//			DecisionSpace dd = Opt4JStarter.getProblem().getEMFProblem();
-//			EList<DegreeOfFreedomInstance> dofis = dd.getDegreesOfFreedom();
-//			for (DegreeOfFreedomInstance dofi : dofis) {
-//				EList<EObject> decorators = dofi.getDecoratorModel();
+
+			//FIXME maybe buggy... check in detail
 			if (decorator != null && !decorator.isEmpty()) {
 				Set<String> keys = decorator.keySet();
 				for (String key : keys) {
@@ -581,11 +542,10 @@ public class GenomeToCandidateModelTransformation {
 				}
 				OCL_ENV.getEnvironment().addElement(key, contextVar, true);
 			}
-			// <----------
+			
 
 			for (HelperOCLDefinition helperOCLDefinition : helpers) {
-				//FIXME Debug
-				//System.out.println("Debug: "+ helperOCLDefinition.getMainOclQuery());
+
 				helper.setContext(helperOCLDefinition.getContextClass());
 
 				
@@ -608,13 +568,10 @@ public class GenomeToCandidateModelTransformation {
 	private static Query createOCLQuery(OCLRule oclRule, Helper helper) {
 		try {
 			
+			System.out.println(helper.getEnvironment().getSelfVariable().toString());
+			System.out.println(oclRule);
 			OCLExpression oclExpresssion = helper.createQuery(oclRule.getMainOclQuery());
 			Query query = OCL_ENV.createQuery(oclExpresssion);
-			//String s = oclRule.getHelperDefinition().get(0).getMainOclQuery();
-			//OCLExpression col2 = helper.createQuery(s);
-			//String c = helper.getOCL().getConstraints().get(0).getSpecification().getBodyExpression().toString();
-			//Query ne = OCL_ENV.createQuery(c);
-			//OCLExpression oclex = helper.createQuery(c);
 			
 			return setEvaluationEnvironment(query);
 		} catch (ParserException e) {

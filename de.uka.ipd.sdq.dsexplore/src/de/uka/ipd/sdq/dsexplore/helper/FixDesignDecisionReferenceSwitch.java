@@ -161,19 +161,11 @@ public class FixDesignDecisionReferenceSwitch extends designdecisionSwitch<EObje
         try {
             for (final DegreeOfFreedomInstance dd : object.getDegreesOfFreedom()) {
                 doSwitch(dd);
-                // DegreeOfFreedom dof = dd.getDof();
-                // dof.eResource();
+
                 DegreeOfFreedom dof = dd.getDof();
 
                 if (dof != null) {
-//                    EList<ChangeableElementDescription> test = dof.getChangeableElementDescriptions();
-                    // this.genericSwitch.doSwitch(dof);
-                    // this.genericSwitch.doSwitch(ipfer);
-
                     this.genericSwitch.switchReferences(dd);
-                    // this.fixGenericSwitch.doSwitch(dof);
-                    // this.genericSwitch.doSwitch(dof.getPrimaryChangeable());
-                    // this.fixGenericSwitch.defaultCase(dof);
                 }
             }
             ;

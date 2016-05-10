@@ -88,46 +88,24 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		
 		int count = 0;
 		while (population.size() < alpha && count < alpha + 200) {
-//			//FIXME clean up!!
-			
-//			Individual i = individualFactory.create();
-//			Genotype g = i.getGenotype();
-//			DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
-//			Object val = ddg.get(0).getValue();
-//			EList<EObject> elements = ddg.get(0).getDegreeOfFreedomInstance().getChangeableElements();
-//			EObject eval = (EObject)val;
-//			boolean found = false;
-//			for (EObject eo : elements) {
-//				if (eval.equals(eo)) {
-//					found = true;
-//					break;
-//				}
-//			}
+
 			Individual i = individualFactory.create();
 			Genotype g = i.getGenotype();
 			DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
 			boolean found = true;
 			
+			//if the changeable elements are restricted from the user, check here if the selected choice is one of
+			//of the allowed elements
 			for (Choice c : ddg) {
 				if (!found) break;
-				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+				
+				//primitives can not be restricted
 				if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
 					continue;
 				}
-				EObject value = (EObject) c.getValue();
 				
-//				Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
-//				
-//				//if first chosen it is the primary
-//				//if (population.isEmpty()) {
-//					String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
-//					key = key+"$";
-//					key = key.replace(".", "_");
-//					key = key.toLowerCase();
-//					Object chosen = c.getValue();
-//					chosenValues.put(key, chosen);
-//					GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
-//				//}
+				EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+				EObject value = (EObject) c.getValue();
 				
 				for (EObject eo : elements) {
 					found = false;
@@ -136,9 +114,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 						break;
 					} 
 				}
-//				if (!found && elements.isEmpty()) {
-//					found = true;
-//				}
+
 			}
 			if (!population.contains(i) && found){
 				population.add(i);
@@ -180,46 +156,25 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				int duplicates = 0;
 				
 				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
-					//FIXME clean up!!
-//					Individual i = individualFactory.create();
-//					Genotype g = i.getGenotype();
-//					DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
-//					Object val = ddg.get(0).getValue();
-//					EList<EObject> elements = ddg.get(0).getDegreeOfFreedomInstance().getChangeableElements();
-//					EObject eval = (EObject)val;
-//					boolean found = false;
-//					for (EObject eo : elements) {
-//						if (eval.equals(eo)) {
-//							found = true;
-//							break;
-//						}
-//					}
+
 					Individual i = individualFactory.create();
 					Genotype g = i.getGenotype();
 					DesignDecisionGenotype ddg = (DesignDecisionGenotype) g;
 					boolean found = true;
 					
+					//if the changeable elements are restricted from the user, check here if the selected choice is one of
+					//of the allowed elements
 					for (Choice c : ddg) {
 						if (!found) break;
-						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
+						
+						//primitives can not be restricted
 						if (c.getValue() instanceof Integer || c.getValue() instanceof Double) {
 							continue;
 						}
+						
+						EList<EObject> elements = c.getDegreeOfFreedomInstance().getChangeableElements();
 						EObject value = (EObject) c.getValue();
-						
-//						Map<String, Object> chosenValues = GenomeToCandidateModelTransformation.getChosenValues();
-//						
-//						//if first chosen it is the primary
-//						//if (population.isEmpty()) {
-//							String key = c.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable().getName();
-//							key = key+"$";
-//							key = key.replace(".", "_");
-//							key = key.toLowerCase();
-//							Object chosen = c.getValue();
-//							chosenValues.put(key, chosen);
-//							GenomeToCandidateModelTransformation.setChosenValues(chosenValues);
-//						//}
-						
+
 						for (EObject eo : elements) {
 							found = false;
 							if (value.equals(eo)) {
@@ -227,9 +182,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 								break;
 							} 
 						}
-//						if (!found && elements.isEmpty()) {
-//							found = true;
-//						}
+
 					}
 					if (!population.contains(i) && found){
 						completer.complete(i);

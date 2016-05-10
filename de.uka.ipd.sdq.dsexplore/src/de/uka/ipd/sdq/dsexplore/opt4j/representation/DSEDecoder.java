@@ -532,7 +532,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         if (choice.getValue() instanceof Entity) { 
             result = getDecisionString((Entity) choice.getValue());
         }
-
+        
+        //create a more specific string if the string would be only the element's name
         else if (choice.getValue() instanceof VariableUsageImpl) {
         	VariableUsage vu = (VariableUsage)choice.getValue();
         	String ref = vu.getNamedReference__VariableUsage().getReferenceName().toString();
