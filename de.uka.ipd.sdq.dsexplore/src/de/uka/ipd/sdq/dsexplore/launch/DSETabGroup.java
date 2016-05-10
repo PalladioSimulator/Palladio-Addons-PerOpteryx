@@ -2,11 +2,13 @@ package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
+import de.uka.ipd.sdq.dsexplore.helper.ResultsHandlerController;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.DebugEnabledCommonTab;
 
@@ -50,6 +52,10 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 
 		tabs.add(new TacticsTab());
 		tabs.add(new StartingPopulationHeuristicTab());
+		
+		if (ResultsHandlerController.resultHandlersAvailable(Platform.getExtensionRegistry())) {
+			tabs.add(new ResultHandlersTab());
+		}
 				
 		tabs.add(new DebugEnabledCommonTab());
 		
