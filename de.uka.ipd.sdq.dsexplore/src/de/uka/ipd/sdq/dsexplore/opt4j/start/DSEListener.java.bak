@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.OptimizerIterationListener;
 
-import de.uka.ipd.sdq.dsexplore.helper.ResultsHandlerController;
 import de.uka.ipd.sdq.dsexplore.helper.ResultsWriter;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.archive.PopulationTracker;
@@ -33,15 +31,12 @@ public class DSEListener implements OptimizerIterationListener {
 	private boolean asEMF;
 
 	private boolean asCSV;
-
-	private ResultsHandlerController rhc;
 	
 	public DSEListener(IProgressMonitor monitor, DSEWorkflowConfiguration dseConfig) {
 		this.resultFolder = dseConfig.getResultFolder();
 		this.asEMF = dseConfig.isResultsAsEMF();
 		this.asCSV = dseConfig.isResultsAsCSV();
 		this.monitor = monitor;
-		this.rhc = new ResultsHandlerController(Platform.getExtensionRegistry(), dseConfig.getOriginalConfig());
 		monitor.beginTask("DSE run", dseConfig.getMaxIterations());
 	}
 
@@ -73,7 +68,6 @@ public class DSEListener implements OptimizerIterationListener {
 		ResultsWriter.writeDSEIndividualsToFile(individuals.getIndividuals(), this.resultFolder, "allCandidates", iteration, this.asEMF, this.asCSV, exceptionList);
 		
 		ResultsWriter.writeDSEIndividualsToFile(Opt4JStarter.getPopulationIndividuals(), this.resultFolder, "population", iteration, this.asEMF, this.asCSV, exceptionList);
-		rhc.handleResults(Opt4JStarter.getPopulationIndividuals(), iteration);
 
 		//ResultsWriter.writeIndividualsToFile(individuals.getParetoOptimalIndividuals(), this.resultFolder+"ownOptimalCandidates", iteration, exceptionList);
 		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder, "archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);	
