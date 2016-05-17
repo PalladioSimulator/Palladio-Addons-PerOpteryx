@@ -209,12 +209,22 @@ public class DSEProblem {
                  * TODO maybe it is necessary to check if its an integer or a double value.
                  */
                 } else if (value instanceof String) {
-                	int i = 0;
+                	int i = -1;
+                	double d = -1.0;
+                	Choice tempChoice = null;
                 	if (isNumeric((String)value)) {
-                		i = Integer.parseInt((String)value);
+                		if (((String)value).contains(".")) {
+                			d = Double.parseDouble((String)value);
+                			tempChoice = this.designDecisionFactory.createContinousRangeChoice();
+                            ((ContinousRangeChoice) tempChoice).setChosenValue((Double) d);
+                		} else {
+                			i = Integer.parseInt((String)value);
+                			tempChoice = this.designDecisionFactory.createDiscreteRangeChoice();
+                			((DiscreteRangeChoice) tempChoice).setChosenValue((Integer) i);
+                		}
                 	}
-                	choice = this.designDecisionFactory.createDiscreteRangeChoice();
-                    ((DiscreteRangeChoice) choice).setChosenValue((Integer) i);
+                	choice = tempChoice;
+                	
                 } else {
                 	throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot cast " + value + " to an EObject, Integer, or Double. Please extend DSEProblem.determineInitialGenotype to handle your type of choice.", null));
                 }

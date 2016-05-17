@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.eclipse.debug.internal.ui.views.launch.DebugElementHelper;
 import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.BasicEList;
@@ -23,8 +25,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.conditions.numbers.NumberCondition;
+import org.eclipse.emf.query.conditions.numbers.NumberCondition.DoubleValue;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
@@ -38,8 +44,10 @@ import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.omg.CORBA.Environment;
 import org.palladiosimulator.pcm.PcmFactory;
 import org.palladiosimulator.pcm.core.CoreFactory;
@@ -58,11 +66,14 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.impl.PassiveResourceImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
+import org.palladiosimulator.pcm.system.SystemFactory;
+import org.palladiosimulator.pcm.system.util.SystemAdapterFactory;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.featuremodel.DoubleAttribute;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
@@ -528,7 +539,16 @@ public class GenomeToCandidateModelTransformation {
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
 				contextVar.setName(key);
 				Object val = GenomeToCandidateModelTransformation.getChosenValues().get(key);
-				if (val instanceof Integer || val instanceof String || val instanceof Double) continue;
+				if (val instanceof Integer || val instanceof String || val instanceof Double) {
+					OCLStandardLibrary<EClassifier> stdLibrary = OCL_ENV.getEnvironment().getOCLStandardLibrary();
+					
+					if (val instanceof Double) contextVar.setType(stdLibrary.getReal());
+					if (val instanceof String) contextVar.setType(stdLibrary.getString());
+					if (val instanceof Integer) contextVar.setType(stdLibrary.getInteger());
+					
+					OCL_ENV.getEnvironment().addElement(key, contextVar, true);
+					continue;
+				}
 				if (val instanceof List<?>) {
 					EList<?> valList = (EList<?>) val;
 					for (Object first : valList) {
