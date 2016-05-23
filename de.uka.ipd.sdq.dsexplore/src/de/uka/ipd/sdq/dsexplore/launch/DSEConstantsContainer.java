@@ -234,6 +234,7 @@ public class DSEConstantsContainer {
 	public static final String TC_INSIGNIFICANT_FRONT_CHANGE_IMPROVEMENT = "Minimum percentage improvement";
 	public static final String STOP_ON_INITIAL_FAILURE = "Stop on initial failure";
 	public static final String STORE_RESULTS_AS_EMF = "store results as EMF";
+	public static final String STORE_RESULTS_AS_CSV = "store results as CSV";
 	
 	// Default file URIs
 	/** Default URI for the cost model file. */

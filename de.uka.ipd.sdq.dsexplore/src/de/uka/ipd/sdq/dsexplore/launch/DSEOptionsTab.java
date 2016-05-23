@@ -57,6 +57,7 @@ public class DSEOptionsTab extends FileNamesInputTab {
 
 	private Button stopOnInitialFailure;
 
+	private Button outputAsCSV;
 	private Button outputAsEMF;
 	
 	/**
@@ -240,6 +241,12 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		outputOptions.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
 				true, false));
 		
+		outputAsCSV = new Button(outputOptions,  SWT.CHECK);
+		outputAsCSV.setEnabled(true);
+		outputAsCSV.setSelection(false);
+		outputAsCSV.setText("Output as CSV file");
+		outputAsCSV.addSelectionListener(selectionListener);
+		
 		outputAsEMF = new Button(outputOptions,  SWT.CHECK);
 		outputAsEMF.setEnabled(true);
 		outputAsEMF.setSelection(false);
@@ -417,6 +424,12 @@ public class DSEOptionsTab extends FileNamesInputTab {
 			this.outputAsEMF.setSelection(false);
 		}
 		try {
+			this.outputAsCSV.setSelection(configuration.getAttribute(
+					DSEConstantsContainer.STORE_RESULTS_AS_CSV, true));
+		} catch (CoreException e) {
+			this.outputAsCSV.setSelection(true);
+		}		
+		try {
 			numberOfDSERuns.setText(configuration.getAttribute(
 					DSEConstantsContainer.DSE_ITERATIONS, ""));
 		} catch (CoreException e) {
@@ -479,6 +492,9 @@ public class DSEOptionsTab extends FileNamesInputTab {
 		configuration.setAttribute(
 				DSEConstantsContainer.STORE_RESULTS_AS_EMF,
 				this.outputAsEMF.getSelection());
+		configuration.setAttribute(
+				DSEConstantsContainer.STORE_RESULTS_AS_CSV,
+				this.outputAsCSV.getSelection());
 		configuration.setAttribute(
 				DSEConstantsContainer.DSE_ITERATIONS,
 				this.numberOfDSERuns.getText());

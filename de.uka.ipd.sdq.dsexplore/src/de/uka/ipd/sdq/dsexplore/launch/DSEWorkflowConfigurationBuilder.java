@@ -183,7 +183,7 @@ public class DSEWorkflowConfigurationBuilder extends
 		
 		config.setStopOnInitialFailure(getBooleanAttribute(DSEConstantsContainer.STOP_ON_INITIAL_FAILURE));
 		config.setResultsAsEMF(getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_EMF));
-		config.setResultsAsCSV(!getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_EMF));
+		config.setResultsAsCSV(getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_CSV));
 
 	}
 
