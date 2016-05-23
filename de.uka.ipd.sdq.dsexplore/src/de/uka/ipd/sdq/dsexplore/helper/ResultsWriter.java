@@ -98,10 +98,6 @@ public class ResultsWriter {
 			} 
 			if (asEMF){
 				// save as EMF files
-				// TODO: Bug: Choices cannot be serialized, probably because the attribute "value" is of type EJavaObject. 
-				// Change designdecision metamodel so that value is not serialized? Idea: Choice abstract und value derived. New subclass of Choice for GDoF that again allows arbitrary values? Or rather let GenomeToCandidateTransformation set the  
-				// Neue Unterklasse für Choice für GDoF die irgendwelche Werte enthalten kann… 
-				// Error example: java.io.NotSerializableException: org.palladiosimulator.pcm.repository.impl.CompositeComponentImpl
 				Candidates candidates = EMFHelper.createEMFCandidates(individuals);
 				String filename = getFilenameForIteration(lastSegment, iteration, ".designdecision");
 				URI fileUri = folder.appendSegment(filename);
