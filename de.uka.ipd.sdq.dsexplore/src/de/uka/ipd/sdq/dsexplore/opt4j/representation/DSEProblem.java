@@ -567,7 +567,7 @@ public class DSEProblem {
                  * genotype.add(schedulingChoice);
                  */
 
-                ;
+                
             }
         }
     }
