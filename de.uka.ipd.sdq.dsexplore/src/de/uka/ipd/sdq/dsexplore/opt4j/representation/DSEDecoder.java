@@ -557,7 +557,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         }
         else if (choice.getDegreeOfFreedomInstance().getDof() != null &&
         		choice.getDegreeOfFreedomInstance().getDof().getName().contains("Information")) {
-        	result = "Requests: "+choice.getValue().toString();
+        	result = "Growth: "+choice.getValue().toString();
+        }
+        else  if (choice.getDegreeOfFreedomInstance().getDof() != null &&
+        		choice.getDegreeOfFreedomInstance().getDof().getName().contains("Change Number of Cores")) {
+        	result = "Core Number: "+choice.getValue().toString();
         }
         return result;
     }
