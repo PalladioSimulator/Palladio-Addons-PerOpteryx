@@ -1,8 +1,10 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,11 @@ import java.util.Random;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.MatchResource;
+import org.eclipse.emf.compare.impl.ComparisonImpl;
+import org.eclipse.emf.compare.internal.spec.ComparisonSpec;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -20,8 +27,10 @@ import org.palladiosimulator.pcm.allocation.AllocationFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
+import org.palladiosimulator.pcm.system.impl.SystemImpl;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
@@ -169,8 +178,21 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 	}
 
 
+	@SuppressWarnings("restriction")
 	private Object createRandomValue(DegreeOfFreedomInstance degree) {
 
+		org.eclipse.emf.compare.Comparison com = null;
+		for(EObject obj :degree.getDecoratorModel()) {
+			if (obj instanceof ComparisonImpl) {
+				com = (ComparisonSpec) obj;
+			}
+		}
+		
+		
+    	if (com != null) {
+	    	mergeModels(degree, com);
+    	}
+		
 		Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
 				degree.getDof().getPrimaryChangeable(),
 			degree.getPrimaryChanged(), 
@@ -192,6 +214,62 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		
 		
 		return list.get(index);
+	}
+
+
+	private void mergeModels(DegreeOfFreedomInstance degree, org.eclipse.emf.compare.Comparison com) {
+		//org.eclipse.emf.compare.Comparison com = (ComparisonSpec) diffMerge.get("left");
+		EObject prim = degree.getPrimaryChanged();
+		EObject repo = null;
+		EObject sys = null;
+		if (prim instanceof AssemblyContextImpl) {
+			AssemblyContext ac = (AssemblyContext)prim;
+			repo = ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent();
+			sys = ac.getParentStructure__AssemblyContext();
+		}
+		
+		sys = problem.getInitialInstance().getSystem();
+		
+		EList<MatchResource> matches = com.getMatchedResources();
+		EList<Match> match = com.getMatches();
+		for (Match m : match) {
+			//set system of instance to merge to actual system
+			if (m.getLeft() instanceof SystemImpl) {
+				m.setRight(sys);
+			}
+			
+			
+			if (m.getRight() == null) {
+				if (m.getLeft() instanceof RepositoryImpl) {
+					m.setRight(repo);
+				}
+			}
+		}
+		
+		for (int i = 0; i < matches.size(); i++) {
+			EObject left = match.get(i).getLeft();
+			EObject right = match.get(i).getRight();
+			matches.get(i).setLeft(match.get(i).getLeft().eResource());
+			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
+		}
+		
+		Iterator<Diff> diff = com.getDifferences().iterator();
+		while (diff.hasNext()) {
+			diff.next().copyLeftToRight();
+		}
+		
+		for (Match m: com.getMatches()) {
+			if (m.getRight() instanceof SystemImpl){
+				
+				
+			} else if (m.getRight() instanceof RepositoryImpl) {
+				
+			}
+		}
+		
+		//remove decorator to prevent ID Failure
+//	    	dofi.getDecoratorModel().remove(com);
+		//:::::
 	}
 
 	/**
@@ -219,12 +297,19 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 								if (value instanceof AssemblyContextImpl) {
 									newAC.setAssemblyContext_AllocationContext((AssemblyContext)value);
 								} else if (value instanceof String && !value.equals(o)) {
-									newAC.setId((String)value);
+									if (!value.equals("")) {
+										newAC.setId((String)value);
+									} else {
+										String newId = new BigInteger(110, random).toString(25);
+								    	newId = '_'+newId;
+								    	newAC.setId(newId);
+									}
+									
 								} else if (value instanceof ResourceContainerImpl) {
 									newAC.setResourceContainer_AllocationContext((ResourceContainer)value);
 								}
 							}
-							
+							newAC.setEntityName("Allocation_"+newAC.getAssemblyContext_AllocationContext().getEntityName().toString());
 							newPossibleValues.add(newAC);
 						}
 					} 

@@ -122,6 +122,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			count ++;
 		}
 		
+		if ( count == alpha+200 ) {
+			logger.warn("Stopped candidate creation after finding "+alpha+200+" duplicates.");
+		}
+		
 		nextIteration();
 
 		while (iteration.value() < iteration.max()) {

@@ -1,31 +1,69 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.diffmerge.api.IComparison;
-import org.eclipse.emf.diffmerge.api.Role;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
-import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
-import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
-import org.eclipse.emf.diffmerge.impl.scopes.FragmentedModelScope;
+import org.eclipse.emf.compare.*;
+import org.eclipse.emf.compare.impl.ComparisonImpl;
+import org.eclipse.emf.compare.internal.merge.MergeDataImpl;
+import org.eclipse.emf.compare.internal.merge.MergeOperation;
+import org.eclipse.emf.compare.internal.spec.ComparisonSpec;
+import org.eclipse.emf.compare.match.IComparisonFactory;
+import org.eclipse.emf.compare.merge.BatchMerger;
+import org.eclipse.emf.compare.merge.IBatchMerger;
+import org.eclipse.emf.compare.merge.IMerger;
+import org.eclipse.emf.compare.merge.IMerger.Registry;
+import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.compare.util.CompareAdapterFactory;
+import org.eclipse.emf.ecore.EAnnotation;
+//import org.eclipse.emf.diffmerge.api.IComparison;
+//import org.eclipse.emf.diffmerge.api.Role;
+//import org.eclipse.emf.diffmerge.api.diff.IDifference;
+//import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
+//import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
+//import org.eclipse.emf.diffmerge.impl.scopes.FragmentedModelScope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.model.IComparableContribution;
+import org.modelversioning.emfprofile.Stereotype;
+import org.modelversioning.emfprofileapplication.EMFProfileApplicationFactory;
+import org.modelversioning.emfprofileapplication.StereotypeApplicability;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.start.Opt4J;
+import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
+import org.palladiosimulator.mdsdprofiles.notifier.MDSDProfilesNotifier;
+import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementDecoratorAdapterFactory;
+import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementItemProviderDecorator;
 import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.allocation.AllocationFactory;
+import org.palladiosimulator.pcm.core.CoreFactory;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.ComposedStructure;
+import org.palladiosimulator.pcm.core.composition.CompositionFactory;
+import org.palladiosimulator.pcm.core.composition.CompositionPackage;
+import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
+import org.palladiosimulator.pcm.core.composition.util.CompositionAdapterFactory;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.SeffPackage;
+import org.palladiosimulator.pcm.system.impl.SystemImpl;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -43,6 +81,7 @@ import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription;
 import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
 import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
 import de.uka.ipd.sdq.stoex.Comparison;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 /**
  * This class does a reference switch because the context references which are set in the helper definitions 
@@ -58,6 +97,8 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	
     private final PCMInstance initialInstance;
 
+    private SecureRandom random = new SecureRandom();
+    
     public FixGDOFReferenceSwitch(final PCMInstance initialInstance2) {
         this.initialInstance = initialInstance2;
     }
@@ -86,29 +127,49 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	//first, set the decorators if there are any
     	EList<EObject> decos = dofi.getDecoratorModel();
     	for (EObject deco : decos) {
+    		
     		String name = deco.eClass().getName().toLowerCase()+'$';
     		GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
-    		//FIXME test
-    		if (diffMerge.isEmpty()) diffMerge.put("left", deco);
-    		else diffMerge.put("right", deco);
     	}
     	
     	//Test EMF DIFF -->
-    	// if diffmerge active do this   	
-    	Resource left = (Resource) ((EObject)diffMerge.get("left")).eResource();
-    	Resource right = (Resource) ((EObject)diffMerge.get("right")).eResource();
-
-    	IEditableModelScope targetScope = new FragmentedModelScope(right, true); // For example
-    	IEditableModelScope referenceScope = new FragmentedModelScope(left, true); // For example
+    	// if diffmerge active do this FIXME
+    	/*
+    	ResourceEnvironment re = initialInstance.getResourceEnvironment();
+    	EList<ResourceContainer> rcList = re.getResourceContainer_ResourceEnvironment();
+    	ResourceContainer rc = rcList.get(5);
+    	EList<StereotypeApplication> stereotypeApps = StereotypeAPI.getStereotypeApplications(rc);
+    	Object repNumber = null;
+    	for (StereotypeApplication sas : stereotypeApps) {
+    		EList<EStructuralFeature> features = sas.getStereotype().getEAllStructuralFeatures();
+    		for (EStructuralFeature feat : features) {
+    			if (feat.getName().equals("ReplicationNumber")) {
+    				repNumber = sas.eGet(feat);
+    			}
+    		}
+    	}
+    	*/
+//    	---------->
     	
-    	IComparison comparison = new EComparisonImpl(targetScope, referenceScope);
-    	comparison.compute(null, null, null, null);
-    	Collection<IDifference> differences = comparison.getRemainingDifferences();
     	
+//    	Repository repAfter = (Repository)com.getMatches().get(0).getRight();
+//    	----------->
     	
-    	
-    	differences = comparison.merge(differences, Role.TARGET, true, null);
-    	
+		//IBatchMerger merger = new BatchMerger(registry);
+//    	Resource left = (Resource) ((EObject)diffMerge.get("left")).eResource();
+//    	Resource right = (Resource) ((EObject)diffMerge.get("right")).eResource();
+//
+//    	IEditableModelScope targetScope = new FragmentedModelScope(right, true); // For example
+//    	IEditableModelScope referenceScope = new FragmentedModelScope(left, true); // For example
+//    	
+//    	IComparison comparison = new EComparisonImpl(targetScope, referenceScope);
+//    	comparison.compute(null, null, null, null);
+//    	Collection<IDifference> differences = comparison.getRemainingDifferences();
+//    	
+//    	
+//    	
+//    	differences = comparison.merge(differences, Role.TARGET, true, null);
+//    	
     	// <--
     	
     	EClass rdrEClass = null;

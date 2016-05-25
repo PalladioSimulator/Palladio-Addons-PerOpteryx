@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.conditions.numbers.NumberCondition;
-import org.eclipse.emf.query.conditions.numbers.NumberCondition.DoubleValue;
+//import org.eclipse.emf.query.conditions.numbers.NumberCondition;
+//import org.eclipse.emf.query.conditions.numbers.NumberCondition.DoubleValue;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
@@ -50,9 +50,14 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.omg.CORBA.Environment;
 import org.palladiosimulator.pcm.PcmFactory;
+import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.allocation.AllocationFactory;
+import org.palladiosimulator.pcm.allocation.impl.AllocationContextImpl;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.CompositionFactory;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 import org.palladiosimulator.pcm.parameter.ParameterFactory;
@@ -72,6 +77,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.featuremodel.DoubleAttribute;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
@@ -356,7 +362,52 @@ public class GenomeToCandidateModelTransformation {
 		} else if (property.getName().equals("specification") && (value instanceof Integer || value instanceof Double)) {
 			String newVal = value.toString();
 			changeableElement.eSet(propertyInLoadedPCM, newVal);
+		} else if (value instanceof AllocationContextImpl) {
+			DSEProblem problem = Opt4JStarter.getProblem();
+			Allocation alloOrigin = problem.getInitialInstance().getAllocation();
+			org.palladiosimulator.pcm.system.System sys = problem.getInitialInstance().getSystem();
+			Allocation alloCopy = AllocationFactory.eINSTANCE.createAllocation();
+			AllocationContext ac = AllocationFactory.eINSTANCE.createAllocationContext();
+			EcoreUtil.Copier copierAC = new EcoreUtil.Copier();
+			ac = (AllocationContext)copierAC.copy((AllocationContext)value);
+			copierAC.copyReferences();
+			EcoreUtil.Copier copier = new EcoreUtil.Copier();
+			alloCopy = (Allocation) copier.copy(alloOrigin);
+			copier.copyReferences();
+			EList<AssemblyContext> assCons = new BasicEList<AssemblyContext>();
+			EList<AllocationContext> aclist = alloOrigin.getAllocationContexts_Allocation();
+			for (AllocationContext a : aclist) {
+				assCons.add(a.getAssemblyContext_AllocationContext());
+			}
+			
+			if (!alloOrigin.getAllocationContexts_Allocation().contains(value)
+					&& !assCons.contains(((AllocationContext)value).getAssemblyContext_AllocationContext())) {
+				alloCopy.getAllocationContexts_Allocation().add(ac);
+			}
+
+			changeableElement.eSet(propertyInLoadedPCM, alloCopy.getAllocationContexts_Allocation());
 		}
+		
+		//test FIXME
+//		else if (value instanceof AssemblyContextImpl) {
+//			DSEProblem problem = Opt4JStarter.getProblem();
+//			org.palladiosimulator.pcm.system.System sys = problem.getInitialInstance().getSystem();
+//			AssemblyContext ac = CompositionFactory.eINSTANCE.createAssemblyContext();
+//			//EcoreUtil.Copier copier = new EcoreUtil.Copier();
+//			//ac = (AssemblyContext) copier.copy((AssemblyContext)value);
+//			ac.setEntityName("blablabla");
+//			ac.setId("_uhdsnksd8siddfwDK");
+//			
+//			
+//			EcoreUtil.Copier copier2 = new EcoreUtil.Copier();
+//			org.palladiosimulator.pcm.system.System newsys = SystemFactory.eINSTANCE.createSystem();
+//			newsys = (org.palladiosimulator.pcm.system.System) copier2.copy(sys);
+//			copier2.copyReferences();
+//			//newsys.getAssemblyContexts__ComposedStructure().add(ac);
+//			
+////			changeableElement.eSet(propertyInLoadedPCM, newsys.getAssemblyContexts__ComposedStructure());
+//		}
+		//test
 		
 		else {
 			changeableElement.eSet(propertyInLoadedPCM, value);
