@@ -315,8 +315,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			final ResourceContainer server, final int numberOfServers) {
 		//FIXME quickfix, assumes that number of cores is reset for every iteration by the numberofcores degree (i.e. assumes that degree preceeds this one in the designdecision file) 
 		for (ProcessingResourceSpecification processingResourceSpec : server.getActiveResourceSpecifications_ResourceContainer()) {
-			processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
+			if (!processingResourceSpec.getActiveResourceType_ActiveResourceSpecification().getEntityName().equals("DELAY")){
+				processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
+			}
 		}
+		
 		//TODO do not multiply DELAY nodes as these are never set. or even only CPU in general?
 	}
 
