@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -259,7 +260,9 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 							
 							OutputResultType processorResult = lqnResultProc.get(0);
 							
-							result.setResourceUtilisation(processorResult.getUtilization());
+							double utilization = processorResult.getUtilization();
+							int numberOfCoresTimesReplicas = ((BigInteger)lqnProc.getMultiplicity()).intValue();
+							result.setResourceUtilisation(utilization/numberOfCoresTimesReplicas);
 							
 							// determine waiting times and service times by checking all result entries (contained in the first task)
 							double waitingTime = 0;

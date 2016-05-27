@@ -6,9 +6,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.problem.Decoder;
+import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -21,6 +25,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
@@ -180,7 +185,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
     private void applyChangeResourceContainerReplicationDegree(
             final ResourceContainerReplicationDegree designDecision, final Choice choice) {
-
+    	
         if (!(choice instanceof DiscreteRangeChoice)){
             throwNewInvalidChoiceException(designDecision, choice);
         }
@@ -193,15 +198,50 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             throwInvalidEntityException(designDecision, changeableEntity, ResourceContainer.class);
         }
         final ResourceContainer server = (ResourceContainer)changeableEntity;
-
+        
         if (numberOfServers < 1){
             throw new ChoiceOutOfBoundsException(discreteChoice);
         }
+    	
+    	
+        boolean unrollReplication = false;
+    	
+        //different variants to handle resource replication
+        //boolean useReplicationStereotype = false;
+    	/*if (useReplicationStereotype){
+    		applyChangeResourceContainerReplicationDegreeWithStereotype(server, numberOfServers);
+    	} else */
+        if (unrollReplication){
+    		applyChangeResourceContainerReplicationDegreeByUnrolling(server, numberOfServers);
+    	} else {
+        	applyChangeResourceContainerReplicationDegreeAsNumberOfCoresChange(server, numberOfServers);
+    	}
+            	
+		handleResourceContainerReplicationWithComponentChange(designDecision, discreteChoice, numberOfServers);
+    }
+
+    	
+   /* private void applyChangeResourceContainerReplicationDegreeWithStereotype(
+			ResourceContainer server, int numberOfServers) {
+    	
+    	EList<StereotypeApplication> stereotypeApps = StereotypeAPI.getStereotypeApplications(server);
+    	Object repNumber = null;
+    	for (StereotypeApplication sas : stereotypeApps) {
+    		EList<EStructuralFeature> features = sas.getStereotype().getEAllStructuralFeatures();
+    		for (EStructuralFeature feat : features) {
+    			if (feat.getName().equals("ReplicationNumber")) {
+    				repNumber = sas.eGet(feat);
+    			}
+    		}
+    	}
+		
+	}*/
+
+	private void applyChangeResourceContainerReplicationDegreeByUnrolling(
+                final ResourceContainer server, final int numberOfServers) {
 
         final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
         
-        boolean unrollReplication = true;
-        if (unrollReplication){
 
         // first reset the changes possibly made for earlier candidates
         final List<ResourceContainer> allServers = pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
@@ -268,14 +308,21 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
                 }
             }
         }
-        } else {
-        	//FIXME quickfix, assumes that number of cores is reset for every iteration by the numberofcores degree (i.e. assumes that degree preceeds this one in the designdecision file) 
-        	
-        	for (ProcessingResourceSpecification processingResourceSpec : server.getActiveResourceSpecifications_ResourceContainer()) {
-        		processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
-			}
-        }
+      
+    }
         
+	private void applyChangeResourceContainerReplicationDegreeAsNumberOfCoresChange(
+			final ResourceContainer server, final int numberOfServers) {
+		//FIXME quickfix, assumes that number of cores is reset for every iteration by the numberofcores degree (i.e. assumes that degree preceeds this one in the designdecision file) 
+		for (ProcessingResourceSpecification processingResourceSpec : server.getActiveResourceSpecifications_ResourceContainer()) {
+			processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
+		}
+		//TODO do not multiply DELAY nodes as these are never set. or even only CPU in general?
+	}
+
+	private void handleResourceContainerReplicationWithComponentChange(
+			final ResourceContainerReplicationDegree designDecision, final DiscreteRangeChoice discreteChoice,
+			final int numberOfServers) {
 		// This part handles the
 		// ResourceContainerReplicationDegreeWithComponentChange, where
 		// additionally the assembled component is changed
@@ -284,7 +331,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		// generate overhead when synchronizing information among each other).
 		// This was used in the 2012 ICPE PerOpteryx paper for modelling the
 		// remote diagnostic system.
-        if (designDecision instanceof ResourceContainerReplicationDegreeWithComponentChange) {
+		if (designDecision instanceof ResourceContainerReplicationDegreeWithComponentChange) {
 			List<ExchangeComponentRule> exchangeComponentRules = ((ResourceContainerReplicationDegreeWithComponentChange) designDecision)
 					.getExchangeComponentRule();
 			int index = numberOfServers - designDecision.getFrom();
@@ -294,7 +341,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 					AssemblyContext assemblyContextToChange = exchangeComponentRule.getAllocationContext()
 							.getAssemblyContext_AllocationContext();
 					RepositoryComponent currentComponent = assemblyContextToChange.getEncapsulatedComponent__AssemblyContext();
-					
+
 					//Do not replace component if it is already assembled.  
 					if (!EMFHelper.checkIdentity(currentComponent, repoCompToUse)) {
 						AlternativeComponent.getInstance().applyChange(assemblyContextToChange, repoCompToUse);
@@ -302,15 +349,15 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 				} else {
 					throw new ChoiceOutOfBoundsException(discreteChoice,
 							"Looking for index " + index
-									+ "in RepositoryComponents of ResourceContainerReplicationDegreeWithComponentChange "
-									+ "degree for number of servers "
-									+ numberOfServers + ", but no such component available");
+							+ "in RepositoryComponents of ResourceContainerReplicationDegreeWithComponentChange "
+							+ "degree for number of servers "
+							+ numberOfServers + ", but no such component available");
 				}
-					
+
 			}
 
 		}
-    }
+	}
 
     private List<AllocationContext> getAllocationContextsOnServer(
             final List<AllocationContext> allocationContexts, final ResourceContainer server) {
