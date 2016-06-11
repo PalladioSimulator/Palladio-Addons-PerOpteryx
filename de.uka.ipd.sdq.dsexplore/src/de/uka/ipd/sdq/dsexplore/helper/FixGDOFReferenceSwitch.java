@@ -49,6 +49,7 @@ import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementDecorator
 import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementItemProviderDecorator;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationFactory;
+import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ComposedStructure;
@@ -122,8 +123,20 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
      */
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
    
+    	org.eclipse.emf.compare.Comparison com = null;
+		for(EObject obj :dofi.getDecoratorModel()) {
+			if (obj instanceof ComparisonImpl) {
+				com = (ComparisonSpec) obj;
+			}
+		}
+		
+		
+    	if (com != null) {
+	    	mergeModels(dofi, com);
+    	}
     	
-    	Map<String, EObject> diffMerge = new HashMap<>();
+    	
+    	
     	//first, set the decorators if there are any
     	EList<EObject> decos = dofi.getDecoratorModel();
     	for (EObject deco : decos) {
@@ -194,6 +207,9 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     		for (HelperOCLDefinition helpDef : ced.getValueRule().getHelperDefinition()) {
     			
     			EClass help = helpDef.getContextClass();
+    			if(help == null) {
+    				help = null;
+    			}
     			if(help.getName().equals("ResourceDescriptionRepository")) {
     				helpDef.setContextClass(rdrEClass);
     				continue;
@@ -220,6 +236,66 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	}
     	return dofi;
     }
+    
+	private void mergeModels(DegreeOfFreedomInstance degree, org.eclipse.emf.compare.Comparison com) {
+		//org.eclipse.emf.compare.Comparison com = (ComparisonSpec) diffMerge.get("left");
+		EObject prim = degree.getPrimaryChanged();
+		EObject repo = null;
+		EObject sys = null;
+		EObject allo = null;
+//		if (prim instanceof AssemblyContextImpl) {
+//			AssemblyContext ac = (AssemblyContext)prim;
+//			repo = ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent();
+//			sys = ac.getParentStructure__AssemblyContext();
+//		}
+		
+		sys = initialInstance.getSystem();
+		allo = initialInstance.getAllocation();
+		EList<MatchResource> matches = com.getMatchedResources();
+		EList<Match> match = com.getMatches();
+		for (Match m : match) {
+			//set system of instance to merge to actual system
+			if (m.getLeft() instanceof SystemImpl) {
+				m.setRight(sys);
+			} else if (m.getLeft() instanceof AllocationImpl) {
+				m.setRight(allo);
+			}
+			
+			
+//			if (m.getRight() == null) {
+//				if (m.getLeft() instanceof RepositoryImpl) {
+//					m.setRight(repo);
+//				}
+//			}
+		}
+		
+		for (int i = 0; i < matches.size(); i++) {
+			EObject left = match.get(i).getLeft();
+			EObject right = match.get(i).getRight();
+			matches.get(i).setLeft(match.get(i).getLeft().eResource());
+			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
+		}
+		
+		Iterator<Diff> diff = com.getDifferences().iterator();
+		while (diff.hasNext()) {
+			diff.next().copyLeftToRight();
+		}
+		sys.getClass();
+//		
+//		for (Match m: com.getMatches()) {
+//			if (m.getRight() instanceof SystemImpl){
+//				
+//				
+//			} else if (m.getRight() instanceof RepositoryImpl) {
+//				
+//			}
+//		}
+		
+		//remove decorator to prevent ID Failure
+//	    	dofi.getDecoratorModel().remove(com);
+		//:::::
+	}
+    
     /**
      * Select the correct method to get all the features, types and values of the model
      * 
@@ -232,7 +308,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		EPackage container = (EPackage) ctxClass.eContainer();
 		EPackage concontainer = (EPackage) container.eContainer();
 		concontainer.getESubpackages();
-		System.out.println(container.getName());
+//		System.out.println(container.getName());
 		if (container.getName().equals("composition")) {
 			return doCompositionSwich(ctxClass);
 		} else if (container.getName().equals("entity")) {
@@ -405,13 +481,13 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 					
 				}
 			}
-			for (EClass superType : (EList<EClass>)superTypes) {
-				if (ctxClass.getName().equals(superType.getName())) {
-					return superType;			
-				}
-			}	
 			
 		}
+		for (EClass superType : (EList<EClass>)superTypes) {
+			if (ctxClass.getName().equals(superType.getName())) {
+				return superType;			
+			}
+		}	
 		//FIXME maybe something better than null?
 		return ctxClass;
 	}

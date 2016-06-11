@@ -24,6 +24,7 @@ import org.eclipse.ocl.ecore.delegate.OCLSettingDelegate.Changeable;
 import org.opt4j.core.problem.Creator;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.allocation.AllocationFactory;
+import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -181,17 +182,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 	@SuppressWarnings("restriction")
 	private Object createRandomValue(DegreeOfFreedomInstance degree) {
 
-		org.eclipse.emf.compare.Comparison com = null;
-		for(EObject obj :degree.getDecoratorModel()) {
-			if (obj instanceof ComparisonImpl) {
-				com = (ComparisonSpec) obj;
-			}
-		}
 		
-		
-    	if (com != null) {
-	    	mergeModels(degree, com);
-    	}
 		
 		Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
 				degree.getDof().getPrimaryChangeable(),
@@ -217,60 +208,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 	}
 
 
-	private void mergeModels(DegreeOfFreedomInstance degree, org.eclipse.emf.compare.Comparison com) {
-		//org.eclipse.emf.compare.Comparison com = (ComparisonSpec) diffMerge.get("left");
-		EObject prim = degree.getPrimaryChanged();
-		EObject repo = null;
-		EObject sys = null;
-		if (prim instanceof AssemblyContextImpl) {
-			AssemblyContext ac = (AssemblyContext)prim;
-			repo = ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent();
-			sys = ac.getParentStructure__AssemblyContext();
-		}
-		
-		sys = problem.getInitialInstance().getSystem();
-		
-		EList<MatchResource> matches = com.getMatchedResources();
-		EList<Match> match = com.getMatches();
-		for (Match m : match) {
-			//set system of instance to merge to actual system
-			if (m.getLeft() instanceof SystemImpl) {
-				m.setRight(sys);
-			}
-			
-			
-			if (m.getRight() == null) {
-				if (m.getLeft() instanceof RepositoryImpl) {
-					m.setRight(repo);
-				}
-			}
-		}
-		
-		for (int i = 0; i < matches.size(); i++) {
-			EObject left = match.get(i).getLeft();
-			EObject right = match.get(i).getRight();
-			matches.get(i).setLeft(match.get(i).getLeft().eResource());
-			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
-		}
-		
-		Iterator<Diff> diff = com.getDifferences().iterator();
-		while (diff.hasNext()) {
-			diff.next().copyLeftToRight();
-		}
-		
-		for (Match m: com.getMatches()) {
-			if (m.getRight() instanceof SystemImpl){
-				
-				
-			} else if (m.getRight() instanceof RepositoryImpl) {
-				
-			}
-		}
-		
-		//remove decorator to prevent ID Failure
-//	    	dofi.getDecoratorModel().remove(com);
-		//:::::
-	}
+
 
 	/**
 	 * TODO adapt for more elements

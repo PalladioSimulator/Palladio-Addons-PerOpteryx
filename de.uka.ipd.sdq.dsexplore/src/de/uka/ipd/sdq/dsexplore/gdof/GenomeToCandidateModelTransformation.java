@@ -163,8 +163,10 @@ public class GenomeToCandidateModelTransformation {
 	 * @return 
 	 */
 	public static Map<String, Object> getChosenValues() {
+		//init the variables to set the global ocl environment variables
 		if (chosenValues == null) {
 			chosenValues = new HashMap<String, Object>();
+			
 		}
 		return chosenValues;
 	}
@@ -228,34 +230,34 @@ public class GenomeToCandidateModelTransformation {
 				// Can a choice be a list? if yes then change this.
 				if (oldChoice instanceof EList) {
 					for (Object o : (EList<?>)oldChoice) {
-						chosenValues.put("oldValue$", o);
+						getChosenValues().put("oldValue$", o);
 						break;
 					}
 				} else {
-					chosenValues.put("oldValue$", oldChoice);
+					getChosenValues().put("oldValue$", oldChoice);
 				}
-				chosenValues.put("changeable$", modelElement);
+				getChosenValues().put("changeable$", modelElement);
 				
 				Object value = choice.getValue();
 				//FIXME turnn current value to "oldValue" before!
 				//Object oldValue = chosenValues.get("choiceValue$");
 				
 				//FIXME DEBUG -->
-				Object oc = chosenValues.get("oldValue$");
-				if(oc instanceof ProcessingResourceSpecificationImpl) {
-					ProcessingResourceSpecification prs = (ProcessingResourceSpecification)oc;
-					System.out.println("oldChoice: "+prs.getId());
-					
-					CostRepository costrepo = (CostRepository) decorator.get("costrepository$");
-					EList<?> cost = costrepo.getCost();
-					for (Object c : cost) {
-						if(c instanceof FixedProcessingResourceCostImpl) {
-							FixedProcessingResourceCost fprc2 = (FixedProcessingResourceCost)c;
-							System.out.println("CostRepo: "+fprc2.getProcessingresourcespecification().getId());
-						}
-					}
-				}
-				
+//				Object oc = chosenValues.get("oldValue$");
+//				if(oc instanceof ProcessingResourceSpecificationImpl) {
+//					ProcessingResourceSpecification prs = (ProcessingResourceSpecification)oc;
+//					System.out.println("oldChoice: "+prs.getId());
+//					
+//					CostRepository costrepo = (CostRepository) decorator.get("costrepository$");
+//					EList<?> cost = costrepo.getCost();
+//					for (Object c : cost) {
+//						if(c instanceof FixedProcessingResourceCostImpl) {
+//							FixedProcessingResourceCost fprc2 = (FixedProcessingResourceCost)c;
+//							System.out.println("CostRepo: "+fprc2.getProcessingresourcespecification().getId());
+//						}
+//					}
+//				}
+//				
 				//<--
 				
 				
@@ -275,7 +277,8 @@ public class GenomeToCandidateModelTransformation {
 				modelElementList.add(modelElement);
 				selectedModelElements.put(gdof.getPrimaryChangeable(),modelElementList);
 
-				for (ChangeableElementDescription ced : gdof.getChangeableElementDescriptions()){
+				EList<ChangeableElementDescription> ceds = gdof.getChangeableElementDescriptions();
+				for (ChangeableElementDescription ced : ceds){
 					if (ced == gdof.getPrimaryChangeable())
 						continue;
 
@@ -386,6 +389,11 @@ public class GenomeToCandidateModelTransformation {
 			}
 
 			changeableElement.eSet(propertyInLoadedPCM, alloCopy.getAllocationContexts_Allocation());
+		} else if (value instanceof Double && property.getName().contains("processingRate")) {
+			PCMRandomVariable varCopy = CoreFactory.eINSTANCE.createPCMRandomVariable();
+			String spec = value.toString();
+			varCopy.setSpecification(spec);
+			changeableElement.eSet(propertyInLoadedPCM, varCopy);
 		}
 		
 		//test FIXME
@@ -420,13 +428,13 @@ public class GenomeToCandidateModelTransformation {
 	
 	public static Object getProperty(EObject changeableElement, EStructuralFeature property) {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
+		
 		return changeableElement.eGet(propertyInLoadedPCM);
 		
 	}
 
 	public static Object valueRule(ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements) {
-		
 
 		ValueRule oclValueRule = ced.getValueRule();
 
@@ -438,7 +446,15 @@ public class GenomeToCandidateModelTransformation {
 	
 	public static Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
-
+		
+		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(ced.getChangeable().getName());
+		Object change = changeableElement.eGet(propertyInLoadedPCM);
+		
+		//init
+		GenomeToCandidateModelTransformation.getChosenValues().put("oldChoice$", change);
+		GenomeToCandidateModelTransformation.getChosenValues().put("choiceValue$", change);
+		GenomeToCandidateModelTransformation.getChosenValues().put("changeable$", changeableElement);
+		
 		Object object = valueRule(ced, changeableElement, rootElements);
 
 		if (object instanceof Collection<?>){
@@ -596,7 +612,7 @@ public class GenomeToCandidateModelTransformation {
 					if (val instanceof Double) contextVar.setType(stdLibrary.getReal());
 					if (val instanceof String) contextVar.setType(stdLibrary.getString());
 					if (val instanceof Integer) contextVar.setType(stdLibrary.getInteger());
-					
+					OCL_ENV.getEnvironment().deleteElement(key);
 					OCL_ENV.getEnvironment().addElement(key, contextVar, true);
 					continue;
 				}
@@ -611,6 +627,7 @@ public class GenomeToCandidateModelTransformation {
 					EObject value = (EObject)GenomeToCandidateModelTransformation.getChosenValues().get(key);
 					contextVar.setType(value.eClass());
 				}
+				OCL_ENV.getEnvironment().deleteElement(key);
 				OCL_ENV.getEnvironment().addElement(key, contextVar, true);
 			}
 			
@@ -627,6 +644,7 @@ public class GenomeToCandidateModelTransformation {
 						throw e;
 					} else {
 						//System.out.println("already defined in type");
+						return;
 					}
 				}
 			}
@@ -639,8 +657,8 @@ public class GenomeToCandidateModelTransformation {
 	private static Query createOCLQuery(OCLRule oclRule, Helper helper) {
 		try {
 			
-			System.out.println(helper.getEnvironment().getSelfVariable().toString());
-			System.out.println(oclRule);
+			//System.out.println(helper.getEnvironment().getSelfVariable().toString());
+			//System.out.println(oclRule);
 			OCLExpression oclExpresssion = helper.createQuery(oclRule.getMainOclQuery());
 			Query query = OCL_ENV.createQuery(oclExpresssion);
 			

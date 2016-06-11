@@ -153,7 +153,7 @@ public class CostUtil {
 		
 		CostRepository costRepository = getCostRepository(cost);
 		int numberOfYears = 0;
-		double interest = 1.0;
+		double interest = 0.0;
 		if (costRepository != null) {
 			interest = costRepository.getInterest();
 			numberOfYears = costRepository.getTimePeriodYears();
