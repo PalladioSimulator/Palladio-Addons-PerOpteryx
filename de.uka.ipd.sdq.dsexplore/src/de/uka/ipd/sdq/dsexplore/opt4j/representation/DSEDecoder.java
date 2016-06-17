@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -595,7 +596,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         	PCMRandomVariable random = (PCMRandomVariable) choice.getValue();
         	String chosenVal = random.getSpecification().toString();
         	String entityName = choice.getDegreeOfFreedomInstance().getEntityName().toString();
-        	result = entityName+" (Value: "+chosenVal+ ")";
+        	//result = entityName+" (Value: "+chosenVal+ ")";
+        	result = chosenVal;
         }
         else if (choice.getValue() instanceof ProcessingResourceSpecificationImpl) {
         	ProcessingResourceSpecification prs = (ProcessingResourceSpecification) choice.getValue();
@@ -673,7 +675,25 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             }
             enumChoice.setChosenValue(entity);
             choice = enumChoice;
-        } else if (designDecision instanceof SchedulingPolicyDegree){
+        } 
+        else if (designDecision instanceof DegreeOfFreedomInstance){
+
+            final ClassChoice enumChoice = factory.createClassChoice();
+            
+            Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+            		designDecision.getDof().getPrimaryChangeable(),
+            		designDecision.getPrimaryChanged(), 
+    				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+            
+            
+            final EObject entity = getEntityByName(possibleValues, decisionString);
+            if (entity == null){
+                throw ExceptionHelper.createNewCoreException("Error: Decision string \""+decisionString+"\" is not a valid value for degree "+designDecision+" "+DegreeOfFreedomHelper.getDegreeDescription(designDecision));
+            }
+            enumChoice.setChosenValue(entity);
+            choice = enumChoice;
+        } 
+        else if (designDecision instanceof SchedulingPolicyDegree){
 
             final ClassChoice schedChoice = factory.createClassChoice();
             SchedulingPolicy chosenPolicy = null;
@@ -709,7 +729,19 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         return choice;
     }
 
-    private static boolean validRange(final double value, final RangeDegree designDecision, final double from,
+    private static EObject getEntityByName(Collection<Object> possibleValues, String decisionString) {
+    	for (final Object entity : possibleValues) {
+    		
+    		ClassChoice enumChoice = designdecisionFactory.eINSTANCE.createClassChoice();
+    		enumChoice.setChosenValue((EObject)entity);
+            if (getDecisionString(enumChoice).equals(decisionString)){
+                return (EObject) entity;
+            }
+        }
+        return null;
+	}
+
+	private static boolean validRange(final double value, final RangeDegree designDecision, final double from,
             final double to) {
         return (value >= from && value <= to);
     }
