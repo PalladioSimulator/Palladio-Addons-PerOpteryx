@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.analysis.simucom;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -208,8 +209,13 @@ public class SimuComAnalysis extends AbstractAnalysis implements IAnalysis {
         for (int i = 0; i < numberOfTries; i++) {
             try {
                 // start SimuCom
+            	
+            	double startTime = System.nanoTime();
                 job.execute(monitor);
+                double endTime = System.nanoTime();
+                double result = (endTime - startTime) / Math.pow(10, 9);
                 logger.debug("Finished SimuCom analysis");
+                logger.info("Finished SimuCom analysis. Completed in "+(result)+" seconds");
                 break;
             } catch (final JobFailedException e) {
                 logger.error(e.getMessage());
