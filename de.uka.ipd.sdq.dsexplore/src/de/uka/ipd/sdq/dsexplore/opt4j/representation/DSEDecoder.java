@@ -110,6 +110,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
         // first use new transformation.
         List<Choice> notTransformedChoices;
+//        double startTime = System.nanoTime();
+        
         try {
             notTransformedChoices = trans.transform(pcm, genotype.getEMFCandidate());
         } catch (final Exception e) {
@@ -126,7 +128,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
 
-
+//        double endTime = System.nanoTime();
+//        double result = (endTime - startTime) / Math.pow(10, 9);
+//        
+//        logger.warn("Finished Transformation. Completed in "+(result)+" seconds");
 
         final String genotypeString = getGenotypeString(genotype);
 

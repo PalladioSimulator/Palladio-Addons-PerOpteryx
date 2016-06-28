@@ -121,6 +121,32 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 
 	private double createDoubleValue(ContinuousRangeDegree contDegree) {
+		//FIXME Testing
+		if (contDegree.getNumberOfSteps() > 0) {
+			double margin = contDegree.getTo() - contDegree.getFrom();
+			double steps = margin / contDegree.getNumberOfSteps();
+			
+			List<Double> values = new ArrayList<>();
+			int lower = 0;
+			if (contDegree.isLowerBoundIncluded()) {
+				values.add(contDegree.getFrom());
+				
+			} else {
+				values.add(contDegree.getFrom()+steps);
+				lower = -1;
+			}
+			int upper = 0;
+			if (contDegree.isUpperBoundIncluded()) {
+				upper = 1;
+			}
+			
+			while(values.size() < contDegree.getNumberOfSteps()+upper+lower) {
+			values.add((values.get(values.size()-1))+steps);
+			}
+			int randomIndex = this.random.nextInt(values.size());
+			return values.get(randomIndex);
+		}
+		
 		double lowerMargin = 0;
 		if (contDegree.isLowerBoundIncluded()){
 			lowerMargin = Double.MIN_VALUE;
@@ -188,6 +214,20 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 				degree.getDof().getPrimaryChangeable(),
 			degree.getPrimaryChanged(), 
 				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+		
+		//to restrict the possible values without too very long runtimes
+		
+		EList<Object> value = new BasicEList<>();
+		EList<EObject> ces = degree.getChangeableElements();
+		if (!ces.isEmpty()) {
+			for(Object pv : possibleValues) {
+				if (ces.contains(pv)) {
+					value.add(pv);
+				}
+			}
+			possibleValues.clear();
+			possibleValues.addAll(value);
+		}
 		
 		if (possibleValues instanceof Collection<?>) {
 			possibleValues = checkForNewObject(possibleValues);

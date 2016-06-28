@@ -41,7 +41,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	
 	//FIXME maybe adjust the maximum number of duplicates
-	private static final int MAX_DUPLICATES = 100;
+	private static final int MAX_DUPLICATES = 200;
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.optimizer.NoDuplicatesEvolutionaryAlgorithm");
@@ -87,7 +87,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		}
 		
 		int count = 0;
-		while (population.size() < alpha && count < alpha + 200) {
+		while (population.size() < alpha && count < alpha + MAX_DUPLICATES) {
 
 			Individual i = individualFactory.create();
 			Genotype g = i.getGenotype();
@@ -116,14 +116,22 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				}
 
 			}
+//			if (found) {
+//				logger.warn("FOUND!");
+//			}
 			if (!population.contains(i) && found){
 				population.add(i);
 			}
+//			if (count%1000 == 0) {
+//				logger.warn(count);
+//			}
 			count ++;
 		}
 		
-		if ( count == alpha+200 ) {
-			logger.warn("Stopped candidate creation after finding "+alpha+200+" duplicates.");
+		if ( count == alpha+MAX_DUPLICATES ) {
+			int dups = alpha+MAX_DUPLICATES;
+
+			logger.warn("Stopped candidate creation after finding "+dups+" duplicates.");
 		}
 		
 		nextIteration();

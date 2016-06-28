@@ -389,7 +389,7 @@ public class GenomeToCandidateModelTransformation {
 			}
 
 			changeableElement.eSet(propertyInLoadedPCM, alloCopy.getAllocationContexts_Allocation());
-		} else if (value instanceof Double && property.getName().contains("processingRate")) {
+		} else if ((value instanceof Double || value instanceof Integer) && property.getName().contains("processingRate")) {
 			PCMRandomVariable varCopy = CoreFactory.eINSTANCE.createPCMRandomVariable();
 			String spec = value.toString();
 			varCopy.setSpecification(spec);
