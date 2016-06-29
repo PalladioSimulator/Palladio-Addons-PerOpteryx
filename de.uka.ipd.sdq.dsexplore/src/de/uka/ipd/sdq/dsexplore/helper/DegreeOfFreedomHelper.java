@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
+import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -19,7 +20,14 @@ public class DegreeOfFreedomHelper {
         if (decision instanceof ContinuousRangeDegreeImpl && decision.getPrimaryChanged() instanceof ProcessingResourceSpecificationImpl) {
         	suffix = ":"+((ResourceContainer)((ProcessingResourceSpecification)decision.getPrimaryChanged()).eContainer()).getEntityName();
         }
-        String primaryChangeableName = decision.getPrimaryChanged().toString();
+        String primaryChangeableName = "";
+        if (decision.getPrimaryChanged() == null && !decision.getDecoratorModel().isEmpty() && decision.getDecoratorModel().get(0) instanceof ComparisonImpl) {
+        	Object com = decision.getDecoratorModel().get(0);
+        	String name = com.getClass().getName();
+        	primaryChangeableName = name;
+        } else {
+        	primaryChangeableName = decision.getPrimaryChanged().toString();
+        }
         if (decision.getPrimaryChanged() instanceof Entity){
             primaryChangeableName = ((Entity)decision.getPrimaryChanged()).getEntityName();
         }

@@ -217,7 +217,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		
 		//to restrict the possible values without too very long runtimes
 		
-		EList<Object> value = new BasicEList<>();
+		/*EList<Object> value = new BasicEList<>();
 		EList<EObject> ces = degree.getChangeableElements();
 		if (!ces.isEmpty()) {
 			for(Object pv : possibleValues) {
@@ -231,7 +231,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		
 		if (possibleValues instanceof Collection<?>) {
 			possibleValues = checkForNewObject(possibleValues);
-		}
+		}*/
 		
 		
 		List<Object> list;

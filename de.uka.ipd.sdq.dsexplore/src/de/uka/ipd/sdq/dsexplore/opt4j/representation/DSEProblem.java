@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -181,11 +182,14 @@ public class DSEProblem {
         for (final DegreeOfFreedomInstance dd : problem.getDegreesOfFreedom()) {
 
             if (dd.getDof() != null) {
-            	
+            	Object value = null;
+            	if (!dd.getDecoratorModel().isEmpty() && dd.getDecoratorModel().get(0) instanceof ComparisonImpl) {
+            		value = dd.getDecoratorModel().get(0);
+            	} else {
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
-                final Object value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
-                 
+                value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
+            	}
                 final Choice choice;
                 if (value instanceof EObject) {
                     choice = this.designDecisionFactory.createClassChoice();
@@ -224,6 +228,7 @@ public class DSEProblem {
                 		}
                 	}
                 	choice = tempChoice;
+                	
                 	
                 } else {
                 	throw new CoreException(new Status(Status.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Cannot cast " + value + " to an EObject, Integer, or Double. Please extend DSEProblem.determineInitialGenotype to handle your type of choice.", null));

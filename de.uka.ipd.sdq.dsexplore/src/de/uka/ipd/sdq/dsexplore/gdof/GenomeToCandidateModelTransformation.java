@@ -16,6 +16,10 @@ import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.MatchResource;
+import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -54,6 +58,7 @@ import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.allocation.AllocationFactory;
 import org.palladiosimulator.pcm.allocation.impl.AllocationContextImpl;
+import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -72,6 +77,7 @@ import org.palladiosimulator.pcm.repository.impl.PassiveResourceImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.system.SystemFactory;
+import org.palladiosimulator.pcm.system.impl.SystemImpl;
 import org.palladiosimulator.pcm.system.util.SystemAdapterFactory;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -213,6 +219,11 @@ public class GenomeToCandidateModelTransformation {
 			
 			if (gdof != null) {
 
+				//FIXME change to new model
+				if (choice.getValue() instanceof ComparisonImpl) {
+					mergeModels((ComparisonImpl)choice.getValue());
+					return true;
+				}
 				// Store for each CED which instances have been selected
 				Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
 
@@ -440,13 +451,17 @@ public class GenomeToCandidateModelTransformation {
 
 		Query parsedQuery = parseInstanceContextOCL(oclValueRule, changeableElement, rootElements);
 		
+		if (changeableElement == null) {
+			return parsedQuery.evaluate();
+		}
+		
 		return parsedQuery.evaluate(changeableElement);
 		
 	}
 	
 	public static Collection<Object> valueRuleForCollection (ChangeableElementDescription ced, EObject changeableElement,
 			List<EObject> rootElements){
-		
+		if(changeableElement != null) {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(ced.getChangeable().getName());
 		Object change = changeableElement.eGet(propertyInLoadedPCM);
 		
@@ -454,7 +469,7 @@ public class GenomeToCandidateModelTransformation {
 		GenomeToCandidateModelTransformation.getChosenValues().put("oldChoice$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("choiceValue$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("changeable$", changeableElement);
-		
+		}
 		Object object = valueRule(ced, changeableElement, rootElements);
 
 		if (object instanceof Collection<?>){
@@ -770,8 +785,63 @@ public class GenomeToCandidateModelTransformation {
 		return transformChoice(rootElements, choice);
 		
 	}
-
-
-
-
+	
+	private void mergeModels(org.eclipse.emf.compare.Comparison com) {
+		//org.eclipse.emf.compare.Comparison com = (ComparisonSpec) diffMerge.get("left");
+		//EObject prim = degree.getPrimaryChanged();
+		EObject repo = null;
+		EObject sys = null;
+		EObject allo = null;
+//		if (prim instanceof AssemblyContextImpl) {
+//			AssemblyContext ac = (AssemblyContext)prim;
+//			repo = ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent();
+//			sys = ac.getParentStructure__AssemblyContext();
+//		}
+		PCMInstance initialInstance = Opt4JStarter.getProblem().getInitialInstance();
+		sys = initialInstance.getSystem();
+		allo = initialInstance.getAllocation();
+		EList<MatchResource> matches = com.getMatchedResources();
+		EList<Match> match = com.getMatches();
+		for (Match m : match) {
+			//set system of instance to merge to actual system
+			if (m.getLeft() instanceof SystemImpl) {
+				m.setRight(sys);
+			} else if (m.getLeft() instanceof AllocationImpl) {
+				m.setRight(allo);
+			}
+			
+			
+//			if (m.getRight() == null) {
+//				if (m.getLeft() instanceof RepositoryImpl) {
+//					m.setRight(repo);
+//				}
+//			}
+		}
+		
+		for (int i = 0; i < matches.size(); i++) {
+			EObject left = match.get(i).getLeft();
+			EObject right = match.get(i).getRight();
+			matches.get(i).setLeft(match.get(i).getLeft().eResource());
+			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
+		}
+		
+		Iterator<Diff> diff = com.getDifferences().iterator();
+		while (diff.hasNext()) {
+			diff.next().copyLeftToRight();
+		}
+//		sys.getClass();
+//		
+//		for (Match m: com.getMatches()) {
+//			if (m.getRight() instanceof SystemImpl){
+//				
+//				
+//			} else if (m.getRight() instanceof RepositoryImpl) {
+//				
+//			}
+//		}
+		
+		//remove decorator to prevent ID Failure
+//	    	dofi.getDecoratorModel().remove(com);
+		//:::::
+	}
 }
