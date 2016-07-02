@@ -21,6 +21,8 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceenvironmentPackage;
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffrepositoryPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl;
@@ -119,6 +121,10 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		specificPackageImpl thespecificPackage = (specificPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
+		DiffrepositoryPackageImpl theDiffrepositoryPackage = (DiffrepositoryPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiffrepositoryPackage.eNS_URI) instanceof DiffrepositoryPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(DiffrepositoryPackage.eNS_URI)
+						: DiffrepositoryPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theresourcerepositoryPackage.createPackageContents();
@@ -126,6 +132,7 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		thegdofPackage.createPackageContents();
 		thequalitypropertiesPackage.createPackageContents();
 		thespecificPackage.createPackageContents();
+		theDiffrepositoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theresourcerepositoryPackage.initializePackageContents();
@@ -133,6 +140,7 @@ public class resourcerepositoryPackageImpl extends EPackageImpl implements resou
 		thegdofPackage.initializePackageContents();
 		thequalitypropertiesPackage.initializePackageContents();
 		thespecificPackage.initializePackageContents();
+		theDiffrepositoryPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put(theresourcerepositoryPackage, new EValidator.Descriptor() {

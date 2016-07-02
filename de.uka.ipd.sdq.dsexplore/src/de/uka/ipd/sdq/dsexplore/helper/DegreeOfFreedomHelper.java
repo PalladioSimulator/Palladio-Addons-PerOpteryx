@@ -7,6 +7,8 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModelRepository;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelRepositoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.ContinuousRangeDegreeImpl;
 
@@ -21,9 +23,9 @@ public class DegreeOfFreedomHelper {
         	suffix = ":"+((ResourceContainer)((ProcessingResourceSpecification)decision.getPrimaryChanged()).eContainer()).getEntityName();
         }
         String primaryChangeableName = "";
-        if (decision.getPrimaryChanged() == null && !decision.getDecoratorModel().isEmpty() && decision.getDecoratorModel().get(0) instanceof ComparisonImpl) {
-        	Object com = decision.getDecoratorModel().get(0);
-        	String name = com.getClass().getName();
+        if (decision.getPrimaryChanged() == null && !decision.getDecoratorModel().isEmpty() && decision.getDecoratorModel().get(0) instanceof DiffModelRepositoryImpl) {
+        	String name = ((DiffModelRepository)decision.getDecoratorModel().get(0)).getEntityName();
+        	//String name = com.getClass().getName();
         	primaryChangeableName = name;
         } else {
         	primaryChangeableName = decision.getPrimaryChanged().toString();

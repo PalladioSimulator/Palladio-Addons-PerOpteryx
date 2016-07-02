@@ -63,6 +63,7 @@ import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.CompositionFactory;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 import org.palladiosimulator.pcm.parameter.ParameterFactory;
@@ -74,6 +75,7 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.impl.PassiveResourceImpl;
+import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.system.SystemFactory;
@@ -101,6 +103,8 @@ import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DecoratorModelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
@@ -219,9 +223,9 @@ public class GenomeToCandidateModelTransformation {
 			
 			if (gdof != null) {
 
-				//FIXME change to new model
-				if (choice.getValue() instanceof ComparisonImpl) {
-					mergeModels((ComparisonImpl)choice.getValue());
+				//merge if value is a DiffModel
+				if (choice.getValue() instanceof DiffModelImpl) {
+					mergeModels((ComparisonImpl)((DiffModel)choice.getValue()).getDiffModel());
 					return true;
 				}
 				// Store for each CED which instances have been selected
@@ -378,8 +382,8 @@ public class GenomeToCandidateModelTransformation {
 			changeableElement.eSet(propertyInLoadedPCM, newVal);
 		} else if (value instanceof AllocationContextImpl) {
 			DSEProblem problem = Opt4JStarter.getProblem();
-			Allocation alloOrigin = problem.getInitialInstance().getAllocation();
-			org.palladiosimulator.pcm.system.System sys = problem.getInitialInstance().getSystem();
+			Allocation alloOrigin = problem.getCurrentInstance().getAllocation();
+			org.palladiosimulator.pcm.system.System sys = problem.getCurrentInstance().getSystem();
 			Allocation alloCopy = AllocationFactory.eINSTANCE.createAllocation();
 			AllocationContext ac = AllocationFactory.eINSTANCE.createAllocationContext();
 			EcoreUtil.Copier copierAC = new EcoreUtil.Copier();
@@ -787,61 +791,53 @@ public class GenomeToCandidateModelTransformation {
 	}
 	
 	private void mergeModels(org.eclipse.emf.compare.Comparison com) {
-		//org.eclipse.emf.compare.Comparison com = (ComparisonSpec) diffMerge.get("left");
-		//EObject prim = degree.getPrimaryChanged();
-		EObject repo = null;
-		EObject sys = null;
-		EObject allo = null;
-//		if (prim instanceof AssemblyContextImpl) {
-//			AssemblyContext ac = (AssemblyContext)prim;
-//			repo = ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent();
-//			sys = ac.getParentStructure__AssemblyContext();
-//		}
-		PCMInstance initialInstance = Opt4JStarter.getProblem().getInitialInstance();
+		
+		Repository repo = null;
+		org.palladiosimulator.pcm.system.System sys = null;
+		Allocation allo = null;
+
+		PCMInstance initialInstance = Opt4JStarter.getProblem().getCurrentInstance();
 		sys = initialInstance.getSystem();
 		allo = initialInstance.getAllocation();
-		EList<MatchResource> matches = com.getMatchedResources();
+		List<Repository> repos = initialInstance.getRepositories();
+		repo = repos.get(repos.size()-2);
+		
+		for(Connector conn : sys.getConnectors__ComposedStructure()) {
+			System.out.println(conn.toString());
+		}
+		System.out.println("--------------------");
+		
+		
 		EList<Match> match = com.getMatches();
 		for (Match m : match) {
+			//FIXME Test Debug
+			EObject origin = m.getOrigin();
 			//set system of instance to merge to actual system
 			if (m.getLeft() instanceof SystemImpl) {
 				m.setRight(sys);
 			} else if (m.getLeft() instanceof AllocationImpl) {
 				m.setRight(allo);
+			} else if (m.getLeft() instanceof RepositoryImpl) {
+				m.setRight(repo);
 			}
 			
-			
-//			if (m.getRight() == null) {
-//				if (m.getLeft() instanceof RepositoryImpl) {
-//					m.setRight(repo);
-//				}
-//			}
 		}
-		
-		for (int i = 0; i < matches.size(); i++) {
-			EObject left = match.get(i).getLeft();
-			EObject right = match.get(i).getRight();
-			matches.get(i).setLeft(match.get(i).getLeft().eResource());
-			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
-		}
+//		EList<MatchResource> matches = com.getMatchedResources();
+//		for (int i = 0; i < matches.size(); i++) {
+//			EObject left = match.get(i).getLeft();
+//			EObject right = match.get(i).getRight();
+//			matches.get(i).setLeft(match.get(i).getLeft().eResource());
+//			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
+//		}
 		
 		Iterator<Diff> diff = com.getDifferences().iterator();
 		while (diff.hasNext()) {
 			diff.next().copyLeftToRight();
 		}
-//		sys.getClass();
-//		
-//		for (Match m: com.getMatches()) {
-//			if (m.getRight() instanceof SystemImpl){
-//				
-//				
-//			} else if (m.getRight() instanceof RepositoryImpl) {
-//				
-//			}
-//		}
-		
-		//remove decorator to prevent ID Failure
-//	    	dofi.getDecoratorModel().remove(com);
-		//:::::
+		int c = 0;
+		for(Connector conn : sys.getConnectors__ComposedStructure()) {
+			System.out.println(c+++conn.toString());
+		}
+		int stopper = 1;
 	}
 }

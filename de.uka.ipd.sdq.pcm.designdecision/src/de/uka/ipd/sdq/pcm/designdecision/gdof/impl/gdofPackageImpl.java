@@ -14,6 +14,8 @@ import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorPackage;
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffrepositoryPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DecoratorModelDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
@@ -190,6 +192,10 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		specificPackageImpl thespecificPackage = (specificPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
+		DiffrepositoryPackageImpl theDiffrepositoryPackage = (DiffrepositoryPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiffrepositoryPackage.eNS_URI) instanceof DiffrepositoryPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(DiffrepositoryPackage.eNS_URI)
+						: DiffrepositoryPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thegdofPackage.createPackageContents();
@@ -197,6 +203,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		thequalitypropertiesPackage.createPackageContents();
 		theresourcerepositoryPackage.createPackageContents();
 		thespecificPackage.createPackageContents();
+		theDiffrepositoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thegdofPackage.initializePackageContents();
@@ -204,6 +211,7 @@ public class gdofPackageImpl extends EPackageImpl implements gdofPackage {
 		thequalitypropertiesPackage.initializePackageContents();
 		theresourcerepositoryPackage.initializePackageContents();
 		thespecificPackage.initializePackageContents();
+		theDiffrepositoryPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thegdofPackage.freeze();

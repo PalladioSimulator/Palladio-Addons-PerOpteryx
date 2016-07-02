@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cost"
-    nsURI="http://sdq.ipd.uka.de/CostModel/1.0" nsPrefix="cost">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cost" nsURI="http://sdq.ipd.uka.de/CostModel/1.0" nsPrefix="cost">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The CostModel metamodel represents the cost of a software architecture and its alternatives. &#xD;&#xA;&#xD;&#xA;So far, the main concepts are ComponentCost and FixedProcessingResourceCost. ComponentCost specify how much is added to the software architecture cost if the referenced component is used. FixedProcessingResourceCost specify how much is added to the overall cost if the server that contains the referenced ProcessingResourceSpecification (e.g. a CPU with speed 1GHz) is used. &#xD;&#xA;&#xD;&#xA;Thus, to determine the overall cost of one candidate solution (i.e. one architecture), we need to check the PCM model to see which components and servers are used. We might want to add more classes to the taskmodel to make this easier. &#xD;&#xA;&#xD;&#xA;See the Cost element for details on the use of this model. "/>
   </eAnnotations>
@@ -22,7 +20,7 @@
       <details key="documentation" value="This class represents the cost of an Entity. The definition of the cost is deferred to the subclasses that have to define the value of the derived attribute. &#xD;&#xA;&#xD;&#xA;When using the Cost, you can read the initialCost to get the procurement cost for the system. The operating cost reflect cost to operate the system over time. Using the present value formula, both cost can be combined to total cost of ownership. "/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
         changeable="false" volatile="true" transient="true" unsettable="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="suppressedIsSetVisibility" value="true"/>
@@ -53,9 +51,9 @@
       <details key="documentation" value="For servers in the resource environemnt, cost can also be directly specified with the FixedProcessingResourceCost. The fixedOperatingCost and fixedInitialCost are directly specified and are used to derive the operatingCost and the initialCost 1:1. &#xD;&#xA;&#xD;&#xA;TODO: need additional repository of available resource &quot;subtypes&quot;. "/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedOperatingCost" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedInitialCost" ordered="false"
-        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDouble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessingResourceCost" abstract="true"
       eSuperTypes="#//Cost">
@@ -90,8 +88,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="term" ordered="false" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.stoex/model/stoex.ecore#//Term"
-        changeable="false" volatile="true" transient="true" unsettable="true" derived="true">
+        eType="ecore:EClass ../../de.uka.ipd.sdq.stoex/model/stoex.ecore#//Term" changeable="false"
+        volatile="true" transient="true" unsettable="true" derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="namespace" value=""/>
       </eAnnotations>

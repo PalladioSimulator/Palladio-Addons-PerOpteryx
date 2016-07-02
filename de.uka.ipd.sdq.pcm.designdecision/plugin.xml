@@ -79,4 +79,21 @@
             class="de.uka.ipd.sdq.pcm.designdecision.specific.util.specificResourceFactoryImpl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DesignDecision -->
+      <package
+            uri="http://sdq.ipd.uka.de/DesignDecision/DiffRepository/3.0"
+            class="de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage"
+            genModel="model/DesignDecision.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="de.uka.ipd.sdq.pcm.designdecision.comparerepository.comparerepositoryPackage"
+            genModel="model/DesignDecision.genmodel"
+            uri="http://sdq.ipd.uka.de/DesignDecision/CompareRepository/3.0">
+      </package>
+   </extension>
+
+
 </plugin>

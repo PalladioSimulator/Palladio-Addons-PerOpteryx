@@ -27,6 +27,8 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffrepositoryPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPackage;
@@ -157,6 +159,10 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		specificPackageImpl thespecificPackage = (specificPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
+		DiffrepositoryPackageImpl theDiffrepositoryPackage = (DiffrepositoryPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiffrepositoryPackage.eNS_URI) instanceof DiffrepositoryPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(DiffrepositoryPackage.eNS_URI)
+						: DiffrepositoryPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thedesigndecisionPackage.createPackageContents();
@@ -164,6 +170,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		thequalitypropertiesPackage.createPackageContents();
 		theresourcerepositoryPackage.createPackageContents();
 		thespecificPackage.createPackageContents();
+		theDiffrepositoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thedesigndecisionPackage.initializePackageContents();
@@ -171,6 +178,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		thequalitypropertiesPackage.initializePackageContents();
 		theresourcerepositoryPackage.initializePackageContents();
 		thespecificPackage.initializePackageContents();
+		theDiffrepositoryPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put(thedesigndecisionPackage, new EValidator.Descriptor() {
@@ -485,6 +493,8 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 				.getEPackage(resourcerepositoryPackage.eNS_URI);
 		specificPackage thespecificPackage = (specificPackage) EPackage.Registry.INSTANCE
 				.getEPackage(specificPackage.eNS_URI);
+		DiffrepositoryPackage theDiffrepositoryPackage = (DiffrepositoryPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DiffrepositoryPackage.eNS_URI);
 		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage) EPackage.Registry.INSTANCE
@@ -495,6 +505,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		getESubpackages().add(thequalitypropertiesPackage);
 		getESubpackages().add(theresourcerepositoryPackage);
 		getESubpackages().add(thespecificPackage);
+		getESubpackages().add(theDiffrepositoryPackage);
 
 		// Create type parameters
 

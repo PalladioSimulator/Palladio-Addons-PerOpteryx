@@ -435,4 +435,17 @@
       </eAnnotations>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="diffrepository" nsURI="http://sdq.ipd.uka.de/DesignDecision/DiffRepository/3.0"
+      nsPrefix="diffrepository">
+    <eClassifiers xsi:type="ecore:EClass" name="DiffModelRepository" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="availableDiffModels_DiffRepository"
+          upperBound="-1" eType="#//diffrepository/DiffModel" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DiffModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="DiffModel" lowerBound="1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="DiffDescription" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>

@@ -17,6 +17,8 @@ import org.palladiosimulator.pcm.resourcetype.ResourcetypePackage;
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffrepositoryPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.impl.gdofPackageImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl;
@@ -401,6 +403,10 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 				.getEPackage(resourcerepositoryPackage.eNS_URI) instanceof resourcerepositoryPackageImpl
 						? EPackage.Registry.INSTANCE.getEPackage(resourcerepositoryPackage.eNS_URI)
 						: resourcerepositoryPackage.eINSTANCE);
+		DiffrepositoryPackageImpl theDiffrepositoryPackage = (DiffrepositoryPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DiffrepositoryPackage.eNS_URI) instanceof DiffrepositoryPackageImpl
+						? EPackage.Registry.INSTANCE.getEPackage(DiffrepositoryPackage.eNS_URI)
+						: DiffrepositoryPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thespecificPackage.createPackageContents();
@@ -408,6 +414,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		thegdofPackage.createPackageContents();
 		thequalitypropertiesPackage.createPackageContents();
 		theresourcerepositoryPackage.createPackageContents();
+		theDiffrepositoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thespecificPackage.initializePackageContents();
@@ -415,6 +422,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		thegdofPackage.initializePackageContents();
 		thequalitypropertiesPackage.initializePackageContents();
 		theresourcerepositoryPackage.initializePackageContents();
+		theDiffrepositoryPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thespecificPackage.freeze();

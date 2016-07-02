@@ -8,7 +8,9 @@ Bundle-Activator: de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditP
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.provider,
+Export-Package: de.uka.ipd.sdq.pcm.designdecision.comparerepository.provider,
+ de.uka.ipd.sdq.pcm.designdecision.diffrepository.provider,
+ de.uka.ipd.sdq.pcm.designdecision.gdof.provider,
  de.uka.ipd.sdq.pcm.designdecision.provider,
  de.uka.ipd.sdq.pcm.designdecision.qualityproperties.provider,
  de.uka.ipd.sdq.pcm.designdecision.specific.provider,

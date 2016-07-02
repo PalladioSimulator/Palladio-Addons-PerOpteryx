@@ -37,6 +37,34 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated DesignDecision -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.uka.ipd.sdq.pcm.designdecision.diffrepository.presentation.DiffrepositoryModelWizardID"
+            name="%_UI_DiffrepositoryModelWizard_label"
+            class="de.uka.ipd.sdq.pcm.designdecision.diffrepository.presentation.DiffrepositoryModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DiffrepositoryModelFile.gif">
+         <description>%_UI_DiffrepositoryModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated DesignDecision -->
+      <editor
+            id="de.uka.ipd.sdq.pcm.designdecision.diffrepository.presentation.DiffrepositoryEditorID"
+            name="%_UI_DiffrepositoryEditor_label"
+            icon="icons/full/obj16/DiffrepositoryModelFile.gif"
+            extensions="diffrepository"
+            class="de.uka.ipd.sdq.pcm.designdecision.diffrepository.presentation.DiffrepositoryEditor"
+            contributorClass="de.uka.ipd.sdq.pcm.designdecision.diffrepository.presentation.DiffrepositoryActionBarContributor">
+      </editor>
+   </extension>
+
    <extension point="org.eclipse.ui.editors">
       <!-- @generated DesignDecision -->
       <editor

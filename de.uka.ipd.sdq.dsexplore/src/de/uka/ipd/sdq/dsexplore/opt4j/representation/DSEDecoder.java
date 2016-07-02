@@ -10,18 +10,26 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.problem.Decoder;
+import org.opt4j.operator.copy.Copy;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
+import org.palladiosimulator.pcm.PcmFactory;
+import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.parameter.impl.VariableUsageImpl;
 import org.palladiosimulator.pcm.repository.PassiveResource;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
@@ -30,7 +38,10 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
+
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.transformations.PCMInstanceHelper;
 
 import com.google.inject.Inject;
 
@@ -51,6 +62,8 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
@@ -101,10 +114,22 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     public PCMPhenotype decode(final DesignDecisionGenotype genotype) {
 
         //get PCM Instance
-        final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
+        final PCMInstance pcmInit = Opt4JStarter.getProblem().getInitialInstance();
+       
         
-        //make local copy
+         //make local copy
+        Opt4JStarter.getProblem().setCurrentInstance(Opt4JStarter.getProblem().makeLocalCopy(pcmInit));
+        
+        final PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
 
+        org.palladiosimulator.pcm.system.System sysInit = pcmInit.getSystem();
+        org.palladiosimulator.pcm.system.System sys = pcm.getSystem();
+        int c = 0;
+        for (Connector conn : sys.getConnectors__ComposedStructure()) {
+        	System.out.println(c+++conn.toString());
+        }
+//        final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
+    	
         //new transformation. Transition phase: Only for those DoF that are not explicitly modelled.
         final GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();
 
@@ -139,6 +164,43 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         //return new PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
         return new PCMPhenotype(pcm,genotypeString, genotype.getNumericID());
     }
+
+//	private PCMInstance makeLocalCopy(final PCMInstance pcmInit) {
+//		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+//          
+//        org.palladiosimulator.pcm.system.System system = pcmInit.getSystem();
+//        Allocation allocation = pcmInit.getAllocation();
+//        List<Repository> repositories = pcmInit.getRepositories();
+//        ResourceEnvironment resEnv = pcmInit.getResourceEnvironment();
+//        UsageModel usagemodel =  pcmInit.getUsageModel();
+//        PCMResourceSetPartition pcmModel = new PCMResourceSetPartition();
+//        
+//        
+//        org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
+//        copier.copyReferences();
+//        pcmModel.setContents(system.eResource().getURI(), sys);
+//        
+//        Allocation localAllocation = (Allocation)copier.copy(allocation);
+//        copier.copyReferences();
+//        pcmModel.setContents(allocation.eResource().getURI(), localAllocation);
+// 
+//        for (Repository repo : repositories) {
+//        	Repository localRepo = (Repository)copier.copy(repo);
+//        	copier.copyReferences();
+//        	pcmModel.setContents(repo.eResource().getURI(), localRepo);
+//        }
+//        
+//        ResourceEnvironment localResEnv = (ResourceEnvironment)copier.copy(resEnv);
+//        copier.copyReferences();
+//        pcmModel.setContents(resEnv.eResource().getURI(), localResEnv);
+//        
+//        UsageModel localUsagemodel = (UsageModel)copier.copy(usagemodel);
+//        copier.copyReferences();
+//        pcmModel.setContents(usagemodel.eResource().getURI(), localUsagemodel);
+//        
+//        PCMInstance pcm = new PCMInstance(pcmModel);
+//		return pcm;
+//	}
 
     /**
      * Applies the given change to the initial pcm instance (as this is
@@ -619,6 +681,9 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         else  if (choice.getDegreeOfFreedomInstance().getDof() != null &&
         		choice.getDegreeOfFreedomInstance().getDof().getName().contains("Change Number of Cores")) {
         	result = "Core Number: "+choice.getValue().toString();
+        }
+        else if (choice.getValue() instanceof DiffModelImpl) {
+        	result = "Selected Diff: " + ((DiffModel)choice.getValue()).getDiffDescription();
         }
         return result;
     }

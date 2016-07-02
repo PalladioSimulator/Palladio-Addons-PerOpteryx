@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.modelversioning.emfprofile.EMFProfileFactory;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
@@ -38,8 +40,10 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.impl.ParameterImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
@@ -60,6 +64,8 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModelRepository;
+import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelRepositoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
@@ -99,8 +105,11 @@ public class DSEProblem {
     private final designdecisionFactory designDecisionFactory;
     private final specificFactory specificDesignDecisionFactory;
 
+    private PCMInstance currentInstance;
 
-    private List<DesignDecisionGenotype> initialGenotypeList = null;
+
+
+	private List<DesignDecisionGenotype> initialGenotypeList = null;
 
     private final DSEWorkflowConfiguration dseConfig;
 
@@ -116,7 +125,7 @@ public class DSEProblem {
 
         final boolean newProblem = dseConfig.isNewProblem();
         this.initialInstance = pcmInstance;
-        //this.currentInstance = copyOf pcmInstance 
+        this.currentInstance = pcmInstance;
         //EcoreUtil.Copier deep copy
 
         this.designDecisionFactory = designdecisionFactoryImpl.init();
@@ -150,6 +159,43 @@ public class DSEProblem {
          */
     }
 
+    public PCMInstance makeLocalCopy(final PCMInstance pcmInit) {
+		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+          
+        org.palladiosimulator.pcm.system.System system = pcmInit.getSystem();
+        Allocation allocation = pcmInit.getAllocation();
+        List<Repository> repositories = pcmInit.getRepositories();
+        ResourceEnvironment resEnv = pcmInit.getResourceEnvironment();
+        UsageModel usagemodel =  pcmInit.getUsageModel();
+        PCMResourceSetPartition pcmModel = new PCMResourceSetPartition();
+        
+        
+        org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
+        copier.copyReferences();
+        pcmModel.setContents(system.eResource().getURI(), sys);
+        
+        Allocation localAllocation = (Allocation)copier.copy(allocation);
+        copier.copyReferences();
+        pcmModel.setContents(allocation.eResource().getURI(), localAllocation);
+ 
+        for (Repository repo : repositories) {
+        	Repository localRepo = (Repository)copier.copy(repo);
+        	copier.copyReferences();
+        	pcmModel.setContents(repo.eResource().getURI(), localRepo);
+        }
+        
+        ResourceEnvironment localResEnv = (ResourceEnvironment)copier.copy(resEnv);
+        copier.copyReferences();
+        pcmModel.setContents(resEnv.eResource().getURI(), localResEnv);
+        
+        UsageModel localUsagemodel = (UsageModel)copier.copy(usagemodel);
+        copier.copyReferences();
+        pcmModel.setContents(usagemodel.eResource().getURI(), localUsagemodel);
+        
+        PCMInstance pcm = new PCMInstance(pcmModel);
+		return pcm;
+	}
+    
     private DecisionSpace loadProblem() throws CoreException {
         final URI filename = this.dseConfig.getDesignDecisionFileName();
         return this.loadProblem(filename);
@@ -183,8 +229,8 @@ public class DSEProblem {
 
             if (dd.getDof() != null) {
             	Object value = null;
-            	if (!dd.getDecoratorModel().isEmpty() && dd.getDecoratorModel().get(0) instanceof ComparisonImpl) {
-            		value = dd.getDecoratorModel().get(0);
+            	if (!dd.getDecoratorModel().isEmpty() && dd.getDecoratorModel().get(0) instanceof DiffModelRepositoryImpl) {
+            		value = ((DiffModelRepository)dd.getDecoratorModel().get(0)).getAvailableDiffModels_DiffRepository().get(0);
             	} else {
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
@@ -603,6 +649,14 @@ public class DSEProblem {
     	// and saves new copy as currentInstance?
         return this.initialInstance;
     }
+    
+    public PCMInstance getCurrentInstance() {
+    	return this.currentInstance;
+    }
+    
+    public void setCurrentInstance(PCMInstance currentInstance) {
+		this.currentInstance = currentInstance;
+	}
 
     public DesignDecisionGenotype getGenotypeOfInitialPCMInstance(){
         return this.initialGenotype;
