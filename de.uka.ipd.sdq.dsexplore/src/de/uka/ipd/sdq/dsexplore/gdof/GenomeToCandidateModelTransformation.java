@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.MatchResource;
@@ -225,7 +226,8 @@ public class GenomeToCandidateModelTransformation {
 
 				//merge if value is a DiffModel
 				if (choice.getValue() instanceof DiffModelImpl) {
-					mergeModels((ComparisonImpl)((DiffModel)choice.getValue()).getDiffModel());
+					for (EObject comp : ((DiffModel)choice.getValue()).getDiffModel())
+					mergeModels((Comparison)comp);
 					return true;
 				}
 				// Store for each CED which instances have been selected

@@ -298,7 +298,7 @@ public class DiffrepositoryPackageImpl extends EPackageImpl implements Diffrepos
 
 		initEClass(diffModelEClass, DiffModel.class, "DiffModel", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDiffModel_DiffModel(), theEcorePackage.getEObject(), null, "DiffModel", null, 1, 1,
+		initEReference(getDiffModel_DiffModel(), theEcorePackage.getEObject(), null, "DiffModel", null, 1, -1,
 				DiffModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDiffModel_DiffDescription(), theTypesPackage.getString(), "DiffDescription", null, 1, 1,

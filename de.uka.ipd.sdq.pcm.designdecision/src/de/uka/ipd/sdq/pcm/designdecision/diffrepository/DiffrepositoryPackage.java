@@ -105,7 +105,7 @@ public interface DiffrepositoryPackage extends EPackage {
 	int DIFF_MODEL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Diff Model</b></em>' reference.
+	 * The feature id for the '<em><b>Diff Model</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -163,10 +163,10 @@ public interface DiffrepositoryPackage extends EPackage {
 	EClass getDiffModel();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel#getDiffModel <em>Diff Model</em>}'.
+	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel#getDiffModel <em>Diff Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Diff Model</em>'.
+	 * @return the meta object for the reference list '<em>Diff Model</em>'.
 	 * @see de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel#getDiffModel()
 	 * @see #getDiffModel()
 	 * @generated
@@ -236,7 +236,7 @@ public interface DiffrepositoryPackage extends EPackage {
 		EClass DIFF_MODEL = eINSTANCE.getDiffModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Diff Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Diff Model</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

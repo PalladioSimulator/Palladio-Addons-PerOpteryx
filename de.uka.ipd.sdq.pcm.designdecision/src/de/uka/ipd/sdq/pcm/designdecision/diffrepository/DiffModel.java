@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.diffrepository;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,30 +24,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DiffModel extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Diff Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Diff Model</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Diff Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Diff Model</em>' reference.
-	 * @see #setDiffModel(EObject)
+	 * @return the value of the '<em>Diff Model</em>' reference list.
 	 * @see de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage#getDiffModel_DiffModel()
 	 * @model required="true"
 	 * @generated
 	 */
-	EObject getDiffModel();
-
-	/**
-	 * Sets the value of the '{@link de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel#getDiffModel <em>Diff Model</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Diff Model</em>' reference.
-	 * @see #getDiffModel()
-	 * @generated
-	 */
-	void setDiffModel(EObject value);
+	EList<EObject> getDiffModel();
 
 	/**
 	 * Returns the value of the '<em><b>Diff Description</b></em>' attribute.
