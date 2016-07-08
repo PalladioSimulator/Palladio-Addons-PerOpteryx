@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.pcm.cost.editor.customisation;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.ui.views.properties.IPropertySource;
-import org.palladiosimulator.editors.propertytabs.PalladioAdapterFactoryContentProvider;
+import org.palladiosimulator.editors.commons.propertytabs.PalladioAdapterFactoryContentProvider;
 
 import de.uka.ipd.sdq.pcm.cost.ScalarFunction;
 

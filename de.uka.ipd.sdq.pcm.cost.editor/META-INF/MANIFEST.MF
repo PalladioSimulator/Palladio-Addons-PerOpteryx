@@ -21,6 +21,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
  de.uka.ipd.sdq.units.edit;visibility:=reexport,
  org.palladiosimulator.pcm.ui;bundle-version="2.0.0",
- org.palladiosimulator.editors.propertytabs;bundle-version="1.0.0"
+ org.palladiosimulator.editors.commons.propertytabs;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
