@@ -128,7 +128,7 @@ public class Opt4JStarter {
 		
 		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
 		
-		Opt4JStarter.problem = new DSEProblem(dseConfig, pcmInstance);
+		Opt4JStarter.problem = new DSEProblem(dseConfig, pcmInstance, blackboard);
 		if (dseConfig.isNewProblem()){
 			Opt4JStarter.problem.saveProblem();
 		} 

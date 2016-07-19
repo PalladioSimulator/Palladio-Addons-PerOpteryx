@@ -48,7 +48,9 @@ import org.palladiosimulator.mdsdprofiles.notifier.MDSDProfilesNotifier;
 import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementDecoratorAdapterFactory;
 import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementItemProviderDecorator;
 import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.allocation.AllocationFactory;
+import org.palladiosimulator.pcm.allocation.impl.AllocationContextImpl;
 import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -59,8 +61,11 @@ import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
 import org.palladiosimulator.pcm.core.composition.util.CompositionAdapterFactory;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
+import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
 import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.SeffPackage;
@@ -96,12 +101,12 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 
 	protected static Logger logger = Logger.getLogger(FixGDOFReferenceSwitch.class.getName());
 	
-    private final PCMInstance initialInstance;
+    private final PCMInstance pcmInstance;
 
     private SecureRandom random = new SecureRandom();
     
     public FixGDOFReferenceSwitch(final PCMInstance initialInstance2) {
-        this.initialInstance = initialInstance2;
+        this.pcmInstance = initialInstance2;
     }
     @Override
     public EObject caseChangeableElementDescription(final ChangeableElementDescription object) {
@@ -114,6 +119,8 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	return object;
     }
     
+    
+    
     /**
      * This method switches the reference from the second loaded instance to the references of the current instance.
      * 
@@ -122,7 +129,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
      * @return the current degree of freedom instance
      */
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
-   
+       	
     	org.eclipse.emf.compare.Comparison com = null;
 		for(EObject obj :dofi.getDecoratorModel()) {
 			if (obj instanceof ComparisonImpl) {
@@ -200,6 +207,17 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	
     	DegreeOfFreedom dof = dofi.getDof();
     	
+    	
+    	EObject prim = dofi.getPrimaryChanged();
+//    	System.out.println("Prim: "+prim.eClass().toString());
+    	dofi.setPrimaryChanged(changeToLocal(prim));
+    	EObject primLocal = dofi.getPrimaryChanged();
+//    	System.out.println("PrimLocal: "+primLocal.eClass().toString());
+    	
+    	for (HelperOCLDefinition helpDef: dof.getPrimaryChangeable().getValueRule().getHelperDefinition()) {
+    		helpDef.setContextClass(doContextClassSwitch(helpDef.getContextClass()));
+    	}
+    	
     	//iterate through the changeable element description to switch references  for all helper
     	for (ChangeableElementDescription ced : dof.getChangeableElementDescriptions()) {
     		
@@ -239,7 +257,37 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     
 	
     
-    /**
+    private EObject changeToLocal(EObject prim) {
+    	
+		if (prim instanceof AssemblyContextImpl) {
+			final List<AssemblyContext> acs = this.pcmInstance.getSystem().getAssemblyContexts__ComposedStructure();
+			final AssemblyContext localPrim = (AssemblyContext) EMFHelper.retrieveEntityByID(acs,
+					((AssemblyContext) prim).getId());
+			prim = localPrim;
+		} else if (prim instanceof AllocationContextImpl) {
+			final List<AllocationContext> acs = this.pcmInstance.getAllocation().getAllocationContexts_Allocation();
+			final AllocationContext localPrim = (AllocationContext) EMFHelper.retrieveEntityByID(acs,
+					((AllocationContext) prim).getId());
+			prim = localPrim;
+		} else if (prim instanceof ProcessingResourceSpecificationImpl) {
+			String id = ((ResourceContainer)((ProcessingResourceSpecification)prim).eContainer()).getId();
+			final List<ResourceContainer> rcs = this.pcmInstance.getResourceEnvironment()
+					.getResourceContainer_ResourceEnvironment();
+			final ResourceContainer localPrim = (ResourceContainer) EMFHelper
+					.retrieveEntityByID(rcs, id);
+			
+			final List<ProcessingResourceSpecification> prss = localPrim.getActiveResourceSpecifications_ResourceContainer();
+			for (ProcessingResourceSpecification prs : prss) {
+				if(prs.getId().equals(((ProcessingResourceSpecificationImpl) prim).getId())) {
+					prim = prs;
+					break;
+				}
+			}
+		}
+		return prim;
+	}
+    
+	/**
      * Select the correct method to get all the features, types and values of the model
      * 
      * @param helpDef is the helper definition for which the context class should be switched
@@ -293,7 +341,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private EClass doSubsystemSwitch(EClass ctxClass) {
 		 logger.error(
                  "Please implement Swich for: "+ctxClass.getName());
-			List<Repository> repositories = this.initialInstance.getRepositories();
+			List<Repository> repositories = this.pcmInstance.getRepositories();
 			EList<EObject> contents = new BasicEList<EObject>();
 			EList<EClass> superTypes = new BasicEList<EClass>();
 			for (Repository repository : repositories) {
@@ -308,13 +356,13 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private EClass doResourceenvironmentSwitch(EClass ctxClass) {
 		 logger.error(
                  "Please implement Swich for: "+ctxClass.getName());
-		ResourceEnvironment re = this.initialInstance.getResourceEnvironment();
+		ResourceEnvironment re = this.pcmInstance.getResourceEnvironment();
 		EList<EObject> contents = re.eContents();
 		EList<EClass> superTypes = re.eClass().getEAllSuperTypes();
 		return switchClasses(ctxClass, contents, superTypes);
 	}
 	private EClass doSystemSwitch(EClass ctxClass) {
-		EClass systemClass = this.initialInstance.getSystem().eClass();
+		EClass systemClass = this.pcmInstance.getSystem().eClass();
 		if (ctxClass.getName().equals(systemClass.getName())) {
 			return systemClass;
 		}
@@ -353,7 +401,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private EClass doUsagemodelSwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		
-		UsageModel um = this.initialInstance.getUsageModel();
+		UsageModel um = this.pcmInstance.getUsageModel();
 		ctxClass = um.eClass();
 		logger.error(
                 "Please implement Swich for: "+ctxClass.getName());
@@ -366,7 +414,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		return ctxClass;
 	}
 	private EClass doAllocationSwitch(EClass ctxClass) {
-		Allocation allocation = this.initialInstance.getAllocation();
+		Allocation allocation = this.pcmInstance.getAllocation();
 		EList<EObject> contents = allocation.eContents();
 		EList<EClass> superTypes = allocation.eClass().getEAllSuperTypes();
 		return switchClasses(ctxClass, contents, superTypes);
@@ -378,7 +426,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		return switchClasses(ctxClass, contents, superTypes);
 	}
 	private EClass doRepositorySwitch(EClass ctxClass) {
-		List<Repository> repositories = this.initialInstance.getRepositories();
+		List<Repository> repositories = this.pcmInstance.getRepositories();
 		EList<EObject> contents = new BasicEList<EObject>();
 		EList<EClass> superTypes = new BasicEList<EClass>();
 		for (Repository repository : repositories) {
@@ -394,7 +442,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	 * @param ctxClass is the HelperOCLDefinition for which the context class will be switched
 	 */
 	private EClass doCompositionSwich(EClass ctxClass) {
-		org.palladiosimulator.pcm.system.System system = this.initialInstance.getSystem();
+		org.palladiosimulator.pcm.system.System system = this.pcmInstance.getSystem();
 		EList<EObject> contents = system.eContents();
 		EList<EClass> superTypes = system.eClass().getEAllSuperTypes();
 		return switchClasses(ctxClass, contents, superTypes);

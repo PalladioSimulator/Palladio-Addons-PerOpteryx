@@ -13,6 +13,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ComposedStructure;
@@ -317,6 +319,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 			throws CoreException, UserCanceledException, JobFailedException,
 			AnalysisFailedException {
 		PCMInstance pcm = pheno.getPCMInstance();
+		pcm = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
 		//Important: "Read in" the right PCM instance first.  
 		updateCostModel(pcm);
 		

@@ -37,6 +37,8 @@ import de.uka.ipd.sdq.dsexplore.helper.ConstraintAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.CriterionAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.ObjectiveAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -87,7 +89,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 	public void init(List<IAnalysis> evaluators, IProgressMonitor monitor, MDSDBlackboard blackboard, boolean stopOnInitialFailure){
 		
 		this.blackboard = blackboard;
-		copyPCMPartitionToAnalysisSlot(blackboard);
+		Opt4JStarter.getProblem().makeLocalCopy();
+		//copyPCMPartitionToAnalysisSlot(blackboard);
 		
 		//Give the evaluators the blackboard, because they cannot determine the objectives before that.
 		for (IAnalysis iAnalysis : evaluators) {
@@ -146,7 +149,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 	@Override
 	public DSEObjectives evaluate(PCMPhenotype pheno) {
 		
-		copyPCMPartitionToAnalysisSlot(this.blackboard);		
+//		copyPCMPartitionToAnalysisSlot(this.blackboard);		
 		
 		DSEObjectives cachedObjective = this.phenotypeResultsCache.get(pheno.getGenotypeID());
 		if (cachedObjective != null){ // check if constraints are evaluated --> retrieveConstraint...
@@ -156,11 +159,16 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 			//DSEObjectives obj = new DSEObjectives();
 			DSEObjectives obj = objectivesProvider.get();
 			try{
-				
+				//FIXME remove measurement --->
+		    	double startTime = System.nanoTime();
 				for (IAnalysis evaluator : this.evaluators) {
 					evaluator.analyse(pheno, this.monitor);
 				}
-				
+				double endTime = System.nanoTime();
+		        double result = (endTime - startTime) / Math.pow(10, 9);
+//		        logger.info("MEASURMENT: Finished ANALYSING in:"+(result));
+//		        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+		        //<---
 			} catch (UserCanceledException e){
 				fillObjectivesWithInfeasible(obj);
 				return obj;
@@ -178,14 +186,16 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 			}
 			
 			try {
+				double start = System.nanoTime();
 				for (int i = 0; i < objectives.size() ; i++) {
 					retrieveQuality(pheno, obj, this.objectives.get(i));
 				}
-				
+//				logger.info("Quality: "+(System.nanoTime()-start)/Math.pow(10, 9));
+				start = System.nanoTime();
 				for (int i = 0; i < constraints.size(); i++) {
 					retrieveConstraint(pheno, obj, this.constraints.get(i));
 				}
-
+//				logger.info("Constraint: "+(System.nanoTime()-start)/Math.pow(10, 9));
 				//retrieveCost(pheno, obj, this.objectives.get(objectives.size() -1));
 
 				firstRunSuccessful = true;
@@ -246,7 +256,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 			} else {
 				List<EObject> contentList = resource.getContents();
 				Collection<EObject> copiedContent = copier.copyAll(contentList);
-				Resource newResource = analysisResourceSet.createResource(URI.createURI(resource.getURI()+"cand."+resource.getURI().fileExtension()));
+				Resource newResource = analysisResourceSet.createResource(URI.createURI(resource.getURI()+"copy."+resource.getURI().fileExtension()));
 				newResource.getContents().addAll(copiedContent);
 			}
 		}

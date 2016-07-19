@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.debug.internal.ui.views.launch.DebugElementHelper;
@@ -18,9 +19,13 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.MatchResource;
+import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.impl.ComparisonImpl;
+import org.eclipse.emf.compare.impl.ReferenceChangeImpl;
+import org.eclipse.emf.compare.utils.EMFCompareCopier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -30,10 +35,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.FeatureMapUtil.FeatureEList.Basic;
 //import org.eclipse.emf.query.conditions.numbers.NumberCondition;
 //import org.eclipse.emf.query.conditions.numbers.NumberCondition.DoubleValue;
 import org.eclipse.ocl.EvaluationEnvironment;
@@ -62,10 +70,13 @@ import org.palladiosimulator.pcm.allocation.impl.AllocationContextImpl;
 import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
 import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.CompositionFactory;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
+import org.palladiosimulator.pcm.core.composition.impl.ConnectorImpl;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 import org.palladiosimulator.pcm.parameter.ParameterFactory;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
@@ -73,22 +84,51 @@ import org.palladiosimulator.pcm.parameter.VariableCharacterisationType;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.parameter.impl.VariableUsageImpl;
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.CompositeComponent;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.impl.BasicComponentImpl;
+import org.palladiosimulator.pcm.repository.impl.CompositeComponentImpl;
+import org.palladiosimulator.pcm.repository.impl.OperationProvidedRoleImpl;
+import org.palladiosimulator.pcm.repository.impl.OperationRequiredRoleImpl;
 import org.palladiosimulator.pcm.repository.impl.PassiveResourceImpl;
 import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceEnvironmentImpl;
+import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.seff.ResourceDemandingInternalBehaviour;
+import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
+import org.palladiosimulator.pcm.seff.SeffFactory;
+import org.palladiosimulator.pcm.seff.SeffPackage;
+import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
+import org.palladiosimulator.pcm.seff.SetVariableAction;
+import org.palladiosimulator.pcm.seff.StartAction;
+import org.palladiosimulator.pcm.seff.impl.ExternalCallActionImpl;
+import org.palladiosimulator.pcm.seff.impl.InternalActionImpl;
+import org.palladiosimulator.pcm.seff.impl.ResourceDemandingSEFFImpl;
+import org.palladiosimulator.pcm.seff.impl.SetVariableActionImpl;
+import org.palladiosimulator.pcm.seff.impl.StartActionImpl;
+import org.palladiosimulator.pcm.seff.impl.StopActionImpl;
 import org.palladiosimulator.pcm.system.SystemFactory;
 import org.palladiosimulator.pcm.system.impl.SystemImpl;
 import org.palladiosimulator.pcm.system.util.SystemAdapterFactory;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.helper.FixGDOFReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.featuremodel.DoubleAttribute;
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.FixedProcessingResourceCost;
@@ -214,34 +254,235 @@ public class GenomeToCandidateModelTransformation {
 		
 	}
 	
+	private EObject changeToLocal(EObject prim, EStructuralFeature propertyInLoadedPCM) {
+		//System.out.println(prim.toString());
+		
+		PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
+		List<Repository> repos = pcm.getRepositories();
+		Repository repo = null;
+		for (Repository r : repos) {
+			if (r.eResource().getURI().toString().contains("pathmap")) continue;
+			repo = r;
+			break;
+		}
+		FixGDOFReferenceSwitch referenceSwitch = new FixGDOFReferenceSwitch(Opt4JStarter.getProblem().getCurrentInstance());
+
+    	
+		if (prim instanceof AssemblyContextImpl) {
+			final List<AssemblyContext> acs = pcm.getSystem().getAssemblyContexts__ComposedStructure();
+			final AssemblyContext localPrim = (AssemblyContext) EMFHelper.retrieveEntityByID(acs,
+					((AssemblyContext) prim).getId());
+			if (localPrim != null) prim = localPrim;
+		} 
+		else if (prim instanceof AllocationContextImpl) {
+			final List<AllocationContext> acs = pcm.getAllocation().getAllocationContexts_Allocation();
+			final AllocationContext localPrim = (AllocationContext) EMFHelper.retrieveEntityByID(acs,
+					((AllocationContext) prim).getId());
+			
+			if (localPrim != null) prim = localPrim;
+		} 
+		else if (prim instanceof AssemblyConnectorImpl) {
+			prim = (AssemblyConnector)prim;
+			String id = ((AssemblyConnector) prim).getId();
+			EList<Connector> conns = pcm.getSystem().getConnectors__ComposedStructure();
+			AssemblyConnector as = (AssemblyConnector)EMFHelper.retrieveEntityByID(conns, id);
+			if (as != null) prim = as;
+			
+//			AssemblyContext requ = ((AssemblyConnector)prim).getRequiringAssemblyContext_AssemblyConnector();
+//			AssemblyContext prov = ((AssemblyConnector)prim).getProvidingAssemblyContext_AssemblyConnector();
+//			List<AssemblyContext> acs = pcm.getSystem().getAssemblyContexts__ComposedStructure();
+//			AssemblyContext localRequ = (AssemblyContext)EMFHelper.retrieveEntityByID(acs, requ.getId());
+//			AssemblyContext localProv = (AssemblyContext)EMFHelper.retrieveEntityByID(acs, prov.getId());
+//			if (localRequ != null) ((AssemblyConnector)prim).setRequiringAssemblyContext_AssemblyConnector(localRequ);
+//			if (localProv != null) ((AssemblyConnector)prim).setRequiringAssemblyContext_AssemblyConnector(localProv);
+			return prim;
+		}
+		else if (prim instanceof ProcessingResourceSpecificationImpl) {
+			String id = ((ResourceContainer)((ProcessingResourceSpecification)prim).eContainer()).getId();
+			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
+					.getResourceContainer_ResourceEnvironment();
+			final ResourceContainer localPrim = (ResourceContainer) EMFHelper
+					.retrieveEntityByID(rcs, id);
+			
+			final List<ProcessingResourceSpecification> prss = localPrim.getActiveResourceSpecifications_ResourceContainer();
+			for (ProcessingResourceSpecification prs : prss) {
+				if(prs.getId().equals(((ProcessingResourceSpecificationImpl) prim).getId())) {
+					prim = prs;
+					break;
+				}
+			}	
+		}
+		else if (prim instanceof BasicComponentImpl) {
+			String choiceId = ((BasicComponent)prim).getId();
+			BasicComponent copiedChoice = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), choiceId);
+			if (copiedChoice != null) prim = copiedChoice;
+			
+		} 
+		else if (prim instanceof PCMRandomVariableImpl) {
+			if (!(((PCMRandomVariable)prim).eContainer() instanceof ProcessingResourceSpecificationImpl)) return prim;
+			ProcessingResourceSpecification prsChoice = ((ProcessingResourceSpecification)((PCMRandomVariable)prim).eContainer());
+			String choiceId = prsChoice.getId();
+			String id = ((ResourceContainer)prsChoice.eContainer()).getId();
+			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
+					.getResourceContainer_ResourceEnvironment();
+			final ResourceContainer rc = (ResourceContainer) EMFHelper
+					.retrieveEntityByID(rcs, id);
+			final List<ProcessingResourceSpecification> prss = rc.getActiveResourceSpecifications_ResourceContainer();
+			for (ProcessingResourceSpecification prs : prss) {
+				if (prs.getId().equals(choiceId)) {
+					Object copiedChoice = prs.eGet(propertyInLoadedPCM);
+					prim = (EObject) copiedChoice;
+					break;
+				}
+			}
+		} 
+		else if (prim instanceof CompositeComponentImpl) {
+			String choiceId = ((CompositeComponent)prim).getId();
+			
+			
+			
+			CompositeComponent copiedChoice = (CompositeComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), choiceId);
+			
+			if (copiedChoice != null) prim = copiedChoice;
+		} 
+		else if (prim instanceof ResourceContainerImpl) {
+			String id = ((ResourceContainer)prim).getId();
+			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
+					.getResourceContainer_ResourceEnvironment();
+			final ResourceContainer copiedChoice = (ResourceContainer) EMFHelper
+					.retrieveEntityByID(rcs, id);
+			if (copiedChoice != null) prim = copiedChoice;
+		}
+		else if (prim instanceof OperationProvidedRoleImpl) {
+			String parentId = ((OperationProvidedRole)prim).getProvidedInterface__OperationProvidedRole().getId();
+			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
+			//comp.getRequiredRoles_InterfaceRequiringEntity();
+		}
+		else if (prim instanceof ResourceDemandingSEFFImpl) {
+			String parentId = ((ResourceDemandingSEFF)prim).getBasicComponent_ServiceEffectSpecification().getId();
+			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
+			if (comp == null) return null;
+			EList<ServiceEffectSpecification> content = comp.getServiceEffectSpecifications__BasicComponent();
+			for (ServiceEffectSpecification seff : content) {
+				if (seff instanceof ResourceDemandingSEFFImpl) {
+					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) prim).getId())) {
+						prim = seff;
+						break;
+					}
+				}
+			}
+		}
+		else if (prim instanceof OperationRequiredRoleImpl) {
+
+			String parentId = ((OperationRequiredRole)prim).getRequiredInterface__OperationRequiredRole().getId();
+			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
+			if (comp == null) return null;
+			//comp.getRequiredRoles_InterfaceRequiringEntity();
+		}
+//		else if (prim instanceof InternalActionImpl) {
+//			ResourceDemandingSEFF rseff = (ResourceDemandingSEFF)((InternalAction)prim).eContainer();
+//			String parentId = ((BasicComponent)rseff.getBasicComponent_ServiceEffectSpecification()).getId();
+//			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
+//			if (comp == null) return null;
+//			EList<ServiceEffectSpecification> content = comp.getServiceEffectSpecifications__BasicComponent();
+//			for (ServiceEffectSpecification seff : content) {
+//				if (seff instanceof ResourceDemandingSEFFImpl) {
+//					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) rseff).getId())) {
+//						EList<org.palladiosimulator.pcm.seff.AbstractAction> aa = ((ResourceDemandingSEFFImpl) seff).getSteps_Behaviour();
+//						for(org.palladiosimulator.pcm.seff.AbstractAction action : aa) {
+//							if (action.getId().equals(((InternalAction) prim).getId())) {
+//								
+//								return action;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+		else if (prim.eContainer() instanceof ResourceDemandingSEFFImpl) {
+			if (prim instanceof SetVariableActionImpl) prim = (SetVariableAction)prim;
+			if (prim instanceof InternalActionImpl) prim = (InternalAction)prim;
+			if (prim instanceof ExternalCallActionImpl) prim = (ExternalCallAction)prim;
+			if (prim instanceof StartActionImpl) prim = (StartAction)prim;
+			if (prim instanceof StopActionImpl) prim = (StopActionImpl)prim;
+			
+			
+			ResourceDemandingSEFF rseff = (ResourceDemandingSEFF)prim.eContainer();
+			String parentId = ((BasicComponent)rseff.getBasicComponent_ServiceEffectSpecification()).getId();
+			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
+			if (comp == null) return null;
+			EList<ServiceEffectSpecification> content = comp.getServiceEffectSpecifications__BasicComponent();
+			for (ServiceEffectSpecification seff : content) {
+				if (seff instanceof ResourceDemandingSEFFImpl) {
+					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) rseff).getId())) {
+						EList<org.palladiosimulator.pcm.seff.AbstractAction> aa = ((ResourceDemandingSEFFImpl) seff).getSteps_Behaviour();
+						for(org.palladiosimulator.pcm.seff.AbstractAction action : aa) {
+							if (action.getId().equals(((Identifier) prim).getId())) {
+								
+								return action;
+							}
+						}
+					}
+				}
+			}
+		}
+		return prim;
+	}
 	
 	public boolean transformChoice(List<EObject> rootElements, Choice choice) {
 		// is choice active?
 		if (choice.isActive()){
 
 			DegreeOfFreedomInstance dofi = choice.getDegreeOfFreedomInstance();
+			FixGDOFReferenceSwitch referenceSwitch = new FixGDOFReferenceSwitch(Opt4JStarter.getProblem().getCurrentInstance());
+//			referenceSwitch.switchReferences(dofi);
 			DegreeOfFreedom gdof = dofi.getDof();
 			
 			if (gdof != null) {
 
 				//merge if value is a DiffModel
 				if (choice.getValue() instanceof DiffModelImpl) {
-					for (EObject comp : ((DiffModel)choice.getValue()).getDiffModel())
-					mergeModels((Comparison)comp);
-					return true;
+					for (EObject comp : ((DiffModel)choice.getValue()).getDiffModel()){
+						mergeModels((Comparison)comp);
+						return true;
+					}
 				}
 				// Store for each CED which instances have been selected
 				Map<ChangeableElementDescription, Collection<EObject>> selectedModelElements = new HashMap<ChangeableElementDescription, Collection<EObject>>();
 
 				// set primary element
+//				EObject modelElement = changeToLocal(dofi.getPrimaryChanged());
 				EObject modelElement = dofi.getPrimaryChanged();
+				modelElement = changeToLocal(dofi.getPrimaryChanged(), null);
+				
+				//FIXME test to change the primary changed to the one from the copied instance
+				PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
+//				if (modelElement instanceof AssemblyContextImpl) {
+//					
+//					String id = ((AssemblyContext)modelElement).getId();
+//					final List<AssemblyContext> acs = pcm.getSystem().getAssemblyContexts__ComposedStructure();
+//			        final AssemblyContext localModelElement = (AssemblyContext)EMFHelper.retrieveEntityByID(acs,id);
+//			        modelElement = localModelElement;
+//				} else if (modelElement instanceof ConnectorImpl) {
+//					String id = ((Connector)modelElement).getId();
+//					EList<Connector> conns = pcm.getSystem().getConnectors__ComposedStructure();
+//					Connector localConn = (Connector)EMFHelper.retrieveEntityByID(conns,id);
+//					modelElement = localConn;
+//				}
 
+				
+				
 				//determine property to change using GDoF
 				EStructuralFeature property = gdof.getPrimaryChangeable().getChangeable();
 
 				//FIXME testing get old Value
 				EStructuralFeature propertyInLoadedPCM = modelElement.eClass().getEStructuralFeature(property.getName());
 				Object oldChoice = modelElement.eGet(propertyInLoadedPCM);
+				
+				if (choice.getValue() instanceof EObject) {
+					choice.setValue(changeToLocal((EObject) choice.getValue(), propertyInLoadedPCM));
+				}
+				
 				
 				// FIXME just a quick fix
 				// Can a choice be a list? if yes then change this.
@@ -291,6 +532,10 @@ public class GenomeToCandidateModelTransformation {
 				setProperty(modelElement, property, choice.getValue());
 				}
 				List<EObject> modelElementList = new ArrayList<EObject>(1);
+				
+				//FIXME model switch to copy
+				//modelElement = dofi.getPrimaryChanged();
+				
 				modelElementList.add(modelElement);
 				selectedModelElements.put(gdof.getPrimaryChangeable(),modelElementList);
 
@@ -299,16 +544,44 @@ public class GenomeToCandidateModelTransformation {
 					if (ced == gdof.getPrimaryChangeable())
 						continue;
 
+					//FIXME referencen test
+//					if(ced.getSelectionRule() != null){
+//					for(HelperOCLDefinition h : ced.getSelectionRule().getHelperDefinition()) {
+//						System.out.println(h.getContextClass());
+//					}
+//					}
+					
+					
 					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
+					Collection<EObject> localChangeableElements = new HashSet<>();
+//					for (EObject obj : changeableElements) {
+//						if (obj instanceof ConnectorImpl) {
+//							String id = ((Connector)obj).getId();
+//							EList<Connector> conns = pcm.getSystem().getConnectors__ComposedStructure();
+//							Connector localConn = (Connector)EMFHelper.retrieveEntityByID(conns,id);
+//							localChangeableElements.add(localConn);
+//							
+//						}
+//					}
 					selectedModelElements.put(ced, changeableElements);
-
+					
 					
 					EStructuralFeature changeableProperty = ced.getChangeable();
 
 					for (EObject changeableElement : changeableElements) {
 
+						//FIXME
+//						if(changeableElement instanceof ConnectorImpl) {
+//							String id = ((AssemblyConnector)changeableElement).getId();
+//							EList<Connector> conns = Opt4JStarter.getProblem().getCurrentInstance().getSystem().getConnectors__ComposedStructure();
+//							AssemblyConnector localCon = (AssemblyConnector)EMFHelper.retrieveEntityByID(conns, id);
+//							System.out.println(localCon.eClass());
+//							changeableElement = localCon;
+//						}
+						
 						Object newValue = valueRule(ced, changeableElement, rootElements);
-						//FIXME chosenValues.put(ced.getName().replace(".", "_").toLowerCase(), newValue);
+						//FIXME 
+						//System.out.println(ced.toString()+" -||- "+newValue.toString());
 						
 						//FIXME create loop to set properties if @newValue is a set
 						//Set<Object> set = new HashSet<Object>();
@@ -665,7 +938,7 @@ public class GenomeToCandidateModelTransformation {
 						throw e;
 					} else {
 						//System.out.println("already defined in type");
-						return;
+						//return;
 					}
 				}
 			}
@@ -792,28 +1065,49 @@ public class GenomeToCandidateModelTransformation {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void mergeModels(org.eclipse.emf.compare.Comparison com) {
+		
+		if (com.getDifferences().isEmpty()) return;
 		
 		Repository repo = null;
 		org.palladiosimulator.pcm.system.System sys = null;
 		Allocation allo = null;
 
-		PCMInstance initialInstance = Opt4JStarter.getProblem().getCurrentInstance();
-		sys = initialInstance.getSystem();
-		allo = initialInstance.getAllocation();
-		List<Repository> repos = initialInstance.getRepositories();
-		repo = repos.get(repos.size()-2);
-		
-		for(Connector conn : sys.getConnectors__ComposedStructure()) {
-			System.out.println(conn.toString());
+		PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
+		sys = pcm.getSystem();
+		allo = pcm.getAllocation();
+		List<Repository> repos = pcm.getRepositories();
+		for (Repository r : repos) {
+			if (r.eResource().getURI().toString().contains("pathmap")) continue;
+			repo = r;
+			break;
 		}
-		System.out.println("--------------------");
+		
+//		int count = 1;
+//		for(Connector conn : sys.getConnectors__ComposedStructure()) {
+//			System.out.println(count+++conn.toString());
+//		}
+//		System.out.println("--------------------");
 		
 		
-		EList<Match> match = com.getMatches();
+		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+		Comparison localComp = (Comparison)copier.copy(com); 
+		copier.copyReferences();
+		
+		
+		EList<Match> match = localComp.getMatches();
+		
+		
+		
+		ResourceEnvironment resenv = pcm.getResourceEnvironment();
+		
+		//System.out.println(".....................................");
+		
+		
+		
 		for (Match m : match) {
-			//FIXME Test Debug
-			EObject origin = m.getOrigin();
+			//TODO all models on right have to be from the copied instance
 			//set system of instance to merge to actual system
 			if (m.getLeft() instanceof SystemImpl) {
 				m.setRight(sys);
@@ -822,24 +1116,88 @@ public class GenomeToCandidateModelTransformation {
 			} else if (m.getLeft() instanceof RepositoryImpl) {
 				m.setRight(repo);
 			}
+
+//			for (Diff d : m.getDifferences()) {
+//				if (d.getKind().equals(DifferenceKind.ADD)) {
+//					d.copyLeftToRight();
+//				}
+//			}
 			
+			for(Match subm : m.getSubmatches()) {
+				if(subm.getDifferences().isEmpty()) continue;
+				
+				if (subm.getRight() != null) subm.setRight(changeToLocal(subm.getLeft(), null));
+				
+				for (Match subsubm : subm.getSubmatches()) {
+					if(subsubm.getDifferences().isEmpty()) continue;
+					if (subsubm.getRight() != null) subsubm.setRight(changeToLocal(subsubm.getLeft(), null));
+					for (Match subsubsubm : subsubm.getSubmatches()) {
+						if(subsubsubm.getDifferences().isEmpty()) continue;
+						if (subsubsubm.getRight() != null) subsubsubm.setRight(changeToLocal(subsubsubm.getLeft(), null));
+						for (Match subsubsubsubm : subsubsubm.getSubmatches()) {
+							if(subsubsubsubm.getDifferences().isEmpty()) continue;
+							if (subsubsubsubm.getRight() != null) subsubsubsubm.setRight(changeToLocal(subsubsubsubm.getLeft(), null));
+						}
+					}
+				}
+			}
 		}
-//		EList<MatchResource> matches = com.getMatchedResources();
-//		for (int i = 0; i < matches.size(); i++) {
-//			EObject left = match.get(i).getLeft();
-//			EObject right = match.get(i).getRight();
-//			matches.get(i).setLeft(match.get(i).getLeft().eResource());
-//			if (right != null) matches.get(i).setRight(match.get(i).getRight().eResource());
-//		}
 		
-		Iterator<Diff> diff = com.getDifferences().iterator();
+		EList<MatchResource> matches = localComp.getMatchedResources();
+		for (int i = 0; i < matches.size(); i++) {
+			EObject left = match.get(i).getLeft();
+			EObject right = match.get(i).getRight();
+			matches.get(i).setLeft(match.get(i).getLeft().eResource());
+			if (right != null) {
+				matches.get(i).setRight(match.get(i).getRight().eResource());
+				matches.get(i).setRightURI(match.get(i).getRight().eResource().getURI().toString());
+			}
+		}
+//		
+		Iterator<Diff> diffs = localComp.getDifferences().iterator();
+		while (diffs.hasNext()) {
+			Diff d = diffs.next();
+			
+			EObject value = ((ReferenceChange)d).getValue();
+			EObject nevalue = changeToLocal(value, null);
+			if (nevalue != null ) 
+				((ReferenceChange)d).setValue(nevalue);
+			else {
+				//System.out.println(value.toString()+" ist null!");
+			}
+			if (value instanceof ResourceContainerImpl) {
+				if(((ResourceContainer)value).getEntityName().contains("server3")) {
+					//System.out.println("");
+				}
+			}
+			
+			Match matsch = localComp.getMatch(((ReferenceChange)d).getValue());
+			//matsch = d.getMatch();
+			if (matsch != null) matsch.setRight(changeToLocal(matsch.getLeft(), null));
+			
+			
+//			System.out.println(d.getKind().toString());
+//			System.out.println(d.getMatch().getLeft().toString());
+//			if (!(d instanceof ReferenceChangeImpl)) continue;
+//			EObject value = ((ReferenceChange)d).getValue();
+//			if (value instanceof AssemblyContextImpl) {
+//				if(((AssemblyContext)value).getEntityName().contains("Database")) {
+//					d.copyLeftToRight();
+//				}
+//			}
+		}
+		
+		Iterator<Diff> diff = localComp.getDifferences().iterator();
 		while (diff.hasNext()) {
 			diff.next().copyLeftToRight();
 		}
-		int c = 0;
-		for(Connector conn : sys.getConnectors__ComposedStructure()) {
-			System.out.println(c+++conn.toString());
-		}
+//		int c = 1;
+//		for(Connector conn : sys.getConnectors__ComposedStructure()) {
+//			System.out.println(c+++conn.getEntityName());
+//		}
+
+		resenv = pcm.getResourceEnvironment();
 		int stopper = 1;
+		stopper = stopper+1;
 	}
 }

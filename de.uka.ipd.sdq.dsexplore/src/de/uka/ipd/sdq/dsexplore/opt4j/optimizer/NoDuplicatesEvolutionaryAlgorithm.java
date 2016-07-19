@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import org.opt4j.start.Constant;
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
+import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
@@ -41,7 +43,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	
 	//FIXME maybe adjust the maximum number of duplicates
-	private static final int MAX_DUPLICATES = 200;
+	private static final int MAX_DUPLICATES = 500;
 	/** Logger for log4j. */
 	private static Logger logger = 
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.optimizer.NoDuplicatesEvolutionaryAlgorithm");
@@ -86,6 +88,11 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			population.addAll(generatedStartingPopulation);
 		}
 		
+		//FIXME remove measurement --->
+//		logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+//		logger.info("MEASURMENT: Creating individuals1...");
+		
+//    	double startTime = System.nanoTime();
 		int count = 0;
 		while (population.size() < alpha && count < alpha + MAX_DUPLICATES) {
 
@@ -134,6 +141,13 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			logger.warn("Stopped candidate creation after finding "+dups+" duplicates.");
 		}
 		
+//		double endTime = System.nanoTime();
+//        double result = (endTime - startTime) / Math.pow(10, 9);
+//        logger.info("MEASURMENT: Finished CREATING individuals in "+(result)+" seconds");
+//        logger.warn("---------");
+//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+        //<---
+        
 		nextIteration();
 
 		while (iteration.value() < iteration.max()) {
@@ -154,7 +168,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				Individual individual = iterator.next();
 				if (individual == null || individual.getGenotype().size() == 0){
 					iterator.remove();
-					logger.warn("Encountered a null individual or empty genotype in offspring, removing it.");
+//					logger.warn("Encountered a null individual or empty genotype in offspring, removing it.");
 				}
 			}
 			int sizeAfter = offspring.size();
@@ -166,7 +180,8 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				int maximumTries = 100; //we do not want to get stuck here...
 				count = sizeAfter;
 				int duplicates = 0;
-				
+//				logger.info("MEASURMENT: Creating individuals2...");
+//				startTime = System.nanoTime();
 				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
 
 					Individual i = individualFactory.create();
@@ -208,7 +223,11 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 					logger.warn("Stopped candidate creation after finding "+duplicates+" duplicates.");
 				}
 			}
-
+			
+//			endTime = System.nanoTime();
+//	        result = (endTime - startTime) / Math.pow(10, 9);
+//			logger.info("MEASURMENT: Finished CREATING individuals in "+(result)+" seconds");
+//			logger.warn("---------");
 			// evaluate offspring before selecting lames
 			completer.complete(offspring);
 			

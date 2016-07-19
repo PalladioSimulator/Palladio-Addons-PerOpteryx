@@ -30,8 +30,16 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 
 	private PCMInstance pcmInstance;
 	private List<IAnalysis> evaluators;
-	private Long startTimestampMillis;
-	
+	private static Long startTimestampMillis;
+	//FIXME remove! just for evaluation purposes
+	public static void setStartTimestampMillis(Long startTimestampMillis) {
+		OptimisationJob.startTimestampMillis = startTimestampMillis;
+	}
+	//FIXME remove! just for evaluation purposes
+	public static Long getStartTimestampMillis() {
+		return startTimestampMillis;
+	}
+
 	private MDSDBlackboard blackboard;
 	
 	private DSEWorkflowConfiguration dseConfig;
@@ -50,7 +58,8 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	public void execute(IProgressMonitor monitor) throws JobFailedException,
 			UserCanceledException {
 		
-		startTimestampMillis = System.currentTimeMillis();
+		//startTimestampMillis = System.currentTimeMillis();
+		startTimestampMillis = System.nanoTime();
 		
 		logger.debug("Starting...");
 
@@ -66,6 +75,7 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	    
 	    Opt4JStarter.init(evaluators, this.dseConfig,getPCMInstance(), monitor, this.blackboard);
 	    
+//	    logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
 	    if (this.dseConfig.hasCacheInstances()){
 	    	fillCacheWithValues(this.dseConfig.getCacheInstancesFileName());
 	    }
@@ -81,7 +91,9 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	    	// Need to add them to Opt4J archive to ensure a proper continuation of an evolutionary search.
 	    	// The addition is done by Opt4JStarter (see below)
 	    	List<DesignDecisionGenotype> archiveCandidates = GenotypeReader.getGenotypes(this.dseConfig.getArchiveCandidateFileName(), this.blackboard);
-
+	    	
+//	    	logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+	    	
 	    	Opt4JStarter.runOpt4JWithPopulation(this.dseConfig, monitor, genotypes, allCandidates, archiveCandidates);
 
 	    }
@@ -90,7 +102,10 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	  		
 		} finally {
 		
-			logger.warn("DSE launch done. It took "+((System.currentTimeMillis()-startTimestampMillis)/1000)+" seconds.");
+			//logger.warn("DSE launch done. It took "+((System.currentTimeMillis()-startTimestampMillis)/1000)+" seconds.");
+			
+			logger.warn("DSE launch done. It took "+((System.nanoTime()-startTimestampMillis)/Math.pow(10, 9))+" seconds.");
+			
 			
 			try {
 				/* There was quite some memory allocation at this point (probably),

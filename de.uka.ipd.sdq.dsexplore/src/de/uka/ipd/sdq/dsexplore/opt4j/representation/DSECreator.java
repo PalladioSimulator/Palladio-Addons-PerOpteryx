@@ -213,7 +213,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
 				degree.getDof().getPrimaryChangeable(),
 			degree.getPrimaryChanged(), 
-				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
 		
 		//to restrict the possible values without too very long runtimes
 		

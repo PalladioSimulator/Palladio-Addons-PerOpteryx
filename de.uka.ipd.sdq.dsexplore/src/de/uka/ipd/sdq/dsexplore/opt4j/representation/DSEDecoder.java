@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -17,6 +18,7 @@ import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.operator.copy.Copy;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsJob;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.PcmFactory;
 import org.palladiosimulator.pcm.allocation.Allocation;
@@ -53,6 +55,7 @@ import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -82,6 +85,14 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.workflow.BlackboardBasedWorkflow;
+import de.uka.ipd.sdq.workflow.blackboard.Blackboard;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
+import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
+import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import de.uka.ipd.sdq.workflow.mdsd.xtext.generator.BlackboardReader;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into
@@ -90,7 +101,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
  * @author Anne
  *
  */
-public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype> {
+public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>, IBlackboardInteractingJob<MDSDBlackboard> {
 
     //private final DSEProblem problem;
 
@@ -102,6 +113,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     private double initialMTTF = Double.NaN;
     /** @see #initialMTTF */
     private double initialRate = Double.NaN;
+
+	private MDSDBlackboard blackboard;
     private static double intervalTime = 0.0;
 
     @Inject
@@ -114,21 +127,57 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     public PCMPhenotype decode(final DesignDecisionGenotype genotype) {
 
         //get PCM Instance
-        final PCMInstance pcmInit = Opt4JStarter.getProblem().getInitialInstance();
-       
+//        final PCMInstance pcmInit = Opt4JStarter.getProblem().getInitialInstance();
+//        final PCMInstance currentInstance = Opt4JStarter.getProblem().getCurrentInstance();
         
-         //make local copy
-        Opt4JStarter.getProblem().setCurrentInstance(Opt4JStarter.getProblem().makeLocalCopy(pcmInit));
-        
-        final PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
-
-        org.palladiosimulator.pcm.system.System sysInit = pcmInit.getSystem();
-        org.palladiosimulator.pcm.system.System sys = pcm.getSystem();
-        int c = 0;
-        for (Connector conn : sys.getConnectors__ComposedStructure()) {
-        	System.out.println(c+++conn.toString());
+        /*
+         * 
+         * double startTime = System.nanoTime();
+                
+                double endTime = System.nanoTime();
+                double result = (endTime - startTime) / Math.pow(10, 9);
+                logger.debug("Finished SimuCom analysis");
+                logger.info("Finished SimuCom analysis. Completed in "+(result)+" seconds");
+         * */
+//       
+//    	logger.warn("Time elapsed before decoding: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+    	//FIXME remove measurement --->
+//    	logger.warn("-----------------MEASURMENT: STARTING DECODING...");
+    	double startTime = System.nanoTime();
+    	
+        // make local copy
+        // copy method returns the copied current instance
+        PCMInstance pcm = null;
+        List<DSEIndividual> indi = Opt4JStarter.getAllIndividuals().getIndividuals();
+        List<DSEIndividual> pop = Opt4JStarter.getPopulationIndividuals();
+        if (!indi.isEmpty() && !genotype.equals(indi.get(0).getGenotype())) {
+        	pcm = Opt4JStarter.getProblem().makeLocalCopy();
+        } else {
+        	pcm = Opt4JStarter.getProblem().getCurrentInstance();
         }
+        
+        double endTime = System.nanoTime();
+        double result = (endTime - startTime) / Math.pow(10, 9);
+//        logger.info("MEASURMENT: Finished copying pcm instance in "+(result)+" seconds");
+//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+        //<---
+
+        
+        ////
+//        org.palladiosimulator.pcm.system.System sysInit = pcmInit.getSystem();
+//        
+//        org.palladiosimulator.pcm.system.System sys = pcm.getSystem();
+//        System.out.println(sys.eClass().toString());
+//        for(Repository rep : pcm.getRepositories()) {
+//        	System.out.println(rep.eClass().toString());
+//        }
+////        int c = 0;
+////        for (Connector conn : sys.getConnectors__ComposedStructure()) {
+////        	System.out.println(c+++conn.toString());
+////        }
+       
 //        final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
+//        Opt4JStarter.getProblem().setCurrentInstance(pcm);
     	
         //new transformation. Transition phase: Only for those DoF that are not explicitly modelled.
         final GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();
@@ -138,21 +187,35 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 //        double startTime = System.nanoTime();
         
         try {
+        	//FIXME remove measurement --->
+        	startTime = System.nanoTime();
             notTransformedChoices = trans.transform(pcm, genotype.getEMFCandidate());
+            endTime = System.nanoTime();
+            result = (endTime - startTime) / Math.pow(10, 9);
+//            logger.info("MEASURMENT: Finished transformation with OCL queries in "+(result)+" seconds");
+//            logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+            //<---
         } catch (final Exception e) {
             // try to continue for now
-            logger.warn("Error when executing GDoF transformation. I will try to ignore it and continue. Failure was:");
+//            logger.warn("Error when executing GDoF transformation. I will try to ignore it and continue. Failure was:");
             e.printStackTrace();
             notTransformedChoices = genotype;
         }
 
         // then, use old way for choices that have not been transformed, e.g. because there is no GDoF defined for them.
         // adjust values as in genotype
+        //FIXME remove measurement --->
+    	startTime = System.nanoTime();
         for (final Choice doubleGene : notTransformedChoices) {
 
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
-
+        endTime = System.nanoTime();
+        result = (endTime - startTime) / Math.pow(10, 9);
+//        logger.info("MEASURMENT: Finished transformation the old way in "+(result)+" seconds");
+//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
+        //<---
+        
 //        double endTime = System.nanoTime();
 //        double result = (endTime - startTime) / Math.pow(10, 9);
 //        
@@ -753,7 +816,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
             		designDecision.getDof().getPrimaryChangeable(),
             		designDecision.getPrimaryChanged(), 
-    				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getInitialInstance()));
+    				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
             
             
             final EObject entity = getEntityByName(possibleValues, decisionString);
@@ -848,6 +911,30 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         final int index = Opt4JStarter.getProblem().getDesignDecisions().indexOf(degree);
         genotype.set(index, choice);
     }
+
+	@Override
+	public void execute(IProgressMonitor monitor) throws JobFailedException, UserCanceledException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setBlackboard(MDSDBlackboard blackboard) {
+		this.blackboard = blackboard;
+		
+	}
 
 
 }

@@ -6,7 +6,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.core.commands.Parameterization;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -22,6 +24,7 @@ import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.modelversioning.emfprofile.EMFProfileFactory;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.CoreFactory;
@@ -42,10 +45,15 @@ import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecifica
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
+import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
+import org.palladiosimulator.pcm.resourcetype.ResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
+import org.palladiosimulator.pcm.usagemodel.ScenarioBehaviour;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.AbstractSimuComExtensionJob;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
@@ -53,6 +61,8 @@ import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -85,6 +95,13 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.stoex.AbstractNamedReference;
+import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
+import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
+import de.uka.ipd.sdq.workflow.jobs.IJob;
+import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
+import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the
@@ -94,7 +111,7 @@ import de.uka.ipd.sdq.stoex.AbstractNamedReference;
  * @author Anne
  *
  */
-public class DSEProblem {
+public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboard> {
 
     /**
      * Is changed during the evaluation, as the decisions refer to it.
@@ -107,7 +124,7 @@ public class DSEProblem {
 
     private PCMInstance currentInstance;
 
-
+    private MDSDBlackboard blackboard;
 
 	private List<DesignDecisionGenotype> initialGenotypeList = null;
 
@@ -115,17 +132,23 @@ public class DSEProblem {
 
     private DesignDecisionGenotype initialGenotype;
 
+    //FIXME testing purpose, if it works try to implement it without the flag 
+    //I need to know if this is the decoding of the first candidate
+    private boolean firstDecode;
+
 
     /**
      * @param pcmInstance
      * @throws CoreException
      */
-    public DSEProblem(final DSEWorkflowConfiguration dseConfig, final PCMInstance pcmInstance) throws CoreException{
+    public DSEProblem(final DSEWorkflowConfiguration dseConfig, final PCMInstance pcmInstance, final MDSDBlackboard blackboard) throws CoreException{
         this.dseConfig = dseConfig;
-
+        
         final boolean newProblem = dseConfig.isNewProblem();
         this.initialInstance = pcmInstance;
-        this.currentInstance = pcmInstance;
+        this.currentInstance = null;
+        this.blackboard = blackboard;
+        this.setFirstDecode(true);
         //EcoreUtil.Copier deep copy
 
         this.designDecisionFactory = designdecisionFactoryImpl.init();
@@ -159,41 +182,80 @@ public class DSEProblem {
          */
     }
 
-    public PCMInstance makeLocalCopy(final PCMInstance pcmInit) {
+    public PCMInstance makeLocalCopy() {
+    	PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	PCMResourceSetPartition pcmPartitionCurrent = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+    	
+    	boolean newProb = this.dseConfig.isNewProblem();
+    	
+//    	if (this.currentInstance.equals(this.initialInstance)) {
+//    		return new PCMInstance(pcmPartitionCurrent);
+//    	}
+    	
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
           
-        org.palladiosimulator.pcm.system.System system = pcmInit.getSystem();
-        Allocation allocation = pcmInit.getAllocation();
-        List<Repository> repositories = pcmInit.getRepositories();
-        ResourceEnvironment resEnv = pcmInit.getResourceEnvironment();
-        UsageModel usagemodel =  pcmInit.getUsageModel();
+        org.palladiosimulator.pcm.system.System system = pcmPartition.getSystem();
+        Allocation allocation = pcmPartition.getAllocation();
+        List<Repository> repositories = pcmPartition.getRepositories();
+        ResourceEnvironment resEnv = pcmPartition.getResourceEnvironment();
+        UsageModel usagemodel =  pcmPartition.getUsageModel();
+        //ResourceRepository resRep = pcmPartition.getResourceRepository();
+        ResourceRepository resRep = pcmPartition.getResourceTypeRepository();
+        
         PCMResourceSetPartition pcmModel = new PCMResourceSetPartition();
         
         
         org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
         copier.copyReferences();
-        pcmModel.setContents(system.eResource().getURI(), sys);
+        URI uri = URI.createURI(system.eResource().getURI()+"copy."+system.eResource().getURI().fileExtension());
+        pcmModel.setContents(uri, sys);
         
         Allocation localAllocation = (Allocation)copier.copy(allocation);
         copier.copyReferences();
-        pcmModel.setContents(allocation.eResource().getURI(), localAllocation);
+        uri = URI.createURI(allocation.eResource().getURI()+"copy."+allocation.eResource().getURI().fileExtension());
+        pcmModel.setContents(uri, localAllocation);
  
         for (Repository repo : repositories) {
+        	if (repo.eResource().getURI().toString().contains("pathmap")) uri = repo.eResource().getURI();
+        	else uri = URI.createURI(repo.eResource().getURI()+"copy."+repo.eResource().getURI().fileExtension());
         	Repository localRepo = (Repository)copier.copy(repo);
         	copier.copyReferences();
-        	pcmModel.setContents(repo.eResource().getURI(), localRepo);
+        	pcmModel.setContents(uri, localRepo);
         }
         
         ResourceEnvironment localResEnv = (ResourceEnvironment)copier.copy(resEnv);
         copier.copyReferences();
-        pcmModel.setContents(resEnv.eResource().getURI(), localResEnv);
+        uri = URI.createURI(resEnv.eResource().getURI()+"copy."+resEnv.eResource().getURI().fileExtension());
+        pcmModel.setContents(uri, localResEnv);
         
         UsageModel localUsagemodel = (UsageModel)copier.copy(usagemodel);
         copier.copyReferences();
-        pcmModel.setContents(usagemodel.eResource().getURI(), localUsagemodel);
+        uri = URI.createURI(usagemodel.eResource().getURI()+"copy."+usagemodel.eResource().getURI().fileExtension());
+        pcmModel.setContents(uri, localUsagemodel);
+        
+        ResourceRepository localResRepo = (ResourceRepository)copier.copy(resRep);
+        copier.copyReferences();
+        uri = URI.createURI(resRep.eResource().getURI().toString());
+        pcmModel.setContents(uri, localResRepo);
+        
         
         PCMInstance pcm = new PCMInstance(pcmModel);
-		return pcm;
+        
+        
+        //PCMResourceSetPartition part = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+       
+        //PCMInstance pcm = new PCMInstance(part);
+
+        this.blackboard.removePartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+        this.blackboard.addPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID, pcmModel);
+//        PCMResourceSetPartition pcmPartitionCurrentCopy = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+//        PCMInstance pcmcopy = new PCMInstance(pcmPartitionCurrentCopy);
+//        org.palladiosimulator.pcm.system.System fromBB = pcmcopy.getSystem();
+//        org.palladiosimulator.pcm.system.System copied = pcm.getSystem();
+        
+        this.setCurrentInstance(pcm);
+        
+        return pcm;
 	}
     
     private DecisionSpace loadProblem() throws CoreException {
@@ -722,5 +784,42 @@ public class DSEProblem {
         return this.pcmProblem;
     }
 
+	@Override
+	public void execute(IProgressMonitor monitor) throws JobFailedException, UserCanceledException {
+		int i = 0;
+		System.out.println("hallo");
+		MDSDBlackboard blcak = this.blackboard;
+		
+		
+	}
 
+	@Override
+	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setBlackboard(MDSDBlackboard blackboard) {
+		this.blackboard = blackboard;
+		
+	}
+
+	public boolean isFirstDecode() {
+		return firstDecode;
+	}
+
+	public void setFirstDecode(boolean firstDecode) {
+		this.firstDecode = firstDecode;
+	}
+    
+
+	
+    
 }
