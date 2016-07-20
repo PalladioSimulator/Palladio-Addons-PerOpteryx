@@ -5,12 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.spec.OAEPParameterSpec;
+
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.ComposedStructure;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -51,6 +55,9 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException,
 			AnalysisFailedException {
+		
+		PCMInstance pcm = new PCMInstance((PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+		pheno = new PCMPhenotype(pcm, pheno.getGenotypeID(), pheno.getNumericID());
 //		for (AssemblyContext ac: pheno.getPCMInstance().getSystem().getAssemblyContexts__ComposedStructure())
 //		{
 //			for (RepositoryComponent rc: ac.getEncapsulatedComponent__AssemblyContext().getRepository__RepositoryComponent().getComponents__Repository())

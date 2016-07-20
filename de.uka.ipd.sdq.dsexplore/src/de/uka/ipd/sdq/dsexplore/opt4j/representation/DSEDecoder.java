@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -151,7 +152,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         List<DSEIndividual> indi = Opt4JStarter.getAllIndividuals().getIndividuals();
         List<DSEIndividual> pop = Opt4JStarter.getPopulationIndividuals();
         if (!indi.isEmpty() && !genotype.equals(indi.get(0).getGenotype())) {
-        	pcm = Opt4JStarter.getProblem().makeLocalCopy();
+        	pcm = new PCMInstance(Opt4JStarter.getProblem().makeLocalCopy(null,true));
         } else {
         	pcm = Opt4JStarter.getProblem().getCurrentInstance();
         }
@@ -188,10 +189,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         
         try {
         	//FIXME remove measurement --->
-        	startTime = System.nanoTime();
+//        	startTime = System.nanoTime();
             notTransformedChoices = trans.transform(pcm, genotype.getEMFCandidate());
-            endTime = System.nanoTime();
-            result = (endTime - startTime) / Math.pow(10, 9);
+//            endTime = System.nanoTime();
+//            result = (endTime - startTime) / Math.pow(10, 9);
 //            logger.info("MEASURMENT: Finished transformation with OCL queries in "+(result)+" seconds");
 //            logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
             //<---
@@ -205,13 +206,13 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         // then, use old way for choices that have not been transformed, e.g. because there is no GDoF defined for them.
         // adjust values as in genotype
         //FIXME remove measurement --->
-    	startTime = System.nanoTime();
+//    	startTime = System.nanoTime();
         for (final Choice doubleGene : notTransformedChoices) {
 
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
-        endTime = System.nanoTime();
-        result = (endTime - startTime) / Math.pow(10, 9);
+//        endTime = System.nanoTime();
+//        result = (endTime - startTime) / Math.pow(10, 9);
 //        logger.info("MEASURMENT: Finished transformation the old way in "+(result)+" seconds");
 //        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
         //<---

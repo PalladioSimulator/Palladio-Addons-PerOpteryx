@@ -182,8 +182,13 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
          */
     }
 
-    public PCMInstance makeLocalCopy() {
-    	PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    public PCMResourceSetPartition makeLocalCopy(PCMResourceSetPartition partition, boolean storeToBlackboard) {
+    	
+    	
+    	PCMResourceSetPartition pcmPartition = null;
+    			
+    	if(partition == null)pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	else  pcmPartition = partition;
     	PCMResourceSetPartition pcmPartitionCurrent = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
     	
     	boolean newProb = this.dseConfig.isNewProblem();
@@ -246,16 +251,17 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
        
         //PCMInstance pcm = new PCMInstance(part);
 
-        this.blackboard.removePartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-        this.blackboard.addPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID, pcmModel);
-//        PCMResourceSetPartition pcmPartitionCurrentCopy = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-//        PCMInstance pcmcopy = new PCMInstance(pcmPartitionCurrentCopy);
-//        org.palladiosimulator.pcm.system.System fromBB = pcmcopy.getSystem();
-//        org.palladiosimulator.pcm.system.System copied = pcm.getSystem();
-        
-        this.setCurrentInstance(pcm);
-        
-        return pcm;
+        if (storeToBlackboard) {
+	        this.blackboard.removePartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+	        this.blackboard.addPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID, pcmModel);
+	//        PCMResourceSetPartition pcmPartitionCurrentCopy = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+	//        PCMInstance pcmcopy = new PCMInstance(pcmPartitionCurrentCopy);
+	//        org.palladiosimulator.pcm.system.System fromBB = pcmcopy.getSystem();
+	//        org.palladiosimulator.pcm.system.System copied = pcm.getSystem();
+	        
+	        this.setCurrentInstance(pcm);
+        }
+        return pcmModel;
 	}
     
     private DecisionSpace loadProblem() throws CoreException {

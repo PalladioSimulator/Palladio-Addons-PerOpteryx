@@ -254,7 +254,7 @@ public class GenomeToCandidateModelTransformation {
 		
 	}
 	
-	private EObject changeToLocal(EObject prim, EStructuralFeature propertyInLoadedPCM) {
+	public EObject changeToLocal(EObject prim, EStructuralFeature propertyInLoadedPCM) {
 		//System.out.println(prim.toString());
 		
 		PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();

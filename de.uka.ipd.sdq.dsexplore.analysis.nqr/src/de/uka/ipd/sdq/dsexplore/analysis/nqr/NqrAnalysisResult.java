@@ -32,8 +32,8 @@ public class NqrAnalysisResult implements IAnalysisResult {
 	@Override
 	public double getValueFor(Criterion criterion)  {
 		EvaluationAspectWithContext aspect = this.criterionToAspectMap.get(criterion);
-		double result = Integer.MIN_VALUE;
-		
+		//double result = Integer.MIN_VALUE;
+		double result = 0.0;
 		if (aspect != null){
 			for (Dimension dim: nqrQualityDimensionDeclaration.getDimensions())
 			{

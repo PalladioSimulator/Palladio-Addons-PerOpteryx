@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,6 +26,8 @@ import org.opt4j.core.Objectives;
 import org.opt4j.core.problem.Evaluator;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
+import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -89,8 +92,10 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 	public void init(List<IAnalysis> evaluators, IProgressMonitor monitor, MDSDBlackboard blackboard, boolean stopOnInitialFailure){
 		
 		this.blackboard = blackboard;
-		Opt4JStarter.getProblem().makeLocalCopy();
-		//copyPCMPartitionToAnalysisSlot(blackboard);
+		//OCL Way
+		Opt4JStarter.getProblem().makeLocalCopy(null,true);
+		//Old Way
+//		copyPCMPartitionToAnalysisSlot(blackboard);
 		
 		//Give the evaluators the blackboard, because they cannot determine the objectives before that.
 		for (IAnalysis iAnalysis : evaluators) {
@@ -198,6 +203,38 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 //				logger.info("Constraint: "+(System.nanoTime()-start)/Math.pow(10, 9));
 				//retrieveCost(pheno, obj, this.objectives.get(objectives.size() -1));
 
+				PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+				
+				PCMResourceSetPartition part = Opt4JStarter.getProblem().makeLocalCopy(pcmPartition, false);
+				
+				Timestamp stamp = new Timestamp(System.currentTimeMillis());
+				String stempel = stamp.toString();
+				stempel = stempel.replace(" ", "");
+				stempel = stempel.replace("-", "");
+				stempel = stempel.replace(":", "");
+				stempel = stempel.replace(".", "");
+				
+				URI u = URI.createURI("file:/C:/Users/pomme/documents/modelCompareCandidates/models/model"+stempel+"/brs.allocationcopy.allocation");
+				part.getAllocation().eResource().setURI(u);
+				
+				u = URI.createURI("file:/C:/Users/pomme/documents/modelCompareCandidates/models/model"+stempel+"/brs.systemcopy.system");
+				part.getSystem().eResource().setURI(u);
+				
+				u = URI.createURI("file:/C:/Users/pomme/documents/modelCompareCandidates/models/model"+stempel+"/brs.resourceenvironmentcopy.resourceenvironment");
+				part.getResourceEnvironment().eResource().setURI(u);
+				
+				u = URI.createURI("file:/C:/Users/pomme/documents/modelCompareCandidates/models/model"+stempel+"/brs.usagemodelcopy.usagemodel");
+				part.getUsageModel().eResource().setURI(u);
+				
+				for (Repository rep : part.getRepositories()) {
+					if (rep.eResource().getURI().toString().contains("pathmap")) continue;
+					u = URI.createURI("file:/C:/Users/pomme/documents/modelCompareCandidates/models/model"+stempel+"/brs.repositorycopy.repository");
+					rep.eResource().setURI(u);
+					break;
+				}
+				
+				part.storeAllResources();
+				
 				firstRunSuccessful = true;
 				
 				this.phenotypeResultsCache.put(pheno.getGenotypeID(), obj);
