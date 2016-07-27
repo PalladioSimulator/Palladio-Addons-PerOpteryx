@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis;
 
+import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import org.palladiosimulator.solver.context.computed_usage.ComputedUsageContext;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -12,6 +13,8 @@ public abstract class AbstractPerformanceAnalysisResult implements
 		IPerformanceAnalysisResult {
 
 	private ComputedAggregatedUsage computedAggregatedUsage = null;
+	
+	protected ResultDecoratorRepository results;
 
 	public AbstractPerformanceAnalysisResult(PCMInstance model) {
 		
@@ -46,6 +49,11 @@ public abstract class AbstractPerformanceAnalysisResult implements
 	 */
 	public ComputedAggregatedUsage getComputedAggregatedUsage() {
 		return computedAggregatedUsage;
+	}
+
+	public ResultDecoratorRepository getResults() {
+		//TODO add logic to store the ResultDecoratorReporitory model here if needed.
+		return results;
 	}
 
 

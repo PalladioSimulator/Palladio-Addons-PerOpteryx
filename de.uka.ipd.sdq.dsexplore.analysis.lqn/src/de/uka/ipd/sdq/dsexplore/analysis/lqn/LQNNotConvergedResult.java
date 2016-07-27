@@ -5,7 +5,6 @@ import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
-import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
@@ -65,11 +64,6 @@ public class LQNNotConvergedResult extends AbstractPerformanceAnalysisResult imp
 				}
 			}
 			return Double.POSITIVE_INFINITY;
-		}
-
-		@Override
-		public ResultDecoratorRepository getResults() {
-			return null;
 		}
 
 		@Override

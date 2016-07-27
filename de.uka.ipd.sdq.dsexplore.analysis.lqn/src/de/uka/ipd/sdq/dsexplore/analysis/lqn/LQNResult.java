@@ -62,8 +62,6 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 	
 	protected double squaredCoeffVariance = 1;
 	
-	private ResultDecoratorRepository results;
-
 	private Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
 
 	private LQNQualityAttributeDeclaration qualityAttributeInfo;
@@ -716,14 +714,6 @@ public abstract class LQNResult extends AbstractPerformanceAnalysisResult implem
 	public double getStandardDeviation(){
 		double std = Math.sqrt(this.getVariance()); 
 		return std;
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see de.uka.ipd.sdq.dsexplore.analysis.lqn.ILQNResult#getResults()
-	 */
-	public ResultDecoratorRepository getResults() {
-		return results;
 	}
 	
 
