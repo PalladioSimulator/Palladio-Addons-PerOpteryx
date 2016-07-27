@@ -71,12 +71,6 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
      */
     protected String pcmEntityIdentifier;
 
-    /**
-     * Contains: resource utilisations
-     * Should also contain: Passive resources.
-     */
-    protected ResultDecoratorRepository results;
-
     protected Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
 
     protected SimuComQualityAttributeDeclaration qualityAttributeInfo;
@@ -130,8 +124,6 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
         retrieveServiceResults(pcmInstance, repo);
         retrievePassiveResourceUtil(repo, pcmInstance);
         
-        //TODO if the results shall be exported, add logic to store the repo under some name here. 
-
         return repo;
     }
 
@@ -385,11 +377,6 @@ abstract public class SimuComAnalysisResult extends AbstractPerformanceAnalysisR
     @Override
     public long getNumberOfObservations() {
         return this.observations;
-    }
-
-    @Override
-    public ResultDecoratorRepository getResults() {
-        return this.results;
     }
 
     /**Prepares to export the measurements of a time series sensor to R.
