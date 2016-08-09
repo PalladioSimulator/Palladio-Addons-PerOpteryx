@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import org.opt4j.operator.mutate.ConstantMutationRate;
 import org.opt4j.operator.mutate.MutateModule;
 import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.start.Constant;
@@ -19,7 +20,9 @@ public class DSEMutateModule extends MutateModule {
 
 	@Override
 	protected void config() {
-		bind(MutationRate.class).to(ConfigurableAdaptiveMutationRate.class).in(
+		//bind(MutationRate.class).to(ConfigurableAdaptiveMutationRate.class).in(
+			//	SINGLETON);
+		bind(MutationRate.class).to(ConstantMutationRate.class).in(
 				SINGLETON);
 		
 		
