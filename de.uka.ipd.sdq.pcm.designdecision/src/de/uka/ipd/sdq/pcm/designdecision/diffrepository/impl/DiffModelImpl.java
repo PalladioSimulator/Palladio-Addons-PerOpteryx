@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl;
 
+import de.uka.ipd.sdq.featuremodel.impl.NamedElementImpl;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModel;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffrepositoryPackage;
 
@@ -12,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class DiffModelImpl extends EObjectImpl implements DiffModel {
+public class DiffModelImpl extends NamedElementImpl implements DiffModel {
 	/**
 	 * The cached value of the '{@link #getDiffModel() <em>Diff Model</em>}' reference list.
 	 * <!-- begin-user-doc -->

@@ -158,8 +158,11 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		double factor = contDegree.getTo() - upperMargin - contDegree.getFrom() - lowerMargin;
 
 
+//		double val = contDegree.getFrom() + lowerMargin + this.random.nextDouble()*factor;
+//		val = Math.round(val*10.0);
+//		val = val/10.0;
+//		return val;
 		return contDegree.getFrom() + lowerMargin + this.random.nextDouble()*factor;
-
 	}
 
 

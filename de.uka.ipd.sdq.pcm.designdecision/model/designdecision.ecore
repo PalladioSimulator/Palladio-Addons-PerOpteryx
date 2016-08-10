@@ -441,7 +441,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="availableDiffModels_DiffRepository"
           upperBound="-1" eType="#//diffrepository/DiffModel" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DiffModel">
+    <eClassifiers xsi:type="ecore:EClass" name="DiffModel" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="DiffModel" lowerBound="1"
           upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="DiffDescription" lowerBound="1"

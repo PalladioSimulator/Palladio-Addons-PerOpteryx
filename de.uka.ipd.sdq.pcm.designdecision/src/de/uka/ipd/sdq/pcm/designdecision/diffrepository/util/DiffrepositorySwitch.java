@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.diffrepository.util;
 
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -80,6 +81,10 @@ public class DiffrepositorySwitch<T> extends Switch<T> {
 			DiffModel diffModel = (DiffModel) theEObject;
 			T result = caseDiffModel(diffModel);
 			if (result == null)
+				result = casefeaturemodel_NamedElement(diffModel);
+			if (result == null)
+				result = caseIdentifier(diffModel);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -130,6 +135,36 @@ public class DiffrepositorySwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifier(Identifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casefeaturemodel_NamedElement(de.uka.ipd.sdq.featuremodel.NamedElement object) {
 		return null;
 	}
 

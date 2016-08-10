@@ -278,6 +278,8 @@ public class DiffrepositoryPackageImpl extends EPackageImpl implements Diffrepos
 
 		// Obtain other dependent packages
 		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
+		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(featuremodelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
@@ -287,6 +289,7 @@ public class DiffrepositoryPackageImpl extends EPackageImpl implements Diffrepos
 
 		// Add supertypes to classes
 		diffModelRepositoryEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
+		diffModelEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(diffModelRepositoryEClass, DiffModelRepository.class, "DiffModelRepository", !IS_ABSTRACT,

@@ -62,6 +62,7 @@ import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.omg.CORBA.Environment;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.PcmFactory;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -123,6 +124,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixGDOFReferenceSwitch;
+import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
@@ -1084,6 +1086,13 @@ public class GenomeToCandidateModelTransformation {
 			break;
 		}
 		
+		// FIXME
+//		PCMResourceSetPartition backupInital = Opt4JStarter.getProblem().getInitialInstancePartition();
+//		PCMResourceSetPartition copy = Opt4JStarter.getProblem()
+//				.makeLocalCopy(null, false);
+//		Opt4JStarter.getProblem().setInitialInstance(copy);
+		
+		
 //		int count = 1;
 //		for(Connector conn : sys.getConnectors__ComposedStructure()) {
 //			System.out.println(count+++conn.toString());
@@ -1195,7 +1204,12 @@ public class GenomeToCandidateModelTransformation {
 //		for(Connector conn : sys.getConnectors__ComposedStructure()) {
 //			System.out.println(c+++conn.getEntityName());
 //		}
-
+		
+		//FIXME test: store original Initial PCMInstance after merging
+		//backedup above!
+//		Opt4JStarter.getProblem().setInitialInstance(backupInital);
+//		Opt4JStarter.getProblem().setInitialInstance(copy);
+		
 		resenv = pcm.getResourceEnvironment();
 		int stopper = 1;
 		stopper = stopper+1;

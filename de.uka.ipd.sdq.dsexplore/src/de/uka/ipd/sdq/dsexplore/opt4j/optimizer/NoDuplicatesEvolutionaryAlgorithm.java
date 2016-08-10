@@ -161,14 +161,14 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			int sizeBefore = offspring.size();
 			//remove duplicates
 			offspring.removeAll(population);
-			
+			logger.warn("Offspring Size:"+offspring.size());
 			//we had one un-reproducible case in which the offspring list contained a null.
 			//catch this here. 
 			for (Iterator<Individual> iterator = offspring.iterator(); iterator.hasNext();) {
 				Individual individual = iterator.next();
 				if (individual == null || individual.getGenotype().size() == 0){
 					iterator.remove();
-//					logger.warn("Encountered a null individual or empty genotype in offspring, removing it.");
+					logger.warn("Encountered a null individual or empty genotype in offspring, removing it.");
 				}
 			}
 			int sizeAfter = offspring.size();

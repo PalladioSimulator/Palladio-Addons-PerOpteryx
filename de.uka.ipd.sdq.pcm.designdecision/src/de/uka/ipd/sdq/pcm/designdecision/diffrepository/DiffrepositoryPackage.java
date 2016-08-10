@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.diffrepository;
 
+import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -105,13 +106,31 @@ public interface DiffrepositoryPackage extends EPackage {
 	int DIFF_MODEL = 1;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIFF_MODEL__ID = featuremodelPackage.NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIFF_MODEL__NAME = featuremodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Diff Model</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIFF_MODEL__DIFF_MODEL = 0;
+	int DIFF_MODEL__DIFF_MODEL = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Diff Description</b></em>' attribute.
@@ -120,7 +139,7 @@ public interface DiffrepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIFF_MODEL__DIFF_DESCRIPTION = 1;
+	int DIFF_MODEL__DIFF_DESCRIPTION = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Diff Model</em>' class.
@@ -129,7 +148,7 @@ public interface DiffrepositoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIFF_MODEL_FEATURE_COUNT = 2;
+	int DIFF_MODEL_FEATURE_COUNT = featuremodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModelRepository <em>Diff Model Repository</em>}'.

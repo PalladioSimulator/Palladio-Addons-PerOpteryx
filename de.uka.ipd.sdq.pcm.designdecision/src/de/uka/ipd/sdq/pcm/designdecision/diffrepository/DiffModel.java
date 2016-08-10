@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.diffrepository;
 
+import de.uka.ipd.sdq.featuremodel.NamedElement;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -22,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DiffModel extends EObject {
+public interface DiffModel extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Diff Model</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.

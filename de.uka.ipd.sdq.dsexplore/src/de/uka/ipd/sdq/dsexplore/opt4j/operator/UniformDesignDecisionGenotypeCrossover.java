@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.operator;
 
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.opt4j.common.random.Rand;
 import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.optimizer.ea.Pair;
@@ -7,6 +8,7 @@ import org.opt4j.optimizer.ea.Pair;
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 
 /**
  * Uniform crossover implementation. For each gene of the first offspring, 
@@ -31,20 +33,22 @@ public class UniformDesignDecisionGenotypeCrossover implements Crossover<DesignD
 		DesignDecisionGenotype o1 = parent1.newInstance();
 		DesignDecisionGenotype o2 = parent2.newInstance();
 
-		if (o1.size() != o2.size()){
+		if (parent1.size() != parent2.size()){
 			throw new RuntimeException("Two genomes do not have the same length: "+parent1 + " and "+parent2);
 		}
-		
-		for (int i = 0; i < o2.size(); i ++) {
+		Copier copy = new Copier();
+		int size = parent2.size();
+		for (int i = 0; i < size; i++) {
 			if (this.random.nextBoolean()){
-				o1.add(parent1.get(i));
-				o2.add(parent2.get(i));
+				o1.add((Choice) copy.copy(parent1.get(i)));
+				o2.add((Choice) copy.copy(parent2.get(i)));
+				copy.copyReferences();
 			} else {
-				o1.add(parent2.get(i));
-				o2.add(parent1.get(i));
+				o1.add((Choice) copy.copy(parent2.get(i)));
+				o2.add((Choice) copy.copy(parent1.get(i)));
+				copy.copyReferences();
 			}
 		}
-
 		Pair<DesignDecisionGenotype> offspring = new Pair<DesignDecisionGenotype>(o1, o2);
 		return offspring;
 	}

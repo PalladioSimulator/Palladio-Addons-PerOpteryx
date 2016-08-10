@@ -122,7 +122,7 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     private final designdecisionFactory designDecisionFactory;
     private final specificFactory specificDesignDecisionFactory;
 
-    private PCMInstance currentInstance;
+    //private PCMInstance currentInstance;
 
     private MDSDBlackboard blackboard;
 
@@ -146,7 +146,7 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         
         final boolean newProblem = dseConfig.isNewProblem();
         this.initialInstance = pcmInstance;
-        this.currentInstance = null;
+        //this.currentInstance = null;
         this.blackboard = blackboard;
         this.setFirstDecode(true);
         //EcoreUtil.Copier deep copy
@@ -189,9 +189,9 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     			
     	if(partition == null)pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
     	else  pcmPartition = partition;
-    	PCMResourceSetPartition pcmPartitionCurrent = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+    	//PCMResourceSetPartition pcmPartitionCurrent = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
     	
-    	boolean newProb = this.dseConfig.isNewProblem();
+    	//boolean newProb = this.dseConfig.isNewProblem();
     	
 //    	if (this.currentInstance.equals(this.initialInstance)) {
 //    		return new PCMInstance(pcmPartitionCurrent);
@@ -254,13 +254,15 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         if (storeToBlackboard) {
 	        this.blackboard.removePartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 	        this.blackboard.addPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID, pcmModel);
+	        
 	//        PCMResourceSetPartition pcmPartitionCurrentCopy = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 	//        PCMInstance pcmcopy = new PCMInstance(pcmPartitionCurrentCopy);
 	//        org.palladiosimulator.pcm.system.System fromBB = pcmcopy.getSystem();
 	//        org.palladiosimulator.pcm.system.System copied = pcm.getSystem();
 	        
-	        this.setCurrentInstance(pcm);
+	        //this.setCurrentInstance(pcm);
         }
+        PCMResourceSetPartition part = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
         return pcmModel;
 	}
     
@@ -303,6 +305,9 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
                 final EStructuralFeature property = dd.getDof().getPrimaryChangeable().getChangeable();
 
                 value = GenomeToCandidateModelTransformation.getProperty(dd.getPrimaryChanged(), property);
+                if (value instanceof PCMRandomVariableImpl && dd instanceof ContinuousRangeDegree) {
+                	value = Double.parseDouble(((PCMRandomVariable)value).getSpecification());
+                }
             	}
                 final Choice choice;
                 if (value instanceof EObject) {
@@ -715,16 +720,27 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     	// TODO rename to getCurrentInstance, return latest copy
     	// new method getCopyOfInitialInstance, which returns new copy of initialInstance
     	// and saves new copy as currentInstance?
-        return this.initialInstance;
+    	return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
+        //return this.initialInstance;
+    }
+    
+    public void setInitialInstance(PCMResourceSetPartition partition) {
+    	this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	this.blackboard.addPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID, partition);
     }
     
     public PCMInstance getCurrentInstance() {
-    	return this.currentInstance;
+    	return new PCMInstance((PCMResourceSetPartition)blackboard
+    			.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
+    }
+    public PCMResourceSetPartition getInitialInstancePartition() {
+    	return (PCMResourceSetPartition)blackboard
+    			.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
     }
     
-    public void setCurrentInstance(PCMInstance currentInstance) {
-		this.currentInstance = currentInstance;
-	}
+//    public void setCurrentInstance(PCMInstance currentInstance) {
+//		this.currentInstance = currentInstance;
+//	}
 
     public DesignDecisionGenotype getGenotypeOfInitialPCMInstance(){
         return this.initialGenotype;
