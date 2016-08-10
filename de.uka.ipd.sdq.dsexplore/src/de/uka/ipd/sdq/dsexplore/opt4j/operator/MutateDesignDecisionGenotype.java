@@ -19,6 +19,7 @@ import org.opt4j.operator.mutate.MutateDouble;
 import org.opt4j.operator.mutate.MutateInteger;
 import org.opt4j.operator.mutate.MutationRate;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
+import org.palladiosimulator.pcm.core.entity.NamedElement;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 
 import com.google.inject.Inject;
@@ -29,6 +30,7 @@ import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSECreator;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
@@ -128,23 +130,15 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 		  list = new ArrayList<Object>(possibleValues);
 		
 		// get old index
-		
-//		GenomeToCandidateModelTransformation tran = new GenomeToCandidateModelTransformation();
-		
-//		Object current = tran.changeToLocal((EObject)choice.getValue(), null);
 		int index = -1;
 		int i = 0;
-		if (choice.getValue() instanceof EObject) {
-			EStructuralFeature propertyInLoadedPCM = ((EObject)choice.getValue()).eClass().getEStructuralFeature("id");
-			if (propertyInLoadedPCM == null) propertyInLoadedPCM = ((EObject)choice.getValue()).eClass().getEStructuralFeature("name");
-			if (propertyInLoadedPCM == null) {
-				System.out.println("stop");
-			}
-			
-			Object choiceId = ((EObject)choice.getValue()).eGet(propertyInLoadedPCM);
+		// use identifier or name for comparison if possible
+		if (choice.getValue() instanceof Identifier || choice.getValue() instanceof NamedElement) {
+			String choiceId = "";
+			choiceId = getIdentifyingString(choice.getValue());
 			
 			for (Object obj : list) {
-				Object objId = ((EObject)obj).eGet(propertyInLoadedPCM);
+				Object objId = getIdentifyingString(obj);
 				if (choiceId.equals(objId)){
 					index = i;
 					break;
@@ -171,6 +165,16 @@ public class MutateDesignDecisionGenotype implements Mutate<DesignDecisionGenoty
 			int newIndex = randomlySelectNewIndex(list, index);
 			choice.setValue(list.get(newIndex));
 		}
+	}
+
+	private String getIdentifyingString(Object object) {
+		String choiceId;
+		if (object instanceof Identifier){
+			choiceId = ((Identifier)object).getId();
+		} else {
+			choiceId = ((NamedElement)object).getEntityName();
+		}
+		return choiceId;
 	}
 
 	private int randomlySelectNewIndex(List<?> domain,

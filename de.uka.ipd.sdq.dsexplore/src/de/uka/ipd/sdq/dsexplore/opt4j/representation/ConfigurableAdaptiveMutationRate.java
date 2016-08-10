@@ -7,6 +7,8 @@ import org.opt4j.core.IndividualFactory;
 import org.opt4j.operator.mutate.AdaptiveMutationRate;
 import org.opt4j.start.Constant;
 
+import com.google.inject.Inject;
+
 /**
  * The {@link AdaptiveMutationRate} always uses a mutation rate of 1 / (genome length). In this
  * class, the ratio can be configured by a factor mutationIntensity, so that the 
@@ -24,6 +26,7 @@ public class ConfigurableAdaptiveMutationRate extends AdaptiveMutationRate {
 
 	private double mutationIntensity = 1; 
 	
+	@Inject
 	public ConfigurableAdaptiveMutationRate(IndividualFactory individualFactory, 
 			@Constant(value = "intensity", namespace = ConfigurableAdaptiveMutationRate.class) double intensity) {
 		super(individualFactory);
@@ -33,6 +36,7 @@ public class ConfigurableAdaptiveMutationRate extends AdaptiveMutationRate {
 	
 	/*
 	 * (non-Javadoc)
+	 * AK: This method is currently never called. Not clear how the class has to be integrated in order to make it work.  
 	 * 
 	 * @see
 	 * org.opt4j.core.IndividualStateListener#inidividualStateChanged(org.opt4j
@@ -42,7 +46,7 @@ public class ConfigurableAdaptiveMutationRate extends AdaptiveMutationRate {
 		if (!isInit && individual.getState() != EMPTY) {
 			final int size = individual.getGenotype().size();
 			if (size > 0) {
-				set(Math.min(1.0, 1.0 / individual.getGenotype().size() * mutationIntensity));
+				set(Math.min(1.0, (1.0 / (individual.getGenotype().size()*1.0)) * mutationIntensity));
 			}
 			individualFactory.removeIndividualStateListener(this);
 			isInit = true;

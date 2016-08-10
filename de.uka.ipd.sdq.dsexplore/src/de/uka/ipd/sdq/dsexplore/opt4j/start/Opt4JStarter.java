@@ -102,6 +102,13 @@ public class Opt4JStarter {
 		
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
+		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
+		
+		Opt4JStarter.problem = new DSEProblem(dseConfig, pcmInstance, blackboard);
+		if (dseConfig.isNewProblem()){
+			Opt4JStarter.problem.saveProblem();
+		} 
+		
 		Collection<Module> modules = new ArrayList<Module>();
 
 		DSEModule dseModule = new DSEModule();
@@ -125,13 +132,6 @@ public class Opt4JStarter {
 		modules.add(nsgaModule);
 		
 		openTask(modules);
-		
-		Opt4JStarter.writers = new LinkedList<ResultsWriter>();
-		
-		Opt4JStarter.problem = new DSEProblem(dseConfig, pcmInstance, blackboard);
-		if (dseConfig.isNewProblem()){
-			Opt4JStarter.problem.saveProblem();
-		} 
 		
 		GenotypeReader.setTask(task); //QUICKHACK
 		
@@ -344,7 +344,7 @@ public class Opt4JStarter {
 			rsm.setIterations(maxIterations);
 			modules.add(rsm);
 		} else if (config.isEvolutionarySearch()){
-			EvolutionaryAlgorithmModule ea = null;
+			DSEEvolutionaryAlgorithmModule ea = null;
 			
 			if (config.isBayes()){
 				ea = new DSEEvolutionaryAlgorithmModule(){
@@ -370,11 +370,18 @@ public class Opt4JStarter {
 			ea.setAlpha(individualsPerGeneration);
 			ea.setLambda((int) Math.floor(individualsPerGeneration / 2.0 + 0.5));
 			ea.setCrossoverRate(crossoverRate);
+			// mutate on average three times per candidate 
+			double mutationRate = Math.min(1.0, (1.0 / problem.getDesignDecisions().size()) * 3);
+			ea.setMutationRate(mutationRate);
+			modules.add(ea);
 			
-			DSEMutateModule mutation = new DSEMutateModule();
-			// adaptive rate uses 1/genotype length * mutation intensity, so we use that, too
-			// is only set once per run, so genotypes of changing length are not supported.
-			mutation.setMutationIntensity(3);
+//			// Former DSEMutateModule that tried to use and implement an adaptive mutation rate that 
+//			// would work well with genomes of changing length. I did not manage to get it called properly, though.   			
+//			DSEMutateModule mutation = new DSEMutateModule();
+//			// adaptive rate uses 1/genotype length * mutation intensity, so we use that, too
+//			// is only set once per run, so genotypes of changing length are not supported.
+//			mutation.setMutationIntensity(3);
+//			modules.add(mutation);
 			
 			/*		SimulatedAnnealingModule sa = new SimulatedAnnealingModule();
 			sa.setIterations(maxIterations);*/
@@ -383,7 +390,7 @@ public class Opt4JStarter {
 			/*
 			 * GUIModule gui = new GUIModule(); gui.setCloseOnStop(true);
 			 */
-			modules.add(ea);
+
 		} else {
 			throw new CoreException(new Status(Status.ERROR, Opt4JStarter.class.getName(), "Unknown selected search method, please update Opt4JStarter implementation."));
 		}

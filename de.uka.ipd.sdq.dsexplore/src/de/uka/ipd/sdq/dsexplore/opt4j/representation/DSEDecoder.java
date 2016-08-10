@@ -451,8 +451,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 				processingResourceSpec.setNumberOfReplicas(processingResourceSpec.getNumberOfReplicas()*numberOfServers);
 			}
 		}
-		
-		//TODO do not multiply DELAY nodes as these are never set. or even only CPU in general?
 	}
 
 	private void handleResourceContainerReplicationWithComponentChange(

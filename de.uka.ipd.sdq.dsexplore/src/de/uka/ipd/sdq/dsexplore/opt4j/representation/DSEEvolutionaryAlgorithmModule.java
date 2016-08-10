@@ -3,7 +3,9 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.IndividualFactory;
 import org.opt4j.operator.copy.Copy;
+import org.opt4j.operator.mutate.ConstantMutationRate;
 import org.opt4j.operator.mutate.Mutate;
+import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.optimizer.ea.ConstantCrossoverRate;
 import org.opt4j.optimizer.ea.Coupler;
 import org.opt4j.optimizer.ea.CouplerUnique;
@@ -17,6 +19,8 @@ import de.uka.ipd.sdq.dsexplore.opt4j.operator.MutateDesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.NoDuplicatesEvolutionaryAlgorithm;
 import de.uka.ipd.sdq.tcfmoop.tcmanager.TerminationCriteriaManager;
 public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule {
+	
+	private double mutationRate;
 	
 	
 	/*
@@ -36,6 +40,10 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 		
 		bind(CrossoverRate.class).to(ConstantCrossoverRate.class).in(SINGLETON);
 		
+		bind(MutationRate.class).to(ConstantMutationRate.class).in(
+				SINGLETON);
+		bindConstant("rate", ConstantMutationRate.class).to(this.mutationRate);
+		
 		bind(IndividualFactory.class).to(DSEIndividualFactory.class);
 		
 	
@@ -48,6 +56,15 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 		// To exchange the selector, we cannot do the following because then the binding will be attempted twice and an exception is thrown. Thus, reimplement the selector module. 
 		//bind(Selector.class).to(Nsga2.class).in(SINGLETON);
 		//bind(Selector.class).to(Spea2.class).in(SINGLETON);
+	}
+	
+	public double getMutationRate() {
+		return mutationRate;
+	}
+
+
+	public void setMutationRate(double mutationRate) {
+		this.mutationRate = mutationRate;
 	}
 	
 }
