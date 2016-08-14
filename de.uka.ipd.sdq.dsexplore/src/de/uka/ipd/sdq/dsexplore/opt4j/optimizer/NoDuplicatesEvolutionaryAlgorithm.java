@@ -19,7 +19,9 @@ import org.opt4j.core.optimizer.Iteration;
 import org.opt4j.core.optimizer.Population;
 import org.opt4j.core.optimizer.StopException;
 import org.opt4j.core.optimizer.TerminationException;
+import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.optimizer.ea.EvolutionaryAlgorithm;
+import org.opt4j.optimizer.ea.EvolutionaryAlgorithmModule;
 import org.opt4j.optimizer.ea.Mating;
 import org.opt4j.optimizer.ea.Selector;
 import org.opt4j.start.Constant;
@@ -30,6 +32,7 @@ import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvolutionaryAlgorithmModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -149,9 +152,11 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
         //<---
         
 		nextIteration();
-
+		
+		
+		
 		while (iteration.value() < iteration.max()) {
-
+			Opt4JStarter.setIteration(iteration.value());	
 			Collection<Individual> parents = selector
 					.getParents(mu, population);
 			Collection<Individual> offspring = mating.getOffspring(lambda,
@@ -159,9 +164,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			
 			
 			int sizeBefore = offspring.size();
+			logger.warn("Offspring Size Before: "+sizeBefore);
 			//remove duplicates
 			offspring.removeAll(population);
-			logger.warn("Offspring Size:"+offspring.size());
+			
 			//we had one un-reproducible case in which the offspring list contained a null.
 			//catch this here. 
 			for (Iterator<Individual> iterator = offspring.iterator(); iterator.hasNext();) {
@@ -172,7 +178,18 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				}
 			}
 			int sizeAfter = offspring.size();
-			
+			logger.warn("Offspring Size After: "+sizeAfter);
+			Collection<Individual> cleanOffspring = new HashSet<>();
+			for (Individual indv: offspring) {
+				if (!cleanOffspring.contains(indv)) {
+					cleanOffspring.add(indv);
+				}
+			}
+			offspring.clear();
+			offspring = cleanOffspring;
+			sizeAfter = offspring.size();
+			logger.warn("Offspring Size After Cleaning Dups: "+sizeAfter);
+			logger.info("----------------------------");
 			population.addAll(offspring); //This causes a decrease in population, TODO: get to the root of this problem
 
 			//TODO: If the offspring contains duplicates, they should also be removed. Andere Datenstruktur (Set)?

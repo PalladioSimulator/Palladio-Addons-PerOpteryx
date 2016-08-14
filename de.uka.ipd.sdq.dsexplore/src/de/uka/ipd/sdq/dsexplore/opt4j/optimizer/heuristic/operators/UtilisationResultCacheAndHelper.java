@@ -18,12 +18,15 @@ import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorat
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEObjectives;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
@@ -89,10 +92,17 @@ public class UtilisationResultCacheAndHelper {
 		for (Choice choice : genotype) {
 			if (choice instanceof ClassChoice) {
 				ClassChoice ClassChoice = (ClassChoice) choice;
-				if (ClassChoice.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
-					AllocationDegree allocationDegree = (AllocationDegree) ClassChoice.getDegreeOfFreedomInstance();
-					for (EObject entity : allocationDegree.getClassDesignOptions()) {
-						if (entity instanceof ResourceContainer) {
+				if (ClassChoice.getDegreeOfFreedomInstance().getDof() != null &&  
+						ClassChoice.getDegreeOfFreedomInstance().getDof().getName().contains("Allocation")) {
+//					AllocationDegree allocationDegree = (AllocationDegree) ClassChoice.getDegreeOfFreedomInstance();
+					
+					Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+							choice.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable(),
+							choice.getDegreeOfFreedomInstance().getPrimaryChanged(), 
+							GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
+					
+					for (Object entity : possibleValues) {
+						if (entity instanceof ResourceContainer && !availableResourceContainers.contains(entity)) {
 							availableResourceContainers.add((ResourceContainer)entity);
 						}
 					}
@@ -108,15 +118,31 @@ public class UtilisationResultCacheAndHelper {
 		DesignDecisionGenotype genotype = individual.getGenotype();
 		
 		Collection<ResourceContainer> unusedResourceContainers = new HashSet<ResourceContainer>();
-		unusedResourceContainers.addAll(this.getAvailableResourceContainers(individual));
+		Collection<ResourceContainer> availableResourceContainers = new HashSet<ResourceContainer>();
+		availableResourceContainers.addAll(this.getAvailableResourceContainers(individual));
 		
+		Collection<ResourceContainer> usedResourceContainers = new HashSet<ResourceContainer>();
 		// remove all resource containers that are used
 		for (Choice choice : genotype) {
 			if (choice instanceof ClassChoice) {
-				ClassChoice classChoice = (ClassChoice) choice;
-				unusedResourceContainers.remove(classChoice.getChosenValue());
+				if (!(choice.getValue() instanceof ResourceContainerImpl)) continue;
+				Object rc = choice.getValue();
+				usedResourceContainers.add((ResourceContainer)rc);
 			}
 		}
+		
+		for (ResourceContainer arc: availableResourceContainers) {
+			boolean found = false;
+			for (ResourceContainer urc: usedResourceContainers) {
+				if (!(arc.getId().equals(urc.getId()))) {
+					continue;
+				}
+				found = true;
+				break;
+			}
+			if (!found) unusedResourceContainers.add(arc);
+		}
+		
 		return unusedResourceContainers;
 	}
 	
@@ -307,9 +333,14 @@ public class UtilisationResultCacheAndHelper {
 			
 			DecisionSpace problem = individual.getProblem();
 			for (DegreeOfFreedomInstance dof : problem.getDegreesOfFreedom()) {
-				if (dof instanceof AllocationDegree){
-					List<EObject> entities = ((AllocationDegree) dof).getClassDesignOptions();
-					for (EObject entity : entities) {
+				if (dof.getDof() != null && dof.getDof().getName().contains("Allocation")){
+//					List<EObject> entities = ((AllocationDegree) dof).getClassDesignOptions();
+					Collection<Object> entities = GenomeToCandidateModelTransformation.valueRuleForCollection(
+							dof.getDof().getPrimaryChangeable(),
+							dof.getPrimaryChanged(), 
+							GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
+					
+					for (Object entity : entities) {
 						if (entity instanceof ResourceContainer){
 							List<ProcessingResourceSpecification> resources = 
 								((ResourceContainer) entity)

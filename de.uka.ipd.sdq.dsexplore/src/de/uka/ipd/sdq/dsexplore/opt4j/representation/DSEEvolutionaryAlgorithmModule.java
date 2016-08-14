@@ -3,6 +3,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.IndividualFactory;
 import org.opt4j.operator.copy.Copy;
+import org.opt4j.operator.mutate.AdaptiveMutationRate;
 import org.opt4j.operator.mutate.ConstantMutationRate;
 import org.opt4j.operator.mutate.Mutate;
 import org.opt4j.operator.mutate.MutationRate;
@@ -40,9 +41,9 @@ public class DSEEvolutionaryAlgorithmModule extends EvolutionaryAlgorithmModule 
 		
 		bind(CrossoverRate.class).to(ConstantCrossoverRate.class).in(SINGLETON);
 		
-		bind(MutationRate.class).to(ConstantMutationRate.class).in(
+		bind(MutationRate.class).to(AdaptiveMutationRate.class).in(
 				SINGLETON);
-		bindConstant("rate", ConstantMutationRate.class).to(this.mutationRate);
+		bindConstant("rate", AdaptiveMutationRate.class).to(this.mutationRate);
 		
 		bind(IndividualFactory.class).to(DSEIndividualFactory.class);
 		

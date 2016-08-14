@@ -21,6 +21,7 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
@@ -120,7 +121,7 @@ public class DecreaseProcessingRateImpl extends AbstractProcessingRateTactic {
 	 * @return
 	 */
 	private double getDecreasedProcessingRate(ContinousRangeChoice continousRangeChoice,
-			ContinuousProcessingRateDegree processingRateDegree) {
+			ContinuousRangeDegree processingRateDegree) {
 		return Math.max(continousRangeChoice.getChosenValue()
 				* (1 - decreaseProcessingRateFactor), processingRateDegree.getFrom());
 	}
@@ -132,7 +133,7 @@ public class DecreaseProcessingRateImpl extends AbstractProcessingRateTactic {
 	 */
 	@Override
 	protected double getUpdatedProcessingRate(ContinousRangeChoice continousRangeChoice,
-			ContinuousProcessingRateDegree processingRateDegree) {
+			ContinuousRangeDegree processingRateDegree) {
 		return getDecreasedProcessingRate(continousRangeChoice, processingRateDegree);
 	}
 

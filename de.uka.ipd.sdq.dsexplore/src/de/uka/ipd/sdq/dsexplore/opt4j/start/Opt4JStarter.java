@@ -87,7 +87,7 @@ public class Opt4JStarter {
 	
 	private static DSEProblem problem = null;
 	private static DSECreator creator = null;
-	
+	private static int iteration = 0;
 	private static Opt4JTask task = null;
 	
 	private static DSEWorkflowConfiguration myDSEConfig = null;
@@ -370,8 +370,9 @@ public class Opt4JStarter {
 			ea.setAlpha(individualsPerGeneration);
 			ea.setLambda((int) Math.floor(individualsPerGeneration / 2.0 + 0.5));
 			ea.setCrossoverRate(crossoverRate);
+			
 			// mutate on average three times per candidate 
-			double mutationRate = Math.min(1.0, (1.0 / problem.getDesignDecisions().size()) * 3);
+			double mutationRate = Math.min(1.0, (1.0 / problem.getDesignDecisions().size()) * 4);
 			ea.setMutationRate(mutationRate);
 			modules.add(ea);
 			
@@ -697,6 +698,17 @@ public class Opt4JStarter {
 		}
 
 	}
+
+	public static void setIteration(int iteration) {
+		Opt4JStarter.iteration = iteration;
+	}
+
+	public static int getIteration() {
+		return iteration;
+	}
+
+	
+
 }
 	
 		

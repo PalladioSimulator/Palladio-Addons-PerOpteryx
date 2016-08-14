@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import org.opt4j.common.random.Rand;
 import org.opt4j.core.Genotype;
@@ -9,6 +10,7 @@ import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
 import org.opt4j.operator.copy.Copy;
 import org.opt4j.operator.crossover.Crossover;
+import org.opt4j.operator.mutate.BasicMutateModule.MutationRateType;
 import org.opt4j.operator.mutate.Mutate;
 import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.optimizer.ea.Coupler;
@@ -22,6 +24,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.QMLBoundDepe
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticOperatorsManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 
 /**
@@ -61,6 +64,31 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 	@Override
 	public Collection<Individual> getOffspring(int size,
 			Collection<Individual> parents) {
+		int decisionSize = Opt4JStarter.getProblem().getDesignDecisions().size();
+		//Idee vielleich das 1. 10tel mit große mutationRate iteration.max*0.1
+		//andere Idee, MutationRate im takt fallen lassen, zb alle 
+		if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.5)) {
+			double rate = 1.0/decisionSize*2.0;
+			mutationRate.set(rate);
+		} else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.25)) {
+			double rate = 1.0/decisionSize*2.0;
+			//double rate = 1.0/decisionSize*(decisionSize*0.25);
+			mutationRate.set(rate);
+		} else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.1)) {
+			double rate = 1.0/decisionSize*2.0;
+			//double rate = 1.0/decisionSize*(decisionSize*0.25);
+			mutationRate.set(rate);
+		} else {
+			Opt4JStarter.getProblem().getDesignDecisions().size();
+			//double rate = 1.0/decisionSize*(decisionSize*0.5);
+			double rate = 1.0/decisionSize*2.0;
+			mutationRate.set(rate);
+		}
+//		else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.25)) {
+//			double rate = 1.0/23*4.0;
+//			mutationRate.set(rate);
+//		} 
+		
 		Collection<Individual> offspring = new ArrayList<Individual>();
 		Collection<Pair<Individual>> couples = coupler.getCouples((int) Math
 				.ceil(((double) size / 2)), new ArrayList<Individual>(parents));
@@ -115,7 +143,7 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 		} 
 
 		if (i1 == null && i2 == null){
-
+		
 			if (doCrossover) {
 				Pair<Genotype> offspring = crossover.crossover(p1, p2);
 				o1 = offspring.getFirst();

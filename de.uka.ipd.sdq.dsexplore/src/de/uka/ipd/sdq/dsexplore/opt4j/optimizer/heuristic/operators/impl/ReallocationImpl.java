@@ -1,6 +1,8 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +17,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecifica
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.AbstractTactic;
@@ -22,6 +25,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResul
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.UtilisationResultCacheAndHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -82,6 +86,7 @@ public class ReallocationImpl extends AbstractTactic {
 	 * Generates collection of candidates by applying the reallocation heuristic
 	 * @param individual Individual which the heuristic should be applied to
 	 */
+	@SuppressWarnings("unchecked")
 	public List<TacticsResultCandidate> getHeuristicCandidates(DSEIndividual individual, UtilisationResultCacheAndHelper resultCache) {
 		this.resultsCache = resultCache;
 		
@@ -107,18 +112,23 @@ public class ReallocationImpl extends AbstractTactic {
 				return candidates;
 			}
 
+			Collection<Object> possibleValues = new HashSet<>();
 			List<ClassChoice> potentiallyReallocatedComponents = new LinkedList<ClassChoice>();
 			// iterate through choices and change AllocationDegree
 			for (Choice choice : candidate.getGenotype()) {
 				if (choice instanceof ClassChoice) {
 					ClassChoice classChoice = (ClassChoice)choice;
-					if (classChoice.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
-						AllocationDegree allocationDegree = (AllocationDegree)classChoice.getDegreeOfFreedomInstance();
+					if (classChoice.getDegreeOfFreedomInstance().getDof() != null && classChoice.getDegreeOfFreedomInstance().getDof().getName().contains("Allocation")) {
+						
+						possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+								choice.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable(),
+								choice.getDegreeOfFreedomInstance().getPrimaryChanged(), 
+								GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
 						if (EMFHelper.checkIdentity(classChoice.getChosenValue(), sourceResourceContainer)) {
 							// check whether this component may be allocated to the minimum one
 							// XXX: Consider several servers with high or low utilization, as there is not necessarily a component that may be allocated from the highest to the lowest. Also consider second highest / lowest if none for the highest can be found. 
-							for (EObject designOption : allocationDegree.getClassDesignOptions()) {
-								if (EMFHelper.checkIdentity(targetResourceContainer, designOption)) {
+							for (Object designOption : possibleValues) {
+								if (EMFHelper.checkIdentity(targetResourceContainer, (EObject)designOption)) {
 									// this degree of freedom allows to allocate to the target container, 
 									// so its component is a possible one to reallocate.  
 									potentiallyReallocatedComponents.add(classChoice);
@@ -136,10 +146,13 @@ public class ReallocationImpl extends AbstractTactic {
 				//reallocate just one component, choose it randomly. TODO: choose it more wisely, e.g. based on its demand. 
 				int chosenComponentIndex = generator.nextInt(potentiallyReallocatedComponents.size());
 				ClassChoice componentToReallocate = potentiallyReallocatedComponents.get(chosenComponentIndex);
+				
+				List<EObject> posVals = new ArrayList<>();
+				for (Object o : possibleValues) {
+					posVals.add((EObject)o);
+				}
 				componentToReallocate.setChosenValue(
-						EMFHelper.retrieveEntityByID(
-								((ClassDegree)componentToReallocate.getDegreeOfFreedomInstance()).getClassDesignOptions(), 
-								targetResourceContainer));
+						EMFHelper.retrieveEntityByID(posVals, targetResourceContainer));
 	 			
 				candidate.setCandidateWeight(getCandidateWeight(minUtilisationResult, maxUtilisationResult));
 				candidate.setHeuristic(this);

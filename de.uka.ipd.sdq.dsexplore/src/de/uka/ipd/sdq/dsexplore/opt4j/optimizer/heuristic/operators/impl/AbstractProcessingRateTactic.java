@@ -8,6 +8,7 @@ import org.opt4j.operator.copy.Copy;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
+import org.palladiosimulator.pcm.resourcetype.ResourceType;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -20,6 +21,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 
 public abstract class AbstractProcessingRateTactic extends AbstractTactic {
@@ -44,10 +46,11 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 			if (choice instanceof ContinousRangeChoice) {
 				ContinousRangeChoice continousRangeChoice = (ContinousRangeChoice) choice;
 				DegreeOfFreedomInstance DegreeOfFreedomInstance = choice.getDegreeOfFreedomInstance();
-				if (DegreeOfFreedomInstance instanceof ContinuousProcessingRateDegree) {
-					ContinuousProcessingRateDegree processingRateDegree = (ContinuousProcessingRateDegree) DegreeOfFreedomInstance;
-					if (EMFHelper.checkIdentity(processingRateDegree.getPrimaryChanged(), utilProcessingResourceToBeChanged.getResourceContainer_ProcessingResourceSpecification())
-							&& EMFHelper.checkIdentity(processingRateDegree.getProcessingresourcetype(), utilProcessingResourceToBeChanged.getActiveResourceType_ActiveResourceSpecification())) {
+				if (DegreeOfFreedomInstance instanceof ContinuousRangeDegree) {
+					ContinuousRangeDegree processingRateDegree = (ContinuousRangeDegree) DegreeOfFreedomInstance;
+					ProcessingResourceSpecification prs = ((ProcessingResourceSpecification)processingRateDegree.getPrimaryChanged());
+					if (EMFHelper.checkIdentity(processingRateDegree.getPrimaryChanged(), utilProcessingResourceToBeChanged)
+							&& EMFHelper.checkIdentity(prs.getActiveResourceType_ActiveResourceSpecification(), utilProcessingResourceToBeChanged.getActiveResourceType_ActiveResourceSpecification())) {
 						// apply change (either increase or decrease. Respect
 						// minimum allowed value of processing rate
 						double newProcessingRate = getUpdatedProcessingRate(continousRangeChoice, processingRateDegree);
@@ -113,7 +116,7 @@ public abstract class AbstractProcessingRateTactic extends AbstractTactic {
 
 	protected abstract double getUpdatedProcessingRate(
 			ContinousRangeChoice continousRangeChoice,
-			ContinuousProcessingRateDegree processingRateDegree) ;
+			ContinuousRangeDegree processingRateDegree) ;
 	
 	protected abstract int getUpdatedNumberOfCores(
 			DiscreteRangeChoice discreteChoice,

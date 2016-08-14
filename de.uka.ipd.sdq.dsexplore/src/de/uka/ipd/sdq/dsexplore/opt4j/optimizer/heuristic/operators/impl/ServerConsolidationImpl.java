@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +16,7 @@ import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorat
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
 
+import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -23,6 +25,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.TacticsResul
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.operators.UtilisationResultCacheAndHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -141,7 +144,7 @@ public class ServerConsolidationImpl extends AbstractTactic {
 			if (choice instanceof ClassChoice){
 				ClassChoice enumChoice = (ClassChoice) choice;
 				DegreeOfFreedomInstance degree = enumChoice.getDegreeOfFreedomInstance();
-				if (degree instanceof AllocationDegree){
+				if (degree.getDof() != null && degree.getDof().getName().contains("Allocation")){
 					if (EMFHelper.checkIdentity(enumChoice.getChosenValue(), identifiedContainer)){
 						componentAllocationToRChoices.add(enumChoice);
 						logger.debug("Found component allocated to underutilised container "+identifiedContainer.getEntityName());
@@ -181,9 +184,16 @@ public class ServerConsolidationImpl extends AbstractTactic {
 					for (int i = 0; i < numberOfComponentsToDeployHere && componentAllocationToRChoices.size() > 0; i++) {
 						ClassChoice reallocateChoice = componentAllocationToRChoices.get(generator.nextInt(componentAllocationToRChoices.size()));
 						componentAllocationToRChoices.remove(reallocateChoice);
-						EObject newContainer = EMFHelper.retrieveEntityByID(
-								((ClassDegree)reallocateChoice.getDegreeOfFreedomInstance()).getClassDesignOptions(),
-								targetContainer);
+						
+						Collection<Object> possibleValues = GenomeToCandidateModelTransformation.valueRuleForCollection(
+								reallocateChoice.getDegreeOfFreedomInstance().getDof().getPrimaryChangeable(),
+								reallocateChoice.getDegreeOfFreedomInstance().getPrimaryChanged(), 
+								GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
+						List<EObject> posVals = new ArrayList<>();
+						for (Object o : possibleValues) {
+							posVals.add((EObject)o);
+						}
+						EObject newContainer = EMFHelper.retrieveEntityByID(posVals, targetContainer);
 						if (newContainer != null){
 							reallocateChoice.setChosenValue(newContainer);
 						} else {
