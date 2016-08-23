@@ -65,23 +65,24 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 	public Collection<Individual> getOffspring(int size,
 			Collection<Individual> parents) {
 		int decisionSize = Opt4JStarter.getProblem().getDesignDecisions().size();
+
 		//Idee vielleich das 1. 10tel mit große mutationRate iteration.max*0.1
 		//andere Idee, MutationRate im takt fallen lassen, zb alle 
 		if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.5)) {
 			double rate = 1.0/decisionSize*2.0;
 			mutationRate.set(rate);
 		} else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.25)) {
-			double rate = 1.0/decisionSize*2.0;
+			double rate = 1.0/decisionSize*2.5;
 			//double rate = 1.0/decisionSize*(decisionSize*0.25);
 			mutationRate.set(rate);
 		} else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.1)) {
-			double rate = 1.0/decisionSize*2.0;
+			double rate = 1.0/decisionSize*3.0;
 			//double rate = 1.0/decisionSize*(decisionSize*0.25);
 			mutationRate.set(rate);
 		} else {
 			Opt4JStarter.getProblem().getDesignDecisions().size();
 			//double rate = 1.0/decisionSize*(decisionSize*0.5);
-			double rate = 1.0/decisionSize*2.0;
+			double rate = 1.0/decisionSize*3.0;
 			mutationRate.set(rate);
 		}
 //		else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.25)) {

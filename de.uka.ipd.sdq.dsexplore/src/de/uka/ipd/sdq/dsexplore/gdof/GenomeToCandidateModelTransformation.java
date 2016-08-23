@@ -17,12 +17,14 @@ import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.MatchResource;
 import org.eclipse.emf.compare.ReferenceChange;
+import org.eclipse.emf.compare.impl.AttributeChangeImpl;
 import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.eclipse.emf.compare.impl.ReferenceChangeImpl;
 import org.eclipse.emf.compare.utils.EMFCompareCopier;
@@ -142,6 +144,7 @@ import de.uka.ipd.sdq.pcm.cost.impl.FixedLinkingResourceCostImpl;
 import de.uka.ipd.sdq.pcm.cost.impl.FixedProcessingResourceCostImpl;
 import de.uka.ipd.sdq.pcm.cost.impl.VariableLinkingResourceCostImpl;
 import de.uka.ipd.sdq.pcm.cost.impl.VariableProcessingResourceCostImpl;
+import de.uka.ipd.sdq.pcm.cost.util.costResourceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
@@ -300,12 +303,15 @@ public class GenomeToCandidateModelTransformation {
 			return prim;
 		}
 		else if (prim instanceof ProcessingResourceSpecificationImpl) {
+			if (((ProcessingResourceSpecification)prim).eContainer() == null) {
+				return prim;
+			}
 			String id = ((ResourceContainer)((ProcessingResourceSpecification)prim).eContainer()).getId();
 			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
 					.getResourceContainer_ResourceEnvironment();
 			final ResourceContainer localPrim = (ResourceContainer) EMFHelper
 					.retrieveEntityByID(rcs, id);
-			
+			if (localPrim == null) return prim;
 			final List<ProcessingResourceSpecification> prss = localPrim.getActiveResourceSpecifications_ResourceContainer();
 			for (ProcessingResourceSpecification prs : prss) {
 				if(prs.getId().equals(((ProcessingResourceSpecificationImpl) prim).getId())) {
@@ -401,7 +407,7 @@ public class GenomeToCandidateModelTransformation {
 //				}
 //			}
 //		}
-		else if (prim.eContainer() instanceof ResourceDemandingSEFFImpl) {
+		else if (prim != null && prim.eContainer() instanceof ResourceDemandingSEFFImpl) {
 			if (prim instanceof SetVariableActionImpl) prim = (SetVariableAction)prim;
 			if (prim instanceof InternalActionImpl) prim = (InternalAction)prim;
 			if (prim instanceof ExternalCallActionImpl) prim = (ExternalCallAction)prim;
@@ -481,19 +487,38 @@ public class GenomeToCandidateModelTransformation {
 				EStructuralFeature propertyInLoadedPCM = modelElement.eClass().getEStructuralFeature(property.getName());
 				Object oldChoice = modelElement.eGet(propertyInLoadedPCM);
 				
-				if (choice.getValue() instanceof EObject) {
-					choice.setValue(changeToLocal((EObject) choice.getValue(), propertyInLoadedPCM));
+				List<Object> fullchoice = new ArrayList<>();
+				boolean oldChoiceSet = false;
+				if (oldChoice instanceof EList) {
+					EList<Object> list = (EList<Object>)oldChoice;
+					for (Object o : (EList<?>)oldChoice) {
+						if (o instanceof ProcessingResourceSpecificationImpl) {
+							ProcessingResourceSpecification prs = (ProcessingResourceSpecification)o;
+							if (!prs.getActiveResourceType_ActiveResourceSpecification().getId()
+									.equals(((ProcessingResourceSpecification)choice.getValue()).getActiveResourceType_ActiveResourceSpecification().getId())) {
+								fullchoice.add(prs);
+							} else {
+								getChosenValues().put("oldValue$", o);
+								oldChoiceSet = true;
+							}
+						}
+					}
 				}
 				
 				
+				if (choice.getValue() instanceof EObject) {
+					choice.setValue(changeToLocal((EObject) choice.getValue(), propertyInLoadedPCM));
+				}
+				fullchoice.add(choice.getValue());
+				
 				// FIXME just a quick fix
 				// Can a choice be a list? if yes then change this.
-				if (oldChoice instanceof EList) {
+				if (oldChoice instanceof EList && !oldChoiceSet) {
 					for (Object o : (EList<?>)oldChoice) {
 						getChosenValues().put("oldValue$", o);
 						break;
 					}
-				} else {
+				} else if (!oldChoiceSet) {
 					getChosenValues().put("oldValue$", oldChoice);
 				}
 				getChosenValues().put("changeable$", modelElement);
@@ -527,9 +552,13 @@ public class GenomeToCandidateModelTransformation {
 				
 				if (value instanceof VariableUsageImpl || value instanceof ProcessingResourceSpecificationImpl) {
 					//VariableUsage vu = (VariableUsage)value;
+					if (value instanceof ProcessingResourceSpecificationImpl) {
+						setProperty(modelElement, property, fullchoice);
+					} else {
 					EList<Object> list = new BasicEList<Object>();
 					list.add(value);
 					setProperty(modelElement, property, list);
+					}
 				} else {
 				setProperty(modelElement, property, choice.getValue());
 				}
@@ -553,7 +582,9 @@ public class GenomeToCandidateModelTransformation {
 //					}
 //					}
 					
-					
+					if (gdof.getName().contains("Resource Selection")) {
+						
+					}
 					Collection<EObject> changeableElements = selectionRule(ced, rootElements, selectedModelElements);
 					Collection<EObject> localChangeableElements = new HashSet<>();
 //					for (EObject obj : changeableElements) {
@@ -641,11 +672,33 @@ public class GenomeToCandidateModelTransformation {
 			varCopy.setSpecification(spec);
 			changeableElement.eSet(propertyInLoadedPCM, varCopy);
 		} else if (value instanceof Collection<?>) {
+			//FIXME kopieren noch nötig da allgemein mit kopien gearbeite wird?
+			//ohne kopieren könnte vergleich bei kosten klappen.
+//			Collection<Object> copy = (Collection<Object>) value;
 			EcoreUtil.Copier copier = new EcoreUtil.Copier();
 			Collection<Object> col = new ArrayList<Object>();
 			col = (Collection<Object>)value;
 			Collection<Object> copy = copier.copyAll(col);
 			copier.copyReferences();
+			
+			if (propertyInLoadedPCM.getName().equals("cost")) {
+				//CostRepository costRepo = null;
+		        
+				PCMResourceSetPartition pcmPartition = Opt4JStarter.getProblem().getCurrentInstancePartition();
+				boolean found = false;
+		        for (Resource resource : pcmPartition.getResourceSet().getResources()) {
+		        	if (found) break;
+		        	if (resource instanceof costResourceImpl) {
+		        		for (EObject cr : resource.getContents()) {
+		        			changeableElement = cr;
+		        			found = true;
+		        			break;
+		        		}
+		        		
+		        	}
+		        }
+			}
+			
 			changeableElement.eSet(propertyInLoadedPCM, copy);
 		} else if (value instanceof FixedProcessingResourceCostImpl) {
 			FixedProcessingResourceCost fpr = costFactory.eINSTANCE.createFixedProcessingResourceCost();
@@ -712,7 +765,8 @@ public class GenomeToCandidateModelTransformation {
 		else {
 			changeableElement.eSet(propertyInLoadedPCM, value);
 		}
-		if (keyForChanged != null) {
+		
+		if (keyForChanged != null && changeableElement instanceof CostRepositoryImpl) {
 			decorator.remove(keyForChanged);
 			decorator.put(keyForChanged, changeableElement);
 		}
@@ -747,7 +801,7 @@ public class GenomeToCandidateModelTransformation {
 		Object change = changeableElement.eGet(propertyInLoadedPCM);
 		
 		//init
-		GenomeToCandidateModelTransformation.getChosenValues().put("oldChoice$", change);
+		GenomeToCandidateModelTransformation.getChosenValues().put("oldValue$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("choiceValue$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("changeable$", changeableElement);
 		}
@@ -1133,27 +1187,33 @@ public class GenomeToCandidateModelTransformation {
 //			}
 			
 			for(Match subm : m.getSubmatches()) {
+				if (subm.getLeft()==null && subm.getRight() != null)  subm.setRight(changeToLocal(subm.getRight(), null));
 				if(subm.getDifferences().isEmpty()) continue;
 				
-				if (subm.getRight() != null) subm.setRight(changeToLocal(subm.getLeft(), null));
+				if (subm.getRight() != null && subm.getLeft() != null) subm.setRight(changeToLocal(subm.getLeft(), null));
 				
 				for (Match subsubm : subm.getSubmatches()) {
+					if (subsubm.getLeft()==null && subsubm.getRight() != null)  subsubm.setRight(changeToLocal(subsubm.getRight(), null));
 					if(subsubm.getDifferences().isEmpty()) continue;
-					if (subsubm.getRight() != null) subsubm.setRight(changeToLocal(subsubm.getLeft(), null));
+					if (subsubm.getRight() != null && subsubm.getLeft() != null) subsubm.setRight(changeToLocal(subsubm.getLeft(), null));
+					
 					for (Match subsubsubm : subsubm.getSubmatches()) {
+						if (subsubsubm.getLeft()==null && subsubsubm.getRight() != null)  subsubsubm.setRight(changeToLocal(subsubsubm.getRight(), null));
 						if(subsubsubm.getDifferences().isEmpty()) continue;
-						if (subsubsubm.getRight() != null) subsubsubm.setRight(changeToLocal(subsubsubm.getLeft(), null));
+						if (subsubsubm.getRight() != null && subsubsubm.getLeft() != null) subsubsubm.setRight(changeToLocal(subsubsubm.getLeft(), null));
+						
 						for (Match subsubsubsubm : subsubsubm.getSubmatches()) {
+							if (subsubsubsubm.getLeft()==null && subsubsubsubm.getRight() != null)  subsubsubsubm.setRight(changeToLocal(subsubsubsubm.getRight(), null));
 							if(subsubsubsubm.getDifferences().isEmpty()) continue;
-							if (subsubsubsubm.getRight() != null) subsubsubsubm.setRight(changeToLocal(subsubsubsubm.getLeft(), null));
+							if (subsubsubsubm.getRight() != null && subsubsubsubm.getLeft()!=null) subsubsubsubm.setRight(changeToLocal(subsubsubsubm.getLeft(), null));
 						}
 					}
 				}
 			}
 		}
-		
+		//match = localComp.getMatches();
 		EList<MatchResource> matches = localComp.getMatchedResources();
-		for (int i = 0; i < matches.size(); i++) {
+		for (int i = 0; i < match.size(); i++) {
 			EObject left = match.get(i).getLeft();
 			EObject right = match.get(i).getRight();
 			matches.get(i).setLeft(match.get(i).getLeft().eResource());
@@ -1166,8 +1226,18 @@ public class GenomeToCandidateModelTransformation {
 		Iterator<Diff> diffs = localComp.getDifferences().iterator();
 		while (diffs.hasNext()) {
 			Diff d = diffs.next();
-			
-			EObject value = ((ReferenceChange)d).getValue();
+			EObject value = null;
+			if (d instanceof ReferenceChangeImpl) value = ((ReferenceChange)d).getValue();
+			else if (d instanceof AttributeChangeImpl) {
+				value = d.eContainer();
+				Object right = ((Match)value).getRight();
+				if (right instanceof ProcessingResourceSpecificationImpl) {
+					EObject local = changeToLocal((EObject)right, null);
+					((Match)value).setRight(local);
+				}
+				
+				continue;
+			}
 			EObject nevalue = changeToLocal(value, null);
 			if (nevalue != null ) 
 				((ReferenceChange)d).setValue(nevalue);
@@ -1182,7 +1252,7 @@ public class GenomeToCandidateModelTransformation {
 			
 			Match matsch = localComp.getMatch(((ReferenceChange)d).getValue());
 			//matsch = d.getMatch();
-			if (matsch != null) matsch.setRight(changeToLocal(matsch.getLeft(), null));
+			if (matsch != null && matsch.getLeft() != null) matsch.setRight(changeToLocal(matsch.getLeft(), null));
 			
 			
 //			System.out.println(d.getKind().toString());
@@ -1198,7 +1268,8 @@ public class GenomeToCandidateModelTransformation {
 		
 		Iterator<Diff> diff = localComp.getDifferences().iterator();
 		while (diff.hasNext()) {
-			diff.next().copyLeftToRight();
+			Diff d = diff.next();
+			d.copyLeftToRight();
 		}
 //		int c = 1;
 //		for(Connector conn : sys.getConnectors__ComposedStructure()) {

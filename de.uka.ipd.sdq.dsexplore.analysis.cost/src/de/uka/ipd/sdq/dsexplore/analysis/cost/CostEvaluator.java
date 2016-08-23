@@ -11,6 +11,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
@@ -32,6 +34,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.ComponentCostPerInstance;
 import de.uka.ipd.sdq.pcm.cost.ComponentCostPerType;
 import de.uka.ipd.sdq.pcm.cost.Cost;
@@ -41,6 +44,8 @@ import de.uka.ipd.sdq.pcm.cost.ProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.VariableProcessingResourceCost;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.cost.impl.CostRepositoryImpl;
+import de.uka.ipd.sdq.pcm.cost.util.costResourceImpl;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -112,7 +117,27 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 			return false;
 		} else if (cost instanceof FixedProcessingResourceCost){
 			FixedProcessingResourceCost fc = (FixedProcessingResourceCost)cost;
-			ResourceContainer rc = (ResourceContainer)fc.getProcessingresourcespecification().eContainer();
+			
+			//FIXME get the resourcecontainer to which the prs was applied
+			ProcessingResourceSpecification prs = fc.getProcessingresourcespecification();
+			EList<ResourceContainer> rContainers = pcmInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+			
+			ResourceContainer rc = null;
+			boolean found = false;
+			for (ResourceContainer r : rContainers) {
+				if (found) break;
+				for (ProcessingResourceSpecification p : r.getActiveResourceSpecifications_ResourceContainer()) {
+					if (p.getActiveResourceType_ActiveResourceSpecification().getEntityName().equals("CPU") &&
+							p.getId().equals(prs.getId())) {
+						rc = r;
+						found = true;
+						break;
+					}
+				}
+			}
+			
+			
+			if (rc == null)rc = (ResourceContainer)fc.getProcessingresourcespecification().eContainer();
 			return checkWhetherResourceContainerIsUsed(pcmInstance, rc);
 		} else 
 			return true;
@@ -167,9 +192,22 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 	
 	private void updateCostModel(PCMInstance pcmInstance) {
 
+		EList<Resource> res = Opt4JStarter.getProblem().getCurrentInstancePartition().getResourceSet().getResources();
+		boolean found = false;
+		for (Resource r : res) {
+			if (found) break;
+			if (r instanceof costResourceImpl) {
+				for (EObject cr : r.getContents()) {
+        			this.costModel = (CostRepository)cr;
+        			found = true;
+        			break;
+        		}
+			}
+		}
 		List<Cost> allCosts = this.costModel.getCost();
 		
-		createCostsForReplicas(allCosts, pcmInstance);
+		//FIXME needed?
+		//createCostsForReplicas(allCosts, pcmInstance);
 		
 		for (Cost cost : allCosts) {
 

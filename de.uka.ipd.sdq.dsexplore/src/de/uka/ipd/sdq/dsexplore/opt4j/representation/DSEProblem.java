@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
@@ -44,6 +45,7 @@ import org.palladiosimulator.pcm.repository.impl.ParameterImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
+import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
@@ -65,7 +67,9 @@ import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.cost.util.costResourceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
@@ -78,6 +82,7 @@ import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModelRepository;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelRepositoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
+import de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofResourceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
@@ -94,6 +99,9 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
+import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
+import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryResourceImpl;
 import de.uka.ipd.sdq.stoex.AbstractNamedReference;
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
@@ -206,9 +214,27 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         UsageModel usagemodel =  pcmPartition.getUsageModel();
         //ResourceRepository resRep = pcmPartition.getResourceRepository();
         ResourceRepository resRep = pcmPartition.getResourceTypeRepository();
+        CostRepository costRepo = null;
+        
+        for (Resource resource : pcmPartition.getResourceSet().getResources()) {
+        	if (resource instanceof costResourceImpl) {
+        		for (EObject cr : resource.getContents()) {
+        			costRepo = (CostRepository)cr;
+        			break;
+        		}
+        		
+        	}
+        }
         
         PCMResourceSetPartition pcmModel = new PCMResourceSetPartition();
         
+        if (costRepo != null) {
+        	CostRepository costLocal = (CostRepository) copier.copy(costRepo);
+        
+	        copier.copyReferences();
+	        URI uri = URI.createURI(costRepo.eResource().getURI()+"copy."+costRepo.eResource().getURI().fileExtension());
+	        pcmModel.setContents(uri, costLocal);
+        }
         
         org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
         copier.copyReferences();
@@ -243,6 +269,29 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         uri = URI.createURI(resRep.eResource().getURI().toString());
         pcmModel.setContents(uri, localResRepo);
         
+        //TODO make copy of decorator if they are changed -> decos should generally not be changed
+        //Copy COST MODEL like the rest!!!
+        for (DegreeOfFreedomInstance dofi : this.pcmProblem.getDegreesOfFreedom()) {
+        	EList<EObject> decos = dofi.getDecoratorModel();
+        	for (EObject deco : decos) {
+        		String name = deco.eClass().getName().toLowerCase()+'$';
+        		if (deco instanceof DiffModelRepositoryImpl) {
+        			GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
+        			continue;
+        		}
+        		EObject localCopy = copier.copy(deco);
+        		copier.copyReferences();
+        		GenomeToCandidateModelTransformation.getDecorator().put(name, localCopy);
+        	}
+        }
+        
+//        ResourceSet rset = pcmPartition.getResourceSet();
+//        
+//        for (Resource o : rset.getResources()) {
+//        	if (o instanceof resourcerepositoryResourceImpl) {
+//        		//ResourceDescriptionRepository rrr = (ResourceDescriptionRepository)o;
+//        	}
+//        }
         
         PCMInstance pcm = new PCMInstance(pcmModel);
         
@@ -320,12 +369,22 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
                     choice = this.designDecisionFactory.createDiscreteRangeChoice();
                     ((DiscreteRangeChoice) choice).setChosenValue((Integer) value);
                 } else if (value instanceof Collection<?>) {
+                	
                 	choice = this.designDecisionFactory.createClassChoice();
                 	Random generator = new Random();
                 	EList<?> val = (EList<?>)value;
                 	int i = generator.nextInt(val.size());
-
-                	((ClassChoice) choice).setChosenValue( (EObject) val.get(i));
+                	if (val.size() > 0 && val.get(0) instanceof ProcessingResourceSpecificationImpl) {
+                		for (Object prs : val) {
+                			if (((ProcessingResourceSpecification)prs).getActiveResourceType_ActiveResourceSpecification().getEntityName().equals("CPU")) {
+                				((ClassChoice) choice).setChosenValue( (EObject) prs);
+                				break;
+                			}
+                		}
+                	} else {
+                		((ClassChoice) choice).setChosenValue( (EObject) val.get(i));
+                	}
+                	
                 /*
                  * If the value is a string then it is assumed that it is a specification value and it is parsed to
                  * an integer.
@@ -733,6 +792,12 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     	return new PCMInstance((PCMResourceSetPartition)blackboard
     			.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
     }
+    
+    public PCMResourceSetPartition getCurrentInstancePartition() {
+    	return (PCMResourceSetPartition)blackboard
+    			.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+    }
+    
     public PCMResourceSetPartition getInitialInstancePartition() {
     	return (PCMResourceSetPartition)blackboard
     			.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
