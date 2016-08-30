@@ -6,56 +6,38 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.core.commands.Parameterization;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.impl.ComparisonImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
-import org.eclipse.ocl.internal.evaluation.NumberUtil;
-import org.eclipse.ocl.utilities.OCLFactory;
-import org.modelversioning.emfprofile.EMFProfileFactory;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
-import org.palladiosimulator.pcm.parameter.ParameterFactory;
-import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
-import org.palladiosimulator.pcm.parameter.VariableCharacterisationType;
-import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.impl.ParameterImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
-import org.palladiosimulator.pcm.resourcetype.ResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
-import org.palladiosimulator.pcm.usagemodel.ScenarioBehaviour;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
-import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.AbstractSimuComExtensionJob;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
@@ -64,7 +46,6 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
-import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
@@ -80,9 +61,6 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.DiffModelRepository;
 import de.uka.ipd.sdq.pcm.designdecision.diffrepository.impl.DiffModelRepositoryImpl;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofResourceImpl;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
@@ -99,17 +77,12 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
-import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
-import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
-import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryResourceImpl;
-import de.uka.ipd.sdq.stoex.AbstractNamedReference;
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.IBlackboardInteractingJob;
 import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the
@@ -190,6 +163,18 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
          */
     }
 
+    /**
+     * This method creates a copy of a given PCMResourceSetPartition or of the 
+     * initial PCMResourceSetPartition. It the additional input boolean is true
+     * the copied partition is stored to the blackboard as current instance.
+     * 
+     * @param partition which should be copied
+     * @param storeToBlackboard store the copied partition to the blackboard
+     * 		  as current instance if true, do not store it to the blackboard
+     * 		  otherwise
+     * @return returns a copy of the given partition if not null, a opy of the
+     * 		   initial partition otherwise
+     */
     public PCMResourceSetPartition makeLocalCopy(PCMResourceSetPartition partition, boolean storeToBlackboard) {
     	
     	
@@ -197,14 +182,7 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     			
     	if(partition == null)pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
     	else  pcmPartition = partition;
-    	//PCMResourceSetPartition pcmPartitionCurrent = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-    	
-    	//boolean newProb = this.dseConfig.isNewProblem();
-    	
-//    	if (this.currentInstance.equals(this.initialInstance)) {
-//    		return new PCMInstance(pcmPartitionCurrent);
-//    	}
-    	
+
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
           
         org.palladiosimulator.pcm.system.System system = pcmPartition.getSystem();
@@ -212,7 +190,6 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         List<Repository> repositories = pcmPartition.getRepositories();
         ResourceEnvironment resEnv = pcmPartition.getResourceEnvironment();
         UsageModel usagemodel =  pcmPartition.getUsageModel();
-        //ResourceRepository resRep = pcmPartition.getResourceRepository();
         ResourceRepository resRep = pcmPartition.getResourceTypeRepository();
         CostRepository costRepo = null;
         
@@ -269,8 +246,8 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         uri = URI.createURI(resRep.eResource().getURI().toString());
         pcmModel.setContents(uri, localResRepo);
         
-        //TODO make copy of decorator if they are changed -> decos should generally not be changed
-        //Copy COST MODEL like the rest!!!
+        // Use copied decorator models to prevent errors in decoding the next candidates in
+        // case they were changed
         for (DegreeOfFreedomInstance dofi : this.pcmProblem.getDegreesOfFreedom()) {
         	EList<EObject> decos = dofi.getDecoratorModel();
         	for (EObject deco : decos) {
@@ -285,33 +262,12 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         	}
         }
         
-//        ResourceSet rset = pcmPartition.getResourceSet();
-//        
-//        for (Resource o : rset.getResources()) {
-//        	if (o instanceof resourcerepositoryResourceImpl) {
-//        		//ResourceDescriptionRepository rrr = (ResourceDescriptionRepository)o;
-//        	}
-//        }
-        
-        PCMInstance pcm = new PCMInstance(pcmModel);
-        
-        
-        //PCMResourceSetPartition part = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-       
-        //PCMInstance pcm = new PCMInstance(part);
-
+        //if true store to blackboard as current instance
         if (storeToBlackboard) {
 	        this.blackboard.removePartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 	        this.blackboard.addPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID, pcmModel);
-	        
-	//        PCMResourceSetPartition pcmPartitionCurrentCopy = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-	//        PCMInstance pcmcopy = new PCMInstance(pcmPartitionCurrentCopy);
-	//        org.palladiosimulator.pcm.system.System fromBB = pcmcopy.getSystem();
-	//        org.palladiosimulator.pcm.system.System copied = pcm.getSystem();
-	        
-	        //this.setCurrentInstance(pcm);
         }
-        PCMResourceSetPartition part = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+        
         return pcmModel;
 	}
     
@@ -802,10 +758,6 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     	return (PCMResourceSetPartition)blackboard
     			.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
     }
-    
-//    public void setCurrentInstance(PCMInstance currentInstance) {
-//		this.currentInstance = currentInstance;
-//	}
 
     public DesignDecisionGenotype getGenotypeOfInitialPCMInstance(){
         return this.initialGenotype;
