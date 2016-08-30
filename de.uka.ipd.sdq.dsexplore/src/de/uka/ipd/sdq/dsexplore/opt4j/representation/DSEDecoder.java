@@ -59,6 +59,7 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.OptimisationJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.featuremodel.DoubleAttribute;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -779,7 +780,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
     public static Choice getChoiceFor(final String decisionString,
             final DegreeOfFreedomInstance designDecision) throws CoreException {
-        Choice choice;
+        Choice choice = null;
 
         final designdecisionFactory factory = designdecisionFactoryImpl.init();
 
@@ -820,6 +821,22 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             		designDecision.getPrimaryChanged(), 
     				GenomeToCandidateModelTransformation.getPCMRootElements(Opt4JStarter.getProblem().getCurrentInstance()));
             
+            if (!possibleValues.isEmpty() && possibleValues.iterator().next() instanceof Double) {
+            	
+            	for (Object entity : possibleValues) {
+            		
+            		ContinousRangeChoice tempChoice = factory.createContinousRangeChoice();
+            		tempChoice.setChosenValue((Double) entity);
+            		
+            		tempChoice.setDegreeOfFreedomInstance(designDecision);
+                    if (getDecisionString(tempChoice).equals(decisionString)){
+                        choice = tempChoice;
+                        break;
+                    }
+                }
+            	
+            } else {
+            
             
             final EObject entity = getEntityByName(possibleValues, decisionString);
             if (entity == null){
@@ -827,6 +844,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             }
             enumChoice.setChosenValue(entity);
             choice = enumChoice;
+            }
         } 
         else if (designDecision instanceof SchedulingPolicyDegree){
 
