@@ -168,19 +168,25 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
      * initial PCMResourceSetPartition. It the additional input boolean is true
      * the copied partition is stored to the blackboard as current instance.
      * 
-     * @param partition which should be copied
+     * @param partition which should be copied if null the initial partition
+     * 		  gets copied
      * @param storeToBlackboard store the copied partition to the blackboard
      * 		  as current instance if true, do not store it to the blackboard
      * 		  otherwise
-     * @return returns a copy of the given partition if not null, a opy of the
-     * 		   initial partition otherwise
+     * @return a copy of the given partition if not null otherwise a copy of the
+     * 		   initial partition
      */
     public PCMResourceSetPartition makeLocalCopy(PCMResourceSetPartition partition, boolean storeToBlackboard) {
     	
     	
     	PCMResourceSetPartition pcmPartition = null;
     			
-    	if(partition == null)pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	// if no partition to copy then retrieve initial one
+    	if(partition == null){
+    		pcmPartition = (PCMResourceSetPartition) this.blackboard
+    				.getPartition(MoveInitialPCMModelPartitionJob
+    						.INITIAL_PCM_MODEL_PARTITION_ID);
+    	}
     	else  pcmPartition = partition;
 
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
@@ -199,7 +205,6 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         			costRepo = (CostRepository)cr;
         			break;
         		}
-        		
         	}
         }
         
@@ -213,6 +218,8 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
 	        pcmModel.setContents(uri, costLocal);
         }
         
+        // copy all resources in the partition and add them to the new partition
+        // with specific copy URIs
         org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
         copier.copyReferences();
         URI uri = URI.createURI(system.eResource().getURI()+"copy."+system.eResource().getURI().fileExtension());
@@ -744,16 +751,28 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
     	this.blackboard.addPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID, partition);
     }
     
+    /**
+     * Retrieves the current instance which is used for the current candidate
+     * @return the current PCMInstance
+     */
     public PCMInstance getCurrentInstance() {
     	return new PCMInstance((PCMResourceSetPartition)blackboard
     			.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
     }
     
+    /**
+     * Retrieves the current PCMResourceSetPartition for the current candidate
+     * @return the current PCMResourceSetPartition
+     */
     public PCMResourceSetPartition getCurrentInstancePartition() {
     	return (PCMResourceSetPartition)blackboard
     			.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
     }
     
+    /**
+     * Retrieves the initial PCMResourceSetPartition
+     * @return the initial PCMResourceSetPartition
+     */
     public PCMResourceSetPartition getInitialInstancePartition() {
     	return (PCMResourceSetPartition)blackboard
     			.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);

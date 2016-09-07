@@ -66,8 +66,11 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 			Collection<Individual> parents) {
 		int decisionSize = Opt4JStarter.getProblem().getDesignDecisions().size();
 
-		//Idee vielleich das 1. 10tel mit große mutationRate iteration.max*0.1
-		//andere Idee, MutationRate im takt fallen lassen, zb alle 
+		/**
+		 * Workaround because the implemented adaptive mutation rate does not work
+		 * anymore. MutationRate is adjusted dependent on the maximum iterations and
+		 * the number of used design decisions
+		 */
 		if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.5)) {
 			double rate = 1.0/decisionSize*2.0;
 			mutationRate.set(rate);
@@ -85,10 +88,7 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 			double rate = 1.0/decisionSize*3.0;
 			mutationRate.set(rate);
 		}
-//		else if (Opt4JStarter.getIteration() >= (Opt4JStarter.getDSEWorkflowConfig().getMaxIterations()*0.25)) {
-//			double rate = 1.0/23*4.0;
-//			mutationRate.set(rate);
-//		} 
+
 		
 		Collection<Individual> offspring = new ArrayList<Individual>();
 		Collection<Pair<Individual>> couples = coupler.getCouples((int) Math

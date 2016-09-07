@@ -101,7 +101,7 @@ public class GenomeToCandidateModelTransformation {
 	public static Map<String, Object> chosenValues;
 	
 	/**
-	 *  in this map the decorators which were selected in the dofi are stored to use them in the ocl queries.
+	 *  in this map the decorators which were selected in the dofi are stored to use them in the OCL queries.
 	 *  Name is always the model name without spaces and small with an "$" at the end. For example "UsageModel"
 	 *  would be "usagemodel$"
 	 */
@@ -120,13 +120,13 @@ public class GenomeToCandidateModelTransformation {
 	
 	/**
 	 * Set a new decorator to use it as a variable in the ocl queries.
-	 * @param decorator is a map of String and Object tuples. The string is 
-	 * 		  the variable name
-	 * 	      for the decorator. The name is always the model name but with 
-	 *        all characters small and no spaces.
-	 *        and with "$" at the end.
-	 * 	      For example "UsageModel" would be "usagemodel$"
-	 *        The Object is the model which was selected in the dofi.
+	 * 
+	 * @param decorator
+	 *            is a map of String and Object tuples. The string is the
+	 *            variable name for the decorator. The name is always the model
+	 *            name but with all characters small and no spaces. and with "$"
+	 *            at the end. For example "UsageModel" would be "usagemodel$"
+	 *            The Object is the model which was selected in the dofi.
 	 */
 	public static void setDecorator(Map<String, Object> decorator) {
 		GenomeToCandidateModelTransformation.decorator = decorator;
@@ -207,27 +207,33 @@ public class GenomeToCandidateModelTransformation {
 				EObject modelElement = dofi.getPrimaryChanged();
 				modelElement = referenceSwitch.changeToLocal(dofi.getPrimaryChanged(), null);
 
-				//determine property to change using GDoF
+				// determine property to change using GDoF
 				EStructuralFeature property = gdof.getPrimaryChangeable().getChangeable();
 
-				EStructuralFeature propertyInLoadedPCM = modelElement.eClass().getEStructuralFeature(property.getName());
+				EStructuralFeature propertyInLoadedPCM = modelElement.eClass()
+						.getEStructuralFeature(property.getName());
 				Object oldChoice = modelElement.eGet(propertyInLoadedPCM);
-				
+
 				/*
 				 * if a ProcessingResourceSpecification is the choice then it is
 				 * necessary to check if there is a sibling 
 				 * ProcessingResourceSpecification which should be collected
+				 * 
+				 * For example, a CPU should be changed and the DELAY should not
+				 * be changed then the DELAY have to be retrieved to set both as list.
+				 * 
 				 * This is necessary because ProcessingResourceSpecification are
 				 * only set as a list
 				 */
 				List<Object> fullchoice = new ArrayList<>();
 				boolean oldChoiceSet = false;
 				if (oldChoice instanceof EList) {
-					for (Object o : (EList<?>)oldChoice) {
+					for (Object o : (EList<?>) oldChoice) {
 						if (o instanceof ProcessingResourceSpecificationImpl) {
-							ProcessingResourceSpecification prs = (ProcessingResourceSpecification)o;
+							ProcessingResourceSpecification prs = (ProcessingResourceSpecification) o;
 							if (!prs.getActiveResourceType_ActiveResourceSpecification().getId()
-									.equals(((ProcessingResourceSpecification)choice.getValue()).getActiveResourceType_ActiveResourceSpecification().getId())) {
+									.equals(((ProcessingResourceSpecification) choice.getValue())
+											.getActiveResourceType_ActiveResourceSpecification().getId())) {
 								fullchoice.add(prs);
 							} else {
 								getChosenValues().put("oldValue$", o);
@@ -257,19 +263,20 @@ public class GenomeToCandidateModelTransformation {
 				Object value = choice.getValue();
 				
 				chosenValues.put("choiceValue$", value);
-				
-				if (value instanceof VariableUsageImpl || value instanceof ProcessingResourceSpecificationImpl) {
+
+				if (value instanceof VariableUsageImpl 
+						|| value instanceof ProcessingResourceSpecificationImpl) {
 					// set full list of ProcessingResourceSpecifications if only
 					// one is changed
 					if (value instanceof ProcessingResourceSpecificationImpl) {
 						setProperty(modelElement, property, fullchoice);
 					} else {
-					EList<Object> list = new BasicEList<Object>();
-					list.add(value);
-					setProperty(modelElement, property, list);
+						EList<Object> list = new BasicEList<Object>();
+						list.add(value);
+						setProperty(modelElement, property, list);
 					}
 				} else {
-				setProperty(modelElement, property, choice.getValue());
+					setProperty(modelElement, property, choice.getValue());
 				}
 				List<EObject> modelElementList = new ArrayList<EObject>(1);
 				
@@ -470,8 +477,9 @@ public class GenomeToCandidateModelTransformation {
 		if(changeableElement != null) {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(ced.getChangeable().getName());
 		Object change = changeableElement.eGet(propertyInLoadedPCM);
-		
-		//init
+
+			// init of the OCL variables that they can be used in the global OCL
+			// environment of the helper definitions
 		GenomeToCandidateModelTransformation.getChosenValues().put("oldValue$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("choiceValue$", change);
 		GenomeToCandidateModelTransformation.getChosenValues().put("changeable$", changeableElement);
@@ -799,6 +807,7 @@ public class GenomeToCandidateModelTransformation {
 	@SuppressWarnings("deprecation")
 	private void mergeModels(org.eclipse.emf.compare.Comparison com) {
 		
+		// if no differences, do nothing
 		if (com.getDifferences().isEmpty()) return;
 		
 		Repository repo = null;
@@ -823,6 +832,11 @@ public class GenomeToCandidateModelTransformation {
 		
 		EList<Match> match = localComp.getMatches();
 		
+		/*
+		 * the elements to which the differences should be merged have to be 
+		 * elements from the current PCM instance.
+		 * 
+		 */
 		for (Match m : match) {
 			//TODO all models on right have to be from the copied instance
 			//set system of instance to merge to actual system

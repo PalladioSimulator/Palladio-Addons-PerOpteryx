@@ -203,7 +203,12 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype>{
 				
 //				logger.info("Constraint: "+(System.nanoTime()-start)/Math.pow(10, 9));
 				//retrieveCost(pheno, obj, this.objectives.get(objectives.size() -1));
-
+				/*
+				 * These lines were used to store models to compare them with each other.
+				 * As it can be seen are the paths absolute and won't work like this on other systems.
+				 * Its just for illustration purposes
+				 * 
+				 */			
 //				PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 //				
 //				PCMResourceSetPartition part = Opt4JStarter.getProblem().makeLocalCopy(pcmPartition, false);

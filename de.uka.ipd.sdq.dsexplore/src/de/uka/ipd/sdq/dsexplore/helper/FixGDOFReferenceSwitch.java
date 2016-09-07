@@ -1,31 +1,12 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
-import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.compare.*;
 import org.eclipse.emf.compare.impl.ComparisonImpl;
-import org.eclipse.emf.compare.internal.merge.MergeDataImpl;
-import org.eclipse.emf.compare.internal.merge.MergeOperation;
 import org.eclipse.emf.compare.internal.spec.ComparisonSpec;
-import org.eclipse.emf.compare.match.IComparisonFactory;
-import org.eclipse.emf.compare.merge.BatchMerger;
-import org.eclipse.emf.compare.merge.IBatchMerger;
-import org.eclipse.emf.compare.merge.IMerger;
-import org.eclipse.emf.compare.merge.IMerger.Registry;
-import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.compare.util.CompareAdapterFactory;
-import org.eclipse.emf.ecore.EAnnotation;
 //import org.eclipse.emf.diffmerge.api.IComparison;
 //import org.eclipse.emf.diffmerge.api.Role;
 //import org.eclipse.emf.diffmerge.api.diff.IDifference;
@@ -36,33 +17,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ui.model.IComparableContribution;
-import org.modelversioning.emfprofile.Stereotype;
-import org.modelversioning.emfprofileapplication.EMFProfileApplicationFactory;
-import org.modelversioning.emfprofileapplication.StereotypeApplicability;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
-import org.opt4j.start.Opt4J;
-import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
-import org.palladiosimulator.mdsdprofiles.notifier.MDSDProfilesNotifier;
-import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementDecoratorAdapterFactory;
-import org.palladiosimulator.mdsdprofiles.provider.StereotypableElementItemProviderDecorator;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.allocation.AllocationFactory;
 import org.palladiosimulator.pcm.allocation.impl.AllocationContextImpl;
-import org.palladiosimulator.pcm.allocation.impl.AllocationImpl;
-import org.palladiosimulator.pcm.core.CoreFactory;
 import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.ComposedStructure;
-import org.palladiosimulator.pcm.core.composition.CompositionFactory;
-import org.palladiosimulator.pcm.core.composition.CompositionPackage;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyContextImpl;
-import org.palladiosimulator.pcm.core.composition.util.CompositionAdapterFactory;
 import org.palladiosimulator.pcm.core.impl.PCMRandomVariableImpl;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.CompositeComponent;
@@ -73,13 +36,11 @@ import org.palladiosimulator.pcm.repository.impl.BasicComponentImpl;
 import org.palladiosimulator.pcm.repository.impl.CompositeComponentImpl;
 import org.palladiosimulator.pcm.repository.impl.OperationProvidedRoleImpl;
 import org.palladiosimulator.pcm.repository.impl.OperationRequiredRoleImpl;
-import org.palladiosimulator.pcm.repository.impl.RepositoryImpl;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ProcessingResourceSpecificationImpl;
 import org.palladiosimulator.pcm.resourceenvironment.impl.ResourceContainerImpl;
-import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.InternalAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
@@ -94,26 +55,21 @@ import org.palladiosimulator.pcm.seff.impl.ResourceDemandingSEFFImpl;
 import org.palladiosimulator.pcm.seff.impl.SetVariableActionImpl;
 import org.palladiosimulator.pcm.seff.impl.StartActionImpl;
 import org.palladiosimulator.pcm.seff.impl.StopActionImpl;
-import org.palladiosimulator.pcm.system.impl.SystemImpl;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.ChangeableElementDescription;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.DegreeOfFreedom;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.HelperOCLDefinition;
-import de.uka.ipd.sdq.pcm.designdecision.gdof.StaticContextRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.StaticSelectionRule;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.util.gdofSwitch;
 import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescription;
 import de.uka.ipd.sdq.pcm.resourcerepository.ResourceDescriptionRepository;
 import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryImpl;
-import de.uka.ipd.sdq.stoex.Comparison;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 /**
  * 
@@ -140,24 +96,10 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	protected static Logger logger = Logger.getLogger(FixGDOFReferenceSwitch.class.getName());
 	
     private final PCMInstance pcmInstance;
-
-    private SecureRandom random = new SecureRandom();
     
     public FixGDOFReferenceSwitch(final PCMInstance initialInstance2) {
         this.pcmInstance = initialInstance2;
     }
-    @Override
-    public EObject caseChangeableElementDescription(final ChangeableElementDescription object) {
-
-		return object;
-    	
-    }
-    @Override
-    public EObject caseDegreeOfFreedom(final DegreeOfFreedom object) {
-    	return object;
-    }
-    
-    
     
     /**
      * This method switches the reference from the second loaded instance to the
@@ -175,13 +117,6 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 				com = (ComparisonSpec) obj;
 			}
 		}
-		
-		/*
-    	if (com != null) {
-	    	mergeModels(dofi, com);
-    	}
-    	*/
-    	
     	
     	//first, set the decorators if there are any
     	EList<EObject> decos = dofi.getDecoratorModel();
@@ -190,47 +125,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     		String name = deco.eClass().getName().toLowerCase()+'$';
     		GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
     	}
-    	
-    	//Test EMF DIFF -->
-    	// if diffmerge active do this FIXME
-    	/*
-    	ResourceEnvironment re = initialInstance.getResourceEnvironment();
-    	EList<ResourceContainer> rcList = re.getResourceContainer_ResourceEnvironment();
-    	ResourceContainer rc = rcList.get(5);
-    	EList<StereotypeApplication> stereotypeApps = StereotypeAPI.getStereotypeApplications(rc);
-    	Object repNumber = null;
-    	for (StereotypeApplication sas : stereotypeApps) {
-    		EList<EStructuralFeature> features = sas.getStereotype().getEAllStructuralFeatures();
-    		for (EStructuralFeature feat : features) {
-    			if (feat.getName().equals("ReplicationNumber")) {
-    				repNumber = sas.eGet(feat);
-    			}
-    		}
-    	}
-    	*/
-//    	---------->
-    	
-    	
-//    	Repository repAfter = (Repository)com.getMatches().get(0).getRight();
-//    	----------->
-    	
-		//IBatchMerger merger = new BatchMerger(registry);
-//    	Resource left = (Resource) ((EObject)diffMerge.get("left")).eResource();
-//    	Resource right = (Resource) ((EObject)diffMerge.get("right")).eResource();
-//
-//    	IEditableModelScope targetScope = new FragmentedModelScope(right, true); // For example
-//    	IEditableModelScope referenceScope = new FragmentedModelScope(left, true); // For example
-//    	
-//    	IComparison comparison = new EComparisonImpl(targetScope, referenceScope);
-//    	comparison.compute(null, null, null, null);
-//    	Collection<IDifference> differences = comparison.getRemainingDifferences();
-//    	
-//    	
-//    	
-//    	differences = comparison.merge(differences, Role.TARGET, true, null);
-//    	
-    	// <--
-    	
+    	    	
     	EClass rdrEClass = null;
     	EClass rdEclass = null;
     	for (EObject dec : decos) {
@@ -248,11 +143,11 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	
     	
     	EObject prim = dofi.getPrimaryChanged();
-//    	System.out.println("Prim: "+prim.eClass().toString());
     	dofi.setPrimaryChanged(changeToLocal(prim,null));
     	EObject primLocal = dofi.getPrimaryChanged();
-//    	System.out.println("PrimLocal: "+primLocal.eClass().toString());
-    	
+
+		// iterate through all helperDefinitions of the valueRule of the primary
+		// changeable
     	for (HelperOCLDefinition helpDef: dof.getPrimaryChangeable().getValueRule().getHelperDefinition()) {
     		helpDef.setContextClass(doContextClassSwitch(helpDef.getContextClass()));
     	}
@@ -293,13 +188,28 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	}
     	return dofi;
     }
-    
-	
-    
-    public EObject changeToLocal(EObject prim, EStructuralFeature propertyInLoadedPCM) {
+
+	/**
+	 * Because the different candidates are created with a local copy of the
+	 * initial PCMInstance the elements which are used, changed or deleted
+	 * during the decoding phase have to be changed to the copies.
+	 * 
+	 * This method retrieves the local copy for a given element or property.
+	 * 
+	 * @param changedElement
+	 *            the element for which the local copy should be retrieved
+	 * @param propertyInLoadedPCM
+	 *            the property of the element to retrieve, can be null
+	 * @return the local element
+	 */
+    public EObject changeToLocal(EObject changedElement, EStructuralFeature propertyInLoadedPCM) {
 		//System.out.println(prim.toString());
-		
-		PCMInstance pcm = Opt4JStarter.getProblem().getCurrentInstance();
+		PCMInstance pcm = null;
+    	if (Opt4JStarter.getProblem() == null) {
+    		pcm = this.pcmInstance;
+    	} else {
+    		pcm = Opt4JStarter.getProblem().getCurrentInstance();
+    	}
 		List<Repository> repos = pcm.getRepositories();
 		Repository repo = null;
 		for (Repository r : repos) {
@@ -308,55 +218,55 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 			break;
 		}
     	
-		if (prim instanceof AssemblyContextImpl) {
+		if (changedElement instanceof AssemblyContextImpl) {
 			final List<AssemblyContext> acs = pcm.getSystem().getAssemblyContexts__ComposedStructure();
 			final AssemblyContext localPrim = (AssemblyContext) EMFHelper.retrieveEntityByID(acs,
-					((AssemblyContext) prim).getId());
-			if (localPrim != null) prim = localPrim;
+					((AssemblyContext) changedElement).getId());
+			if (localPrim != null) changedElement = localPrim;
 		} 
-		else if (prim instanceof AllocationContextImpl) {
+		else if (changedElement instanceof AllocationContextImpl) {
 			final List<AllocationContext> acs = pcm.getAllocation().getAllocationContexts_Allocation();
 			final AllocationContext localPrim = (AllocationContext) EMFHelper.retrieveEntityByID(acs,
-					((AllocationContext) prim).getId());
+					((AllocationContext) changedElement).getId());
 			
-			if (localPrim != null) prim = localPrim;
+			if (localPrim != null) changedElement = localPrim;
 		} 
-		else if (prim instanceof AssemblyConnectorImpl) {
-			prim = (AssemblyConnector)prim;
-			String id = ((AssemblyConnector) prim).getId();
+		else if (changedElement instanceof AssemblyConnectorImpl) {
+			changedElement = (AssemblyConnector)changedElement;
+			String id = ((AssemblyConnector) changedElement).getId();
 			EList<Connector> conns = pcm.getSystem().getConnectors__ComposedStructure();
 			AssemblyConnector as = (AssemblyConnector)EMFHelper.retrieveEntityByID(conns, id);
-			if (as != null) prim = as;
+			if (as != null) changedElement = as;
 			
-			return prim;
+			return changedElement;
 		}
-		else if (prim instanceof ProcessingResourceSpecificationImpl) {
-			if (((ProcessingResourceSpecification)prim).eContainer() == null) {
-				return prim;
+		else if (changedElement instanceof ProcessingResourceSpecificationImpl) {
+			if (((ProcessingResourceSpecification)changedElement).eContainer() == null) {
+				return changedElement;
 			}
-			String id = ((ResourceContainer)((ProcessingResourceSpecification)prim).eContainer()).getId();
+			String id = ((ResourceContainer)((ProcessingResourceSpecification)changedElement).eContainer()).getId();
 			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
 					.getResourceContainer_ResourceEnvironment();
 			final ResourceContainer localPrim = (ResourceContainer) EMFHelper
 					.retrieveEntityByID(rcs, id);
-			if (localPrim == null) return prim;
+			if (localPrim == null) return changedElement;
 			final List<ProcessingResourceSpecification> prss = localPrim.getActiveResourceSpecifications_ResourceContainer();
 			for (ProcessingResourceSpecification prs : prss) {
-				if(prs.getId().equals(((ProcessingResourceSpecificationImpl) prim).getId())) {
-					prim = prs;
+				if(prs.getId().equals(((ProcessingResourceSpecificationImpl) changedElement).getId())) {
+					changedElement = prs;
 					break;
 				}
 			}	
 		}
-		else if (prim instanceof BasicComponentImpl) {
-			String choiceId = ((BasicComponent)prim).getId();
+		else if (changedElement instanceof BasicComponentImpl) {
+			String choiceId = ((BasicComponent)changedElement).getId();
 			BasicComponent copiedChoice = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), choiceId);
-			if (copiedChoice != null) prim = copiedChoice;
+			if (copiedChoice != null) changedElement = copiedChoice;
 			
 		} 
-		else if (prim instanceof PCMRandomVariableImpl) {
-			if (!(((PCMRandomVariable)prim).eContainer() instanceof ProcessingResourceSpecificationImpl)) return prim;
-			ProcessingResourceSpecification prsChoice = ((ProcessingResourceSpecification)((PCMRandomVariable)prim).eContainer());
+		else if (changedElement instanceof PCMRandomVariableImpl) {
+			if (!(((PCMRandomVariable)changedElement).eContainer() instanceof ProcessingResourceSpecificationImpl)) return changedElement;
+			ProcessingResourceSpecification prsChoice = ((ProcessingResourceSpecification)((PCMRandomVariable)changedElement).eContainer());
 			String choiceId = prsChoice.getId();
 			String id = ((ResourceContainer)prsChoice.eContainer()).getId();
 			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
@@ -367,74 +277,83 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 			for (ProcessingResourceSpecification prs : prss) {
 				if (prs.getId().equals(choiceId)) {
 					Object copiedChoice = prs.eGet(propertyInLoadedPCM);
-					prim = (EObject) copiedChoice;
+					changedElement = (EObject) copiedChoice;
 					break;
 				}
 			}
 		} 
-		else if (prim instanceof CompositeComponentImpl) {
-			String choiceId = ((CompositeComponent)prim).getId();
+		else if (changedElement instanceof CompositeComponentImpl) {
+			String choiceId = ((CompositeComponent)changedElement).getId();
 			
 			
 			
 			CompositeComponent copiedChoice = (CompositeComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), choiceId);
 			
-			if (copiedChoice != null) prim = copiedChoice;
+			if (copiedChoice != null) changedElement = copiedChoice;
 		} 
-		else if (prim instanceof ResourceContainerImpl) {
-			String id = ((ResourceContainer)prim).getId();
+		else if (changedElement instanceof ResourceContainerImpl) {
+			String id = ((ResourceContainer)changedElement).getId();
 			final List<ResourceContainer> rcs = pcm.getResourceEnvironment()
 					.getResourceContainer_ResourceEnvironment();
 			final ResourceContainer copiedChoice = (ResourceContainer) EMFHelper
 					.retrieveEntityByID(rcs, id);
-			if (copiedChoice != null) prim = copiedChoice;
+			if (copiedChoice != null) changedElement = copiedChoice;
 		}
-		else if (prim instanceof OperationProvidedRoleImpl) {
-			String parentId = ((OperationProvidedRole)prim).getProvidedInterface__OperationProvidedRole().getId();
+		else if (changedElement instanceof OperationProvidedRoleImpl) {
+			String parentId = ((OperationProvidedRole)changedElement).getProvidedInterface__OperationProvidedRole().getId();
 			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
 			//comp.getRequiredRoles_InterfaceRequiringEntity();
 		}
-		else if (prim instanceof ResourceDemandingSEFFImpl) {
-			String parentId = ((ResourceDemandingSEFF)prim).getBasicComponent_ServiceEffectSpecification().getId();
+		else if (changedElement instanceof ResourceDemandingSEFFImpl) {
+			String parentId = ((ResourceDemandingSEFF)changedElement).getBasicComponent_ServiceEffectSpecification().getId();
 			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
 			if (comp == null) return null;
 			EList<ServiceEffectSpecification> content = comp.getServiceEffectSpecifications__BasicComponent();
 			for (ServiceEffectSpecification seff : content) {
 				if (seff instanceof ResourceDemandingSEFFImpl) {
-					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) prim).getId())) {
-						prim = seff;
+					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) changedElement).getId())) {
+						changedElement = seff;
 						break;
 					}
 				}
 			}
 		}
-		else if (prim instanceof OperationRequiredRoleImpl) {
+		else if (changedElement instanceof OperationRequiredRoleImpl) {
 
-			String parentId = ((OperationRequiredRole)prim).getRequiredInterface__OperationRequiredRole().getId();
-			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
-			if (comp == null) return null;
+			String parentId = ((OperationRequiredRole) changedElement).getRequiredInterface__OperationRequiredRole().getId();
+			BasicComponent comp = (BasicComponent) EMFHelper.retrieveEntityByID(repo.getComponents__Repository(),
+					parentId);
+			if (comp == null)
+				return null;
 		}
-		
-		else if (prim != null && prim.eContainer() instanceof ResourceDemandingSEFFImpl) {
-			if (prim instanceof SetVariableActionImpl) prim = (SetVariableAction)prim;
-			if (prim instanceof InternalActionImpl) prim = (InternalAction)prim;
-			if (prim instanceof ExternalCallActionImpl) prim = (ExternalCallAction)prim;
-			if (prim instanceof StartActionImpl) prim = (StartAction)prim;
-			if (prim instanceof StopActionImpl) prim = (StopActionImpl)prim;
-			
-			
-			ResourceDemandingSEFF rseff = (ResourceDemandingSEFF)prim.eContainer();
-			String parentId = ((BasicComponent)rseff.getBasicComponent_ServiceEffectSpecification()).getId();
-			BasicComponent comp = (BasicComponent)EMFHelper.retrieveEntityByID(repo.getComponents__Repository(), parentId);
-			if (comp == null) return null;
+
+		else if (changedElement != null && changedElement.eContainer() instanceof ResourceDemandingSEFFImpl) {
+			if (changedElement instanceof SetVariableActionImpl)
+				changedElement = (SetVariableAction) changedElement;
+			if (changedElement instanceof InternalActionImpl)
+				changedElement = (InternalAction) changedElement;
+			if (changedElement instanceof ExternalCallActionImpl)
+				changedElement = (ExternalCallAction) changedElement;
+			if (changedElement instanceof StartActionImpl)
+				changedElement = (StartAction) changedElement;
+			if (changedElement instanceof StopActionImpl)
+				changedElement = (StopActionImpl) changedElement;
+
+			ResourceDemandingSEFF rseff = (ResourceDemandingSEFF) changedElement.eContainer();
+			String parentId = ((BasicComponent) rseff.getBasicComponent_ServiceEffectSpecification()).getId();
+			BasicComponent comp = (BasicComponent) EMFHelper.retrieveEntityByID(repo.getComponents__Repository(),
+					parentId);
+			if (comp == null)
+				return null;
 			EList<ServiceEffectSpecification> content = comp.getServiceEffectSpecifications__BasicComponent();
 			for (ServiceEffectSpecification seff : content) {
 				if (seff instanceof ResourceDemandingSEFFImpl) {
-					if (((ResourceDemandingSEFF)seff).getId().equals(((ResourceDemandingSEFFImpl) rseff).getId())) {
-						EList<org.palladiosimulator.pcm.seff.AbstractAction> aa = ((ResourceDemandingSEFFImpl) seff).getSteps_Behaviour();
-						for(org.palladiosimulator.pcm.seff.AbstractAction action : aa) {
-							if (action.getId().equals(((Identifier) prim).getId())) {
-								
+					if (((ResourceDemandingSEFF) seff).getId().equals(((ResourceDemandingSEFFImpl) rseff).getId())) {
+						EList<org.palladiosimulator.pcm.seff.AbstractAction> aa = ((ResourceDemandingSEFFImpl) seff)
+								.getSteps_Behaviour();
+						for (org.palladiosimulator.pcm.seff.AbstractAction action : aa) {
+							if (action.getId().equals(((Identifier) changedElement).getId())) {
+
 								return action;
 							}
 						}
@@ -442,7 +361,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 				}
 			}
 		}
-		return prim;
+		return changedElement;
 	}
     
 	/**
@@ -450,7 +369,7 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
      * model
      * 
      * @param helpDef is the helper definition for which the context class should be switched
-     * @return returns the eClass from the current instance
+     * @return the eClass from the current instance
      */
 	private EClass doContextClassSwitch(EClass ctxClass) {
 		
@@ -596,11 +515,14 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		}
 		return switchClasses(ctxClass, contents, superTypes);
 	}
+
 	/**
-	 * Preparation for the switch of a context which is contained in the 
+	 * Preparation for the switch of a context which is contained in the
 	 * composition package
-	 * @param ctxClass is the context of the HelperOCLDefinition for which the 
-	 * context class will be switched
+	 * 
+	 * @param ctxClass
+	 *            is the context of the HelperOCLDefinition for which the
+	 *            context class will be switched
 	 */
 	private EClass doCompositionSwich(EClass ctxClass) {
 		org.palladiosimulator.pcm.system.System system = this.pcmInstance.getSystem();
@@ -608,37 +530,44 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		EList<EClass> superTypes = system.eClass().getEAllSuperTypes();
 		return switchClasses(ctxClass, contents, superTypes);
 	}
+
 	/**
 	 * Method to do the switch for the different contexts
 	 * 
-	 * @param helpDef is the HelperOCLDefinition for which the context class will be switched
-	 * @param contents All contents from the specific model which matches the context of the HelperOCLDefinition
-	 * @param superTypes All SuperTypes from the specific model which matches the context of the HelperOCLDefinition
+	 * @param helpDef
+	 *            is the HelperOCLDefinition for which the context class will be
+	 *            switched
+	 * @param contents
+	 *            All contents from the specific model which matches the context
+	 *            of the HelperOCLDefinition
+	 * @param superTypes
+	 *            All SuperTypes from the specific model which matches the
+	 *            context of the HelperOCLDefinition
 	 */
 	@SuppressWarnings("unchecked")
 	private EClass switchClasses(EClass ctxClass, EList<?> contents, EList<?> superTypes) {
-		//boolean found = false;
-		
+		// boolean found = false;
+
 		for (Object content : contents) {
-			
+
 			if (content instanceof EClass) {
-				EClass eClass = (EClass)content;
+				EClass eClass = (EClass) content;
 				if (ctxClass.getName().equals((eClass).getName())) {
 					return eClass;
 				}
 			} else if (content instanceof EObject) {
-				EObject eObj = (EObject)content;
+				EObject eObj = (EObject) content;
 				if (ctxClass.getName().equals((eObj).eClass().getName())) {
 					return eObj.eClass();
-					
+
 				}
 			}
 		}
-		for (EClass superType : (EList<EClass>)superTypes) {
+		for (EClass superType : (EList<EClass>) superTypes) {
 			if (ctxClass.getName().equals(superType.getName())) {
-				return superType;			
+				return superType;
 			}
-		}	
+		}
 		return ctxClass;
 	}
 
