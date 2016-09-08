@@ -1,12 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.helper;
 
-import java.security.SecureRandom;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.compare.impl.ComparisonImpl;
-import org.eclipse.emf.compare.internal.spec.ComparisonSpec;
 //import org.eclipse.emf.diffmerge.api.IComparison;
 //import org.eclipse.emf.diffmerge.api.Role;
 //import org.eclipse.emf.diffmerge.api.diff.IDifference;
@@ -58,7 +55,6 @@ import org.palladiosimulator.pcm.seff.impl.StopActionImpl;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
@@ -110,21 +106,8 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
      * @return the current degree of freedom instance
      */
     public EObject switchReferences(final DegreeOfFreedomInstance dofi) {
-       	
-    	org.eclipse.emf.compare.Comparison com = null;
-		for(EObject obj :dofi.getDecoratorModel()) {
-			if (obj instanceof ComparisonImpl) {
-				com = (ComparisonSpec) obj;
-			}
-		}
-    	
-    	//first, set the decorators if there are any
+
     	EList<EObject> decos = dofi.getDecoratorModel();
-    	for (EObject deco : decos) {
-    		
-    		String name = deco.eClass().getName().toLowerCase()+'$';
-    		GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
-    	}
     	    	
     	EClass rdrEClass = null;
     	EClass rdEclass = null;
@@ -144,7 +127,6 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
     	
     	EObject prim = dofi.getPrimaryChanged();
     	dofi.setPrimaryChanged(changeToLocal(prim,null));
-    	EObject primLocal = dofi.getPrimaryChanged();
 
 		// iterate through all helperDefinitions of the valueRule of the primary
 		// changeable

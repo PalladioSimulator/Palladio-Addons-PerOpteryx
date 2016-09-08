@@ -128,144 +128,49 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     @Override
     public PCMPhenotype decode(final DesignDecisionGenotype genotype) {
 
-        //get PCM Instance
-//        final PCMInstance pcmInit = Opt4JStarter.getProblem().getInitialInstance();
-//        final PCMInstance currentInstance = Opt4JStarter.getProblem().getCurrentInstance();
-        
-        /*
-         * 
-         * double startTime = System.nanoTime();
-                
-                double endTime = System.nanoTime();
-                double result = (endTime - startTime) / Math.pow(10, 9);
-                logger.debug("Finished SimuCom analysis");
-                logger.info("Finished SimuCom analysis. Completed in "+(result)+" seconds");
-         * */
-//       
-//    	logger.warn("Time elapsed before decoding: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-    	//FIXME remove measurement --->
-//    	logger.warn("-----------------MEASURMENT: STARTING DECODING...");
-    	double startTime = System.nanoTime();
-    	
         // make local copy
         // copy method returns the copied current instance
         PCMInstance pcm = null;
         List<DSEIndividual> indi = Opt4JStarter.getAllIndividuals().getIndividuals();
         List<DSEIndividual> pop = Opt4JStarter.getPopulationIndividuals();
+        // for the first individual exists already a copy
         if (!indi.isEmpty() && !genotype.equals(indi.get(0).getGenotype())) {
         	pcm = new PCMInstance(Opt4JStarter.getProblem().makeLocalCopy(null,true));
         } else {
         	pcm = Opt4JStarter.getProblem().getCurrentInstance();
         }
-        
-        double endTime = System.nanoTime();
-        double result = (endTime - startTime) / Math.pow(10, 9);
-//        logger.info("MEASURMENT: Finished copying pcm instance in "+(result)+" seconds");
-//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-        //<---
 
-        
-        ////
-//        org.palladiosimulator.pcm.system.System sysInit = pcmInit.getSystem();
-//        
-//        org.palladiosimulator.pcm.system.System sys = pcm.getSystem();
-//        System.out.println(sys.eClass().toString());
-//        for(Repository rep : pcm.getRepositories()) {
-//        	System.out.println(rep.eClass().toString());
-//        }
-////        int c = 0;
-////        for (Connector conn : sys.getConnectors__ComposedStructure()) {
-////        	System.out.println(c+++conn.toString());
-////        }
-       
-//        final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
-//        Opt4JStarter.getProblem().setCurrentInstance(pcm);
-    	
         //new transformation. Transition phase: Only for those DoF that are not explicitly modelled.
         final GenomeToCandidateModelTransformation trans = new GenomeToCandidateModelTransformation();
 
         // first use new transformation.
         List<Choice> notTransformedChoices;
-//        double startTime = System.nanoTime();
         
         try {
-        	//FIXME remove measurement --->
-//        	startTime = System.nanoTime();
+        	
             notTransformedChoices = trans.transform(pcm, genotype.getEMFCandidate());
-//            endTime = System.nanoTime();
-//            result = (endTime - startTime) / Math.pow(10, 9);
-//            logger.info("MEASURMENT: Finished transformation with OCL queries in "+(result)+" seconds");
-//            logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-            //<---
+            
         } catch (final Exception e) {
             // try to continue for now
-//            logger.warn("Error when executing GDoF transformation. I will try to ignore it and continue. Failure was:");
+            logger.warn("Error when executing GDoF transformation. I will try to ignore it and continue. Failure was:");
             e.printStackTrace();
             notTransformedChoices = genotype;
         }
-
+    
         // then, use old way for choices that have not been transformed, e.g. because there is no GDoF defined for them.
         // adjust values as in genotype
-        //FIXME remove measurement --->
-//    	startTime = System.nanoTime();
         for (final Choice doubleGene : notTransformedChoices) {
 
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
-//        endTime = System.nanoTime();
-//        result = (endTime - startTime) / Math.pow(10, 9);
-//        logger.info("MEASURMENT: Finished transformation the old way in "+(result)+" seconds");
-//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-        //<---
         
-//        double endTime = System.nanoTime();
-//        double result = (endTime - startTime) / Math.pow(10, 9);
-//        
-//        logger.warn("Finished Transformation. Completed in "+(result)+" seconds");
-
-        final String genotypeString = getGenotypeString(genotype);
+		final String genotypeString = getGenotypeString(genotype);
 
         //encapsulate as phenotype
         //return new PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
         return new PCMPhenotype(pcm,genotypeString, genotype.getNumericID());
     }
 
-//	private PCMInstance makeLocalCopy(final PCMInstance pcmInit) {
-//		EcoreUtil.Copier copier = new EcoreUtil.Copier();
-//          
-//        org.palladiosimulator.pcm.system.System system = pcmInit.getSystem();
-//        Allocation allocation = pcmInit.getAllocation();
-//        List<Repository> repositories = pcmInit.getRepositories();
-//        ResourceEnvironment resEnv = pcmInit.getResourceEnvironment();
-//        UsageModel usagemodel =  pcmInit.getUsageModel();
-//        PCMResourceSetPartition pcmModel = new PCMResourceSetPartition();
-//        
-//        
-//        org.palladiosimulator.pcm.system.System sys = (org.palladiosimulator.pcm.system.System)copier.copy(system);
-//        copier.copyReferences();
-//        pcmModel.setContents(system.eResource().getURI(), sys);
-//        
-//        Allocation localAllocation = (Allocation)copier.copy(allocation);
-//        copier.copyReferences();
-//        pcmModel.setContents(allocation.eResource().getURI(), localAllocation);
-// 
-//        for (Repository repo : repositories) {
-//        	Repository localRepo = (Repository)copier.copy(repo);
-//        	copier.copyReferences();
-//        	pcmModel.setContents(repo.eResource().getURI(), localRepo);
-//        }
-//        
-//        ResourceEnvironment localResEnv = (ResourceEnvironment)copier.copy(resEnv);
-//        copier.copyReferences();
-//        pcmModel.setContents(resEnv.eResource().getURI(), localResEnv);
-//        
-//        UsageModel localUsagemodel = (UsageModel)copier.copy(usagemodel);
-//        copier.copyReferences();
-//        pcmModel.setContents(usagemodel.eResource().getURI(), localUsagemodel);
-//        
-//        PCMInstance pcm = new PCMInstance(pcmModel);
-//		return pcm;
-//	}
 
     /**
      * Applies the given change to the initial pcm instance (as this is
@@ -706,7 +611,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
      * @return a String that can be used to represent this choice
      */
     public static String getDecisionString(final Choice choice){
-        //		DegreeOfFreedomInstance designDecision = choice.getDegreeOfFreedomInstance();
 
         String result = choice.getValue().toString();
 
@@ -726,7 +630,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         	PCMRandomVariable random = (PCMRandomVariable) choice.getValue();
         	String chosenVal = random.getSpecification().toString();
         	String entityName = choice.getDegreeOfFreedomInstance().getEntityName().toString();
-        	//result = entityName+" (Value: "+chosenVal+ ")";
         	result = chosenVal;
         }
         else if (choice.getValue() instanceof ProcessingResourceSpecificationImpl) {

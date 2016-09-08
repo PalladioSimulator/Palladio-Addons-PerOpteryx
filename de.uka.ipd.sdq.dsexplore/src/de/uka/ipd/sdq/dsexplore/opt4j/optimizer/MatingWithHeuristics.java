@@ -115,6 +115,8 @@ public class MatingWithHeuristics extends MatingCrossoverMutate {
 	 * Performs the actual coupler process of two parents using
 	 * heuristics
 	 * 
+	 * Mutation and tactics works now only with GDoFs
+	 * 
 	 * @param parent1
 	 *            parent one
 	 * @param parent2

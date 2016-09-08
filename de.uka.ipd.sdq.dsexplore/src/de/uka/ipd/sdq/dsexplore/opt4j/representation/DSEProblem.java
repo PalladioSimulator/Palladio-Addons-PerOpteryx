@@ -3,7 +3,9 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.core.runtime.CoreException;
@@ -99,7 +101,7 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
      */
     private final PCMInstance initialInstance;
 
-    private DecisionSpace pcmProblem;
+	private DecisionSpace pcmProblem;
     private final designdecisionFactory designDecisionFactory;
     private final specificFactory specificDesignDecisionFactory;
 
@@ -113,6 +115,21 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
 
     private DesignDecisionGenotype initialGenotype;
 
+	/**
+	 *  in this map the decorators which were selected in the dofi are 
+	 *  stored to use them in the OCL queries.
+	 *  Name is always the model name without spaces and small with 
+	 *  an "$" at the end. For example "UsageModel"
+	 *  would be "usagemodel$"
+	 */
+    private Map<String, Object> decorator;
+    
+    /**
+     * we need this to store the old and new values as 
+     * variables to use it in the ocl queries
+     */
+    public Map<String, Object> chosenValues;
+    
     //FIXME testing purpose, if it works try to implement it without the flag 
     //I need to know if this is the decoding of the first candidate
     private boolean firstDecode;
@@ -147,6 +164,19 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
             this.initialGenotypeList = determineInitialGenotype(problem);
 
         }
+        // init decorator
+        this.decorator = new HashMap<String, Object>();
+        EList<DegreeOfFreedomInstance> dofis = this.pcmProblem.getDegreesOfFreedom();
+    	for (DegreeOfFreedomInstance dofi : dofis) {
+	        EList<EObject> decos = dofi.getDecoratorModel();
+	    	for (EObject deco : decos) {
+	    		
+	    		String name = deco.eClass().getName().toLowerCase()+'$';
+	    		this.decorator.put(name, deco);
+	    	}
+    	}
+        
+        this.chosenValues = new HashMap<String, Object>();
 
         //TODO: mapping of design decisions to bounds.
         /*
@@ -260,12 +290,12 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
         	for (EObject deco : decos) {
         		String name = deco.eClass().getName().toLowerCase()+'$';
         		if (deco instanceof DiffModelRepositoryImpl) {
-        			GenomeToCandidateModelTransformation.getDecorator().put(name, deco);
+        			this.getDecorator().put(name, deco);
         			continue;
         		}
         		EObject localCopy = copier.copy(deco);
         		copier.copyReferences();
-        		GenomeToCandidateModelTransformation.getDecorator().put(name, localCopy);
+        		this.getDecorator().put(name, localCopy);
         	}
         }
         
@@ -876,8 +906,47 @@ public class DSEProblem implements IJob, IBlackboardInteractingJob<MDSDBlackboar
 	public void setFirstDecode(boolean firstDecode) {
 		this.firstDecode = firstDecode;
 	}
-    
 
+	/**
+	 * With this method you can get a map of set decorators.
+	 * @return a map of decorators with String as key and Object as value.
+	 */
+	public Map<String, Object> getDecorator() {
+		return decorator;
+	}
+
+	/**
+	 * Set a new decorator to use it as a variable in the ocl queries.
+	 * 
+	 * @param decorator
+	 *            is a map of String and Object tuples. The string is the
+	 *            variable name for the decorator. The name is always the model
+	 *            name but with all characters small and no spaces. and with "$"
+	 *            at the end. For example "UsageModel" would be "usagemodel$"
+	 *            The Object is the model which was selected in the dofi.
+	 */
+	public void setDecorator(Map<String, Object> decorator) {
+		this.decorator = decorator;
+	}
+	
+	/**
+	 * Retrieves the map with the old and new choice value
+	 * 
+	 * @return the a map with the values for the old and new choice
+	 */
+    public Map<String, Object> getChosenValues() {
+		return chosenValues;
+	}
+
+	/**
+	 * Sets the whole map with the chosen choice values
+	 * Note: To add a choice value to the map use "put".
+	 * 
+	 * @param chosenValues is the new map which should overwrite the current
+	 */
+	public void setChosenValues(Map<String, Object> chosenValues) {
+		this.chosenValues = chosenValues;
+	}
 	
     
 }

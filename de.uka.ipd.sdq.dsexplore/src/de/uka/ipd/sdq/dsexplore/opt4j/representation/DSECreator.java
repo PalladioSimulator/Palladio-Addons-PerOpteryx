@@ -121,32 +121,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 
 	private double createDoubleValue(ContinuousRangeDegree contDegree) {
-		//FIXME Testing
-		if (contDegree.getNumberOfSteps() > 0) {
-			double margin = contDegree.getTo() - contDegree.getFrom();
-			double steps = margin / contDegree.getNumberOfSteps();
-			
-			List<Double> values = new ArrayList<>();
-			int lower = 0;
-			if (contDegree.isLowerBoundIncluded()) {
-				values.add(contDegree.getFrom());
-				
-			} else {
-				values.add(contDegree.getFrom()+steps);
-				lower = -1;
-			}
-			int upper = 0;
-			if (contDegree.isUpperBoundIncluded()) {
-				upper = 1;
-			}
-			
-			while(values.size() < contDegree.getNumberOfSteps()+upper+lower) {
-			values.add((values.get(values.size()-1))+steps);
-			}
-			int randomIndex = this.random.nextInt(values.size());
-			return values.get(randomIndex);
-		}
-		
+
 		double lowerMargin = 0;
 		if (contDegree.isLowerBoundIncluded()){
 			lowerMargin = Double.MIN_VALUE;
@@ -157,11 +132,6 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		}
 		double factor = contDegree.getTo() - upperMargin - contDegree.getFrom() - lowerMargin;
 
-
-//		double val = contDegree.getFrom() + lowerMargin + this.random.nextDouble()*factor;
-//		val = Math.round(val*10.0);
-//		val = val/10.0;
-//		return val;
 		return contDegree.getFrom() + lowerMargin + this.random.nextDouble()*factor;
 	}
 

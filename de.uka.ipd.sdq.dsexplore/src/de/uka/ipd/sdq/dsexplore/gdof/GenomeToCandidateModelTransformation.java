@@ -96,67 +96,6 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.ValueRule;
 public class GenomeToCandidateModelTransformation {
 	
 	private static final org.eclipse.ocl.ecore.OCL OCL_ENV = org.eclipse.ocl.ecore.OCL.newInstance();
-	
-	// we need this to store the old and new values as variables to use it in the ocl queries
-	public static Map<String, Object> chosenValues;
-	
-	/**
-	 *  in this map the decorators which were selected in the dofi are stored to use them in the OCL queries.
-	 *  Name is always the model name without spaces and small with an "$" at the end. For example "UsageModel"
-	 *  would be "usagemodel$"
-	 */
-	private static Map<String, Object> decorator;
-	
-	/**
-	 * With this method you can get a map of set decorators.
-	 * @return a map of decorators with String as key and Object as value.
-	 */
-	public static Map<String, Object> getDecorator() {
-		if (decorator == null) {
-			decorator = new HashMap<String, Object>();
-		}
-		return decorator;
-	}
-	
-	/**
-	 * Set a new decorator to use it as a variable in the ocl queries.
-	 * 
-	 * @param decorator
-	 *            is a map of String and Object tuples. The string is the
-	 *            variable name for the decorator. The name is always the model
-	 *            name but with all characters small and no spaces. and with "$"
-	 *            at the end. For example "UsageModel" would be "usagemodel$"
-	 *            The Object is the model which was selected in the dofi.
-	 */
-	public static void setDecorator(Map<String, Object> decorator) {
-		GenomeToCandidateModelTransformation.decorator = decorator;
-	}
-
-	/**
-	 * Retrieves the map with the old and new choice value
-	 * 
-	 * @return the a map with the values for the old and new choice
-	 */
-	public static Map<String, Object> getChosenValues() {
-		//init the variables to set the global ocl environment variables
-		if (chosenValues == null) {
-			chosenValues = new HashMap<String, Object>();
-			
-		}
-		return chosenValues;
-	}
-	
-	/**
-	 * Sets the whole map with the chosen choice values
-	 * Note: To add a choice value to the map use "put".
-	 * 
-	 * @param chosenValues is the new map which should overwrite the current
-	 */
-	public static void setChosenValues(Map<String, Object> chosenValues) {
-		GenomeToCandidateModelTransformation.chosenValues = chosenValues;
-	}
-
-
 
 	/**
 	 * The generic transformation method
@@ -234,9 +173,12 @@ public class GenomeToCandidateModelTransformation {
 							if (!prs.getActiveResourceType_ActiveResourceSpecification().getId()
 									.equals(((ProcessingResourceSpecification) choice.getValue())
 											.getActiveResourceType_ActiveResourceSpecification().getId())) {
+								// set the prs which should not be changed that it does not get lost when
+								// set the new prs as list
 								fullchoice.add(prs);
 							} else {
-								getChosenValues().put("oldValue$", o);
+								// set the old value in the chosen value set
+								Opt4JStarter.getProblem().getChosenValues().put("oldValue$", o);
 								oldChoiceSet = true;
 							}
 						}
@@ -248,21 +190,22 @@ public class GenomeToCandidateModelTransformation {
 				}
 				fullchoice.add(choice.getValue());
 				
-				// FIXME if elements are set as list and only one element of the
-				// list should be changed retrieve the siblings to set all.
+				// if elements are set as list and old choice is not set yet set the
+				// first element as old choice
 				if (oldChoice instanceof EList && !oldChoiceSet) {
 					for (Object o : (EList<?>)oldChoice) {
-						getChosenValues().put("oldValue$", o);
+						Opt4JStarter.getProblem().getChosenValues().put("oldValue$", o);
 						break;
 					}
+				// set old choice if is not set yet
 				} else if (!oldChoiceSet) {
-					getChosenValues().put("oldValue$", oldChoice);
+					Opt4JStarter.getProblem().getChosenValues().put("oldValue$", oldChoice);
 				}
-				getChosenValues().put("changeable$", modelElement);
+				Opt4JStarter.getProblem().getChosenValues().put("changeable$", modelElement);
 				
 				Object value = choice.getValue();
 				
-				chosenValues.put("choiceValue$", value);
+				Opt4JStarter.getProblem().chosenValues.put("choiceValue$", value);
 
 				if (value instanceof VariableUsageImpl 
 						|| value instanceof ProcessingResourceSpecificationImpl) {
@@ -350,7 +293,7 @@ public class GenomeToCandidateModelTransformation {
 		EStructuralFeature propertyInLoadedPCM = changeableElement.eClass().getEStructuralFeature(property.getName());
 
 		String keyForChanged = null;
-		
+		Map<String, Object> decorator = Opt4JStarter.getProblem().getDecorator();
 		if (decorator != null && decorator.containsValue(changeableElement)) {
 			for (String key : decorator.keySet()) {
 				if (decorator.get(key).equals(changeableElement)) {
@@ -480,9 +423,10 @@ public class GenomeToCandidateModelTransformation {
 
 			// init of the OCL variables that they can be used in the global OCL
 			// environment of the helper definitions
-		GenomeToCandidateModelTransformation.getChosenValues().put("oldValue$", change);
-		GenomeToCandidateModelTransformation.getChosenValues().put("choiceValue$", change);
-		GenomeToCandidateModelTransformation.getChosenValues().put("changeable$", changeableElement);
+		
+		Opt4JStarter.getProblem().getChosenValues().put("oldValue$", change);
+		Opt4JStarter.getProblem().getChosenValues().put("choiceValue$", change);
+		Opt4JStarter.getProblem().getChosenValues().put("changeable$", changeableElement);
 		}
 		Object object = valueRule(ced, changeableElement, rootElements);
 
@@ -591,14 +535,15 @@ public class GenomeToCandidateModelTransformation {
 	 * @return the query with added OCL variables in its OCL environment
 	 */
 	private static Query setEvaluationEnvironment(Query query) {
+		Map<String, Object> decorator = Opt4JStarter.getProblem().getDecorator();
 		// set the old and new choice as OCL varibale
-		Set<String> keys = GenomeToCandidateModelTransformation.getChosenValues().keySet();
+		Set<String> keys = Opt4JStarter.getProblem().getChosenValues().keySet();
 		for (String key : keys) {
-			query.getEvaluationEnvironment().add(key, GenomeToCandidateModelTransformation.getChosenValues().get(key));
+			query.getEvaluationEnvironment().add(key, Opt4JStarter.getProblem().getChosenValues().get(key));
 		}
 		
 		// set the decorators as OCL variable
-		if (decorator != null && !decorator.isEmpty()) {
+		if (Opt4JStarter.getProblem().getDecorator() != null && !decorator.isEmpty()) {
 			for (String key : decorator.keySet()) {
 				EObject dec = (EObject) decorator.get(key);
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
@@ -620,6 +565,7 @@ public class GenomeToCandidateModelTransformation {
 	private static void defineHelpers(Helper helper, List<HelperOCLDefinition> helpers) {
 		try {
 
+			Map<String, Object> decorator = Opt4JStarter.getProblem().getDecorator();
 			// Set the decorators to the global OCL environment
 			if (decorator != null && !decorator.isEmpty()) {
 				Set<String> keys = decorator.keySet();
@@ -637,11 +583,11 @@ public class GenomeToCandidateModelTransformation {
 			}
 			
 			// set the old and new choice values to the global OCL environment
-			Set<String> keys = GenomeToCandidateModelTransformation.getChosenValues().keySet();
+			Set<String> keys = Opt4JStarter.getProblem().getChosenValues().keySet();
 			for (String key: keys) {
 				Variable<EClassifier, EParameter> contextVar = ExpressionsFactory.eINSTANCE.createVariable();
 				contextVar.setName(key);
-				Object val = GenomeToCandidateModelTransformation.getChosenValues().get(key);
+				Object val = Opt4JStarter.getProblem().getChosenValues().get(key);
 				if (val instanceof Integer || val instanceof String || val instanceof Double) {
 					OCLStandardLibrary<EClassifier> stdLibrary = OCL_ENV.getEnvironment().getOCLStandardLibrary();
 					
@@ -660,7 +606,7 @@ public class GenomeToCandidateModelTransformation {
 					}
 				} else {
 				
-					EObject value = (EObject)GenomeToCandidateModelTransformation.getChosenValues().get(key);
+					EObject value = (EObject)Opt4JStarter.getProblem().getChosenValues().get(key);
 					contextVar.setType(value.eClass());
 				}
 				OCL_ENV.getEnvironment().deleteElement(key);
@@ -804,6 +750,13 @@ public class GenomeToCandidateModelTransformation {
 		
 	}
 	
+	/**
+	 * This method merges a given comparison model with the current instance
+	 * 
+	 * @param com
+	 *            is the comparison model which should be merged with the
+	 *            current instance
+	 */
 	@SuppressWarnings("deprecation")
 	private void mergeModels(org.eclipse.emf.compare.Comparison com) {
 		
@@ -826,6 +779,7 @@ public class GenomeToCandidateModelTransformation {
 			break;
 		}
 		
+		// copy the comparison to not flag the original model as resolved
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
 		Comparison localComp = (Comparison)copier.copy(com); 
 		copier.copyReferences();
@@ -847,7 +801,8 @@ public class GenomeToCandidateModelTransformation {
 			} else if (m.getLeft() instanceof RepositoryImpl) {
 				m.setRight(repo);
 			}
-			
+			// look up all the matches and change the right elements to elements form the
+			// current instance
 			for(Match subm : m.getSubmatches()) {
 				if (subm.getLeft()==null && subm.getRight() != null)  
 					subm.setRight(referenceSwitch.changeToLocal(subm.getRight(), null));
@@ -891,6 +846,7 @@ public class GenomeToCandidateModelTransformation {
 			}
 		}
 		
+		// set the resource URI of the current instance
 		EList<MatchResource> matches = localComp.getMatchedResources();
 		for (int i = 0; i < match.size(); i++) {
 			EObject right = match.get(i).getRight();
@@ -901,12 +857,15 @@ public class GenomeToCandidateModelTransformation {
 			}
 		}
 		
+		// switch the right values of the matches to the current instance
 		Iterator<Diff> diffs = localComp.getDifferences().iterator();
 		while (diffs.hasNext()) {
 			Diff d = diffs.next();
 			EObject value = null;
 			if (d instanceof ReferenceChangeImpl) {
 				value = ((ReferenceChange)d).getValue();
+			// if the changed value is an attribute (e.g. double) then change
+			// its container to the current instance
 			} else if (d instanceof AttributeChangeImpl) {
 				value = d.eContainer();
 				Object right = ((Match)value).getRight();
@@ -928,6 +887,7 @@ public class GenomeToCandidateModelTransformation {
 			
 		}
 		
+		// merge the differences from left to right
 		Iterator<Diff> diff = localComp.getDifferences().iterator();
 		while (diff.hasNext()) {
 			Diff d = diff.next();

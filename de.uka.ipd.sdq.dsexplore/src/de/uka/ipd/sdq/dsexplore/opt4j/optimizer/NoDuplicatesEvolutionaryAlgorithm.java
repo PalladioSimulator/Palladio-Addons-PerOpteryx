@@ -91,11 +91,6 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			population.addAll(generatedStartingPopulation);
 		}
 		
-		//FIXME remove measurement --->
-//		logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-//		logger.info("MEASURMENT: Creating individuals1...");
-		
-//    	double startTime = System.nanoTime();
 		int count = 0;
 		while (population.size() < alpha && count < alpha + MAX_DUPLICATES) {
 
@@ -105,7 +100,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			boolean found = true;
 			
 			//if the changeable elements are restricted from the user, check here if the selected choice is one of
-			//of the allowed elements
+			//the allowed elements
 			for (Choice c : ddg) {
 				if (!found) break;
 				
@@ -126,15 +121,11 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				}
 
 			}
-//			if (found) {
-//				logger.warn("FOUND!");
-//			}
+
 			if (!population.contains(i) && found){
 				population.add(i);
 			}
-//			if (count%1000 == 0) {
-//				logger.warn(count);
-//			}
+
 			count ++;
 		}
 		
@@ -144,13 +135,6 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			logger.warn("Stopped candidate creation after finding "+dups+" duplicates.");
 		}
 		
-//		double endTime = System.nanoTime();
-//        double result = (endTime - startTime) / Math.pow(10, 9);
-//        logger.info("MEASURMENT: Finished CREATING individuals in "+(result)+" seconds");
-//        logger.warn("---------");
-//        logger.warn("Time elapsed: "+((System.nanoTime()-OptimisationJob.getStartTimestampMillis())/Math.pow(10, 9))+" seconds");
-        //<---
-        
 		nextIteration();
 		
 		
@@ -159,6 +143,8 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			Opt4JStarter.setIteration(iteration.value());	
 			Collection<Individual> parents = selector
 					.getParents(mu, population);
+			
+			// does now only work with GDoF
 			Collection<Individual> offspring = mating.getOffspring(lambda,
 					parents);
 			
@@ -188,8 +174,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			offspring.clear();
 			offspring = cleanOffspring;
 			sizeAfter = offspring.size();
-			logger.warn("Offspring Size After Cleaning Dups: "+sizeAfter);
-			logger.info("----------------------------");
+
 			population.addAll(offspring); //This causes a decrease in population, TODO: get to the root of this problem
 
 			//TODO: If the offspring contains duplicates, they should also be removed. Andere Datenstruktur (Set)?
@@ -197,8 +182,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				int maximumTries = 100; //we do not want to get stuck here...
 				count = sizeAfter;
 				int duplicates = 0;
-//				logger.info("MEASURMENT: Creating individuals2...");
-//				startTime = System.nanoTime();
+
 				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
 
 					Individual i = individualFactory.create();
@@ -241,10 +225,6 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				}
 			}
 			
-//			endTime = System.nanoTime();
-//	        result = (endTime - startTime) / Math.pow(10, 9);
-//			logger.info("MEASURMENT: Finished CREATING individuals in "+(result)+" seconds");
-//			logger.warn("---------");
 			// evaluate offspring before selecting lames
 			completer.complete(offspring);
 			
