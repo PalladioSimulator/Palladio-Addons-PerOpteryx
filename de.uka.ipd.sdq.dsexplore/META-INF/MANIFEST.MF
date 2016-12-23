@@ -22,7 +22,11 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.eclipse.core.resources,
  org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.0",
  org.modelversioning.emfprofile;bundle-version="1.1.0",
- org.eclipse.swt
+ org.eclipse.swt,
+ edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
+ concernweaver;bundle-version="1.0.0",
+ concernweaver.peropteryx;bundle-version="1.0.0",
+ concernweaver.test;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,

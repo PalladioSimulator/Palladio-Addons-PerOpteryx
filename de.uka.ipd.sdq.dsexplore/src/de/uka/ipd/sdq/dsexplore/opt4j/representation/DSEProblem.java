@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
@@ -24,6 +25,16 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import ConcernModel.Concern;
+import ConcernModel.ConcernRepository;
+import ConcernModel.ElementaryConcernComponent;
+import concernweaver.ConcernWeaver;
+import concernweaver.WeavingInstruction;
+import concernweaver.peropteryx.constraint.DesignSpaceConstraintManager;
+import concernweaver.peropteryx.designdecision.ConcernDegree;
+import concernweaver.peropteryx.designdecision.ConcernDesignDecision;
+import concernweaver.peropteryx.util.WeavingInstructionGenerator;
+import concernweaver.test.util.ConcernWeavingTestUtil;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
@@ -98,6 +109,8 @@ public class DSEProblem {
 
         this.designDecisionFactory = designdecisionFactoryImpl.init();
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
+        
+        DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
 
         if (newProblem) {
             initialiseProblem();
@@ -375,6 +388,8 @@ public class DSEProblem {
 
         this.initialGenotypeList = new ArrayList<DesignDecisionGenotype>();
         final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
+        
+        determineConcernDecisions(dds, initialCandidate);
         determineProcessingRateDecisions(dds, initialCandidate);
         // find equivalent components
         determineAssembledComponentsDecisions(dds, initialCandidate);
@@ -382,7 +397,7 @@ public class DSEProblem {
         // Quickfix: Add a Soap or RMI decision. This is not meta modelled.
         // determineSOAPOrRMIDecisions();
         determineCapacityDecisions(dds, initialCandidate);
-
+        
         // TODO: Check if the initial genotype is actually a valid genotype?
         // (this may not be the case if the degrees of freedom have been reduced for the
         // optimisation?)
@@ -391,7 +406,63 @@ public class DSEProblem {
 
     }
 
-    /**
+    private void determineConcernDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+    	Optional<ConcernDegree> concernDegree = new ConcernDesignDecision(Optional.of(getTestRepository())).generateDesignDecision();
+    	if (!concernDegree.isPresent()) {
+    	
+    		return;
+    		
+    	}
+    	
+    	ClassChoice choice = this.designDecisionFactory.createClassChoice();
+		choice.setDegreeOfFreedomInstance(concernDegree.get());
+		choice.setChosenValue(concernDegree.get().getPrimaryChanged());
+		
+		initialCandidate.add(choice);
+		
+		dds.add(concernDegree.get());
+    	
+    	createECCAllocationDegreesFrom(concernDegree.get(), dds, initialCandidate);
+    	
+    	performInitialConcernWeaving((Concern) choice.getChosenValue());
+	}
+
+	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
+		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+
+		List<ElementaryConcernComponent> eccs = ((Concern) concernDegree.getPrimaryChanged()).getComponents();
+		eccs.forEach(ecc -> {
+			AllocationDegree allocDegree = this.specificDesignDecisionFactory.createAllocationDegree();
+			allocDegree.setPrimaryChanged(ecc);
+			allocDegree.getClassDesignOptions().addAll(allPcmResourceContainer);
+			
+			ClassChoice choice = this.designDecisionFactory.createClassChoice();
+			choice.setDegreeOfFreedomInstance(allocDegree);
+			//TODO maybe randomize...
+			choice.setChosenValue(allPcmResourceContainer.get(0));
+			
+			initialCandidate.add(choice);
+			
+			dds.add(allocDegree);
+		});
+	}
+	
+	private void performInitialConcernWeaving(Concern concernToWeave) {
+		//TODO load concern solutions or rather create class which associates a concern with a particular concern-solution.
+		//TODO create test transformations... this is currently not working with models...
+		List<WeavingInstruction> weavingInstructions = WeavingInstructionGenerator.getInstanceBy(initialInstance, concernToWeave).getWeavingInstructions();
+		ConcernWeaver.getBy(initialInstance, loadTestConcernSolution()).start(weavingInstructions);
+	}
+
+	private Repository loadTestConcernSolution() {
+		return ConcernWeavingTestUtil.loadConcernRealization();
+	}
+
+	private ConcernRepository getTestRepository() {
+		return ConcernWeavingTestUtil.loadConcernRepository();
+	}
+
+	/**
      * Determine Capacity options based on {@link Repository}. Thus, this may detect
      * {@link PassiveResource}s of components that are not used in the system. These need to be
      * deleted manually.

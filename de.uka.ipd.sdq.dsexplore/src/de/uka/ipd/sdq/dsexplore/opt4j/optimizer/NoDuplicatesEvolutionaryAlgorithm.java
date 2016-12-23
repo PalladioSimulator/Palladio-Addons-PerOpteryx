@@ -2,8 +2,10 @@ package de.uka.ipd.sdq.dsexplore.opt4j.optimizer;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
+import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualFactory;
 import org.opt4j.core.optimizer.Archive;
@@ -20,6 +22,8 @@ import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
+import concernweaver.peropteryx.constraint.DesignSpaceConstraintManager;
+import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
@@ -81,6 +85,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		int count = 0;
 		while (population.size() < alpha && count < alpha + 200) {
 			Individual i = individualFactory.create();
+			if (!isValid(i)) {
+				continue;				
+			}
+			
 			if (!population.contains(i)){
 				population.add(i);
 			}
@@ -112,6 +120,8 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			}
 			int sizeAfter = offspring.size();
 			
+			removeInvalidIndividualsFrom(offspring);
+			
 			population.addAll(offspring); //This causes a decrease in population, TODO: get to the root of this problem
 
 			//TODO: If the offspring contains duplicates, they should also be removed. Andere Datenstruktur (Set)?
@@ -122,6 +132,10 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 				
 				while (count < sizeBefore && count < maximumTries + sizeAfter && duplicates < MAX_DUPLICATES){
 					Individual i = individualFactory.create();
+					if (!isValid(i)) {
+						continue;						
+					}
+					
 					if (!population.contains(i)){
 						completer.complete(i);
 						population.add(i);
@@ -153,4 +167,18 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 		}
 	}
 
+	private boolean isValid(Individual individual) {
+		Genotype genotype = individual.getGenotype();
+		return (genotype instanceof DesignDecisionGenotype) ? isValid((DesignDecisionGenotype) genotype) : true;
+	}
+	
+	private boolean isValid(DesignDecisionGenotype genotype) {
+		Optional<DesignSpaceConstraintManager> constraintManager = DesignSpaceConstraintManager.getInstanceBy(genotype);
+		return constraintManager.isPresent() ? constraintManager.get().violatesAnyConstraint(genotype) : true;
+	}
+	
+	private void removeInvalidIndividualsFrom(Collection<Individual> individuals) {
+		individuals.removeIf(eachIndividual -> !isValid(eachIndividual));
+	}
+	
 }
