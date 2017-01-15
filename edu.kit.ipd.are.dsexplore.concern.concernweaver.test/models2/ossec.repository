@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.0" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.1">
+  <repository:Repository id="_er2hYFWIEea0XO9AU2xvGg" entityName="defaultRepository">
+    <components__Repository xsi:type="repository:BasicComponent" id="_lDUZwFWIEea0XO9AU2xvGg" entityName="OSSECDecoder">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_saJn8FWJEea0XO9AU2xvGg" entityName="Provided_OSSECDecoder_OSSECDecoder" providedInterface__OperationProvidedRole="_fIxG4FWIEea0XO9AU2xvGg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_saKPAFWJEea0XO9AU2xvGg" describedService__SEFF="_VVLQcFWJEea0XO9AU2xvGg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_saK2EFWJEea0XO9AU2xvGg" entityName="start" successor_AbstractAction="_saK2EVWJEea0XO9AU2xvGg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_saK2EVWJEea0XO9AU2xvGg" entityName="stop" predecessor_AbstractAction="_saK2EFWJEea0XO9AU2xvGg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_mL5LYFWIEea0XO9AU2xvGg" entityName="OSSECAnalyzer">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_tD03EFWJEea0XO9AU2xvGg" entityName="Provided_OSSECAnalyzer_OSSECAnalyzer" providedInterface__OperationProvidedRole="_gtlIkFWIEea0XO9AU2xvGg"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:SinkRole" id="_V8WkAK_EEeaFof9L2wGlaQ" entityName="Sink_FileChanges_OSSECAnalyzer" eventGroup__SinkRole="_YfAXcKaDEea4c4TXPM4a5w"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_0BaUQFWJEea0XO9AU2xvGg" entityName="Required_OSSECCollect_OSSECAnalyzer" requiredInterface__OperationRequiredRole="_iAqhEFWIEea0XO9AU2xvGg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_01fckFWJEea0XO9AU2xvGg" entityName="Required_OSSECAlert_OSSECAnalyzer" requiredInterface__OperationRequiredRole="_i30ykFWIEea0XO9AU2xvGg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_tD1eIFWJEea0XO9AU2xvGg" describedService__SEFF="_ivfggFWJEea0XO9AU2xvGg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_tD1eIVWJEea0XO9AU2xvGg" entityName="start" successor_AbstractAction="_tD1eIlWJEea0XO9AU2xvGg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_tD1eIlWJEea0XO9AU2xvGg" entityName="stop" predecessor_AbstractAction="_tD1eIVWJEea0XO9AU2xvGg"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_V8XyIK_EEeaFof9L2wGlaQ" describedService__SEFF="_aBon0KaDEea4c4TXPM4a5w">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_V8XyIa_EEeaFof9L2wGlaQ" entityName="start" successor_AbstractAction="_V8YZMK_EEeaFof9L2wGlaQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_V8YZMK_EEeaFof9L2wGlaQ" entityName="stop" predecessor_AbstractAction="_V8XyIa_EEeaFof9L2wGlaQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_nbfLAFWIEea0XO9AU2xvGg" entityName="OSSECCollect">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_toEMkFWJEea0XO9AU2xvGg" entityName="Provided_OSSECCollect_OSSECCollect" providedInterface__OperationProvidedRole="_iAqhEFWIEea0XO9AU2xvGg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_6VfhcFWJEea0XO9AU2xvGg" entityName="Required_OSSECDecoder_OSSECCollect" requiredInterface__OperationRequiredRole="_fIxG4FWIEea0XO9AU2xvGg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_toEMkVWJEea0XO9AU2xvGg" describedService__SEFF="_zM3HUFWIEea0XO9AU2xvGg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_toEzoFWJEea0XO9AU2xvGg" entityName="start" successor_AbstractAction="_toEzoVWJEea0XO9AU2xvGg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_toEzoVWJEea0XO9AU2xvGg" entityName="stop" predecessor_AbstractAction="_toEzoFWJEea0XO9AU2xvGg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_o06cEFWIEea0XO9AU2xvGg" entityName="OSSECAlert">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_uCpPwFWJEea0XO9AU2xvGg" entityName="Provided_OSSECAlert_OSSECAlert" providedInterface__OperationProvidedRole="_i30ykFWIEea0XO9AU2xvGg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_uCp20FWJEea0XO9AU2xvGg" describedService__SEFF="_rFkQEFWIEea0XO9AU2xvGg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_uCp20VWJEea0XO9AU2xvGg" entityName="start" successor_AbstractAction="_uCp20lWJEea0XO9AU2xvGg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_uCp20lWJEea0XO9AU2xvGg" entityName="stop" predecessor_AbstractAction="_uCp20VWJEea0XO9AU2xvGg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_iJdPgK_DEeaFof9L2wGlaQ" entityName="iNotify">
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:SourceRole" id="_jq07oK_DEeaFof9L2wGlaQ" entityName="Source_FileChanges_iNotify" eventGroup__SourceRole="_YfAXcKaDEea4c4TXPM4a5w"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:SourceRole" id="_mBWHEK_DEeaFof9L2wGlaQ" entityName="Source_UserHandling_iNotify" eventGroup__SourceRole="_86XkcKaHEea4c4TXPM4a5w"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:SourceRole" id="_md4SEK_DEeaFof9L2wGlaQ" entityName="Source_DatabaseCalls_iNotify" eventGroup__SourceRole="_ABxaQKaIEea4c4TXPM4a5w"/>
+    </components__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_fIxG4FWIEea0XO9AU2xvGg" entityName="OSSECDecoder">
+      <signatures__OperationInterface id="_VVLQcFWJEea0XO9AU2xvGg" entityName="fetch">
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_gtlIkFWIEea0XO9AU2xvGg" entityName="OSSECAnalyzer">
+      <signatures__OperationInterface id="_ivfggFWJEea0XO9AU2xvGg" entityName="analyse"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_iAqhEFWIEea0XO9AU2xvGg" entityName="OSSECCollect">
+      <signatures__OperationInterface id="_zM3HUFWIEea0XO9AU2xvGg" entityName="getData">
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_i30ykFWIEea0XO9AU2xvGg" entityName="OSSECAlert">
+      <signatures__OperationInterface id="_rFkQEFWIEea0XO9AU2xvGg" entityName="sendMessage">
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:EventGroup" id="_YfAXcKaDEea4c4TXPM4a5w" entityName="FileChanges">
+      <eventTypes__EventGroup id="_aBon0KaDEea4c4TXPM4a5w" entityName="createModifyDeleteFile">
+        <parameter__EventType parameterName="createdFile"/>
+      </eventTypes__EventGroup>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:EventGroup" id="_86XkcKaHEea4c4TXPM4a5w" entityName="UserHandling">
+      <eventTypes__EventGroup id="_E0FyYKaLEea4c4TXPM4a5w" entityName="authenticateUser">
+        <parameter__EventType parameterName="userCredentials"/>
+      </eventTypes__EventGroup>
+      <eventTypes__EventGroup id="_zTiQQKaLEea4c4TXPM4a5w" entityName="createUser">
+        <parameter__EventType parameterName="userCredentials"/>
+      </eventTypes__EventGroup>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:EventGroup" id="_ABxaQKaIEea4c4TXPM4a5w" entityName="DatabaseCalls"/>
+  </repository:Repository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="_er2hYFWIEea0XO9AU2xvGg">
+      <extension href="../Annotation%20Profile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="ossec2.transformationmodel#//@transformations.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_lDUZwFWIEea0XO9AU2xvGg">
+      <extension href="../Annotation%20Profile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../ConcernRepository/concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_mL5LYFWIEea0XO9AU2xvGg">
+      <extension href="../Annotation%20Profile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../ConcernRepository/concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_nbfLAFWIEea0XO9AU2xvGg">
+      <extension href="../Annotation%20Profile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../ConcernRepository/concern.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_o06cEFWIEea0XO9AU2xvGg">
+      <extension href="../Annotation%20Profile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../ConcernRepository/concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/Annotation%20Profile/annotations.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

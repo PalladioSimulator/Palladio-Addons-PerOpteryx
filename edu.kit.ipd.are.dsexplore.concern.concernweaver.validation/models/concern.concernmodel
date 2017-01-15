@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.0">
+  <concerns name="IDS">
+    <strategies name="DDOS" description="Observes DDOS attacks"/>
+    <components name="Detection">
+      <annotationenrich name="Observer"/>
+      <perimeterInterface href="ossec.repository#_saJn8FWJEea0XO9AU2xvGg"/>
+    </components>
+    <components requires="//@concerns.0/@components.0" name="Analysis">
+      <annotationenrich name="Analysis"/>
+      <perimeterInterface href="ossec.repository#_tD03EFWJEea0XO9AU2xvGg"/>
+    </components>
+    <components requires="//@concerns.0/@components.1" name="Response">
+      <annotationenrich name="Response"/>
+      <perimeterInterface href="ossec.repository#_uCpPwFWJEea0XO9AU2xvGg"/>
+    </components>
+    <annotationtarget name="Observee" maxAmount="-1"/>
+    <constraints association="TOGETHER" annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.0/@annotationenrich.0"/>
+    <constraints association="SEPARATED" annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.1/@annotationenrich.0"/>
+  </concerns>
+</Concern:ConcernRepository>
