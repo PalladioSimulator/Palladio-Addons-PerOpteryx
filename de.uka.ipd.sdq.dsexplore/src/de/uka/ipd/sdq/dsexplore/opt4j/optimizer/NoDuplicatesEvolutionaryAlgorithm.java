@@ -22,7 +22,7 @@ import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
-import concernweaver.peropteryx.constraint.DesignSpaceConstraintManager;
+import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.optimizer.heuristic.startingPopulation.impl.StartingPopulationHeuristicImpl;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividual;

@@ -24,12 +24,12 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.modelversioning.emfprofile;bundle-version="1.1.0",
  org.eclipse.swt,
  edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
- concernweaver;bundle-version="1.0.0",
- concernweaver.peropteryx;bundle-version="1.0.0",
- concernweaver.test;bundle-version="1.0.0"
+ edu.kit.ipd.are.dsexplore.concern.concernweaver
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
+ de.uka.ipd.sdq.dsexplore.concernweaving.util,
+ de.uka.ipd.sdq.dsexplore.constraints,
  de.uka.ipd.sdq.dsexplore.exception,
  de.uka.ipd.sdq.dsexplore.helper,
  de.uka.ipd.sdq.dsexplore.launch,

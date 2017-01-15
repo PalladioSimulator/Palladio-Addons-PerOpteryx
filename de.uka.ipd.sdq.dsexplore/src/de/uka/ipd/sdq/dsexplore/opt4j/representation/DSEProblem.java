@@ -1,8 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Random;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
@@ -11,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -25,23 +27,27 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import ConcernModel.AnnotationEnrich;
+import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
+import ConcernModel.ConcernModelFactory;
+import ConcernModel.ConcernModelPackage;
 import ConcernModel.ConcernRepository;
 import ConcernModel.ElementaryConcernComponent;
-import concernweaver.ConcernWeaver;
-import concernweaver.WeavingInstruction;
-import concernweaver.peropteryx.constraint.DesignSpaceConstraintManager;
-import concernweaver.peropteryx.designdecision.ConcernDegree;
-import concernweaver.peropteryx.designdecision.ConcernDesignDecision;
-import concernweaver.peropteryx.util.WeavingInstructionGenerator;
-import concernweaver.test.util.ConcernWeavingTestUtil;
+import TransformationModel.AdapterTransformation;
+import TransformationModel.Appearance;
+import TransformationModel.TransformationModelFactory;
+import TransformationModel.TransformationRepository;
+import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
+import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ConcernDesignDecision;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -59,6 +65,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
@@ -70,6 +77,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the current PCM instances and
@@ -95,15 +104,19 @@ public class DSEProblem {
 
     private DesignDecisionGenotype initialGenotype;
 
+    private MDSDBlackboard blackboard;
+    
+    private Repository ossec;
+    
     /**
      * @param pcmInstance
      * @throws CoreException
      */
-    public DSEProblem(final DSEWorkflowConfiguration dseConfig, final PCMInstance pcmInstance) throws CoreException {
+    public DSEProblem(final DSEWorkflowConfiguration dseConfig, MDSDBlackboard blackboard) throws CoreException {
         this.dseConfig = dseConfig;
-
         final boolean newProblem = dseConfig.isNewProblem();
-        this.initialInstance = pcmInstance;
+        this.blackboard = blackboard;
+        this.initialInstance = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
         // this.currentInstance = copyOf pcmInstance
         // EcoreUtil.Copier deep copy
 
@@ -111,7 +124,9 @@ public class DSEProblem {
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
         
         DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
-
+        TransformationRepositoryManager.initialize(getTestTransformation());
+        
+        
         if (newProblem) {
             initialiseProblem();
         } else {
@@ -120,7 +135,7 @@ public class DSEProblem {
             // in order to be able to exchange implementations later. The design decisions
             // calculated here are not kept, only
             // the mapping inside AlternativeComponent.getInstance()
-            AlternativeComponent.getInstance().generateDesignDecisions(pcmInstance);
+            AlternativeComponent.getInstance().generateDesignDecisions(this.initialInstance);
             final DecisionSpace problem = loadProblem();
             this.pcmProblem = problem;
             this.initialGenotypeList = determineInitialGenotype(problem);
@@ -141,6 +156,28 @@ public class DSEProblem {
          */
     }
 
+    public TransformationRepository getTestTransformation() {
+		
+		AdapterTransformation adapterTransformation = TransformationModelFactory.eINSTANCE.createAdapterTransformation();
+		adapterTransformation.setAppear(Appearance.AFTER);
+		adapterTransformation.setMultiple(true);
+		adapterTransformation.setName("Adapter");
+		
+		AnnotationTarget target = ConcernModelFactory.eINSTANCE.createAnnotationTarget();
+		target.setName("Observee");
+		adapterTransformation.setTarget(target);
+		
+		AnnotationEnrich enrich = ConcernModelFactory.eINSTANCE.createAnnotationEnrich();
+		enrich.setName("Observer");
+		adapterTransformation.setInjectable(enrich);
+		
+		TransformationRepository transRepo = TransformationModelFactory.eINSTANCE.createTransformationRepository();
+		transRepo.getTransformations().add(adapterTransformation);
+		
+		return transRepo;
+		
+	}
+    
     private DecisionSpace loadProblem() throws CoreException {
         final URI filename = this.dseConfig.getDesignDecisionFileName();
         return this.loadProblem(filename);
@@ -347,6 +384,7 @@ public class DSEProblem {
         }
         ;
 
+        determineConcernDecisions(problem.getDegreesOfFreedom(), genotype);
         // determineProcessingRateDecisions(new ArrayList<DesignDecision>(), genotype);
         // determineAssembledComponentsDecisions(new ArrayList<DesignDecision>(), genotype);
         // determineAllocationDecisions(new ArrayList<DesignDecision>(), genotype);
@@ -407,59 +445,73 @@ public class DSEProblem {
     }
 
     private void determineConcernDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-    	Optional<ConcernDegree> concernDegree = new ConcernDesignDecision(Optional.of(getTestRepository())).generateDesignDecision();
-    	if (!concernDegree.isPresent()) {
-    	
+    	List<ConcernDegree> concernDegrees = new ConcernDesignDecision(getConcernRepository(), this.initialInstance.getRepositories()).generateConcernDegrees();
+    	if (concernDegrees.isEmpty()) {
+    		
     		return;
     		
     	}
     	
-    	ClassChoice choice = this.designDecisionFactory.createClassChoice();
-		choice.setDegreeOfFreedomInstance(concernDegree.get());
-		choice.setChosenValue(concernDegree.get().getPrimaryChanged());
+    	concernDegrees.forEach(concernDegree -> {
+    		
+    		createClassChoice(concernDegree, dds, initialCandidate);
+    		createECCAllocationDegreesFrom(concernDegree, dds, initialCandidate);
+    		
+    	});
+
+	}
+
+	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+		
+		ClassChoice choice = this.designDecisionFactory.createClassChoice();
+		choice.setDegreeOfFreedomInstance(concernDegree);
+		choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
 		
 		initialCandidate.add(choice);
 		
-		dds.add(concernDegree.get());
-    	
-    	createECCAllocationDegreesFrom(concernDegree.get(), dds, initialCandidate);
-    	
-    	performInitialConcernWeaving((Concern) choice.getChosenValue());
+		dds.add(concernDegree);
+		
+	}
+
+	private ConcernRepository getConcernRepository() {
+		
+		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		return (ConcernRepository) pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository()).get(0);
+		
 	}
 
 	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
+		
 		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
-
+		HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap = new HashMap<ElementaryConcernComponent, ResourceContainer>();
+		
 		List<ElementaryConcernComponent> eccs = ((Concern) concernDegree.getPrimaryChanged()).getComponents();
 		eccs.forEach(ecc -> {
+			
 			AllocationDegree allocDegree = this.specificDesignDecisionFactory.createAllocationDegree();
 			allocDegree.setPrimaryChanged(ecc);
 			allocDegree.getClassDesignOptions().addAll(allPcmResourceContainer);
 			
 			ClassChoice choice = this.designDecisionFactory.createClassChoice();
 			choice.setDegreeOfFreedomInstance(allocDegree);
-			//TODO maybe randomize...
-			choice.setChosenValue(allPcmResourceContainer.get(0));
+			
+			int index = getRandomIndex(allPcmResourceContainer.size());
+			ResourceContainer randomResourceContainer = allPcmResourceContainer.get(index);
+			eccToResourceContainerMap.put(ecc, randomResourceContainer);
+			choice.setChosenValue(randomResourceContainer);
 			
 			initialCandidate.add(choice);
 			
 			dds.add(allocDegree);
+			
 		});
+		
 	}
 	
-	private void performInitialConcernWeaving(Concern concernToWeave) {
-		//TODO load concern solutions or rather create class which associates a concern with a particular concern-solution.
-		//TODO create test transformations... this is currently not working with models...
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionGenerator.getInstanceBy(initialInstance, concernToWeave).getWeavingInstructions();
-		ConcernWeaver.getBy(initialInstance, loadTestConcernSolution()).start(weavingInstructions);
-	}
-
-	private Repository loadTestConcernSolution() {
-		return ConcernWeavingTestUtil.loadConcernRealization();
-	}
-
-	private ConcernRepository getTestRepository() {
-		return ConcernWeavingTestUtil.loadConcernRepository();
+	private int getRandomIndex(int bound) {
+		
+		return new Random(System.currentTimeMillis()).nextInt(--bound);
+		
 	}
 
 	/**
@@ -656,6 +708,12 @@ public class DSEProblem {
         // new method getCopyOfInitialInstance, which returns new copy of initialInstance
         // and saves new copy as currentInstance?
         return this.initialInstance;
+    }
+    
+    public PCMInstance getCopyOfInitialInstance() {
+    	
+    	return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
+    	
     }
 
     public DesignDecisionGenotype getGenotypeOfInitialPCMInstance() {
