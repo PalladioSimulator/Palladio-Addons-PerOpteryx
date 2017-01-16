@@ -1,17 +1,18 @@
 package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
+import org.palladiosimulator.analyzer.workflow.jobs.PreparePCMBlackboardPartitionJob;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
+import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
-import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public class WeavingManager {
@@ -19,10 +20,12 @@ public class WeavingManager {
 	private class PCMPartitionManager {
 		
 		private final MDSDBlackboard blackboard;
+		private final DSEWorkflowConfiguration dseConfig; 
 		
-		public PCMPartitionManager(MDSDBlackboard blackboard) {
+		public PCMPartitionManager(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig) {
 			
 			this.blackboard = blackboard;
+			this.dseConfig = dseConfig;
 			
 		}
 		
@@ -33,24 +36,23 @@ public class WeavingManager {
 			
 		}
 		
+		//Copied from LoadPCMModelsJob & PreparePCMBlackboardPartitionJob
 		public PCMResourceSetPartition getCopyOfUnweavedPCMPartition() {
 			
 			PCMResourceSetPartition copy = new PCMResourceSetPartition();
-			for (final String modelFile : getModelFiles()) {
+			
+			copy.initialiseResourceSetEPackages(AbstractPCMWorkflowRunConfiguration.PCM_EPACKAGES);
+
+			copy.loadModel(PreparePCMBlackboardPartitionJob.PCM_PALLADIO_PRIMITIVE_TYPE_REPOSITORY_URI);
+			copy.loadModel(PreparePCMBlackboardPartitionJob.PCM_PALLADIO_RESOURCE_TYPE_URI);
+			for (final String modelFile : this.dseConfig.getPCMModelFiles()) {
 				copy.loadModel(modelFile);
 	        }
+			copy.loadModel(this.dseConfig.getRMIMiddlewareFile());
+			copy.loadModel(this.dseConfig.getEventMiddlewareFile());
 			copy.resolveAllProxies();
 			
 			return copy;
-			
-		}
-
-		private List<String> getModelFiles() {
-			
-			PCMResourceSetPartition initialPcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-			return Arrays.asList(initialPcmPartition.getAllocation().eResource().getURI().toFileString(),
-								 initialPcmPartition.getUsageModel().eResource().getURI().toFileString());
-								
 			
 		}
 		
@@ -65,7 +67,7 @@ public class WeavingManager {
 		
 	}
 	
-	public static void initialize(MDSDBlackboard blackboard, HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
+	public static void initialize(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig, HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
 		
 		if (instance == null) {
 			
@@ -73,7 +75,7 @@ public class WeavingManager {
 			
 		}
 		
-		instance.setPCMPartitionManager(blackboard);
+		instance.setPCMPartitionManager(blackboard, dseConfig);
 		instance.initWeavedPCMPartitions(concernToConcernSolutionsMap);
 		
 	}
@@ -90,9 +92,9 @@ public class WeavingManager {
 		
 	}
 	
-	private void setPCMPartitionManager(MDSDBlackboard blackboard) {
+	private void setPCMPartitionManager(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig) {
 		
-		this.pcmPartitionManager = new PCMPartitionManager(blackboard);
+		this.pcmPartitionManager = new PCMPartitionManager(blackboard, dseConfig);
 		
 	}
 
@@ -111,20 +113,12 @@ public class WeavingManager {
 		
 	}
 
-	public PCMInstance getWeavedPCMInstanceBy(ClassChoice choice) {
+	public PCMInstance getWeavedPCMInstanceBy(Repository concernSolution) {
 	
-		String concernSolutionId = getConcernSolutionIdFrom(choice);
-		PCMResourceSetPartition pcmPartition = this.weavedPcmPartitions.get(concernSolutionId);
-		
+		PCMResourceSetPartition pcmPartition = this.weavedPcmPartitions.get(concernSolution.getId());
 		this.pcmPartitionManager.replaceInitialPCMResourcePartitionWith(pcmPartition);
 		
 		return new PCMInstance(pcmPartition);
-		
-	}
-
-	private String getConcernSolutionIdFrom(ClassChoice choice) {
-		
-		return ((Repository) choice.getChosenValue()).getId();
 		
 	}
 	

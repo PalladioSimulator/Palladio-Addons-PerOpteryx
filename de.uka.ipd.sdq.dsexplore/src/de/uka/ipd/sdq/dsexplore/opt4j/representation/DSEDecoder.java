@@ -33,6 +33,7 @@ import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingInstructionGenerator;
+import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
@@ -98,7 +99,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     private double initialRate = Double.NaN;
     private static double intervalTime = 0.0;
     
-    private boolean alreadyWeaved = false;
+    private PCMInstance pcm;
 
     @Inject
     public DSEDecoder() {
@@ -110,7 +111,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     public PCMPhenotype decode(final DesignDecisionGenotype genotype) {
 
         // get PCM Instance
-        final PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
+       pcm = Opt4JStarter.getProblem().getInitialInstance();
         
         // make local copy
 
@@ -129,7 +130,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             notTransformedChoices = genotype;
         }
         
-        weaveConcernsContainedIn(notTransformedChoices, pcm, trans);
+        transformConcerns(notTransformedChoices);
 
         // then, use old way for choices that have not been transformed, e.g. because there is no
         // GDoF defined for them.
@@ -146,39 +147,48 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         return new PCMPhenotype(pcm, genotypeString, genotype.getNumericID());
     }
     
-    private void weaveConcernsContainedIn(List<Choice> notTransformedChoices, PCMInstance pcm, GenomeToCandidateModelTransformation trans) {
+    private void transformConcerns(List<Choice> notTransformedChoices) {
 		
-    	List<ClassChoice> concernRelatedDegrees = getAllConcernRelatedDegreesFrom(notTransformedChoices);
-    	if (concernRelatedDegrees.isEmpty()) {
+    	List<ClassChoice> concernChoices = getConcernChoicesFrom(notTransformedChoices);
+    	if (concernChoices.isEmpty()) {
     		
     		return;
     		
     	}
     	
-    	ClassChoice concernChoice = getConcernFrom(concernRelatedDegrees);
-    	concernRelatedDegrees.remove(concernChoice);
+    	//TODO merge weaved pcm-instances if -> concernChoices.size() > 1
+    	pcm = WeavingManager.getInstance().get().getWeavedPCMInstanceBy((Repository) concernChoices.get(0).getChosenValue());
     	
-    	if (alreadyWeaved == false) {
+    	concernChoices.forEach(concernChoice -> {
     		
-    		weaveConcerns(Opt4JStarter.getProblem().getInitialInstance(), 
-    				  	(Concern) concernChoice.getDegreeOfFreedomInstance().getPrimaryChanged(),
-    				  	(Repository) concernChoice.getChosenValue(),
-    				  	getECCToResourceContainerMapFrom(concernRelatedDegrees));
+    		Concern concern = getConcernFrom(concernChoice);
+    		notTransformedChoices.remove(concernChoice);
     		
-    		alreadyWeaved = true;
-    	}
-    	
-    	List<ClassChoice> eccCompAllocDegrees = convertToComponentAllocDegrees(concernRelatedDegrees, (Repository) concernChoice.getChosenValue());
-    	notTransformedChoices.addAll(eccCompAllocDegrees);
-    	
-    	notTransformedChoices.remove((Choice) concernChoice);
-    	notTransformedChoices.removeAll(concernRelatedDegrees);
+    		List<ClassChoice> concernRelatedAllocDegrees = getAllocDegreesRelatedTo(concern, notTransformedChoices);
+    		notTransformedChoices.removeAll(concernRelatedAllocDegrees);
+    		notTransformedChoices.addAll(convertToComponentAllocDegrees(concernRelatedAllocDegrees, (Repository) concernChoice.getChosenValue()));
+    		
+    	});
 		
 	}
 
+    private Concern getConcernFrom(ClassChoice concernChoice) {
+	
+		ConcernDegree concernDegree = (ConcernDegree) concernChoice.getDegreeOfFreedomInstance();
+		return (Concern) (concernDegree).getPrimaryChanged();
+		
+	}
+    
+	private Concern getConcernFrom(AllocationDegree allocDegree) {
+
+		ElementaryConcernComponent ecc = (ElementaryConcernComponent) allocDegree.getPrimaryChanged();
+		return (Concern) ecc.eContainer();
+		
+	}
+	
 	private List<ClassChoice> convertToComponentAllocDegrees(List<ClassChoice> concernRelatedDegrees, Repository concernRepo) {
 		
-		PcmAllocationManager allocManager = PcmAllocationManager.getBy(Opt4JStarter.getProblem().getInitialInstance().getAllocation());
+		PcmAllocationManager allocManager = PcmAllocationManager.getBy(pcm.getAllocation());
 		List<ClassChoice> allocChoices = new ArrayList<ClassChoice>();
 		for(ClassChoice relatedDegree : concernRelatedDegrees) {
 			
@@ -187,6 +197,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component)).forEach(comp -> {
 				
 				try {
+					
 					AllocationContext alloc = allocManager.getAllocationContextContaining(comp);
 					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
 		            ad.setPrimaryChanged(alloc);
@@ -196,7 +207,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		    		allocChoices.add(choice);
 		            
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -208,42 +219,31 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		
 	}
 
-	private void weaveConcerns(PCMInstance pcmInstance, Concern concern, Repository concernSolution, HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
-		
-		WeavingInstructionGenerator generator = WeavingInstructionGenerator.getInstanceBy(pcmInstance, concern, eccToResourceContainerMap);
-		ConcernWeaver.getBy(pcmInstance, concernSolution).start(generator.getWeavingInstructions());
-		
-	}
-	
-	private HashMap<ElementaryConcernComponent, ResourceContainer> getECCToResourceContainerMapFrom(List<ClassChoice> concernRelatedDegrees) {
-		
-		HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap = new HashMap<ElementaryConcernComponent, ResourceContainer>();
-		for (ClassChoice eachClassChoice : concernRelatedDegrees) {
-			
-			AllocationDegree allocDegree = (AllocationDegree) eachClassChoice.getDegreeOfFreedomInstance();
-			eccToResourceContainerMap.put((ElementaryConcernComponent) allocDegree.getPrimaryChanged(), (ResourceContainer) eachClassChoice.getChosenValue());
-			
-		}
-		
-		return eccToResourceContainerMap;
-		
-	}
-
-	private ClassChoice getConcernFrom(List<ClassChoice> concernRelatedDegrees) {
+	private List<ClassChoice> getConcernChoicesFrom(List<Choice> concernRelatedDegrees) {
 		
 		return concernRelatedDegrees.stream().filter(eachChoice -> isConcernDegree(eachChoice.getDegreeOfFreedomInstance()))
-											 .findFirst().get();
-		
-	}
-
-	private List<ClassChoice> getAllConcernRelatedDegreesFrom(List<Choice> notTransformedChoices) {
-		
-		return notTransformedChoices.stream().filter(eachChoice -> isConcernDegree(eachChoice.getDegreeOfFreedomInstance()) || isAllocationDegreeWithECC(eachChoice.getDegreeOfFreedomInstance()))
 											 .map(eachChoice -> (ClassChoice) eachChoice)
 											 .collect(Collectors.toList());
 		
 	}
 
+	private List<ClassChoice> getAllocDegreesRelatedTo(Concern concern, List<Choice> notTransformedChoices) {
+		
+		return notTransformedChoices.stream().filter(eachChoice -> isAllocationDegreeWithECC(eachChoice.getDegreeOfFreedomInstance()))
+											 .filter(eachChoice -> isRelatedTo(concern, (AllocationDegree) eachChoice.getDegreeOfFreedomInstance()))
+				 							 .map(eachChoice -> (ClassChoice) eachChoice)
+				 							 .collect(Collectors.toList());
+		
+	}
+
+	private boolean isRelatedTo(Concern concern, AllocationDegree allocDegree) {
+	
+		String expectedConcernName = concern.getName();
+		String actualConcernName = getConcernFrom(allocDegree).getName();
+		return expectedConcernName.equals(actualConcernName);
+		
+	}
+	
 	private boolean isConcernDegree(DegreeOfFreedomInstance degreeOfFreedomInstance) {
 		
 		return degreeOfFreedomInstance instanceof ConcernDegree;

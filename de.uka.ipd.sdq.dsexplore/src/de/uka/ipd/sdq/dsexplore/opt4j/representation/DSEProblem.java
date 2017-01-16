@@ -1,12 +1,17 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -38,6 +43,7 @@ import TransformationModel.AdapterTransformation;
 import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
 import TransformationModel.TransformationRepository;
+import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ConcernDesignDecision;
@@ -105,8 +111,6 @@ public class DSEProblem {
     private DesignDecisionGenotype initialGenotype;
 
     private MDSDBlackboard blackboard;
-    
-    private Repository ossec;
     
     /**
      * @param pcmInstance
@@ -452,6 +456,8 @@ public class DSEProblem {
     		
     	}
     	
+    	WeavingManager.initialize(blackboard, dseConfig, getConcernToConcernSolutionMapBy(concernDegrees));
+    	
     	concernDegrees.forEach(concernDegree -> {
     		
     		createClassChoice(concernDegree, dds, initialCandidate);
@@ -461,6 +467,26 @@ public class DSEProblem {
 
 	}
 
+	private HashMap<Concern, List<Repository>> getConcernToConcernSolutionMapBy(List<ConcernDegree> concernDegrees) {
+		
+		HashMap<Concern, List<Repository>> concernToConcernSolutionMap = new HashMap<Concern, List<Repository>>();
+		concernDegrees.forEach(concernDegree -> {
+			
+			concernToConcernSolutionMap.put((Concern) concernDegree.getPrimaryChanged(), 
+											toRepositoryList(concernDegree.getClassDesignOptions()));
+						
+		});
+		
+		return concernToConcernSolutionMap;
+		
+	}
+
+	private List<Repository> toRepositoryList(EList<EObject> classDesignOptions) {
+	
+		return classDesignOptions.stream().map(each -> (Repository) each).collect(Collectors.toList());
+		
+	}
+	
 	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 		
 		ClassChoice choice = this.designDecisionFactory.createClassChoice();
@@ -483,7 +509,6 @@ public class DSEProblem {
 	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
 		
 		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
-		HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap = new HashMap<ElementaryConcernComponent, ResourceContainer>();
 		
 		List<ElementaryConcernComponent> eccs = ((Concern) concernDegree.getPrimaryChanged()).getComponents();
 		eccs.forEach(ecc -> {
@@ -497,7 +522,6 @@ public class DSEProblem {
 			
 			int index = getRandomIndex(allPcmResourceContainer.size());
 			ResourceContainer randomResourceContainer = allPcmResourceContainer.get(index);
-			eccToResourceContainerMap.put(ecc, randomResourceContainer);
 			choice.setChosenValue(randomResourceContainer);
 			
 			initialCandidate.add(choice);
