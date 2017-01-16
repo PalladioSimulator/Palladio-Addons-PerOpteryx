@@ -86,15 +86,15 @@ public class WeavingManager {
 		
 	}
 
-	private void initWeavedPCMPartitions(HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
-		
-		concernToConcernSolutionsMap.forEach((concern, concernSolutions) -> weaveAll(concern, concernSolutions));
-		
-	}
-	
 	private void setPCMPartitionManager(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig) {
 		
 		this.pcmPartitionManager = new PCMPartitionManager(blackboard, dseConfig);
+		
+	}
+	
+	private void initWeavedPCMPartitions(HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
+		
+		concernToConcernSolutionsMap.forEach((concern, concernSolutions) -> weaveAll(concern, concernSolutions));
 		
 	}
 
@@ -107,9 +107,17 @@ public class WeavingManager {
 	private PCMResourceSetPartition getWeavedPCMPartition(Concern concern, Repository concernSolution) {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
-		new WeavingJob(concern, concernSolution, new PCMInstance(pcmPartition)).execute();
+		PCMInstance pcm = new PCMInstance(pcmPartition);
+		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm).execute();
 		
 		return pcmPartition;
+		
+	}
+
+	private Repository getConcernSolution(PCMInstance pcm, String concernSolutionId) {
+		
+		return pcm.getRepositories().stream().filter(eachRepo -> eachRepo.getId().equals(concernSolutionId))
+											 .findFirst().get();
 		
 	}
 
