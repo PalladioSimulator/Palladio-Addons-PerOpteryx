@@ -33,225 +33,205 @@ import de.uka.ipd.sdq.pcm.designdecision.util.designdecisionValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidatesImpl#getCandidate <em>Candidate</em>}
- * </li>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidatesImpl#getProblem <em>Problem</em>}
- * </li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidatesImpl#getCandidate <em>Candidate</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.CandidatesImpl#getProblem <em>Problem</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CandidatesImpl extends EObjectImpl implements Candidates {
-    /**
-     * The cached value of the '{@link #getCandidate() <em>Candidate</em>}' containment reference
-     * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getCandidate()
-     * @generated
-     * @ordered
-     */
-    protected EList<Candidate> candidate;
+	/**
+	 * The cached value of the '{@link #getCandidate() <em>Candidate</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getCandidate()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Candidate> candidate;
 
-    /**
-     * The cached value of the '{@link #getProblem() <em>Problem</em>}' reference. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getProblem()
-     * @generated
-     * @ordered
-     */
-    protected DecisionSpace problem;
+	/**
+	 * The cached value of the '{@link #getProblem() <em>Problem</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getProblem()
+	 * @generated
+	 * @ordered
+	 */
+	protected DecisionSpace problem;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected CandidatesImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CandidatesImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return designdecisionPackage.Literals.CANDIDATES;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return designdecisionPackage.Literals.CANDIDATES;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EList<Candidate> getCandidate() {
-        if (this.candidate == null) {
-            this.candidate = new EObjectContainmentEList<Candidate>(Candidate.class, this,
-                    designdecisionPackage.CANDIDATES__CANDIDATE);
-        }
-        return this.candidate;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Candidate> getCandidate() {
+		if (candidate == null) {
+			candidate = new EObjectContainmentEList<Candidate>(Candidate.class, this,
+					designdecisionPackage.CANDIDATES__CANDIDATE);
+		}
+		return candidate;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public DecisionSpace getProblem() {
-        if (this.problem != null && this.problem.eIsProxy()) {
-            final InternalEObject oldProblem = (InternalEObject) this.problem;
-            this.problem = (DecisionSpace) this.eResolveProxy(oldProblem);
-            if (this.problem != oldProblem) {
-                if (this.eNotificationRequired()) {
-                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-                            designdecisionPackage.CANDIDATES__PROBLEM, oldProblem, this.problem));
-                }
-            }
-        }
-        return this.problem;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DecisionSpace getProblem() {
+		if (problem != null && problem.eIsProxy()) {
+			InternalEObject oldProblem = (InternalEObject) problem;
+			problem = (DecisionSpace) eResolveProxy(oldProblem);
+			if (problem != oldProblem) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, designdecisionPackage.CANDIDATES__PROBLEM,
+							oldProblem, problem));
+			}
+		}
+		return problem;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public DecisionSpace basicGetProblem() {
-        return this.problem;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DecisionSpace basicGetProblem() {
+		return problem;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setProblem(final DecisionSpace newProblem) {
-        final DecisionSpace oldProblem = this.problem;
-        this.problem = newProblem;
-        if (this.eNotificationRequired()) {
-            this.eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CANDIDATES__PROBLEM,
-                    oldProblem, this.problem));
-        }
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setProblem(DecisionSpace newProblem) {
+		DecisionSpace oldProblem = problem;
+		problem = newProblem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CANDIDATES__PROBLEM, oldProblem,
+					problem));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean numberOfChoicesMustEqualNumberOfDecisions(final DiagnosticChain diagnostics,
-            final Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics
-                        .add(new BasicDiagnostic(Diagnostic.ERROR, designdecisionValidator.DIAGNOSTIC_SOURCE,
-                                designdecisionValidator.CANDIDATES__NUMBER_OF_CHOICES_MUST_EQUAL_NUMBER_OF_DECISIONS,
-                                EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-                                        new Object[] { "numberOfChoicesMustEqualNumberOfDecisions",
-                                                EObjectValidator.getObjectLabel(this, context) }),
-                                new Object[] { this }));
-            }
-            return false;
-        }
-        return true;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean numberOfChoicesMustEqualNumberOfDecisions(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics
+						.add(new BasicDiagnostic(Diagnostic.ERROR, designdecisionValidator.DIAGNOSTIC_SOURCE,
+								designdecisionValidator.CANDIDATES__NUMBER_OF_CHOICES_MUST_EQUAL_NUMBER_OF_DECISIONS,
+								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+										new Object[] { "numberOfChoicesMustEqualNumberOfDecisions",
+												EObjectValidator.getObjectLabel(this, context) }),
+								new Object[] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-            final NotificationChain msgs) {
-        switch (featureID) {
-        case designdecisionPackage.CANDIDATES__CANDIDATE:
-            return ((InternalEList<?>) this.getCandidate()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case designdecisionPackage.CANDIDATES__CANDIDATE:
+			return ((InternalEList<?>) getCandidate()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case designdecisionPackage.CANDIDATES__CANDIDATE:
-            return this.getCandidate();
-        case designdecisionPackage.CANDIDATES__PROBLEM:
-            if (resolve) {
-                return this.getProblem();
-            }
-            return this.basicGetProblem();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case designdecisionPackage.CANDIDATES__CANDIDATE:
+			return getCandidate();
+		case designdecisionPackage.CANDIDATES__PROBLEM:
+			if (resolve)
+				return getProblem();
+			return basicGetProblem();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case designdecisionPackage.CANDIDATES__CANDIDATE:
-            this.getCandidate().clear();
-            this.getCandidate().addAll((Collection<? extends Candidate>) newValue);
-            return;
-        case designdecisionPackage.CANDIDATES__PROBLEM:
-            this.setProblem((DecisionSpace) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case designdecisionPackage.CANDIDATES__CANDIDATE:
+			getCandidate().clear();
+			getCandidate().addAll((Collection<? extends Candidate>) newValue);
+			return;
+		case designdecisionPackage.CANDIDATES__PROBLEM:
+			setProblem((DecisionSpace) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.CANDIDATES__CANDIDATE:
-            this.getCandidate().clear();
-            return;
-        case designdecisionPackage.CANDIDATES__PROBLEM:
-            this.setProblem((DecisionSpace) null);
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.CANDIDATES__CANDIDATE:
+			getCandidate().clear();
+			return;
+		case designdecisionPackage.CANDIDATES__PROBLEM:
+			setProblem((DecisionSpace) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.CANDIDATES__CANDIDATE:
-            return this.candidate != null && !this.candidate.isEmpty();
-        case designdecisionPackage.CANDIDATES__PROBLEM:
-            return this.problem != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.CANDIDATES__CANDIDATE:
+			return candidate != null && !candidate.isEmpty();
+		case designdecisionPackage.CANDIDATES__PROBLEM:
+			return problem != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // CandidatesImpl

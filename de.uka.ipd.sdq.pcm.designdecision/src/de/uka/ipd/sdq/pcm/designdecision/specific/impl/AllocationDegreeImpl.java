@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public class AllocationDegreeImpl extends ClassAsReferenceDegreeImpl implements AllocationDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected AllocationDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AllocationDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.ALLOCATION_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.ALLOCATION_DEGREE;
+	}
 
 } // AllocationDegreeImpl

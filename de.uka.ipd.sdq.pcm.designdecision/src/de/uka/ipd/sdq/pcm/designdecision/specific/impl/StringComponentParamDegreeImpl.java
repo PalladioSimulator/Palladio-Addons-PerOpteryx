@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public class StringComponentParamDegreeImpl extends StringSetDegreeImpl implements StringComponentParamDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected StringComponentParamDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringComponentParamDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.STRING_COMPONENT_PARAM_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.STRING_COMPONENT_PARAM_DEGREE;
+	}
 
 } // StringComponentParamDegreeImpl

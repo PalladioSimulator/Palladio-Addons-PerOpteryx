@@ -28,120 +28,119 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public class ExchangeComponentRuleItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-    /**
-     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    public ExchangeComponentRuleItemProvider(final AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	public ExchangeComponentRuleItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-    /**
-     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(final Object object) {
-        if (this.itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            this.addRepositoryComponentPropertyDescriptor(object);
-            this.addAllocationContextPropertyDescriptor(object);
-        }
-        return this.itemPropertyDescriptors;
-    }
+			addRepositoryComponentPropertyDescriptor(object);
+			addAllocationContextPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
-    /**
-     * This adds a property descriptor for the Repository Component feature. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected void addRepositoryComponentPropertyDescriptor(final Object object) {
-        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-                this.getString("_UI_ExchangeComponentRule_repositoryComponent_feature"),
-                this.getString("_UI_PropertyDescriptor_description",
-                        "_UI_ExchangeComponentRule_repositoryComponent_feature", "_UI_ExchangeComponentRule_type"),
-                specificPackage.Literals.EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT, true, false, true, null, null,
-                null));
-    }
+	/**
+	 * This adds a property descriptor for the Repository Component feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepositoryComponentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ExchangeComponentRule_repositoryComponent_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ExchangeComponentRule_repositoryComponent_feature",
+						"_UI_ExchangeComponentRule_type"),
+				specificPackage.Literals.EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT, true, false, true, null, null,
+				null));
+	}
 
-    /**
-     * This adds a property descriptor for the Allocation Context feature. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected void addAllocationContextPropertyDescriptor(final Object object) {
-        this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-                ((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-                this.getString("_UI_ExchangeComponentRule_allocationContext_feature"),
-                this.getString("_UI_PropertyDescriptor_description",
-                        "_UI_ExchangeComponentRule_allocationContext_feature", "_UI_ExchangeComponentRule_type"),
-                specificPackage.Literals.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, true, false, true, null, null,
-                null));
-    }
+	/**
+	 * This adds a property descriptor for the Allocation Context feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAllocationContextPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ExchangeComponentRule_allocationContext_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ExchangeComponentRule_allocationContext_feature",
+						"_UI_ExchangeComponentRule_type"),
+				specificPackage.Literals.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, true, false, true, null, null,
+				null));
+	}
 
-    /**
-     * This returns ExchangeComponentRule.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object getImage(final Object object) {
-        return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/ExchangeComponentRule"));
-    }
+	/**
+	 * This returns ExchangeComponentRule.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExchangeComponentRule"));
+	}
 
-    /**
-     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     *
-     * @generated
-     */
-    @Override
-    public String getText(final Object object) {
-        return this.getString("_UI_ExchangeComponentRule_type");
-    }
+	/**
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
+		return getString("_UI_ExchangeComponentRule_type");
+	}
 
-    /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}
-     * . <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void notifyChanged(final Notification notification) {
-        this.updateChildren(notification);
-        super.notifyChanged(notification);
-    }
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
+		super.notifyChanged(notification);
+	}
 
-    /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
-     * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected void collectNewChildDescriptors(final Collection<Object> newChildDescriptors, final Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
-    /**
-     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return DesignDecisionEditPlugin.INSTANCE;
-    }
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DesignDecisionEditPlugin.INSTANCE;
+	}
 
 }

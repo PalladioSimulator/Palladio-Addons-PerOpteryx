@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPack
  * @generated
  */
 public class ElementQualityPropertyImpl extends QualityPropertyImpl implements ElementQualityProperty {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected ElementQualityPropertyImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ElementQualityPropertyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return qualitypropertiesPackage.Literals.ELEMENT_QUALITY_PROPERTY;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return qualitypropertiesPackage.Literals.ELEMENT_QUALITY_PROPERTY;
+	}
 
 } // ElementQualityPropertyImpl

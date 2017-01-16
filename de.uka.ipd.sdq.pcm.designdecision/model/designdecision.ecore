@@ -432,5 +432,6 @@
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcernDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
   </eSubpackages>
 </ecore:EPackage>

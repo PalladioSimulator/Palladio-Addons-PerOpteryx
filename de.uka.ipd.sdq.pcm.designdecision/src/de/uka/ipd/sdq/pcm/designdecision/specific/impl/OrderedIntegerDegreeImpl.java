@@ -22,133 +22,121 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>
- * {@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OrderedIntegerDegreeImpl#getListOfIntegers
- * <em>List Of Integers</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OrderedIntegerDegreeImpl#getListOfIntegers <em>List Of Integers</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OrderedIntegerDegreeImpl extends DiscreteDegreeImpl implements OrderedIntegerDegree {
-    /**
-     * The cached value of the '{@link #getListOfIntegers() <em>List Of Integers</em>}' attribute
-     * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getListOfIntegers()
-     * @generated
-     * @ordered
-     */
-    protected EList<Integer> listOfIntegers;
+	/**
+	 * The cached value of the '{@link #getListOfIntegers() <em>List Of Integers</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getListOfIntegers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Integer> listOfIntegers;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected OrderedIntegerDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrderedIntegerDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.ORDERED_INTEGER_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.ORDERED_INTEGER_DEGREE;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EList<Integer> getListOfIntegers() {
-        if (this.listOfIntegers == null) {
-            this.listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this,
-                    specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
-        }
-        return this.listOfIntegers;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Integer> getListOfIntegers() {
+		if (listOfIntegers == null) {
+			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this,
+					specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
+		}
+		return listOfIntegers;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
-            return this.getListOfIntegers();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
+			return getListOfIntegers();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
-            this.getListOfIntegers().clear();
-            this.getListOfIntegers().addAll((Collection<? extends Integer>) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
+			getListOfIntegers().clear();
+			getListOfIntegers().addAll((Collection<? extends Integer>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
-            this.getListOfIntegers().clear();
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
+			getListOfIntegers().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
-            return this.listOfIntegers != null && !this.listOfIntegers.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS:
+			return listOfIntegers != null && !listOfIntegers.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (this.eIsProxy()) {
-            return super.toString();
-        }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
 
-        final StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (listOfIntegers: ");
-        result.append(this.listOfIntegers);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (listOfIntegers: ");
+		result.append(listOfIntegers);
+		result.append(')');
+		return result.toString();
+	}
 
 } // OrderedIntegerDegreeImpl

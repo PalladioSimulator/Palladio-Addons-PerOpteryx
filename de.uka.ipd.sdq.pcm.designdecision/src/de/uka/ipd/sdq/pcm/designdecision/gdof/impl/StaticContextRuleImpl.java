@@ -22,145 +22,132 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.StaticContextRuleImpl#getContextClass
- * <em>Context Class</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.StaticContextRuleImpl#getContextClass <em>Context Class</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class StaticContextRuleImpl extends EObjectImpl implements StaticContextRule {
-    /**
-     * The cached value of the '{@link #getContextClass() <em>Context Class</em>}' reference. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getContextClass()
-     * @generated
-     * @ordered
-     */
-    protected EClass contextClass;
+	/**
+	 * The cached value of the '{@link #getContextClass() <em>Context Class</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getContextClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EClass contextClass;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected StaticContextRuleImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StaticContextRuleImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return gdofPackage.Literals.STATIC_CONTEXT_RULE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return gdofPackage.Literals.STATIC_CONTEXT_RULE;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EClass getContextClass() {
-        if (this.contextClass != null && this.contextClass.eIsProxy()) {
-            final InternalEObject oldContextClass = (InternalEObject) this.contextClass;
-            this.contextClass = (EClass) this.eResolveProxy(oldContextClass);
-            if (this.contextClass != oldContextClass) {
-                if (this.eNotificationRequired()) {
-                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-                            gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS, oldContextClass, this.contextClass));
-                }
-            }
-        }
-        return this.contextClass;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getContextClass() {
+		if (contextClass != null && contextClass.eIsProxy()) {
+			InternalEObject oldContextClass = (InternalEObject) contextClass;
+			contextClass = (EClass) eResolveProxy(oldContextClass);
+			if (contextClass != oldContextClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS, oldContextClass, contextClass));
+			}
+		}
+		return contextClass;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public EClass basicGetContextClass() {
-        return this.contextClass;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass basicGetContextClass() {
+		return contextClass;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void setContextClass(final EClass newContextClass) {
-        final EClass oldContextClass = this.contextClass;
-        this.contextClass = newContextClass;
-        if (this.eNotificationRequired()) {
-            this.eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS,
-                    oldContextClass, this.contextClass));
-        }
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setContextClass(EClass newContextClass) {
+		EClass oldContextClass = contextClass;
+		contextClass = newContextClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS,
+					oldContextClass, contextClass));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
-            if (resolve) {
-                return this.getContextClass();
-            }
-            return this.basicGetContextClass();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
+			if (resolve)
+				return getContextClass();
+			return basicGetContextClass();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
-            this.setContextClass((EClass) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
+			setContextClass((EClass) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
-            this.setContextClass((EClass) null);
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
+			setContextClass((EClass) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
-            return this.contextClass != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS:
+			return contextClass != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // StaticContextRuleImpl

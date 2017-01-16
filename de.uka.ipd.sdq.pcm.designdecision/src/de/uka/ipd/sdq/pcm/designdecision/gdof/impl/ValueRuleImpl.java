@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
  * @generated
  */
 public class ValueRuleImpl extends OCLRuleImpl implements ValueRule {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected ValueRuleImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueRuleImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return gdofPackage.Literals.VALUE_RULE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return gdofPackage.Literals.VALUE_RULE;
+	}
 
 } // ValueRuleImpl
