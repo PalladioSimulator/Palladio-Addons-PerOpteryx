@@ -1,19 +1,30 @@
 package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 import org.palladiosimulator.analyzer.workflow.jobs.PreparePCMBlackboardPartitionJob;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
+import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
+import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 
 public class WeavingManager {
 
@@ -31,7 +42,7 @@ public class WeavingManager {
 		
 		public void replaceInitialPCMResourcePartitionWith(PCMResourceSetPartition pcmPartition) {
 			
-			this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+			//this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 			this.blackboard.addPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID, pcmPartition);
 			
 		}
@@ -108,9 +119,48 @@ public class WeavingManager {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
+		//TODO is there a simpler way?
+		updateProvidedFeatures(concern, concernSolution);
 		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm).execute();
 		
 		return pcmPartition;
+		
+	}
+
+	private void updateProvidedFeatures(Concern concern, Repository concernSolution) {
+
+		concern.getComponents().forEach(ecc -> {
+			
+			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(concernSolution));
+			List<RepositoryComponent> eccInternalStructure = eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component));
+			ecc.getPerimeterInterface().clear();
+			ecc.getPerimeterInterface().addAll(getProvidedFeaturesFrom(eccInternalStructure));
+			
+		});
+		
+	}
+
+	private List<OperationProvidedRole> getProvidedFeaturesFrom(List<RepositoryComponent> eccInternalStructure) {
+		
+		return eccInternalStructure.stream().flatMap(eachComponent -> eachComponent.getProvidedRoles_InterfaceProvidingEntity().stream())
+											.filter(eachProvidedRole -> isNotRequiredByAnyOf(eccInternalStructure, eachProvidedRole))
+											//TODO this is just temporary
+											.map(each -> (OperationProvidedRole) each)
+											.collect(Collectors.toList());
+		
+	}
+
+	private boolean isNotRequiredByAnyOf(List<RepositoryComponent> eccInternalStructure, ProvidedRole providedRole) {
+		
+		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, null);
+		return !roleHandler.getOpponentOf(providedRole, getAllRequiredRolesFrom(eccInternalStructure)).isPresent();
+		
+	}
+
+	private List<? extends Role> getAllRequiredRolesFrom(List<RepositoryComponent> eccInternalStructure) {
+		
+		return eccInternalStructure.stream().flatMap(eachComp -> eachComp.getRequiredRoles_InterfaceRequiringEntity().stream())
+											.collect(Collectors.toList());
 		
 	}
 

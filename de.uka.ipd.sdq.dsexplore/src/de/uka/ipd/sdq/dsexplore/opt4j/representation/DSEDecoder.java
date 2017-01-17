@@ -111,7 +111,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
     public PCMPhenotype decode(final DesignDecisionGenotype genotype) {
 
         // get PCM Instance
-       pcm = Opt4JStarter.getProblem().getInitialInstance();
+        pcm = Opt4JStarter.getProblem().getInitialInstance();
         
         // make local copy
 

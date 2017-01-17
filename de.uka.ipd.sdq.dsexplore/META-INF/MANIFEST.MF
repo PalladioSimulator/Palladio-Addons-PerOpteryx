@@ -25,7 +25,8 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.eclipse.swt,
  edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
  edu.kit.ipd.are.dsexplore.concern.concernweaver,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.palladiosimulator.pcm
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,

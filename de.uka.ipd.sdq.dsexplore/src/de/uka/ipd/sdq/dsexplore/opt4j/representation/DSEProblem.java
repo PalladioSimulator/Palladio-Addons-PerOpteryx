@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -449,7 +450,14 @@ public class DSEProblem {
     }
 
     private void determineConcernDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-    	List<ConcernDegree> concernDegrees = new ConcernDesignDecision(getConcernRepository(), this.initialInstance.getRepositories()).generateConcernDegrees();
+    	Optional<ConcernRepository> concernRepo = getConcernRepository();
+    	if (!concernRepo.isPresent()) {
+    		
+    		return;
+    		
+    	}
+    	
+    	List<ConcernDegree> concernDegrees = new ConcernDesignDecision(concernRepo.get(), this.initialInstance.getRepositories()).generateConcernDegrees();
     	if (concernDegrees.isEmpty()) {
     		
     		return;
@@ -499,10 +507,16 @@ public class DSEProblem {
 		
 	}
 
-	private ConcernRepository getConcernRepository() {
+	private Optional<ConcernRepository> getConcernRepository() {
 		
+		List<EObject> concernRepository;
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		return (ConcernRepository) pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository()).get(0);
+		try {
+			concernRepository = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+		} catch (Exception e) {
+			return Optional.empty();
+		}
+		return Optional.of((ConcernRepository) concernRepository.get(0));
 		
 	}
 
