@@ -1,18 +1,12 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -464,7 +458,8 @@ public class DSEProblem {
     		
     	}
     	
-    	WeavingManager.initialize(blackboard, dseConfig, getConcernToConcernSolutionMapBy(concernDegrees));
+    	PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	WeavingManager.initialize(blackboard, initialPartition);
     	
     	concernDegrees.forEach(concernDegree -> {
     		
@@ -473,26 +468,6 @@ public class DSEProblem {
     		
     	});
 
-	}
-
-	private HashMap<Concern, List<Repository>> getConcernToConcernSolutionMapBy(List<ConcernDegree> concernDegrees) {
-		
-		HashMap<Concern, List<Repository>> concernToConcernSolutionMap = new HashMap<Concern, List<Repository>>();
-		concernDegrees.forEach(concernDegree -> {
-			
-			concernToConcernSolutionMap.put((Concern) concernDegree.getPrimaryChanged(), 
-											toRepositoryList(concernDegree.getClassDesignOptions()));
-						
-		});
-		
-		return concernToConcernSolutionMap;
-		
-	}
-
-	private List<Repository> toRepositoryList(EList<EObject> classDesignOptions) {
-	
-		return classDesignOptions.stream().map(each -> (Repository) each).collect(Collectors.toList());
-		
 	}
 	
 	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {

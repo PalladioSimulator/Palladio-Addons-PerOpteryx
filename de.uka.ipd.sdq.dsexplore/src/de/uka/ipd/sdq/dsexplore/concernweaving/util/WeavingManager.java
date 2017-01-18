@@ -2,14 +2,16 @@ package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
-import org.palladiosimulator.analyzer.workflow.jobs.PreparePCMBlackboardPartitionJob;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
@@ -18,7 +20,6 @@ import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
-import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
@@ -31,18 +32,17 @@ public class WeavingManager {
 	private class PCMPartitionManager {
 		
 		private final MDSDBlackboard blackboard;
-		private final DSEWorkflowConfiguration dseConfig; 
+		private final PCMResourceSetPartition unweavedPCMPartition; 
 		
-		public PCMPartitionManager(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig) {
+		public PCMPartitionManager(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition) {
 			
 			this.blackboard = blackboard;
-			this.dseConfig = dseConfig;
+			this.unweavedPCMPartition = unweavedPCMPartition;
 			
 		}
 		
-		public void replaceInitialPCMResourcePartitionWith(PCMResourceSetPartition pcmPartition) {
+		public void updatePCMResourcePartitionWith(PCMResourceSetPartition pcmPartition) {
 			
-			//this.blackboard.removePartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 			this.blackboard.addPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID, pcmPartition);
 			
 		}
@@ -51,19 +51,27 @@ public class WeavingManager {
 		public PCMResourceSetPartition getCopyOfUnweavedPCMPartition() {
 			
 			PCMResourceSetPartition copy = new PCMResourceSetPartition();
+			ResourceSet copyResourceSet = copy.getResourceSet();
 			
-			copy.initialiseResourceSetEPackages(AbstractPCMWorkflowRunConfiguration.PCM_EPACKAGES);
-
-			copy.loadModel(PreparePCMBlackboardPartitionJob.PCM_PALLADIO_PRIMITIVE_TYPE_REPOSITORY_URI);
-			copy.loadModel(PreparePCMBlackboardPartitionJob.PCM_PALLADIO_RESOURCE_TYPE_URI);
-			for (final String modelFile : this.dseConfig.getPCMModelFiles()) {
-				copy.loadModel(modelFile);
-	        }
-			copy.loadModel(this.dseConfig.getRMIMiddlewareFile());
-			copy.loadModel(this.dseConfig.getEventMiddlewareFile());
-			copy.resolveAllProxies();
+			List<Resource> resourceList = this.unweavedPCMPartition.getResourceSet().getResources();
 			
-			return copy;
+			Copier copier = new Copier();
+			for (Resource resource : resourceList) {
+				if (resource.getURI().toString().contains("pathmap")){
+					
+					copy.loadModel(resource.getURI());
+					
+				} else {
+					
+					Collection<EObject> copiedContent = copier.copyAll(resource.getContents());
+					Resource newResource = copyResourceSet.createResource(URI.createURI(resource.getURI().toString()));
+					newResource.getContents().addAll(copiedContent);
+					
+				}
+			}
+		    copier.copyReferences();
+		    
+		    return copy;
 			
 		}
 		
@@ -72,13 +80,12 @@ public class WeavingManager {
 	private static WeavingManager instance = null;
 	
 	private PCMPartitionManager pcmPartitionManager;
-	private HashMap<String, PCMResourceSetPartition> weavedPcmPartitions = new HashMap<String, PCMResourceSetPartition>(); 
 	
 	private WeavingManager() {
 		
 	}
 	
-	public static void initialize(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig, HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
+	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition) {
 		
 		if (instance == null) {
 			
@@ -86,8 +93,7 @@ public class WeavingManager {
 			
 		}
 		
-		instance.setPCMPartitionManager(blackboard, dseConfig);
-		instance.initWeavedPCMPartitions(concernToConcernSolutionsMap);
+		instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
 		
 	}
 	
@@ -97,25 +103,13 @@ public class WeavingManager {
 		
 	}
 
-	private void setPCMPartitionManager(MDSDBlackboard blackboard, DSEWorkflowConfiguration dseConfig) {
+	private void setPCMPartitionManager(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition) {
 		
-		this.pcmPartitionManager = new PCMPartitionManager(blackboard, dseConfig);
-		
-	}
-	
-	private void initWeavedPCMPartitions(HashMap<Concern, List<Repository>> concernToConcernSolutionsMap) {
-		
-		concernToConcernSolutionsMap.forEach((concern, concernSolutions) -> weaveAll(concern, concernSolutions));
+		this.pcmPartitionManager = new PCMPartitionManager(blackboard, unweavedPCMPartition);
 		
 	}
 
-	private void weaveAll(Concern concern, List<Repository> concernSolutions) {
-		
-		concernSolutions.forEach(concernSolution -> addWeavedPartition(concernSolution.getId(), getWeavedPCMPartition(concern, concernSolution)));
-		
-	}
-
-	private PCMResourceSetPartition getWeavedPCMPartition(Concern concern, Repository concernSolution) {
+	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution) {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
@@ -123,7 +117,9 @@ public class WeavingManager {
 		updateProvidedFeatures(concern, concernSolution);
 		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm).execute();
 		
-		return pcmPartition;
+		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
+		
+		return pcm;
 		
 	}
 
@@ -168,21 +164,6 @@ public class WeavingManager {
 		
 		return pcm.getRepositories().stream().filter(eachRepo -> eachRepo.getId().equals(concernSolutionId))
 											 .findFirst().get();
-		
-	}
-
-	public PCMInstance getWeavedPCMInstanceBy(Repository concernSolution) {
-	
-		PCMResourceSetPartition pcmPartition = this.weavedPcmPartitions.get(concernSolution.getId());
-		this.pcmPartitionManager.replaceInitialPCMResourcePartitionWith(pcmPartition);
-		
-		return new PCMInstance(pcmPartition);
-		
-	}
-	
-	private void addWeavedPartition(String id, PCMResourceSetPartition weavedPartition) {
-		
-		this.weavedPcmPartitions.put(id, weavedPartition);
 		
 	}
 	
