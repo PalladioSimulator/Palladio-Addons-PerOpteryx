@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
@@ -33,7 +32,6 @@ import ConcernModel.Concern;
 import ConcernModel.ConcernModelFactory;
 import ConcernModel.ConcernModelPackage;
 import ConcernModel.ConcernRepository;
-import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.AdapterTransformation;
 import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
@@ -42,6 +40,7 @@ import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ConcernDesignDecision;
+import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ECCAllocDegreeDesignDecision;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
@@ -497,33 +496,16 @@ public class DSEProblem {
 
 	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
 		
-		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+		ECCAllocDegreeDesignDecision eccAllocDegreeDEsignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), 
+																									 this.initialInstance.getRepositories());
 		
-		List<ElementaryConcernComponent> eccs = ((Concern) concernDegree.getPrimaryChanged()).getComponents();
-		eccs.forEach(ecc -> {
+		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+		eccAllocDegreeDEsignDecision.getECCClassChoicesFrom(allPcmResourceContainer).forEach(eccClassChoice -> {
 			
-			AllocationDegree allocDegree = this.specificDesignDecisionFactory.createAllocationDegree();
-			allocDegree.setPrimaryChanged(ecc);
-			allocDegree.getClassDesignOptions().addAll(allPcmResourceContainer);
-			
-			ClassChoice choice = this.designDecisionFactory.createClassChoice();
-			choice.setDegreeOfFreedomInstance(allocDegree);
-			
-			int index = getRandomIndex(allPcmResourceContainer.size());
-			ResourceContainer randomResourceContainer = allPcmResourceContainer.get(index);
-			choice.setChosenValue(randomResourceContainer);
-			
-			initialCandidate.add(choice);
-			
-			dds.add(allocDegree);
+			initialCandidate.add(eccClassChoice);
+			dds.add(eccClassChoice.getDegreeOfFreedomInstance());
 			
 		});
-		
-	}
-	
-	private int getRandomIndex(int bound) {
-		
-		return new Random(System.currentTimeMillis()).nextInt(--bound);
 		
 	}
 
