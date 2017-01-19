@@ -3,12 +3,14 @@ package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
@@ -130,9 +132,25 @@ public class WeavingExecuter {
 		
 		WeavingManager weavingManager = WeavingManager.getInstance().get();
 		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), 
-															  this.concernWithSolutionPair.getSecond());
+															  this.concernWithSolutionPair.getSecond(),
+															  getECCAllocationMap());
 		
 		return wovenPCM;
+		
+	}
+	
+	private HashMap<ElementaryConcernComponent, ResourceContainer> getECCAllocationMap() {
+		
+		HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap = new HashMap<ElementaryConcernComponent, ResourceContainer>();
+		for(ClassChoice eccClassChoice : this.eccClassChoices) {
+			
+			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			ResourceContainer chosenResourceContainer = (ResourceContainer) eccClassChoice.getChosenValue();
+			eccAllocationMap.put(ecc, chosenResourceContainer);
+			
+		}
+		
+		return eccAllocationMap;
 		
 	}
 

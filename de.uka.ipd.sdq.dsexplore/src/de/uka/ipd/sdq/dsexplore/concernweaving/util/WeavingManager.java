@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,9 +18,11 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
+import ConcernModel.ElementaryConcernComponent;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
@@ -109,13 +112,15 @@ public class WeavingManager {
 		
 	}
 
-	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution) {
+	public PCMInstance getWeavedPCMInstanceOf(Concern concern, 
+											  Repository concernSolution, 
+											  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
 		//TODO is there a simpler way?
 		updateProvidedFeatures(concern, concernSolution);
-		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm).execute();
+		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute();
 		
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 		

@@ -118,14 +118,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         }
         
         WeavingExecuter weavingExecuter = new WeavingExecuter(notTransformedChoices);
-        
-//        List<ClassChoice> concernChoices = getConcernChoicesFrom(notTransformedChoices);
-//        Concern concernToWeave = getConcernFrom(concernChoices.get(0));
-//        List<ClassChoice> concernRelatedAllocDegrees = getAllocDegreesRelatedTo(concernToWeave, notTransformedChoices);
-//		notTransformedChoices.removeAll(concernRelatedAllocDegrees);
-//		notTransformedChoices.removeAll(concernChoices);
-		//notTransformedChoices.addAll(convertToComponentAllocDegrees(concernRelatedAllocDegrees, (Repository) concernChoices.get(0).getChosenValue()));
-
+       
         // then, use old way for choices that have not been transformed, e.g. because there is no
         // GDoF defined for them.
         // adjust values as in genotype
@@ -133,11 +126,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
-        
-//        pcm = WeavingManager.getInstance().get().getWeavedPCMInstanceOf(concernToWeave, (Repository) concernChoices.get(0).getChosenValue());
-//
-//        List<ClassChoice> choices = convertToComponentAllocDegrees(concernRelatedAllocDegrees, (Repository) concernChoices.get(0).getChosenValue());
-//
         
         pcm = weavingExecuter.getWeavedPCMInstanceOf(pcm);
         
