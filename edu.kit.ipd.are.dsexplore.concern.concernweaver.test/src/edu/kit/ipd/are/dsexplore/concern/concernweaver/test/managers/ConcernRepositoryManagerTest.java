@@ -16,6 +16,7 @@ import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 
@@ -71,8 +72,8 @@ public class ConcernRepositoryManagerTest extends WeavingTest {
 			
 		}
 		
-		List<OperationProvidedRole> expectedConsumedFeatures = ecc.getProvidedRoles_InterfaceProvidingEntity().stream().map(each -> (OperationProvidedRole) each).collect(Collectors.toList());
-		List<OperationProvidedRole> actualConsumedFeatures = this.concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(expectedConsumedFeatures);
+		List<ProvidedRole> expectedConsumedFeatures = ecc.getProvidedRoles_InterfaceProvidingEntity();//.stream().map(each -> (OperationProvidedRole) each).collect(Collectors.toList());
+		List<ProvidedRole> actualConsumedFeatures = this.concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(expectedConsumedFeatures);
 		
 		assertEquals(expectedConsumedFeatures, actualConsumedFeatures);
 		
@@ -87,8 +88,7 @@ public class ConcernRepositoryManagerTest extends WeavingTest {
 			
 			RepositoryComponent ecc = this.concernRepositoryManager.getComponentByUnique(ECC_DECODER_NAME).get();
 			expectedName = ecc.getEntityName();
-			List<OperationProvidedRole> consumedFeatures = ecc.getProvidedRoles_InterfaceProvidingEntity().stream().map(each -> (OperationProvidedRole) each)
-																												   .collect(Collectors.toList());
+			List<ProvidedRole> consumedFeatures = ecc.getProvidedRoles_InterfaceProvidingEntity();
 			actualName = this.concernRepositoryManager.getElementaryConcernComponentOf(consumedFeatures).get().getEntityName();
 			
 		} catch (NoSuchElementException e) {

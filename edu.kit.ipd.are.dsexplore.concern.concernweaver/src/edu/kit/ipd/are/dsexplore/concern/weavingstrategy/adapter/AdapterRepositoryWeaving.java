@@ -3,7 +3,7 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 import java.util.List;
 import java.util.Optional;
 
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
@@ -56,7 +56,7 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 
 	private RepositoryComponent connectToElementaryConcernComponent(RepositoryComponent adapter) {
 
-		List<OperationProvidedRole> consumedFeatures = this.weavingInstruction.getECCWithConsumedFeatures().getSecond();
+		List<ProvidedRole> consumedFeatures = this.weavingInstruction.getECCWithConsumedFeatures().getSecond();
 		//This step is important because the eccs ProvidedOperationRoles are not the copied one in the pcm-concern-repository. This would lead to wrong references.
 		concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(consumedFeatures).forEach(eachConsumedFeature -> {
 

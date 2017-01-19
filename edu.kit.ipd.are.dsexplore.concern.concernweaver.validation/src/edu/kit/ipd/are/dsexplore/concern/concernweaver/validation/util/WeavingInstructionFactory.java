@@ -6,7 +6,7 @@ import java.util.List;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -129,7 +129,7 @@ public class WeavingInstructionFactory {
 	
 	private WeavingInstruction getWeavingInstructionOf(Pair<Connector, List<Signature>> locationWithAffectedSignature, ElementaryConcernComponent ecc) {
 		
-		Pair<ElementaryConcernComponent, List<OperationProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, ecc.getPerimeterInterface());
+		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, ecc.getPerimeterInterface());
 		ResourceContainer resourceContainer = ExperimentUtil.getResourceContainerWith(RESOURCE_CONTAINER_SERVER_1_ID, pcm.getResourceEnvironment());
 		Transformation adapterStrategy = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
 		

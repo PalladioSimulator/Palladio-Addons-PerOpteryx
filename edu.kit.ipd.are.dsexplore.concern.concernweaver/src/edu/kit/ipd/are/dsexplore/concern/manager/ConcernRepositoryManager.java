@@ -56,14 +56,14 @@ public class ConcernRepositoryManager {
 		
 	}
 	
-	public Optional<RepositoryComponent> getElementaryConcernComponentOf(List<OperationProvidedRole> providedRoles) {
+	public Optional<RepositoryComponent> getElementaryConcernComponentOf(List<ProvidedRole> providedRoles) {
 		
 		return this.pcmConcernRepository.getComponents__Repository().stream().filter(ecc -> areEqual(ecc.getProvidedRoles_InterfaceProvidingEntity(), providedRoles))
 																			 .findFirst();
 		
 	}
 
-	private boolean areEqual(EList<ProvidedRole> givenProvidedRoles, List<OperationProvidedRole> searchedProvidedRoles) {
+	private boolean areEqual(EList<ProvidedRole> givenProvidedRoles, List<ProvidedRole> searchedProvidedRoles) {
 
 		return hasSameCount(givenProvidedRoles.size(), searchedProvidedRoles.size()) &&
 			   hasEqualProvidedRoles(givenProvidedRoles, searchedProvidedRoles);	
@@ -76,13 +76,13 @@ public class ConcernRepositoryManager {
 		
 	}
 	
-	private boolean hasEqualProvidedRoles(EList<ProvidedRole> givenProvidedRoles, List<OperationProvidedRole> searchedProvidedRoles) {
+	private boolean hasEqualProvidedRoles(List<ProvidedRole> givenProvidedRoles, List<ProvidedRole> searchedProvidedRoles) {
 		
 		for (ProvidedRole eachGivenProvidedRole : givenProvidedRoles) {
 			
-			for (OperationProvidedRole eachSearchedProvidedRole : searchedProvidedRoles) {
+			for (ProvidedRole eachSearchedProvidedRole : searchedProvidedRoles) {
 				
-				if (!hasSameInterfaces(((OperationProvidedRole) eachGivenProvidedRole), eachSearchedProvidedRole)) {
+				if (!(hasSameId(eachGivenProvidedRole, eachSearchedProvidedRole))) {
 					
 					return false;
 					
@@ -96,12 +96,9 @@ public class ConcernRepositoryManager {
 		
 	}
 
-	private boolean hasSameInterfaces(OperationProvidedRole givenProvidedRole, OperationProvidedRole searchedProvidedRole) {
+	private boolean hasSameId(ProvidedRole givenProvidedRole, ProvidedRole searchedProvidedRole) {
 		
-		String givenInterfaceId = givenProvidedRole.getProvidedInterface__OperationProvidedRole().getId();
-		String searchedInterfaceId = searchedProvidedRole.getProvidedInterface__OperationProvidedRole().getId();
-		
-		return givenInterfaceId.equals(searchedInterfaceId);
+		return givenProvidedRole.getId().equals(searchedProvidedRole.getId());
 		
 	}
 
@@ -195,7 +192,7 @@ public class ConcernRepositoryManager {
 		
 	}
 	
-	public List<OperationProvidedRole> getEquivalentConsumedFeaturesFromRepository(List<OperationProvidedRole> consumedFeatures) {
+	public List<ProvidedRole> getEquivalentConsumedFeaturesFromRepository(List<ProvidedRole> consumedFeatures) {
 		
 		try {
 			
@@ -211,7 +208,7 @@ public class ConcernRepositoryManager {
 		
 	}
 
-	private Optional<OperationProvidedRole> getEquivalent(OperationProvidedRole searchedConsumedFeature) {
+	private Optional<OperationProvidedRole> getEquivalent(ProvidedRole searchedConsumedFeature) {
 		
 		return this.pcmConcernRepository.getComponents__Repository().stream().flatMap(eachComponent -> eachComponent.getProvidedRoles_InterfaceProvidingEntity().stream())
 																			 .filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
@@ -222,7 +219,7 @@ public class ConcernRepositoryManager {
 		
 	}
 
-	private boolean areEqual(OperationProvidedRole givenProvidedRole, OperationProvidedRole searchedConsumedFeature) {
+	private boolean areEqual(ProvidedRole givenProvidedRole, ProvidedRole searchedConsumedFeature) {
 		
 		String givenProvidedRoleId = givenProvidedRole.getId();
 		String searchedConsumedFeatureId = searchedConsumedFeature.getId();

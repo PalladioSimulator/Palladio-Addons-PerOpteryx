@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.EventType;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
+import org.palladiosimulator.pcm.repository.SourceRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
+import org.palladiosimulator.pcm.seff.EmitEventAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.SeffFactory;
@@ -58,7 +62,7 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
-	public ServiceEffectSpecification addExternalCallActionPipeBy(List<Pair<OperationSignature, OperationRequiredRole>> orderedExternalCallActionSequence, ServiceEffectSpecification seff) {
+	public ServiceEffectSpecification addExternalCallActionPipeBy(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence, ServiceEffectSpecification seff) {
 		
 		((ResourceDemandingBehaviour) seff).getSteps_Behaviour().addAll(toAbstractActions(orderedExternalCallActionSequence));
 		
@@ -66,7 +70,7 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 
-	private List<AbstractAction> toAbstractActions(List<Pair<OperationSignature, OperationRequiredRole>> orderedExternalCallActionSequence) {
+	private List<AbstractAction> toAbstractActions(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence) {
 		
 		List<AbstractAction> unlinkedActions = new ArrayList<AbstractAction>();
 		unlinkedActions.add(getStartAction());
@@ -111,9 +115,9 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
-	private List<AbstractAction> toExternalCallActions(List<Pair<OperationSignature, OperationRequiredRole>> orderedExternalCallActionSequence) {
+	private List<AbstractAction> toExternalCallActions(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence) {
 		
-		return orderedExternalCallActionSequence.stream().map(eachAction -> createExternalActionCallOf(eachAction))
+		return orderedExternalCallActionSequence.stream().map(eachAction -> createAbstractExternalActionCallOf(eachAction))
 														 .collect(Collectors.toList());
 		
 	}
@@ -136,6 +140,22 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
+	//TODO refactor to some handler like its done with RoleHandler...
+	private AbstractAction createAbstractExternalActionCallOf(Pair<Signature, RequiredRole> action) {
+		
+		RequiredRole requiredRole = action.getSecond();
+		if (requiredRole instanceof OperationRequiredRole) {
+			
+			return createExternalActionCallOf(Pair.of((OperationSignature) action.getFirst(), (OperationRequiredRole) action.getSecond()));
+			
+		} else {
+			
+			return createEmitEventActionOf(Pair.of((EventType) action.getFirst(), (SourceRole) action.getFirst()));
+			
+		}
+		
+	}
+	
 	private AbstractAction createExternalActionCallOf(Pair<OperationSignature, OperationRequiredRole> action) {
 		
 		ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
@@ -144,6 +164,16 @@ public class PcmServiceEffectSpecificationManager {
 		externalCallAction.setRole_ExternalService(action.getSecond());
 		
 		return externalCallAction;
+	}
+	
+	private AbstractAction createEmitEventActionOf(Pair<EventType, SourceRole> action) {
+		
+		EmitEventAction emitEventAction = this.seffFactory.createEmitEventAction();
+		emitEventAction.setEntityName(action.getFirst().getEntityName());
+		emitEventAction.setEventType__EmitEventAction(action.getFirst());
+		emitEventAction.setSourceRole__EmitEventAction(action.getSecond());
+		
+		return emitEventAction;
 	}
 	
 }

@@ -7,11 +7,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.OperationSignature;
+import org.palladiosimulator.pcm.repository.Signature;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
@@ -26,7 +32,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.get();
 	private Transformation transformationStrategy;
-	private List<OperationProvidedRole> consumedFeautresOfECC;
+	private List<ProvidedRole> consumedFeautresOfECC;
 	private BasicComponent adapterComponent;
 	private WeavingLocation weavingLocation;
 	
@@ -36,7 +42,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
-	private void setConsumedFeautresOfECC(List<OperationProvidedRole> consumedFeautresOfECC) {
+	private void setConsumedFeautresOfECC(List<ProvidedRole> consumedFeautresOfECC) {
 		
 		this.consumedFeautresOfECC = concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(consumedFeautresOfECC);
 		
@@ -71,7 +77,6 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) {
 		
 		createServiceEffectSpecificationsBy(calledComponent).forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo(this.adapterComponent, eachCreatedSeff));
-	
 		
 	}
 
@@ -103,15 +108,15 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private List<Pair<OperationSignature, OperationRequiredRole>> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<Pair<Signature, RequiredRole>> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) {
 		
 		return Arrays.asList(getExternalCallInfosFrom(seffToTransform));
 		
 	}
 	
-	private List<Pair<OperationSignature, OperationRequiredRole>> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<Pair<Signature, RequiredRole>> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) {
 
-		List<Pair<OperationSignature, OperationRequiredRole>> externalCallInfos = new ArrayList<Pair<OperationSignature, OperationRequiredRole>>();
+		List<Pair<Signature, RequiredRole>> externalCallInfos = new ArrayList<Pair<Signature, RequiredRole>>();
 		
 		switch(((AdapterTransformation) transformationStrategy).getAppear()) {
 		
@@ -139,56 +144,93 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private Pair<OperationSignature, OperationRequiredRole> getExternalCallInfosFrom(ServiceEffectSpecification seffToTransform) {
+	private Pair<Signature, RequiredRole> getExternalCallInfosFrom(ServiceEffectSpecification seffToTransform) {
 		
-		OperationSignature signature = (OperationSignature) seffToTransform.getDescribedService__SEFF();
-		OperationRequiredRole requiredRole = getRequiredRoleOf(signature); 
+		Signature signature = (Signature) seffToTransform.getDescribedService__SEFF();
+		RequiredRole requiredRole = getRequiredRoleOf(signature); 
 		
 		return Pair.of(signature, requiredRole);
 		
 	}
 
-	private OperationRequiredRole getRequiredRoleOf(OperationSignature signature) {
+	private RequiredRole getRequiredRoleOf(Signature signature) {
 		
-		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> eachRequiredRole instanceof OperationRequiredRole)
-				 																		 .map(eachRequiredRole -> (OperationRequiredRole) eachRequiredRole)
-				 																		 .filter(eachOperationRequiredRole -> contains(signature, eachOperationRequiredRole.getRequiredInterface__OperationRequiredRole()))
+		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> areEqual(getInterfaceFrom(eachRequiredRole.eCrossReferences()),
+																															  (Interface) signature.eContainer()))
 				 																		 .findFirst().get();
 		
 	}
 
-	private boolean contains(OperationSignature signature, OperationInterface operationInterface) {
+	private boolean areEqual(Interface interface1, Interface interface2) {
 		
-		return operationInterface.getSignatures__OperationInterface().contains(signature);
+		return interface1.getId().equals(interface2.getId());
 		
 	}
 
 	//TODO concernweaverutil -> provide method that returns all operation(provided|required)roles from a given list of (provided|required)roles...
-	private List<Pair<OperationSignature, OperationRequiredRole>> getExternalCallInfosFrom(List<OperationProvidedRole> consumedFeautresOfECC) {
+	private List<Pair<Signature, RequiredRole>> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC) {
 		
-		return getAllRequiredRolesConnectedWith(consumedFeautresOfECC).flatMap(eachOperationRequiredRole -> transformToExternalCallInfo(eachOperationRequiredRole))
-																			.collect(Collectors.toList());
+		return getAllRequiredRolesConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> transformToExternalCallInfo(eachRequiredRole))
+																	  .collect(Collectors.toList());
 		
 	}
 	
-	private Stream<Pair<OperationSignature, OperationRequiredRole>> transformToExternalCallInfo(OperationRequiredRole requiredRole) {
+	private Stream<Pair<Signature, RequiredRole>> transformToExternalCallInfo(RequiredRole requiredRole) {
 		
-		return requiredRole.getRequiredInterface__OperationRequiredRole()
-						   .getSignatures__OperationInterface().stream().map(eachSignature -> Pair.of(eachSignature, requiredRole));
-		
-	}
-
-	private Stream<OperationRequiredRole> getAllRequiredRolesConnectedWith(List<OperationProvidedRole> consumedFeautresOfECC) {
-		
-		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> eachRequiredRole instanceof OperationRequiredRole)
-																						 .map(eachRequiredRole -> (OperationRequiredRole) eachRequiredRole)
-																						 .filter(eachOperationRequiredRole -> existConnection(eachOperationRequiredRole, consumedFeautresOfECC));
+		return getSignaturesOf(requiredRole).map(eachSignature -> Pair.of(eachSignature, requiredRole));
 		
 	}
 
-	private boolean existConnection(OperationRequiredRole requiredRole, List<OperationProvidedRole> providedRoles) {
+	private Stream<Signature> getSignaturesOf(RequiredRole requiredRole) {
 		
-		return providedRoles.stream().anyMatch(eachProvidedRole -> eachProvidedRole.getProvidedInterface__OperationProvidedRole().equals(requiredRole.getRequiredInterface__OperationRequiredRole()));
+		return getSignaturesOf(getInterfaceFrom(requiredRole.eCrossReferences()).eAllContents());
+		
+	}
+
+	private Stream<Signature> getSignaturesOf(TreeIterator<EObject> interfaceObjectIterator) {
+		
+//		return references.stream().filter(eachReference -> eachReference instanceof Signature)
+//								  .map(eachSignature -> (Signature) eachSignature);
+		List<Signature> signatures = new ArrayList<Signature>();
+		while(interfaceObjectIterator.hasNext()) {
+			
+			EObject current = interfaceObjectIterator.next();
+			if (current instanceof Signature) {
+				
+				signatures.add((Signature) current);
+				
+			}
+			
+		}
+		
+		return signatures.stream();
+		
+	}
+
+	private Stream<RequiredRole> getAllRequiredRolesConnectedWith(List<ProvidedRole> consumedFeautresOfECC) {
+		
+		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachOperationRequiredRole -> existConnection(eachOperationRequiredRole, consumedFeautresOfECC));
+		
+	}
+
+	private boolean existConnection(RequiredRole requiredRole, List<ProvidedRole> providedRoles) {
+		
+		return providedRoles.stream().anyMatch(eachProvidedRole -> areConnected(eachProvidedRole.eCrossReferences(), requiredRole.eCrossReferences()));
+		
+	}
+
+	private boolean areConnected(List<EObject> references, List<EObject> references2) {
+		
+		Interface firstInterface = getInterfaceFrom(references);
+		Interface secondInterface = getInterfaceFrom(references2);
+		
+		return firstInterface.getId().equals(secondInterface.getId());
+		
+	}
+
+	private Interface getInterfaceFrom(List<EObject> references) {
+		
+		return (Interface) references.stream().filter(eachReference -> eachReference instanceof Interface).findFirst().get();
 		
 	}
 

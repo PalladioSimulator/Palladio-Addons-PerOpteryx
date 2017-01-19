@@ -73,6 +73,16 @@
     <children xmi:type="notation:Shape" xmi:id="_mL6ZgFWIEea0XO9AU2xvGg" type="2102" fontName=".SF NS Text">
       <children xmi:type="notation:DecorationNode" xmi:id="_mL6ZglWIEea0XO9AU2xvGg" type="5102"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_mL6Zg1WIEea0XO9AU2xvGg" type="7102">
+        <children xmi:type="notation:Node" xmi:id="_g89PIN2BEea6CY0piLT3wA" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_g89PId2BEea6CY0piLT3wA" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_tD1eIFWJEea0XO9AU2xvGg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_g89PIt2BEea6CY0piLT3wA"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_g8-dQN2BEea6CY0piLT3wA" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_g8-dQd2BEea6CY0piLT3wA" diagramLink="_mnSUsN2BEea6CY0piLT3wA" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_V8XyIK_EEeaFof9L2wGlaQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_g8-dQt2BEea6CY0piLT3wA"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_mL6ZhFWIEea0XO9AU2xvGg"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_mL6ZhVWIEea0XO9AU2xvGg"/>
       </children>
@@ -91,7 +101,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_nbgZIFWIEea0XO9AU2xvGg" type="5102"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_nbgZIVWIEea0XO9AU2xvGg" type="7102">
         <children xmi:type="notation:Node" xmi:id="_1e7hUK_BEeaFof9L2wGlaQ" type="3102">
-          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_1e7hUa_BEeaFof9L2wGlaQ" hint="PCM SEFF Model"/>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_1e7hUa_BEeaFof9L2wGlaQ" diagramLink="_gsRu0N2BEea6CY0piLT3wA" hint="PCM SEFF Model"/>
           <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_toEMkVWJEea0XO9AU2xvGg"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_1e7hUq_BEeaFof9L2wGlaQ"/>
         </children>
@@ -283,5 +293,13 @@
   </notation:Diagram>
   <notation:Diagram xmi:id="_HMHC0K_EEeaFof9L2wGlaQ" type="PCM SEFF Model" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_HMHC0a_EEeaFof9L2wGlaQ"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_gsRu0N2BEea6CY0piLT3wA" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_gsRu0d2BEea6CY0piLT3wA"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_toEMkVWJEea0XO9AU2xvGg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_mnSUsN2BEea6CY0piLT3wA" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_mnSUsd2BEea6CY0piLT3wA"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_V8XyIK_EEeaFof9L2wGlaQ"/>
   </notation:Diagram>
 </xmi:XMI>

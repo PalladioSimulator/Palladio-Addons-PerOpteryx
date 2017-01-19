@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -109,7 +110,7 @@ public class WeavingInstructionGenerator {
 	
 	private List<WeavingInstruction> generateWeavingInstructionFrom(RepositoryComponent annotatedComponent, AnnotationTarget targetAnnotation) {
 		
-		Pair<ElementaryConcernComponent, List<OperationProvidedRole>> eccWithRequiredFeatures = getECCWithRequiredFeaturesFrom(targetAnnotation);
+		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithRequiredFeatures = getECCWithRequiredFeaturesFrom(targetAnnotation);
 		return getWeavingLocationsFrom(annotatedComponent, targetAnnotation).stream().map(eachWeavingLocation -> generateWeavingInstructionFrom(eccWithRequiredFeatures, 
 																																				eachWeavingLocation, 
 																																				annotatedComponent, 
@@ -118,7 +119,7 @@ public class WeavingInstructionGenerator {
 		
 	}
 	
-	private WeavingInstruction generateWeavingInstructionFrom(Pair<ElementaryConcernComponent, List<OperationProvidedRole>> eccWithRequiredFeatures,
+	private WeavingInstruction generateWeavingInstructionFrom(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithRequiredFeatures,
 															  WeavingLocation weavingLocation,
 															  RepositoryComponent annotatedComponent,
 															  AnnotationTarget targetAnnotation) {
@@ -175,7 +176,7 @@ public class WeavingInstructionGenerator {
 		
 	}
 	
-	private Pair<ElementaryConcernComponent, List<OperationProvidedRole>> getECCWithRequiredFeaturesFrom(AnnotationTarget targetAnnotation) {
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithRequiredFeaturesFrom(AnnotationTarget targetAnnotation) {
 		
 		//TODO introduce exception
 		//ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).orElseThrow(() -> new Exception());

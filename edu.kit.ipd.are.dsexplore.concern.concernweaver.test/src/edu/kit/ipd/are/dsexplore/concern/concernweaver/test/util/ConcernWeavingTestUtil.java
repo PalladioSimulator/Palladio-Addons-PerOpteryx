@@ -65,7 +65,7 @@ public class ConcernWeavingTestUtil {
 	
 	public static ConcernRepository loadConcernRepository() {
 		
-		return (ConcernRepository) loadWithProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
+		return (ConcernRepository) loadWithoutProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
 		
 	}
 	
@@ -168,7 +168,8 @@ public class ConcernWeavingTestUtil {
 		set.getPackageRegistry().put(EMFProfilePackage.eNS_URI, EMFProfilePackage.eINSTANCE);
         set.getPackageRegistry().put(EMFProfileApplicationPackage.eNS_URI, EMFProfileApplicationPackage.eINSTANCE);
         set.getPackageRegistry().put(NotationPackage.eNS_PREFIX, NotationPackage.eINSTANCE);
-		
+        set.getPackageRegistry().put(RepositoryPackage.eNS_URI, RepositoryPackage.eINSTANCE);
+        		
 	}
 
 	public static void registerFactories() {

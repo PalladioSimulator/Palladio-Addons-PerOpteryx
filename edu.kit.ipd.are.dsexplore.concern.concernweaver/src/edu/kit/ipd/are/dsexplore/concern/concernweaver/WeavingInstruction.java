@@ -2,7 +2,7 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.List;
 
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import ConcernModel.ElementaryConcernComponent;
@@ -11,12 +11,12 @@ import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public class WeavingInstruction {
 	
-	private final Pair<ElementaryConcernComponent, List<OperationProvidedRole>> eccWithConsumedFeatures;
+	private final Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures;
 	private final WeavingLocation weavingLocation;
 	private final Transformation transformationStrategy;
 	private final ResourceContainer resourceContainer;
 	
-	public WeavingInstruction(Pair<ElementaryConcernComponent, List<OperationProvidedRole>> eccWithConsumedFeatures,
+	public WeavingInstruction(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures,
 							  WeavingLocation weavingLocation,
 							  Transformation transformationStrategy,
 							  ResourceContainer resourceContainer) {
@@ -28,7 +28,7 @@ public class WeavingInstruction {
 		
 	}
 	
-	public Pair<ElementaryConcernComponent, List<OperationProvidedRole>> getECCWithConsumedFeatures() {
+	public Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() {
 	
 		return eccWithConsumedFeatures;
 		

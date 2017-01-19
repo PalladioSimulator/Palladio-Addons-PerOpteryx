@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.Signature;
@@ -128,7 +129,7 @@ public class WeavingTest {
 		
 	}
 
-	private Pair<ElementaryConcernComponent, List<OperationProvidedRole>> getECCWithConsumedFeatures() {
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() {
 		
 		ElementaryConcernComponent ecc = ConcernWeavingTestUtil.getDetectionECCOf(concern);
 		

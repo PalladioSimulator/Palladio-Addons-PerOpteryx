@@ -27,7 +27,7 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGeneratorExplorationFacto
 
 public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 	
-	private List<OperationProvidedRole> consumedFeaturesOfECC;
+	private List<ProvidedRole> consumedFeaturesOfECC;
 	protected AssemblyContext adapterAssemblyContext;
 	protected RoleHandler roleHandler;
 	
@@ -37,7 +37,7 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		
 	}
 	
-	private void setConsumedFeaturesOfECC(List<OperationProvidedRole> consumedFeatures) {
+	private void setConsumedFeaturesOfECC(List<ProvidedRole> consumedFeatures) {
 		
 		this.consumedFeaturesOfECC = concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(consumedFeatures);
 		

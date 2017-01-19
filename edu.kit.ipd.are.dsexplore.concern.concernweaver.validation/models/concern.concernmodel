@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.0">
+<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
   <concerns name="IDS">
     <strategies name="DDOS" description="Observes DDOS attacks"/>
     <components name="Detection">
       <annotationenrich name="Observer"/>
-      <perimeterInterface href="ossec.repository#_saJn8FWJEea0XO9AU2xvGg"/>
+      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_saJn8FWJEea0XO9AU2xvGg"/>
     </components>
     <components requires="//@concerns.0/@components.0" name="Analysis">
       <annotationenrich name="Analysis"/>
-      <perimeterInterface href="ossec.repository#_tD03EFWJEea0XO9AU2xvGg"/>
+      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_tD03EFWJEea0XO9AU2xvGg"/>
     </components>
     <components requires="//@concerns.0/@components.1" name="Response">
       <annotationenrich name="Response"/>
-      <perimeterInterface href="ossec.repository#_uCpPwFWJEea0XO9AU2xvGg"/>
+      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_uCpPwFWJEea0XO9AU2xvGg"/>
     </components>
-    <annotationtarget name="Observee" maxAmount="-1"/>
-    <constraints association="TOGETHER" annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.0/@annotationenrich.0"/>
-    <constraints association="SEPARATED" annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.1/@annotationenrich.0"/>
+    <annotationtarget name="Observee" maxAmount="-1">
+      <signatures xsi:type="repository:OperationSignature" href="../default.repository#_8A9Bla7LEd-Z7e7zQl8I9w"/>
+    </annotationtarget>
+    <constraints annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.0/@annotationenrich.0"/>
+    <constraints annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.1/@annotationenrich.0"/>
+    <constraints annotations="//@concerns.0/@components.0/@annotationenrich.0"/>
   </concerns>
 </Concern:ConcernRepository>

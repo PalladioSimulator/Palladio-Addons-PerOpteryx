@@ -41,6 +41,12 @@ public class ConcernManager {
 		return eInstance;
 	}
 	
+	public List<ElementaryConcernComponent> getECCs() {
+		
+		return this.concern.getComponents();
+		
+	}
+	
 	public Optional<ElementaryConcernComponent> getCorrespondingECCFrom(AnnotationTarget targetAnnotation) {
 		
 		for (ElementaryConcernComponent eachECC : this.concern.getComponents()) {
