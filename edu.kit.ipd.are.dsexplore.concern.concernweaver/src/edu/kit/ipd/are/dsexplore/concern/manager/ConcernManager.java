@@ -113,21 +113,22 @@ public class ConcernManager {
 	private Optional<AnnotationTarget> getTargetAnnotationOf(AnnotationEnrich enrichAnnotation) {
 		
 		return this.concern.getConstraints().stream().filter(eachConstraint -> hasCorrespondingTargetAnnotation(eachConstraint, enrichAnnotation))
-											  		 .map(constraint -> getTargetAnnotationOf(constraint))
+											  		 .map(constraint -> getTargetAnnotationOf(constraint).get())
 											  		 .findFirst();
 		
 	}
 	
-	private AnnotationTarget getTargetAnnotationOf(DeploymentConstraint constraint) {
+	private Optional<AnnotationTarget> getTargetAnnotationOf(DeploymentConstraint constraint) {
 		
-		return (AnnotationTarget) constraint.getAnnotations().stream().filter(annotation -> annotation instanceof AnnotationTarget)
-												   					  .findFirst().get();
+		return constraint.getAnnotations().stream().filter(annotation -> annotation instanceof AnnotationTarget)
+												   .map(eachAnnotation -> (AnnotationTarget) eachAnnotation)
+												   .findFirst();
 		
 	}
 	
 	private boolean hasCorrespondingTargetAnnotation(DeploymentConstraint constraint, AnnotationEnrich enrichAnnotation) {
 		
-		return constraint.getAnnotations().contains(enrichAnnotation);
+		return constraint.getAnnotations().contains(enrichAnnotation) && getTargetAnnotationOf(constraint).isPresent();
 		
 	}
 

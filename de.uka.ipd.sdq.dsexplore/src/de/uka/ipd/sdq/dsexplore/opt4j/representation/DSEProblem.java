@@ -162,11 +162,13 @@ public class DSEProblem {
 		adapterTransformation.setName("Adapter");
 		
 		AnnotationTarget target = ConcernModelFactory.eINSTANCE.createAnnotationTarget();
-		target.setName("Observee");
+		//target.setName("Observee");
+		target.setName("Analysee");
 		adapterTransformation.setTarget(target);
 		
 		AnnotationEnrich enrich = ConcernModelFactory.eINSTANCE.createAnnotationEnrich();
-		enrich.setName("Observer");
+		//enrich.setName("Observer");
+		enrich.setName("Analysis");
 		adapterTransformation.setInjectable(enrich);
 		
 		TransformationRepository transRepo = TransformationModelFactory.eINSTANCE.createTransformationRepository();

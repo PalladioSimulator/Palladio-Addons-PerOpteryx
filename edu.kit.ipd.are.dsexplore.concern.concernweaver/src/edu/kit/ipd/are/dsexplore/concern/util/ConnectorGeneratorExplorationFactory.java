@@ -37,6 +37,7 @@ public class ConnectorGeneratorExplorationFactory {
 		
 		this.explorableGenerators = new HashSet<IConnectorGeneratorExploration>();
 		explorableGenerators.add(new AssemblyConnectorGenerator(rolesToExplore, pcmSystemManager));
+		explorableGenerators.add(new AssemblyEventConnectorGenerator(rolesToExplore, pcmSystemManager));
 		
 	}
 

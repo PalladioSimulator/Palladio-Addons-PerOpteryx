@@ -192,6 +192,7 @@ public class ConcernRepositoryManager {
 		
 	}
 	
+	//TODO this might not be needed anymore
 	public List<ProvidedRole> getEquivalentConsumedFeaturesFromRepository(List<ProvidedRole> consumedFeatures) {
 		
 		try {
@@ -208,12 +209,10 @@ public class ConcernRepositoryManager {
 		
 	}
 
-	private Optional<OperationProvidedRole> getEquivalent(ProvidedRole searchedConsumedFeature) {
+	private Optional<ProvidedRole> getEquivalent(ProvidedRole searchedConsumedFeature) {
 		
 		return this.pcmConcernRepository.getComponents__Repository().stream().flatMap(eachComponent -> eachComponent.getProvidedRoles_InterfaceProvidingEntity().stream())
-																			 .filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
-																			 .map(eachProvidedRole -> (OperationProvidedRole) eachProvidedRole)
-																			 .filter(eachOperationProvidedRole -> areEqual(eachOperationProvidedRole, searchedConsumedFeature))
+																			 .filter(eachProvidedRole -> areEqual(eachProvidedRole, searchedConsumedFeature))
 																			 .findFirst();
 																			 
 		

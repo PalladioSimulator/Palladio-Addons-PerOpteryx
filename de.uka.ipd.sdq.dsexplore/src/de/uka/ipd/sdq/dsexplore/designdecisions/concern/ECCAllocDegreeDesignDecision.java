@@ -39,8 +39,29 @@ public class ECCAllocDegreeDesignDecision {
 
 	private Stream<ElementaryConcernComponent> getUsedECCs() {
 		
-		return getTargetAnnotations().map(targetAnnotation -> this.concernManager.getCorrespondingECCFrom(targetAnnotation).get())
+		return getTargetAnnotations().flatMap(targetAnnotation -> getECCsRelatedTo(targetAnnotation))
 									 .distinct();
+		
+	}
+
+	private Stream<ElementaryConcernComponent> getECCsRelatedTo(AnnotationTarget targetAnnotation) {
+		
+		ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).get();
+		return resolveAllRequiredECCsFrom(ecc);
+		
+	}
+	
+	private Stream<ElementaryConcernComponent> resolveAllRequiredECCsFrom(ElementaryConcernComponent ecc) {
+		
+		Stream<ElementaryConcernComponent> current = Stream.of(ecc);
+		
+		if (ecc.getRequires().isEmpty()) {
+			
+			return current;
+		
+		}
+		
+		return Stream.concat(current, ecc.getRequires().stream().flatMap(eachRequiredECC -> resolveAllRequiredECCsFrom(eachRequiredECC)));
 		
 	}
 

@@ -150,7 +150,7 @@ public class PcmServiceEffectSpecificationManager {
 			
 		} else {
 			
-			return createEmitEventActionOf(Pair.of((EventType) action.getFirst(), (SourceRole) action.getFirst()));
+			return createEmitEventActionOf(Pair.of((EventType) action.getFirst(), (SourceRole) action.getSecond()));
 			
 		}
 		

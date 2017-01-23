@@ -141,12 +141,10 @@ public class WeavingManager {
 		
 	}
 
-	private List<OperationProvidedRole> getProvidedFeaturesFrom(List<RepositoryComponent> eccInternalStructure) {
+	private List<ProvidedRole> getProvidedFeaturesFrom(List<RepositoryComponent> eccInternalStructure) {
 		
 		return eccInternalStructure.stream().flatMap(eachComponent -> eachComponent.getProvidedRoles_InterfaceProvidingEntity().stream())
 											.filter(eachProvidedRole -> isNotRequiredByAnyOf(eccInternalStructure, eachProvidedRole))
-											//TODO this is just temporary
-											.map(each -> (OperationProvidedRole) each)
 											.collect(Collectors.toList());
 		
 	}
