@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -46,6 +47,13 @@ public class PcmSystemManager {
 		eInstance.system = system;
 		
 		return eInstance;
+		
+	}
+	
+	public List<Connector> getConnectorsBy(Predicate<Connector> connectorsMatchingSearchCriteria) {
+		
+		return this.system.getConnectors__ComposedStructure().stream().filter(connectorsMatchingSearchCriteria)
+																	  .collect(Collectors.toList());
 		
 	}
 	

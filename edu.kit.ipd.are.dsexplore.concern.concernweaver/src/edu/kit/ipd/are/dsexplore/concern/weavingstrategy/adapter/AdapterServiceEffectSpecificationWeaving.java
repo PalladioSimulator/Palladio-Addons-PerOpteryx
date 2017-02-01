@@ -7,16 +7,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
@@ -26,15 +24,42 @@ import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmServiceEffectSpecificationManager;
-import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWeaving {
-
+	
+	public class ExternalCallInfo {
+		
+		public Signature calledService;
+		public RequiredRole requiredRole;
+		public List<VariableUsage> returnVariableUsage;
+		public List<VariableUsage> inputVariableUsages;
+		
+		public ExternalCallInfo(Signature calledService, RequiredRole requiredRole) {
+			
+			this(calledService, requiredRole, new ArrayList<VariableUsage>(), new ArrayList<VariableUsage>());
+			
+		}
+		
+		public ExternalCallInfo(Signature calledService,
+								RequiredRole requiredRole,
+								List<VariableUsage> returnVariableUsage,
+								List<VariableUsage> inputVariableUsages) {
+			
+			this.calledService = calledService;
+			this.requiredRole = requiredRole;
+			this.returnVariableUsage = returnVariableUsage;
+			this.inputVariableUsages = inputVariableUsages;
+			
+		}
+		
+	}
+	
 	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.get();
 	private Transformation transformationStrategy;
 	private List<ProvidedRole> consumedFeautresOfECC;
 	private BasicComponent adapterComponent;
-	private WeavingLocation weavingLocation;
+	
+	protected WeavingLocation weavingLocation;
 	
 	private void setTransformationRepositoryManager(Transformation transformationStrategy) {
 		
@@ -68,11 +93,11 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		setConsumedFeautresOfECC(weavingInstruction.getECCWithConsumedFeatures().getSecond());
 		setTransformationRepositoryManager(weavingInstruction.getTransformationStrategy());
 
-		createServiceEffectSpecificationForAdapterBy(getCalledComponentBy(weavingLocation));
+		createServiceEffectSpecificationForAdapterBy(getCalledComponent());
 		
 	}
 
-	protected abstract BasicComponent getCalledComponentBy(WeavingLocation weavingLocation);
+	protected abstract BasicComponent getCalledComponent();
 	
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) {
 		
@@ -84,6 +109,13 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 		return getServiceEffectSpecificationsFrom(component).stream().map(eachSeff -> transformToAdapterSeff(eachSeff))
 															     	 .collect(Collectors.toList());
+		
+	}
+	
+	private List<ServiceEffectSpecification> getServiceEffectSpecificationsFrom(BasicComponent component) {
+		
+		return component.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> anyMatch(getInterfacesOf(this.adapterComponent), eachSeff.getDescribedService__SEFF()))
+																				  .collect(Collectors.toList());
 		
 	}
 	
@@ -108,34 +140,34 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private List<Pair<Signature, RequiredRole>> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) {
 		
-		return Arrays.asList(getExternalCallInfosFrom(seffToTransform));
+		return Arrays.asList(getExternalCallInfoFrom(seffToTransform));
 		
 	}
 	
-	private List<Pair<Signature, RequiredRole>> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) {
 
-		List<Pair<Signature, RequiredRole>> externalCallInfos = new ArrayList<Pair<Signature, RequiredRole>>();
+		List<ExternalCallInfo> externalCallInfos = new ArrayList<ExternalCallInfo>();
 		
 		switch(((AdapterTransformation) transformationStrategy).getAppear()) {
 		
 			case AFTER:
-				externalCallInfos.add(getExternalCallInfosFrom(seffToTransform));
+				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
 				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
 				break;
 			case BEFORE:
 				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfosFrom(seffToTransform));
+				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
 				break;
 			case AROUND:
 				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfosFrom(seffToTransform));
+				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
 				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
 				break;
 			default:
 				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfosFrom(seffToTransform));
+				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
 				break;
 		
 		}
@@ -144,16 +176,9 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private Pair<Signature, RequiredRole> getExternalCallInfosFrom(ServiceEffectSpecification seffToTransform) {
-		
-		Signature signature = (Signature) seffToTransform.getDescribedService__SEFF();
-		RequiredRole requiredRole = getRequiredRoleOf(signature); 
-		
-		return Pair.of(signature, requiredRole);
-		
-	}
+	protected abstract ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform); 
 
-	private RequiredRole getRequiredRoleOf(Signature signature) {
+	protected RequiredRole getRequiredRoleOf(Signature signature) {
 		
 		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> areEqual(getInterfaceFrom(eachRequiredRole.eCrossReferences()),
 																															  (Interface) signature.eContainer()))
@@ -168,16 +193,18 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	}
 
 	//TODO concernweaverutil -> provide method that returns all operation(provided|required)roles from a given list of (provided|required)roles...
-	private List<Pair<Signature, RequiredRole>> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC) {
+	private List<ExternalCallInfo> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC) {
 		
 		return getAllRequiredRolesConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> transformToExternalCallInfo(eachRequiredRole))
 																	  .collect(Collectors.toList());
 		
 	}
 	
-	private Stream<Pair<Signature, RequiredRole>> transformToExternalCallInfo(RequiredRole requiredRole) {
+	
+	//TODO implement variable usage 
+	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
 		
-		return getSignaturesOf(requiredRole).map(eachSignature -> Pair.of(eachSignature, requiredRole));
+		return getSignaturesOf(requiredRole).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
 		
 	}
 
@@ -189,8 +216,6 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	private Stream<Signature> getSignaturesOf(TreeIterator<EObject> interfaceObjectIterator) {
 		
-//		return references.stream().filter(eachReference -> eachReference instanceof Signature)
-//								  .map(eachSignature -> (Signature) eachSignature);
 		List<Signature> signatures = new ArrayList<Signature>();
 		while(interfaceObjectIterator.hasNext()) {
 			
@@ -233,14 +258,8 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		return (Interface) references.stream().filter(eachReference -> eachReference instanceof Interface).findFirst().get();
 		
 	}
-
-	private List<ServiceEffectSpecification> getServiceEffectSpecificationsFrom(BasicComponent component) {
-			
-		return component.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> anyMatch(getInterfacesOf(this.adapterComponent), eachSeff.getDescribedService__SEFF()))
-																				  .collect(Collectors.toList());
-		
-	}
 	
+	//TODO refactor operation interface
 	private boolean anyMatch(List<OperationInterface> interfaces, Signature signature) {
 		
 		return interfaces.stream().anyMatch(eachInterface -> eachInterface.getSignatures__OperationInterface().contains(signature));

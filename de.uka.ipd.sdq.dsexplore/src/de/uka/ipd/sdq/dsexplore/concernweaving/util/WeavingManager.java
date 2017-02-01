@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;

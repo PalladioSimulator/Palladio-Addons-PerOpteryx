@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -22,6 +24,7 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
@@ -94,8 +97,8 @@ public class WeavingInstructionGenerator {
 	private List<WeavingInstruction> generate() {
 		
 		List<WeavingInstruction> weavingInstructions = new ArrayList<WeavingInstruction>();
-		AnnotationFilter annotationFilter = new AnnotationFilter(this.pcmInstance.getRepositories());
 		
+		AnnotationFilter annotationFilter = new AnnotationFilter(this.pcmInstance.getRepositories());
 		annotationFilter.getTargetAnnotatedComponents().forEach(annotatedComponent -> {
 			
 			AnnotationTarget targetAnnotation = annotationFilter.getTargetAnnotationFrom(annotatedComponent).get();
@@ -131,17 +134,77 @@ public class WeavingInstructionGenerator {
 		
 	}
 
-	private List<WeavingLocation> getWeavingLocationsFrom(RepositoryComponent annotatedComponent, AnnotationTarget targetAnnotation) {
+	private List<WeavingLocation> getWeavingLocationsFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) {
 		
 		try {
 			
-			return new WeavingLocationHandler(pcmInstance).getWeavingLocationFrom(annotatedComponent, targetAnnotation);
+			if (!isInstantiated(component)) {
+				
+				component = getInstantiatedAlternativeOf(component).get();
+				
+			}
+			
+			return new WeavingLocationHandler(pcmInstance).getWeavingLocationFrom(component, targetAnnotation);
 			
 		} catch (Exception e) {
 			
 			// TODO need to be handled
 			return null;
 		}
+		
+	}
+
+	private boolean isInstantiated(RepositoryComponent component) {
+		
+		return !PcmSystemManager.getBy(this.pcmInstance.getSystem()).getAssemblyContextsInstantiating(component).get().isEmpty();
+		
+	}
+
+	private Optional<RepositoryComponent> getInstantiatedAlternativeOf(RepositoryComponent component) {
+		
+		return getAllInstantiatedComponents().filter(eachInstantiatedComponent -> areFunctionalEqual(eachInstantiatedComponent, component))
+											 .findFirst();
+		
+	}
+	
+	private boolean areFunctionalEqual(RepositoryComponent component1, RepositoryComponent component2) {
+		
+		List<ProvidedRole> providedRolesOfComponent1 = component1.getProvidedRoles_InterfaceProvidingEntity();
+		List<ProvidedRole> providedRolesOfComponent2 = component2.getProvidedRoles_InterfaceProvidingEntity();
+		if (providedRolesOfComponent1.size() != providedRolesOfComponent2.size()) {
+			
+			return false;
+			
+		}
+		
+		return providesSameInterfaces(providedRolesOfComponent1, providedRolesOfComponent2);
+		
+	}
+
+	private boolean providesSameInterfaces(List<ProvidedRole> providedRoles1, List<ProvidedRole> providedRoles2) {
+		
+		List<Interface> interfacesOfProvidedRoles1 = toInterfaces(providedRoles1);
+		List<Interface> interfacesOfProvidedRoles2 = toInterfaces(providedRoles2);
+		
+		List<Interface> copy = new ArrayList<Interface>(interfacesOfProvidedRoles1);
+		copy.removeAll(interfacesOfProvidedRoles2);
+		
+		return copy.isEmpty();
+		
+	}
+
+	private List<Interface> toInterfaces(List<ProvidedRole> providedRoles) {
+		
+		return providedRoles.stream().flatMap(eachProvidedRole -> eachProvidedRole.eCrossReferences().stream())
+									 .filter(eachEObject -> eachEObject instanceof Interface)
+									 .map(eachEObject -> (Interface) eachEObject)
+									 .collect(Collectors.toList());
+		
+	}
+
+	private Stream<RepositoryComponent> getAllInstantiatedComponents() {
+		
+		return this.pcmInstance.getSystem().getAssemblyContexts__ComposedStructure().stream().map(each -> each.getEncapsulatedComponent__AssemblyContext());
 		
 	}
 

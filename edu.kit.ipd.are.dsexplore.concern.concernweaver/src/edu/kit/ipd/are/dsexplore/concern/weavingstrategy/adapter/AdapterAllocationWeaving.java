@@ -95,11 +95,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 	}
 
 	private List<AssemblyContext> getECCAndRequiredAssemblyContexts(ElementaryConcernComponent ecc) {
-		
-//		RepositoryComponent eccComponent = concernRepositoryManager.getElementaryConcernComponentOf(ecc.getPerimeterInterface()).get();
-//		RequiredECCHandler requiredEccHandler = new RequiredECCHandler(eccComponent, concernRepositoryManager.getAllProvidedRoles());
-//		return requiredEccHandler.getRequiredECCsWith(getAssemblyContextCollector()).get();
-//		return Arrays.asList(getUniqueAssemblyContextOf(eccComponent));
+
 		return new ECCStructureHandler(ecc, concernRepositoryManager).getStructureWithInECCAndRequiredAccordingTo(getAssemblyContextCollector());
 		
 	}

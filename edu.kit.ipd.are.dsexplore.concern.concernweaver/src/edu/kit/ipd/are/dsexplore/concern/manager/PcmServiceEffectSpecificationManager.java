@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.palladiosimulator.pcm.parameter.ParameterFactory;
+import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.EventType;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.repository.SourceRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
@@ -20,7 +22,7 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.StartAction;
 import org.palladiosimulator.pcm.seff.StopAction;
 
-import edu.kit.ipd.are.dsexplore.concern.util.Pair;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterServiceEffectSpecificationWeaving.ExternalCallInfo;
 
 public class PcmServiceEffectSpecificationManager {
 
@@ -62,19 +64,19 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
-	public ServiceEffectSpecification addExternalCallActionPipeBy(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence, ServiceEffectSpecification seff) {
+	public ServiceEffectSpecification addExternalCallActionPipeBy(List<ExternalCallInfo> orderedExternalCallInfoSequence, ServiceEffectSpecification seff) {
 		
-		((ResourceDemandingBehaviour) seff).getSteps_Behaviour().addAll(toAbstractActions(orderedExternalCallActionSequence));
+		((ResourceDemandingBehaviour) seff).getSteps_Behaviour().addAll(toAbstractActions(orderedExternalCallInfoSequence));
 		
 		return seff;
 		
 	}
 
-	private List<AbstractAction> toAbstractActions(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence) {
+	private List<AbstractAction> toAbstractActions(List<ExternalCallInfo> orderedExternalCallInfoSequence) {
 		
 		List<AbstractAction> unlinkedActions = new ArrayList<AbstractAction>();
 		unlinkedActions.add(getStartAction());
-		unlinkedActions.addAll(toExternalCallActions(orderedExternalCallActionSequence));
+		unlinkedActions.addAll(toExternalCallActions(orderedExternalCallInfoSequence));
 		unlinkedActions.add(getStopAction());
 		
 		return establishLinksBetween(unlinkedActions);
@@ -115,10 +117,10 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
-	private List<AbstractAction> toExternalCallActions(List<Pair<Signature, RequiredRole>> orderedExternalCallActionSequence) {
+	private List<AbstractAction> toExternalCallActions(List<ExternalCallInfo> orderedExternalCallInfoSequence) {
 		
-		return orderedExternalCallActionSequence.stream().map(eachAction -> createAbstractExternalActionCallOf(eachAction))
-														 .collect(Collectors.toList());
+		return orderedExternalCallInfoSequence.stream().map(eachInfo -> createAbstractExternalActionCallOf(eachInfo))
+													   .collect(Collectors.toList());
 		
 	}
 
@@ -141,39 +143,58 @@ public class PcmServiceEffectSpecificationManager {
 	}
 	
 	//TODO refactor to some handler like its done with RoleHandler...
-	private AbstractAction createAbstractExternalActionCallOf(Pair<Signature, RequiredRole> action) {
+	private AbstractAction createAbstractExternalActionCallOf(ExternalCallInfo externalCallInfo) {
 		
-		RequiredRole requiredRole = action.getSecond();
-		if (requiredRole instanceof OperationRequiredRole) {
+		if (externalCallInfo.requiredRole instanceof OperationRequiredRole) {
 			
-			return createExternalActionCallOf(Pair.of((OperationSignature) action.getFirst(), (OperationRequiredRole) action.getSecond()));
+			return createExternalActionCallOf(externalCallInfo);
 			
 		} else {
 			
-			return createEmitEventActionOf(Pair.of((EventType) action.getFirst(), (SourceRole) action.getSecond()));
+			return createEmitEventActionOf(externalCallInfo);
 			
 		}
 		
 	}
 	
-	private AbstractAction createExternalActionCallOf(Pair<OperationSignature, OperationRequiredRole> action) {
+	private AbstractAction createExternalActionCallOf(ExternalCallInfo externalCallInfo) {
+		
+		OperationSignature calledService = (OperationSignature) externalCallInfo.calledService;
 		
 		ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
-		externalCallAction.setEntityName(action.getFirst().getEntityName());
-		externalCallAction.setCalledService_ExternalService(action.getFirst());
-		externalCallAction.setRole_ExternalService(action.getSecond());
+		externalCallAction.setEntityName(calledService.getEntityName());
+		externalCallAction.setCalledService_ExternalService(calledService);
+		externalCallAction.setRole_ExternalService((OperationRequiredRole) externalCallInfo.requiredRole);
+		externalCallAction.getInputVariableUsages__CallAction().addAll(copy(externalCallInfo.inputVariableUsages));
+		externalCallAction.getReturnVariableUsage__CallReturnAction().addAll(copy(externalCallInfo.returnVariableUsage));
 		
 		return externalCallAction;
 	}
 	
-	private AbstractAction createEmitEventActionOf(Pair<EventType, SourceRole> action) {
+	private AbstractAction createEmitEventActionOf(ExternalCallInfo externalCallInfo) {
+		
+		EventType emittedEvent = (EventType) externalCallInfo.calledService;
 		
 		EmitEventAction emitEventAction = this.seffFactory.createEmitEventAction();
-		emitEventAction.setEntityName(action.getFirst().getEntityName());
-		emitEventAction.setEventType__EmitEventAction(action.getFirst());
-		emitEventAction.setSourceRole__EmitEventAction(action.getSecond());
+		emitEventAction.setEntityName(emittedEvent.getEntityName());
+		emitEventAction.setEventType__EmitEventAction(emittedEvent);
+		emitEventAction.setSourceRole__EmitEventAction((SourceRole) externalCallInfo.requiredRole);
+		emitEventAction.getInputVariableUsages__CallAction().addAll(copy(externalCallInfo.inputVariableUsages));
 		
 		return emitEventAction;
+	}
+	
+	private List<VariableUsage> copy(List<VariableUsage> variableUsages) {
+		
+		List<VariableUsage> copy = new ArrayList<VariableUsage>();
+		for (VariableUsage eachVariableUsage : variableUsages) {
+			
+			copy.add((VariableUsage) EcoreUtil.copy(eachVariableUsage));
+			
+		}
+		
+		return copy;
+		
 	}
 	
 }
