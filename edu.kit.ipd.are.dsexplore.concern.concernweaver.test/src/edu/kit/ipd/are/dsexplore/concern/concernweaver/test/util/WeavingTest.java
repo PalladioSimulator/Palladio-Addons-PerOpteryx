@@ -22,6 +22,7 @@ import TransformationModel.TransformationModelFactory;
 import TransformationModel.TransformationRepository;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
@@ -31,7 +32,7 @@ public class WeavingTest {
 
 	protected final static String DUMMY_NAME = "DummyName";
 	
-	protected static Repository concernRepository; 
+	protected static Repository concernSolution; 
 	protected static PCMInstance pcmToAdapt;
 	protected static TransformationRepository transformationRepository;
 	protected static ConcernRepository concern;
@@ -40,9 +41,10 @@ public class WeavingTest {
 	public static void initialize() {
 		
 		ConcernWeavingTestUtil.registerFactories();
+		ConcernWeavingTestUtil.initialize();		
 		
 		pcmToAdapt = ConcernWeavingTestUtil.loadPCM();
-		concernRepository = ConcernWeavingTestUtil.loadConcernRealization();
+		concernSolution = ConcernWeavingTestUtil.loadConcernSolution();
         concern = ConcernWeavingTestUtil.loadConcernRepository();
         transformationRepository = createTransformationRepository();
         
@@ -51,7 +53,7 @@ public class WeavingTest {
 	protected Repository getPcmConcernRepository() {
 		
 		Repository pcmConcernRepository = createRepository();
-		copy(concernRepository, pcmConcernRepository);
+		copy(concernSolution, pcmConcernRepository);
 		savePcmConcernRepository(pcmConcernRepository);
 		
 		return pcmConcernRepository;
@@ -92,7 +94,7 @@ public class WeavingTest {
 		
 		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(getECCWithConsumedFeatures())
 											  .setWeavingLocation(getJoinPointLocation())
-											  .setTransformationStrategy(transformationRepository.getTransformations().get(0))
+											  .setTransformationStrategy(transformationRepository.getTransformation().get(0))
 											  .setResourceContainer(getResourceContainer())
 											  .build();
 		
@@ -132,15 +134,14 @@ public class WeavingTest {
 	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() {
 		
 		ElementaryConcernComponent ecc = ConcernWeavingTestUtil.getDetectionECCOf(concern);
-		
-		return Pair.of(ecc, ecc.getPerimeterInterface());
+		return Pair.of(ecc, new ECCFeatureHandler(concernSolution).getProvidedFeaturesOf(ecc));
 		
 	}
 	
 	private static TransformationRepository createTransformationRepository() {
 		
 		TransformationRepository transRepo = TransformationModelFactory.eINSTANCE.createTransformationRepository();
-		transRepo.getTransformations().add(createAdapterTransformationStrategy());
+		transRepo.getTransformation().add(createAdapterTransformationStrategy());
 		
 		return transRepo;
 		

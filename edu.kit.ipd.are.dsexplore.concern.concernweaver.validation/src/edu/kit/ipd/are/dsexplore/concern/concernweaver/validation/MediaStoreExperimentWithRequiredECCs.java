@@ -27,11 +27,11 @@ public class MediaStoreExperimentWithRequiredECCs extends ExperimentConfiguratio
 	@Test
 	public void testWeavingScenarioWithRequiredECCs() {
 		
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concern).getWeavingInstructionWithRequiredECCs();
+		Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
+		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concern, concernSolution).getWeavingInstructionWithRequiredECCs();
 		
 		try {
 			
-			Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
 			ConcernWeaver.getBy(this.pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {

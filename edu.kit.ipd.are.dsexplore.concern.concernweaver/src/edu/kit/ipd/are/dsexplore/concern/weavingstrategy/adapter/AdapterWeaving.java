@@ -12,6 +12,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmRepositoriesManager;
@@ -43,7 +44,9 @@ public abstract class AdapterWeaving {
 	protected RepositoryComponent getComponentOf(ElementaryConcernComponent ecc) {
 
 		try {
-			return concernRepositoryManager.getElementaryConcernComponentOf(ecc.getPerimeterInterface()).orElseThrow(() -> new Exception());
+			ECCFeatureHandler featureHandler = new ECCFeatureHandler(concernRepositoryManager);
+			return concernRepositoryManager.getElementaryConcernComponentOf(featureHandler.getProvidedFeaturesOf(ecc)).orElseThrow(() -> new Exception());
+			
 		} catch (Exception e) {
 			
 			//TODO introduce exception

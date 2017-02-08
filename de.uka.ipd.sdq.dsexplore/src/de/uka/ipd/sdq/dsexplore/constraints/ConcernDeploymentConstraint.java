@@ -10,8 +10,8 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
 
 public abstract class ConcernDeploymentConstraint implements IDesignSpaceConstraint {
 

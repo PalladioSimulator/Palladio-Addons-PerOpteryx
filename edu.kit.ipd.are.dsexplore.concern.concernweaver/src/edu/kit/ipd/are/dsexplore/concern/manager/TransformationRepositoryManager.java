@@ -24,7 +24,7 @@ public class TransformationRepositoryManager {
 	private TransformationRepositoryManager(Transformation transformation) {
 		
 		this.transformationRepository = TransformationModelFactory.eINSTANCE.createTransformationRepository();
-		this.transformationRepository.getTransformations().add(transformation);
+		this.transformationRepository.getTransformation().add(transformation);
 		
 	}
 	
@@ -67,7 +67,7 @@ public class TransformationRepositoryManager {
 	
 	public Optional<Transformation> getTransformationBy(AnnotationEnrich enrichAnnotation, AnnotationTarget targetAnnotation) {
 		
-		return this.transformationRepository.getTransformations().stream().filter(transformation -> hasAnnotations(transformation, enrichAnnotation, targetAnnotation))
+		return this.transformationRepository.getTransformation().stream().filter(transformation -> hasAnnotations(transformation, enrichAnnotation, targetAnnotation))
 																 		  .findFirst();
 		
 	}

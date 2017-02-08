@@ -19,7 +19,7 @@ public class ECCHandlerTest extends WeavingTest {
 	
 	private final static String OSSEC_DECODER_ID = "_lDUZwFWIEea0XO9AU2xvGg";
 	
-	private ConcernRepositoryManager concernRepositoryManager = ConcernRepositoryManager.getBy(concernRepository);
+	private ConcernRepositoryManager concernRepositoryManager = ConcernRepositoryManager.getBy(concernSolution);
 	private ElementaryConcernComponent ecc;
 	private List<RepositoryComponent> result;
 
@@ -80,7 +80,7 @@ public class ECCHandlerTest extends WeavingTest {
 	
 	private void thenStructureShouldBeResolveAllConcernComponents() {
 		
-		concernRepository.getComponents__Repository().forEach(component -> assertTrue(this.result.contains(component)));
+		concernSolution.getComponents__Repository().forEach(component -> assertTrue(this.result.contains(component)));
 		
 	}
 	

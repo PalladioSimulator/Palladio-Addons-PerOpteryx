@@ -7,6 +7,7 @@ import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -16,6 +17,7 @@ import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
 
@@ -36,6 +38,7 @@ public class WeavingInstructionFactory {
 	
 	private PCMInstance pcm = null;
 	private ConcernRepository concernRepository = null;
+	private Repository concernSolution;
 	
 	private static WeavingInstructionFactory eInstance = null;
 	
@@ -43,7 +46,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	public static WeavingInstructionFactory getBy(PCMInstance pcm, ConcernRepository concernRepository) {
+	public static WeavingInstructionFactory getBy(PCMInstance pcm, ConcernRepository concernRepository, Repository concernSolution) {
 		
 		if (eInstance == null) {
 			
@@ -53,6 +56,7 @@ public class WeavingInstructionFactory {
 		
 		eInstance.pcm = pcm;
 		eInstance.concernRepository = concernRepository;
+		eInstance.concernSolution = concernSolution;
 		
 		return eInstance;
 		
@@ -129,7 +133,8 @@ public class WeavingInstructionFactory {
 	
 	private WeavingInstruction getWeavingInstructionOf(Pair<Connector, List<Signature>> locationWithAffectedSignature, ElementaryConcernComponent ecc) {
 		
-		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, ecc.getPerimeterInterface());
+		ECCFeatureHandler featureHandler = new ECCFeatureHandler(this.concernSolution);
+		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, featureHandler.getProvidedFeaturesOf(ecc));
 		ResourceContainer resourceContainer = ExperimentUtil.getResourceContainerWith(RESOURCE_CONTAINER_SERVER_1_ID, pcm.getResourceEnvironment());
 		Transformation adapterStrategy = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
 		

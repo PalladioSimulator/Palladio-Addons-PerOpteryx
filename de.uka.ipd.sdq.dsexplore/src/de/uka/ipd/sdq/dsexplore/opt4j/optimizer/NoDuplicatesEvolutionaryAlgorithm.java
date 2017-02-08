@@ -82,6 +82,8 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 			population.addAll(generatedStartingPopulation);
 		}
 		
+		removeInvalidIndividualsFrom(population);
+		
 		int count = 0;
 		while (population.size() < alpha && count < alpha + 200) {
 			Individual i = individualFactory.create();

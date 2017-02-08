@@ -25,7 +25,7 @@ public class ServiceEffectSpecificationWeavingTest extends WeavingTest {
 		
 		try {
 			
-			ConcernWeaver.getBy(this.pcmToAdapt, this.concernRepository).start(weavingInstructions);
+			ConcernWeaver.getBy(this.pcmToAdapt, this.concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {
 			

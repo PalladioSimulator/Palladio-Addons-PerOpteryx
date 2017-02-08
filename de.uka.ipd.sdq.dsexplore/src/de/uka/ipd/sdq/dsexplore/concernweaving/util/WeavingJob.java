@@ -20,7 +20,7 @@ public class WeavingJob {
 					  PCMInstance pcmToWeave, 
 					  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) {
 		
-		this.generator = WeavingInstructionGenerator.getInstanceBy(pcmToWeave, concern, eccAllocationMap);
+		this.generator = WeavingInstructionGenerator.getInstanceBy(pcmToWeave, concern, concernSolution, eccAllocationMap);
 		this.concernWeaver = ConcernWeaver.getBy(pcmToWeave, concernSolution);
 		
 	}

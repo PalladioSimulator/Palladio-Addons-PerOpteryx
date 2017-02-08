@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
-  <concerns name="IDS">
-    <strategies name="DDOS" description="Observes DDOS attacks"/>
-    <components name="Detection">
-      <annotationenrich name="Observer"/>
-      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_saJn8FWJEea0XO9AU2xvGg"/>
-    </components>
-    <components requires="//@concerns.0/@components.0" name="Analysis">
-      <annotationenrich name="Analysis"/>
-      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_tD03EFWJEea0XO9AU2xvGg"/>
-    </components>
-    <components requires="//@concerns.0/@components.1" name="Response">
-      <annotationenrich name="Response"/>
-      <perimeterInterface xsi:type="repository:OperationProvidedRole" href="ossec.repository#_uCpPwFWJEea0XO9AU2xvGg"/>
-    </components>
-    <annotationtarget name="Observee" maxAmount="-1">
-      <signatures xsi:type="repository:OperationSignature" href="../default.repository#_8A9Bla7LEd-Z7e7zQl8I9w"/>
-    </annotationtarget>
-    <constraints annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.0/@annotationenrich.0"/>
-    <constraints annotations="//@concerns.0/@annotationtarget.0 //@concerns.0/@components.1/@annotationenrich.0"/>
-    <constraints annotations="//@concerns.0/@components.0/@annotationenrich.0"/>
-  </concerns>
-</Concern:ConcernRepository>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1">
+  <Concern:ConcernRepository>
+    <concerns name="IDS">
+      <strategies name="DDOS" description="Observes DDOS attacks"/>
+      <components name="Detection">
+        <annotationenrich name="Observer"/>
+      </components>
+      <components requires="/0/@concerns.0/@components.0 /0/@concerns.0/@components.2" name="Analysis">
+        <annotationenrich name="Analysis"/>
+      </components>
+      <components name="Response">
+        <annotationenrich name="Response"/>
+      </components>
+      <annotationtarget name="Analysee" maxAmount="-1" joinPoint="INTERFACE_REQUIRES"/>
+      <constraints annotations="/0/@concerns.0/@annotationtarget.0 /0/@concerns.0/@components.1/@annotationenrich.0"/>
+      <constraints annotations="/0/@concerns.0/@components.0/@annotationenrich.0"/>
+    </concerns>
+  </Concern:ConcernRepository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.0">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:concernStrategy" appliedTo="/0/@concerns.0/@strategies.0">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_rV-DQF4-EeaB9J8tDaDTlA"/>
+      <featureSet href="../../ConcernStrategy/ConcernStrategy.strategymodel#_yb0CUOocEea6MN_xn9d-Ng"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.1">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.2">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

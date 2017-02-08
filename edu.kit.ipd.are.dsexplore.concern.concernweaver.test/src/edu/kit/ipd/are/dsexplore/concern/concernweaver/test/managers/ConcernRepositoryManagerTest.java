@@ -33,7 +33,7 @@ public class ConcernRepositoryManagerTest extends WeavingTest {
 	@Before
 	public void setUp() {
 
-        this.concernRepositoryManager = ConcernRepositoryManager.getBy(concernRepository);
+        this.concernRepositoryManager = ConcernRepositoryManager.getBy(concernSolution);
         
 	}
 	

@@ -26,11 +26,11 @@ public class SimpleMediaStoreExperiment extends ExperimentConfiguration {
 	@Test
 	public void testSimpleWeavingScenario() {
 		
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concern).getSimpleWeavingInstructions();
+		Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
+		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concern, concernSolution).getSimpleWeavingInstructions();
 		
 		try {
 			
-			Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
 			ConcernWeaver.getBy(this.pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {

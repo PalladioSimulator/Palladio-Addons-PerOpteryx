@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.constraints;
 
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -46,29 +47,22 @@ public class IsolatedDeploymentConstraint extends ConcernDeploymentConstraint {
 
 	private boolean isIsolatedOn(ResourceContainer resourceContainer, ElementaryConcernComponent ecc) {
 		
-		return getComponentsAllocatedOn(resourceContainer).count() == 0;
+		//count == 1, because the ECC under consideration should be the only object allocated n the resource container
+		//allocation contexts with only one fixed resource container are also modelled as design decision.
+		return getObjectsAllocatedOn(resourceContainer).count() == 1;
 		
 	}
 
-	private Stream<RepositoryComponent> getComponentsAllocatedOn(ResourceContainer resourceContainer) {
+	private Stream<EObject> getObjectsAllocatedOn(ResourceContainer resourceContainer) {
 		
-		return getInstancesOfType(AllocationDegreeImpl.class, this.genotype).filter(eachClassChoice -> isAllocatedOn(resourceContainer, eachClassChoice) && 
-																									   !isECCAllocationDegree(eachClassChoice))
-																	 		.map(eachClassChoice -> getEncapsulatedComponent(eachClassChoice));
-		
-	}
-
-	private boolean isECCAllocationDegree(ClassChoice classChoice) {
-		
-		AllocationDegree allocDegree = (AllocationDegree) classChoice.getDegreeOfFreedomInstance();
-		return allocDegree.getPrimaryChanged() instanceof ElementaryConcernComponent;
+		return getInstancesOfType(AllocationDegreeImpl.class, this.genotype).filter(eachClassChoice -> isAllocatedOn(resourceContainer, eachClassChoice))
+																	 		.map(eachClassChoice -> getObject(eachClassChoice));
 		
 	}
 
-	private RepositoryComponent getEncapsulatedComponent(ClassChoice classChoice) {
+	private EObject getObject(ClassChoice classChoice) {
 
-		AllocationDegree allocDegree = (AllocationDegree) classChoice.getDegreeOfFreedomInstance();
-		return ((AllocationContext) allocDegree.getPrimaryChanged()).getAssemblyContext_AllocationContext().getEncapsulatedComponent__AssemblyContext();
+		return (AllocationDegree) classChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 		
 	}
 

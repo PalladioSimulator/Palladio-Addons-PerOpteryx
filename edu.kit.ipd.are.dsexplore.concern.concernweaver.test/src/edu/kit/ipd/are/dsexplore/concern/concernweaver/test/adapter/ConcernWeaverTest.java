@@ -20,7 +20,7 @@ public class ConcernWeaverTest extends WeavingTest {
 		
 		try {
 			
-			ConcernWeaver.getBy(pcmToAdapt, concernRepository).start(weavingInstructions);
+			ConcernWeaver.getBy(pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {
 			

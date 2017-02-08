@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 
 public class AnnotationFilterTest extends WeavingTest {
 

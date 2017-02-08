@@ -15,8 +15,8 @@ import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
 
 public class ECCAllocDegreeDesignDecision {
 

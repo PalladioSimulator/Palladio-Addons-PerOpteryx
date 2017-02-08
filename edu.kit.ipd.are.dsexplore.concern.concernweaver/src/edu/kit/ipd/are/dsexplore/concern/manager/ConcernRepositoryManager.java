@@ -24,7 +24,7 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
 import ConcernModel.Annotation;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public class ConcernRepositoryManager {

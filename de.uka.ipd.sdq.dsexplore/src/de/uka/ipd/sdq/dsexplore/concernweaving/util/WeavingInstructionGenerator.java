@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -23,10 +24,11 @@ import TransformationModel.Transformation;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
 
@@ -36,25 +38,34 @@ public class WeavingInstructionGenerator {
 	
 	private PCMInstance pcmInstance;
 	private ConcernManager concernManager;
+	private ECCFeatureHandler featureHandler;
 	private HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap;
 	
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern) {
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, 
+															Concern concern,
+															Repository concernSolution) {
 		
-		initialize(pcmInstance, concern, new HashMap<ElementaryConcernComponent, ResourceContainer>());
-		
-		return instance;
-		
-	}
-	
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
-		
-		initialize(pcmInstance, concern, eccToResourceContainerMap);
+		initialize(pcmInstance, concern, concernSolution, new HashMap<ElementaryConcernComponent, ResourceContainer>());
 		
 		return instance;
 		
 	}
 	
-	private static void initialize(PCMInstance pcmInstance, Concern concern, HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, 
+			   												Concern concern,
+			   												Repository concernSolution,
+			   												HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
+		
+		initialize(pcmInstance, concern, concernSolution, eccToResourceContainerMap);
+		
+		return instance;
+		
+	}
+	
+	private static void initialize(PCMInstance pcmInstance, 
+								   Concern concern,
+								   Repository concernSolution,
+								   HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
 		
 		if (instance == null) {
 			
@@ -64,19 +75,30 @@ public class WeavingInstructionGenerator {
 		
 		instance.pcmInstance = pcmInstance;
 		instance.concernManager = ConcernManager.getBy(concern);
+		instance.featureHandler = new ECCFeatureHandler(concernSolution);
 		instance.eccToResourceContainerMap = eccToResourceContainerMap;
 		
 	}
 	
 	public List<WeavingInstruction> getWeavingInstructions() {
 		
-		return generate();
+		List<WeavingInstruction> weavingInstructions = new ArrayList<WeavingInstruction>();
+		
+		AnnotationFilter annotationFilter = new AnnotationFilter(this.pcmInstance.getRepositories());
+		annotationFilter.getTargetAnnotatedComponents().forEach(annotatedComponent -> {
+			
+			AnnotationTarget targetAnnotation = annotationFilter.getTargetAnnotationFrom(annotatedComponent).get();
+			weavingInstructions.addAll(generateWeavingInstructionFrom(annotatedComponent, targetAnnotation));
+			
+		});
+		
+		return weavingInstructions;
 		
 	}
 	
 	public Optional<Set<ElementaryConcernComponent>> getIndirectlyUsedECCs(Set<ElementaryConcernComponent> usedECCs) {
 		
-		Set<ElementaryConcernComponent> indirectlyUsedECCs = getIndirectlyUsedECCsFrom(generate(), usedECCs);
+		Set<ElementaryConcernComponent> indirectlyUsedECCs = getIndirectlyUsedECCsFrom(getWeavingInstructions(), usedECCs);
 		return indirectlyUsedECCs.isEmpty() ? Optional.empty() : Optional.of(indirectlyUsedECCs);
 		
 	}
@@ -91,22 +113,6 @@ public class WeavingInstructionGenerator {
 	private boolean isContainedIn(List<WeavingInstruction> weavingInstructions, ElementaryConcernComponent ecc) {
 		
 		return weavingInstructions.stream().anyMatch(eachWeavingInstruction -> eachWeavingInstruction.getECCWithConsumedFeatures().getFirst().equals(ecc));
-		
-	}
-
-	private List<WeavingInstruction> generate() {
-		
-		List<WeavingInstruction> weavingInstructions = new ArrayList<WeavingInstruction>();
-		
-		AnnotationFilter annotationFilter = new AnnotationFilter(this.pcmInstance.getRepositories());
-		annotationFilter.getTargetAnnotatedComponents().forEach(annotatedComponent -> {
-			
-			AnnotationTarget targetAnnotation = annotationFilter.getTargetAnnotationFrom(annotatedComponent).get();
-			weavingInstructions.addAll(generateWeavingInstructionFrom(annotatedComponent, targetAnnotation));
-			
-		});
-		
-		return weavingInstructions;
 		
 	}
 	
@@ -244,7 +250,7 @@ public class WeavingInstructionGenerator {
 		//ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).orElseThrow(() -> new Exception());
 		ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).get();
 		//At this point all provided ecc features are going to be used
-		return Pair.of(ecc, ecc.getPerimeterInterface());
+		return Pair.of(ecc, this.featureHandler.getProvidedFeaturesOf(ecc));
 		
 	}
 	

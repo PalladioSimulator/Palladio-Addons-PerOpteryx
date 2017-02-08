@@ -118,7 +118,7 @@ public class WeavingManager {
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
 		//TODO is there a simpler way?
-		updateProvidedFeatures(concern, concernSolution);
+		//updateProvidedFeatures(concern, concernSolution);
 		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute();
 		
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
@@ -127,18 +127,18 @@ public class WeavingManager {
 		
 	}
 
-	private void updateProvidedFeatures(Concern concern, Repository concernSolution) {
-
-		concern.getComponents().forEach(ecc -> {
-			
-			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(concernSolution));
-			List<RepositoryComponent> eccInternalStructure = eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component));
-			ecc.getPerimeterInterface().clear();
-			ecc.getPerimeterInterface().addAll(getProvidedFeaturesFrom(eccInternalStructure));
-			
-		});
-		
-	}
+//	private void updateProvidedFeatures(Concern concern, Repository concernSolution) {
+//
+//		concern.getComponents().forEach(ecc -> {
+//			
+//			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(concernSolution));
+//			List<RepositoryComponent> eccInternalStructure = eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component));
+//			ecc.getPerimeterInterface().clear();
+//			ecc.getPerimeterInterface().addAll(getProvidedFeaturesFrom(eccInternalStructure));
+//			
+//		});
+//		
+//	}
 
 	private List<ProvidedRole> getProvidedFeaturesFrom(List<RepositoryComponent> eccInternalStructure) {
 		

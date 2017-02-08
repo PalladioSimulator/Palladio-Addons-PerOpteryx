@@ -16,10 +16,10 @@ import org.palladiosimulator.solver.transformations.EMFHelper;
 
 import edu.kit.ipd.are.dsexplore.concern.allocation.AllocationWeaver;
 import edu.kit.ipd.are.dsexplore.concern.assembly.AssemblyWeaving;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.repository.RepositoryWeaving;
 import edu.kit.ipd.are.dsexplore.concern.seff.ServiceEffectSpecificationWeaving;
 import edu.kit.ipd.are.dsexplore.concern.usagemodel.UsageModelWeaving;
-import edu.kit.ipd.are.dsexplore.concern.util.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 

@@ -27,6 +27,7 @@ import ConcernModel.ConcernRepository;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 public class ConcernWeavingTestUtil {
 
@@ -44,6 +45,7 @@ public class ConcernWeavingTestUtil {
 	public final static String RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT = "/models/concern.concernmodel";
 	public final static String RELATIVE_CONCERN_TRANSFORMATION_MODEL_PATH_SEGMENT = "/models/TransformationRepository.transformationmodel";
 	public final static String RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT = "/models/annotations.emfprofile_diagram";
+	public final static String RELATIVE_CONCERN_STRATEGY_ANNOTATION_MODEL_PATH_SEGMENT = "/models/strategy.emfprofile_diagram";
 	public final static String RELATIVE_PCM_CONCERN_MODEL_PATH_SEGMENT = "/assembly_models/TemporaryConcernRepository.repository";
 	public final static String RELATIVE_RESULT_FOLDER_PATH_SEGMENT = "/result";	
 	
@@ -51,7 +53,43 @@ public class ConcernWeavingTestUtil {
 	private final static String ECC_RESPONSE_NAME = "Response";
 	private final static String ECC_ANALYSIS_NAME = "Analysis";
 	
-	public static Repository loadConcernRealization() {
+	private final static ResourceSetPartition partition = new ResourceSetPartition();
+	
+	public static void initialize() {
+		
+		List<URI> models = new ArrayList<URI>();
+		models.add(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT)));
+		
+		partition.initialiseResourceSetEPackages(getDefaultPackages());
+		
+		for (URI eachModel : models) {
+			
+			partition.loadModel(eachModel);
+			
+		}
+		
+		partition.resolveAllProxies();
+		
+	}
+	
+	private static EPackage[] getDefaultPackages() {
+		
+        return (EPackage[]) Arrays.asList(EMFProfilePackage.eINSTANCE, 
+				   			 			  EMFProfileApplicationPackage.eINSTANCE, 
+				   			 			  NotationPackage.eINSTANCE,
+				   			 			  ConcernModelPackage.eINSTANCE,
+				   			 			  getProfile(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)).toArray();
+        		
+	}
+	
+	private static Profile getProfile(String relativePath) {
+		
+		Resource resource = new ResourceSetImpl().getResource(URI.createFileURI(getAbsolutePathOf(relativePath)), true);
+		return (Profile) resource.getContents().get(0);
+		
+	}
+	
+	public static Repository loadConcernSolution() {
 		
 		return (Repository) loadWithProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REALIZATION_MODEL_PATH_SEGMENT);
 	
@@ -65,7 +103,8 @@ public class ConcernWeavingTestUtil {
 	
 	public static ConcernRepository loadConcernRepository() {
 		
-		return (ConcernRepository) loadWithoutProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
+		//return (ConcernRepository) loadWithoutProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
+		return (ConcernRepository) partition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
 		
 	}
 	

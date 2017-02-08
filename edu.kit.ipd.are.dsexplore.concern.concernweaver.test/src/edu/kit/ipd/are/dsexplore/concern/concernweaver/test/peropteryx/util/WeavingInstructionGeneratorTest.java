@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
@@ -23,6 +24,7 @@ public class WeavingInstructionGeneratorTest extends WeavingTest {
 	
 	private PCMInstance pcmInstance;
 	private Concern idsConcern;
+	private Repository ossec;
 	private List<WeavingInstruction> weavingInstructions;
 	
 	@Test
@@ -38,13 +40,14 @@ public class WeavingInstructionGeneratorTest extends WeavingTest {
 		
 		this.pcmInstance = pcmToAdapt;
 		this.idsConcern = concern.getConcerns().get(0);
+		this.ossec = concernSolution;
 		TransformationRepositoryManager.initialize(transformationRepository);
 		
 	}
 
 	private void whenGeneratingWeavingInstructions() {
 		
-		this.weavingInstructions = WeavingInstructionGenerator.getInstanceBy(this.pcmInstance, this.idsConcern).getWeavingInstructions();
+		this.weavingInstructions = WeavingInstructionGenerator.getInstanceBy(this.pcmInstance, this.idsConcern, this.ossec).getWeavingInstructions();
 		
 	}
 

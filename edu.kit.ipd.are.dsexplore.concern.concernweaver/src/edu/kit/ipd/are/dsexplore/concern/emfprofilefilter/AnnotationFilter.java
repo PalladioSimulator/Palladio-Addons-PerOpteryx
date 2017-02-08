@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.concern.util;
+package edu.kit.ipd.are.dsexplore.concern.emfprofilefilter;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +45,7 @@ public class AnnotationFilter {
 		
 	}
 	
-	private List<RepositoryComponent> concat(List<RepositoryComponent> list1,	List<RepositoryComponent> list2) {
+	private List<RepositoryComponent> concat(List<RepositoryComponent> list1, List<RepositoryComponent> list2) {
 		
 		return Stream.concat(list1.stream(), list2.stream()).collect(Collectors.toList());
 		
@@ -53,28 +53,17 @@ public class AnnotationFilter {
 
 	private List<RepositoryComponent> getComponentsAnnotatedWith(Annotation annotation) {
 		
-		return getAllComponents().filter(eachComponent -> isAnnotatedWith(annotation, eachComponent)).collect(Collectors.toList());
+		return getAllComponents().filter(eachComponent -> EMFProfileFilter.isAnnotatedWith(getSearchCriteriaFor(annotation), eachComponent))
+								 .collect(Collectors.toList());
 		
 	}
 
-	private boolean isAnnotatedWith(Annotation annotation, RepositoryComponent component) {
+	private Predicate<EObject> getSearchCriteriaFor(Annotation annotation) {
 		
-		return !isAnnotated(component) ? false : isAnnotatedWith(annotation.getName(), component); 
+		return object -> (object instanceof Annotation) && (((Annotation) object).getName().equals(annotation.getName()));
 		
 	}
 	
-	private boolean isAnnotatedWith(String annotationName, RepositoryComponent component) {
-		
-		return getAnnotationFrom(getStereotypeApplicationFrom(component), checkIfAnnotatedWith(annotationName)).isPresent();
-		
-	}
-
-	private Predicate<EObject> checkIfAnnotatedWith(String annotationName) {
-		
-		return eObject -> (eObject instanceof Annotation) && ((Annotation) eObject).getName().equals(annotationName);
-		
-	}
-
 	public Optional<AnnotationTarget> getTargetAnnotationFrom(RepositoryComponent component) {
 		
 		if (!isTargetAnnotated(component)) {
@@ -83,7 +72,8 @@ public class AnnotationFilter {
 			
 		}
 		
-		return getTargetAnnotationFrom(getStereotypeApplicationFrom(component));
+		Optional<EObject> annotation = EMFProfileFilter.getAnnotationFrom(component, object -> object instanceof AnnotationTarget);
+		return annotation.isPresent() ? Optional.of((AnnotationTarget) annotation.get()) : Optional.empty();
 		
 	}
 	
@@ -107,15 +97,9 @@ public class AnnotationFilter {
 	
 	}
 	
-	private boolean isAnnotated(RepositoryComponent component) {
-		
-		return StereotypeAPI.hasStereotypeApplications(component);
-		
-	}
-	
 	private boolean hasTargetAnnotation(RepositoryComponent component) {
 				
-		return getTargetAnnotationFrom(getStereotypeApplicationFrom(component)).isPresent();
+		return EMFProfileFilter.getAnnotationFrom(component, object -> object instanceof AnnotationTarget).isPresent();
 		
 	}
 
@@ -123,50 +107,17 @@ public class AnnotationFilter {
 		
 		if (isTargetAnnotated(component)) {
 		
-			return isTargetAnnotatedWith(targetName, getStereotypeApplicationFrom(component)); 
+			return isTargetAnnotatedWith(targetName, component); 
 			
 		}
 		
 		return false;
 	
 	}
-
-	private StereotypeApplication getStereotypeApplicationFrom(RepositoryComponent component) {
-		
-		return StereotypeAPI.getStereotypeApplications(component).get(0);
-	
-	}
-	
-	private boolean isTargetAnnotatedWith(String targetName, StereotypeApplication stereoTypeApplication) {
-		
-		return stereoTypeApplication.eCrossReferences().stream().anyMatch(eachReferencedObject -> isTargetAnnotatedWith(targetName, eachReferencedObject));
-	
-	}
-	
-	private Optional<AnnotationTarget> getTargetAnnotationFrom(StereotypeApplication stereotypeApplication) {
-		
-		Optional<Annotation> annotation = getAnnotationFrom(stereotypeApplication, each -> each instanceof AnnotationTarget);
-		if (annotation.isPresent()) {
-			
-			return Optional.of((AnnotationTarget) annotation.get());
-			
-		}
-		
-		return Optional.empty();
-		
-	}
-	
-	private Optional<Annotation> getAnnotationFrom(StereotypeApplication stereotypeApplication, Predicate<EObject> fulfilConstraint) {
-		
-		return stereotypeApplication.eCrossReferences().stream().filter(eachReferencedObject -> fulfilConstraint.test(eachReferencedObject))
-																.map(foundObject -> (Annotation) foundObject)
-																.findFirst();
-		
-	}
 	
 	private boolean isTargetAnnotatedWith(String targetName, EObject referencedObject) {
 		
-		return (referencedObject instanceof AnnotationTarget) && ((AnnotationTarget) referencedObject).getName().equals(targetName);
+		return EMFProfileFilter.getAnnotationFrom(referencedObject, object -> ((AnnotationTarget) object).getName().equals(targetName)).isPresent();
 		
 	}
 	

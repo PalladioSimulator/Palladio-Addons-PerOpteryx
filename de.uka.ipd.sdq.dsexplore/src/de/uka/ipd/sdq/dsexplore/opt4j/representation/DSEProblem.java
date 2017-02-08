@@ -172,7 +172,7 @@ public class DSEProblem {
 		adapterTransformation.setInjectable(enrich);
 		
 		TransformationRepository transRepo = TransformationModelFactory.eINSTANCE.createTransformationRepository();
-		transRepo.getTransformations().add(adapterTransformation);
+		transRepo.getTransformation().add(adapterTransformation);
 		
 		return transRepo;
 		
@@ -705,12 +705,6 @@ public class DSEProblem {
         // new method getCopyOfInitialInstance, which returns new copy of initialInstance
         // and saves new copy as currentInstance?
         return this.initialInstance;
-    }
-    
-    public PCMInstance getCopyOfInitialInstance() {
-    	
-    	return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
-    	
     }
 
     public DesignDecisionGenotype getGenotypeOfInitialPCMInstance() {
