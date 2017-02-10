@@ -16,7 +16,6 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
-import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 
 public class WeavingInstructionGeneratorTest extends WeavingTest {
 
@@ -41,7 +40,6 @@ public class WeavingInstructionGeneratorTest extends WeavingTest {
 		this.pcmInstance = pcmToAdapt;
 		this.idsConcern = concern.getConcerns().get(0);
 		this.ossec = concernSolution;
-		TransformationRepositoryManager.initialize(transformationRepository);
 		
 	}
 

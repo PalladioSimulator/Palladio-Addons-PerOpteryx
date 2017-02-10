@@ -1,5 +1,6 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
+import java.util.List;
 import java.util.Optional;
 
 import ConcernModel.AnnotationEnrich;
@@ -21,10 +22,10 @@ public class TransformationRepositoryManager {
 		
 	}
 	
-	private TransformationRepositoryManager(Transformation transformation) {
+	private TransformationRepositoryManager(List<Transformation> transformations) {
 		
 		this.transformationRepository = TransformationModelFactory.eINSTANCE.createTransformationRepository();
-		this.transformationRepository.getTransformation().add(transformation);
+		this.transformationRepository.getTransformation().addAll(transformations);
 		
 	}
 	
@@ -46,9 +47,9 @@ public class TransformationRepositoryManager {
 		return instance;
 	}
 	
-	public static TransformationRepositoryManager getNewInstanceBy(Transformation transformation) {
+	public static TransformationRepositoryManager getNewInstanceBy(List<Transformation> transformations) {
 		
-		return new TransformationRepositoryManager(transformation);
+		return new TransformationRepositoryManager(transformations);
 		
 	}
 	

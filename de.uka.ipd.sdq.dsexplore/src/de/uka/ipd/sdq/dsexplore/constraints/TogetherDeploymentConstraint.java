@@ -11,9 +11,9 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 public class TogetherDeploymentConstraint extends TargetEnrichAnnotationConstraint {
 
 	@Override
-	public void setAssociation() {
+	public Association getAssociation() {
 		
-		this.association = Association.TOGETHER;
+		return Association.TOGETHER;
 		
 	}
 
@@ -26,7 +26,8 @@ public class TogetherDeploymentConstraint extends TargetEnrichAnnotationConstrai
 
 	private boolean areAllocatedOnTheSameResourceContainer(List<RepositoryComponent> targetAnnotatedComponents, ResourceContainer eccResourceContainer) {
 
-		return targetAnnotatedComponents.stream().allMatch(eachAnnotatedComponent -> EMFHelper.checkIdentity(getResourceContainerOf(eachAnnotatedComponent), eccResourceContainer));
+		return targetAnnotatedComponents.stream().allMatch(eachAnnotatedComponent -> EMFHelper.checkIdentity(getResourceContainerOf(eachAnnotatedComponent).orElse(null), 
+																											 eccResourceContainer));
 		
 	}
 	

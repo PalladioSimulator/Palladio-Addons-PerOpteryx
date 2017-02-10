@@ -35,6 +35,7 @@ import ConcernModel.ConcernRepository;
 import TransformationModel.AdapterTransformation;
 import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
+import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
@@ -111,10 +112,13 @@ public class DSEProblem {
      * @throws CoreException
      */
     public DSEProblem(final DSEWorkflowConfiguration dseConfig, MDSDBlackboard blackboard) throws CoreException {
+    	
         this.dseConfig = dseConfig;
         final boolean newProblem = dseConfig.isNewProblem();
         this.blackboard = blackboard;
-        this.initialInstance = new PCMInstance((PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID));
+        
+        PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+        this.initialInstance = new PCMInstance(pcmPartition);
         // this.currentInstance = copyOf pcmInstance
         // EcoreUtil.Copier deep copy
 
@@ -122,7 +126,8 @@ public class DSEProblem {
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
         
         DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
-        TransformationRepositoryManager.initialize(getTestTransformation());
+//        List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
+//        TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
         
         
         if (newProblem) {
@@ -153,30 +158,6 @@ public class DSEProblem {
          * Also meta-model the genotype as a choice within the range.
          */
     }
-
-    public TransformationRepository getTestTransformation() {
-		
-		AdapterTransformation adapterTransformation = TransformationModelFactory.eINSTANCE.createAdapterTransformation();
-		adapterTransformation.setAppear(Appearance.AFTER);
-		adapterTransformation.setMultiple(true);
-		adapterTransformation.setName("Adapter");
-		
-		AnnotationTarget target = ConcernModelFactory.eINSTANCE.createAnnotationTarget();
-		//target.setName("Observee");
-		target.setName("Analysee");
-		adapterTransformation.setTarget(target);
-		
-		AnnotationEnrich enrich = ConcernModelFactory.eINSTANCE.createAnnotationEnrich();
-		//enrich.setName("Observer");
-		enrich.setName("Analysis");
-		adapterTransformation.setInjectable(enrich);
-		
-		TransformationRepository transRepo = TransformationModelFactory.eINSTANCE.createTransformationRepository();
-		transRepo.getTransformation().add(adapterTransformation);
-		
-		return transRepo;
-		
-	}
     
     private DecisionSpace loadProblem() throws CoreException {
         final URI filename = this.dseConfig.getDesignDecisionFileName();

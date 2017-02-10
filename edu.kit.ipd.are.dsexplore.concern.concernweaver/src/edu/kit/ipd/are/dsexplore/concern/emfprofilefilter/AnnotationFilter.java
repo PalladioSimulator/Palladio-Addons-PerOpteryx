@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -72,7 +71,7 @@ public class AnnotationFilter {
 			
 		}
 		
-		Optional<EObject> annotation = EMFProfileFilter.getAnnotationFrom(component, object -> object instanceof AnnotationTarget);
+		Optional<EObject> annotation = EMFProfileFilter.getFirstAnnotationFrom(component, object -> object instanceof AnnotationTarget);
 		return annotation.isPresent() ? Optional.of((AnnotationTarget) annotation.get()) : Optional.empty();
 		
 	}
@@ -99,7 +98,7 @@ public class AnnotationFilter {
 	
 	private boolean hasTargetAnnotation(RepositoryComponent component) {
 				
-		return EMFProfileFilter.getAnnotationFrom(component, object -> object instanceof AnnotationTarget).isPresent();
+		return EMFProfileFilter.getFirstAnnotationFrom(component, object -> object instanceof AnnotationTarget).isPresent();
 		
 	}
 
@@ -117,7 +116,7 @@ public class AnnotationFilter {
 	
 	private boolean isTargetAnnotatedWith(String targetName, EObject referencedObject) {
 		
-		return EMFProfileFilter.getAnnotationFrom(referencedObject, object -> ((AnnotationTarget) object).getName().equals(targetName)).isPresent();
+		return EMFProfileFilter.getFirstAnnotationFrom(referencedObject, object -> (object instanceof AnnotationTarget) && ((AnnotationTarget) object).getName().equals(targetName)).isPresent();
 		
 	}
 	

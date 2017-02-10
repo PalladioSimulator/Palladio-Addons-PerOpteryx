@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -21,10 +23,12 @@ import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
+import TransformationModel.TransformationRepository;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
@@ -78,8 +82,24 @@ public class WeavingInstructionGenerator {
 		instance.featureHandler = new ECCFeatureHandler(concernSolution);
 		instance.eccToResourceContainerMap = eccToResourceContainerMap;
 		
+		TransformationRepositoryManager.initialize(getTransformationRepoFrom(concernSolution));
+		
 	}
 	
+	private static TransformationRepository getTransformationRepoFrom(Repository concernSolution) {
+		
+		//TODO exception handling
+		List<EObject> transformations = EMFProfileFilter.getAllAnnotationsFrom(concernSolution, object -> object instanceof Transformation);
+		if (transformations.isEmpty()) {
+			
+			//throw new Exception(); 
+			
+		}
+		
+		return (TransformationRepository) transformations.get(0).eContainer();
+		
+	}
+
 	public List<WeavingInstruction> getWeavingInstructions() {
 		
 		List<WeavingInstruction> weavingInstructions = new ArrayList<WeavingInstruction>();
