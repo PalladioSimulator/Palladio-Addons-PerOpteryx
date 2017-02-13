@@ -1,11 +1,11 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.palladiosimulator.pcm.parameter.ParameterFactory;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.EventType;
@@ -19,6 +19,7 @@ import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
+import org.palladiosimulator.pcm.seff.SetVariableAction;
 import org.palladiosimulator.pcm.seff.StartAction;
 import org.palladiosimulator.pcm.seff.StopAction;
 
@@ -119,7 +120,7 @@ public class PcmServiceEffectSpecificationManager {
 	
 	private List<AbstractAction> toExternalCallActions(List<ExternalCallInfo> orderedExternalCallInfoSequence) {
 		
-		return orderedExternalCallInfoSequence.stream().map(eachInfo -> createAbstractExternalActionCallOf(eachInfo))
+		return orderedExternalCallInfoSequence.stream().flatMap(eachInfo -> createAbstractExternalActionCallOf(eachInfo).stream())
 													   .collect(Collectors.toList());
 		
 	}
@@ -143,20 +144,33 @@ public class PcmServiceEffectSpecificationManager {
 	}
 	
 	//TODO refactor to some handler like its done with RoleHandler...
-	private AbstractAction createAbstractExternalActionCallOf(ExternalCallInfo externalCallInfo) {
+	private List<AbstractAction> createAbstractExternalActionCallOf(ExternalCallInfo externalCallInfo) {
+		
+		List<AbstractAction> abstractActions = new ArrayList<AbstractAction>();
 		
 		if (externalCallInfo.requiredRole instanceof OperationRequiredRole) {
 			
-			return createExternalActionCallOf(externalCallInfo);
+			abstractActions.add(createExternalActionCallOf(externalCallInfo));
 			
 		} else {
 			
-			return createEmitEventActionOf(externalCallInfo);
+			abstractActions.add(createEmitEventActionOf(externalCallInfo));
 			
 		}
 		
+		abstractActions.addAll(getSetVariableActionsFrom(externalCallInfo.setVariableActions));
+		
+		return abstractActions;
+		
 	}
-	
+
+	private List<SetVariableAction> getSetVariableActionsFrom(List<SetVariableAction> setVariableActions) {
+		
+		return setVariableActions.stream().map(each -> (SetVariableAction) EcoreUtil.copy(each))
+										  .collect(Collectors.toList());
+		
+	}
+
 	private AbstractAction createExternalActionCallOf(ExternalCallInfo externalCallInfo) {
 		
 		OperationSignature calledService = (OperationSignature) externalCallInfo.calledService;

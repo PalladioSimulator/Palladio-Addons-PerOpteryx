@@ -42,7 +42,8 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 			return new ExternalCallInfo(calledService, 
 										getRequiredRoleOf(calledService),
 										getReturnVariableUsagesBy(calledService), 
-										getInputVariableUsagesBy(calledService));
+										getInputVariableUsagesBy(calledService),
+										getSetVariableActions(seffToTransform));
 
 		} catch (Exception ex) {
 

@@ -18,6 +18,7 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
+import org.palladiosimulator.pcm.seff.SetVariableAction;
 
 import TransformationModel.AdapterTransformation;
 import TransformationModel.Transformation;
@@ -33,22 +34,25 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		public RequiredRole requiredRole;
 		public List<VariableUsage> returnVariableUsage;
 		public List<VariableUsage> inputVariableUsages;
+		public List<SetVariableAction> setVariableActions;
 		
 		public ExternalCallInfo(Signature calledService, RequiredRole requiredRole) {
 			
-			this(calledService, requiredRole, new ArrayList<VariableUsage>(), new ArrayList<VariableUsage>());
+			this(calledService, requiredRole, new ArrayList<VariableUsage>(), new ArrayList<VariableUsage>(), new ArrayList<SetVariableAction>());
 			
 		}
 		
 		public ExternalCallInfo(Signature calledService,
 								RequiredRole requiredRole,
 								List<VariableUsage> returnVariableUsage,
-								List<VariableUsage> inputVariableUsages) {
+								List<VariableUsage> inputVariableUsages,
+								List<SetVariableAction> setVariableActions) {
 			
 			this.calledService = calledService;
 			this.requiredRole = requiredRole;
 			this.returnVariableUsage = returnVariableUsage;
 			this.inputVariableUsages = inputVariableUsages;
+			this.setVariableActions = setVariableActions;
 			
 		}
 		
@@ -272,6 +276,26 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 				 															 .map(eachRequiredRole -> (OperationRequiredRole) eachRequiredRole)
 				 															 .map(eachOperationRequiredRole -> eachOperationRequiredRole.getRequiredInterface__OperationRequiredRole())
 				 															 .collect(Collectors.toList());
+		
+	}
+	
+	protected List<SetVariableAction> getSetVariableActions(ServiceEffectSpecification seffToTransform) {
+		
+		List<SetVariableAction> setVariableActions = new ArrayList<SetVariableAction>();
+		
+		TreeIterator<EObject> seffIterator = seffToTransform.eAllContents();
+		while (seffIterator.hasNext()) {
+			
+			EObject current = seffIterator.next();
+			if (current instanceof SetVariableAction) {
+				
+				setVariableActions.add((SetVariableAction) current);
+				
+			}
+			
+		}
+		
+		return setVariableActions;
 		
 	}
 
