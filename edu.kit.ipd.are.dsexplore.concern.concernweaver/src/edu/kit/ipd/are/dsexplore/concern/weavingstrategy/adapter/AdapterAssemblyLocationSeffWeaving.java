@@ -14,7 +14,6 @@ import org.palladiosimulator.pcm.repository.Parameter;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
-import org.palladiosimulator.pcm.seff.SetVariableAction;
 
 public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 

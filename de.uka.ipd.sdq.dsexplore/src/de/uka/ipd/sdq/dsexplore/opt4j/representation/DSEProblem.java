@@ -3,9 +3,11 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -32,6 +34,7 @@ import ConcernModel.Concern;
 import ConcernModel.ConcernModelFactory;
 import ConcernModel.ConcernModelPackage;
 import ConcernModel.ConcernRepository;
+import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.AdapterTransformation;
 import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
@@ -126,8 +129,8 @@ public class DSEProblem {
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
         
         DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
-//        List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
-//        TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
+        List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
+        TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
         
         
         if (newProblem) {
@@ -222,12 +225,15 @@ public class DSEProblem {
 
                 final ClassChoice choice = this.designDecisionFactory.createClassChoice();
                 choice.setDegreeOfFreedomInstance(dd);
-
+                
                 if (dd instanceof AssembledComponentDegree) {
                     final AssembledComponentDegree acd = (AssembledComponentDegree) dd;
                     final AssemblyContext ac = (AssemblyContext) acd.getPrimaryChanged();
                     final RepositoryComponent rc = ac.getEncapsulatedComponent__AssemblyContext();
                     choice.setChosenValue(rc);
+                } else if(dd instanceof ConcernDegree) {
+                	final ConcernDegree concernDegree = (ConcernDegree) dd;
+                	choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
                 } else if (dd instanceof AllocationDegree) {
                     final AllocationDegree ad = (AllocationDegree) dd;
                     final AllocationContext ac = (AllocationContext) ad.getPrimaryChanged();
@@ -365,7 +371,16 @@ public class DSEProblem {
         }
         ;
 
-        determineConcernDecisions(problem.getDegreesOfFreedom(), genotype);
+        List<ConcernDegree> concernDegrees = getConcernFrom(problem.getDegreesOfFreedom());
+        if (!concernDegrees.isEmpty()) {
+        	
+        	PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+        	WeavingManager.initialize(blackboard, initialPartition);
+        	
+        	concernDegrees.forEach(each -> createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype));
+        	
+        }
+        
         // determineProcessingRateDecisions(new ArrayList<DesignDecision>(), genotype);
         // determineAssembledComponentsDecisions(new ArrayList<DesignDecision>(), genotype);
         // determineAllocationDecisions(new ArrayList<DesignDecision>(), genotype);
@@ -375,7 +390,15 @@ public class DSEProblem {
         return result;
     }
 
-    private ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd) {
+	private List<ConcernDegree> getConcernFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
+		
+		return degreesOfFreedom.stream().filter(each -> each instanceof ConcernDegree)
+									    .map(each -> (ConcernDegree) each)
+										.collect(Collectors.toList());
+		
+	}
+
+	private ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd) {
         final ResourceContainer rc = (ResourceContainer) prd.getPrimaryChanged();
         final List<ProcessingResourceSpecification> prsList = rc.getActiveResourceSpecifications_ResourceContainer();
         final ProcessingResourceType prt = prd.getProcessingresourcetype();
@@ -479,11 +502,11 @@ public class DSEProblem {
 
 	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
 		
-		ECCAllocDegreeDesignDecision eccAllocDegreeDEsignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), 
+		ECCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), 
 																									 this.initialInstance.getRepositories());
 		
 		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
-		eccAllocDegreeDEsignDecision.getECCClassChoicesFrom(allPcmResourceContainer).forEach(eccClassChoice -> {
+		eccAllocDegreeDesignDecision.getECCClassChoicesFrom(allPcmResourceContainer).forEach(eccClassChoice -> {
 			
 			initialCandidate.add(eccClassChoice);
 			dds.add(eccClassChoice.getDegreeOfFreedomInstance());

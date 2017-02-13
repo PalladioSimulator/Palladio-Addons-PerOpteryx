@@ -47,50 +47,23 @@ public class ConcernManager {
 		
 	}
 	
-	public Optional<ElementaryConcernComponent> getCorrespondingECCFrom(AnnotationTarget targetAnnotation) {
+	public Optional<ElementaryConcernComponent> getElementaryConcernComponentBy(AnnotationEnrich annotationEnrich) {
 		
 		for (ElementaryConcernComponent eachECC : this.concern.getComponents()) {
-			
-			for (AnnotationEnrich eachEnrichAnnotation : eachECC.getAnnotationenrich()) {
+		
+			if (getNamesOf(eachECC.getAnnotationenrich()).contains(annotationEnrich.getName())) {
 				
-				if (areLinked(eachEnrichAnnotation, targetAnnotation)) {
-					
-					return Optional.of(eachECC);
-					
-				}
+				return Optional.of(eachECC);
 				
 			}
-			
-		}
 		
+		}
+	
 		return Optional.empty();
 		
 	}
-	
-	public List<AnnotationEnrich> getCorrespondingEnrichAnotationFrom(AnnotationTarget targetAnnotation) {
-		
-		return this.concern.getConstraints().stream().filter(eachConstraint -> getNamesOf(eachConstraint.getAnnotations()).contains(targetAnnotation.getName()))
-													 .flatMap(constraint -> constraint.getAnnotations().stream())
-													 .filter(eachAnnotation -> eachAnnotation instanceof AnnotationEnrich)
-													 .map(eachAnnotation -> (AnnotationEnrich) eachAnnotation)
-													 .collect(Collectors.toList());
-		
-	}
-	
-	private boolean areLinked(AnnotationEnrich enrichAnnotation, AnnotationTarget targetAnnotation) {
-		
-		return this.concern.getConstraints().stream().anyMatch(eachConstraint -> contains(enrichAnnotation, targetAnnotation, eachConstraint));
-																					
-	}
 
-	private boolean contains(AnnotationEnrich enrichAnnotation, AnnotationTarget targetAnnotation, DeploymentConstraint constraint) {
-		
-		return getNamesOf(constraint.getAnnotations()).contains(enrichAnnotation.getName()) &&
-			   getNamesOf(constraint.getAnnotations()).contains(targetAnnotation.getName());
-		
-	}
-
-	private List<String> getNamesOf(List<Annotation> annotations) {
+	private List<String> getNamesOf(List<? extends Annotation> annotations) {
 		
 		return annotations.stream().map(eachAnnotation -> eachAnnotation.getName()).collect(Collectors.toList());
 		

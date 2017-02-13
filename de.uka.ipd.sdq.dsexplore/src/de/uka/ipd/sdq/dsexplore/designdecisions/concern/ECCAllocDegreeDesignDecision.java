@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import ConcernModel.AnnotationEnrich;
 import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
@@ -17,6 +18,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 
 public class ECCAllocDegreeDesignDecision {
 
@@ -46,8 +48,9 @@ public class ECCAllocDegreeDesignDecision {
 
 	private Stream<ElementaryConcernComponent> getECCsRelatedTo(AnnotationTarget targetAnnotation) {
 		
-		ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).get();
-		return resolveAllRequiredECCsFrom(ecc);
+		//TODO exception handling
+		AnnotationEnrich enrich = TransformationRepositoryManager.getInstance().getEnrichAnnotationBy(targetAnnotation).get();
+		return resolveAllRequiredECCsFrom(this.concernManager.getElementaryConcernComponentBy(enrich).get());
 		
 	}
 	

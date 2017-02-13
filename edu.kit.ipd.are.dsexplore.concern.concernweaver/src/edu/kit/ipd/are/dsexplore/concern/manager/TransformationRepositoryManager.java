@@ -69,7 +69,7 @@ public class TransformationRepositoryManager {
 	public Optional<Transformation> getTransformationBy(AnnotationEnrich enrichAnnotation, AnnotationTarget targetAnnotation) {
 		
 		return this.transformationRepository.getTransformation().stream().filter(transformation -> hasAnnotations(transformation, enrichAnnotation, targetAnnotation))
-																 		  .findFirst();
+																 		 .findFirst();
 		
 	}
 	
@@ -77,6 +77,20 @@ public class TransformationRepositoryManager {
 		
 		return transformation.getTarget().getName().equals(targetAnnotation.getName()) &&
 			   transformation.getInjectable().getName().equals(enrichAnnotation.getName());
+		
+	}
+	
+	public Optional<AnnotationEnrich> getEnrichAnnotationBy(AnnotationTarget targetAnnotation) {
+		
+		return this.transformationRepository.getTransformation().stream().filter(eachTrans -> areEqual(eachTrans.getTarget(), targetAnnotation))
+																		 .map(eachTrans -> eachTrans.getInjectable())
+																		 .findFirst();
+		
+	}
+
+	private boolean areEqual(AnnotationTarget target1, AnnotationTarget target2) {
+		
+		return target1.getName().equals(target2.getName());
 		
 	}
 	

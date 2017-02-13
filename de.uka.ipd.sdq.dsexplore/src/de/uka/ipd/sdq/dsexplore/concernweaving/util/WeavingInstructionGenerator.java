@@ -8,8 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -23,12 +21,10 @@ import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
-import TransformationModel.TransformationRepository;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
@@ -82,23 +78,21 @@ public class WeavingInstructionGenerator {
 		instance.featureHandler = new ECCFeatureHandler(concernSolution);
 		instance.eccToResourceContainerMap = eccToResourceContainerMap;
 		
-		TransformationRepositoryManager.initialize(getTransformationRepoFrom(concernSolution));
-		
 	}
 	
-	private static TransformationRepository getTransformationRepoFrom(Repository concernSolution) {
-		
-		//TODO exception handling
-		List<EObject> transformations = EMFProfileFilter.getAllAnnotationsFrom(concernSolution, object -> object instanceof Transformation);
-		if (transformations.isEmpty()) {
-			
-			//throw new Exception(); 
-			
-		}
-		
-		return (TransformationRepository) transformations.get(0).eContainer();
-		
-	}
+//	private static TransformationRepository getTransformationRepoFrom(Repository concernSolution) {
+//		
+//		//TODO exception handling
+//		List<EObject> transformations = EMFProfileFilter.getAllAnnotationsFrom(concernSolution, object -> object instanceof Transformation);
+//		if (transformations.isEmpty()) {
+//			
+//			//throw new Exception(); 
+//			
+//		}
+//		
+//		return (TransformationRepository) transformations.get(0).eContainer();
+//		
+//	}
 
 	public List<WeavingInstruction> getWeavingInstructions() {
 		
@@ -236,9 +230,10 @@ public class WeavingInstructionGenerator {
 
 	private Transformation getTransformationStrategy(AnnotationTarget targetAnnotation) {
 		
-		//This function is bijective.
-		AnnotationEnrich enrichAnnotation = this.concernManager.getCorrespondingEnrichAnotationFrom(targetAnnotation).get(0);
 		//TODO introduce exceptions
+		TransformationRepositoryManager transManager = TransformationRepositoryManager.getInstance();
+		//This function is bijective.
+		AnnotationEnrich enrichAnnotation = transManager.getEnrichAnnotationBy(targetAnnotation).get();
 		//return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation).orElseThrow(() -> new Exception());
 		return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation).get();
 		
@@ -268,7 +263,8 @@ public class WeavingInstructionGenerator {
 		
 		//TODO introduce exception
 		//ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).orElseThrow(() -> new Exception());
-		ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).get();
+		AnnotationEnrich enrich = TransformationRepositoryManager.getInstance().getEnrichAnnotationBy(targetAnnotation).get();
+		ElementaryConcernComponent ecc = this.concernManager.getElementaryConcernComponentBy(enrich).get();
 		//At this point all provided ecc features are going to be used
 		return Pair.of(ecc, this.featureHandler.getProvidedFeaturesOf(ecc));
 		
