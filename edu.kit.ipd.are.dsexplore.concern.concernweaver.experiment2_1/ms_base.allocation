@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.1" id="_bE6MsL3NEeSvHZ5kF_aE4g" entityName="defaultAllocation">
+  <targetResourceEnvironment_Allocation href="ms.resourceenvironment#/"/>
+  <system_Allocation href="ms_base.system#_oPwBYHDhEeSqnN80MQ2uGw"/>
+  <allocationContexts_Allocation id="_h3M_4L3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_FileStorage &lt;FileStorage> &lt;FileStorage>">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_1ek7QLg_EeSNPorBlo7x9g"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_eKs48L3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_Packaging &lt;Packaging> &lt;Packaging>">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_IPnY0HD5EeSA4fySuX9I2Q"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_dXxnML3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_MediaAccess &lt;MediaAccess> &lt;MediaAccess>">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_4LdYsHD4EeSA4fySuX9I2Q"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_dx0e4L3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_MediaManagement &lt;MediaManagement> &lt;MediaManagement>">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_C1kK8HD5EeSA4fySuX9I2Q"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BYPQkEeajn-jXvtkbMg" entityName="DetectionPointInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFRLgPQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BYfQkEeajn-jXvtkbMg" entityName="AccessControllerInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFd_0PQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BYvQkEeajn-jXvtkbMg" entityName="AttackAnalysisEngineInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFd_0_QkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BY_QkEeajn-jXvtkbMg" entityName="EventAnalysisEngineInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFem4vQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BZPQkEeajn-jXvtkbMg" entityName="ResponseAnalysisEngineInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFf1AvQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BZfQkEeajn-jXvtkbMg" entityName="AttackStoreInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFem4PQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BZvQkEeajn-jXvtkbMg" entityName="EventStoreInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFf1APQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BZ_QkEeajn-jXvtkbMg" entityName="ResponseStoreInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFgcEfQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BaPQkEeajn-jXvtkbMg" entityName="RequestHandlerInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFcxsPQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BafQkEeajn-jXvtkbMg" entityName="ServerConfigurationInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFd_0fQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BavQkEeajn-jXvtkbMg" entityName="ResponseHandlerInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFktgPQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3Ba_QkEeajn-jXvtkbMg" entityName="EventManagerInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFlUkPQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF3BbPQkEeajn-jXvtkbMg" entityName="ClientConfigurationInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFnw0PQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mF42kPQkEeajn-jXvtkbMg" entityName="Adapter_DetectionInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_mFJPsPQkEeajn-jXvtkbMg"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>

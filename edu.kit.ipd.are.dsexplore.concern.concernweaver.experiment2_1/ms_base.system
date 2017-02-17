@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.1" id="_oPwBYHDhEeSqnN80MQ2uGw" entityName="defaultSystem">
+  <assemblyContexts__ComposedStructure id="_1ek7QLg_EeSNPorBlo7x9g" entityName="Assembly_FileStorage &lt;FileStorage>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ms.repository#_qxAiILg7EeSNPorBlo7x9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_IPnY0HD5EeSA4fySuX9I2Q" entityName="Assembly_Packaging &lt;Packaging>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ms.repository#_B5geQHDsEeSqnN80MQ2uGw"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_4LdYsHD4EeSA4fySuX9I2Q" entityName="Assembly_MediaAccess &lt;MediaAccess>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ms.repository#_9eK7YHDrEeSqnN80MQ2uGw"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_C1kK8HD5EeSA4fySuX9I2Q" entityName="Assembly_MediaManagement &lt;MediaManagement>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ms.repository#_p_EeYHDrEeSqnN80MQ2uGw"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFJPsPQkEeajn-jXvtkbMg" entityName="Adapter_DetectionInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_6D1EUPQnEeajn-jXvtkbMg"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFRLgPQkEeajn-jXvtkbMg" entityName="DetectionPointInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_H9kdMNWEEeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFcxsPQkEeajn-jXvtkbMg" entityName="RequestHandlerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_uDvKsNV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFd_0PQkEeajn-jXvtkbMg" entityName="AccessControllerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_JaOFkNV9EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFd_0fQkEeajn-jXvtkbMg" entityName="ServerConfigurationInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_2oK0cNV_EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFd_0_QkEeajn-jXvtkbMg" entityName="AttackAnalysisEngineInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_Qi6mkNV9EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFem4PQkEeajn-jXvtkbMg" entityName="AttackStoreInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_aRiLgNV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFem4vQkEeajn-jXvtkbMg" entityName="EventAnalysisEngineInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_MGrPUNV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFf1APQkEeajn-jXvtkbMg" entityName="EventStoreInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_dmswgNV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFf1AvQkEeajn-jXvtkbMg" entityName="ResponseAnalysisEngineInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_RtYZINV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFgcEfQkEeajn-jXvtkbMg" entityName="ResponseStoreInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_j81MINV-EeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFktgPQkEeajn-jXvtkbMg" entityName="ResponseHandlerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_NfQg8NWAEeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFlUkPQkEeajn-jXvtkbMg" entityName="EventManagerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_vCoUgNWBEeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_mFnw0PQkEeajn-jXvtkbMg" entityName="ClientConfigurationInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="AppSensor.repository#_2oKigNWBEeWS-LePWVyd9g"/>
+  </assemblyContexts__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_gUGskHD5EeSA4fySuX9I2Q" entityName="Connector Assembly_MediaManagement &lt;MediaManagement> -> Assembly_MediaAccess &lt;MediaAccess>" requiringAssemblyContext_AssemblyConnector="_C1kK8HD5EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q">
+    <providedRole_AssemblyConnector href="ms.repository#_z2B7cHD2EeSA4fySuX9I2Q"/>
+    <requiredRole_AssemblyConnector href="ms.repository#_mYCsUHD2EeSA4fySuX9I2Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_hWBckHD5EeSA4fySuX9I2Q" entityName="Connector Assembly_MediaManagement &lt;MediaManagement> -> Assembly_Packaging &lt;Packaging>" requiringAssemblyContext_AssemblyConnector="_C1kK8HD5EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_IPnY0HD5EeSA4fySuX9I2Q">
+    <providedRole_AssemblyConnector href="ms.repository#_MtSiMHDyEeSqnN80MQ2uGw"/>
+    <requiredRole_AssemblyConnector href="ms.repository#_cljekHD2EeSA4fySuX9I2Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_wfGlwJdhEeaKNd23poKM2w" entityName="Connector Assembly_MediaManagement &lt;MediaManagement> -> Assembly_MediaAccess &lt;MediaAccess>" requiringAssemblyContext_AssemblyConnector="_C1kK8HD5EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q">
+    <providedRole_AssemblyConnector href="ms.repository#_4t0w0HD2EeSA4fySuX9I2Q"/>
+    <requiredRole_AssemblyConnector href="ms.repository#_T0JTUHD2EeSA4fySuX9I2Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_wVTYoJelEeajsMFpiDxCKw" entityName="ProvDelegation Provided_IWebGui -> Provided_IMediaManagement_MediaManagement" outerProvidedRole_ProvidedDelegationConnector="_b9NvYHD6EeSA4fySuX9I2Q" assemblyContext_ProvidedDelegationConnector="_C1kK8HD5EeSA4fySuX9I2Q">
+    <innerProvidedRole_ProvidedDelegationConnector href="ms.repository#_frEeAHD2EeSA4fySuX9I2Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFnw0fQkEeajn-jXvtkbMg" entityName="EventManagerToClientConfigurationConnector" requiringAssemblyContext_AssemblyConnector="_mFlUkPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFnw0PQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_3gobkNWBEeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_xSL8UNWBEeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFRLgfQkEeajn-jXvtkbMg" entityName="Adapter_DetectionToDetectionPointConnector" requiringAssemblyContext_AssemblyConnector="_mFJPsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFRLgPQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_JjsGcNWEEeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_6D1EUfQnEeajn-jXvtkbMg"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFdYwPQkEeajn-jXvtkbMg" entityName="DetectionPointToRequestHandlerConnector" requiringAssemblyContext_AssemblyConnector="_mFRLgPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_v2zDwNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_Qd1ZIPHsEeaSPp9UXER7Hw"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFd_0vQkEeajn-jXvtkbMg" entityName="AccessControllerToServerConfigurationConnector" requiringAssemblyContext_AssemblyConnector="_mFd_0PQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0fQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_Og2BINV9EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFd_1PQkEeajn-jXvtkbMg" entityName="AttackAnalysisEngineToServerConfigurationConnector" requiringAssemblyContext_AssemblyConnector="_mFd_0_QkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0fQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_Dw4MkNV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFem4fQkEeajn-jXvtkbMg" entityName="AttackAnalysisEngineToAttackStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFd_0_QkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFem4PQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_bn2eMNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_Ry-OUNV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFfN8PQkEeajn-jXvtkbMg" entityName="EventAnalysisEngineToServerConfigurationConnector" requiringAssemblyContext_AssemblyConnector="_mFem4vQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0fQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_CtmxsNV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFf1AfQkEeajn-jXvtkbMg" entityName="EventAnalysisEngineToEventStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFem4vQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFf1APQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_eO8cQNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_QKIoQNV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFgcEPQkEeajn-jXvtkbMg" entityName="ResponseAnalysisEngineToServerConfigurationConnector" requiringAssemblyContext_AssemblyConnector="_mFf1AvQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0fQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_Bjo48NV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFgcEvQkEeajn-jXvtkbMg" entityName="ResponseAnalysisEngineToResponseStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFf1AvQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFgcEfQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_k6a1wNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_OpcRkNV_EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFhDIPQkEeajn-jXvtkbMg" entityName="AttackStoreToAttackAnalysisEngineConnector" requiringAssemblyContext_AssemblyConnector="_mFem4PQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0_QkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_ZwCdcNV9EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_h-t_MNW2EeWdTPykunuB7Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFhDIfQkEeajn-jXvtkbMg" entityName="EventStoreToEventAnalysisEngineConnector" requiringAssemblyContext_AssemblyConnector="_mFf1APQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFem4vQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_PBZ7ENV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_l6hGYNW2EeWdTPykunuB7Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFhqMPQkEeajn-jXvtkbMg" entityName="ResponseStoreToResponseAnalysisEngineConnector" requiringAssemblyContext_AssemblyConnector="_mFgcEfQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFf1AvQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_TXgYoNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_plC3YNW2EeWdTPykunuB7Q"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFhqMfQkEeajn-jXvtkbMg" entityName="RequestHandlerToAccessControllerConnector" requiringAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFd_0PQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_MYGzANV9EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_xOl9INV-EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFkGcPQkEeajn-jXvtkbMg" entityName="RequestHandlerToAttackStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFem4PQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_bn2eMNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_1hNB0NV-EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFkGcfQkEeajn-jXvtkbMg" entityName="RequestHandlerToEventStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFf1APQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_eO8cQNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_480NENV-EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFkGcvQkEeajn-jXvtkbMg" entityName="RequestHandlerToResponseStoreConnector" requiringAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFgcEfQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_k6a1wNV-EeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_55wWcNV-EeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFktgfQkEeajn-jXvtkbMg" entityName="RequestHandlerToResponseHandlerConnector" requiringAssemblyContext_AssemblyConnector="_mFcxsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFktgPQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_Os1uYNWAEeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_SyPEsPHsEeaSPp9UXER7Hw"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFlUkfQkEeajn-jXvtkbMg" entityName="ResponseHandlerToEventManagerConnector" requiringAssemblyContext_AssemblyConnector="_mFktgPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_mFlUkPQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_wBuaANWBEeWS-LePWVyd9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_EOenMNWCEeWS-LePWVyd9g"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFspUPQkEeajn-jXvtkbMg" entityName="Adapter_DetectionToFileStorageConnector" requiringAssemblyContext_AssemblyConnector="_mFJPsPQkEeajn-jXvtkbMg" providingAssemblyContext_AssemblyConnector="_1ek7QLg_EeSNPorBlo7x9g">
+    <providedRole_AssemblyConnector href="ms.repository#_sFS0gLg7EeSNPorBlo7x9g"/>
+    <requiredRole_AssemblyConnector href="AppSensor.repository#_6D1EU_QnEeajn-jXvtkbMg"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_mFtQYPQkEeajn-jXvtkbMg" entityName="MediaAccessToAdapter_DetectionConnector" requiringAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_mFJPsPQkEeajn-jXvtkbMg">
+    <providedRole_AssemblyConnector href="AppSensor.repository#_6D1EUvQnEeajn-jXvtkbMg"/>
+    <requiredRole_AssemblyConnector href="ms.repository#_vU0HsLg_EeSNPorBlo7x9g"/>
+  </connectors__ComposedStructure>
+  <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_b9NvYHD6EeSA4fySuX9I2Q" entityName="Provided_IWebGui">
+    <providedInterface__OperationProvidedRole href="ms.repository#_Nv-1oHDvEeSqnN80MQ2uGw"/>
+  </providedRoles_InterfaceProvidingEntity>
+</system:System>

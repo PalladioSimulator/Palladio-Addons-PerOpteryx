@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ASCII"?>
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_bZ9wgPRSEeaqMr3GGuxiCQ">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="2.0E9" from="5.0E8">
+    <primaryChanged href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.0E8" from="2.5E7">
+    <primaryChanged href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_BIjHoQ3KEdyouMqirZIhzQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="2.0E9" from="5.0E8">
+    <primaryChanged href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.2E9" from="3.0E8">
+    <primaryChanged href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+    <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_BIjHoQ3KEdyouMqirZIhzQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_h3M_4L3NEeSvHZ5kF_aE4g"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_eKs48L3NEeSvHZ5kF_aE4g"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_dXxnML3NEeSvHZ5kF_aE4g"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_dx0e4L3NEeSvHZ5kF_aE4g"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BYPQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BYfQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BYvQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BY_QkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BZPQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BZfQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BZvQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BZ_QkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BaPQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BafQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BavQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3Ba_QkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF3BbPQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_mF42kPQkEeajn-jXvtkbMg"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+</designdecision:DecisionSpace>
