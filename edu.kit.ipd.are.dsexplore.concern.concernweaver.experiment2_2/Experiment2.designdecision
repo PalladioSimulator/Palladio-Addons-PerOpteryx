@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="ASCII"?>
-<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_8ItOsPQ-EeaQFYVUmD8rJw">
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="2.0E9" from="5.0E8">
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_gD7QEPUUEea53evGfaljEg">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.0E10" from="1000000.0">
     <primaryChanged href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.0E8" from="2.5E7">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="5.0E9" from="500000.0">
     <primaryChanged href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_BIjHoQ3KEdyouMqirZIhzQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="2.0E9" from="5.0E8">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.0E10" from="1000000.0">
     <primaryChanged href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="1.2E9" from="3.0E8">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="6.0E10" from="6000000.0">
     <primaryChanged href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_BIjHoQ3KEdyouMqirZIhzQ"/>
   </degreesOfFreedom>
@@ -37,27 +37,32 @@
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
-    <primaryChanged href="ms_base.allocation#_chTDcPQ7EeabX-_r-cZIcg"/>
+    <primaryChanged href="ms_base.allocation#_CX5B0PUQEeascNFdI8vBDw"/>
     <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
-    <primaryChanged href="ms_base.allocation#_chTDcfQ7EeabX-_r-cZIcg"/>
+    <primaryChanged href="ms_base.allocation#_CX5B0fUQEeascNFdI8vBDw"/>
     <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
-    <primaryChanged href="ms_base.allocation#_chTDcvQ7EeabX-_r-cZIcg"/>
+    <primaryChanged href="ms_base.allocation#_CX5B0vUQEeascNFdI8vBDw"/>
     <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
-    <primaryChanged href="ms_base.allocation#_chTDc_Q7EeabX-_r-cZIcg"/>
+    <primaryChanged href="ms_base.allocation#_CX5B0_UQEeascNFdI8vBDw"/>
     <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
-    <primaryChanged href="ms_base.allocation#_chTDdPQ7EeabX-_r-cZIcg"/>
+    <primaryChanged href="ms_base.allocation#_CX5B1PUQEeascNFdI8vBDw"/>
+    <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="ms_base.allocation#_CX6P8PUQEeascNFdI8vBDw"/>
     <classDesignOptions href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
     <classDesignOptions href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
   </degreesOfFreedom>

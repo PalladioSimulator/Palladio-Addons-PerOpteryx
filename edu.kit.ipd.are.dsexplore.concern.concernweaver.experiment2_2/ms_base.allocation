@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.1" id="_bE6MsL3NEeSvHZ5kF_aE4g" entityName="defaultAllocation">
   <targetResourceEnvironment_Allocation href="ms.resourceenvironment#/"/>
   <system_Allocation href="ms_base.system#_oPwBYHDhEeSqnN80MQ2uGw"/>
@@ -11,31 +11,35 @@
     <assemblyContext_AllocationContext href="ms_base.system#_IPnY0HD5EeSA4fySuX9I2Q"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_dXxnML3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_MediaAccess &lt;MediaAccess> &lt;MediaAccess>">
-    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
     <assemblyContext_AllocationContext href="ms_base.system#_4LdYsHD4EeSA4fySuX9I2Q"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_dx0e4L3NEeSvHZ5kF_aE4g" entityName="Allocation_Assembly_MediaManagement &lt;MediaManagement> &lt;MediaManagement>">
     <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
     <assemblyContext_AllocationContext href="ms_base.system#_C1kK8HD5EeSA4fySuX9I2Q"/>
   </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_chTDcPQ7EeabX-_r-cZIcg" entityName="OSSECDecoderInstance_Allocation">
+  <allocationContexts_Allocation id="_CX5B0PUQEeascNFdI8vBDw" entityName="DecoderInstance_Allocation">
     <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
-    <assemblyContext_AllocationContext href="ms_base.system#_chRORPQ7EeabX-_r-cZIcg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CXtboPUQEeascNFdI8vBDw"/>
   </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_chTDcfQ7EeabX-_r-cZIcg" entityName="OSSECAnalyzerInstance_Allocation">
+  <allocationContexts_Allocation id="_CX5B0fUQEeascNFdI8vBDw" entityName="LogAnalyzerInstance_Allocation">
     <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
-    <assemblyContext_AllocationContext href="ms_base.system#_chR1UPQ7EeabX-_r-cZIcg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CX0JUvUQEeascNFdI8vBDw"/>
   </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_chTDcvQ7EeabX-_r-cZIcg" entityName="OSSECCollectInstance_Allocation">
+  <allocationContexts_Allocation id="_CX5B0vUQEeascNFdI8vBDw" entityName="LogCollectorInstance_Allocation">
     <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
-    <assemblyContext_AllocationContext href="ms_base.system#_chR1UvQ7EeabX-_r-cZIcg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CX0JUPUQEeascNFdI8vBDw"/>
   </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_chTDc_Q7EeabX-_r-cZIcg" entityName="OSSECAlertInstance_Allocation">
-    <resourceContainer_AllocationContext href="ms.resourceenvironment#_dH4W0Lg3EeSNPorBlo7x9g"/>
-    <assemblyContext_AllocationContext href="ms_base.system#_chR1VPQ7EeabX-_r-cZIcg"/>
-  </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_chTDdPQ7EeabX-_r-cZIcg" entityName="Adapter_DetectionInstance_Allocation">
+  <allocationContexts_Allocation id="_CX5B0_UQEeascNFdI8vBDw" entityName="AlertHandlerInstance_Allocation">
     <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
-    <assemblyContext_AllocationContext href="ms_base.system#_chROQ_Q7EeabX-_r-cZIcg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CX0JU_UQEeascNFdI8vBDw"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_CX5B1PUQEeascNFdI8vBDw" entityName="AgentInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CX0wYPUQEeascNFdI8vBDw"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_CX6P8PUQEeascNFdI8vBDw" entityName="Adapter_DetectionInstance_Allocation">
+    <resourceContainer_AllocationContext href="ms.resourceenvironment#_t8rcYHlPEeSGtbTG2d9Ipg"/>
+    <assemblyContext_AllocationContext href="ms_base.system#_CXjDkPUQEeascNFdI8vBDw"/>
   </allocationContexts_Allocation>
 </allocation:Allocation>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<launchConfiguration local="false" path="/edu.kit.ipd.are.dsexplore.concern.concernweaver.experiment2_1/runconfig/Experiment1.launch"/>

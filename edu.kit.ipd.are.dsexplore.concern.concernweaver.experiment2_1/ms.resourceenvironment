@@ -4,7 +4,7 @@
     <communicationLinkResourceSpecifications_LinkingResource id="_wBL_ILg3EeSNPorBlo7x9g">
       <communicationLinkResourceType_CommunicationLinkResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_o3sScH2AEdyH8uerKnHYug"/>
       <latency_CommunicationLinkResourceSpecification specification="Norm(0.07,0.03)"/>
-      <throughput_CommunicationLinkResourceSpecification specification="6.25 * 1000 * 1000"/>
+      <throughput_CommunicationLinkResourceSpecification specification="100 * 1000 * 1000"/>
     </communicationLinkResourceSpecifications_LinkingResource>
   </linkingResources__ResourceEnvironment>
   <resourceContainer_ResourceEnvironment id="_t8rcYHlPEeSGtbTG2d9Ipg" entityName="Server1">

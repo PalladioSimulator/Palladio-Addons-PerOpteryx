@@ -129,8 +129,7 @@ public class DSEProblem {
         this.specificDesignDecisionFactory = specificFactoryImpl.init();
         
         DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
-        List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
-        TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
+        initTransformationRepository(pcmPartition);
         
         
         if (newProblem) {
@@ -162,7 +161,22 @@ public class DSEProblem {
          */
     }
     
-    private DecisionSpace loadProblem() throws CoreException {
+    private void initTransformationRepository(PCMResourceSetPartition pcmPartition) {
+		
+    	try {
+    		
+    		List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
+            TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
+    		
+    	} catch (Exception ex) {
+    		
+    		//No concern is involved
+    		
+    	}
+		
+	}
+
+	private DecisionSpace loadProblem() throws CoreException {
         final URI filename = this.dseConfig.getDesignDecisionFileName();
         return this.loadProblem(filename);
     }

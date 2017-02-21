@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Solution:SolutionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Solution="http://are.ipd.kit.edu/SolutionModel/1.0.0">
   <solutions name="OSSEC">
-    <repository href="ossec.repository#_er2hYFWIEea0XO9AU2xvGg"/>
+    <repository href="ossec_extended.repository#_KsE3sK_GEeaFof9L2wGlaQ"/>
   </solutions>
   <solutions name="AppSensor">
     <repository href="AppSensor.repository#_VYStANVwEeWS-LePWVyd9g"/>

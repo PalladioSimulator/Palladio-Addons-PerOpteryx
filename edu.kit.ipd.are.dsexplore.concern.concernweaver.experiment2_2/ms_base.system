@@ -12,20 +12,23 @@
   <assemblyContexts__ComposedStructure id="_C1kK8HD5EeSA4fySuX9I2Q" entityName="Assembly_MediaManagement &lt;MediaManagement>">
     <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ms.repository#_p_EeYHDrEeSqnN80MQ2uGw"/>
   </assemblyContexts__ComposedStructure>
-  <assemblyContexts__ComposedStructure id="_chROQ_Q7EeabX-_r-cZIcg" entityName="Adapter_DetectionInstance">
-    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_chQnMPQ7EeabX-_r-cZIcg"/>
+  <assemblyContexts__ComposedStructure id="_CXjDkPUQEeascNFdI8vBDw" entityName="Adapter_DetectionInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_CXbu0PUQEeascNFdI8vBDw"/>
   </assemblyContexts__ComposedStructure>
-  <assemblyContexts__ComposedStructure id="_chRORPQ7EeabX-_r-cZIcg" entityName="OSSECDecoderInstance">
-    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_lDUZwFWIEea0XO9AU2xvGg"/>
+  <assemblyContexts__ComposedStructure id="_CXtboPUQEeascNFdI8vBDw" entityName="DecoderInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_yEx6YK_cEeaFof9L2wGlaQ"/>
   </assemblyContexts__ComposedStructure>
-  <assemblyContexts__ComposedStructure id="_chR1UPQ7EeabX-_r-cZIcg" entityName="OSSECAnalyzerInstance">
-    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_mL5LYFWIEea0XO9AU2xvGg"/>
+  <assemblyContexts__ComposedStructure id="_CX0JUPUQEeascNFdI8vBDw" entityName="LogCollectorInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_qRwC8K_cEeaFof9L2wGlaQ"/>
   </assemblyContexts__ComposedStructure>
-  <assemblyContexts__ComposedStructure id="_chR1UvQ7EeabX-_r-cZIcg" entityName="OSSECCollectInstance">
-    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_nbfLAFWIEea0XO9AU2xvGg"/>
+  <assemblyContexts__ComposedStructure id="_CX0JUvUQEeascNFdI8vBDw" entityName="LogAnalyzerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_2_LX0K_cEeaFof9L2wGlaQ"/>
   </assemblyContexts__ComposedStructure>
-  <assemblyContexts__ComposedStructure id="_chR1VPQ7EeabX-_r-cZIcg" entityName="OSSECAlertInstance">
-    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_o06cEFWIEea0XO9AU2xvGg"/>
+  <assemblyContexts__ComposedStructure id="_CX0JU_UQEeascNFdI8vBDw" entityName="AlertHandlerInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_vl2MEK_XEeaFof9L2wGlaQ"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_CX0wYPUQEeascNFdI8vBDw" entityName="AgentInstance">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="ossec.repository#_yKLUkK_YEeaFof9L2wGlaQ"/>
   </assemblyContexts__ComposedStructure>
   <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_gUGskHD5EeSA4fySuX9I2Q" entityName="Connector Assembly_MediaManagement &lt;MediaManagement> -> Assembly_MediaAccess &lt;MediaAccess>" requiringAssemblyContext_AssemblyConnector="_C1kK8HD5EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q">
     <providedRole_AssemblyConnector href="ms.repository#_z2B7cHD2EeSA4fySuX9I2Q"/>
@@ -42,28 +45,32 @@
   <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_wVTYoJelEeajsMFpiDxCKw" entityName="ProvDelegation Provided_IWebGui -> Provided_IMediaManagement_MediaManagement" outerProvidedRole_ProvidedDelegationConnector="_b9NvYHD6EeSA4fySuX9I2Q" assemblyContext_ProvidedDelegationConnector="_C1kK8HD5EeSA4fySuX9I2Q">
     <innerProvidedRole_ProvidedDelegationConnector href="ms.repository#_frEeAHD2EeSA4fySuX9I2Q"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chR1VfQ7EeabX-_r-cZIcg" entityName="OSSECAnalyzerToOSSECAlertConnector" requiringAssemblyContext_AssemblyConnector="_chR1UPQ7EeabX-_r-cZIcg" providingAssemblyContext_AssemblyConnector="_chR1VPQ7EeabX-_r-cZIcg">
-    <providedRole_AssemblyConnector href="ossec.repository#_uCpPwFWJEea0XO9AU2xvGg"/>
-    <requiredRole_AssemblyConnector href="ossec.repository#_01fckFWJEea0XO9AU2xvGg"/>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX0wYfUQEeascNFdI8vBDw" entityName="AlertHandlerToAgentConnector" requiringAssemblyContext_AssemblyConnector="_CX0JU_UQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_CX0wYPUQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_vW100K_ZEeaFof9L2wGlaQ"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_wcMTUK_ZEeaFof9L2wGlaQ"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chRORfQ7EeabX-_r-cZIcg" entityName="Adapter_DetectionToOSSECDecoderConnector" requiringAssemblyContext_AssemblyConnector="_chROQ_Q7EeabX-_r-cZIcg" providingAssemblyContext_AssemblyConnector="_chRORPQ7EeabX-_r-cZIcg">
-    <providedRole_AssemblyConnector href="ossec.repository#_saJn8FWJEea0XO9AU2xvGg"/>
-    <requiredRole_AssemblyConnector href="ossec.repository#_chROQPQ7EeabX-_r-cZIcg"/>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CXtbofUQEeascNFdI8vBDw" entityName="Adapter_DetectionToDecoderConnector" requiringAssemblyContext_AssemblyConnector="_CXjDkPUQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_CXtboPUQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_ViTmIK_hEeaFof9L2wGlaQ"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_CXh1cPUQEeascNFdI8vBDw"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chR1UfQ7EeabX-_r-cZIcg" entityName="OSSECDecoderToOSSECAnalyzerConnector" requiringAssemblyContext_AssemblyConnector="_chRORPQ7EeabX-_r-cZIcg" providingAssemblyContext_AssemblyConnector="_chR1UPQ7EeabX-_r-cZIcg">
-    <providedRole_AssemblyConnector href="ossec.repository#_tD03EFWJEea0XO9AU2xvGg"/>
-    <requiredRole_AssemblyConnector href="ossec.repository#_oo7NoPBLEeaOY4L1mDdz9A"/>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX0JUfUQEeascNFdI8vBDw" entityName="DecoderToLogCollectorConnector" requiringAssemblyContext_AssemblyConnector="_CXtboPUQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_CX0JUPUQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_rvPpsPT-EeaPlpj5cBLrZg"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_t1EGsPT-EeaPlpj5cBLrZg"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chR1U_Q7EeabX-_r-cZIcg" entityName="OSSECAnalyzerToOSSECCollectConnector" requiringAssemblyContext_AssemblyConnector="_chR1UPQ7EeabX-_r-cZIcg" providingAssemblyContext_AssemblyConnector="_chR1UvQ7EeabX-_r-cZIcg">
-    <providedRole_AssemblyConnector href="ossec.repository#_toEMkFWJEea0XO9AU2xvGg"/>
-    <requiredRole_AssemblyConnector href="ossec.repository#_0BaUQFWJEea0XO9AU2xvGg"/>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX0JVPUQEeascNFdI8vBDw" entityName="LogAnalyzerToAlertHandlerConnector" requiringAssemblyContext_AssemblyConnector="_CX0JUvUQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_CX0JU_UQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_ysa3MPT-EeaPlpj5cBLrZg"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_xniSwPT-EeaPlpj5cBLrZg"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chScYPQ7EeabX-_r-cZIcg" entityName="Adapter_DetectionToFileStorageConnector" requiringAssemblyContext_AssemblyConnector="_chROQ_Q7EeabX-_r-cZIcg" providingAssemblyContext_AssemblyConnector="_1ek7QLg_EeSNPorBlo7x9g">
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX0JVfUQEeascNFdI8vBDw" entityName="LogCollectorToLogAnalyzerConnector" requiringAssemblyContext_AssemblyConnector="_CX0JUPUQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_CX0JUvUQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_FukDwK_lEeaFof9L2wGlaQ"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_6aFCUK_lEeaFof9L2wGlaQ"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX1XcPUQEeascNFdI8vBDw" entityName="Adapter_DetectionToFileStorageConnector" requiringAssemblyContext_AssemblyConnector="_CXjDkPUQEeascNFdI8vBDw" providingAssemblyContext_AssemblyConnector="_1ek7QLg_EeSNPorBlo7x9g">
     <providedRole_AssemblyConnector href="ms.repository#_sFS0gLg7EeSNPorBlo7x9g"/>
-    <requiredRole_AssemblyConnector href="ossec.repository#_chROQvQ7EeabX-_r-cZIcg"/>
+    <requiredRole_AssemblyConnector href="ossec.repository#_CXh1cvUQEeascNFdI8vBDw"/>
   </connectors__ComposedStructure>
-  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_chScYfQ7EeabX-_r-cZIcg" entityName="MediaAccessToAdapter_DetectionConnector" requiringAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_chROQ_Q7EeabX-_r-cZIcg">
-    <providedRole_AssemblyConnector href="ossec.repository#_chROQfQ7EeabX-_r-cZIcg"/>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_CX1XcfUQEeascNFdI8vBDw" entityName="MediaAccessToAdapter_DetectionConnector" requiringAssemblyContext_AssemblyConnector="_4LdYsHD4EeSA4fySuX9I2Q" providingAssemblyContext_AssemblyConnector="_CXjDkPUQEeascNFdI8vBDw">
+    <providedRole_AssemblyConnector href="ossec.repository#_CXh1cfUQEeascNFdI8vBDw"/>
     <requiredRole_AssemblyConnector href="ms.repository#_vU0HsLg_EeSNPorBlo7x9g"/>
   </connectors__ComposedStructure>
   <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_b9NvYHD6EeSA4fySuX9I2Q" entityName="Provided_IWebGui">

@@ -31,7 +31,7 @@
             </actions_ScenarioBehaviour>
           </branchedBehaviour_BranchTransition>
         </branchTransitions_Branch>
-        <branchTransitions_Branch branchProbability="0.1">
+        <branchTransitions_Branch branchProbability="0.2">
           <branchedBehaviour_BranchTransition id="_SBJOUHk-EeSGtbTG2d9Ipg" entityName="uploadCase">
             <actions_ScenarioBehaviour xsi:type="usagemodel:Start" id="_SBJ1YHk-EeSGtbTG2d9Ipg" successor="_U83_oHk-EeSGtbTG2d9Ipg"/>
             <actions_ScenarioBehaviour xsi:type="usagemodel:Stop" id="_SBKccHk-EeSGtbTG2d9Ipg" predecessor="_U83_oHk-EeSGtbTG2d9Ipg"/>
@@ -44,16 +44,6 @@
                 </variableCharacterisation_VariableUsage>
                 <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="file"/>
               </inputParameterUsages_EntryLevelSystemCall>
-            </actions_ScenarioBehaviour>
-          </branchedBehaviour_BranchTransition>
-        </branchTransitions_Branch>
-        <branchTransitions_Branch branchProbability="0.1">
-          <branchedBehaviour_BranchTransition id="_xRx1oPBSEeaIjN-q4NMCFg" entityName="getFilesCase">
-            <actions_ScenarioBehaviour xsi:type="usagemodel:Start" id="_z_kRlPBSEeaIjN-q4NMCFg" successor="_19fW0PBSEeaIjN-q4NMCFg"/>
-            <actions_ScenarioBehaviour xsi:type="usagemodel:Stop" id="_1EWIU_BSEeaIjN-q4NMCFg" predecessor="_19fW0PBSEeaIjN-q4NMCFg"/>
-            <actions_ScenarioBehaviour xsi:type="usagemodel:EntryLevelSystemCall" id="_19fW0PBSEeaIjN-q4NMCFg" entityName="getFiles" successor="_1EWIU_BSEeaIjN-q4NMCFg" predecessor="_z_kRlPBSEeaIjN-q4NMCFg">
-              <providedRole_EntryLevelSystemCall href="ms_base.system#_b9NvYHD6EeSA4fySuX9I2Q"/>
-              <operationSignature__EntryLevelSystemCall href="ms.repository#_Rv19cHDvEeSqnN80MQ2uGw"/>
             </actions_ScenarioBehaviour>
           </branchedBehaviour_BranchTransition>
         </branchTransitions_Branch>
