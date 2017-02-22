@@ -16,8 +16,8 @@
         <annotationenrich name="Response"/>
       </components>
       <annotationtarget name="Observee" maxAmount="-1" joinPoint="INTERFACE_PROVIDES"/>
-      <constraints association="TOGETHER" annotations="/0/@concerns.0/@components.0/@annotationenrich.0 /0/@concerns.0/@annotationtarget.0"/>
-      <constraints association="SEPARATED" annotations="/0/@concerns.0/@annotationtarget.0 /0/@concerns.0/@components.1/@annotationenrich.0"/>
+      <constraints annotations="/0/@concerns.0/@components.0/@annotationenrich.0 /0/@concerns.0/@annotationtarget.0"/>
+      <constraints annotations="/0/@concerns.0/@annotationtarget.0 /0/@concerns.0/@components.1/@annotationenrich.0"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>

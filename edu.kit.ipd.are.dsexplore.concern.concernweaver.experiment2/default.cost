@@ -2,13 +2,11 @@
 <cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
   <cost xsi:type="cost:VariableProcessingResourceCost">
     <processingresourcespecification href="ms.resourceenvironment#_cCxqsHmTEeSGtbTG2d9Ipg"/>
-    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2)^6.2539)+145"/>
-    <processingRateOperatingFunction specification="0"/>
+    <processingRateInitialFunction specification="0.000015*(procRate.VALUE)"/>
   </cost>
   <cost xsi:type="cost:VariableProcessingResourceCost">
     <processingresourcespecification href="ms.resourceenvironment#_kkiVoLg3EeSNPorBlo7x9g"/>
-    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2)^6.2539)+145"/>
-    <processingRateOperatingFunction specification="0"/>
+    <processingRateInitialFunction specification="0.000015*(procRate.VALUE)"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="ms.repository#_p_EeYHDrEeSqnN80MQ2uGw"/>
