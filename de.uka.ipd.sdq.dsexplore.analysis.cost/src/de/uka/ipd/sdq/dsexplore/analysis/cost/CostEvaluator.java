@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -30,6 +31,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.ComponentCostPerInstance;
 import de.uka.ipd.sdq.pcm.cost.ComponentCostPerType;
 import de.uka.ipd.sdq.pcm.cost.Cost;
@@ -55,6 +57,8 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 		Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.cost");
 	
 	private CostRepository costModel;
+	
+	private DSEWorkflowConfiguration configuration;
 	
 	private Map<Long, CostAnalysisResult> previousCostResults = new HashMap<Long, CostAnalysisResult>();
 	
@@ -317,6 +321,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 			throws CoreException, UserCanceledException, JobFailedException,
 			AnalysisFailedException {
 		PCMInstance pcm = pheno.getPCMInstance();
+		
+		reloadCostModelIfNecessary();
+		
 		//Important: "Read in" the right PCM instance first.  
 		updateCostModel(pcm);
 		
@@ -329,6 +336,55 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 	}
 	
 
+	private void reloadCostModelIfNecessary() {
+		
+		try {
+			
+			CostRepository currentCostModel = getCostModel(this.configuration);
+			EcoreUtil.resolveAll(currentCostModel.eResource());
+			
+			if (costModelChanged(currentCostModel))	{
+				
+				this.costModel = currentCostModel;
+				
+			}
+			
+		} catch (CoreException e) {
+			
+			// TODO Logging
+			return;
+			
+		}
+		
+	}
+
+	private boolean costModelChanged(CostRepository currentCostModel) {
+		
+		for (Cost eachCost : currentCostModel.getCost()) {
+			
+			if (eachCost instanceof ComponentCost) {
+				
+				if (this.costModel.getCost().stream().anyMatch(contains((ComponentCost) eachCost)) == false) {
+					
+					return true;
+					
+				}
+				
+			}
+			
+		}
+		
+		return false;
+		
+	}
+
+	private Predicate<Cost> contains(ComponentCost givenCost) {
+		
+		return cost -> (cost instanceof ComponentCost) &&
+					   (((ComponentCost) cost).getRepositoryComponent().getId().equals(givenCost.getRepositoryComponent().getId()));
+		
+	}
+
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		
@@ -336,6 +392,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 		this.costModel = costs;
 		
 		initialiseCriteria(configuration);
+		
+		this.configuration = configuration;
+		
     }
 	
 

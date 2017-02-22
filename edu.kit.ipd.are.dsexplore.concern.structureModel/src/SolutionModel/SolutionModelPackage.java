@@ -85,13 +85,22 @@ public interface SolutionModelPackage extends EPackage {
 	int SOLUTION__REPOSITORY = 1;
 
 	/**
+	 * The feature id for the '<em><b>Cost Repository</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__COST_REPOSITORY = 2;
+
+	/**
 	 * The number of structural features of the '<em>Solution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION_FEATURE_COUNT = 2;
+	int SOLUTION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Solution</em>' class.
@@ -173,6 +182,17 @@ public interface SolutionModelPackage extends EPackage {
 	EReference getSolution_Repository();
 
 	/**
+	 * Returns the meta object for the reference '{@link SolutionModel.Solution#getCostRepository <em>Cost Repository</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Cost Repository</em>'.
+	 * @see SolutionModel.Solution#getCostRepository()
+	 * @see #getSolution()
+	 * @generated
+	 */
+	EReference getSolution_CostRepository();
+
+	/**
 	 * Returns the meta object for class '{@link SolutionModel.SolutionRepository <em>Solution Repository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,6 +261,14 @@ public interface SolutionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SOLUTION__REPOSITORY = eINSTANCE.getSolution_Repository();
+
+		/**
+		 * The meta object literal for the '<em><b>Cost Repository</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOLUTION__COST_REPOSITORY = eINSTANCE.getSolution_CostRepository();
 
 		/**
 		 * The meta object literal for the '{@link SolutionModel.impl.SolutionRepositoryImpl <em>Solution Repository</em>}' class.

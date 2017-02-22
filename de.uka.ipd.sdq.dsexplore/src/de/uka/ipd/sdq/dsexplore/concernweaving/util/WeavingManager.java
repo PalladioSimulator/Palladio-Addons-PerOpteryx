@@ -1,7 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
-import java.util.Arrays;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +13,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -22,15 +25,93 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.Cost;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 
 public class WeavingManager {
 
+	private class PCMCostManager {
+		
+		private final String costModelFileName;
+		private final List<Cost> cachedCosts;
+		private final HashMap<String, List<ComponentCost>> concernSolutionToComponentsCostsMap;
+		
+		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, List<Solution> concernSolutions) {
+			
+			this.costModelFileName = costModelFileName;
+			this.cachedCosts = new ArrayList<Cost>();
+			this.concernSolutionToComponentsCostsMap = new HashMap<String, List<ComponentCost>>();
+			
+			initialize(concernSolutions, cachedCosts);
+			
+		}
+
+		private void initialize(List<Solution> concernSolutions, List<Cost> cachedCosts) {
+			
+			concernSolutions.forEach(eachSolution -> this.concernSolutionToComponentsCostsMap.put(eachSolution.getRepository().getId(), 
+																								  filterOnlyComponentsCostsFrom((CostRepository) eachSolution.getCostRepository())));
+			
+			cachedCosts.forEach(eachCost -> this.cachedCosts.add(EcoreUtil.copy(eachCost)));
+			
+		}
+		
+		private List<ComponentCost> filterOnlyComponentsCostsFrom(CostRepository costRepo) {
+			
+			return costRepo.getCost().stream().filter(eachCost -> eachCost instanceof ComponentCost)
+											  .map(eachCost -> (ComponentCost) eachCost)
+											  .collect(Collectors.toList());
+			
+		}
+		
+		public void updateCostModelBy(String id) {
+			
+			if (cachedCosts.isEmpty()) {
+				
+				return;
+				
+			}
+			
+			Optional<CostRepository> original = getCostModel();
+			if (!original.isPresent()) {
+				
+				return;
+				
+			}
+			
+			original.get().getCost().clear();
+			original.get().getCost().addAll(cachedCosts);
+			original.get().getCost().addAll(concernSolutionToComponentsCostsMap.get(id));
+			
+			try {
+				
+				//EcoreUtil.resolveAll(original.get().eResource());
+				original.get().eResource().save(Collections.EMPTY_MAP);
+				
+			} catch (IOException e) {
+				
+				//TODO introduce exception handling
+				
+			}
+			
+		}
+		
+		private Optional<CostRepository> getCostModel() { 
+			
+			CostRepository cr =  (CostRepository)EMFHelper.loadFromXMIFile(costModelFileName, costPackage.eINSTANCE);
+			return cr == null ? Optional.empty() : Optional.of(cr);
+			
+		}
+		
+	}
+	
 	private class PCMPartitionManager {
 		
 		private final MDSDBlackboard blackboard;
@@ -82,12 +163,30 @@ public class WeavingManager {
 	private static WeavingManager instance = null;
 	
 	private PCMPartitionManager pcmPartitionManager;
+	private Optional<PCMCostManager> pcmCostManager;
 	
 	private WeavingManager() {
 		
 	}
 	
 	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition) {
+
+		if (instance == null) {
+
+			instance = new WeavingManager();
+		
+		}
+		
+		instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
+		instance.pcmCostManager = Optional.empty();
+		
+	}
+	
+	public static void initialize(MDSDBlackboard blackboard, 
+								  PCMResourceSetPartition unweavedPCMPartition,
+								  String costModelFileName,
+								  List<Cost> costsToCache,
+								  List<Solution> concernSolutions) {
 		
 		if (instance == null) {
 			
@@ -96,6 +195,7 @@ public class WeavingManager {
 		}
 		
 		instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
+		instance.setPCMCostManager(costModelFileName, costsToCache, concernSolutions);
 		
 	}
 	
@@ -110,6 +210,12 @@ public class WeavingManager {
 		this.pcmPartitionManager = new PCMPartitionManager(blackboard, unweavedPCMPartition);
 		
 	}
+	
+	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, List<Solution> concernSolutions) {
+		
+		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, concernSolutions));
+		
+	}
 
 	public PCMInstance getWeavedPCMInstanceOf(Concern concern, 
 											  Repository concernSolution, 
@@ -122,6 +228,12 @@ public class WeavingManager {
 		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute();
 		
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
+		
+		if (this.pcmCostManager.isPresent()) {
+			
+			this.pcmCostManager.get().updateCostModelBy(concernSolution.getId());
+			
+		}
 		
 		return pcm;
 		

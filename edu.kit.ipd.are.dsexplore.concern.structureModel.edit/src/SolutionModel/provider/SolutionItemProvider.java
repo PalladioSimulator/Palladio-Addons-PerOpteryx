@@ -64,6 +64,7 @@ public class SolutionItemProvider
 
 			addNamePropertyDescriptor(object);
 			addRepositoryPropertyDescriptor(object);
+			addCostRepositoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -104,6 +105,28 @@ public class SolutionItemProvider
 				 getString("_UI_Solution_repository_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_repository_feature", "_UI_Solution_type"),
 				 SolutionModelPackage.Literals.SOLUTION__REPOSITORY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Cost Repository feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCostRepositoryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Solution_costRepository_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_costRepository_feature", "_UI_Solution_type"),
+				 SolutionModelPackage.Literals.SOLUTION__COST_REPOSITORY,
 				 true,
 				 false,
 				 true,

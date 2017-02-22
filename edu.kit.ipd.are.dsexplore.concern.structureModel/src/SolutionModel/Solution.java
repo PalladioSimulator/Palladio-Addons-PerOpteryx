@@ -17,6 +17,7 @@ import org.palladiosimulator.pcm.repository.Repository;
  * <ul>
  *   <li>{@link SolutionModel.Solution#getName <em>Name</em>}</li>
  *   <li>{@link SolutionModel.Solution#getRepository <em>Repository</em>}</li>
+ *   <li>{@link SolutionModel.Solution#getCostRepository <em>Cost Repository</em>}</li>
  * </ul>
  *
  * @see SolutionModel.SolutionModelPackage#getSolution()
@@ -75,5 +76,31 @@ public interface Solution extends EObject {
 	 * @generated
 	 */
 	void setRepository(Repository value);
+
+	/**
+	 * Returns the value of the '<em><b>Cost Repository</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cost Repository</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cost Repository</em>' reference.
+	 * @see #setCostRepository(EObject)
+	 * @see SolutionModel.SolutionModelPackage#getSolution_CostRepository()
+	 * @model
+	 * @generated
+	 */
+	EObject getCostRepository();
+
+	/**
+	 * Sets the value of the '{@link SolutionModel.Solution#getCostRepository <em>Cost Repository</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cost Repository</em>' reference.
+	 * @see #getCostRepository()
+	 * @generated
+	 */
+	void setCostRepository(EObject value);
 
 } // Solution

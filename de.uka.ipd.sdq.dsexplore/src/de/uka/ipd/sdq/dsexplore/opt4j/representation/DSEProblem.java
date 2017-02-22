@@ -1,13 +1,16 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -28,16 +31,13 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import ConcernModel.AnnotationEnrich;
-import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
-import ConcernModel.ConcernModelFactory;
 import ConcernModel.ConcernModelPackage;
 import ConcernModel.ConcernRepository;
-import ConcernModel.ElementaryConcernComponent;
-import TransformationModel.AdapterTransformation;
-import TransformationModel.Appearance;
-import TransformationModel.TransformationModelFactory;
+import ConcernModel.ConcernStrategy;
+import SolutionModel.Solution;
+import SolutionModel.SolutionModelPackage;
+import SolutionModel.SolutionRepository;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
@@ -50,10 +50,15 @@ import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.pcm.cost.ComponentCost;
+import de.uka.ipd.sdq.pcm.cost.Cost;
+import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -160,8 +165,64 @@ public class DSEProblem {
          * Also meta-model the genotype as a choice within the range.
          */
     }
-    
-    private void initTransformationRepository(PCMResourceSetPartition pcmPartition) {
+
+	private List<Solution> getConcernSolutionsWithCosts() {
+		
+		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		List<ConcernRepository> concernRepo;
+		try {
+			
+			concernRepo = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+			
+		} catch (Exception ex) {
+			
+			return Collections.emptyList();
+			
+		}
+		
+		return getConcernCostsFrom(concernRepo.stream());
+		
+	}
+
+	private List<Solution> getConcernCostsFrom(Stream<ConcernRepository> concernRepo) {
+		
+		return concernRepo.flatMap(each -> each.getConcerns().stream())
+						  .flatMap(each -> each.getStrategies().stream())
+						  .flatMap(each -> each.getConcernSolutions().stream())
+						  .filter(each -> each.getCostRepository() instanceof CostRepository)
+						  .collect(Collectors.toList());
+		
+	}
+
+	private Optional<String> getCostModelFileName() {
+		
+		try {
+			
+			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
+			
+		} catch (CoreException e) {
+			
+			return Optional.empty();
+			
+		}
+		
+	}
+	
+	private Optional<CostRepository> getCostModel() { 
+    	
+		Optional<String> costModelFileName = getCostModelFileName();
+		if (!costModelFileName.isPresent()) {
+			
+			return Optional.empty();
+			
+		}
+		
+		CostRepository cr =  (CostRepository)EMFHelper.loadFromXMIFile(costModelFileName.get(), costPackage.eINSTANCE);
+		return cr == null ? Optional.empty() : Optional.of(cr);
+		
+	}
+
+	private void initTransformationRepository(PCMResourceSetPartition pcmPartition) {
 		
     	try {
     		
@@ -388,8 +449,7 @@ public class DSEProblem {
         List<ConcernDegree> concernDegrees = getConcernFrom(problem.getDegreesOfFreedom());
         if (!concernDegrees.isEmpty()) {
         	
-        	PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-        	WeavingManager.initialize(blackboard, initialPartition);
+        	initializeWeavingManager();
         	
         	concernDegrees.forEach(each -> createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype));
         	
@@ -402,6 +462,22 @@ public class DSEProblem {
         result.add(genotype);
         this.initialGenotype = genotype;
         return result;
+    }
+    
+    private void initializeWeavingManager() {
+    	
+    	PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+    	Optional<String> costModelFileName = getCostModelFileName();
+    	Optional<CostRepository> costModel = getCostModel();
+    	List<Solution> concernSolutions = getConcernSolutionsWithCosts();
+    	if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || concernSolutions.isEmpty()) {
+    		
+    		WeavingManager.initialize(blackboard, initialPartition);
+    		
+    	}
+    	
+    	WeavingManager.initialize(blackboard, initialPartition, costModelFileName.get(), costModel.get().getCost(), concernSolutions);
+    	
     }
 
 	private List<ConcernDegree> getConcernFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
@@ -477,8 +553,7 @@ public class DSEProblem {
     		
     	}
     	
-    	PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-    	WeavingManager.initialize(blackboard, initialPartition);
+    	initializeWeavingManager();
     	
     	concernDegrees.forEach(concernDegree -> {
     		

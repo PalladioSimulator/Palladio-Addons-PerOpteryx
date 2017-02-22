@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.palladiosimulator.pcm.PcmPackage;
@@ -151,6 +152,15 @@ public class SolutionModelPackageImpl extends EPackageImpl implements SolutionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSolution_CostRepository() {
+		return (EReference)solutionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSolutionRepository() {
 		return solutionRepositoryEClass;
 	}
@@ -195,6 +205,7 @@ public class SolutionModelPackageImpl extends EPackageImpl implements SolutionMo
 		solutionEClass = createEClass(SOLUTION);
 		createEAttribute(solutionEClass, SOLUTION__NAME);
 		createEReference(solutionEClass, SOLUTION__REPOSITORY);
+		createEReference(solutionEClass, SOLUTION__COST_REPOSITORY);
 
 		solutionRepositoryEClass = createEClass(SOLUTION_REPOSITORY);
 		createEReference(solutionRepositoryEClass, SOLUTION_REPOSITORY__SOLUTIONS);
@@ -225,6 +236,7 @@ public class SolutionModelPackageImpl extends EPackageImpl implements SolutionMo
 
 		// Obtain other dependent packages
 		RepositoryPackage theRepositoryPackage = (RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(RepositoryPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -236,6 +248,7 @@ public class SolutionModelPackageImpl extends EPackageImpl implements SolutionMo
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSolution_Name(), ecorePackage.getEString(), "name", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSolution_Repository(), theRepositoryPackage.getRepository(), null, "repository", null, 1, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolution_CostRepository(), theEcorePackage.getEObject(), null, "costRepository", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solutionRepositoryEClass, SolutionRepository.class, "SolutionRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolutionRepository_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, SolutionRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
