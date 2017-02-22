@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_JaOFkNV9EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_Qi6mkNV9EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="300.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_aRiLgNV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="450.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_2oKigNWBEeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="800.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_H9kdMNWEEeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_MGrPUNV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_vCoUgNWBEeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="150.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_dmswgNV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_uDvKsNV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_RtYZINV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="250.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_2oK0cNV_EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="300.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_j81MINV-EeWS-LePWVyd9g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="AppSensor.repository#_NfQg8NWAEeWS-LePWVyd9g"/>
+  </cost>
+</cost:CostRepository>

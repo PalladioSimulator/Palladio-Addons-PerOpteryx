@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="ossec.repository#_yKLUkK_YEeaFof9L2wGlaQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="300.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="ossec.repository#_vl2MEK_XEeaFof9L2wGlaQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="400.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="ossec.repository#_yEx6YK_cEeaFof9L2wGlaQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="400.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="ossec.repository#_2_LX0K_cEeaFof9L2wGlaQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="150.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="ossec.repository#_qRwC8K_cEeaFof9L2wGlaQ"/>
+  </cost>
+</cost:CostRepository>
