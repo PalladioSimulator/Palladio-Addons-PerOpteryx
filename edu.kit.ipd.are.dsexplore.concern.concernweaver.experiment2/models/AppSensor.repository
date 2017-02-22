@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.1">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.1">
   <repository:Repository id="_VYStANVwEeWS-LePWVyd9g" entityName="AppSensor">
     <components__Repository xsi:type="repository:BasicComponent" id="_JaOFkNV9EeWS-LePWVyd9g" entityName="AccessController">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_MYGzANV9EeWS-LePWVyd9g" entityName="Provided_iAccessController_AccessController" providedInterface__OperationProvidedRole="_WcgpcNV4EeWS-LePWVyd9g"/>
@@ -120,37 +120,8 @@
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_k6a1wNV-EeWS-LePWVyd9g" entityName="Provided_iResponseStore_ResponseStore" providedInterface__OperationProvidedRole="_jBRZQNVyEeWS-LePWVyd9g"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_plC3YNW2EeWdTPykunuB7Q" entityName="Required_iResponseAnalysisEngine_ResponseStore" requiredInterface__OperationRequiredRole="_vNnBANV3EeWS-LePWVyd9g"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_k6bc0NV-EeWS-LePWVyd9g" describedService__SEFF="_w4wtgNVyEeWS-LePWVyd9g">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_k6bc0dV-EeWS-LePWVyd9g" entityName="start" successor_AbstractAction="_mSIWQN5AEea51fEwerC5_Q"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_k6bc0tV-EeWS-LePWVyd9g" entityName="stop" predecessor_AbstractAction="_W2LJIN5BEea51fEwerC5_Q"/>
-        <steps_Behaviour xsi:type="seff:InternalAction" id="_mSIWQN5AEea51fEwerC5_Q" entityName="addition" predecessor_AbstractAction="_k6bc0dV-EeWS-LePWVyd9g" successor_AbstractAction="_UUYh0N5BEea51fEwerC5_Q">
-          <resourceDemand_Action>
-            <specification_ParametericResourceDemand specification="DoublePDF[(100;0.2)(200;0.4)(300;0.4)]"/>
-            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-          </resourceDemand_Action>
-        </steps_Behaviour>
-        <steps_Behaviour xsi:type="seff:InternalAction" id="_UUYh0N5BEea51fEwerC5_Q" predecessor_AbstractAction="_mSIWQN5AEea51fEwerC5_Q" successor_AbstractAction="_W2LJIN5BEea51fEwerC5_Q"/>
-        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_W2LJIN5BEea51fEwerC5_Q" predecessor_AbstractAction="_UUYh0N5BEea51fEwerC5_Q" successor_AbstractAction="_k6bc0tV-EeWS-LePWVyd9g" calledService_ExternalService="_zHUdgNV3EeWS-LePWVyd9g" role_ExternalService="_plC3YNW2EeWdTPykunuB7Q"/>
-        <steps_Behaviour xsi:type="seff:LoopAction" id="_3lbNkN5BEea51fEwerC5_Q">
-          <bodyBehaviour_Loop id="_3leQ4N5BEea51fEwerC5_Q">
-            <steps_Behaviour xsi:type="seff:StartAction" id="_3lffAN5BEea51fEwerC5_Q"/>
-            <steps_Behaviour xsi:type="seff:StopAction" id="_3lffAd5BEea51fEwerC5_Q"/>
-          </bodyBehaviour_Loop>
-          <iterationCount_LoopAction specification="1"/>
-        </steps_Behaviour>
-        <steps_Behaviour xsi:type="seff:BranchAction" id="_9cZA8N5BEea51fEwerC5_Q">
-          <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_JLeeQN5CEea51fEwerC5_Q" branchProbability="0.5">
-            <branchBehaviour_BranchTransition id="_JLfFUN5CEea51fEwerC5_Q">
-              <steps_Behaviour xsi:type="seff:StartAction" id="_JLfFUd5CEea51fEwerC5_Q"/>
-              <steps_Behaviour xsi:type="seff:StopAction" id="_JLfsYN5CEea51fEwerC5_Q"/>
-            </branchBehaviour_BranchTransition>
-          </branches_Branch>
-          <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_NhO9kN5CEea51fEwerC5_Q">
-            <branchBehaviour_BranchTransition id="_NhPkoN5CEea51fEwerC5_Q">
-              <steps_Behaviour xsi:type="seff:StartAction" id="_NhPkod5CEea51fEwerC5_Q"/>
-              <steps_Behaviour xsi:type="seff:StopAction" id="_NhPkot5CEea51fEwerC5_Q"/>
-            </branchBehaviour_BranchTransition>
-          </branches_Branch>
-        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:StartAction" id="_k6bc0dV-EeWS-LePWVyd9g" entityName="start" successor_AbstractAction="_k6bc0tV-EeWS-LePWVyd9g"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_k6bc0tV-EeWS-LePWVyd9g" entityName="stop" predecessor_AbstractAction="_k6bc0dV-EeWS-LePWVyd9g"/>
       </serviceEffectSpecifications__BasicComponent>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_k6cD4NV-EeWS-LePWVyd9g" describedService__SEFF="_xw85wNVyEeWS-LePWVyd9g">
         <steps_Behaviour xsi:type="seff:StartAction" id="_k6cD4dV-EeWS-LePWVyd9g" entityName="start" successor_AbstractAction="_k6cD4tV-EeWS-LePWVyd9g"/>
@@ -570,78 +541,6 @@
     </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_VYStANVwEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
-      <solutionTag href="ConcernSolutions.solutionmodel#//@solutions.1"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="_VYStANVwEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
-      <transformations xsi:type="TransformationModel:AdapterTransformation" href="TransformationRepository.transformationmodel#//@transformation.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_JaOFkNV9EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_Qi6mkNV9EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_MGrPUNV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_RtYZINV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_aRiLgNV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_dmswgNV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_j81MINV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_uDvKsNV-EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_2oK0cNV_EeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_NfQg8NWAEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_vCoUgNWBEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_2oKigNWBEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_H9kdMNWEEeWS-LePWVyd9g">
-      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_JjsGcNWEEeWS-LePWVyd9g">
-      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_rPxJ4euyEea0n-d3oRMSPQ"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_Os1uYNWAEeWS-LePWVyd9g">
-      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_uSJ80euyEea0n-d3oRMSPQ"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_v2zDwNV-EeWS-LePWVyd9g">
-      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_nUPeseohEea6MN_xn9d-Ng"/>
-    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.1" xmlns:stoex="http://sdq.ipd.uka.de/StochasticExpressions/2.2">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.1" xmlns:stoex="http://sdq.ipd.uka.de/StochasticExpressions/2.2">
   <repository:Repository id="_KsE3sK_GEeaFof9L2wGlaQ" entityName="ossec_extended">
     <components__Repository xsi:type="repository:BasicComponent" id="_2_LX0K_cEeaFof9L2wGlaQ" entityName="LogAnalyzer">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_FukDwK_lEeaFof9L2wGlaQ" entityName="Provided_Analyzer_LogAnalyzer" providedInterface__OperationProvidedRole="__ez88K_kEeaFof9L2wGlaQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_xniSwPT-EeaPlpj5cBLrZg" entityName="Required_Message_LogAnalyzer" requiredInterface__OperationRequiredRole="_Nmr6sPT-EeaPlpj5cBLrZg"/>
       <componentParameterUsage_ImplementationComponentType>
         <variableCharacterisation_VariableUsage type="VALUE">
-          <specification_VariableCharacterisation specification="10"/>
+          <specification_VariableCharacterisation specification="1"/>
         </variableCharacterisation_VariableUsage>
         <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="numRules"/>
       </componentParameterUsage_ImplementationComponentType>
@@ -42,7 +42,7 @@
               </branches_Branch>
             </steps_Behaviour>
           </bodyBehaviour_Loop>
-          <iterationCount_LoopAction specification="10"/>
+          <iterationCount_LoopAction specification="numRules.VALUE"/>
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
@@ -101,7 +101,7 @@
             <steps_Behaviour xsi:type="seff:StopAction" id="_8UTTUq_lEeaFof9L2wGlaQ" predecessor_AbstractAction="_ECl0sK_mEeaFof9L2wGlaQ"/>
             <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_ECl0sK_mEeaFof9L2wGlaQ" predecessor_AbstractAction="_8UTTUa_lEeaFof9L2wGlaQ" successor_AbstractAction="_8UTTUq_lEeaFof9L2wGlaQ" calledService_ExternalService="_AecN8K_lEeaFof9L2wGlaQ" role_ExternalService="_6aFCUK_lEeaFof9L2wGlaQ"/>
           </bodyBehaviour_Loop>
-          <iterationCount_LoopAction specification="10"/>
+          <iterationCount_LoopAction specification="1"/>
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
@@ -110,7 +110,7 @@
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_t1EGsPT-EeaPlpj5cBLrZg" entityName="Required_LogMessage_Decoder" requiredInterface__OperationRequiredRole="_itn4MPT-EeaPlpj5cBLrZg"/>
       <componentParameterUsage_ImplementationComponentType>
         <variableCharacterisation_VariableUsage type="VALUE">
-          <specification_VariableCharacterisation specification="10"/>
+          <specification_VariableCharacterisation specification="1"/>
         </variableCharacterisation_VariableUsage>
         <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="numDecoders"/>
       </componentParameterUsage_ImplementationComponentType>
@@ -188,46 +188,6 @@
     <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_y8hEkK_lEeaFof9L2wGlaQ" entityName="Logs" innerType_CollectionDataType="_Gw0toK_HEeaFof9L2wGlaQ"/>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_KsE3sK_GEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
-      <solutionTag href="ConcernSolutions.solutionmodel#//@solutions.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="_KsE3sK_GEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
-      <transformations xsi:type="TransformationModel:AdapterTransformation" href="TransformationRepository.transformationmodel#//@transformation.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_2_LX0K_cEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_vl2MEK_XEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_yKLUkK_YEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.2/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_qRwC8K_cEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_yEx6YK_cEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="concern.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_ViTmIK_hEeaFof9L2wGlaQ">
-      <extension href="../../../plugin/Strategy_Profile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_rPxJ4euyEea0n-d3oRMSPQ"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_rvPpsPT-EeaPlpj5cBLrZg">
-      <extension href="../../../plugin/Strategy_Profile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_nUPeseohEea6MN_xn9d-Ng"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_ysa3MPT-EeaPlpj5cBLrZg">
-      <extension href="../../../plugin/Strategy_Profile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
-      <realizes href="ConcernStrategy.strategymodel#_uSJ80euyEea0n-d3oRMSPQ"/>
-    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/plugin/AnnotationProfile/annotations.emfprofile_diagram"/>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/Strategy_Profile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
