@@ -15,8 +15,8 @@
         <steps_Behaviour xsi:type="seff:StopAction" id="_Fukq0q_lEeaFof9L2wGlaQ" entityName="stop" predecessor_AbstractAction="_jTy74K_oEeaFof9L2wGlaQ"/>
         <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_PaKmYK_lEeaFof9L2wGlaQ" predecessor_AbstractAction="_Fukq0a_lEeaFof9L2wGlaQ" successor_AbstractAction="_jTy74K_oEeaFof9L2wGlaQ" calledService_ExternalService="_PAQVsPT-EeaPlpj5cBLrZg" role_ExternalService="_xniSwPT-EeaPlpj5cBLrZg">
           <inputVariableUsages__CallAction>
-            <variableCharacterisation_VariableUsage type="VALUE">
-              <specification_VariableCharacterisation specification="1"/>
+            <variableCharacterisation_VariableUsage type="NUMBER_OF_ELEMENTS">
+              <specification_VariableCharacterisation specification="100000"/>
             </variableCharacterisation_VariableUsage>
             <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="charValue"/>
           </inputVariableUsages__CallAction>
@@ -26,14 +26,14 @@
             <steps_Behaviour xsi:type="seff:StartAction" id="_jTzi8a_oEeaFof9L2wGlaQ" successor_AbstractAction="_JWqPAK_pEeaFof9L2wGlaQ"/>
             <steps_Behaviour xsi:type="seff:StopAction" id="_jTzi8q_oEeaFof9L2wGlaQ" predecessor_AbstractAction="_JWqPAK_pEeaFof9L2wGlaQ"/>
             <steps_Behaviour xsi:type="seff:BranchAction" id="_JWqPAK_pEeaFof9L2wGlaQ" entityName="alertNoAlert" predecessor_AbstractAction="_jTzi8a_oEeaFof9L2wGlaQ" successor_AbstractAction="_jTzi8q_oEeaFof9L2wGlaQ">
-              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_K1gLkK_pEeaFof9L2wGlaQ" entityName="alert" branchProbability="0.1">
+              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_K1gLkK_pEeaFof9L2wGlaQ" entityName="alert" branchProbability="0.5">
                 <branchBehaviour_BranchTransition id="_K1gyoK_pEeaFof9L2wGlaQ">
                   <steps_Behaviour xsi:type="seff:StartAction" id="_K1gyoa_pEeaFof9L2wGlaQ" successor_AbstractAction="_qRREUK_oEeaFof9L2wGlaQ"/>
                   <steps_Behaviour xsi:type="seff:StopAction" id="_K1gyoq_pEeaFof9L2wGlaQ" predecessor_AbstractAction="_qRREUK_oEeaFof9L2wGlaQ"/>
                   <steps_Behaviour xsi:type="seff:InternalAction" id="_qRREUK_oEeaFof9L2wGlaQ" entityName="checkRule" predecessor_AbstractAction="_K1gyoa_pEeaFof9L2wGlaQ" successor_AbstractAction="_K1gyoq_pEeaFof9L2wGlaQ"/>
                 </branchBehaviour_BranchTransition>
               </branches_Branch>
-              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_YWXvkK_pEeaFof9L2wGlaQ" branchProbability="0.9">
+              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_YWXvkK_pEeaFof9L2wGlaQ" branchProbability="0.5">
                 <branchBehaviour_BranchTransition id="_YWYWoK_pEeaFof9L2wGlaQ">
                   <steps_Behaviour xsi:type="seff:StartAction" id="_YWYWoa_pEeaFof9L2wGlaQ" successor_AbstractAction="_bluAcK_pEeaFof9L2wGlaQ"/>
                   <steps_Behaviour xsi:type="seff:StopAction" id="_YWYWoq_pEeaFof9L2wGlaQ" predecessor_AbstractAction="_bluAcK_pEeaFof9L2wGlaQ"/>
@@ -115,38 +115,69 @@
         <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="numDecoders"/>
       </componentParameterUsage_ImplementationComponentType>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_ViTmIa_hEeaFof9L2wGlaQ" describedService__SEFF="_FF5eEK_hEeaFof9L2wGlaQ">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_ViTmIq_hEeaFof9L2wGlaQ" entityName="start" successor_AbstractAction="_M8f8AK_jEeaFof9L2wGlaQ"/>
+        <steps_Behaviour xsi:type="seff:StartAction" id="_ViTmIq_hEeaFof9L2wGlaQ" entityName="start" successor_AbstractAction="_67R0NPnOEeamNZ2lIlknMg"/>
         <steps_Behaviour xsi:type="seff:StopAction" id="_ViUNMK_hEeaFof9L2wGlaQ" entityName="stop" predecessor_AbstractAction="_M8f8AK_jEeaFof9L2wGlaQ"/>
-        <steps_Behaviour xsi:type="seff:LoopAction" id="_M8f8AK_jEeaFof9L2wGlaQ" entityName="processDecodersLoop" predecessor_AbstractAction="_ViTmIq_hEeaFof9L2wGlaQ" successor_AbstractAction="_ViUNMK_hEeaFof9L2wGlaQ">
+        <steps_Behaviour xsi:type="seff:LoopAction" id="_M8f8AK_jEeaFof9L2wGlaQ" entityName="processDecodersLoop" predecessor_AbstractAction="_67R0NPnOEeamNZ2lIlknMg" successor_AbstractAction="_ViUNMK_hEeaFof9L2wGlaQ">
           <bodyBehaviour_Loop id="_M8gjEK_jEeaFof9L2wGlaQ">
             <steps_Behaviour xsi:type="seff:StartAction" id="_M8gjEa_jEeaFof9L2wGlaQ" successor_AbstractAction="_atV1sK_jEeaFof9L2wGlaQ"/>
             <steps_Behaviour xsi:type="seff:StopAction" id="_M8hKIK_jEeaFof9L2wGlaQ" predecessor_AbstractAction="_atV1sK_jEeaFof9L2wGlaQ"/>
             <steps_Behaviour xsi:type="seff:BranchAction" id="_atV1sK_jEeaFof9L2wGlaQ" entityName="matchRegexBranch" predecessor_AbstractAction="_M8gjEa_jEeaFof9L2wGlaQ" successor_AbstractAction="_M8hKIK_jEeaFof9L2wGlaQ">
-              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_bTX68K_jEeaFof9L2wGlaQ" entityName="match" branchProbability="0.5">
+              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_bTX68K_jEeaFof9L2wGlaQ" entityName="match" branchProbability="0.95">
                 <branchBehaviour_BranchTransition id="_bTYiAK_jEeaFof9L2wGlaQ">
                   <steps_Behaviour xsi:type="seff:StartAction" id="_bTYiAa_jEeaFof9L2wGlaQ" successor_AbstractAction="_t_vTcK_jEeaFof9L2wGlaQ"/>
                   <steps_Behaviour xsi:type="seff:StopAction" id="_bTYiAq_jEeaFof9L2wGlaQ" predecessor_AbstractAction="_eqUlZvT_EeaPlpj5cBLrZg"/>
-                  <steps_Behaviour xsi:type="seff:InternalAction" id="_t_vTcK_jEeaFof9L2wGlaQ" entityName="match_execute" predecessor_AbstractAction="_bTYiAa_jEeaFof9L2wGlaQ" successor_AbstractAction="_eqUlZvT_EeaPlpj5cBLrZg"/>
+                  <steps_Behaviour xsi:type="seff:InternalAction" id="_t_vTcK_jEeaFof9L2wGlaQ" entityName="match_execute" predecessor_AbstractAction="_bTYiAa_jEeaFof9L2wGlaQ" successor_AbstractAction="_eqUlZvT_EeaPlpj5cBLrZg">
+                    <resourceDemand_Action>
+                      <specification_ParametericResourceDemand specification="1000 * 1000 * 1000"/>
+                      <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+                    </resourceDemand_Action>
+                  </steps_Behaviour>
                   <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_eqUlZvT_EeaPlpj5cBLrZg" entityName="logMessage" predecessor_AbstractAction="_t_vTcK_jEeaFof9L2wGlaQ" successor_AbstractAction="_bTYiAq_jEeaFof9L2wGlaQ" calledService_ExternalService="_j42VMPT-EeaPlpj5cBLrZg" role_ExternalService="_t1EGsPT-EeaPlpj5cBLrZg">
                     <inputVariableUsages__CallAction>
-                      <variableCharacterisation_VariableUsage type="BYTESIZE">
-                        <specification_VariableCharacterisation specification="IntPMF[(38303999; 0.142857)(38304000; 0.142857)(40568000; 0.142857)(41544000; 0.142857)(48280000; 0.142857)(65000000; 0.142857)(88216000; 0.142858)]"/>
+                      <variableCharacterisation_VariableUsage>
+                        <specification_VariableCharacterisation specification="100000000"/>
                       </variableCharacterisation_VariableUsage>
                       <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="log"/>
                     </inputVariableUsages__CallAction>
                   </steps_Behaviour>
                 </branchBehaviour_BranchTransition>
               </branches_Branch>
-              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_iQCyIK_jEeaFof9L2wGlaQ" entityName="regex" branchProbability="0.5">
+              <branches_Branch xsi:type="seff:ProbabilisticBranchTransition" id="_iQCyIK_jEeaFof9L2wGlaQ" entityName="regex" branchProbability="0.05">
                 <branchBehaviour_BranchTransition id="_iQCyIa_jEeaFof9L2wGlaQ">
                   <steps_Behaviour xsi:type="seff:StartAction" id="_iQCyIq_jEeaFof9L2wGlaQ" successor_AbstractAction="_28_iUK_jEeaFof9L2wGlaQ"/>
-                  <steps_Behaviour xsi:type="seff:StopAction" id="_iQCyI6_jEeaFof9L2wGlaQ" predecessor_AbstractAction="_28_iUK_jEeaFof9L2wGlaQ"/>
-                  <steps_Behaviour xsi:type="seff:InternalAction" id="_28_iUK_jEeaFof9L2wGlaQ" entityName="regex_execute" predecessor_AbstractAction="_iQCyIq_jEeaFof9L2wGlaQ" successor_AbstractAction="_iQCyI6_jEeaFof9L2wGlaQ"/>
+                  <steps_Behaviour xsi:type="seff:StopAction" id="_iQCyI6_jEeaFof9L2wGlaQ" predecessor_AbstractAction="_tdztBvnPEeamNZ2lIlknMg"/>
+                  <steps_Behaviour xsi:type="seff:InternalAction" id="_28_iUK_jEeaFof9L2wGlaQ" entityName="regex_execute" predecessor_AbstractAction="_iQCyIq_jEeaFof9L2wGlaQ" successor_AbstractAction="_tdztBvnPEeamNZ2lIlknMg">
+                    <resourceDemand_Action>
+                      <specification_ParametericResourceDemand specification="1000 * 1000 * 1000"/>
+                      <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+                    </resourceDemand_Action>
+                  </steps_Behaviour>
+                  <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_tdztBvnPEeamNZ2lIlknMg" predecessor_AbstractAction="_28_iUK_jEeaFof9L2wGlaQ" successor_AbstractAction="_iQCyI6_jEeaFof9L2wGlaQ" calledService_ExternalService="_j42VMPT-EeaPlpj5cBLrZg" role_ExternalService="_t1EGsPT-EeaPlpj5cBLrZg">
+                    <inputVariableUsages__CallAction>
+                      <variableCharacterisation_VariableUsage>
+                        <specification_VariableCharacterisation specification="100000000"/>
+                      </variableCharacterisation_VariableUsage>
+                      <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="logregex"/>
+                    </inputVariableUsages__CallAction>
+                  </steps_Behaviour>
                 </branchBehaviour_BranchTransition>
               </branches_Branch>
             </steps_Behaviour>
           </bodyBehaviour_Loop>
           <iterationCount_LoopAction specification="numDecoders.VALUE"/>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:LoopAction" id="_67R0NPnOEeamNZ2lIlknMg" entityName="overheadloop" predecessor_AbstractAction="_ViTmIq_hEeaFof9L2wGlaQ" successor_AbstractAction="_M8f8AK_jEeaFof9L2wGlaQ">
+          <bodyBehaviour_Loop id="_KWAc0vnPEeamNZ2lIlknMg">
+            <steps_Behaviour xsi:type="seff:StartAction" id="_NDkPQvnPEeamNZ2lIlknMg" successor_AbstractAction="_OTm63PnPEeamNZ2lIlknMg"/>
+            <steps_Behaviour xsi:type="seff:StopAction" id="_NsZw4PnPEeamNZ2lIlknMg" predecessor_AbstractAction="_OTm63PnPEeamNZ2lIlknMg"/>
+            <steps_Behaviour xsi:type="seff:InternalAction" id="_OTm63PnPEeamNZ2lIlknMg" entityName="overhead" predecessor_AbstractAction="_NDkPQvnPEeamNZ2lIlknMg" successor_AbstractAction="_NsZw4PnPEeamNZ2lIlknMg">
+              <resourceDemand_Action>
+                <specification_ParametericResourceDemand specification="1000 * 1000 * 1000"/>
+                <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+              </resourceDemand_Action>
+            </steps_Behaviour>
+          </bodyBehaviour_Loop>
+          <iterationCount_LoopAction specification="10"/>
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
