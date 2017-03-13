@@ -1,21 +1,18 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver.validation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
-import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.ConcernWeaver;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
-import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.ExperimentUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.WeavingInstructionFactory;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 
 public class SimpleMediaStoreExperiment extends ExperimentConfiguration {
 	
@@ -26,8 +23,7 @@ public class SimpleMediaStoreExperiment extends ExperimentConfiguration {
 	@Test
 	public void testSimpleWeavingScenario() {
 		
-		Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concern, concernSolution).getSimpleWeavingInstructions();
+		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, concernSolution).getSimpleWeavingInstructions();
 		
 		try {
 			

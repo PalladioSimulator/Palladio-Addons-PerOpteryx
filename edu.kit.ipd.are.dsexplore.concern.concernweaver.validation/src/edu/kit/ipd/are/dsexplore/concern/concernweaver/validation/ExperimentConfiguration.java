@@ -25,10 +25,10 @@ public abstract class ExperimentConfiguration {
 	protected final static String RESOURCE_CONTAINER_SERVER_1_ID = "_t8rcYHlPEeSGtbTG2d9Ipg";
 	protected final static String ADAPTER_NAME = "Adapter";
 	
-	protected Repository concernRepository; 
+	protected Repository concernSolution; 
 	protected PCMInstance pcmToAdapt;
 	protected Transformation adapterTransformation;
-	protected ConcernRepository concern;
+	protected ConcernRepository concernModel;
 	
 	@Before
 	public void setUp() {
@@ -36,9 +36,10 @@ public abstract class ExperimentConfiguration {
 		ConcernWeavingTestUtil.registerFactories();
 		
 		pcmToAdapt = ExperimentUtil.loadPCM();
-		concernRepository = ConcernWeavingTestUtil.loadConcernSolution();
-        concern = ConcernWeavingTestUtil.loadConcernRepository();
-		adapterTransformation = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
+		concernSolution = ConcernWeavingTestUtil.loadConcernSolution();
+        concernModel = ConcernWeavingTestUtil.loadConcernRepository();
+		//adapterTransformation = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
+        adapterTransformation = ConcernWeavingTestUtil.loadTransformation().getTransformation().get(0);
         
 	}
 

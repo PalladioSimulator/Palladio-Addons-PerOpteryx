@@ -3,9 +3,12 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.OperationInterface;
@@ -20,6 +23,7 @@ import org.palladiosimulator.solver.transformations.EMFHelper;
 import TransformationModel.AdapterTransformation;
 import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
+import de.uka.ipd.sdq.identifier.Identifier;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
@@ -52,8 +56,8 @@ public class ExperimentUtil {
 	public static AdapterTransformation createAdapterTransformationStrategy(String name) {
 		
 		AdapterTransformation adapterTransformation = TransformationModelFactory.eINSTANCE.createAdapterTransformation();
-		adapterTransformation.setAppear(Appearance.AFTER);
-		adapterTransformation.setMultiple(true);
+		adapterTransformation.setAppear(Appearance.BEFORE);
+		adapterTransformation.setMultiple(false);
 		adapterTransformation.setName(name);
 		
 		return adapterTransformation;
@@ -124,6 +128,36 @@ public class ExperimentUtil {
 		
 		return repositories.stream().map(eachRepository -> (EObject) eachRepository)
 									.collect(Collectors.toList());
+		
+	}
+	
+	public static Optional<EObject> getElementWithId(String id, Resource resource) {
+		
+		TreeIterator<EObject> iterator = resource.getAllContents();
+		while (iterator.hasNext()) {
+			
+			EObject current = iterator.next();
+			if (!(current instanceof Identifier)) {
+				
+				continue;
+				
+			}
+			
+			if (hasSameIdentity((Identifier) current, id)) {
+				
+				return Optional.of(current);
+				
+			}
+			
+		}
+		
+		return Optional.empty();
+		
+	}
+
+	private static boolean hasSameIdentity(Identifier identifiableObject, String id) {
+		
+		return identifiableObject.getId().equals(id);
 		
 	}
 	

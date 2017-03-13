@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.modelversioning.emfprofile.EMFProfilePackage;
@@ -27,6 +28,7 @@ import ConcernModel.ConcernRepository;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
+import concernStrategy.StrategymodelPackage;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 public class ConcernWeavingTestUtil {
@@ -44,10 +46,11 @@ public class ConcernWeavingTestUtil {
 	public final static String RELATIVE_CONCERN_REALIZATION_MODEL_PATH_SEGMENT = "/models/ossec.repository";
 	public final static String RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT = "/models/concern.concernmodel";
 	public final static String RELATIVE_CONCERN_TRANSFORMATION_MODEL_PATH_SEGMENT = "/models/TransformationRepository.transformationmodel";
-	public final static String RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT = "/models/annotations.emfprofile_diagram";
 	public final static String RELATIVE_CONCERN_STRATEGY_ANNOTATION_MODEL_PATH_SEGMENT = "/models/strategy.emfprofile_diagram";
 	public final static String RELATIVE_PCM_CONCERN_MODEL_PATH_SEGMENT = "/assembly_models/TemporaryConcernRepository.repository";
 	public final static String RELATIVE_RESULT_FOLDER_PATH_SEGMENT = "/result";	
+	public final static String RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT = "/models/annotations.emfprofile_diagram";
+	public final static String RELATIVE_CONCERN_REALIZATION_STRATEGY_MODEL_PATH_SEGMENT = "/models/strategy.emfprofile_diagram";
 	
 	private final static String ECC_DETECTION_NAME = "Detection";
 	private final static String ECC_RESPONSE_NAME = "Response";
@@ -91,7 +94,7 @@ public class ConcernWeavingTestUtil {
 	
 	public static Repository loadConcernSolution() {
 		
-		return (Repository) loadWithProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REALIZATION_MODEL_PATH_SEGMENT);
+		return (Repository) loadWithProfiles(RepositoryPackage.eINSTANCE, RELATIVE_CONCERN_REALIZATION_MODEL_PATH_SEGMENT);
 	
 	}
 	
@@ -103,15 +106,18 @@ public class ConcernWeavingTestUtil {
 	
 	public static ConcernRepository loadConcernRepository() {
 		
-		//return (ConcernRepository) loadWithoutProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
-		return (ConcernRepository) partition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+		return (ConcernRepository) loadWithProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
+		//return (ConcernRepository) partition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
 		
 	}
 	
 	//Not working at this time...
 	public static TransformationRepository loadTransformation() {
 		
-		return (TransformationRepository) loadWithoutProfiles(TransformationModelPackage.eINSTANCE, RELATIVE_CONCERN_TRANSFORMATION_MODEL_PATH_SEGMENT);
+		EObject transRepo = loadWithoutProfiles(TransformationModelPackage.eINSTANCE, RELATIVE_CONCERN_TRANSFORMATION_MODEL_PATH_SEGMENT);
+		EcoreUtil.resolveAll(transRepo);
+		
+		return (TransformationRepository) transRepo; 
 		
 	}
 
@@ -133,15 +139,9 @@ public class ConcernWeavingTestUtil {
 	
 	public static PCMResourceSetPartition createPCMResourceSetPartition(List<String> modelFiles) {
 		
-		List<EPackage> profilePackages = Arrays.asList(EMFProfilePackage.eINSTANCE, 
-													   EMFProfileApplicationPackage.eINSTANCE, 
-													   NotationPackage.eINSTANCE,
-													   ConcernModelPackage.eINSTANCE,
-													   getProfile(new ResourceSetImpl()));
-		
 		PCMResourceSetPartition resourceSetPartition = new PCMResourceSetPartition();
 		resourceSetPartition.initialiseResourceSetEPackages(AbstractPCMWorkflowRunConfiguration.PCM_EPACKAGES);
-		resourceSetPartition.initialiseResourceSetEPackages((EPackage[]) profilePackages.toArray());
+		resourceSetPartition.initialiseResourceSetEPackages(getRelevantPackages());
 
 		for (String modelFile : modelFiles) {
 			
@@ -151,6 +151,22 @@ public class ConcernWeavingTestUtil {
 		resourceSetPartition.resolveAllProxies();
 		
 		return resourceSetPartition;
+		
+	}
+	
+	private static EPackage[] getRelevantPackages() {
+		
+		List<EPackage> profilePackages = new ArrayList<EPackage>();
+		profilePackages.add(EMFProfilePackage.eINSTANCE);
+		profilePackages.add(EMFProfileApplicationPackage.eINSTANCE);
+		profilePackages.add(NotationPackage.eINSTANCE);
+		profilePackages.add(ConcernModelPackage.eINSTANCE);
+		profilePackages.addAll(getProfiles(new ResourceSetImpl()));
+		
+		EPackage[] helper = new EPackage[profilePackages.size()];
+		helper = profilePackages.toArray(helper);
+		
+		return helper;
 		
 	}
 
@@ -185,14 +201,17 @@ public class ConcernWeavingTestUtil {
 
 	private static void loadProfile(ResourceSet set) {
 		
-		registerPackage(set, getProfile(set));
+		registerPackages(set, getProfiles(set));
 		
 	}
 
-	private static Profile getProfile(ResourceSet set) {
+	private static List<Profile> getProfiles(ResourceSet set) {
 		
-		Resource resource = set.getResource(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)), true);
-		return (Profile) resource.getContents().get(0);
+		Resource annotationProfile = set.getResource(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)), true);
+		Resource strategyProfile = set.getResource(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_STRATEGY_ANNOTATION_MODEL_PATH_SEGMENT)), true);
+		
+		return Arrays.asList((Profile) annotationProfile.getContents().get(0),
+							 (Profile) strategyProfile.getContents().get(0));
 		
 	}
 
@@ -202,11 +221,18 @@ public class ConcernWeavingTestUtil {
 		
 	}
 	
+	private static void registerPackages(ResourceSet set, List<Profile> modelPackages) {
+		
+		modelPackages.forEach(modelPackage -> registerPackage(set, modelPackage));
+		
+	}
+	
 	private static void registerDefaultPackages(ResourceSet set) {
 		
 		set.getPackageRegistry().put(EMFProfilePackage.eNS_URI, EMFProfilePackage.eINSTANCE);
         set.getPackageRegistry().put(EMFProfileApplicationPackage.eNS_URI, EMFProfileApplicationPackage.eINSTANCE);
         set.getPackageRegistry().put(NotationPackage.eNS_PREFIX, NotationPackage.eINSTANCE);
+        set.getPackageRegistry().put(StrategymodelPackage.eNS_URI, StrategymodelPackage.eINSTANCE);
         set.getPackageRegistry().put(RepositoryPackage.eNS_URI, RepositoryPackage.eINSTANCE);
         		
 	}

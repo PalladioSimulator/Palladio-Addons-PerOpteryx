@@ -30,6 +30,7 @@ public class WeavingInstructionFactory {
 	private final static String WEB_GUI_DELEGATION_CONNECTOR_ID = "_wVTYoJelEeajsMFpiDxCKw";
 	private final static String AFFECTED_SIGNATURE_ZIP_ID_IPACKAGING_INTERFACE = "_ydHhYHDuEeSqnN80MQ2uGw";
 	private final static String AFFECTED_SIGNATURE_GETFILES_ID_IFILESTORAGE_INTERFACE = "_lLuUoLg7EeSNPorBlo7x9g";
+	private final static String AFFECTED_SIGNATURE_STOREFILES_ID_IFILESTORAGE_INTERFACE = "_ZlS-sL0KEeSAHuL4ItXOLQ";
 	private final static String AFFECTED_SIGNATURE_UPLOAD_ID_IMEDIAMANAGEMENT = "_Qa8AAHDvEeSqnN80MQ2uGw";
 	private final static String AFFECTED_SIGNATURE_DOWNLOAD_ID_IMEDIAMANAGEMENT = "_Q_yZgHDvEeSqnN80MQ2uGw";
 	private final static String AFFECTED_SIGNATURE_GETFILELIST_ID_IMEDIAMANAGEMENT = "_Rv19cHDvEeSqnN80MQ2uGw";
@@ -59,6 +60,12 @@ public class WeavingInstructionFactory {
 		eInstance.concernSolution = concernSolution;
 		
 		return eInstance;
+		
+	}
+	
+	public List<WeavingInstruction> getExperimentWeavingInstructions() {
+		
+		return Arrays.asList(getWeavingInstructionFromMediaAccessToFileStorageComponents());
 		
 	}
 	
@@ -99,7 +106,8 @@ public class WeavingInstructionFactory {
 	private WeavingInstruction getWeavingInstructionFromMediaAccessToFileStorageComponents() {
 		
 		Pair<Connector, List<Signature>> locationWithAffectedSignature = getAssemblyConnectorLocationSignaturePairWith(MEDIA_ACCESS_FILE_STORAGE_ASSEMBLY_CONNECTOR_ID, 
-																													   AFFECTED_SIGNATURE_GETFILES_ID_IFILESTORAGE_INTERFACE);
+																													   AFFECTED_SIGNATURE_GETFILES_ID_IFILESTORAGE_INTERFACE,
+																													   AFFECTED_SIGNATURE_STOREFILES_ID_IFILESTORAGE_INTERFACE);
 																						
 		return getDefaultWeavingInstruction(locationWithAffectedSignature);
 		
