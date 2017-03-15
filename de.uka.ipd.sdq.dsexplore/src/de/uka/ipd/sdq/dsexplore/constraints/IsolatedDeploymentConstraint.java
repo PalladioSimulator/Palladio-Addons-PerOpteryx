@@ -47,7 +47,7 @@ public class IsolatedDeploymentConstraint extends ConcernDeploymentConstraint {
 
 	private boolean isIsolatedOn(ResourceContainer resourceContainer, ElementaryConcernComponent ecc) {
 		
-		//count == 1, because the ECC under consideration should be the only object allocated n the resource container
+		//count == 1, because the ECC under consideration should be the only object allocated on the resource container
 		//allocation contexts with only one fixed resource container are also modelled as design decision.
 		return getObjectsAllocatedOn(resourceContainer).count() == 1;
 		
@@ -62,7 +62,7 @@ public class IsolatedDeploymentConstraint extends ConcernDeploymentConstraint {
 
 	private EObject getObject(ClassChoice classChoice) {
 
-		return (AllocationDegree) classChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+		return (EObject) classChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 		
 	}
 
