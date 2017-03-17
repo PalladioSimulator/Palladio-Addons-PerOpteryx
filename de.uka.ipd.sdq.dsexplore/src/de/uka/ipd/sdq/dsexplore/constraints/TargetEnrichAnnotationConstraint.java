@@ -44,7 +44,6 @@ public abstract class TargetEnrichAnnotationConstraint extends ConcernDeployment
 		Iterator<Entry<AnnotationEnrich, Optional<AnnotationTarget>>> enrichTargetEntries = getIteratorBy(classChoice);
 		while (enrichTargetEntries.hasNext()) {
 			
-			//TODO introduce exceptions
 			Map.Entry<AnnotationEnrich, Optional<AnnotationTarget>> enrichTargetEntry = enrichTargetEntries.next();
 			if (enrichTargetEntry.getValue().isPresent() && hasDeploymentConfiguration(enrichTargetEntry.getKey(), enrichTargetEntry.getValue().get())) {
 				

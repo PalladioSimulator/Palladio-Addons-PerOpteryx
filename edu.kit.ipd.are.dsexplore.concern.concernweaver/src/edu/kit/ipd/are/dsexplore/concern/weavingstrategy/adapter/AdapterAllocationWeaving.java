@@ -2,7 +2,6 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -147,20 +146,20 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 
 	private AssemblyContext getUniqueAssemblyContextOf(RepositoryComponent component) throws ConcernWeavingException {
 		
-		Optional<List<AssemblyContext>> foundAssemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
-		if (foundAssemblyContexts.get().size() == 0) {
+		List<AssemblyContext> foundAssemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
+		if (foundAssemblyContexts.isEmpty()) {
 			
-			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.get().size()));
-			
-		}
-		
-		if (foundAssemblyContexts.get().size() > 1) {
-			
-			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.get().size()));
+			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.size()));
 			
 		}
 		
-		return foundAssemblyContexts.get().get(0);
+		if (foundAssemblyContexts.size() > 1) {
+			
+			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.size()));
+			
+		}
+		
+		return foundAssemblyContexts.get(0);
 		
 	}
 

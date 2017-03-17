@@ -9,7 +9,11 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
 
+import ConcernModel.Annotation;
+import ConcernModel.AnnotationEnrich;
+import ConcernModel.AnnotationTarget;
 import ConcernModel.ElementaryConcernComponent;
+import ConcernModel.JoinPoint;
 
 public class ErrorMessage {
 	
@@ -47,19 +51,25 @@ public class ErrorMessage {
 	
 	public static String missingEntryLevelSystemCall(Signature calledService) {
 		
-		return String.format("There exist no entry level system call of service: %s", calledService.getEntityName());
+		return String.format("There exist no entry level system call of service: %s.", calledService.getEntityName());
 		
 	}
 	
 	public static String missingRole(RepositoryComponent component, Interface referencedInterface) {
 		
-		return String.format("Component %1s does not contain any role %2s which is referencing the interface %2s", component.getEntityName(), referencedInterface.getEntityName());
+		return String.format("Component %1s does not contain any role %2s which is referencing the interface %2s.", component.getEntityName(), referencedInterface.getEntityName());
 		
 	}
 	
 	public static String missingECC(ElementaryConcernComponent ecc, List<ProvidedRole> providedFeatures) {
 		
-		return String.format("For ecc %1s does not contain the provided features:%2s", ecc.getName(), toString(providedFeatures));
+		return String.format("For ecc %1s does not contain the provided features:%2s.", ecc.getName(), toString(providedFeatures));
+		
+	}
+	
+	public static String missingECC(AnnotationEnrich enrich) {
+		
+		return String.format("There exist no ECC with the enrich annotation %s.", enrich.getName());
 		
 	}
 
@@ -67,6 +77,36 @@ public class ErrorMessage {
 		
 		return namedElements.stream().map(eachElement -> eachElement.getEntityName())
 									 .reduce("", (s1,s2) -> String.format("%1s, %2s", s1, s2));
+		
+	}
+	
+	public static String missingInstantiation(RepositoryComponent component) {
+		
+		return String.format("For component %s or functional equivalent components there exist no instantiation.", component.getEntityName());
+		
+	}
+	
+	public static String missingAnnotationOpponent(Annotation annotation) {
+		
+		return String.format("There exist no opponent for annotation %s.", annotation.getName());
+		
+	}
+	
+	public static String missingTransformation(AnnotationTarget target, AnnotationEnrich enrich) {
+		
+		return String.format("There exist no transformation for %1s and %2s.", target.getName(), enrich.getName());
+		
+	}
+	
+	public static String unhandledJoinPoint(JoinPoint joinPoint) {
+		
+		return String.format("The JoinPoint: %s is not handled.", joinPoint.getName());
+		
+	}
+	
+	public static String weavingManagerIsNotInitialized() {
+		
+		return "The weaving manager has not been initialized.";
 		
 	}
 	

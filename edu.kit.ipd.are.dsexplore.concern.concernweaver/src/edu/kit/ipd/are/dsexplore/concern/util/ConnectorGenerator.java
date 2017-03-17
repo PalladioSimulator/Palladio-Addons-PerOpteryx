@@ -33,14 +33,14 @@ public abstract class ConnectorGenerator {
 	//TODO introduce exceptions. It's assumed that an assembly context needs to be created or already exist only once.
 	protected AssemblyContext getAssemblyContextOf(RepositoryComponent component, ConnectionInfo connectionInfo) {
 		
-		Optional<List<AssemblyContext>> assemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
-		if (assemblyContexts.get().size() > 0) {
+		List<AssemblyContext> assemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
+		if (assemblyContexts.isEmpty()) {
 			
-			return assemblyContexts.get().size() > 1 ? connectionInfo.opponentAssemblyContext.get() : assemblyContexts.get().get(0);
+			return createAndAddAssemblyContextOf(component);
 			
 		}
 		
-		return createAndAddAssemblyContextOf(component);
+		return assemblyContexts.size() > 1 ? connectionInfo.opponentAssemblyContext.get() : assemblyContexts.get(0);
 		
 	}
 	

@@ -6,8 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.naming.OperationNotSupportedException;
-
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
@@ -20,6 +18,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.AnnotationTarget;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 
 public class WeavingLocationHandler {
 
@@ -51,7 +51,7 @@ public class WeavingLocationHandler {
 		
 	} 
 	
-	public List<WeavingLocation> getWeavingLocationFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) throws Exception {
+	public List<WeavingLocation> getWeavingLocationFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
 		switch(targetAnnotation.getJoinPoint()) {
 		
@@ -68,7 +68,7 @@ public class WeavingLocationHandler {
 				
 		}
 		
-		throw new OperationNotSupportedException(String.format("The JoinPoint: %s is not handled.", targetAnnotation.getJoinPoint().getName()));
+		throw new ConcernWeavingException(ErrorMessage.unhandledJoinPoint(targetAnnotation.getJoinPoint()));
 		
 	}
 
@@ -101,6 +101,7 @@ public class WeavingLocationHandler {
 
 	private List<JoinPointInfo> getSignatureJointPointInfosFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) {
 		
+		//TODO this is going to be changed... later...
 		if (targetAnnotation.getSignatures().isEmpty()) {
 			
 			throw new NullPointerException("Wrong configuration, signatures must be set.");

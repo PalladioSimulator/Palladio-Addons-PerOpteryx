@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -131,7 +132,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
         try {
 			pcm = weavingExecuter.getWeavedPCMInstanceOf(pcm);
 		} catch (ConcernWeavingException e) {
-			logger.warn(String.format("An error occured during the concern weaving process. Failure was:%s", e.getMessage()));
+			logger.error(String.format("An error occured during the concern weaving process. Failure was:%s", e.getMessage()));
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			logger.error(String.format("The cost model has not been saved properly."));
 			e.printStackTrace();
 		}
         

@@ -80,6 +80,11 @@ public class TransformationRepositoryManager {
 		
 	}
 	
+	/**
+	 * Resolves for a given target annotation the corresponding enrich annotation. This function is bijective.
+	 * @param targetAnnotation
+	 * @return optional containing the enrich annotation or empty optional.
+	 */
 	public Optional<AnnotationEnrich> getEnrichAnnotationBy(AnnotationTarget targetAnnotation) {
 		
 		return this.transformationRepository.getTransformation().stream().filter(eachTrans -> areEqual(eachTrans.getTarget(), targetAnnotation))

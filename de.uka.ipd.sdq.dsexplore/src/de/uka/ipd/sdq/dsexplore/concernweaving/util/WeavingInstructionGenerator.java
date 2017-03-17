@@ -25,6 +25,8 @@ import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
@@ -94,23 +96,23 @@ public class WeavingInstructionGenerator {
 //		
 //	}
 
-	public List<WeavingInstruction> getWeavingInstructions() {
+	public List<WeavingInstruction> getWeavingInstructions() throws ConcernWeavingException {
 		
 		List<WeavingInstruction> weavingInstructions = new ArrayList<WeavingInstruction>();
 		
 		AnnotationFilter annotationFilter = new AnnotationFilter(this.pcmInstance.getRepositories());
-		annotationFilter.getTargetAnnotatedComponents().forEach(annotatedComponent -> {
+		for (RepositoryComponent eachAnnotatedComponent : annotationFilter.getTargetAnnotatedComponents()) {
 			
-			AnnotationTarget targetAnnotation = annotationFilter.getTargetAnnotationFrom(annotatedComponent).get();
-			weavingInstructions.addAll(generateWeavingInstructionFrom(annotatedComponent, targetAnnotation));
+			AnnotationTarget targetAnnotation = annotationFilter.getTargetAnnotationFrom(eachAnnotatedComponent).get();
+			weavingInstructions.addAll(generateWeavingInstructionFrom(eachAnnotatedComponent, targetAnnotation));
 			
-		});
+		}
 		
 		return weavingInstructions;
 		
 	}
 	
-	public Optional<Set<ElementaryConcernComponent>> getIndirectlyUsedECCs(Set<ElementaryConcernComponent> usedECCs) {
+	public Optional<Set<ElementaryConcernComponent>> getIndirectlyUsedECCs(Set<ElementaryConcernComponent> usedECCs) throws ConcernWeavingException {
 		
 		Set<ElementaryConcernComponent> indirectlyUsedECCs = getIndirectlyUsedECCsFrom(getWeavingInstructions(), usedECCs);
 		return indirectlyUsedECCs.isEmpty() ? Optional.empty() : Optional.of(indirectlyUsedECCs);
@@ -130,14 +132,22 @@ public class WeavingInstructionGenerator {
 		
 	}
 	
-	private List<WeavingInstruction> generateWeavingInstructionFrom(RepositoryComponent annotatedComponent, AnnotationTarget targetAnnotation) {
+	private List<WeavingInstruction> generateWeavingInstructionFrom(RepositoryComponent annotatedComponent, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
-		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithRequiredFeatures = getECCWithRequiredFeaturesFrom(targetAnnotation);
-		return getWeavingLocationsFrom(annotatedComponent, targetAnnotation).stream().map(eachWeavingLocation -> generateWeavingInstructionFrom(eccWithRequiredFeatures, 
-																																				eachWeavingLocation, 
-																																				annotatedComponent, 
-																																				targetAnnotation))
-																					 .collect(Collectors.toList());
+		try {
+		
+			Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithRequiredFeatures = getECCWithRequiredFeaturesFrom(targetAnnotation);
+			return getWeavingLocationsFrom(annotatedComponent, targetAnnotation).stream().map(eachWeavingLocation -> generateWeavingInstructionFrom(eccWithRequiredFeatures, 
+																																					eachWeavingLocation, 
+																																					annotatedComponent, 
+																																					targetAnnotation))
+																						 .collect(Collectors.toList());
+			
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
 		
 	}
 	
@@ -145,38 +155,41 @@ public class WeavingInstructionGenerator {
 															  WeavingLocation weavingLocation,
 															  RepositoryComponent annotatedComponent,
 															  AnnotationTarget targetAnnotation) {
-		
-		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(eccWithRequiredFeatures)
-				  							  .setResourceContainer(getResourceContainerFrom(eccWithRequiredFeatures.getFirst(), annotatedComponent))
-				  							  .setTransformationStrategy(getTransformationStrategy(targetAnnotation))
-				  							  .setWeavingLocation(weavingLocation)
-				  							  .build();
+		try {
+			
+			return new WeavingInstructionBuilder().setECCWithConsumedFeatures(eccWithRequiredFeatures)
+					  							  .setResourceContainer(getResourceContainerFrom(eccWithRequiredFeatures.getFirst(), annotatedComponent))
+					  							  .setTransformationStrategy(getTransformationStrategy(targetAnnotation))
+					  							  .setWeavingLocation(weavingLocation)
+					  							  .build();
+			
+		} catch (ConcernWeavingException ex) {
+			
+			throw new RuntimeException(ex);
+			
+		}
 		
 	}
 
-	private List<WeavingLocation> getWeavingLocationsFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) {
+	private List<WeavingLocation> getWeavingLocationsFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+
 		
-		try {
+		/*The component could be target annotated but not instantiated because there exist a second 
+		  component which provides the same functionality.*/
+		if (!isInstantiated(component)) {
 			
-			if (!isInstantiated(component)) {
+			String errorMessage = ErrorMessage.missingInstantiation(component);
+			component = getInstantiatedAlternativeOf(component).orElseThrow(() -> new ConcernWeavingException(errorMessage));
 				
-				component = getInstantiatedAlternativeOf(component).get();
-				
-			}
-			
-			return new WeavingLocationHandler(pcmInstance).getWeavingLocationFrom(component, targetAnnotation);
-			
-		} catch (Exception e) {
-			
-			// TODO need to be handled
-			return null;
 		}
+			
+		return new WeavingLocationHandler(pcmInstance).getWeavingLocationFrom(component, targetAnnotation);
 		
 	}
 
 	private boolean isInstantiated(RepositoryComponent component) {
 		
-		return !PcmSystemManager.getBy(this.pcmInstance.getSystem()).getAssemblyContextsInstantiating(component).get().isEmpty();
+		return !PcmSystemManager.getBy(this.pcmInstance.getSystem()).getAssemblyContextsInstantiating(component).isEmpty();
 		
 	}
 
@@ -228,14 +241,11 @@ public class WeavingInstructionGenerator {
 		
 	}
 
-	private Transformation getTransformationStrategy(AnnotationTarget targetAnnotation) {
+	private Transformation getTransformationStrategy(AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
-		//TODO introduce exceptions
 		TransformationRepositoryManager transManager = TransformationRepositoryManager.getInstance();
-		//This function is bijective.
-		AnnotationEnrich enrichAnnotation = transManager.getEnrichAnnotationBy(targetAnnotation).get();
-		//return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation).orElseThrow(() -> new Exception());
-		return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation).get();
+		AnnotationEnrich enrichAnnotation = transManager.getEnrichAnnotationBy(targetAnnotation).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingAnnotationOpponent(targetAnnotation)));
+		return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingTransformation(targetAnnotation, enrichAnnotation)));
 		
 	}
 
@@ -247,9 +257,10 @@ public class WeavingInstructionGenerator {
 
 	private ResourceContainer getDefaultResourceContainer(RepositoryComponent componentRelatedToECC) {
 		
-		return this.pcmInstance.getAllocation().getAllocationContexts_Allocation().stream().filter(eachAllocationContext -> contains(componentRelatedToECC, eachAllocationContext))
-																						   .map(eachAllocationContext -> eachAllocationContext.getResourceContainer_AllocationContext())
-																						   .findFirst().get();
+		Stream<AllocationContext> allocs = this.pcmInstance.getAllocation().getAllocationContexts_Allocation().stream(); 
+		return allocs.filter(eachAllocationContext -> contains(componentRelatedToECC, eachAllocationContext))
+					 .map(eachAllocationContext -> eachAllocationContext.getResourceContainer_AllocationContext())
+					 .findFirst().get();
 		
 	}
 
@@ -259,12 +270,10 @@ public class WeavingInstructionGenerator {
 		
 	}
 	
-	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithRequiredFeaturesFrom(AnnotationTarget targetAnnotation) {
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithRequiredFeaturesFrom(AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
-		//TODO introduce exception
-		//ElementaryConcernComponent ecc = this.concernManager.getCorrespondingECCFrom(targetAnnotation).orElseThrow(() -> new Exception());
-		AnnotationEnrich enrich = TransformationRepositoryManager.getInstance().getEnrichAnnotationBy(targetAnnotation).get();
-		ElementaryConcernComponent ecc = this.concernManager.getElementaryConcernComponentBy(enrich).get();
+		AnnotationEnrich enrich = TransformationRepositoryManager.getInstance().getEnrichAnnotationBy(targetAnnotation).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingAnnotationOpponent(targetAnnotation)));
+		ElementaryConcernComponent ecc = this.concernManager.getElementaryConcernComponentBy(enrich).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingECC(enrich)));
 		//At this point all provided ecc features are going to be used
 		return Pair.of(ecc, this.featureHandler.getProvidedFeaturesOf(ecc));
 		

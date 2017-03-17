@@ -72,7 +72,7 @@ public class WeavingManager {
 			
 		}
 		
-		public void updateCostModelBy(String id) {
+		public void updateCostModelBy(String id) throws IOException {
 			
 			if (cachedCosts.isEmpty()) {
 				
@@ -91,16 +91,7 @@ public class WeavingManager {
 			original.get().getCost().addAll(cachedCosts);
 			original.get().getCost().addAll(concernSolutionToComponentsCostsMap.get(id));
 			
-			try {
-				
-				//EcoreUtil.resolveAll(original.get().eResource());
-				original.get().eResource().save(Collections.EMPTY_MAP);
-				
-			} catch (IOException e) {
-				
-				//TODO introduce exception handling
-				
-			}
+			original.get().eResource().save(Collections.EMPTY_MAP);
 			
 		}
 		
@@ -220,7 +211,7 @@ public class WeavingManager {
 
 	public PCMInstance getWeavedPCMInstanceOf(Concern concern, 
 											  Repository concernSolution, 
-											  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) throws ConcernWeavingException {
+											  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) throws ConcernWeavingException, IOException {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);

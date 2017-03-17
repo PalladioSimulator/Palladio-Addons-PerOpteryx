@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.concernweaving.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,6 +24,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
@@ -123,7 +125,7 @@ public class WeavingExecuter {
 		
 	}
 	
-	public PCMInstance getWeavedPCMInstanceOf(PCMInstance pcm) throws ConcernWeavingException {
+	public PCMInstance getWeavedPCMInstanceOf(PCMInstance pcm) throws ConcernWeavingException, IOException {
 		
 		if (!WeavingManager.getInstance().isPresent()) {
 			
@@ -131,7 +133,7 @@ public class WeavingExecuter {
 			
 		}
 		
-		WeavingManager weavingManager = WeavingManager.getInstance().get();
+		WeavingManager weavingManager = WeavingManager.getInstance().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.weavingManagerIsNotInitialized()));
 		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), 
 															  this.concernWithSolutionPair.getSecond(),
 															  getECCAllocationMap());
@@ -184,7 +186,7 @@ public class WeavingExecuter {
 		            
 				} catch (Exception e) {
 					
-					e.printStackTrace();
+					//Can be ignored
 				}
 				
 			});

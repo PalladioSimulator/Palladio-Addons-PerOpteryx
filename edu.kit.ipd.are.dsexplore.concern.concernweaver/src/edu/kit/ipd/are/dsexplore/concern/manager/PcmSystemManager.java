@@ -124,10 +124,10 @@ public class PcmSystemManager {
 		
 	}
 	
-	public Optional<List<AssemblyContext>> getAssemblyContextsInstantiating(RepositoryComponent instantiatedComponent) {
+	public List<AssemblyContext> getAssemblyContextsInstantiating(RepositoryComponent instantiatedComponent) {
 		
-		return Optional.of(this.system.getAssemblyContexts__ComposedStructure().stream().filter(eachAssemblyContext -> encapsulates(instantiatedComponent, eachAssemblyContext))
-																	 					.collect(Collectors.toList()));
+		return this.system.getAssemblyContexts__ComposedStructure().stream().filter(eachAssemblyContext -> encapsulates(instantiatedComponent, eachAssemblyContext))
+																	 		.collect(Collectors.toList());
 		
 	}
 	

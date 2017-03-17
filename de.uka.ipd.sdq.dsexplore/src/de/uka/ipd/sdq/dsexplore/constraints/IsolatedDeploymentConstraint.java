@@ -3,8 +3,6 @@ package de.uka.ipd.sdq.dsexplore.constraints;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import ConcernModel.Association;
@@ -12,7 +10,6 @@ import ConcernModel.ElementaryConcernComponent;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.AllocationDegreeImpl;
 
 public class IsolatedDeploymentConstraint extends ConcernDeploymentConstraint {

@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver.test.peropteryx.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
 public class WeavingInstructionGeneratorTest extends WeavingTest {
 
@@ -45,7 +47,15 @@ public class WeavingInstructionGeneratorTest extends WeavingTest {
 
 	private void whenGeneratingWeavingInstructions() {
 		
-		this.weavingInstructions = WeavingInstructionGenerator.getInstanceBy(this.pcmInstance, this.idsConcern, this.ossec).getWeavingInstructions();
+		try {
+			
+			this.weavingInstructions = WeavingInstructionGenerator.getInstanceBy(this.pcmInstance, this.idsConcern, this.ossec).getWeavingInstructions();
+			
+		} catch (ConcernWeavingException ex) {
+			
+			fail(String.format("Generating weaving instructions failed. The reason was: %s", ex.getMessage()));
+			
+		}
 		
 	}
 
