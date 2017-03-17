@@ -32,7 +32,6 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	public void weave(WeavingInstruction weavingInstruction) {
 		
 		setWeavingInstruction(weavingInstruction);
-		
 		weaveAdapterIntoRepository();
 		
 	}

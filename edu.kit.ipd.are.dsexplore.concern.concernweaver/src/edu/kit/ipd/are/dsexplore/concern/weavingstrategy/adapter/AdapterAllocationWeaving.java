@@ -13,6 +13,8 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
@@ -27,7 +29,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 	}
 	
 	@Override
-	public void weave(WeavingInstruction weavingInstruction) {
+	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 				
 		String name = getUniqueAdapterName(weavingInstruction);
 		
@@ -38,7 +40,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 
-	private void addAdapterAllocationContextWith(String name) {
+	private void addAdapterAllocationContextWith(String name) throws ConcernWeavingException {
 		
 		AssemblyContext assemblyContextToAllocate = getAssemblyContextOfComponentWith(ConcernWeaverUtil.getDefaultInstanceNameWith(name));
 		AllocationContext allocationContextToAdd = pcmAllocationManager.createAllocationContextBy(assemblyContextToAllocate, this.resourceContainer);
@@ -80,10 +82,9 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 	
-	private AssemblyContext getAssemblyContextOfComponentWith(String uniqueName) {
+	private AssemblyContext getAssemblyContextOfComponentWith(String uniqueName) throws ConcernWeavingException {
 		
-		//TODO introduce exception
-		return pcmSystemManager.getAssemblyContextByUniqueName(uniqueName).get();
+		return pcmSystemManager.getAssemblyContextByUniqueName(uniqueName).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.ambiguousComponentName(uniqueName)));
 		
 	}
 	

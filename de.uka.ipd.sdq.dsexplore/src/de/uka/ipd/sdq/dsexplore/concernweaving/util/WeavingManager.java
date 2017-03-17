@@ -33,6 +33,7 @@ import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
 
@@ -219,7 +220,7 @@ public class WeavingManager {
 
 	public PCMInstance getWeavedPCMInstanceOf(Concern concern, 
 											  Repository concernSolution, 
-											  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) {
+											  HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap) throws ConcernWeavingException {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);

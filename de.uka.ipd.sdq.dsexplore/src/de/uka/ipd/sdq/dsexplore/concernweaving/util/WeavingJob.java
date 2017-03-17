@@ -9,6 +9,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.ConcernWeaver;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
 public class WeavingJob {
 
@@ -25,7 +26,7 @@ public class WeavingJob {
 		
 	}
 	
-	public void execute() {
+	public void execute() throws ConcernWeavingException {
 		
 		this.concernWeaver.start(this.generator.getWeavingInstructions());
 		

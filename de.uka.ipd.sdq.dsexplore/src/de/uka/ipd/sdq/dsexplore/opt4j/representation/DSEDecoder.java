@@ -62,6 +62,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into proper PCM instances that
@@ -127,7 +128,12 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
             applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, pcm);
         }
         
-        pcm = weavingExecuter.getWeavedPCMInstanceOf(pcm);
+        try {
+			pcm = weavingExecuter.getWeavedPCMInstanceOf(pcm);
+		} catch (ConcernWeavingException e) {
+			logger.warn(String.format("An error occured during the concern weaving process. Failure was:%s", e.getMessage()));
+			e.printStackTrace();
+		}
         
         for (final Choice doubleGene : weavingExecuter.getConvertedECCClassChoices()) {
 

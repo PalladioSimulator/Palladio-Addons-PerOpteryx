@@ -59,7 +59,7 @@ public class IDSConcernExperiment extends ExperimentConfiguration {
 	 * The configurations are: appearance = before, strategy = adapter. 
 	 */
 	@Test
-	public void testSimpleWeavingScenario() {
+	public void executeIDSExperiment() {
 		
 		givenTheConcernSolutionAndThePCMModel();
 		whenApplyingTheConcernWeaver();

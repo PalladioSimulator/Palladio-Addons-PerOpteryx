@@ -35,14 +35,18 @@ public class AssemblyWeavingTest extends WeavingTest {
 		
 		try {
 			
-			LinkedHashSet<WeavingStep> weavignChain = getWeavingChainUnderTest();
+			LinkedHashSet<WeavingStep> weavingChain = getWeavingChainUnderTest();
 			
-			weavingInstructions.forEach(weavingInstruction -> {
+			for (WeavingInstruction eachWeavingInstruction : weavingInstructions) {
 				
-				WeavingStep.setWeavingStrategy(weavingInstruction.getTransformationStrategy());
-				weavignChain.forEach(eachWeavingStep -> eachWeavingStep.weave(weavingInstruction));
+				WeavingStep.setWeavingStrategy(eachWeavingInstruction.getTransformationStrategy());
+				for(WeavingStep eachWeavingStep : weavingChain) {
+					
+					eachWeavingStep.weave(eachWeavingInstruction);
+					
+				}
 				
-			});
+			}
 			
 		} catch (Exception ex) {
 			

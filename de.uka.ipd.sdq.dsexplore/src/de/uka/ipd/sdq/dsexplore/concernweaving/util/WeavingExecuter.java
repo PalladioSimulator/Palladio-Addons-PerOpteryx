@@ -22,6 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
@@ -122,7 +123,7 @@ public class WeavingExecuter {
 		
 	}
 	
-	public PCMInstance getWeavedPCMInstanceOf(PCMInstance pcm) {
+	public PCMInstance getWeavedPCMInstanceOf(PCMInstance pcm) throws ConcernWeavingException {
 		
 		if (!WeavingManager.getInstance().isPresent()) {
 			

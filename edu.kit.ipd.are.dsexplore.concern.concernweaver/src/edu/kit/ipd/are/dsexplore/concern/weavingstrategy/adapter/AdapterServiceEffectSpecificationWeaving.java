@@ -24,6 +24,7 @@ import TransformationModel.AdapterTransformation;
 import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmServiceEffectSpecificationManager;
 
 public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWeaving {
@@ -109,7 +110,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private List<ServiceEffectSpecification> createServiceEffectSpecificationsBy(BasicComponent component) {
+	private List<ServiceEffectSpecification> createServiceEffectSpecificationsBy(BasicComponent component) throws ConcernWeavingException {
 
 		return getServiceEffectSpecificationsFrom(component).stream().map(eachSeff -> transformToAdapterSeff(eachSeff))
 															     	 .collect(Collectors.toList());
@@ -123,7 +124,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
-	private ServiceEffectSpecification transformToAdapterSeff(ServiceEffectSpecification seffToTransform) {
+	private ServiceEffectSpecification transformToAdapterSeff(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		
 		ServiceEffectSpecification transformedSeff = this.pcmSeffManager.createServiceEffectSpecificationFor(seffToTransform.getDescribedService__SEFF());
 		
@@ -144,13 +145,13 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		
 		return Arrays.asList(getExternalCallInfoFrom(seffToTransform));
 		
 	}
 	
-	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) {
+	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 
 		List<ExternalCallInfo> externalCallInfos = new ArrayList<ExternalCallInfo>();
 		
@@ -180,7 +181,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
-	protected abstract ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform); 
+	protected abstract ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException; 
 
 	protected RequiredRole getRequiredRoleOf(Signature signature) {
 		

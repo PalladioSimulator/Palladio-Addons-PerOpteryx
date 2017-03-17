@@ -4,6 +4,7 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import TransformationModel.Transformation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategy;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
 
@@ -43,6 +44,6 @@ public abstract class WeavingStep {
 	 * @param pcmToAdapt - The PCM model a concern has to be woven to.
 	 * @param weavingInstruction - Contains instructions which are required by the weaving-process.
 	 */
-	public abstract void weave(WeavingInstruction weavingInstruction);
+	public abstract void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException;
 	
 }

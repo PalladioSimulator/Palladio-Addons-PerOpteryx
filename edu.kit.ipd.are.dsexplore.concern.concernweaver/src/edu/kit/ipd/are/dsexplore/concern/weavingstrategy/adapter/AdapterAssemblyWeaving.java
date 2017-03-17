@@ -1,5 +1,6 @@
 package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -7,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -16,6 +16,8 @@ import org.palladiosimulator.pcm.repository.Role;
 import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.OperationRoleHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
@@ -50,7 +52,7 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 	}
 	
 	@Override
-	public void weave(WeavingInstruction weavingInstruction) {
+	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
 		ElementaryConcernComponent ecc = weavingInstruction.getECCWithConsumedFeatures().getFirst();
 		
@@ -95,7 +97,7 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		
 	}
 	
-	private void establishConnectionTo(ElementaryConcernComponent ecc) {
+	private void establishConnectionTo(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 		
 		createAssemblyConnectorsFromAdapterToECC();
 		createAssemblyConnectorsFromECCToRequiredECCs(ecc);
@@ -108,7 +110,7 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		
 			Role role = getAdaptersOpponentRequiredRoleOf(consumedFeature);
 			ConnectionInfo knownConnectionInfo = new ConnectionInfo(role, this.adapterAssemblyContext);
-			Optional<Connector> createdConnector = getApplicableConnectorGeneratorOf(role, asRoles(this.consumedFeaturesOfECC)).getConnectorOf(knownConnectionInfo);
+			Optional<Connector> createdConnector = getApplicableConnectorGeneratorOf(role, toRoles(this.consumedFeaturesOfECC)).getConnectorOf(knownConnectionInfo);
 			
 			addConnector(createdConnector);
 			
@@ -123,35 +125,51 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		
 	}
 	
-	private void createAssemblyConnectorsFromECCToRequiredECCs(ElementaryConcernComponent ecc) {
-	
+	private void createAssemblyConnectorsFromECCToRequiredECCs(ElementaryConcernComponent ecc) throws ConcernWeavingException {
+
 		ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, concernRepositoryManager);
-		eccHandler.getStructureWithInECCAndRequiredAccordingTo(getConnectorCollector()).forEach(eachCreatedConnector -> addConnector(eachCreatedConnector));
+		for (RepositoryComponent eachComponent : eccHandler.getStructureWithInECCAndRequiredAccordingTo(componentCollector())) {
+			
+			createConnectorsBy(eachComponent).forEach(this::addConnector);
+			
+		}
 		
 	}
 	
-	private Function<RepositoryComponent, List<Connector>> getConnectorCollector() {
+	private Function<RepositoryComponent, List<RepositoryComponent>> componentCollector() {
 		
-		return (component) -> connectorCollector(component);
+		return (component) -> Arrays.asList(component);
 		
 	}
 	
-	private List<Connector> connectorCollector(RepositoryComponent component) {
+	private List<Connector> createConnectorsBy(RepositoryComponent component) throws ConcernWeavingException {
 		
-		return component.getRequiredRoles_InterfaceRequiringEntity().stream().map(eachRequiredRole -> createConnectorBy(component, eachRequiredRole))
+		return component.getRequiredRoles_InterfaceRequiringEntity().stream().map(eachRequiredRole -> createConnectorAndCheckExceptionBy(component, eachRequiredRole))
 																			 .collect(Collectors.toList());
 		
 	}
 	
-	private Connector createConnectorBy(RepositoryComponent component, RequiredRole requiredRole) {
+	private Connector createConnectorAndCheckExceptionBy(RepositoryComponent component, RequiredRole requiredRole) {
 		
-		//TODO introduce exception
-		ConnectorGenerator applicableGenerator = getApplicableConnectorGeneratorOf(requiredRole, asRoles(concernRepositoryManager.getAllProvidedRoles())); 
+		try {
+			
+	        return createConnectorBy(component, requiredRole);
+	        
+	    } catch (Exception ex) {
+	    	
+	        throw new RuntimeException(ex);
+	        
+	    }
+		
+	}
+
+	private Connector createConnectorBy(RepositoryComponent component, RequiredRole requiredRole) throws ConcernWeavingException {
+		
+		ConnectorGenerator applicableGenerator = getApplicableConnectorGeneratorOf(requiredRole, toRoles(concernRepositoryManager.getAllProvidedRoles())); 
 		AssemblyContext assemblyContext = getAssemblyContextBy(component.getEntityName());
 		Optional<Connector> createdConnector = applicableGenerator.getConnectorOf(new ConnectionInfo(requiredRole, assemblyContext));
 				
-		//return createdConnector.orElseThrow(() -> new Exception());
-		return createdConnector.orElse(null);
+		return createdConnector.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingProvidedRole(component, requiredRole)));
 		
 	}
 

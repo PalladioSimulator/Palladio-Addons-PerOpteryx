@@ -32,12 +32,12 @@ public class RepositoryWeavingTest extends WeavingTest {
 		
 		try {
 			
-			weavingInstructions.forEach(weavingInstruction -> {
+			for (WeavingInstruction eachWeavingInstruction : weavingInstructions) {
 				
-				WeavingStep.setWeavingStrategy(weavingInstruction.getTransformationStrategy());
-				new RepositoryWeaving().weave(weavingInstruction);
+				WeavingStep.setWeavingStrategy(eachWeavingInstruction.getTransformationStrategy());
+				new RepositoryWeaving().weave(eachWeavingInstruction);
 				
-			});
+			}
 			
 		} catch (Exception ex) {
 			

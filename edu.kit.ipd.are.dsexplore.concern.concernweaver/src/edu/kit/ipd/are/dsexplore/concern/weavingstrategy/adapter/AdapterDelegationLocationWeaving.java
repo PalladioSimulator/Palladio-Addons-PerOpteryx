@@ -74,7 +74,7 @@ public class AdapterDelegationLocationWeaving extends AdapterAssemblyWeaving {
 
 	private List<Role> getProvidedRolesOfAdapter() {
 		
-		return asRoles(getComponentOf(this.adapterAssemblyContext).getProvidedRoles_InterfaceProvidingEntity());
+		return toRoles(getComponentOf(this.adapterAssemblyContext).getProvidedRoles_InterfaceProvidingEntity());
 		
 	}
 	

@@ -15,6 +15,9 @@ import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+
 public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 
 	@Override
@@ -26,27 +29,18 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 	}
 
 	@Override
-	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) {
+	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		
-		//TODO exception handling
 		Signature calledService = (Signature) seffToTransform.getDescribedService__SEFF();
-		try {
-			
-			return new ExternalCallInfo(calledService, 
-										getRequiredRoleOf(calledService), 
-										getReturnVariableUsageBy(calledService), 
-										getInputVariableUsagesBy(calledService),
-										getSetVariableActions(seffToTransform));
-			
-		} catch (Exception ex) {
-			
-			return null;
-			
-		}
-		
+		return new ExternalCallInfo(calledService, 
+									getRequiredRoleOf(calledService), 
+									getReturnVariableUsageBy(calledService), 
+									getInputVariableUsagesBy(calledService),
+									getSetVariableActions(seffToTransform));
+
 	}
 
-	private List<VariableUsage> getReturnVariableUsageBy(Signature calledService) throws Exception {
+	private List<VariableUsage> getReturnVariableUsageBy(Signature calledService) throws ConcernWeavingException {
 		
 		if (!hasReturnType(calledService)) {
 			
@@ -58,7 +52,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 	}
 
-	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws Exception {
+	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
 		
 		if (!hasInputVariables(calledService)) {
 			
@@ -95,7 +89,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 	}
 	
-	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws Exception {
+	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
 		
 		//TODO exception handling
 		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
@@ -109,7 +103,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 			
 		}
 		
-		throw new Exception();
+		throw new ConcernWeavingException(ErrorMessage.missingExternalCall(getCallingComponent(), calledService));
 		
 	}
 

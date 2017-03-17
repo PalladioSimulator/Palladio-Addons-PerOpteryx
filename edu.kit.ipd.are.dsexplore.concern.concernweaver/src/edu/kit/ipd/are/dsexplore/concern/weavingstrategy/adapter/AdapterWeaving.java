@@ -12,6 +12,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
@@ -39,7 +40,7 @@ public abstract class AdapterWeaving {
 		
 	}
 	
-	public abstract void weave(WeavingInstruction weavingInstruction);
+	public abstract void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException;
 	
 	protected RepositoryComponent getComponentOf(ElementaryConcernComponent ecc) {
 
@@ -71,7 +72,7 @@ public abstract class AdapterWeaving {
 		
 	}
 	
-	protected List<Role> asRoles(List<? extends Role> roles) {
+	protected List<Role> toRoles(List<? extends Role> roles) {
 		
 		return roles.stream().map(each -> (Role) each).collect(Collectors.toList());
 		
