@@ -91,7 +91,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	}
 	
 	@Override
-	public void weave(WeavingInstruction weavingInstruction) {
+	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
 		setAdapterComponentBy(getUniqueAdapterName(weavingInstruction));
 		setWeavingLocation(weavingInstruction.getWeavingLocation());
@@ -104,7 +104,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	protected abstract BasicComponent getCalledComponent();
 	
-	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) {
+	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) throws ConcernWeavingException {
 		
 		createServiceEffectSpecificationsBy(calledComponent).forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo(this.adapterComponent, eachCreatedSeff));
 		
@@ -112,8 +112,29 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	private List<ServiceEffectSpecification> createServiceEffectSpecificationsBy(BasicComponent component) throws ConcernWeavingException {
 
-		return getServiceEffectSpecificationsFrom(component).stream().map(eachSeff -> transformToAdapterSeff(eachSeff))
+		try {
+			
+			return getServiceEffectSpecificationsFrom(component).stream().map(eachSeff -> transformToAdaperSeffAndCheckForException(eachSeff))
 															     	 .collect(Collectors.toList());
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
+		
+	}
+	
+	private ServiceEffectSpecification transformToAdaperSeffAndCheckForException(ServiceEffectSpecification seffToTransform) {
+		
+		try {
+			
+			return transformToAdapterSeff(seffToTransform);
+			
+		} catch(ConcernWeavingException ex) {
+			
+			throw new RuntimeException(ex);
+			
+		}
 		
 	}
 	

@@ -144,18 +144,25 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 	
 	private List<Connector> createConnectorsBy(RepositoryComponent component) throws ConcernWeavingException {
 		
-		return component.getRequiredRoles_InterfaceRequiringEntity().stream().map(eachRequiredRole -> createConnectorAndCheckExceptionBy(component, eachRequiredRole))
-																			 .collect(Collectors.toList());
+		try {
+		
+			return component.getRequiredRoles_InterfaceRequiringEntity().stream().map(eachRequiredRole -> createConnectorAndCheckForExceptionBy(component, eachRequiredRole))
+																				 .collect(Collectors.toList());
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
 		
 	}
 	
-	private Connector createConnectorAndCheckExceptionBy(RepositoryComponent component, RequiredRole requiredRole) {
+	private Connector createConnectorAndCheckForExceptionBy(RepositoryComponent component, RequiredRole requiredRole) {
 		
 		try {
 			
 	        return createConnectorBy(component, requiredRole);
 	        
-	    } catch (Exception ex) {
+	    } catch (ConcernWeavingException ex) {
 	    	
 	        throw new RuntimeException(ex);
 	        
@@ -169,7 +176,7 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		AssemblyContext assemblyContext = getAssemblyContextBy(component.getEntityName());
 		Optional<Connector> createdConnector = applicableGenerator.getConnectorOf(new ConnectionInfo(requiredRole, assemblyContext));
 				
-		return createdConnector.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingProvidedRole(component, requiredRole)));
+		return createdConnector.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingComplimentaryRole(component, requiredRole)));
 		
 	}
 

@@ -48,7 +48,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 
-	private void addEccAllocationContexts(ElementaryConcernComponent ecc) {
+	private void addEccAllocationContexts(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 		
 		RepositoryComponent eccComponent = getComponentOf(ecc); 
 		if (eccComponent.getRequiredRoles_InterfaceRequiringEntity().isEmpty()) {
@@ -62,7 +62,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 	
-	private void addAllocationContextOfECC(RepositoryComponent eccComponent) {
+	private void addAllocationContextOfECC(RepositoryComponent eccComponent) throws ConcernWeavingException {
 		
 		AssemblyContext eccAssemblyContext = getUniqueAssemblyContextOf(eccComponent);
 		AllocationContext allocationContextToAdd = pcmAllocationManager.createAllocationContextBy(eccAssemblyContext, this.resourceContainer);
@@ -88,45 +88,75 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 	
-	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(ElementaryConcernComponent ecc, ResourceContainer resourceContainer) {
+	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(ElementaryConcernComponent ecc, ResourceContainer resourceContainer) throws ConcernWeavingException {
 		
-		return getECCAndRequiredAssemblyContexts(ecc).stream().map(eachAssemblyContext -> pcmAllocationManager.createAllocationContextBy(eachAssemblyContext, resourceContainer))
-												  		      .collect(Collectors.toList());
+		try {
+		
+			return getECCAndRequiredAssemblyContexts(ecc).stream().map(eachAssemblyContext -> pcmAllocationManager.createAllocationContextBy(eachAssemblyContext, resourceContainer))
+													  		      .collect(Collectors.toList());
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
 		
 	}
 
 	private List<AssemblyContext> getECCAndRequiredAssemblyContexts(ElementaryConcernComponent ecc) {
 
-		return new ECCStructureHandler(ecc, concernRepositoryManager).getStructureWithInECCAndRequiredAccordingTo(getAssemblyContextCollector());
+		try {
+			
+			return new ECCStructureHandler(ecc, concernRepositoryManager).getStructureWithInECCAndRequiredAccordingTo(getAssemblyContextCollector());
+			
+		} catch (ConcernWeavingException ex) {
+			
+			throw new RuntimeException(ex);
+			
+		}
 		
 	}
 	
-	private Function<RepositoryComponent, List<AssemblyContext>> getAssemblyContextCollector() {
+	private Function<RepositoryComponent, List<AssemblyContext>> getAssemblyContextCollector() throws ConcernWeavingException {
 		
-		return (component) -> assemblyContextCollector(component);
+		try {
+		
+			return (component) -> assemblyContextCollector(component);
+			
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
+			
 		
 	}
 	
 	private List<AssemblyContext> assemblyContextCollector(RepositoryComponent component) {
 		
-		return Arrays.asList(getUniqueAssemblyContextOf(component));
+		try {
+			
+			return Arrays.asList(getUniqueAssemblyContextOf(component));
+			
+		} catch (ConcernWeavingException ex) {
+			
+			throw new RuntimeException(ex);
+			
+		}
 		
 	}
 
-	private AssemblyContext getUniqueAssemblyContextOf(RepositoryComponent component) {
+	private AssemblyContext getUniqueAssemblyContextOf(RepositoryComponent component) throws ConcernWeavingException {
 		
 		Optional<List<AssemblyContext>> foundAssemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
 		if (foundAssemblyContexts.get().size() == 0) {
 			
-			//TODO introduce exception
-			return null;
+			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.get().size()));
 			
 		}
 		
 		if (foundAssemblyContexts.get().size() > 1) {
 			
-			//TODO introduce exception
-			return null;
+			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.get().size()));
 			
 		}
 		

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
@@ -13,6 +14,7 @@ import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
@@ -42,18 +44,10 @@ public abstract class AdapterWeaving {
 	
 	public abstract void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException;
 	
-	protected RepositoryComponent getComponentOf(ElementaryConcernComponent ecc) {
+	protected RepositoryComponent getComponentOf(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 
-		try {
-			ECCFeatureHandler featureHandler = new ECCFeatureHandler(concernRepositoryManager);
-			return concernRepositoryManager.getElementaryConcernComponentOf(featureHandler.getProvidedFeaturesOf(ecc)).orElseThrow(() -> new Exception());
-			
-		} catch (Exception e) {
-			
-			//TODO introduce exception
-			return null;
-			
-		}
+		List<ProvidedRole> providedFeatures = new ECCFeatureHandler(concernRepositoryManager).getProvidedFeaturesOf(ecc);
+		return concernRepositoryManager.getElementaryConcernComponentOf(providedFeatures).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingECC(ecc, providedFeatures)));
 		
 	}
 	

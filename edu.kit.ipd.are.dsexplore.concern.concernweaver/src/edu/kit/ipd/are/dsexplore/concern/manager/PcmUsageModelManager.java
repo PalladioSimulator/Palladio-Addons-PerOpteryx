@@ -2,7 +2,6 @@ package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -33,7 +32,7 @@ private static PcmUsageModelManager eInstance = null;
 		
 	}
 	
-	public Optional<List<EntryLevelSystemCall>> getEntryLevelSystemCalls() {
+	public List<EntryLevelSystemCall> getEntryLevelSystemCalls() {
 		
 		List<EntryLevelSystemCall> foundEntryLevelSystemCalls = new ArrayList<EntryLevelSystemCall>();
 		TreeIterator<EObject> usageModelIterator = this.usageModel.eAllContents();
@@ -50,7 +49,7 @@ private static PcmUsageModelManager eInstance = null;
 			
 		}
 		
-		return (foundEntryLevelSystemCalls.size() == 0) ? Optional.empty() : Optional.of(foundEntryLevelSystemCalls);
+		return foundEntryLevelSystemCalls;
 		
 	}
 	

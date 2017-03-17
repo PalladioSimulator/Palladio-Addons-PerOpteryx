@@ -21,39 +21,34 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+
 public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 
 	@Override
 	protected BasicComponent getCalledComponent() {
 
-		// TODO check if cast to basic-component holds if component iscomposite-component.
+		// TODO check if cast to basic-component holds if component is composite-component.
 		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
 		return (BasicComponent) location.getAssemblyContext_ProvidedDelegationConnector().getEncapsulatedComponent__AssemblyContext();
 
 	}
 
 	@Override
-	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) {
+	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		
-		// TODO exception handling
+
 		Signature calledService = (Signature) seffToTransform.getDescribedService__SEFF();
-		try {
-
-			return new ExternalCallInfo(calledService, 
-										getRequiredRoleOf(calledService),
-										getReturnVariableUsagesBy(calledService), 
-										getInputVariableUsagesBy(calledService),
-										getSetVariableActions(seffToTransform));
-
-		} catch (Exception ex) {
-
-			return null;
-
-		}
+		return new ExternalCallInfo(calledService, 
+									getRequiredRoleOf(calledService),
+									getReturnVariableUsagesBy(calledService), 
+									getInputVariableUsagesBy(calledService),
+									getSetVariableActions(seffToTransform));
 
 	}
 
-	private List<VariableUsage> getReturnVariableUsagesBy(Signature calledService) throws Exception {
+	private List<VariableUsage> getReturnVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
 
 		if (!hasReturnType(calledService)) {
 
@@ -71,7 +66,7 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 
 	}
 
-	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws Exception {
+	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
 
 		if (!hasInputVariables(calledService)) {
 
@@ -121,18 +116,17 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 		
 	}
 
-	private EntryLevelSystemCall getEntryLevelSystemCallInvoking(Signature calledService) throws Exception {
+	private EntryLevelSystemCall getEntryLevelSystemCallInvoking(Signature calledService) throws ConcernWeavingException {
 		
-		List<EntryLevelSystemCall> entryLevelSystemCalls = pcmUsageModelManager.getEntryLevelSystemCalls().orElseThrow(() -> new Exception());
+		List<EntryLevelSystemCall> entryLevelSystemCalls = pcmUsageModelManager.getEntryLevelSystemCalls();
 		return entryLevelSystemCalls.stream().filter(eachSystemCall -> areEqual(eachSystemCall.getOperationSignature__EntryLevelSystemCall(), 
 																				calledService))
-											 .findFirst().orElseThrow(() -> new Exception());
+											 .findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingEntryLevelSystemCall(calledService)));
 		
 	}
 	
-	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws Exception {
+	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
 
-		// TODO exception handling
 		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
 
 			Optional<ExternalCallAction> externalCallAction = getExternalCallActionFrom(eachSEFF, calledService);
@@ -144,11 +138,11 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 
 		}
 
-		throw new Exception();
+		throw new ConcernWeavingException(ErrorMessage.missingExternalCall(getCallingComponent(), calledService));
 
 	}
 
-	private BasicComponent getCallingComponent() throws Exception {
+	private BasicComponent getCallingComponent() throws ConcernWeavingException {
 
 		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
 		Optional<Connector> assemblyConnector = getAssemblyConnectorOf(location.getOuterProvidedRole_ProvidedDelegationConnector());
@@ -159,7 +153,7 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 			
 		}
 		
-		throw new Exception();
+		throw new ConcernWeavingException(ErrorMessage.missingConnectorWith(location.getOuterProvidedRole_ProvidedDelegationConnector()));
 		
 	}
 

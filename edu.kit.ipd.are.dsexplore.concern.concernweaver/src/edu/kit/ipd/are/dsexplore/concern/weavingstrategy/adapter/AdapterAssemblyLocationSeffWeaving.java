@@ -91,7 +91,6 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 	
 	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
 		
-		//TODO exception handling
 		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
 			
 			Optional<ExternalCallAction> externalCallAction = getExternalCallActionFrom(eachSEFF, calledService);

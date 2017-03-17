@@ -6,6 +6,8 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 
 public class AdapterUsageModelWeaving extends AdapterWeaving {
 
@@ -18,7 +20,7 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 	}
 	
 	@Override
-	public void weave(WeavingInstruction weavingInstruction) {
+	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
 		if (!isDelegationConnectorLocation(weavingInstruction.getWeavingLocation())) {
 			
@@ -32,32 +34,43 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 		
 	}
 
-	private void editEntryLevelSystemCalls() {
+	private void editEntryLevelSystemCalls() throws ConcernWeavingException {
 		
-		pcmUsageModelManager.getEntryLevelSystemCalls().ifPresent(entryLevelSystemCalls -> 
+		try {
 		
-			entryLevelSystemCalls.forEach(eachEntryLevelSystemCall -> replaceProvidedRoleOf(eachEntryLevelSystemCall))
+			pcmUsageModelManager.getEntryLevelSystemCalls().forEach(entryLevelSystemCall -> replaceProvidedRoleOf(entryLevelSystemCall));
 		
-		);
+		} catch (Exception ex) {
+			
+			throw new ConcernWeavingException(ex.getMessage());
+			
+		}
 		
 	}
 
 	private void replaceProvidedRoleOf(EntryLevelSystemCall entryLevelSystemCallToEdit) {
 		
-		OperationInterface calledInterface = entryLevelSystemCallToEdit.getOperationSignature__EntryLevelSystemCall().getInterface__OperationSignature();
-		OperationProvidedRole newProvidedRole = getNewPorvidedRoleFromAdapterReferencing(calledInterface);
+		try { 
 		
-		entryLevelSystemCallToEdit.setProvidedRole_EntryLevelSystemCall(newProvidedRole);
+			OperationInterface calledInterface = entryLevelSystemCallToEdit.getOperationSignature__EntryLevelSystemCall().getInterface__OperationSignature();
+			OperationProvidedRole newProvidedRole = getNewPorvidedRoleFromAdapterReferencing(calledInterface);
+			
+			entryLevelSystemCallToEdit.setProvidedRole_EntryLevelSystemCall(newProvidedRole);
+			
+		} catch(ConcernWeavingException ex) {
+			
+			throw new RuntimeException(ex);
+			
+		}
 		
 	}
 
-	//TODO refactoring: for each Optional.get() introduce exceptions (in each source-file)
-	private OperationProvidedRole getNewPorvidedRoleFromAdapterReferencing(OperationInterface calledInterface) {
+	private OperationProvidedRole getNewPorvidedRoleFromAdapterReferencing(OperationInterface calledInterface) throws ConcernWeavingException {
 		
 		return this.adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
 																				.map(eachProvidedRole -> (OperationProvidedRole) eachProvidedRole)
 																				.filter(eachOperationProvidedRole -> references(calledInterface, eachOperationProvidedRole))
-																				.findFirst().get();
+																				.findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRole(this.adapter, calledInterface)));
 		
 	}
 
