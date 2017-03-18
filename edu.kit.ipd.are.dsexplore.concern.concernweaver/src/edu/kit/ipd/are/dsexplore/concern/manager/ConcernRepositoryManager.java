@@ -116,7 +116,7 @@ public class ConcernRepositoryManager {
 		
 		addAdapter(adapter);
 		
-		return (ImplementationComponentType) adapter;
+		return (RepositoryComponent) adapter;
 		
 	}
 	

@@ -23,8 +23,8 @@ import org.palladiosimulator.pcm.repository.Signature;
 import ConcernModel.AnnotationTarget;
 import ConcernModel.ConcernModelFactory;
 import ConcernModel.JoinPoint;
-import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingLocationHandler;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocationHandler;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
 
 public class WeavingLocationHandlerTest extends WeavingTest{

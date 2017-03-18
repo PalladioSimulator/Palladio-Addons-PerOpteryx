@@ -29,7 +29,6 @@ import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import concernStrategy.StrategymodelPackage;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 public class ConcernWeavingTestUtil {
 
@@ -56,41 +55,41 @@ public class ConcernWeavingTestUtil {
 	private final static String ECC_RESPONSE_NAME = "Response";
 	private final static String ECC_ANALYSIS_NAME = "Analysis";
 	
-	private final static ResourceSetPartition partition = new ResourceSetPartition();
-	
-	public static void initialize() {
-		
-		List<URI> models = new ArrayList<URI>();
-		models.add(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT)));
-		
-		partition.initialiseResourceSetEPackages(getDefaultPackages());
-		
-		for (URI eachModel : models) {
-			
-			partition.loadModel(eachModel);
-			
-		}
-		
-		partition.resolveAllProxies();
-		
-	}
-	
-	private static EPackage[] getDefaultPackages() {
-		
-        return (EPackage[]) Arrays.asList(EMFProfilePackage.eINSTANCE, 
-				   			 			  EMFProfileApplicationPackage.eINSTANCE, 
-				   			 			  NotationPackage.eINSTANCE,
-				   			 			  ConcernModelPackage.eINSTANCE,
-				   			 			  getProfile(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)).toArray();
-        		
-	}
-	
-	private static Profile getProfile(String relativePath) {
-		
-		Resource resource = new ResourceSetImpl().getResource(URI.createFileURI(getAbsolutePathOf(relativePath)), true);
-		return (Profile) resource.getContents().get(0);
-		
-	}
+//	private final static ResourceSetPartition partition = new ResourceSetPartition();
+//	
+//	public static void initialize() {
+//		
+//		List<URI> models = new ArrayList<URI>();
+//		models.add(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT)));
+//		
+//		partition.initialiseResourceSetEPackages(getDefaultPackages());
+//		
+//		for (URI eachModel : models) {
+//			
+//			partition.loadModel(eachModel);
+//			
+//		}
+//		
+//		partition.resolveAllProxies();
+//		
+//	}
+//	
+//	private static EPackage[] getDefaultPackages() {
+//		
+//        return (EPackage[]) Arrays.asList(EMFProfilePackage.eINSTANCE, 
+//				   			 			  EMFProfileApplicationPackage.eINSTANCE, 
+//				   			 			  NotationPackage.eINSTANCE,
+//				   			 			  ConcernModelPackage.eINSTANCE,
+//				   			 			  getProfile(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)).toArray();
+//        		
+//	}
+//	
+//	private static Profile getProfile(String relativePath) {
+//		
+//		Resource resource = new ResourceSetImpl().getResource(URI.createFileURI(getAbsolutePathOf(relativePath)), true);
+//		return (Profile) resource.getContents().get(0);
+//		
+//	}
 	
 	public static Repository loadConcernSolution() {
 		
@@ -107,11 +106,9 @@ public class ConcernWeavingTestUtil {
 	public static ConcernRepository loadConcernRepository() {
 		
 		return (ConcernRepository) loadWithProfiles(ConcernModelPackage.eINSTANCE, RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT);
-		//return (ConcernRepository) partition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
 		
 	}
 	
-	//Not working at this time...
 	public static TransformationRepository loadTransformation() {
 		
 		EObject transRepo = loadWithoutProfiles(TransformationModelPackage.eINSTANCE, RELATIVE_CONCERN_TRANSFORMATION_MODEL_PATH_SEGMENT);
@@ -131,9 +128,9 @@ public class ConcernWeavingTestUtil {
 		modelFiles.add(getAbsolutePathOf(RELATIV_PCM_RESOURCE_ENV_MODEL_PATH_SEGMENT));
 		
 		PCMResourceSetPartition set = createPCMResourceSetPartition(modelFiles);
-		PCMInstance pcm = new PCMInstance(set);
+		set.resolveAllProxies();
 
-		return pcm;
+		return new PCMInstance(set);
 		
 	}
 	
@@ -148,7 +145,6 @@ public class ConcernWeavingTestUtil {
 			resourceSetPartition.loadModel(modelFile);
 			
 		}
-		resourceSetPartition.resolveAllProxies();
 		
 		return resourceSetPartition;
 		

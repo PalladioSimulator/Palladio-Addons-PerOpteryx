@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.concernweaving.util;
+package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,6 @@ import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
@@ -266,7 +265,10 @@ public class WeavingInstructionGenerator {
 
 	private boolean contains(RepositoryComponent component, AllocationContext allocationContext) {
 		
-		return EMFHelper.checkIdentity(allocationContext.getAssemblyContext_AllocationContext().getEncapsulatedComponent__AssemblyContext(), component);
+		String componentId1 = component.getId();
+		String componentId2 = allocationContext.getAssemblyContext_AllocationContext().getEncapsulatedComponent__AssemblyContext().getId();
+		
+		return componentId1.equals(componentId2);
 		
 	}
 	

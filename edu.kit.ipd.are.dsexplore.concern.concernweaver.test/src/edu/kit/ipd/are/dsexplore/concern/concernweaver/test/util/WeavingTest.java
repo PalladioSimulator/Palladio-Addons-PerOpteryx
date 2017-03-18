@@ -41,7 +41,7 @@ public class WeavingTest {
 	public static void initialize() {
 		
 		ConcernWeavingTestUtil.registerFactories();
-		ConcernWeavingTestUtil.initialize();		
+//		ConcernWeavingTestUtil.initialize();		
 		
 		pcmToAdapt = ConcernWeavingTestUtil.loadPCM();
 		concernSolution = ConcernWeavingTestUtil.loadConcernSolution();

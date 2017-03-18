@@ -47,9 +47,9 @@ public class ExperimentUtil {
 		modelFiles.add(ConcernWeavingTestUtil.getAbsolutePathOf(RELATIV_PCM_RESOURCE_ENV_MODEL_PATH_SEGMENT));
 		
 		PCMResourceSetPartition set = ConcernWeavingTestUtil.createPCMResourceSetPartition(modelFiles);
-		PCMInstance pcm = new PCMInstance(set);
+		//set.resolveAllProxies();
 
-		return pcm;
+		return new PCMInstance(set);
 		
 	}
 	

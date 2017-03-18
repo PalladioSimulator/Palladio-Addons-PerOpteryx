@@ -12,8 +12,8 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.Concern;
-import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingInstructionGenerator;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstructionGenerator;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;

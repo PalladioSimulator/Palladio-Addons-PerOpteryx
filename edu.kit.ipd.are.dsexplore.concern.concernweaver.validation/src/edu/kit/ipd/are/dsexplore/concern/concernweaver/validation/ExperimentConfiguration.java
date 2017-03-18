@@ -38,7 +38,6 @@ public abstract class ExperimentConfiguration {
 		pcmToAdapt = ExperimentUtil.loadPCM();
 		concernSolution = ConcernWeavingTestUtil.loadConcernSolution();
         concernModel = ConcernWeavingTestUtil.loadConcernRepository();
-		//adapterTransformation = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
         adapterTransformation = ConcernWeavingTestUtil.loadTransformation().getTransformation().get(0);
         
 	}

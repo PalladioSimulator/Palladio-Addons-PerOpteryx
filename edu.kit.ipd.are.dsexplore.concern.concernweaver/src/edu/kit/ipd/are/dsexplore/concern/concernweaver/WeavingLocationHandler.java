@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.concernweaving.util;
+package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
@@ -16,7 +17,7 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.AnnotationTarget;
-import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.identifier.Identifier;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
@@ -178,7 +179,19 @@ public class WeavingLocationHandler {
 
 	private boolean containsAffectedRole(Connector connector, Role affectedRole) {
 		
-		return connector.eCrossReferences().stream().anyMatch(eachObject -> EMFHelper.checkIdentity(eachObject, affectedRole));
+		return connector.eCrossReferences().stream().anyMatch(eachObject -> areEqual(eachObject, affectedRole));
+		
+	}
+
+	private boolean areEqual(EObject object1, EObject object2) {
+		
+		if (object1 instanceof Identifier && object2 instanceof Identifier) {
+			
+			return ((Identifier) object1).getId().equals(((Identifier) object2).getId());
+			
+		}
+		
+		return false;
 		
 	}
 	
