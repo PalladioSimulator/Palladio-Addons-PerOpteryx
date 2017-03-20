@@ -16,8 +16,8 @@ public class AdapterAssemblyLocationRepositoryWeaving extends AdapterRepositoryW
 		OperationRequiredRole requiredConnectionEnd = location.getRequiredRole_AssemblyConnector();
 		OperationProvidedRole providedConnectionEnd = location.getProvidedRole_AssemblyConnector();
 		
-		this.adapter.getProvidedRoles_InterfaceProvidingEntity().add(concernRepositoryManager.createProvidedRoleBy(requiredConnectionEnd));
-		this.adapter.getRequiredRoles_InterfaceRequiringEntity().add(concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
+		adapter.getProvidedRoles_InterfaceProvidingEntity().add(concernRepositoryManager.createProvidedRoleBy(requiredConnectionEnd));
+		adapter.getRequiredRoles_InterfaceRequiringEntity().add(concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
 		
 	}
 	

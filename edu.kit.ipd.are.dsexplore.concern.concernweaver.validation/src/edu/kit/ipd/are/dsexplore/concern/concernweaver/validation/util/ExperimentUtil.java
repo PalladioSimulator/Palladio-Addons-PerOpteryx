@@ -25,7 +25,6 @@ import TransformationModel.Appearance;
 import TransformationModel.TransformationModelFactory;
 import de.uka.ipd.sdq.identifier.Identifier;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 public class ExperimentUtil {
 
@@ -119,7 +118,7 @@ public class ExperimentUtil {
 	
 	private static void save(EObject modelToSave) {
 		
-		String location = ConcernWeaverUtil.getAbsolutePathOf(modelToSave);
+		String location = ConcernWeavingTestUtil.getAbsolutePathOf(modelToSave);
 		EMFHelper.saveToXMIFile(modelToSave, location.replace("\\models\\", RELATIVE_RESULT_FOLDER_PATH_SEGMENT));
 		
 	}

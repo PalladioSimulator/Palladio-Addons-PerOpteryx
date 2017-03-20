@@ -2,7 +2,9 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -29,35 +31,70 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 	
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-				
-		String name = getUniqueAdapterName(weavingInstruction);
 		
 		setResourceContainer(weavingInstruction.getResourceContainer());
-		
+		addAdapterAllocationContextRegarding(weavingInstruction.getTransformationStrategy().isMultiple());
 		addEccAllocationContexts(weavingInstruction.getECCWithConsumedFeatures().getFirst());
-		addAdapterAllocationContextWith(name);
 		
 	}
 
-	private void addAdapterAllocationContextWith(String name) throws ConcernWeavingException {
+	private void addAdapterAllocationContextRegarding(boolean isMultiple) throws ConcernWeavingException {
 		
-		AssemblyContext assemblyContextToAllocate = getAssemblyContextOfComponentWith(ConcernWeaverUtil.getDefaultInstanceNameWith(name));
-		AllocationContext allocationContextToAdd = pcmAllocationManager.createAllocationContextBy(assemblyContextToAllocate, this.resourceContainer);
-		addAllocationContext(allocationContextToAdd);
+		if (isMultiple) {
+			
+			createAndAddAdapterAllocationContext();
+			
+		} else {
+			
+			createAndAddAdapterAllocationContextIfNotExist();
+			
+		}
+		
+	}
+
+	private void createAndAddAdapterAllocationContextIfNotExist() {
+		
+		if (getExistingAdapterAllocationContext().isPresent()) {
+			
+			return;
+			
+		}
+		
+		createAndAddAdapterAllocationContext();
+		
+	}
+
+	private void createAndAddAdapterAllocationContext() {
+		
+		AllocationContext adapterAllocContext = pcmAllocationManager.createAllocationContextBy(adapterAssemblyContext, this.resourceContainer);
+		addAllocationContext(adapterAllocContext);
+		
+	}
+	
+	private Optional<AllocationContext> getExistingAdapterAllocationContext() {
+		
+		return pcmAllocationManager.getAllocationContextBy(adapterAllocationContextSearchCriteria());
+		
+	}
+
+	private Predicate<AllocationContext> adapterAllocationContextSearchCriteria() {
+		
+		return alloc -> ConcernWeaverUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), adapterAssemblyContext);
 		
 	}
 
 	private void addEccAllocationContexts(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 		
-		RepositoryComponent eccComponent = getComponentOf(ecc); 
-		if (eccComponent.getRequiredRoles_InterfaceRequiringEntity().isEmpty()) {
-			
-			addAllocationContextOfECC(eccComponent);
-			return;
-			
-		}
+		//TODO check if this code snippet is needed at all...
+//		RepositoryComponent eccComponent = getComponentOf(ecc); 
+//		if (eccComponent.getRequiredRoles_InterfaceRequiringEntity().isEmpty()) {
+//			
+//			addAllocationContextOfECC(eccComponent);
+//			return;
+//			
+//		}
 		
-		getAllocationContextsOfECCAndRequiredECCs(ecc, this.resourceContainer).forEach(eachAllocationContext -> addAllocationContext(eachAllocationContext));
+		getAllocationContextsOfECCAndRequiredECCs(ecc).forEach(eachAllocationContext -> addAllocationContext(eachAllocationContext));
 		
 	}
 	
@@ -81,17 +118,17 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 	
-	private AssemblyContext getAssemblyContextOfComponentWith(String uniqueName) throws ConcernWeavingException {
-		
-		return pcmSystemManager.getAssemblyContextByUniqueName(uniqueName).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.ambiguousComponentName(uniqueName)));
-		
-	}
+//	private AssemblyContext getAssemblyContextOfComponentWith(String uniqueName) throws ConcernWeavingException {
+//		
+//		return pcmSystemManager.getAssemblyContextByUniqueName(uniqueName).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.ambiguousComponentName(uniqueName)));
+//		
+//	}
 	
-	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(ElementaryConcernComponent ecc, ResourceContainer resourceContainer) throws ConcernWeavingException {
+	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 		
 		try {
 		
-			return getECCAndRequiredAssemblyContexts(ecc).stream().map(eachAssemblyContext -> pcmAllocationManager.createAllocationContextBy(eachAssemblyContext, resourceContainer))
+			return getECCAndRequiredAssemblyContexts(ecc).stream().map(eachAssemblyContext -> pcmAllocationManager.createAllocationContextBy(eachAssemblyContext, this.resourceContainer))
 													  		      .collect(Collectors.toList());
 		} catch (Exception ex) {
 			
@@ -105,7 +142,7 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 
 		try {
 			
-			return new ECCStructureHandler(ecc, concernRepositoryManager).getStructureWithInECCAndRequiredAccordingTo(getAssemblyContextCollector());
+			return new ECCStructureHandler(ecc, concernRepositoryManager).getStructureOfECCAndRequiredAccordingTo(getAssemblyContextCollector());
 			
 		} catch (ConcernWeavingException ex) {
 			
@@ -144,16 +181,11 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		
 	}
 
+	//Note, this method is only used for ECC related components which are allocated exactly once.
 	private AssemblyContext getUniqueAssemblyContextOf(RepositoryComponent component) throws ConcernWeavingException {
 		
 		List<AssemblyContext> foundAssemblyContexts = pcmSystemManager.getAssemblyContextsInstantiating(component);
-		if (foundAssemblyContexts.isEmpty()) {
-			
-			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.size()));
-			
-		}
-		
-		if (foundAssemblyContexts.size() > 1) {
+		if (foundAssemblyContexts.size() != 1) {
 			
 			throw new ConcernWeavingException(ErrorMessage.instantiationError(component, foundAssemblyContexts.size()));
 			

@@ -16,10 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -34,8 +31,6 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
-import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
 
 public class WeavingManager {
 
@@ -215,8 +210,6 @@ public class WeavingManager {
 		
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
-		//TODO is there a simpler way?
-		//updateProvidedFeatures(concern, concernSolution);
 		new WeavingJob(concern, getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute();
 		
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
@@ -228,41 +221,6 @@ public class WeavingManager {
 		}
 		
 		return pcm;
-		
-	}
-
-//	private void updateProvidedFeatures(Concern concern, Repository concernSolution) {
-//
-//		concern.getComponents().forEach(ecc -> {
-//			
-//			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(concernSolution));
-//			List<RepositoryComponent> eccInternalStructure = eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component));
-//			ecc.getPerimeterInterface().clear();
-//			ecc.getPerimeterInterface().addAll(getProvidedFeaturesFrom(eccInternalStructure));
-//			
-//		});
-//		
-//	}
-
-	private List<ProvidedRole> getProvidedFeaturesFrom(List<RepositoryComponent> eccInternalStructure) {
-		
-		return eccInternalStructure.stream().flatMap(eachComponent -> eachComponent.getProvidedRoles_InterfaceProvidingEntity().stream())
-											.filter(eachProvidedRole -> isNotRequiredByAnyOf(eccInternalStructure, eachProvidedRole))
-											.collect(Collectors.toList());
-		
-	}
-
-	private boolean isNotRequiredByAnyOf(List<RepositoryComponent> eccInternalStructure, ProvidedRole providedRole) {
-		
-		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, null);
-		return !roleHandler.getOpponentOf(providedRole, getAllRequiredRolesFrom(eccInternalStructure)).isPresent();
-		
-	}
-
-	private List<? extends Role> getAllRequiredRolesFrom(List<RepositoryComponent> eccInternalStructure) {
-		
-		return eccInternalStructure.stream().flatMap(eachComp -> eachComp.getRequiredRoles_InterfaceRequiringEntity().stream())
-											.collect(Collectors.toList());
 		
 	}
 

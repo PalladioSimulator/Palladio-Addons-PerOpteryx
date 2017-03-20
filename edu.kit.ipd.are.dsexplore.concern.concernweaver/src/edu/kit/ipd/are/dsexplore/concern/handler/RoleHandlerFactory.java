@@ -3,6 +3,7 @@ package edu.kit.ipd.are.dsexplore.concern.handler;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -24,7 +25,7 @@ public class RoleHandlerFactory {
 		
 	}
 	
-	public static RoleHandler getBy(Role role, ConcernRepositoryManager concernRepositoryManager) {
+	public static Optional<RoleHandler> getBy(Role role, ConcernRepositoryManager concernRepositoryManager) {
 		
 		Iterator<Entry<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>>> iterator = roleHandlerMap.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -32,14 +33,13 @@ public class RoleHandlerFactory {
 			Entry<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>> current = iterator.next();
 			if (current.getKey().test(role)) {
 				
-				return current.getValue().apply(concernRepositoryManager);
+				return Optional.of(current.getValue().apply(concernRepositoryManager));
 				
 			}
 			
 		}
 		
-		//Introduce exceptions
-		return null;
+		return Optional.empty();
 		
 	}
 

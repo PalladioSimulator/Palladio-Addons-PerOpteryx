@@ -2,34 +2,40 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1">
   <Concern:ConcernRepository>
     <concerns name="IDS">
-      <strategies name="DDOS" description="Observes DDOS attacks"/>
-      <components name="Detection">
+      <strategies name="DDOS" description="Observes DDOS attacks">
+        <concernSolutions href="ConcernSolutions.solutionmodel#//@solutions.0"/>
+        <concernSolutions href="ConcernSolutions.solutionmodel#//@solutions.1"/>
+      </strategies>
+      <components requires="/0/@concerns.0/@components.1" name="Detection">
         <annotationenrich name="Observer"/>
       </components>
-      <components requires="/0/@concerns.0/@components.0 /0/@concerns.0/@components.2" name="Analysis">
+      <components requires="/0/@concerns.0/@components.2" name="Analysis">
         <annotationenrich name="Analysis"/>
       </components>
       <components name="Response">
         <annotationenrich name="Response"/>
       </components>
-      <annotationtarget name="Analysee" maxAmount="-1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Observee" maxAmount="-1" joinPoint="INTERFACE_PROVIDES"/>
+      <constraints annotations="/0/@concerns.0/@components.0/@annotationenrich.0 /0/@concerns.0/@annotationtarget.0"/>
       <constraints annotations="/0/@concerns.0/@annotationtarget.0 /0/@concerns.0/@components.1/@annotationenrich.0"/>
-      <constraints annotations="/0/@concerns.0/@components.0/@annotationenrich.0"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.0">
-      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
-    </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:concernStrategy" appliedTo="/0/@concerns.0/@strategies.0">
       <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_rV-DQF4-EeaB9J8tDaDTlA"/>
-      <featureSet href="../../ConcernStrategy/ConcernStrategy.strategymodel#_yb0CUOocEea6MN_xn9d-Ng"/>
+      <featureSet href="ConcernStrategy.strategymodel#_yb0CUOocEea6MN_xn9d-Ng"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.0">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+      <provides href="ConcernStrategy.strategymodel#_rPxJ4euyEea0n-d3oRMSPQ"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.1">
       <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+      <provides href="ConcernStrategy.strategymodel#_nUPeseohEea6MN_xn9d-Ng"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.2">
       <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+      <provides href="ConcernStrategy.strategymodel#_uSJ80euyEea0n-d3oRMSPQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

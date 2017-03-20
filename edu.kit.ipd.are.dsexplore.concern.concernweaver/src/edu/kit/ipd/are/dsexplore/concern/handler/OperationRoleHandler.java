@@ -7,6 +7,7 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 public class OperationRoleHandler extends RoleHandler {
 
@@ -36,31 +37,11 @@ public class OperationRoleHandler extends RoleHandler {
 	}
 
 	private boolean hasSameInterface(OperationRequiredRole requiredRole, OperationProvidedRole providedRole) {
-		
-		String providedInterfaceId = providedRole.getProvidedInterface__OperationProvidedRole().getId();
-		String requiredInterfaceId = requiredRole.getRequiredInterface__OperationRequiredRole().getId();
-		
-		return providedInterfaceId.equals(requiredInterfaceId);
+
+		return ConcernWeaverUtil.areEqual(providedRole.getProvidedInterface__OperationProvidedRole(), 
+										  requiredRole.getRequiredInterface__OperationRequiredRole());
 		
 	}
-
-//	@Override
-//	public Optional<RequiredRole> getRequiredOpponentOf(ProvidedRole providedRoleToHandle, List<RequiredRole> requiredRolesToExplore) {
-//		
-//		return filterRolesInstanceOf(OperationRequiredRole.class, requiredRolesToExplore).filter(eachOperationRequiredRole -> areConnected((OperationRequiredRole) eachOperationRequiredRole, 
-//																																		   (OperationProvidedRole) providedRoleToHandle))
-//				  							  											 .findFirst();
-//		
-//	}
-//
-//	@Override
-//	public Optional<ProvidedRole> getProvidedOpponentOf(RequiredRole requiredRoleToHandle, List<ProvidedRole> providedRolesToExplore) {
-//		
-//		return filterRolesInstanceOf(OperationProvidedRole.class, providedRolesToExplore).filter(eachOperationProvidedRole -> areConnected((OperationRequiredRole) requiredRoleToHandle, 
-//																																		   (OperationProvidedRole) eachOperationProvidedRole))
-//				  							  											 .findFirst();
-//		
-//	}
 	
 	@Override
 	public RequiredRole createRequiredRoleOf(ProvidedRole providedRole) {

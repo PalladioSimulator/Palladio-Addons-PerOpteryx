@@ -24,7 +24,6 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
 
@@ -79,7 +78,7 @@ public class WeavingTest {
 	
 	private void savePcmConcernRepository(Repository pcmConcernRepository) {
 		
-		String location = ConcernWeaverUtil.getAbsolutePathOf(pcmConcernRepository, pcmToAdapt.getRepositories().get(0));
+		String location = ConcernWeavingTestUtil.getAbsolutePathOf(pcmConcernRepository, pcmToAdapt.getRepositories().get(0));
 		EMFHelper.saveToXMIFile(pcmConcernRepository, location);
 		
 	}

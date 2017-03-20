@@ -62,7 +62,6 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.get();
 	private Transformation transformationStrategy;
 	private List<ProvidedRole> consumedFeautresOfECC;
-	private BasicComponent adapterComponent;
 	
 	protected WeavingLocation weavingLocation;
 	
@@ -78,12 +77,6 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
-	private void setAdapterComponentBy(String uniqueName) {
-		
-		this.adapterComponent = (BasicComponent) concernRepositoryManager.getComponentByUnique(uniqueName).get();
-		
-	}
-	
 	private void setWeavingLocation(WeavingLocation weavingLocation) {
 		
 		this.weavingLocation = weavingLocation;
@@ -93,7 +86,6 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
-		setAdapterComponentBy(getUniqueAdapterName(weavingInstruction));
 		setWeavingLocation(weavingInstruction.getWeavingLocation());
 		setConsumedFeautresOfECC(weavingInstruction.getECCWithConsumedFeatures().getSecond());
 		setTransformationRepositoryManager(weavingInstruction.getTransformationStrategy());
@@ -106,7 +98,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) throws ConcernWeavingException {
 		
-		createServiceEffectSpecificationsBy(calledComponent).forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo(this.adapterComponent, eachCreatedSeff));
+		createServiceEffectSpecificationsBy(calledComponent).forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo((BasicComponent) adapter, eachCreatedSeff));
 		
 	}
 
@@ -140,7 +132,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	private List<ServiceEffectSpecification> getServiceEffectSpecificationsFrom(BasicComponent component) {
 		
-		return component.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> anyMatch(getInterfacesOf(this.adapterComponent), eachSeff.getDescribedService__SEFF()))
+		return component.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> anyMatch(getInterfacesOf((BasicComponent) adapter), eachSeff.getDescribedService__SEFF()))
 																				  .collect(Collectors.toList());
 		
 	}
@@ -206,9 +198,9 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	protected RequiredRole getRequiredRoleOf(Signature signature) {
 		
-		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> areEqual(getInterfaceFrom(eachRequiredRole.eCrossReferences()),
+		return ((BasicComponent) adapter).getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachRequiredRole -> areEqual(getInterfaceFrom(eachRequiredRole.eCrossReferences()),
 																															  (Interface) signature.eContainer()))
-				 																		 .findFirst().get();
+				 																		 	  .findFirst().get();
 		
 	}
 
@@ -260,7 +252,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 
 	private Stream<RequiredRole> getAllRequiredRolesConnectedWith(List<ProvidedRole> consumedFeautresOfECC) {
 		
-		return this.adapterComponent.getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachOperationRequiredRole -> existConnection(eachOperationRequiredRole, consumedFeautresOfECC));
+		return ((BasicComponent) adapter).getRequiredRoles_InterfaceRequiringEntity().stream().filter(eachOperationRequiredRole -> existConnection(eachOperationRequiredRole, consumedFeautresOfECC));
 		
 	}
 

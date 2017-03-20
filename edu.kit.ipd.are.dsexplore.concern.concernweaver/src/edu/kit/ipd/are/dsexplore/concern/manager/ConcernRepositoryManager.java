@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
-import org.palladiosimulator.pcm.repository.ImplementationComponentType;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
@@ -50,9 +50,21 @@ public class ConcernRepositoryManager {
 		return eInstance;
 	}
 	
+	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
+		
+		return getAllComponents().filter(searchCriteria).findFirst();
+		
+	}
+	
 	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
 		
 		return new AnnotationFilter(Arrays.asList(pcmConcernRepository)).getComponentsAnnotatedWith(annotations);
+		
+	}
+	
+	private Stream<RepositoryComponent> getAllComponents() {
+		
+		return this.pcmConcernRepository.getComponents__Repository().stream();
 		
 	}
 	
@@ -101,7 +113,7 @@ public class ConcernRepositoryManager {
 		return givenProvidedRole.getId().equals(searchedProvidedRole.getId());
 		
 	}
-
+	
 	public Optional<RepositoryComponent> getComponentByUnique(String name) {
 		
 		return this.pcmConcernRepository.getComponents__Repository().stream().filter(component -> component.getEntityName().equals(name))

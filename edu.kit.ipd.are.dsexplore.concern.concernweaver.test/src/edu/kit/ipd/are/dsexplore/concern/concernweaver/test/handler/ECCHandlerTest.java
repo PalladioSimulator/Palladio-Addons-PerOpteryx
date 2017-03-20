@@ -17,7 +17,7 @@ import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
 
 public class ECCHandlerTest extends WeavingTest {
 	
-	private final static String OSSEC_DECODER_ID = "_lDUZwFWIEea0XO9AU2xvGg";
+	private final static String OSSEC_DECODER_ID = "_yEx6YK_cEeaFof9L2wGlaQ";
 	
 	private ConcernRepositoryManager concernRepositoryManager = ConcernRepositoryManager.getBy(concernSolution);
 	private ElementaryConcernComponent ecc;
@@ -26,7 +26,7 @@ public class ECCHandlerTest extends WeavingTest {
 	@Test
 	public void testGettingStructureOfECC() {
 				
-		givenECC();
+		givenDetectionECC();
 		whenGettingTheComponentStructureOfECC();
 		thenStructureShouldBeResolvedPoperly();
 		
@@ -35,33 +35,27 @@ public class ECCHandlerTest extends WeavingTest {
 	@Test
 	public void testGettingStructureOfECCAndRequiredECCs() {
 				
-		givenECCWithRequiredECCs();
+		givenDetectionECC();
 		whenGettingTheComponentStructureOfECCAndRequiredECCs();
 		thenStructureShouldBeResolveAllConcernComponents();
 		
 	}
 
-	private void givenECC() {
+	private void givenDetectionECC() {
 		
 		this.ecc = ConcernWeavingTestUtil.getDetectionECCOf(concern);
-		
-	}
-	
-	private void givenECCWithRequiredECCs() {
-		
-		this.ecc = ConcernWeavingTestUtil.getResponseECCOf(concern);
 		
 	}
 
 	private void whenGettingTheComponentStructureOfECC() {
 		
-		this.result = new ECCStructureHandler(this.ecc, this.concernRepositoryManager).getStructureWithInECCAccordingTo(getIdentityFunction());
+		this.result = new ECCStructureHandler(this.ecc, this.concernRepositoryManager).getStructureOfECCAccordingTo(getIdentityFunction());
 		
 	}
 	
 	private void whenGettingTheComponentStructureOfECCAndRequiredECCs() {
 		
-		this.result = new ECCStructureHandler(this.ecc, this.concernRepositoryManager).getStructureWithInECCAndRequiredAccordingTo(getIdentityFunction());
+		this.result = new ECCStructureHandler(this.ecc, this.concernRepositoryManager).getStructureOfECCAndRequiredAccordingTo(getIdentityFunction());
 		
 	}
 	

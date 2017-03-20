@@ -172,7 +172,7 @@ public class WeavingExecuter {
 			
 			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(this.concernWithSolutionPair.getSecond()));
-			eccHandler.getStructureWithInECCAccordingTo(component -> Arrays.asList(component)).forEach(comp -> {
+			eccHandler.getStructureOfECCAccordingTo(component -> Arrays.asList(component)).forEach(comp -> {
 				
 				try {
 					

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -128,7 +129,7 @@ public class ConcernWeavingTestUtil {
 		modelFiles.add(getAbsolutePathOf(RELATIV_PCM_RESOURCE_ENV_MODEL_PATH_SEGMENT));
 		
 		PCMResourceSetPartition set = createPCMResourceSetPartition(modelFiles);
-		set.resolveAllProxies();
+		//set.resolveAllProxies();
 
 		return new PCMInstance(set);
 		
@@ -238,6 +239,25 @@ public class ConcernWeavingTestUtil {
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		reg.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
         
+	}
+	
+	public static String getAbsolutePathOf(Repository repository, Repository referenceRepository) {
+		
+		String absolutePath = getAbsolutePathOf(referenceRepository);
+		return String.format("%1s\\%2s.%3s", new File(absolutePath).getParent(), repository.getEntityName(), FilenameUtils.getExtension(absolutePath));
+		
+	}
+	
+	public static String getAbsolutePathOf(EObject object) {
+		
+		return getAbsolutePathOf(object.eResource());
+		
+	}
+	
+	private static String getAbsolutePathOf(Resource resource) {
+		
+		return new File(resource.getURI().path()).toString();
+		
 	}
 	
 	public static String getAbsolutePathOf(String relativePath) {

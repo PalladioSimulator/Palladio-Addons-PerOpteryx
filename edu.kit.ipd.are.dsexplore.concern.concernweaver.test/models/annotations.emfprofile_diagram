@@ -34,7 +34,7 @@
         <eType xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/SolutionModel/1.0.0#//Solution"/>
       </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_aLKCgOPUEeaia9tH8AAbnA">
-        <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.1#//repository/RepositoryComponent"/>
+        <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.1#//repository/Repository"/>
       </extensions>
     </eClassifiers>
   </emfprofile:Profile>
@@ -210,7 +210,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_Y7RvAuPUEeaia9tH8AAbnA" fontName=".SF NS Text"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Y7RvA-PUEeaia9tH8AAbnA" points="[-1, -19, -4, 88]$[-1, -87, -4, 20]"/>
     </edges>
-    <edges xmi:type="notation:Edge" xmi:id="_aLL3sOPUEeaia9tH8AAbnA" type="4005" element="_aLKCgOPUEeaia9tH8AAbnA" source="_RC5dgOPUEeaia9tH8AAbnA" target="_S4H4gFlVEeaIO8X5CUzwPQ">
+    <edges xmi:type="notation:Edge" xmi:id="_aLL3sOPUEeaia9tH8AAbnA" type="4005" element="_aLKCgOPUEeaia9tH8AAbnA" source="_RC5dgOPUEeaia9tH8AAbnA" target="_XEE7kFlVEeaIO8X5CUzwPQ">
       <children xmi:type="notation:DecorationNode" xmi:id="_aLL3tOPUEeaia9tH8AAbnA" type="6004">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_aLL3tePUEeaia9tH8AAbnA" x="10" y="10"/>
       </children>

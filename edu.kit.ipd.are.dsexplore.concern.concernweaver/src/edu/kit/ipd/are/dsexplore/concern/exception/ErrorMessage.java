@@ -61,6 +61,12 @@ public class ErrorMessage {
 		
 	}
 	
+	public static String missingDelegatedRole(Role role, RepositoryComponent component) {
+		
+		return String.format("For role %1s there exist no corresponding delegation role in %2s.", role.getEntityName(), component.getEntityName());
+		
+	}
+	
 	public static String missingECC(ElementaryConcernComponent ecc, List<ProvidedRole> providedFeatures) {
 		
 		return String.format("For ecc %1s does not contain the provided features:%2s.", ecc.getName(), toString(providedFeatures));
@@ -107,6 +113,18 @@ public class ErrorMessage {
 	public static String weavingManagerIsNotInitialized() {
 		
 		return "The weaving manager has not been initialized.";
+		
+	}
+	
+	public static String unsupportedConnector() {
+		
+		return "There exist no applicable connector generator.";
+		
+	}
+	
+	public static String unsupportedRole() {
+		
+		return "There exist no role handler.";
 		
 	}
 	

@@ -17,7 +17,6 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
 import edu.kit.ipd.are.dsexplore.concern.repository.RepositoryWeaving;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 public class AssemblyWeavingTest extends WeavingTest {
 	
@@ -72,7 +71,7 @@ public class AssemblyWeavingTest extends WeavingTest {
 	public void tearDown() {
 		
 		EMFHelper.saveToXMIFile(pcmToAdapt.getSystem(), ConcernWeavingTestUtil.RELATIVE_ASSEMBLY_PERSISTING_PATH);
-		String location = ConcernWeaverUtil.getAbsolutePathOf(WeavingStep.getPCMConcernRepository(), pcmToAdapt.getRepositories().get(0));
+		String location = ConcernWeavingTestUtil.getAbsolutePathOf(WeavingStep.getPCMConcernRepository(), pcmToAdapt.getRepositories().get(0));
 		EMFHelper.saveToXMIFile(WeavingStep.getPCMConcernRepository(), location);
 		
 	}

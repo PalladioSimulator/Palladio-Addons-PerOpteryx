@@ -23,17 +23,23 @@ public class ECCStructureHandler {
 		
 	}
 	
-	public <T> List<T> getStructureWithInECCAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
+	public <T> List<T> getStructureOfECCAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
 		
-		return concernRepositoryManager.getComponentsAnnotatedWith(getAnnotationsOfECC(false)).stream().flatMap(eachComponent -> resolvingFunction.apply(eachComponent).stream())
-																								  	   .collect(Collectors.toList());
+		return getAnnotatedComponents(false).flatMap(eachComponent -> resolvingFunction.apply(eachComponent).stream())
+											.collect(Collectors.toList());
 		
 	}
 	
-	public <T> List<T> getStructureWithInECCAndRequiredAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
+	public <T> List<T> getStructureOfECCAndRequiredAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
 		
-		return concernRepositoryManager.getComponentsAnnotatedWith(getAnnotationsOfECC(true)).stream().flatMap(eachComponent -> resolvingFunction.apply(eachComponent).stream())
-																								  	  .collect(Collectors.toList());
+		return getAnnotatedComponents(true).flatMap(eachComponent -> resolvingFunction.apply(eachComponent).stream())
+										   .collect(Collectors.toList());
+		
+	}
+	
+	private Stream<RepositoryComponent> getAnnotatedComponents(boolean considerRequired) {
+		
+		return concernRepositoryManager.getComponentsAnnotatedWith(getAnnotationsOfECC(considerRequired)).stream();
 		
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
@@ -116,6 +117,18 @@ public class PcmSystemManager {
 		
 	}
 
+	public Optional<AssemblyContext> getAssemblyContextBy(Predicate<AssemblyContext> searchCriteria) {
+		
+		return getAllAssemblyContexts().filter(searchCriteria).findFirst();
+		
+	}
+	
+	private Stream<AssemblyContext> getAllAssemblyContexts() {
+		
+		return this.system.getAssemblyContexts__ComposedStructure().stream();
+		
+	}
+	
 	//This method is only unambiguous if the name of the searched assembly context is unique.
 	public Optional<AssemblyContext> getAssemblyContextByUniqueName(String name) {
 		
@@ -167,9 +180,9 @@ public class PcmSystemManager {
 		
 	}
 	
-	public ProvidedDelegationConnector createProvidedDelegationConnectorBy(OperationProvidedRole outerProvidedRole, Pair<OperationProvidedRole, AssemblyContext> providedPair) {
+	public ProvidedDelegationConnector createProvidedDelegationConnectorBy(OperationProvidedRole outerProvidedRole, Pair<OperationProvidedRole, AssemblyContext> providedPair) { 
 		
-		AssemblyContext assemblyContext = providedPair.getSecond(); 
+		AssemblyContext assemblyContext = providedPair.getSecond();
 		String delegationConnectorName = assemblyContext.getEncapsulatedComponent__AssemblyContext().getEntityName();
 		
 		ProvidedDelegationConnector delegationConnector = CompositionFactory.eINSTANCE.createProvidedDelegationConnector();
@@ -253,6 +266,15 @@ public class PcmSystemManager {
 		componentAssemblyContext.setEntityName(name);
 		
 		return componentAssemblyContext;
+		
+	}
+	
+	public AssemblyContext createAndAddAssemblyContextOf(RepositoryComponent component) {
+		
+		AssemblyContext assemblyContext = createAssemblyContextOf(component);
+		addAssemblyContext(assemblyContext);
+		
+		return assemblyContext;
 		
 	}
 	

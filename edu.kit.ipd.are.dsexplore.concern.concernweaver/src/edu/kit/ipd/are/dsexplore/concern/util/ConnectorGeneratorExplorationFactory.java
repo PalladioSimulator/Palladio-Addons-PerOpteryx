@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.palladiosimulator.pcm.repository.Role;
-
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 
 public class ConnectorGeneratorExplorationFactory {
@@ -19,7 +19,7 @@ public class ConnectorGeneratorExplorationFactory {
 		
 	}
 	
-	public static ConnectorGeneratorExplorationFactory getBy(List<Role> rolesToExplore, PcmSystemManager pcmSystemManager) {
+	public static ConnectorGeneratorExplorationFactory getBy(PcmSystemManager pcmSystemManager) {
 		
 		if (eInstance == null) {
 			
@@ -27,45 +27,44 @@ public class ConnectorGeneratorExplorationFactory {
 			
 		}
 		
-		eInstance.initialize(rolesToExplore, pcmSystemManager);
+		eInstance.initialize(pcmSystemManager);
 		
 		return eInstance;
 		
 	}
 	
-	private void initialize(List<Role> rolesToExplore, PcmSystemManager pcmSystemManager) {
+	private void initialize(PcmSystemManager pcmSystemManager) {
 		
 		this.explorableGenerators = new HashSet<IConnectorGeneratorExploration>();
-		explorableGenerators.add(new AssemblyConnectorGenerator(rolesToExplore, pcmSystemManager));
-		explorableGenerators.add(new AssemblyEventConnectorGenerator(rolesToExplore, pcmSystemManager));
+		explorableGenerators.add(new AssemblyConnectorGenerator(pcmSystemManager));
+		explorableGenerators.add(new AssemblyEventConnectorGenerator(pcmSystemManager));
 		
 	}
 
-	public ConnectorGenerator getApplicableConnectorGeneratorBy(Role role) {
+	public ConnectorGenerator getApplicableConnectorGeneratorBy(ConnectionInfo connectionInfo) throws ConcernWeavingException {
 		
-		List<IConnectorGeneratorExploration> generators = getMatches(role);
+		List<IConnectorGeneratorExploration> generators = getMatches(connectionInfo);
 		
-		if (!isValideResult(generators)) {
+		if (isValideResult(generators)) {
 			
-			//TODO introduce exceptions
-			return null;
+			return (ConnectorGenerator) generators.get(0);
 			
 		}
 		
-		return (ConnectorGenerator) generators.get(0);
+		throw new ConcernWeavingException(ErrorMessage.unsupportedConnector());
 		
 	}
 
-	private List<IConnectorGeneratorExploration> getMatches(Role role) {
+	private List<IConnectorGeneratorExploration> getMatches(ConnectionInfo connectionInfo) {
 	
-		return this.explorableGenerators.stream().filter(eachGenerator -> eachGenerator.canBeApplied().test(role))
+		return this.explorableGenerators.stream().filter(eachGenerator -> eachGenerator.canBeApplied().test(connectionInfo))
 				  								 .collect(Collectors.toList());
 		
 	}
 	
 	private boolean isValideResult(List<IConnectorGeneratorExploration> generators) {
 		
-		return !generators.isEmpty() && generators.size() == 1;
+		return generators.size() == 1;
 		
 	}
 	

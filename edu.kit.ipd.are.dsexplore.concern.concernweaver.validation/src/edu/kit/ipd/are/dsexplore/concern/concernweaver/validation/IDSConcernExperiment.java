@@ -33,6 +33,7 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.ExperimentUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.WeavingInstructionFactory;
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 
 public class IDSConcernExperiment extends ExperimentConfiguration {
 
@@ -44,7 +45,6 @@ public class IDSConcernExperiment extends ExperimentConfiguration {
 	private final static String GETFILES_SIGNATURE_ID = "_lLuUoLg7EeSNPorBlo7x9g";
 	private final static String STOREFILES_SIGNATURE_ID = "_ZlS-sL0KEeSAHuL4ItXOLQ";
 	private final static String DECODEEVENT_SIGNATURE_ID = "_FF5eEK_hEeaFof9L2wGlaQ";
-	private final static String ADAPTER_COMPONENT_NAME = "Adapter_Detection";
 	private final static String AGENT_COMPONENT_ID = "_yKLUkK_YEeaFof9L2wGlaQ";
 	
 	private int oldOSSECComponentSize;
@@ -363,7 +363,7 @@ public class IDSConcernExperiment extends ExperimentConfiguration {
 	
 	private Optional<RepositoryComponent> getAdapterComponentFrom(Repository repository) {
 		
-		return repository.getComponents__Repository().stream().filter(each -> each.getEntityName().equals(ADAPTER_COMPONENT_NAME))
+		return repository.getComponents__Repository().stream().filter(each -> each.getEntityName().equals(ConcernWeaverConstant.ADAPTER_NAME))
 															  .findFirst();
 		
 	}

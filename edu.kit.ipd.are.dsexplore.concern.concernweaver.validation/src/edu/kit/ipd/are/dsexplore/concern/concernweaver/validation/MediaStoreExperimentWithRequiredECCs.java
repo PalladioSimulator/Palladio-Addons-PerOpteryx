@@ -1,38 +1,35 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver.validation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
-import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.ConcernWeaver;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
-import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.ExperimentUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.WeavingInstructionFactory;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 
 public class MediaStoreExperimentWithRequiredECCs extends ExperimentConfiguration {
 
 	/**
-	 * This method tests a weaving process where the eccs to weave has required eccs. 
+	 * This method tests a weaving process where the eccs to weave has required eccs.
+	 * In addition, the eccs analysis and detection are going to be integrated.
 	 * An intrusion detection system (ossec) has to be woven in the MediaStore.
 	 * The configurations are: appearance = after, strategy = adapter. 
 	 */
 	@Test
 	public void testWeavingScenarioWithRequiredECCs() {
 		
-		Repository concernSolution = (Repository) ConcernWeavingTestUtil.loadWithProfiles(RepositoryPackage.eINSTANCE, String.format("/models/%s.repository", ConcernWeaverConstant.CONCERN_REPOSITORY_NAME));
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, concernSolution).getWeavingInstructionWithRequiredECCs();
+		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, this.concernSolution).getWeavingInstructionWithRequiredECCs();
 		
 		try {
 			
-			ConcernWeaver.getBy(this.pcmToAdapt, concernSolution).start(weavingInstructions);
+			ConcernWeaver.getBy(this.pcmToAdapt, this.concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {
 			

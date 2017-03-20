@@ -2,24 +2,16 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EObject;
-import org.modelversioning.emfprofile.Stereotype;
-import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
-import org.palladiosimulator.solver.transformations.EMFHelper;
 
 import edu.kit.ipd.are.dsexplore.concern.allocation.AllocationWeaver;
 import edu.kit.ipd.are.dsexplore.concern.assembly.AssemblyWeaving;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.repository.RepositoryWeaving;
 import edu.kit.ipd.are.dsexplore.concern.seff.ServiceEffectSpecificationWeaving;
 import edu.kit.ipd.are.dsexplore.concern.usagemodel.UsageModelWeaving;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 //TODO Logging 
 public class ConcernWeaver {
@@ -38,6 +30,8 @@ public class ConcernWeaver {
 	
 	/**
 	 * Creates or returns an already existing ConcernWeaver-instance.
+	 * @param pcmToAdapt - The PCM model that is going to be woven.
+	 * @param concernSolution - The concrete realization of a specific concern.
 	 * @return The created or re-configured ConcernWeaver-instance.
 	 */
 	public static ConcernWeaver getBy(PCMInstance pcmToAdapt, Repository concernSolution) {
@@ -82,9 +76,8 @@ public class ConcernWeaver {
 
 	/**
 	 * Triggers the weaving process.
-	 * @param pcmToAdapt - The PCM model a concern has to be woven to.
 	 * @param weavingInstructions - Includes all weaving instructions that will be needed by the weaving-process.
-	 * @return The PCM model enriched by the concerns functionality.
+	 * @return The woven PCM model.
 	 * @throws ConcernWeavingException 
 	 */
 	public PCMInstance start(List<WeavingInstruction> weavingInstructions) throws ConcernWeavingException {
@@ -95,7 +88,7 @@ public class ConcernWeaver {
 		
 	}
 	
-	public void weave(List<WeavingInstruction> weavingInstructions) throws ConcernWeavingException {
+	private void weave(List<WeavingInstruction> weavingInstructions) throws ConcernWeavingException {
 		
 		for (WeavingInstruction eachWeavingInstruction : weavingInstructions) {
 			

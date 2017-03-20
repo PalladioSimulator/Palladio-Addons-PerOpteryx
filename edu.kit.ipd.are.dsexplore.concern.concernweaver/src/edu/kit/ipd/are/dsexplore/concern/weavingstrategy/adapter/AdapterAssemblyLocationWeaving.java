@@ -3,77 +3,63 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 import java.util.List;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
-import org.palladiosimulator.pcm.repository.Role;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.AssemblyConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectionInfo;
 
 public class AdapterAssemblyLocationWeaving extends AdapterAssemblyWeaving {
 	
 	@Override
-	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) {
+	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException {
 		
 		replace((AssemblyConnector) weavingLocation.getLocation());
 		
 	}
 
-	private void replace(AssemblyConnector assemblyConnectorToReplace) {
+	private void replace(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
 		
 		pcmSystemManager.remove(assemblyConnectorToReplace);
-			
 		replaceWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
 			
 	}
 	
-	private void replaceWithAssemblyConnectorsToAdapter(AssemblyConnector assemblyConnectorToReplace) {
+	private void replaceWithAssemblyConnectorsToAdapter(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
 	
 		createAssemblyConnectorFromAdapterToProvidedEndOf(assemblyConnectorToReplace);
 		createAssemblyConnectorFromRequiredEndToAdapter(assemblyConnectorToReplace);
 	
 	}
 
-	private void createAssemblyConnectorFromAdapterToProvidedEndOf(AssemblyConnector assemblyConnectorToReplace) {
+	private void createAssemblyConnectorFromAdapterToProvidedEndOf(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
 		
-		ConnectionInfo requiredConnectionEndInfo = getAdapterRequiredConnectionEndOf(assemblyConnectorToReplace);
-		ConnectionInfo providedConnectionEndInfo = getProvidedConnectionEndOf(assemblyConnectorToReplace);
+		ProvidedRole providedRole = assemblyConnectorToReplace.getProvidedRole_AssemblyConnector();
+		RequiredRole requiredRole = (RequiredRole) getComplimentaryRoleOf(providedRole, getRequiredRolesOfAdapter());
+		AssemblyContext providedAssemblyContext = assemblyConnectorToReplace.getProvidingAssemblyContext_AssemblyConnector();
 		
-		addConnector(new AssemblyConnectorGenerator(null, pcmSystemManager).getConnectorOf(requiredConnectionEndInfo, providedConnectionEndInfo));
-		
-	}
-	
-	private void createAssemblyConnectorFromRequiredEndToAdapter(AssemblyConnector assemblyConnectorToReplace) {
-		
-		ConnectionInfo knownConnectionEnd = getRequiredConnectionEndOf(assemblyConnectorToReplace);
-		addConnector(new AssemblyConnectorGenerator(getProvidedRolesOfAdapter(), pcmSystemManager).getConnectorOf(knownConnectionEnd));
-		
-	}
-
-	private List<Role> getProvidedRolesOfAdapter() {
-		
-		return toRoles(getComponentOf(this.adapterAssemblyContext).getProvidedRoles_InterfaceProvidingEntity());
-		
-	}
-
-	private ConnectionInfo getRequiredConnectionEndOf(AssemblyConnector assemblyConnectorToReplace) {
-		
-		return new ConnectionInfo(assemblyConnectorToReplace.getRequiredRole_AssemblyConnector(), 
-								  assemblyConnectorToReplace.getRequiringAssemblyContext_AssemblyConnector());
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, adapterAssemblyContext, providedAssemblyContext);
+		addConnector(new AssemblyConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
 		
 	}
 	
-	private ConnectionInfo getProvidedConnectionEndOf(AssemblyConnector assemblyConnectorToReplace) {
+	private void createAssemblyConnectorFromRequiredEndToAdapter(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
 		
-		return new ConnectionInfo(assemblyConnectorToReplace.getProvidedRole_AssemblyConnector(), 
-								  assemblyConnectorToReplace.getProvidingAssemblyContext_AssemblyConnector());
+		RequiredRole requiredRole = assemblyConnectorToReplace.getRequiredRole_AssemblyConnector();
+		ProvidedRole providedRole = (ProvidedRole) getComplimentaryRoleOf(requiredRole, getProvidedRolesOfAdapter());
+		AssemblyContext requiredAssemblyContext = assemblyConnectorToReplace.getRequiringAssemblyContext_AssemblyConnector();
+		
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, adapterAssemblyContext);
+		addConnector(new AssemblyConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
 		
 	}
-	
-	private ConnectionInfo getAdapterRequiredConnectionEndOf(AssemblyConnector assemblyConnectorToReplace) {
 
-		Role role = this.roleHandler.getOpponentOf(assemblyConnectorToReplace.getProvidedRole_AssemblyConnector(), 
-												   getRequiredRolesOfAdapter()).get();
-		return new ConnectionInfo(role, this.adapterAssemblyContext);
+	private List<ProvidedRole> getProvidedRolesOfAdapter() {
+		
+		return adapter.getProvidedRoles_InterfaceProvidingEntity();
 		
 	}
 	

@@ -20,7 +20,7 @@ public abstract class RoleHandler {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Optional<Role> getOpponentOf(Role role, List<? extends Role> rolesToExplore) {
+	public Optional<Role> getComplimentaryRoleOf(Role role, List<? extends Role> rolesToExplore) {
 		
 		return (Optional<Role>) rolesToExplore.stream().filter(eachRole -> areConnected(eachRole, role)).findFirst();
 		

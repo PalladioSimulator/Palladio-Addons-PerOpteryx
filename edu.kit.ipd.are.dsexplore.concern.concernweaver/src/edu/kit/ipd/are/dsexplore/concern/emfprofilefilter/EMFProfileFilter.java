@@ -17,7 +17,7 @@ public class EMFProfileFilter {
 		
 	}
 	
-	private static boolean isAnnotated(EObject object) {
+	public static boolean isAnnotated(EObject object) {
 		
 		return StereotypeAPI.hasStereotypeApplications(object);
 		

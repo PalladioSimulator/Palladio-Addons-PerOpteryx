@@ -2,7 +2,9 @@ package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -32,6 +34,18 @@ public class PcmAllocationManager {
 		eInstance.allocation = allocation;
 		
 		return eInstance;
+		
+	}
+	
+	public Optional<AllocationContext> getAllocationContextBy(Predicate<AllocationContext> searchCriteria) {
+		
+		return getAllAllocationContexts().filter(searchCriteria).findFirst();
+		
+	}
+	
+	private Stream<AllocationContext> getAllAllocationContexts() {
+		
+		return this.allocation.getAllocationContexts_Allocation().stream();
 		
 	}
 	

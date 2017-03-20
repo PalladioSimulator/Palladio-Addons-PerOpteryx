@@ -1,23 +1,16 @@
 package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
+import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 
 public class AdapterUsageModelWeaving extends AdapterWeaving {
-
-	private RepositoryComponent adapter;
-	
-	private void setAdapter(String uniqueName) {
-		
-		this.adapter = concernRepositoryManager.getComponentByUnique(uniqueName).get();
-		
-	}
 	
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
@@ -28,9 +21,13 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 			
 		}
 		
-		setAdapter(getUniqueAdapterName(weavingInstruction));
-		
 		editEntryLevelSystemCalls();
+		
+	}
+	
+	private boolean isDelegationConnectorLocation(WeavingLocation weavingLocation) {
+		
+		return weavingLocation.getLocation() instanceof ProvidedDelegationConnector;
 		
 	}
 
@@ -67,10 +64,10 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 
 	private OperationProvidedRole getNewPorvidedRoleFromAdapterReferencing(OperationInterface calledInterface) throws ConcernWeavingException {
 		
-		return this.adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
-																				.map(eachProvidedRole -> (OperationProvidedRole) eachProvidedRole)
-																				.filter(eachOperationProvidedRole -> references(calledInterface, eachOperationProvidedRole))
-																				.findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRole(this.adapter, calledInterface)));
+		return adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
+																		   .map(eachProvidedRole -> (OperationProvidedRole) eachProvidedRole)
+																		   .filter(eachOperationProvidedRole -> references(calledInterface, eachOperationProvidedRole))
+																		   .findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRole(adapter, calledInterface)));
 		
 	}
 
