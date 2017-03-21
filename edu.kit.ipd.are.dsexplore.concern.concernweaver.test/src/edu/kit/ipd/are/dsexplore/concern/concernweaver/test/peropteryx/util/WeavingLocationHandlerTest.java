@@ -165,7 +165,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 
 	private void shouldHaveExpectedSignatures(List<Signature> expectedSignatures) {
 		
-		this.weavingLocations.forEach(weavingLocation -> expectedSignatures.removeAll(weavingLocation.getAffectedSignatures().get()));
+		this.weavingLocations.forEach(weavingLocation -> expectedSignatures.removeAll(weavingLocation.getAffectedSignatures()));
 		
 		assertTrue(expectedSignatures.size() == 0);
 		

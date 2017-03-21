@@ -95,7 +95,7 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	
 	private boolean isNotAlreadyContainedInAdapter(RequiredRole requiredRole) {
 		
-		return !adapter.getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole -> ConcernWeaverUtil.referenceSameInterface(eachRequRole, requiredRole));
+		return !adapter.getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole -> ConcernWeaverUtil.referencesSameInterface(eachRequRole, requiredRole));
 		
 	}
 

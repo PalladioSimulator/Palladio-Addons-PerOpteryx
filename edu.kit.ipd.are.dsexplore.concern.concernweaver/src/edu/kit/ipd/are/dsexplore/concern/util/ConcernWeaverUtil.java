@@ -1,10 +1,15 @@
 package edu.kit.ipd.are.dsexplore.concern.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.Role;
+import org.palladiosimulator.pcm.repository.Signature;
 
 import de.uka.ipd.sdq.identifier.Identifier;
 
@@ -16,7 +21,31 @@ public class ConcernWeaverUtil {
 		
 	}
 	
-	public static <T extends Role> boolean referenceSameInterface(T firstRole, T secondRole) {
+	public static Stream<Signature> getSignaturesOfReferencedInterfaceBy(Role role) {
+		
+		return getSignaturesOf(getInterfaceFrom(role).get().eAllContents());
+		
+	}
+
+	private static Stream<Signature> getSignaturesOf(TreeIterator<EObject> interfaceObjectIterator) {
+		
+		List<Signature> signatures = new ArrayList<Signature>();
+		while(interfaceObjectIterator.hasNext()) {
+			
+			EObject current = interfaceObjectIterator.next();
+			if (current instanceof Signature) {
+				
+				signatures.add((Signature) current);
+				
+			}
+			
+		}
+		
+		return signatures.stream();
+		
+	}
+	
+	public static <T extends Role> boolean referencesSameInterface(T firstRole, T secondRole) {
 		
 		Optional<Interface> firstInterface = getInterfaceFrom(firstRole);
 		Optional<Interface> secondInterface = getInterfaceFrom(secondRole);
@@ -31,7 +60,7 @@ public class ConcernWeaverUtil {
 		
 	}
 	
-	private static <T extends Role> Optional<Interface> getInterfaceFrom(T firstRole) {
+	public static <T extends Role> Optional<Interface> getInterfaceFrom(T firstRole) {
 		
 		return firstRole.eCrossReferences().stream().filter(each -> each instanceof Interface)
 													.map(each -> (Interface) each)

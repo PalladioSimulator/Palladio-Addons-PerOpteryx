@@ -40,6 +40,7 @@ public class WeavingInstructionFactory {
 	private PCMInstance pcm = null;
 	private ConcernRepository concernRepository = null;
 	private Repository concernSolution;
+	private boolean isMultiple = false;
 	
 	private static WeavingInstructionFactory eInstance = null;
 	
@@ -63,6 +64,12 @@ public class WeavingInstructionFactory {
 		
 	}
 	
+	public void isMultiple(boolean value) {
+		
+		this.isMultiple = value;
+		
+	}
+	
 	public List<WeavingInstruction> getExperimentWeavingInstructions() {
 		
 		return Arrays.asList(getWeavingInstructionFromMediaAccessToFileStorageComponents());
@@ -71,7 +78,8 @@ public class WeavingInstructionFactory {
 	
 	public List<WeavingInstruction> getSimpleWeavingInstructions() {
 		
-		return Arrays.asList(getWeavingInstructionFromMediaManagementToPackagingComponents(),
+		isMultiple(true);
+		return Arrays.asList(/*getWeavingInstructionFromMediaManagementToPackagingComponents(),*/
 							 getWeavingInstructionFromMediaAccessToFileStorageComponents(),
 							 getWeavingInstructionFromWebGUI());
 		
@@ -144,7 +152,7 @@ public class WeavingInstructionFactory {
 		ECCFeatureHandler featureHandler = new ECCFeatureHandler(this.concernSolution);
 		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, featureHandler.getProvidedFeaturesOf(ecc));
 		ResourceContainer resourceContainer = ExperimentUtil.getResourceContainerWith(RESOURCE_CONTAINER_SERVER_1_ID, pcm.getResourceEnvironment());
-		Transformation adapterStrategy = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
+		Transformation adapterStrategy = getAdapterWeavingInstruction();
 		
 		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(eccWithConsumedFeatures)
 											  .setWeavingLocation(getWeavingLocationFrom(locationWithAffectedSignature))
@@ -154,6 +162,15 @@ public class WeavingInstructionFactory {
 		
 	}
 	
+	private Transformation getAdapterWeavingInstruction() {
+		
+		Transformation trans = ExperimentUtil.createAdapterTransformationStrategy(ADAPTER_NAME);
+		trans.setMultiple(this.isMultiple);
+		
+		return trans;
+		
+	}
+
 	private WeavingLocation getWeavingLocationFrom(Pair<Connector, List<Signature>> locationWithAffectedSignatures) {
 		
 		if (locationWithAffectedSignatures.getFirst() instanceof AssemblyConnector) {

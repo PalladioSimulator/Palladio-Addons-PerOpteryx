@@ -18,7 +18,7 @@ public class SimpleMediaStoreExperiment extends ExperimentConfiguration {
 	
 	/**
 	 * This method tests a simple weaving process. An intrusion detection system (ossec) has to be woven in the MediaStore.
-	 * The configurations are: appearance = before, strategy = adapter, multiple = false. 
+	 * The configurations are: appearance = before, strategy = adapter, multiple = true. 
 	 */
 	@Test
 	public void testSimpleWeavingScenario() {

@@ -128,4 +128,10 @@ public class ErrorMessage {
 		
 	}
 	
+	public static String missingRoleReferencing(Signature sig, RepositoryComponent component) {
+		
+		return String.format("There exist no role in component %1s which is referencing an interface containing the signature %2s.", component.getEntityName(), sig.getEntityName());
+		
+	}
+	
 }

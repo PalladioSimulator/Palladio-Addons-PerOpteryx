@@ -2,7 +2,6 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -12,14 +11,20 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Parameter;
 import org.palladiosimulator.pcm.repository.Signature;
-import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 
 public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 
+	@Override
+	protected BasicComponent getCallingComponent() {
+		
+		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
+		return (BasicComponent) location.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
+		
+	}
+	
 	@Override
 	protected BasicComponent getCalledComponent() {
 		
@@ -33,7 +38,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 		Signature calledService = (Signature) seffToTransform.getDescribedService__SEFF();
 		return new ExternalCallInfo(calledService, 
-									getRequiredRoleOf(calledService), 
+									getRequiredRoleOfAdapterBy(calledService), 
 									getReturnVariableUsageBy(calledService), 
 									getInputVariableUsagesBy(calledService),
 									getSetVariableActions(seffToTransform));
@@ -42,13 +47,13 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 
 	private List<VariableUsage> getReturnVariableUsageBy(Signature calledService) throws ConcernWeavingException {
 		
-		if (!hasReturnType(calledService)) {
+		if (hasReturnType(calledService)) {
 			
-			return Collections.emptyList();
+			return getExternalCallActionInvoking(calledService).getReturnVariableUsage__CallReturnAction();
 			
 		}
 		
-		return getExternalCallActionInvoking(calledService).getReturnVariableUsage__CallReturnAction();
+		return Collections.emptyList();
 		
 	}
 
@@ -86,61 +91,6 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		}
 		
 		return false;
-		
-	}
-	
-	private ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
-		
-		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
-			
-			Optional<ExternalCallAction> externalCallAction = getExternalCallActionFrom(eachSEFF, calledService);
-			if (externalCallAction.isPresent()) {
-				
-				return externalCallAction.get();
-				
-			}
-			
-		}
-		
-		throw new ConcernWeavingException(ErrorMessage.missingExternalCall(getCallingComponent(), calledService));
-		
-	}
-
-	private BasicComponent getCallingComponent() {
-		
-		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
-		return (BasicComponent) location.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-		
-	}
-	
-	private boolean areEqual(Signature signature1, Signature signature2) {
-		
-		return signature1.getId().equals(signature2.getId());
-		
-	}
-
-	private Optional<ExternalCallAction> getExternalCallActionFrom(ServiceEffectSpecification seff, Signature calledService) {
-		
-		TreeIterator<EObject> iterator = seff.eAllContents();
-		while (iterator.hasNext()) {
-			
-			EObject current = iterator.next();
-			if (isExternalCallActionOf(calledService, current)) {
-				
-				return Optional.of((ExternalCallAction) current);
-				
-			}
-			
-		}
-		
-		return Optional.empty();
-		
-	}
-
-	private boolean isExternalCallActionOf(Signature calledService, EObject object) {
-		
-		return (object instanceof ExternalCallAction) &&
-			   (areEqual(((ExternalCallAction) object).getCalledService_ExternalService(), calledService));
 		
 	}
 

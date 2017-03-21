@@ -1,33 +1,50 @@
 package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 public class AdapterUsageModelWeaving extends AdapterWeaving {
 	
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
-		if (!isDelegationConnectorLocation(weavingInstruction.getWeavingLocation())) {
+		if (isUsageModelAffected(weavingInstruction.getWeavingLocation())) {
 			
-			return;
+			editEntryLevelSystemCalls();
 			
 		}
 		
-		editEntryLevelSystemCalls();
-		
 	}
 	
+	private boolean isUsageModelAffected(WeavingLocation weavingLocation) {
+		
+		return isDelegationConnectorLocation(weavingLocation) && isOuterProvidedRoleExposedByTheSystem(weavingLocation);
+		
+	}
+
 	private boolean isDelegationConnectorLocation(WeavingLocation weavingLocation) {
 		
 		return weavingLocation.getLocation() instanceof ProvidedDelegationConnector;
+		
+	}
+	
+	private boolean isOuterProvidedRoleExposedByTheSystem(WeavingLocation weavingLocation) {
+		
+		ProvidedRole outerProvidedRole = ((ProvidedDelegationConnector) weavingLocation.getLocation()).getOuterProvidedRole_ProvidedDelegationConnector();
+		return outerProvidedRole.eContainer() instanceof System;
 		
 	}
 
@@ -50,8 +67,7 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 		try { 
 		
 			OperationInterface calledInterface = entryLevelSystemCallToEdit.getOperationSignature__EntryLevelSystemCall().getInterface__OperationSignature();
-			OperationProvidedRole newProvidedRole = getNewPorvidedRoleFromAdapterReferencing(calledInterface);
-			
+			OperationProvidedRole newProvidedRole = (OperationProvidedRole) getProvidedRoleFromAdapterReferencing(calledInterface);
 			entryLevelSystemCallToEdit.setProvidedRole_EntryLevelSystemCall(newProvidedRole);
 			
 		} catch(ConcernWeavingException ex) {
@@ -62,18 +78,34 @@ public class AdapterUsageModelWeaving extends AdapterWeaving {
 		
 	}
 
-	private OperationProvidedRole getNewPorvidedRoleFromAdapterReferencing(OperationInterface calledInterface) throws ConcernWeavingException {
+	private ProvidedRole getProvidedRoleFromAdapterReferencing(OperationInterface calledInterface) throws ConcernWeavingException {
 		
-		return adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(eachProvidedRole -> eachProvidedRole instanceof OperationProvidedRole)
-																		   .map(eachProvidedRole -> (OperationProvidedRole) eachProvidedRole)
-																		   .filter(eachOperationProvidedRole -> references(calledInterface, eachOperationProvidedRole))
-																		   .findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRole(adapter, calledInterface)));
+		return getAllProvidedRolesOfAdapter().filter(ifProvidedRoleIsReferencing(calledInterface))
+											 .findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRole(adapter, calledInterface)));
 		
 	}
-
-	private boolean references(OperationInterface calledInterface, OperationProvidedRole givenProvidedRole) {
+	
+	private Stream<ProvidedRole> getAllProvidedRolesOfAdapter() {
 		
-		return calledInterface.equals(givenProvidedRole.getProvidedInterface__OperationProvidedRole());
+		return adapter.getProvidedRoles_InterfaceProvidingEntity().stream();
+		
+	}
+	
+	private Predicate<ProvidedRole> ifProvidedRoleIsReferencing(OperationInterface givenInterface) {
+		
+		return isOperationProvidedRole().and(isReferencing(givenInterface));
+		
+	}
+	
+	private Predicate<ProvidedRole> isOperationProvidedRole() {
+		
+		return providedRole -> providedRole instanceof OperationProvidedRole;
+		
+	}
+	
+	private Predicate<ProvidedRole> isReferencing(OperationInterface givenInterface) {
+		
+		return providedRole -> ConcernWeaverUtil.areEqual(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole(), givenInterface);
 		
 	}
 
