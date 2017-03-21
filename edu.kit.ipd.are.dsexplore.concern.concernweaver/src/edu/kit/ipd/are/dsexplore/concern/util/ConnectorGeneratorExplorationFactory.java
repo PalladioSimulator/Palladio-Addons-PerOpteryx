@@ -45,7 +45,7 @@ public class ConnectorGeneratorExplorationFactory {
 		
 		List<IConnectorGeneratorExploration> generators = getMatches(connectionInfo);
 		
-		if (isValideResult(generators)) {
+		if (isValidResult(generators)) {
 			
 			return (ConnectorGenerator) generators.get(0);
 			
@@ -62,7 +62,7 @@ public class ConnectorGeneratorExplorationFactory {
 		
 	}
 	
-	private boolean isValideResult(List<IConnectorGeneratorExploration> generators) {
+	private boolean isValidResult(List<IConnectorGeneratorExploration> generators) {
 		
 		return generators.size() == 1;
 		
