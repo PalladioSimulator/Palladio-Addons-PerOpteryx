@@ -36,8 +36,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.palladiosimulator.pcm.PcmPackage;
 
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -417,15 +415,6 @@ public class ConcernModelPackageImpl extends EPackageImpl implements ConcernMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotationTarget_Signatures() {
-		return (EReference)annotationTargetEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getAnnotationEnrich() {
 		return annotationEnrichEClass;
 	}
@@ -532,7 +521,6 @@ public class ConcernModelPackageImpl extends EPackageImpl implements ConcernMode
 
 		annotationTargetEClass = createEClass(ANNOTATION_TARGET);
 		createEAttribute(annotationTargetEClass, ANNOTATION_TARGET__JOIN_POINT);
-		createEReference(annotationTargetEClass, ANNOTATION_TARGET__SIGNATURES);
 
 		annotationEnrichEClass = createEClass(ANNOTATION_ENRICH);
 
@@ -570,7 +558,6 @@ public class ConcernModelPackageImpl extends EPackageImpl implements ConcernMode
 
 		// Obtain other dependent packages
 		SolutionModelPackage theSolutionModelPackage = (SolutionModelPackage)EPackage.Registry.INSTANCE.getEPackage(SolutionModelPackage.eNS_URI);
-		RepositoryPackage theRepositoryPackage = (RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(RepositoryPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -610,7 +597,6 @@ public class ConcernModelPackageImpl extends EPackageImpl implements ConcernMode
 
 		initEClass(annotationTargetEClass, AnnotationTarget.class, "AnnotationTarget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAnnotationTarget_JoinPoint(), this.getJoinPoint(), "joinPoint", "SIGNATURE", 0, 1, AnnotationTarget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotationTarget_Signatures(), theRepositoryPackage.getSignature(), null, "signatures", null, 0, -1, AnnotationTarget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(annotationEnrichEClass, AnnotationEnrich.class, "AnnotationEnrich", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

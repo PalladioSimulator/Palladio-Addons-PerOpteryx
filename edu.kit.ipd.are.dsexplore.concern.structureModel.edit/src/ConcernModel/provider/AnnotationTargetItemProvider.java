@@ -46,7 +46,6 @@ public class AnnotationTargetItemProvider extends AnnotationItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addJoinPointPropertyDescriptor(object);
-			addSignaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -69,28 +68,6 @@ public class AnnotationTargetItemProvider extends AnnotationItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Signatures feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSignaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AnnotationTarget_signatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotationTarget_signatures_feature", "_UI_AnnotationTarget_type"),
-				 ConcernModelPackage.Literals.ANNOTATION_TARGET__SIGNATURES,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

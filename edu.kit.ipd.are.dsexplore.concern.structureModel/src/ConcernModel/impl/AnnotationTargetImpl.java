@@ -6,19 +6,11 @@ import ConcernModel.AnnotationTarget;
 import ConcernModel.ConcernModelPackage;
 import ConcernModel.JoinPoint;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.palladiosimulator.pcm.repository.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +21,6 @@ import org.palladiosimulator.pcm.repository.Signature;
  * </p>
  * <ul>
  *   <li>{@link ConcernModel.impl.AnnotationTargetImpl#getJoinPoint <em>Join Point</em>}</li>
- *   <li>{@link ConcernModel.impl.AnnotationTargetImpl#getSignatures <em>Signatures</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,16 +45,6 @@ public class AnnotationTargetImpl extends AnnotationImpl implements AnnotationTa
 	 * @ordered
 	 */
 	protected JoinPoint joinPoint = JOIN_POINT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSignatures() <em>Signatures</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSignatures()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Signature> signatures;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,25 +91,11 @@ public class AnnotationTargetImpl extends AnnotationImpl implements AnnotationTa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Signature> getSignatures() {
-		if (signatures == null) {
-			signatures = new EObjectResolvingEList<Signature>(Signature.class, this, ConcernModelPackage.ANNOTATION_TARGET__SIGNATURES);
-		}
-		return signatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ConcernModelPackage.ANNOTATION_TARGET__JOIN_POINT:
 				return getJoinPoint();
-			case ConcernModelPackage.ANNOTATION_TARGET__SIGNATURES:
-				return getSignatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,16 +105,11 @@ public class AnnotationTargetImpl extends AnnotationImpl implements AnnotationTa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ConcernModelPackage.ANNOTATION_TARGET__JOIN_POINT:
 				setJoinPoint((JoinPoint)newValue);
-				return;
-			case ConcernModelPackage.ANNOTATION_TARGET__SIGNATURES:
-				getSignatures().clear();
-				getSignatures().addAll((Collection<? extends Signature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -164,9 +126,6 @@ public class AnnotationTargetImpl extends AnnotationImpl implements AnnotationTa
 			case ConcernModelPackage.ANNOTATION_TARGET__JOIN_POINT:
 				setJoinPoint(JOIN_POINT_EDEFAULT);
 				return;
-			case ConcernModelPackage.ANNOTATION_TARGET__SIGNATURES:
-				getSignatures().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -181,8 +140,6 @@ public class AnnotationTargetImpl extends AnnotationImpl implements AnnotationTa
 		switch (featureID) {
 			case ConcernModelPackage.ANNOTATION_TARGET__JOIN_POINT:
 				return joinPoint != JOIN_POINT_EDEFAULT;
-			case ConcernModelPackage.ANNOTATION_TARGET__SIGNATURES:
-				return signatures != null && !signatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,9 +2,6 @@
  */
 package ConcernModel;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.palladiosimulator.pcm.repository.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +13,6 @@ import org.palladiosimulator.pcm.repository.Signature;
  * </p>
  * <ul>
  *   <li>{@link ConcernModel.AnnotationTarget#getJoinPoint <em>Join Point</em>}</li>
- *   <li>{@link ConcernModel.AnnotationTarget#getSignatures <em>Signatures</em>}</li>
  * </ul>
  *
  * @see ConcernModel.ConcernModelPackage#getAnnotationTarget()
@@ -53,21 +49,5 @@ public interface AnnotationTarget extends Annotation {
 	 * @generated
 	 */
 	void setJoinPoint(JoinPoint value);
-
-	/**
-	 * Returns the value of the '<em><b>Signatures</b></em>' reference list.
-	 * The list contents are of type {@link org.palladiosimulator.pcm.repository.Signature}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Signatures</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Signatures</em>' reference list.
-	 * @see ConcernModel.ConcernModelPackage#getAnnotationTarget_Signatures()
-	 * @model
-	 * @generated
-	 */
-	EList<Signature> getSignatures();
 
 } // AnnotationTarget

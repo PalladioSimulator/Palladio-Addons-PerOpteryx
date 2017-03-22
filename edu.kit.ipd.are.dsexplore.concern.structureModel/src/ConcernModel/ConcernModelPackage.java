@@ -399,22 +399,13 @@ public interface ConcernModelPackage extends EPackage {
 	int ANNOTATION_TARGET__JOIN_POINT = ANNOTATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Signatures</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_TARGET__SIGNATURES = ANNOTATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Annotation Target</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_TARGET_FEATURE_COUNT = ANNOTATION_FEATURE_COUNT + 2;
+	int ANNOTATION_TARGET_FEATURE_COUNT = ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Annotation Target</em>' class.
@@ -806,17 +797,6 @@ public interface ConcernModelPackage extends EPackage {
 	EAttribute getAnnotationTarget_JoinPoint();
 
 	/**
-	 * Returns the meta object for the reference list '{@link ConcernModel.AnnotationTarget#getSignatures <em>Signatures</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Signatures</em>'.
-	 * @see ConcernModel.AnnotationTarget#getSignatures()
-	 * @see #getAnnotationTarget()
-	 * @generated
-	 */
-	EReference getAnnotationTarget_Signatures();
-
-	/**
 	 * Returns the meta object for class '{@link ConcernModel.AnnotationEnrich <em>Annotation Enrich</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1104,14 +1084,6 @@ public interface ConcernModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ANNOTATION_TARGET__JOIN_POINT = eINSTANCE.getAnnotationTarget_JoinPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Signatures</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ANNOTATION_TARGET__SIGNATURES = eINSTANCE.getAnnotationTarget_Signatures();
 
 		/**
 		 * The meta object literal for the '{@link ConcernModel.impl.AnnotationEnrichImpl <em>Annotation Enrich</em>}' class.

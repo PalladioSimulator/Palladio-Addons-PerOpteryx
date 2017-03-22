@@ -4,11 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.repository.Interface;
@@ -30,22 +31,23 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
 public class WeavingLocationHandlerTest extends WeavingTest{
 	
 	private final static String COMPONENT_MEDIA_ACCESS_ID = "_9eK7YHDrEeSqnN80MQ2uGw";
+	private final static String PROVIDED_ROLE_MEDIA_ACCESS_ID = "_z2B7cHD2EeSA4fySuX9I2Q";
 	private final static int TOTAL_COUNT_INTERFACE_WEAVING_INSTRUCTIONS = 3;
 	private final static int TOTAL_COUNT_PROVIDED_INTERFACE_WEAVING_INSTRUCTIONS = 2;
 	private final static int TOTAL_COUNT_REQUIRED_INTERFACE_WEAVING_INSTRUCTIONS = 1;
 	private final static int TOTAL_COUNT_SIGNATURE_WEAVING_INSTRUCTIONS = 1;
 	
-	private RepositoryComponent component;
+	private EObject annotatedObject;
 	private AnnotationTarget targetAnnotation;
 	private JoinPoint joinPoint;
 	
-	private List<WeavingLocation> weavingLocations;
+	private List<WeavingLocation> result;
 	
 	@Test
 	public void testGetWeavingLocationWithInterfaceJoinPoint() {
 		
 		givenComponentWithCorrespondingAnnotationAndInterfaceJoinPoint();
-		whenGettingWeavingLocations();
+		whenExtractingWeavingLocations();
 		thenWeavingLocationShouldContaintAllInterfaceRelevantInformations();
 		
 	}
@@ -54,7 +56,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 	public void testGetWeavingLocationWithProvidedInterfaceJoinPoint() {
 		
 		givenComponentWithCorrespondingAnnotationAndProvidedInterfaceJoinPoint();
-		whenGettingWeavingLocations();
+		whenExtractingWeavingLocations();
 		thenWeavingLocationShouldContaintAllProvidedInterfaceRelevantInformations();
 		
 	}
@@ -63,7 +65,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 	public void testGetWeavingLocationWithRequiredInterfaceJoinPoint() {
 		
 		givenComponentWithCorrespondingAnnotationAndRequiredInterfaceJoinPoint();
-		whenGettingWeavingLocations();
+		whenExtractingWeavingLocations();
 		thenWeavingLocationShouldContaintAllRequiredInterfaceRelevantInformations();
 		
 	}
@@ -71,41 +73,41 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 	@Test
 	public void testGetWeavingLocationWithSignatureJoinPoint() {
 		
-		givenComponentWithCorrespondingAnnotationAndSignatureJoinPoint();
-		whenGettingWeavingLocations();
+		givenSignatureWithCorrespondingAnnotationAndSignatureJoinPoint();
+		whenExtractingWeavingLocations();
 		thenWeavingLocationShouldContaintAllSignatureRelevantInformations();
 		
 	}
 
 	private void givenComponentWithCorrespondingAnnotationAndInterfaceJoinPoint() {
 		
-		initializeTestWith(JoinPoint.INTERFACE, new ArrayList<Signature>());
+		initializeTestWith(JoinPoint.INTERFACE);
 		
 	}
 	
 	private void givenComponentWithCorrespondingAnnotationAndProvidedInterfaceJoinPoint() {
 		
-		initializeTestWith(JoinPoint.INTERFACE_PROVIDES, new ArrayList<Signature>());
+		initializeTestWith(JoinPoint.INTERFACE_PROVIDES);
 		
 	}
 	
 	private void givenComponentWithCorrespondingAnnotationAndRequiredInterfaceJoinPoint() {
 		
-		initializeTestWith(JoinPoint.INTERFACE_REQUIRES, new ArrayList<Signature>());
+		initializeTestWith(JoinPoint.INTERFACE_REQUIRES);
 		
 	}
 	
-	private void givenComponentWithCorrespondingAnnotationAndSignatureJoinPoint() {
+	private void givenSignatureWithCorrespondingAnnotationAndSignatureJoinPoint() {
 		
-		initializeTestWith(JoinPoint.SIGNATURE, getTestSignatures());
+		initializeTestWith(JoinPoint.SIGNATURE);
 		
 	}
 
-	private void whenGettingWeavingLocations() {
+	private void whenExtractingWeavingLocations() {
 		
 		try {
 			
-			this.weavingLocations = new WeavingLocationHandler(pcmToAdapt).getWeavingLocationFrom(this.component, this.targetAnnotation);
+			this.result = new WeavingLocationHandler(pcmToAdapt).getWeavingLocationsFrom(Arrays.asList(this.annotatedObject), this.targetAnnotation);
 			
 		} catch (Exception e) {
 			
@@ -119,7 +121,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 		
 		shouldHaveExpectedCount(TOTAL_COUNT_INTERFACE_WEAVING_INSTRUCTIONS);
 		shouldHaveExpectedConnectors();
-		shouldHaveExpectedSignatures(getSignaturesOf(this.component));
+		shouldHaveExpectedSignatures(getSignaturesOf((RepositoryComponent) this.annotatedObject));
 		
 	}
 	
@@ -127,7 +129,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 		
 		shouldHaveExpectedCount(TOTAL_COUNT_PROVIDED_INTERFACE_WEAVING_INSTRUCTIONS);
 		shouldHaveExpectedConnectors();
-		shouldHaveExpectedSignatures(getProvidedSignaturesOf(this.component));
+		shouldHaveExpectedSignatures(getProvidedSignaturesOf((RepositoryComponent) this.annotatedObject));
 		
 	}
 	
@@ -135,7 +137,7 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 		
 		shouldHaveExpectedCount(TOTAL_COUNT_REQUIRED_INTERFACE_WEAVING_INSTRUCTIONS);
 		shouldHaveExpectedConnectors();
-		shouldHaveExpectedSignatures(getRequiredSignaturesOf(this.component));
+		shouldHaveExpectedSignatures(getRequiredSignaturesOf((RepositoryComponent) this.annotatedObject));
 		
 	}
 	
@@ -143,19 +145,19 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 		
 		shouldHaveExpectedCount(TOTAL_COUNT_SIGNATURE_WEAVING_INSTRUCTIONS);
 		shouldHaveExpectedConnectors();
-		shouldHaveExpectedSignatures(getRequiredSignaturesOf(this.component));
+		shouldHaveExpectedSignatures(Arrays.asList((Signature) this.annotatedObject));
 		
 	}
 	
 	private void shouldHaveExpectedCount(int expectedCount) {
 		
-		assertEquals(expectedCount, this.weavingLocations.size());
+		assertEquals(expectedCount, this.result.size());
 		
 	}
 
 	private void shouldHaveExpectedConnectors() {
 		
-		this.weavingLocations.forEach(weavingLocation -> {
+		this.result.forEach(weavingLocation -> {
 			
 			assertTrue(weavingLocation.getLocation() instanceof AssemblyConnector);
 			
@@ -165,20 +167,20 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 
 	private void shouldHaveExpectedSignatures(List<Signature> expectedSignatures) {
 		
-		this.weavingLocations.forEach(weavingLocation -> expectedSignatures.removeAll(weavingLocation.getAffectedSignatures()));
+		this.result.forEach(weavingLocation -> expectedSignatures.removeAll(weavingLocation.getAffectedSignatures()));
 		
-		assertTrue(expectedSignatures.size() == 0);
+		assertTrue(expectedSignatures.isEmpty());
 		
 	}
 
-	private void initializeTestWith(JoinPoint joinPoint, List<Signature> signatures) {
+	private void initializeTestWith(JoinPoint joinPoint) {
 		
 		setJoinPoint(joinPoint);
-		initializeComponent();
-		initializeAnnotationTarget(signatures);
+		initializeAnnotatedObjectBy(joinPoint);
+		initializeAnnotationTarget();
 		
 	}
-	
+
 	private List<Signature> getSignaturesOf(RepositoryComponent component) {
 		
 		return getSignaturesFrom(getInterfacesFrom(component));
@@ -225,16 +227,30 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 				 					 .map(each -> ((OperationProvidedRole) each).getProvidedInterface__OperationProvidedRole());
 		
 	}
-	
-	private List<Signature> getTestSignatures() {
-		
-		return getRequiredSignaturesOf(getTestComponent());
+
+	private void initializeAnnotatedObjectBy(JoinPoint joinPoint) {
+
+		if (joinPoint.equals(JoinPoint.SIGNATURE)) {
+			
+			initializeSignature();
+			
+		} else {
+			
+			initializeComponent();
+			
+		}
 		
 	}
-
+	
 	private void initializeComponent() {
 		
-		this.component = getTestComponent();
+		this.annotatedObject = getTestComponent();
+		
+	}
+	
+	private void initializeSignature() {
+		
+		this.annotatedObject = getTestSignature();
 		
 	}
 
@@ -244,12 +260,32 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 				 																	   .findFirst().get();
 		
 	}
+	
+	private Signature getTestSignature() {
 
-	private void initializeAnnotationTarget(List<Signature> signatures) {
+		return getTestComponent().getProvidedRoles_InterfaceProvidingEntity().stream().filter(each -> each.getId().equals(PROVIDED_ROLE_MEDIA_ACCESS_ID))
+																					  .map(each -> getFirstSignatureOf((OperationProvidedRole) each))
+																					  .findFirst().get();
 		
-		this.targetAnnotation = ConcernModelFactory.eINSTANCE.createAnnotationTarget();
-		this.targetAnnotation.setJoinPoint(this.joinPoint);
-		this.targetAnnotation.getSignatures().addAll(signatures);
+	}
+	
+	private Signature getFirstSignatureOf(OperationProvidedRole providedRole) {
+		
+		return providedRole.getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().get(0);
+		
+	}
+
+	private void initializeAnnotationTarget() {
+		
+		this.targetAnnotation = createTestAnnotationTarget();
+		
+	}
+
+	private AnnotationTarget createTestAnnotationTarget() {
+		
+		AnnotationTarget target = ConcernModelFactory.eINSTANCE.createAnnotationTarget();
+		target.setJoinPoint(this.joinPoint);
+		return target;
 		
 	}
 

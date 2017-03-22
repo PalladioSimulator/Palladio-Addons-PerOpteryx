@@ -1,15 +1,18 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
@@ -17,21 +20,35 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.AnnotationTarget;
-import de.uka.ipd.sdq.identifier.Identifier;
-import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class extracts all weaving locations based on target annotated objects.
+ * @author scheerer
+ *
+ */
 public class WeavingLocationHandler {
 
 	private class JoinPointInfo {
 		
 		public Role affectedRole;
+		public Optional<Connector> affectedConnector;
 		public List<? extends Signature> affectedSignatures;
 		
 		public JoinPointInfo(Role affectedRole, List<? extends Signature> affectedSignatures) {
 			
 			this.affectedRole = affectedRole;
+			this.affectedConnector = Optional.empty();
+			this.affectedSignatures = affectedSignatures;
+			
+		}
+		
+		public JoinPointInfo(Connector affectedConnector, List<? extends Signature> affectedSignatures) {
+			
+			this.affectedRole = null;
+			this.affectedConnector = Optional.of(affectedConnector);
 			this.affectedSignatures = affectedSignatures;
 			
 		}
@@ -52,18 +69,39 @@ public class WeavingLocationHandler {
 		
 	} 
 	
-	public List<WeavingLocation> getWeavingLocationFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+	public List<WeavingLocation> getWeavingLocationsFrom(List<EObject> annotatedObjects, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+		
+		List<WeavingLocation> weavingLocations = new ArrayList<WeavingLocation>();
+		for (EObject eachAnnotatedObject : annotatedObjects) {
+			
+			weavingLocations.addAll(getWeavingLocationFrom(eachAnnotatedObject, targetAnnotation));
+			
+		}
+		
+		return mergeWeavingLocations(weavingLocations);
+		
+	}
+	
+	/*There might exist annotated objects containing signatures which are equal or contained in signatures
+	 *of other weaving locations. When the connectors are equal too then the locations need to be merged.*/
+	private List<WeavingLocation> mergeWeavingLocations(List<WeavingLocation> unmergedLocations) {
+		
+		return new WeavingLocationMerger(unmergedLocations).merge();
+		
+	}
+
+	public List<WeavingLocation> getWeavingLocationFrom(EObject annotatedObject, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
 		switch(targetAnnotation.getJoinPoint()) {
 		
 			case INTERFACE:
-				return getWeavingLocationFrom(getInterfaceJoinPointInfosFrom(component));
+				return getWeavingLocationsFrom(getInterfaceJoinPointInfosFrom((RepositoryComponent) annotatedObject));
 			case INTERFACE_PROVIDES:
-				return getWeavingLocationFrom(getProvidedInterfaceJoinPointInfosFrom(component));
+				return getWeavingLocationsFrom(getProvidedInterfaceJoinPointInfosFrom((RepositoryComponent) annotatedObject));
 			case INTERFACE_REQUIRES:
-				return getWeavingLocationFrom(getRequiredInterfaceJoinPointInfosFrom(component));
+				return getWeavingLocationsFrom(getRequiredInterfaceJoinPointInfosFrom((RepositoryComponent) annotatedObject));
 			case SIGNATURE:
-				return getWeavingLocationFrom(getSignatureJointPointInfosFrom(component, targetAnnotation));
+				return getWeavingLocationsFrom(getSignatureJointPointInfosFrom((Signature) annotatedObject));
 			default: 
 				break;
 				
@@ -73,10 +111,10 @@ public class WeavingLocationHandler {
 		
 	}
 
-	private List<WeavingLocation> getWeavingLocationFrom(List<JoinPointInfo> extractedJoinPointInfos) {
+	private List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos) {
 		
 		return extractedJoinPointInfos.stream().map(eachExtractedJoinPointInfo -> toWeavingLocation(eachExtractedJoinPointInfo))
-								  			   .collect(Collectors.toList());
+								  	  		   .collect(Collectors.toList());
 		
 	}
 
@@ -100,73 +138,80 @@ public class WeavingLocationHandler {
 		
 	}
 
-	private List<JoinPointInfo> getSignatureJointPointInfosFrom(RepositoryComponent component, AnnotationTarget targetAnnotation) {
+	private List<JoinPointInfo> getSignatureJointPointInfosFrom(Signature signature) {
 		
-		//TODO this is going to be changed... later...
-		if (targetAnnotation.getSignatures().isEmpty()) {
-			
-			throw new NullPointerException("Wrong configuration, signatures must be set.");
-			
-		}
-		
-		return getInterfaceJoinPointInfosFrom(component).stream().filter(eachJoinPointInfo -> interfaceContains(targetAnnotation.getSignatures(), eachJoinPointInfo))
-																 .collect(Collectors.toList());
+		return getAllConnectors().filter(allInterfacesContaining(signature))
+								 .map(each -> new JoinPointInfo(each, Arrays.asList(signature)))
+								 .collect(Collectors.toList());
 		
 	}
-
-	private boolean interfaceContains(List<Signature> signatures, JoinPointInfo joinPointInfo) {
-		
-		Optional<Interface> joinPointInterface = getInterfaceOf(joinPointInfo.affectedRole);
-		if (!joinPointInterface.isPresent() && !(joinPointInterface.get() instanceof OperationInterface)) {
-			
-			return false;
-			
-		}
-		
-		return ((OperationInterface) joinPointInterface.get()).getSignatures__OperationInterface().containsAll(signatures);
-		
-	}
-
+	
 	private List<JoinPointInfo> getJoinPointInfosFrom(List<? extends Role> roles) {
 		
-		List<JoinPointInfo> matchingJoinPointInterfaces = new ArrayList<JoinPointInfo>();
+		return roles.stream().map(eachRole -> new JoinPointInfo(eachRole, getAllSignaturesOfInterfaceReferencedBy(eachRole)))
+							 .collect(Collectors.toList());
 		
-		roles.forEach(role -> {
-			
-			getInterfaceOf(role).ifPresent(matchingJoinPointInterface -> 
-			
-				matchingJoinPointInterfaces.add(new JoinPointInfo(role, getSignaturesFrom(matchingJoinPointInterface))));
-			
-		});
+	}
+
+	private Stream<Connector> getAllConnectors() {
 		
-		return matchingJoinPointInterfaces;
+		return this.system.getConnectors__ComposedStructure().stream();
 		
 	}
 	
-	private List<? extends Signature> getSignaturesFrom(Interface matchingJoinPointInterface) {
+	private Predicate<? super Connector> allInterfacesContaining(Signature signature) {
 		
-		if (matchingJoinPointInterface instanceof OperationInterface) {
+		return connector -> getAllSignaturesOfInterfaceReferencedBy(getAnyRoleOf(connector)).contains(signature);
+		
+	}
+	
+	private EObject getAnyRoleOf(Connector connector) {
+		
+		return getCrossReferencedElementFrom(connector, con -> con instanceof Role);
+		
+	}
+
+	private List<Signature> getAllSignaturesOfInterfaceReferencedBy(EObject object) {
+		
+		return getSignaturesFrom((Interface) getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
+		
+	}
+	
+	private EObject getCrossReferencedElementFrom(EObject object, Predicate<EObject> withSearchCriteria) {
+		
+		return object.eCrossReferences().stream().filter(withSearchCriteria).findFirst().get();
+		
+	}
+
+	private List<Signature> getSignaturesFrom(Interface refInterface) {
+		
+		List<Signature> signatures = new ArrayList<Signature>();
+		
+		TreeIterator<EObject> iterator = refInterface.eAllContents();
+		while(iterator.hasNext()) {
 			
-			OperationInterface operationInterface = (OperationInterface) matchingJoinPointInterface;
-			return operationInterface.getSignatures__OperationInterface();
+			EObject current = iterator.next();
+			if (current instanceof Signature) {
+				
+				signatures.add((Signature) current);
+				
+			}
 			
 		}
 		
-		return null;
-		
-	}
-	
-	private Optional<Interface> getInterfaceOf(Role role) {
-		
-		return role.eCrossReferences().stream().filter(eachObject -> eachObject instanceof Interface)
-											   .map(foundObject -> (Interface) foundObject)
-									    	   .findFirst();
+		return signatures;
 		
 	}
 	
 	private WeavingLocation toWeavingLocation(JoinPointInfo joinPointInfo) {
 		
-		return new WeavingLocation(joinPointInfo.affectedSignatures, getLocationFrom(joinPointInfo.affectedRole));
+		return new WeavingLocation(joinPointInfo.affectedSignatures, getLocationFrom(joinPointInfo));
+		
+	}
+
+	private Connector getLocationFrom(JoinPointInfo joinPointInfo) {
+		
+		return joinPointInfo.affectedConnector.orElse(getLocationFrom(joinPointInfo.affectedRole));
 		
 	}
 
@@ -179,19 +224,7 @@ public class WeavingLocationHandler {
 
 	private boolean containsAffectedRole(Connector connector, Role affectedRole) {
 		
-		return connector.eCrossReferences().stream().anyMatch(eachObject -> areEqual(eachObject, affectedRole));
-		
-	}
-
-	private boolean areEqual(EObject object1, EObject object2) {
-		
-		if (object1 instanceof Identifier && object2 instanceof Identifier) {
-			
-			return ((Identifier) object1).getId().equals(((Identifier) object2).getId());
-			
-		}
-		
-		return false;
+		return connector.eCrossReferences().stream().anyMatch(eachObject -> ConcernWeaverUtil.areEqual(eachObject, affectedRole));
 		
 	}
 	
