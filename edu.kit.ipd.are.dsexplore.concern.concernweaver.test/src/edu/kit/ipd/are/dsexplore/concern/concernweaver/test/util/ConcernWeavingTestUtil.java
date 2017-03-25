@@ -56,42 +56,6 @@ public class ConcernWeavingTestUtil {
 	private final static String ECC_RESPONSE_NAME = "Response";
 	private final static String ECC_ANALYSIS_NAME = "Analysis";
 	
-//	private final static ResourceSetPartition partition = new ResourceSetPartition();
-//	
-//	public static void initialize() {
-//		
-//		List<URI> models = new ArrayList<URI>();
-//		models.add(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REPOSITORY_MODEL_PATH_SEGMENT)));
-//		
-//		partition.initialiseResourceSetEPackages(getDefaultPackages());
-//		
-//		for (URI eachModel : models) {
-//			
-//			partition.loadModel(eachModel);
-//			
-//		}
-//		
-//		partition.resolveAllProxies();
-//		
-//	}
-//	
-//	private static EPackage[] getDefaultPackages() {
-//		
-//        return (EPackage[]) Arrays.asList(EMFProfilePackage.eINSTANCE, 
-//				   			 			  EMFProfileApplicationPackage.eINSTANCE, 
-//				   			 			  NotationPackage.eINSTANCE,
-//				   			 			  ConcernModelPackage.eINSTANCE,
-//				   			 			  getProfile(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)).toArray();
-//        		
-//	}
-//	
-//	private static Profile getProfile(String relativePath) {
-//		
-//		Resource resource = new ResourceSetImpl().getResource(URI.createFileURI(getAbsolutePathOf(relativePath)), true);
-//		return (Profile) resource.getContents().get(0);
-//		
-//	}
-	
 	public static Repository loadConcernSolution() {
 		
 		return (Repository) loadWithProfiles(RepositoryPackage.eINSTANCE, RELATIVE_CONCERN_REALIZATION_MODEL_PATH_SEGMENT);
@@ -202,7 +166,7 @@ public class ConcernWeavingTestUtil {
 		
 	}
 
-	private static List<Profile> getProfiles(ResourceSet set) {
+	public static List<Profile> getProfiles(ResourceSet set) {
 		
 		Resource annotationProfile = set.getResource(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_REALIZATION_ANNOTATION_MODEL_PATH_SEGMENT)), true);
 		Resource strategyProfile = set.getResource(URI.createFileURI(getAbsolutePathOf(RELATIVE_CONCERN_STRATEGY_ANNOTATION_MODEL_PATH_SEGMENT)), true);

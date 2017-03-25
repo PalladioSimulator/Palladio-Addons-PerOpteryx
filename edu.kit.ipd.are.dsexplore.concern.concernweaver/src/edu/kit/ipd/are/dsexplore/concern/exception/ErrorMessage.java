@@ -134,4 +134,10 @@ public class ErrorMessage {
 		
 	}
 	
+	public static String missingTargetAnnotation(NamedElement object) {
+		
+		return String.format("Element %s is not target annotated.", object.getEntityName());
+		
+	}
+	
 }

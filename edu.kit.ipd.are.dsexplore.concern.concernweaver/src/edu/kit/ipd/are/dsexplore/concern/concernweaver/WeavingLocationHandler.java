@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
@@ -20,9 +19,11 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.AnnotationTarget;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
+import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 /**
  * This class extracts all weaving locations based on target annotated objects.
@@ -33,13 +34,13 @@ public class WeavingLocationHandler {
 
 	private class JoinPointInfo {
 		
-		public Role affectedRole;
+		public Optional<Role> affectedRole;
 		public Optional<Connector> affectedConnector;
 		public List<? extends Signature> affectedSignatures;
 		
 		public JoinPointInfo(Role affectedRole, List<? extends Signature> affectedSignatures) {
 			
-			this.affectedRole = affectedRole;
+			this.affectedRole = Optional.of(affectedRole);
 			this.affectedConnector = Optional.empty();
 			this.affectedSignatures = affectedSignatures;
 			
@@ -47,7 +48,7 @@ public class WeavingLocationHandler {
 		
 		public JoinPointInfo(Connector affectedConnector, List<? extends Signature> affectedSignatures) {
 			
-			this.affectedRole = null;
+			this.affectedRole = Optional.empty();
 			this.affectedConnector = Optional.of(affectedConnector);
 			this.affectedSignatures = affectedSignatures;
 			
@@ -55,42 +56,116 @@ public class WeavingLocationHandler {
 		
 	}
 	
+	private class WeavingLocationExtractor {
+		
+		private final List<EObject> objectsOfSameAnnotation;
+		private final AnnotationTarget target;
+		
+		public WeavingLocationExtractor(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+			
+			this.objectsOfSameAnnotation = getObjectsWithSame(target, annotatedObjects);
+			this.target = target;
+			
+		}
+		
+		private List<EObject> getObjectsWithSame(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+			
+			return annotatedObjects.stream().filter(each -> getTargetAnnotationFrom(each).getName().equals(target.getName()))
+										    .collect(Collectors.toList());
+			
+		}
+		
+		/**
+		 * There might exist annotated objects containing signatures which are equal or contained in signatures
+		 * of other weaving locations. When the connectors are equal too then the locations need to be merged.
+		 * @return all merged weaving locations
+		 * @throws ConcernWeavingException
+		 */
+		public List<WeavingLocation> extractMergedWeavingLocations() throws ConcernWeavingException {
+			
+			return new WeavingLocationMerger(extractUnmergedWeavingLocations()).merge();
+			
+		}
+
+		private List<WeavingLocation> extractUnmergedWeavingLocations() throws ConcernWeavingException {
+			
+			List<WeavingLocation> unmergedWeavingLocations = new ArrayList<WeavingLocation>();
+			for (EObject each : objectsOfSameAnnotation) {
+				
+				unmergedWeavingLocations.addAll(getWeavingLocationsFrom(each, target));
+				
+			}
+			
+			return unmergedWeavingLocations;
+			
+		}
+		
+	}
+	
 	private final System system;
 	
+	/**
+	 * The constructor.
+	 * @param pcmInstance - The pcm model which contains the required system informations.
+	 */
 	public WeavingLocationHandler(PCMInstance pcmInstance) {
 		
 		this(pcmInstance.getSystem());
 		
 	}
 	
+	/**
+	 * The constructor.
+	 * @param system - Contains the required system informations.
+	 */
 	public WeavingLocationHandler(System system) {
 		
 		this.system = system;
 		
 	} 
 	
-	public List<WeavingLocation> getWeavingLocationsFrom(List<EObject> annotatedObjects, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
-		
-		List<WeavingLocation> weavingLocations = new ArrayList<WeavingLocation>();
-		for (EObject eachAnnotatedObject : annotatedObjects) {
+	/**
+	 * Extracts all weaving locations which can be derived by a set of annotated objects.
+	 * @param annotatedObjects - Contains all objects that are annotated by target annotations.
+	 * @return all pairs containing the weaving location and the associated target annotation.
+	 * @throws ConcernWeavingException
+	 */
+	public List<Pair<AnnotationTarget, WeavingLocation>> extractWeavingLocationsFrom(List<EObject> annotatedObjects) throws ConcernWeavingException {
+
+		List<Pair<AnnotationTarget, WeavingLocation>> weavingLocations = new ArrayList<Pair<AnnotationTarget, WeavingLocation>>();
+
+		List<EObject> copy = new ArrayList<EObject>(annotatedObjects);
+		while(!copy.isEmpty()) {
 			
-			weavingLocations.addAll(getWeavingLocationFrom(eachAnnotatedObject, targetAnnotation));
+			AnnotationTarget target = getTargetAnnotationFrom(copy.get(0));
+			weavingLocations.addAll(getPairsOf(extractMergedWeavinLocationsBy(target, copy), target));
+			copy.removeIf(each -> getTargetAnnotationFrom(each).getName().equals(target.getName()));
 			
 		}
 		
-		return mergeWeavingLocations(weavingLocations);
-		
-	}
-	
-	/*There might exist annotated objects containing signatures which are equal or contained in signatures
-	 *of other weaving locations. When the connectors are equal too then the locations need to be merged.*/
-	private List<WeavingLocation> mergeWeavingLocations(List<WeavingLocation> unmergedLocations) {
-		
-		return new WeavingLocationMerger(unmergedLocations).merge();
+		return weavingLocations;
 		
 	}
 
-	public List<WeavingLocation> getWeavingLocationFrom(EObject annotatedObject, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+	private List<WeavingLocation> extractMergedWeavinLocationsBy(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+		
+		return new WeavingLocationExtractor(target, annotatedObjects).extractMergedWeavingLocations();
+		
+	}
+	
+	private List<Pair<AnnotationTarget, WeavingLocation>> getPairsOf(List<WeavingLocation> locations, AnnotationTarget target) {
+		
+		return locations.stream().map(each -> Pair.of(target, each)).collect(Collectors.toList());
+		
+	}
+
+	private AnnotationTarget getTargetAnnotationFrom(EObject object) {
+		
+		return AnnotationFilter.getTargetAnnotationFrom(object).get();
+		
+	}
+
+	private List<WeavingLocation> getWeavingLocationsFrom(EObject annotatedObject, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 		
 		switch(targetAnnotation.getJoinPoint()) {
 		
@@ -211,7 +286,7 @@ public class WeavingLocationHandler {
 
 	private Connector getLocationFrom(JoinPointInfo joinPointInfo) {
 		
-		return joinPointInfo.affectedConnector.orElse(getLocationFrom(joinPointInfo.affectedRole));
+		return joinPointInfo.affectedConnector.isPresent() ? joinPointInfo.affectedConnector.get() : getLocationFrom(joinPointInfo.affectedRole.get());
 		
 	}
 

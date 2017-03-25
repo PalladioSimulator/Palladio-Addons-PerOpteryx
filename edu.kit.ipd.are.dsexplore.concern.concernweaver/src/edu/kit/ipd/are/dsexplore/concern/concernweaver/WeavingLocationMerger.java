@@ -17,11 +17,13 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
  */
 public class WeavingLocationMerger {
 
-	private final List<WeavingLocation> unmergedLocations;
+	private List<WeavingLocation> unmergedLocations;
+	private List<WeavingLocation> alreadyMergedLocations;
 	
 	public WeavingLocationMerger(List<WeavingLocation> unmergedLocations) {
 		
 		this.unmergedLocations = unmergedLocations;
+		this.alreadyMergedLocations = new ArrayList<WeavingLocation>();
 		
 	}
 	
@@ -48,7 +50,7 @@ public class WeavingLocationMerger {
 
 	private boolean needToBeMerged(WeavingLocation weavingLocation) {
 		
-		List<WeavingLocation> result = getWeavingLocations(searchCriteria(weavingLocation));
+		List<WeavingLocation> result = getWeavingLocationsToMergeBy(searchCriteria(weavingLocation));
 		result.remove(weavingLocation);
 		
 		return !result.isEmpty();
@@ -57,14 +59,22 @@ public class WeavingLocationMerger {
 	
 	private void merge(WeavingLocation weavingLocation, List<WeavingLocation> mergedLocations) {
 		
-		List<WeavingLocation> locationsToMerge = getWeavingLocations(searchCriteria(weavingLocation));
+		if (isAlreadyMerged(weavingLocation)) {
+			
+			return;
+			
+		}
+		
+		List<WeavingLocation> locationsToMerge = getWeavingLocationsToMergeBy(searchCriteria(weavingLocation));
 		WeavingLocation mergedWeavingLocation = merge(locationsToMerge);
 		
 		mergedLocations.removeAll(locationsToMerge);
 		mergedLocations.add(mergedWeavingLocation);
 		
+		cacheMergedLocation(locationsToMerge);
+		
 	}
-	
+
 	private WeavingLocation merge(List<WeavingLocation> locationsToMerge) {
 		
 		return locationsToMerge.stream().reduce((w1,w2) -> new WeavingLocation(mergeSignaturesOf(w1,w2), w1.getLocation())).get();
@@ -77,7 +87,7 @@ public class WeavingLocationMerger {
 		
 	}
 
-	private List<WeavingLocation> getWeavingLocations(Predicate<WeavingLocation> searchCriteria) {
+	private List<WeavingLocation> getWeavingLocationsToMergeBy(Predicate<WeavingLocation> searchCriteria) {
 		
 		return this.unmergedLocations.stream().filter(searchCriteria).collect(Collectors.toList());
 		
@@ -85,7 +95,14 @@ public class WeavingLocationMerger {
 	
 	private Predicate<WeavingLocation> searchCriteria(WeavingLocation weavingLocation) {
 		
-		return isSupersetOf(weavingLocation).or(containsTheSameConnector(weavingLocation));
+		return containsTheSameConnector(weavingLocation).and(isSupersetOf(weavingLocation).or(shareSameInterface(weavingLocation)));
+		
+	}
+
+	private Predicate<WeavingLocation> shareSameInterface(WeavingLocation givenWeavingLocation) {
+		
+		return weavingLocation -> ConcernWeaverUtil.areEqual(weavingLocation.getAffectedSignatures().get(0).eContainer(), 
+															 givenWeavingLocation.getAffectedSignatures().get(0).eContainer());
 		
 	}
 
@@ -99,6 +116,18 @@ public class WeavingLocationMerger {
 	private Predicate<WeavingLocation> containsTheSameConnector(WeavingLocation givenWeavingLocation) {
 		
 		return weavingLocation -> ConcernWeaverUtil.areEqual(weavingLocation.getLocation(), givenWeavingLocation.getLocation());
+		
+	}
+	
+	private void cacheMergedLocation(List<WeavingLocation> locationsToMerge) {
+		
+		this.alreadyMergedLocations.addAll(locationsToMerge);
+		
+	}
+
+	private boolean isAlreadyMerged(WeavingLocation weavingLocation) {
+		
+		return this.alreadyMergedLocations.contains(weavingLocation);
 		
 	}
 	

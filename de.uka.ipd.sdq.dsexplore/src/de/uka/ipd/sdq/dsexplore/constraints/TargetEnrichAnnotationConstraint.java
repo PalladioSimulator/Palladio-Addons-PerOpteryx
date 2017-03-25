@@ -21,6 +21,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.AllocationDegreeImpl;
+import edu.kit.ipd.are.dsexplore.concern.util.ComponentResolver;
 
 public abstract class TargetEnrichAnnotationConstraint extends ConcernDeploymentConstraint {
 
@@ -47,7 +48,7 @@ public abstract class TargetEnrichAnnotationConstraint extends ConcernDeployment
 			Map.Entry<AnnotationEnrich, Optional<AnnotationTarget>> enrichTargetEntry = enrichTargetEntries.next();
 			if (enrichTargetEntry.getValue().isPresent() && hasDeploymentConfiguration(enrichTargetEntry.getKey(), enrichTargetEntry.getValue().get())) {
 				
-				List<RepositoryComponent> targetAnnotatedComponents = annotationFilter.getTargetAnnotatedComponentsWith(enrichTargetEntry.getValue().get().getName());
+				List<RepositoryComponent> targetAnnotatedComponents = getComponentsTargetAnnotatedOrInderectlyAffectedBy(enrichTargetEntry.getValue().get());
 				if (targetAnnotatedComponents.isEmpty()) {
 					
 					break;
@@ -79,6 +80,12 @@ public abstract class TargetEnrichAnnotationConstraint extends ConcernDeployment
 	private boolean hasDeploymentConfiguration(AnnotationEnrich annotationEnrich, AnnotationTarget annotationTarget) {
 		
 		return concernManager.getDeploymentConstraintOf(annotationEnrich, annotationTarget).equals(getAssociation());
+		
+	}
+	
+	private List<RepositoryComponent> getComponentsTargetAnnotatedOrInderectlyAffectedBy(AnnotationTarget target) {
+		
+		return new ComponentResolver(repositories).getOnlyAffectedComponentsConsidering(target);
 		
 	}
 	

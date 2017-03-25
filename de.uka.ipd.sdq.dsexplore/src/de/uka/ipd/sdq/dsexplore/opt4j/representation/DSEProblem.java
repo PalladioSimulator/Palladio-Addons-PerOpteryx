@@ -1,8 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,10 +32,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.Concern;
 import ConcernModel.ConcernModelPackage;
 import ConcernModel.ConcernRepository;
-import ConcernModel.ConcernStrategy;
 import SolutionModel.Solution;
-import SolutionModel.SolutionModelPackage;
-import SolutionModel.SolutionRepository;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
@@ -55,8 +50,6 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.cost.ComponentCost;
-import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -87,6 +80,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 
 /**
@@ -451,7 +445,15 @@ public class DSEProblem {
         	
         	initializeWeavingManager();
         	
-        	concernDegrees.forEach(each -> createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype));
+        	for (ConcernDegree each : concernDegrees) {
+        		
+        		try {
+					createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype);
+				} catch (ConcernWeavingException e) {
+					throw new RuntimeException(String.format("Ann error occurred. Error message:", e.getMessage()));
+				}
+        		
+        	}
         	
         }
         
@@ -473,6 +475,7 @@ public class DSEProblem {
     	if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || concernSolutions.isEmpty()) {
     		
     		WeavingManager.initialize(blackboard, initialPartition);
+    		return;
     		
     	}
     	
@@ -546,7 +549,25 @@ public class DSEProblem {
     		
     	}
     	
-    	List<ConcernDegree> concernDegrees = new ConcernDesignDecision(concernRepo.get(), this.initialInstance.getRepositories()).generateConcernDegrees();
+    	
+    	try {
+    		
+    		createConcernDegreeBy(concernRepo.get(), dds, initialCandidate);
+    		
+    	} catch (Exception ex) {
+    		
+    		//Logging...
+    		return;
+    		
+    	}
+    	
+    	
+
+	}
+    
+    private void createConcernDegreeBy(ConcernRepository concernRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
+    	
+    	List<ConcernDegree> concernDegrees = new ConcernDesignDecision(concernRepo).generateConcernDegrees();
     	if (concernDegrees.isEmpty()) {
     		
     		return;
@@ -555,14 +576,14 @@ public class DSEProblem {
     	
     	initializeWeavingManager();
     	
-    	concernDegrees.forEach(concernDegree -> {
+    	for (ConcernDegree eachConcernDegree : concernDegrees) {
     		
-    		createClassChoice(concernDegree, dds, initialCandidate);
-    		createECCAllocationDegreesFrom(concernDegree, dds, initialCandidate);
+    		createClassChoice(eachConcernDegree, dds, initialCandidate);
+    		createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
     		
-    	});
-
-	}
+    	}
+    	
+    }
 	
 	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 		
@@ -589,7 +610,7 @@ public class DSEProblem {
 		
 	}
 
-	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {	
+	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {	
 		
 		ECCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), 
 																									 this.initialInstance.getRepositories());

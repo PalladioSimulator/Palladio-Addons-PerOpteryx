@@ -26,7 +26,7 @@ public class EMFProfileFilter {
 	private static List<EObject> getAnnotationsFrom(List<StereotypeApplication> stereotypeApplications, Predicate<EObject> condition) {
 
 		return stereotypeApplications.stream().flatMap(eachApplication -> eachApplication.eCrossReferences().stream())
-											  .filter(eachReferencedObject -> condition.test(eachReferencedObject))
+											  .filter(condition)
 											  .collect(Collectors.toList());
 											  		
 	}

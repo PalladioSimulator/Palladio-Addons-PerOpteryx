@@ -9,11 +9,10 @@ import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 
 public class AnnotationFilterTest extends WeavingTest {
 
-	private final static String TARGET_ANNOTATION_NAME = "Observee";
-	private final static int EXPECTED_COUNT = 2;
+	private final static int EXPECTED_COUNT = 4;
 	
 	private AnnotationFilter annotationFilter;
-	private int countOfFilteredTargetAnnotations;
+	private int result;
 
 
 	@Test
@@ -33,13 +32,13 @@ public class AnnotationFilterTest extends WeavingTest {
 	
 	private void whenTargetAnnotationsAreFiltered() {
 		
-		this.countOfFilteredTargetAnnotations = annotationFilter.getTargetAnnotatedComponentsWith(TARGET_ANNOTATION_NAME).size();
+		this.result = annotationFilter.getTargetAnnotatedElements().size();
 		
 	}
 	
 	private void thenTheCountOfFilteredAnnotationsShouldMatch() {
 		
-		assertEquals(EXPECTED_COUNT, this.countOfFilteredTargetAnnotations);
+		assertEquals(EXPECTED_COUNT, this.result);
 		
 	}
 

@@ -286,6 +286,18 @@
       <extension href="../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
       <tags xsi:type="Concern:AnnotationTarget" href="concern.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_9eK7YHDrEeSqnN80MQ2uGw">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="concern.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_xHigcHDsEeSqnN80MQ2uGw">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_Qc280M0NEea89v89uvEzqw"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="concern.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_z17ZUHDsEeSqnN80MQ2uGw">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_Qc280M0NEea89v89uvEzqw"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="concern.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

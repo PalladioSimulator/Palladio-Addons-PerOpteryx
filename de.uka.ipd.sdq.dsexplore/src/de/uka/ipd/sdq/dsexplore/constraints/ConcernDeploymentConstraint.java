@@ -10,20 +10,19 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 
 public abstract class ConcernDeploymentConstraint implements IDesignSpaceConstraint {
 
 	protected static ConcernManager concernManager;
-	protected static AnnotationFilter annotationFilter;
+	protected static List<Repository> repositories;
 	
 	protected DesignDecisionGenotype genotype;
 	
 	public static void setConcernManager(ConcernManager newConcernManager, List<Repository> pcmRepositories) {
 		
 		concernManager = newConcernManager;
-		annotationFilter = new AnnotationFilter(pcmRepositories);
+		repositories = pcmRepositories;
 		
 	}
 	
