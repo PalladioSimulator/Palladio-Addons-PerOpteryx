@@ -50,7 +50,7 @@ public class DesignSpaceConstraintManager {
 		
 		checkInitialization();
 		
-		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getBy(concern), pcmRepositories);
+		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getInstanceBy(concern), pcmRepositories);
 		
 		return instance;
 		
@@ -67,7 +67,7 @@ public class DesignSpaceConstraintManager {
 			
 		}
 		
-		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getBy(concern.get()), pcmRepositories);
+		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getInstanceBy(concern.get()), pcmRepositories);
 		
 		return Optional.of(instance);
 		

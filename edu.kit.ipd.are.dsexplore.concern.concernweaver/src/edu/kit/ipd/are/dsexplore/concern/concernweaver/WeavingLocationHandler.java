@@ -38,6 +38,11 @@ public class WeavingLocationHandler {
 		public Optional<Connector> affectedConnector;
 		public List<? extends Signature> affectedSignatures;
 		
+		/**
+		 * The constructor.
+		 * @param affectedRole - The affected role.
+		 * @param affectedSignatures - The affected signatures.
+		 */
 		public JoinPointInfo(Role affectedRole, List<? extends Signature> affectedSignatures) {
 			
 			this.affectedRole = Optional.of(affectedRole);
@@ -46,6 +51,11 @@ public class WeavingLocationHandler {
 			
 		}
 		
+		/**
+		 * The constructor.
+		 * @param affectedConnector - The affected connector.
+		 * @param affectedSignatures -  The affected signatures.
+		 */
 		public JoinPointInfo(Connector affectedConnector, List<? extends Signature> affectedSignatures) {
 			
 			this.affectedRole = Optional.empty();
@@ -61,6 +71,12 @@ public class WeavingLocationHandler {
 		private final List<EObject> objectsOfSameAnnotation;
 		private final AnnotationTarget target;
 		
+		/**
+		 * The constructor.
+		 * @param target - A target annotation.
+		 * @param annotatedObjects - All annotated objects.
+		 * @throws ConcernWeavingException - Will be thrown if an error occurs.
+		 */
 		public WeavingLocationExtractor(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
 			
 			this.objectsOfSameAnnotation = getObjectsWithSame(target, annotatedObjects);
@@ -128,7 +144,7 @@ public class WeavingLocationHandler {
 	 * Extracts all weaving locations which can be derived by a set of annotated objects.
 	 * @param annotatedObjects - Contains all objects that are annotated by target annotations.
 	 * @return all pairs containing the weaving location and the associated target annotation.
-	 * @throws ConcernWeavingException
+	 * @throws ConcernWeavingException - Will be thrown if any error occurs.
 	 */
 	public List<Pair<AnnotationTarget, WeavingLocation>> extractWeavingLocationsFrom(List<EObject> annotatedObjects) throws ConcernWeavingException {
 

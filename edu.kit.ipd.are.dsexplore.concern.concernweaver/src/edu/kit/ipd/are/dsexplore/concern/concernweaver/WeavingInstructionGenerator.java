@@ -33,6 +33,11 @@ import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
 
+/**
+ * This class is responsible to derive all weaving instructions from an annotated PCM model.
+ * @author scheerer
+ *
+ */
 public class WeavingInstructionGenerator {
 
 	private static WeavingInstructionGenerator instance = null;
@@ -42,6 +47,13 @@ public class WeavingInstructionGenerator {
 	private ECCFeatureHandler featureHandler;
 	private HashMap<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap;
 	
+	/**
+	 * Returns an already existing or newly created WeavingInstructionGenerator-instance.
+	 * @param pcmInstance - The annotated PCM model.
+	 * @param concern - The concern model.
+	 * @param concernSolution - The concern solution realizing a concern.
+	 * @return a WeavingInsztructiongenerator-instance
+	 */
 	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, 
 															Concern concern,
 															Repository concernSolution) {
@@ -52,6 +64,14 @@ public class WeavingInstructionGenerator {
 		
 	}
 	
+	/**
+	 * Returns an already existing or newly created WeavingInstructionGenerator-instance.
+	 * @param pcmInstance - The annotated PCM model.
+	 * @param concern - The concern model.
+	 * @param concernSolution - The concern solution realizing a concern.
+	 * @param eccToResourceContainerMap - A mapping between an ECC and a resource container the ECC is suppose to be allocated.
+	 * @return a WeavingInsztructiongenerator-instance
+	 */
 	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, 
 			   												Concern concern,
 			   												Repository concernSolution,
@@ -75,12 +95,17 @@ public class WeavingInstructionGenerator {
 		}
 		
 		instance.pcmInstance = pcmInstance;
-		instance.concernManager = ConcernManager.getBy(concern);
+		instance.concernManager = ConcernManager.getInstanceBy(concern);
 		instance.featureHandler = new ECCFeatureHandler(concernSolution);
 		instance.eccToResourceContainerMap = eccToResourceContainerMap;
 		
 	}
 
+	/**
+	 * Derives all weaving instructions from the annotated PCM model.
+	 * @return the generated weaving instructions.
+	 * @throws ConcernWeavingException - Will be thrown if an error occurs during the generation of the weaving instructions.
+	 */
 	public List<WeavingInstruction> getWeavingInstructions() throws ConcernWeavingException {
 		
 		try {

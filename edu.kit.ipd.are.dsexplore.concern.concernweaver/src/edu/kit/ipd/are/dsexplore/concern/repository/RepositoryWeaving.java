@@ -4,12 +4,16 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
+/**
+ * This class is responsible to weave the repository view-type or more precisely 
+ * to call the proper weaving strategy which performs the actual weaving.
+ * @author scheerer
+ *
+ */
 public class RepositoryWeaving extends WeavingStep {
 	
 	/**
-	 * Weaves all changes to the PCM repository which results through inclusion of a certain concern.
-	 * @throws ConcernWeavingException 
-	 * @see WeavingPipe#weave(PCMInstance, Triplet<WeavingLocation, Transformation, ElementaryConcernComponent>)
+	 * @see WeavingStep#weave(WeavingInstruction)
 	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {

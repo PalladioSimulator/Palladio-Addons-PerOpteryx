@@ -392,7 +392,7 @@ public class IDSConcernExperiment extends ExperimentConfiguration {
 	@After
 	public void saveModels() {
 		
-		ExperimentUtil.savePCMAndConcernRepositoryToResultFolder(WeavingStep.getPCMConcernRepository(), this.pcmToAdapt);
+		ExperimentUtil.savePCMAndConcernRepositoryToResultFolder(WeavingStep.getConcernSolution(), this.pcmToAdapt);
 		
 	}
 

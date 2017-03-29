@@ -29,7 +29,7 @@ public class ECCAllocDegreeDesignDecision {
 	
 	public ECCAllocDegreeDesignDecision(Concern concern, List<Repository> repositories) {
 		
-		this.concernManager = ConcernManager.getBy(concern);
+		this.concernManager = ConcernManager.getInstanceBy(concern);
 		this.annotationFilter = new AnnotationFilter(repositories);
 		
 	}

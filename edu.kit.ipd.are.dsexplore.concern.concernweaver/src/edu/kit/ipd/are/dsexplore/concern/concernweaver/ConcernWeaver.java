@@ -13,7 +13,11 @@ import edu.kit.ipd.are.dsexplore.concern.repository.RepositoryWeaving;
 import edu.kit.ipd.are.dsexplore.concern.seff.ServiceEffectSpecificationWeaving;
 import edu.kit.ipd.are.dsexplore.concern.usagemodel.UsageModelWeaving;
 
-//TODO Logging 
+/**
+ * This class is the entry point which triggers the weaving process. 
+ * @author scheerer
+ *
+ */
 public class ConcernWeaver {
 	
 	private LinkedHashSet<WeavingStep> weavingChain;
@@ -76,9 +80,9 @@ public class ConcernWeaver {
 
 	/**
 	 * Triggers the weaving process.
-	 * @param weavingInstructions - Includes all weaving instructions that will be needed by the weaving-process.
+	 * @param weavingInstructions - Includes all weaving instructions that are needed by the weaving-process.
 	 * @return The woven PCM model.
-	 * @throws ConcernWeavingException 
+	 * @throws ConcernWeavingException - Will be thrown if there occurr any error during the weaving process. 
 	 */
 	public PCMInstance start(List<WeavingInstruction> weavingInstructions) throws ConcernWeavingException {
 		

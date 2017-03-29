@@ -44,7 +44,7 @@ public class MediaStoreExperimentWithRequiredECCs extends ExperimentConfiguratio
 	@After
 	public void saveModels() {
 		
-		ExperimentUtil.savePCMAndConcernRepositoryToResultFolder(WeavingStep.getPCMConcernRepository(), this.pcmToAdapt);
+		ExperimentUtil.savePCMAndConcernRepositoryToResultFolder(WeavingStep.getConcernSolution(), this.pcmToAdapt);
 		
 	}
 	

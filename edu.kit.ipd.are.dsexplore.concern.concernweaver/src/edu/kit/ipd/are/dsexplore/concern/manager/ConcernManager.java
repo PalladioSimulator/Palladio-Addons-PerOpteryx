@@ -15,6 +15,11 @@ import ConcernModel.Concern;
 import ConcernModel.DeploymentConstraint;
 import ConcernModel.ElementaryConcernComponent;
 
+/**
+ * This class provides all operations performed on a given concern.
+ * @author scheerer
+ *
+ */
 public class ConcernManager {
 
 	private static ConcernManager eInstance = null;
@@ -28,7 +33,12 @@ public class ConcernManager {
 		
 	}
 	
-	public static ConcernManager getBy(Concern concern) {
+	/**
+	 * Creates or returns a ConcernManager-instance.
+	 * @param concern - A given concern.
+	 * @return a ConcernManager-instance.
+	 */
+	public static ConcernManager getInstanceBy(Concern concern) {
 		
 		if (eInstance == null) {
 			
