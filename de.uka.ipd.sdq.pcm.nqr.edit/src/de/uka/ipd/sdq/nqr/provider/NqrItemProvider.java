@@ -64,6 +64,7 @@ public class NqrItemProvider
 			super.getPropertyDescriptors(object);
 
 			addAnnotatedElementPropertyDescriptor(object);
+			addDimensionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,6 +92,28 @@ public class NqrItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Dimension feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDimensionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Nqr_dimension_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Nqr_dimension_feature", "_UI_Nqr_type"),
+				 NqrPackage.Literals.NQR__DIMENSION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -102,7 +125,7 @@ public class NqrItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NqrPackage.Literals.NQR__CRITERION);
+			childrenFeatures.add(NqrPackage.Literals.NQR__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -155,7 +178,7 @@ public class NqrItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Nqr.class)) {
-			case NqrPackage.NQR__CRITERION:
+			case NqrPackage.NQR__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -175,13 +198,23 @@ public class NqrItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NqrPackage.Literals.NQR__CRITERION,
-				 QMLContractFactory.eINSTANCE.createObjective()));
+				(NqrPackage.Literals.NQR__VALUE,
+				 QMLContractFactory.eINSTANCE.createNumericLiteral()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NqrPackage.Literals.NQR__CRITERION,
-				 QMLContractFactory.eINSTANCE.createConstraint()));
+				(NqrPackage.Literals.NQR__VALUE,
+				 QMLContractFactory.eINSTANCE.createEnumLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NqrPackage.Literals.NQR__VALUE,
+				 QMLContractFactory.eINSTANCE.createSetLiteral()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NqrPackage.Literals.NQR__VALUE,
+				 QMLContractFactory.eINSTANCE.createScaleLiteral()));
 	}
 
 	/**
