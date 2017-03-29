@@ -1,13 +1,17 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
+
+/**
+ * This class provides all operations performed on a PCM usage model.
+ * @author scheerer
+ *
+ */
 public class PcmUsageModelManager {
 
 private static PcmUsageModelManager eInstance = null;
@@ -18,7 +22,12 @@ private static PcmUsageModelManager eInstance = null;
 		
 	}
 	
-	public static PcmUsageModelManager getBy(UsageModel usageModel) {
+	/**
+	 * Creates or returns a PcmUsageModelManager-instance.
+	 * @param usageModel - A given PCM usage model.
+	 * @return a PcmUsageModelManager-instance.
+	 */
+	public static PcmUsageModelManager getInstanceBy(UsageModel usageModel) {
 		
 		if (eInstance == null) {
 			
@@ -32,24 +41,13 @@ private static PcmUsageModelManager eInstance = null;
 		
 	}
 	
+	/**
+	 * Filters all entry level system calls of the PCm usage model.
+	 * @return the set of all filtered entry level system calls.
+	 */
 	public List<EntryLevelSystemCall> getEntryLevelSystemCalls() {
 		
-		List<EntryLevelSystemCall> foundEntryLevelSystemCalls = new ArrayList<EntryLevelSystemCall>();
-		TreeIterator<EObject> usageModelIterator = this.usageModel.eAllContents();
-		
-		while (usageModelIterator.hasNext()) {
-			
-			EObject current = usageModelIterator.next();
-			
-			if (current instanceof EntryLevelSystemCall) {
-				
-				foundEntryLevelSystemCalls.add((EntryLevelSystemCall) current);
-				
-			}
-			
-		}
-		
-		return foundEntryLevelSystemCalls;
+		return new EcoreReferenceResolver(this.usageModel).getAllContainedElementsOfType(EntryLevelSystemCall.class);
 		
 	}
 	

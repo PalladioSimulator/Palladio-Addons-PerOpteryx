@@ -25,7 +25,7 @@ public class PcmSystemManagerTest extends WeavingTest {
 	@Before
 	public void setUp() {
 
-        this.pcmSystemManager = PcmSystemManager.getBy(pcmToAdapt.getSystem());
+        this.pcmSystemManager = PcmSystemManager.getInstanceBy(pcmToAdapt.getSystem());
         
 	}
 	

@@ -27,8 +27,8 @@ public abstract class AdapterWeaving {
 		concernRepositoryManager = ConcernSolutionManager.getInstanceBy(pcmConcernRepository);
 		
 		pcmAllocationManager = PcmAllocationManager.getInstanceBy(pcmToAdapt.getAllocation());
-		pcmSystemManager = PcmSystemManager.getBy(pcmToAdapt.getSystem());
-		pcmUsageModelManager = PcmUsageModelManager.getBy(pcmToAdapt.getUsageModel());
+		pcmSystemManager = PcmSystemManager.getInstanceBy(pcmToAdapt.getSystem());
+		pcmUsageModelManager = PcmUsageModelManager.getInstanceBy(pcmToAdapt.getUsageModel());
 		
 	}
 	

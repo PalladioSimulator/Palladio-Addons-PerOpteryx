@@ -189,7 +189,7 @@ public class WeavingInstructionGenerator {
 
 	private boolean isInstantiated(EObject object) {
 		
-		return !PcmSystemManager.getBy(this.pcmInstance.getSystem()).getAssemblyContextsInstantiating((RepositoryComponent) object).isEmpty();
+		return !PcmSystemManager.getInstanceBy(this.pcmInstance.getSystem()).getAssemblyContextsInstantiating((RepositoryComponent) object).isEmpty();
 		
 	}
 
