@@ -1,6 +1,5 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +7,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyEventConnector;
@@ -25,6 +23,8 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 import org.palladiosimulator.pcm.system.System;
 
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public class PcmSystemManager {
@@ -94,20 +94,7 @@ public class PcmSystemManager {
 
 	private List<Role> getRolesOf(Connector connector) {
 		
-		List<EObject> referencedElements = connector.eCrossReferences();
-		List<Role> roles = new ArrayList<Role>();
-		
-		referencedElements.forEach(eachReferencedElement -> { 
-
-			if (eachReferencedElement instanceof Role) {
-				
-				roles.add((Role) eachReferencedElement);
-				
-			}
-			
-		});
-		
-		return roles;
+		return new EcoreReferenceResolver(connector).getCrossReferencedElementsOfType(Role.class);
 		
 	}
 
@@ -123,36 +110,21 @@ public class PcmSystemManager {
 		
 	}
 	
+	public List<AssemblyContext> getAssemblyContextsInstantiating(RepositoryComponent component) {
+		
+		return getAllAssemblyContexts().filter(assemblyContextsInstantiating(component)).collect(Collectors.toList());
+		
+	}
+	
 	private Stream<AssemblyContext> getAllAssemblyContexts() {
 		
 		return this.system.getAssemblyContexts__ComposedStructure().stream();
 		
 	}
 	
-	//This method is only unambiguous if the name of the searched assembly context is unique.
-	public Optional<AssemblyContext> getAssemblyContextByUniqueName(String name) {
+	private Predicate<AssemblyContext> assemblyContextsInstantiating(RepositoryComponent component) {
 		
-		return this.system.getAssemblyContexts__ComposedStructure().stream().filter(eachAssemblyContext -> areEqual(eachAssemblyContext.getEntityName(), name))
-																			.findFirst();
-		
-	}
-	
-	public List<AssemblyContext> getAssemblyContextsInstantiating(RepositoryComponent instantiatedComponent) {
-		
-		return this.system.getAssemblyContexts__ComposedStructure().stream().filter(eachAssemblyContext -> encapsulates(instantiatedComponent, eachAssemblyContext))
-																	 		.collect(Collectors.toList());
-		
-	}
-	
-	private boolean encapsulates(RepositoryComponent encapsulatedCompoent, AssemblyContext givenAssemblyContext) {
-		
-		return areEqual(encapsulatedCompoent.getId(), givenAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId());
-		
-	}
-
-	private boolean areEqual(String givenId, String searchedId) {
-
-		return givenId.equals(searchedId);
+		return assContext -> ConcernWeaverUtil.areEqual(assContext.getEncapsulatedComponent__AssemblyContext(), component);
 		
 	}
 

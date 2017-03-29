@@ -43,6 +43,12 @@ public class ErrorMessage {
 		
 	}
 	
+	public static String allocationError(RepositoryComponent component, int allocations) {
+		
+		return String.format("The component %s has been allocated %d times instead of one time.", component.getEntityName(), allocations);
+		
+	}
+	
 	public static String missingConnectorWith(ProvidedRole providedRole) {
 		
 		return String.format("There exist no assembly connector containing the provided role: %s.", providedRole.getEntityName());

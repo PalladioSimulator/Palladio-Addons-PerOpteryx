@@ -6,11 +6,11 @@ import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public class SinkSourceRoleHandler extends RoleHandler {
 
-	public SinkSourceRoleHandler(ConcernRepositoryManager concernRepositoryManager) {
+	public SinkSourceRoleHandler(ConcernSolutionManager concernRepositoryManager) {
 		
 		super(concernRepositoryManager);
 		

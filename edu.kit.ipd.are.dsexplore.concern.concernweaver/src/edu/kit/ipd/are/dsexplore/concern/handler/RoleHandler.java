@@ -7,13 +7,13 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public abstract class RoleHandler {
 	
-	protected ConcernRepositoryManager concernRepositoryManager;
+	protected ConcernSolutionManager concernRepositoryManager;
 	
-	public RoleHandler(ConcernRepositoryManager concernRepositoryManager) {
+	public RoleHandler(ConcernSolutionManager concernRepositoryManager) {
 		
 		this.concernRepositoryManager = concernRepositoryManager;
 		

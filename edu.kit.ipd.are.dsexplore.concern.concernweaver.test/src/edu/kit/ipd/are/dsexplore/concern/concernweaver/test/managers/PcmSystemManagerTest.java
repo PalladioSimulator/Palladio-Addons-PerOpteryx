@@ -49,25 +49,6 @@ public class PcmSystemManagerTest extends WeavingTest {
 		
 	}
 	
-	@Test
-	public void testGetAssemblyContextByUniqueName_PositiveCase() {
-		
-		AssemblyContext expectedAssemblyContext = pcmToAdapt.getSystem().getAssemblyContexts__ComposedStructure().get(0);
-		
-		Optional<AssemblyContext> actualAssemblyContext = this.pcmSystemManager.getAssemblyContextByUniqueName(expectedAssemblyContext.getEntityName());
-		
-		assertTrue(actualAssemblyContext.isPresent());
-		assertEquals(expectedAssemblyContext, actualAssemblyContext.get());
-		
-	}
-	
-	@Test
-	public void testGetAssemblyContextByUniqueName_NegativeCase() {
-		
-		assertTrue(this.pcmSystemManager.getAssemblyContextByUniqueName(DUMMY_NAME).isPresent() == false);
-		
-	}
-	
 	@After
 	public void tearDown() {
 		

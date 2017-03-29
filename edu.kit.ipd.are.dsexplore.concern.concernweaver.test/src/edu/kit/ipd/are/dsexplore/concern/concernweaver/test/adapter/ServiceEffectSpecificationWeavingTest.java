@@ -47,7 +47,7 @@ public class ServiceEffectSpecificationWeavingTest extends WeavingTest {
 
 	private void persistPcmConcernRepository() {
 		
-		EMFHelper.saveToXMIFile(WeavingStep.getPCMConcernRepository(), ConcernWeavingTestUtil.getAbsoluteResultFolderPathOf(WeavingStep.getPCMConcernRepository()));
+		EMFHelper.saveToXMIFile(WeavingStep.getConcernSolution(), ConcernWeavingTestUtil.getAbsoluteResultFolderPathOf(WeavingStep.getConcernSolution()));
 		
 	}
 

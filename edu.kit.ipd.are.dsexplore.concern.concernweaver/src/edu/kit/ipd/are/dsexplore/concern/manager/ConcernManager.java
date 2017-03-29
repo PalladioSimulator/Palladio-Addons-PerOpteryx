@@ -14,6 +14,7 @@ import ConcernModel.Association;
 import ConcernModel.Concern;
 import ConcernModel.DeploymentConstraint;
 import ConcernModel.ElementaryConcernComponent;
+import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 /**
  * This class provides all operations performed on a given concern.
@@ -26,9 +27,6 @@ public class ConcernManager {
 	
 	private Concern concern;
 	
-	/**
-	 * The constructor.
-	 */
 	private ConcernManager() {
 		
 	}
@@ -51,12 +49,11 @@ public class ConcernManager {
 		return eInstance;
 	}
 	
-	public List<ElementaryConcernComponent> getECCs() {
-		
-		return this.concern.getComponents();
-		
-	}
-	
+	/**
+	 * Retrieve the ECC which contains the corresponding enrich annotation.
+	 * @param annotationEnrich - The enrich annotation of the ECC that is suppose to be retrieved.
+	 * @return An optional of the retrieved ECC.
+	 */
 	public Optional<ElementaryConcernComponent> getElementaryConcernComponentBy(AnnotationEnrich annotationEnrich) {
 		
 		for (ElementaryConcernComponent eachECC : this.concern.getComponents()) {
@@ -79,28 +76,43 @@ public class ConcernManager {
 		
 	}
 
-	public HashMap<AnnotationEnrich, Optional<AnnotationTarget>> getTargetAnnotationOf(List<AnnotationEnrich> enrichAnnotations) {
+	/**
+	 * Creates a map of enrich and target pairs which are constraint.
+	 * @param enrichs - A list of enrich annotations.
+	 * @return a map of enrich and potential target pairs.
+	 */
+	public HashMap<AnnotationEnrich, Optional<AnnotationTarget>> getTargetAnnotationOf(List<AnnotationEnrich> enrichs) {
 		
 		HashMap<AnnotationEnrich, Optional<AnnotationTarget>> enrichToTargetAnnotationMap = new HashMap<AnnotationEnrich, Optional<AnnotationTarget>>();
-		
-		for (AnnotationEnrich eachEnrichAnnotation : enrichAnnotations) {
+		for (AnnotationEnrich enrich : enrichs) {
 			
-			enrichToTargetAnnotationMap.put(eachEnrichAnnotation, getTargetAnnotationOf(eachEnrichAnnotation));
+			for (Optional<AnnotationTarget> potentialTarget : getTargetsOfConstraintsContaining(enrich)) {
+				
+				enrichToTargetAnnotationMap.put(enrich, potentialTarget);
+				
+			}
 			
 		}
 		
 		return enrichToTargetAnnotationMap;
 		
 	}
-	
-	private Optional<AnnotationTarget> getTargetAnnotationOf(AnnotationEnrich enrichAnnotation) {
+
+	private List<Optional<AnnotationTarget>> getTargetsOfConstraintsContaining(AnnotationEnrich enrich) {
 		
-		return this.concern.getConstraints().stream().filter(eachConstraint -> hasCorrespondingTargetAnnotation(eachConstraint, enrichAnnotation))
-											  		 .map(constraint -> getTargetAnnotationOf(constraint).get())
-											  		 .findFirst();
+		return this.concern.getConstraints().stream().filter(eachConstraint -> containsCorrespondingTarget(eachConstraint, enrich))
+											  		 .map(constraint -> getTargetAnnotationOf(constraint))
+											  		 .collect(Collectors.toList());
 		
 	}
 	
+	private boolean containsCorrespondingTarget(DeploymentConstraint constraint, AnnotationEnrich enrich) {
+		
+		return constraint.getAnnotations().contains(enrich) && getTargetAnnotationOf(constraint).isPresent();
+		
+	}
+	
+	//It is assumed that constraint.getAnnotations().size() == 2, if association != ISOLATED
 	private Optional<AnnotationTarget> getTargetAnnotationOf(DeploymentConstraint constraint) {
 		
 		return constraint.getAnnotations().stream().filter(annotation -> annotation instanceof AnnotationTarget)
@@ -108,22 +120,26 @@ public class ConcernManager {
 												   .findFirst();
 		
 	}
-	
-	private boolean hasCorrespondingTargetAnnotation(DeploymentConstraint constraint, AnnotationEnrich enrichAnnotation) {
-		
-		return constraint.getAnnotations().contains(enrichAnnotation) && getTargetAnnotationOf(constraint).isPresent();
-		
-	}
 
-	public Association getDeploymentConstraintOf(AnnotationEnrich enrichAnnotation) {
+	/**
+	 * Retrieves the association for a given enrich annotations.
+	 * @param enrich - The enrich annotation.
+	 * @return The corresponding association.
+	 */
+	public Association getDeploymentConstraintOf(AnnotationEnrich enrich) {
 		
-		return getDeploymentConstraintOf(Arrays.asList(enrichAnnotation));
+		return getDeploymentConstraintOf(Arrays.asList(enrich));
 		
 	}
 	
-	public Association getDeploymentConstraintOf(Annotation firstAnnotation, Annotation secondAnnotation) {
+	/**
+	 * Retrieves the association for a given annotation  pair.
+	 * @param annotationPair - The annotation pair.
+	 * @return The corresponding association.
+	 */
+	public Association getDeploymentConstraintOf(Pair<Annotation,Annotation> annotationPair) {
 		
-		return getDeploymentConstraintOf(Arrays.asList(firstAnnotation, secondAnnotation));
+		return getDeploymentConstraintOf(Arrays.asList(annotationPair.getFirst(), annotationPair.getSecond()));
 		
 	}
 	

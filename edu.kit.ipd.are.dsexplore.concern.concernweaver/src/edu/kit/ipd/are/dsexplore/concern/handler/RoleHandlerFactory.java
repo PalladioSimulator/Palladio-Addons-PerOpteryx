@@ -13,11 +13,11 @@ import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public class RoleHandlerFactory {
 	
-	private final static HashMap<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>> roleHandlerMap = new HashMap<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>>();
+	private final static HashMap<Predicate<Role>, Function<ConcernSolutionManager, RoleHandler>> roleHandlerMap = new HashMap<Predicate<Role>, Function<ConcernSolutionManager, RoleHandler>>();
 	static {
 		
 		roleHandlerMap.put(isOperationRole(), concernRepositoryManager -> new OperationRoleHandler(concernRepositoryManager));
@@ -25,12 +25,12 @@ public class RoleHandlerFactory {
 		
 	}
 	
-	public static Optional<RoleHandler> getBy(Role role, ConcernRepositoryManager concernRepositoryManager) {
+	public static Optional<RoleHandler> getBy(Role role, ConcernSolutionManager concernRepositoryManager) {
 		
-		Iterator<Entry<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>>> iterator = roleHandlerMap.entrySet().iterator();
+		Iterator<Entry<Predicate<Role>, Function<ConcernSolutionManager, RoleHandler>>> iterator = roleHandlerMap.entrySet().iterator();
 		while (iterator.hasNext()) {
 			
-			Entry<Predicate<Role>, Function<ConcernRepositoryManager, RoleHandler>> current = iterator.next();
+			Entry<Predicate<Role>, Function<ConcernSolutionManager, RoleHandler>> current = iterator.next();
 			if (current.getKey().test(role)) {
 				
 				return Optional.of(current.getValue().apply(concernRepositoryManager));

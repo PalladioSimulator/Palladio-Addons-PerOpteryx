@@ -11,19 +11,19 @@ import org.palladiosimulator.pcm.repository.Repository;
 
 import ConcernModel.ElementaryConcernComponent;
 import concernStrategy.Feature;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public class ECCFeatureHandler {
 
-	private final ConcernRepositoryManager concernRepositoryManager;
+	private final ConcernSolutionManager concernRepositoryManager;
 	
 	public ECCFeatureHandler(Repository concernSolution) {
 		
-		this.concernRepositoryManager = ConcernRepositoryManager.getBy(concernSolution);
+		this.concernRepositoryManager = ConcernSolutionManager.getInstanceBy(concernSolution);
 		
 	}
 	
-	public ECCFeatureHandler(ConcernRepositoryManager concernRepositoryManager) {
+	public ECCFeatureHandler(ConcernSolutionManager concernRepositoryManager) {
 		
 		this.concernRepositoryManager = concernRepositoryManager;
 		

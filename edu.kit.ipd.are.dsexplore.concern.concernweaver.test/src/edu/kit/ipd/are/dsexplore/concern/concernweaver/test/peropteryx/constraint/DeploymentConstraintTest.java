@@ -27,7 +27,7 @@ public class DeploymentConstraintTest extends WeavingTest {
 	@Before
 	public void setUp() {
 		
-		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getBy(concern.getConcerns().get(0)), pcmToAdapt.getRepositories());
+		ConcernDeploymentConstraint.setConcernManager(ConcernManager.getInstanceBy(concern.getConcerns().get(0)), pcmToAdapt.getRepositories());
 		
 	}
 

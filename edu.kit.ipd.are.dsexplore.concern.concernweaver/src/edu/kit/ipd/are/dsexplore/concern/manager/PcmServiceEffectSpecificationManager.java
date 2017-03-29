@@ -24,6 +24,11 @@ import org.palladiosimulator.pcm.seff.StopAction;
 
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterServiceEffectSpecificationWeaving.ExternalCallInfo;
 
+/**
+ * This class provides all operations concerned with SEFF.
+ * @author scheerer
+ *
+ */
 public class PcmServiceEffectSpecificationManager {
 
 	private final static String START_ACTION_NAME = "start";
@@ -37,7 +42,11 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
-	public static PcmServiceEffectSpecificationManager get() {
+	/**
+	 * Creates or returns a PcmServiceEffectSpecificationManager-instance.
+	 * @return a PcmServiceEffectSpecificationManager-instance.
+	 */
+	public static PcmServiceEffectSpecificationManager getInstance() {
 		
 		if (eInstance == null) {
 			
@@ -49,12 +58,22 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
+	/**
+	 * Adds a SEFF to a given component.
+	 * @param component - The component a SEFF should be added to.
+	 * @param seff - The SEFF which is going to be added to a given component.
+	 */
 	public void addServiceEffectSpecificationTo(BasicComponent component, ServiceEffectSpecification seff) {
 		
 		component.getServiceEffectSpecifications__BasicComponent().add(seff);
 		
 	}
 
+	/**
+	 * Creates a SEFF for a given service.
+	 * @param signature - Represents the service the SEFF should describe.
+	 * @return the created SEFF.
+	 */
 	public ServiceEffectSpecification createServiceEffectSpecificationFor(Signature signature) {
 		
 		ServiceEffectSpecification seff = this.seffFactory.createResourceDemandingSEFF();
@@ -64,10 +83,15 @@ public class PcmServiceEffectSpecificationManager {
 		
 	}
 	
+	/**
+	 * Adds an ordered external call action sequence and establishes the links between the actions.
+	 * @param orderedExternalCallInfoSequence - The ordered external call action sequence.
+	 * @param seff - The SEFF the external call actions are going to be added to.
+	 * @return the SEFF containing the external call action sequence.
+	 */
 	public ServiceEffectSpecification addExternalCallActionPipeBy(List<ExternalCallInfo> orderedExternalCallInfoSequence, ServiceEffectSpecification seff) {
 		
 		((ResourceDemandingBehaviour) seff).getSteps_Behaviour().addAll(toAbstractActions(orderedExternalCallInfoSequence));
-		
 		return seff;
 		
 	}
@@ -85,38 +109,52 @@ public class PcmServiceEffectSpecificationManager {
 	
 	private List<AbstractAction> establishLinksBetween(List<AbstractAction> unlinkedActions) {
 		
-		AbstractAction action = null;
 		int size = unlinkedActions.size();
 		
 		for (int i = 0; i < size; i++) {
 			
-			action = unlinkedActions.get(i);
+			AbstractAction predeccessor = null;
+			AbstractAction successor = null;
+			AbstractAction current = unlinkedActions.get(i);
 			
-			if (i == 0) {
+			if (isStartAction(i)) {
 				
-				action.setPredecessor_AbstractAction(null);
-				action.setSuccessor_AbstractAction(unlinkedActions.get(i + 1));
-				continue;
+				predeccessor = null;
+				successor = unlinkedActions.get(i + 1);
+				
+			} else if(isStopAction(i, size)) {
+				
+				predeccessor = unlinkedActions.get(i - 1);
+				successor = null;
+				
+			} else {
+				
+				predeccessor = unlinkedActions.get(i - 1);
+				successor = unlinkedActions.get(i + 1);
 				
 			}
 			
-			if(i == (size - 1)) {
-				
-				action.setPredecessor_AbstractAction(unlinkedActions.get(i - 1));
-				action.setSuccessor_AbstractAction(null);
-				break;
-				
-			}
-			
-			action.setPredecessor_AbstractAction(unlinkedActions.get(i - 1));
-			action.setSuccessor_AbstractAction(unlinkedActions.get(i + 1));
+			current.setPredecessor_AbstractAction(predeccessor);
+			current.setSuccessor_AbstractAction(successor);
 			
 		}
 		
 		return unlinkedActions;
 		
 	}
+
+	private boolean isStartAction(int i) {
+		
+		return i == 0;
+		
+	}
 	
+	private boolean isStopAction(int i, int size) {
+		
+		return i == (size - 1);
+		
+	}
+
 	private List<AbstractAction> toExternalCallActions(List<ExternalCallInfo> orderedExternalCallInfoSequence) {
 		
 		return orderedExternalCallInfoSequence.stream().flatMap(eachInfo -> createAbstractExternalActionCallOf(eachInfo).stream())

@@ -9,14 +9,14 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import ConcernModel.Annotation;
 import ConcernModel.ElementaryConcernComponent;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public class ECCStructureHandler {
 	
 	private final ElementaryConcernComponent ecc;
-	private final ConcernRepositoryManager concernRepositoryManager;
+	private final ConcernSolutionManager concernRepositoryManager;
 	
-	public ECCStructureHandler(ElementaryConcernComponent ecc, ConcernRepositoryManager concernRepositoryManager) {
+	public ECCStructureHandler(ElementaryConcernComponent ecc, ConcernSolutionManager concernRepositoryManager) {
 		
 		this.ecc = ecc;
 		this.concernRepositoryManager = concernRepositoryManager;

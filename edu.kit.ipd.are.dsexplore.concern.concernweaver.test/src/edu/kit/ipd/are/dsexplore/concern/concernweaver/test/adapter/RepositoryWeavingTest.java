@@ -52,7 +52,7 @@ public class RepositoryWeavingTest extends WeavingTest {
 	@After
 	public void tearDown() {
 		
-		EMFHelper.saveToXMIFile(WeavingStep.getPCMConcernRepository(), ConcernWeavingTestUtil.RELATIVE_CONCERN_REPOSITORY_PERSISTING_PATH);
+		EMFHelper.saveToXMIFile(WeavingStep.getConcernSolution(), ConcernWeavingTestUtil.RELATIVE_CONCERN_REPOSITORY_PERSISTING_PATH);
 		
 	}
 

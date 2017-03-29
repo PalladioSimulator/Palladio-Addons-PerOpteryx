@@ -26,7 +26,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
@@ -165,13 +165,13 @@ public class WeavingExecuter {
 			
 		}
 		
-		PcmAllocationManager allocManager = PcmAllocationManager.getBy(this.wovenPCM.getAllocation());
+		PcmAllocationManager allocManager = PcmAllocationManager.getInstanceBy(this.wovenPCM.getAllocation());
 		List<ClassChoice> allocChoices = new ArrayList<ClassChoice>();
 		
 		for(ClassChoice eccClassChoice : this.eccClassChoices) {
 			
 			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
-			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernRepositoryManager.getBy(this.concernWithSolutionPair.getSecond()));
+			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernSolutionManager.getInstanceBy(this.concernWithSolutionPair.getSecond()));
 			eccHandler.getStructureOfECCAccordingTo(component -> Arrays.asList(component)).forEach(comp -> {
 				
 				try {

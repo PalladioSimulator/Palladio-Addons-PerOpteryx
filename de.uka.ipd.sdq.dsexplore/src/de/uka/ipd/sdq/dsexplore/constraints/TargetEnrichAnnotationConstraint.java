@@ -22,6 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.AllocationDegreeImpl;
 import edu.kit.ipd.are.dsexplore.concern.util.ComponentResolver;
+import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public abstract class TargetEnrichAnnotationConstraint extends ConcernDeploymentConstraint {
 
@@ -79,7 +80,7 @@ public abstract class TargetEnrichAnnotationConstraint extends ConcernDeployment
 	
 	private boolean hasDeploymentConfiguration(AnnotationEnrich annotationEnrich, AnnotationTarget annotationTarget) {
 		
-		return concernManager.getDeploymentConstraintOf(annotationEnrich, annotationTarget).equals(getAssociation());
+		return concernManager.getDeploymentConstraintOf(Pair.of(annotationEnrich, annotationTarget)).equals(getAssociation());
 		
 	}
 	

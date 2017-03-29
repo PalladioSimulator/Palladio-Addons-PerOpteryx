@@ -13,6 +13,15 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
+
+/**
+ * This class provides all operations performed on a given PCM allocation.
+ * @author scheerer
+ *
+ */
 public class PcmAllocationManager {
 
 	private static PcmAllocationManager eInstance = null;
@@ -23,7 +32,12 @@ public class PcmAllocationManager {
 		
 	}
 	
-	public static PcmAllocationManager getBy(Allocation allocation) {
+	/**
+	 * Creates or returns a PcmAllocationManager-instance.
+	 * @param allocation - A given PCM allocation.
+	 * @return a PcmAllocationManager-instance.
+	 */
+	public static PcmAllocationManager getInstanceBy(Allocation allocation) {
 		
 		if (eInstance == null) {
 			
@@ -37,6 +51,11 @@ public class PcmAllocationManager {
 		
 	}
 	
+	/**
+	 * Filters the allocation contexts which satisfies the given predicate.
+	 * @param searchCriteria - The search criteria for filtering the allocation contexts.
+	 * @return the first filtered component.
+	 */
 	public Optional<AllocationContext> getAllocationContextBy(Predicate<AllocationContext> searchCriteria) {
 		
 		return getAllAllocationContexts().filter(searchCriteria).findFirst();
@@ -49,14 +68,19 @@ public class PcmAllocationManager {
 		
 	}
 	
-	public AllocationContext getAllocationContextContaining(RepositoryComponent allocatedComponent) throws Exception {
+	/**
+	 * Returns the allocation contexts which allocates a given component. Therefore, it is assumed that the
+	 * input component is only allocated once.
+	 * @param allocatedComponent - The component whose allocation context is supposed to be retrieved.
+	 * @return the allocation context allocating the given component.
+	 * @throws ConcernWeavingException - Will be thrown if the resulting size of the filtered allocation contexts is not one.
+	 */
+	public AllocationContext getAllocationContextContaining(RepositoryComponent allocatedComponent) throws ConcernWeavingException {
 		
-		List<AllocationContext> allocs = this.allocation.getAllocationContexts_Allocation().stream().filter(eachAlloc -> contains(allocatedComponent, eachAlloc))
-																									.collect(Collectors.toList());
-		
+		List<AllocationContext> allocs = getAllocationContextsAllocating(allocatedComponent);
 		if (allocs.size() != 1) {
 			
-			throw new Exception();
+			throw new ConcernWeavingException(ErrorMessage.allocationError(allocatedComponent, allocs.size()));
 			
 		}
 		
@@ -64,37 +88,67 @@ public class PcmAllocationManager {
 		
 	}
 	
-	private boolean contains(RepositoryComponent allocatedComponent, AllocationContext allocContext) {
+	private List<AllocationContext> getAllocationContextsAllocating(RepositoryComponent component) {
 		
-		RepositoryComponent givenComp = allocContext.getAssemblyContext_AllocationContext().getEncapsulatedComponent__AssemblyContext();
-		return allocatedComponent.getId().equals(givenComp.getId());
+		return getAllAllocationContexts().filter(allocationContextAllocating(component)).collect(Collectors.toList());
 		
 	}
 
-	public boolean existAllocationContextWith(AssemblyContext allocatedAssemblyContext) {
+	private Predicate<AllocationContext> allocationContextAllocating(RepositoryComponent component) {
 		
-		return this.allocation.getAllocationContexts_Allocation().stream().anyMatch(eachAllocationContext -> allocates(allocatedAssemblyContext, eachAllocationContext));
+		return alloc -> ConcernWeaverUtil.areEqual(getAllocatedComponentOf(alloc), component);
+		
+	}
+
+	private RepositoryComponent getAllocatedComponentOf(AllocationContext alloc) {
+		
+		return alloc.getAssemblyContext_AllocationContext().getEncapsulatedComponent__AssemblyContext();
+		
+	}
+
+	/**
+	 * Checks if there exist at least one allocation context that allocates a given assembly context.
+	 * @param assemblyContext - The assembly context that is suppose to be checked.
+	 * @return true if the assembly context is allocated and false if not.
+	 */
+	public boolean existAllocationContextWith(AssemblyContext assemblyContext) {
+		
+		return getAllAllocationContexts().anyMatch(isAllocated(assemblyContext));
 		
 	}
 	
-	private boolean allocates(AssemblyContext allocatedAssemblyContext, AllocationContext allocationContext) {
+	private Predicate<AllocationContext> isAllocated(AssemblyContext assemblyContext) {
 		
-		return allocationContext.getAssemblyContext_AllocationContext().equals(allocatedAssemblyContext);
+		return alloc -> ConcernWeaverUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), assemblyContext);
 		
 	}
 
+	/**
+	 * Adds an allocation context to the PCM allocation.
+	 * @param allocationContext - The allocation context to add.
+	 */
 	public void addAllocationContext(AllocationContext allocationContext) {
 		
 		this.allocation.getAllocationContexts_Allocation().add(allocationContext);
 		
 	}
 	
+	/**
+	 * Adds a set of allocation contexts to the PCM allocation.
+	 * @param allocationContexts - The set of allocations contexts to add.
+	 */
 	public void addAllAllocationContexts(List<AllocationContext> allocationContexts) {
 		
 		this.allocation.getAllocationContexts_Allocation().addAll(allocationContexts);
 		
 	}
 	
+	/**
+	 * Creates a new allocation context.
+	 * @param assemblyContext - The assembly context that is suppose to be allocated.
+	 * @param resourceContainer - The resource container the assembly context is allocated on.
+	 * @return the newly created allocation context.
+	 */
 	public AllocationContext createAllocationContextBy(AssemblyContext assemblyContext, ResourceContainer resourceContainer) {
 		
 		AllocationContext allocationContext = AllocationFactory.eINSTANCE.createAllocationContext();
@@ -103,30 +157,6 @@ public class PcmAllocationManager {
 		allocationContext.setResourceContainer_AllocationContext(resourceContainer);
 		
 		return allocationContext;
-		
-	}
-	
-	public Optional<ResourceContainer> getResourceContainerOf(AssemblyContext assemblyContext) {
-		
-		Optional<AllocationContext> searchedAllocationContext =  this.allocation.getAllocationContexts_Allocation().stream().filter(eachAllocationContext -> areEqual(eachAllocationContext.getAssemblyContext_AllocationContext(), assemblyContext))
-																		  													.findFirst();
-		
-		if (searchedAllocationContext.isPresent()) {
-			
-			return Optional.of(searchedAllocationContext.get().getResourceContainer_AllocationContext());
-			
-		}
-		
-		return Optional.empty();
-		
-	}
-
-	private boolean areEqual(AssemblyContext givenAssemblyContext, AssemblyContext searchedAssemblyContext) {
-		
-		String givenAssemblyContextId = givenAssemblyContext.getId();
-		String searchedAssemblyContextId = searchedAssemblyContext.getId();
-		
-		return givenAssemblyContextId.equals(searchedAssemblyContextId);
 		
 	}
 	

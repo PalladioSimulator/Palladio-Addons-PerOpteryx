@@ -6,12 +6,12 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 public class OperationRoleHandler extends RoleHandler {
 
-	public OperationRoleHandler(ConcernRepositoryManager concernRepositoryManager) {
+	public OperationRoleHandler(ConcernSolutionManager concernRepositoryManager) {
 		
 		super(concernRepositoryManager);
 		

@@ -13,13 +13,13 @@ import ConcernModel.ElementaryConcernComponent;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.WeavingTest;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public class ECCHandlerTest extends WeavingTest {
 	
 	private final static String OSSEC_DECODER_ID = "_yEx6YK_cEeaFof9L2wGlaQ";
 	
-	private ConcernRepositoryManager concernRepositoryManager = ConcernRepositoryManager.getBy(concernSolution);
+	private ConcernSolutionManager concernRepositoryManager = ConcernSolutionManager.getInstanceBy(concernSolution);
 	private ElementaryConcernComponent ecc;
 	private List<RepositoryComponent> result;
 

@@ -7,17 +7,15 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.manager.ConcernRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
-import edu.kit.ipd.are.dsexplore.concern.manager.PcmRepositoriesManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmUsageModelManager;
 
 public abstract class AdapterWeaving {
 	
-	protected static ConcernRepositoryManager concernRepositoryManager;
+	protected static ConcernSolutionManager concernRepositoryManager;
 	protected static PcmAllocationManager pcmAllocationManager;
-	protected static PcmRepositoriesManager pcmRepositoriesManager;
 	protected static PcmSystemManager pcmSystemManager;
 	protected static PcmUsageModelManager pcmUsageModelManager;
 
@@ -26,10 +24,9 @@ public abstract class AdapterWeaving {
 	
 	public static void setManagersWith(PCMInstance pcmToAdapt, Repository pcmConcernRepository) {
 		
-		concernRepositoryManager = ConcernRepositoryManager.getBy(pcmConcernRepository);
+		concernRepositoryManager = ConcernSolutionManager.getInstanceBy(pcmConcernRepository);
 		
-		pcmAllocationManager = PcmAllocationManager.getBy(pcmToAdapt.getAllocation());
-		pcmRepositoriesManager = PcmRepositoriesManager.getBy(pcmToAdapt.getRepositories());
+		pcmAllocationManager = PcmAllocationManager.getInstanceBy(pcmToAdapt.getAllocation());
 		pcmSystemManager = PcmSystemManager.getBy(pcmToAdapt.getSystem());
 		pcmUsageModelManager = PcmUsageModelManager.getBy(pcmToAdapt.getUsageModel());
 		

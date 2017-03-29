@@ -59,7 +59,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
-	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.get();
+	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.getInstance();
 	private Transformation transformationStrategy;
 	private List<ProvidedRole> consumedFeautresOfECC;
 	
@@ -73,7 +73,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	private void setConsumedFeautresOfECC(List<ProvidedRole> consumedFeautresOfECC) {
 		
-		this.consumedFeautresOfECC = concernRepositoryManager.getEquivalentConsumedFeaturesFromRepository(consumedFeautresOfECC);
+		this.consumedFeautresOfECC = consumedFeautresOfECC;
 		
 	}
 	
