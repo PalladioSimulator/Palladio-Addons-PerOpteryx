@@ -18,8 +18,17 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectionInfo;
 import edu.kit.ipd.are.dsexplore.concern.util.DelegationConnectorGenerator;
 
+/**
+ * This class is responsible to weave the adapter in the system if the connection of the components
+ * the adapter is inserted in between is an provided delegation connection.
+ * @author scheerer
+ *
+ */
 public class AdapterDelegationLocationWeaving extends AdapterAssemblyWeaving {
 	
+	/**
+	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
+	 */
 	@Override
 	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException {
 		

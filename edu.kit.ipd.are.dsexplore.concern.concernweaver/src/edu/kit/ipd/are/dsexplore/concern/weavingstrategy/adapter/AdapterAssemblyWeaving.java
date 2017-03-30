@@ -28,8 +28,16 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGeneratorExplorationFactory;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
+/**
+ * This class is responsible for weaving the assembly view-type in the context of the adapter transformation strategy.
+ * @author scheerer
+ *
+ */
 public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 	
+	/**
+	 * @see AdapterWeaving#weave(WeavingInstruction)
+	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
@@ -172,6 +180,12 @@ public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
 		
 	}
 	
+	/**
+	 * The implementer is responsible to realize the weaving of the adapter in the system depending on the connection
+	 * of the components the adapter is inserted in between.
+	 * @param weavingLocation - Contains the informations about the weaving location.
+	 * @throws ConcernWeavingException - Will be thrown if an error occurs during weaving.
+	 */
 	public abstract void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException;
 	
 }

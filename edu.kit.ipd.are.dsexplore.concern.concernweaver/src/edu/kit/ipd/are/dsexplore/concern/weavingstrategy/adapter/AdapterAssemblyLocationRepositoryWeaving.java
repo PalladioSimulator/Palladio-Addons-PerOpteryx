@@ -6,8 +6,17 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 
+/**
+ * This class weaves an adapter into a repository where the connection of the components the adapter is inserted
+ * in between is an assembly connection.
+ * @author scheerer
+ *
+ */
 public class AdapterAssemblyLocationRepositoryWeaving extends AdapterRepositoryWeaving {
 
+	/**
+	 * @see AdapterRepositoryWeaving#weaveAdapterIntoRepository(WeavingLocation)
+	 */
 	@Override
 	protected void weaveAdapterIntoRepository(WeavingLocation weavingLocation) {
 		

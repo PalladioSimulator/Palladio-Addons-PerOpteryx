@@ -27,6 +27,11 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class is responsible for weaving the SEFF of the adapter in the context of the adapter transformation strategy.
+ * @author scheerer
+ *
+ */
 public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWeaving {
 	
 	public class ExternalCallInfo {
@@ -83,6 +88,9 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
+	/**
+	 * @see AdapterWeaving#weave(WeavingInstruction)
+	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
@@ -93,8 +101,27 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 
+	/**
+	 * Retrieves the required component which requires several services the adapter provides now. Based on the connection of 
+	 * the components the adapter is inserted in between the calling component needs to be retrieved differently.
+	 * @return The required component which is calling several services it requires.
+	 */
 	protected abstract BasicComponent getCalledComponent();
+	
+	/**
+	 * Retrieves the provided component which provides several services the adapter requires now. Based on the connection of 
+	 * the components the adapter is inserted in between the called component needs to be retrieved differently.
+	 * @return The provided component which is called by the adapter and was required by the requiring component in the first place.
+	 * @throws ConcernWeavingException - Will be thrown if an error occurs during the recovering of the called component.
+	 */
 	protected abstract BasicComponent getCallingComponent() throws ConcernWeavingException;
+	
+	/**
+	 * Retrieves the external call informations for a given SEFF which contains the service, required role and the input and output parameters.
+	 * @param seffToTransform - The SEFF from which the informations are estracted.
+	 * @return the external call informations.
+	 * @throws ConcernWeavingException - Will be thrown if an error occurs.
+	 */
 	protected abstract ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException;
 	
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) throws ConcernWeavingException {
@@ -238,6 +265,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	}
 	
+	//At this stage there is no possibility to get the value characterisations of input or output parameters of a given ECC.
 	//TODO implement variable usage 
 	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
 		

@@ -17,6 +17,7 @@ import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
@@ -70,13 +71,13 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	public List<WeavingInstruction> getExperimentWeavingInstructions() {
+	public List<WeavingInstruction> getExperimentWeavingInstructions() throws ConcernWeavingException {
 		
 		return Arrays.asList(getWeavingInstructionFromMediaAccessToFileStorageComponents());
 		
 	}
 	
-	public List<WeavingInstruction> getSimpleWeavingInstructions() {
+	public List<WeavingInstruction> getSimpleWeavingInstructions() throws ConcernWeavingException {
 		
 		isMultiple(true);
 		return Arrays.asList(/*getWeavingInstructionFromMediaManagementToPackagingComponents(),*/
@@ -85,7 +86,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	public List<WeavingInstruction> getWeavingInstructionWithRequiredECCs() {
+	public List<WeavingInstruction> getWeavingInstructionWithRequiredECCs() throws ConcernWeavingException {
 		
 		return Arrays.asList(getWeavingInstructionFromMediaManagementToPackagingComponentsWithECC(ANALYSIS_ECC_NAME),
 				 			 getWeavingInstructionFromMediaAccessToFileStorageComponentsWithECC(ANALYSIS_ECC_NAME),
@@ -93,7 +94,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	private WeavingInstruction getWeavingInstructionFromMediaManagementToPackagingComponents() {
+	private WeavingInstruction getWeavingInstructionFromMediaManagementToPackagingComponents() throws ConcernWeavingException {
 		
 		Pair<Connector, List<Signature>> locationWithAffectedSignature = getAssemblyConnectorLocationSignaturePairWith(MEDIA_MANAGEMENT_PACKAGING_ASSEMBLY_CONNECTOR_ID, 
 																													   AFFECTED_SIGNATURE_ZIP_ID_IPACKAGING_INTERFACE);
@@ -102,7 +103,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	private WeavingInstruction getWeavingInstructionFromMediaManagementToPackagingComponentsWithECC(String name) {
+	private WeavingInstruction getWeavingInstructionFromMediaManagementToPackagingComponentsWithECC(String name) throws ConcernWeavingException {
 		
 		Pair<Connector, List<Signature>> locationWithAffectedSignature = getAssemblyConnectorLocationSignaturePairWith(MEDIA_MANAGEMENT_PACKAGING_ASSEMBLY_CONNECTOR_ID, 
 																													   AFFECTED_SIGNATURE_ZIP_ID_IPACKAGING_INTERFACE);
@@ -111,7 +112,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	private WeavingInstruction getWeavingInstructionFromMediaAccessToFileStorageComponents() {
+	private WeavingInstruction getWeavingInstructionFromMediaAccessToFileStorageComponents() throws ConcernWeavingException {
 		
 		Pair<Connector, List<Signature>> locationWithAffectedSignature = getAssemblyConnectorLocationSignaturePairWith(MEDIA_ACCESS_FILE_STORAGE_ASSEMBLY_CONNECTOR_ID, 
 																													   AFFECTED_SIGNATURE_GETFILES_ID_IFILESTORAGE_INTERFACE,
@@ -121,7 +122,7 @@ public class WeavingInstructionFactory {
 		
 	}
 	
-	private WeavingInstruction getWeavingInstructionFromMediaAccessToFileStorageComponentsWithECC(String name) {
+	private WeavingInstruction getWeavingInstructionFromMediaAccessToFileStorageComponentsWithECC(String name) throws ConcernWeavingException {
 		
 		Pair<Connector, List<Signature>> locationWithAffectedSignature = getAssemblyConnectorLocationSignaturePairWith(MEDIA_ACCESS_FILE_STORAGE_ASSEMBLY_CONNECTOR_ID, 
 																													   AFFECTED_SIGNATURE_GETFILES_ID_IFILESTORAGE_INTERFACE);
@@ -130,7 +131,7 @@ public class WeavingInstructionFactory {
 		
 	}
 
-	private WeavingInstruction getWeavingInstructionFromWebGUI() {
+	private WeavingInstruction getWeavingInstructionFromWebGUI() throws ConcernWeavingException {
 	
 	Pair<Connector, List<Signature>> locationWithAffectedSignature = getDelegationConnectorLocationSignaturePairWith(WEB_GUI_DELEGATION_CONNECTOR_ID, 
 																													 AFFECTED_SIGNATURE_UPLOAD_ID_IMEDIAMANAGEMENT, 
@@ -141,13 +142,13 @@ public class WeavingInstructionFactory {
 	
 	}
 	
-	private WeavingInstruction getDefaultWeavingInstruction(Pair<Connector, List<Signature>> locationWithAffectedSignature) {
+	private WeavingInstruction getDefaultWeavingInstruction(Pair<Connector, List<Signature>> locationWithAffectedSignature) throws ConcernWeavingException {
 		
 		return getWeavingInstructionOf(locationWithAffectedSignature, getECCWith(DETECTION_ECC_NAME));
 		
 	}
 	
-	private WeavingInstruction getWeavingInstructionOf(Pair<Connector, List<Signature>> locationWithAffectedSignature, ElementaryConcernComponent ecc) {
+	private WeavingInstruction getWeavingInstructionOf(Pair<Connector, List<Signature>> locationWithAffectedSignature, ElementaryConcernComponent ecc) throws ConcernWeavingException {
 		
 		ECCFeatureHandler featureHandler = new ECCFeatureHandler(this.concernSolution);
 		Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = Pair.of(ecc, featureHandler.getProvidedFeaturesOf(ecc));

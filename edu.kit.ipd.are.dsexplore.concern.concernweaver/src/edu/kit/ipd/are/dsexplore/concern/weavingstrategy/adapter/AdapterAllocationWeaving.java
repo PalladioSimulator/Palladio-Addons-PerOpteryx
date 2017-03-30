@@ -20,6 +20,11 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class is responsible for weaving the allocation view-type in the context of the adapter transformation strategy.
+ * @author scheerer
+ *
+ */
 public class AdapterAllocationWeaving extends AdapterWeaving {
 
 	private ResourceContainer resourceContainer;
@@ -29,7 +34,10 @@ public class AdapterAllocationWeaving extends AdapterWeaving {
 		this.resourceContainer = resourceContainer;
 		
 	}
-	
+
+	/**
+	 * @see AdapterWeaving#weave(WeavingInstruction)
+	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		

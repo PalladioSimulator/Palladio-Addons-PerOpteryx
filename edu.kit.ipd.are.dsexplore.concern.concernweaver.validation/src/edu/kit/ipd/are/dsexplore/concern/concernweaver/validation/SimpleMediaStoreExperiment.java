@@ -23,10 +23,10 @@ public class SimpleMediaStoreExperiment extends ExperimentConfiguration {
 	@Test
 	public void testSimpleWeavingScenario() {
 		
-		List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, concernSolution).getSimpleWeavingInstructions();
-		
 		try {
 			
+			List<WeavingInstruction> weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, concernSolution)
+																			        .getSimpleWeavingInstructions();
 			ConcernWeaver.getBy(this.pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {

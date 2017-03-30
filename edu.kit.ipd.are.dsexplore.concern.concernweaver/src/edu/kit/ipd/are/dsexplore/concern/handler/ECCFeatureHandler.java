@@ -2,53 +2,80 @@ package edu.kit.ipd.are.dsexplore.concern.handler;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
-import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 
 import ConcernModel.ElementaryConcernComponent;
 import concernStrategy.Feature;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
+/**
+ * This class is responsible to resolve the corresponding provided roles a particular ECC is providing.
+ * @author scheerer
+ *
+ */
 public class ECCFeatureHandler {
 
 	private final ConcernSolutionManager concernRepositoryManager;
 	
+	/**
+	 * The constructor.
+	 * @param concernSolution - The concern solution which is explored in order to filter all provided services.
+	 */
 	public ECCFeatureHandler(Repository concernSolution) {
 		
 		this.concernRepositoryManager = ConcernSolutionManager.getInstanceBy(concernSolution);
 		
 	}
 	
+	/**
+	 * The constructor.
+	 * @param concernRepositoryManager - Provides several operations applied on a given concern solution.
+	 */
 	public ECCFeatureHandler(ConcernSolutionManager concernRepositoryManager) {
 		
 		this.concernRepositoryManager = concernRepositoryManager;
 		
 	}
 	
-	public List<ProvidedRole> getProvidedFeaturesOf(ElementaryConcernComponent ecc) { 
+	/**
+	 * Retrieves the provided services of a given ECC.
+	 * @param ecc - The ECC which provided services are suppose to be retrieved.
+	 * @return The provided services of a given ECC.
+	 * @throws ConcernWeavingException - Will be thrown if the ECC is incorrectly annotated.
+	 */
+	public List<ProvidedRole> getProvidedFeaturesOf(ElementaryConcernComponent ecc) throws ConcernWeavingException { 
 		
 		Feature providedECCFeature = getFeatureProvidedBy(ecc);
-		return this.concernRepositoryManager.getAllProvidedRoles().stream().filter(eachProvidedRole -> isFeature(eachProvidedRole))
-																		   .filter(eachProvidedRole -> areEqual(providedECCFeature, getFeatureOf(eachProvidedRole)))
-																		   .collect(Collectors.toList());
+		return getProvidedRoleSpace().filter(isAnnotatedWithFeatureAndFeatureIsEqualTo(providedECCFeature)).collect(Collectors.toList());
 		
 	}
-
-	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
+	
+	private Stream<ProvidedRole> getProvidedRoleSpace() {
 		
-		StereotypeApplication stereotypeApplication = StereotypeAPI.getStereotypeApplications(ecc).get(0);
-		//TODO exception handling
-		//return getFeatureFrom(stereotypeApplication).orElseThrow(() -> new Exception());
-		return getFeatureFrom(stereotypeApplication).get();
+		return this.concernRepositoryManager.getAllProvidedRoles().stream();
+		
+	}
+	
+	private Predicate<ProvidedRole> isAnnotatedWithFeatureAndFeatureIsEqualTo(Feature providedECCFeature) {
+		
+		return eachProvidedRole -> isFeature(eachProvidedRole) && areEqual(providedECCFeature, getFeatureOf(eachProvidedRole));
+		
+		
 	}
 
 	private boolean isFeature(ProvidedRole providedRole) {
 		
-		return StereotypeAPI.hasStereotypeApplications(providedRole);
+		return EMFProfileFilter.isAnnotated(providedRole);
 		
 	}
 
@@ -58,20 +85,29 @@ public class ECCFeatureHandler {
 		
 	}
 
+	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) throws ConcernWeavingException {
+		
+		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
+		return getFeatureFrom(stereotypeApplication).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.annotationError(ecc.getName(), Feature.class)));
+	}
+
 	private Feature getFeatureOf(ProvidedRole providedRole) {
 		
-		StereotypeApplication stereotypeApplication = StereotypeAPI.getStereotypeApplications(providedRole).get(0);
-		//TODO exception handling
-		//return getFeatureFrom(stereotypeApplication).orElseThrow(() -> new Exception());
+		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(providedRole).get(0);
 		return getFeatureFrom(stereotypeApplication).get();
 		
 	}
 	
 	private Optional<Feature> getFeatureFrom(StereotypeApplication stereotypeApplication) {
 		
-		return stereotypeApplication.eCrossReferences().stream().filter(eachReferencedObject -> eachReferencedObject instanceof Feature)
-																.map(foundObject -> (Feature) foundObject)
-																.findFirst();
+		List<Feature> features = getFeaturesFrom(stereotypeApplication);
+		return features.isEmpty() ? Optional.empty() : Optional.of(features.get(0));
+		
+	}
+
+	private List<Feature> getFeaturesFrom(StereotypeApplication stereotypeApplication) {
+		
+		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
 		
 	}
 	

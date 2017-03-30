@@ -18,8 +18,16 @@ import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class is responsible for weaving the repository view-type in the context of the adapter transformation strategy.
+ * @author scheerer
+ *
+ */
 public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	
+	/**
+	 * @see AdapterWeaving#weave(WeavingInstruction)
+	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
@@ -99,6 +107,12 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 		
 	}
 
+	/**
+	 * The implementer of this method realizes the integration of the adapter in the repository
+	 * where each implementation considers different weaving locations regarding the connection
+	 * of the components that are going to be modified.
+	 * @param weavingLocation - Contains the weaving location informations.
+	 */
 	protected abstract void weaveAdapterIntoRepository(WeavingLocation weavingLocation);
 	
 }

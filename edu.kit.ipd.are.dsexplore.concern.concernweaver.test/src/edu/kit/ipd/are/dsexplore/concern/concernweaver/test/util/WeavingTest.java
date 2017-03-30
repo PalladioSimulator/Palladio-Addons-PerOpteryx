@@ -22,6 +22,7 @@ import TransformationModel.TransformationModelFactory;
 import TransformationModel.TransformationRepository;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
@@ -83,13 +84,13 @@ public class WeavingTest {
 		
 	}
 	
-	protected List<WeavingInstruction> createTestWeavingInstructions() {
+	protected List<WeavingInstruction> createTestWeavingInstructions() throws ConcernWeavingException {
 
 		return Arrays.asList(getWeavingInstruction());
 		
 	}
 
-	private WeavingInstruction getWeavingInstruction() {
+	private WeavingInstruction getWeavingInstruction() throws ConcernWeavingException {
 		
 		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(getECCWithConsumedFeatures())
 											  .setWeavingLocation(getJoinPointLocation())
@@ -130,7 +131,7 @@ public class WeavingTest {
 		
 	}
 
-	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() {
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() throws ConcernWeavingException {
 		
 		ElementaryConcernComponent ecc = ConcernWeavingTestUtil.getDetectionECCOf(concern);
 		return Pair.of(ecc, new ECCFeatureHandler(concernSolution).getProvidedFeaturesOf(ecc));

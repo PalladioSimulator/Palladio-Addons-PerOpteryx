@@ -21,11 +21,10 @@ public class ServiceEffectSpecificationWeavingTest extends WeavingTest {
 	@Test
 	public void testRepositoryWeaving() {
 		
-		List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
-		
 		try {
 			
-			ConcernWeaver.getBy(this.pcmToAdapt, this.concernSolution).start(weavingInstructions);
+			List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
+			ConcernWeaver.getBy(pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {
 			
@@ -53,7 +52,7 @@ public class ServiceEffectSpecificationWeavingTest extends WeavingTest {
 
 	private void persistEachRepository() {
 		
-		this.pcmToAdapt.getRepositories().forEach(eachRepository -> this.pcmToAdapt.saveToXMIFile(eachRepository, getPersistingPathOf(eachRepository)));
+		pcmToAdapt.getRepositories().forEach(eachRepository -> pcmToAdapt.saveToXMIFile(eachRepository, getPersistingPathOf(eachRepository)));
 				
 	}
 

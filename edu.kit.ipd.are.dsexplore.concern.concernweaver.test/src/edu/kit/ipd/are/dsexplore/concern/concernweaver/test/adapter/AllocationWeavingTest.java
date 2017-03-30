@@ -19,10 +19,9 @@ public class AllocationWeavingTest extends WeavingTest {
 	@Test
 	public void testAllocationWeaving() {
 		
-		List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
-		
 		try {
 			
+			List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
 			ConcernWeaver.getBy(pcmToAdapt, concernSolution).start(weavingInstructions);
 			
 		} catch (Exception ex) {

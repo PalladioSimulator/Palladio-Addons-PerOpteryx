@@ -16,8 +16,16 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class is responsible for weaving the usage model view-type in the context of the adapter transformation strategy.
+ * @author scheerer
+ *
+ */
 public class AdapterUsageModelWeaving extends AdapterWeaving {
 	
+	/**
+	 * @see AdapterWeaving#weave(WeavingInstruction)
+	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		

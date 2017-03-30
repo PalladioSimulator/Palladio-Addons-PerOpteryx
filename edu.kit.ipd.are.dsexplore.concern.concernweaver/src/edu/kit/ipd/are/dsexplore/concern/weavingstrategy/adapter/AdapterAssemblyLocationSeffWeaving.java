@@ -15,8 +15,17 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
+/**
+ * This class returns informations for the SEFF depending on the connection of the components the adapter
+ * is inserted in between.
+ * @author scheerer
+ *
+ */
 public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getCallingComponent()
+	 */
 	@Override
 	protected BasicComponent getCallingComponent() {
 		
@@ -25,6 +34,9 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 	}
 	
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getCalledComponent()
+	 */
 	@Override
 	protected BasicComponent getCalledComponent() {
 		
@@ -33,6 +45,9 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 	}
 
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getExternalCallInfoFrom(ServiceEffectSpecification)
+	 */
 	@Override
 	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		

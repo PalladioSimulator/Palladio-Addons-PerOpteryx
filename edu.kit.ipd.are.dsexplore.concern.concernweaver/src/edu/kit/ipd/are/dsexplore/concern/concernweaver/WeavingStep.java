@@ -5,7 +5,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategy;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
 
 /**
@@ -18,7 +18,7 @@ public abstract class WeavingStep {
 
 	private static PCMInstance pcmToAdapt;
 	private static Repository concernSolution;
-	private static WeavingStrategy weavingStrategy;
+	private static IWeavingStrategy weavingStrategy;
 	
 	/**
 	 * Sets the member variables which are used by each implemented weaving step.
@@ -55,7 +55,7 @@ public abstract class WeavingStep {
 	 * The getter-method for the weaving strategy.
 	 * @return the weaving strategy.
 	 */
-	protected WeavingStrategy getWeavingStrategy() {
+	protected IWeavingStrategy getWeavingStrategy() {
 		
 		return weavingStrategy;
 		

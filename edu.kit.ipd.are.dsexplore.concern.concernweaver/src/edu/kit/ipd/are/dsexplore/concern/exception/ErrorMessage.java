@@ -146,4 +146,10 @@ public class ErrorMessage {
 		
 	}
 	
+	public static String annotationError(String name, Class<?> annotatedClass) {
+		
+		return String.format("The element %1s is not annotated by a element of class %2s.", name, annotatedClass.getName());
+		
+	}
+	
 }

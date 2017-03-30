@@ -12,8 +12,17 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.AssemblyConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectionInfo;
 
+/**
+ * This class is responsible to weave the adapter in the system if the connection of the components
+ * the adapter is inserted in between is an assembly connection.
+ * @author scheerer
+ *
+ */
 public class AdapterAssemblyLocationWeaving extends AdapterAssemblyWeaving {
 	
+	/**
+	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
+	 */
 	@Override
 	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException {
 		

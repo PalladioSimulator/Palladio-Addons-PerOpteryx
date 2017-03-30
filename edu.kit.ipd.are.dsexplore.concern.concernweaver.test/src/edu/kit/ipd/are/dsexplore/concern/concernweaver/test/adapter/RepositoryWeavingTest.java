@@ -28,10 +28,9 @@ public class RepositoryWeavingTest extends WeavingTest {
 	@Test
 	public void testRepositoryWeaving() {
 		
-		List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();		
-		
 		try {
 			
+			List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
 			for (WeavingInstruction eachWeavingInstruction : weavingInstructions) {
 				
 				WeavingStep.setWeavingStrategy(eachWeavingInstruction.getTransformationStrategy());

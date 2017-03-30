@@ -134,13 +134,13 @@ public class TransformationRepositoryManager {
 	
 	private Predicate<Transformation> contains(AnnotationTarget target) {
 		
-		return trans -> trans.getTarget().equals(target.getName());
+		return trans -> trans.getTarget().getName().equals(target.getName());
 		
 	}
 	
 	private Predicate<Transformation> contains(AnnotationEnrich enrich) {
 		
-		return trans -> trans.getInjectable().equals(enrich.getName());
+		return trans -> trans.getInjectable().getName().equals(enrich.getName());
 		
 	}
 

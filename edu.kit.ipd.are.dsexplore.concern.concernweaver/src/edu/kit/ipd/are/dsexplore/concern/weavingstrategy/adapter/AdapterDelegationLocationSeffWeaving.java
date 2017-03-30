@@ -25,8 +25,17 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
+/**
+ * This class returns informations for the SEFF depending on the connection of the components the adapter
+ * is inserted in between.
+ * @author scheerer
+ *
+ */
 public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSpecificationWeaving {
 
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getCallingComponent()
+	 */
 	@Override
 	protected BasicComponent getCallingComponent() throws ConcernWeavingException {
 
@@ -43,6 +52,9 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 		
 	}
 	
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getCalledComponent()
+	 */
 	@Override
 	protected BasicComponent getCalledComponent() {
 
@@ -52,6 +64,9 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 
 	}
 
+	/**
+	 * @see AdapterServiceEffectSpecificationWeaving#getExternalCallInfoFrom(ServiceEffectSpecification)
+	 */
 	@Override
 	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 		

@@ -33,6 +33,7 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.ExperimentUtil;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.validation.util.WeavingInstructionFactory;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 
 public class IDSConcernExperiment extends ExperimentConfiguration {
@@ -74,8 +75,16 @@ public class IDSConcernExperiment extends ExperimentConfiguration {
 		oldMediaStoreConnectorsSize = this.pcmToAdapt.getSystem().getConnectors__ComposedStructure().size();
 		oldMediaStoreAllocationsSize = this.pcmToAdapt.getAllocation().getAllocationContexts_Allocation().size();
 		
-		this.weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, this.concernSolution)
-															.getExperimentWeavingInstructions();
+		try {
+			
+			this.weavingInstructions = WeavingInstructionFactory.getBy(this.pcmToAdapt, this.concernModel, this.concernSolution)
+																.getExperimentWeavingInstructions();
+			
+		} catch (ConcernWeavingException ex) {
+			
+			fail(String.format("Error occured during the generation of weaving instructions: \n", ex.getMessage()));
+			
+		}
 		
 	}
 

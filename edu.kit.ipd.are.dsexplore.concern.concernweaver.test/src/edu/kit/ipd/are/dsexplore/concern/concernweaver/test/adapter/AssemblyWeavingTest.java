@@ -30,10 +30,9 @@ public class AssemblyWeavingTest extends WeavingTest {
 	@Test
 	public void testAssemblyWeaving() {
 		
-		List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
-		
 		try {
 			
+			List<WeavingInstruction> weavingInstructions = createTestWeavingInstructions();
 			LinkedHashSet<WeavingStep> weavingChain = getWeavingChainUnderTest();
 			
 			for (WeavingInstruction eachWeavingInstruction : weavingInstructions) {
