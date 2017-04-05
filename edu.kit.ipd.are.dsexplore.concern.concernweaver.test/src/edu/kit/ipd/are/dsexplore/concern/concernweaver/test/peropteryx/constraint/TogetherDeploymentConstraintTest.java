@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import ConcernModel.Association;
 import de.uka.ipd.sdq.dsexplore.constraints.TogetherDeploymentConstraint;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
@@ -32,22 +33,20 @@ public class TogetherDeploymentConstraintTest extends DeploymentConstraintTest {
 	private void givenValidGenotype() {
 		
 		DesignDecisionGenotype genotype = new DesignDecisionGenotype();
-		
 		addAllocationContextsAllocatedOnOneContainer(genotype);
 		addECCToSpecificContainer(genotype, ConcernWeavingTestUtil.getDetectionECCOf(concern), getFirstResourceContainer());
-		
 		setGenotype(genotype);
+		setAssociationOfDeploymentConstraint(0, Association.TOGETHER);
 		
 	}
 	
 	private void givenNonValidGenotype() {
 		
 		DesignDecisionGenotype genotype = new DesignDecisionGenotype();
-		
 		addDefaultAllocation(genotype);
 		addECCToSpecificContainer(genotype, ConcernWeavingTestUtil.getDetectionECCOf(concern), getFirstResourceContainer());
-		
 		setGenotype(genotype);
+		setAssociationOfDeploymentConstraint(0, Association.TOGETHER);
 		
 	}
 

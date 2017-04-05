@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import ConcernModel.Association;
 import de.uka.ipd.sdq.dsexplore.constraints.IsolatedDeploymentConstraint;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
@@ -32,22 +33,20 @@ public class IsolatedDeploymentConstraintTest extends DeploymentConstraintTest {
 	private void givenValidGenotype() {
 		
 		DesignDecisionGenotype genotype = new DesignDecisionGenotype();
-		
 		addAllocationContextsAllocatedOnOneContainer(genotype);
 		addECCToEmptyContainer(genotype, ConcernWeavingTestUtil.getResponseECCOf(concern));
-		
 		setGenotype(genotype);
+		setAssociationOfDeploymentConstraint(2, Association.ISOLATED);
 
 	}
 	
 	private void givenNonValidGenotype() {
 		
 		DesignDecisionGenotype genotype = new DesignDecisionGenotype();
-		
 		addDefaultAllocation(genotype);
 		addECCToNonEmptyContainer(genotype, ConcernWeavingTestUtil.getResponseECCOf(concern));
-		
 		setGenotype(genotype);
+		setAssociationOfDeploymentConstraint(2, Association.ISOLATED);
 		
 	}
 

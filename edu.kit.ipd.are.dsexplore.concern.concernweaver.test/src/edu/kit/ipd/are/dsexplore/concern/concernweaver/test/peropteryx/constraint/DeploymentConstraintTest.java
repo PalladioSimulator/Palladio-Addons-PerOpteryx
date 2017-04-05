@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import ConcernModel.Association;
 import ConcernModel.ElementaryConcernComponent;
 import de.uka.ipd.sdq.dsexplore.constraints.ConcernDeploymentConstraint;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
@@ -131,6 +132,12 @@ public class DeploymentConstraintTest extends WeavingTest {
 	protected void setGenotype(DesignDecisionGenotype genotype) {
 		
 		this.genotype = genotype;
+		
+	}
+	
+	protected void setAssociationOfDeploymentConstraint(int index, Association association) {
+		
+		concern.getConcerns().get(0).getConstraints().get(index).setAssociation(association);
 		
 	}
 	

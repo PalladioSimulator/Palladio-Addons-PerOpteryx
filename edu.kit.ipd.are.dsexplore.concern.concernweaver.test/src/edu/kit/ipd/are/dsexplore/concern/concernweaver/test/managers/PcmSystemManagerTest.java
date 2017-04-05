@@ -1,6 +1,5 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver.test.managers;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
