@@ -19,7 +19,6 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import ConcernModel.AnnotationTarget;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
@@ -77,17 +76,18 @@ public class WeavingLocationHandler {
 		 * @param annotatedObjects - All annotated objects.
 		 * @throws ConcernWeavingException - Will be thrown if an error occurs.
 		 */
-		public WeavingLocationExtractor(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+		public WeavingLocationExtractor(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
 			
-			this.objectsOfSameAnnotation = getObjectsWithSame(target, annotatedObjects);
+			this.objectsOfSameAnnotation = getObjectsWithSame(target, annotatedObjectPairs);
 			this.target = target;
 			
 		}
 		
-		private List<EObject> getObjectsWithSame(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+		private List<EObject> getObjectsWithSame(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
 			
-			return annotatedObjects.stream().filter(each -> getTargetAnnotationFrom(each).getName().equals(target.getName()))
-										    .collect(Collectors.toList());
+			return annotatedObjectPairs.stream().filter(each -> each.getFirst().getName().equals(target.getName()))
+												.map(each -> each.getSecond())
+										    	.collect(Collectors.toList());
 			
 		}
 		
@@ -146,16 +146,16 @@ public class WeavingLocationHandler {
 	 * @return all pairs containing the weaving location and the associated target annotation.
 	 * @throws ConcernWeavingException - Will be thrown if any error occurs.
 	 */
-	public List<Pair<AnnotationTarget, WeavingLocation>> extractWeavingLocationsFrom(List<EObject> annotatedObjects) throws ConcernWeavingException {
+	public List<Pair<AnnotationTarget, WeavingLocation>> extractWeavingLocationsFrom(List<Pair<AnnotationTarget, EObject>> annotatedObjects) throws ConcernWeavingException {
 
 		List<Pair<AnnotationTarget, WeavingLocation>> weavingLocations = new ArrayList<Pair<AnnotationTarget, WeavingLocation>>();
 
-		List<EObject> copy = new ArrayList<EObject>(annotatedObjects);
+		List<Pair<AnnotationTarget, EObject>> copy = new ArrayList<Pair<AnnotationTarget, EObject>>(annotatedObjects);
 		while(!copy.isEmpty()) {
 			
-			AnnotationTarget target = getTargetAnnotationFrom(copy.get(0));
-			weavingLocations.addAll(getPairsOf(extractMergedWeavinLocationsBy(target, copy), target));
-			copy.removeIf(each -> getTargetAnnotationFrom(each).getName().equals(target.getName()));
+			AnnotationTarget target = copy.get(0).getFirst();
+			weavingLocations.addAll(getPairsOf(extractMergedWeavingLocationsBy(target, copy), target));
+			copy.removeIf(each -> each.getFirst().getName().equals(target.getName()));
 			
 		}
 		
@@ -163,21 +163,15 @@ public class WeavingLocationHandler {
 		
 	}
 
-	private List<WeavingLocation> extractMergedWeavinLocationsBy(AnnotationTarget target, List<EObject> annotatedObjects) throws ConcernWeavingException {
+	private List<WeavingLocation> extractMergedWeavingLocationsBy(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
 		
-		return new WeavingLocationExtractor(target, annotatedObjects).extractMergedWeavingLocations();
+		return new WeavingLocationExtractor(target, annotatedObjectPairs).extractMergedWeavingLocations();
 		
 	}
 	
 	private List<Pair<AnnotationTarget, WeavingLocation>> getPairsOf(List<WeavingLocation> locations, AnnotationTarget target) {
 		
 		return locations.stream().map(each -> Pair.of(target, each)).collect(Collectors.toList());
-		
-	}
-
-	private AnnotationTarget getTargetAnnotationFrom(EObject object) {
-		
-		return AnnotationFilter.getTargetAnnotationFrom(object).get();
 		
 	}
 

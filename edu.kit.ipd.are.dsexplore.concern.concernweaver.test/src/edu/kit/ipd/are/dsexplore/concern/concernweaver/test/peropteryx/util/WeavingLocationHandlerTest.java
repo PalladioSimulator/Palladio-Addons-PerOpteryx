@@ -133,8 +133,15 @@ public class WeavingLocationHandlerTest extends WeavingTest{
 
 	private List<WeavingLocation> getResult() throws ConcernWeavingException {
 		
-		List<Pair<AnnotationTarget,WeavingLocation>> pairs = new WeavingLocationHandler(pcmToAdapt).extractWeavingLocationsFrom(this.annotatedObjects);
+		List<Pair<AnnotationTarget,WeavingLocation>> pairs = new WeavingLocationHandler(pcmToAdapt).extractWeavingLocationsFrom(getAnnotatedObjectPairs());
 		return pairs.stream().map(each -> each.getSecond()).collect(Collectors.toList());
+		
+	}
+
+	private List<Pair<AnnotationTarget, EObject>> getAnnotatedObjectPairs() {
+		
+		return this.annotatedObjects.stream().map(each -> Pair.of(AnnotationFilter.getTargetAnnotationFrom(each).get(), each))
+											 .collect(Collectors.toList());
 		
 	}
 
