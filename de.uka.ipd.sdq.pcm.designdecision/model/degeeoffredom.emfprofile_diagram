@@ -7,7 +7,7 @@
         <eType xmi:type="ecore:EClass" href="http://sdq.ipd.uka.de/DesignDecision/2.0#//GDoF/DegreeOfFreedom"/>
       </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_ZCOZcPzPEeG0WoG_YZh9OA" lowerBound="1" upperBound="1">
-        <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.1#//core/entity/Entity"/>
+        <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/entity/Entity"/>
       </extensions>
     </eClassifiers>
   </emfprofile:Profile>
@@ -45,7 +45,7 @@
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_VsvrYfzPEeG0WoG_YZh9OA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_VsvrYvzPEeG0WoG_YZh9OA" fontName="Segoe UI"/>
-      <element xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.1#//core/entity/Entity"/>
+      <element xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/entity/Entity"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VsvrY_zPEeG0WoG_YZh9OA" x="375" y="105"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_Whh-UPzPEeG0WoG_YZh9OA" type="2006" element="_WheT8PzPEeG0WoG_YZh9OA">
