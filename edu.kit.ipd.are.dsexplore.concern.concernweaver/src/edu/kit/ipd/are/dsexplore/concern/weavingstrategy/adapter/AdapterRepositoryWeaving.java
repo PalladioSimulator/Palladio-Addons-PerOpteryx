@@ -15,7 +15,6 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
-import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverConstant;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 /**
@@ -31,36 +30,31 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		
-		setAdapterComponentRegarding(weavingInstruction.getTransformationStrategy().isMultiple());
+		setAdapterComponentRegarding(weavingInstruction);
 		connectAdapterTo(weavingInstruction.getECCWithConsumedFeatures().getSecond());													  
 		weaveAdapterIntoRepository(weavingInstruction.getWeavingLocation());
 		
 	}
 
-	private void setAdapterComponentRegarding(boolean isMultiple) {
+	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
 		
-		if(isMultiple) {
+		String uniqueAdapterName = ConcernWeaverUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
+		
+		if(weavingInstruction.getTransformationStrategy().isMultiple()) {
 			
-			setAdapterComponent(concernRepositoryManager.createAndAddAdapter(ConcernWeaverConstant.ADAPTER_NAME));
+			setAdapterComponent(concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
 			
 		} else {
 			
-			setAdapterComponent(getOrCreateAdapterComponent());
+			setAdapterComponent(getOrCreateAdapterComponent(uniqueAdapterName));
 			
 		}
 		
 	}
 
-	private RepositoryComponent getOrCreateAdapterComponent() {
+	private RepositoryComponent getOrCreateAdapterComponent(String name) {
 		
-		Optional<RepositoryComponent> result = getExistingAdapter();
-		if (result.isPresent()) {
-			
-			return result.get();
-			
-		}
-		
-		return concernRepositoryManager.createAndAddAdapter(ConcernWeaverConstant.ADAPTER_NAME);
+		return getExistingAdapter().orElseGet(() -> concernRepositoryManager.createAndAddAdapter(name));
 		
 	}
 	

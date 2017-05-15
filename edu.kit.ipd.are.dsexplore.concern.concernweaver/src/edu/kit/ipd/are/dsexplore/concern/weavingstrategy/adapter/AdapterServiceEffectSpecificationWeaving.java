@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -118,7 +119,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	/**
 	 * Retrieves the external call informations for a given SEFF which contains the service, required role and the input and output parameters.
-	 * @param seffToTransform - The SEFF from which the informations are estracted.
+	 * @param seffToTransform - The SEFF from which the informations are extracted.
 	 * @return the external call informations.
 	 * @throws ConcernWeavingException - Will be thrown if an error occurs.
 	 */
@@ -265,7 +266,7 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	
 	}
 	
-	//At this stage there is no possibility to get the value characterisations of input or output parameters of a given ECC.
+	//At this stage there is no possibility to get the value characterizations of input or output parameters of a given ECC.
 	//TODO implement variable usage 
 	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
 		
@@ -293,20 +294,20 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 		
 	}
 	
-	protected ExternalCallAction getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
+	private Optional<ExternalCallAction> getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
 
 		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
 
 			Optional<ExternalCallAction> externalCallAction = getExternalCallActionFrom(eachSEFF, calledService);
 			if (externalCallAction.isPresent()) {
 				
-				return externalCallAction.get();
+				return externalCallAction;
 				
 			}
 
 		}
 
-		throw new ConcernWeavingException(ErrorMessage.missingExternalCall(getCallingComponent(), calledService));
+		return Optional.empty();
 
 	}
 	
@@ -336,6 +337,32 @@ public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWe
 	private boolean isExternalCallAction(EObject object) {
 		
 		return object instanceof ExternalCallAction;
+		
+	}
+	
+	protected List<VariableUsage> getInputVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
+		
+		Optional<ExternalCallAction> ext = getExternalCallActionInvoking(calledService);
+		if (ext.isPresent()) {
+			
+			return ext.get().getInputVariableUsages__CallAction(); 
+			
+		}
+		
+		return Collections.emptyList();
+		
+	}
+	
+	protected List<VariableUsage> getReturnVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
+		
+		Optional<ExternalCallAction> ext = getExternalCallActionInvoking(calledService);
+		if (ext.isPresent()) {
+			
+			return ext.get().getReturnVariableUsage__CallReturnAction();
+			
+		}
+		
+		return Collections.emptyList();
 		
 	}
 

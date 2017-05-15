@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
@@ -18,6 +20,18 @@ public class ConcernWeaverUtil {
 	public static String getDefaultInstanceNameWith(String name) {
 		
 		return String.format("%sInstance", name);
+		
+	}
+	
+	public static String createUniqueAdapterNameBy(Connector connector) {
+		
+		EcoreReferenceResolver resolver = new EcoreReferenceResolver(connector);
+		List<AssemblyContext> connectedACs = resolver.getCrossReferencedElementsOfType(AssemblyContext.class);
+		
+		final StringBuilder builder = new StringBuilder(); 
+		connectedACs.forEach(each -> builder.append(each.getEncapsulatedComponent__AssemblyContext().getEntityName()));
+		
+		return String.format("%1s_%2s", builder.toString(), ConcernWeaverConstant.ADAPTER_NAME);
 		
 	}
 	

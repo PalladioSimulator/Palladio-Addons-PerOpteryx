@@ -93,7 +93,6 @@ public class ConcernSolutionManager {
 	public RepositoryComponent createAndAddAdapter(String name) {
 		
 		BasicComponent adapter = createAdapter(name);
-		
 		addAdapter(adapter);
 		
 		return (RepositoryComponent) adapter;

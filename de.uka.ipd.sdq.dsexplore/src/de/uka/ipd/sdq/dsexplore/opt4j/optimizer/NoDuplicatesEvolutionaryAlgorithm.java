@@ -176,7 +176,7 @@ public class NoDuplicatesEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	
 	private boolean isValid(DesignDecisionGenotype genotype) {
 		Optional<DesignSpaceConstraintManager> constraintManager = DesignSpaceConstraintManager.getInstanceBy(genotype);
-		return constraintManager.isPresent() ? constraintManager.get().violatesAnyConstraint(genotype) : true;
+		return constraintManager.isPresent() ? constraintManager.get().violatesNoConstraint(genotype) : true;
 	}
 	
 	private void removeInvalidIndividualsFrom(Collection<Individual> individuals) {

@@ -94,7 +94,7 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 		
 		}
 		
-		return getExternalCallActionInvoking(calledService).getReturnVariableUsage__CallReturnAction();
+		return getReturnVariableUsageIfServiceIsCalled(calledService);
 
 	}
 
@@ -112,7 +112,7 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 		
 		}
 		
-		return getExternalCallActionInvoking(calledService).getInputVariableUsages__CallAction();
+		return getInputVariableUsageIfServiceIsCalled(calledService);
 
 	}
 

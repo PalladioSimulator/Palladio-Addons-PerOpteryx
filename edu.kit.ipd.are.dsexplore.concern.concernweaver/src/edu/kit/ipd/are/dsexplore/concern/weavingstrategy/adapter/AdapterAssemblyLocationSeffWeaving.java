@@ -64,7 +64,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 		
 		if (hasReturnType(calledService)) {
 			
-			return getExternalCallActionInvoking(calledService).getReturnVariableUsage__CallReturnAction();
+			return getReturnVariableUsageIfServiceIsCalled(calledService);
 			
 		}
 		
@@ -80,7 +80,7 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 			
 		}
 		
-		return getExternalCallActionInvoking(calledService).getInputVariableUsages__CallAction();
+		return getInputVariableUsageIfServiceIsCalled(calledService);
 		
 	}
 

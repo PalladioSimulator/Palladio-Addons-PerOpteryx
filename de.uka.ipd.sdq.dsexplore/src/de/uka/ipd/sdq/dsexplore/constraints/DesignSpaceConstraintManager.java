@@ -95,7 +95,7 @@ public class DesignSpaceConstraintManager {
 		
 	}
 	
-	public boolean violatesAnyConstraint(DesignDecisionGenotype genotype) {
+	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) {
 		
 		return constraints.stream().allMatch(eachConstraint -> eachConstraint.isValid(genotype));
 		
@@ -104,13 +104,13 @@ public class DesignSpaceConstraintManager {
 	//Maybe later
 //	public void validateAndRepairIfPossible(DesignDecisionGenotype genotype) {
 //		
-//		constraints.forEach(eachConstraint -> {
+//		constraints.forEach(constraint -> {
 //			
-//			if (!eachConstraint.isValid(genotype)) {
+//			if (!constraint.isValid(genotype)) {
 //				
-//				if (eachConstraint instanceof IReparationStrategy) {
+//				if (constraint instanceof IReparationStrategy) {
 //					
-//					((IReparationStrategy) eachConstraint).repair(genotype);
+//					((IReparationStrategy) constraint).repair(genotype);
 //					
 //				}
 //				

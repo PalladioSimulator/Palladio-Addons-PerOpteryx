@@ -198,7 +198,7 @@ public class WeavingLocationHandler {
 
 	private List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos) {
 		
-		return extractedJoinPointInfos.stream().map(eachExtractedJoinPointInfo -> toWeavingLocation(eachExtractedJoinPointInfo))
+		return extractedJoinPointInfos.stream().flatMap(eachExtractedJoinPointInfo -> toWeavingLocations(eachExtractedJoinPointInfo).stream())
 								  	  		   .collect(Collectors.toList());
 		
 	}
@@ -288,22 +288,29 @@ public class WeavingLocationHandler {
 		
 	}
 	
-	private WeavingLocation toWeavingLocation(JoinPointInfo joinPointInfo) {
+	private List<WeavingLocation> toWeavingLocations(JoinPointInfo joinPointInfo) {
 		
-		return new WeavingLocation(joinPointInfo.affectedSignatures, getLocationFrom(joinPointInfo));
-		
-	}
-
-	private Connector getLocationFrom(JoinPointInfo joinPointInfo) {
-		
-		return joinPointInfo.affectedConnector.isPresent() ? joinPointInfo.affectedConnector.get() : getLocationFrom(joinPointInfo.affectedRole.get());
+		return getLocationsFrom(joinPointInfo).stream().map(each -> new WeavingLocation(joinPointInfo.affectedSignatures, each))
+													   .collect(Collectors.toList());
 		
 	}
 
-	private Connector getLocationFrom(Role affectedRole) {
+	private List<Connector> getLocationsFrom(JoinPointInfo joinPointInfo) {
 		
-		return this.system.getConnectors__ComposedStructure().stream().filter(eachConnector -> containsAffectedRole(eachConnector, affectedRole))
-																	  .findFirst().get();
+		if (joinPointInfo.affectedConnector.isPresent()) {
+			
+			return Arrays.asList(joinPointInfo.affectedConnector.get());
+			
+		}
+		
+		return getLocationsFrom(joinPointInfo.affectedRole.get());
+		
+	}
+
+	private List<Connector> getLocationsFrom(Role affectedRole) {
+		
+		return getAllConnectors().filter(eachConnector -> containsAffectedRole(eachConnector, affectedRole))
+								 .collect(Collectors.toList());
 		
 	}
 
