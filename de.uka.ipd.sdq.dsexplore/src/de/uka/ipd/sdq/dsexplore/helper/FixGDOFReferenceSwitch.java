@@ -71,11 +71,11 @@ import de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionRepositoryI
  * 
  * This class does a reference switch, which is needed if for one model two
  * separate instances are loaded. This class addresses the problem which occurs
- * when using generic degrees of freedom. Degrees of freedom reference difference
+ * when using generic degrees of freedom. Degrees of freedom refer to different
  * element features and use them as context class. The problem is, these
  * references do not point  to the initial loaded PCM Instance but to a new
  * loaded model just to get the references. Using equals on these two elements
- * fails, even if they are the same, because they both reference another model.
+ * fails, even if they are the same, because they both refer to different loaded model.
  * To prevent this error this class here was created. This class switches the 
  * references in every degree of freedom to the references from the initial loaded
  * instance.
@@ -431,31 +431,31 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 	private EClass doQosannotationsSwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doReliabilitySwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doParameterSwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doProtocolSwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doResourcetypeSwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doUsagemodelSwitch(EClass ctxClass) {
@@ -464,13 +464,13 @@ public class FixGDOFReferenceSwitch extends gdofSwitch<EObject> {
 		UsageModel um = this.pcmInstance.getUsageModel();
 		ctxClass = um.eClass();
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doEntitySwitch(EClass ctxClass) {
 		// TODO Auto-generated method stub
 		logger.error(
-                "Please implement Swich for: "+ctxClass.getName());
+                "Please implement Switch for: "+ctxClass.getName());
 		return ctxClass;
 	}
 	private EClass doAllocationSwitch(EClass ctxClass) {
