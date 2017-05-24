@@ -747,8 +747,7 @@ public class ResultsWriter {
 		IPath modelDirPath = new Path(folder.toPlatformString(true));
 		IFolder modelDirFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(modelDirPath);
 
-		String fileNamePrefixString = modelDirFolder.getLocationURI().getPath() + File.separatorChar + "pcmInstance"
-				+ File.separatorChar + modelName;
+		String fileNamePrefixString = modelDirFolder.getLocationURI().getPath() + File.separatorChar + modelName;
 		return fileNamePrefixString;
 	}
 
