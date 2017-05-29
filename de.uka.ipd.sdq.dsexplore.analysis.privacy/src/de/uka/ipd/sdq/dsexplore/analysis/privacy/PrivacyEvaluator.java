@@ -23,17 +23,16 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	}
 
 	@Override
+	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		// TODO Auto-generated method stub
-		
-	}
 
-
-	@Override
-	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -51,8 +50,6 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard) {
 		// TODO Auto-generated method stub
-		
 	}
-
 
 }
