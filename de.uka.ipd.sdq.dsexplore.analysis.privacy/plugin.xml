@@ -7,7 +7,7 @@
             delegate="de.uka.ipd.sdq.dsexplore.analysis.privacy.PrivacyEvaluator"
             name="Privacy Analysis"
             qualityAttribute="de.uka.ipd.sdq.dsexplore.cost"
-            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.privacy.QualityAttribute1">
+            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.privacy.PrivacyAnalysisQualityAttributeDeclaration">
       </analysis>
    </extension>
 
