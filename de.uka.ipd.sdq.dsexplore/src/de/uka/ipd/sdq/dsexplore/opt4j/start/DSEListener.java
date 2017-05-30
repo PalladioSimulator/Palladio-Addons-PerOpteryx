@@ -84,7 +84,7 @@ public class DSEListener implements OptimizerIterationListener {
 		ResultsWriter.writeIndividualsToFile(Opt4JStarter.getArchiveIndividuals(), this.resultFolder,
 				"archiveCandidates", iteration, exceptionList, this.asEMF, this.asCSV);
 		ResultsWriter.writeBestCostIndividualAsPCM(Opt4JStarter.getArchiveIndividuals(),
-				this.resultFolder.appendSegment("costOptimalModel" + iteration), "costOptimalCandidate");
+				this.resultFolder.appendSegment("costOptimalModel"), "costOptimalCandidate");
 	}
 
 	public int getIteration() {
