@@ -1,5 +1,18 @@
 package de.uka.ipd.sdq.dsexplore.analysis.privacy.config;
 
-public class PrivacyAnalysisTabGroup {
+import org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup;
+import org.eclipse.debug.ui.ILaunchConfigurationDialog;
+import org.eclipse.debug.ui.ILaunchConfigurationTab;
+
+public class PrivacyAnalysisTabGroup extends AbstractLaunchConfigurationTabGroup {
+
+	@Override
+	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {
+				new PrivacyAnalysisTab()
+			};
+			setTabs(tabs);
+		
+	}
 
 }
