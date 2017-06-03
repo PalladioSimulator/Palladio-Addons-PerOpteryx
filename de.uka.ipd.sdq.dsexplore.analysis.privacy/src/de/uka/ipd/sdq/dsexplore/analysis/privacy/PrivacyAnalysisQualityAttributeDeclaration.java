@@ -45,7 +45,7 @@ public class PrivacyAnalysisQualityAttributeDeclaration implements IAnalysisQual
 
 	@Override
 	public QualityAttribute getQualityAttribute() {
-		return QualityAttribute.PIVACY_QUALITY;
+		return QualityAttribute.PRIVACY_QUALITY;
 	}
 
 }
