@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="org.palladiosimulator.editors.sirius.repository.Activator"
+               id="repository.enriched"
+	       name="repository">
+    </component>
+  </extension>
+  <extension
+        point="org.eclipse.ui.newWizards">
+     <wizard
+           category="org.palladiosimulator.pcmbench.palladio_modeling_category"
+           class="org.palladiosimulator.editors.sirius.repository.wizard.RepositoryCreationWizard"
+           icon="icons/NewRepositoryFile.gif"
+           id="org.palladiosimulator.editors.sirius.repository.wizard.RepositoryCreationWizard"
+           name="Repository Model and Diagram - Sirius">
+     </wizard>
+  </extension>
+</plugin>

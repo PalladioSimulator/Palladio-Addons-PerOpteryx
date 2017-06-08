@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.kit.ipd.are.dsexplore.concernStrategy.design
+Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.concernStrategy.design;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: edu.kit.ipd.are.dsexplore.concernStrategy.design.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.sirius,
+ org.eclipse.sirius.common.acceleo.aql,
+ org.eclipse.sirius.diagram;bundle-version="3.1.1",
+ org.eclipse.sirius.diagram.ui,
+ edu.kit.ipd.are.dsexplore.concernStrategy.design.custom;bundle-version="1.0.0",
+ edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated concernStructure -->
+      <package
+            uri="http://are.ipd.kit.edu/TransformationModel/1.0.0"
+            class="TransformationModel.TransformationModelPackage"
+            genModel="model/concernStructure.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated concernStructure -->
+      <package
+            uri="http://are.ipd.kit.edu/SolutionModel/1.0.0"
+            class="SolutionModel.SolutionModelPackage"
+            genModel="model/concernStructure.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated concerns -->
+      <package
+            uri="http://are.ipd.kit.edu/ConcernModel/1.0.1"
+            class="ConcernModel.ConcernModelPackage"
+            genModel="model/concerns.genmodel"/>
+   </extension>
+
+</plugin>

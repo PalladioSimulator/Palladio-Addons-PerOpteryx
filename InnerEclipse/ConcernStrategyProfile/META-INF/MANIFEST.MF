@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Strategy_Profile
+Bundle-SymbolicName: Strategy_Profile;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: strategy_profile.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.modelversioning.emfprofile,
+ org.modelversioning.emfprofile.registry
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
