@@ -84,8 +84,8 @@ public class ResultsWriter {
 		try {
 			this.fileWriter = new DSEFileWriter(this.fileLocation);
 		} catch (IOException e) {
-			logger.error("Cannot write to file " + this.fileLocation
-					+ " to store individuals. I will print them to the logger instead. Cause: " + e.getMessage());
+			logger.error("Cannot write to file " + this.fileLocation + " to store individuals. I will print them to the logger instead. Cause: "
+					+ e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -98,8 +98,8 @@ public class ResultsWriter {
 	 * @param iteration
 	 * @param exceptionList
 	 */
-	public static void writeDSEIndividualsToFile(Collection<DSEIndividual> individuals, URI folder, String lastSegment,
-			int iteration, boolean asEMF, boolean asCVS, List<Exception> exceptionList) {
+	public static void writeDSEIndividualsToFile(Collection<DSEIndividual> individuals, URI folder, String lastSegment, int iteration, boolean asEMF,
+			boolean asCVS, List<Exception> exceptionList) {
 
 		if (individuals.size() > 0) {
 			if (asCVS) {
@@ -123,8 +123,7 @@ public class ResultsWriter {
 	 * @param archiveIndividuals
 	 * @param modelNamePrefix
 	 */
-	public static void writeBestCostIndividualAsPCM(Collection<Individual> archiveIndividuals, URI folder,
-			String modelName) {
+	public static void writeBestCostIndividualAsPCM(Collection<Individual> archiveIndividuals, URI folder, String modelName) {
 		DSEIndividual costFocusIndividual = null;
 
 		for (Individual ind : archiveIndividuals) {
@@ -166,8 +165,8 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @param asEMF
 	 */
-	public static void writeIndividualsToFile(Collection<Individual> individuals, URI folder, String filename,
-			int iteration, List<Exception> exceptionList, boolean asEMF, boolean asCSV) {
+	public static void writeIndividualsToFile(Collection<Individual> individuals, URI folder, String filename, int iteration,
+			List<Exception> exceptionList, boolean asEMF, boolean asCSV) {
 		List<DSEIndividual> dseIndList = new ArrayList<DSEIndividual>(individuals.size());
 		for (Individual ind : individuals) {
 			if (ind instanceof DSEIndividual) {
@@ -186,8 +185,8 @@ public class ResultsWriter {
 	 *            Is used for the filename
 	 * @param exceptionList
 	 */
-	public static void writeStringToFile(URI folder, String filename, String content, int iteration,
-			List<Exception> exceptionList, String fileEnding) {
+	public static void writeStringToFile(URI folder, String filename, String content, int iteration, List<Exception> exceptionList,
+			String fileEnding) {
 		writeToNewFile(folder, filename, new StringBuilder(content), iteration, exceptionList, fileEnding);
 	}
 
@@ -224,8 +223,7 @@ public class ResultsWriter {
 				try {
 					output = prettyPrintResultLineCSV(output, ind2, criteriaToSave, criteriaWithConfidence);
 				} catch (Exception e) {
-					exceptionList
-							.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
+					exceptionList.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
 				}
 				counter++;
 			}
@@ -277,8 +275,7 @@ public class ResultsWriter {
 		return this.fileLocation;
 	}
 
-	public void writeTacticCandidateInfo(ITactic heuristic,
-			Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
+	public void writeTacticCandidateInfo(ITactic heuristic, Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
 		// writeToLogFile(heuristic.getClass() + ";" +
 		// candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
@@ -292,9 +289,8 @@ public class ResultsWriter {
 	}
 
 	public void writeTacticManagerChoice(TacticsResultCandidate c) {
-		this.writeToLogFile(c.getHeuristic().getClass().getSimpleName() + ";" + c.getNumericID() + ";"
-				+ c.getParent().getNumericID() + ";" + c.getID() + ";" + c.getParent().getID()
-				+ ";candidate returned\n");
+		this.writeToLogFile(c.getHeuristic().getClass().getSimpleName() + ";" + c.getNumericID() + ";" + c.getParent().getNumericID() + ";"
+				+ c.getID() + ";" + c.getParent().getID() + ";candidate returned\n");
 	}
 
 	/**
@@ -338,8 +334,7 @@ public class ResultsWriter {
 				this.fileWriter.close();
 				this.fileWriter = null;
 			} catch (IOException e) {
-				logger.error("Cannot close the file handle " + this.fileLocation
-						+ ". Your results might be lost. Cause: " + e.getMessage());
+				logger.error("Cannot close the file handle " + this.fileLocation + ". Your results might be lost. Cause: " + e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -359,8 +354,7 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @return
 	 */
-	private static StringBuilder addResultsToCSVString(Collection<DSEIndividual> individuals,
-			List<Exception> exceptionList) {
+	private static StringBuilder addResultsToCSVString(Collection<DSEIndividual> individuals, List<Exception> exceptionList) {
 		StringBuilder output = new StringBuilder(10000);
 
 		DSEIndividual firstIndividual = individuals.iterator().next();
@@ -409,8 +403,8 @@ public class ResultsWriter {
 		return criteriaWithConfidence;
 	}
 
-	private static void writeToNewFile(URI folder, String filename, StringBuilder results, int iteration,
-			List<Exception> exceptionList, String fileEnding) {
+	private static void writeToNewFile(URI folder, String filename, StringBuilder results, int iteration, List<Exception> exceptionList,
+			String fileEnding) {
 		filename = getFilenameForIteration(filename, iteration, fileEnding);
 		URI fileURI = folder.appendSegment(filename);
 
@@ -436,8 +430,8 @@ public class ResultsWriter {
 		return basicFilename + iteration + "_" + getTimeDateString() + fileEnding;
 	}
 
-	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, DSEIndividual ind,
-			List<Criterion> criterionsToSave, List<Criterion> criteriaWithConfidence) {
+	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, DSEIndividual ind, List<Criterion> criterionsToSave,
+			List<Criterion> criteriaWithConfidence) {
 
 		// first objectives
 		DSEObjectives objs = ind.getObjectives();
@@ -501,10 +495,8 @@ public class ResultsWriter {
 					ResultDecoratorRepository results = dseObj.getResultDecoratorFor(o.getKey());
 					List<UtilisationResult> utilisations = results.getUtilisationResults_ResultDecoratorRepository();
 					PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
-					List<ResourceContainer> containers = pcm.getResourceEnvironment()
-							.getResourceContainer_ResourceEnvironment();
-					List<LinkingResource> links = pcm.getResourceEnvironment()
-							.getLinkingResources__ResourceEnvironment();
+					List<ResourceContainer> containers = pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+					List<LinkingResource> links = pcm.getResourceEnvironment().getLinkingResources__ResourceEnvironment();
 					if (utilisations != null) {
 						for (ResourceContainer resourceContainer : containers) {
 							for (ProcessingResourceSpecification processingResourceSpecification : resourceContainer
@@ -517,16 +509,13 @@ public class ResultsWriter {
 										// changed (the printed candidate is not
 										// necessarily the current one on the
 										// blackboard).
-										if (EMFHelper
-												.checkIdentity(procResResult
-														.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
-														.eContainer(), resourceContainer)
+										if (EMFHelper.checkIdentity(
+												procResResult.getProcessingResourceSpecification_ProcessingResourceSpecificationResult().eContainer(),
+												resourceContainer)
 												&& EMFHelper.checkIdentity(
-														procResResult
-																.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
+														procResResult.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
 																.getActiveResourceType_ActiveResourceSpecification(),
-														processingResourceSpecification
-																.getActiveResourceType_ActiveResourceSpecification())) {
+														processingResourceSpecification.getActiveResourceType_ActiveResourceSpecification())) {
 											output.append(procResResult.getResourceUtilisation());
 											break;
 										}
@@ -539,8 +528,7 @@ public class ResultsWriter {
 							for (UtilisationResult utilisationResult : utilisations) {
 								if (utilisationResult instanceof LinkingResourceResults) {
 									LinkingResourceResults linkResult = ((LinkingResourceResults) utilisationResult);
-									if (EMFHelper.checkIdentity(linkResult.getLinkingResource_LinkingResourceResults(),
-											linkingResource)) {
+									if (EMFHelper.checkIdentity(linkResult.getLinkingResource_LinkingResourceResults(), linkingResource)) {
 										output.append(linkResult.getResourceUtilisation());
 										break;
 									}
@@ -607,27 +595,21 @@ public class ResultsWriter {
 				if (dseObj.hasResultDecoratorFor(o.getKey())) {
 
 					PCMInstance pcm = Opt4JStarter.getProblem().getInitialInstance();
-					List<ResourceContainer> containers = pcm.getResourceEnvironment()
-							.getResourceContainer_ResourceEnvironment();
+					List<ResourceContainer> containers = pcm.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
 					for (ResourceContainer resourceContainer : containers) {
-						List<ProcessingResourceSpecification> procResource = resourceContainer
-								.getActiveResourceSpecifications_ResourceContainer();
+						List<ProcessingResourceSpecification> procResource = resourceContainer.getActiveResourceSpecifications_ResourceContainer();
 						for (ProcessingResourceSpecification processingResourceSpecification : procResource) {
-							ProcessingResourceType procType = processingResourceSpecification
-									.getActiveResourceType_ActiveResourceSpecification();
-							output.append("Util of " + resourceContainer.getEntityName() + " "
-									+ procType.getEntityName() + ";");
+							ProcessingResourceType procType = processingResourceSpecification.getActiveResourceType_ActiveResourceSpecification();
+							output.append("Util of " + resourceContainer.getEntityName() + " " + procType.getEntityName() + ";");
 						}
 
 					}
 
-					List<LinkingResource> links = pcm.getResourceEnvironment()
-							.getLinkingResources__ResourceEnvironment();
+					List<LinkingResource> links = pcm.getResourceEnvironment().getLinkingResources__ResourceEnvironment();
 					for (LinkingResource linkingResource : links) {
 						output.append("Util of " + linkingResource.getEntityName() + " "
 								+ linkingResource.getCommunicationLinkResourceSpecifications_LinkingResource()
-										.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification()
-										.getEntityName()
+										.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification().getEntityName()
 								+ ";");
 					}
 				}
@@ -644,8 +626,8 @@ public class ResultsWriter {
 			ConfidenceInterval c = objs.getConfidenceIntervalForObjective(criterion);
 			if (c != null) {
 				output.append(DSEConstantsContainer.LOWER_BOUND_CONFIDENCE + "(" + getDimensionName(criterion) + ");"
-						+ DSEConstantsContainer.UPPER_BOUND_CONFIDENCE + "(" + getDimensionName(criterion) + ");"
-						+ DSEConstantsContainer.ALPHA + "(" + getDimensionName(criterion) + ");");
+						+ DSEConstantsContainer.UPPER_BOUND_CONFIDENCE + "(" + getDimensionName(criterion) + ");" + DSEConstantsContainer.ALPHA + "("
+						+ getDimensionName(criterion) + ");");
 			}
 
 		}
@@ -693,8 +675,7 @@ public class ResultsWriter {
 		return criteria;
 	}
 
-	private static boolean dominatesForCriteria(List<Criterion> criteriaList, DSEIndividual source,
-			DSEIndividual other) {
+	private static boolean dominatesForCriteria(List<Criterion> criteriaList, DSEIndividual source, DSEIndividual other) {
 		DSEObjectives objsSource = source.getObjectives();
 		DSEObjectives objsOther = other.getObjectives();
 
@@ -708,16 +689,15 @@ public class ResultsWriter {
 				IntegerValue sourceInt = (IntegerValue) sourceValue;
 				IntegerValue otherInt = (IntegerValue) otherValue;
 
-				logger.info(String.format("Got integer values for criterion %s, comparing values %d and %d.",
-						criterion.getName(), sourceInt.getValue(), otherInt.getValue()));
+				logger.info(String.format("Got integer values for criterion %s, comparing values %d and %d.", criterion.getName(),
+						sourceInt.getValue(), otherInt.getValue()));
 				if (sourceInt.getValue() < otherInt.getValue()) {
 					return false;
 				}
 			} else {
 				double dSource = sourceValue.getDouble();
 				double dOther = otherValue.getDouble();
-				logger.info(String.format("Got double values for criterion %s, comparing values %f and %f.",
-						criterion.getName(), dSource, dOther));
+				logger.info(String.format("Got double values for criterion %s, comparing values %f and %f.", criterion.getName(), dSource, dOther));
 
 				if (dSource < dOther) {
 					return false;
@@ -730,16 +710,15 @@ public class ResultsWriter {
 	private static void writePCMInstanceToResultsFolder(PCMInstance inst, URI folder, String modelName) {
 		String fileNamePrefixString = getFileNamePrefixString(folder, modelName);
 
-		inst.saveToXMIFile(inst.getAllocation(), fileNamePrefixString + ".allocation");
 		List<Repository> repositories = inst.getRepositories();
-
+		
 		for (Repository repository : repositories) {
 			inst.saveToXMIFile(repository, fileNamePrefixString + ".repository");
 		}
-
-		inst.saveToXMIFile(inst.getResourceEnvironment(), fileNamePrefixString + ".resourceenvironment");
 		inst.saveToXMIFile(inst.getResourceRepository(), fileNamePrefixString + ".resourcetype");
 		inst.saveToXMIFile(inst.getSystem(), fileNamePrefixString + ".system");
+		inst.saveToXMIFile(inst.getResourceEnvironment(), fileNamePrefixString + ".resourceenvironment");
+		inst.saveToXMIFile(inst.getAllocation(), fileNamePrefixString + ".allocation");
 		inst.saveToXMIFile(inst.getUsageModel(), fileNamePrefixString + ".usagemodel");
 	}
 
@@ -791,8 +770,7 @@ public class ResultsWriter {
 				this.fileWriter.write(result.toString());
 				this.fileWriter.flush();
 			} catch (IOException e) {
-				logger.error("Cannot write to file " + this.fileLocation
-						+ " Logging the result at level INFO now. Cause: " + e.getMessage());
+				logger.error("Cannot write to file " + this.fileLocation + " Logging the result at level INFO now. Cause: " + e.getMessage());
 				logger.info(result.toString());
 			}
 		} else {
@@ -801,8 +779,7 @@ public class ResultsWriter {
 	}
 
 	public static String getDimensionName(Criterion criterion) {
-		EvaluationAspectWithContext qmlCriterion = PCMDeclarationsReader
-				.retranslateCriterionToEvaluationAspect(criterion);
+		EvaluationAspectWithContext qmlCriterion = PCMDeclarationsReader.retranslateCriterionToEvaluationAspect(criterion);
 		String name = qmlCriterion.getDimension().getEntityName();
 		if (criterion instanceof UsageScenarioBasedCriterion) {
 			name += ":" + ((UsageScenarioBasedCriterion) criterion).getUsageScenario().getEntityName();
