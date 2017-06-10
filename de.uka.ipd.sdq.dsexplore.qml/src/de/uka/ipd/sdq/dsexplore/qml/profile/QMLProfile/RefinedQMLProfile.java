@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile;
 
@@ -12,8 +8,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Refined QML Profile</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Refined QML Profile</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * A refinement must be stronger that the profile it refines.
@@ -40,8 +37,8 @@ public interface RefinedQMLProfile extends GenericQMLProfile {
 	 * Returns the value of the '<em><b>Base Profile</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Profile</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Base Profile</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Profile</em>' reference.
@@ -54,7 +51,8 @@ public interface RefinedQMLProfile extends GenericQMLProfile {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile#getBaseProfile <em>Base Profile</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Profile</em>' reference.
 	 * @see #getBaseProfile()
 	 * @generated
@@ -66,8 +64,8 @@ public interface RefinedQMLProfile extends GenericQMLProfile {
 	 * The list contents are of type {@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Refined By</em>' containment reference list isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Refined By</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Refined By</em>' containment reference list.
@@ -78,15 +76,14 @@ public interface RefinedQMLProfile extends GenericQMLProfile {
 	EList<Requirement> getRefinedBy();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> self.baseProfile <>
-	 * self
-	 *
-	 * @param diagnostics
-	 *            The chain of diagnostics to which problems are to be appended.
-	 * @param context
-	 *            The cache of context-specific information. <!-- end-model-doc -->
-	 * @model 
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.baseProfile <> self'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.baseProfile <> self
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.baseProfile <> self'"
 	 * @generated
 	 */
 	boolean profile_cannot_refine_itself(DiagnosticChain diagnostics, Map<Object, Object> context);

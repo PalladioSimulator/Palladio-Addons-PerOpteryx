@@ -1,40 +1,45 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile;
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.util.QMLProfileValidator;
 
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.ocl.ParserException;
+
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.util.QMLProfileValidator;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Refined QML Profile</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Refined QML Profile</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -47,9 +52,9 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.util.QMLProfileValidator;
  */
 public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements RefinedQMLProfile {
 	/**
-	 * The cached value of the '{@link #getBaseProfile() <em>Base Profile</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getBaseProfile() <em>Base Profile</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBaseProfile()
 	 * @generated
 	 * @ordered
@@ -58,7 +63,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 
 	/**
 	 * The cached value of the '{@link #getRefinedBy() <em>Refined By</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRefinedBy()
 	 * @generated
 	 * @ordered
@@ -66,7 +72,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	protected EList<Requirement> refinedBy;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RefinedQMLProfileImpl() {
@@ -74,7 +81,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,7 +91,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -93,15 +102,16 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 			baseProfile = (GenericQMLProfile) eResolveProxy(oldBaseProfile);
 			if (baseProfile != oldBaseProfile) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLProfilePackage.REFINED_QML_PROFILE__BASE_PROFILE, oldBaseProfile, baseProfile));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLProfilePackage.REFINED_QML_PROFILE__BASE_PROFILE, oldBaseProfile,
+							baseProfile));
 			}
 		}
 		return baseProfile;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GenericQMLProfile basicGetBaseProfile() {
@@ -109,7 +119,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,31 +128,27 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 		GenericQMLProfile oldBaseProfile = baseProfile;
 		baseProfile = newBaseProfile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.REFINED_QML_PROFILE__BASE_PROFILE,
-					oldBaseProfile, baseProfile));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.REFINED_QML_PROFILE__BASE_PROFILE, oldBaseProfile, baseProfile));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<Requirement> getRefinedBy() {
 		if (refinedBy == null) {
-			refinedBy = new EObjectContainmentEList<Requirement>(Requirement.class, this,
-					QMLProfilePackage.REFINED_QML_PROFILE__REFINED_BY);
+			refinedBy = new EObjectContainmentEList<Requirement>(Requirement.class, this, QMLProfilePackage.REFINED_QML_PROFILE__REFINED_BY);
 		}
 		return refinedBy;
 	}
 
 	/**
-	 * The cached OCL expression body for the '
-	 * {@link #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Profile cannot refine itself</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @see #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL expression body for the '{@link #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Profile cannot refine itself</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
@@ -149,8 +156,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 
 	/**
 	 * The cached OCL invariant for the '{@link #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Profile cannot refine itself</em>}' invariant operation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #profile_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -158,7 +165,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	protected static Constraint PROFILE_CANNOT_REFINE_ITSELF__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,12 +183,10 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 		}
 		if (!EOCL_ENV.createQuery(PROFILE_CANNOT_REFINE_ITSELF__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLProfileValidator.DIAGNOSTIC_SOURCE,
-								QMLProfileValidator.REFINED_QML_PROFILE__PROFILE_CANNOT_REFINE_ITSELF,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "profile_cannot_refine_itself",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLProfileValidator.DIAGNOSTIC_SOURCE,
+						QMLProfileValidator.REFINED_QML_PROFILE__PROFILE_CANNOT_REFINE_ITSELF,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "profile_cannot_refine_itself", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -189,7 +195,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,7 +209,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -219,7 +227,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -238,7 +247,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -255,7 +265,8 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,11 +282,11 @@ public class RefinedQMLProfileImpl extends GenericQMLProfileImpl implements Refi
 
 	/**
 	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} // RefinedQMLProfileImpl
+} //RefinedQMLProfileImpl

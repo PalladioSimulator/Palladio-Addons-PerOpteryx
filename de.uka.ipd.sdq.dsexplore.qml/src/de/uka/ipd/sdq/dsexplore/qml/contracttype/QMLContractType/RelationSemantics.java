@@ -1,18 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
-import org.eclipse.emf.ecore.EObject;
-
 import de.uka.ipd.sdq.identifier.Identifier;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Relation Semantics</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Relation Semantics</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * The relation semantic of a domain is either increasing or decreasing.
@@ -32,16 +29,14 @@ import de.uka.ipd.sdq.identifier.Identifier;
  */
 public interface RelationSemantics extends EObject, Identifier {
 	/**
-	 * Returns the value of the '<em><b>Rel Sem</b></em>' attribute. The literals are from the
-	 * enumeration
-	 * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics}. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Rel Sem</b></em>' attribute.
+	 * The literals are from the enumeration {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics}.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rel Sem</em>' attribute isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Rel Sem</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Rel Sem</em>' attribute.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics
 	 * @see #setRelSem(EnumRelationSemantics)
@@ -53,7 +48,8 @@ public interface RelationSemantics extends EObject, Identifier {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics#getRelSem <em>Rel Sem</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rel Sem</em>' attribute.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics
 	 * @see #getRelSem()

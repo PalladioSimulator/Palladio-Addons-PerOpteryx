@@ -1,43 +1,53 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.palladiosimulator.pcm.PcmPackage;
-import org.palladiosimulator.pcm.core.entity.EntityPackage;
-
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl.QMLContractPackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsFactory;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl.QMLProfilePackageImpl;
+
 import de.uka.ipd.sdq.identifier.IdentifierPackage;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.palladiosimulator.pcm.PcmPackage;
+
+import org.palladiosimulator.pcm.core.entity.EntityPackage;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDeclarationsPackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass qmlDeclarationsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass qmlDeclarationEClass = null;
@@ -50,7 +60,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage#eNS_URI
 	 * @see #init()
@@ -61,7 +72,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -71,7 +83,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	 * 
 	 * <p>This method is used to initialize {@link QMLDeclarationsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -83,8 +96,7 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 
 		// Obtain or create and register package
 		QMLDeclarationsPackageImpl theQMLDeclarationsPackage = (QMLDeclarationsPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof QMLDeclarationsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new QMLDeclarationsPackageImpl());
+				.get(eNS_URI) instanceof QMLDeclarationsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new QMLDeclarationsPackageImpl());
 
 		isInited = true;
 
@@ -94,16 +106,13 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 		// Obtain or create and register interdependencies
 		QMLProfilePackageImpl theQMLProfilePackage = (QMLProfilePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLProfilePackage.eNS_URI) instanceof QMLProfilePackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLProfilePackage.eNS_URI)
-						: QMLProfilePackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLProfilePackage.eNS_URI) : QMLProfilePackage.eINSTANCE);
 		QMLContractPackageImpl theQMLContractPackage = (QMLContractPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLContractPackage.eNS_URI) instanceof QMLContractPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI)
-						: QMLContractPackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI) : QMLContractPackage.eINSTANCE);
 		QMLContractTypePackageImpl theQMLContractTypePackage = (QMLContractTypePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLContractTypePackage.eNS_URI) instanceof QMLContractTypePackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLContractTypePackage.eNS_URI)
-						: QMLContractTypePackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLContractTypePackage.eNS_URI) : QMLContractTypePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQMLDeclarationsPackage.createPackageContents();
@@ -126,7 +135,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -135,7 +145,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,7 +155,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -153,7 +165,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -162,7 +175,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -170,7 +184,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -186,7 +201,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -194,7 +210,8 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -208,8 +225,7 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE
-				.getEPackage(IdentifierPackage.eNS_URI);
+		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE.getEPackage(IdentifierPackage.eNS_URI);
 		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 
 		// Create type parameters
@@ -221,17 +237,14 @@ public class QMLDeclarationsPackageImpl extends EPackageImpl implements QMLDecla
 		qmlDeclarationEClass.getESuperTypes().add(theEntityPackage.getEntity());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(qmlDeclarationsEClass, QMLDeclarations.class, "QMLDeclarations", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getQMLDeclarations_QmlDeclarations(), this.getQMLDeclaration(), null, "qmlDeclarations", null, 0,
-				-1, QMLDeclarations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(qmlDeclarationsEClass, QMLDeclarations.class, "QMLDeclarations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getQMLDeclarations_QmlDeclarations(), this.getQMLDeclaration(), null, "qmlDeclarations", null, 0, -1, QMLDeclarations.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(qmlDeclarationEClass, QMLDeclaration.class, "QMLDeclaration", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(qmlDeclarationEClass, QMLDeclaration.class, "QMLDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} // QMLDeclarationsPackageImpl
+} //QMLDeclarationsPackageImpl

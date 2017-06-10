@@ -1,22 +1,22 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EnumLiteral;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Enum Literal</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Enum Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -30,8 +30,8 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -39,7 +39,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	protected Element value;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EnumLiteralImpl() {
@@ -47,7 +48,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,7 +58,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,15 +69,15 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 			value = (Element) eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractPackage.ENUM_LITERAL__VALUE,
-							oldValue, value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractPackage.ENUM_LITERAL__VALUE, oldValue, value));
 			}
 		}
 		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Element basicGetValue() {
@@ -82,7 +85,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -90,12 +94,12 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 		Element oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.ENUM_LITERAL__VALUE, oldValue,
-					value));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.ENUM_LITERAL__VALUE, oldValue, value));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,7 +114,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,7 +129,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -138,7 +144,8 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,4 +157,4 @@ public class EnumLiteralImpl extends ValueLiteralImpl implements EnumLiteral {
 		return super.eIsSet(featureID);
 	}
 
-} // EnumLiteralImpl
+} //EnumLiteralImpl

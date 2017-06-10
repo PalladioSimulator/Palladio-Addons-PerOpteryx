@@ -133,8 +133,7 @@ public class ScaleLiteralImpl<T extends Number> extends ValueLiteralImpl impleme
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.SCALE_LITERAL__NAME, oldName,
-					name));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.SCALE_LITERAL__NAME, oldName, name));
 	}
 
 	/**
@@ -157,8 +156,7 @@ public class ScaleLiteralImpl<T extends Number> extends ValueLiteralImpl impleme
 		T oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.SCALE_LITERAL__VALUE, oldValue,
-					value));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.SCALE_LITERAL__VALUE, oldValue, value));
 	}
 
 	/**

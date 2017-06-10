@@ -1,26 +1,26 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.core.entity.impl.EntityImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.palladiosimulator.pcm.core.entity.impl.EntityImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dimension</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Dimension</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -33,9 +33,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit;
  */
 public class DimensionImpl extends EntityImpl implements Dimension {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -43,9 +43,9 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	protected DimensionType type;
 
 	/**
-	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUnit()
 	 * @generated
 	 * @ordered
@@ -53,7 +53,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	protected Unit unit;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected DimensionImpl() {
@@ -61,7 +62,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,7 +72,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,15 +82,15 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetType(DimensionType newType, NotificationChain msgs) {
 		DimensionType oldType = type;
 		type = newType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractTypePackage.DIMENSION__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__TYPE, oldType, newType);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -97,7 +100,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -105,21 +109,19 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 		if (newType != type) {
 			NotificationChain msgs = null;
 			if (type != null)
-				msgs = ((InternalEObject) type).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__TYPE, null, msgs);
+				msgs = ((InternalEObject) type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__TYPE, null, msgs);
 			if (newType != null)
-				msgs = ((InternalEObject) newType).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__TYPE, null, msgs);
+				msgs = ((InternalEObject) newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__TYPE, null, msgs);
 			msgs = basicSetType(newType, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__TYPE, newType,
-					newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__TYPE, newType, newType));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,15 +130,15 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetUnit(Unit newUnit, NotificationChain msgs) {
 		Unit oldUnit = unit;
 		unit = newUnit;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractTypePackage.DIMENSION__UNIT, oldUnit, newUnit);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__UNIT, oldUnit, newUnit);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -146,7 +148,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -154,21 +157,19 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 		if (newUnit != unit) {
 			NotificationChain msgs = null;
 			if (unit != null)
-				msgs = ((InternalEObject) unit).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__UNIT, null, msgs);
+				msgs = ((InternalEObject) unit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__UNIT, null, msgs);
 			if (newUnit != null)
-				msgs = ((InternalEObject) newUnit).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__UNIT, null, msgs);
+				msgs = ((InternalEObject) newUnit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION__UNIT, null, msgs);
 			msgs = basicSetUnit(newUnit, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__UNIT, newUnit,
-					newUnit));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION__UNIT, newUnit, newUnit));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -183,7 +184,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -198,7 +200,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -215,7 +218,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -232,7 +236,8 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,4 +251,4 @@ public class DimensionImpl extends EntityImpl implements Dimension {
 		return super.eIsSet(featureID);
 	}
 
-} // DimensionImpl
+} //DimensionImpl

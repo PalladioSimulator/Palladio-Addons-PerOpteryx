@@ -2,15 +2,12 @@
 <?eclipse version="3.0"?>
 
 <!--
- <copyright>
- </copyright>
-
- $Id$
 -->
 
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated QMLProfile -->
       <factory
             uri="http:///QMLProfile.ecore"
             class="de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.provider.QMLProfileItemProviderAdapterFactory"
@@ -23,6 +20,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated QMLProfile -->
       <factory
             uri="http:///QMLDeclarations.ecore"
             class="de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.provider.QMLDeclarationsItemProviderAdapterFactory"
@@ -35,6 +33,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated QMLProfile -->
       <factory
             uri="http:///QMLContract.ecore"
             class="de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.provider.QMLContractItemProviderAdapterFactory"
@@ -47,6 +46,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated QMLProfile -->
       <factory
             uri="http:///QMLContractType.ecore"
             class="de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.provider.QMLContractTypeItemProviderAdapterFactory"

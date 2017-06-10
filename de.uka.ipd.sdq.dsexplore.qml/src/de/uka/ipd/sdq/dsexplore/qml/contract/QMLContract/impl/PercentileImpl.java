@@ -1,32 +1,37 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Percentile;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
 import org.eclipse.ocl.ParserException;
+
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Percentile;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Percentile</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Percentile</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -38,9 +43,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidat
  */
 public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	/**
-	 * The default value of the '{@link #getPercentile() <em>Percentile</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getPercentile() <em>Percentile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPercentile()
 	 * @generated
 	 * @ordered
@@ -48,9 +53,9 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	protected static final double PERCENTILE_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getPercentile() <em>Percentile</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getPercentile() <em>Percentile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getPercentile()
 	 * @generated
 	 * @ordered
@@ -58,7 +63,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	protected double percentile = PERCENTILE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected PercentileImpl() {
@@ -66,7 +72,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,7 +82,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,7 +92,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,18 +101,14 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 		double oldPercentile = percentile;
 		percentile = newPercentile;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.PERCENTILE__PERCENTILE,
-					oldPercentile, percentile));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.PERCENTILE__PERCENTILE, oldPercentile, percentile));
 	}
 
 	/**
-	 * The cached OCL expression body for the '
-	 * {@link #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>PERCENTILE between 0and 100</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @see #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL expression body for the '{@link #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>PERCENTILE between 0and 100</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
@@ -111,8 +116,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 
 	/**
 	 * The cached OCL invariant for the '{@link #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>PERCENTILE between 0and 100</em>}' invariant operation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #PERCENTILE_between_0_and_100(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -120,7 +125,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	protected static Constraint PERCENTILE_BETWEEN_0AND_100__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,12 +143,10 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 		}
 		if (!EOCL_ENV.createQuery(PERCENTILE_BETWEEN_0AND_100__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
-								QMLContractValidator.PERCENTILE__PERCENTILE_BETWEEN_0AND_100,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "PERCENTILE_between_0_and_100",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
+						QMLContractValidator.PERCENTILE__PERCENTILE_BETWEEN_0AND_100,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "PERCENTILE_between_0_and_100", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -151,7 +155,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,7 +169,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -178,7 +184,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -192,7 +199,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -205,7 +213,8 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -220,4 +229,4 @@ public class PercentileImpl extends PointEstimatorImpl implements Percentile {
 		return result.toString();
 	}
 
-} // PercentileImpl
+} //PercentileImpl

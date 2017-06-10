@@ -1,27 +1,11 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.palladiosimulator.pcm.PcmPackage;
-import org.palladiosimulator.pcm.core.entity.EntityPackage;
-
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl.QMLContractPackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum;
@@ -42,92 +26,130 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemanti
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.ScaleElement;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationsPackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl.QMLProfilePackageImpl;
+
 import de.uka.ipd.sdq.identifier.IdentifierPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EValidator;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.palladiosimulator.pcm.PcmPackage;
+
+import org.palladiosimulator.pcm.core.entity.EntityPackage;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContractTypePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionTypeSetEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionTypeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass relationSemanticsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass elementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass orderEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionTypeEnumEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass unitEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionTypeNumericEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass numericRangeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass qmlContractTypeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass unitRepositoryEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionTypeRepositoryEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass dimensionEClass = null;
@@ -147,13 +169,15 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	private EClass scaleElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum enumRelationSemanticsEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum enumNumericDomainEEnum = null;
@@ -180,7 +204,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#eNS_URI
 	 * @see #init()
@@ -191,7 +216,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -201,7 +227,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	 * 
 	 * <p>This method is used to initialize {@link QMLContractTypePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -213,8 +240,7 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 
 		// Obtain or create and register package
 		QMLContractTypePackageImpl theQMLContractTypePackage = (QMLContractTypePackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof QMLContractTypePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new QMLContractTypePackageImpl());
+				.get(eNS_URI) instanceof QMLContractTypePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new QMLContractTypePackageImpl());
 
 		isInited = true;
 
@@ -224,16 +250,13 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		// Obtain or create and register interdependencies
 		QMLProfilePackageImpl theQMLProfilePackage = (QMLProfilePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLProfilePackage.eNS_URI) instanceof QMLProfilePackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLProfilePackage.eNS_URI)
-						: QMLProfilePackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLProfilePackage.eNS_URI) : QMLProfilePackage.eINSTANCE);
 		QMLDeclarationsPackageImpl theQMLDeclarationsPackage = (QMLDeclarationsPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLDeclarationsPackage.eNS_URI) instanceof QMLDeclarationsPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLDeclarationsPackage.eNS_URI)
-						: QMLDeclarationsPackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLDeclarationsPackage.eNS_URI) : QMLDeclarationsPackage.eINSTANCE);
 		QMLContractPackageImpl theQMLContractPackage = (QMLContractPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLContractPackage.eNS_URI) instanceof QMLContractPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI)
-						: QMLContractPackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI) : QMLContractPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQMLContractTypePackage.createPackageContents();
@@ -264,7 +287,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -273,7 +297,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -282,7 +307,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -291,7 +317,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -300,7 +327,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -309,7 +337,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -318,7 +347,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -327,7 +357,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -336,7 +367,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -345,7 +377,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -354,7 +387,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -363,7 +397,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -372,7 +407,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -381,7 +417,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -390,7 +427,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -399,7 +437,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -408,7 +447,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -417,7 +457,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -426,7 +467,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -435,7 +477,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -444,7 +487,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -453,7 +497,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -462,7 +507,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -471,7 +517,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -480,7 +527,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -489,7 +537,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -498,7 +547,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -507,7 +557,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -516,7 +567,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -525,7 +577,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -594,7 +647,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -603,7 +657,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -632,7 +687,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -641,7 +697,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -649,7 +706,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -719,7 +777,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -727,7 +786,8 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -741,8 +801,7 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE
-				.getEPackage(IdentifierPackage.eNS_URI);
+		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE.getEPackage(IdentifierPackage.eNS_URI);
 		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 		QMLDeclarationsPackage theQMLDeclarationsPackage = (QMLDeclarationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(QMLDeclarationsPackage.eNS_URI);
@@ -775,17 +834,14 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		scaleElementEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(dimensionTypeSetEClass, DimensionTypeSet.class, "DimensionTypeSet", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionTypeSet_Elements(), this.getElement(), null, "elements", null, 1, -1,
-				DimensionTypeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDimensionTypeSet_Order(), this.getOrder(), null, "order", null, 0, -1, DimensionTypeSet.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(dimensionTypeSetEClass, DimensionTypeSet.class, "DimensionTypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDimensionTypeSet_Elements(), this.getElement(), null, "elements", null, 1, -1, DimensionTypeSet.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDimensionTypeSet_Order(), this.getOrder(), null, "order", null, 0, -1, DimensionTypeSet.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = addEOperation(dimensionTypeSetEClass, ecorePackage.getEBoolean(),
-				"ORDER_can_only_exist_with_RELATIONSEMANTICS", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(dimensionTypeSetEClass, ecorePackage.getEBoolean(), "ORDER_can_only_exist_with_RELATIONSEMANTICS", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -794,30 +850,23 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(dimensionTypeEClass, DimensionType.class, "DimensionType", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionType_RelationSemantics(), this.getRelationSemantics(), null, "relationSemantics",
-				null, 0, 1, DimensionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(dimensionTypeEClass, DimensionType.class, "DimensionType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDimensionType_RelationSemantics(), this.getRelationSemantics(), null, "relationSemantics", null, 0, 1, DimensionType.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(relationSemanticsEClass, RelationSemantics.class, "RelationSemantics", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRelationSemantics_RelSem(), this.getEnumRelationSemantics(), "relSem", null, 1, 1,
-				RelationSemantics.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
+		initEClass(relationSemanticsEClass, RelationSemantics.class, "RelationSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRelationSemantics_RelSem(), this.getEnumRelationSemantics(), "relSem", null, 1, 1, RelationSemantics.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(orderEClass, Order.class, "Order", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOrder_BiggerElement(), this.getElement(), null, "biggerElement", null, 1, 1, Order.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getOrder_SmallerElement(), this.getElement(), null, "smallerElement", null, 1, 1, Order.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOrder_BiggerElement(), this.getElement(), null, "biggerElement", null, 1, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOrder_SmallerElement(), this.getElement(), null, "smallerElement", null, 1, 1, Order.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(orderEClass, ecorePackage.getEBoolean(), "BIGGERELEMENT_must_not_be_SMALLELEMENT", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(orderEClass, ecorePackage.getEBoolean(), "BIGGERELEMENT_must_not_be_SMALLELEMENT", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -826,17 +875,14 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(dimensionTypeEnumEClass, DimensionTypeEnum.class, "DimensionTypeEnum", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionTypeEnum_Elements(), this.getElement(), null, "elements", null, 1, -1,
-				DimensionTypeEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDimensionTypeEnum_Order(), this.getOrder(), null, "order", null, 0, -1,
-				DimensionTypeEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(dimensionTypeEnumEClass, DimensionTypeEnum.class, "DimensionTypeEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDimensionTypeEnum_Elements(), this.getElement(), null, "elements", null, 1, -1, DimensionTypeEnum.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDimensionTypeEnum_Order(), this.getOrder(), null, "order", null, 0, -1, DimensionTypeEnum.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(dimensionTypeEnumEClass, ecorePackage.getEBoolean(),
-				"ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(dimensionTypeEnumEClass, ecorePackage.getEBoolean(), "ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -847,17 +893,15 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 
 		initEClass(unitEClass, Unit.class, "Unit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(dimensionTypeNumericEClass, DimensionTypeNumeric.class, "DimensionTypeNumeric", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionTypeNumeric_Range(), this.getNumericRange(), null, "range", null, 0, 1,
-				DimensionTypeNumeric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDimensionTypeNumeric_Domain(), this.getEnumNumericDomain(), "domain", null, 1, 1,
-				DimensionTypeNumeric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(dimensionTypeNumericEClass, DimensionTypeNumeric.class, "DimensionTypeNumeric", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDimensionTypeNumeric_Range(), this.getNumericRange(), null, "range", null, 0, 1, DimensionTypeNumeric.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDimensionTypeNumeric_Domain(), this.getEnumNumericDomain(), "domain", null, 1, 1, DimensionTypeNumeric.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(dimensionTypeNumericEClass, ecorePackage.getEBoolean(),
-				"NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(dimensionTypeNumericEClass, ecorePackage.getEBoolean(), "NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS", 0, 1,
+				IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -866,17 +910,13 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(numericRangeEClass, NumericRange.class, "NumericRange", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNumericRange_LowerLimit(), ecorePackage.getEDouble(), "lowerLimit", null, 1, 1,
-				NumericRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getNumericRange_UpperLimit(), ecorePackage.getEDouble(), "upperLimit", null, 1, 1,
-				NumericRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
+		initEClass(numericRangeEClass, NumericRange.class, "NumericRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNumericRange_LowerLimit(), ecorePackage.getEDouble(), "lowerLimit", null, 1, 1, NumericRange.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getNumericRange_UpperLimit(), ecorePackage.getEDouble(), "upperLimit", null, 1, 1, NumericRange.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(numericRangeEClass, ecorePackage.getEBoolean(), "UPPERLIMIT_must_be_greater_than_LOWERLIMIT",
-				0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(numericRangeEClass, ecorePackage.getEBoolean(), "UPPERLIMIT_must_be_greater_than_LOWERLIMIT", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -885,50 +925,40 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(qmlContractTypeEClass, QMLContractType.class, "QMLContractType", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getQMLContractType_Dimensions(), this.getDimension(), null, "dimensions", null, 0, -1,
-				QMLContractType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(qmlContractTypeEClass, QMLContractType.class, "QMLContractType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getQMLContractType_Dimensions(), this.getDimension(), null, "dimensions", null, 0, -1, QMLContractType.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(unitRepositoryEClass, UnitRepository.class, "UnitRepository", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(unitRepositoryEClass, UnitRepository.class, "UnitRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnitRepository_Units(), this.getUnit(), null, "units", null, 0, -1, UnitRepository.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(dimensionTypeRepositoryEClass, DimensionTypeRepository.class, "DimensionTypeRepository", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnitRepository_Units(), this.getUnit(), null, "units", null, 0, -1, UnitRepository.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+		initEReference(getDimensionTypeRepository_DimensionTypes(), this.getDimensionType(), null, "dimensionTypes", null, 0, -1,
+				DimensionTypeRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(dimensionTypeRepositoryEClass, DimensionTypeRepository.class, "DimensionTypeRepository",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionTypeRepository_DimensionTypes(), this.getDimensionType(), null, "dimensionTypes",
-				null, 0, -1, DimensionTypeRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(dimensionEClass, Dimension.class, "Dimension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDimension_Type(), this.getDimensionType(), null, "type", null, 1, 1, Dimension.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDimension_Unit(), this.getUnit(), null, "unit", null, 0, 1, Dimension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(dimensionEClass, Dimension.class, "Dimension", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(dimensionTypeScaleEClass, DimensionTypeScale.class, "DimensionTypeScale", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimension_Type(), this.getDimensionType(), null, "type", null, 1, 1, Dimension.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDimension_Unit(), this.getUnit(), null, "unit", null, 0, 1, Dimension.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				!IS_ORDERED);
-
-		initEClass(dimensionTypeScaleEClass, DimensionTypeScale.class, "DimensionTypeScale", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(dimensionTypeScaleEClass_T);
-		initEReference(getDimensionTypeScale_ScaleElements(), g1, null, "scaleElements", null, 1, -1,
-				DimensionTypeScale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDimensionTypeScale_Scale(), this.getEScaleOfMeasure(), "scale", null, 1, 1,
-				DimensionTypeScale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(scaleElementEClass, ScaleElement.class, "ScaleElement", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(scaleElementEClass_T);
-		initEAttribute(getScaleElement_Value(), g1, "value", null, 0, 1, ScaleElement.class, !IS_TRANSIENT,
+		initEReference(getDimensionTypeScale_ScaleElements(), g1, null, "scaleElements", null, 1, -1, DimensionTypeScale.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionTypeScale_Scale(), this.getEScaleOfMeasure(), "scale", null, 1, 1, DimensionTypeScale.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScaleElement_Scale(), this.getEScaleOfMeasure(), "scale", null, 1, 1, ScaleElement.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(scaleElementEClass, ScaleElement.class, "ScaleElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(scaleElementEClass_T);
+		initEAttribute(getScaleElement_Value(), g1, "value", null, 0, 1, ScaleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScaleElement_Scale(), this.getEScaleOfMeasure(), "scale", null, 1, 1, ScaleElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(enumRelationSemanticsEEnum, EnumRelationSemantics.class, "EnumRelationSemantics");
@@ -951,4 +981,4 @@ public class QMLContractTypePackageImpl extends EPackageImpl implements QMLContr
 		createResource(eNS_URI);
 	}
 
-} // QMLContractTypePackageImpl
+} //QMLContractTypePackageImpl

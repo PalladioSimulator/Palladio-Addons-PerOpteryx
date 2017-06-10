@@ -1,52 +1,32 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.*;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
+
+import de.uka.ipd.sdq.identifier.Identifier;
+
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.AspectRequirement;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.DeterministicEvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EnumLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Frequency;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Goal;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Mean;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.NumericLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Objective;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Percentile;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.PointEstimator;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RangeValue;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RefinedQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Restriction;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SimpleQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.StochasticEvaluationAspect;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Value;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Variance;
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
-import de.uka.ipd.sdq.identifier.Identifier;
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.ENamedElement;
-
 /**
- * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the
- * call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for
- * each class of the model, starting with the actual class of the object and proceeding up the
- * inheritance hierarchy until a non-null result is returned, which is the result of the switch.
+ * <!-- begin-user-doc -->
+ * The <b>Switch</b> for the model's inheritance hierarchy.
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
+ * starting with the actual class of the object
+ * and proceeding up the inheritance hierarchy
+ * until a non-null result is returned,
+ * which is the result of the switch.
  * <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage
  * @generated
@@ -54,14 +34,16 @@ import org.eclipse.emf.ecore.ENamedElement;
 public class QMLContractSwitch<T1> extends Switch<T1> {
 	/**
 	 * The cached model package
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static QMLContractPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public QMLContractSwitch() {
@@ -72,8 +54,8 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Checks whether this is a switch for the given package.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -85,7 +67,8 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -391,8 +374,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Simple QML Contract</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Simple QML Contract</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -403,12 +388,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Criterion</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Criterion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Criterion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -419,8 +404,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Evaluation Aspect</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Evaluation Aspect</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -432,8 +419,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Aspect Requirement</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Aspect Requirement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -445,8 +434,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Value Literal</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Value Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -457,12 +448,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Percentile</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Percentile</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Percentile</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -473,8 +464,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Point Estimator</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Point Estimator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -486,8 +479,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Stochastic Evaluation Aspect</em>'.
-	 * <!-- begin-user-doc --> This implementation returns
-	 * null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Stochastic Evaluation Aspect</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -498,12 +493,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Frequency</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Frequency</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Frequency</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -513,12 +508,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Range Value</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Range Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Range Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -528,12 +523,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mean</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Mean</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Mean</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -543,12 +538,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variance</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Variance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Variance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -559,8 +554,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -571,12 +568,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -586,12 +583,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Set Literal</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Set Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Set Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -602,8 +599,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Refined QML Contract</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Refined QML Contract</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -614,12 +613,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -630,8 +629,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Deterministic Evaluation Aspect</em>'.
-	 * <!-- begin-user-doc --> This implementation
-	 * returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Deterministic Evaluation Aspect</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -642,12 +643,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Objective</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Objective</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Objective</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -657,12 +658,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -672,12 +673,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Restriction</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Restriction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Restriction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -687,12 +688,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Goal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Goal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -703,8 +704,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Generic QML Contract</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null;
-	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Generic QML Contract</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -730,12 +733,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -746,8 +749,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -758,12 +763,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Entity</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -774,8 +779,10 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>QML Declaration</em>'.
-	 * <!-- begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>QML Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -816,12 +823,12 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will
-	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -831,4 +838,4 @@ public class QMLContractSwitch<T1> extends Switch<T1> {
 		return null;
 	}
 
-} // QMLContractSwitch
+} //QMLContractSwitch

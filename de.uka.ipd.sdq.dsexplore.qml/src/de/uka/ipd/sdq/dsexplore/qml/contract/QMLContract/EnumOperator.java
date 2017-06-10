@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract;
 
@@ -13,8 +9,10 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Enum Operator</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the literals of the enumeration '<em><b>Enum Operator</b></em>',
+ * and utility methods for working with them.
+ * <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage#getEnumOperator()
  * @model
  * @generated
@@ -22,7 +20,8 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum EnumOperator implements Enumerator {
 	/**
 	 * The '<em><b>Less</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #LESS_VALUE
 	 * @generated
 	 * @ordered
@@ -31,7 +30,8 @@ public enum EnumOperator implements Enumerator {
 
 	/**
 	 * The '<em><b>Greater</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #GREATER_VALUE
 	 * @generated
 	 * @ordered
@@ -40,7 +40,8 @@ public enum EnumOperator implements Enumerator {
 
 	/**
 	 * The '<em><b>Equal</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #EQUAL_VALUE
 	 * @generated
 	 * @ordered
@@ -48,9 +49,9 @@ public enum EnumOperator implements Enumerator {
 	EQUAL(2, "equal", "equal"),
 
 	/**
-	 * The '<em><b>Less Or Equal</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * The '<em><b>Less Or Equal</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #LESS_OR_EQUAL_VALUE
 	 * @generated
 	 * @ordered
@@ -59,8 +60,8 @@ public enum EnumOperator implements Enumerator {
 
 	/**
 	 * The '<em><b>Greater Or Equal</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #GREATER_OR_EQUAL_VALUE
 	 * @generated
 	 * @ordered
@@ -71,8 +72,8 @@ public enum EnumOperator implements Enumerator {
 	 * The '<em><b>Less</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Less</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Less</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #LESS
@@ -86,8 +87,8 @@ public enum EnumOperator implements Enumerator {
 	 * The '<em><b>Greater</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Greater</b></em>' literal object isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of '<em><b>Greater</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #GREATER
@@ -101,8 +102,8 @@ public enum EnumOperator implements Enumerator {
 	 * The '<em><b>Equal</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Equal</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Equal</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #EQUAL
@@ -116,8 +117,8 @@ public enum EnumOperator implements Enumerator {
 	 * The '<em><b>Less Or Equal</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Less Or Equal</b></em>' literal object isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of '<em><b>Less Or Equal</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #LESS_OR_EQUAL
@@ -131,8 +132,8 @@ public enum EnumOperator implements Enumerator {
 	 * The '<em><b>Greater Or Equal</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Greater Or Equal</b></em>' literal object isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of '<em><b>Greater Or Equal</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #GREATER_OR_EQUAL
@@ -144,25 +145,26 @@ public enum EnumOperator implements Enumerator {
 
 	/**
 	 * An array of all the '<em><b>Enum Operator</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EnumOperator[] VALUES_ARRAY = new EnumOperator[] { LESS, GREATER, EQUAL, LESS_OR_EQUAL,
-			GREATER_OR_EQUAL, };
+	private static final EnumOperator[] VALUES_ARRAY = new EnumOperator[] { LESS, GREATER, EQUAL, LESS_OR_EQUAL, GREATER_OR_EQUAL, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Enum Operator</b></em>' enumerators. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * A public read-only list of all the '<em><b>Enum Operator</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final List<EnumOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified literal value. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EnumOperator get(String literal) {
@@ -176,9 +178,11 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified name. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EnumOperator getByName(String name) {
@@ -192,9 +196,11 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified integer value. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the '<em><b>Enum Operator</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EnumOperator get(int value) {
@@ -214,26 +220,30 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EnumOperator(int value, String name, String literal) {
@@ -243,7 +253,8 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -252,7 +263,8 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -261,7 +273,8 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -270,9 +283,9 @@ public enum EnumOperator implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -280,4 +293,4 @@ public enum EnumOperator implements Enumerator {
 		return literal;
 	}
 
-} // EnumOperator
+} //EnumOperator

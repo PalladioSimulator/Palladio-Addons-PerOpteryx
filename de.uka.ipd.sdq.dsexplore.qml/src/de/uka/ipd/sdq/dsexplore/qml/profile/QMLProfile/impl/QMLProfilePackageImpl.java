@@ -1,27 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.palladiosimulator.pcm.PcmPackage;
-import org.palladiosimulator.pcm.usagemodel.UsagemodelPackage;
-
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl.QMLContractPackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationsPackageImpl;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfileFactory;
@@ -30,46 +22,69 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
+
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.util.QMLProfileValidator;
+
 import de.uka.ipd.sdq.identifier.IdentifierPackage;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.palladiosimulator.pcm.PcmPackage;
+
+import org.palladiosimulator.pcm.usagemodel.UsagemodelPackage;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass simpleQMLProfileEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass genericQMLProfileEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass refinedQMLProfileEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass usageScenarioRequirementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass entryLevelSystemCallRequirementEClass = null;
@@ -82,7 +97,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage#eNS_URI
 	 * @see #init()
@@ -93,7 +109,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -103,7 +120,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	 * 
 	 * <p>This method is used to initialize {@link QMLProfilePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -114,9 +132,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 			return (QMLProfilePackage) EPackage.Registry.INSTANCE.getEPackage(QMLProfilePackage.eNS_URI);
 
 		// Obtain or create and register package
-		QMLProfilePackageImpl theQMLProfilePackage = (QMLProfilePackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof QMLProfilePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new QMLProfilePackageImpl());
+		QMLProfilePackageImpl theQMLProfilePackage = (QMLProfilePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof QMLProfilePackageImpl
+				? EPackage.Registry.INSTANCE.get(eNS_URI) : new QMLProfilePackageImpl());
 
 		isInited = true;
 
@@ -126,16 +143,13 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 		// Obtain or create and register interdependencies
 		QMLDeclarationsPackageImpl theQMLDeclarationsPackage = (QMLDeclarationsPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLDeclarationsPackage.eNS_URI) instanceof QMLDeclarationsPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLDeclarationsPackage.eNS_URI)
-						: QMLDeclarationsPackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLDeclarationsPackage.eNS_URI) : QMLDeclarationsPackage.eINSTANCE);
 		QMLContractPackageImpl theQMLContractPackage = (QMLContractPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLContractPackage.eNS_URI) instanceof QMLContractPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI)
-						: QMLContractPackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI) : QMLContractPackage.eINSTANCE);
 		QMLContractTypePackageImpl theQMLContractTypePackage = (QMLContractTypePackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(QMLContractTypePackage.eNS_URI) instanceof QMLContractTypePackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(QMLContractTypePackage.eNS_URI)
-						: QMLContractTypePackage.eINSTANCE);
+						? EPackage.Registry.INSTANCE.getEPackage(QMLContractTypePackage.eNS_URI) : QMLContractTypePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQMLProfilePackage.createPackageContents();
@@ -166,7 +180,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,7 +190,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -184,7 +200,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -193,7 +210,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,7 +220,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -211,7 +230,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -220,7 +240,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -229,7 +250,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -238,7 +260,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -247,7 +270,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -256,7 +280,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -265,7 +290,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -274,7 +300,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -283,7 +310,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -292,7 +320,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -300,7 +329,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -326,12 +356,12 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 		createEReference(usageScenarioRequirementEClass, USAGE_SCENARIO_REQUIREMENT__USAGE_SCENARIO);
 
 		entryLevelSystemCallRequirementEClass = createEClass(ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT);
-		createEReference(entryLevelSystemCallRequirementEClass,
-				ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL);
+		createEReference(entryLevelSystemCallRequirementEClass, ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -339,7 +369,8 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -353,14 +384,11 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UsagemodelPackage theUsagemodelPackage = (UsagemodelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(UsagemodelPackage.eNS_URI);
+		UsagemodelPackage theUsagemodelPackage = (UsagemodelPackage) EPackage.Registry.INSTANCE.getEPackage(UsagemodelPackage.eNS_URI);
 		QMLDeclarationsPackage theQMLDeclarationsPackage = (QMLDeclarationsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(QMLDeclarationsPackage.eNS_URI);
-		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE
-				.getEPackage(IdentifierPackage.eNS_URI);
-		QMLContractPackage theQMLContractPackage = (QMLContractPackage) EPackage.Registry.INSTANCE
-				.getEPackage(QMLContractPackage.eNS_URI);
+		IdentifierPackage theIdentifierPackage = (IdentifierPackage) EPackage.Registry.INSTANCE.getEPackage(IdentifierPackage.eNS_URI);
+		QMLContractPackage theQMLContractPackage = (QMLContractPackage) EPackage.Registry.INSTANCE.getEPackage(QMLContractPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -375,35 +403,27 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 		entryLevelSystemCallRequirementEClass.getESuperTypes().add(this.getRequirement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(simpleQMLProfileEClass, SimpleQMLProfile.class, "SimpleQMLProfile", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimpleQMLProfile_UsageModel(), theUsagemodelPackage.getUsageModel(), null, "usageModel", null,
-				1, 1, SimpleQMLProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSimpleQMLProfile_Requirements(), this.getRequirement(), null, "requirements", null, 0, -1,
-				SimpleQMLProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(simpleQMLProfileEClass, SimpleQMLProfile.class, "SimpleQMLProfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimpleQMLProfile_UsageModel(), theUsagemodelPackage.getUsageModel(), null, "usageModel", null, 1, 1, SimpleQMLProfile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSimpleQMLProfile_Requirements(), this.getRequirement(), null, "requirements", null, 0, -1, SimpleQMLProfile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(genericQMLProfileEClass, GenericQMLProfile.class, "GenericQMLProfile", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(genericQMLProfileEClass, GenericQMLProfile.class, "GenericQMLProfile", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRequirement_RequireContract(), theQMLContractPackage.getGenericQMLContract(), null,
-				"requireContract", null, 1, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirement_RequireContract(), theQMLContractPackage.getGenericQMLContract(), null, "requireContract", null, 1, -1,
+				Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, !IS_ORDERED);
 
-		initEClass(refinedQMLProfileEClass, RefinedQMLProfile.class, "RefinedQMLProfile", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRefinedQMLProfile_BaseProfile(), this.getGenericQMLProfile(), null, "baseProfile", null, 1, 1,
-				RefinedQMLProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getRefinedQMLProfile_RefinedBy(), this.getRequirement(), null, "refinedBy", null, 0, -1,
-				RefinedQMLProfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(refinedQMLProfileEClass, RefinedQMLProfile.class, "RefinedQMLProfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRefinedQMLProfile_BaseProfile(), this.getGenericQMLProfile(), null, "baseProfile", null, 1, 1, RefinedQMLProfile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getRefinedQMLProfile_RefinedBy(), this.getRequirement(), null, "refinedBy", null, 0, -1, RefinedQMLProfile.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = addEOperation(refinedQMLProfileEClass, ecorePackage.getEBoolean(),
-				"profile_cannot_refine_itself", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(refinedQMLProfileEClass, ecorePackage.getEBoolean(), "profile_cannot_refine_itself", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -412,21 +432,20 @@ public class QMLProfilePackageImpl extends EPackageImpl implements QMLProfilePac
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(usageScenarioRequirementEClass, UsageScenarioRequirement.class, "UsageScenarioRequirement",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUsageScenarioRequirement_UsageScenario(), theUsagemodelPackage.getUsageScenario(), null,
-				"usageScenario", null, 0, 1, UsageScenarioRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(usageScenarioRequirementEClass, UsageScenarioRequirement.class, "UsageScenarioRequirement", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUsageScenarioRequirement_UsageScenario(), theUsagemodelPackage.getUsageScenario(), null, "usageScenario", null, 0, 1,
+				UsageScenarioRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(entryLevelSystemCallRequirementEClass, EntryLevelSystemCallRequirement.class,
-				"EntryLevelSystemCallRequirement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEntryLevelSystemCallRequirement_EntryLevelSystemCall(),
-				theUsagemodelPackage.getEntryLevelSystemCall(), null, "entryLevelSystemCall", null, 0, 1,
-				EntryLevelSystemCallRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+		initEClass(entryLevelSystemCallRequirementEClass, EntryLevelSystemCallRequirement.class, "EntryLevelSystemCallRequirement", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEntryLevelSystemCallRequirement_EntryLevelSystemCall(), theUsagemodelPackage.getEntryLevelSystemCall(), null,
+				"entryLevelSystemCall", null, 0, 1, EntryLevelSystemCallRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} // QMLProfilePackageImpl
+} //QMLProfilePackageImpl

@@ -1,25 +1,26 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
+
+import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
-import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Requirement</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Requirement</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -32,7 +33,8 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 public abstract class RequirementImpl extends IdentifierImpl implements Requirement {
 	/**
 	 * The cached value of the '{@link #getRequireContract() <em>Require Contract</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRequireContract()
 	 * @generated
 	 * @ordered
@@ -40,7 +42,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	protected EList<GenericQMLContract> requireContract;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RequirementImpl() {
@@ -48,7 +51,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +61,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,7 +75,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,7 +89,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -99,7 +106,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,7 +121,8 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,4 +134,4 @@ public abstract class RequirementImpl extends IdentifierImpl implements Requirem
 		return super.eIsSet(featureID);
 	}
 
-} // RequirementImpl
+} //RequirementImpl

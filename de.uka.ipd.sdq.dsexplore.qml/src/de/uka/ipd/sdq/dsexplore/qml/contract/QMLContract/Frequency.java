@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract;
 
@@ -11,8 +7,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Frequency</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Frequency</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * Defines the frequency of every element in the range.
@@ -32,14 +29,13 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  */
 public interface Frequency extends StochasticEvaluationAspect {
 	/**
-	 * Returns the value of the '<em><b>Upper Limit</b></em>' containment reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Upper Limit</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Upper Limit</em>' containment reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Upper Limit</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Upper Limit</em>' containment reference.
 	 * @see #setUpperLimit(RangeValue)
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage#getFrequency_UpperLimit()
@@ -50,7 +46,8 @@ public interface Frequency extends StochasticEvaluationAspect {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Frequency#getUpperLimit <em>Upper Limit</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Upper Limit</em>' containment reference.
 	 * @see #getUpperLimit()
 	 * @generated
@@ -58,14 +55,13 @@ public interface Frequency extends StochasticEvaluationAspect {
 	void setUpperLimit(RangeValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Lower Limit</b></em>' containment reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Lower Limit</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Lower Limit</em>' containment reference isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Lower Limit</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Lower Limit</em>' containment reference.
 	 * @see #setLowerLimit(RangeValue)
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage#getFrequency_LowerLimit()
@@ -76,7 +72,8 @@ public interface Frequency extends StochasticEvaluationAspect {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Frequency#getLowerLimit <em>Lower Limit</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Lower Limit</em>' containment reference.
 	 * @see #getLowerLimit()
 	 * @generated
@@ -84,18 +81,16 @@ public interface Frequency extends StochasticEvaluationAspect {
 	void setLowerLimit(RangeValue value);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> (self.lowerLimit <>
-	 * null) or (self.upperLimit <> null)
-	 *
-	 * @param diagnostics
-	 *            The chain of diagnostics to which problems are to be appended.
-	 * @param context
-	 *            The cache of context-specific information. <!-- end-model-doc -->
-	 * @model annotation=
-	 *        "http://www.eclipse.org/uml2/1.1.0/GenModel body='(self.lowerLimit <> null) or (self.upperLimit <> null)'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * (self.lowerLimit <> null) or (self.upperLimit <> null)
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='(self.lowerLimit <> null) or (self.upperLimit <> null)'"
 	 * @generated
 	 */
-	boolean range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
+	boolean range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Frequency

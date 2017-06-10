@@ -96,8 +96,7 @@ public class ScaleElementImpl<T extends Number> extends ElementImpl implements S
 		T oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.SCALE_ELEMENT__VALUE, oldValue,
-					value));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.SCALE_ELEMENT__VALUE, oldValue, value));
 	}
 
 	/**
@@ -120,8 +119,7 @@ public class ScaleElementImpl<T extends Number> extends ElementImpl implements S
 		EScaleOfMeasure oldScale = scale;
 		scale = newScale == null ? SCALE_EDEFAULT : newScale;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.SCALE_ELEMENT__SCALE, oldScale,
-					scale));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.SCALE_ELEMENT__SCALE, oldScale, scale));
 	}
 
 	/**

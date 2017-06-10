@@ -1,13 +1,10 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,55 +23,24 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.ViewerPane;
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+
 import org.eclipse.jface.util.LocalSelectionTransfer;
+
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -88,21 +54,29 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.custom.CTabFolder;
+
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
+
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+
 import org.eclipse.swt.graphics.Point;
+
 import org.eclipse.swt.layout.FillLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -110,89 +84,184 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.SaveAsDialog;
+
 import org.eclipse.ui.ide.IGotoMarker;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-import org.palladiosimulator.editors.commons.propertytabs.PalladioAdapterFactoryContentProvider;
-import org.palladiosimulator.pcm.allocation.provider.AllocationItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.core.composition.provider.CompositionItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.core.entity.provider.EntityItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.core.provider.CoreItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.parameter.provider.ParameterItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.protocol.provider.ProtocolItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.qosannotations.provider.QosannotationsItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.qosannotations.qos_performance.provider.QosPerformanceItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.qosannotations.qos_reliability.provider.QosReliabilityItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.repository.provider.RepositoryItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.resourceenvironment.provider.ResourceenvironmentItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.resourcetype.provider.ResourcetypeItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.seff.provider.SeffItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.seff.seff_performance.provider.SeffPerformanceItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.subsystem.provider.SubsystemItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.system.provider.SystemItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.ui.provider.PalladioItemProviderAdapterFactory;
-import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapterFactory;
+
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.provider.QMLProfileItemProviderAdapterFactory;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.provider.QMLContractItemProviderAdapterFactory;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.provider.QMLContractTypeItemProviderAdapterFactory;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.provider.QMLDeclarationsItemProviderAdapterFactory;
 
 import de.uka.ipd.sdq.identifier.provider.IdentifierItemProviderAdapterFactory;
+
 import de.uka.ipd.sdq.probfunction.provider.ProbfunctionItemProviderAdapterFactory;
+
 import de.uka.ipd.sdq.stoex.provider.StoexItemProviderAdapterFactory;
+
 import de.uka.ipd.sdq.units.provider.UnitsItemProviderAdapterFactory;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import org.palladiosimulator.pcm.allocation.provider.AllocationItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.composition.provider.CompositionItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.entity.provider.EntityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.provider.CoreItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.parameter.provider.ParameterItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.protocol.provider.ProtocolItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.provider.PcmItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.provider.QosannotationsItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.qos_performance.provider.QosPerformanceItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.qos_reliability.provider.QosReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.reliability.provider.ReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.repository.provider.RepositoryItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.resourceenvironment.provider.ResourceenvironmentItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.resourcetype.provider.ResourcetypeItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.provider.SeffItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.seff_performance.provider.SeffPerformanceItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.seff_reliability.provider.SeffReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.subsystem.provider.SubsystemItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.system.provider.SystemItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapterFactory;
 
 /**
  * This is an example of a QMLProfile model editor.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLProfileEditor extends MultiPageEditorPart
 		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
-	 * This keeps track of the editing domain that is used to track all changes to the model. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This keeps track of the editing domain that is used to track all changes to the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected AdapterFactoryEditingDomain editingDomain;
 
 	/**
-	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 *
-	 * @generated not
+	 * This is the one adapter factory used for providing views of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	protected AdapterFactory adapterFactory;
+	protected ComposedAdapterFactory adapterFactory;
 
 	/**
 	 * This is the content outline page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IContentOutlinePage contentOutlinePage;
 
 	/**
 	 * This is a kludge...
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IStatusLineManager contentOutlineStatusLineManager;
 
 	/**
 	 * This is the content outline page's viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer contentOutlineViewer;
 
 	/**
 	 * This is the property sheet page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
@@ -200,21 +269,24 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
 	 * The parent relation must be correctly defined for this to work.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer selectionViewer;
 
 	/**
 	 * This inverts the roll of parent and child in the content provider and show parents as a tree.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer parentViewer;
 
 	/**
 	 * This shows how a tree view works.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer treeViewer;
@@ -222,60 +294,65 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * This shows how a list view works.
 	 * A list viewer doesn't support icons.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ListViewer listViewer;
 
 	/**
-	 * This shows how a table view works. A table can be used as a list with icons. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This shows how a table view works.
+	 * A table can be used as a list with icons.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TableViewer tableViewer;
 
 	/**
 	 * This shows how a tree view with columns works.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer treeViewerWithColumns;
 
 	/**
 	 * This keeps track of the active viewer pane, in the book.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ViewerPane currentViewerPane;
 
 	/**
 	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Viewer currentViewer;
 
 	/**
 	 * This listens to which ever viewer is active.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ISelectionChangedListener selectionChangedListener;
 
 	/**
 	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
 
 	/**
 	 * This keeps track of the selection of the editor as a whole.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
@@ -283,15 +360,16 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * The MarkerHelper is responsible for creating workspace resource markers presented
 	 * in Eclipse's Problems View.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
 	/**
-	 * This listens for when the outline becomes active <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This listens for when the outline becomes active
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IPartListener partListener = new IPartListener() {
@@ -336,47 +414,48 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * Resources that have been removed since last activation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
 	/**
 	 * Resources that have been changed since last activation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> changedResources = new ArrayList<Resource>();
 
 	/**
 	 * Resources that have been saved.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
 	/**
 	 * Map to store the diagnostic associated with a resource.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 	/**
 	 * Controls whether the problem indication should be updated.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean updateProblemIndication = true;
 
 	/**
-	 * Adapter used to update the problem indication when resources are demanded loaded. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Adapter used to update the problem indication when resources are demanded loaded.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
@@ -433,7 +512,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This listens for workspace changes.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
@@ -449,10 +529,10 @@ public class QMLProfileEditor extends MultiPageEditorPart
 					@Override
 					public boolean visit(IResourceDelta delta) {
 						if (delta.getResource().getType() == IResource.FILE) {
-							if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED
-									&& delta.getFlags() != IResourceDelta.MARKERS) {
-								Resource resource = resourceSet.getResource(
-										URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+							if (delta.getKind() == IResourceDelta.REMOVED
+									|| delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+								Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true),
+										false);
 								if (resource != null) {
 									if (delta.getKind() == IResourceDelta.REMOVED) {
 										removedResources.add(resource);
@@ -508,12 +588,10 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		}
 	};
 
-	private ExtendedPropertySheetPage propertySheetPage;
-
 	/**
 	 * Handles activation of the editor or it's associated views.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void handleActivate() {
@@ -545,8 +623,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * Handles what to do with changed resources on activation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void handleChangedResources() {
@@ -581,13 +659,14 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * Updates the problems indication with the information described in the specified diagnostic.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "de.uka.ipd.sdq.dsexplore.qml.editor", 0,
-					null, new Object[] { editingDomain.getResourceSet() });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "de.uka.ipd.sdq.dsexplore.qml.editor", 0, null,
+					new Object[] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -634,13 +713,13 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"),
-				getString("_WARN_FileConflict"));
+		return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"), getString("_WARN_FileConflict"));
 	}
 
 	/**
 	 * This creates a model editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public QMLProfileEditor() {
@@ -649,73 +728,74 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This sets up the editing domain for the model editor. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @generated not
+	 * This sets up the editing domain for the model editor.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
 		//
-		final ComposedAdapterFactory compAdapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE) {
-			@Override
-			public ComposeableAdapterFactory getRootAdapterFactory() {
-				// TODO Auto-generated method stub
-				return (PalladioItemProviderAdapterFactory) QMLProfileEditor.this.adapterFactory;
-			}
-		};
+		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-		compAdapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new EntityItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new CompositionItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new RepositoryItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ProtocolItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new SubsystemItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ParameterItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new SeffItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new SeffPerformanceItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new AllocationItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ResourceenvironmentItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ResourcetypeItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new SystemItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new QosannotationsItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new QosPerformanceItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new QosReliabilityItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new UsagemodelItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new StoexItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new UnitsItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ProbfunctionItemProviderAdapterFactory());
-		compAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-		this.adapterFactory = new PalladioItemProviderAdapterFactory(compAdapterFactory);
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QMLProfileItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QMLDeclarationsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QMLContractItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QMLContractTypeItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new PcmItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EntityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CompositionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new UsagemodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new RepositoryItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ResourcetypeItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ProtocolItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ParameterItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffPerformanceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosannotationsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosPerformanceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SystemItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ResourceenvironmentItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new AllocationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SubsystemItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ProbfunctionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new StoexItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new UnitsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
 		//
-		final BasicCommandStack commandStack = new BasicCommandStack();
+		BasicCommandStack commandStack = new BasicCommandStack();
 
-		// Add a listener to set the most recent command's affected objects to be the selection of
-		// the viewer with focus.
+		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
 		commandStack.addCommandStackListener(new CommandStackListener() {
 			@Override
 			public void commandStackChanged(final EventObject event) {
-				QMLProfileEditor.this.getContainer().getDisplay().asyncExec(new Runnable() {
+				getContainer().getDisplay().asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						QMLProfileEditor.this.firePropertyChange(IEditorPart.PROP_DIRTY);
+						firePropertyChange(IEditorPart.PROP_DIRTY);
 
 						// Try to select the affected objects.
 						//
-						final Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
+						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
 						if (mostRecentCommand != null) {
-							QMLProfileEditor.this.setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if (QMLProfileEditor.this.propertySheetPage != null
-								&& !QMLProfileEditor.this.propertySheetPage.getControl().isDisposed()) {
-							QMLProfileEditor.this.propertySheetPage.refresh();
+						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
+							PropertySheetPage propertySheetPage = i.next();
+							if (propertySheetPage.getControl().isDisposed()) {
+								i.remove();
+							} else {
+								propertySheetPage.refresh();
+							}
 						}
 					}
 				});
@@ -724,14 +804,13 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 		// Create the editing domain with a special command stack.
 		//
-		this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack,
-				new HashMap<Resource, Boolean>());
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	/**
 	 * This is here for the listener to be able to call it.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -741,8 +820,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This sets the selection into whichever viewer is active.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSelectionToViewer(Collection<?> collection) {
@@ -768,8 +847,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
 	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
 	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -778,12 +857,14 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
@@ -791,7 +872,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -801,7 +883,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -811,7 +894,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -821,7 +905,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -831,7 +916,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
@@ -847,7 +933,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus,
 	 * is the current one.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCurrentViewer(Viewer viewer) {
@@ -890,9 +977,9 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This returns the viewer as required by the {@link IViewerProvider} interface. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the viewer as required by the {@link IViewerProvider} interface.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -902,7 +989,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
@@ -915,15 +1003,15 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
-				FileTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
 
 	/**
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createModel() {
@@ -949,15 +1037,15 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * Returns a diagnostic describing the errors and warnings listed in the resource
 	 * and the specified exception (if any).
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
 		boolean hasErrors = !resource.getErrors().isEmpty();
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
-					"de.uka.ipd.sdq.dsexplore.qml.editor", 0,
-					getString("_UI_CreateModelError_message", resource.getURI()),
+					"de.uka.ipd.sdq.dsexplore.qml.editor", 0, getString("_UI_CreateModelError_message", resource.getURI()),
 					new Object[] { exception == null ? (Object) resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
@@ -971,8 +1059,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This is the method used by the framework to install your own controls.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1008,8 +1096,7 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(
-						new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(editingDomain.getResourceSet());
 
 				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
@@ -1221,7 +1308,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * If there is just one page in the multi-page editor part,
 	 * this hides the single tab at the bottom.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void hideTabs() {
@@ -1238,7 +1326,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * If there is more than one page in the multi-page editor part,
 	 * this shows the tabs at the bottom.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void showTabs() {
@@ -1254,7 +1343,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This is used to track the active viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1288,8 +1378,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This accesses a cached version of the content outliner.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
@@ -1316,14 +1406,12 @@ public class QMLProfileEditor extends MultiPageEditorPart
 					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
 						// Select the root object in the view.
 						//
-						contentOutlineViewer.setSelection(
-								new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+						contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
 				@Override
-				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-						IStatusLineManager statusLineManager) {
+				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					contentOutlineStatusLineManager = statusLineManager;
 				}
@@ -1353,37 +1441,35 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This accesses a cached version of the property sheet. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
-	 * @generated not
+	 * This accesses a cached version of the property sheet.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if (this.propertySheetPage == null) {
-			this.propertySheetPage = new ExtendedPropertySheetPage(this.editingDomain) {
-				@Override
-				public void setSelectionToViewer(final List<?> selection) {
-					QMLProfileEditor.this.setSelectionToViewer(selection);
-					QMLProfileEditor.this.setFocus();
-				}
+		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
+			@Override
+			public void setSelectionToViewer(List<?> selection) {
+				QMLProfileEditor.this.setSelectionToViewer(selection);
+				QMLProfileEditor.this.setFocus();
+			}
 
-				@Override
-				public void setActionBars(final IActionBars actionBars) {
-					super.setActionBars(actionBars);
-					QMLProfileEditor.this.getActionBarContributor().shareGlobalActions(this, actionBars);
-				}
-			};
-			this.propertySheetPage
-					.setPropertySourceProvider(new PalladioAdapterFactoryContentProvider(this.adapterFactory));
-		}
+			@Override
+			public void setActionBars(IActionBars actionBars) {
+				super.setActionBars(actionBars);
+				getActionBarContributor().shareGlobalActions(this, actionBars);
+			}
+		};
+		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+		propertySheetPages.add(propertySheetPage);
 
-		return this.propertySheetPage;
+		return propertySheetPage;
 	}
 
 	/**
-	 * This deals with how we want selection in the outliner to affect the other views. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This deals with how we want selection in the outliner to affect the other views.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
@@ -1419,9 +1505,9 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is for implementing {@link IEditorPart} and simply tests the command stack. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This is for implementing {@link IEditorPart} and simply tests the command stack.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1430,9 +1516,9 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is for implementing {@link IEditorPart} and simply saves the model file. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This is for implementing {@link IEditorPart} and simply saves the model file.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1454,8 +1540,7 @@ public class QMLProfileEditor extends MultiPageEditorPart
 				//
 				boolean first = true;
 				for (Resource resource : editingDomain.getResourceSet().getResources()) {
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource))
-							&& !editingDomain.isReadOnly(resource)) {
+					if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 						try {
 							long timeStamp = resource.getTimeStamp();
 							resource.save(saveOptions);
@@ -1493,7 +1578,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	/**
 	 * This returns whether something has been persisted to the URI of the specified resource.
 	 * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean isPersisted(Resource resource) {
@@ -1512,8 +1598,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This always returns true because it is not currently supported.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1523,7 +1609,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This also changes the editor's input.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1540,7 +1627,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
@@ -1553,7 +1641,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1566,7 +1655,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This is called during startup.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1576,12 +1666,12 @@ public class QMLProfileEditor extends MultiPageEditorPart
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
 		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener,
-				IResourceChangeEvent.POST_CHANGE);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1617,7 +1707,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1643,12 +1734,13 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer
-				? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
+				: getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
@@ -1664,8 +1756,7 @@ public class QMLProfileEditor extends MultiPageEditorPart
 					break;
 				}
 				default: {
-					statusLineManager
-							.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
+					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
 					break;
 				}
 				}
@@ -1677,8 +1768,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This looks up a string in the plugin's plugin.properties file.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static String getString(String key) {
@@ -1697,7 +1788,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 
 	/**
 	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1706,7 +1798,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EditingDomainActionBarContributor getActionBarContributor() {
@@ -1714,7 +1807,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IActionBars getActionBars() {
@@ -1722,7 +1816,8 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
@@ -1730,30 +1825,30 @@ public class QMLProfileEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated not
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		this.updateProblemIndication = false;
+		updateProblemIndication = false;
 
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this.resourceChangeListener);
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
 
-		this.getSite().getPage().removePartListener(this.partListener);
+		getSite().getPage().removePartListener(partListener);
 
-		((PalladioItemProviderAdapterFactory) this.adapterFactory).dispose();
+		adapterFactory.dispose();
 
-		if (this.getActionBarContributor().getActiveEditor() == this) {
-			this.getActionBarContributor().setActiveEditor(null);
+		if (getActionBarContributor().getActiveEditor() == this) {
+			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (this.propertySheetPage != null) {
-			this.propertySheetPage.dispose();
+		for (PropertySheetPage propertySheetPage : propertySheetPages) {
+			propertySheetPage.dispose();
 		}
 
-		if (this.contentOutlinePage != null) {
-			this.contentOutlinePage.dispose();
+		if (contentOutlinePage != null) {
+			contentOutlinePage.dispose();
 		}
 
 		super.dispose();

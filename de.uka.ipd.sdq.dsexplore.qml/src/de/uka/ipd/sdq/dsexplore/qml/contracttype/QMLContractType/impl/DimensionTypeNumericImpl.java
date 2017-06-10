@@ -1,36 +1,41 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.OCL;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
 
+import java.util.Map;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import org.eclipse.ocl.ParserException;
+
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Dimension Type Numeric</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Dimension Type Numeric</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -43,9 +48,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContrac
  */
 public class DimensionTypeNumericImpl extends DimensionTypeImpl implements DimensionTypeNumeric {
 	/**
-	 * The cached value of the '{@link #getRange() <em>Range</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getRange() <em>Range</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRange()
 	 * @generated
 	 * @ordered
@@ -53,9 +58,9 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	protected NumericRange range;
 
 	/**
-	 * The default value of the '{@link #getDomain() <em>Domain</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getDomain() <em>Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDomain()
 	 * @generated
 	 * @ordered
@@ -64,8 +69,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 
 	/**
 	 * The cached value of the '{@link #getDomain() <em>Domain</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDomain()
 	 * @generated
 	 * @ordered
@@ -73,7 +78,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	protected EnumNumericDomain domain = DOMAIN_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected DimensionTypeNumericImpl() {
@@ -81,7 +87,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -90,7 +97,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,15 +107,16 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetRange(NumericRange newRange, NotificationChain msgs) {
 		NumericRange oldRange = range;
 		range = newRange;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE, oldRange, newRange);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE,
+					oldRange, newRange);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -117,7 +126,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,21 +135,21 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 		if (newRange != range) {
 			NotificationChain msgs = null;
 			if (range != null)
-				msgs = ((InternalEObject) range).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE, null, msgs);
+				msgs = ((InternalEObject) range).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE,
+						null, msgs);
 			if (newRange != null)
-				msgs = ((InternalEObject) newRange).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE, null, msgs);
+				msgs = ((InternalEObject) newRange).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE,
+						null, msgs);
 			msgs = basicSetRange(newRange, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE,
-					newRange, newRange));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__RANGE, newRange, newRange));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -148,7 +158,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,14 +167,13 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 		EnumNumericDomain oldDomain = domain;
 		domain = newDomain == null ? DOMAIN_EDEFAULT : newDomain;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__DOMAIN,
-					oldDomain, domain));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_NUMERIC__DOMAIN, oldDomain, domain));
 	}
 
 	/**
 	 * The cached OCL expression body for the '{@link #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>NUMERICDIMENSIONTYPE must have RELATIONSEMANTICS</em>}' operation.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -171,45 +181,38 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	protected static final String NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "self.relationSemantics <> null";
 
 	/**
-	 * The cached OCL invariant for the '
-	 * {@link #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>NUMERICDIMENSIONTYPE must have RELATIONSEMANTICS</em>}' invariant operation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL invariant for the '{@link #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>NUMERICDIMENSIONTYPE must have RELATIONSEMANTICS</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static Constraint NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null) {
 			OCL.Helper helper = EOCL_ENV.createOCLHelper();
 			helper.setContext(QMLContractTypePackage.Literals.DIMENSION_TYPE_NUMERIC);
 			try {
 				NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper
-						.createInvariant(
-								NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
+						.createInvariant(NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
 			} catch (ParserException pe) {
 				throw new UnsupportedOperationException(pe.getLocalizedMessage());
 			}
 		}
-		if (!EOCL_ENV.createQuery(NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_INV)
-				.check(this)) {
+		if (!EOCL_ENV.createQuery(NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
-								QMLContractTypeValidator.DIMENSION_TYPE_NUMERIC__NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
+						QMLContractTypeValidator.DIMENSION_TYPE_NUMERIC__NUMERICDIMENSIONTYPE_MUST_HAVE_RELATIONSEMANTICS,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -218,7 +221,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -231,7 +235,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,7 +251,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -263,7 +269,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -280,7 +287,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -295,7 +303,8 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -312,11 +321,11 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 
 	/**
 	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} // DimensionTypeNumericImpl
+} //DimensionTypeNumericImpl

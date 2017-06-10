@@ -1,32 +1,38 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
+
+import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
 import org.eclipse.ocl.ParserException;
+
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
-import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Numeric Range</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Numeric Range</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -40,9 +46,9 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
  */
 public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	/**
-	 * The default value of the '{@link #getLowerLimit() <em>Lower Limit</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getLowerLimit() <em>Lower Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLowerLimit()
 	 * @generated
 	 * @ordered
@@ -50,9 +56,9 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	protected static final double LOWER_LIMIT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getLowerLimit() <em>Lower Limit</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getLowerLimit() <em>Lower Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLowerLimit()
 	 * @generated
 	 * @ordered
@@ -60,9 +66,9 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	protected double lowerLimit = LOWER_LIMIT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUpperLimit() <em>Upper Limit</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getUpperLimit() <em>Upper Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUpperLimit()
 	 * @generated
 	 * @ordered
@@ -70,9 +76,9 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	protected static final double UPPER_LIMIT_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getUpperLimit() <em>Upper Limit</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getUpperLimit() <em>Upper Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUpperLimit()
 	 * @generated
 	 * @ordered
@@ -80,7 +86,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	protected double upperLimit = UPPER_LIMIT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected NumericRangeImpl() {
@@ -88,7 +95,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,7 +105,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -106,7 +115,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,12 +124,12 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 		double oldLowerLimit = lowerLimit;
 		lowerLimit = newLowerLimit;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.NUMERIC_RANGE__LOWER_LIMIT,
-					oldLowerLimit, lowerLimit));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.NUMERIC_RANGE__LOWER_LIMIT, oldLowerLimit, lowerLimit));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,7 +138,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,14 +147,13 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 		double oldUpperLimit = upperLimit;
 		upperLimit = newUpperLimit;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.NUMERIC_RANGE__UPPER_LIMIT,
-					oldUpperLimit, upperLimit));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.NUMERIC_RANGE__UPPER_LIMIT, oldUpperLimit, upperLimit));
 	}
 
 	/**
 	 * The cached OCL expression body for the '{@link #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>UPPERLIMIT must be greater than LOWERLIMIT</em>}' operation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -151,25 +161,22 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	protected static final String UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "self.upperLimit.oclAsType(Real) > self.lowerLimit.oclAsType(Real)";
 
 	/**
-	 * The cached OCL invariant for the '
-	 * {@link #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>UPPERLIMIT must be greater than LOWERLIMIT</em>}' invariant operation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL invariant for the '{@link #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>UPPERLIMIT must be greater than LOWERLIMIT</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UPPERLIMIT_must_be_greater_than_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static Constraint UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean UPPERLIMIT_must_be_greater_than_LOWERLIMIT(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean UPPERLIMIT_must_be_greater_than_LOWERLIMIT(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null) {
 			OCL.Helper helper = EOCL_ENV.createOCLHelper();
 			helper.setContext(QMLContractTypePackage.Literals.NUMERIC_RANGE);
@@ -180,15 +187,12 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 				throw new UnsupportedOperationException(pe.getLocalizedMessage());
 			}
 		}
-		if (!EOCL_ENV.createQuery(UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV)
-				.check(this)) {
+		if (!EOCL_ENV.createQuery(UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
-								QMLContractTypeValidator.NUMERIC_RANGE__UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "UPPERLIMIT_must_be_greater_than_LOWERLIMIT",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
+						QMLContractTypeValidator.NUMERIC_RANGE__UPPERLIMIT_MUST_BE_GREATER_THAN_LOWERLIMIT,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "UPPERLIMIT_must_be_greater_than_LOWERLIMIT", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -197,7 +201,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -212,7 +217,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -229,7 +235,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,7 +253,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -261,7 +269,8 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -280,11 +289,11 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 
 	/**
 	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} // NumericRangeImpl
+} //NumericRangeImpl

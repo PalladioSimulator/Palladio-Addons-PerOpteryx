@@ -1,26 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
-
-import org.eclipse.emf.ecore.EClass;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.DeterministicEvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Deterministic Evaluation Aspect</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Deterministic Evaluation Aspect</b></em>'.
+ * <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspectImpl
-		implements DeterministicEvaluationAspect {
+public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspectImpl implements DeterministicEvaluationAspect {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected DeterministicEvaluationAspectImpl() {
@@ -28,7 +25,8 @@ public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspect
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -36,4 +34,4 @@ public abstract class DeterministicEvaluationAspectImpl extends EvaluationAspect
 		return QMLContractPackage.Literals.DETERMINISTIC_EVALUATION_ASPECT;
 	}
 
-} // DeterministicEvaluationAspectImpl
+} //DeterministicEvaluationAspectImpl

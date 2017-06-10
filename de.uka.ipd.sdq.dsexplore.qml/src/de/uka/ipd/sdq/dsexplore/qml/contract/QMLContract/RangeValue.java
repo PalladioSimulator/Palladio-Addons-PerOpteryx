@@ -1,18 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract;
 
-import org.eclipse.emf.ecore.EObject;
-
 import de.uka.ipd.sdq.identifier.Identifier;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Range Value</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Range Value</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -28,14 +25,13 @@ import de.uka.ipd.sdq.identifier.Identifier;
  */
 public interface RangeValue extends EObject, Identifier {
 	/**
-	 * Returns the value of the '<em><b>Range Limit Literal</b></em>' containment reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Range Limit Literal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Range Limit Literal</em>' containment reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Range Limit Literal</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Range Limit Literal</em>' containment reference.
 	 * @see #setRangeLimitLiteral(ValueLiteral)
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage#getRangeValue_RangeLimitLiteral()
@@ -46,8 +42,8 @@ public interface RangeValue extends EObject, Identifier {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RangeValue#getRangeLimitLiteral <em>Range Limit Literal</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Range Limit Literal</em>' containment reference.
 	 * @see #getRangeLimitLiteral()
 	 * @generated
@@ -59,8 +55,8 @@ public interface RangeValue extends EObject, Identifier {
 	 * The literals are from the enumeration {@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EnumRangeValueType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
@@ -74,7 +70,8 @@ public interface RangeValue extends EObject, Identifier {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RangeValue#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EnumRangeValueType
 	 * @see #getType()

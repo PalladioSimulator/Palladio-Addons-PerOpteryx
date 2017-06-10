@@ -1,25 +1,25 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclarationImpl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>QML Contract Type</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>QML Contract Type</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -31,9 +31,9 @@ import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl.QMLDeclara
  */
 public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContractType {
 	/**
-	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getDimensions() <em>Dimensions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDimensions()
 	 * @generated
 	 * @ordered
@@ -41,7 +41,8 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	protected EList<Dimension> dimensions;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLContractTypeImpl() {
@@ -49,7 +50,8 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,20 +60,21 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<Dimension> getDimensions() {
 		if (dimensions == null) {
-			dimensions = new EObjectResolvingEList<Dimension>(Dimension.class, this,
-					QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS);
+			dimensions = new EObjectResolvingEList<Dimension>(Dimension.class, this, QMLContractTypePackage.QML_CONTRACT_TYPE__DIMENSIONS);
 		}
 		return dimensions;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,7 +87,8 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -100,7 +104,8 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,7 +119,8 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,4 +132,4 @@ public class QMLContractTypeImpl extends QMLDeclarationImpl implements QMLContra
 		return super.eIsSet(featureID);
 	}
 
-} // QMLContractTypeImpl
+} //QMLContractTypeImpl

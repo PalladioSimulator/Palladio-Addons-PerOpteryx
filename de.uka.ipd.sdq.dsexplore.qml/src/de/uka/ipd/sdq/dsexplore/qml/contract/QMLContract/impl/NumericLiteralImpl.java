@@ -1,20 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.NumericLiteral;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Numeric Literal</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Numeric Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -28,8 +27,8 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiteral {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -38,8 +37,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -47,7 +46,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	protected double value = VALUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected NumericLiteralImpl() {
@@ -55,7 +55,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -64,7 +65,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -73,7 +75,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,12 +84,12 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 		double oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.NUMERIC_LITERAL__VALUE, oldValue,
-					value));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.NUMERIC_LITERAL__VALUE, oldValue, value));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,7 +102,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,7 +117,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,7 +132,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,7 +146,8 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,4 +162,4 @@ public class NumericLiteralImpl extends ValueLiteralImpl implements NumericLiter
 		return result.toString();
 	}
 
-} // NumericLiteralImpl
+} //NumericLiteralImpl

@@ -1,25 +1,25 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.AspectRequirement;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.ValueLiteral;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Aspect Requirement</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Aspect Requirement</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -32,8 +32,8 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 public abstract class AspectRequirementImpl extends IdentifierImpl implements AspectRequirement {
 	/**
 	 * The cached value of the '{@link #getAspectRequirementLiteral() <em>Aspect Requirement Literal</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getAspectRequirementLiteral()
 	 * @generated
 	 * @ordered
@@ -41,7 +41,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	protected ValueLiteral aspectRequirementLiteral;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected AspectRequirementImpl() {
@@ -49,7 +50,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,7 +60,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,17 +70,16 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAspectRequirementLiteral(ValueLiteral newAspectRequirementLiteral,
-			NotificationChain msgs) {
+	public NotificationChain basicSetAspectRequirementLiteral(ValueLiteral newAspectRequirementLiteral, NotificationChain msgs) {
 		ValueLiteral oldAspectRequirementLiteral = aspectRequirementLiteral;
 		aspectRequirementLiteral = newAspectRequirementLiteral;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL, oldAspectRequirementLiteral,
-					newAspectRequirementLiteral);
+					QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL, oldAspectRequirementLiteral, newAspectRequirementLiteral);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -87,7 +89,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,23 +99,21 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 			NotificationChain msgs = null;
 			if (aspectRequirementLiteral != null)
 				msgs = ((InternalEObject) aspectRequirementLiteral).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL, null, msgs);
 			if (newAspectRequirementLiteral != null)
 				msgs = ((InternalEObject) newAspectRequirementLiteral).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL, null, msgs);
 			msgs = basicSetAspectRequirementLiteral(newAspectRequirementLiteral, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL, newAspectRequirementLiteral,
-					newAspectRequirementLiteral));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.ASPECT_REQUIREMENT__ASPECT_REQUIREMENT_LITERAL,
+					newAspectRequirementLiteral, newAspectRequirementLiteral));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,7 +126,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -138,7 +140,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,7 +155,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -166,7 +170,8 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -178,4 +183,4 @@ public abstract class AspectRequirementImpl extends IdentifierImpl implements As
 		return super.eIsSet(featureID);
 	}
 
-} // AspectRequirementImpl
+} //AspectRequirementImpl

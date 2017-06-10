@@ -1,31 +1,33 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.palladiosimulator.pcm.usagemodel.UsageModel;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Simple QML Profile</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Simple QML Profile</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -38,9 +40,9 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile;
  */
 public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements SimpleQMLProfile {
 	/**
-	 * The cached value of the '{@link #getUsageModel() <em>Usage Model</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getUsageModel() <em>Usage Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUsageModel()
 	 * @generated
 	 * @ordered
@@ -49,7 +51,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 
 	/**
 	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRequirements()
 	 * @generated
 	 * @ordered
@@ -57,7 +60,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	protected EList<Requirement> requirements;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SimpleQMLProfileImpl() {
@@ -65,7 +69,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,7 +79,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,15 +90,16 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 			usageModel = (UsageModel) eResolveProxy(oldUsageModel);
 			if (usageModel != oldUsageModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLProfilePackage.SIMPLE_QML_PROFILE__USAGE_MODEL, oldUsageModel, usageModel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLProfilePackage.SIMPLE_QML_PROFILE__USAGE_MODEL, oldUsageModel,
+							usageModel));
 			}
 		}
 		return usageModel;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsageModel basicGetUsageModel() {
@@ -100,7 +107,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -108,25 +116,25 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 		UsageModel oldUsageModel = usageModel;
 		usageModel = newUsageModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.SIMPLE_QML_PROFILE__USAGE_MODEL,
-					oldUsageModel, usageModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.SIMPLE_QML_PROFILE__USAGE_MODEL, oldUsageModel, usageModel));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<Requirement> getRequirements() {
 		if (requirements == null) {
-			requirements = new EObjectContainmentEList<Requirement>(Requirement.class, this,
-					QMLProfilePackage.SIMPLE_QML_PROFILE__REQUIREMENTS);
+			requirements = new EObjectContainmentEList<Requirement>(Requirement.class, this, QMLProfilePackage.SIMPLE_QML_PROFILE__REQUIREMENTS);
 		}
 		return requirements;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,7 +147,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,7 +165,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -175,7 +185,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -192,7 +203,8 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -206,4 +218,4 @@ public class SimpleQMLProfileImpl extends GenericQMLProfileImpl implements Simpl
 		return super.eIsSet(featureID);
 	}
 
-} // SimpleQMLProfileImpl
+} //SimpleQMLProfileImpl
