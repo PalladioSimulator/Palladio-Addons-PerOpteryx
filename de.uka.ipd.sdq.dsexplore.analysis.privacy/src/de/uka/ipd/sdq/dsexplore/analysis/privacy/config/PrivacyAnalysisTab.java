@@ -20,10 +20,6 @@ import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 public class PrivacyAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
 	
 	private Text privacyCountryFile;
-	
-//	private Button combineCostTypesInObjective;
-//	private Button considerInitialCost;
-//	private Button considerOperatingCost;
 
 	@Override
 	public void createControl(Composite parent) {
@@ -43,11 +39,10 @@ public class PrivacyAnalysisTab extends FileNamesInputTab implements ILaunchConf
 		container.setLayout(new GridLayout());
 
 		/**
-		 * Add nqr model input section
+		 * Add legal country file input section
 		 */
 		this.privacyCountryFile = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "Allowed Country File", DSEConstantsContainer.PRIVACY_COUNTRY_LIST_EXTENSION, privacyCountryFile, getShell(), "");
-		
+		TabHelper.createFileInputSection(container, modifyListener, "Allowed Country File", DSEConstantsContainer.PRIVACY_COUNTRY_LIST_EXTENSION, privacyCountryFile, getShell(), DSEConstantsContainer.DEFAULT_PRIVACY_FILE);
 	}
 
 	@Override
@@ -80,9 +75,6 @@ public class PrivacyAnalysisTab extends FileNamesInputTab implements ILaunchConf
 
 	@Override
 	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
-		// Leave this method empty to prevent unnecessary invocation of
-		// initializeFrom() and multiple resulting invocations of
-		// performApply().
 		
 	}
 
@@ -103,11 +95,11 @@ public class PrivacyAnalysisTab extends FileNamesInputTab implements ILaunchConf
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
-		String extension = DSEConstantsContainer.PRIVACY_COUNTRY_LIST_EXTENSION[0].replace("*", "");
-		//if (this.nqrModel.getText().equals("") || !this.nqrModel.getText().contains(extension)){
-		//	setErrorMessage("NQR model is missing!");
-		//	return false;
-		//}
+		final String extension = DSEConstantsContainer.PRIVACY_COUNTRY_LIST_EXTENSION[0].replace("*", "");
+        if (this.privacyCountryFile.getText().equals("") || !this.privacyCountryFile.getText().contains(extension)){
+            setErrorMessage("Cost model is missing!");
+            return false;
+        }
 		return true;
 	}
 

@@ -11,6 +11,11 @@ import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 
+/**
+ * 
+ * @author Philipp Weimann
+ *
+ */
 public class PrivacyAnalysisResult implements IAnalysisResult {
 
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.privacy");
@@ -20,6 +25,12 @@ public class PrivacyAnalysisResult implements IAnalysisResult {
 	private Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
 	private PrivacyAnalysisQualityAttributeDeclaration privacyQualityDimensionDeclaration;
 
+	/**
+	 * 
+	 * @param illegalDeployments
+	 * @param criterionToAspect
+	 * @param privacyQualityDimensionDeclaration
+	 */
 	public PrivacyAnalysisResult(String[] illegalDeployments, Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
 			PrivacyAnalysisQualityAttributeDeclaration privacyQualityDimensionDeclaration) {
 
@@ -35,12 +46,12 @@ public class PrivacyAnalysisResult implements IAnalysisResult {
 		if (aspect != null) {
 			for (Dimension dim : this.privacyQualityDimensionDeclaration.getDimensions()) {
 				if (EcoreUtil.equals(aspect.getDimension(), dim)) {
-					return Math.floor((double)this.illegalDeployments.length);
+					return Math.floor((double) this.illegalDeployments.length);
 				}
 			}
 		}
 
-		logger.warn("Unknown aspect for LQN result, adding NaN.");
+		logger.warn("Unknown aspect for Privacy Analysis result, adding NaN.");
 		return Double.NaN;
 	}
 

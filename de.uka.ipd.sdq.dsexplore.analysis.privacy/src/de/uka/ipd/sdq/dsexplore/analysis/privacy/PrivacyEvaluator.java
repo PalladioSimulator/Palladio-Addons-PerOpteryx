@@ -36,8 +36,8 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	private Set<Integer> legalCountryCodes;
 	private Map<Long, PrivacyAnalysisResult> previousPrivacyResults = new HashMap<Long, PrivacyAnalysisResult>();
 
-	public PrivacyEvaluator(IAnalysisQualityAttributeDeclaration qualityAttribute) {
-		super(qualityAttribute);
+	public PrivacyEvaluator() {
+		super(new PrivacyAnalysisQualityAttributeDeclaration());
 	}
 
 	@Override
@@ -58,6 +58,8 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 				throw new IllegalArgumentException(e);
 			}
 		}
+		
+		initialiseCriteria(configuration);
 	}
 
 	@Override
@@ -80,7 +82,7 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 		ComponentClassificationAnalysis compAnalysis = new ComponentClassificationAnalysis(modelGraph);
 		compAnalysis.start();
 
-		DeploymentAnalysis deplAnalysis = new DeploymentAnalysis(modelGraph, null);
+		DeploymentAnalysis deplAnalysis = new DeploymentAnalysis(modelGraph, this.legalCountryCodes);
 		String[] illegalDeployments = deplAnalysis.start();
 
 		PrivacyAnalysisResult analysisResult = new PrivacyAnalysisResult(illegalDeployments, this.criterionToAspect,

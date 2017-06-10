@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" id="_ycfFkExlEeeL-8L_p3urPA" entityName="privacy">
+  <type xsi:type="QMLContractType:DimensionTypeNumeric" id="_Bppngk0PEeeam6N8F3oXKQ" domain="integer">
+    <relationSemantics id="_aE6IkE0nEee6NM9nn8sXTg"/>
+    <range id="_a6vkYU0nEee6NM9nn8sXTg" lowerLimit="-0.5" upperLimit="0.5"/>
+  </type>
+</QMLContractType:Dimension>
