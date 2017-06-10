@@ -96,28 +96,6 @@ ILaunchConfigurationTab {
         } catch (final CoreException e) {
             LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.COST_FILE, e.getMessage());
         }
-
-        //		try {
-        //			this.combineCostTypesInObjective.setSelection(configuration.getAttribute(
-        //					DSEConstantsContainer.COST_COMBINE_COST_TYPES, true));
-        //		} catch (CoreException e) {
-        //			this.combineCostTypesInObjective.setSelection(true);
-        //		}
-        //
-        //		try {
-        //			this.considerInitialCost.setSelection(configuration.getAttribute(
-        //					DSEConstantsContainer.COST_CONSIDER_INITIAL, true));
-        //		} catch (CoreException e) {
-        //			this.considerInitialCost.setSelection(true);
-        //		}
-        //
-        //		try {
-        //			this.considerOperatingCost.setSelection(configuration.getAttribute(
-        //					DSEConstantsContainer.COST_CONSIDER_OPERATING, true));
-        //		} catch (CoreException e) {
-        //			this.considerOperatingCost.setSelection(true);
-        //		}
-
     }
 
     @Override
@@ -125,20 +103,6 @@ ILaunchConfigurationTab {
         configuration.setAttribute(
                 DSEConstantsContainer.COST_FILE,
                 this.textCostModel.getText());
-
-        //		configuration.setAttribute(
-        //				DSEConstantsContainer.COST_COMBINE_COST_TYPES,
-        //				this.combineCostTypesInObjective.getSelection());
-        //
-        //		configuration.setAttribute(
-        //				DSEConstantsContainer.COST_CONSIDER_INITIAL,
-        //				this.considerInitialCost.getSelection());
-        //
-        //		configuration.setAttribute(
-        //				DSEConstantsContainer.COST_CONSIDER_OPERATING,
-        //				this.considerOperatingCost.getSelection());
-
-
     }
 
     @Override
@@ -148,9 +112,6 @@ ILaunchConfigurationTab {
 
     @Override
     public void activated(final ILaunchConfigurationWorkingCopy workingCopy) {
-        // Leave this method empty to prevent unnecessary invocation of
-        // initializeFrom() and multiple resulting invocations of
-        // performApply().
 
     }
 

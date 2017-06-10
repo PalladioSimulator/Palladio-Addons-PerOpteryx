@@ -15,7 +15,7 @@ import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
 
 /**
- * This class declares, which {@code Dimension} and {@code EvaluationAspect} can 
+ * This class declares, which {@code Dimension} and {@code EvaluationAspect} can
  * be evaluated by this extension.
  * 
  * @author noorshams
@@ -26,12 +26,14 @@ public class CostSolverQualityAttributeDeclaration implements IAnalysisQualityAt
 	public static final String qualityAttributeTotalCost = QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH;
 	public static final String qualityAttributeInitialCost = QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH;
 	public static final String qualityAttributeOperatingCost = QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH;
-	
+
 	private Dimension totalCost;
 	private Dimension initialCost;
 	private Dimension operatingCost;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.uka.ipd.sdq.dsexplore.analysis.IQualityAttribute#getDimension()
 	 */
 	@Override
@@ -45,25 +47,29 @@ public class CostSolverQualityAttributeDeclaration implements IAnalysisQualityAt
 		result.add(this.operatingCost);
 		return result;
 	}
-	
-	protected Dimension getTotalCostDimension(){
+
+	protected Dimension getTotalCostDimension() {
 		return this.totalCost;
 	}
-	
-	protected Dimension getInitialCostDimension(){
+
+	protected Dimension getInitialCostDimension() {
 		return this.initialCost;
 	}
-	
-	protected Dimension getOperatingCostDimension(){
+
+	protected Dimension getOperatingCostDimension() {
 		return this.operatingCost;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttribute#getDimension()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttribute#getDimension(
+	 * )
 	 */
 	@Override
 	public boolean canEvaluateAspectForDimension(EvaluationAspect aspect, Dimension dimension) {
-		if(aspect instanceof Value) {
+		if (aspect instanceof Value) {
 			return true;
 		}
 		return false;
