@@ -35,6 +35,7 @@ public class AnalysisQualityAttributes {
 		attributes.add(QualityAttribute.COST_QUALITY);
 		attributes.add(QualityAttribute.SECURITY_QUALITY);
 		attributes.add(QualityAttribute.NQR_QUALITY);
+		attributes.add(QualityAttribute.PRIVACY_QUALITY);
 		
 		return attributes;
 		
