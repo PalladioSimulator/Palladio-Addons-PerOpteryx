@@ -34,12 +34,12 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequi
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
-public abstract class AbstractAnalysis implements IAnalysis{
+public abstract class AbstractAnalysis implements IAnalysis {
 
 	protected MDSDBlackboard blackboard;
-	
+
 	protected IAnalysisQualityAttributeDeclaration qualityAttribute;
-	
+
 	protected List<Criterion> criteriaList = new ArrayList<Criterion>();
 	protected Map<Criterion, EvaluationAspectWithContext> criterionToAspect = new HashMap<Criterion, EvaluationAspectWithContext>();
 
@@ -49,19 +49,16 @@ public abstract class AbstractAnalysis implements IAnalysis{
 	}
 
 	public QualityAttribute getQualityAttribute() throws CoreException {
-		//return DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY;
+		// return DSEConstantsContainer.MEAN_RESPONSE_TIME_QUALITY;
 		return qualityAttribute.getQualityAttribute();
 	}
 
-
-	protected void initialiseCriteria(DSEWorkflowConfiguration configuration)
-			throws CoreException {
+	protected void initialiseCriteria(DSEWorkflowConfiguration configuration) throws CoreException {
 		PCMInstance pcmInstance = getPCMInstance();
 		List<UsageScenario> scenarios = pcmInstance.getUsageModel().getUsageScenario_UsageModel();
 		UsageModel usageModel = pcmInstance.getUsageModel();
 
-		PCMDeclarationsReader reader = new PCMDeclarationsReader(
-				configuration.getRawConfiguration().getAttribute("qmlDefinitionFile", ""));
+		PCMDeclarationsReader reader = new PCMDeclarationsReader(configuration.getRawConfiguration().getAttribute("qmlDefinitionFile", ""));
 
 		List<Dimension> dimensions = this.qualityAttribute.getDimensions();
 
@@ -71,61 +68,64 @@ public abstract class AbstractAnalysis implements IAnalysis{
 			qualityAttributeAspects.addAll(reader.getDimensionObjectiveContextsForUsageModel(usageModel, dimension.getId()));
 		}
 
-		//Check constraint aspects and create Constraint-Objects for every Aspect
+		// Check constraint aspects and create Constraint-Objects for every
+		// Aspect
 		for (Iterator<EvaluationAspectWithContext> iterator = qualityAttributeAspects.iterator(); iterator.hasNext();) {
-			EvaluationAspectWithContext aspectContext = iterator
-					.next();
-			//handle possible aspects here
+			EvaluationAspectWithContext aspectContext = iterator.next();
+			// handle possible aspects here
 			if (canEvaluateAspect(aspectContext.getEvaluationAspect(), aspectContext.getDimension())) {
 
-				if (aspectContext.getRequirement() instanceof UsageScenarioRequirement) {  
+				if (aspectContext.getRequirement() instanceof UsageScenarioRequirement) {
 
-					if (((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario() == null) {
-						//The criterion refers to EVERY US since none is explicitly specified
+					if (((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario() == null) {
+						// The criterion refers to EVERY US since none is
+						// explicitly specified
 						for (Iterator<UsageScenario> iterator2 = scenarios.iterator(); iterator2.hasNext();) {
-							UsageScenario usageScenario = (UsageScenario) iterator2
-									.next();
+							UsageScenario usageScenario = (UsageScenario) iterator2.next();
 
 							if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-								UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(usageScenario);
-								InfeasibilityConstraint c = 
-										reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
+								UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(
+										usageScenario);
+								InfeasibilityConstraint c = reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
 
 								criteriaList.add(c);
 								criterionToAspect.put(c, aspectContext);
 							} else {
-								//instanceof Objective
-								UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario); 
-								Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
+								// instanceof Objective
+								UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(usageScenario);
+								Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext,
+										objectiveBuilder);
 								criteriaList.add(o);
-								criterionToAspect.put(o, aspectContext); 
+								criterionToAspect.put(o, aspectContext);
 
-								UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(usageScenario);
-								SatisfactionConstraint c = 
-										reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder); 
+								UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(
+										usageScenario);
+								SatisfactionConstraint c = reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
 								criteriaList.add(c);
 								criterionToAspect.put(c, aspectContext);
 							}
 						}
 					} else {
 						if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+							UsageScenarioBasedInfeasibilityConstraintBuilder builder = new UsageScenarioBasedInfeasibilityConstraintBuilder(
+									((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 
-							InfeasibilityConstraint c = 
-									reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
+							InfeasibilityConstraint c = reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
 							criteriaList.add(c);
 							criterionToAspect.put(c, aspectContext);
 						} else {
-							//instanceof Objective
-							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
-							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, objectiveBuilder);
+							// instanceof Objective
+							UsageScenarioBasedObjectiveBuilder objectiveBuilder = new UsageScenarioBasedObjectiveBuilder(
+									((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
+							Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext,
+									objectiveBuilder);
 							criteriaList.add(o);
 							criterionToAspect.put(o, aspectContext);
 
-							UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(((UsageScenarioRequirement)aspectContext.getRequirement()).getUsageScenario());
+							UsageScenarioBasedSatisfactionConstraintBuilder builder = new UsageScenarioBasedSatisfactionConstraintBuilder(
+									((UsageScenarioRequirement) aspectContext.getRequirement()).getUsageScenario());
 
-							SatisfactionConstraint c = 
-									reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
+							SatisfactionConstraint c = reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, builder);
 							criteriaList.add(c);
 							criterionToAspect.put(c, aspectContext);
 						}
@@ -133,23 +133,24 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 				} else if (aspectContext.getRequirement() instanceof EntryLevelSystemCallRequirement) {
 					if (aspectContext.getCriterion() instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Constraint) {
-						EntryLevelSystemCallInfeasibilityConstraintBuilder builder = new EntryLevelSystemCallInfeasibilityConstraintBuilder(((EntryLevelSystemCallRequirement)aspectContext.getRequirement()).getEntryLevelSystemCall());
-						InfeasibilityConstraint c = 
-								reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
+						EntryLevelSystemCallInfeasibilityConstraintBuilder builder = new EntryLevelSystemCallInfeasibilityConstraintBuilder(
+								((EntryLevelSystemCallRequirement) aspectContext.getRequirement()).getEntryLevelSystemCall());
+						InfeasibilityConstraint c = reader.translateEvalAspectToInfeasibilityConstraint(aspectContext, builder);
 						criteriaList.add(c);
 						criterionToAspect.put(c, aspectContext);
 					} else {
-						//instanceof Objective
-						EntryLevelSystemCall entryLevelSystemCall = ((EntryLevelSystemCallRequirement) aspectContext.getRequirement()).getEntryLevelSystemCall();
+						// instanceof Objective
+						EntryLevelSystemCall entryLevelSystemCall = ((EntryLevelSystemCallRequirement) aspectContext.getRequirement())
+								.getEntryLevelSystemCall();
 						EntryLevelSystemCallObjectiveBuilder builder = new EntryLevelSystemCallObjectiveBuilder(entryLevelSystemCall);
 
 						Objective o = reader.translateEvalAspectToObjective(this.getQualityAttribute().getName(), aspectContext, builder);
 						criteriaList.add(o);
 						criterionToAspect.put(o, aspectContext);
 
-						EntryLevelSystemCallSatisfactionConstraintBuilder satisBuilder = new EntryLevelSystemCallSatisfactionConstraintBuilder(entryLevelSystemCall);
-						SatisfactionConstraint c = 
-								reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, satisBuilder);
+						EntryLevelSystemCallSatisfactionConstraintBuilder satisBuilder = new EntryLevelSystemCallSatisfactionConstraintBuilder(
+								entryLevelSystemCall);
+						SatisfactionConstraint c = reader.translateEvalAspectToSatisfactionConstraint(aspectContext, o, satisBuilder);
 						criteriaList.add(c);
 						criterionToAspect.put(c, aspectContext);
 					}
@@ -158,7 +159,9 @@ public abstract class AbstractAnalysis implements IAnalysis{
 					throw new RuntimeException("Unsupported Requirement!");
 				}
 			} else {
-				//XXX: This should never be the case if the optimization is started with the LaunchConfig the aspect is checked there as well
+				// XXX: This should never be the case if the optimization is
+				// started with the LaunchConfig the aspect is checked there as
+				// well
 				throw new RuntimeException("Evaluation aspect not supported(" + aspectContext.getEvaluationAspect() + ")!");
 			}
 		}
@@ -168,11 +171,10 @@ public abstract class AbstractAnalysis implements IAnalysis{
 		return qualityAttribute.canEvaluateAspectForDimension(aspect, dimension);
 	}
 
-
 	protected PCMInstance getPCMInstance() {
 		return new PCMInstance((PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID));
 	}
-	
+
 	@Override
 	public List<Criterion> getCriterions() throws CoreException {
 		List<Criterion> criterions = new ArrayList<Criterion>();
@@ -181,7 +183,7 @@ public abstract class AbstractAnalysis implements IAnalysis{
 
 		return criterions;
 	}
-	
+
 	@Override
 	public boolean hasStatisticResultsFor() throws CoreException {
 		return false;
