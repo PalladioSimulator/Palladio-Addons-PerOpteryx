@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.presentation;
 
@@ -16,68 +12,93 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.common.CommonPlugin;
+
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.emf.ecore.xmi.XMLResource;
+
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.CommonPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
+
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractFactory;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.presentation.QMLProfileEditorPlugin;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.provider.QMLProfileEditPlugin;
 
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.presentation.QMLProfileEditorPlugin;
+
+import org.eclipse.core.runtime.Path;
+
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc
- * -->
- * 
+ * This is a simple wizard for creating a new model file.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLContractModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(
-			QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameExtensions").split("\\s*,\\s*")));
+	public static final List<String> FILE_EXTENSIONS = Collections
+			.unmodifiableList(Arrays.asList(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -85,48 +106,53 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS = QMLProfileEditorPlugin.INSTANCE
-			.getString("_UI_QMLContractEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+	public static final String FORMATTED_FILE_EXTENSIONS = QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameExtensions")
+			.replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLContractPackage qmlContractPackage = QMLContractPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLContractFactory qmlContractFactory = qmlContractPackage.getQMLContractFactory();
 
 	/**
 	 * This is the file creation page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLContractModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLContractModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
-	 * Remember the selection during initialization for populating the default container. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Remember the selection during initialization for populating the default container.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
 
 	/**
 	 * Remember the workbench during initialization.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IWorkbench workbench;
@@ -141,7 +167,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This just records the information.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -149,14 +176,14 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(QMLProfileEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-				.getImageDescriptor(QMLProfileEditorPlugin.INSTANCE.getImage("full/wizban/NewQMLContract")));
+		setDefaultPageImageDescriptor(
+				ExtendedImageRegistry.INSTANCE.getImageDescriptor(QMLProfileEditorPlugin.INSTANCE.getImage("full/wizban/NewQMLContract")));
 	}
 
 	/**
 	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
@@ -177,7 +204,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Create a new model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
@@ -188,7 +216,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Do the work after everything is specified.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -259,8 +288,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 				page.openEditor(new FileEditorInput(modelFile),
 						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			} catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(),
-						QMLProfileEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), QMLProfileEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"),
+						exception.getMessage());
 				return false;
 			}
 
@@ -273,13 +302,15 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This is the one page of the wizard.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public class QMLContractModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public QMLContractModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
@@ -288,8 +319,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 		/**
 		 * The framework calls this to see if the file is correct.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -298,8 +329,7 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(
-							QMLProfileEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(QMLProfileEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -308,7 +338,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public IFile getModelFile() {
@@ -318,31 +349,36 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This is the page where the type of object to create is selected.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public class QMLContractModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected Combo initialObjectField;
 
 		/**
-		 * @generated <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 */
 		protected List<String> encodings;
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected Combo encodingField;
 
 		/**
 		 * Pass in the selection.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public QMLContractModelWizardInitialObjectCreationPage(String pageId) {
@@ -350,7 +386,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -423,7 +460,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected ModifyListener validator = new ModifyListener() {
@@ -434,7 +472,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		};
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected boolean validatePage() {
@@ -442,7 +481,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -460,7 +500,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public String getInitialObjectName() {
@@ -475,7 +516,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public String getEncoding() {
@@ -483,9 +525,9 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * Returns the label for the specified type name. <!-- begin-user-doc --> <!-- end-user-doc
-		 * -->
-		 * 
+		 * Returns the label for the specified type name.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected String getLabel(String typeName) {
@@ -498,15 +540,15 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(
-						QMLProfileEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer
-								.hasMoreTokens();) {
+						QMLProfileEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -516,8 +558,8 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * The framework calls this to create the contents of the wizard.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -526,11 +568,9 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 		//
 		newFileCreationPage = new QMLContractModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractModelWizard_label"));
+		newFileCreationPage.setDescription(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractModelWizard_description"));
 		newFileCreationPage
-				.setDescription(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractModelWizard_description"));
-		newFileCreationPage
-				.setFileName(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameDefaultBase") + "."
-						+ FILE_EXTENSIONS.get(0));
+				.setFileName(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -556,8 +596,7 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = QMLProfileEditorPlugin.INSTANCE
-							.getString("_UI_QMLContractEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
@@ -568,16 +607,15 @@ public class QMLContractModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		initialObjectCreationPage = new QMLContractModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage
-				.setTitle(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractModelWizard_label"));
-		initialObjectCreationPage
-				.setDescription(QMLProfileEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setTitle(QMLProfileEditorPlugin.INSTANCE.getString("_UI_QMLContractModelWizard_label"));
+		initialObjectCreationPage.setDescription(QMLProfileEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 
 	/**
 	 * Get the file from the page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IFile getModelFile() {

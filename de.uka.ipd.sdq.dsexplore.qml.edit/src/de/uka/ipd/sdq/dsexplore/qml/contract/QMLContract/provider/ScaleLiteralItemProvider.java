@@ -60,13 +60,10 @@ public class ScaleLiteralItemProvider extends ValueLiteralItemProvider {
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ENamedElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature",
-								"_UI_ENamedElement_type"),
-						EcorePackage.Literals.ENAMED_ELEMENT__NAME, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ENamedElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"),
+				EcorePackage.Literals.ENAMED_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -76,13 +73,10 @@ public class ScaleLiteralItemProvider extends ValueLiteralItemProvider {
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ScaleLiteral_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ScaleLiteral_value_feature",
-								"_UI_ScaleLiteral_type"),
-						QMLContractPackage.Literals.SCALE_LITERAL__VALUE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_ScaleLiteral_value_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ScaleLiteral_value_feature", "_UI_ScaleLiteral_type"),
+				QMLContractPackage.Literals.SCALE_LITERAL__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -135,8 +129,7 @@ public class ScaleLiteralItemProvider extends ValueLiteralItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((ScaleLiteral<?>) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ScaleLiteral_type")
-				: getString("_UI_ScaleLiteral_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ScaleLiteral_type") : getString("_UI_ScaleLiteral_type") + " " + label;
 	}
 
 	/**

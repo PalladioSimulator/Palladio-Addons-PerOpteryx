@@ -1,29 +1,28 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsFactory;
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDeclarationsFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static QMLDeclarationsFactory init() {
@@ -41,7 +40,8 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public QMLDeclarationsFactoryImpl() {
@@ -49,7 +49,8 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,7 +64,8 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -73,7 +75,8 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,7 +85,8 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -91,4 +95,4 @@ public class QMLDeclarationsFactoryImpl extends EFactoryImpl implements QMLDecla
 		return QMLDeclarationsPackage.eINSTANCE;
 	}
 
-} // QMLDeclarationsFactoryImpl
+} //QMLDeclarationsFactoryImpl

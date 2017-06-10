@@ -1,44 +1,29 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypeFactory;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContractTypeFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static QMLContractTypeFactory init() {
@@ -56,7 +41,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public QMLContractTypeFactoryImpl() {
@@ -64,7 +50,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -104,7 +91,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,7 +112,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,7 +133,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -154,7 +144,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,7 +155,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,7 +166,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -184,7 +177,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,7 +188,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -204,7 +199,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -214,7 +210,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -224,7 +221,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -234,7 +232,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -244,7 +243,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -254,7 +254,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -286,19 +287,20 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EnumRelationSemantics createEnumRelationSemanticsFromString(EDataType eDataType, String initialValue) {
 		EnumRelationSemantics result = EnumRelationSemantics.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertEnumRelationSemanticsToString(EDataType eDataType, Object instanceValue) {
@@ -306,19 +308,20 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EnumNumericDomain createEnumNumericDomainFromString(EDataType eDataType, String initialValue) {
 		EnumNumericDomain result = EnumNumericDomain.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertEnumNumericDomainToString(EDataType eDataType, Object instanceValue) {
@@ -333,8 +336,7 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	public EScaleOfMeasure createEScaleOfMeasureFromString(EDataType eDataType, String initialValue) {
 		EScaleOfMeasure result = EScaleOfMeasure.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -366,7 +368,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -375,7 +378,8 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -384,4 +388,4 @@ public class QMLContractTypeFactoryImpl extends EFactoryImpl implements QMLContr
 		return QMLContractTypePackage.eINSTANCE;
 	}
 
-} // QMLContractTypeFactoryImpl
+} //QMLContractTypeFactoryImpl

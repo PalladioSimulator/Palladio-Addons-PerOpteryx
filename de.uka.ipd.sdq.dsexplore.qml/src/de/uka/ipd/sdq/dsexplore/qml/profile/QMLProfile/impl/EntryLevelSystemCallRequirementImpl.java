@@ -1,24 +1,24 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Entry Level System Call Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Entry Level System Call Requirement</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -31,7 +31,8 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
 public class EntryLevelSystemCallRequirementImpl extends RequirementImpl implements EntryLevelSystemCallRequirement {
 	/**
 	 * The cached value of the '{@link #getEntryLevelSystemCall() <em>Entry Level System Call</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getEntryLevelSystemCall()
 	 * @generated
 	 * @ordered
@@ -39,7 +40,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	protected EntryLevelSystemCall entryLevelSystemCall;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EntryLevelSystemCallRequirementImpl() {
@@ -47,7 +49,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,7 +59,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,15 +71,16 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 			if (entryLevelSystemCall != oldEntryLevelSystemCall) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLProfilePackage.ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL,
-							oldEntryLevelSystemCall, entryLevelSystemCall));
+							QMLProfilePackage.ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL, oldEntryLevelSystemCall,
+							entryLevelSystemCall));
 			}
 		}
 		return entryLevelSystemCall;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EntryLevelSystemCall basicGetEntryLevelSystemCall() {
@@ -83,7 +88,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -91,13 +97,13 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 		EntryLevelSystemCall oldEntryLevelSystemCall = entryLevelSystemCall;
 		entryLevelSystemCall = newEntryLevelSystemCall;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					QMLProfilePackage.ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL,
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.ENTRY_LEVEL_SYSTEM_CALL_REQUIREMENT__ENTRY_LEVEL_SYSTEM_CALL,
 					oldEntryLevelSystemCall, entryLevelSystemCall));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,7 +118,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,7 +133,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,7 +148,8 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,4 +161,4 @@ public class EntryLevelSystemCallRequirementImpl extends RequirementImpl impleme
 		return super.eIsSet(featureID);
 	}
 
-} // EntryLevelSystemCallRequirementImpl
+} //EntryLevelSystemCallRequirementImpl

@@ -1,24 +1,24 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
 import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Usage Scenario Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Usage Scenario Requirement</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -30,9 +30,9 @@ import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
  */
 public class UsageScenarioRequirementImpl extends RequirementImpl implements UsageScenarioRequirement {
 	/**
-	 * The cached value of the '{@link #getUsageScenario() <em>Usage Scenario</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getUsageScenario() <em>Usage Scenario</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUsageScenario()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	protected UsageScenario usageScenario;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UsageScenarioRequirementImpl() {
@@ -48,7 +49,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +59,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,16 +70,16 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 			usageScenario = (UsageScenario) eResolveProxy(oldUsageScenario);
 			if (usageScenario != oldUsageScenario) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLProfilePackage.USAGE_SCENARIO_REQUIREMENT__USAGE_SCENARIO, oldUsageScenario,
-							usageScenario));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLProfilePackage.USAGE_SCENARIO_REQUIREMENT__USAGE_SCENARIO,
+							oldUsageScenario, usageScenario));
 			}
 		}
 		return usageScenario;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsageScenario basicGetUsageScenario() {
@@ -84,7 +87,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,12 +96,13 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 		UsageScenario oldUsageScenario = usageScenario;
 		usageScenario = newUsageScenario;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					QMLProfilePackage.USAGE_SCENARIO_REQUIREMENT__USAGE_SCENARIO, oldUsageScenario, usageScenario));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLProfilePackage.USAGE_SCENARIO_REQUIREMENT__USAGE_SCENARIO, oldUsageScenario,
+					usageScenario));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,7 +117,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,7 +132,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,7 +147,8 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,4 +160,4 @@ public class UsageScenarioRequirementImpl extends RequirementImpl implements Usa
 		return super.eIsSet(featureID);
 	}
 
-} // UsageScenarioRequirementImpl
+} //UsageScenarioRequirementImpl

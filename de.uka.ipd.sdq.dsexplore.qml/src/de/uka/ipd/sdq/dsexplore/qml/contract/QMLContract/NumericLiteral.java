@@ -1,13 +1,10 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Numeric Literal</b></em>'.
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Numeric Literal</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -26,8 +23,8 @@ public interface NumericLiteral extends ValueLiteral {
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear, there really should be more of
-	 * a description here...
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
@@ -40,7 +37,8 @@ public interface NumericLiteral extends ValueLiteral {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.NumericLiteral#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated

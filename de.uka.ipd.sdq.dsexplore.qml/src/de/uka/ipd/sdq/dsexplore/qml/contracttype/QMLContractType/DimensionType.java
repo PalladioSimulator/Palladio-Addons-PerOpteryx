@@ -1,17 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
-import org.eclipse.emf.ecore.EObject;
-
 import de.uka.ipd.sdq.identifier.Identifier;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Dimension Type</b></em>'.
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Dimension Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -31,14 +28,13 @@ import de.uka.ipd.sdq.identifier.Identifier;
  */
 public interface DimensionType extends EObject, Identifier {
 	/**
-	 * Returns the value of the '<em><b>Relation Semantics</b></em>' containment reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Relation Semantics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Relation Semantics</em>' containment reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Relation Semantics</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Relation Semantics</em>' containment reference.
 	 * @see #setRelationSemantics(RelationSemantics)
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getDimensionType_RelationSemantics()
@@ -49,8 +45,8 @@ public interface DimensionType extends EObject, Identifier {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType#getRelationSemantics <em>Relation Semantics</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Relation Semantics</em>' containment reference.
 	 * @see #getRelationSemantics()
 	 * @generated

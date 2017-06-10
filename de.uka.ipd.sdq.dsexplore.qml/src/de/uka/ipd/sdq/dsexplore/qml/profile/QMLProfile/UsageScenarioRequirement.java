@@ -1,16 +1,13 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile;
 
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Usage Scenario Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Usage Scenario Requirement</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * A&nbsp;usage scenrio requirement is a requirement on an usage scenario.
@@ -32,8 +29,8 @@ public interface UsageScenarioRequirement extends Requirement {
 	 * Returns the value of the '<em><b>Usage Scenario</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usage Scenario</em>' reference isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Usage Scenario</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usage Scenario</em>' reference.
@@ -46,7 +43,8 @@ public interface UsageScenarioRequirement extends Requirement {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement#getUsageScenario <em>Usage Scenario</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Usage Scenario</em>' reference.
 	 * @see #getUsageScenario()
 	 * @generated

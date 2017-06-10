@@ -109,13 +109,11 @@ public class DimensionTypeScaleItemProvider extends DimensionTypeItemProvider {
 	 * @generated
 	 */
 	protected void addScalePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_DimensionTypeScale_scale_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DimensionTypeScale_scale_feature",
-						"_UI_DimensionTypeScale_type"),
-				QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_DimensionTypeScale_scale_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DimensionTypeScale_scale_feature", "_UI_DimensionTypeScale_type"),
+				QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -205,753 +203,569 @@ public class DimensionTypeScaleItemProvider extends DimensionTypeItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimensionTypeSet()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createRelationSemantics()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createElement()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createOrder()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimensionTypeEnum()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createUnit()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimensionTypeNumeric()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createNumericRange()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createQMLContractType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createUnitRepository()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimensionTypeRepository()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimension()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createDimensionTypeScale()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractTypeFactory.eINSTANCE.createScaleElement()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLProfileFactory.eINSTANCE.createSimpleQMLProfile()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLProfileFactory.eINSTANCE.createRefinedQMLProfile()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLProfileFactory.eINSTANCE.createUsageScenarioRequirement()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLProfileFactory.eINSTANCE.createEntryLevelSystemCallRequirement()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLDeclarationsFactory.eINSTANCE.createQMLDeclarations()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createSimpleQMLContract()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createPercentile()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createFrequency()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createRangeValue()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createMean()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createVariance()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createNumericLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createEnumLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createSetLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createRefinedQMLContract()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createValue()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createObjective()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createRestriction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createGoal()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QMLContractFactory.eINSTANCE.createScaleLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						PcmFactory.eINSTANCE.createDummyClass()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CoreFactory.eINSTANCE.createPCMRandomVariable()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						EntityFactory.eINSTANCE.createResourceProvidedRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						EntityFactory.eINSTANCE.createResourceInterfaceRequiringEntity()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						EntityFactory.eINSTANCE.createResourceRequiredRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						EntityFactory.eINSTANCE.createResourceInterfaceProvidingEntity()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						EntityFactory.eINSTANCE.createResourceInterfaceProvidingRequiringEntity()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createResourceRequiredDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createEventChannel()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createEventChannelSourceConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createEventChannelSinkConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createProvidedDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createRequiredDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createAssemblyConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createAssemblyEventConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createSourceDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createSinkDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createAssemblyInfrastructureConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createProvidedInfrastructureDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createRequiredInfrastructureDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createRequiredResourceDelegationConnector()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						CompositionFactory.eINSTANCE.createAssemblyContext()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createUsageScenario()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createUserData()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createUsageModel()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createEntryLevelSystemCall()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createScenarioBehaviour()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createBranchTransition()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createBranch()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createLoop()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createStop()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createStart()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createOpenWorkload()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createDelay()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UsagemodelFactory.eINSTANCE.createClosedWorkload()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createPassiveResource()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createBasicComponent()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createParameter()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createRepository()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createRequiredCharacterisation()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createEventGroup()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createEventType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createExceptionType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createInfrastructureSignature()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createInfrastructureInterface()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createInfrastructureRequiredRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createOperationSignature()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createOperationInterface()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createOperationRequiredRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createSourceRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createSinkRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createOperationProvidedRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createInfrastructureProvidedRole()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createCompleteComponentType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createProvidesComponentType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createCompositeComponent()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createPrimitiveDataType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createCollectionDataType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createCompositeDataType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						RepositoryFactory.eINSTANCE.createInnerDeclaration()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createResourceSignature()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createProcessingResourceType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createResourceRepository()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createSchedulingPolicy()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createCommunicationLinkResourceType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourcetypeFactory.eINSTANCE.createResourceInterface()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ParameterFactory.eINSTANCE.createVariableUsage()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ParameterFactory.eINSTANCE.createVariableCharacterisation()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ParameterFactory.eINSTANCE.createCharacterisedVariable()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createHardwareInducedFailureType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createSoftwareInducedFailureType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createInternalFailureOccurrenceDescription()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createNetworkInducedFailureType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createExternalFailureOccurrenceDescription()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ReliabilityFactory.eINSTANCE.createResourceTimeoutFailureType()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createStopAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createResourceDemandingBehaviour()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createBranchAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createStartAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createResourceDemandingSEFF()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createResourceDemandingInternalBehaviour()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createReleaseAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createLoopAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createForkAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createForkedBehaviour()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createSynchronisationPoint()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createExternalCallAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createCallReturnAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createProbabilisticBranchTransition()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createAcquireAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createCollectionIteratorAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createGuardedBranchTransition()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createSetVariableAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createInternalCallAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createEmitEventAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffFactory.eINSTANCE.createInternalAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffPerformanceFactory.eINSTANCE.createInfrastructureCall()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffPerformanceFactory.eINSTANCE.createResourceCall()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffPerformanceFactory.eINSTANCE.createParametricResourceDemand()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffReliabilityFactory.eINSTANCE.createRecoveryActionBehaviour()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SeffReliabilityFactory.eINSTANCE.createRecoveryAction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QosannotationsFactory.eINSTANCE.createQoSAnnotations()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QosPerformanceFactory.eINSTANCE.createSystemSpecifiedExecutionTime()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QosPerformanceFactory.eINSTANCE.createComponentSpecifiedExecutionTime()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						QosReliabilityFactory.eINSTANCE.createSpecifiedReliabilityAnnotation()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SystemFactory.eINSTANCE.createSystem()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourceenvironmentFactory.eINSTANCE.createResourceEnvironment()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourceenvironmentFactory.eINSTANCE.createLinkingResource()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourceenvironmentFactory.eINSTANCE.createResourceContainer()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourceenvironmentFactory.eINSTANCE.createProcessingResourceSpecification()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ResourceenvironmentFactory.eINSTANCE.createCommunicationLinkResourceSpecification()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						AllocationFactory.eINSTANCE.createAllocationContext()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						AllocationFactory.eINSTANCE.createAllocation()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						SubsystemFactory.eINSTANCE.createSubSystem()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createBoxedPDF()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createContinuousSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createProbabilityMassFunction()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createSamplePDF()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createComplex()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createExponentialDistribution()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createNormalDistribution()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createLognormalDistribution()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createGammaDistribution()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createIntSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createBoolSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createDoubleSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						ProbfunctionFactory.eINSTANCE.createStringSample()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createVariableReference()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createNamespaceReference()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createVariable()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createTermExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createProductExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createProbabilityFunctionLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createParenthesis()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createIntLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createDoubleLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createCompareExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createBoolLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createStringLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createPowerExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createBooleanOperatorExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createNotExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createNegativeExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createFunctionLiteral()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createIfElseExpression()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						StoexFactory.eINSTANCE.createRandomVariable()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UnitsFactory.eINSTANCE.createBaseUnit()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UnitsFactory.eINSTANCE.createUnitRepository()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UnitsFactory.eINSTANCE.createUnitMultiplication()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UnitsFactory.eINSTANCE.createUnitPower()));
-
-		newChildDescriptors
-				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
-						UnitsFactory.eINSTANCE.createUnitDivision()));
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimensionTypeSet()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createRelationSemantics()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createElement()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createOrder()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimensionTypeEnum()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createUnit()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimensionTypeNumeric()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createNumericRange()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createQMLContractType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createUnitRepository()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimensionTypeRepository()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimension()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createDimensionTypeScale()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractTypeFactory.eINSTANCE.createScaleElement()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLProfileFactory.eINSTANCE.createSimpleQMLProfile()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLProfileFactory.eINSTANCE.createRefinedQMLProfile()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLProfileFactory.eINSTANCE.createUsageScenarioRequirement()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLProfileFactory.eINSTANCE.createEntryLevelSystemCallRequirement()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLDeclarationsFactory.eINSTANCE.createQMLDeclarations()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createSimpleQMLContract()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createPercentile()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createFrequency()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createRangeValue()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createMean()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createVariance()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createNumericLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createEnumLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createSetLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createRefinedQMLContract()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createValue()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createObjective()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createRestriction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createGoal()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QMLContractFactory.eINSTANCE.createScaleLiteral()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, PcmFactory.eINSTANCE.createDummyClass()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CoreFactory.eINSTANCE.createPCMRandomVariable()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				EntityFactory.eINSTANCE.createResourceProvidedRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				EntityFactory.eINSTANCE.createResourceInterfaceRequiringEntity()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				EntityFactory.eINSTANCE.createResourceRequiredRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				EntityFactory.eINSTANCE.createResourceInterfaceProvidingEntity()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				EntityFactory.eINSTANCE.createResourceInterfaceProvidingRequiringEntity()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createResourceRequiredDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createEventChannel()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createEventChannelSourceConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createEventChannelSinkConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createProvidedDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createRequiredDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createAssemblyConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createAssemblyEventConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createSourceDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createSinkDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createAssemblyInfrastructureConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createProvidedInfrastructureDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createRequiredInfrastructureDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createRequiredResourceDelegationConnector()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				CompositionFactory.eINSTANCE.createAssemblyContext()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createUsageScenario()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createUserData()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createUsageModel()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createEntryLevelSystemCall()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createScenarioBehaviour()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createBranchTransition()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, UsagemodelFactory.eINSTANCE.createLoop()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, UsagemodelFactory.eINSTANCE.createStop()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createStart()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createOpenWorkload()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createDelay()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UsagemodelFactory.eINSTANCE.createClosedWorkload()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createPassiveResource()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createBasicComponent()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createRepository()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createRequiredCharacterisation()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createEventGroup()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createEventType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createExceptionType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createInfrastructureSignature()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createInfrastructureInterface()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createInfrastructureRequiredRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createOperationSignature()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createOperationInterface()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createOperationRequiredRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createSourceRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createSinkRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createOperationProvidedRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createInfrastructureProvidedRole()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createCompleteComponentType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createProvidesComponentType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createCompositeComponent()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createPrimitiveDataType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createCollectionDataType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createCompositeDataType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				RepositoryFactory.eINSTANCE.createInnerDeclaration()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createResourceSignature()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createProcessingResourceType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createResourceRepository()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createSchedulingPolicy()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createCommunicationLinkResourceType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourcetypeFactory.eINSTANCE.createResourceInterface()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ParameterFactory.eINSTANCE.createVariableUsage()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ParameterFactory.eINSTANCE.createVariableCharacterisation()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ParameterFactory.eINSTANCE.createCharacterisedVariable()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createHardwareInducedFailureType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createSoftwareInducedFailureType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createInternalFailureOccurrenceDescription()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createNetworkInducedFailureType()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createExternalFailureOccurrenceDescription()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ReliabilityFactory.eINSTANCE.createResourceTimeoutFailureType()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, SeffFactory.eINSTANCE.createStopAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createResourceDemandingBehaviour()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createBranchAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createStartAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createResourceDemandingSEFF()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createResourceDemandingInternalBehaviour()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createReleaseAction()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, SeffFactory.eINSTANCE.createLoopAction()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, SeffFactory.eINSTANCE.createForkAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createForkedBehaviour()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createSynchronisationPoint()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createExternalCallAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createCallReturnAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createProbabilisticBranchTransition()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createAcquireAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createCollectionIteratorAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createGuardedBranchTransition()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createSetVariableAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createInternalCallAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createEmitEventAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffFactory.eINSTANCE.createInternalAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffPerformanceFactory.eINSTANCE.createInfrastructureCall()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffPerformanceFactory.eINSTANCE.createResourceCall()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffPerformanceFactory.eINSTANCE.createParametricResourceDemand()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffReliabilityFactory.eINSTANCE.createRecoveryActionBehaviour()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SeffReliabilityFactory.eINSTANCE.createRecoveryAction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QosannotationsFactory.eINSTANCE.createQoSAnnotations()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QosPerformanceFactory.eINSTANCE.createSystemSpecifiedExecutionTime()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QosPerformanceFactory.eINSTANCE.createComponentSpecifiedExecutionTime()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				QosReliabilityFactory.eINSTANCE.createSpecifiedReliabilityAnnotation()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, SystemFactory.eINSTANCE.createSystem()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createResourceEnvironment()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createLinkingResource()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createResourceContainer()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createProcessingResourceSpecification()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createCommunicationLinkResourceSpecification()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ResourceenvironmentFactory.eINSTANCE.createHDDProcessingResourceSpecification()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				AllocationFactory.eINSTANCE.createAllocationContext()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				AllocationFactory.eINSTANCE.createAllocation()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				SubsystemFactory.eINSTANCE.createSubSystem()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createBoxedPDF()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createContinuousSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createProbabilityMassFunction()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createSamplePDF()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createComplex()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createExponentialDistribution()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createNormalDistribution()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createLognormalDistribution()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createGammaDistribution()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createIntSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createBoolSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createDoubleSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				ProbfunctionFactory.eINSTANCE.createStringSample()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createVariableReference()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createNamespaceReference()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, StoexFactory.eINSTANCE.createVariable()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createTermExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createProductExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createProbabilityFunctionLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createParenthesis()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createIntLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createDoubleLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createCompareExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createBoolLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createStringLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createPowerExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createBooleanOperatorExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createNotExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createNegativeExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createFunctionLiteral()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createIfElseExpression()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				StoexFactory.eINSTANCE.createRandomVariable()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, UnitsFactory.eINSTANCE.createBaseUnit()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UnitsFactory.eINSTANCE.createUnitRepository()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UnitsFactory.eINSTANCE.createUnitMultiplication()));
+
+		newChildDescriptors.add(
+				createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS, UnitsFactory.eINSTANCE.createUnitPower()));
+
+		newChildDescriptors.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+				UnitsFactory.eINSTANCE.createUnitDivision()));
 	}
 
 	/**
@@ -969,8 +783,7 @@ public class DimensionTypeScaleItemProvider extends DimensionTypeItemProvider {
 				|| childFeature == QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2",
-					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

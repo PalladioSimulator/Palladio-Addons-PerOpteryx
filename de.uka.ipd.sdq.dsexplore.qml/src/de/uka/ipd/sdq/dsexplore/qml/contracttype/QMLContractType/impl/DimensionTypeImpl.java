@@ -1,24 +1,24 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dimension Type</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Dimension Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -32,7 +32,8 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 public abstract class DimensionTypeImpl extends IdentifierImpl implements DimensionType {
 	/**
 	 * The cached value of the '{@link #getRelationSemantics() <em>Relation Semantics</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRelationSemantics()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	protected RelationSemantics relationSemantics;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected DimensionTypeImpl() {
@@ -48,7 +50,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +60,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,16 +70,16 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetRelationSemantics(RelationSemantics newRelationSemantics, NotificationChain msgs) {
 		RelationSemantics oldRelationSemantics = relationSemantics;
 		relationSemantics = newRelationSemantics;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractTypePackage.DIMENSION_TYPE__RELATION_SEMANTICS, oldRelationSemantics,
-					newRelationSemantics);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE__RELATION_SEMANTICS,
+					oldRelationSemantics, newRelationSemantics);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -85,7 +89,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -102,13 +107,13 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					QMLContractTypePackage.DIMENSION_TYPE__RELATION_SEMANTICS, newRelationSemantics,
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE__RELATION_SEMANTICS, newRelationSemantics,
 					newRelationSemantics));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,7 +126,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -134,7 +140,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -148,7 +155,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -162,7 +170,8 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,4 +183,4 @@ public abstract class DimensionTypeImpl extends IdentifierImpl implements Dimens
 		return super.eIsSet(featureID);
 	}
 
-} // DimensionTypeImpl
+} //DimensionTypeImpl

@@ -1,24 +1,24 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
+
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral;
-import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Set Literal</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Set Literal</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -30,9 +30,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
  */
 public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getValues()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	protected EList<Element> values;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SetLiteralImpl() {
@@ -48,7 +49,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +59,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -69,7 +72,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,7 +86,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -98,7 +103,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,7 +118,8 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,4 +131,4 @@ public class SetLiteralImpl extends ValueLiteralImpl implements SetLiteral {
 		return super.eIsSet(featureID);
 	}
 
-} // SetLiteralImpl
+} //SetLiteralImpl

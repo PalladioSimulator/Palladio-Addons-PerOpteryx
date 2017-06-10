@@ -2,15 +2,12 @@
 <?eclipse version="3.0"?>
 
 <!--
- <copyright>
- </copyright>
-
- $Id$
 -->
 
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLProfile -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
@@ -26,6 +23,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLProfile -->
       <editor
             id="de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.presentation.QMLProfileEditorID"
             name="%_UI_QMLProfileEditor_label"
@@ -37,6 +35,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLProfile -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
@@ -52,6 +51,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLProfile -->
       <editor
             id="de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.presentation.QMLDeclarationsEditorID"
             name="%_UI_QMLDeclarationsEditor_label"
@@ -63,6 +63,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLProfile -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
@@ -78,6 +79,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLProfile -->
       <editor
             id="de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.presentation.QMLContractEditorID"
             name="%_UI_QMLContractEditor_label"
@@ -89,6 +91,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated QMLProfile -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
@@ -104,6 +107,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated QMLProfile -->
       <editor
             id="de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.presentation.QMLContractTypeEditorID"
             name="%_UI_QMLContractTypeEditor_label"

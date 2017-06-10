@@ -1,38 +1,33 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfileFactory;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.QMLProfilePackage;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static QMLProfileFactory init() {
 		try {
-			QMLProfileFactory theQMLProfileFactory = (QMLProfileFactory) EPackage.Registry.INSTANCE
-					.getEFactory(QMLProfilePackage.eNS_URI);
+			QMLProfileFactory theQMLProfileFactory = (QMLProfileFactory) EPackage.Registry.INSTANCE.getEFactory(QMLProfilePackage.eNS_URI);
 			if (theQMLProfileFactory != null) {
 				return theQMLProfileFactory;
 			}
@@ -44,7 +39,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public QMLProfileFactoryImpl() {
@@ -52,7 +48,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -72,7 +69,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,7 +80,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,7 +91,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -102,7 +102,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,7 +113,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,7 +123,8 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -130,4 +133,4 @@ public class QMLProfileFactoryImpl extends EFactoryImpl implements QMLProfileFac
 		return QMLProfilePackage.eINSTANCE;
 	}
 
-} // QMLProfileFactoryImpl
+} //QMLProfileFactoryImpl

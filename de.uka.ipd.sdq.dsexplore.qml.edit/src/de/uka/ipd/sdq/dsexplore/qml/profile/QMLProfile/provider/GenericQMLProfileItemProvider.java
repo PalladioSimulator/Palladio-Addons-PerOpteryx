@@ -1,34 +1,32 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.provider;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.provider.QMLDeclarationItemProvider;
+
+import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.provider.QMLDeclarationItemProvider;
-import de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile;
-
 /**
- * This is the item provider adapter for a
- * {@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
- *
+ * This is the item provider adapter for a {@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
 public class GenericQMLProfileItemProvider extends QMLDeclarationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GenericQMLProfileItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +35,8 @@ public class GenericQMLProfileItemProvider extends QMLDeclarationItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,22 +49,22 @@ public class GenericQMLProfileItemProvider extends QMLDeclarationItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((GenericQMLProfile) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_GenericQMLProfile_type")
-				: getString("_UI_GenericQMLProfile_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_GenericQMLProfile_type") : getString("_UI_GenericQMLProfile_type") + " " + label;
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -78,7 +76,8 @@ public class GenericQMLProfileItemProvider extends QMLDeclarationItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,8 +87,8 @@ public class GenericQMLProfileItemProvider extends QMLDeclarationItemProvider {
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

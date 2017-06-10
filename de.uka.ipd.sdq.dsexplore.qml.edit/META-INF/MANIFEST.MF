@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.provider.QMLProfileEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.provider,
  de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.provider,
  de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.provider,

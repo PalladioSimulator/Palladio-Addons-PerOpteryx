@@ -1,35 +1,40 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Frequency;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RangeValue;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
 import org.eclipse.ocl.ParserException;
+
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Frequency;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RangeValue;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Frequency</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Frequency</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -43,7 +48,8 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidat
 public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Frequency {
 	/**
 	 * The cached value of the '{@link #getUpperLimit() <em>Upper Limit</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUpperLimit()
 	 * @generated
 	 * @ordered
@@ -52,7 +58,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 
 	/**
 	 * The cached value of the '{@link #getLowerLimit() <em>Lower Limit</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getLowerLimit()
 	 * @generated
 	 * @ordered
@@ -60,7 +67,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	protected RangeValue lowerLimit;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FrequencyImpl() {
@@ -68,7 +76,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,7 +86,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,15 +96,16 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetUpperLimit(RangeValue newUpperLimit, NotificationChain msgs) {
 		RangeValue oldUpperLimit = upperLimit;
 		upperLimit = newUpperLimit;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractPackage.FREQUENCY__UPPER_LIMIT, oldUpperLimit, newUpperLimit);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__UPPER_LIMIT, oldUpperLimit,
+					newUpperLimit);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -104,7 +115,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,21 +124,21 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 		if (newUpperLimit != upperLimit) {
 			NotificationChain msgs = null;
 			if (upperLimit != null)
-				msgs = ((InternalEObject) upperLimit).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__UPPER_LIMIT, null, msgs);
+				msgs = ((InternalEObject) upperLimit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__UPPER_LIMIT, null,
+						msgs);
 			if (newUpperLimit != null)
-				msgs = ((InternalEObject) newUpperLimit).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__UPPER_LIMIT, null, msgs);
+				msgs = ((InternalEObject) newUpperLimit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__UPPER_LIMIT, null,
+						msgs);
 			msgs = basicSetUpperLimit(newUpperLimit, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__UPPER_LIMIT,
-					newUpperLimit, newUpperLimit));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__UPPER_LIMIT, newUpperLimit, newUpperLimit));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -135,15 +147,16 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLowerLimit(RangeValue newLowerLimit, NotificationChain msgs) {
 		RangeValue oldLowerLimit = lowerLimit;
 		lowerLimit = newLowerLimit;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					QMLContractPackage.FREQUENCY__LOWER_LIMIT, oldLowerLimit, newLowerLimit);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__LOWER_LIMIT, oldLowerLimit,
+					newLowerLimit);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -153,7 +166,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,72 +175,61 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 		if (newLowerLimit != lowerLimit) {
 			NotificationChain msgs = null;
 			if (lowerLimit != null)
-				msgs = ((InternalEObject) lowerLimit).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__LOWER_LIMIT, null, msgs);
+				msgs = ((InternalEObject) lowerLimit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__LOWER_LIMIT, null,
+						msgs);
 			if (newLowerLimit != null)
-				msgs = ((InternalEObject) newLowerLimit).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__LOWER_LIMIT, null, msgs);
+				msgs = ((InternalEObject) newLowerLimit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QMLContractPackage.FREQUENCY__LOWER_LIMIT, null,
+						msgs);
 			msgs = basicSetLowerLimit(newLowerLimit, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__LOWER_LIMIT,
-					newLowerLimit, newLowerLimit));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.FREQUENCY__LOWER_LIMIT, newLowerLimit, newLowerLimit));
 	}
 
 	/**
-	 * The cached OCL expression body for the '
-	 * {@link #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Range of FREQUENCY must have UPPERLIMIT or LOWERLIMIT</em>}' operation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL expression body for the '{@link #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Range of FREQUENCY must have UPPERLIMIT or LOWERLIMIT</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP = "(self.lowerLimit <> null) or (self.upperLimit <> null)";
 
 	/**
-	 * The cached OCL invariant for the '
-	 * {@link #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Range of FREQUENCY must have UPPERLIMIT or LOWERLIMIT</em>}' invariant operation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @see #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL invariant for the '{@link #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Range of FREQUENCY must have UPPERLIMIT or LOWERLIMIT</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static Constraint RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV == null) {
 			OCL.Helper helper = EOCL_ENV.createOCLHelper();
 			helper.setContext(QMLContractPackage.Literals.FREQUENCY);
 			try {
 				RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV = helper
-						.createInvariant(
-								RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
+						.createInvariant(RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_EXP);
 			} catch (ParserException pe) {
 				throw new UnsupportedOperationException(pe.getLocalizedMessage());
 			}
 		}
-		if (!EOCL_ENV.createQuery(RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV)
-				.check(this)) {
+		if (!EOCL_ENV.createQuery(RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
-								QMLContractValidator.FREQUENCY__RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
+						QMLContractValidator.FREQUENCY__RANGE_OF_FREQUENCY_MUST_HAVE_UPPERLIMIT_OR_LOWERLIMIT,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] {
+								"range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -235,7 +238,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -250,7 +254,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -265,7 +270,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -282,7 +288,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -299,7 +306,8 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -313,4 +321,4 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 		return super.eIsSet(featureID);
 	}
 
-} // FrequencyImpl
+} //FrequencyImpl

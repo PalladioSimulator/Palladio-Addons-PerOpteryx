@@ -94,8 +94,7 @@ public class DimensionTypeScaleImpl<T extends Number> extends DimensionTypeImpl 
 	@Override
 	public EList<T> getScaleElements() {
 		if (scaleElements == null) {
-			scaleElements = new EObjectContainmentEList<T>(EObject.class, this,
-					QMLContractTypePackage.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS);
+			scaleElements = new EObjectContainmentEList<T>(EObject.class, this, QMLContractTypePackage.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS);
 		}
 		return scaleElements;
 	}
@@ -120,8 +119,7 @@ public class DimensionTypeScaleImpl<T extends Number> extends DimensionTypeImpl 
 		EScaleOfMeasure oldScale = scale;
 		scale = newScale == null ? SCALE_EDEFAULT : newScale;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_SCALE__SCALE,
-					oldScale, scale));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.DIMENSION_TYPE_SCALE__SCALE, oldScale, scale));
 	}
 
 	/**

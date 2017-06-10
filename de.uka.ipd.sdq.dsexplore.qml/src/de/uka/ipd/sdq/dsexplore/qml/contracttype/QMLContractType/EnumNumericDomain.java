@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
@@ -13,9 +9,10 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '
- * <em><b>Enum Numeric Domain</b></em>', and utility methods for working with them. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the literals of the enumeration '<em><b>Enum Numeric Domain</b></em>',
+ * and utility methods for working with them.
+ * <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getEnumNumericDomain()
  * @model
  * @generated
@@ -23,7 +20,8 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum EnumNumericDomain implements Enumerator {
 	/**
 	 * The '<em><b>Real</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #REAL_VALUE
 	 * @generated
 	 * @ordered
@@ -32,7 +30,8 @@ public enum EnumNumericDomain implements Enumerator {
 
 	/**
 	 * The '<em><b>Integer</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #INTEGER_VALUE
 	 * @generated
 	 * @ordered
@@ -43,8 +42,8 @@ public enum EnumNumericDomain implements Enumerator {
 	 * The '<em><b>Real</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Real</b></em>' literal object isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of '<em><b>Real</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #REAL
@@ -58,8 +57,8 @@ public enum EnumNumericDomain implements Enumerator {
 	 * The '<em><b>Integer</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #INTEGER
@@ -71,23 +70,24 @@ public enum EnumNumericDomain implements Enumerator {
 
 	/**
 	 * An array of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final EnumNumericDomain[] VALUES_ARRAY = new EnumNumericDomain[] { REAL, INTEGER, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Enum Numeric Domain</b></em>' enumerators. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * A public read-only list of all the '<em><b>Enum Numeric Domain</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final List<EnumNumericDomain> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
@@ -103,9 +103,11 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified name. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EnumNumericDomain getByName(String name) {
@@ -120,7 +122,8 @@ public enum EnumNumericDomain implements Enumerator {
 
 	/**
 	 * Returns the '<em><b>Enum Numeric Domain</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
@@ -136,26 +139,30 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EnumNumericDomain(int value, String name, String literal) {
@@ -165,7 +172,8 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,7 +182,8 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -183,7 +192,8 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -192,9 +202,9 @@ public enum EnumNumericDomain implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,4 +212,4 @@ public enum EnumNumericDomain implements Enumerator {
 		return literal;
 	}
 
-} // EnumNumericDomain
+} //EnumNumericDomain

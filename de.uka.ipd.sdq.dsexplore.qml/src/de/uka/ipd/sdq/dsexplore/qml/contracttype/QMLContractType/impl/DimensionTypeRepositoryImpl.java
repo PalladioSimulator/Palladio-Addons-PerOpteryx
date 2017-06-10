@@ -1,25 +1,25 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Dimension Type Repository</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Dimension Type Repository</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -32,7 +32,8 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 public class DimensionTypeRepositoryImpl extends IdentifierImpl implements DimensionTypeRepository {
 	/**
 	 * The cached value of the '{@link #getDimensionTypes() <em>Dimension Types</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getDimensionTypes()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	protected EList<DimensionType> dimensionTypes;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected DimensionTypeRepositoryImpl() {
@@ -48,7 +50,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,7 +60,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,7 +74,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,7 +88,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -99,7 +105,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,7 +120,8 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,4 +133,4 @@ public class DimensionTypeRepositoryImpl extends IdentifierImpl implements Dimen
 		return super.eIsSet(featureID);
 	}
 
-} // DimensionTypeRepositoryImpl
+} //DimensionTypeRepositoryImpl

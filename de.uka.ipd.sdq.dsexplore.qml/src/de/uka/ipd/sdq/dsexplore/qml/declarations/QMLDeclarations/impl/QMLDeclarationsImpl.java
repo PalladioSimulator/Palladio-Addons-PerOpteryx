@@ -1,27 +1,28 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.impl;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations;
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>QML Declarations</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>QML Declarations</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -35,7 +36,8 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclarations {
 	/**
 	 * The cached value of the '{@link #getQmlDeclarations() <em>Qml Declarations</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getQmlDeclarations()
 	 * @generated
 	 * @ordered
@@ -43,7 +45,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	protected EList<QMLDeclaration> qmlDeclarations;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected QMLDeclarationsImpl() {
@@ -51,7 +54,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,7 +64,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -73,7 +78,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,7 +92,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -99,7 +106,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -115,7 +123,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -129,7 +138,8 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,4 +151,4 @@ public class QMLDeclarationsImpl extends IdentifierImpl implements QMLDeclaratio
 		return super.eIsSet(featureID);
 	}
 
-} // QMLDeclarationsImpl
+} //QMLDeclarationsImpl

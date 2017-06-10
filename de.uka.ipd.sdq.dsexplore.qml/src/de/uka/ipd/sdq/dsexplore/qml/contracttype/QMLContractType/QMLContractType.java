@@ -1,17 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
-import org.eclipse.emf.common.util.EList;
-
 import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>QML Contract Type</b></em>'.
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>QML Contract Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -33,15 +30,14 @@ import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration;
  */
 public interface QMLContractType extends QMLDeclaration {
 	/**
-	 * Returns the value of the '<em><b>Dimensions</b></em>' reference list. The list contents are
-	 * of type {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension}. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Dimensions</b></em>' reference list.
+	 * The list contents are of type {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension}.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dimensions</em>' reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Dimensions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Dimensions</em>' reference list.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage#getQMLContractType_Dimensions()
 	 * @model ordered="false"

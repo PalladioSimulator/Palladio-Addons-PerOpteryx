@@ -1,35 +1,41 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.OCL;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
+
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.util.QMLContractTypeValidator;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import java.util.Map;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import org.eclipse.ocl.ParserException;
+
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Order</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Order</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -42,9 +48,9 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
  */
 public class OrderImpl extends IdentifierImpl implements Order {
 	/**
-	 * The cached value of the '{@link #getBiggerElement() <em>Bigger Element</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getBiggerElement() <em>Bigger Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBiggerElement()
 	 * @generated
 	 * @ordered
@@ -53,7 +59,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 
 	/**
 	 * The cached value of the '{@link #getSmallerElement() <em>Smaller Element</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSmallerElement()
 	 * @generated
 	 * @ordered
@@ -61,7 +68,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	protected Element smallerElement;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected OrderImpl() {
@@ -69,7 +77,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -78,7 +87,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,15 +98,16 @@ public class OrderImpl extends IdentifierImpl implements Order {
 			biggerElement = (Element) eResolveProxy(oldBiggerElement);
 			if (biggerElement != oldBiggerElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement, biggerElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement,
+							biggerElement));
 			}
 		}
 		return biggerElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Element basicGetBiggerElement() {
@@ -104,7 +115,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,12 +124,12 @@ public class OrderImpl extends IdentifierImpl implements Order {
 		Element oldBiggerElement = biggerElement;
 		biggerElement = newBiggerElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__BIGGER_ELEMENT,
-					oldBiggerElement, biggerElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__BIGGER_ELEMENT, oldBiggerElement, biggerElement));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,15 +139,16 @@ public class OrderImpl extends IdentifierImpl implements Order {
 			smallerElement = (Element) eResolveProxy(oldSmallerElement);
 			if (smallerElement != oldSmallerElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement, smallerElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement,
+							smallerElement));
 			}
 		}
 		return smallerElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Element basicGetSmallerElement() {
@@ -143,7 +156,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,14 +165,13 @@ public class OrderImpl extends IdentifierImpl implements Order {
 		Element oldSmallerElement = smallerElement;
 		smallerElement = newSmallerElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__SMALLER_ELEMENT,
-					oldSmallerElement, smallerElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.ORDER__SMALLER_ELEMENT, oldSmallerElement, smallerElement));
 	}
 
 	/**
 	 * The cached OCL expression body for the '{@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' operation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -167,8 +180,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 
 	/**
 	 * The cached OCL invariant for the '{@link #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>BIGGERELEMENT must not be SMALLELEMENT</em>}' invariant operation.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #BIGGERELEMENT_must_not_be_SMALLELEMENT(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -176,7 +189,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	protected static Constraint BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -193,12 +207,10 @@ public class OrderImpl extends IdentifierImpl implements Order {
 		}
 		if (!EOCL_ENV.createQuery(BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
-								QMLContractTypeValidator.ORDER__BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "BIGGERELEMENT_must_not_be_SMALLELEMENT",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractTypeValidator.DIAGNOSTIC_SOURCE,
+						QMLContractTypeValidator.ORDER__BIGGERELEMENT_MUST_NOT_BE_SMALLELEMENT,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "BIGGERELEMENT_must_not_be_SMALLELEMENT", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -207,7 +219,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -226,7 +239,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -243,7 +257,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -260,7 +275,8 @@ public class OrderImpl extends IdentifierImpl implements Order {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -276,11 +292,11 @@ public class OrderImpl extends IdentifierImpl implements Order {
 
 	/**
 	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} // OrderImpl
+} //OrderImpl

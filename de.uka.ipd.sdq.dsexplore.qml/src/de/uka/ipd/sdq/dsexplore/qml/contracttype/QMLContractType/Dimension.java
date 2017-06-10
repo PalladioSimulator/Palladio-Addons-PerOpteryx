@@ -1,17 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.palladiosimulator.pcm.core.entity.Entity;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Dimension</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Dimension</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * Dimensions characterize atomic QoS&nbsp;aspects.
@@ -32,11 +30,10 @@ import org.palladiosimulator.pcm.core.entity.Entity;
 public interface Dimension extends EObject, Entity {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference.
@@ -49,7 +46,8 @@ public interface Dimension extends EObject, Entity {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getType <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' containment reference.
 	 * @see #getType()
 	 * @generated
@@ -58,11 +56,10 @@ public interface Dimension extends EObject, Entity {
 
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' containment reference.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Unit</em>' containment reference isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Unit</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit</em>' containment reference.
@@ -75,7 +72,8 @@ public interface Dimension extends EObject, Entity {
 
 	/**
 	 * Sets the value of the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getUnit <em>Unit</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unit</em>' containment reference.
 	 * @see #getUnit()
 	 * @generated

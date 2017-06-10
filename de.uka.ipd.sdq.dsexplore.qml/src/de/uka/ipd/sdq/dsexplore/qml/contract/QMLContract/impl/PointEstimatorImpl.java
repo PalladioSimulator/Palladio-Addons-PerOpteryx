@@ -1,25 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
-
-import org.eclipse.emf.ecore.EClass;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.PointEstimator;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Point Estimator</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Point Estimator</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
 public abstract class PointEstimatorImpl extends StochasticEvaluationAspectImpl implements PointEstimator {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected PointEstimatorImpl() {
@@ -27,7 +25,8 @@ public abstract class PointEstimatorImpl extends StochasticEvaluationAspectImpl 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -35,4 +34,4 @@ public abstract class PointEstimatorImpl extends StochasticEvaluationAspectImpl 
 		return QMLContractPackage.Literals.POINT_ESTIMATOR;
 	}
 
-} // PointEstimatorImpl
+} //PointEstimatorImpl

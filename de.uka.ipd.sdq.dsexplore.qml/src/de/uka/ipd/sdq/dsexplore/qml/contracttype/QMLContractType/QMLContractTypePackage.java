@@ -1,10 +1,10 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType;
+
+import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
+
+import de.uka.ipd.sdq.identifier.IdentifierPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -12,19 +12,18 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
-import de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarationsPackage;
-import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
- * objects to represent
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypeFactory
@@ -34,36 +33,40 @@ import de.uka.ipd.sdq.identifier.IdentifierPackage;
 public interface QMLContractTypePackage extends EPackage {
 	/**
 	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "QMLContractType";
 
 	/**
 	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http:///QMLContractType.ecore";
 
 	/**
 	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "QMLContractType";
 
 	/**
 	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QMLContractTypePackage eINSTANCE = de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl
-			.init();
+	QMLContractTypePackage eINSTANCE = de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeImpl <em>Dimension Type</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionType()
 	 * @generated
@@ -72,17 +75,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE__ID = IdentifierPackage.IDENTIFIER__ID;
 
 	/**
-	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -90,8 +93,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Dimension Type</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -99,7 +102,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeSetImpl <em>Dimension Type Set</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeSetImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeSet()
 	 * @generated
@@ -108,44 +112,44 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_SET__ID = DIMENSION_TYPE__ID;
 
 	/**
-	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_SET__RELATION_SEMANTICS = DIMENSION_TYPE__RELATION_SEMANTICS;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_SET__ELEMENTS = DIMENSION_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Order</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Order</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_SET__ORDER = DIMENSION_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Dimension Type Set</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Dimension Type Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -153,7 +157,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl <em>Relation Semantics</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getRelationSemantics()
 	 * @generated
@@ -162,8 +167,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -171,17 +176,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Rel Sem</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RELATION_SEMANTICS__REL_SEM = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Relation Semantics</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Relation Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -189,7 +194,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.ElementImpl <em>Element</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.ElementImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getElement()
 	 * @generated
@@ -198,8 +204,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -207,8 +213,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -225,7 +231,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl <em>Order</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getOrder()
 	 * @generated
@@ -234,8 +241,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -261,8 +268,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Order</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -270,7 +277,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl <em>Dimension Type Enum</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeEnum()
 	 * @generated
@@ -279,44 +287,44 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_ENUM__ID = DIMENSION_TYPE__ID;
 
 	/**
-	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_ENUM__RELATION_SEMANTICS = DIMENSION_TYPE__RELATION_SEMANTICS;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_ENUM__ELEMENTS = DIMENSION_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Order</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Order</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_ENUM__ORDER = DIMENSION_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Dimension Type Enum</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Dimension Type Enum</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -324,7 +332,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitImpl <em>Unit</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getUnit()
 	 * @generated
@@ -333,8 +342,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -342,8 +351,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -351,8 +360,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Unit</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -360,7 +369,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeNumericImpl <em>Dimension Type Numeric</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeNumericImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeNumeric()
 	 * @generated
@@ -369,17 +379,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_NUMERIC__ID = DIMENSION_TYPE__ID;
 
 	/**
-	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The feature id for the '<em><b>Relation Semantics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -396,17 +406,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Domain</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_NUMERIC__DOMAIN = DIMENSION_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Dimension Type Numeric</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Dimension Type Numeric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -414,7 +424,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.NumericRangeImpl <em>Numeric Range</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.NumericRangeImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getNumericRange()
 	 * @generated
@@ -423,8 +434,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -432,8 +443,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Lower Limit</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -441,8 +452,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Upper Limit</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -450,8 +461,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Numeric Range</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -459,7 +470,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypeImpl <em>QML Contract Type</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypeImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getQMLContractType()
 	 * @generated
@@ -468,8 +480,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -477,8 +489,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -494,9 +506,9 @@ public interface QMLContractTypePackage extends EPackage {
 	int QML_CONTRACT_TYPE__DIMENSIONS = QMLDeclarationsPackage.QML_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>QML Contract Type</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>QML Contract Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -504,7 +516,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitRepositoryImpl <em>Unit Repository</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitRepositoryImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getUnitRepository()
 	 * @generated
@@ -513,8 +526,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -522,17 +535,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Units</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int UNIT_REPOSITORY__UNITS = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Unit Repository</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Unit Repository</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -540,7 +553,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeRepositoryImpl <em>Dimension Type Repository</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeRepositoryImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeRepository()
 	 * @generated
@@ -549,8 +563,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -558,17 +572,17 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Dimension Types</b></em>' reference list.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES = IdentifierPackage.IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Dimension Type Repository</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The number of structural features of the '<em>Dimension Type Repository</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -576,7 +590,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionImpl <em>Dimension</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionImpl
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimension()
 	 * @generated
@@ -585,8 +600,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -594,8 +609,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -740,7 +755,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics <em>Enum Relation Semantics</em>}' enum.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getEnumRelationSemantics()
 	 * @generated
@@ -749,7 +765,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain <em>Enum Numeric Domain</em>}' enum.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getEnumNumericDomain()
 	 * @generated
@@ -778,7 +795,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet <em>Dimension Type Set</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension Type Set</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet
 	 * @generated
@@ -787,7 +805,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet#getElements <em>Elements</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Elements</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet#getElements()
 	 * @see #getDimensionTypeSet()
@@ -797,7 +816,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet#getOrder <em>Order</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Order</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet#getOrder()
 	 * @see #getDimensionTypeSet()
@@ -807,7 +827,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType <em>Dimension Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension Type</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType
 	 * @generated
@@ -816,7 +837,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType#getRelationSemantics <em>Relation Semantics</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Relation Semantics</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType#getRelationSemantics()
 	 * @see #getDimensionType()
@@ -826,7 +848,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics <em>Relation Semantics</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Relation Semantics</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics
 	 * @generated
@@ -835,7 +858,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics#getRelSem <em>Rel Sem</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Rel Sem</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics#getRelSem()
 	 * @see #getRelationSemantics()
@@ -845,7 +869,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element <em>Element</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Element</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element
 	 * @generated
@@ -853,10 +878,9 @@ public interface QMLContractTypePackage extends EPackage {
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order <em>Order</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order <em>Order</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Order</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order
 	 * @generated
@@ -865,7 +889,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getBiggerElement <em>Bigger Element</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Bigger Element</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getBiggerElement()
 	 * @see #getOrder()
@@ -875,7 +900,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getSmallerElement <em>Smaller Element</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Smaller Element</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order#getSmallerElement()
 	 * @see #getOrder()
@@ -885,7 +911,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum <em>Dimension Type Enum</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension Type Enum</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum
 	 * @generated
@@ -894,7 +921,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum#getElements <em>Elements</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Elements</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum#getElements()
 	 * @see #getDimensionTypeEnum()
@@ -904,7 +932,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum#getOrder <em>Order</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Order</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum#getOrder()
 	 * @see #getDimensionTypeEnum()
@@ -913,10 +942,9 @@ public interface QMLContractTypePackage extends EPackage {
 	EReference getDimensionTypeEnum_Order();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit <em>Unit</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit <em>Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Unit</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Unit
 	 * @generated
@@ -925,7 +953,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric <em>Dimension Type Numeric</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension Type Numeric</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric
 	 * @generated
@@ -934,7 +963,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric#getRange <em>Range</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Range</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric#getRange()
 	 * @see #getDimensionTypeNumeric()
@@ -944,7 +974,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric#getDomain <em>Domain</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Domain</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric#getDomain()
 	 * @see #getDimensionTypeNumeric()
@@ -954,7 +985,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange <em>Numeric Range</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Numeric Range</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange
 	 * @generated
@@ -963,7 +995,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange#getLowerLimit <em>Lower Limit</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Lower Limit</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange#getLowerLimit()
 	 * @see #getNumericRange()
@@ -973,7 +1006,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange#getUpperLimit <em>Upper Limit</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Upper Limit</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange#getUpperLimit()
 	 * @see #getNumericRange()
@@ -983,7 +1017,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType <em>QML Contract Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>QML Contract Type</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType
 	 * @generated
@@ -992,7 +1027,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType#getDimensions <em>Dimensions</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Dimensions</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType#getDimensions()
 	 * @see #getQMLContractType()
@@ -1002,7 +1038,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository <em>Unit Repository</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Unit Repository</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository
 	 * @generated
@@ -1011,7 +1048,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository#getUnits <em>Units</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Units</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository#getUnits()
 	 * @see #getUnitRepository()
@@ -1021,7 +1059,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository <em>Dimension Type Repository</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension Type Repository</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository
 	 * @generated
@@ -1030,7 +1069,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository#getDimensionTypes <em>Dimension Types</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Dimension Types</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository#getDimensionTypes()
 	 * @see #getDimensionTypeRepository()
@@ -1040,7 +1080,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension <em>Dimension</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Dimension</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension
 	 * @generated
@@ -1049,7 +1090,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Type</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getType()
 	 * @see #getDimension()
@@ -1059,7 +1101,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getUnit <em>Unit</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Unit</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension#getUnit()
 	 * @see #getDimension()
@@ -1133,7 +1176,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for enum '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics <em>Enum Relation Semantics</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Enum Relation Semantics</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics
 	 * @generated
@@ -1142,7 +1186,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for enum '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain <em>Enum Numeric Domain</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Enum Numeric Domain</em>'.
 	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain
 	 * @generated
@@ -1172,20 +1217,21 @@ public interface QMLContractTypePackage extends EPackage {
 
 	/**
 	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	QMLContractTypeFactory getQMLContractTypeFactory();
 
 	/**
-	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1193,7 +1239,8 @@ public interface QMLContractTypePackage extends EPackage {
 	interface Literals {
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeSetImpl <em>Dimension Type Set</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeSetImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeSet()
 		 * @generated
@@ -1202,21 +1249,24 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_SET__ELEMENTS = eINSTANCE.getDimensionTypeSet_Elements();
 
 		/**
 		 * The meta object literal for the '<em><b>Order</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_SET__ORDER = eINSTANCE.getDimensionTypeSet_Order();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeImpl <em>Dimension Type</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionType()
 		 * @generated
@@ -1225,14 +1275,16 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Relation Semantics</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE__RELATION_SEMANTICS = eINSTANCE.getDimensionType_RelationSemantics();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl <em>Relation Semantics</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.RelationSemanticsImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getRelationSemantics()
 		 * @generated
@@ -1240,16 +1292,17 @@ public interface QMLContractTypePackage extends EPackage {
 		EClass RELATION_SEMANTICS = eINSTANCE.getRelationSemantics();
 
 		/**
-		 * The meta object literal for the '<em><b>Rel Sem</b></em>' attribute feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Rel Sem</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute RELATION_SEMANTICS__REL_SEM = eINSTANCE.getRelationSemantics_RelSem();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.ElementImpl <em>Element</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.ElementImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getElement()
 		 * @generated
@@ -1258,7 +1311,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl <em>Order</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.OrderImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getOrder()
 		 * @generated
@@ -1266,24 +1320,25 @@ public interface QMLContractTypePackage extends EPackage {
 		EClass ORDER = eINSTANCE.getOrder();
 
 		/**
-		 * The meta object literal for the '<em><b>Bigger Element</b></em>' reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Bigger Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ORDER__BIGGER_ELEMENT = eINSTANCE.getOrder_BiggerElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Smaller Element</b></em>' reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Smaller Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ORDER__SMALLER_ELEMENT = eINSTANCE.getOrder_SmallerElement();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl <em>Dimension Type Enum</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeEnumImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeEnum()
 		 * @generated
@@ -1292,21 +1347,24 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_ENUM__ELEMENTS = eINSTANCE.getDimensionTypeEnum_Elements();
 
 		/**
 		 * The meta object literal for the '<em><b>Order</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_ENUM__ORDER = eINSTANCE.getDimensionTypeEnum_Order();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitImpl <em>Unit</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getUnit()
 		 * @generated
@@ -1315,7 +1373,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeNumericImpl <em>Dimension Type Numeric</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeNumericImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeNumeric()
 		 * @generated
@@ -1324,22 +1383,24 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Range</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_NUMERIC__RANGE = eINSTANCE.getDimensionTypeNumeric_Range();
 
 		/**
-		 * The meta object literal for the '<em><b>Domain</b></em>' attribute feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Domain</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute DIMENSION_TYPE_NUMERIC__DOMAIN = eINSTANCE.getDimensionTypeNumeric_Domain();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.NumericRangeImpl <em>Numeric Range</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.NumericRangeImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getNumericRange()
 		 * @generated
@@ -1347,24 +1408,25 @@ public interface QMLContractTypePackage extends EPackage {
 		EClass NUMERIC_RANGE = eINSTANCE.getNumericRange();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Limit</b></em>' attribute feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Lower Limit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute NUMERIC_RANGE__LOWER_LIMIT = eINSTANCE.getNumericRange_LowerLimit();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Limit</b></em>' attribute feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Upper Limit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute NUMERIC_RANGE__UPPER_LIMIT = eINSTANCE.getNumericRange_UpperLimit();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypeImpl <em>QML Contract Type</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypeImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getQMLContractType()
 		 * @generated
@@ -1372,16 +1434,17 @@ public interface QMLContractTypePackage extends EPackage {
 		EClass QML_CONTRACT_TYPE = eINSTANCE.getQMLContractType();
 
 		/**
-		 * The meta object literal for the '<em><b>Dimensions</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Dimensions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference QML_CONTRACT_TYPE__DIMENSIONS = eINSTANCE.getQMLContractType_Dimensions();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitRepositoryImpl <em>Unit Repository</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.UnitRepositoryImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getUnitRepository()
 		 * @generated
@@ -1389,16 +1452,17 @@ public interface QMLContractTypePackage extends EPackage {
 		EClass UNIT_REPOSITORY = eINSTANCE.getUnitRepository();
 
 		/**
-		 * The meta object literal for the '<em><b>Units</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 *
+		 * The meta object literal for the '<em><b>Units</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference UNIT_REPOSITORY__UNITS = eINSTANCE.getUnitRepository_Units();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeRepositoryImpl <em>Dimension Type Repository</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionTypeRepositoryImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimensionTypeRepository()
 		 * @generated
@@ -1407,14 +1471,16 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Dimension Types</b></em>' reference list feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION_TYPE_REPOSITORY__DIMENSION_TYPES = eINSTANCE.getDimensionTypeRepository_DimensionTypes();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionImpl <em>Dimension</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.DimensionImpl
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getDimension()
 		 * @generated
@@ -1423,14 +1489,16 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION__TYPE = eINSTANCE.getDimension_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Unit</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DIMENSION__UNIT = eINSTANCE.getDimension_Unit();
@@ -1489,7 +1557,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics <em>Enum Relation Semantics</em>}' enum.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getEnumRelationSemantics()
 		 * @generated
@@ -1498,7 +1567,8 @@ public interface QMLContractTypePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain <em>Enum Numeric Domain</em>}' enum.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumNumericDomain
 		 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl.QMLContractTypePackageImpl#getEnumNumericDomain()
 		 * @generated
@@ -1527,4 +1597,4 @@ public interface QMLContractTypePackage extends EPackage {
 
 	}
 
-} // QMLContractTypePackage
+} //QMLContractTypePackage

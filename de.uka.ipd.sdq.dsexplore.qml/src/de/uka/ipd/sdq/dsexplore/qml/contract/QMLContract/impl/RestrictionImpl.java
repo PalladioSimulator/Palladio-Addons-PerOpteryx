@@ -1,22 +1,21 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EnumOperator;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Restriction;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Restriction</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Restriction</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -28,9 +27,9 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Restriction;
  */
 public class RestrictionImpl extends AspectRequirementImpl implements Restriction {
 	/**
-	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -38,9 +37,9 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	protected static final EnumOperator OPERATOR_EDEFAULT = EnumOperator.LESS;
 
 	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOperator()
 	 * @generated
 	 * @ordered
@@ -48,7 +47,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	protected EnumOperator operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RestrictionImpl() {
@@ -56,7 +56,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,7 +66,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,7 +76,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -82,12 +85,12 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 		EnumOperator oldOperator = operator;
 		operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.RESTRICTION__OPERATOR, oldOperator,
-					operator));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.RESTRICTION__OPERATOR, oldOperator, operator));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,7 +103,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,7 +118,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,7 +133,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -141,7 +147,8 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,4 +163,4 @@ public class RestrictionImpl extends AspectRequirementImpl implements Restrictio
 		return result.toString();
 	}
 
-} // RestrictionImpl
+} //RestrictionImpl

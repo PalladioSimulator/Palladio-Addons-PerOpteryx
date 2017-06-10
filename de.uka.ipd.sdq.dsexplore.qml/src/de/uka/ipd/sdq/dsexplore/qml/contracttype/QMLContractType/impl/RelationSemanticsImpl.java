@@ -1,23 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.impl;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractTypePackage;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics;
+
 import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Relation Semantics</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Relation Semantics</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -29,9 +29,9 @@ import de.uka.ipd.sdq.identifier.impl.IdentifierImpl;
  */
 public class RelationSemanticsImpl extends IdentifierImpl implements RelationSemantics {
 	/**
-	 * The default value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The default value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRelSem()
 	 * @generated
 	 * @ordered
@@ -39,9 +39,9 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	protected static final EnumRelationSemantics REL_SEM_EDEFAULT = EnumRelationSemantics.DECREASING;
 
 	/**
-	 * The cached value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getRelSem() <em>Rel Sem</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRelSem()
 	 * @generated
 	 * @ordered
@@ -49,7 +49,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	protected EnumRelationSemantics relSem = REL_SEM_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RelationSemanticsImpl() {
@@ -57,7 +58,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,7 +68,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,7 +78,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,12 +87,12 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 		EnumRelationSemantics oldRelSem = relSem;
 		relSem = newRelSem == null ? REL_SEM_EDEFAULT : newRelSem;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM,
-					oldRelSem, relSem));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractTypePackage.RELATION_SEMANTICS__REL_SEM, oldRelSem, relSem));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -101,7 +105,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,7 +120,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -129,7 +135,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -142,7 +149,8 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -157,4 +165,4 @@ public class RelationSemanticsImpl extends IdentifierImpl implements RelationSem
 		return result.toString();
 	}
 
-} // RelationSemanticsImpl
+} //RelationSemanticsImpl

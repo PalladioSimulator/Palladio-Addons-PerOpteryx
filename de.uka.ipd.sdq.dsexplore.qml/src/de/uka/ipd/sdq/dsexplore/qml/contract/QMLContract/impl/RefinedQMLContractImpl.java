@@ -1,40 +1,45 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.impl;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RefinedQMLContract;
+
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
 
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.ocl.ParserException;
+
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Criterion;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.GenericQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.RefinedQMLContract;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidator;
-
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Refined QML Contract</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Refined QML Contract</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -48,7 +53,8 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.util.QMLContractValidat
 public class RefinedQMLContractImpl extends GenericQMLContractImpl implements RefinedQMLContract {
 	/**
 	 * The cached value of the '{@link #getRefinedBy() <em>Refined By</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getRefinedBy()
 	 * @generated
 	 * @ordered
@@ -56,9 +62,9 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	protected EList<Criterion> refinedBy;
 
 	/**
-	 * The cached value of the '{@link #getBaseContract() <em>Base Contract</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getBaseContract() <em>Base Contract</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getBaseContract()
 	 * @generated
 	 * @ordered
@@ -66,7 +72,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	protected GenericQMLContract baseContract;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RefinedQMLContractImpl() {
@@ -74,7 +81,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,20 +91,21 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<Criterion> getRefinedBy() {
 		if (refinedBy == null) {
-			refinedBy = new EObjectContainmentEList<Criterion>(Criterion.class, this,
-					QMLContractPackage.REFINED_QML_CONTRACT__REFINED_BY);
+			refinedBy = new EObjectContainmentEList<Criterion>(Criterion.class, this, QMLContractPackage.REFINED_QML_CONTRACT__REFINED_BY);
 		}
 		return refinedBy;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -106,15 +115,16 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 			baseContract = (GenericQMLContract) eResolveProxy(oldBaseContract);
 			if (baseContract != oldBaseContract) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							QMLContractPackage.REFINED_QML_CONTRACT__BASE_CONTRACT, oldBaseContract, baseContract));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QMLContractPackage.REFINED_QML_CONTRACT__BASE_CONTRACT, oldBaseContract,
+							baseContract));
 			}
 		}
 		return baseContract;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GenericQMLContract basicGetBaseContract() {
@@ -122,7 +132,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -130,18 +141,15 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 		GenericQMLContract oldBaseContract = baseContract;
 		baseContract = newBaseContract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					QMLContractPackage.REFINED_QML_CONTRACT__BASE_CONTRACT, oldBaseContract, baseContract));
+			eNotify(new ENotificationImpl(this, Notification.SET, QMLContractPackage.REFINED_QML_CONTRACT__BASE_CONTRACT, oldBaseContract,
+					baseContract));
 	}
 
 	/**
-	 * The cached OCL expression body for the '
-	 * {@link #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Contract cannot refine itself</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
-	 * @see #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain,
-	 *      java.util.Map)
+	 * The cached OCL expression body for the '{@link #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Contract cannot refine itself</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
@@ -149,8 +157,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 
 	/**
 	 * The cached OCL invariant for the '{@link #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Contract cannot refine itself</em>}' invariant operation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #contract_cannot_refine_itself(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -158,7 +166,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	protected static Constraint CONTRACT_CANNOT_REFINE_ITSELF__DIAGNOSTIC_CHAIN_MAP__EOCL_INV;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,12 +184,10 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 		}
 		if (!EOCL_ENV.createQuery(CONTRACT_CANNOT_REFINE_ITSELF__DIAGNOSTIC_CHAIN_MAP__EOCL_INV).check(this)) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
-								QMLContractValidator.REFINED_QML_CONTRACT__CONTRACT_CANNOT_REFINE_ITSELF,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "contract_cannot_refine_itself",
-												EObjectValidator.getObjectLabel(this, context) }),
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, QMLContractValidator.DIAGNOSTIC_SOURCE,
+						QMLContractValidator.REFINED_QML_CONTRACT__CONTRACT_CANNOT_REFINE_ITSELF,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
+								new Object[] { "contract_cannot_refine_itself", EObjectValidator.getObjectLabel(this, context) }),
 						new Object[] { this }));
 			}
 			return false;
@@ -189,7 +196,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,7 +210,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -219,7 +228,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -238,7 +248,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -255,7 +266,8 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,11 +283,11 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 
 	/**
 	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	protected static final OCL EOCL_ENV = OCL.newInstance();
 
-} // RefinedQMLContractImpl
+} //RefinedQMLContractImpl
