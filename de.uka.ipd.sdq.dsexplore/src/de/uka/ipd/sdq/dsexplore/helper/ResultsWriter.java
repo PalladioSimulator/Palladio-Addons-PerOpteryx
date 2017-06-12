@@ -129,8 +129,7 @@ public class ResultsWriter {
 	 * @param archiveIndividuals
 	 * @param modelNamePrefix
 	 */
-	public static void writeBestCostIndividualAsPCM(final Collection<Individual> archiveIndividuals, final URI folder,
-			final String modelName) {
+	public static void writeBestCostIndividualAsPCM(final Collection<Individual> archiveIndividuals, final URI folder, final String modelName) {
 		DSEIndividual costFocusIndividual = null;
 
 		for (Individual ind : archiveIndividuals) {
@@ -172,8 +171,8 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @param asEMF
 	 */
-	public static void writeIndividualsToFile(final Collection<Individual> individuals, final URI folder, final String filename,
-			final int iteration, final List<Exception> exceptionList, final boolean asEMF, final boolean asCSV) {
+	public static void writeIndividualsToFile(final Collection<Individual> individuals, final URI folder, final String filename, final int iteration,
+			final List<Exception> exceptionList, final boolean asEMF, final boolean asCSV) {
 		List<DSEIndividual> dseIndList = new ArrayList<DSEIndividual>(individuals.size());
 		for (Individual ind : individuals) {
 			if (ind instanceof DSEIndividual) {
@@ -231,7 +230,7 @@ public class ResultsWriter {
 					output = prettyPrintResultLineCSV(output, ind2, criteriaToSave, criteriaWithConfidence);
 				} catch (Exception e) {
 					exceptionList.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
-					.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
+					exceptionList.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
 				}
 				counter++;
 			}
@@ -283,8 +282,7 @@ public class ResultsWriter {
 		return this.fileLocation;
 	}
 
-	public void writeTacticCandidateInfo(final ITactic heuristic,
-			final Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
+	public void writeTacticCandidateInfo(final ITactic heuristic, final Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
 		// writeToLogFile(heuristic.getClass() + ";" +
 		// candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
@@ -363,8 +361,7 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @return
 	 */
-	private static StringBuilder addResultsToCSVString(final Collection<DSEIndividual> individuals,
-			final List<Exception> exceptionList) {
+	private static StringBuilder addResultsToCSVString(final Collection<DSEIndividual> individuals, final List<Exception> exceptionList) {
 		StringBuilder output = new StringBuilder(10000);
 
 		DSEIndividual firstIndividual = individuals.iterator().next();
@@ -440,8 +437,8 @@ public class ResultsWriter {
 		return basicFilename + iteration + "_" + getTimeDateString() + fileEnding;
 	}
 
-	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, final DSEIndividual ind,
-			final List<Criterion> criterionsToSave, final List<Criterion> criteriaWithConfidence) {
+	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, final DSEIndividual ind, final List<Criterion> criterionsToSave,
+			final List<Criterion> criteriaWithConfidence) {
 
 		// first objectives
 		DSEObjectives objs = ind.getObjectives();
@@ -524,10 +521,8 @@ public class ResultsWriter {
 												resourceContainer)
 												&& EMFHelper.checkIdentity(
 														procResResult.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
-														.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
-														.getActiveResourceType_ActiveResourceSpecification(),
+																.getActiveResourceType_ActiveResourceSpecification(),
 														processingResourceSpecification.getActiveResourceType_ActiveResourceSpecification())) {
-														.getActiveResourceType_ActiveResourceSpecification())) {
 											output.append(procResResult.getResourceUtilisation());
 											break;
 										}
@@ -621,8 +616,7 @@ public class ResultsWriter {
 					for (LinkingResource linkingResource : links) {
 						output.append("Util of " + linkingResource.getEntityName() + " "
 								+ linkingResource.getCommunicationLinkResourceSpecifications_LinkingResource()
-								.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification()
-								.getEntityName()
+										.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification().getEntityName()
 								+ ";");
 					}
 				}
@@ -688,8 +682,7 @@ public class ResultsWriter {
 		return criteria;
 	}
 
-	private static boolean dominatesForCriteria(final List<Criterion> criteriaList, final DSEIndividual source,
-			final DSEIndividual other) {
+	private static boolean dominatesForCriteria(final List<Criterion> criteriaList, final DSEIndividual source, final DSEIndividual other) {
 		DSEObjectives objsSource = source.getObjectives();
 		DSEObjectives objsOther = other.getObjectives();
 
@@ -725,7 +718,7 @@ public class ResultsWriter {
 		String fileNamePrefixString = getFileNamePrefixString(folder, modelName);
 
 		List<Repository> repositories = inst.getRepositories();
-		
+
 		for (Repository repository : repositories) {
 			inst.saveToXMIFile(repository, fileNamePrefixString + ".repository");
 		}
@@ -735,8 +728,7 @@ public class ResultsWriter {
 		URI designDecisionURI = Opt4JStarter.getDSEWorkflowConfig().getDesignDecisionFileName();
 		URI cloudProfileURI = designDecisionURI.trimFileExtension().appendFileExtension("cloudprofile");
 
-		CloudProfile cloudProfile = (CloudProfile) EMFHelper.loadFromXMIFile(cloudProfileURI,
-				CloudprofilePackage.eINSTANCE);
+		CloudProfile cloudProfile = (CloudProfile) EMFHelper.loadFromXMIFile(cloudProfileURI, CloudprofilePackage.eINSTANCE);
 
 		inst.saveToXMIFile(cloudProfile, fileNamePrefixString + ".cloudprofile");
 
