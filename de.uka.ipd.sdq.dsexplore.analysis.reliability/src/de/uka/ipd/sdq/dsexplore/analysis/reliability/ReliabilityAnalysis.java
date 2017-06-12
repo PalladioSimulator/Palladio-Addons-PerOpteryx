@@ -197,6 +197,12 @@ public class ReliabilityAnalysis extends AbstractAnalysis implements IAnalysis {
 		this.blackboard = blackboard;
 		
 	}
+
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		return AnalysisComplexity.INTERMEDIATE;
+	}
+	
 	
 	
 	

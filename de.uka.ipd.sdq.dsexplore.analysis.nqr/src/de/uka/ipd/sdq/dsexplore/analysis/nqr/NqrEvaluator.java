@@ -163,4 +163,9 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis{
 		}
 		return nqrr;
 	}
+
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		return AnalysisComplexity.LONG;
+	}
 }

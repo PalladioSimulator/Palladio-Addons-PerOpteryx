@@ -127,4 +127,12 @@ public class AnalysisProxy implements IAnalysis {
 		this.blackboard = blackboard;
 	}
 
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		if (ana != null)
+			return ana.getAnalysisComplexity();
+		else
+			return AnalysisComplexity.INTERMEDIATE;
+	}
+
 }

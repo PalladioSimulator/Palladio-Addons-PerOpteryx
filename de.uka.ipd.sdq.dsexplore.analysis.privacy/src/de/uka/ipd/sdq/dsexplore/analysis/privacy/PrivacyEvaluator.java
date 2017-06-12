@@ -43,8 +43,7 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.legalCountryCodes = new HashSet<Integer>();
-		String costModelFileName = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.PRIVACY_FILE,
-				"");
+		String costModelFileName = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.PRIVACY_FILE, "");
 
 		File legalPersonalGeoLocationFile = new File(costModelFileName);
 
@@ -58,7 +57,7 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 				throw new IllegalArgumentException(e);
 			}
 		}
-		
+
 		initialiseCriteria(configuration);
 	}
 
@@ -67,8 +66,8 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 
 		PCMInstance pcmInstance = pheno.getPCMInstance();
-		ModelCollection models = new ModelCollection(pcmInstance.getRepositories().get(0), pcmInstance.getSystem(),
-				pcmInstance.getAllocation(), pcmInstance.getResourceEnvironment());
+		ModelCollection models = new ModelCollection(pcmInstance.getRepositories().get(0), pcmInstance.getSystem(), pcmInstance.getAllocation(),
+				pcmInstance.getResourceEnvironment());
 
 		GraphFactory graphFactory = new GraphFactory();
 		ModelGraph modelGraph;
@@ -92,8 +91,7 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	}
 
 	@Override
-	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion)
-			throws CoreException, AnalysisFailedException {
+	public IAnalysisResult retrieveResultsFor(PCMPhenotype pheno, Criterion criterion) throws CoreException, AnalysisFailedException {
 		PrivacyAnalysisResult result = this.previousPrivacyResults.get(pheno.getNumericID());
 		return result;
 	}
@@ -106,6 +104,11 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard) {
 		this.blackboard = blackboard;
+	}
+
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		return AnalysisComplexity.VERY_SHORT;
 	}
 
 }

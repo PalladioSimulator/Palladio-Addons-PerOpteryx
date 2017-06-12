@@ -403,4 +403,10 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 		} else
 			return true;
 	}
+
+
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		return AnalysisComplexity.SHORT;
+	}
 }

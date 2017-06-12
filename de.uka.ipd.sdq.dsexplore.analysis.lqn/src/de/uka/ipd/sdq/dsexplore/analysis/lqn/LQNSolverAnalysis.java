@@ -70,6 +70,11 @@ public class LQNSolverAnalysis extends AbstractLQNAnalysis {
 		return true;
 	}
 
+	@Override
+	public AnalysisComplexity getAnalysisComplexity() {
+		return AnalysisComplexity.VERY_LONG;
+	}
+
 	
 	
 }
