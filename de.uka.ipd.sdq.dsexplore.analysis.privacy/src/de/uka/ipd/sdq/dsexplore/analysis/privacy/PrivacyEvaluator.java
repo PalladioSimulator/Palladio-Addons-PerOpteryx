@@ -6,9 +6,9 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.iobserve.analysis.graph.GraphFactory;
@@ -22,7 +22,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
-import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
@@ -32,8 +31,10 @@ import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
+	
+	private static final Logger logger = Logger.getLogger(PrivacyEvaluator.class.getName());
 
-	private Set<Integer> legalCountryCodes;
+	private HashSet<Integer> legalCountryCodes;
 	private Map<Long, PrivacyAnalysisResult> previousPrivacyResults = new HashMap<Long, PrivacyAnalysisResult>();
 
 	public PrivacyEvaluator() {
@@ -80,14 +81,37 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		ComponentClassificationAnalysis compAnalysis = new ComponentClassificationAnalysis(modelGraph);
 		compAnalysis.start();
+		
+//		String graphRep = modelGraph.printGraph(true);
 
 		DeploymentAnalysis deplAnalysis = new DeploymentAnalysis(modelGraph, this.legalCountryCodes);
 		String[] illegalDeployments = deplAnalysis.start();
+		
+		logResult(illegalDeployments);
 
 		PrivacyAnalysisResult analysisResult = new PrivacyAnalysisResult(illegalDeployments, this.criterionToAspect,
 				(PrivacyAnalysisQualityAttributeDeclaration) this.qualityAttribute);
+		
 		this.previousPrivacyResults.put(pheno.getNumericID(), analysisResult);
 
+	}
+
+	/*
+	 * Logs the Privacy Analysis result!
+	 */
+	private void logResult(String[] illegalDeployments) {
+		if (illegalDeployments.length == 0)
+		{
+			logger.warn("Deploment ist privacy compliant!");
+		}
+		else
+		{
+			logger.warn("Deployment is privacy INCOMPLIANT. See the errors:");
+			for (String illegalDeployment : illegalDeployments)
+			{
+				logger.warn("\t" +  illegalDeployment);
+			}
+		}
 	}
 
 	@Override

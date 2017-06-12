@@ -3,7 +3,6 @@ package org.iobserve.analysis.privacy;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.iobserve.analysis.graph.ComponentEdge;
@@ -19,10 +18,10 @@ import org.palladiosimulator.pcm.compositionprivacy.DataPrivacyLvl;
  */
 public class DeploymentAnalysis {
 
-	private final Set<Integer> legalPersonalGeoLocations;
+	private final HashSet<Integer> legalPersonalGeoLocations;
 	private ModelGraph model;
 
-	public DeploymentAnalysis(ModelGraph model, final Set<Integer> legalPersonalGeoLocations) {
+	public DeploymentAnalysis(ModelGraph model, final HashSet<Integer> legalPersonalGeoLocations) {
 		this.legalPersonalGeoLocations = legalPersonalGeoLocations;
 		this.model = model;
 	}
@@ -34,7 +33,6 @@ public class DeploymentAnalysis {
 	 */
 	public String[] start() {
 
-		boolean legalDeployment = true;
 		List<String> illegalDeployments = new ArrayList<String>();
 		
 		for (DeploymentNode server : model.getServers()) {

@@ -40,7 +40,6 @@ import de.uka.ipd.sdq.dsexplore.helper.ConstraintAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.CriterionAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.helper.ObjectiveAndEvaluator;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
-import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Value;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -77,7 +76,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 	private MDSDBlackboard blackboard;
 
 	/** Logger for log4j. */
-	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator");
+	private static final Logger logger = Logger.getLogger(DSEEvaluator.class);
 
 	@Inject
 	public DSEEvaluator(Provider<DSEObjectives> provider) {
@@ -179,14 +178,16 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 					for (ConstraintAndEvaluator constraint : this.constraints)
 
 						// gehört constraint zu diesem evaluator?
-						if (constraint.getEvaluator() == evaluator) {
+						if (constraint.getEvaluator() == evaluator && evaluator.getAnalysisComplexity() == AnalysisComplexity.VERY_SHORT) {
 							// wenn ja
 							boolean contraintIsMet = retrieveConstraint(pheno, obj, constraint);
 
-							if (!contraintIsMet)
-							{
+							if (!contraintIsMet) {
+								logger.info("Constraint: " + constraint.getConstraint().getName() + " was not met! Stopping the analysis run!");
 								fillObjectivesWithInfeasible(obj);
 								return obj;
+							} else {
+								logger.info("Constraint check OK!");
 							}
 						}
 				}
