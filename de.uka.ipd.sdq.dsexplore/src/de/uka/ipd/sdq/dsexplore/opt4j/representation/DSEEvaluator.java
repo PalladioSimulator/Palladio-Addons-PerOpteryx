@@ -183,12 +183,13 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 							boolean contraintIsMet = retrieveConstraint(pheno, obj, constraint);
 
 							if (!contraintIsMet) {
-								logger.info("Constraint: " + constraint.getConstraint().getName() + " was not met! Stopping the analysis run!");
+								System.err.println("Constraint: " + constraint.getConstraint().getName() + " was not met! Stopping the analysis run!");
 								fillObjectivesWithInfeasible(obj);
 								return obj;
-							} else {
-								logger.info("Constraint check OK!");
 							}
+							// else {
+							// System.out.println("Constraint check OK!");
+							// }
 						}
 				}
 

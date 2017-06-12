@@ -20,7 +20,8 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourceenvironmentprivacy.ResourceContainerPrivacy;
 
 public class GraphFactory {
-//	private static final Logger LOG = LogManager.getLogger(GraphFactory.class);
+	// private static final Logger LOG =
+	// LogManager.getLogger(GraphFactory.class);
 
 	private ModelCollection modelProvider;
 
@@ -73,15 +74,16 @@ public class GraphFactory {
 	 */
 	private void extractAssemblyContexts(org.palladiosimulator.pcm.system.System sysModel) {
 		EList<AssemblyContext> assemblyContexts = sysModel.getAssemblyContexts__ComposedStructure();
-		Set<String> acs = new HashSet<String>();
+		// Set<String> acs = new HashSet<String>();
 
 		for (AssemblyContext assemblyContext : assemblyContexts) {
 			// LOG.info(assemblyContext.getId());
 			this.assemblyContexts.put(assemblyContext.getId(), assemblyContext);
-			acs.add(assemblyContext.getId());
+			// acs.add(assemblyContext.getId());
 		}
 
-//		LOG.info("Individual Assembly Contexts found in System Model: " + acs.size());
+		// LOG.info("Individual Assembly Contexts found in System Model: " +
+		// acs.size());
 	}
 
 	private void extractAssemblyConnectors(org.palladiosimulator.pcm.system.System sysModel) {
@@ -113,14 +115,18 @@ public class GraphFactory {
 			acs.add(providedAC_ID);
 		}
 
-//		LOG.info("Individual Assembly Contexts found in Assembly Connectors: " + acs.size());
+		// LOG.info("Individual Assembly Contexts found in Assembly Connectors:
+		// " + acs.size());
 	}
 
 	private void updatePrivacyLvl(AssemblyConnectorPrivacy acp, DataPrivacyLvl assemblyConnectorPrivacyLvl, String assemblyContext_ID) {
 		// Check whether the AssemblyContext was found while extracting
 		AssemblyContext assemblyContext = this.assemblyContexts.get(assemblyContext_ID);
 		if (assemblyContext == null) {
-//			LOG.error(String.format("The provided AssemblyContext (ID: %s) form the AssemblyConnectorPrivacy (ID: %s) "	+ "was not found during the AssemblyContextExtraction", assemblyContext_ID, acp.getId()));
+			// LOG.error(String.format("The provided AssemblyContext (ID: %s)
+			// form the AssemblyConnectorPrivacy (ID: %s) " + "was not found
+			// during the AssemblyContextExtraction", assemblyContext_ID,
+			// acp.getId()));
 
 			this.assemblyContexts.put(assemblyContext_ID, acp.getProvidingAssemblyContext_AssemblyConnector());
 		}
@@ -143,7 +149,9 @@ public class GraphFactory {
 			if (resourceContainer instanceof ResourceContainerPrivacy) {
 				this.resourceContainers.put(resourceContainer.getId(), (ResourceContainerPrivacy) resourceContainer);
 			} else {
-//				LOG.error(String.format("A ResourceContainer (ID: %s) was found which has no privacy extention", resourceContainer.getId()));
+				// LOG.error(String.format("A ResourceContainer (ID: %s) was
+				// found which has no privacy extention",
+				// resourceContainer.getId()));
 			}
 		}
 	}
@@ -160,13 +168,17 @@ public class GraphFactory {
 			boolean correctIDs = true;
 			String resContainerID = resContainer.getId();
 			if (!this.resourceContainers.containsKey(resContainerID)) {
-//				LOG.error(String.format("A unknown ResourceContainer (ID: %s) was found during allocation context analysis.", resContainer.getId()));
+				// LOG.error(String.format("A unknown ResourceContainer (ID: %s)
+				// was found during allocation context analysis.",
+				// resContainer.getId()));
 				correctIDs = false;
 			}
 
 			String assemblyContextID = assemblyContext.getId();
 			if (!this.assemblyContexts.containsKey(assemblyContextID)) {
-//				LOG.error(String.format("An unknown AssemblyContext (ID: %s) was found during allocation context analysis.", assemblyContext.getId()));
+				// LOG.error(String.format("An unknown AssemblyContext (ID: %s)
+				// was found during allocation context analysis.",
+				// assemblyContext.getId()));
 				correctIDs = false;
 			}
 
@@ -215,7 +227,7 @@ public class GraphFactory {
 			reqNode.addCommunicationEdge(edge);
 		}
 
-//		LOG.info("Building DONE!");
+		// LOG.info("Building DONE!");
 		return new ModelGraph(servers.values(), components.values(), this.modelProvider);
 	}
 }

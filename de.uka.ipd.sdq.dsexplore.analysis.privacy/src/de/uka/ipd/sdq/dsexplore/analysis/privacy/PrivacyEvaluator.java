@@ -3,11 +3,15 @@ package de.uka.ipd.sdq.dsexplore.analysis.privacy;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Appender;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -18,6 +22,7 @@ import org.iobserve.analysis.privacy.ComponentClassificationAnalysis;
 import org.iobserve.analysis.privacy.DeploymentAnalysis;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnStrategy;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
@@ -31,7 +36,7 @@ import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
-	
+
 	private static final Logger logger = Logger.getLogger(PrivacyEvaluator.class.getName());
 
 	private HashSet<Integer> legalCountryCodes;
@@ -43,10 +48,12 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
-		this.legalCountryCodes = new HashSet<Integer>();
-		String costModelFileName = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.PRIVACY_FILE, "");
 
-		File legalPersonalGeoLocationFile = new File(costModelFileName);
+		this.legalCountryCodes = new HashSet<Integer>();
+		String legalGeoFile = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.PRIVACY_FILE, "");
+//		System.out.println("Privacy File: " + legalGeoFile);
+
+		File legalPersonalGeoLocationFile = new File(legalGeoFile);
 
 		if (legalPersonalGeoLocationFile.exists() && legalPersonalGeoLocationFile.isFile()) {
 
@@ -58,9 +65,13 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 				throw new IllegalArgumentException(e);
 			}
 		}
+		
+//		for (Integer s : legalCountryCodes)
+//			System.out.println(s.toString());
 
 		initialiseCriteria(configuration);
 	}
+
 
 	@Override
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
@@ -81,17 +92,17 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		ComponentClassificationAnalysis compAnalysis = new ComponentClassificationAnalysis(modelGraph);
 		compAnalysis.start();
-		
-//		String graphRep = modelGraph.printGraph(true);
+
+		// String graphRep = modelGraph.printGraph(true);
 
 		DeploymentAnalysis deplAnalysis = new DeploymentAnalysis(modelGraph, this.legalCountryCodes);
 		String[] illegalDeployments = deplAnalysis.start();
-		
+
 		logResult(illegalDeployments);
 
 		PrivacyAnalysisResult analysisResult = new PrivacyAnalysisResult(illegalDeployments, this.criterionToAspect,
 				(PrivacyAnalysisQualityAttributeDeclaration) this.qualityAttribute);
-		
+
 		this.previousPrivacyResults.put(pheno.getNumericID(), analysisResult);
 
 	}
@@ -100,16 +111,12 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	 * Logs the Privacy Analysis result!
 	 */
 	private void logResult(String[] illegalDeployments) {
-		if (illegalDeployments.length == 0)
-		{
-			logger.warn("Deploment ist privacy compliant!");
-		}
-		else
-		{
-			logger.warn("Deployment is privacy INCOMPLIANT. See the errors:");
-			for (String illegalDeployment : illegalDeployments)
-			{
-				logger.warn("\t" +  illegalDeployment);
+		if (illegalDeployments.length == 0) {
+			System.out.println("Deploment ist privacy compliant!");
+		} else {
+			System.out.println("Deployment is privacy INCOMPLIANT. See the errors:");
+			for (String illegalDeployment : illegalDeployments) {
+				System.out.println("\t" + illegalDeployment);
 			}
 		}
 	}
