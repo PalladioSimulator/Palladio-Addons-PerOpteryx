@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.opt4j.core.Constraint;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Individual;
@@ -29,10 +30,15 @@ import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.UtilisationResult;
+import org.palladiosimulator.pcm.cloud.pcmcloud.cloudprofile.CloudProfile;
+import org.palladiosimulator.pcm.cloud.pcmcloud.cloudprofile.CloudprofilePackage;
+import org.palladiosimulator.pcm.cloud.pcmcloud.cloudprofile.util.CloudprofileResourceImpl;
+import org.palladiosimulator.pcm.cloud.pcmcloud.resourceenvironmentcloud.util.ResourceenvironmentcloudResourceImpl;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceEnvironment;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -79,7 +85,7 @@ public class ResultsWriter {
 	private List<Criterion> criteriaToSave;
 	private List<Criterion> criteriaWithConfidence;
 
-	public ResultsWriter(URI folder, String filename) {
+	public ResultsWriter(final URI folder, final String filename) {
 		this.fileLocation = folder.appendSegment(filename + "_" + getTimeDateString() + ".csv");
 		try {
 			this.fileWriter = new DSEFileWriter(this.fileLocation);
@@ -98,8 +104,8 @@ public class ResultsWriter {
 	 * @param iteration
 	 * @param exceptionList
 	 */
-	public static void writeDSEIndividualsToFile(Collection<DSEIndividual> individuals, URI folder, String lastSegment, int iteration, boolean asEMF,
-			boolean asCVS, List<Exception> exceptionList) {
+	public static void writeDSEIndividualsToFile(final Collection<DSEIndividual> individuals, final URI folder, final String lastSegment,
+			final int iteration, final boolean asEMF, final boolean asCVS, final List<Exception> exceptionList) {
 
 		if (individuals.size() > 0) {
 			if (asCVS) {
@@ -123,7 +129,8 @@ public class ResultsWriter {
 	 * @param archiveIndividuals
 	 * @param modelNamePrefix
 	 */
-	public static void writeBestCostIndividualAsPCM(Collection<Individual> archiveIndividuals, URI folder, String modelName) {
+	public static void writeBestCostIndividualAsPCM(final Collection<Individual> archiveIndividuals, final URI folder,
+			final String modelName) {
 		DSEIndividual costFocusIndividual = null;
 
 		for (Individual ind : archiveIndividuals) {
@@ -165,8 +172,8 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @param asEMF
 	 */
-	public static void writeIndividualsToFile(Collection<Individual> individuals, URI folder, String filename, int iteration,
-			List<Exception> exceptionList, boolean asEMF, boolean asCSV) {
+	public static void writeIndividualsToFile(final Collection<Individual> individuals, final URI folder, final String filename,
+			final int iteration, final List<Exception> exceptionList, final boolean asEMF, final boolean asCSV) {
 		List<DSEIndividual> dseIndList = new ArrayList<DSEIndividual>(individuals.size());
 		for (Individual ind : individuals) {
 			if (ind instanceof DSEIndividual) {
@@ -185,8 +192,8 @@ public class ResultsWriter {
 	 *            Is used for the filename
 	 * @param exceptionList
 	 */
-	public static void writeStringToFile(URI folder, String filename, String content, int iteration, List<Exception> exceptionList,
-			String fileEnding) {
+	public static void writeStringToFile(final URI folder, final String filename, final String content, final int iteration,
+			final List<Exception> exceptionList, final String fileEnding) {
 		writeToNewFile(folder, filename, new StringBuilder(content), iteration, exceptionList, fileEnding);
 	}
 
@@ -196,7 +203,7 @@ public class ResultsWriter {
 	 * @param individuals
 	 * @param collectionName
 	 */
-	public static void printOutIndividuals(Collection<DSEIndividual> individuals, String collectionName) {
+	public static void printOutIndividuals(final Collection<DSEIndividual> individuals, final String collectionName) {
 
 		if (individuals.iterator().hasNext()) {
 
@@ -224,6 +231,7 @@ public class ResultsWriter {
 					output = prettyPrintResultLineCSV(output, ind2, criteriaToSave, criteriaWithConfidence);
 				} catch (Exception e) {
 					exceptionList.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
+					.add(new Exception("Encountered corrupted result number " + counter + ", skipped it", e));
 				}
 				counter++;
 			}
@@ -238,11 +246,11 @@ public class ResultsWriter {
 		}
 	}
 
-	public static String formatDouble(Double gene) {
+	public static String formatDouble(final Double gene) {
 		return Double.toString(gene);
 	}
 
-	public void writeIndividual(DSEIndividual i) {
+	public void writeIndividual(final DSEIndividual i) {
 
 		List<DSEIndividual> individualList = new ArrayList<DSEIndividual>(1);
 		individualList.add(i);
@@ -275,7 +283,8 @@ public class ResultsWriter {
 		return this.fileLocation;
 	}
 
-	public void writeTacticCandidateInfo(ITactic heuristic, Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
+	public void writeTacticCandidateInfo(final ITactic heuristic,
+			final Collection<TacticsResultCandidate> candidatesFromCurrentHeuristic) {
 		// writeToLogFile(heuristic.getClass() + ";" +
 		// candidatesFromCurrentHeuristic.size() + "; candidate(s)");
 		for (TacticsResultCandidate tacticsResultCandidate : candidatesFromCurrentHeuristic) {
@@ -288,7 +297,7 @@ public class ResultsWriter {
 		}
 	}
 
-	public void writeTacticManagerChoice(TacticsResultCandidate c) {
+	public void writeTacticManagerChoice(final TacticsResultCandidate c) {
 		this.writeToLogFile(c.getHeuristic().getClass().getSimpleName() + ";" + c.getNumericID() + ";" + c.getParent().getNumericID() + ";"
 				+ c.getID() + ";" + c.getParent().getID() + ";candidate returned\n");
 	}
@@ -298,7 +307,7 @@ public class ResultsWriter {
 	 *
 	 * @param entry
 	 */
-	public void writeToLogFile(String entry) {
+	public void writeToLogFile(final String entry) {
 		try {
 			StringBuilder out = new StringBuilder(50);
 			Calendar cal = Calendar.getInstance();
@@ -354,7 +363,8 @@ public class ResultsWriter {
 	 * @param exceptionList
 	 * @return
 	 */
-	private static StringBuilder addResultsToCSVString(Collection<DSEIndividual> individuals, List<Exception> exceptionList) {
+	private static StringBuilder addResultsToCSVString(final Collection<DSEIndividual> individuals,
+			final List<Exception> exceptionList) {
 		StringBuilder output = new StringBuilder(10000);
 
 		DSEIndividual firstIndividual = individuals.iterator().next();
@@ -377,7 +387,7 @@ public class ResultsWriter {
 		return output;
 	}
 
-	private static List<Criterion> determineCriteriaWithConfidenceInterval(DSEIndividual firstIndividual) {
+	private static List<Criterion> determineCriteriaWithConfidenceInterval(final DSEIndividual firstIndividual) {
 		DSEObjectives objs = firstIndividual.getObjectives();
 		List<Criterion> criteriaWithConfidence = new ArrayList<Criterion>();
 
@@ -403,8 +413,8 @@ public class ResultsWriter {
 		return criteriaWithConfidence;
 	}
 
-	private static void writeToNewFile(URI folder, String filename, StringBuilder results, int iteration, List<Exception> exceptionList,
-			String fileEnding) {
+	private static void writeToNewFile(final URI folder, String filename, final StringBuilder results, final int iteration,
+			final List<Exception> exceptionList, final String fileEnding) {
 		filename = getFilenameForIteration(filename, iteration, fileEnding);
 		URI fileURI = folder.appendSegment(filename);
 
@@ -426,12 +436,12 @@ public class ResultsWriter {
 
 	}
 
-	private static String getFilenameForIteration(String basicFilename, int iteration, String fileEnding) {
+	private static String getFilenameForIteration(final String basicFilename, final int iteration, final String fileEnding) {
 		return basicFilename + iteration + "_" + getTimeDateString() + fileEnding;
 	}
 
-	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, DSEIndividual ind, List<Criterion> criterionsToSave,
-			List<Criterion> criteriaWithConfidence) {
+	private static StringBuilder prettyPrintResultLineCSV(StringBuilder output, final DSEIndividual ind,
+			final List<Criterion> criterionsToSave, final List<Criterion> criteriaWithConfidence) {
 
 		// first objectives
 		DSEObjectives objs = ind.getObjectives();
@@ -485,7 +495,7 @@ public class ResultsWriter {
 	 * @param output
 	 * @return
 	 */
-	private static StringBuilder printUtilResultLine(DSEIndividual ind, StringBuilder output) {
+	private static StringBuilder printUtilResultLine(final DSEIndividual ind, final StringBuilder output) {
 
 		Objectives obs = ind.getObjectives();
 		if (obs instanceof DSEObjectives) {
@@ -514,8 +524,10 @@ public class ResultsWriter {
 												resourceContainer)
 												&& EMFHelper.checkIdentity(
 														procResResult.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
-																.getActiveResourceType_ActiveResourceSpecification(),
+														.getProcessingResourceSpecification_ProcessingResourceSpecificationResult()
+														.getActiveResourceType_ActiveResourceSpecification(),
 														processingResourceSpecification.getActiveResourceType_ActiveResourceSpecification())) {
+														.getActiveResourceType_ActiveResourceSpecification())) {
 											output.append(procResResult.getResourceUtilisation());
 											break;
 										}
@@ -559,8 +571,8 @@ public class ResultsWriter {
 	 * @param criterionsToSave
 	 * @return
 	 */
-	private static StringBuilder prettyPrintHeadlineCSV(Collection<DSEIndividual> individuals, StringBuilder output,
-			List<Criterion> criterionsToSave) {
+	private static StringBuilder prettyPrintHeadlineCSV(final Collection<DSEIndividual> individuals, StringBuilder output,
+			final List<Criterion> criterionsToSave) {
 		if (individuals.size() > 0) {
 			DSEIndividual i = individuals.iterator().next();
 
@@ -587,7 +599,7 @@ public class ResultsWriter {
 	 * @param output
 	 * @return
 	 */
-	private static StringBuilder printUtilisationHeadline(DSEIndividual i, StringBuilder output) {
+	private static StringBuilder printUtilisationHeadline(final DSEIndividual i, final StringBuilder output) {
 		Objectives obs = i.getObjectives();
 		if (obs instanceof DSEObjectives) {
 			DSEObjectives dseObj = ((DSEObjectives) obs);
@@ -609,7 +621,8 @@ public class ResultsWriter {
 					for (LinkingResource linkingResource : links) {
 						output.append("Util of " + linkingResource.getEntityName() + " "
 								+ linkingResource.getCommunicationLinkResourceSpecifications_LinkingResource()
-										.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification().getEntityName()
+								.getCommunicationLinkResourceType_CommunicationLinkResourceSpecification()
+								.getEntityName()
 								+ ";");
 					}
 				}
@@ -619,8 +632,8 @@ public class ResultsWriter {
 		return output;
 	}
 
-	private static StringBuilder determineAndPrintConfidenceIntervalHeadline(StringBuilder output, DSEObjectives objs,
-			List<Criterion> criterionsToSave) {
+	private static StringBuilder determineAndPrintConfidenceIntervalHeadline(final StringBuilder output, final DSEObjectives objs,
+			final List<Criterion> criterionsToSave) {
 
 		for (Criterion criterion : criterionsToSave) {
 			ConfidenceInterval c = objs.getConfidenceIntervalForObjective(criterion);
@@ -634,7 +647,7 @@ public class ResultsWriter {
 		return output;
 	}
 
-	private static List<Criterion> determineCriterionsToSave(DSEIndividual i) {
+	private static List<Criterion> determineCriterionsToSave(final DSEIndividual i) {
 		DSEObjectives objs = i.getObjectives();
 
 		List<Criterion> criterionsToSave = new ArrayList<Criterion>();
@@ -661,7 +674,7 @@ public class ResultsWriter {
 		return criterionsToSave;
 	}
 
-	private static List<Criterion> getCostCriteria(DSEIndividual i) {
+	private static List<Criterion> getCostCriteria(final DSEIndividual i) {
 		DSEObjectives objs = i.getObjectives();
 		List<Criterion> criteria = new ArrayList<>(objs.size());
 
@@ -675,7 +688,8 @@ public class ResultsWriter {
 		return criteria;
 	}
 
-	private static boolean dominatesForCriteria(List<Criterion> criteriaList, DSEIndividual source, DSEIndividual other) {
+	private static boolean dominatesForCriteria(final List<Criterion> criteriaList, final DSEIndividual source,
+			final DSEIndividual other) {
 		DSEObjectives objsSource = source.getObjectives();
 		DSEObjectives objsOther = other.getObjectives();
 
@@ -707,7 +721,7 @@ public class ResultsWriter {
 		return true;
 	}
 
-	private static void writePCMInstanceToResultsFolder(PCMInstance inst, URI folder, String modelName) {
+	private static void writePCMInstanceToResultsFolder(final PCMInstance inst, final URI folder, final String modelName) {
 		String fileNamePrefixString = getFileNamePrefixString(folder, modelName);
 
 		List<Repository> repositories = inst.getRepositories();
@@ -717,12 +731,40 @@ public class ResultsWriter {
 		}
 		inst.saveToXMIFile(inst.getResourceRepository(), fileNamePrefixString + ".resourcetype");
 		inst.saveToXMIFile(inst.getSystem(), fileNamePrefixString + ".system");
+
+		URI designDecisionURI = Opt4JStarter.getDSEWorkflowConfig().getDesignDecisionFileName();
+		URI cloudProfileURI = designDecisionURI.trimFileExtension().appendFileExtension("cloudprofile");
+
+		CloudProfile cloudProfile = (CloudProfile) EMFHelper.loadFromXMIFile(cloudProfileURI,
+				CloudprofilePackage.eINSTANCE);
+
+		inst.saveToXMIFile(cloudProfile, fileNamePrefixString + ".cloudprofile");
+
+		correctCloudProfileReference(inst);
+
 		inst.saveToXMIFile(inst.getResourceEnvironment(), fileNamePrefixString + ".resourceenvironment");
 		inst.saveToXMIFile(inst.getAllocation(), fileNamePrefixString + ".allocation");
 		inst.saveToXMIFile(inst.getUsageModel(), fileNamePrefixString + ".usagemodel");
 	}
 
-	private static String getFileNamePrefixString(URI folder, String modelName) {
+	private static void correctCloudProfileReference(final PCMInstance inst) {
+		ResourceEnvironment env = inst.getResourceEnvironment();
+		if (env.eResource() instanceof ResourceenvironmentcloudResourceImpl) {
+			ResourceenvironmentcloudResourceImpl cloudEnv = (ResourceenvironmentcloudResourceImpl) env.eResource();
+			CloudprofileResourceImpl cloudProfileRes = null;
+			for (Resource res : cloudEnv.getResourceSet().getResources()) {
+				if (res instanceof CloudprofileResourceImpl) {
+					cloudProfileRes = (CloudprofileResourceImpl) res;
+					break;
+				}
+			}
+			if (cloudProfileRes != null) {
+				cloudProfileRes.setURI(cloudProfileRes.getURI().deresolve(cloudEnv.getURI()));
+			}
+		}
+	}
+
+	private static String getFileNamePrefixString(final URI folder, final String modelName) {
 		IPath modelDirPath = new Path(folder.toPlatformString(true));
 		IFolder modelDirFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(modelDirPath);
 
@@ -730,7 +772,7 @@ public class ResultsWriter {
 		return fileNamePrefixString;
 	}
 
-	private static String formatValue(Value<?> value) {
+	private static String formatValue(final Value<?> value) {
 
 		if (value instanceof IntegerValue) {
 			IntegerValue intValue = (IntegerValue) value;
@@ -743,7 +785,7 @@ public class ResultsWriter {
 
 	}
 
-	private static StringBuilder printObjectives(List<Criterion> criterionsToSave, StringBuilder output) {
+	private static StringBuilder printObjectives(final List<Criterion> criterionsToSave, final StringBuilder output) {
 		for (Criterion entry : criterionsToSave) {
 			output.append(getDimensionName(entry) + ";");
 		}
@@ -764,7 +806,7 @@ public class ResultsWriter {
 	 *
 	 * @param result
 	 */
-	private void write(StringBuilder result) {
+	private void write(final StringBuilder result) {
 		if (this.fileWriter != null) {
 			try {
 				this.fileWriter.write(result.toString());
@@ -778,7 +820,7 @@ public class ResultsWriter {
 		}
 	}
 
-	public static String getDimensionName(Criterion criterion) {
+	public static String getDimensionName(final Criterion criterion) {
 		EvaluationAspectWithContext qmlCriterion = PCMDeclarationsReader.retranslateCriterionToEvaluationAspect(criterion);
 		String name = qmlCriterion.getDimension().getEntityName();
 		if (criterion instanceof UsageScenarioBasedCriterion) {
