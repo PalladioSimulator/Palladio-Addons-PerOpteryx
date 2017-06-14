@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Annotation_Profile
-Bundle-SymbolicName: Annotation_Profile;singleton:=true
+Bundle-SymbolicName: AnnotationProfile;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: annotation_profile.Activator
 Require-Bundle: org.eclipse.ui,
