@@ -3,15 +3,11 @@ package de.uka.ipd.sdq.dsexplore.analysis.privacy;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import org.apache.log4j.Appender;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -22,7 +18,6 @@ import org.iobserve.analysis.privacy.ComponentClassificationAnalysis;
 import org.iobserve.analysis.privacy.DeploymentAnalysis;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.solver.models.PCMInstance;
-import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnStrategy;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
@@ -35,6 +30,12 @@ import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
+/**
+ * The actual evaluator for the privacy analysis
+ * 
+ * @author Philipp Weimann
+ * @author Robert Heinrich
+ */
 public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 
 	private static final Logger logger = Logger.getLogger(PrivacyEvaluator.class.getName());
@@ -42,6 +43,9 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	private HashSet<Integer> legalCountryCodes;
 	private Map<Long, PrivacyAnalysisResult> previousPrivacyResults = new HashMap<Long, PrivacyAnalysisResult>();
 
+	/**
+	 * The Constructor
+	 */
 	public PrivacyEvaluator() {
 		super(new PrivacyAnalysisQualityAttributeDeclaration());
 	}
@@ -49,9 +53,10 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 
+		// Set the legal geo-locations
 		this.legalCountryCodes = new HashSet<Integer>();
 		String legalGeoFile = configuration.getRawConfiguration().getAttribute(DSEConstantsContainer.PRIVACY_FILE, "");
-//		System.out.println("Privacy File: " + legalGeoFile);
+		// System.out.println("Privacy File: " + legalGeoFile);
 
 		File legalPersonalGeoLocationFile = new File(legalGeoFile);
 
@@ -65,22 +70,24 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 				throw new IllegalArgumentException(e);
 			}
 		}
-		
-//		for (Integer s : legalCountryCodes)
-//			System.out.println(s.toString());
 
+		// for (Integer s : legalCountryCodes)
+		// System.out.println(s.toString());
+
+		// Init the dimensions!
 		initialiseCriteria(configuration);
 	}
-
 
 	@Override
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 
+		// Load PCM instance
 		PCMInstance pcmInstance = pheno.getPCMInstance();
 		ModelCollection models = new ModelCollection(pcmInstance.getRepositories().get(0), pcmInstance.getSystem(), pcmInstance.getAllocation(),
 				pcmInstance.getResourceEnvironment());
 
+		// Construct ModelGraph
 		GraphFactory graphFactory = new GraphFactory();
 		ModelGraph modelGraph;
 		try {
@@ -90,16 +97,19 @@ public class PrivacyEvaluator extends AbstractAnalysis implements IAnalysis {
 			throw new AnalysisFailedException(e);
 		}
 
+		// Start Classification Analysis
 		ComponentClassificationAnalysis compAnalysis = new ComponentClassificationAnalysis(modelGraph);
 		compAnalysis.start();
-
 		// String graphRep = modelGraph.printGraph(true);
 
+		// Start Deployment Analysis
 		DeploymentAnalysis deplAnalysis = new DeploymentAnalysis(modelGraph, this.legalCountryCodes);
 		String[] illegalDeployments = deplAnalysis.start();
 
+		// Log results
 		logResult(illegalDeployments);
 
+		// Save Results
 		PrivacyAnalysisResult analysisResult = new PrivacyAnalysisResult(illegalDeployments, this.criterionToAspect,
 				(PrivacyAnalysisQualityAttributeDeclaration) this.qualityAttribute);
 

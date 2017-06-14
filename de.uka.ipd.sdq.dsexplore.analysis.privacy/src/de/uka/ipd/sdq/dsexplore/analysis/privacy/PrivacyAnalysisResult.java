@@ -5,16 +5,16 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 
 /**
+ * A single result for a single evaluation run
  * 
  * @author Philipp Weimann
- *
+ * @author Robert Heinrich
  */
 public class PrivacyAnalysisResult implements IAnalysisResult {
 
@@ -26,10 +26,14 @@ public class PrivacyAnalysisResult implements IAnalysisResult {
 	private PrivacyAnalysisQualityAttributeDeclaration privacyQualityDimensionDeclaration;
 
 	/**
+	 * The Constructor
 	 * 
 	 * @param illegalDeployments
+	 *            the privacy violations
 	 * @param criterionToAspect
+	 *            the aspect
 	 * @param privacyQualityDimensionDeclaration
+	 *            the dimension
 	 */
 	public PrivacyAnalysisResult(String[] illegalDeployments, Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
 			PrivacyAnalysisQualityAttributeDeclaration privacyQualityDimensionDeclaration) {
