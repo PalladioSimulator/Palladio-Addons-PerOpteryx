@@ -64,7 +64,7 @@
         </edgeMappings>
         <containerMappings name="Concern Container" semanticCandidatesExpression="var:self" domainClass="ConcernModel.Concern">
           <subNodeMappings name="Concern Strategy Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Concern%20Strategy%20Node']" semanticCandidatesExpression="feature:eAllContents" domainClass="ConcernModel.ConcernStrategy">
-            <style xsi:type="style:SquareDescription" labelExpression="[self.name/]" iconPath="/concernmodel.editor.design/icons/strategy-icon.png" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
+            <style xsi:type="style:SquareDescription" labelExpression="[self.name/]" iconPath="/concernmodeleditor.design/icons/strategy-icon.png" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
@@ -78,7 +78,7 @@
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="[self.name/]" iconPath="/concernmodel.editor.design/icons/target-icon.png">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="[self.name/]" iconPath="/concernmodeleditor.design/icons/target-icon.png">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
