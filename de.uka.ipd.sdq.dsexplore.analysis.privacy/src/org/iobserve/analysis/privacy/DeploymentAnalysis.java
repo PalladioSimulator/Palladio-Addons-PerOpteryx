@@ -12,9 +12,10 @@ import org.iobserve.analysis.graph.ModelGraph;
 import org.palladiosimulator.pcm.compositionprivacy.DataPrivacyLvl;
 
 /**
+ * Analyses the given graph for privacy deployment violations.
  * 
  * @author Philipp Weimann
- *
+ * @author Robert Heinrich
  */
 public class DeploymentAnalysis {
 
@@ -34,9 +35,9 @@ public class DeploymentAnalysis {
 	public String[] start() {
 
 		List<String> illegalDeployments = new ArrayList<String>();
-		
+
 		for (DeploymentNode server : model.getServers()) {
-			
+
 			List<String> newIllegalDepoyments = this.isLegalDeployment(server);
 			illegalDeployments.addAll(newIllegalDepoyments);
 		}
@@ -58,18 +59,21 @@ public class DeploymentAnalysis {
 		}
 
 		// "unsave" geo-location!
-
 		DataPrivacyLvl mostCriticalPrivacyLvl = DataPrivacyLvl.ANONYMIZED;
 		for (ComponentNode component : server.getContainingComponents()) {
-			deploymentViolations.add(this.printDeploymentViolation(server, component));
 			mostCriticalPrivacyLvl = DataPrivacyLvl.get(Math.min(mostCriticalPrivacyLvl.getValue(), component.getPrivacyLvl().getValue()));
 		}
 
 		if (mostCriticalPrivacyLvl == DataPrivacyLvl.ANONYMIZED) {
 			// "Anonymized" can be deployed anywhere
+			deploymentViolations.clear();
 			return deploymentViolations;
 		} else if (mostCriticalPrivacyLvl == DataPrivacyLvl.PERSONAL) {
 			// Personal datas on "unsave" geo-location
+			for (ComponentNode component : server.getContainingComponents()) {
+				if (component.getPrivacyLvl() == DataPrivacyLvl.PERSONAL)
+					deploymentViolations.add(this.printDeploymentViolation(server, component));
+			}
 			return deploymentViolations;
 		}
 
@@ -89,8 +93,8 @@ public class DeploymentAnalysis {
 			return deploymentViolations;
 		} else {
 			// No easy decision, search for "joining data streams"
-			boolean illegalDeployment = this.makeExtensiveJoiningDataStreamAnalysis(server);
-			if (illegalDeployment) {
+			boolean isLegalDeployment = this.makeExtensiveJoiningDataStreamAnalysis(server);
+			if (!isLegalDeployment) {
 				for (ComponentNode component : server.getContainingComponents()) {
 					deploymentViolations.add(this.printDeploymentViolation(server, component));
 				}
@@ -138,12 +142,15 @@ public class DeploymentAnalysis {
 
 			if (edgePartner.getPrivacyLvl() == DataPrivacyLvl.PERSONAL) {
 				if (this.dataSourceEdge == null) {
+					// First personal edge found => set as source
 					this.dataSourceEdge = currentEdge;
 				} else {
+					// Second personal edge found => illegal deployment
 					return false;
 				}
 			} else if (edgePartner.getPrivacyLvl() == DataPrivacyLvl.DEPERSONALIZED) {
-				singleDataSourceEdge = this.traverseComponentNode(edgePartner);
+				singleDataSourceEdge = singleDataSourceEdge && this.traverseComponentNode(edgePartner);
+				// Do not stop! Try to reach every component
 			}
 		}
 
