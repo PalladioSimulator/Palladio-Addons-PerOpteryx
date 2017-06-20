@@ -3,8 +3,8 @@
 <plugin>
   <extension point="org.eclipse.sirius.componentization">
     <component class="concernmodeleditor.design.Activator"
-               id="concern.IDS.design"
-	       name="IDS">
+               id="concernmodeleditor.design"
+	       name="concernmodeleditor">
     </component>
   </extension>
 </plugin>
