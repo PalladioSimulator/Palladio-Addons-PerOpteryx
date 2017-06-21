@@ -205,7 +205,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="StereotypeApplication Solution Container" semanticCandidatesExpression="service:getStereotypeApplications()" documentation="@author Jan Keim" domainClass="Solutions" childrenPresentation="List">
+          <subContainerMappings name="StereotypeApplication Solution Container" preconditionExpression="[self.eGet('solutionTag')->size()>0/]" semanticCandidatesExpression="service:getStereotypeApplications()" documentation="@author Jan Keim" domainClass="StereotypeApplication" childrenPresentation="List">
             <subNodeMappings name="Applied Solution Node" semanticCandidatesExpression="[self.eGet('solutionTag')/]" domainClass="SolutionModel.Solution">
               <style xsi:type="style:SquareDescription" labelExpression="[self.name/]" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
