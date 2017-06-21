@@ -126,23 +126,20 @@ public class ResultsWriter {
 	 * Looks for the most cost efficient candidate and writes this candidate as
 	 * a PCM model to a folder with the given name.
 	 *
-	 * @param archiveIndividuals
+	 * @param individuals
 	 * @param modelNamePrefix
 	 */
-	public static void writeBestCostIndividualAsPCM(final Collection<Individual> archiveIndividuals, final URI folder, final String modelName) {
+	public static void writeBestCostIndividualAsPCM(final List<DSEIndividual> individuals, final URI folder, final String modelName) {
 		DSEIndividual costFocusIndividual = null;
 
-		for (Individual ind : archiveIndividuals) {
-			if (ind instanceof DSEIndividual) {
-				DSEIndividual dseInd = (DSEIndividual) ind;
-				List<Criterion> costCriteria = getCostCriteria(dseInd);
+		for (DSEIndividual individual : individuals) {
+				List<Criterion> costCriteria = getCostCriteria(individual);
 
 				if (costFocusIndividual == null) {
-					costFocusIndividual = dseInd;
-				} else if (dominatesForCriteria(costCriteria, costFocusIndividual, dseInd)) {
-					costFocusIndividual = dseInd;
+					costFocusIndividual = individual;
+				} else if (dominatesForCriteria(costCriteria, costFocusIndividual, individual)) {
+					costFocusIndividual = individual;
 				}
-			}
 		}
 
 		if (costFocusIndividual == null) {
