@@ -1,5 +1,7 @@
 package org.palladiosimulator.editors.sirius.repository.enriched.services;
 
+import java.util.logging.Logger;
+
 import org.eclipse.emf.ecore.EObject;
 import org.modelversioning.emfprofile.Stereotype;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
@@ -12,6 +14,8 @@ import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
  *
  */
 public class StereotypeServices {
+
+	private static Logger logger = Logger.getLogger(StereotypeServices.class.getName());
 
 	/**
 	 * Applies the Annotation Stereotype to a given EObject
