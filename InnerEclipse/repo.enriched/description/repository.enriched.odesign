@@ -1361,7 +1361,7 @@
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="service:removeSolutionStereotype()"/>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="service:removeAnnotationStereotype()"/>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool_1:ContainerCreationDescription" documentation="TODO: switch functionality away from Container Creation to Deletion" name="Unapply Solution Stereotype" containerMappings="//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']" iconPath="/repository.enriched/icons/delete-icon.png">
