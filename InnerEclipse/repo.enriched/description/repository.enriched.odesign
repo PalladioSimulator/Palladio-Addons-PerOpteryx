@@ -205,7 +205,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="StereotypeApplication Solution Container" preconditionExpression="[self.eGet('solutionTag')->size()>0/]" semanticCandidatesExpression="service:getStereotypeApplications()" documentation="@author Jan Keim" domainClass="StereotypeApplication" childrenPresentation="List">
+          <subContainerMappings name="StereotypeApplication Solution Container" preconditionExpression="service:isSolutionStereotype()" semanticCandidatesExpression="service:getStereotypeApplications()" documentation="@author Jan Keim" domainClass="StereotypeApplication" childrenPresentation="List">
             <subNodeMappings name="Applied Solution Node" semanticCandidatesExpression="[self.eGet('solutionTag')/]" domainClass="SolutionModel.Solution">
               <style xsi:type="style:SquareDescription" labelExpression="[self.name/]" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -213,7 +213,7 @@
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Solution">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Solutions">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -1342,11 +1342,28 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
+        <toolSections name="Annotations">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Apply Solutions Stereotype" containerMappings="//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="service:addSolutionStereotype()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Apply Annotation Stereotype" containerMappings="//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="service:addAnnotationStereotype()"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
       </additionalLayers>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.repository.ParametersService"/>
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.services.PCMServices"/>
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.services.ComposedProvidingRequiringEntityServices"/>
+    <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.repository.enriched.services.StereotypeServices"/>
   </ownedViewpoints>
   <extensions xsi:type="properties:ViewExtensionDescription" identifier="Properties">
     <metamodels href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>
