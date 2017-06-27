@@ -7,15 +7,15 @@ import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 /**
  * Services to handle Stereotypes, mainly to apply certain stereotypes to an
  * object.
- * 
+ *
  * @author Jan Keim
  *
  */
 public class StereotypeServices {
 
 	/**
-	 * Applies the Annotation Stereotype to a given eObject
-	 * 
+	 * Applies the Annotation Stereotype to a given EObject
+	 *
 	 * @see StereotypeAPI#applyStereotype(EObject, Stereotype)
 	 */
 	public void addAnnotationStereotype(EObject eObject) {
@@ -23,8 +23,17 @@ public class StereotypeServices {
 	}
 
 	/**
-	 * Applies the Solutions Stereotype to a given eObject
-	 * 
+	 * Removes the Annotation Stereotype from a given EObject
+	 *
+	 * @see StereotypeAPI#unapplyStereotype(EObject, Stereotype)
+	 */
+	public void removeAnnotationStereotype(EObject eObject) {
+		removeStereotypeWithName(eObject, "Annotation");
+	}
+
+	/**
+	 * Applies the Solutions Stereotype to a given EObject
+	 *
 	 * @see StereotypeAPI#applyStereotype(EObject, Stereotype)
 	 */
 	public void addSolutionStereotype(EObject eObject) {
@@ -32,11 +41,27 @@ public class StereotypeServices {
 	}
 
 	/**
+	 * Removes the Solutions Stereotype from a given EObject
+	 *
+	 * @see StereotypeAPI#unapplyStereotype(EObject, Stereotype)
+	 */
+	public void removeSolutionStereotype(EObject eObject) {
+		removeStereotypeWithName(eObject, "Solutions");
+	}
+
+	/**
+	 * @see StereotypeAPI#unapplyStereotype(EObject, Stereotype)
+	 */
+	public void removeStereotypeWithName(EObject eObject, String name) {
+		StereotypeAPI.unapplyStereotype(eObject, name);
+	}
+
+	/**
 	 * Applies a Stereotype to a given eObject. The Stereotype is given with its
 	 * name as a String.
-	 * 
+	 *
 	 * @see StereotypeAPI#applyStereotype(EObject, Stereotype)
-	 * 
+	 *
 	 * @param eObject
 	 *            Object the Stereotype should be applied to.
 	 * @param name
@@ -49,7 +74,7 @@ public class StereotypeServices {
 
 	/**
 	 * Checks whether a given object is the Stereotype Solution
-	 * 
+	 *
 	 * @param eObject
 	 *            Object that should be checked
 	 * @return true if it is the Solution Stereotype, else false
