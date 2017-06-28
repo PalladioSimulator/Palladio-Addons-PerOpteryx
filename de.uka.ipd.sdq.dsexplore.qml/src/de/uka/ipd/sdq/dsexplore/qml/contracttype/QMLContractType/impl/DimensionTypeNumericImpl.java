@@ -210,7 +210,7 @@ public class DimensionTypeNumericImpl extends DimensionTypeImpl implements Dimen
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "NUMERICDIMENSIONTYPE_must_have_RELATIONSEMANTICS",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

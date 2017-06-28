@@ -61,11 +61,11 @@ public class SimpleQMLContractItemProvider extends GenericQMLContractItemProvide
 	 * @generated
 	 */
 	protected void addContractTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SimpleQMLContract_contractType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SimpleQMLContract_contractType_feature",
-								"_UI_SimpleQMLContract_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_SimpleQMLContract_contractType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_SimpleQMLContract_contractType_feature",
+						"_UI_SimpleQMLContract_type"),
 				QMLContractPackage.Literals.SIMPLE_QML_CONTRACT__CONTRACT_TYPE, true, false, true, null, null, null));
 	}
 

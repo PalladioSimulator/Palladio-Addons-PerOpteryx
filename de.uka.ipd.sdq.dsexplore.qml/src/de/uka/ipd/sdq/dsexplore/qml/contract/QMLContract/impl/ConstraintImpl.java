@@ -94,7 +94,7 @@ public class ConstraintImpl extends CriterionImpl implements Constraint {
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "All_ASPECTS_of_CONSTRAINTS_have_RESTRICTIONS",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

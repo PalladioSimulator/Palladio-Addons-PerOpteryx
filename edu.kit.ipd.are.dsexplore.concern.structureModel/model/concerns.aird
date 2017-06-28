@@ -8,6 +8,8 @@
     <semanticResources>platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore</semanticResources>
     <semanticResources>platform:/plugin/de.uka.ipd.sdq.units/model/Units.ecore</semanticResources>
     <semanticResources>platform:/plugin/de.uka.ipd.sdq.probfunction/model/ProbabilityFunction.ecore</semanticResources>
+    <semanticResources>solution.ecore</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_0k7FQFVuEeaya_4-OTsh-g">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="__HGhIOF0EeaqJ5c7d-qc6A" name="Concern Structure class diagram" representation="_4eHkYFVuEeaya_4-OTsh-g">
@@ -53,6 +55,12 @@
           <labelColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='Inherited']"/>
           <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
         </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_CK4c4FpjEeebLZ9qlbBPyw" labelExpression="service:renderAsNode" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <labelFormat>bold</labelFormat>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_4eILcFVuEeaya_4-OTsh-g" source="GMF_DIAGRAMS">
@@ -93,6 +101,10 @@
             <children xmi:type="notation:Node" xmi:id="_D-N6wFWAEeaya_4-OTsh-g" type="3010" element="_D-JpUFWAEeaya_4-OTsh-g">
               <styles xmi:type="notation:FontStyle" xmi:id="_D-N6wVWAEeaya_4-OTsh-g" fontColor="2697711" fontName=".SF NS Text" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_D-N6wlWAEeaya_4-OTsh-g"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_CLYMIFpjEeebLZ9qlbBPyw" type="3010" element="_CK2nsFpjEeebLZ9qlbBPyw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_CLYMIVpjEeebLZ9qlbBPyw" fontName=".SF NS Text" fontHeight="8" bold="true"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_CLYMIlpjEeebLZ9qlbBPyw"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_UrqwgVV1Eeaya_4-OTsh-g"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_UrqwglV1Eeaya_4-OTsh-g"/>
@@ -503,6 +515,14 @@
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_CK2nsFpjEeebLZ9qlbBPyw" name=" concernSolutions : Solution" tooltipText="">
+        <target xmi:type="ecore:EReference" href="concerns.ecore#//ConcernStrategy/concernSolutions"/>
+        <semanticElements xmi:type="ecore:EReference" href="concerns.ecore#//ConcernStrategy/concernSolutions"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_CK5D8FpjEeebLZ9qlbBPyw" labelAlignment="LEFT" description="_CK4c4FpjEeebLZ9qlbBPyw" color="114,159,207">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
       </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Ws2lIFV1Eeaya_4-OTsh-g" name="[0..*] strategies" sourceNode="_M-Zi0FV1Eeaya_4-OTsh-g" targetNode="_Url4AFV1Eeaya_4-OTsh-g">

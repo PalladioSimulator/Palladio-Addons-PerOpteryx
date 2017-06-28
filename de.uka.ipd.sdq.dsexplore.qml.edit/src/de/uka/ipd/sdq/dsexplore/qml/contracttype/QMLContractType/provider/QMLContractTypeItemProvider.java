@@ -61,11 +61,11 @@ public class QMLContractTypeItemProvider extends QMLDeclarationItemProvider {
 	 * @generated
 	 */
 	protected void addDimensionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_QMLContractType_dimensions_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_QMLContractType_dimensions_feature",
-								"_UI_QMLContractType_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_QMLContractType_dimensions_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_QMLContractType_dimensions_feature",
+						"_UI_QMLContractType_type"),
 				QMLContractTypePackage.Literals.QML_CONTRACT_TYPE__DIMENSIONS, true, false, true, null, null, null));
 	}
 

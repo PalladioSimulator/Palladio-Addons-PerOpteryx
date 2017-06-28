@@ -180,7 +180,7 @@ public abstract class CriterionImpl extends IdentifierImpl implements Criterion 
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "Only_CONSTRAINTS_have_RESTRICTIONS",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}
@@ -242,7 +242,7 @@ public abstract class CriterionImpl extends IdentifierImpl implements Criterion 
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "FREQUENCY_only_possible_if_DIMENSION_is_ordered",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}
@@ -300,7 +300,7 @@ public abstract class CriterionImpl extends IdentifierImpl implements Criterion 
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "POINTESTIMATOR_only_for_numeric_dimensions",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}
@@ -354,7 +354,7 @@ public abstract class CriterionImpl extends IdentifierImpl implements Criterion 
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "Only_OBJECTIVES_have_GOALS",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

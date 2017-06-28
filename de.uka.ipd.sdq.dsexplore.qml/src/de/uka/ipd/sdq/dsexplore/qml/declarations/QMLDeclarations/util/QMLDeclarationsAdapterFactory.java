@@ -101,52 +101,52 @@ public class QMLDeclarationsAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	* Creates an adapter for the <code>target</code>.
-	* <!-- begin-user-doc --> <!-- end-user-doc -->
-	* @param target the object to adapt.
-	* @return the adapter for the <code>target</code>.
-	* @generated
-	*/
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations <em>QML Declarations</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations <em>QML Declarations</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclarations
+	 * @generated
+	 */
 	public Adapter createQMLDeclarationsAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
+	 * @generated
+	 */
 	public Adapter createQMLDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	* that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all
 	* the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.identifier.Identifier
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.identifier.Identifier
+	 * @generated
+	 */
 	public Adapter createIdentifierAdapter() {
 		return null;
 	}
@@ -167,25 +167,25 @@ public class QMLDeclarationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
-	* <!-- begin-user-doc
+	 * Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
+	 * <!-- begin-user-doc
 	* --> This default implementation returns null so that we can easily ignore cases; it's useful
 	* to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see org.palladiosimulator.pcm.core.entity.Entity
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see org.palladiosimulator.pcm.core.entity.Entity
+	 * @generated
+	 */
 	public Adapter createEntityAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for the default case.
-	* <!-- begin-user-doc --> This default
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This default
 	* implementation returns null. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @generated
+	 */
 	public Adapter createEObjectAdapter() {
 		return null;
 	}

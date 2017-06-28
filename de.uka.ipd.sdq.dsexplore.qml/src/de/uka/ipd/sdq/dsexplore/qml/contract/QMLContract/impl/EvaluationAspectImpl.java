@@ -165,7 +165,7 @@ public abstract class EvaluationAspectImpl extends IdentifierImpl implements Eva
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "FREQUENCY_LIMIT_must_be_NUMERIC",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}
@@ -222,7 +222,7 @@ public abstract class EvaluationAspectImpl extends IdentifierImpl implements Eva
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "FREQUENCY_LIMIT_must_be_between_0_and_100",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

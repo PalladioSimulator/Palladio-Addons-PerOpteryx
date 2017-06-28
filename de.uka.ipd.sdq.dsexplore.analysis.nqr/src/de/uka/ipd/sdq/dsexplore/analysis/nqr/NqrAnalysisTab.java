@@ -4,116 +4,201 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
+import org.palladiosimulator.qualitymodel.QualityModelPackage;
+import org.palladiosimulator.qualitymodel.ReasoningSystem;
+import org.palladiosimulator.qualitymodel.Reduction;
 
+import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet;
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
-public class NqrAnalysisTab extends FileNamesInputTab implements
-		ILaunchConfigurationTab {
+public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
 
-	private Text nqrModel;
-	
-//	private Button combineCostTypesInObjective;
-//	private Button considerInitialCost;
-//	private Button considerOperatingCost;
+    private Text dimension;
+    private Text reduction;
+    private Text system;
 
-	@Override
-	public void createControl(Composite parent) {
-		
-		// Create a listener for GUI modification events:
-		final ModifyListener modifyListener = new ModifyListener() {
+    @Override
+    public void activated(final ILaunchConfigurationWorkingCopy workingCopy) {}
 
-			public void modifyText(ModifyEvent e) {
-				NqrAnalysisTab.this.setDirty(true);
-				NqrAnalysisTab.this.updateLaunchConfigurationDialog();
-			}
-		};
-		
-		// Create a new Composite to hold the page's controls:
-		final Composite container = new Composite(parent, SWT.NONE);
-		setControl(container);
-		container.setLayout(new GridLayout());
+    @Override
+    public void createControl(final Composite parent) {
 
-		/**
-		 * Add nqr model input section
-		 */
-		this.nqrModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "Nqr Model File", DSEConstantsContainer.NQR_MODEL_EXTENSION, nqrModel, getShell(), "");
-		
-	}
+        // Create a listener for GUI modification events:
+        final ModifyListener modifyListener = new ModifyListener() {
+            @Override
+            public void modifyText(final ModifyEvent e) {
+                NqrAnalysisTab.this.setDirty(true);
+                NqrAnalysisTab.this.updateLaunchConfigurationDialog();
+            }
+        };
 
-	@Override
-	public String getName() {
-		return "NQR Analysis";
-	}
+        // Create a new Composite to hold the page's controls:
+        final Composite container = new Composite(parent, SWT.NONE);
+        setControl(container);
+        container.setLayout(new GridLayout());
 
-	@Override
-	public void initializeFrom(ILaunchConfiguration configuration) {
-		try {
-			this.nqrModel.setText(configuration.getAttribute(
-					DSEConstantsContainer.NQR_FILE, ""));
-		} catch (CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(),DSEConstantsContainer.NQR_FILE, e.getMessage());
-		}
-		
-	}
+        // Add Dimension Type Set input section
+        dimension = new Text(container, SWT.SINGLE | SWT.BORDER);
+        TabHelper.createFileInputSection(container, modifyListener, "Dimension Type Set File",
+                DSEConstantsContainer.QML_CONTRACT_EXTENSION, dimension, getShell(), "");
 
-	@Override
-	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
-		configuration.setAttribute(
-				DSEConstantsContainer.NQR_FILE, 
-				this.nqrModel.getText());
-	}
+        // Add ReductionProxy input section
+        reduction = new Text(container, SWT.SINGLE | SWT.BORDER);
+        TabHelper.createFileInputSection(container, modifyListener, "ReductionProxy ProxyFactory File",
+                DSEConstantsContainer.REASONING_MODEL_EXTENSION, reduction, getShell(), "");
 
-	@Override
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-				
-	}
+        // Add System input section
+        system = new Text(container, SWT.SINGLE | SWT.BORDER);
+        TabHelper.createFileInputSection(container, modifyListener, "Reasoning System File",
+                DSEConstantsContainer.REASONING_MODEL_EXTENSION, system, getShell(), "");
 
-	@Override
-	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
-		// Leave this method empty to prevent unnecessary invocation of
-		// initializeFrom() and multiple resulting invocations of
-		// performApply().
-		
-	}
+    }
 
-	@Override
-	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
-				
-	}
+    @Override
+    public void deactivated(final ILaunchConfigurationWorkingCopy workingCopy) {}
 
-	@Override
-	public void dispose() {
-		super.dispose();		
-	}
+    private boolean error(final String message) {
+        setErrorMessage(message);
+        return message == null;
+    }
 
-	@Override
-	public Image getImage() {
-		return null;
-	}
+    @Override
+    public String getName() {
+        return "NQR Analysis";
+    }
 
-	@Override
-	public boolean isValid(ILaunchConfiguration launchConfig) {
-		String extension = DSEConstantsContainer.NQR_MODEL_EXTENSION[0].replace("*", "");
-		//if (this.nqrModel.getText().equals("") || !this.nqrModel.getText().contains(extension)){
-		//	setErrorMessage("NQR model is missing!");
-		//	return false;
-		//}
-		return true;
-	}
+    @Override
+    public void initializeFrom(final ILaunchConfiguration configuration) {
+        setText(configuration, dimension, DSEConstantsContainer.QML_CONTRACT_FILE);
+        setText(configuration, reduction, DSEConstantsContainer.REASONING_REDUCTION_FILE);
+        setText(configuration, system, DSEConstantsContainer.REASONING_SYSTEM_FILE);
+    }
+
+    @Override
+    public boolean isValid(final ILaunchConfiguration launchConfig) {
+        return isValidDimension(dimension.getText()) && isValidReduction(reduction.getText())
+                && isValidSystem(system.getText());
+    }
+
+    private boolean isValidDimension(final String uri) {
+        final String extension = DSEConstantsContainer.QML_CONTRACT_EXTENSION[0].substring(1);
+        if ((uri == null) || !uri.endsWith(extension)) {
+            return error("Dimension Type Set File is missing!");
+        }
+
+        URI loadFrom = URI.createURI(uri);
+        if (!loadFrom.isPlatform()) {
+            loadFrom = URI.createFileURI(uri);
+        }
+
+        final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QMLContractPackage.eINSTANCE);
+
+        if (!(object instanceof DimensionTypeSet)) {
+            return error("Valid Dimension Type Set is missing!");
+        }
+
+        return error(null);
+    }
+
+    private boolean isValidReduction(final String uri) {
+        final String extension = DSEConstantsContainer.REASONING_MODEL_EXTENSION[0].substring(1);
+        if ((uri == null) || !uri.endsWith(extension)) {
+            return error("ReductionProxy File is missing!");
+        }
+
+        URI loadFrom = URI.createURI(uri);
+        if (!loadFrom.isPlatform()) {
+            loadFrom = URI.createFileURI(uri);
+        }
+
+        final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
+
+        if (!(object instanceof Reduction)) {
+            return error("Valid ReductionProxy is missing!");
+        }
+
+        return error(null);
+    }
+
+    private boolean isValidSystem(final String uri) {
+        final String extension = DSEConstantsContainer.REASONING_MODEL_EXTENSION[0].substring(1);
+        if ((uri == null) || !uri.endsWith(extension)) {
+            return error("Reasoning System File is missing!");
+        }
+
+        URI loadFrom = URI.createURI(uri);
+        if (!loadFrom.isPlatform()) {
+            loadFrom = URI.createFileURI(uri);
+        }
+
+        final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
+
+        if (!(object instanceof ReasoningSystem)) {
+            return error("Valid Reasoning System is missing!");
+        }
+
+        return error(null);
+    }
+
+    @Override
+    public void performApply(final ILaunchConfigurationWorkingCopy configuration) {
+        if (configuration == null) {
+            error("LaunchConfiguration is null");
+            return;
+        }
+
+        configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, dimension.getText());
+        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, reduction.getText());
+        configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, system.getText());
+    }
+
+    @Override
+    public void setDefaults(final ILaunchConfigurationWorkingCopy configuration) {
+        if (configuration == null) {
+            error("LaunchConfiguration is null");
+            return;
+        }
+
+        setText(dimension, "");
+        configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, "");
+        setText(reduction, "");
+        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, "");
+        setText(system, "");
+        configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, "");
+    }
+
+    private boolean setText(final ILaunchConfiguration configuration, final Text textWidget, final String attributeName) {
+        try {
+            textWidget.setText(configuration.getAttribute(attributeName, ""));
+            return true;
+        } catch (final CoreException e) {
+            LaunchConfigPlugin.errorLogger(getName(), attributeName, e.getMessage());
+            return error(e.getMessage());
+        }
+    }
 
 
+    private void setText(final Text textWidget, final String attributeName) {
+        try {
+            if ((textWidget != null) && (attributeName != null)) {
+                textWidget.setText(attributeName);
+            }
+        } catch (final Exception e) {
+            error(e.getMessage());
+        }
+    }
 
 }

@@ -189,7 +189,7 @@ public class NumericRangeImpl extends IdentifierImpl implements NumericRange {
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "UPPERLIMIT_must_be_greater_than_LOWERLIMIT",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

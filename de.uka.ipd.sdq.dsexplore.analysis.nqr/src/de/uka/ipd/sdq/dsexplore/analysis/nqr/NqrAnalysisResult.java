@@ -8,55 +8,54 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ProxyFactory;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import de.uka.ipd.sdq.nqr.Nqr;
-import de.uka.ipd.sdq.pcm.nqr.helper.NqrUtil;
 
 public class NqrAnalysisResult implements IAnalysisResult {
-	
-	/** Logger for log4j. */
-	private static Logger logger = 
-		Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
 
-	private Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
-	private NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration;
-	private List<Nqr> nqr;
+    private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
 
-	public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect, List<Nqr> nqr, NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration) {
-		this.criterionToAspectMap = criterionToAspect;
-		this.nqrQualityDimensionDeclaration = nqrQualityDimensionDeclaration;
-		this.nqr = nqr;
-	}
-	
-	@Override
-	public double getValueFor(Criterion criterion)  {
-		EvaluationAspectWithContext aspect = this.criterionToAspectMap.get(criterion);
-		double result = Integer.MIN_VALUE;
-		
-		if (aspect != null){
-			for (Dimension dim: nqrQualityDimensionDeclaration.getDimensions())
-			{
-				if (EcoreUtil.equals(aspect.getDimension(), dim))
-				{
-					nqrQualityDimensionDeclaration.getRequirement(dim);
-					for (int i = 0; i < nqr.size(); ++i)
-					{
-						if (EcoreUtil.equals(dim, nqr.get(i).getDimension()))
-							result = NqrUtil.getNqrValue(aspect.getCriterion().getDimension(), nqr.get(i).getDimension(), nqr.get(i).getValue());
-					}
-						/*for (int j = 0; j < nqr.get(i).getCriterion().size(); ++j)
-						{
-							if (EcoreUtil.equals(dim, nqr.get(i).getCriterion().get(j).getDimension()))
-								result = NqrUtil.getNqrValue(aspect.getCriterion(), nqr.get(i).getCriterion().get(j));
-						}*/
-				}
-			}
-			return result;
-		} 
-		
-		logger.warn("Unknown aspect for Nqr result, adding NaN.");
-		return Double.NaN;
-	}
+    private final Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
+    private NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration;
+    private final List<NqrProxy> nqrs;
+    private final ProxyFactory factory;
+
+    public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
+            NqrSolverQualityAttributeDeclaration nqrSolverQualityAttributeDeclaration, List<NqrProxy> nqrResults,
+            ProxyFactory factory) {
+        criterionToAspectMap = criterionToAspect;
+        this.nqrs = nqrResults;
+        this.nqrQualityDimensionDeclaration = nqrSolverQualityAttributeDeclaration;
+        this.factory = factory;
+    }
+
+    @Override
+    public double getValueFor(final Criterion criterion) {
+        final EvaluationAspectWithContext aspect = criterionToAspectMap.get(criterion);
+
+        if (aspect == null) {
+            logger.warn("Unknown aspect for Nqr result, adding NaN.");
+            return Double.NaN;
+        }
+
+        for (final Dimension dimension : nqrQualityDimensionDeclaration.getDimensions()) {
+            if (EcoreUtil.equals(dimension, aspect.getDimension())) {
+                for (final NqrProxy nqr : nqrs) {
+                    if (EcoreUtil.equals(dimension, nqr.getDimension())) {
+                        final String dimensionId = nqr.getElementId();
+                        final double value = factory.getDimensionIdOrderMap().containsKey(dimensionId)
+                                ? factory.getDimensionIdOrderMap().get(dimensionId) : Double.NaN;
+                                logger.info("Adding analysis result " + value + " for " + dimension.getEntityName() + ".");
+                                return value;
+                    }
+                }
+            }
+        }
+
+        logger.info("Unsupported aspect for Nqr result, adding MIN_VALUE.");
+        return Integer.MIN_VALUE;
+    }
 
 }

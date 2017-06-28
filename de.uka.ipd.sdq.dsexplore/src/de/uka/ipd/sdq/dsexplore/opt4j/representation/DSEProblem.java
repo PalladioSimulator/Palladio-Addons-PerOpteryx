@@ -603,11 +603,10 @@ public class DSEProblem {
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition)this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		try {
 			concernRepository = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+			return Optional.of((ConcernRepository) concernRepository.get(0));
 		} catch (Exception e) {
 			return Optional.empty();
 		}
-		return Optional.of((ConcernRepository) concernRepository.get(0));
-		
 	}
 
 	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {	

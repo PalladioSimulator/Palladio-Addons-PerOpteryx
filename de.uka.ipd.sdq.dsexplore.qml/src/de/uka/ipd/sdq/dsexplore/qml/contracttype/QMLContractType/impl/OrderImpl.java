@@ -199,7 +199,7 @@ public class OrderImpl extends IdentifierImpl implements Order {
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "BIGGERELEMENT_must_not_be_SMALLELEMENT",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

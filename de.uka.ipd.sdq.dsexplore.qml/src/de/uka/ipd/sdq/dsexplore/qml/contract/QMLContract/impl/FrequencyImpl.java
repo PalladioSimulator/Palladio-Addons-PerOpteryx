@@ -227,7 +227,7 @@ public class FrequencyImpl extends StochasticEvaluationAspectImpl implements Fre
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "range_of_FREQUENCY_must_have_UPPERLIMIT_or_LOWERLIMIT",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}
