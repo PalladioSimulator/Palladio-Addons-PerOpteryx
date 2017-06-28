@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated qualitymodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.palladiosimulator.qualitymodel.presentation.QualityModelModelWizardID"
+            name="%_UI_QualityModelModelWizard_label"
+            class="org.palladiosimulator.qualitymodel.presentation.QualityModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/QualityModelModelFile.gif">
+         <description>%_UI_QualityModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated qualitymodel -->
+      <editor
+            id="org.palladiosimulator.qualitymodel.presentation.QualityModelEditorID"
+            name="%_UI_QualityModelEditor_label"
+            icon="icons/full/obj16/QualityModelModelFile.gif"
+            extensions="qualitymodel"
+            class="org.palladiosimulator.qualitymodel.presentation.QualityModelEditor"
+            contributorClass="org.palladiosimulator.qualitymodel.presentation.QualityModelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
