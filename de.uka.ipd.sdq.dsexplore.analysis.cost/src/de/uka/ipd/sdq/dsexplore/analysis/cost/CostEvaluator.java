@@ -97,8 +97,8 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis{
 			ResourceContainer rc = (ResourceContainer)vc.getProcessingresourcespecification().eContainer();
 			return checkWhetherResourceContainerIsUsed(pcmInstance, rc);
 			//No usage of resource container found, return false. 
-		} else if (cost instanceof ComponentCostPerType){
-			ComponentCostPerType cc = (ComponentCostPerType)cost;
+		} else if (cost instanceof ComponentCost){
+			ComponentCost cc = (ComponentCost)cost;
 			RepositoryComponent rc = cc.getRepositoryComponent();
 			//List<AssemblyContext> asctx = pcmInstance.getSystem().getAssemblyContexts__ComposedStructure();
 			//TODO: also retrieve inner assembly contexts of deployed composite components. Cost currently need to be specified separately.
