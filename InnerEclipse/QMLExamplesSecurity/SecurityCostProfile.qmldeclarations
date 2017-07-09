@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_XX9wcEXwEeer5JtvxHqL2g">
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_XyX0gEXwEeer5JtvxHqL2g" entityName="SecurityCostProfile">
+    <usageModel href="../brs.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_ZnVyEEXwEeer5JtvxHqL2g">
+      <requireContract xsi:type="QMLContract:SimpleQMLContract" href="SecurityCostContract.qmldeclarations#_IBYA8kXwEeer5JtvxHqL2g"/>
+      <usageScenario href="../brs.usagemodel#_qhsIYNpBEdyxgfK4Hy_RFA"/>
+    </requirements>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>

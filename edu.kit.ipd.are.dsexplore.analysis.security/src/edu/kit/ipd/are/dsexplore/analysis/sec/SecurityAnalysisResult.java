@@ -1,0 +1,32 @@
+package edu.kit.ipd.are.dsexplore.analysis.sec;
+
+import org.apache.log4j.Logger;
+import org.opt4j.core.Criterion;
+
+import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
+
+public class SecurityAnalysisResult implements IAnalysisResult {
+
+	/** Logger for log4j. */
+	private static Logger logger =
+			Logger.getLogger(SecurityAnalysisResult.class);
+
+	private double securityValue;
+	private SecuritySolverQualityAttributeDeclaration securityQualityAttribute;
+
+	public SecurityAnalysisResult(double securityValue,
+			SecuritySolverQualityAttributeDeclaration securityQualityAttribute) {
+		this.securityValue = securityValue;
+		this.securityQualityAttribute = securityQualityAttribute;
+	}
+
+	@Override
+	public double getValueFor(Criterion criterion)  {
+		logger.warn("Unknown aspect for LQN result, adding NaN.");
+		return Double.NaN;
+	}
+
+	public double getSecurityValue() {
+		return securityValue;
+	}
+}
