@@ -22,7 +22,6 @@ public class Activator extends Plugin implements BundleActivator {
 	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
-		logger.debug("Hi from start()... meh");
 		super.start(context);
 		plugin = this;
 
@@ -33,7 +32,6 @@ public class Activator extends Plugin implements BundleActivator {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		logger.debug("Hi from stop()");
 		plugin = null;
 		super.stop(context);
 	}

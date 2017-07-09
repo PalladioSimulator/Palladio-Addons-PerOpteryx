@@ -42,7 +42,7 @@ public class DSEConstantsContainer {
 	public static final String REASONING_REDUCTION_FILE = "qualitymodelReductionFile";
 	public static final String REASONING_SYSTEM_FILE = "qualitymodelSystemFile";
 	public static final String QML_CONTRACT_FILE = "qmlcontracttypeFile";
-	//public static final String SECURITY_FILE = "securityFile";
+	public static final String SECURITY_FILE = "securityFile";
 	public static final String PREDEFINED_INSTANCES = "predefinedInstances";
 	public static final String CACHE_INSTANCES = "cacheInstances";
 	public static final String ALL_CANDIDATES = "allCandidates";
@@ -62,7 +62,7 @@ public class DSEConstantsContainer {
 	public static final String[] REASONING_MODEL_EXTENSION = new String[] {"*.qualitymodel"};
 	public static final String[] QML_CONTRACT_EXTENSION = new String[] {"*.qmlcontracttype"};
 
-	//public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
+	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
 
 	/**
 	 * Set the file extensions which the dialog can use to filter the files it
@@ -118,7 +118,7 @@ public class DSEConstantsContainer {
 
 							@Override
 							public String getPrettyName() {
-				return "Security (JK)";
+								return "Security (JK)";
 							}
 						},
 		NQR_QUALITY {
@@ -153,6 +153,8 @@ public class DSEConstantsContainer {
 				return COST_QUALITY;
 			} else if (name.equals(SECURITY_QUALITY.getName())){
 				return SECURITY_QUALITY;
+			} else if (name.equals(NEW_SECURITY_QUALITY.getName())) {
+				return NEW_SECURITY_QUALITY;
 			} else if (name.equals(NQR_QUALITY.getName())){
 				return NQR_QUALITY;
 			} else if (name.equals(REASONING_QUALITY.getName())) {

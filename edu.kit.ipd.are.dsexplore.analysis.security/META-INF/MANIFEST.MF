@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Security Analysis Plugin
-Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.analysis.sec;singleton:=true
+Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.analysis.security;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
@@ -19,5 +19,3 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.palladiosimulator.solver;bundle-version="3.0.0",
  org.palladiosimulator.analyzer.workflow
 Bundle-Vendor: are.ipd.kit.edu
-Bundle-Activator: edu.kit.ipd.are.dsexplore.analysis.sec.activator.Activator
-Bundle-ActivationPolicy: lazy

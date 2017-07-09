@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.analysis.sec;
+package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import org.apache.log4j.Logger;
 import org.opt4j.core.Criterion;
@@ -9,7 +9,7 @@ public class SecurityAnalysisResult implements IAnalysisResult {
 
 	/** Logger for log4j. */
 	private static Logger logger =
-			Logger.getLogger(SecurityAnalysisResult.class);
+			Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
 
 	private double securityValue;
 	private SecuritySolverQualityAttributeDeclaration securityQualityAttribute;
@@ -27,6 +27,6 @@ public class SecurityAnalysisResult implements IAnalysisResult {
 	}
 
 	public double getSecurityValue() {
-		return securityValue;
+		return this.securityValue;
 	}
 }

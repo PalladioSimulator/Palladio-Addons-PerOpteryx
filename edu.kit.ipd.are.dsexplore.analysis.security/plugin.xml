@@ -4,11 +4,11 @@
    <extension
          point="de.uka.ipd.sdq.dsexplore.analysis">
       <analysis
-            delegate="edu.kit.ipd.are.dsexplore.analysis.sec.SecurityEvaluator"
-            launchConfigContribution="edu.kit.ipd.are.dsexplore.analysis.sec.SecurityAnalysisTabGroup"
+            delegate="edu.kit.ipd.are.dsexplore.analysis.security.SecurityEvaluator"
+            launchConfigContribution="edu.kit.ipd.are.dsexplore.analysis.security.SecurityAnalysisTabGroup"
             name="Security Analysis (JK)"
-            qualityAttribute="edu.kit.ipd.are.dsexplore.analysis.sec"
-            qualityAttributeHandler="edu.kit.ipd.are.dsexplore.analysis.sec.SecuritySolverQualityAttributeDeclaration">
+            qualityAttribute="edu.kit.ipd.are.dsexplore.analysis.security"
+            qualityAttributeHandler="edu.kit.ipd.are.dsexplore.analysis.security.SecuritySolverQualityAttributeDeclaration">
       </analysis>
    </extension>
 

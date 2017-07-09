@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.analysis.sec;
+package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -13,15 +13,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
+import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class SecurityAnalysisTab extends FileNamesInputTab implements
 ILaunchConfigurationTab {
 
-	private static Logger logger = Logger.getLogger(SecurityAnalysisTab.class);
+	private static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
 	private static final String SECURITY_FILE = "securityFile";
-	private static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };
+	// private static final String[] SECURITY_MODEL_EXTENSION = new String[] {
+	// "*.security" };
 
 	private Text textSecurityModel;
 	// private Button combineCostTypesInObjective;
@@ -65,15 +67,13 @@ ILaunchConfigurationTab {
 		this.setControl(container);
 		container.setLayout(new GridLayout());
 
-		// /**
-		// * Add cost model input section
-		// */
-		this.textSecurityModel = new Text(container, SWT.SINGLE |
-				SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "No input needed",
-				SECURITY_MODEL_EXTENSION, this.textSecurityModel,
-				this.getShell(),
-				SECURITY_FILE);
+		/**
+		 * Add cost model input section
+		 */
+		this.textSecurityModel = new Text(container, SWT.SINGLE | SWT.BORDER);
+		TabHelper.createFileInputSection(container, modifyListener, "No input needed bra",
+				DSEConstantsContainer.COST_MODEL_EXTENSION, this.textSecurityModel, this.getShell(),
+				DSEConstantsContainer.DEFAULT_COST_MODEL_FILE);
 
 		// this.combineCostTypesInObjective = new Button(container, SWT.CHECK);
 		// this.combineCostTypesInObjective.setEnabled(true);
@@ -95,7 +95,6 @@ ILaunchConfigurationTab {
 		// annotations");
 		// this.considerOperatingCost.addSelectionListener(selectionListener);
 		// this.considerOperatingCost.setSelection(true);
-		this.setErrorMessage("HELLO!");
 
 	}
 
@@ -134,6 +133,7 @@ ILaunchConfigurationTab {
 
 	@Override
 	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
+		logger.debug("Hello from deactivated");
 	}
 
 	@Override
@@ -144,18 +144,20 @@ ILaunchConfigurationTab {
 
 	@Override
 	public Image getImage() {
+		logger.debug("Hello from getImage()");
 		return null;
 	}
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
-//		String extension = SECURITY_MODEL_EXTENSION[0].replace("*", "");
-//		if (this.textSecurityModel.getText().equals("") || !this.textSecurityModel.getText().contains(extension)){
-//			this.setErrorMessage("Cost model is missing!");
-//			return false;
-//		} else {
-//			return true;
-//		}
+		logger.debug("Hello from isValid()");
+		//		String extension = SECURITY_MODEL_EXTENSION[0].replace("*", "");
+		//		if (this.textSecurityModel.getText().equals("") || !this.textSecurityModel.getText().contains(extension)){
+		//			this.setErrorMessage("Cost model is missing!");
+		//			return false;
+		//		} else {
+		//			return true;
+		//		}
 		return true;
 	}
 

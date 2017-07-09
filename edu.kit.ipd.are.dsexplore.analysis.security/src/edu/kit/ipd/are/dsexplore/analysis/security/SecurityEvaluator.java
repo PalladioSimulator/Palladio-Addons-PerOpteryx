@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.analysis.sec;
+package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis{
 
 	/** Logger for log4j. */
 	private static Logger logger =
-			Logger.getLogger(SecurityEvaluator.class);
+			Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
 
 	private Map<Long, SecurityAnalysisResult> previousSecurityResults = new HashMap<Long, SecurityAnalysisResult>();
 

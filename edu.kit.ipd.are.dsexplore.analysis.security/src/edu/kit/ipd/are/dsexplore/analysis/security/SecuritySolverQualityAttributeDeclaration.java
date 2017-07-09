@@ -1,7 +1,7 @@
 /**
  *
  */
-package edu.kit.ipd.are.dsexplore.analysis.sec;
+package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
+import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Value;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
@@ -30,7 +31,7 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 
 	// and add it to the QUALITY_ATTRIBUTE_DIMENSION_DEFINITION_PATHS
 
-	private Dimension securityValue;
+	private Dimension security;
 
 	/* (non-Javadoc)
 	 * @see de.uka.ipd.sdq.dsexplore.analysis.IQualityAttribute#getDimension()
@@ -38,15 +39,15 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 	@Override
 	public List<Dimension> getDimensions() {
 		// TODO neue Dimension erstellen
-		this.securityValue = new QMLDimensionReader().getDimension(qualityAttributeSecurity);
-		List<Dimension> result = new ArrayList<Dimension>(1); // TODO
-		result.add(this.securityValue);
+		this.security = new QMLDimensionReader().getDimension(qualityAttributeSecurity);
+		List<Dimension> result = new ArrayList<Dimension>(1);
+		result.add(this.security);
 		return result;
 	}
 
 
 	public Dimension getSecurityValue() {
-		return this.securityValue;
+		return this.security;
 	}
 
 	/* (non-Javadoc)
@@ -54,11 +55,10 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 	 */
 	@Override
 	public boolean canEvaluateAspectForDimension(EvaluationAspect aspect, Dimension dimension) {
-		// if(aspect instanceof Value) {
-		// return true;
-		// }
-		// return false;
-		return true;
+		if (aspect instanceof Value) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
