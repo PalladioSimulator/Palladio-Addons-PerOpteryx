@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.analysis.sec.model;
+package edu.kit.ipd.are.dsexplore.analysis.security.model;
 
 public class Component {
 	private final double TTDV; // Time to discover vulnerability
@@ -37,6 +37,85 @@ public class Component {
 		this.TTDV = TTDV;
 		this.PoCoB = PoCoB;
 		this.name = "UNNAMED";
+	}
+
+	private Component(Builder builder) {
+		this.TTDV = builder.TTDV;
+		this.PoCoB = builder.PoCoB;
+		this.name = builder.name;
+	}
+
+	/**
+	 * Builder for a Component to make things more clear
+	 *
+	 * @author Jan
+	 *
+	 */
+	public static class Builder {
+		//required
+		private double TTDV = Double.NaN;
+		private double PoCoB = Double.NaN;
+
+		//optional
+		private String name = "UNNAMED";
+
+		/**
+		 * Constructs a new Builder for Components
+		 */
+		public Builder() {
+			super();
+		}
+
+		/**
+		 * Adds a value for Time To Detect Vulnerability
+		 *
+		 * @param val
+		 *            (new) TTDV
+		 * @return updated Builder
+		 */
+		public Builder TTDV(double val) {
+			this.TTDV = val;
+			return this;
+		}
+
+		/**
+		 * Adds a value as Prob. of Component Break
+		 *
+		 * @param val
+		 *            (new) PoCoB
+		 * @return updated Builder
+		 */
+		public Builder PoCoB(double val) {
+			this.PoCoB = val;
+			return this;
+		}
+
+		/**
+		 * Adds a name for the component
+		 *
+		 * @param name
+		 *            Name of the component
+		 * @return updated Builder
+		 */
+		public Builder name(String name) {
+			this.name = name;
+			return this;
+		}
+
+		/**
+		 * Builds the component. Throws an {@link IllegalArgumentException} if
+		 * PoCoB or TTDV are not set.
+		 *
+		 * @return the Component constructed with this builder
+		 * @throws IllegalArgumentException
+		 *             if PoCoB or TTDV are not set.
+		 */
+		public Component build() throws IllegalArgumentException {
+			if ((this.TTDV == Double.NaN) || (this.PoCoB == Double.NaN)) {
+				throw new IllegalArgumentException("TTDV or PoCoB not set!");
+			}
+			return new Component(this);
+		}
 	}
 
 	private double calcPoCoBAttacker(Attacker a) {

@@ -29,8 +29,6 @@ ILaunchConfigurationTab {
 	@Override
 	public void createControl(Composite parent) {
 
-		logger.info("Hi, old secPlugin at createControl()");
-
 		// Create a listener for GUI modification events:
 		final ModifyListener modifyListener = e -> {
 			SecurityAnalysisTab.this.setDirty(true);

@@ -118,7 +118,7 @@ public class DSEConstantsContainer {
 
 							@Override
 							public String getPrettyName() {
-								return "Security (JK)";
+				return "Security";
 							}
 						},
 		NQR_QUALITY {

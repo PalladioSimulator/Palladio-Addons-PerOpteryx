@@ -25,12 +25,6 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 
 	public static final String qualityAttributeSecurity = QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH;
 
-	// adapt QMLConstantsContainer with:
-	// public static final String QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH =
-	// "platform:/resource/BRSOptimisationTactics/QMLSecurity/Security.qmlcontracttype";
-
-	// and add it to the QUALITY_ATTRIBUTE_DIMENSION_DEFINITION_PATHS
-
 	private Dimension security;
 
 	/* (non-Javadoc)
@@ -38,15 +32,13 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 	 */
 	@Override
 	public List<Dimension> getDimensions() {
-		// TODO neue Dimension erstellen
 		this.security = new QMLDimensionReader().getDimension(qualityAttributeSecurity);
 		List<Dimension> result = new ArrayList<Dimension>(1);
 		result.add(this.security);
 		return result;
 	}
 
-
-	public Dimension getSecurityValue() {
+	protected Dimension getSecurityDimension(){
 		return this.security;
 	}
 
@@ -55,7 +47,7 @@ public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQuali
 	 */
 	@Override
 	public boolean canEvaluateAspectForDimension(EvaluationAspect aspect, Dimension dimension) {
-		if (aspect instanceof Value) {
+		if(aspect instanceof Value) {
 			return true;
 		}
 		return false;

@@ -6,8 +6,8 @@
       <analysis
             delegate="edu.kit.ipd.are.dsexplore.analysis.security.SecurityEvaluator"
             launchConfigContribution="edu.kit.ipd.are.dsexplore.analysis.security.SecurityAnalysisTabGroup"
-            name="Security Analysis (JK)"
-            qualityAttribute="edu.kit.ipd.are.dsexplore.analysis.security"
+            name="Security Analysis JK"
+            qualityAttribute="de.uka.ipd.sdq.dsexplore.security"
             qualityAttributeHandler="edu.kit.ipd.are.dsexplore.analysis.security.SecuritySolverQualityAttributeDeclaration">
       </analysis>
    </extension>

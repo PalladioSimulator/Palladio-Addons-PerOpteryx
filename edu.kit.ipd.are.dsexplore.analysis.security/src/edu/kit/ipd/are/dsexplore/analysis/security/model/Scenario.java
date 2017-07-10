@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.analysis.sec.model;
+package edu.kit.ipd.are.dsexplore.analysis.security.model;
 
 public class Scenario {
 	private int[][] theta;
