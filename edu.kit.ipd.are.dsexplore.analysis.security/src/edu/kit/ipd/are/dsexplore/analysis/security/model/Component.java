@@ -154,4 +154,9 @@ public class Component {
 		return this.name;
 	}
 
+	@Override
+	public String toString() {
+		return "Component{Name=\"" + this.name + "\"" + ", TTDV=" + this.TTDV + ", PoCoB=" + this.PoCoB + "}";
+	}
+
 }

@@ -1,13 +1,16 @@
 package edu.kit.ipd.are.dsexplore.analysis.security;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
@@ -37,19 +40,40 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
-		logger.debug("hi from analyse()");
 		final PCMInstance pcm = pheno.getPCMInstance();
+		final System system = pcm.getSystem();
 
-		final Allocation allocation = pcm.getAllocation();
 
-		final int securityValue = (int) calcMTTSF_Scen1();
+		List<AssemblyContext> assContexts = new ArrayList<>();
+		for (AssemblyContext assContext : system.getAssemblyContexts__ComposedStructure()) {
+			// logger.debug(assContext.getEntityName());
+			assContexts.add(assContext);
+		}
+		List<Component> components = this.createComponents(assContexts);
+
+		final int securityValue = (int) this.calcMTTSF_Scen1();
 		logger.debug(securityValue);
 
 		this.previousSecurityResults.put(pheno.getNumericID(), new SecurityAnalysisResult(securityValue, pcm,
 				this.criterionToAspect, (SecuritySolverQualityAttributeDeclaration) this.qualityAttribute));
 	}
 
-	private static double calcMTTSF_Scen1() {
+	private List<Component> createComponents(List<AssemblyContext> assContexts) {
+		List<Component> components = new ArrayList<>();
+		for (AssemblyContext assContext : assContexts) {
+			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
+			component.TTDV(200); // TODO
+			component.PoCoB(0.2); // TODO
+			components.add(component.build());
+		}
+		return components;
+	}
+
+	private Attacker getAttacker() {
+		return new Attacker(0.01, 100, 200);
+	}
+
+	private double calcMTTSF_Scen1() {
 		int[][] theta = new int[6][6];
 		theta[0][2] = 1;
 		theta[1][3] = 1;
@@ -64,7 +88,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		components[3] = new Component(150, 0.2);
 		components[4] = new Component(300, 0.2);
 
-		Attacker a = new Attacker(0.01, 100, 200);
+		Attacker a = this.getAttacker();
 		Scenario s = new Scenario(theta, components);
 		return s.calcMTTSF(2, a);
 	}
