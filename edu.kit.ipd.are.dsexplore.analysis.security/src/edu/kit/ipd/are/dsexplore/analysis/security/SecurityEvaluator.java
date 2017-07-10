@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -43,13 +44,13 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
 
-
-		List<AssemblyContext> assContexts = new ArrayList<>();
+		Map<AssemblyContext, List<AssemblyContext>> assMap = new HashMap<>();
 		for (AssemblyContext assContext : system.getAssemblyContexts__ComposedStructure()) {
 			// logger.debug(assContext.getEntityName());
-			assContexts.add(assContext);
+			List<AssemblyContext> targets = new ArrayList<>(); // TODO
+			assMap.put(assContext, targets);
 		}
-		List<Component> components = this.createComponents(assContexts);
+		List<Component> components = this.createComponents(assMap.keySet());
 
 		final int securityValue = (int) this.calcMTTSF_Scen1();
 		logger.debug(securityValue);
@@ -58,9 +59,9 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 				this.criterionToAspect, (SecuritySolverQualityAttributeDeclaration) this.qualityAttribute));
 	}
 
-	private List<Component> createComponents(List<AssemblyContext> assContexts) {
+	private List<Component> createComponents(Set<AssemblyContext> assSet) {
 		List<Component> components = new ArrayList<>();
-		for (AssemblyContext assContext : assContexts) {
+		for (AssemblyContext assContext : assSet) {
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
 			component.TTDV(200); // TODO
 			component.PoCoB(0.2); // TODO
