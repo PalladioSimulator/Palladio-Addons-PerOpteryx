@@ -10,7 +10,9 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -44,19 +46,48 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
 
+		// get attakc entry vector length
+		int atk_entry_length = system.getProvidedRoles_InterfaceProvidingEntity().size();
+
+		// create a map with AssemblyContexts as keys,
+		// values are AssemblyContexts they are connected to (requiring)
+		List<Connector> connectors = system.getConnectors__ComposedStructure();
 		Map<AssemblyContext, List<AssemblyContext>> assMap = new HashMap<>();
 		for (AssemblyContext assContext : system.getAssemblyContexts__ComposedStructure()) {
-			// logger.debug(assContext.getEntityName());
-			List<AssemblyContext> targets = new ArrayList<>(); // TODO
+			List<AssemblyContext> targets = this.getRequiringAssemblyContexts(assContext, connectors); // TODO
 			assMap.put(assContext, targets);
 		}
+
+		// list of all components
 		List<Component> components = this.createComponents(assMap.keySet());
+		// get theta matrix
+		int[][] theta = this.getTheta(assMap);
+		// create scenario and calc the MTTSF
+		Scenario scenario = new Scenario(theta, components.toArray(new Component[0]));
+		final int mySecurityValue = (int) scenario.calcMTTSF(atk_entry_length, this.getAttacker());
+		logger.debug(mySecurityValue);
 
 		final int securityValue = (int) this.calcMTTSF_Scen1();
-		logger.debug(securityValue);
 
+		// write out Results
 		this.previousSecurityResults.put(pheno.getNumericID(), new SecurityAnalysisResult(securityValue, pcm,
 				this.criterionToAspect, (SecuritySolverQualityAttributeDeclaration) this.qualityAttribute));
+	}
+
+	private List<AssemblyContext> getRequiringAssemblyContexts(AssemblyContext assContext, List<Connector> connectors) {
+		List<AssemblyContext> targets = new ArrayList<>();
+		// go through each connector
+		for (Connector connector : connectors) {
+			// check type of Connector and if connector is connected to the
+			// provided AssemblyContext. If so, add it to return list.
+			if (connector instanceof AssemblyConnector) {
+				AssemblyConnector assConnector = (AssemblyConnector) connector;
+				if (assConnector.getRequiringAssemblyContext_AssemblyConnector().equals(assContext)) {
+					targets.add(assConnector.getProvidingAssemblyContext_AssemblyConnector());
+				}
+			}
+		}
+		return targets;
 	}
 
 	private List<Component> createComponents(Set<AssemblyContext> assSet) {
@@ -71,10 +102,27 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	}
 
 	private Attacker getAttacker() {
-		return new Attacker(0.01, 100, 200);
+		return new Attacker(0.01, 100, 200); // TODO
 	}
 
-	private double calcMTTSF_Scen1() {
+	private int[][] getTheta(Map<AssemblyContext, List<AssemblyContext>> assMap) {
+		int theta_size = assMap.keySet().size() + 1;
+		int[][] theta = new int[theta_size][theta_size];
+		List<AssemblyContext> assList = new ArrayList<>(assMap.keySet());
+		for (int i = 0; i < assList.size(); i++) {
+			AssemblyContext assContext = assList.get(i);
+			for (AssemblyContext reqAssContext : assMap.get(assContext)) {
+				int reqIndex = assList.indexOf(reqAssContext);
+				theta[i][reqIndex] += 1;
+			}
+
+		}
+		// TODO what about multiple ways etc
+		// logger.debug(Arrays.deepToString(theta));
+		return theta;
+	}
+
+	private double calcMTTSF_Scen1() { // TODO: Delete later
 		int[][] theta = new int[6][6];
 		theta[0][2] = 1;
 		theta[1][3] = 1;
