@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
-
+		
 		// get attakc entry vector length
 		int atk_entry_length = system.getProvidedRoles_InterfaceProvidingEntity().size();
 
@@ -60,15 +61,17 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		// list of all components
 		List<Component> components = this.createComponents(assMap.keySet());
+		// TODO: sichergehen, dass assMap und components selbe Sortierung haben!
 		// get theta matrix
 		int[][] theta = this.getTheta(assMap);
 		// create scenario and calc the MTTSF
 		Scenario scenario = new Scenario(theta, components.toArray(new Component[0]));
 		final int mySecurityValue = (int) scenario.calcMTTSF(atk_entry_length, this.getAttacker());
-		logger.debug(mySecurityValue);
 
 		final int securityValue = (int) this.calcMTTSF_Scen1();
-
+		
+//		logger.debug(mySecurityValue);
+		logger.debug(mySecurityValue);
 		// write out Results
 		this.previousSecurityResults.put(pheno.getNumericID(), new SecurityAnalysisResult(securityValue, pcm,
 				this.criterionToAspect, (SecuritySolverQualityAttributeDeclaration) this.qualityAttribute));
@@ -108,6 +111,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private int[][] getTheta(Map<AssemblyContext, List<AssemblyContext>> assMap) {
 		int theta_size = assMap.keySet().size() + 1;
 		int[][] theta = new int[theta_size][theta_size];
+		List<AssemblyContext> targets = getTargets();
 		List<AssemblyContext> assList = new ArrayList<>(assMap.keySet());
 		for (int i = 0; i < assList.size(); i++) {
 			AssemblyContext assContext = assList.get(i);
@@ -115,11 +119,36 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 				int reqIndex = assList.indexOf(reqAssContext);
 				theta[i][reqIndex] += 1;
 			}
-
+			// TODO exchange this after getTargets is better done
+//			if (targets.contains(assContext)) {
+			if (assContext.getEntityName().equals("AC_Database")) {
+				theta[i][theta_size - 1] = 1;
+			}
 		}
-		// TODO what about multiple ways etc
-		// logger.debug(Arrays.deepToString(theta));
+		
+		// TODO check multiple ways
+		// go through each row.
+		// for each row calculate the sum of the column it corresponds to (i==j)
+		// for each value >0 set the value to the prior sum
+		for (int i = 0; i < theta.length; i++) {
+			int sum = 0;
+			for (int j = 0; j < theta.length; j++) {
+				sum += theta[j][i];
+			}
+			sum = Math.max(1, sum);
+			for (int j = 0; j < theta[i].length; j++) {
+				if (theta[i][j] > 0) {
+					theta[i][j] = sum;
+				}
+			}
+		}
 		return theta;
+	}
+
+	private List<AssemblyContext> getTargets() {
+		//TODO
+		List<AssemblyContext> targets = new ArrayList<>();
+		return targets;
 	}
 
 	private double calcMTTSF_Scen1() { // TODO: Delete later
