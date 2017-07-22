@@ -1,7 +1,6 @@
 package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.debug.core.ILaunchConfiguration;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -30,12 +30,24 @@ import edu.kit.ipd.are.dsexplore.analysis.security.model.Attacker;
 import edu.kit.ipd.are.dsexplore.analysis.security.model.Component;
 import edu.kit.ipd.are.dsexplore.analysis.security.model.Scenario;
 
+/**
+ * Evaluator for Security
+ * 
+ * @author Jan Keim
+ *
+ */
 public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 
 	/** Logger for log4j. */
 	private static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
 
 	private final Map<Long, SecurityAnalysisResult> previousSecurityResults = new HashMap<Long, SecurityAnalysisResult>();
+
+	/** Attacker */
+	private Attacker attacker = new Attacker(0.01, 100, 200);
+
+	/** Shall Security Value be mocked? */
+	private boolean mockSecurity = false;
 
 	public SecurityEvaluator() {
 		super(new SecuritySolverQualityAttributeDeclaration());
@@ -46,7 +58,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
-		
+
 		// get attakc entry vector length
 		int atk_entry_length = system.getProvidedRoles_InterfaceProvidingEntity().size();
 
@@ -66,12 +78,16 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		int[][] theta = this.getTheta(assMap);
 		// create scenario and calc the MTTSF
 		Scenario scenario = new Scenario(theta, components.toArray(new Component[0]));
-		final int mySecurityValue = (int) scenario.calcMTTSF(atk_entry_length, this.getAttacker());
 
-		final int securityValue = (int) this.calcMTTSF_Scen1();
-		
-//		logger.debug(mySecurityValue);
-		logger.debug(mySecurityValue);
+		// calculate the results; use mocking if button is set
+		final int securityValue;
+		if (this.mockSecurity) {
+			securityValue = (int) this.calcMttsfForMockingScenario();
+		} else {
+			securityValue = (int) scenario.calcMTTSF(atk_entry_length, this.attacker);
+		}
+		logger.debug(securityValue);
+
 		// write out Results
 		this.previousSecurityResults.put(pheno.getNumericID(), new SecurityAnalysisResult(securityValue, pcm,
 				this.criterionToAspect, (SecuritySolverQualityAttributeDeclaration) this.qualityAttribute));
@@ -104,14 +120,18 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		return components;
 	}
 
-	private Attacker getAttacker() {
-		return new Attacker(0.01, 100, 200); // TODO
-	}
-
+	/**
+	 * Calculates the Theta for the given Map of AssemblyContexts with their
+	 * List of AssemblyContexts they are connected to
+	 *
+	 * @param assMap
+	 *            ^
+	 * @return Theta
+	 */
 	private int[][] getTheta(Map<AssemblyContext, List<AssemblyContext>> assMap) {
 		int theta_size = assMap.keySet().size() + 1;
 		int[][] theta = new int[theta_size][theta_size];
-		List<AssemblyContext> targets = getTargets();
+		List<AssemblyContext> targets = this.getTargets();
 		List<AssemblyContext> assList = new ArrayList<>(assMap.keySet());
 		for (int i = 0; i < assList.size(); i++) {
 			AssemblyContext assContext = assList.get(i);
@@ -120,20 +140,20 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 				theta[i][reqIndex] += 1;
 			}
 			// TODO exchange this after getTargets is better done
-//			if (targets.contains(assContext)) {
+			//			if (targets.contains(assContext)) {
 			if (assContext.getEntityName().equals("AC_Database")) {
 				theta[i][theta_size - 1] = 1;
 			}
 		}
-		
-		// TODO check multiple ways
+
+		// TODO check
 		// go through each row.
 		// for each row calculate the sum of the column it corresponds to (i==j)
 		// for each value >0 set the value to the prior sum
 		for (int i = 0; i < theta.length; i++) {
 			int sum = 0;
-			for (int j = 0; j < theta.length; j++) {
-				sum += theta[j][i];
+			for (int[] element : theta) {
+				sum += element[i];
 			}
 			sum = Math.max(1, sum);
 			for (int j = 0; j < theta[i].length; j++) {
@@ -151,7 +171,12 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		return targets;
 	}
 
-	private double calcMTTSF_Scen1() { // TODO: Delete later
+	/**
+	 * Mocking Scenario
+	 *
+	 * @return Security Value
+	 */
+	private double calcMttsfForMockingScenario() {
 		int[][] theta = new int[6][6];
 		theta[0][2] = 1;
 		theta[1][3] = 1;
@@ -166,15 +191,29 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		components[3] = new Component(150, 0.2);
 		components[4] = new Component(300, 0.2);
 
-		Attacker a = this.getAttacker();
+		Attacker a = this.attacker;
 		Scenario s = new Scenario(theta, components);
 		return s.calcMTTSF(2, a);
 	}
 
 	@Override
 	public void initialise(final DSEWorkflowConfiguration configuration) throws CoreException {
-		logger.debug("hi from initialise()");
 		this.initialiseCriteria(configuration);
+		ILaunchConfiguration origConfig = configuration.getOriginalConfig();
+		this.mockSecurity = origConfig.getAttribute("mockSecurity", false);
+		logger.debug("Initialised with mockSecurity=" + this.mockSecurity);
+		try {
+			double lambda = Double.parseDouble(origConfig.getAttribute("attacker_lambda", "0.01"));
+			double delta =  Double.parseDouble(origConfig.getAttribute("attacker_delta", "100"));
+			double mtoa =  Double.parseDouble(origConfig.getAttribute("attacker_mtoa", "200"));
+			this.attacker = new Attacker(lambda, delta, mtoa);
+			logger.debug("Initialised with " + this.attacker);
+		} catch (NumberFormatException e) {
+			// should not happen, as run cannot be started w/ invalid values
+			logger.error("ERR! Started evaluating while attacker values are invalid!");
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

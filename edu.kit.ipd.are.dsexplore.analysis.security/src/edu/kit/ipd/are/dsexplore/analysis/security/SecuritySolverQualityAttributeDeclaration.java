@@ -18,7 +18,7 @@ import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
  * This class declares, which {@code Dimension} and {@code EvaluationAspect} can
  * be evaluated by this extension.
  *
- * @author keim
+ * @author Jan Keim
  *
  */
 public class SecuritySolverQualityAttributeDeclaration implements IAnalysisQualityAttributeDeclaration {

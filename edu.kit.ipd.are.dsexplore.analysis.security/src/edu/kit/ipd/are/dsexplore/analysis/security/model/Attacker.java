@@ -1,5 +1,11 @@
 package edu.kit.ipd.are.dsexplore.analysis.security.model;
 
+/**
+ * Attacker for our Security Model
+ * 
+ * @author Jan Keim
+ *
+ */
 public class Attacker {
 	private final double lambda;
 	private final double delta;
@@ -12,6 +18,8 @@ public class Attacker {
 	 *            Lambda (improvement when out of learning phase)
 	 * @param delta
 	 *            Delta (until Attacker is out of learning phase)
+	 * @param x
+	 *            Mean Time of Attack
 	 */
 	public Attacker(double lambda, double delta, double x) {
 		this.lambda = lambda;
@@ -40,4 +48,15 @@ public class Attacker {
 	public double getX() {
 		return this.x;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("Attacker [lambda=%s, delta=%s, x=%s]", this.lambda, this.delta, this.x);
+	}
+
 }

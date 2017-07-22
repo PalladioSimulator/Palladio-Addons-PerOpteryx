@@ -1,5 +1,11 @@
 package edu.kit.ipd.are.dsexplore.analysis.security.model;
 
+/**
+ * Component for our Security Model
+ *
+ * @author Jan Keim
+ *
+ */
 public class Component {
 	private final double TTDV; // Time to discover vulnerability
 	private final double PoCoB; // Probability of Component Breakability
