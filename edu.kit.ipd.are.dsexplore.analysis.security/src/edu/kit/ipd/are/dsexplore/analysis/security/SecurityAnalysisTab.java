@@ -122,6 +122,31 @@ ILaunchConfigurationTab {
 		final int CUSTOM_INDEX = 2;
 		final int DEFAULT_SELECTED_INDEX = 1;
 
+		// Description texts
+		Text nameText = new Text(radioContainer, SWT.READ_ONLY);
+		nameText.setEnabled(true);
+		nameText.setText("Type");
+		nameText.setEditable(false);
+
+		Text lambdaDesc = new Text(radioContainer, SWT.READ_ONLY);
+		lambdaDesc.setEnabled(true);
+		lambdaDesc.setText("Lambda");
+		lambdaDesc.setToolTipText("Describes how much the attacker is improving over time");
+		lambdaDesc.setEditable(false);
+
+		Text deltaDesc = new Text(radioContainer, SWT.READ_ONLY);
+		deltaDesc.setEnabled(true);
+		deltaDesc.setText("Delta");
+		deltaDesc.setToolTipText("Time the attacker is always unsuccessful and needs to get to know the system");
+		deltaDesc.setEditable(false);
+
+		Text mtoaDesc = new Text(radioContainer, SWT.READ_ONLY);
+		mtoaDesc.setEnabled(true);
+		mtoaDesc.setText("Mean Time of Attack");
+		mtoaDesc.setToolTipText("Mean time the attacker tries to get into the system");
+		mtoaDesc.setEditable(false);
+
+		// actual buttons and values
 		for (int i = 0; i < 3; i++) {
 			Button button = new Button(radioContainer, SWT.CHECK);
 			button.setEnabled(true);
