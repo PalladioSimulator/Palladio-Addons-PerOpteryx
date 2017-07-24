@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
@@ -27,14 +28,30 @@ import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 public class SecurityAnalysisTab extends FileNamesInputTab implements
 ILaunchConfigurationTab {
 
+	private static final String ATTR_ATTACKER_MTOA = "attacker_mtoa";
+	private static final String ATTR_ATTACKER_DELTA = "attacker_delta";
+	private static final String ATTR_ATTACKER_LAMBDA = "attacker_lambda";
+	private static final String ATTR_MOCK_SECURITY = "mockSecurity";
+	// constants and class variables
 	private static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
+	private final int CUSTOM_INDEX = 2;
+
+	/** UI Elements */
+	private Text textSecurityModel;
+	private Button[] buttons = new Button[3];
+	private Text[][] atkSettingsTexts = new Text[3][3];
+	private Button mockButton;
 
 	/** Settings that can be set */
-	private Text textSecurityModel;
+	private int numButtonSelected = 1;
 	private boolean mockSecurity = false;
 	private String attacker_lambda = "0.01";
 	private String attacker_delta = "100";
 	private String attacker_mtoa = "200";
+
+	/** Attacker settings texts */
+	private final String[][] atkSettingsTextContent = { { "Low", "0.007", "150", "200" }, { "High", "0.01", "100", "200" },
+			{ "Custom", this.attacker_lambda, this.attacker_delta, this.attacker_mtoa } };
 
 	@Override
 	public void createControl(Composite parent) {
@@ -84,11 +101,11 @@ ILaunchConfigurationTab {
 		/**
 		 * Add a button to mock security values
 		 */
-		Button button = new Button(container, SWT.CHECK);
-		button.setEnabled(true);
-		button.setText("Mock calculation of security values");
-		button.addSelectionListener(selectionListener);
-		button.setSelection(this.mockSecurity);
+		this.mockButton = new Button(container, SWT.CHECK);
+		this.mockButton.setEnabled(true);
+		this.mockButton.setText("Mock calculation of security values");
+		this.mockButton.addSelectionListener(selectionListener);
+		this.mockButton.setSelection(this.mockSecurity);
 
 	}
 
@@ -115,12 +132,8 @@ ILaunchConfigurationTab {
 		// lambda (improvement), delta and Mean Time of Attack (x)
 		// examples low: 0.007, 150, 200
 		// examples high: 0.01, 100, 200
-		String[][] text = { { "Low", "0.007", "150", "200" }, { "High", "0.01", "100", "200" },
-				{ "Custom", "0.01", "100", "200" } };
-		Button[] buttons = new Button[3];
-		Text[][] texts = new Text[3][3];
-		final int CUSTOM_INDEX = 2;
-		final int DEFAULT_SELECTED_INDEX = 1;
+
+
 
 		// Description texts
 		Text nameText = new Text(radioContainer, SWT.READ_ONLY);
@@ -150,27 +163,27 @@ ILaunchConfigurationTab {
 		for (int i = 0; i < 3; i++) {
 			Button button = new Button(radioContainer, SWT.CHECK);
 			button.setEnabled(true);
-			button.setText(text[i][0]);
-			button.setSelection(i == DEFAULT_SELECTED_INDEX);
-			buttons[i] = button;
+			button.setText(this.atkSettingsTextContent[i][0]);
+			button.setSelection(i == this.numButtonSelected);
+			this.buttons[i] = button;
 
 			Text lambda = new Text(radioContainer, SWT.READ_ONLY);
 			lambda.setEnabled(true);
-			lambda.setText(text[i][1]);
-			lambda.setEditable(i == CUSTOM_INDEX); // only custom is editable
-			texts[i][0] = lambda;
+			lambda.setText(this.atkSettingsTextContent[i][1]);
+			lambda.setEditable(i == this.CUSTOM_INDEX); // only custom is editable
+			this.atkSettingsTexts[i][0] = lambda;
 
 			Text delta = new Text(radioContainer, SWT.READ_ONLY);
 			delta.setEnabled(true);
-			delta.setText(text[i][2]);
-			delta.setEditable(i == CUSTOM_INDEX); // only custom is editable
-			texts[i][1] = delta;
+			delta.setText(this.atkSettingsTextContent[i][2]);
+			delta.setEditable(i == this.CUSTOM_INDEX); // only custom is editable
+			this.atkSettingsTexts[i][1] = delta;
 
 			Text mtoa = new Text(radioContainer, SWT.READ_ONLY);
 			mtoa.setEnabled(true);
-			mtoa.setText(text[i][3]);
-			mtoa.setEditable(i == CUSTOM_INDEX); // only custom is editable
-			texts[i][2] = mtoa;
+			mtoa.setText(this.atkSettingsTextContent[i][3]);
+			mtoa.setEditable(i == this.CUSTOM_INDEX); // only custom is editable
+			this.atkSettingsTexts[i][2] = mtoa;
 		}
 
 		// Listener for the buttons
@@ -187,15 +200,15 @@ ILaunchConfigurationTab {
 					// go through buttons, unset other buttons and update the
 					// values for correct button
 					Button button = (Button) e.getSource();
-					for (int i = 0; i < buttons.length; i++) {
-						Button otherButton = buttons[i];
+					for (int i = 0; i < SecurityAnalysisTab.this.buttons.length; i++) {
+						Button otherButton = SecurityAnalysisTab.this.buttons[i];
 						if (!otherButton.equals(button)) {
 							otherButton.setSelection(false);
 						} else {
 							// update values
-							SecurityAnalysisTab.this.attacker_lambda = texts[i][0].getText();
-							SecurityAnalysisTab.this.attacker_delta = texts[i][1].getText();
-							SecurityAnalysisTab.this.attacker_mtoa = texts[i][2].getText();
+							SecurityAnalysisTab.this.attacker_lambda = SecurityAnalysisTab.this.atkSettingsTexts[i][0].getText();
+							SecurityAnalysisTab.this.attacker_delta = SecurityAnalysisTab.this.atkSettingsTexts[i][1].getText();
+							SecurityAnalysisTab.this.attacker_mtoa = SecurityAnalysisTab.this.atkSettingsTexts[i][2].getText();
 						}
 					}
 				}
@@ -203,23 +216,21 @@ ILaunchConfigurationTab {
 				SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
 			}
 		};
-		for (Button button : buttons) {
+		for (Button button : this.buttons) {
 			button.addSelectionListener(selectionListener);
 		}
 
 		// text modify listener
 		final ModifyListener textModifyListener = event -> {
-			this.attacker_lambda = texts[CUSTOM_INDEX][0].getText();
-			this.attacker_delta = texts[CUSTOM_INDEX][1].getText();
-			this.attacker_mtoa = texts[CUSTOM_INDEX][2].getText();
-			for (int i = 0; i < buttons.length; i++) {
-				buttons[i].setSelection(i == CUSTOM_INDEX);
-			}
+			this.attacker_lambda = this.atkSettingsTexts[this.CUSTOM_INDEX][0].getText();
+			this.attacker_delta = this.atkSettingsTexts[this.CUSTOM_INDEX][1].getText();
+			this.attacker_mtoa = this.atkSettingsTexts[this.CUSTOM_INDEX][2].getText();
+			this.setSelectedButton(this.CUSTOM_INDEX);
 			SecurityAnalysisTab.this.setDirty(true);
 			SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
 		};
-		for (int i = 0; i < texts[CUSTOM_INDEX].length; i++) {
-			texts[CUSTOM_INDEX][i].addModifyListener(textModifyListener);
+		for (int i = 0; i < this.atkSettingsTexts[this.CUSTOM_INDEX].length; i++) {
+			this.atkSettingsTexts[this.CUSTOM_INDEX][i].addModifyListener(textModifyListener);
 		}
 
 		return radioContainer;
@@ -230,28 +241,59 @@ ILaunchConfigurationTab {
 		return "Security Analysis";
 	}
 
+	private void setSelectedButton(int buttonIndex) {
+		for (int i = 0; i < this.buttons.length; i++) {
+			this.buttons[i].setSelection(i == buttonIndex);
+		}
+	}
+
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
-		// empty
+		// TODO
+		try {
+			this.mockSecurity = configuration.getAttribute(ATTR_MOCK_SECURITY, false);
+			this.mockButton.setSelection(this.mockSecurity);
+			this.attacker_lambda = configuration.getAttribute(ATTR_ATTACKER_LAMBDA, "0.01");
+			this.attacker_delta = configuration.getAttribute(ATTR_ATTACKER_DELTA, "100");
+			this.attacker_mtoa = configuration.getAttribute(ATTR_ATTACKER_MTOA, "200");
+			if (this.attacker_lambda.equals(this.atkSettingsTextContent[0][1]) && this.attacker_delta.equals(this.atkSettingsTextContent[0][2])
+					&& this.attacker_mtoa.equals(this.atkSettingsTextContent[0][3])) {
+				// case 1
+				this.numButtonSelected = 0;
+			} else if (this.attacker_lambda.equals(this.atkSettingsTextContent[1][1]) && this.attacker_delta.equals(this.atkSettingsTextContent[1][2])
+					&& this.attacker_mtoa.equals(this.atkSettingsTextContent[1][3])) {
+				// case 2
+				this.numButtonSelected = 1;
+			} else {
+				this.atkSettingsTexts[2][0].setText(this.attacker_lambda);
+				this.atkSettingsTexts[2][1].setText(this.attacker_delta);
+				this.atkSettingsTexts[2][2].setText(this.attacker_mtoa);
+				this.numButtonSelected = 2;
+			}
+			this.setSelectedButton(this.numButtonSelected);
+		} catch (CoreException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		// TODO
-		configuration.setAttribute("mockSecurity", this.mockSecurity);
-		configuration.setAttribute("attacker_lambda", this.attacker_lambda);
-		configuration.setAttribute("attacker_delta", this.attacker_delta);
-		configuration.setAttribute("attacker_mtoa", this.attacker_mtoa);
+		configuration.setAttribute(ATTR_MOCK_SECURITY, this.mockSecurity);
+		configuration.setAttribute(ATTR_ATTACKER_LAMBDA, this.attacker_lambda);
+		configuration.setAttribute(ATTR_ATTACKER_DELTA, this.attacker_delta);
+		configuration.setAttribute(ATTR_ATTACKER_MTOA, this.attacker_mtoa);
 		logger.debug("Changed Config: mockSecurity=" + this.mockSecurity + ", Attacker(" + this.attacker_lambda + ","
 				+ this.attacker_delta + "," + this.attacker_mtoa + ")");
 
 	}
 
 	@Override
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {		configuration.setAttribute("mockSecurity", this.mockSecurity);
-		configuration.setAttribute("attacker_lambda", this.attacker_lambda);
-		configuration.setAttribute("attacker_delta", this.attacker_delta);
-		configuration.setAttribute("attacker_mtoa", this.attacker_mtoa);;
+	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {		configuration.setAttribute(ATTR_MOCK_SECURITY, this.mockSecurity);
+		configuration.setAttribute(ATTR_ATTACKER_LAMBDA, this.attacker_lambda);
+		configuration.setAttribute(ATTR_ATTACKER_DELTA, this.attacker_delta);
+		configuration.setAttribute(ATTR_ATTACKER_MTOA, this.attacker_mtoa);;
 	}
 
 	@Override
@@ -278,6 +320,7 @@ ILaunchConfigurationTab {
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
+		// TODO
 		try {
 			@SuppressWarnings("unused")
 			double lambda = Double.parseDouble(this.attacker_lambda);
