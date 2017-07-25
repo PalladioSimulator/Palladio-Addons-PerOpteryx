@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated componentSecurity -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="componentSecurity.presentation.ComponentSecurityModelWizardID"
+            name="%_UI_ComponentSecurityModelWizard_label"
+            class="componentSecurity.presentation.ComponentSecurityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ComponentSecurityModelFile.gif">
+         <description>%_UI_ComponentSecurityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated componentSecurity -->
+      <editor
+            id="componentSecurity.presentation.ComponentSecurityEditorID"
+            name="%_UI_ComponentSecurityEditor_label"
+            icon="icons/full/obj16/ComponentSecurityModelFile.gif"
+            extensions="componentsecurity"
+            class="componentSecurity.presentation.ComponentSecurityEditor"
+            contributorClass="componentSecurity.presentation.ComponentSecurityActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
