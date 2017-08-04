@@ -29,7 +29,7 @@
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_EWRjEXEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_EWRjEnEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EWRjE3EwEee7TfpwNNBPhA" x="273" y="141"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EWRjE3EwEee7TfpwNNBPhA" x="248" y="152"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_KLEMMHEwEee7TfpwNNBPhA" type="2006" element="_KLCXAHEwEee7TfpwNNBPhA">
       <children xmi:type="notation:DecorationNode" xmi:id="_KLEzQHEwEee7TfpwNNBPhA" type="5008"/>
@@ -95,15 +95,15 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_afNJEXEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_afNJEnEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
       <element xmi:type="ecore:EClass" href="http://www.example.org/componentSecurity#//ComponentSecurity"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_afNJE3EwEee7TfpwNNBPhA" x="480" y="228"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_afNJE3EwEee7TfpwNNBPhA" x="476" y="236"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_5Pe00XEvEee7TfpwNNBPhA"/>
     <edges xmi:type="notation:Edge" xmi:id="_Q-860HEwEee7TfpwNNBPhA" type="4003" element="_Q-7ssHEwEee7TfpwNNBPhA" source="_KLEMMHEwEee7TfpwNNBPhA" target="_POVRwHEwEee7TfpwNNBPhA">
       <children xmi:type="notation:DecorationNode" xmi:id="_Q-861HEwEee7TfpwNNBPhA" type="6001">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q-861XEwEee7TfpwNNBPhA" x="-10" y="-10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q-861XEwEee7TfpwNNBPhA" x="-28" y="31"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_Q-9h4HEwEee7TfpwNNBPhA" type="6002">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q-9h4XEwEee7TfpwNNBPhA" x="10" y="10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q-9h4XEwEee7TfpwNNBPhA" x="11" y="-12"/>
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_Q-860XEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_Q-860nEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
@@ -113,10 +113,10 @@
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_SikCoHEwEee7TfpwNNBPhA" type="4003" element="_Sig_UHEwEee7TfpwNNBPhA" source="_EWRjEHEwEee7TfpwNNBPhA" target="_POVRwHEwEee7TfpwNNBPhA">
       <children xmi:type="notation:DecorationNode" xmi:id="_SikCpHEwEee7TfpwNNBPhA" type="6001">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_SikpsHEwEee7TfpwNNBPhA" x="-10" y="-10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SikpsHEwEee7TfpwNNBPhA" x="-29" y="-24"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_SikpsXEwEee7TfpwNNBPhA" type="6002">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_SikpsnEwEee7TfpwNNBPhA" x="10" y="10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SikpsnEwEee7TfpwNNBPhA" x="14" y="14"/>
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_SikCoXEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_SikConEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
@@ -125,7 +125,7 @@
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_cBUcEHEwEee7TfpwNNBPhA" type="4005" element="_cBSm4HEwEee7TfpwNNBPhA" source="_KLEMMHEwEee7TfpwNNBPhA" target="_afNJEHEwEee7TfpwNNBPhA">
       <children xmi:type="notation:DecorationNode" xmi:id="_cBUcFHEwEee7TfpwNNBPhA" type="6004">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_cBUcFXEwEee7TfpwNNBPhA" x="10" y="10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_cBUcFXEwEee7TfpwNNBPhA" x="-1" y="21"/>
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_cBUcEXEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_cBUcEnEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
@@ -133,7 +133,7 @@
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_ciPX0HEwEee7TfpwNNBPhA" type="4005" element="_ciOJsHEwEee7TfpwNNBPhA" source="_EWRjEHEwEee7TfpwNNBPhA" target="_XVnh8HEwEee7TfpwNNBPhA">
       <children xmi:type="notation:DecorationNode" xmi:id="_ciPX1HEwEee7TfpwNNBPhA" type="6004">
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_ciPX1XEwEee7TfpwNNBPhA" x="10" y="10"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ciPX1XEwEee7TfpwNNBPhA" x="5" y="15"/>
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_ciPX0XEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_ciPX0nEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>

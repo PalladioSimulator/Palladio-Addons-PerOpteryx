@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated componentSecurity -->
       <package
-            uri="http://www.example.org/componentSecurity"
+            uri="http://are.ipd.kit.edu/componentSecurity"
             class="componentSecurity.ComponentSecurityPackage"
             genModel="model/componentSecurity.genmodel"/>
    </extension>
