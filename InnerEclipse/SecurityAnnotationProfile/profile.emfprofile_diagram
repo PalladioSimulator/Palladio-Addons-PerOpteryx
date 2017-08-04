@@ -7,7 +7,7 @@
         <eType xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition/AssemblyContext"/>
       </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_ciOJsHEwEee7TfpwNNBPhA">
-        <target xmi:type="ecore:EClass" href="http://www.example.org/componentSecurity#//SecurityTarget"/>
+        <target xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/componentSecurity#//SecurityTarget"/>
       </extensions>
     </eClassifiers>
     <eClassifiers xmi:type="emfprofile:Stereotype" xmi:id="_KLCXAHEwEee7TfpwNNBPhA" name="SecurityAnnotation">
@@ -16,7 +16,7 @@
         <eType xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition/AssemblyContext"/>
       </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_cBSm4HEwEee7TfpwNNBPhA">
-        <target xmi:type="ecore:EClass" href="http://www.example.org/componentSecurity#//ComponentSecurity"/>
+        <target xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/componentSecurity#//ComponentSecurity"/>
       </extensions>
     </eClassifiers>
   </emfprofile:Profile>
@@ -74,7 +74,7 @@
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_XVnh8XEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_XVnh8nEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
-      <element xmi:type="ecore:EClass" href="http://www.example.org/componentSecurity#//SecurityTarget"/>
+      <element xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/componentSecurity#//SecurityTarget"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XVnh83EwEee7TfpwNNBPhA" x="240" y="236"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_afNJEHEwEee7TfpwNNBPhA" type="2002">
@@ -94,7 +94,7 @@
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_afNJEXEwEee7TfpwNNBPhA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_afNJEnEwEee7TfpwNNBPhA" fontName=".SF NS Text"/>
-      <element xmi:type="ecore:EClass" href="http://www.example.org/componentSecurity#//ComponentSecurity"/>
+      <element xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/componentSecurity#//ComponentSecurity"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_afNJE3EwEee7TfpwNNBPhA" x="476" y="236"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_5Pe00XEvEee7TfpwNNBPhA"/>
