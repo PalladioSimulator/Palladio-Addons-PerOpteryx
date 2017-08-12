@@ -121,24 +121,23 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			ComponentSecurity annotation = null;
 			for (Stereotype stereotype : stereotypes) {
 				if (stereotype.getName().equals("SecurityAnnotation")) {
-					// annotation = ?;
-					EStructuralFeature feature = stereotype.getEStructuralFeature("secAnnotation");
-					// TODO
-					// HOW TO GET FROM THE FEATURE TO THE FUCKING
-					// COMPONENTSECURITY??? THIS SHIT ALWAYS SAYS "NO!"!!!
-
-					break;
+					// TODO FUCK THIS RETARDED SHITTY BASTERD CUNT
+					for (EStructuralFeature f : stereotype.getEAllStructuralFeatures()) {
+						logger.info(stereotype.eGet(f)); // FAILS HERE...
+						// ..HOW/WHY??? WTF IS THIS MANIAC BULLSHIT
+					}
 				}
 			}
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
-			if (annotation != null) {
-				component.TTDV(annotation.getTTDV());
-				component.PoCoB(annotation.getPoCoB());
-			} else {
+			if (annotation == null) {
 				component.TTDV(200);
 				component.PoCoB(0.2);
 				// TODO: how to properly output this warning?
 				logger.error("Could not find an annotation for " + assContext.getEntityName());
+
+			} else {
+				component.TTDV(annotation.getTTDV());
+				component.PoCoB(annotation.getPoCoB());
 			}
 			components.add(component.build());
 		}
