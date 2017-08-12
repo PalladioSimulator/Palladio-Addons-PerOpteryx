@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.analysis.security;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +11,18 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.modelversioning.emfprofile.Stereotype;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import componentSecurity.ComponentSecurity;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
@@ -32,7 +38,7 @@ import edu.kit.ipd.are.dsexplore.analysis.security.model.Scenario;
 
 /**
  * Evaluator for Security
- * 
+ *
  * @author Jan Keim
  *
  */
@@ -67,13 +73,12 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		List<Connector> connectors = system.getConnectors__ComposedStructure();
 		Map<AssemblyContext, List<AssemblyContext>> assMap = new HashMap<>();
 		for (AssemblyContext assContext : system.getAssemblyContexts__ComposedStructure()) {
-			List<AssemblyContext> targets = this.getRequiringAssemblyContexts(assContext, connectors); // TODO
+			List<AssemblyContext> targets = this.getRequiringAssemblyContexts(assContext, connectors);
 			assMap.put(assContext, targets);
 		}
 
 		// list of all components
 		List<Component> components = this.createComponents(assMap.keySet());
-		// TODO: sichergehen, dass assMap und components selbe Sortierung haben!
 		// get theta matrix
 		int[][] theta = this.getTheta(assMap);
 		// create scenario and calc the MTTSF
@@ -112,9 +117,29 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private List<Component> createComponents(Set<AssemblyContext> assSet) {
 		List<Component> components = new ArrayList<>();
 		for (AssemblyContext assContext : assSet) {
+			EList<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
+			ComponentSecurity annotation = null;
+			for (Stereotype stereotype : stereotypes) {
+				if (stereotype.getName().equals("SecurityAnnotation")) {
+					// annotation = ?;
+					EStructuralFeature feature = stereotype.getEStructuralFeature("secAnnotation");
+					// TODO
+					// HOW TO GET FROM THE FEATURE TO THE FUCKING
+					// COMPONENTSECURITY??? THIS SHIT ALWAYS SAYS "NO!"!!!
+
+					break;
+				}
+			}
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
-			component.TTDV(200); // TODO
-			component.PoCoB(0.2); // TODO
+			if (annotation != null) {
+				component.TTDV(annotation.getTTDV());
+				component.PoCoB(annotation.getPoCoB());
+			} else {
+				component.TTDV(200);
+				component.PoCoB(0.2);
+				// TODO: how to properly output this warning?
+				logger.error("Could not find an annotation for " + assContext.getEntityName());
+			}
 			components.add(component.build());
 		}
 		return components;
@@ -131,7 +156,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private int[][] getTheta(Map<AssemblyContext, List<AssemblyContext>> assMap) {
 		int theta_size = assMap.keySet().size() + 1;
 		int[][] theta = new int[theta_size][theta_size];
-		List<AssemblyContext> targets = this.getTargets();
+		List<AssemblyContext> targets = this.getTargets(assMap.keySet());
 		List<AssemblyContext> assList = new ArrayList<>(assMap.keySet());
 		for (int i = 0; i < assList.size(); i++) {
 			AssemblyContext assContext = assList.get(i);
@@ -139,9 +164,9 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 				int reqIndex = assList.indexOf(reqAssContext);
 				theta[i][reqIndex] += 1;
 			}
-			// TODO exchange this after getTargets is better done
-			//			if (targets.contains(assContext)) {
-			if (assContext.getEntityName().equals("AC_Database")) {
+			// set a 1 to the last column if AssemblyContext is a target
+			if (targets.contains(assContext)) {
+				logger.info("Target is " + assContext.getEntityName());
 				theta[i][theta_size - 1] = 1;
 			}
 		}
@@ -165,9 +190,17 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		return theta;
 	}
 
-	private List<AssemblyContext> getTargets() {
-		//TODO
+	private List<AssemblyContext> getTargets(Collection<AssemblyContext> assCollection) {
 		List<AssemblyContext> targets = new ArrayList<>();
+		for (AssemblyContext assContext : assCollection) {
+			List<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
+			for (Stereotype stereotype : stereotypes) {
+				if (stereotype.getName().equals("SecurityTarget")) {
+					targets.add(assContext);
+					break;
+				}
+			}
+		}
 		return targets;
 	}
 

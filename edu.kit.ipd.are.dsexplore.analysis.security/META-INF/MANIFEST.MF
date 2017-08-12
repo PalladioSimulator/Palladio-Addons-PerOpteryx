@@ -17,5 +17,8 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml,
  org.palladiosimulator.solver;bundle-version="3.0.0",
- org.palladiosimulator.analyzer.workflow
+ org.palladiosimulator.analyzer.workflow,
+ org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1",
+ org.modelversioning.emfprofile;bundle-version="1.1.0",
+ edu.kit.ipd.are.dsexplore.componentSecurity;bundle-version="0.1.0"
 Bundle-Vendor: edu.kit.ipd.are
