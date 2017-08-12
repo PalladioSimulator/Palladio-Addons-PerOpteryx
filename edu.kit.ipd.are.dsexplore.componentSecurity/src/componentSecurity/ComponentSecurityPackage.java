@@ -38,7 +38,7 @@ public interface ComponentSecurityPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.example.org/componentSecurity";
+	String eNS_URI = "http://are.ipd.kit.edu/componentSecurity";
 
 	/**
 	 * The package namespace name.

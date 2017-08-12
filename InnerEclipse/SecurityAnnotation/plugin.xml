@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin
-  id="SecurityAnnotationProfile"
-   name="SecurityAnnotationProfile"
+  id="SecurityAnnotation"
+   name="SecurityAnnotation"
    version="1.0.0.qualifier"
   provider="">
   <requires>

@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated componentSecurity -->
       <factory
-            uri="http://www.example.org/componentSecurity"
+            uri="http://are.ipd.kit.edu/componentSecurity"
             class="componentSecurity.provider.ComponentSecurityItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
