@@ -57,6 +57,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
@@ -798,6 +799,7 @@ public class DSEProblem {
 			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
+			this.initInitialOptional(oad, op, initialCandidate);
 		}
 		// EList<Stereotype> app = StereotypeAPI.getAppliedStereotypes(ecc);
 		// Optional<Stereotype> eccInterfaceOptional = app.stream().filter(a
@@ -818,6 +820,14 @@ public class DSEProblem {
 		// EReference provides = providesOptional.get();
 		// EObject feature = provides.eContents().get(0);
 		// Object o = ((EGenericType) feature).getERawType();
+	}
+
+	private void initInitialOptional(OptionalAsDegree oad, Feature op, DesignDecisionGenotype initialCandidate) {
+		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+		// TODO DTHF1 Sth useful.
+		ch.setValue(false);
+		ch.setDegreeOfFreedomInstance(oad);
+		initialCandidate.add(ch);
 	}
 
 	///////////////////////////////////////
