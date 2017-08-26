@@ -61,8 +61,7 @@ public class OrderedIntegerDegreeImpl extends DiscreteDegreeImpl implements Orde
 	@Override
 	public EList<Integer> getListOfIntegers() {
 		if (listOfIntegers == null) {
-			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this,
-					specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
+			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this, specificPackage.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS);
 		}
 		return listOfIntegers;
 	}

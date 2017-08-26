@@ -68,9 +68,8 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 			processingresourcetype = (ProcessingResourceType) eResolveProxy(oldProcessingresourcetype);
 			if (processingresourcetype != oldProcessingresourcetype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.NUMBER_OF_CORES_AS_RANGE_DEGREE__PROCESSINGRESOURCETYPE,
-							oldProcessingresourcetype, processingresourcetype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.NUMBER_OF_CORES_AS_RANGE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
+							processingresourcetype));
 			}
 		}
 		return processingresourcetype;
@@ -93,9 +92,7 @@ public class NumberOfCoresAsRangeDegreeImpl extends DiscreteRangeDegreeImpl impl
 		ProcessingResourceType oldProcessingresourcetype = processingresourcetype;
 		processingresourcetype = newProcessingresourcetype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					specificPackage.NUMBER_OF_CORES_AS_RANGE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
-					processingresourcetype));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.NUMBER_OF_CORES_AS_RANGE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 	}
 
 	/**

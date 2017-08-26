@@ -62,8 +62,7 @@ public class AllocationDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	@Override
 	public String getText(Object object) {
 		String label = ((AllocationDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_AllocationDegree_type")
-				: getString("_UI_AllocationDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_AllocationDegree_type") : getString("_UI_AllocationDegree_type") + " " + label;
 	}
 
 	/**

@@ -60,12 +60,9 @@ public class DiscreteRangeChoiceItemProvider extends ChoiceItemProvider {
 	 */
 	protected void addChosenValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DiscreteRangeChoice_chosenValue_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeChoice_chosenValue_feature",
-								"_UI_DiscreteRangeChoice_type"),
-						designdecisionPackage.Literals.DISCRETE_RANGE_CHOICE__CHOSEN_VALUE, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DiscreteRangeChoice_chosenValue_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeChoice_chosenValue_feature", "_UI_DiscreteRangeChoice_type"),
+						designdecisionPackage.Literals.DISCRETE_RANGE_CHOICE__CHOSEN_VALUE, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**

@@ -56,8 +56,7 @@ public class FeatureConfigDegreeItemProvider extends DegreeOfFreedomInstanceItem
 	@Override
 	public String getText(Object object) {
 		String label = ((FeatureConfigDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureConfigDegree_type")
-				: getString("_UI_FeatureConfigDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_FeatureConfigDegree_type") : getString("_UI_FeatureConfigDegree_type") + " " + label;
 	}
 
 	/**

@@ -48,8 +48,7 @@ public interface qualitypropertiesPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	qualitypropertiesPackage eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl
-			.init();
+	qualitypropertiesPackage eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.QualityPropertyImpl <em>Quality Property</em>}' class.
@@ -518,16 +517,14 @@ public interface qualitypropertiesPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = eINSTANCE
-				.getNumericQualityProperty_ResultDecoratorRepository();
+		EReference NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY = eINSTANCE.getNumericQualityProperty_ResultDecoratorRepository();
 
 		/**
 		 * The meta object literal for the '<em><b>Confidence Interval</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = eINSTANCE
-				.getNumericQualityProperty_ConfidenceInterval();
+		EReference NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL = eINSTANCE.getNumericQualityProperty_ConfidenceInterval();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.ConfidenceIntervalImpl <em>Confidence Interval</em>}' class.

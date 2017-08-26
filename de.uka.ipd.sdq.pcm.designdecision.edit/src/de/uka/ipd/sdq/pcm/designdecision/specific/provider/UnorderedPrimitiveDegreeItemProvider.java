@@ -53,8 +53,7 @@ public class UnorderedPrimitiveDegreeItemProvider extends UnorderedDegreeItemPro
 	@Override
 	public String getText(Object object) {
 		String label = ((UnorderedPrimitiveDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_UnorderedPrimitiveDegree_type")
-				: getString("_UI_UnorderedPrimitiveDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UnorderedPrimitiveDegree_type") : getString("_UI_UnorderedPrimitiveDegree_type") + " " + label;
 	}
 
 	/**

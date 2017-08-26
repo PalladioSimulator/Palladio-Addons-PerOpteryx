@@ -85,8 +85,7 @@ public class CandidateImpl extends NamedElementImpl implements Candidate {
 	@Override
 	public EList<QualityProperty> getQualityProperty() {
 		if (qualityProperty == null) {
-			qualityProperty = new EObjectContainmentEList<QualityProperty>(QualityProperty.class, this,
-					designdecisionPackage.CANDIDATE__QUALITY_PROPERTY);
+			qualityProperty = new EObjectContainmentEList<QualityProperty>(QualityProperty.class, this, designdecisionPackage.CANDIDATE__QUALITY_PROPERTY);
 		}
 		return qualityProperty;
 	}

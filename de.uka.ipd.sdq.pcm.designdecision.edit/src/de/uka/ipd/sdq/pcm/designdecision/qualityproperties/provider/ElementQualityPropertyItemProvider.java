@@ -64,8 +64,7 @@ public class ElementQualityPropertyItemProvider extends QualityPropertyItemProvi
 	public String getText(Object object) {
 		Object labelValue = ((ElementQualityProperty) object).getQualityValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ElementQualityProperty_type")
-				: getString("_UI_ElementQualityProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ElementQualityProperty_type") : getString("_UI_ElementQualityProperty_type") + " " + label;
 	}
 
 	/**

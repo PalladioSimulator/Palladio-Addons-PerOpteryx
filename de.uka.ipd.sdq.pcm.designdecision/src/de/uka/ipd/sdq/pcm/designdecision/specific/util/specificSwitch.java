@@ -550,8 +550,7 @@ public class specificSwitch<T> extends Switch<T> {
 		}
 		case specificPackage.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE: {
 			ResourceContainerReplicationDegreeWithComponentChange resourceContainerReplicationDegreeWithComponentChange = (ResourceContainerReplicationDegreeWithComponentChange) theEObject;
-			T result = caseResourceContainerReplicationDegreeWithComponentChange(
-					resourceContainerReplicationDegreeWithComponentChange);
+			T result = caseResourceContainerReplicationDegreeWithComponentChange(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
 				result = caseResourceContainerReplicationDegree(resourceContainerReplicationDegreeWithComponentChange);
 			if (result == null)
@@ -1127,8 +1126,7 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseResourceContainerReplicationDegreeWithComponentChange(
-			ResourceContainerReplicationDegreeWithComponentChange object) {
+	public T caseResourceContainerReplicationDegreeWithComponentChange(ResourceContainerReplicationDegreeWithComponentChange object) {
 		return null;
 	}
 

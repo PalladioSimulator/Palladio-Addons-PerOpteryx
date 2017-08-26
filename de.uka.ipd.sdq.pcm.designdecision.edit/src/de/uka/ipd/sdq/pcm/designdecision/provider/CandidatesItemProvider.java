@@ -32,8 +32,8 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class CandidatesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CandidatesItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -67,12 +67,9 @@ public class CandidatesItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addProblemPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Candidates_problem_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Candidates_problem_feature",
-								"_UI_Candidates_type"),
-						designdecisionPackage.Literals.CANDIDATES__PROBLEM, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_Candidates_problem_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Candidates_problem_feature", "_UI_Candidates_type"),
+				designdecisionPackage.Literals.CANDIDATES__PROBLEM, true, false, true, null, null, null));
 	}
 
 	/**
@@ -154,8 +151,7 @@ public class CandidatesItemProvider extends ItemProviderAdapter implements IEdit
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATES__CANDIDATE,
-				designdecisionFactory.eINSTANCE.createCandidate()));
+		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATES__CANDIDATE, designdecisionFactory.eINSTANCE.createCandidate()));
 	}
 
 	/**

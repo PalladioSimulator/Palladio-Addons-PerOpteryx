@@ -67,9 +67,7 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 			processingresourcetype = (ProcessingResourceType) eResolveProxy(oldProcessingresourcetype);
 			if (processingresourcetype != oldProcessingresourcetype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.RESOURCE_SELECTION_DEGREE__PROCESSINGRESOURCETYPE,
-							oldProcessingresourcetype, processingresourcetype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.RESOURCE_SELECTION_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 			}
 		}
 		return processingresourcetype;
@@ -92,9 +90,7 @@ public class ResourceSelectionDegreeImpl extends ClassWithCopyDegreeImpl impleme
 		ProcessingResourceType oldProcessingresourcetype = processingresourcetype;
 		processingresourcetype = newProcessingresourcetype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					specificPackage.RESOURCE_SELECTION_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
-					processingresourcetype));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.RESOURCE_SELECTION_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 	}
 
 	/**

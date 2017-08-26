@@ -42,8 +42,7 @@ import de.uka.ipd.sdq.pcm.designdecision.presentation.DesignDecisionEditorPlugin
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class qualitypropertiesActionBarContributor extends EditingDomainActionBarContributor
-		implements ISelectionChangedListener {
+public class qualitypropertiesActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -64,8 +63,7 @@ public class qualitypropertiesActionBarContributor extends EditingDomainActionBa
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction = new Action(
-			DesignDecisionEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+	protected IAction showPropertiesViewAction = new Action(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 		@Override
 		public void run() {
 			try {
@@ -83,8 +81,7 @@ public class qualitypropertiesActionBarContributor extends EditingDomainActionBa
 	 * end-user-doc -->
 	 * @generated
 	 */
-	protected IAction refreshViewerAction = new Action(
-			DesignDecisionEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+	protected IAction refreshViewerAction = new Action(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 		@Override
 		public boolean isEnabled() {
 			return activeEditorPart instanceof IViewerProvider;
@@ -166,9 +163,7 @@ public class qualitypropertiesActionBarContributor extends EditingDomainActionBa
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditor_menu"),
-				"de.uka.ipd.sdq.pcm.designdecision.qualitypropertiesMenuID");
+		IMenuManager submenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditor_menu"), "de.uka.ipd.sdq.pcm.designdecision.qualitypropertiesMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -177,14 +172,12 @@ public class qualitypropertiesActionBarContributor extends EditingDomainActionBa
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -320,8 +313,7 @@ public class qualitypropertiesActionBarContributor extends EditingDomainActionBa
 	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
-			String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {

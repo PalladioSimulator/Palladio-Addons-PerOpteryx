@@ -17,8 +17,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImpl
-		implements ContinuousComponentParamDegree {
+public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImpl implements ContinuousComponentParamDegree {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

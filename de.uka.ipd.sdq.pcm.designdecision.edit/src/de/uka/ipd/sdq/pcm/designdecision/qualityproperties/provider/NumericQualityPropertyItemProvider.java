@@ -55,14 +55,10 @@ public class NumericQualityPropertyItemProvider extends QualityPropertyItemProvi
 	 * @generated
 	 */
 	protected void addResultDecoratorRepositoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_NumericQualityProperty_resultDecoratorRepository_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_NumericQualityProperty_resultDecoratorRepository_feature",
-								"_UI_NumericQualityProperty_type"),
-						qualitypropertiesPackage.Literals.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY, true,
-						false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_NumericQualityProperty_resultDecoratorRepository_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_NumericQualityProperty_resultDecoratorRepository_feature", "_UI_NumericQualityProperty_type"),
+				qualitypropertiesPackage.Literals.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY, true, false, true, null, null, null));
 	}
 
 	/**
@@ -72,13 +68,10 @@ public class NumericQualityPropertyItemProvider extends QualityPropertyItemProvi
 	 * @generated
 	 */
 	protected void addConfidenceIntervalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_NumericQualityProperty_confidenceInterval_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_NumericQualityProperty_confidenceInterval_feature",
-						"_UI_NumericQualityProperty_type"),
-				qualitypropertiesPackage.Literals.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL, true, false, true,
-				null, null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_NumericQualityProperty_confidenceInterval_feature", "_UI_NumericQualityProperty_type"),
+				qualitypropertiesPackage.Literals.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL, true, false, true, null, null, null));
 	}
 
 	/**
@@ -91,8 +84,7 @@ public class NumericQualityPropertyItemProvider extends QualityPropertyItemProvi
 	public String getText(Object object) {
 		Object labelValue = ((NumericQualityProperty) object).getQualityValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_NumericQualityProperty_type")
-				: getString("_UI_NumericQualityProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_NumericQualityProperty_type") : getString("_UI_NumericQualityProperty_type") + " " + label;
 	}
 
 	/**

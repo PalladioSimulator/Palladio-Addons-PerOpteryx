@@ -85,8 +85,7 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 			featuregroup = (FeatureGroup) eResolveProxy(oldFeaturegroup);
 			if (featuregroup != oldFeaturegroup) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.FEATURE_GROUP_DEGREE__FEATUREGROUP, oldFeaturegroup, featuregroup));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.FEATURE_GROUP_DEGREE__FEATUREGROUP, oldFeaturegroup, featuregroup));
 			}
 		}
 		return featuregroup;
@@ -109,8 +108,7 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 		FeatureGroup oldFeaturegroup = featuregroup;
 		featuregroup = newFeaturegroup;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.FEATURE_GROUP_DEGREE__FEATUREGROUP,
-					oldFeaturegroup, featuregroup));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.FEATURE_GROUP_DEGREE__FEATUREGROUP, oldFeaturegroup, featuregroup));
 	}
 
 	/**
@@ -120,8 +118,7 @@ public class FeatureGroupDegreeImpl extends FeatureConfigDegreeImpl implements F
 	@Override
 	public EList<FeatureSubset> getDomainOfFeatureConfigCombinations() {
 		if (domainOfFeatureConfigCombinations == null) {
-			domainOfFeatureConfigCombinations = new EObjectContainmentEList<FeatureSubset>(FeatureSubset.class, this,
-					specificPackage.FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS);
+			domainOfFeatureConfigCombinations = new EObjectContainmentEList<FeatureSubset>(FeatureSubset.class, this, specificPackage.FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS);
 		}
 		return domainOfFeatureConfigCombinations;
 	}

@@ -26,8 +26,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureSubsetItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FeatureSubsetItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -61,12 +61,9 @@ public class FeatureSubsetItemProvider extends ItemProviderAdapter implements IE
 	 * @generated
 	 */
 	protected void addFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureSubset_feature_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_FeatureSubset_feature_feature",
-								"_UI_FeatureSubset_type"),
-						specificPackage.Literals.FEATURE_SUBSET__FEATURE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FeatureSubset_feature_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FeatureSubset_feature_feature", "_UI_FeatureSubset_type"),
+				specificPackage.Literals.FEATURE_SUBSET__FEATURE, true, false, true, null, null, null));
 	}
 
 	/**

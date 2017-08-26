@@ -20,8 +20,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
-		extends ResourceContainerReplicationDegreeItemProvider {
+public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider extends ResourceContainerReplicationDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -60,8 +59,7 @@ public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(
-					specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE);
+			childrenFeatures.add(specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE);
 		}
 		return childrenFeatures;
 	}
@@ -86,8 +84,7 @@ public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/ResourceContainerReplicationDegreeWithComponentChange"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceContainerReplicationDegreeWithComponentChange"));
 	}
 
 	/**
@@ -99,8 +96,7 @@ public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ResourceContainerReplicationDegreeWithComponentChange) object).getEntityName();
-		return label == null || label.length() == 0
-				? getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type")
+		return label == null || label.length() == 0 ? getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type")
 				: getString("_UI_ResourceContainerReplicationDegreeWithComponentChange_type") + " " + label;
 	}
 
@@ -132,8 +128,7 @@ public class ResourceContainerReplicationDegreeWithComponentChangeItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE,
+		newChildDescriptors.add(createChildParameter(specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE,
 				specificFactory.eINSTANCE.createExchangeComponentRule()));
 	}
 

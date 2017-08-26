@@ -16,8 +16,7 @@ public interface qualitypropertiesFactory extends EFactory {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	qualitypropertiesFactory eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesFactoryImpl
-			.init();
+	qualitypropertiesFactory eINSTANCE = de.uka.ipd.sdq.pcm.designdecision.qualityproperties.impl.qualitypropertiesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Confidence Interval</em>'.

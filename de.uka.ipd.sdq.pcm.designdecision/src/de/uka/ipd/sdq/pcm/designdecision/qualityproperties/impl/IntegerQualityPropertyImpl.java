@@ -81,8 +81,7 @@ public class IntegerQualityPropertyImpl extends NumericQualityPropertyImpl imple
 		Integer oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.INTEGER_QUALITY_PROPERTY__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.INTEGER_QUALITY_PROPERTY__VALUE, oldValue, value));
 	}
 
 	/**

@@ -56,13 +56,9 @@ public class IntegerQualityPropertyItemProvider extends NumericQualityPropertyIt
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_IntegerQualityProperty_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_IntegerQualityProperty_value_feature",
-								"_UI_IntegerQualityProperty_type"),
-						qualitypropertiesPackage.Literals.INTEGER_QUALITY_PROPERTY__VALUE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_IntegerQualityProperty_value_feature"), getString("_UI_PropertyDescriptor_description", "_UI_IntegerQualityProperty_value_feature", "_UI_IntegerQualityProperty_type"),
+				qualitypropertiesPackage.Literals.INTEGER_QUALITY_PROPERTY__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -85,8 +81,7 @@ public class IntegerQualityPropertyItemProvider extends NumericQualityPropertyIt
 	public String getText(Object object) {
 		Object labelValue = ((IntegerQualityProperty) object).getQualityValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_IntegerQualityProperty_type")
-				: getString("_UI_IntegerQualityProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_IntegerQualityProperty_type") : getString("_UI_IntegerQualityProperty_type") + " " + label;
 	}
 
 	/**

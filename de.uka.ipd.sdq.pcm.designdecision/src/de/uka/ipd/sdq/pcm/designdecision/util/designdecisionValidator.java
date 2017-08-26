@@ -89,8 +89,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 		case designdecisionPackage.DISCRETE_RANGE_CHOICE:
 			return validateDiscreteRangeChoice((DiscreteRangeChoice) value, diagnostics, context);
@@ -117,8 +116,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDiscreteRangeChoice(DiscreteRangeChoice discreteRangeChoice, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateDiscreteRangeChoice(DiscreteRangeChoice discreteRangeChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(discreteRangeChoice, diagnostics, context);
 	}
 
@@ -126,8 +124,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDegreeOfFreedomInstance(DegreeOfFreedomInstance degreeOfFreedomInstance,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateDegreeOfFreedomInstance(DegreeOfFreedomInstance degreeOfFreedomInstance, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(degreeOfFreedomInstance, diagnostics, context);
 	}
 
@@ -143,8 +140,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClassChoice(ClassChoice classChoice, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateClassChoice(ClassChoice classChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(classChoice, diagnostics, context);
 	}
 
@@ -152,8 +148,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContinousRangeChoice(ContinousRangeChoice continousRangeChoice, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateContinousRangeChoice(ContinousRangeChoice continousRangeChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(continousRangeChoice, diagnostics, context);
 	}
 
@@ -161,8 +156,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDecisionSpace(DecisionSpace decisionSpace, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateDecisionSpace(DecisionSpace decisionSpace, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(decisionSpace, diagnostics, context);
 	}
 
@@ -206,8 +200,7 @@ public class designdecisionValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCandidates_numberOfChoicesMustEqualNumberOfDecisions(Candidates candidates,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCandidates_numberOfChoicesMustEqualNumberOfDecisions(Candidates candidates, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return candidates.numberOfChoicesMustEqualNumberOfDecisions(diagnostics, context);
 	}
 

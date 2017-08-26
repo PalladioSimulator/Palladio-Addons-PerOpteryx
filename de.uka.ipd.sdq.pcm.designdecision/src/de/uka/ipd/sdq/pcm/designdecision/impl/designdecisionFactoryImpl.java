@@ -30,8 +30,7 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	 */
 	public static designdecisionFactory init() {
 		try {
-			designdecisionFactory thedesigndecisionFactory = (designdecisionFactory) EPackage.Registry.INSTANCE
-					.getEFactory(designdecisionPackage.eNS_URI);
+			designdecisionFactory thedesigndecisionFactory = (designdecisionFactory) EPackage.Registry.INSTANCE.getEFactory(designdecisionPackage.eNS_URI);
 			if (thedesigndecisionFactory != null) {
 				return thedesigndecisionFactory;
 			}

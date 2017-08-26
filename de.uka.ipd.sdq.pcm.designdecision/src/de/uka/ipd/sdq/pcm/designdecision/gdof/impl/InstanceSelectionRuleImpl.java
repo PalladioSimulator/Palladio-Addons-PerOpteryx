@@ -65,9 +65,7 @@ public class InstanceSelectionRuleImpl extends SelectionRuleImpl implements Inst
 			contextInstance = (ChangeableElementDescription) eResolveProxy(oldContextInstance);
 			if (contextInstance != oldContextInstance) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							gdofPackage.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE, oldContextInstance,
-							contextInstance));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, gdofPackage.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE, oldContextInstance, contextInstance));
 			}
 		}
 		return contextInstance;
@@ -90,8 +88,7 @@ public class InstanceSelectionRuleImpl extends SelectionRuleImpl implements Inst
 		ChangeableElementDescription oldContextInstance = contextInstance;
 		contextInstance = newContextInstance;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE,
-					oldContextInstance, contextInstance));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE, oldContextInstance, contextInstance));
 	}
 
 	/**

@@ -31,8 +31,7 @@ import de.uka.ipd.sdq.pcm.designdecision.util.designdecisionAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class designdecisionItemProviderAdapterFactory extends designdecisionAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class designdecisionItemProviderAdapterFactory extends designdecisionAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

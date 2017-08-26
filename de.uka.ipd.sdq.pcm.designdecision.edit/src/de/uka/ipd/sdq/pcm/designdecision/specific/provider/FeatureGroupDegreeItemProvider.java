@@ -56,11 +56,8 @@ public class FeatureGroupDegreeItemProvider extends FeatureConfigDegreeItemProvi
 	 * @generated
 	 */
 	protected void addFeaturegroupPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_FeatureGroupDegree_featuregroup_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_FeatureGroupDegree_featuregroup_feature",
-						"_UI_FeatureGroupDegree_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FeatureGroupDegree_featuregroup_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FeatureGroupDegree_featuregroup_feature", "_UI_FeatureGroupDegree_type"),
 				specificPackage.Literals.FEATURE_GROUP_DEGREE__FEATUREGROUP, true, false, true, null, null, null));
 	}
 
@@ -113,8 +110,7 @@ public class FeatureGroupDegreeItemProvider extends FeatureConfigDegreeItemProvi
 	@Override
 	public String getText(Object object) {
 		String label = ((FeatureGroupDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureGroupDegree_type")
-				: getString("_UI_FeatureGroupDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_FeatureGroupDegree_type") : getString("_UI_FeatureGroupDegree_type") + " " + label;
 	}
 
 	/**
@@ -145,9 +141,7 @@ public class FeatureGroupDegreeItemProvider extends FeatureConfigDegreeItemProvi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				specificPackage.Literals.FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS,
-				specificFactory.eINSTANCE.createFeatureSubset()));
+		newChildDescriptors.add(createChildParameter(specificPackage.Literals.FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS, specificFactory.eINSTANCE.createFeatureSubset()));
 	}
 
 }

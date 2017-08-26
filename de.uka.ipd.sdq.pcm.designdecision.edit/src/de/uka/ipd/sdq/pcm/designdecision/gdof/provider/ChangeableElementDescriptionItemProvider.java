@@ -64,11 +64,9 @@ public class ChangeableElementDescriptionItemProvider extends NamedElementItemPr
 	 * @generated
 	 */
 	protected void addChangeablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ChangeableElementDescription_changeable_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ChangeableElementDescription_changeable_feature",
-						"_UI_ChangeableElementDescription_type"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ChangeableElementDescription_changeable_feature", "_UI_ChangeableElementDescription_type"),
 				gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE, true, false, true, null, null, null));
 	}
 
@@ -122,8 +120,7 @@ public class ChangeableElementDescriptionItemProvider extends NamedElementItemPr
 	@Override
 	public String getText(Object object) {
 		String label = ((ChangeableElementDescription) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ChangeableElementDescription_type")
-				: getString("_UI_ChangeableElementDescription_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ChangeableElementDescription_type") : getString("_UI_ChangeableElementDescription_type") + " " + label;
 	}
 
 	/**
@@ -155,16 +152,11 @@ public class ChangeableElementDescriptionItemProvider extends NamedElementItemPr
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE,
-				gdofFactory.eINSTANCE.createValueRule()));
+		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, gdofFactory.eINSTANCE.createValueRule()));
 
-		newChildDescriptors
-				.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE,
-						gdofFactory.eINSTANCE.createInstanceSelectionRule()));
+		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, gdofFactory.eINSTANCE.createInstanceSelectionRule()));
 
-		newChildDescriptors
-				.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE,
-						gdofFactory.eINSTANCE.createStaticSelectionRule()));
+		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, gdofFactory.eINSTANCE.createStaticSelectionRule()));
 	}
 
 	/**

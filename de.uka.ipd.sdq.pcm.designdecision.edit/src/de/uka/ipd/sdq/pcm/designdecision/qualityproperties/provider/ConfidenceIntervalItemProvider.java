@@ -30,8 +30,8 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPack
  *
  * @generated
  */
-public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ConfidenceIntervalItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -68,13 +68,10 @@ public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addConfidenceLevelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_confidenceLevel_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ConfidenceInterval_confidenceLevel_feature", "_UI_ConfidenceInterval_type"),
-						qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(
+				createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConfidenceInterval_confidenceLevel_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_confidenceLevel_feature", "_UI_ConfidenceInterval_type"),
+						qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -84,13 +81,9 @@ public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addMeanPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ConfidenceInterval_mean_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_mean_feature",
-						"_UI_ConfidenceInterval_type"),
-				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__MEAN, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ConfidenceInterval_mean_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_mean_feature", "_UI_ConfidenceInterval_type"),
+				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__MEAN, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -100,13 +93,9 @@ public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_upperBound_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_upperBound_feature",
-								"_UI_ConfidenceInterval_type"),
-						qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__UPPER_BOUND, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ConfidenceInterval_upperBound_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_upperBound_feature", "_UI_ConfidenceInterval_type"),
+				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__UPPER_BOUND, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -116,13 +105,9 @@ public class ConfidenceIntervalItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ConfidenceInterval_lowerBound_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_lowerBound_feature",
-								"_UI_ConfidenceInterval_type"),
-						qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__LOWER_BOUND, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ConfidenceInterval_lowerBound_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ConfidenceInterval_lowerBound_feature", "_UI_ConfidenceInterval_type"),
+				qualitypropertiesPackage.Literals.CONFIDENCE_INTERVAL__LOWER_BOUND, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**

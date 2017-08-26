@@ -90,8 +90,7 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 			changeable = (EStructuralFeature) eResolveProxy(oldChangeable);
 			if (changeable != oldChangeable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE, oldChangeable, changeable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE, oldChangeable, changeable));
 			}
 		}
 		return changeable;
@@ -114,8 +113,7 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 		EStructuralFeature oldChangeable = changeable;
 		changeable = newChangeable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE, oldChangeable, changeable));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__CHANGEABLE, oldChangeable, changeable));
 	}
 
 	/**
@@ -135,8 +133,7 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 		ValueRule oldValueRule = valueRule;
 		valueRule = newValueRule;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, oldValueRule, newValueRule);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, oldValueRule, newValueRule);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -154,17 +151,14 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 		if (newValueRule != valueRule) {
 			NotificationChain msgs = null;
 			if (valueRule != null)
-				msgs = ((InternalEObject) valueRule).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, null, msgs);
+				msgs = ((InternalEObject) valueRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, null, msgs);
 			if (newValueRule != null)
-				msgs = ((InternalEObject) newValueRule).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, null, msgs);
+				msgs = ((InternalEObject) newValueRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, null, msgs);
 			msgs = basicSetValueRule(newValueRule, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, newValueRule, newValueRule));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__VALUE_RULE, newValueRule, newValueRule));
 	}
 
 	/**
@@ -184,8 +178,7 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 		SelectionRule oldSelectionRule = selectionRule;
 		selectionRule = newSelectionRule;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, oldSelectionRule, newSelectionRule);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, oldSelectionRule, newSelectionRule);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -203,19 +196,14 @@ public class ChangeableElementDescriptionImpl extends NamedElementImpl implement
 		if (newSelectionRule != selectionRule) {
 			NotificationChain msgs = null;
 			if (selectionRule != null)
-				msgs = ((InternalEObject) selectionRule).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, null,
-						msgs);
+				msgs = ((InternalEObject) selectionRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, null, msgs);
 			if (newSelectionRule != null)
-				msgs = ((InternalEObject) newSelectionRule).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, null,
-						msgs);
+				msgs = ((InternalEObject) newSelectionRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, null, msgs);
 			msgs = basicSetSelectionRule(newSelectionRule, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, newSelectionRule, newSelectionRule));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE, newSelectionRule, newSelectionRule));
 	}
 
 	/**

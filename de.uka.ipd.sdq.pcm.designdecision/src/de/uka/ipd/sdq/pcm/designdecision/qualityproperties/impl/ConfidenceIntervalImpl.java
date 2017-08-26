@@ -143,9 +143,7 @@ public class ConfidenceIntervalImpl extends EObjectImpl implements ConfidenceInt
 		double oldConfidenceLevel = confidenceLevel;
 		confidenceLevel = newConfidenceLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, oldConfidenceLevel,
-					confidenceLevel));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.CONFIDENCE_INTERVAL__CONFIDENCE_LEVEL, oldConfidenceLevel, confidenceLevel));
 	}
 
 	/**
@@ -166,8 +164,7 @@ public class ConfidenceIntervalImpl extends EObjectImpl implements ConfidenceInt
 		double oldMean = mean;
 		mean = newMean;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.CONFIDENCE_INTERVAL__MEAN,
-					oldMean, mean));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.CONFIDENCE_INTERVAL__MEAN, oldMean, mean));
 	}
 
 	/**
@@ -188,8 +185,7 @@ public class ConfidenceIntervalImpl extends EObjectImpl implements ConfidenceInt
 		double oldUpperBound = upperBound;
 		upperBound = newUpperBound;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.CONFIDENCE_INTERVAL__UPPER_BOUND, oldUpperBound, upperBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.CONFIDENCE_INTERVAL__UPPER_BOUND, oldUpperBound, upperBound));
 	}
 
 	/**
@@ -210,8 +206,7 @@ public class ConfidenceIntervalImpl extends EObjectImpl implements ConfidenceInt
 		double oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.CONFIDENCE_INTERVAL__LOWER_BOUND, oldLowerBound, lowerBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.CONFIDENCE_INTERVAL__LOWER_BOUND, oldLowerBound, lowerBound));
 	}
 
 	/**

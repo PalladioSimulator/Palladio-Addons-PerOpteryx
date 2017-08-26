@@ -53,8 +53,7 @@ public class ProcessingRateDegreeItemProvider extends ProcessingResourceDegreeIt
 	@Override
 	public String getText(Object object) {
 		String label = ((ProcessingRateDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ProcessingRateDegree_type")
-				: getString("_UI_ProcessingRateDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ProcessingRateDegree_type") : getString("_UI_ProcessingRateDegree_type") + " " + label;
 	}
 
 	/**

@@ -65,8 +65,7 @@ public class NumberOfCoresAsListDegreeImpl extends NumberOfCoresDegreeImpl imple
 	@Override
 	public EList<Integer> getListOfIntegers() {
 		if (listOfIntegers == null) {
-			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this,
-					specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS);
+			listOfIntegers = new EDataTypeUniqueEList<Integer>(Integer.class, this, specificPackage.NUMBER_OF_CORES_AS_LIST_DEGREE__LIST_OF_INTEGERS);
 		}
 		return listOfIntegers;
 	}

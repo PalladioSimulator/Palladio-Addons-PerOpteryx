@@ -63,8 +63,7 @@ public class StringComponentParamDegreeItemProvider extends StringSetDegreeItemP
 	@Override
 	public String getText(Object object) {
 		String label = ((StringComponentParamDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_StringComponentParamDegree_type")
-				: getString("_UI_StringComponentParamDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StringComponentParamDegree_type") : getString("_UI_StringComponentParamDegree_type") + " " + label;
 	}
 
 	/**

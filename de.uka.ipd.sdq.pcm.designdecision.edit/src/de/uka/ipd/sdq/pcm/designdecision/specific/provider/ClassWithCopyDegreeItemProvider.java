@@ -53,8 +53,7 @@ public class ClassWithCopyDegreeItemProvider extends ClassDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((ClassWithCopyDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ClassWithCopyDegree_type")
-				: getString("_UI_ClassWithCopyDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ClassWithCopyDegree_type") : getString("_UI_ClassWithCopyDegree_type") + " " + label;
 	}
 
 	/**

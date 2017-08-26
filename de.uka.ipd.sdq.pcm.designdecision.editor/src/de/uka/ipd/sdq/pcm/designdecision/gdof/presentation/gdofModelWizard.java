@@ -72,8 +72,8 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(
-			DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameExtensions").split("\\s*,\\s*")));
+	public static final List<String> FILE_EXTENSIONS = Collections
+			.unmodifiableList(Arrays.asList(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -81,8 +81,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS = DesignDecisionEditorPlugin.INSTANCE
-			.getString("_UI_gdofEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+	public static final String FORMATTED_FILE_EXTENSIONS = DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -145,8 +144,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-				.getImageDescriptor(DesignDecisionEditorPlugin.INSTANCE.getImage("full/wizban/Newgdof")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DesignDecisionEditorPlugin.INSTANCE.getImage("full/wizban/Newgdof")));
 	}
 
 	/**
@@ -252,12 +250,9 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 			// Open an editor on the new file.
 			//
 			try {
-				page.openEditor(new FileEditorInput(modelFile),
-						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+				page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			} catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(),
-						DesignDecisionEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"),
-						exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), DesignDecisionEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
@@ -295,8 +290,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(DesignDecisionEditorPlugin.INSTANCE.getString(key,
-							new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(DesignDecisionEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -501,9 +495,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(
-						DesignDecisionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer
-								.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -523,11 +515,8 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 		//
 		newFileCreationPage = new gdofModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofModelWizard_label"));
-		newFileCreationPage
-				.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofModelWizard_description"));
-		newFileCreationPage
-				.setFileName(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameDefaultBase") + "."
-						+ FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofModelWizard_description"));
+		newFileCreationPage.setFileName(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -553,8 +542,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = DesignDecisionEditorPlugin.INSTANCE
-							.getString("_UI_gdofEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
@@ -566,8 +554,7 @@ public class gdofModelWizard extends Wizard implements INewWizard {
 		}
 		initialObjectCreationPage = new gdofModelWizardInitialObjectCreationPage("Whatever2");
 		initialObjectCreationPage.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_gdofModelWizard_label"));
-		initialObjectCreationPage
-				.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

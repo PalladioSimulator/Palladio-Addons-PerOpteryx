@@ -48,8 +48,7 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	 */
 	public static specificFactory init() {
 		try {
-			specificFactory thespecificFactory = (specificFactory) EPackage.Registry.INSTANCE
-					.getEFactory(specificPackage.eNS_URI);
+			specificFactory thespecificFactory = (specificFactory) EPackage.Registry.INSTANCE.getEFactory(specificPackage.eNS_URI);
 			if (thespecificFactory != null) {
 				return thespecificFactory;
 			}

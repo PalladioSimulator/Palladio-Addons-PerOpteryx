@@ -68,9 +68,8 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 			processingresourcetype = (ProcessingResourceType) eResolveProxy(oldProcessingresourcetype);
 			if (processingresourcetype != oldProcessingresourcetype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.DISCRETE_PROCESSING_RATE_DEGREE__PROCESSINGRESOURCETYPE,
-							oldProcessingresourcetype, processingresourcetype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.DISCRETE_PROCESSING_RATE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
+							processingresourcetype));
 			}
 		}
 		return processingresourcetype;
@@ -93,9 +92,7 @@ public class DiscreteProcessingRateDegreeImpl extends DiscreteRangeDegreeImpl im
 		ProcessingResourceType oldProcessingresourcetype = processingresourcetype;
 		processingresourcetype = newProcessingresourcetype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					specificPackage.DISCRETE_PROCESSING_RATE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
-					processingresourcetype));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.DISCRETE_PROCESSING_RATE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 	}
 
 	/**

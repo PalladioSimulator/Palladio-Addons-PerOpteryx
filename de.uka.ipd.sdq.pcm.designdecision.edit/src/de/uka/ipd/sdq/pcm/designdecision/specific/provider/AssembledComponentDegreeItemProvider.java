@@ -63,8 +63,7 @@ public class AssembledComponentDegreeItemProvider extends ClassAsReferenceDegree
 	@Override
 	public String getText(Object object) {
 		String label = ((AssembledComponentDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_AssembledComponentDegree_type")
-				: getString("_UI_AssembledComponentDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_AssembledComponentDegree_type") : getString("_UI_AssembledComponentDegree_type") + " " + label;
 	}
 
 	/**

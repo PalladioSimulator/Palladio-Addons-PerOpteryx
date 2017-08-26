@@ -46,10 +46,8 @@ public final class DesignDecisionEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public DesignDecisionEditPlugin() {
-		super(new ResourceLocator[] { CostModelEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE,
-				FeaturemodelEditPlugin.INSTANCE, IdentifierEditPlugin.INSTANCE,
-				PalladioComponentModelEditPlugin.INSTANCE, ResultdecoratorEditPlugin.INSTANCE, StoexEditPlugin.INSTANCE,
-				UnitsEditPlugin.INSTANCE, ProbabilityFunctionEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { CostModelEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, FeaturemodelEditPlugin.INSTANCE, IdentifierEditPlugin.INSTANCE, PalladioComponentModelEditPlugin.INSTANCE,
+				ResultdecoratorEditPlugin.INSTANCE, StoexEditPlugin.INSTANCE, UnitsEditPlugin.INSTANCE, ProbabilityFunctionEditPlugin.INSTANCE, });
 	}
 
 	/**

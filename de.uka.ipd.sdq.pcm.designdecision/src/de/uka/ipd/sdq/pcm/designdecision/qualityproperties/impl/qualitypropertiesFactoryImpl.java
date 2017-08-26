@@ -31,8 +31,7 @@ public class qualitypropertiesFactoryImpl extends EFactoryImpl implements qualit
 	 */
 	public static qualitypropertiesFactory init() {
 		try {
-			qualitypropertiesFactory thequalitypropertiesFactory = (qualitypropertiesFactory) EPackage.Registry.INSTANCE
-					.getEFactory(qualitypropertiesPackage.eNS_URI);
+			qualitypropertiesFactory thequalitypropertiesFactory = (qualitypropertiesFactory) EPackage.Registry.INSTANCE.getEFactory(qualitypropertiesPackage.eNS_URI);
 			if (thequalitypropertiesFactory != null) {
 				return thequalitypropertiesFactory;
 			}

@@ -26,8 +26,8 @@ import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StaticContextRuleItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class StaticContextRuleItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -61,12 +61,9 @@ public class StaticContextRuleItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addContextClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_StaticContextRule_contextClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_StaticContextRule_contextClass_feature",
-								"_UI_StaticContextRule_type"),
-						gdofPackage.Literals.STATIC_CONTEXT_RULE__CONTEXT_CLASS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_StaticContextRule_contextClass_feature"), getString("_UI_PropertyDescriptor_description", "_UI_StaticContextRule_contextClass_feature", "_UI_StaticContextRule_type"),
+				gdofPackage.Literals.STATIC_CONTEXT_RULE__CONTEXT_CLASS, true, false, true, null, null, null));
 	}
 
 	/**

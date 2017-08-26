@@ -53,8 +53,7 @@ public class NumberOfCoresDegreeItemProvider extends ProcessingResourceDegreeIte
 	@Override
 	public String getText(Object object) {
 		String label = ((NumberOfCoresDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_NumberOfCoresDegree_type")
-				: getString("_UI_NumberOfCoresDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_NumberOfCoresDegree_type") : getString("_UI_NumberOfCoresDegree_type") + " " + label;
 	}
 
 	/**

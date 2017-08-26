@@ -78,9 +78,8 @@ public abstract class NumericQualityPropertyImpl extends QualityPropertyImpl imp
 			resultDecoratorRepository = (ResultDecoratorRepository) eResolveProxy(oldResultDecoratorRepository);
 			if (resultDecoratorRepository != oldResultDecoratorRepository) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY,
-							oldResultDecoratorRepository, resultDecoratorRepository));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY, oldResultDecoratorRepository,
+							resultDecoratorRepository));
 			}
 		}
 		return resultDecoratorRepository;
@@ -103,9 +102,8 @@ public abstract class NumericQualityPropertyImpl extends QualityPropertyImpl imp
 		ResultDecoratorRepository oldResultDecoratorRepository = resultDecoratorRepository;
 		resultDecoratorRepository = newResultDecoratorRepository;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY,
-					oldResultDecoratorRepository, resultDecoratorRepository));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__RESULT_DECORATOR_REPOSITORY, oldResultDecoratorRepository,
+					resultDecoratorRepository));
 	}
 
 	/**
@@ -119,9 +117,7 @@ public abstract class NumericQualityPropertyImpl extends QualityPropertyImpl imp
 			confidenceInterval = (ConfidenceInterval) eResolveProxy(oldConfidenceInterval);
 			if (confidenceInterval != oldConfidenceInterval) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL,
-							oldConfidenceInterval, confidenceInterval));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL, oldConfidenceInterval, confidenceInterval));
 			}
 		}
 		return confidenceInterval;
@@ -144,9 +140,7 @@ public abstract class NumericQualityPropertyImpl extends QualityPropertyImpl imp
 		ConfidenceInterval oldConfidenceInterval = confidenceInterval;
 		confidenceInterval = newConfidenceInterval;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL, oldConfidenceInterval,
-					confidenceInterval));
+			eNotify(new ENotificationImpl(this, Notification.SET, qualitypropertiesPackage.NUMERIC_QUALITY_PROPERTY__CONFIDENCE_INTERVAL, oldConfidenceInterval, confidenceInterval));
 	}
 
 	/**

@@ -100,8 +100,7 @@ public class OCLRuleImpl extends EObjectImpl implements OCLRule {
 		String oldMainOclQuery = mainOclQuery;
 		mainOclQuery = newMainOclQuery;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.OCL_RULE__MAIN_OCL_QUERY, oldMainOclQuery,
-					mainOclQuery));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.OCL_RULE__MAIN_OCL_QUERY, oldMainOclQuery, mainOclQuery));
 	}
 
 	/**
@@ -111,8 +110,7 @@ public class OCLRuleImpl extends EObjectImpl implements OCLRule {
 	@Override
 	public EList<HelperOCLDefinition> getHelperDefinition() {
 		if (helperDefinition == null) {
-			helperDefinition = new EObjectContainmentEList<HelperOCLDefinition>(HelperOCLDefinition.class, this,
-					gdofPackage.OCL_RULE__HELPER_DEFINITION);
+			helperDefinition = new EObjectContainmentEList<HelperOCLDefinition>(HelperOCLDefinition.class, this, gdofPackage.OCL_RULE__HELPER_DEFINITION);
 		}
 		return helperDefinition;
 	}
@@ -189,8 +187,7 @@ public class OCLRuleImpl extends EObjectImpl implements OCLRule {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case gdofPackage.OCL_RULE__MAIN_OCL_QUERY:
-			return MAIN_OCL_QUERY_EDEFAULT == null ? mainOclQuery != null
-					: !MAIN_OCL_QUERY_EDEFAULT.equals(mainOclQuery);
+			return MAIN_OCL_QUERY_EDEFAULT == null ? mainOclQuery != null : !MAIN_OCL_QUERY_EDEFAULT.equals(mainOclQuery);
 		case gdofPackage.OCL_RULE__HELPER_DEFINITION:
 			return helperDefinition != null && !helperDefinition.isEmpty();
 		}

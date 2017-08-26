@@ -56,13 +56,9 @@ public class ClassChoiceItemProvider extends ChoiceItemProvider {
 	 * @generated
 	 */
 	protected void addChosenValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ClassChoice_chosenValue_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ClassChoice_chosenValue_feature",
-								"_UI_ClassChoice_type"),
-						designdecisionPackage.Literals.CLASS_CHOICE__CHOSEN_VALUE, true, false, true, null, null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ClassChoice_chosenValue_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ClassChoice_chosenValue_feature", "_UI_ClassChoice_type"),
+				designdecisionPackage.Literals.CLASS_CHOICE__CHOSEN_VALUE, true, false, true, null, null, null));
 	}
 
 	/**

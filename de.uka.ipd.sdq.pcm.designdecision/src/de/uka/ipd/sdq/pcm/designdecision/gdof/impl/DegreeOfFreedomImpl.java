@@ -114,8 +114,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	@Override
 	public EList<EClass> getAddedElements() {
 		if (addedElements == null) {
-			addedElements = new EObjectResolvingEList<EClass>(EClass.class, this,
-					gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS);
+			addedElements = new EObjectResolvingEList<EClass>(EClass.class, this, gdofPackage.DEGREE_OF_FREEDOM__ADDED_ELEMENTS);
 		}
 		return addedElements;
 	}
@@ -127,8 +126,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	@Override
 	public EList<ChangeableElementDescription> getChangeableElementDescriptions() {
 		if (changeableElementDescriptions == null) {
-			changeableElementDescriptions = new EObjectContainmentEList<ChangeableElementDescription>(
-					ChangeableElementDescription.class, this,
+			changeableElementDescriptions = new EObjectContainmentEList<ChangeableElementDescription>(ChangeableElementDescription.class, this,
 					gdofPackage.DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS);
 		}
 		return changeableElementDescriptions;
@@ -141,8 +139,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	@Override
 	public EList<EOperation> getInteractionConstraints() {
 		if (interactionConstraints == null) {
-			interactionConstraints = new EObjectResolvingEList<EOperation>(EOperation.class, this,
-					gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
+			interactionConstraints = new EObjectResolvingEList<EOperation>(EOperation.class, this, gdofPackage.DEGREE_OF_FREEDOM__INTERACTION_CONSTRAINTS);
 		}
 		return interactionConstraints;
 	}
@@ -158,9 +155,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 			primaryChangeable = (ChangeableElementDescription) eResolveProxy(oldPrimaryChangeable);
 			if (primaryChangeable != oldPrimaryChangeable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable,
-							primaryChangeable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
 			}
 		}
 		return primaryChangeable;
@@ -183,8 +178,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 		ChangeableElementDescription oldPrimaryChangeable = primaryChangeable;
 		primaryChangeable = newPrimaryChangeable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE,
-					oldPrimaryChangeable, primaryChangeable));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.DEGREE_OF_FREEDOM__PRIMARY_CHANGEABLE, oldPrimaryChangeable, primaryChangeable));
 	}
 
 	/**
@@ -194,8 +188,7 @@ public class DegreeOfFreedomImpl extends NamedElementImpl implements DegreeOfFre
 	@Override
 	public EList<DecoratorModelDescription> getRequiredDecoratorModel() {
 		if (requiredDecoratorModel == null) {
-			requiredDecoratorModel = new EObjectResolvingEList<DecoratorModelDescription>(
-					DecoratorModelDescription.class, this, gdofPackage.DEGREE_OF_FREEDOM__REQUIRED_DECORATOR_MODEL);
+			requiredDecoratorModel = new EObjectResolvingEList<DecoratorModelDescription>(DecoratorModelDescription.class, this, gdofPackage.DEGREE_OF_FREEDOM__REQUIRED_DECORATOR_MODEL);
 		}
 		return requiredDecoratorModel;
 	}

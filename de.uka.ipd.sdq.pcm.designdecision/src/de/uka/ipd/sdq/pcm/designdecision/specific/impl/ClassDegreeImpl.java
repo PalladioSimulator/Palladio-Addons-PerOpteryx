@@ -63,8 +63,7 @@ public abstract class ClassDegreeImpl extends DegreeOfFreedomInstanceImpl implem
 	@Override
 	public EList<EObject> getClassDesignOptions() {
 		if (classDesignOptions == null) {
-			classDesignOptions = new EObjectResolvingEList<EObject>(EObject.class, this,
-					specificPackage.CLASS_DEGREE__CLASS_DESIGN_OPTIONS);
+			classDesignOptions = new EObjectResolvingEList<EObject>(EObject.class, this, specificPackage.CLASS_DEGREE__CLASS_DESIGN_OPTIONS);
 		}
 		return classDesignOptions;
 	}

@@ -62,8 +62,7 @@ public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace
 	@Override
 	public EList<DegreeOfFreedomInstance> getDegreesOfFreedom() {
 		if (degreesOfFreedom == null) {
-			degreesOfFreedom = new EObjectContainmentEList<DegreeOfFreedomInstance>(DegreeOfFreedomInstance.class, this,
-					designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM);
+			degreesOfFreedom = new EObjectContainmentEList<DegreeOfFreedomInstance>(DegreeOfFreedomInstance.class, this, designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM);
 		}
 		return degreesOfFreedom;
 	}

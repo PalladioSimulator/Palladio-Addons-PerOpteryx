@@ -61,8 +61,7 @@ public abstract class StringSetDegreeImpl extends UnorderedDegreeImpl implements
 	@Override
 	public EList<String> getStringValues() {
 		if (stringValues == null) {
-			stringValues = new EDataTypeUniqueEList<String>(String.class, this,
-					specificPackage.STRING_SET_DEGREE__STRING_VALUES);
+			stringValues = new EDataTypeUniqueEList<String>(String.class, this, specificPackage.STRING_SET_DEGREE__STRING_VALUES);
 		}
 		return stringValues;
 	}

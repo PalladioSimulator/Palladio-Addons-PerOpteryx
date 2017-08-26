@@ -57,13 +57,9 @@ public class ContinuousRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	 * @generated
 	 */
 	protected void addToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ContinuousRangeDegree_to_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ContinuousRangeDegree_to_feature",
-								"_UI_ContinuousRangeDegree_type"),
-						specificPackage.Literals.CONTINUOUS_RANGE_DEGREE__TO, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ContinuousRangeDegree_to_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ContinuousRangeDegree_to_feature", "_UI_ContinuousRangeDegree_type"),
+				specificPackage.Literals.CONTINUOUS_RANGE_DEGREE__TO, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -73,13 +69,9 @@ public class ContinuousRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	 * @generated
 	 */
 	protected void addFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ContinuousRangeDegree_from_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ContinuousRangeDegree_from_feature",
-						"_UI_ContinuousRangeDegree_type"),
-				specificPackage.Literals.CONTINUOUS_RANGE_DEGREE__FROM, true, false, false,
-				ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ContinuousRangeDegree_from_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ContinuousRangeDegree_from_feature", "_UI_ContinuousRangeDegree_type"),
+				specificPackage.Literals.CONTINUOUS_RANGE_DEGREE__FROM, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,8 +93,7 @@ public class ContinuousRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((ContinuousRangeDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ContinuousRangeDegree_type")
-				: getString("_UI_ContinuousRangeDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ContinuousRangeDegree_type") : getString("_UI_ContinuousRangeDegree_type") + " " + label;
 	}
 
 	/**

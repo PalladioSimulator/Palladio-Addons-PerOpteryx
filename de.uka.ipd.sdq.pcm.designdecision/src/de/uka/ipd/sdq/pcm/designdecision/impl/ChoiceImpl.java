@@ -103,8 +103,7 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		boolean oldIsActive = isActive;
 		isActive = newIsActive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__IS_ACTIVE, oldIsActive,
-					isActive));
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__IS_ACTIVE, oldIsActive, isActive));
 	}
 
 	/**
@@ -136,9 +135,7 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 			degreeOfFreedomInstance = (DegreeOfFreedomInstance) eResolveProxy(oldDegreeOfFreedomInstance);
 			if (degreeOfFreedomInstance != oldDegreeOfFreedomInstance) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
-							degreeOfFreedomInstance));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance, degreeOfFreedomInstance));
 			}
 		}
 		return degreeOfFreedomInstance;
@@ -161,9 +158,7 @@ public abstract class ChoiceImpl extends EObjectImpl implements Choice {
 		DegreeOfFreedomInstance oldDegreeOfFreedomInstance = degreeOfFreedomInstance;
 		degreeOfFreedomInstance = newDegreeOfFreedomInstance;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance,
-					degreeOfFreedomInstance));
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CHOICE__DEGREE_OF_FREEDOM_INSTANCE, oldDegreeOfFreedomInstance, degreeOfFreedomInstance));
 	}
 
 	/**

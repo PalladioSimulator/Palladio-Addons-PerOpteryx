@@ -119,9 +119,8 @@ public class qualitypropertiesPackageImpl extends EPackageImpl implements qualit
 			return (qualitypropertiesPackage) EPackage.Registry.INSTANCE.getEPackage(qualitypropertiesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		qualitypropertiesPackageImpl thequalitypropertiesPackage = (qualitypropertiesPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof qualitypropertiesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new qualitypropertiesPackageImpl());
+		qualitypropertiesPackageImpl thequalitypropertiesPackage = (qualitypropertiesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof qualitypropertiesPackageImpl
+				? EPackage.Registry.INSTANCE.get(eNS_URI) : new qualitypropertiesPackageImpl());
 
 		isInited = true;
 
@@ -132,20 +131,15 @@ public class qualitypropertiesPackageImpl extends EPackageImpl implements qualit
 		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(designdecisionPackage.eNS_URI) instanceof designdecisionPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI)
-						: designdecisionPackage.eINSTANCE);
-		gdofPackageImpl thegdofPackage = (gdofPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(gdofPackage.eNS_URI) instanceof gdofPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) : gdofPackage.eINSTANCE);
+		designdecisionPackageImpl thedesigndecisionPackage = (designdecisionPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI) instanceof designdecisionPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(designdecisionPackage.eNS_URI) : designdecisionPackage.eINSTANCE);
+		gdofPackageImpl thegdofPackage = (gdofPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) instanceof gdofPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(gdofPackage.eNS_URI) : gdofPackage.eINSTANCE);
 		resourcerepositoryPackageImpl theresourcerepositoryPackage = (resourcerepositoryPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(resourcerepositoryPackage.eNS_URI) instanceof resourcerepositoryPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(resourcerepositoryPackage.eNS_URI)
+				.getEPackage(resourcerepositoryPackage.eNS_URI) instanceof resourcerepositoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(resourcerepositoryPackage.eNS_URI)
 						: resourcerepositoryPackage.eINSTANCE);
-		specificPackageImpl thespecificPackage = (specificPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
+		specificPackageImpl thespecificPackage = (specificPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) instanceof specificPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(specificPackage.eNS_URI) : specificPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thequalitypropertiesPackage.createPackageContents();
@@ -387,8 +381,7 @@ public class qualitypropertiesPackageImpl extends EPackageImpl implements qualit
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResultdecoratorPackage theResultdecoratorPackage = (ResultdecoratorPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ResultdecoratorPackage.eNS_URI);
+		ResultdecoratorPackage theResultdecoratorPackage = (ResultdecoratorPackage) EPackage.Registry.INSTANCE.getEPackage(ResultdecoratorPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
@@ -402,58 +395,40 @@ public class qualitypropertiesPackageImpl extends EPackageImpl implements qualit
 		doubleQualityPropertyEClass.getESuperTypes().add(this.getNumericQualityProperty());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(numericQualityPropertyEClass, NumericQualityProperty.class, "NumericQualityProperty", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNumericQualityProperty_ResultDecoratorRepository(),
-				theResultdecoratorPackage.getResultDecoratorRepository(), null, "resultDecoratorRepository", null, 0, 1,
-				NumericQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNumericQualityProperty_ConfidenceInterval(), this.getConfidenceInterval(), null,
-				"confidenceInterval", null, 0, 1, NumericQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEClass(numericQualityPropertyEClass, NumericQualityProperty.class, "NumericQualityProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNumericQualityProperty_ResultDecoratorRepository(), theResultdecoratorPackage.getResultDecoratorRepository(), null, "resultDecoratorRepository", null, 0, 1,
+				NumericQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNumericQualityProperty_ConfidenceInterval(), this.getConfidenceInterval(), null, "confidenceInterval", null, 0, 1, NumericQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(confidenceIntervalEClass, ConfidenceInterval.class, "ConfidenceInterval", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfidenceInterval_ConfidenceLevel(), theEcorePackage.getEDouble(), "confidenceLevel", null,
-				1, 1, ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+		initEClass(confidenceIntervalEClass, ConfidenceInterval.class, "ConfidenceInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConfidenceInterval_ConfidenceLevel(), theEcorePackage.getEDouble(), "confidenceLevel", null, 1, 1, ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConfidenceInterval_Mean(), theEcorePackage.getEDouble(), "mean", null, 1, 1, ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConfidenceInterval_Mean(), theEcorePackage.getEDouble(), "mean", null, 1, 1,
-				ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConfidenceInterval_UpperBound(), theEcorePackage.getEDouble(), "upperBound", null, 1, 1,
-				ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConfidenceInterval_LowerBound(), theEcorePackage.getEDouble(), "lowerBound", null, 1, 1,
-				ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConfidenceInterval_UpperBound(), theEcorePackage.getEDouble(), "upperBound", null, 1, 1, ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConfidenceInterval_LowerBound(), theEcorePackage.getEDouble(), "lowerBound", null, 1, 1, ConfidenceInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(elementQualityPropertyEClass, ElementQualityProperty.class, "ElementQualityProperty", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(elementQualityPropertyEClass, ElementQualityProperty.class, "ElementQualityProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(integerQualityPropertyEClass, IntegerQualityProperty.class, "IntegerQualityProperty", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIntegerQualityProperty_Value(), theEcorePackage.getEIntegerObject(), "value", null, 1, 1,
-				IntegerQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(integerQualityPropertyEClass, IntegerQualityProperty.class, "IntegerQualityProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntegerQualityProperty_Value(), theEcorePackage.getEIntegerObject(), "value", null, 1, 1, IntegerQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(doubleQualityPropertyEClass, DoubleQualityProperty.class, "DoubleQualityProperty", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDoubleQualityProperty_Value(), theEcorePackage.getEDouble(), "value", null, 1, 1,
-				DoubleQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(doubleQualityPropertyEClass, DoubleQualityProperty.class, "DoubleQualityProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDoubleQualityProperty_Value(), theEcorePackage.getEDouble(), "value", null, 1, 1, DoubleQualityProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(qualityPredictionEClass, QualityPrediction.class, "QualityPrediction", IS_ABSTRACT, IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(qualityPredictionEClass, QualityPrediction.class, "QualityPrediction", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(qualityPredictionEClass, this.getQualityProperty(), "evaluate", 1, 1, IS_UNIQUE,
-				!IS_ORDERED);
+		EOperation op = addEOperation(qualityPredictionEClass, this.getQualityProperty(), "evaluate", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theEcorePackage.getEObject(), "model", 1, -1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(qualityPropertyEClass, QualityProperty.class, "QualityProperty", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQualityProperty_QualityValue(), theEcorePackage.getEJavaObject(), "qualityValue", null, 1, 1,
-				QualityProperty.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				IS_DERIVED, !IS_ORDERED);
+		initEClass(qualityPropertyEClass, QualityProperty.class, "QualityProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQualityProperty_QualityValue(), theEcorePackage.getEJavaObject(), "qualityValue", null, 1, 1, QualityProperty.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 	}
 
 } // qualitypropertiesPackageImpl

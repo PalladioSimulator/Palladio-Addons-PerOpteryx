@@ -73,8 +73,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS = Collections
-			.unmodifiableList(Arrays.asList(DesignDecisionEditorPlugin.INSTANCE
-					.getString("_UI_qualitypropertiesEditorFilenameExtensions").split("\\s*,\\s*")));
+			.unmodifiableList(Arrays.asList(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -82,8 +81,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS = DesignDecisionEditorPlugin.INSTANCE
-			.getString("_UI_qualitypropertiesEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+	public static final String FORMATTED_FILE_EXTENSIONS = DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -97,8 +95,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected qualitypropertiesFactory _qualitypropertiesFactory = _qualitypropertiesPackage
-			.getqualitypropertiesFactory();
+	protected qualitypropertiesFactory _qualitypropertiesFactory = _qualitypropertiesPackage.getqualitypropertiesFactory();
 
 	/**
 	 * This is the file creation page.
@@ -147,8 +144,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-				.getImageDescriptor(DesignDecisionEditorPlugin.INSTANCE.getImage("full/wizban/Newqualityproperties")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DesignDecisionEditorPlugin.INSTANCE.getImage("full/wizban/Newqualityproperties")));
 	}
 
 	/**
@@ -179,8 +175,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass) _qualitypropertiesPackage
-				.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EClass eClass = (EClass) _qualitypropertiesPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = _qualitypropertiesFactory.create(eClass);
 		return rootObject;
 	}
@@ -255,12 +250,9 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 			// Open an editor on the new file.
 			//
 			try {
-				page.openEditor(new FileEditorInput(modelFile),
-						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+				page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			} catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(),
-						DesignDecisionEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"),
-						exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), DesignDecisionEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
@@ -298,8 +290,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(DesignDecisionEditorPlugin.INSTANCE.getString(key,
-							new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(DesignDecisionEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -504,9 +495,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(
-						DesignDecisionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer
-								.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -525,13 +514,9 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new qualitypropertiesModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage
-				.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_label"));
-		newFileCreationPage.setDescription(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_description"));
-		newFileCreationPage.setFileName(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditorFilenameDefaultBase") + "."
-						+ FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_label"));
+		newFileCreationPage.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_description"));
+		newFileCreationPage.setFileName(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -557,8 +542,7 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = DesignDecisionEditorPlugin.INSTANCE
-							.getString("_UI_qualitypropertiesEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
@@ -569,10 +553,8 @@ public class qualitypropertiesModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		initialObjectCreationPage = new qualitypropertiesModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage
-				.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_label"));
-		initialObjectCreationPage
-				.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setTitle(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_qualitypropertiesModelWizard_label"));
+		initialObjectCreationPage.setDescription(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

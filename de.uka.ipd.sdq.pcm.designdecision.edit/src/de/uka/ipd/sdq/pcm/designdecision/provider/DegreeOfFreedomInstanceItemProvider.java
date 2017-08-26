@@ -62,13 +62,10 @@ public class DegreeOfFreedomInstanceItemProvider extends NamedElementItemProvide
 	 * @generated
 	 */
 	protected void addPrimaryChangedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_DegreeOfFreedomInstance_primaryChanged_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_primaryChanged_feature",
-						"_UI_DegreeOfFreedomInstance_type"),
-				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, true, false, true, null,
-				null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_primaryChanged_feature", "_UI_DegreeOfFreedomInstance_type"),
+				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, true, false, true, null, null, null));
 	}
 
 	/**
@@ -78,11 +75,8 @@ public class DegreeOfFreedomInstanceItemProvider extends NamedElementItemProvide
 	 * @generated
 	 */
 	protected void addDofPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_DegreeOfFreedomInstance_dof_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_dof_feature",
-						"_UI_DegreeOfFreedomInstance_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_DegreeOfFreedomInstance_dof_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_dof_feature", "_UI_DegreeOfFreedomInstance_type"),
 				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__DOF, true, false, true, null, null, null));
 	}
 
@@ -93,13 +87,10 @@ public class DegreeOfFreedomInstanceItemProvider extends NamedElementItemProvide
 	 * @generated
 	 */
 	protected void addChangeableElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_DegreeOfFreedomInstance_changeableElements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DegreeOfFreedomInstance_changeableElements_feature", "_UI_DegreeOfFreedomInstance_type"),
-				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS, true, false, true, null,
-				null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_changeableElements_feature", "_UI_DegreeOfFreedomInstance_type"),
+				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -109,13 +100,10 @@ public class DegreeOfFreedomInstanceItemProvider extends NamedElementItemProvide
 	 * @generated
 	 */
 	protected void addDecoratorModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_DegreeOfFreedomInstance_decoratorModel_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_decoratorModel_feature",
-						"_UI_DegreeOfFreedomInstance_type"),
-				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__DECORATOR_MODEL, true, false, true, null,
-				null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_DegreeOfFreedomInstance_decoratorModel_feature", "_UI_DegreeOfFreedomInstance_type"),
+				designdecisionPackage.Literals.DEGREE_OF_FREEDOM_INSTANCE__DECORATOR_MODEL, true, false, true, null, null, null));
 	}
 
 	/**
@@ -127,8 +115,7 @@ public class DegreeOfFreedomInstanceItemProvider extends NamedElementItemProvide
 	@Override
 	public String getText(Object object) {
 		String label = ((DegreeOfFreedomInstance) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_DegreeOfFreedomInstance_type")
-				: getString("_UI_DegreeOfFreedomInstance_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DegreeOfFreedomInstance_type") : getString("_UI_DegreeOfFreedomInstance_type") + " " + label;
 	}
 
 	/**

@@ -52,8 +52,7 @@ public interface resourcerepositoryPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	resourcerepositoryPackage eINSTANCE = de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryPackageImpl
-			.init();
+	resourcerepositoryPackage eINSTANCE = de.uka.ipd.sdq.pcm.resourcerepository.impl.resourcerepositoryPackageImpl.init();
 
 	/**
 	 * The meta object id for the '
@@ -223,8 +222,7 @@ public interface resourcerepositoryPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY = eINSTANCE
-				.getResourceDescriptionRepository_AvailableProcessingResources_ResourceRepository();
+		EReference RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY = eINSTANCE.getResourceDescriptionRepository_AvailableProcessingResources_ResourceRepository();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.resourcerepository.impl.ResourceDescriptionImpl <em>Resource Description</em>}' class.
@@ -240,24 +238,21 @@ public interface resourcerepositoryPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION = eINSTANCE
-				.getResourceDescription_FixedProcessingResourceCost_ResourceDescription();
+		EReference RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION = eINSTANCE.getResourceDescription_FixedProcessingResourceCost_ResourceDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Processing Resource Specification Resource Description</b></em>' containment reference feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION = eINSTANCE
-				.getResourceDescription_ProcessingResourceSpecification_ResourceDescription();
+		EReference RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION = eINSTANCE.getResourceDescription_ProcessingResourceSpecification_ResourceDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Resources Can Be Used Individually</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY = eINSTANCE
-				.getResourceDescription_ResourcesCanBeUsedIndividually();
+		EAttribute RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY = eINSTANCE.getResourceDescription_ResourcesCanBeUsedIndividually();
 
 	}
 

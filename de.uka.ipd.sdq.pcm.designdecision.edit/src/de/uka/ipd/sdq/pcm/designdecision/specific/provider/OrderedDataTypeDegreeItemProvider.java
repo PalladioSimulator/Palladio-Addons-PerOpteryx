@@ -53,8 +53,7 @@ public class OrderedDataTypeDegreeItemProvider extends DataTypeDegreeItemProvide
 	@Override
 	public String getText(Object object) {
 		String label = ((OrderedDataTypeDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_OrderedDataTypeDegree_type")
-				: getString("_UI_OrderedDataTypeDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_OrderedDataTypeDegree_type") : getString("_UI_OrderedDataTypeDegree_type") + " " + label;
 	}
 
 	/**

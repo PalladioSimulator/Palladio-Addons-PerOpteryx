@@ -113,15 +113,12 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFixedProcessingResourceCost_ResourceDescription(
-			FixedProcessingResourceCost newFixedProcessingResourceCost_ResourceDescription, NotificationChain msgs) {
+	public NotificationChain basicSetFixedProcessingResourceCost_ResourceDescription(FixedProcessingResourceCost newFixedProcessingResourceCost_ResourceDescription, NotificationChain msgs) {
 		FixedProcessingResourceCost oldFixedProcessingResourceCost_ResourceDescription = fixedProcessingResourceCost_ResourceDescription;
 		fixedProcessingResourceCost_ResourceDescription = newFixedProcessingResourceCost_ResourceDescription;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
-					oldFixedProcessingResourceCost_ResourceDescription,
-					newFixedProcessingResourceCost_ResourceDescription);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
+					oldFixedProcessingResourceCost_ResourceDescription, newFixedProcessingResourceCost_ResourceDescription);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -135,29 +132,21 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * @generated
 	 */
 	@Override
-	public void setFixedProcessingResourceCost_ResourceDescription(
-			FixedProcessingResourceCost newFixedProcessingResourceCost_ResourceDescription) {
+	public void setFixedProcessingResourceCost_ResourceDescription(FixedProcessingResourceCost newFixedProcessingResourceCost_ResourceDescription) {
 		if (newFixedProcessingResourceCost_ResourceDescription != fixedProcessingResourceCost_ResourceDescription) {
 			NotificationChain msgs = null;
 			if (fixedProcessingResourceCost_ResourceDescription != null)
 				msgs = ((InternalEObject) fixedProcessingResourceCost_ResourceDescription).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION, null, msgs);
 			if (newFixedProcessingResourceCost_ResourceDescription != null)
 				msgs = ((InternalEObject) newFixedProcessingResourceCost_ResourceDescription).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
-						null, msgs);
-			msgs = basicSetFixedProcessingResourceCost_ResourceDescription(
-					newFixedProcessingResourceCost_ResourceDescription, msgs);
+						EOPPOSITE_FEATURE_BASE - resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION, null, msgs);
+			msgs = basicSetFixedProcessingResourceCost_ResourceDescription(newFixedProcessingResourceCost_ResourceDescription, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
-					newFixedProcessingResourceCost_ResourceDescription,
-					newFixedProcessingResourceCost_ResourceDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
+					newFixedProcessingResourceCost_ResourceDescription, newFixedProcessingResourceCost_ResourceDescription));
 	}
 
 	/**
@@ -173,15 +162,12 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProcessingResourceSpecification_ResourceDescription(
-			ResourceContainer newProcessingResourceSpecification_ResourceDescription, NotificationChain msgs) {
+	public NotificationChain basicSetProcessingResourceSpecification_ResourceDescription(ResourceContainer newProcessingResourceSpecification_ResourceDescription, NotificationChain msgs) {
 		ResourceContainer oldProcessingResourceSpecification_ResourceDescription = processingResourceSpecification_ResourceDescription;
 		processingResourceSpecification_ResourceDescription = newProcessingResourceSpecification_ResourceDescription;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
-					oldProcessingResourceSpecification_ResourceDescription,
-					newProcessingResourceSpecification_ResourceDescription);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
+					oldProcessingResourceSpecification_ResourceDescription, newProcessingResourceSpecification_ResourceDescription);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -195,29 +181,21 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 	 * @generated
 	 */
 	@Override
-	public void setProcessingResourceSpecification_ResourceDescription(
-			ResourceContainer newProcessingResourceSpecification_ResourceDescription) {
+	public void setProcessingResourceSpecification_ResourceDescription(ResourceContainer newProcessingResourceSpecification_ResourceDescription) {
 		if (newProcessingResourceSpecification_ResourceDescription != processingResourceSpecification_ResourceDescription) {
 			NotificationChain msgs = null;
 			if (processingResourceSpecification_ResourceDescription != null)
 				msgs = ((InternalEObject) processingResourceSpecification_ResourceDescription).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
-						null, msgs);
+						EOPPOSITE_FEATURE_BASE - resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION, null, msgs);
 			if (newProcessingResourceSpecification_ResourceDescription != null)
 				msgs = ((InternalEObject) newProcessingResourceSpecification_ResourceDescription).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
-						null, msgs);
-			msgs = basicSetProcessingResourceSpecification_ResourceDescription(
-					newProcessingResourceSpecification_ResourceDescription, msgs);
+						EOPPOSITE_FEATURE_BASE - resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION, null, msgs);
+			msgs = basicSetProcessingResourceSpecification_ResourceDescription(newProcessingResourceSpecification_ResourceDescription, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
-					newProcessingResourceSpecification_ResourceDescription,
-					newProcessingResourceSpecification_ResourceDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
+					newProcessingResourceSpecification_ResourceDescription, newProcessingResourceSpecification_ResourceDescription));
 	}
 
 	/**
@@ -238,9 +216,8 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 		int oldResourcesCanBeUsedIndividually = resourcesCanBeUsedIndividually;
 		resourcesCanBeUsedIndividually = newResourcesCanBeUsedIndividually;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY,
-					oldResourcesCanBeUsedIndividually, resourcesCanBeUsedIndividually));
+			eNotify(new ENotificationImpl(this, Notification.SET, resourcerepositoryPackage.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY, oldResourcesCanBeUsedIndividually,
+					resourcesCanBeUsedIndividually));
 	}
 
 	/**
@@ -255,13 +232,9 @@ public class ResourceDescriptionImpl extends EObjectImpl implements ResourceDesc
 		// Ensure that you remove @generated or mark it @generated NOT
 		if (false) {
 			if (diagnostics != null) {
-				diagnostics
-						.add(new BasicDiagnostic(Diagnostic.ERROR, resourcerepositoryValidator.DIAGNOSTIC_SOURCE,
-								resourcerepositoryValidator.RESOURCE_DESCRIPTION__COST_AND_RESOURCE_MUST_MATCH,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
-										new Object[] { "CostAndResourceMustMatch",
-												EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, resourcerepositoryValidator.DIAGNOSTIC_SOURCE, resourcerepositoryValidator.RESOURCE_DESCRIPTION__COST_AND_RESOURCE_MUST_MATCH,
+						EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "CostAndResourceMustMatch", EObjectValidator.getObjectLabel(this, context) }),
+						new Object[] { this }));
 			}
 			return false;
 		}

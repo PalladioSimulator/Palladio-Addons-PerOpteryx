@@ -30,8 +30,8 @@ import de.uka.ipd.sdq.pcm.designdecision.qualityproperties.qualitypropertiesPack
  *
  * @generated
  */
-public class QualityPropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class QualityPropertyItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -65,13 +65,9 @@ public class QualityPropertyItemProvider extends ItemProviderAdapter implements 
 	 * @generated
 	 */
 	protected void addQualityValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_QualityProperty_qualityValue_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_QualityProperty_qualityValue_feature",
-						"_UI_QualityProperty_type"),
-				qualitypropertiesPackage.Literals.QUALITY_PROPERTY__QUALITY_VALUE, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_QualityProperty_qualityValue_feature"), getString("_UI_PropertyDescriptor_description", "_UI_QualityProperty_qualityValue_feature", "_UI_QualityProperty_type"),
+				qualitypropertiesPackage.Literals.QUALITY_PROPERTY__QUALITY_VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -84,8 +80,7 @@ public class QualityPropertyItemProvider extends ItemProviderAdapter implements 
 	public String getText(Object object) {
 		Object labelValue = ((QualityProperty) object).getQualityValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_QualityProperty_type")
-				: getString("_UI_QualityProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_QualityProperty_type") : getString("_UI_QualityProperty_type") + " " + label;
 	}
 
 	/**

@@ -251,8 +251,7 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseResourceContainerReplicationDegreeWithComponentChange(
-				ResourceContainerReplicationDegreeWithComponentChange object) {
+		public Adapter caseResourceContainerReplicationDegreeWithComponentChange(ResourceContainerReplicationDegreeWithComponentChange object) {
 			return createResourceContainerReplicationDegreeWithComponentChangeAdapter();
 		}
 

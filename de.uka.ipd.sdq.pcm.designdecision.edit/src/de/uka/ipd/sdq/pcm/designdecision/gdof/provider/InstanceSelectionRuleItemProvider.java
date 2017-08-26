@@ -53,12 +53,10 @@ public class InstanceSelectionRuleItemProvider extends SelectionRuleItemProvider
 	 * @generated
 	 */
 	protected void addContextInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_InstanceSelectionRule_contextInstance_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_InstanceSelectionRule_contextInstance_feature",
-						"_UI_InstanceSelectionRule_type"),
-				gdofPackage.Literals.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(
+				createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InstanceSelectionRule_contextInstance_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_InstanceSelectionRule_contextInstance_feature", "_UI_InstanceSelectionRule_type"),
+						gdofPackage.Literals.INSTANCE_SELECTION_RULE__CONTEXT_INSTANCE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -80,8 +78,7 @@ public class InstanceSelectionRuleItemProvider extends SelectionRuleItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((InstanceSelectionRule) object).getMainOclQuery();
-		return label == null || label.length() == 0 ? getString("_UI_InstanceSelectionRule_type")
-				: getString("_UI_InstanceSelectionRule_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_InstanceSelectionRule_type") : getString("_UI_InstanceSelectionRule_type") + " " + label;
 	}
 
 	/**

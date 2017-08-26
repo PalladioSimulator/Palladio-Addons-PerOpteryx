@@ -44,8 +44,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class designdecisionActionBarContributor extends EditingDomainActionBarContributor
-		implements ISelectionChangedListener {
+public class designdecisionActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -66,8 +65,7 @@ public class designdecisionActionBarContributor extends EditingDomainActionBarCo
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction = new Action(
-			DesignDecisionEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+	protected IAction showPropertiesViewAction = new Action(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 		@Override
 		public void run() {
 			try {
@@ -85,8 +83,7 @@ public class designdecisionActionBarContributor extends EditingDomainActionBarCo
 	 * end-user-doc -->
 	 * @generated
 	 */
-	protected IAction refreshViewerAction = new Action(
-			DesignDecisionEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+	protected IAction refreshViewerAction = new Action(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 		@Override
 		public boolean isEnabled() {
 			return activeEditorPart instanceof IViewerProvider;
@@ -168,9 +165,7 @@ public class designdecisionActionBarContributor extends EditingDomainActionBarCo
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_designdecisionEditor_menu"),
-				"de.uka.ipd.sdq.pcm.designdecisionMenuID");
+		IMenuManager submenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_designdecisionEditor_menu"), "de.uka.ipd.sdq.pcm.designdecisionMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -179,14 +174,12 @@ public class designdecisionActionBarContributor extends EditingDomainActionBarCo
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(
-				DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(DesignDecisionEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -322,8 +315,7 @@ public class designdecisionActionBarContributor extends EditingDomainActionBarCo
 	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
-			String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {

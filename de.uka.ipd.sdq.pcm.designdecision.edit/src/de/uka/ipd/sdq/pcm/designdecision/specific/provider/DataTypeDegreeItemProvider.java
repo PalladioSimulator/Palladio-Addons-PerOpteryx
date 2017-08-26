@@ -55,8 +55,7 @@ public class DataTypeDegreeItemProvider extends DegreeOfFreedomInstanceItemProvi
 	@Override
 	public String getText(Object object) {
 		String label = ((DataTypeDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_DataTypeDegree_type")
-				: getString("_UI_DataTypeDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DataTypeDegree_type") : getString("_UI_DataTypeDegree_type") + " " + label;
 	}
 
 	/**

@@ -123,8 +123,7 @@ public abstract class QualityPropertyImpl extends EObjectImpl implements Quality
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case qualitypropertiesPackage.QUALITY_PROPERTY__QUALITY_VALUE:
-			return QUALITY_VALUE_EDEFAULT == null ? getQualityValue() != null
-					: !QUALITY_VALUE_EDEFAULT.equals(getQualityValue());
+			return QUALITY_VALUE_EDEFAULT == null ? getQualityValue() != null : !QUALITY_VALUE_EDEFAULT.equals(getQualityValue());
 		}
 		return super.eIsSet(featureID);
 	}

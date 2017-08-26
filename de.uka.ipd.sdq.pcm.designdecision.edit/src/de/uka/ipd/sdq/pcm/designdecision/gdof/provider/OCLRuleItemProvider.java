@@ -30,8 +30,7 @@ import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class OCLRuleItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OCLRuleItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -65,13 +64,9 @@ public class OCLRuleItemProvider extends ItemProviderAdapter implements IEditing
 	 * @generated
 	 */
 	protected void addMainOclQueryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_OCLRule_mainOclQuery_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_OCLRule_mainOclQuery_feature",
-								"_UI_OCLRule_type"),
-						gdofPackage.Literals.OCL_RULE__MAIN_OCL_QUERY, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_OCLRule_mainOclQuery_feature"), getString("_UI_PropertyDescriptor_description", "_UI_OCLRule_mainOclQuery_feature", "_UI_OCLRule_type"),
+				gdofPackage.Literals.OCL_RULE__MAIN_OCL_QUERY, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -123,8 +118,7 @@ public class OCLRuleItemProvider extends ItemProviderAdapter implements IEditing
 	@Override
 	public String getText(Object object) {
 		String label = ((OCLRule) object).getMainOclQuery();
-		return label == null || label.length() == 0 ? getString("_UI_OCLRule_type")
-				: getString("_UI_OCLRule_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_OCLRule_type") : getString("_UI_OCLRule_type") + " " + label;
 	}
 
 	/**
@@ -158,8 +152,7 @@ public class OCLRuleItemProvider extends ItemProviderAdapter implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.OCL_RULE__HELPER_DEFINITION,
-				gdofFactory.eINSTANCE.createHelperOCLDefinition()));
+		newChildDescriptors.add(createChildParameter(gdofPackage.Literals.OCL_RULE__HELPER_DEFINITION, gdofFactory.eINSTANCE.createHelperOCLDefinition()));
 	}
 
 	/**

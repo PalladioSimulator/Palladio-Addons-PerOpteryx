@@ -102,8 +102,7 @@ public class ContinuousRangeDegreeImpl extends RangeDegreeImpl implements Contin
 		double oldTo = to;
 		to = newTo;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.CONTINUOUS_RANGE_DEGREE__TO, oldTo,
-					to));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.CONTINUOUS_RANGE_DEGREE__TO, oldTo, to));
 	}
 
 	/**
@@ -124,8 +123,7 @@ public class ContinuousRangeDegreeImpl extends RangeDegreeImpl implements Contin
 		double oldFrom = from;
 		from = newFrom;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.CONTINUOUS_RANGE_DEGREE__FROM,
-					oldFrom, from));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.CONTINUOUS_RANGE_DEGREE__FROM, oldFrom, from));
 	}
 
 	/**

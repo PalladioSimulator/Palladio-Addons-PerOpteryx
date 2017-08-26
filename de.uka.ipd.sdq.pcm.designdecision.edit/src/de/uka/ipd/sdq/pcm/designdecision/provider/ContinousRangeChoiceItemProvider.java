@@ -60,12 +60,9 @@ public class ContinousRangeChoiceItemProvider extends ChoiceItemProvider {
 	 */
 	protected void addChosenValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ContinousRangeChoice_chosenValue_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ContinousRangeChoice_chosenValue_feature",
-								"_UI_ContinousRangeChoice_type"),
-						designdecisionPackage.Literals.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContinousRangeChoice_chosenValue_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_ContinousRangeChoice_chosenValue_feature", "_UI_ContinousRangeChoice_type"),
+						designdecisionPackage.Literals.CONTINOUS_RANGE_CHOICE__CHOSEN_VALUE, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**

@@ -1435,8 +1435,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT
-			+ 0;
+	int PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Processing Resource Degree</em>' class. <!--
@@ -2480,8 +2479,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE = RESOURCE_CONTAINER_REPLICATION_DEGREE_FEATURE_COUNT
-			+ 0;
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE = RESOURCE_CONTAINER_REPLICATION_DEGREE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '
@@ -2491,8 +2489,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE_FEATURE_COUNT = RESOURCE_CONTAINER_REPLICATION_DEGREE_FEATURE_COUNT
-			+ 1;
+	int RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE_FEATURE_COUNT = RESOURCE_CONTAINER_REPLICATION_DEGREE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ResourceSelectionDegreeImpl <em>Resource Selection Degree</em>}' class.
@@ -3860,8 +3857,7 @@ public interface specificPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT = eINSTANCE
-				.getExchangeComponentRule_RepositoryComponent();
+		EReference EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT = eINSTANCE.getExchangeComponentRule_RepositoryComponent();
 
 		/**
 		 * The meta object literal for the '<em><b>Allocation Context</b></em>' reference feature.
@@ -4128,8 +4124,7 @@ public interface specificPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = eINSTANCE
-				.getProcessingResourceDegree_Processingresourcetype();
+		EReference PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE = eINSTANCE.getProcessingResourceDegree_Processingresourcetype();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.DiscreteComponentParamDegreeImpl <em>Discrete Component Param Degree</em>}' class.
@@ -4182,8 +4177,7 @@ public interface specificPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS = eINSTANCE
-				.getFeatureGroupDegree_DomainOfFeatureConfigCombinations();
+		EReference FEATURE_GROUP_DEGREE__DOMAIN_OF_FEATURE_CONFIG_COMBINATIONS = eINSTANCE.getFeatureGroupDegree_DomainOfFeatureConfigCombinations();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureSubsetImpl <em>Feature Subset</em>}' class.
@@ -4268,16 +4262,14 @@ public interface specificPackage extends EPackage {
 		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getResourceContainerReplicationDegreeWithComponentChange()
 		 * @generated
 		 */
-		EClass RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE = eINSTANCE
-				.getResourceContainerReplicationDegreeWithComponentChange();
+		EClass RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE = eINSTANCE.getResourceContainerReplicationDegreeWithComponentChange();
 
 		/**
 		 * The meta object literal for the '<em><b>Exchange Component Rule</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE = eINSTANCE
-				.getResourceContainerReplicationDegreeWithComponentChange_ExchangeComponentRule();
+		EReference RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE = eINSTANCE.getResourceContainerReplicationDegreeWithComponentChange_ExchangeComponentRule();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ResourceSelectionDegreeImpl <em>Resource Selection Degree</em>}' class.

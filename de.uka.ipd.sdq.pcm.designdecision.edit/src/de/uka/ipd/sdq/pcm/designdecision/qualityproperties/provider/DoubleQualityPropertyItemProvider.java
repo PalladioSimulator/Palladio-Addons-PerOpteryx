@@ -56,13 +56,9 @@ public class DoubleQualityPropertyItemProvider extends NumericQualityPropertyIte
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DoubleQualityProperty_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DoubleQualityProperty_value_feature",
-								"_UI_DoubleQualityProperty_type"),
-						qualitypropertiesPackage.Literals.DOUBLE_QUALITY_PROPERTY__VALUE, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_DoubleQualityProperty_value_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DoubleQualityProperty_value_feature", "_UI_DoubleQualityProperty_type"),
+				qualitypropertiesPackage.Literals.DOUBLE_QUALITY_PROPERTY__VALUE, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -85,8 +81,7 @@ public class DoubleQualityPropertyItemProvider extends NumericQualityPropertyIte
 	public String getText(Object object) {
 		Object labelValue = ((DoubleQualityProperty) object).getQualityValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_DoubleQualityProperty_type")
-				: getString("_UI_DoubleQualityProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DoubleQualityProperty_type") : getString("_UI_DoubleQualityProperty_type") + " " + label;
 	}
 
 	/**

@@ -63,8 +63,7 @@ public class ATNumberOfReplicaDegreeItemProvider extends DiscreteRangeDegreeItem
 	@Override
 	public String getText(Object object) {
 		String label = ((ATNumberOfReplicaDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ATNumberOfReplicaDegree_type")
-				: getString("_UI_ATNumberOfReplicaDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ATNumberOfReplicaDegree_type") : getString("_UI_ATNumberOfReplicaDegree_type") + " " + label;
 	}
 
 	/**

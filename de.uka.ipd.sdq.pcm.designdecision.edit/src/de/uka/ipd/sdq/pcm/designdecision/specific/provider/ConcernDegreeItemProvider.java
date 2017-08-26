@@ -64,8 +64,7 @@ public class ConcernDegreeItemProvider extends ClassAsReferenceDegreeItemProvide
 	@Override
 	public String getText(Object object) {
 		String label = ((ConcernDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ConcernDegree_type")
-				: getString("_UI_ConcernDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ConcernDegree_type") : getString("_UI_ConcernDegree_type") + " " + label;
 	}
 
 	/**

@@ -36,8 +36,8 @@ import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceDescriptionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ResourceDescriptionItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -71,14 +71,10 @@ public class ResourceDescriptionItemProvider extends ItemProviderAdapter impleme
 	 * @generated
 	 */
 	protected void addResourcesCanBeUsedIndividuallyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 				getString("_UI_ResourceDescription_ResourcesCanBeUsedIndividually_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ResourceDescription_ResourcesCanBeUsedIndividually_feature",
-						"_UI_ResourceDescription_type"),
-				resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+				getString("_UI_PropertyDescriptor_description", "_UI_ResourceDescription_ResourcesCanBeUsedIndividually_feature", "_UI_ResourceDescription_type"),
+				resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__RESOURCES_CAN_BE_USED_INDIVIDUALLY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -94,10 +90,8 @@ public class ResourceDescriptionItemProvider extends ItemProviderAdapter impleme
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(
-					resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION);
-			childrenFeatures.add(
-					resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION);
+			childrenFeatures.add(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION);
+			childrenFeatures.add(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION);
 		}
 		return childrenFeatures;
 	}
@@ -133,8 +127,7 @@ public class ResourceDescriptionItemProvider extends ItemProviderAdapter impleme
 	@Override
 	public String getText(Object object) {
 		ResourceDescription resourceDescription = (ResourceDescription) object;
-		return getString("_UI_ResourceDescription_type") + " "
-				+ resourceDescription.getResourcesCanBeUsedIndividually();
+		return getString("_UI_ResourceDescription_type") + " " + resourceDescription.getResourcesCanBeUsedIndividually();
 	}
 
 	/**
@@ -169,12 +162,10 @@ public class ResourceDescriptionItemProvider extends ItemProviderAdapter impleme
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
+		newChildDescriptors.add(createChildParameter(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__FIXED_PROCESSING_RESOURCE_COST_RESOURCE_DESCRIPTION,
 				costFactory.eINSTANCE.createFixedProcessingResourceCost()));
 
-		newChildDescriptors.add(createChildParameter(
-				resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
+		newChildDescriptors.add(createChildParameter(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION__PROCESSING_RESOURCE_SPECIFICATION_RESOURCE_DESCRIPTION,
 				ResourceenvironmentFactory.eINSTANCE.createResourceContainer()));
 	}
 

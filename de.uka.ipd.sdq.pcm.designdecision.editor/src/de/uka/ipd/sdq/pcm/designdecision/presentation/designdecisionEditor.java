@@ -152,8 +152,7 @@ import de.uka.ipd.sdq.units.provider.UnitsItemProviderAdapterFactory;
  *
  * @generated
  */
-public class designdecisionEditor extends MultiPageEditorPart
-		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+public class designdecisionEditor extends MultiPageEditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -450,10 +449,8 @@ public class designdecisionEditor extends MultiPageEditorPart
 					@Override
 					public boolean visit(IResourceDelta delta) {
 						if (delta.getResource().getType() == IResource.FILE) {
-							if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED
-									&& delta.getFlags() != IResourceDelta.MARKERS) {
-								Resource resource = resourceSet.getResource(
-										URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+							if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+								Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
 								if (resource != null) {
 									if (delta.getKind() == IResourceDelta.REMOVED) {
 										removedResources.add(resource);
@@ -585,8 +582,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 	 */
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "de.uka.ipd.sdq.pcm.designdecision.editor",
-					0, null, new Object[] { editingDomain.getResourceSet() });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "de.uka.ipd.sdq.pcm.designdecision.editor", 0, null, new Object[] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -633,8 +629,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"),
-				getString("_WARN_FileConflict"));
+		return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"), getString("_WARN_FileConflict"));
 	}
 
 	/**
@@ -659,8 +654,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 		// adapterFactory = new
 		// ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-		final ComposedAdapterFactory compAdapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE) {
+		final ComposedAdapterFactory compAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) {
 			@Override
 			public ComposeableAdapterFactory getRootAdapterFactory() {
 				// TODO Auto-generated method stub
@@ -717,8 +711,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 							designdecisionEditor.this.setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
 
-						for (final Iterator<PropertySheetPage> i = designdecisionEditor.this.propertySheetPages
-								.iterator(); i.hasNext();) {
+						for (final Iterator<PropertySheetPage> i = designdecisionEditor.this.propertySheetPages.iterator(); i.hasNext();) {
 							final PropertySheetPage propertySheetPage = i.next();
 							if (propertySheetPage.getControl().isDisposed()) {
 								i.remove();
@@ -733,8 +726,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 
 		// Create the editing domain with a special command stack.
 		//
-		this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack,
-				new HashMap<Resource, Boolean>());
+		this.editingDomain = new AdapterFactoryEditingDomain(this.adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	/**
@@ -924,8 +916,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
-				FileTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
@@ -964,15 +955,12 @@ public class designdecisionEditor extends MultiPageEditorPart
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
 		boolean hasErrors = !resource.getErrors().isEmpty();
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
-					"de.uka.ipd.sdq.pcm.designdecision.editor", 0,
-					getString("_UI_CreateModelError_message", resource.getURI()),
-					new Object[] { exception == null ? (Object) resource : exception });
+			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING, "de.uka.ipd.sdq.pcm.designdecision.editor", 0,
+					getString("_UI_CreateModelError_message", resource.getURI()), new Object[] { exception == null ? (Object) resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
 		} else if (exception != null) {
-			return new BasicDiagnostic(Diagnostic.ERROR, "de.uka.ipd.sdq.pcm.designdecision.editor", 0,
-					getString("_UI_CreateModelError_message", resource.getURI()), new Object[] { exception });
+			return new BasicDiagnostic(Diagnostic.ERROR, "de.uka.ipd.sdq.pcm.designdecision.editor", 0, getString("_UI_CreateModelError_message", resource.getURI()), new Object[] { exception });
 		} else {
 			return Diagnostic.OK_INSTANCE;
 		}
@@ -1017,8 +1005,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(
-						new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(editingDomain.getResourceSet());
 
 				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
@@ -1325,14 +1312,12 @@ public class designdecisionEditor extends MultiPageEditorPart
 					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
 						// Select the root object in the view.
 						//
-						contentOutlineViewer.setSelection(
-								new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+						contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
 				@Override
-				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-						IStatusLineManager statusLineManager) {
+				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					contentOutlineStatusLineManager = statusLineManager;
 				}
@@ -1461,8 +1446,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 				//
 				boolean first = true;
 				for (Resource resource : editingDomain.getResourceSet().getResources()) {
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource))
-							&& !editingDomain.isReadOnly(resource)) {
+					if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 						try {
 							long timeStamp = resource.getTimeStamp();
 							resource.save(saveOptions);
@@ -1554,8 +1538,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
-		IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null
-				? getActionBars().getStatusLineManager().getProgressMonitor() : new NullProgressMonitor();
+		IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars().getStatusLineManager().getProgressMonitor() : new NullProgressMonitor();
 		doSave(progressMonitor);
 	}
 
@@ -1583,8 +1566,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
 		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener,
-				IResourceChangeEvent.POST_CHANGE);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
@@ -1654,8 +1636,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer
-				? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
@@ -1671,8 +1652,7 @@ public class designdecisionEditor extends MultiPageEditorPart
 					break;
 				}
 				default: {
-					statusLineManager
-							.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
+					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
 					break;
 				}
 				}

@@ -66,8 +66,7 @@ public abstract class StaticContextRuleImpl extends EObjectImpl implements Stati
 			contextClass = (EClass) eResolveProxy(oldContextClass);
 			if (contextClass != oldContextClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS, oldContextClass, contextClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS, oldContextClass, contextClass));
 			}
 		}
 		return contextClass;
@@ -90,8 +89,7 @@ public abstract class StaticContextRuleImpl extends EObjectImpl implements Stati
 		EClass oldContextClass = contextClass;
 		contextClass = newContextClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS,
-					oldContextClass, contextClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, gdofPackage.STATIC_CONTEXT_RULE__CONTEXT_CLASS, oldContextClass, contextClass));
 	}
 
 	/**

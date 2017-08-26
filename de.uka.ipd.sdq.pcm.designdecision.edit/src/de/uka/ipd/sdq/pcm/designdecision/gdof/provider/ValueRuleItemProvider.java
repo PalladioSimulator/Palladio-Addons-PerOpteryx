@@ -61,8 +61,7 @@ public class ValueRuleItemProvider extends OCLRuleItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((ValueRule) object).getMainOclQuery();
-		return label == null || label.length() == 0 ? getString("_UI_ValueRule_type")
-				: getString("_UI_ValueRule_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ValueRule_type") : getString("_UI_ValueRule_type") + " " + label;
 	}
 
 	/**

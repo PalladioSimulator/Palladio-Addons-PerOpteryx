@@ -57,13 +57,9 @@ public class DiscreteRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	 * @generated
 	 */
 	protected void addToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DiscreteRangeDegree_to_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeDegree_to_feature",
-								"_UI_DiscreteRangeDegree_type"),
-						specificPackage.Literals.DISCRETE_RANGE_DEGREE__TO, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_DiscreteRangeDegree_to_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeDegree_to_feature", "_UI_DiscreteRangeDegree_type"),
+				specificPackage.Literals.DISCRETE_RANGE_DEGREE__TO, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -73,13 +69,9 @@ public class DiscreteRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	 * @generated
 	 */
 	protected void addFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_DiscreteRangeDegree_from_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeDegree_from_feature",
-								"_UI_DiscreteRangeDegree_type"),
-						specificPackage.Literals.DISCRETE_RANGE_DEGREE__FROM, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_DiscreteRangeDegree_from_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DiscreteRangeDegree_from_feature", "_UI_DiscreteRangeDegree_type"),
+				specificPackage.Literals.DISCRETE_RANGE_DEGREE__FROM, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,8 +93,7 @@ public class DiscreteRangeDegreeItemProvider extends RangeDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((DiscreteRangeDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_DiscreteRangeDegree_type")
-				: getString("_UI_DiscreteRangeDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DiscreteRangeDegree_type") : getString("_UI_DiscreteRangeDegree_type") + " " + label;
 	}
 
 	/**

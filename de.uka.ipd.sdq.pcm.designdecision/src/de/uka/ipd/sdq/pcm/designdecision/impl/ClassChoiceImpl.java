@@ -63,8 +63,7 @@ public class ClassChoiceImpl extends ChoiceImpl implements ClassChoice {
 			chosenValue = eResolveProxy(oldChosenValue);
 			if (chosenValue != oldChosenValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							designdecisionPackage.CLASS_CHOICE__CHOSEN_VALUE, oldChosenValue, chosenValue));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, designdecisionPackage.CLASS_CHOICE__CHOSEN_VALUE, oldChosenValue, chosenValue));
 			}
 		}
 		return chosenValue;
@@ -87,8 +86,7 @@ public class ClassChoiceImpl extends ChoiceImpl implements ClassChoice {
 		EObject oldChosenValue = chosenValue;
 		chosenValue = newChosenValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CLASS_CHOICE__CHOSEN_VALUE,
-					oldChosenValue, chosenValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.CLASS_CHOICE__CHOSEN_VALUE, oldChosenValue, chosenValue));
 	}
 
 	/**

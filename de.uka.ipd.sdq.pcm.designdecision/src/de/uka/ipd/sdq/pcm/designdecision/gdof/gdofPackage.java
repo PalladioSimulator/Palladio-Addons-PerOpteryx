@@ -798,8 +798,7 @@ public interface gdofPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE = eINSTANCE
-				.getChangeableElementDescription_SelectionRule();
+		EReference CHANGEABLE_ELEMENT_DESCRIPTION__SELECTION_RULE = eINSTANCE.getChangeableElementDescription_SelectionRule();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.gdof.impl.ValueRuleImpl <em>Value Rule</em>}' class.
@@ -931,8 +930,7 @@ public interface gdofPackage extends EPackage {
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS = eINSTANCE
-				.getDegreeOfFreedom_ChangeableElementDescriptions();
+		EReference DEGREE_OF_FREEDOM__CHANGEABLE_ELEMENT_DESCRIPTIONS = eINSTANCE.getDegreeOfFreedom_ChangeableElementDescriptions();
 
 		/**
 		 * The meta object literal for the '<em><b>Interaction Constraints</b></em>' reference list feature.

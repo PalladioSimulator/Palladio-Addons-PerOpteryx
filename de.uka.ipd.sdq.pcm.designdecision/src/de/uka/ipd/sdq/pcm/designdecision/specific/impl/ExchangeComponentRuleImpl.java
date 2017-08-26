@@ -78,8 +78,7 @@ public class ExchangeComponentRuleImpl extends EObjectImpl implements ExchangeCo
 	@Override
 	public EList<RepositoryComponent> getRepositoryComponent() {
 		if (repositoryComponent == null) {
-			repositoryComponent = new EObjectResolvingEList<RepositoryComponent>(RepositoryComponent.class, this,
-					specificPackage.EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT);
+			repositoryComponent = new EObjectResolvingEList<RepositoryComponent>(RepositoryComponent.class, this, specificPackage.EXCHANGE_COMPONENT_RULE__REPOSITORY_COMPONENT);
 		}
 		return repositoryComponent;
 	}
@@ -95,9 +94,7 @@ public class ExchangeComponentRuleImpl extends EObjectImpl implements ExchangeCo
 			allocationContext = (AllocationContext) eResolveProxy(oldAllocationContext);
 			if (allocationContext != oldAllocationContext) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, oldAllocationContext,
-							allocationContext));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, oldAllocationContext, allocationContext));
 			}
 		}
 		return allocationContext;
@@ -120,9 +117,7 @@ public class ExchangeComponentRuleImpl extends EObjectImpl implements ExchangeCo
 		AllocationContext oldAllocationContext = allocationContext;
 		allocationContext = newAllocationContext;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					specificPackage.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, oldAllocationContext,
-					allocationContext));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.EXCHANGE_COMPONENT_RULE__ALLOCATION_CONTEXT, oldAllocationContext, allocationContext));
 	}
 
 	/**

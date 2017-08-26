@@ -63,8 +63,7 @@ public class ClassAsReferenceDegreeItemProvider extends ClassDegreeItemProvider 
 	@Override
 	public String getText(Object object) {
 		String label = ((ClassAsReferenceDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ClassAsReferenceDegree_type")
-				: getString("_UI_ClassAsReferenceDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ClassAsReferenceDegree_type") : getString("_UI_ClassAsReferenceDegree_type") + " " + label;
 	}
 
 	/**

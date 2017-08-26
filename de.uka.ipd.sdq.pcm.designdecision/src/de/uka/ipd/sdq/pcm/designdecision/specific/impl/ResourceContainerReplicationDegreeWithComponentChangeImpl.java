@@ -34,8 +34,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ResourceContainerReplicationDegreeWithComponentChangeImpl extends ResourceContainerReplicationDegreeImpl
-		implements ResourceContainerReplicationDegreeWithComponentChange {
+public class ResourceContainerReplicationDegreeWithComponentChangeImpl extends ResourceContainerReplicationDegreeImpl implements ResourceContainerReplicationDegreeWithComponentChange {
 	/**
 	 * The cached value of the '{@link #getExchangeComponentRule() <em>Exchange Component Rule</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -69,8 +68,7 @@ public class ResourceContainerReplicationDegreeWithComponentChangeImpl extends R
 	@Override
 	public EList<ExchangeComponentRule> getExchangeComponentRule() {
 		if (exchangeComponentRule == null) {
-			exchangeComponentRule = new EObjectContainmentEList<ExchangeComponentRule>(ExchangeComponentRule.class,
-					this,
+			exchangeComponentRule = new EObjectContainmentEList<ExchangeComponentRule>(ExchangeComponentRule.class, this,
 					specificPackage.RESOURCE_CONTAINER_REPLICATION_DEGREE_WITH_COMPONENT_CHANGE__EXCHANGE_COMPONENT_RULE);
 		}
 		return exchangeComponentRule;

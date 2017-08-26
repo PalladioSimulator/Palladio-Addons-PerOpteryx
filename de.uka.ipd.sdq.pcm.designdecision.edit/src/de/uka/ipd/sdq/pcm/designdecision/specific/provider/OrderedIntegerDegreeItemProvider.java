@@ -56,13 +56,10 @@ public class OrderedIntegerDegreeItemProvider extends DiscreteDegreeItemProvider
 	 * @generated
 	 */
 	protected void addListOfIntegersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_OrderedIntegerDegree_listOfIntegers_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_OrderedIntegerDegree_listOfIntegers_feature", "_UI_OrderedIntegerDegree_type"),
-						specificPackage.Literals.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS, true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(
+				createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderedIntegerDegree_listOfIntegers_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_OrderedIntegerDegree_listOfIntegers_feature", "_UI_OrderedIntegerDegree_type"),
+						specificPackage.Literals.ORDERED_INTEGER_DEGREE__LIST_OF_INTEGERS, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -84,8 +81,7 @@ public class OrderedIntegerDegreeItemProvider extends DiscreteDegreeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((OrderedIntegerDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_OrderedIntegerDegree_type")
-				: getString("_UI_OrderedIntegerDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_OrderedIntegerDegree_type") : getString("_UI_OrderedIntegerDegree_type") + " " + label;
 	}
 
 	/**

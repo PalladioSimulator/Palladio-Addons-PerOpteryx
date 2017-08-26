@@ -86,8 +86,7 @@ public class resourcerepositoryValidator extends EObjectValidator {
 	 * @generated
 	 */
 	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 		case resourcerepositoryPackage.RESOURCE_DESCRIPTION_REPOSITORY:
 			return validateResourceDescriptionRepository((ResourceDescriptionRepository) value, diagnostics, context);
@@ -102,8 +101,7 @@ public class resourcerepositoryValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateResourceDescriptionRepository(ResourceDescriptionRepository resourceDescriptionRepository,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateResourceDescriptionRepository(ResourceDescriptionRepository resourceDescriptionRepository, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(resourceDescriptionRepository, diagnostics, context);
 	}
 
@@ -111,8 +109,7 @@ public class resourcerepositoryValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateResourceDescription(ResourceDescription resourceDescription, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateResourceDescription(ResourceDescription resourceDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(resourceDescription, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(resourceDescription, diagnostics, context);
@@ -141,8 +138,7 @@ public class resourcerepositoryValidator extends EObjectValidator {
 	 *
 	 * @generated
 	 */
-	public boolean validateResourceDescription_CostAndResourceMustMatch(ResourceDescription resourceDescription,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateResourceDescription_CostAndResourceMustMatch(ResourceDescription resourceDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return resourceDescription.CostAndResourceMustMatch(diagnostics, context);
 	}
 

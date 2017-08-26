@@ -35,8 +35,7 @@ import de.uka.ipd.sdq.pcm.resourcerepository.util.resourcerepositoryAdapterFacto
  * end-user-doc -->
  * @generated
  */
-public class resourcerepositoryItemProviderAdapterFactory extends resourcerepositoryAdapterFactory
-		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class resourcerepositoryItemProviderAdapterFactory extends resourcerepositoryAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

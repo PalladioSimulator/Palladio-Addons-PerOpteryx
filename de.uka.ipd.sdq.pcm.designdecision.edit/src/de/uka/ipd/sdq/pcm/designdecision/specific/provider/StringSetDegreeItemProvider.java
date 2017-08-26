@@ -55,13 +55,9 @@ public class StringSetDegreeItemProvider extends UnorderedDegreeItemProvider {
 	 * @generated
 	 */
 	protected void addStringValuesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_StringSetDegree_stringValues_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_StringSetDegree_stringValues_feature",
-								"_UI_StringSetDegree_type"),
-						specificPackage.Literals.STRING_SET_DEGREE__STRING_VALUES, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_StringSetDegree_stringValues_feature"), getString("_UI_PropertyDescriptor_description", "_UI_StringSetDegree_stringValues_feature", "_UI_StringSetDegree_type"),
+				specificPackage.Literals.STRING_SET_DEGREE__STRING_VALUES, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -73,8 +69,7 @@ public class StringSetDegreeItemProvider extends UnorderedDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((StringSetDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_StringSetDegree_type")
-				: getString("_UI_StringSetDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StringSetDegree_type") : getString("_UI_StringSetDegree_type") + " " + label;
 	}
 
 	/**

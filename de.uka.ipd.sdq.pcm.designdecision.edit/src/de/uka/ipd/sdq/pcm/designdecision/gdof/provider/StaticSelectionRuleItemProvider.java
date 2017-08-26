@@ -53,12 +53,9 @@ public class StaticSelectionRuleItemProvider extends SelectionRuleItemProvider {
 	 * @generated
 	 */
 	protected void addContextClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_StaticContextRule_contextClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_StaticContextRule_contextClass_feature",
-								"_UI_StaticContextRule_type"),
-						gdofPackage.Literals.STATIC_CONTEXT_RULE__CONTEXT_CLASS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_StaticContextRule_contextClass_feature"), getString("_UI_PropertyDescriptor_description", "_UI_StaticContextRule_contextClass_feature", "_UI_StaticContextRule_type"),
+				gdofPackage.Literals.STATIC_CONTEXT_RULE__CONTEXT_CLASS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -80,8 +77,7 @@ public class StaticSelectionRuleItemProvider extends SelectionRuleItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((StaticSelectionRule) object).getMainOclQuery();
-		return label == null || label.length() == 0 ? getString("_UI_StaticSelectionRule_type")
-				: getString("_UI_StaticSelectionRule_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StaticSelectionRule_type") : getString("_UI_StaticSelectionRule_type") + " " + label;
 	}
 
 	/**

@@ -57,14 +57,10 @@ public class ProcessingResourceDegreeItemProvider extends DegreeOfFreedomInstanc
 	 * @generated
 	 */
 	protected void addProcessingresourcetypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ProcessingResourceDegree_processingresourcetype_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ProcessingResourceDegree_processingresourcetype_feature",
-								"_UI_ProcessingResourceDegree_type"),
-						specificPackage.Literals.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE, true, false, true,
-						null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_ProcessingResourceDegree_processingresourcetype_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ProcessingResourceDegree_processingresourcetype_feature", "_UI_ProcessingResourceDegree_type"),
+				specificPackage.Literals.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -76,8 +72,7 @@ public class ProcessingResourceDegreeItemProvider extends DegreeOfFreedomInstanc
 	@Override
 	public String getText(Object object) {
 		String label = ((ProcessingResourceDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ProcessingResourceDegree_type")
-				: getString("_UI_ProcessingResourceDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ProcessingResourceDegree_type") : getString("_UI_ProcessingResourceDegree_type") + " " + label;
 	}
 
 	/**

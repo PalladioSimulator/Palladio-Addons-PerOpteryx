@@ -67,8 +67,7 @@ public class DoFRepositoryImpl extends EObjectImpl implements DoFRepository {
 	@Override
 	public EList<DegreeOfFreedom> getDofs() {
 		if (dofs == null) {
-			dofs = new EObjectContainmentEList<DegreeOfFreedom>(DegreeOfFreedom.class, this,
-					gdofPackage.DO_FREPOSITORY__DOFS);
+			dofs = new EObjectContainmentEList<DegreeOfFreedom>(DegreeOfFreedom.class, this, gdofPackage.DO_FREPOSITORY__DOFS);
 		}
 		return dofs;
 	}

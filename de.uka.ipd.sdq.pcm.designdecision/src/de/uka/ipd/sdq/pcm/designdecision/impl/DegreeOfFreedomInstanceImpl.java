@@ -98,9 +98,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 			primaryChanged = eResolveProxy(oldPrimaryChanged);
 			if (primaryChanged != oldPrimaryChanged) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, oldPrimaryChanged,
-							primaryChanged));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
 			}
 		}
 		return primaryChanged;
@@ -123,9 +121,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 		EObject oldPrimaryChanged = primaryChanged;
 		primaryChanged = newPrimaryChanged;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, oldPrimaryChanged,
-					primaryChanged));
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED, oldPrimaryChanged, primaryChanged));
 	}
 
 	/**
@@ -139,8 +135,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 			dof = (DegreeOfFreedom) eResolveProxy(oldDof);
 			if (dof != oldDof) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF, oldDof, dof));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF, oldDof, dof));
 			}
 		}
 		return dof;
@@ -163,8 +158,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 		DegreeOfFreedom oldDof = dof;
 		dof = newDof;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF,
-					oldDof, dof));
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF, oldDof, dof));
 	}
 
 	/**
@@ -174,8 +168,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 	@Override
 	public EList<EObject> getChangeableElements() {
 		if (changeableElements == null) {
-			changeableElements = new EObjectResolvingEList<EObject>(EObject.class, this,
-					designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS);
+			changeableElements = new EObjectResolvingEList<EObject>(EObject.class, this, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS);
 		}
 		return changeableElements;
 	}
@@ -187,8 +180,7 @@ public class DegreeOfFreedomInstanceImpl extends NamedElementImpl implements Deg
 	@Override
 	public EList<EObject> getDecoratorModel() {
 		if (decoratorModel == null) {
-			decoratorModel = new EObjectResolvingEList<EObject>(EObject.class, this,
-					designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DECORATOR_MODEL);
+			decoratorModel = new EObjectResolvingEList<EObject>(EObject.class, this, designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DECORATOR_MODEL);
 		}
 		return decoratorModel;
 	}

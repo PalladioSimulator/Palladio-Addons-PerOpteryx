@@ -66,8 +66,7 @@ public class OptionalFeatureDegreeImpl extends FeatureConfigDegreeImpl implement
 			simple = (Simple) eResolveProxy(oldSimple);
 			if (simple != oldSimple) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.OPTIONAL_FEATURE_DEGREE__SIMPLE, oldSimple, simple));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.OPTIONAL_FEATURE_DEGREE__SIMPLE, oldSimple, simple));
 			}
 		}
 		return simple;
@@ -90,8 +89,7 @@ public class OptionalFeatureDegreeImpl extends FeatureConfigDegreeImpl implement
 		Simple oldSimple = simple;
 		simple = newSimple;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.OPTIONAL_FEATURE_DEGREE__SIMPLE,
-					oldSimple, simple));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.OPTIONAL_FEATURE_DEGREE__SIMPLE, oldSimple, simple));
 	}
 
 	/**

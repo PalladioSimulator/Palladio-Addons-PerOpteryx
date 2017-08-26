@@ -52,8 +52,7 @@ public class DiscreteDegreeItemProvider extends DataTypeDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((DiscreteDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_DiscreteDegree_type")
-				: getString("_UI_DiscreteDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DiscreteDegree_type") : getString("_UI_DiscreteDegree_type") + " " + label;
 	}
 
 	/**

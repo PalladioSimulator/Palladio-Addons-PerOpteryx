@@ -52,8 +52,7 @@ public class UnorderedDegreeItemProvider extends DataTypeDegreeItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((UnorderedDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_UnorderedDegree_type")
-				: getString("_UI_UnorderedDegree_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UnorderedDegree_type") : getString("_UI_UnorderedDegree_type") + " " + label;
 	}
 
 	/**

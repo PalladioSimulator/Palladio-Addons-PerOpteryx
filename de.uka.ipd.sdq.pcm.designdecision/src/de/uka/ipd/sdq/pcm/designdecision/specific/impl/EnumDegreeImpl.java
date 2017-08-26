@@ -66,8 +66,7 @@ public abstract class EnumDegreeImpl extends UnorderedDegreeImpl implements Enum
 			enumeration = (EEnum) eResolveProxy(oldEnumeration);
 			if (enumeration != oldEnumeration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.ENUM_DEGREE__ENUMERATION,
-							oldEnumeration, enumeration));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.ENUM_DEGREE__ENUMERATION, oldEnumeration, enumeration));
 			}
 		}
 		return enumeration;
@@ -90,8 +89,7 @@ public abstract class EnumDegreeImpl extends UnorderedDegreeImpl implements Enum
 		EEnum oldEnumeration = enumeration;
 		enumeration = newEnumeration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.ENUM_DEGREE__ENUMERATION,
-					oldEnumeration, enumeration));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.ENUM_DEGREE__ENUMERATION, oldEnumeration, enumeration));
 	}
 
 	/**

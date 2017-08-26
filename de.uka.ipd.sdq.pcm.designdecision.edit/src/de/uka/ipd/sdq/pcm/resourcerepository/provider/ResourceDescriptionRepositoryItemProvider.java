@@ -35,8 +35,7 @@ import de.uka.ipd.sdq.pcm.resourcerepository.resourcerepositoryPackage;
  * @generated
  */
 public class ResourceDescriptionRepositoryItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!--
@@ -75,8 +74,7 @@ public class ResourceDescriptionRepositoryItemProvider extends ItemProviderAdapt
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(
-					resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY);
+			childrenFeatures.add(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY);
 		}
 		return childrenFeatures;
 	}
@@ -142,8 +140,7 @@ public class ResourceDescriptionRepositoryItemProvider extends ItemProviderAdapt
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY,
+		newChildDescriptors.add(createChildParameter(resourcerepositoryPackage.Literals.RESOURCE_DESCRIPTION_REPOSITORY__AVAILABLE_PROCESSING_RESOURCES_RESOURCE_REPOSITORY,
 				resourcerepositoryFactory.eINSTANCE.createResourceDescription()));
 	}
 

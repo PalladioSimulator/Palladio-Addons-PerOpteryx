@@ -29,8 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomInstanceImpl
-		implements ProcessingResourceDegree {
+public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomInstanceImpl implements ProcessingResourceDegree {
 	/**
 	 * The cached value of the '{@link #getProcessingresourcetype() <em>Processingresourcetype</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -68,9 +67,7 @@ public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomInstan
 			processingresourcetype = (ProcessingResourceType) eResolveProxy(oldProcessingresourcetype);
 			if (processingresourcetype != oldProcessingresourcetype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE,
-							oldProcessingresourcetype, processingresourcetype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 			}
 		}
 		return processingresourcetype;
@@ -93,9 +90,7 @@ public abstract class ProcessingResourceDegreeImpl extends DegreeOfFreedomInstan
 		ProcessingResourceType oldProcessingresourcetype = processingresourcetype;
 		processingresourcetype = newProcessingresourcetype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype,
-					processingresourcetype));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.PROCESSING_RESOURCE_DEGREE__PROCESSINGRESOURCETYPE, oldProcessingresourcetype, processingresourcetype));
 	}
 
 	/**
