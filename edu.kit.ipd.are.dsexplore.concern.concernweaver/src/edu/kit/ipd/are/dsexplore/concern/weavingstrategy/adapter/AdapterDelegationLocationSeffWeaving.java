@@ -26,8 +26,9 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 /**
- * This class returns informations for the SEFF depending on the connection of the components the adapter
- * is inserted in between.
+ * This class returns informations for the SEFF depending on the connection of
+ * the components the adapter is inserted in between.
+ *
  * @author scheerer
  *
  */
@@ -38,30 +39,23 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 	 */
 	@Override
 	protected BasicComponent getCallingComponent() throws ConcernWeavingException {
-
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
-		Optional<Connector> assemblyConnector = getAssemblyConnectorOf(location.getOuterProvidedRole_ProvidedDelegationConnector());
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
+		Optional<Connector> assemblyConnector = this.getAssemblyConnectorOf(location.getOuterProvidedRole_ProvidedDelegationConnector());
 		if (assemblyConnector.isPresent()) {
-			
-			return (BasicComponent) ((AssemblyConnector) assemblyConnector.get()).getRequiringAssemblyContext_AssemblyConnector()
-																				 .getEncapsulatedComponent__AssemblyContext();
-			
+			return (BasicComponent) ((AssemblyConnector) assemblyConnector.get()).getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
 		}
-		
 		throw new ConcernWeavingException(ErrorMessage.missingConnectorWith(location.getOuterProvidedRole_ProvidedDelegationConnector()));
-		
 	}
-	
+
 	/**
 	 * @see AdapterServiceEffectSpecificationWeaving#getCalledComponent()
 	 */
 	@Override
 	protected BasicComponent getCalledComponent() {
-
-		// TODO check if cast to basic-component holds if component is composite-component.
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
+		// TODO check if cast to basic-component holds if component is
+		// composite-component.
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
 		return (BasicComponent) location.getAssemblyContext_ProvidedDelegationConnector().getEncapsulatedComponent__AssemblyContext();
-
 	}
 
 	/**
@@ -69,117 +63,72 @@ public class AdapterDelegationLocationSeffWeaving extends AdapterServiceEffectSp
 	 */
 	@Override
 	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
-		
-
-		Signature calledService = (Signature) seffToTransform.getDescribedService__SEFF();
-		return new ExternalCallInfo(calledService, 
-									getRequiredRoleOfAdapterBy(calledService),
-									getReturnVariableUsagesBy(calledService), 
-									getInputVariableUsagesBy(calledService),
-									getSetVariableActions(seffToTransform));
-
+		Signature calledService = seffToTransform.getDescribedService__SEFF();
+		return new ExternalCallInfo(calledService, this.getRequiredRoleOfAdapterBy(calledService), this.getReturnVariableUsagesBy(calledService), this.getInputVariableUsagesBy(calledService),
+				this.getSetVariableActions(seffToTransform));
 	}
 
 	private List<VariableUsage> getReturnVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
-
-		if (!hasReturnType(calledService)) {
-
+		if (!this.hasReturnType(calledService)) {
 			return Collections.emptyList();
-
 		}
-
-		if (isOuterProvidedRoleExposedByTheSystem()) {
-			
-			return getEntryLevelSystemCallInvoking(calledService).getOutputParameterUsages_EntryLevelSystemCall();		
-		
+		if (this.isOuterProvidedRoleExposedByTheSystem()) {
+			return this.getEntryLevelSystemCallInvoking(calledService).getOutputParameterUsages_EntryLevelSystemCall();
 		}
-		
-		return getReturnVariableUsageIfServiceIsCalled(calledService);
-
+		return this.getReturnVariableUsageIfServiceIsCalled(calledService);
 	}
 
 	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
-
-		if (!hasInputVariables(calledService)) {
-
+		if (!this.hasInputVariables(calledService)) {
 			return Collections.emptyList();
-
 		}
-
-		if (isOuterProvidedRoleExposedByTheSystem()) {
-			
-			return getEntryLevelSystemCallInvoking(calledService).getInputParameterUsages_EntryLevelSystemCall(); 		
-		
+		if (this.isOuterProvidedRoleExposedByTheSystem()) {
+			return this.getEntryLevelSystemCallInvoking(calledService).getInputParameterUsages_EntryLevelSystemCall();
 		}
-		
-		return getInputVariableUsageIfServiceIsCalled(calledService);
-
+		return this.getInputVariableUsageIfServiceIsCalled(calledService);
 	}
 
 	private boolean hasReturnType(Signature calledService) {
-
-		return (calledService instanceof OperationSignature) && 
-			   ((OperationSignature) calledService).getReturnType__OperationSignature() != null;
-
+		return (calledService instanceof OperationSignature) && ((OperationSignature) calledService).getReturnType__OperationSignature() != null;
 	}
 
 	private boolean hasInputVariables(Signature calledService) {
-
 		TreeIterator<EObject> iterator = calledService.eAllContents();
 		while (iterator.hasNext()) {
-
 			EObject current = iterator.next();
 			if (current instanceof Parameter) {
-
 				return true;
-
 			}
-
 		}
-
 		return false;
-
 	}
 
 	private boolean isOuterProvidedRoleExposedByTheSystem() {
-		
-		return getContainerOfOuterProvidedRole() instanceof System;
-		
+		return this.getContainerOfOuterProvidedRole() instanceof System;
 	}
-	
+
 	private EObject getContainerOfOuterProvidedRole() {
-		
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
 		return location.getOuterProvidedRole_ProvidedDelegationConnector().eContainer();
-		
 	}
 
 	private EntryLevelSystemCall getEntryLevelSystemCallInvoking(Signature calledService) throws ConcernWeavingException {
-		
-		Stream<EntryLevelSystemCall> entryLevelSystemCalls = pcmUsageModelManager.getEntryLevelSystemCalls().stream();
-		return entryLevelSystemCalls.filter(entryLevelSystemCallsInvoking(calledService))
-									.findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingEntryLevelSystemCall(calledService)));
-		
+		Stream<EntryLevelSystemCall> entryLevelSystemCalls = AdapterWeaving.pcmUsageModelManager.getEntryLevelSystemCalls().stream();
+		return entryLevelSystemCalls.filter(this.entryLevelSystemCallsInvoking(calledService)).findFirst()
+				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingEntryLevelSystemCall(calledService)));
 	}
-	
+
 	private Predicate<EntryLevelSystemCall> entryLevelSystemCallsInvoking(Signature calledService) {
-		
 		return eachSystemCall -> ConcernWeaverUtil.areEqual(eachSystemCall.getOperationSignature__EntryLevelSystemCall(), calledService);
-		
 	}
 
 	private Optional<Connector> getAssemblyConnectorOf(OperationProvidedRole outerProvidedRole) {
-		
-		List<Connector> matchingAssConnectors = pcmSystemManager.getConnectorsBy(contains(outerProvidedRole));
+		List<Connector> matchingAssConnectors = AdapterWeaving.pcmSystemManager.getConnectorsBy(this.contains(outerProvidedRole));
 		return matchingAssConnectors.isEmpty() ? Optional.empty() : Optional.of(matchingAssConnectors.get(0));
-		
 	}
 
 	private Predicate<Connector> contains(OperationProvidedRole providedRole) {
-		
-		return connector -> (connector instanceof AssemblyConnector) &&
-				            ConcernWeaverUtil.areEqual(((AssemblyConnector) connector).getProvidedRole_AssemblyConnector(), providedRole);
-		
+		return connector -> (connector instanceof AssemblyConnector) && ConcernWeaverUtil.areEqual(((AssemblyConnector) connector).getProvidedRole_AssemblyConnector(), providedRole);
 	}
 
 }

@@ -9,30 +9,31 @@ import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
 
 /**
  * Thsi class implements the adapter weaving strategy.
+ *
  * @author scheerer
  *
  */
 public class AdapterWeavingStrategy implements IWeavingStrategy {
-	
+
 	/**
 	 * The constructor.
-	 * @param pcmToAdapt - Represents the PCm model that is going to be woven.
-	 * @param concernSolution - Represents the concern solution which is going to extend a given PCM model.
+	 *
+	 * @param pcmToAdapt
+	 *            - Represents the PCm model that is going to be woven.
+	 * @param concernSolution
+	 *            - Represents the concern solution which is going to extend a
+	 *            given PCM model.
 	 */
 	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, Repository concernSolution) {
-		
 		AdapterWeaving.setManagersWith(pcmToAdapt, concernSolution);
-		
 	}
-	
+
 	/**
 	 * @see IWeavingStrategy#weaveRepository(WeavingInstruction)
 	 */
 	@Override
 	public void weaveRepository(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
 		AdapterWeavingFactory.getAdapterRepositoryWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
-		
 	}
 
 	/**
@@ -40,9 +41,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveAssembly(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
 		AdapterWeavingFactory.getAdapterAssemblyWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
-		
 	}
 
 	/**
@@ -50,9 +49,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveAllocation(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
 		new AdapterAllocationWeaving().weave(weavingInstruction);
-		
 	}
 
 	/**
@@ -60,9 +57,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
 		AdapterWeavingFactory.getAdapterSeffWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
-		
 	}
 
 	/**
@@ -70,9 +65,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveUsageModel(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
 		new AdapterUsageModelWeaving().weave(weavingInstruction);
-		
 	}
-	
+
 }

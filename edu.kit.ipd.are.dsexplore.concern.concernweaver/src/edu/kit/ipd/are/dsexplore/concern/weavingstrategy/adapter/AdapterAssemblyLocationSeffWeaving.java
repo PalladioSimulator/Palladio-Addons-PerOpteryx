@@ -16,8 +16,9 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
 /**
- * This class returns informations for the SEFF depending on the connection of the components the adapter
- * is inserted in between.
+ * This class returns informations for the SEFF depending on the connection of
+ * the components the adapter is inserted in between.
+ *
  * @author scheerer
  *
  */
@@ -28,21 +29,17 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 	 */
 	@Override
 	protected BasicComponent getCallingComponent() {
-		
-		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
+		AssemblyConnector location = (AssemblyConnector) this.weavingLocation.getLocation();
 		return (BasicComponent) location.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-		
 	}
-	
+
 	/**
 	 * @see AdapterServiceEffectSpecificationWeaving#getCalledComponent()
 	 */
 	@Override
 	protected BasicComponent getCalledComponent() {
-		
-		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
+		AssemblyConnector location = (AssemblyConnector) this.weavingLocation.getLocation();
 		return (BasicComponent) location.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-		
 	}
 
 	/**
@@ -50,63 +47,38 @@ public class AdapterAssemblyLocationSeffWeaving extends AdapterServiceEffectSpec
 	 */
 	@Override
 	protected ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
-		
-		Signature calledService = (Signature) seffToTransform.getDescribedService__SEFF();
-		return new ExternalCallInfo(calledService, 
-									getRequiredRoleOfAdapterBy(calledService), 
-									getReturnVariableUsageBy(calledService), 
-									getInputVariableUsagesBy(calledService),
-									getSetVariableActions(seffToTransform));
-
+		Signature calledService = seffToTransform.getDescribedService__SEFF();
+		return new ExternalCallInfo(calledService, this.getRequiredRoleOfAdapterBy(calledService), this.getReturnVariableUsageBy(calledService), this.getInputVariableUsagesBy(calledService),
+				this.getSetVariableActions(seffToTransform));
 	}
 
 	private List<VariableUsage> getReturnVariableUsageBy(Signature calledService) throws ConcernWeavingException {
-		
-		if (hasReturnType(calledService)) {
-			
-			return getReturnVariableUsageIfServiceIsCalled(calledService);
-			
+		if (this.hasReturnType(calledService)) {
+			return this.getReturnVariableUsageIfServiceIsCalled(calledService);
 		}
-		
 		return Collections.emptyList();
-		
 	}
 
 	private List<VariableUsage> getInputVariableUsagesBy(Signature calledService) throws ConcernWeavingException {
-		
-		if (!hasInputVariables(calledService)) {
-			
+		if (!this.hasInputVariables(calledService)) {
 			return Collections.emptyList();
-			
 		}
-		
-		return getInputVariableUsageIfServiceIsCalled(calledService);
-		
+		return this.getInputVariableUsageIfServiceIsCalled(calledService);
 	}
 
 	private boolean hasReturnType(Signature calledService) {
-		
-		return (calledService instanceof OperationSignature) &&
-			   ((OperationSignature) calledService).getReturnType__OperationSignature() != null;
-		
+		return (calledService instanceof OperationSignature) && ((OperationSignature) calledService).getReturnType__OperationSignature() != null;
 	}
-	
+
 	private boolean hasInputVariables(Signature calledService) {
-		
 		TreeIterator<EObject> iterator = calledService.eAllContents();
 		while (iterator.hasNext()) {
-			
 			EObject current = iterator.next();
 			if (current instanceof Parameter) {
-				
 				return true;
-				
 			}
-			
 		}
-		
 		return false;
-		
 	}
 
 }

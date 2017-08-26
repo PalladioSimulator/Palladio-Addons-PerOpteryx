@@ -11,36 +11,26 @@ import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 public class AssemblyConnectorGenerator extends ConnectorGenerator implements IConnectorGeneratorExploration {
 
 	public AssemblyConnectorGenerator(PcmSystemManager pcmSystemManager) {
-		
 		super(pcmSystemManager);
-
 	}
-	
+
 	@Override
 	public Predicate<ConnectionInfo> canBeApplied() {
-		
-		return isOperationRequiredRole().and(isOperationProvidedRole());
-		
+		return this.isOperationRequiredRole().and(this.isOperationProvidedRole());
 	}
 
 	private Predicate<ConnectionInfo> isOperationRequiredRole() {
-		
 		return connectionInfo -> connectionInfo.requiringRole instanceof OperationRequiredRole;
-		
 	}
 
 	private Predicate<ConnectionInfo> isOperationProvidedRole() {
-		
 		return connectionInfo -> connectionInfo.providingRole instanceof OperationProvidedRole;
-		
 	}
 
 	@Override
 	public Connector createConnectorBy(ConnectionInfo connectionInfo) {
-		
-		return pcmSystemManager.createAssemblyConnectorBy(Pair.of((OperationRequiredRole) connectionInfo.requiringRole, connectionInfo.requiringAssemblyContext), 
-				  										  Pair.of((OperationProvidedRole) connectionInfo.providingRole, connectionInfo.providingAssemblyContext));
-		
+		return this.pcmSystemManager.createAssemblyConnectorBy(Pair.of((OperationRequiredRole) connectionInfo.requiringRole, connectionInfo.requiringAssemblyContext),
+				Pair.of((OperationProvidedRole) connectionInfo.providingRole, connectionInfo.providingAssemblyContext));
 	}
 
 }

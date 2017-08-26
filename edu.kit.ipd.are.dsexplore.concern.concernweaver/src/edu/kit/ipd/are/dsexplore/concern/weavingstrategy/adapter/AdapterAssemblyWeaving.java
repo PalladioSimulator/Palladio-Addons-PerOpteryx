@@ -29,163 +29,124 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGeneratorExplorationFacto
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 /**
- * This class is responsible for weaving the assembly view-type in the context of the adapter transformation strategy.
+ * This class is responsible for weaving the assembly view-type in the context
+ * of the adapter transformation strategy.
+ *
  * @author scheerer
  *
  */
 public abstract class AdapterAssemblyWeaving extends AdapterWeaving {
-	
+
 	/**
 	 * @see AdapterWeaving#weave(WeavingInstruction)
 	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
-		setAdapterAssemblyContextRegarding(weavingInstruction.getTransformationStrategy().isMultiple());
-		establishConnectionTo(weavingInstruction.getECCWithConsumedFeatures());
-		weaveAdapterIntoSystem(weavingInstruction.getWeavingLocation());
-		
+		this.setAdapterAssemblyContextRegarding(weavingInstruction.getTransformationStrategy().isMultiple());
+		this.establishConnectionTo(weavingInstruction.getECCWithConsumedFeatures());
+		this.weaveAdapterIntoSystem(weavingInstruction.getWeavingLocation());
 	}
-	
+
 	private void setAdapterAssemblyContextRegarding(boolean isMultiple) {
-		
 		if (isMultiple) {
-			
-			setAdapterAssemblyContext(pcmSystemManager.createAndAddAssemblyContextOf(adapter));
-			
+			AdapterWeaving.setAdapterAssemblyContext(AdapterWeaving.pcmSystemManager.createAndAddAssemblyContextOf(AdapterWeaving.adapter));
 		} else {
-			
-			setAdapterAssemblyContext(getOrCreateAssemblyContextOf(adapter));
-			
+			AdapterWeaving.setAdapterAssemblyContext(this.getOrCreateAssemblyContextOf(AdapterWeaving.adapter));
 		}
-		
 	}
-	
+
 	private void establishConnectionTo(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccAndProvidedFeatures) throws ConcernWeavingException {
-		
-		createConnectorsFromAdapterTo(eccAndProvidedFeatures.getSecond());
-		createConnectorsFromECCToRequiredECCs(eccAndProvidedFeatures.getFirst());
-		
+		this.createConnectorsFromAdapterTo(eccAndProvidedFeatures.getSecond());
+		this.createConnectorsFromECCToRequiredECCs(eccAndProvidedFeatures.getFirst());
 	}
-	
+
 	private void createConnectorsFromAdapterTo(List<ProvidedRole> providedECCFeatures) throws ConcernWeavingException {
-		
-		AssemblyContext eccAssemblyContext = getOrCreateAssemblyContextOf((RepositoryComponent) providedECCFeatures.get(0).eContainer());
-		
+		AssemblyContext eccAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedECCFeatures.get(0).eContainer());
+
 		for (ProvidedRole eachProvidedFeature : providedECCFeatures) {
-		
-			RequiredRole requiredRole = (RequiredRole) getComplimentaryRoleOf(eachProvidedFeature, getRequiredRolesOfAdapter());
-			ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, eachProvidedFeature, adapterAssemblyContext, eccAssemblyContext);
-			addConnector(createConnectorBy(connectionInfo));
-			
+			RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(eachProvidedFeature, this.getRequiredRolesOfAdapter());
+			ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, eachProvidedFeature, AdapterWeaving.adapterAssemblyContext, eccAssemblyContext);
+			this.addConnector(this.createConnectorBy(connectionInfo));
 		}
-
 	}
-	
+
 	private AssemblyContext getOrCreateAssemblyContextOf(RepositoryComponent component) {
-		
-		Optional<AssemblyContext> result = pcmSystemManager.getAssemblyContextBy(getAssemblyContextInstantiating(component));
+		Optional<AssemblyContext> result = AdapterWeaving.pcmSystemManager.getAssemblyContextBy(this.getAssemblyContextInstantiating(component));
 		if (result.isPresent()) {
-			
 			return result.get();
-			
 		}
-		
-		return pcmSystemManager.createAndAddAssemblyContextOf(component);
-		
+		return AdapterWeaving.pcmSystemManager.createAndAddAssemblyContextOf(component);
 	}
-	
-	private Predicate<AssemblyContext> getAssemblyContextInstantiating(RepositoryComponent component) {
-		
-		return assemblyContext -> ConcernWeaverUtil.areEqual(assemblyContext.getEncapsulatedComponent__AssemblyContext(), component);
-		
-	}
-	
-	private <T extends Role> ConnectorGenerator getApplicableConnectorGeneratorBy(ConnectionInfo connectionInfo) throws ConcernWeavingException {
-		
-		ConnectorGeneratorExplorationFactory factory = ConnectorGeneratorExplorationFactory.getBy(pcmSystemManager);
-		return factory.getApplicableConnectorGeneratorBy(connectionInfo);
-		
-	}
-	
-	private void createConnectorsFromECCToRequiredECCs(ElementaryConcernComponent ecc) throws ConcernWeavingException {
 
-		ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, concernRepositoryManager);
-		for (RepositoryComponent eachComponent : eccHandler.getStructureOfECCAndRequiredAccordingTo(resolveOnlyComponents())) {
-			
-			createConnectorsBy(eachComponent).forEach(this::addConnector);
-			
-		}
-		
+	private Predicate<AssemblyContext> getAssemblyContextInstantiating(RepositoryComponent component) {
+		return assemblyContext -> ConcernWeaverUtil.areEqual(assemblyContext.getEncapsulatedComponent__AssemblyContext(), component);
 	}
-	
+
+	private <T extends Role> ConnectorGenerator getApplicableConnectorGeneratorBy(ConnectionInfo connectionInfo) throws ConcernWeavingException {
+		ConnectorGeneratorExplorationFactory factory = ConnectorGeneratorExplorationFactory.getBy(AdapterWeaving.pcmSystemManager);
+		return factory.getApplicableConnectorGeneratorBy(connectionInfo);
+	}
+
+	private void createConnectorsFromECCToRequiredECCs(ElementaryConcernComponent ecc) throws ConcernWeavingException {
+		ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, AdapterWeaving.concernRepositoryManager);
+		for (RepositoryComponent eachComponent : eccHandler.getStructureOfECCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
+			this.createConnectorsBy(eachComponent).forEach(this::addConnector);
+		}
+	}
+
 	private Function<RepositoryComponent, List<RepositoryComponent>> resolveOnlyComponents() {
-		
 		return (component) -> Arrays.asList(component);
-		
 	}
-	
+
 	private List<Connector> createConnectorsBy(RepositoryComponent component) throws ConcernWeavingException {
-		
-		AssemblyContext requiredAssemblyContext = getOrCreateAssemblyContextOf(component);
-		
-		List<Connector> createdConnectors = new ArrayList<Connector>();
+		AssemblyContext requiredAssemblyContext = this.getOrCreateAssemblyContextOf(component);
+
+		List<Connector> createdConnectors = new ArrayList<>();
 		for (RequiredRole eachRequiredRole : component.getRequiredRoles_InterfaceRequiringEntity()) {
-			
-			ProvidedRole providedRole = (ProvidedRole) getComplimentaryRoleOf(eachRequiredRole, concernRepositoryManager.getAllProvidedRoles());
-			AssemblyContext providedAssemblyContext = getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
-			
+			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, AdapterWeaving.concernRepositoryManager.getAllProvidedRoles());
+			AssemblyContext providedAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
+
 			ConnectionInfo connectionInfo = new ConnectionInfo(eachRequiredRole, providedRole, requiredAssemblyContext, providedAssemblyContext);
-			createdConnectors.add(createConnectorBy(connectionInfo));
-			
+			createdConnectors.add(this.createConnectorBy(connectionInfo));
 		}
-		
 		return createdConnectors;
-		
+
 	}
-	
+
 	protected <T extends Role> Role getComplimentaryRoleOf(Role role, List<T> complimentaryRoleSpace) throws ConcernWeavingException {
-		
-		return getRoleHandlerBy(role).getComplimentaryRoleOf(role, complimentaryRoleSpace)
-			  			  			 .orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingComplimentaryRole((RepositoryComponent) role.eContainer(), role)));
-		
+		return this.getRoleHandlerBy(role).getComplimentaryRoleOf(role, complimentaryRoleSpace)
+				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingComplimentaryRole((RepositoryComponent) role.eContainer(), role)));
 	}
 
 	private RoleHandler getRoleHandlerBy(Role role) throws ConcernWeavingException {
-		
-		return RoleHandlerFactory.getBy(role, concernRepositoryManager).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
-		
+		return RoleHandlerFactory.getBy(role, AdapterWeaving.concernRepositoryManager).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
 	}
 
 	private Connector createConnectorBy(ConnectionInfo connectionInfo) throws ConcernWeavingException {
-		
-		ConnectorGenerator generator = getApplicableConnectorGeneratorBy(connectionInfo);
+		ConnectorGenerator generator = this.getApplicableConnectorGeneratorBy(connectionInfo);
 		return generator.createConnectorBy(connectionInfo);
-		
 	}
-	
+
 	protected List<RequiredRole> getRequiredRolesOfAdapter() {
-		
-		return adapter.getRequiredRoles_InterfaceRequiringEntity();
-		
+		return AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity();
 	}
-	
+
 	protected void addConnector(Connector connectorToAdd) {
-		
-		if (!pcmSystemManager.existConnector(connectorToAdd)) {
-			
-			pcmSystemManager.addConnectors(connectorToAdd);
-			
+		if (!AdapterWeaving.pcmSystemManager.existConnector(connectorToAdd)) {
+			AdapterWeaving.pcmSystemManager.addConnectors(connectorToAdd);
 		}
-		
 	}
-	
+
 	/**
-	 * The implementer is responsible to realize the weaving of the adapter in the system depending on the connection
-	 * of the components the adapter is inserted in between.
-	 * @param weavingLocation - Contains the informations about the weaving location.
-	 * @throws ConcernWeavingException - Will be thrown if an error occurs during weaving.
+	 * The implementer is responsible to realize the weaving of the adapter in
+	 * the system depending on the connection of the components the adapter is
+	 * inserted in between.
+	 *
+	 * @param weavingLocation
+	 *            - Contains the informations about the weaving location.
+	 * @throws ConcernWeavingException
+	 *             - Will be thrown if an error occurs during weaving.
 	 */
 	public abstract void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException;
-	
+
 }

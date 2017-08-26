@@ -29,341 +29,256 @@ import edu.kit.ipd.are.dsexplore.concern.manager.PcmServiceEffectSpecificationMa
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 /**
- * This class is responsible for weaving the SEFF of the adapter in the context of the adapter transformation strategy.
+ * This class is responsible for weaving the SEFF of the adapter in the context
+ * of the adapter transformation strategy.
+ *
  * @author scheerer
  *
  */
 public abstract class AdapterServiceEffectSpecificationWeaving extends AdapterWeaving {
-	
+
 	public class ExternalCallInfo {
-		
+
 		public Signature calledService;
 		public RequiredRole requiredRole;
 		public List<VariableUsage> returnVariableUsage;
 		public List<VariableUsage> inputVariableUsages;
 		public List<SetVariableAction> setVariableActions;
-		
+
 		public ExternalCallInfo(Signature calledService, RequiredRole requiredRole) {
-			
 			this(calledService, requiredRole, new ArrayList<VariableUsage>(), new ArrayList<VariableUsage>(), new ArrayList<SetVariableAction>());
-			
 		}
-		
-		public ExternalCallInfo(Signature calledService,
-								RequiredRole requiredRole,
-								List<VariableUsage> returnVariableUsage,
-								List<VariableUsage> inputVariableUsages,
-								List<SetVariableAction> setVariableActions) {
-			
+
+		public ExternalCallInfo(Signature calledService, RequiredRole requiredRole, List<VariableUsage> returnVariableUsage, List<VariableUsage> inputVariableUsages,
+				List<SetVariableAction> setVariableActions) {
 			this.calledService = calledService;
 			this.requiredRole = requiredRole;
 			this.returnVariableUsage = returnVariableUsage;
 			this.inputVariableUsages = inputVariableUsages;
 			this.setVariableActions = setVariableActions;
-			
 		}
-		
 	}
-	
+
 	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.getInstance();
 	private Transformation transformationStrategy;
 	private List<ProvidedRole> consumedFeautresOfECC;
-	
+
 	protected WeavingLocation weavingLocation;
-	
+
 	private void setTransformationStrategy(Transformation transformationStrategy) {
-		
 		this.transformationStrategy = transformationStrategy;
-		
 	}
-	
+
 	private void setConsumedFeautresOfECC(List<ProvidedRole> consumedFeautresOfECC) {
-		
 		this.consumedFeautresOfECC = consumedFeautresOfECC;
-		
 	}
-	
+
 	private void setWeavingLocation(WeavingLocation weavingLocation) {
-		
 		this.weavingLocation = weavingLocation;
-		
 	}
-	
+
 	/**
 	 * @see AdapterWeaving#weave(WeavingInstruction)
 	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		
-		setWeavingLocation(weavingInstruction.getWeavingLocation());
-		setConsumedFeautresOfECC(weavingInstruction.getECCWithConsumedFeatures().getSecond());
-		setTransformationStrategy(weavingInstruction.getTransformationStrategy());
-		createServiceEffectSpecificationForAdapterBy(getCalledComponent());
-		
+		this.setWeavingLocation(weavingInstruction.getWeavingLocation());
+		this.setConsumedFeautresOfECC(weavingInstruction.getECCWithConsumedFeatures().getSecond());
+		this.setTransformationStrategy(weavingInstruction.getTransformationStrategy());
+		this.createServiceEffectSpecificationForAdapterBy(this.getCalledComponent());
 	}
 
 	/**
-	 * Retrieves the required component which requires several services the adapter provides now. Based on the connection of 
-	 * the components the adapter is inserted in between the calling component needs to be retrieved differently.
-	 * @return The required component which is calling several services it requires.
+	 * Retrieves the required component which requires several services the
+	 * adapter provides now. Based on the connection of the components the
+	 * adapter is inserted in between the calling component needs to be
+	 * retrieved differently.
+	 *
+	 * @return The required component which is calling several services it
+	 *         requires.
 	 */
 	protected abstract BasicComponent getCalledComponent();
-	
+
 	/**
-	 * Retrieves the provided component which provides several services the adapter requires now. Based on the connection of 
-	 * the components the adapter is inserted in between the called component needs to be retrieved differently.
-	 * @return The provided component which is called by the adapter and was required by the requiring component in the first place.
-	 * @throws ConcernWeavingException - Will be thrown if an error occurs during the recovering of the called component.
+	 * Retrieves the provided component which provides several services the
+	 * adapter requires now. Based on the connection of the components the
+	 * adapter is inserted in between the called component needs to be retrieved
+	 * differently.
+	 *
+	 * @return The provided component which is called by the adapter and was
+	 *         required by the requiring component in the first place.
+	 * @throws ConcernWeavingException
+	 *             - Will be thrown if an error occurs during the recovering of
+	 *             the called component.
 	 */
 	protected abstract BasicComponent getCallingComponent() throws ConcernWeavingException;
-	
+
 	/**
-	 * Retrieves the external call informations for a given SEFF which contains the service, required role and the input and output parameters.
-	 * @param seffToTransform - The SEFF from which the informations are extracted.
+	 * Retrieves the external call informations for a given SEFF which contains
+	 * the service, required role and the input and output parameters.
+	 *
+	 * @param seffToTransform
+	 *            - The SEFF from which the informations are extracted.
 	 * @return the external call informations.
-	 * @throws ConcernWeavingException - Will be thrown if an error occurs.
+	 * @throws ConcernWeavingException
+	 *             - Will be thrown if an error occurs.
 	 */
 	protected abstract ExternalCallInfo getExternalCallInfoFrom(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException;
-	
+
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) throws ConcernWeavingException {
-		
-		createServiceEffectSpecificationsBy(calledComponent).forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo((BasicComponent) adapter, eachCreatedSeff));
-		
+		this.createServiceEffectSpecificationsBy(calledComponent)
+				.forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo((BasicComponent) AdapterWeaving.adapter, eachCreatedSeff));
 	}
 
 	private List<ServiceEffectSpecification> createServiceEffectSpecificationsBy(BasicComponent calledComponent) throws ConcernWeavingException {
-
 		try {
-			
-			return getSEFFsInvokedByTheAdapterFrom(calledComponent).map(eachSeff -> transformToAdaperSeffAndCheckForException(eachSeff))
-															       .collect(Collectors.toList());
+			return this.getSEFFsInvokedByTheAdapterFrom(calledComponent).map(eachSeff -> this.transformToAdaperSeffAndCheckForException(eachSeff)).collect(Collectors.toList());
 		} catch (Exception ex) {
-			
 			throw new ConcernWeavingException(ex.getMessage());
-			
 		}
-		
 	}
-	
+
 	private Stream<ServiceEffectSpecification> getSEFFsInvokedByTheAdapterFrom(BasicComponent calledComponent) {
-		
-		return calledComponent.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> isInvokedByAdapter(eachSeff.getDescribedService__SEFF()));
-		
+		return calledComponent.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> this.isInvokedByAdapter(eachSeff.getDescribedService__SEFF()));
 	}
-	
+
 	private boolean isInvokedByAdapter(Signature signature) {
-		
-		return getAllRequiredServicesOfAdapter().anyMatch(eachSignature -> ConcernWeaverUtil.areEqual(eachSignature, signature));
-		
+		return this.getAllRequiredServicesOfAdapter().anyMatch(eachSignature -> ConcernWeaverUtil.areEqual(eachSignature, signature));
 	}
-	
+
 	private Stream<Signature> getAllRequiredServicesOfAdapter() {
-		
-		return getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> ConcernWeaverUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole));
-		
+		return this.getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> ConcernWeaverUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole));
 	}
-	
+
 	private Stream<RequiredRole> getAllRequiredRolesOfAdapter() {
-		
-		return adapter.getRequiredRoles_InterfaceRequiringEntity().stream();
-		
+		return AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream();
 	}
 
 	private ServiceEffectSpecification transformToAdaperSeffAndCheckForException(ServiceEffectSpecification seffToTransform) {
-		
 		try {
-			
-			return transformToAdapterSeff(seffToTransform);
-			
-		} catch(ConcernWeavingException ex) {
-			
+			return this.transformToAdapterSeff(seffToTransform);
+		} catch (ConcernWeavingException ex) {
 			throw new RuntimeException(ex);
-			
 		}
-		
 	}
-	
-	private ServiceEffectSpecification transformToAdapterSeff(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
-		
-		ServiceEffectSpecification createdAdapterSeff = this.pcmSeffManager.createServiceEffectSpecificationFor(seffToTransform.getDescribedService__SEFF());
-		
-		if (isAffected(seffToTransform.getDescribedService__SEFF())) {
-			
-			return this.pcmSeffManager.addExternalCallActionPipeBy(createOrderedExternalCallActionPipeBy(seffToTransform), createdAdapterSeff);
-			
-		}
-		
-		return this.pcmSeffManager.addExternalCallActionPipeBy(createOrdinaryPutThroughActionPipeBy(seffToTransform), createdAdapterSeff);
 
+	private ServiceEffectSpecification transformToAdapterSeff(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
+		ServiceEffectSpecification createdAdapterSeff = this.pcmSeffManager.createServiceEffectSpecificationFor(seffToTransform.getDescribedService__SEFF());
+		if (this.isAffected(seffToTransform.getDescribedService__SEFF())) {
+			return this.pcmSeffManager.addExternalCallActionPipeBy(this.createOrderedExternalCallActionPipeBy(seffToTransform), createdAdapterSeff);
+		}
+		return this.pcmSeffManager.addExternalCallActionPipeBy(this.createOrdinaryPutThroughActionPipeBy(seffToTransform), createdAdapterSeff);
 	}
 
 	private boolean isAffected(Signature describedService) {
-
 		return this.weavingLocation.getAffectedSignatures().contains(describedService);
-		
 	}
 
 	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
-		
-		return Arrays.asList(getExternalCallInfoFrom(seffToTransform));
-		
+		return Arrays.asList(this.getExternalCallInfoFrom(seffToTransform));
 	}
-	
-	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
 
-		List<ExternalCallInfo> externalCallInfos = new ArrayList<ExternalCallInfo>();
-		
-		switch(((AdapterTransformation) transformationStrategy).getAppear()) {
-		
-			case AFTER:
-				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
-				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				break;
-			case BEFORE:
-				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
-				break;
-			case AROUND:
-				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
-				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				break;
-			default:
-				externalCallInfos.addAll(getExternalCallInfosFrom(this.consumedFeautresOfECC));
-				externalCallInfos.add(getExternalCallInfoFrom(seffToTransform));
-				break;
-		
+	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) throws ConcernWeavingException {
+		List<ExternalCallInfo> externalCallInfos = new ArrayList<>();
+		switch (((AdapterTransformation) this.transformationStrategy).getAppear()) {
+		case AFTER:
+			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			break;
+		case BEFORE:
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
+			break;
+		case AROUND:
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			break;
+		default:
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
+			break;
 		}
-		
 		return externalCallInfos;
-		
-	} 
+	}
 
 	private List<ExternalCallInfo> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC) {
-		
-		return getAllRequiredRolesOfAdapterConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> transformToExternalCallInfo(eachRequiredRole))
-																	  		   .collect(Collectors.toList());
-		
+		return this.getAllRequiredRolesOfAdapterConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> this.transformToExternalCallInfo(eachRequiredRole)).collect(Collectors.toList());
 	}
-	
+
 	private Stream<RequiredRole> getAllRequiredRolesOfAdapterConnectedWith(List<ProvidedRole> consumedFeaturesOfECC) {
-		
-		return getAllRequiredRolesOfAdapter().filter(eachOperationRequiredRole -> existConnection(eachOperationRequiredRole, consumedFeaturesOfECC));
-		
+		return this.getAllRequiredRolesOfAdapter().filter(eachOperationRequiredRole -> this.existConnection(eachOperationRequiredRole, consumedFeaturesOfECC));
 	}
-	
+
 	private boolean existConnection(RequiredRole requiredRole, List<ProvidedRole> providedRoles) {
-		
 		return providedRoles.stream().anyMatch(eachProvidedRole -> ConcernWeaverUtil.referencesSameInterface(requiredRole, eachProvidedRole));
-		
 	}
-	
+
 	protected RequiredRole getRequiredRoleOfAdapterBy(Signature signature) throws ConcernWeavingException {
-		
-		return (RequiredRole) getAllRequiredRolesOfAdapter().filter(eachRequiredRole -> ConcernWeaverUtil.areEqual(ConcernWeaverUtil.getInterfaceFrom(eachRequiredRole).get(), 
-																												   signature.eContainer()))
-															.findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRoleReferencing(signature, adapter)));
-	
+		return this.getAllRequiredRolesOfAdapter().filter(eachRequiredRole -> ConcernWeaverUtil.areEqual(ConcernWeaverUtil.getInterfaceFrom(eachRequiredRole).get(), signature.eContainer()))
+				.findFirst().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingRoleReferencing(signature, AdapterWeaving.adapter)));
 	}
-	
-	//At this stage there is no possibility to get the value characterizations of input or output parameters of a given ECC.
-	//TODO implement variable usage 
+
+	// At this stage there is no possibility to get the value characterizations
+	// of input or output parameters of a given ECC.
+	// TODO implement variable usage
 	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
-		
 		return ConcernWeaverUtil.getSignaturesOfReferencedInterfaceBy(requiredRole).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
-		
 	}
-	
+
 	protected List<SetVariableAction> getSetVariableActions(ServiceEffectSpecification seffToTransform) {
-		
-		List<SetVariableAction> setVariableActions = new ArrayList<SetVariableAction>();
-		
+		List<SetVariableAction> setVariableActions = new ArrayList<>();
 		TreeIterator<EObject> seffIterator = seffToTransform.eAllContents();
 		while (seffIterator.hasNext()) {
-			
 			EObject current = seffIterator.next();
 			if (current instanceof SetVariableAction) {
-				
 				setVariableActions.add((SetVariableAction) current);
-				
 			}
-			
 		}
-		
 		return setVariableActions;
-		
 	}
-	
+
 	private Optional<ExternalCallAction> getExternalCallActionInvoking(Signature calledService) throws ConcernWeavingException {
-
-		for (ServiceEffectSpecification eachSEFF : getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
-
-			Optional<ExternalCallAction> externalCallAction = getExternalCallActionFrom(eachSEFF, calledService);
+		for (ServiceEffectSpecification eachSEFF : this.getCallingComponent().getServiceEffectSpecifications__BasicComponent()) {
+			Optional<ExternalCallAction> externalCallAction = this.getExternalCallActionFrom(eachSEFF, calledService);
 			if (externalCallAction.isPresent()) {
-				
 				return externalCallAction;
-				
 			}
-
 		}
-
 		return Optional.empty();
-
 	}
-	
+
 	private Optional<ExternalCallAction> getExternalCallActionFrom(ServiceEffectSpecification seff, Signature calledService) {
-		
 		TreeIterator<EObject> iterator = seff.eAllContents();
 		while (iterator.hasNext()) {
-			
 			EObject current = iterator.next();
-			if (isExternalCallAction(current)) {
-				
+			if (this.isExternalCallAction(current)) {
 				ExternalCallAction extCallAction = (ExternalCallAction) current;
 				if (ConcernWeaverUtil.areEqual(calledService, extCallAction.getCalledService_ExternalService())) {
-					
 					return Optional.of(extCallAction);
-					
 				}
-				
 			}
-			
 		}
-		
 		return Optional.empty();
-		
 	}
 
 	private boolean isExternalCallAction(EObject object) {
-		
 		return object instanceof ExternalCallAction;
-		
-	}
-	
-	protected List<VariableUsage> getInputVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
-		
-		Optional<ExternalCallAction> ext = getExternalCallActionInvoking(calledService);
-		if (ext.isPresent()) {
-			
-			return ext.get().getInputVariableUsages__CallAction(); 
-			
-		}
-		
-		return Collections.emptyList();
-		
-	}
-	
-	protected List<VariableUsage> getReturnVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
-		
-		Optional<ExternalCallAction> ext = getExternalCallActionInvoking(calledService);
-		if (ext.isPresent()) {
-			
-			return ext.get().getReturnVariableUsage__CallReturnAction();
-			
-		}
-		
-		return Collections.emptyList();
-		
 	}
 
+	protected List<VariableUsage> getInputVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
+		Optional<ExternalCallAction> ext = this.getExternalCallActionInvoking(calledService);
+		if (ext.isPresent()) {
+			return ext.get().getInputVariableUsages__CallAction();
+		}
+		return Collections.emptyList();
+	}
+
+	protected List<VariableUsage> getReturnVariableUsageIfServiceIsCalled(Signature calledService) throws ConcernWeavingException {
+		Optional<ExternalCallAction> ext = this.getExternalCallActionInvoking(calledService);
+		if (ext.isPresent()) {
+			return ext.get().getReturnVariableUsage__CallReturnAction();
+		}
+		return Collections.emptyList();
+	}
 }

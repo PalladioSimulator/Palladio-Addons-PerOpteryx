@@ -1,23 +1,24 @@
-package edu.kit.ipd.are.dsexplore.concern.allocation;
+package edu.kit.ipd.are.dsexplore.concern.usagemodel;
 
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 
 /**
- * This class is responsible to weave the allocation view-type or more precisely
- * to call the proper weaving strategy which performs the actual weaving.
+ * This class is responsible to weave the usage model view-type or more
+ * precisely to call the proper weaving strategy which performs the actual
+ * weaving.
  *
  * @author scheerer
  *
  */
-public class AllocationWeaver extends WeavingStep {
+public class UsageModelWeaver extends WeavingStep {
 
 	/**
 	 * @see WeavingStep#weave(WeavingInstruction)
 	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		this.getWeavingStrategy().weaveAllocation(weavingInstruction);
+		this.getWeavingStrategy().weaveUsageModel(weavingInstruction);
 	}
 }

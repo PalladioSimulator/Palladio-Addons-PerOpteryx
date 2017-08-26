@@ -19,84 +19,64 @@ import edu.kit.ipd.are.dsexplore.concern.util.ConnectionInfo;
 import edu.kit.ipd.are.dsexplore.concern.util.DelegationConnectorGenerator;
 
 /**
- * This class is responsible to weave the adapter in the system if the connection of the components
- * the adapter is inserted in between is an provided delegation connection.
+ * This class is responsible to weave the adapter in the system if the
+ * connection of the components the adapter is inserted in between is an
+ * provided delegation connection.
+ *
  * @author scheerer
  *
  */
 public class AdapterDelegationLocationWeaving extends AdapterAssemblyWeaving {
-	
+
 	/**
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
 	@Override
 	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException {
-		
-		replace((ProvidedDelegationConnector) weavingLocation.getLocation());
-		
+		this.replace((ProvidedDelegationConnector) weavingLocation.getLocation());
 	}
 
 	private void replace(ProvidedDelegationConnector assemblyConnectorToReplace) throws ConcernWeavingException {
-		
-		pcmSystemManager.remove(assemblyConnectorToReplace);
-			
-		replaceOldConnectorWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
-			
+		AdapterWeaving.pcmSystemManager.remove(assemblyConnectorToReplace);
+		this.replaceOldConnectorWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
 	}
-	
+
 	private void replaceOldConnectorWithAssemblyConnectorsToAdapter(ProvidedDelegationConnector delegationConnectorToReplace) throws ConcernWeavingException {
-	
-		createAssemblyConnectorFromAdapterToInnerProvidedEndOf(delegationConnectorToReplace);
-		createDelegationConnectorFromOuterProvidedRoleToAdapter(delegationConnectorToReplace);	
-	
+		this.createAssemblyConnectorFromAdapterToInnerProvidedEndOf(delegationConnectorToReplace);
+		this.createDelegationConnectorFromOuterProvidedRoleToAdapter(delegationConnectorToReplace);
 	}
 
 	private void createAssemblyConnectorFromAdapterToInnerProvidedEndOf(ProvidedDelegationConnector delegationConnectorToReplace) throws ConcernWeavingException {
-		
 		ProvidedRole providedRole = delegationConnectorToReplace.getInnerProvidedRole_ProvidedDelegationConnector();
-		RequiredRole requiredRole = (RequiredRole) getComplimentaryRoleOf(providedRole, getRequiredRolesOfAdapter());
+		RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(providedRole, this.getRequiredRolesOfAdapter());
 		AssemblyContext providedAssemblyContext = delegationConnectorToReplace.getAssemblyContext_ProvidedDelegationConnector();
-		
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, adapterAssemblyContext, providedAssemblyContext);
-		addConnector(new AssemblyConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
-		
+
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, AdapterWeaving.adapterAssemblyContext, providedAssemblyContext);
+		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
 	}
-	
+
 	private void createDelegationConnectorFromOuterProvidedRoleToAdapter(ProvidedDelegationConnector delegationConnectorToReplace) throws ConcernWeavingException {
-		
 		ProvidedRole outerProvidedRole = delegationConnectorToReplace.getOuterProvidedRole_ProvidedDelegationConnector();
-		ProvidedRole innerProvidedRole = getDelegatedProvidedRoleOfAdapter(outerProvidedRole); 
-		
-		ConnectionInfo connectionInfo = new ConnectionInfo(outerProvidedRole, innerProvidedRole, null, adapterAssemblyContext);
-		addConnector(new DelegationConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
-		
+		ProvidedRole innerProvidedRole = this.getDelegatedProvidedRoleOfAdapter(outerProvidedRole);
+
+		ConnectionInfo connectionInfo = new ConnectionInfo(outerProvidedRole, innerProvidedRole, null, AdapterWeaving.adapterAssemblyContext);
+		this.addConnector(new DelegationConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
 	}
 
 	private ProvidedRole getDelegatedProvidedRoleOfAdapter(ProvidedRole outerProvidedRole) throws ConcernWeavingException {
-		
 		Interface interface1 = ((OperationProvidedRole) outerProvidedRole).getProvidedInterface__OperationProvidedRole();
-		for (OperationProvidedRole eachProvidedRole : getOperationProvidedRolesOfAdapter()) {
-			
+		for (OperationProvidedRole eachProvidedRole : this.getOperationProvidedRolesOfAdapter()) {
 			Interface interface2 = eachProvidedRole.getProvidedInterface__OperationProvidedRole();
-			
 			if (ConcernWeaverUtil.areEqual(interface1, interface2)) {
-				
 				return eachProvidedRole;
-				
 			}
-			
 		}
-		
-		throw new ConcernWeavingException(ErrorMessage.missingDelegatedRole(outerProvidedRole, adapter));
-		
+		throw new ConcernWeavingException(ErrorMessage.missingDelegatedRole(outerProvidedRole, AdapterWeaving.adapter));
 	}
 
 	private List<OperationProvidedRole> getOperationProvidedRolesOfAdapter() {
-		
-		return adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(each -> each instanceof OperationProvidedRole)
-																		   .map(each -> (OperationProvidedRole) each)
-																		   .collect(Collectors.toList());
-		
+		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(each -> each instanceof OperationProvidedRole).map(each -> (OperationProvidedRole) each)
+				.collect(Collectors.toList());
 	}
-	
+
 }

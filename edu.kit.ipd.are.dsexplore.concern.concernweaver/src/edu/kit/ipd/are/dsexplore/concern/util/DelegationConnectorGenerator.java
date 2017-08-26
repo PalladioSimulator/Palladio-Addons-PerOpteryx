@@ -13,49 +13,33 @@ import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 public class DelegationConnectorGenerator extends ConnectorGenerator {
 
 	public DelegationConnectorGenerator(PcmSystemManager pcmSystemManager) {
-		
 		super(pcmSystemManager);
-		
 	}
 
 	private boolean containsOnlyProvidedRoles(ConnectionInfo connectionInfo) {
-		
-		return isOperationProvidedRole(connectionInfo.requiringRole) &&
-			   isOperationProvidedRole(connectionInfo.providingRole);
-		
+		return this.isOperationProvidedRole(connectionInfo.requiringRole) && this.isOperationProvidedRole(connectionInfo.providingRole);
 	}
-	
+
 	private boolean isOperationProvidedRole(Role role) {
-		
 		return role instanceof OperationProvidedRole;
-		
 	}
-	
+
 	@Override
 	public Connector createConnectorBy(ConnectionInfo connectionInfo) {
-		
-		if (containsOnlyProvidedRoles(connectionInfo)) {
-			
-			return createProvidedDelegationConnectorBy(connectionInfo);
-			
+		if (this.containsOnlyProvidedRoles(connectionInfo)) {
+			return this.createProvidedDelegationConnectorBy(connectionInfo);
 		}
-		
-		return createRequiredDelegationConnectorBy(connectionInfo);
-		
+		return this.createRequiredDelegationConnectorBy(connectionInfo);
 	}
 
 	private RequiredDelegationConnector createRequiredDelegationConnectorBy(ConnectionInfo connectionInfo) {
-		
-		Pair<OperationRequiredRole, AssemblyContext> delegationPair = Pair.of((OperationRequiredRole) connectionInfo.providingRole, connectionInfo.providingAssemblyContext); 
-		return pcmSystemManager.createRequiredDelegationConnectorBy((OperationRequiredRole) connectionInfo.requiringRole, delegationPair);
-		
+		Pair<OperationRequiredRole, AssemblyContext> delegationPair = Pair.of((OperationRequiredRole) connectionInfo.providingRole, connectionInfo.providingAssemblyContext);
+		return this.pcmSystemManager.createRequiredDelegationConnectorBy((OperationRequiredRole) connectionInfo.requiringRole, delegationPair);
 	}
 
 	private ProvidedDelegationConnector createProvidedDelegationConnectorBy(ConnectionInfo connectionInfo) {
-		
 		Pair<OperationProvidedRole, AssemblyContext> delegationPair = Pair.of((OperationProvidedRole) connectionInfo.providingRole, connectionInfo.providingAssemblyContext);
-		return pcmSystemManager.createProvidedDelegationConnectorBy((OperationProvidedRole) connectionInfo.requiringRole, delegationPair);
-		
+		return this.pcmSystemManager.createProvidedDelegationConnectorBy((OperationProvidedRole) connectionInfo.requiringRole, delegationPair);
 	}
 
 }

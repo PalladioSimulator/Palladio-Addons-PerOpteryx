@@ -10,26 +10,22 @@ import org.palladiosimulator.pcm.repository.Role;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 
 public abstract class RoleHandler {
-	
+
 	protected ConcernSolutionManager concernRepositoryManager;
-	
+
 	public RoleHandler(ConcernSolutionManager concernRepositoryManager) {
-		
 		this.concernRepositoryManager = concernRepositoryManager;
-		
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Optional<Role> getComplimentaryRoleOf(Role role, List<? extends Role> rolesToExplore) {
-		
-		return (Optional<Role>) rolesToExplore.stream().filter(eachRole -> areConnected(eachRole, role)).findFirst();
-		
+		return (Optional<Role>) rolesToExplore.stream().filter(eachRole -> this.areConnected(eachRole, role)).findFirst();
 	}
-	
+
 	protected abstract boolean areConnected(Role firstRole, Role secondRole);
 
 	public abstract RequiredRole createRequiredRoleOf(ProvidedRole providedRole);
-	
+
 	public abstract ProvidedRole createRequiredRoleOf(RequiredRole providedRole);
-	
+
 }

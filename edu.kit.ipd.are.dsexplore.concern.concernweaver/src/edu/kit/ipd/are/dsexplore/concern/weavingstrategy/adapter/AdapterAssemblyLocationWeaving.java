@@ -13,63 +13,54 @@ import edu.kit.ipd.are.dsexplore.concern.util.AssemblyConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectionInfo;
 
 /**
- * This class is responsible to weave the adapter in the system if the connection of the components
- * the adapter is inserted in between is an assembly connection.
+ * This class is responsible to weave the adapter in the system if the
+ * connection of the components the adapter is inserted in between is an
+ * assembly connection.
+ *
  * @author scheerer
  *
  */
 public class AdapterAssemblyLocationWeaving extends AdapterAssemblyWeaving {
-	
+
 	/**
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
 	@Override
 	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws ConcernWeavingException {
-		
-		replace((AssemblyConnector) weavingLocation.getLocation());
-		
+		this.replace((AssemblyConnector) weavingLocation.getLocation());
 	}
 
 	private void replace(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
-		
-		pcmSystemManager.remove(assemblyConnectorToReplace);
-		replaceWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
-			
+		AdapterWeaving.pcmSystemManager.remove(assemblyConnectorToReplace);
+		this.replaceWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
 	}
-	
+
 	private void replaceWithAssemblyConnectorsToAdapter(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
-	
-		createAssemblyConnectorFromAdapterToProvidedEndOf(assemblyConnectorToReplace);
-		createAssemblyConnectorFromRequiredEndToAdapter(assemblyConnectorToReplace);
-	
+		this.createAssemblyConnectorFromAdapterToProvidedEndOf(assemblyConnectorToReplace);
+		this.createAssemblyConnectorFromRequiredEndToAdapter(assemblyConnectorToReplace);
 	}
 
 	private void createAssemblyConnectorFromAdapterToProvidedEndOf(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
-		
+
 		ProvidedRole providedRole = assemblyConnectorToReplace.getProvidedRole_AssemblyConnector();
-		RequiredRole requiredRole = (RequiredRole) getComplimentaryRoleOf(providedRole, getRequiredRolesOfAdapter());
+		RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(providedRole, this.getRequiredRolesOfAdapter());
 		AssemblyContext providedAssemblyContext = assemblyConnectorToReplace.getProvidingAssemblyContext_AssemblyConnector();
-		
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, adapterAssemblyContext, providedAssemblyContext);
-		addConnector(new AssemblyConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
-		
+
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, AdapterWeaving.adapterAssemblyContext, providedAssemblyContext);
+		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
 	}
-	
+
 	private void createAssemblyConnectorFromRequiredEndToAdapter(AssemblyConnector assemblyConnectorToReplace) throws ConcernWeavingException {
-		
 		RequiredRole requiredRole = assemblyConnectorToReplace.getRequiredRole_AssemblyConnector();
-		ProvidedRole providedRole = (ProvidedRole) getComplimentaryRoleOf(requiredRole, getProvidedRolesOfAdapter());
+		ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, this.getProvidedRolesOfAdapter());
 		AssemblyContext requiredAssemblyContext = assemblyConnectorToReplace.getRequiringAssemblyContext_AssemblyConnector();
-		
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, adapterAssemblyContext);
-		addConnector(new AssemblyConnectorGenerator(pcmSystemManager).createConnectorBy(connectionInfo));
-		
+
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, AdapterWeaving.adapterAssemblyContext);
+		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
 	}
 
 	private List<ProvidedRole> getProvidedRolesOfAdapter() {
-		
-		return adapter.getProvidedRoles_InterfaceProvidingEntity();
-		
+		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity();
 	}
-	
+
 }

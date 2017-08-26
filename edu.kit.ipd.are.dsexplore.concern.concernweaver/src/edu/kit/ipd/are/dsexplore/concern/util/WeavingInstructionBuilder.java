@@ -18,40 +18,27 @@ public class WeavingInstructionBuilder {
 	private ResourceContainer resourceContainer = null;
 
 	public WeavingInstructionBuilder setECCWithConsumedFeatures(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures) {
-		
 		this.eccWithConsumedFeatures = eccWithConsumedFeatures;
 		return this;
-		
 	}
 
 	public WeavingInstructionBuilder setWeavingLocation(WeavingLocation weavingLocation) {
-		
 		this.weavingLocation = weavingLocation;
 		return this;
-		
 	}
 
 	public WeavingInstructionBuilder setTransformationStrategy(Transformation transformationStrategy) {
-		
 		this.transformationStrategy = transformationStrategy;
 		return this;
-		
 	}
-	
+
 	public WeavingInstructionBuilder setResourceContainer(ResourceContainer resourceContainer) {
-		
 		this.resourceContainer = resourceContainer;
 		return this;
-		
 	}
-	
+
 	public WeavingInstruction build() {
-		
-		return new WeavingInstruction(this.eccWithConsumedFeatures,
-									  this.weavingLocation,
-									  this.transformationStrategy,
-									  this.resourceContainer);
-		
+		return new WeavingInstruction(this.eccWithConsumedFeatures, this.weavingLocation, this.transformationStrategy, this.resourceContainer);
 	}
-	
+
 }

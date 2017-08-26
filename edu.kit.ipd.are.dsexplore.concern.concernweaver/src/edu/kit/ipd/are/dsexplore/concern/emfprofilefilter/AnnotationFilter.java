@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -17,97 +16,77 @@ import ConcernModel.Annotation;
 import ConcernModel.AnnotationTarget;
 
 public class AnnotationFilter {
-	
-private final List<Repository> pcmRepositories;
-	
+
+	private final List<Repository> pcmRepositories;
+
 	public AnnotationFilter(List<Repository> pcmRepositories) {
-		
+
 		this.pcmRepositories = pcmRepositories;
-		
+
 	}
-	
+
 	public List<EObject> getTargetAnnotatedElements() {
-		
-		return getAnnotatedElementsSatisfying(each -> isTargetAnnotated(each));
-		
+		List<EObject> result = this.getAnnotatedElementsSatisfying(each -> AnnotationFilter.isTargetAnnotated(each));
+		return result;
 	}
-	
+
 	private List<EObject> getAnnotatedElementsSatisfying(Predicate<EObject> criteria) {
-		
-		return pcmRepositories.stream().flatMap(each -> getAnnotatedElementsIn(each))
-									   .filter(criteria)
-									   .collect(Collectors.toList());
-		
+		List<EObject> elements = new ArrayList<>();
+		for (Repository repo : this.pcmRepositories) {
+			for (EObject annotated : this.getAnnotatedElementsIn(repo)) {
+				if (criteria.test(annotated)) {
+					elements.add(annotated);
+				}
+			}
+		}
+		return elements;
+		// return this.pcmRepositories.stream().flatMap(each ->
+		// this.getAnnotatedElementsIn(each)).filter(criteria).collect(Collectors.toList());
+
 	}
-	
-	private Stream<EObject> getAnnotatedElementsIn(Repository repository) {
-		
-		List<EObject> annotatedElements = new ArrayList<EObject>();
-		
+
+	private List<EObject> getAnnotatedElementsIn(Repository repository) {
+		List<EObject> annotatedElements = new ArrayList<>();
 		TreeIterator<EObject> repoIterator = repository.eAllContents();
-		while(repoIterator.hasNext()) {
-			
+		while (repoIterator.hasNext()) {
 			EObject current = repoIterator.next();
 			if (EMFProfileFilter.isAnnotated(current)) {
-				
 				annotatedElements.add(current);
-				
 			}
-			
 		}
-		
-		return annotatedElements.stream();
-		
+		return annotatedElements;
 	}
-	
+
 	public static Optional<AnnotationTarget> getTargetAnnotationFrom(EObject annotatedElement) {
-		
-		if (!isTargetAnnotated(annotatedElement)) {
-			
+		if (!AnnotationFilter.isTargetAnnotated(annotatedElement)) {
 			return Optional.empty();
-			
 		}
-		
 		Optional<EObject> annotation = EMFProfileFilter.getFirstAnnotationFrom(annotatedElement, object -> object instanceof AnnotationTarget);
 		return annotation.isPresent() ? Optional.of((AnnotationTarget) annotation.get()) : Optional.empty();
-		
 	}
-	
+
 	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
-		
-		return getAnnotatedElementsSatisfying(getCriteriaFor(annotations)).stream().map(each -> (RepositoryComponent) each)
-																				   .collect(Collectors.toList());
-		
+		return this.getAnnotatedElementsSatisfying(this.getCriteriaFor(annotations)).stream().map(each -> (RepositoryComponent) each).collect(Collectors.toList());
 	}
-	
+
 	private Predicate<EObject> getCriteriaFor(List<Annotation> annotations) {
-		
-		return obj -> (obj instanceof RepositoryComponent) && isAnnotatedBy(annotations, obj);
-		
+		return obj -> (obj instanceof RepositoryComponent) && this.isAnnotatedBy(annotations, obj);
 	}
-	
+
 	private boolean isAnnotatedBy(List<Annotation> annotations, EObject element) {
-		
-		return annotations.stream().anyMatch(each -> EMFProfileFilter.isAnnotatedWith(satisfiesCriteria(each), element));
-		
+		return annotations.stream().anyMatch(each -> EMFProfileFilter.isAnnotatedWith(this.satisfiesCriteria(each), element));
 	}
 
 	private Predicate<EObject> satisfiesCriteria(Annotation annotation) {
-		
 		return object -> (object instanceof Annotation) && (((Annotation) object).getName().equals(annotation.getName()));
-		
 	}
-	
+
 	private static boolean isTargetAnnotated(EObject object) {
-		
-		return StereotypeAPI.hasStereotypeApplications(object) && hasTargetAnnotation(object);
-	
+		return StereotypeAPI.hasStereotypeApplications(object) && AnnotationFilter.hasTargetAnnotation(object);
 	}
-	
+
 	private static boolean hasTargetAnnotation(EObject object) {
-				
 		return EMFProfileFilter.getFirstAnnotationFrom(object, obj -> obj instanceof AnnotationTarget).isPresent();
-		
 	}
 
 }

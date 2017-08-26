@@ -11,45 +11,28 @@ import org.eclipse.emf.ecore.EObject;
 public class EcoreReferenceResolver {
 
 	private final EObject eObject;
-	
+
 	public EcoreReferenceResolver(EObject eObject) {
-		
 		this.eObject = eObject;
-		
 	}
-	
-	
+
 	public <T> List<T> getCrossReferencedElementsOfType(Class<T> type) {
-		
-		return getAllCrossReferences().filter(each -> type.isInstance(each))
-									  .map(each -> type.cast(each))
-									  .collect(Collectors.toList());
-		
+		return this.getAllCrossReferences().filter(each -> type.isInstance(each)).map(each -> type.cast(each)).collect(Collectors.toList());
 	}
-	
+
 	private Stream<EObject> getAllCrossReferences() {
-		
 		return this.eObject.eCrossReferences().stream();
-		
 	}
-	
+
 	public <T> List<T> getAllContainedElementsOfType(Class<T> type) {
-		
-		List<T> foundReferences = new ArrayList<T>();
+		List<T> foundReferences = new ArrayList<>();
 		TreeIterator<EObject> iterator = this.eObject.eAllContents();
 		while (iterator.hasNext()) {
-			
 			EObject current = iterator.next();
 			if (type.isInstance(current)) {
-				
 				foundReferences.add(type.cast(current));
-				
 			}
-			
 		}
-		
 		return foundReferences;
-		
 	}
-	
 }

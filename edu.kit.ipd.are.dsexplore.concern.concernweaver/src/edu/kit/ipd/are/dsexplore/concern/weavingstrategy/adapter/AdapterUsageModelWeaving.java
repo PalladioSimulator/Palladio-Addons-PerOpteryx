@@ -16,93 +16,67 @@ import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 
 /**
- * This class is responsible for weaving the usage model view-type in the context of the adapter transformation strategy.
+ * This class is responsible for weaving the usage model view-type in the
+ * context of the adapter transformation strategy.
+ *
  * @author scheerer
  *
  */
 public class AdapterUsageModelWeaving extends AdapterWeaving {
-	
+
 	/**
 	 * @see AdapterWeaving#weave(WeavingInstruction)
 	 */
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) {
-		
-		if (isUsageModelAffected(weavingInstruction.getWeavingLocation())) {
-			
-			editEntryLevelSystemCalls();
-			
+		if (this.isUsageModelAffected(weavingInstruction.getWeavingLocation())) {
+			this.editEntryLevelSystemCalls();
 		}
-		
 	}
-	
+
 	private boolean isUsageModelAffected(WeavingLocation weavingLocation) {
-		
-		return isDelegationConnectorLocation(weavingLocation) && isOuterProvidedRoleExposedByTheSystem(weavingLocation);
-		
+		return this.isDelegationConnectorLocation(weavingLocation) && this.isOuterProvidedRoleExposedByTheSystem(weavingLocation);
 	}
 
 	private boolean isDelegationConnectorLocation(WeavingLocation weavingLocation) {
-		
 		return weavingLocation.getLocation() instanceof ProvidedDelegationConnector;
-		
 	}
-	
+
 	private boolean isOuterProvidedRoleExposedByTheSystem(WeavingLocation weavingLocation) {
-		
 		ProvidedRole outerProvidedRole = ((ProvidedDelegationConnector) weavingLocation.getLocation()).getOuterProvidedRole_ProvidedDelegationConnector();
 		return outerProvidedRole.eContainer() instanceof System;
-		
 	}
 
 	private void editEntryLevelSystemCalls() {
-		
-		pcmUsageModelManager.getEntryLevelSystemCalls().forEach(entryLevelSystemCall -> replaceProvidedRoleOf(entryLevelSystemCall));
-		
+		AdapterWeaving.pcmUsageModelManager.getEntryLevelSystemCalls().forEach(entryLevelSystemCall -> this.replaceProvidedRoleOf(entryLevelSystemCall));
 	}
 
 	private void replaceProvidedRoleOf(EntryLevelSystemCall entryLevelSystemCallToEdit) {
-		
-		OperationInterface calledInterface = entryLevelSystemCallToEdit.getOperationSignature__EntryLevelSystemCall()
-																	   .getInterface__OperationSignature();
-		Optional<ProvidedRole> match = getProvidedRoleFromAdapterReferencing(calledInterface);
-		if(match.isPresent()) {
-			
+		OperationInterface calledInterface = entryLevelSystemCallToEdit.getOperationSignature__EntryLevelSystemCall().getInterface__OperationSignature();
+		Optional<ProvidedRole> match = this.getProvidedRoleFromAdapterReferencing(calledInterface);
+		if (match.isPresent()) {
 			entryLevelSystemCallToEdit.setProvidedRole_EntryLevelSystemCall((OperationProvidedRole) match.get());
-			
 		}
-		
 	}
 
 	private Optional<ProvidedRole> getProvidedRoleFromAdapterReferencing(OperationInterface calledInterface) {
-		
-		return getAllProvidedRolesOfAdapter().filter(ifProvidedRoleIsReferencing(calledInterface))
-											 .findFirst();
-		
+		return this.getAllProvidedRolesOfAdapter().filter(this.ifProvidedRoleIsReferencing(calledInterface)).findFirst();
 	}
-	
+
 	private Stream<ProvidedRole> getAllProvidedRolesOfAdapter() {
-		
-		return adapter.getProvidedRoles_InterfaceProvidingEntity().stream();
-		
+		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().stream();
 	}
-	
+
 	private Predicate<ProvidedRole> ifProvidedRoleIsReferencing(OperationInterface givenInterface) {
-		
-		return isOperationProvidedRole().and(isReferencing(givenInterface));
-		
+		return this.isOperationProvidedRole().and(this.isReferencing(givenInterface));
 	}
-	
+
 	private Predicate<ProvidedRole> isOperationProvidedRole() {
-		
 		return providedRole -> providedRole instanceof OperationProvidedRole;
-		
 	}
-	
+
 	private Predicate<ProvidedRole> isReferencing(OperationInterface givenInterface) {
-		
 		return providedRole -> ConcernWeaverUtil.areEqual(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole(), givenInterface);
-		
 	}
 
 }

@@ -7,8 +7,9 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
 
 /**
- * This class weaves an adapter into a repository where the connection of the components the adapter is inserted
- * in between is an assembly connection.
+ * This class weaves an adapter into a repository where the connection of the
+ * components the adapter is inserted in between is an assembly connection.
+ *
  * @author scheerer
  *
  */
@@ -19,15 +20,13 @@ public class AdapterAssemblyLocationRepositoryWeaving extends AdapterRepositoryW
 	 */
 	@Override
 	protected void weaveAdapterIntoRepository(WeavingLocation weavingLocation) {
-		
 		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
-		
+
 		OperationRequiredRole requiredConnectionEnd = location.getRequiredRole_AssemblyConnector();
 		OperationProvidedRole providedConnectionEnd = location.getProvidedRole_AssemblyConnector();
-		
-		adapter.getProvidedRoles_InterfaceProvidingEntity().add(concernRepositoryManager.createProvidedRoleBy(requiredConnectionEnd));
-		adapter.getRequiredRoles_InterfaceRequiringEntity().add(concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
-		
+
+		AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().add(AdapterWeaving.concernRepositoryManager.createProvidedRoleBy(requiredConnectionEnd));
+		AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().add(AdapterWeaving.concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
 	}
-	
+
 }
