@@ -17,6 +17,7 @@ import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
 import de.uka.ipd.sdq.featuremodel.featuremodelPackage;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -89,6 +90,13 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	private EClass candidatesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass boolChoiceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -391,6 +399,26 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBoolChoice() {
+		return boolChoiceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBoolChoice_ChosenValue() {
+		return (EAttribute) boolChoiceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -447,6 +475,9 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		candidatesEClass = createEClass(CANDIDATES);
 		createEReference(candidatesEClass, CANDIDATES__CANDIDATE);
 		createEReference(candidatesEClass, CANDIDATES__PROBLEM);
+
+		boolChoiceEClass = createEClass(BOOL_CHOICE);
+		createEAttribute(boolChoiceEClass, BOOL_CHOICE__CHOSEN_VALUE);
 	}
 
 	/**
@@ -479,6 +510,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		EntityPackage theEntityPackage = (EntityPackage) EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		featuremodelPackage thefeaturemodelPackage = (featuremodelPackage) EPackage.Registry.INSTANCE.getEPackage(featuremodelPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(thegdofPackage);
@@ -497,6 +529,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		continousRangeChoiceEClass.getESuperTypes().add(this.getChoice());
 		decisionSpaceEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
 		candidateEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
+		boolChoiceEClass.getESuperTypes().add(this.getChoice());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -555,6 +588,10 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(boolChoiceEClass, BoolChoice.class, "BoolChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBoolChoice_ChosenValue(), theTypesPackage.getBoolean(), "chosenValue", "false", 1, 1, BoolChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

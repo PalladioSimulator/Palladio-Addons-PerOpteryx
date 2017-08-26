@@ -109,6 +109,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="problem" ordered="false"
         lowerBound="1" eType="#//DecisionSpace"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolChoice" eSuperTypes="#//Choice">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The BoolChoice represents a choice for a DegreeOfFreedom with an bool range. So it is an indicator choice."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="chosenValue" ordered="false"
+        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
   <eSubpackages name="gdof" nsURI="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0"
       nsPrefix="gdof">
     <eClassifiers xsi:type="ecore:EClass" name="ChangeableElementDescription" eSuperTypes="../../de.uka.ipd.sdq.featuremodel/model/featuremodel.ecore#//NamedElement">
@@ -433,5 +441,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="ConcernDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
+  	<eClassifiers xsi:type="ecore:EClass" name="OptionalAsDegree" eSuperTypes="#//specific/ClassAsReferenceDegree">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This Degree of Freedom is representing the existence of an optional feature in the current assembly.&#xD;&#xA;The Feature itself will set as &quot;PrimaryChanged&quot;."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSet" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+          defaultValueLiteral="false">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This bool indicates whether the OptionalFeature can be present or not."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

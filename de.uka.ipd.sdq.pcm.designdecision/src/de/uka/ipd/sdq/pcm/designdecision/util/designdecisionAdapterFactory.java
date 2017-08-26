@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
 import de.uka.ipd.sdq.identifier.Identifier;
+import de.uka.ipd.sdq.pcm.designdecision.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -108,6 +109,11 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseCandidates(Candidates object) {
 			return createCandidatesAdapter();
+		}
+
+		@Override
+		public Adapter caseBoolChoice(BoolChoice object) {
+			return createBoolChoiceAdapter();
 		}
 
 		@Override
@@ -250,6 +256,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCandidatesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.BoolChoice <em>Bool Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.BoolChoice
+	 * @generated
+	 */
+	public Adapter createBoolChoiceAdapter() {
 		return null;
 	}
 

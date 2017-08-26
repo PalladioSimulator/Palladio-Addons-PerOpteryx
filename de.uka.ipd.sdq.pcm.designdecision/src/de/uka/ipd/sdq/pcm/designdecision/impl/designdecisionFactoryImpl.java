@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.impl;
 
+import de.uka.ipd.sdq.pcm.designdecision.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -70,6 +71,8 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 			return createCandidate();
 		case designdecisionPackage.CANDIDATES:
 			return createCandidates();
+		case designdecisionPackage.BOOL_CHOICE:
+			return createBoolChoice();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -143,6 +146,17 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	public Candidates createCandidates() {
 		CandidatesImpl candidates = new CandidatesImpl();
 		return candidates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BoolChoice createBoolChoice() {
+		BoolChoiceImpl boolChoice = new BoolChoiceImpl();
+		return boolChoice;
 	}
 
 	/**

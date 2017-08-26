@@ -668,6 +668,29 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OptionalAsDegreeItemProvider optionalAsDegreeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOptionalAsDegreeAdapter() {
+		if (optionalAsDegreeItemProvider == null) {
+			optionalAsDegreeItemProvider = new OptionalAsDegreeItemProvider(this);
+		}
+
+		return optionalAsDegreeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,6 +841,8 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			atNumberOfReplicaDegreeItemProvider.dispose();
 		if (concernDegreeItemProvider != null)
 			concernDegreeItemProvider.dispose();
+		if (optionalAsDegreeItemProvider != null)
+			optionalAsDegreeItemProvider.dispose();
 	}
 
 }

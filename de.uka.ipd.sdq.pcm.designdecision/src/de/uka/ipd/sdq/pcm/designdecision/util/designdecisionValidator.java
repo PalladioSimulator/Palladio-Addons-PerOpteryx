@@ -2,6 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.util;
 
+import de.uka.ipd.sdq.pcm.designdecision.*;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -107,6 +108,8 @@ public class designdecisionValidator extends EObjectValidator {
 			return validateCandidate((Candidate) value, diagnostics, context);
 		case designdecisionPackage.CANDIDATES:
 			return validateCandidates((Candidates) value, diagnostics, context);
+		case designdecisionPackage.BOOL_CHOICE:
+			return validateBoolChoice((BoolChoice) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -202,6 +205,15 @@ public class designdecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateCandidates_numberOfChoicesMustEqualNumberOfDecisions(Candidates candidates, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return candidates.numberOfChoicesMustEqualNumberOfDecisions(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBoolChoice(BoolChoice boolChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(boolChoice, diagnostics, context);
 	}
 
 	/**

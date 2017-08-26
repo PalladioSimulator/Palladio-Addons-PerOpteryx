@@ -471,6 +471,61 @@ public interface designdecisionPackage extends EPackage {
 	int CANDIDATES_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.BoolChoiceImpl <em>Bool Choice</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.BoolChoiceImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getBoolChoice()
+	 * @generated
+	 */
+	int BOOL_CHOICE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_CHOICE__VALUE = CHOICE__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_CHOICE__DEGREE_OF_FREEDOM_INSTANCE = CHOICE__DEGREE_OF_FREEDOM_INSTANCE;
+
+	/**
+	 * The feature id for the '<em><b>Chosen Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_CHOICE__CHOSEN_VALUE = CHOICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Bool Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_CHOICE_FEATURE_COUNT = CHOICE_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Discrete Range Choice</em>'.
@@ -705,6 +760,27 @@ public interface designdecisionPackage extends EPackage {
 	EReference getCandidates_Problem();
 
 	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.BoolChoice <em>Bool Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bool Choice</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.BoolChoice
+	 * @generated
+	 */
+	EClass getBoolChoice();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.BoolChoice#isChosenValue <em>Chosen Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Chosen Value</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.BoolChoice#isChosenValue()
+	 * @see #getBoolChoice()
+	 * @generated
+	 */
+	EAttribute getBoolChoice_ChosenValue();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -912,6 +988,24 @@ public interface designdecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CANDIDATES__PROBLEM = eINSTANCE.getCandidates_Problem();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.BoolChoiceImpl <em>Bool Choice</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.BoolChoiceImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getBoolChoice()
+		 * @generated
+		 */
+		EClass BOOL_CHOICE = eINSTANCE.getBoolChoice();
+
+		/**
+		 * The meta object literal for the '<em><b>Chosen Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOL_CHOICE__CHOSEN_VALUE = eINSTANCE.getBoolChoice_ChosenValue();
 
 	}
 

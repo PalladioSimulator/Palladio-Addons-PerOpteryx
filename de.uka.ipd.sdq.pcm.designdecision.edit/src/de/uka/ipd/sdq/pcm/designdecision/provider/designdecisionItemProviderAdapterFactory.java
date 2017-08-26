@@ -229,6 +229,29 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.BoolChoice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BoolChoiceItemProvider boolChoiceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.BoolChoice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBoolChoiceAdapter() {
+		if (boolChoiceItemProvider == null) {
+			boolChoiceItemProvider = new BoolChoiceItemProvider(this);
+		}
+
+		return boolChoiceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,6 +366,8 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 			candidateItemProvider.dispose();
 		if (candidatesItemProvider != null)
 			candidatesItemProvider.dispose();
+		if (boolChoiceItemProvider != null)
+			boolChoiceItemProvider.dispose();
 	}
 
 }

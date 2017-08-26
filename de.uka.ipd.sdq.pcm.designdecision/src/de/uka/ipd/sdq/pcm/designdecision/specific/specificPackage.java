@@ -3267,6 +3267,88 @@ public interface specificPackage extends EPackage {
 	int CONCERN_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl <em>Optional As Degree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getOptionalAsDegree()
+	 * @generated
+	 */
+	int OPTIONAL_AS_DEGREE = 39;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__DECORATOR_MODEL = CLASS_AS_REFERENCE_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Is Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE__IS_SET = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Optional As Degree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_AS_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule <em>Exchange Component Rule</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Exchange Component Rule</em>'.
@@ -3823,6 +3905,27 @@ public interface specificPackage extends EPackage {
 	EClass getConcernDegree();
 
 	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree <em>Optional As Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Optional As Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree
+	 * @generated
+	 */
+	EClass getOptionalAsDegree();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree#isSet <em>Is Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Set</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree#isSet()
+	 * @see #getOptionalAsDegree()
+	 * @generated
+	 */
+	EAttribute getOptionalAsDegree_IsSet();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -4361,6 +4464,24 @@ public interface specificPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONCERN_DEGREE = eINSTANCE.getConcernDegree();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl <em>Optional As Degree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getOptionalAsDegree()
+		 * @generated
+		 */
+		EClass OPTIONAL_AS_DEGREE = eINSTANCE.getOptionalAsDegree();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Set</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTIONAL_AS_DEGREE__IS_SET = eINSTANCE.getOptionalAsDegree_IsSet();
 
 	}
 

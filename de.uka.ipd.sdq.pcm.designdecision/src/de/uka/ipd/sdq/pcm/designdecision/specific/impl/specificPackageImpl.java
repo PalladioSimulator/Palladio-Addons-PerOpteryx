@@ -47,6 +47,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalFeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedDataTypeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
@@ -305,6 +306,13 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	private EClass concernDegreeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass optionalAsDegreeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -915,6 +923,26 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getOptionalAsDegree() {
+		return optionalAsDegreeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getOptionalAsDegree_IsSet() {
+		return (EAttribute) optionalAsDegreeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1037,6 +1065,9 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		atNumberOfReplicaDegreeEClass = createEClass(AT_NUMBER_OF_REPLICA_DEGREE);
 
 		concernDegreeEClass = createEClass(CONCERN_DEGREE);
+
+		optionalAsDegreeEClass = createEClass(OPTIONAL_AS_DEGREE);
+		createEAttribute(optionalAsDegreeEClass, OPTIONAL_AS_DEGREE__IS_SET);
 	}
 
 	/**
@@ -1120,6 +1151,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		monitoringDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
 		atNumberOfReplicaDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
 		concernDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
+		optionalAsDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(exchangeComponentRuleEClass, ExchangeComponentRule.class, "ExchangeComponentRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1239,6 +1271,10 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(atNumberOfReplicaDegreeEClass, ATNumberOfReplicaDegree.class, "ATNumberOfReplicaDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(concernDegreeEClass, ConcernDegree.class, "ConcernDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(optionalAsDegreeEClass, OptionalAsDegree.class, "OptionalAsDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOptionalAsDegree_IsSet(), theTypesPackage.getBoolean(), "isSet", "false", 0, 1, OptionalAsDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				!IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 	}
 
 } // specificPackageImpl

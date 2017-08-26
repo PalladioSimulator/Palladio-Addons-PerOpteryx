@@ -124,6 +124,8 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 			return createATNumberOfReplicaDegree();
 		case specificPackage.CONCERN_DEGREE:
 			return createConcernDegree();
+		case specificPackage.OPTIONAL_AS_DEGREE:
+			return createOptionalAsDegree();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -378,6 +380,17 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	public ConcernDegree createConcernDegree() {
 		ConcernDegreeImpl concernDegree = new ConcernDegreeImpl();
 		return concernDegree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OptionalAsDegree createOptionalAsDegree() {
+		OptionalAsDegreeImpl optionalAsDegree = new OptionalAsDegreeImpl();
+		return optionalAsDegree;
 	}
 
 	/**

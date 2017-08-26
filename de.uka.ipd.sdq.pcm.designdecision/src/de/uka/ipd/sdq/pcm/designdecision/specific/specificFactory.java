@@ -248,6 +248,15 @@ public interface specificFactory extends EFactory {
 	ConcernDegree createConcernDegree();
 
 	/**
+	 * Returns a new object of class '<em>Optional As Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Optional As Degree</em>'.
+	 * @generated
+	 */
+	OptionalAsDegree createOptionalAsDegree();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

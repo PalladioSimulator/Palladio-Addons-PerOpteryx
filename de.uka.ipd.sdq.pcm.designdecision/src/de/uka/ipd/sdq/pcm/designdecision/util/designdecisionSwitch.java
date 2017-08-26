@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
 import de.uka.ipd.sdq.identifier.Identifier;
+import de.uka.ipd.sdq.pcm.designdecision.*;
 import de.uka.ipd.sdq.pcm.designdecision.Candidate;
 import de.uka.ipd.sdq.pcm.designdecision.Candidates;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -138,6 +139,15 @@ public class designdecisionSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case designdecisionPackage.BOOL_CHOICE: {
+			BoolChoice boolChoice = (BoolChoice) theEObject;
+			T result = caseBoolChoice(boolChoice);
+			if (result == null)
+				result = caseChoice(boolChoice);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -252,6 +262,21 @@ public class designdecisionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCandidates(Candidates object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bool Choice</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bool Choice</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBoolChoice(BoolChoice object) {
 		return null;
 	}
 
