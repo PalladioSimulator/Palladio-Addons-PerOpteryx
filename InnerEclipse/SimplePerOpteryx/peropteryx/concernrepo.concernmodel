@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1">
+  <concerns name="ExampleConcern">
+    <strategies name="StrategyExample">
+      <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
+      <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
+    </strategies>
+    <components requires="//@concerns.0/@components.1" name="ComponentA">
+      <annotationenrich name="EnrichA(RequireB)" description="" maxAmount="1"/>
+    </components>
+    <components name="ComponentB" description="">
+      <annotationenrich name="EnrichB" maxAmount="1"/>
+    </components>
+    <annotationtarget name="TargetExample" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+  </concerns>
+</Concern:ConcernRepository>

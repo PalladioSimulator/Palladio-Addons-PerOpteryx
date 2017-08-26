@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strategyConfig:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" name="ExampleConfig">
+  <defaultConfig featureConfigState="DEFAULT">
+    <confignode configState="SELECTED">
+      <origin href="strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
+    </confignode>
+    <confignode configState="SELECTED">
+      <origin href="strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </confignode>
+    <annotatedElement href="strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
+  </defaultConfig>
+</strategyConfig:Configuration>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution:SolutionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Solution="http://are.ipd.kit.edu/SolutionModel/1.0.0">
+  <solutions name="SolutionA">
+    <repository href="../palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
+    <costRepository href="costmodel.cost#/"/>
+  </solutions>
+  <solutions name="SolutionB">
+    <repository href="../palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
+    <costRepository href="costmodel.cost#/"/>
+  </solutions>
+</Solution:SolutionRepository>
