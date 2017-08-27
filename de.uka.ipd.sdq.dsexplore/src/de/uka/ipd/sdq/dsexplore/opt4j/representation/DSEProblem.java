@@ -790,7 +790,7 @@ public class DSEProblem {
 		for (ElementaryConcernComponent ecc : eccs) {
 			Feature feature = this.getFeatureProvidedBy(ecc);
 			boolean isOptional = feature.getSimpleOptional() != null;
-			if (isOptional) {
+			if (!isOptional) {
 				continue;
 			}
 			features.add(feature);
@@ -801,25 +801,7 @@ public class DSEProblem {
 			dds.add(oad);
 			this.initInitialOptional(oad, op, initialCandidate);
 		}
-		// EList<Stereotype> app = StereotypeAPI.getAppliedStereotypes(ecc);
-		// Optional<Stereotype> eccInterfaceOptional = app.stream().filter(a
-		// -> a.getName().equals("ECCInterface")).findAny();
-		// if (!eccInterfaceOptional.isPresent()) {
-		// continue;
-		// }
-		// Stereotype eccInterface = eccInterfaceOptional.get();
-		//
-		// List<EReference> refs = eccInterface.getEReferences();
-		// Optional<EReference> providesOptional = refs.stream().filter(r ->
-		// r.getName().equals("provides")).findAny();
-		// if (!providesOptional.isPresent()) {
-		// continue;
-		// }
-		// new
-		// EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
-		// EReference provides = providesOptional.get();
-		// EObject feature = provides.eContents().get(0);
-		// Object o = ((EGenericType) feature).getERawType();
+
 	}
 
 	private void initInitialOptional(OptionalAsDegree oad, Feature op, DesignDecisionGenotype initialCandidate) {
