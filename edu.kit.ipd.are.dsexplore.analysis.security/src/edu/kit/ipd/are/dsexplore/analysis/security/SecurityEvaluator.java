@@ -81,7 +81,6 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		int[][] theta = this.getTheta(assMap);
 		// create scenario and calculate the MTTSF
 		Scenario scenario = new Scenario(theta, components.toArray(new Component[0]));
-		logger.debug(scenario);
 
 		// calculate the results; use mocking if button is set
 		final int securityValue;

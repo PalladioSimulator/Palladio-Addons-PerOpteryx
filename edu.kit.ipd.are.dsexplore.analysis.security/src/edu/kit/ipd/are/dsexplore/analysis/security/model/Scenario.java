@@ -74,6 +74,9 @@ public class Scenario {
 		int[] xi = this.calculateXi();
 		double[] mttbc = this.calcMTTBC(a);
 		for (int i = 0; i < mttbc.length; i++) {
+			if (xi[i] == 0) {
+				continue;
+			}
 			double mid = 0.0;
 			for (int j = 0; j < (mttbc.length + 1); j++) {
 				mid += mttbc[i] * this.theta[i][j];
