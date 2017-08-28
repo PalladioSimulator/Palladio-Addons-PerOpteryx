@@ -111,19 +111,16 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private List<Component> createComponents(Set<AssemblyContext> assSet) {
 		List<Component> components = new ArrayList<>();
 		for (AssemblyContext assContext : assSet) {
-			EList<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
+			EList<StereotypeApplication> stereotypeApplications = StereotypeAPI.getStereotypeApplications(assContext);
 			ComponentSecurity annotatedCompSec = null;
-			for (Stereotype stereotype : stereotypes) {
+			for (StereotypeApplication stApp : stereotypeApplications) {
+				Stereotype stereotype = stApp.getStereotype();
 				if (stereotype.getName().equals("SecurityAnnotation")) {
 					// get the stereotype feature
 					EStructuralFeature feat = stereotype.getEStructuralFeature("secAnnotation");
-					// finally get the correct StereotypeApplication and from it
-					// get the feature we extracted above
-					for (StereotypeApplication stApp : StereotypeAPI.getStereotypeApplications(assContext)) {
-						if (stApp.toString().contains("SecurityAnnotation")) {
-							annotatedCompSec = (ComponentSecurity) stApp.eGet(feat);
-						}
-					}
+					// finally get the ComponentSecurity from
+					// the feature we extracted above
+					annotatedCompSec = (ComponentSecurity) stApp.eGet(feat);
 				}
 			}
 
