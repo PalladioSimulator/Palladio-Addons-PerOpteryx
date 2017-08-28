@@ -31,7 +31,6 @@ ILaunchConfigurationTab {
 	private static final String ATTR_ATTACKER_MTOA = "attacker_mtoa";
 	private static final String ATTR_ATTACKER_DELTA = "attacker_delta";
 	private static final String ATTR_ATTACKER_LAMBDA = "attacker_lambda";
-	private static final String ATTR_MOCK_SECURITY = "mockSecurity";
 	// constants and class variables
 	private static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.analysis.security");
 	private final int CUSTOM_INDEX = 2;
@@ -40,11 +39,9 @@ ILaunchConfigurationTab {
 	private Text textSecurityModel;
 	private Button[] buttons = new Button[3];
 	private Text[][] atkSettingsTexts = new Text[3][3];
-	private Button mockButton;
 
 	/** Settings that can be set */
 	private int numButtonSelected = 1;
-	private boolean mockSecurity = false;
 	private String attacker_lambda = "0.01";
 	private String attacker_delta = "100";
 	private String attacker_mtoa = "200";
@@ -60,24 +57,6 @@ ILaunchConfigurationTab {
 		final ModifyListener modifyListener = e -> {
 			SecurityAnalysisTab.this.setDirty(true);
 			SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
-		};
-
-		final SelectionListener selectionListener = new SelectionListener() {
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				SecurityAnalysisTab.this.setDirty(true);
-				SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
-			}
-
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				// only if only one button that can activate this
-				SecurityAnalysisTab.this.mockSecurity ^= true; // flip
-
-				SecurityAnalysisTab.this.setDirty(true);
-				SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
-			}
 		};
 
 		// Create a new Composite to hold the page's controls:
@@ -97,16 +76,6 @@ ILaunchConfigurationTab {
 		 * add settings for Attacker
 		 */
 		this.createAttackerSettings(container);
-
-		/**
-		 * Add a button to mock security values
-		 */
-		this.mockButton = new Button(container, SWT.CHECK);
-		this.mockButton.setEnabled(true);
-		this.mockButton.setText("Mock calculation of security values");
-		this.mockButton.addSelectionListener(selectionListener);
-		this.mockButton.setSelection(this.mockSecurity);
-
 	}
 
 	/**
@@ -251,8 +220,6 @@ ILaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		// TODO
 		try {
-			this.mockSecurity = configuration.getAttribute(ATTR_MOCK_SECURITY, false);
-			this.mockButton.setSelection(this.mockSecurity);
 			this.attacker_lambda = configuration.getAttribute(ATTR_ATTACKER_LAMBDA, "0.01");
 			this.attacker_delta = configuration.getAttribute(ATTR_ATTACKER_DELTA, "100");
 			this.attacker_mtoa = configuration.getAttribute(ATTR_ATTACKER_MTOA, "200");
@@ -280,18 +247,16 @@ ILaunchConfigurationTab {
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		// TODO
-		configuration.setAttribute(ATTR_MOCK_SECURITY, this.mockSecurity);
 		configuration.setAttribute(ATTR_ATTACKER_LAMBDA, this.attacker_lambda);
 		configuration.setAttribute(ATTR_ATTACKER_DELTA, this.attacker_delta);
 		configuration.setAttribute(ATTR_ATTACKER_MTOA, this.attacker_mtoa);
-		logger.debug("Changed Config: mockSecurity=" + this.mockSecurity + ", Attacker(" + this.attacker_lambda + ","
+		logger.debug("Changed Config: Attacker(" + this.attacker_lambda + ","
 				+ this.attacker_delta + "," + this.attacker_mtoa + ")");
 
 	}
 
 	@Override
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {		configuration.setAttribute(ATTR_MOCK_SECURITY, this.mockSecurity);
-		configuration.setAttribute(ATTR_ATTACKER_LAMBDA, this.attacker_lambda);
+	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {		configuration.setAttribute(ATTR_ATTACKER_LAMBDA, this.attacker_lambda);
 		configuration.setAttribute(ATTR_ATTACKER_DELTA, this.attacker_delta);
 		configuration.setAttribute(ATTR_ATTACKER_MTOA, this.attacker_mtoa);;
 	}

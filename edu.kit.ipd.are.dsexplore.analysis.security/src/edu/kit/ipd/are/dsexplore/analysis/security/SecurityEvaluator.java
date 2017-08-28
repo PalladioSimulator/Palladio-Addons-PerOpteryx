@@ -52,9 +52,6 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	/** Attacker */
 	private Attacker attacker = new Attacker(0.01, 100, 200);
 
-	/** Shall Security Value be mocked? */
-	private boolean mockSecurity = false;
-
 	public SecurityEvaluator() {
 		super(new SecuritySolverQualityAttributeDeclaration());
 	}
@@ -86,11 +83,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		// calculate the results; use mocking if button is set
 		final int securityValue;
-		if (this.mockSecurity) {
-			securityValue = (int) this.calcMttsfForMockingScenario();
-		} else {
-			securityValue = (int) scenario.calcMTTSF(atk_entry_length, this.attacker);
-		}
+		securityValue = (int) scenario.calcMTTSF(atk_entry_length, this.attacker);
 		logger.debug(securityValue);
 
 		// write out Results
@@ -232,8 +225,6 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	public void initialise(final DSEWorkflowConfiguration configuration) throws CoreException {
 		this.initialiseCriteria(configuration);
 		ILaunchConfiguration origConfig = configuration.getOriginalConfig();
-		this.mockSecurity = origConfig.getAttribute("mockSecurity", false);
-		logger.debug("Initialised with mockSecurity=" + this.mockSecurity);
 		try {
 			double lambda = Double.parseDouble(origConfig.getAttribute("attacker_lambda", "0.01"));
 			double delta =  Double.parseDouble(origConfig.getAttribute("attacker_delta", "100"));
