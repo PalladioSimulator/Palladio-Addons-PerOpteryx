@@ -18,9 +18,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 
-import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
-import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
-
 /**
  * @author Jan Keim
  *
@@ -36,7 +33,6 @@ ILaunchConfigurationTab {
 	private final int CUSTOM_INDEX = 2;
 
 	/** UI Elements */
-	private Text textSecurityModel;
 	private Button[] buttons = new Button[3];
 	private Text[][] atkSettingsTexts = new Text[3][3];
 
@@ -52,25 +48,10 @@ ILaunchConfigurationTab {
 
 	@Override
 	public void createControl(Composite parent) {
-
-		// Create listener for GUI modification events:
-		final ModifyListener modifyListener = e -> {
-			SecurityAnalysisTab.this.setDirty(true);
-			SecurityAnalysisTab.this.updateLaunchConfigurationDialog();
-		};
-
 		// Create a new Composite to hold the page's controls:
 		final Composite container = new Composite(parent, SWT.NONE);
 		this.setControl(container);
 		container.setLayout(new GridLayout());
-
-		/**
-		 * Add cost model input section
-		 */
-		this.textSecurityModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "No input needed. DELETE ME?",
-				DSEConstantsContainer.COST_MODEL_EXTENSION, this.textSecurityModel, this.getShell(),
-				DSEConstantsContainer.DEFAULT_COST_MODEL_FILE);
 
 		/**
 		 * add settings for Attacker
@@ -101,8 +82,6 @@ ILaunchConfigurationTab {
 		// lambda (improvement), delta and Mean Time of Attack (x)
 		// examples low: 0.007, 150, 200
 		// examples high: 0.01, 100, 200
-
-
 
 		// Description texts
 		Text nameText = new Text(radioContainer, SWT.READ_ONLY);
