@@ -14,6 +14,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.modelversioning.emfprofile.Stereotype;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
@@ -110,27 +111,32 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private List<Component> createComponents(Set<AssemblyContext> assSet) {
 		List<Component> components = new ArrayList<>();
 		for (AssemblyContext assContext : assSet) {
+			if (this.isTarget(assContext)) {
+				continue; // skip, when AssemblyContext is a Target. TODO check!
+			}
 			EList<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
-			ComponentSecurity annotation = null;
+			ComponentSecurity annotatedCompSec = null;
 			for (Stereotype stereotype : stereotypes) {
 				if (stereotype.getName().equals("SecurityAnnotation")) {
-					// TODO FUCK THIS RETARDED SHITTY BASTERD CUNT
-					for (EStructuralFeature f : stereotype.getEAllStructuralFeatures()) {
-						logger.info(stereotype.eGet(f)); // FAILS HERE...
-						// ..HOW/WHY??? WTF IS THIS MANIAC BULLSHIT
+					// TODO made this little shit work for me
+					// like the bitch it is
+					EStructuralFeature feat = stereotype.getEStructuralFeature("secAnnotation");
+					for (StereotypeApplication stApp : StereotypeAPI.getStereotypeApplications(assContext)) {
+						if (stApp.toString().contains("SecurityAnnotation")) {
+							annotatedCompSec = (ComponentSecurity) stApp.eGet(feat);
+						}
 					}
 				}
 			}
+
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
-			if (annotation == null) {
+			if (annotatedCompSec == null) {
 				component.TTDV(200);
 				component.PoCoB(0.2);
-				// TODO: how to properly output this warning?
 				logger.error("Could not find an annotation for " + assContext.getEntityName());
-
 			} else {
-				component.TTDV(annotation.getTTDV());
-				component.PoCoB(annotation.getPoCoB());
+				component.TTDV(annotatedCompSec.getTTDV());
+				component.PoCoB(annotatedCompSec.getPoCoB());
 			}
 			components.add(component.build());
 		}
@@ -194,6 +200,16 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			}
 		}
 		return targets;
+	}
+
+	private boolean isTarget(AssemblyContext assContext) {
+		List<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
+		for (Stereotype stereotype : stereotypes) {
+			if (stereotype.getName().equals("SecurityTarget")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
