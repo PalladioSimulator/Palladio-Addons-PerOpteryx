@@ -63,7 +63,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
 
-		// get attakc entry vector length
+		// get attack entry vector length
 		int atk_entry_length = system.getProvidedRoles_InterfaceProvidingEntity().size();
 
 		// create a map with AssemblyContexts as keys,
@@ -79,8 +79,9 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		List<Component> components = this.createComponents(assMap.keySet());
 		// get theta matrix
 		int[][] theta = this.getTheta(assMap);
-		// create scenario and calc the MTTSF
+		// create scenario and calculate the MTTSF
 		Scenario scenario = new Scenario(theta, components.toArray(new Component[0]));
+		logger.debug(scenario);
 
 		// calculate the results; use mocking if button is set
 		final int securityValue;
@@ -111,16 +112,14 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private List<Component> createComponents(Set<AssemblyContext> assSet) {
 		List<Component> components = new ArrayList<>();
 		for (AssemblyContext assContext : assSet) {
-			if (this.isTarget(assContext)) {
-				continue; // skip, when AssemblyContext is a Target. TODO check!
-			}
 			EList<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
 			ComponentSecurity annotatedCompSec = null;
 			for (Stereotype stereotype : stereotypes) {
 				if (stereotype.getName().equals("SecurityAnnotation")) {
-					// TODO made this little shit work for me
-					// like the bitch it is
+					// get the stereotype feature
 					EStructuralFeature feat = stereotype.getEStructuralFeature("secAnnotation");
+					// finally get the correct StereotypeApplication and from it
+					// get the feature we extracted above
 					for (StereotypeApplication stApp : StereotypeAPI.getStereotypeApplications(assContext)) {
 						if (stApp.toString().contains("SecurityAnnotation")) {
 							annotatedCompSec = (ComponentSecurity) stApp.eGet(feat);
@@ -154,25 +153,36 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	private int[][] getTheta(Map<AssemblyContext, List<AssemblyContext>> assMap) {
 		int theta_size = assMap.keySet().size() + 1;
 		int[][] theta = new int[theta_size][theta_size];
+		// fill theta map with basic numbers (1) for transitions
+		theta = this.basicFillTheta(assMap, theta);
+		// update twice, so the order of updating is not important and the end
+		// result is correct!
+		theta = this.updateTheta(theta);
+		theta = this.updateTheta(theta);
+		return theta;
+	}
+
+	private int[][] basicFillTheta(Map<AssemblyContext, List<AssemblyContext>> assMap, int[][] theta) {
 		List<AssemblyContext> targets = this.getTargets(assMap.keySet());
 		List<AssemblyContext> assList = new ArrayList<>(assMap.keySet());
 		for (int i = 0; i < assList.size(); i++) {
 			AssemblyContext assContext = assList.get(i);
+			// set a 1 to the last column if AssemblyContext is a target
+			if (targets.contains(assContext)) {
+				theta[i][theta[0].length - 1] += 1;
+			}
+			// set theta values
 			for (AssemblyContext reqAssContext : assMap.get(assContext)) {
 				int reqIndex = assList.indexOf(reqAssContext);
 				theta[i][reqIndex] += 1;
 			}
-			// set a 1 to the last column if AssemblyContext is a target
-			if (targets.contains(assContext)) {
-				logger.info("Target is " + assContext.getEntityName());
-				theta[i][theta_size - 1] = 1;
-			}
 		}
+		return theta;
+	}
 
-		// TODO check
-		// go through each row.
+	private int[][] updateTheta(int[][] theta) {
 		// for each row calculate the sum of the column it corresponds to (i==j)
-		// for each value >0 set the value to the prior sum
+		// for each value >0 set the value to the sum
 		for (int i = 0; i < theta.length; i++) {
 			int sum = 0;
 			for (int[] element : theta) {
@@ -200,16 +210,6 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			}
 		}
 		return targets;
-	}
-
-	private boolean isTarget(AssemblyContext assContext) {
-		List<Stereotype> stereotypes = StereotypeAPI.getAppliedStereotypes(assContext);
-		for (Stereotype stereotype : stereotypes) {
-			if (stereotype.getName().equals("SecurityTarget")) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**

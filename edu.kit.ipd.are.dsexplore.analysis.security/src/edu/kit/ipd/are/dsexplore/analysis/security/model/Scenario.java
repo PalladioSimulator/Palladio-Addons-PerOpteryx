@@ -1,5 +1,7 @@
 package edu.kit.ipd.are.dsexplore.analysis.security.model;
 
+import java.util.Arrays;
+
 /**
  * Scenario for our Security Model. This gives us the final security value with
  * the methods {@link #calcMTTSF(int, Attacker)} or the static methdod
@@ -99,6 +101,18 @@ public class Scenario {
 	public static double calcMTTSF(int length_Entry, Attacker a, Component[] components, int[][] theta) {
 		Scenario scen = new Scenario(theta, components);
 		return scen.calcMTTSF(length_Entry, a);
+	}
+
+	@Override
+	public String toString() {
+		String ret = "";
+		ret += "\n\tComponents:";
+		for (Component c : this.components) {
+			ret += "\n\t" + c.toString();
+		}
+		ret += "\n\tTheta:";
+		ret += "\n\t" + Arrays.deepToString(this.theta);
+		return ret;
 	}
 
 }
