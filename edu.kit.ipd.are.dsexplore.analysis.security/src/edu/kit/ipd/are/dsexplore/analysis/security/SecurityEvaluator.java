@@ -36,6 +36,7 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.analysis.security.model.Attacker;
 import edu.kit.ipd.are.dsexplore.analysis.security.model.Component;
 import edu.kit.ipd.are.dsexplore.analysis.security.model.Scenario;
+import edu.kit.ipd.are.dsexplore.exception.SecurityComponentAnnotationMissingException;
 
 /**
  * Evaluator for Security
@@ -126,7 +127,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
 			if (annotatedCompSec == null) {
 				logger.error("Could not find an annotation for " + assContext.getEntityName());
-				throw new RuntimeException(); //TODO
+				throw new SecurityComponentAnnotationMissingException("No SecurityAnnotation found. Set the Stereotype for all AssemblyContexts!");
 			} else {
 				component.TTDV(annotatedCompSec.getTTDV());
 				component.PoCoB(annotatedCompSec.getPoCoB());
