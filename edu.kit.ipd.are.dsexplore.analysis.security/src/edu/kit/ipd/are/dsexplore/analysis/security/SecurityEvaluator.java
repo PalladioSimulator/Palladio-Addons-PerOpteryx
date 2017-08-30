@@ -58,8 +58,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 	}
 
 	@Override
-	public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor)
-			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
+	public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor) {
 		final PCMInstance pcm = pheno.getPCMInstance();
 		final System system = pcm.getSystem();
 
@@ -108,7 +107,7 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 		return targets;
 	}
 
-	private List<Component> createComponents(Set<AssemblyContext> assSet) {
+	private List<Component> createComponents(Set<AssemblyContext> assSet) throws RuntimeException {
 		List<Component> components = new ArrayList<>();
 		for (AssemblyContext assContext : assSet) {
 			EList<StereotypeApplication> stereotypeApplications = StereotypeAPI.getStereotypeApplications(assContext);
@@ -126,9 +125,8 @@ public class SecurityEvaluator extends AbstractAnalysis implements IAnalysis {
 
 			Component.Builder component = new Component.Builder().name(assContext.getEntityName());
 			if (annotatedCompSec == null) {
-				component.TTDV(200);
-				component.PoCoB(0.2);
 				logger.error("Could not find an annotation for " + assContext.getEntityName());
+				throw new RuntimeException(); //TODO
 			} else {
 				component.TTDV(annotatedCompSec.getTTDV());
 				component.PoCoB(annotatedCompSec.getPoCoB());
