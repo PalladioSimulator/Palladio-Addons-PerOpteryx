@@ -803,10 +803,11 @@ public class DSEProblem {
 
 			if (isOptional) {
 				optionals.add(f);
-				return;
+				continue;
 			}
 			if (isFGroup) {
 				// TODO What to do with FeatureGroup ..?
+				optionals.add(f);
 			}
 
 		}
