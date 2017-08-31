@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -38,7 +39,10 @@ import ConcernModel.ElementaryConcernComponent;
 import SolutionModel.Solution;
 import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
+import concernStrategy.ChildRelation;
 import concernStrategy.Feature;
+import concernStrategy.FeatureGroup;
+import concernStrategy.Simple;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
@@ -100,7 +104,8 @@ import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
  *
  */
 public class DSEProblem {
-
+	/** Logger for log4j. */
+	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 	/**
 	 * Is changed during the evaluation, as the decisions refer to it.
 	 */
@@ -542,7 +547,7 @@ public class DSEProblem {
 		try {
 			this.createConcernDegreeBy(concernRepo.get(), dds, initialCandidate);
 		} catch (Exception ex) {
-			// Logging...
+			DSEProblem.logger.error("Error while creating ConcernDegree ..: " + ex.getMessage());
 			return;
 		}
 
@@ -789,17 +794,60 @@ public class DSEProblem {
 		List<Feature> features = new ArrayList<>();
 		for (ElementaryConcernComponent ecc : eccs) {
 			Feature feature = this.getFeatureProvidedBy(ecc);
-			boolean isOptional = feature.getSimpleOptional() != null;
-			if (!isOptional) {
-				continue;
-			}
-			features.add(feature);
+			this.getThisAndSubfeatures(features, feature);
 		}
-		for (Feature op : features) {
+		List<Feature> optionals = new ArrayList<>();
+		for (Feature f : features) {
+			boolean isOptional = f.getSimpleOptional() != null;
+			boolean isFGroup = f.getFeaturegroup() != null;
+
+			if (isOptional) {
+				optionals.add(f);
+				return;
+			}
+			if (isFGroup) {
+				// TODO What to do with FeatureGroup ..?
+			}
+
+		}
+		for (Feature op : optionals) {
 			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
 			this.initInitialOptional(oad, op, initialCandidate);
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
+		features.add(start);
+		ChildRelation rel = start.getChildrelation();
+		if (rel == null) {
+			return;
+		}
+		boolean simple = rel instanceof Simple, fGroup = rel instanceof FeatureGroup;
+		if (!simple && !fGroup) {
+			DSEProblem.logger.warn("ChildRelation is no instance of Simple or FeatureGroup. This is currently not supported.");
+			return;
+		}
+
+		if (simple) {
+			Simple sr = (Simple) rel;
+			List<Feature> man = sr.getMandatoryChildren();
+			List<Feature> opt = sr.getOptionalChildren();
+			for (Feature f : man) {
+				this.getThisAndSubfeatures(features, f);
+			}
+			for (Feature f : opt) {
+				this.getThisAndSubfeatures(features, f);
+			}
+		} else {
+			FeatureGroup fg = (FeatureGroup) rel;
+			List<Feature> all = fg.getChildren();
+			for (Feature f : all) {
+				this.getThisAndSubfeatures(features, f);
+			}
 		}
 
 	}
