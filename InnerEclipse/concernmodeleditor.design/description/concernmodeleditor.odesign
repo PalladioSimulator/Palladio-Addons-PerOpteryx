@@ -87,9 +87,9 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="Elementary Concern Component Container" semanticCandidatesExpression="feature:eAllContents" domainClass="ElementaryConcernComponent">
-            <subContainerMappings name="Annotation Enrich Container" semanticCandidatesExpression="feature:eAllContents" domainClass="AnnotationEnrich" childrenPresentation="List">
-              <subNodeMappings name="Annotation Enrich Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Enrich%20Node%20(Amount)']" semanticCandidatesExpression="[self/]" domainClass="AnnotationEnrich">
+          <subContainerMappings name="Elementary Concern Component Container" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Elementary%20Concern']" semanticCandidatesExpression="feature:eAllContents" domainClass="ElementaryConcernComponent">
+            <subContainerMappings name="Annotation Enrich Container" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Enrich%20Node']/@tools.1" semanticCandidatesExpression="feature:eAllContents" domainClass="AnnotationEnrich" childrenPresentation="List">
+              <subNodeMappings name="Annotation Enrich Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Enrich%20Node']/@tools.0" semanticCandidatesExpression="[self/]" domainClass="AnnotationEnrich">
                 <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Max Amount = ' +self.maxAmount/]" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -272,14 +272,6 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Direct Edit Label">
-          <ownedTools xsi:type="tool:DirectEditLabel" name="Annotation Enrich Node (Amount)">
-            <mask mask="{0}"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="maxAmount" valueExpression="[arg0.replace('Max Amount = ', '').toInteger()/]"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
           <ownedTools xsi:type="tool:DirectEditLabel" name="NamedElementDirectEdit">
             <mask mask="{0}"/>
             <initialOperation>
@@ -306,6 +298,32 @@
               </initialOperation>
             </tools>
             <tools xsi:type="tool:DirectEditLabel" name="Annotation Target Container">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Elementary Concern">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ToolGroup" name="Annotation Enrich Node">
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Enrich Node (Amount)">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="maxAmount" valueExpression="[arg0.replace('Max Amount = ', '').toInteger()/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Enrich Container">
               <mask mask="{0}"/>
               <initialOperation>
                 <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">

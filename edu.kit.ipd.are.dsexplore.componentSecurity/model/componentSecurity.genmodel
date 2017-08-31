@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.are.dsexplore.componentSecurity/src"
+    modelPluginID="edu.kit.ipd.are.dsexplore.componentSecurity" modelName="ComponentSecurity"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>componentSecurity.ecore</foreignModel>
+  <genPackages prefix="ComponentSecurity" disposableProviderFactory="true" ecorePackage="componentSecurity.ecore#/">
+    <genClasses ecoreClass="componentSecurity.ecore#//ComponentSecurity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute componentSecurity.ecore#//ComponentSecurity/poCoB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute componentSecurity.ecore#//ComponentSecurity/TTDV"/>
+    </genClasses>
+    <genClasses ecoreClass="componentSecurity.ecore#//ComponentSecurityRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference componentSecurity.ecore#//ComponentSecurityRepository/componentsecurity"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

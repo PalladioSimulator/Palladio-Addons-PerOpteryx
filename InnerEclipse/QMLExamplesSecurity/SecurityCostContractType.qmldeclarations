@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" id="_FKyDwEXvEeeKzrt5EpePag">
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_M5vThEXvEeeKzrt5EpePag" entityName="SecurityCost">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="Security.qmlcontracttype#_SSqgAEXvEeeKzrt5EpePag"/>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>
