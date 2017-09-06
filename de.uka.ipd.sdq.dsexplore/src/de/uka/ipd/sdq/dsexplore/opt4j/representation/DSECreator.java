@@ -117,11 +117,10 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 		Choice choice;
 		if (degree instanceof OptionalAsDegree) {
-			// TODO DTHF1 Break
-			OptionalAsDegree oad = (OptionalAsDegree) degree;
+			// TODO DTHF1 Break: is that really useful ?
+			// Random Choice of Optional ..
 			BoolChoice setOrNotSet = factory.createBoolChoice();
-			// Just set for debugging / testing ..
-			setOrNotSet.setChosenValue(true);
+			setOrNotSet.setChosenValue(this.random.nextBoolean());
 			choice = setOrNotSet;
 		} else if (degree instanceof DiscreteDegree) {
 			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice();

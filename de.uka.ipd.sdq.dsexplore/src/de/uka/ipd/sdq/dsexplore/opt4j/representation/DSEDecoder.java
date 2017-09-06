@@ -175,7 +175,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		 * implicit. Maybe move the method to DesignDecision itself.
 		 */
 		if (OptionalAsDegree.class.isInstance(designDecision)) {
-			this.applyChangeOptionalAsDegree((OptionalAsDegree) designDecision, choice);
+			this.applyChangeOptionalAsDegree((OptionalAsDegree) designDecision, choice, trans, pcm);
 		} else if (ProcessingRateDegree.class.isInstance(designDecision)) {
 			this.applyChangeProcessingRateDecision((ProcessingRateDegree) designDecision, choice);
 
@@ -208,7 +208,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		}
 	}
 
-	private void applyChangeOptionalAsDegree(OptionalAsDegree designDecision, Choice choice) {
+	private void applyChangeOptionalAsDegree(OptionalAsDegree designDecision, Choice choice, GenomeToCandidateModelTransformation trans, PCMInstance pcm) {
 		// TODO DTHF1 Apply Change ..
 
 	}
@@ -578,7 +578,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	/**
 	 * Returns the String that can be used to represent the choice. Either
 	 * toString or, for an Entity, a more speaking String.
-	 * 
+	 *
 	 * @param choice
 	 *            the choice
 	 * @return a String that can be used to represent this choice
@@ -606,7 +606,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	/**
 	 * Calls getDoubleValueFor(String decisionString, DesignDecision
 	 * designDecision)
-	 * 
+	 *
 	 * @param index
 	 * @param decisionString
 	 * @return
@@ -720,7 +720,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	/**
 	 * Edits the passed genotype by inserting the passed choice at the index for
 	 * the passed {@link DegreeOfFreedomInstance}.
-	 * 
+	 *
 	 * @param genotype
 	 * @param degree
 	 * @param choice
