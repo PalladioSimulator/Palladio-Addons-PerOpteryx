@@ -235,6 +235,7 @@ public class DSEProblem {
 			TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
 		} catch (Exception ex) {
 			// No concern is involved
+			DSEProblem.logger.error("Error while init TransformationRepository : .. " + ex.getMessage());
 		}
 
 	}
@@ -799,16 +800,16 @@ public class DSEProblem {
 		List<Feature> optionals = new ArrayList<>();
 		for (Feature f : features) {
 			boolean isOptional = f.getSimpleOptional() != null;
-			boolean isFGroup = f.getFeaturegroup() != null;
+			// boolean isFGroup = f.getFeaturegroup() != null;
 
 			if (isOptional) {
 				optionals.add(f);
-				continue;
+				// continue;
 			}
-			if (isFGroup) {
-				// TODO What to do with FeatureGroup ..?
-				optionals.add(f);
-			}
+			// if (isFGroup) {
+			// // TODO What to do with FeatureGroup ..?
+			// optionals.add(f);
+			// }
 
 		}
 		for (Feature op : optionals) {

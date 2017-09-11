@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Concern:ConcernRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1">
-  <concerns name="ExampleConcern">
-    <strategies name="StrategyExample">
-      <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
-      <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
-    </strategies>
-    <components requires="//@concerns.0/@components.1" name="ComponentA">
-      <annotationenrich name="EnrichA(RequireB)" description="" maxAmount="1"/>
-    </components>
-    <components name="ComponentB" description="">
-      <annotationenrich name="EnrichB" maxAmount="1"/>
-    </components>
-    <annotationtarget name="TargetExample" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
-  </concerns>
-</Concern:ConcernRepository>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1">
+  <Concern:ConcernRepository>
+    <concerns name="ExampleConcern">
+      <strategies name="StrategyExample">
+        <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
+        <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
+      </strategies>
+      <components requires="/0/@concerns.0/@components.1" name="ComponentA">
+        <annotationenrich name="EnrichA(RequireB)" description="" maxAmount="1"/>
+      </components>
+      <components name="ComponentB" description="">
+        <annotationenrich name="EnrichB" maxAmount="1"/>
+      </components>
+      <annotationtarget name="TargetExample" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+    </concerns>
+  </Concern:ConcernRepository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.0">
+      <extension href="../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+      <provides href="strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.1">
+      <extension href="../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
+      <provides href="strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/StrategyProfile/strategy.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

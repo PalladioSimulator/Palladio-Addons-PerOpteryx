@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:Solution="http://are.ipd.kit.edu/SolutionModel/1.0.0" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:Solution="http://are.ipd.kit.edu/SolutionModel/1.0.0" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://are.ipd.kit.edu/ConcernAnnotationProfile platform:/resource/AnnotationProfile/annotations.emfprofile_diagram#_EY3ZoFlVEeaIO8X5CUzwPQ http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
   <viewpoint:DAnalysis xmi:id="_zrSPIGFaEeetxOZObiabqg" selectedViews="_ztnxcGFaEeetxOZObiabqg _1C-lYGFbEeetxOZObiabqg _jpA-AGFdEeetxOZObiabqg _Ovn30GFeEeetxOZObiabqg _bx6pcGFeEeetxOZObiabqg _l7COgGFeEeetxOZObiabqg _ig74oGjREeegN5on4EwZjA _io46wGjREeegN5on4EwZjA _ovUDkHiBEeeRzZ_keTeuDw" version="11.1.0.201608251200">
     <semanticResources>palladio/repository.repository</semanticResources>
     <semanticResources>pathmap://PCM_MODELS/Palladio.resourcetype</semanticResources>
@@ -117,7 +117,6 @@
     <semanticResources>http://are.ipd.kit.edu/TransformationModel/1.0.0</semanticResources>
     <semanticResources>http://are.ipd.kit.edu/SolutionModel/1.0.0</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/PerOpteryx/My.solutionmodel</semanticResources>
-    <semanticResources>platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/PerOpteryx/My.strategymodel</semanticResources>
     <semanticResources>http://edu.kit.ipd.are/ConcernStrategyModel/1.0</semanticResources>
     <semanticResources>peropteryx/solution.solutionmodel</semanticResources>
@@ -164,6 +163,20 @@
     <semanticResources>palladio/PerOpteryx_results/allCandidates9_2017-07-19-103026.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/population9_2017-07-19-103026.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/archiveCandidates9_2017-07-19-103026.designdecision</semanticResources>
+    <semanticResources>platform:/resource/AnnotationProfile/strategy.emfprofile_diagram</semanticResources>
+    <semanticResources>platform:/plugin/StrategyProfile/strategy.emfprofile_diagram</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2017-09-11-111014.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2017-09-11-111014.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2017-09-11-111014.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2017-09-11-111137.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2017-09-11-111137.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2017-09-11-111137.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2017-09-11-111527.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2017-09-11-111527.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2017-09-11-111527.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2017-09-11-111541.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2017-09-11-111541.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2017-09-11-111541.designdecision</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="ShopRepoDiagram" representation="_zv_wAWFaEeetxOZObiabqg">
@@ -251,6 +264,10 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_io46wGjREeegN5on4EwZjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Tc2ZoJYcEeerrOENfAvrGw" name="Feature Diagram" representation="_Tc3AsJYcEeerrOENfAvrGw">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']"/>
+        <target xmi:type="concernStrategy:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
+      </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_iqxKEGjREeegN5on4EwZjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']"/>
@@ -263,11 +280,11 @@
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ovm-gHiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" representation="_ovm-gXiBEeeRzZ_keTeuDw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
-        <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/"/>
+        <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
       </ownedRepresentationDescriptors>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oycQEHiBEeeRzZ_keTeuDw" name="Concern Detail Diagram" representation="_oycQEXiBEeeRzZ_keTeuDw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
-        <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
+        <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       </ownedRepresentationDescriptors>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ozCF8HiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" representation="_ozCF8XiBEeeRzZ_keTeuDw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
@@ -4200,9 +4217,9 @@
             <children xmi:type="notation:Node" xmi:id="_8JrKgHiBEeeRzZ_keTeuDw" type="3009" element="_8IVtwHiBEeeRzZ_keTeuDw">
               <children xmi:type="notation:Node" xmi:id="_8JrKg3iBEeeRzZ_keTeuDw" type="5004"/>
               <children xmi:type="notation:Node" xmi:id="_8JrKhHiBEeeRzZ_keTeuDw" type="7003">
-                <children xmi:type="notation:Node" xmi:id="_8JrKkHiBEeeRzZ_keTeuDw" type="3010" element="_8IVtwniBEeeRzZ_keTeuDw">
-                  <styles xmi:type="notation:FontStyle" xmi:id="_8JrKkXiBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-                  <layoutConstraint xmi:type="notation:Location" xmi:id="_8JrKkniBEeeRzZ_keTeuDw"/>
+                <children xmi:type="notation:Node" xmi:id="_q61r0JbREee2J5RWvOSFkw" type="3010" element="_q26OEJbREee2J5RWvOSFkw">
+                  <styles xmi:type="notation:FontStyle" xmi:id="_q61r0ZbREee2J5RWvOSFkw" fontName="Segoe UI" fontHeight="8"/>
+                  <layoutConstraint xmi:type="notation:Location" xmi:id="_q61r0pbREee2J5RWvOSFkw"/>
                 </children>
                 <styles xmi:type="notation:SortingStyle" xmi:id="_8JrKhXiBEeeRzZ_keTeuDw"/>
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_8JrKhniBEeeRzZ_keTeuDw"/>
@@ -4219,7 +4236,7 @@
                 <styles xmi:type="notation:DrawerStyle" xmi:id="_8JrKj3iBEeeRzZ_keTeuDw"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_8JrKiXiBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8JrKiniBEeeRzZ_keTeuDw" y="222"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8JrKiniBEeeRzZ_keTeuDw" y="228"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_CaLBwmxZEeeQ_Pc6h3L3Dg"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_CaLBw2xZEeeQ_Pc6h3L3Dg"/>
@@ -4618,10 +4635,10 @@
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_8IVtwniBEeeRzZ_keTeuDw" name="EnrichB">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-          <ownedStyle xmi:type="diagram:Square" xmi:id="_8Ie3sHiBEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_q26OEJbREee2J5RWvOSFkw" name="EnrichA(RequireB)">
+          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+          <ownedStyle xmi:type="diagram:Square" xmi:id="_q4Pq0JbREee2J5RWvOSFkw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
@@ -4723,16 +4740,16 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_JUxIQHiBEeeRzZ_keTeuDw" name="TargetExample">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
+          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_JWDhsHiBEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
         </ownedElements>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_HGWTcHiCEeeRzZ_keTeuDw" name="EnrichB">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_HGWTcXiCEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
@@ -4827,16 +4844,16 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FDJspHiCEeeRzZ_keTeuDw" name="TargetExample">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
+          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_FDTdoHiCEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
         </ownedElements>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FDTdoXiCEeeRzZ_keTeuDw" name="EnrichB">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_FDTdoniCEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
@@ -4906,32 +4923,13 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_ov6ggXiBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ov6ggniBEeeRzZ_keTeuDw" width="140" height="60"/>
         </children>
-        <children xmi:type="notation:Node" xmi:id="_ov6ghXiBEeeRzZ_keTeuDw" type="2001" element="_ovm-hniBEeeRzZ_keTeuDw">
-          <children xmi:type="notation:Node" xmi:id="_ov6giHiBEeeRzZ_keTeuDw" type="5002">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_ov6giXiBEeeRzZ_keTeuDw" y="5"/>
-          </children>
-          <children xmi:type="notation:Node" xmi:id="_ov6gjXiBEeeRzZ_keTeuDw" type="3003" element="_ovm-h3iBEeeRzZ_keTeuDw">
-            <styles xmi:type="notation:ShapeStyle" xmi:id="_ov6gjniBEeeRzZ_keTeuDw" fontName="Segoe UI"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ov6gj3iBEeeRzZ_keTeuDw"/>
-          </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_ov6ghniBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ov6gh3iBEeeRzZ_keTeuDw" width="140" height="60"/>
-        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_ovwvgniBEeeRzZ_keTeuDw"/>
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_ovm-hHiBEeeRzZ_keTeuDw" name="ExampleConcern" width="14" height="6" resizeKind="NSEW">
-      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
+      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       <ownedStyle xmi:type="diagram:Square" xmi:id="_ovm-hXiBEeeRzZ_keTeuDw" labelPosition="node" width="14" height="6" color="209,209,209">
-        <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']"/>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_ovm-hniBEeeRzZ_keTeuDw" name="IDS" width="14" height="6" resizeKind="NSEW">
-      <target xmi:type="Concern:Concern" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0/@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0/@concerns.0"/>
-      <ownedStyle xmi:type="diagram:Square" xmi:id="_ovm-h3iBEeeRzZ_keTeuDw" labelPosition="node" width="14" height="6" color="209,209,209">
         <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']"/>
@@ -4939,7 +4937,7 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ovm-iHiBEeeRzZ_keTeuDw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer"/>
-    <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/"/>
+    <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram xmi:id="_oycQEXiBEeeRzZ_keTeuDw" name="Concern Detail Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_oycQEniBEeeRzZ_keTeuDw" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -4983,7 +4981,7 @@
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_oymBIHiBEeeRzZ_keTeuDw"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_oymBG3iBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oymBHHiBEeeRzZ_keTeuDw" x="310" y="129"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oymBHHiBEeeRzZ_keTeuDw" x="306" y="230"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_oymBIXiBEeeRzZ_keTeuDw" type="3008" element="_oycQIHiBEeeRzZ_keTeuDw">
               <children xmi:type="notation:Node" xmi:id="_oymBJHiBEeeRzZ_keTeuDw" type="5005"/>
@@ -5005,7 +5003,7 @@
                 <styles xmi:type="notation:FilteringStyle" xmi:id="_oymBJ3iBEeeRzZ_keTeuDw"/>
               </children>
               <styles xmi:type="notation:ShapeStyle" xmi:id="_oymBIniBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oymBI3iBEeeRzZ_keTeuDw" x="324" y="30"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oymBI3iBEeeRzZ_keTeuDw" x="310" y="30"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_oymBKHiBEeeRzZ_keTeuDw" type="3007" element="_oycQIniBEeeRzZ_keTeuDw">
               <children xmi:type="notation:Node" xmi:id="_oymBK3iBEeeRzZ_keTeuDw" type="5003">
@@ -5022,44 +5020,44 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_oymBEniBEeeRzZ_keTeuDw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_oycQLHiBEeeRzZ_keTeuDw" fontName="Segoe UI" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oycQLXiBEeeRzZ_keTeuDw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oycQLXiBEeeRzZ_keTeuDw" height="348"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_oycQKniBEeeRzZ_keTeuDw"/>
         <edges xmi:type="notation:Edge" xmi:id="_oymBPXiBEeeRzZ_keTeuDw" type="4001" element="_oycQJHiBEeeRzZ_keTeuDw" source="_oymBGniBEeeRzZ_keTeuDw" target="_oymBIXiBEeeRzZ_keTeuDw">
           <children xmi:type="notation:Node" xmi:id="_oyvLAHiBEeeRzZ_keTeuDw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLAXiBEeeRzZ_keTeuDw" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLAXiBEeeRzZ_keTeuDw" x="2" y="-42"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_oyvLAniBEeeRzZ_keTeuDw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLA3iBEeeRzZ_keTeuDw" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLA3iBEeeRzZ_keTeuDw" x="-5" y="9"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_oyvLBHiBEeeRzZ_keTeuDw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLBXiBEeeRzZ_keTeuDw" y="10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oyvLBXiBEeeRzZ_keTeuDw" y="8"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_oymBPniBEeeRzZ_keTeuDw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_oymBP3iBEeeRzZ_keTeuDw" fontColor="230880" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oymBQHiBEeeRzZ_keTeuDw" points="[4, -35, -10, 64]$[9, -64, -5, 35]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oymBQHiBEeeRzZ_keTeuDw" points="[1, -42, -3, 161]$[4, -163, 0, 40]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oyvLBniBEeeRzZ_keTeuDw" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oyvLB3iBEeeRzZ_keTeuDw" id="(0.5,0.5)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQFHiBEeeRzZ_keTeuDw" name="ExampleConcern">
-      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
+      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_oycQFXiBEeeRzZ_keTeuDw" borderSize="1" borderSizeComputationExpression="1" backgroundColor="209,209,209">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']"/>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_oycQFniBEeeRzZ_keTeuDw" name="TargetExample">
-        <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-        <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
+        <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+        <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_oycQF3iBEeeRzZ_keTeuDw" iconPath="/concernmodeleditor.design/icons/target-icon.png" borderSize="1" borderSizeComputationExpression="1" backgroundColor="194,239,255" foregroundColor="194,239,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_oycQGHiBEeeRzZ_keTeuDw" name="Max Amount = 1">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
+          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_oycQGXiBEeeRzZ_keTeuDw" showIcon="false" labelPosition="node" width="8" height="3" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']/@style"/>
           </ownedStyle>
@@ -5067,22 +5065,25 @@
         </ownedElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQGniBEeeRzZ_keTeuDw" name="ComponentA" outgoingEdges="_oycQJHiBEeeRzZ_keTeuDw">
-        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0"/>
-        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0"/>
+        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
+        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_oycQG3iBEeeRzZ_keTeuDw" borderSize="1" borderSizeComputationExpression="1" backgroundColor="253,206,137" foregroundColor="253,206,137">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']"/>
         <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_oycQHHiBEeeRzZ_keTeuDw" name="EnrichA(RequireB)">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0/@annotationenrich.0"/>
+          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
           <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_oycQHXiBEeeRzZ_keTeuDw" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" borderSize="1" borderSizeComputationExpression="1">
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']"/>
           <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_oycQHniBEeeRzZ_keTeuDw" name="Max Amount = 1">
-            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0/@annotationenrich.0"/>
-            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0/@annotationenrich.0"/>
+            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
             <ownedStyle xmi:type="diagram:Square" xmi:id="_oycQH3iBEeeRzZ_keTeuDw" showIcon="false" labelPosition="node" width="8" height="3" color="255,255,255">
               <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']/@style"/>
             </ownedStyle>
@@ -5091,15 +5092,18 @@
         </ownedDiagramElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQIHiBEeeRzZ_keTeuDw" name="ComponentB" incomingEdges="_oycQJHiBEeeRzZ_keTeuDw">
-        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1"/>
-        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1"/>
+        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
+        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_oycQIXiBEeeRzZ_keTeuDw" borderSize="1" borderSizeComputationExpression="1" backgroundColor="253,206,137" foregroundColor="253,206,137">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']"/>
         <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_sBwEsHiBEeeRzZ_keTeuDw" name="EnrichB">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
           <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -5108,8 +5112,8 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']"/>
           <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_sHfgUHiBEeeRzZ_keTeuDw" name="Max Amount = 1">
-            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
-            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
             <ownedStyle xmi:type="diagram:Square" xmi:id="_sHfgUXiBEeeRzZ_keTeuDw" showIcon="false" labelPosition="node" width="8" height="3" color="255,255,255">
               <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']/@style"/>
             </ownedStyle>
@@ -5118,8 +5122,8 @@
         </ownedDiagramElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_oycQIniBEeeRzZ_keTeuDw" name="StrategyExample" width="8" height="3" resizeKind="NSEW">
-        <target xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@strategies.0"/>
-        <semanticElements xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@strategies.0"/>
+        <target xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
+        <semanticElements xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_oycQI3iBEeeRzZ_keTeuDw" iconPath="/concernmodeleditor.design/icons/strategy-icon.png" labelPosition="node" width="8" height="3" color="246,139,139">
           <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subNodeMappings[name='Concern%20Strategy%20Node']/@style"/>
         </ownedStyle>
@@ -5127,7 +5131,7 @@
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_oycQJHiBEeeRzZ_keTeuDw" name="requires" sourceNode="_oycQGniBEeeRzZ_keTeuDw" targetNode="_oycQIHiBEeeRzZ_keTeuDw">
-      <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#//@concerns.0/@components.0"/>
+      <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_oycQJXiBEeeRzZ_keTeuDw" size="2" centered="Both" strokeColor="224,133,3">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@edgeMappings[name='Elementary%20Concern%20Requirement%20Edge']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_oycQJniBEeeRzZ_keTeuDw" showIcon="false" labelColor="224,133,3"/>
@@ -5137,7 +5141,7 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_oycQJ3iBEeeRzZ_keTeuDw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer"/>
-    <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
+    <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram xmi:id="_ozCF8XiBEeeRzZ_keTeuDw" name="Concern Overview Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_ozCF8niBEeeRzZ_keTeuDw" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -5171,8 +5175,8 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_ozCF9HiBEeeRzZ_keTeuDw" name="ExampleConcern" width="14" height="6" resizeKind="NSEW">
-      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#//@concerns.0"/>
+      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       <ownedStyle xmi:type="diagram:Square" xmi:id="_ozCF9XiBEeeRzZ_keTeuDw" labelPosition="node" width="14" height="6" color="209,209,209">
         <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']/@style"/>
       </ownedStyle>
@@ -5356,5 +5360,157 @@
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ozL3B3iBEeeRzZ_keTeuDw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer"/>
     <target xmi:type="Concern:Concern" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0/@concerns.0"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram xmi:id="_Tc3AsJYcEeerrOENfAvrGw" name="Feature Diagram">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Tc3AsZYcEeerrOENfAvrGw" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_Tc3AspYcEeerrOENfAvrGw"/>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_TdMX4JYcEeerrOENfAvrGw" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_TdMX4ZYcEeerrOENfAvrGw" type="Sirius" element="_Tc3AsJYcEeerrOENfAvrGw" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_TdO0IJYcEeerrOENfAvrGw" type="2003" element="_Tc3As5YcEeerrOENfAvrGw">
+          <children xmi:type="notation:Node" xmi:id="_TdXXAJYcEeerrOENfAvrGw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_TdX-EJYcEeerrOENfAvrGw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_TdX-EZYcEeerrOENfAvrGw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_TdX-EpYcEeerrOENfAvrGw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_TdO0IZYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdO0IpYcEeerrOENfAvrGw" x="195" y="30"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_TdYlIJYcEeerrOENfAvrGw" type="2003" element="_Tc3AtZYcEeerrOENfAvrGw">
+          <children xmi:type="notation:Node" xmi:id="_TdZzQJYcEeerrOENfAvrGw" type="3012" element="_Tc3AtpYcEeerrOENfAvrGw">
+            <children xmi:type="notation:Node" xmi:id="_TdbocJYcEeerrOENfAvrGw" visible="false" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_TdbocZYcEeerrOENfAvrGw" x="-1"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Tdf54JYcEeerrOENfAvrGw" type="3002" element="_Tc3AuJYcEeerrOENfAvrGw">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Tdf54ZYcEeerrOENfAvrGw" fontName="Segoe UI"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tdf54pYcEeerrOENfAvrGw"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_TdZzQZYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdZzQpYcEeerrOENfAvrGw" x="8" y="-2" width="10" height="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdYlI5YcEeerrOENfAvrGw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_TdYlJJYcEeerrOENfAvrGw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_TdYlJZYcEeerrOENfAvrGw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_TdYlJpYcEeerrOENfAvrGw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_TdYlIZYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdYlIpYcEeerrOENfAvrGw" x="345" y="135"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_TdZMMJYcEeerrOENfAvrGw" type="2003" element="_Tc3AupYcEeerrOENfAvrGw">
+          <children xmi:type="notation:Node" xmi:id="_Tdgg8JYcEeerrOENfAvrGw" type="3012" element="_Tc3Au5YcEeerrOENfAvrGw">
+            <children xmi:type="notation:Node" xmi:id="_Tdgg85YcEeerrOENfAvrGw" visible="false" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Tdgg9JYcEeerrOENfAvrGw" x="-1"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_TdhIAJYcEeerrOENfAvrGw" type="3002" element="_Tc3AvZYcEeerrOENfAvrGw">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_TdhIAZYcEeerrOENfAvrGw" fontName="Segoe UI"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdhIApYcEeerrOENfAvrGw"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_Tdgg8ZYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tdgg8pYcEeerrOENfAvrGw" x="8" y="-2" width="10" height="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdZMM5YcEeerrOENfAvrGw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_TdZMNJYcEeerrOENfAvrGw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_TdZMNZYcEeerrOENfAvrGw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_TdZMNpYcEeerrOENfAvrGw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_TdZMMZYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdZMMpYcEeerrOENfAvrGw" x="45" y="135"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_TdMX4pYcEeerrOENfAvrGw"/>
+        <edges xmi:type="notation:Edge" xmi:id="_TdiWIJYcEeerrOENfAvrGw" type="4001" element="_Tc3Av5YcEeerrOENfAvrGw" source="_TdZzQJYcEeerrOENfAvrGw" target="_TdO0IJYcEeerrOENfAvrGw">
+          <children xmi:type="notation:Node" xmi:id="_TdjkQJYcEeerrOENfAvrGw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdjkQZYcEeerrOENfAvrGw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdkLUJYcEeerrOENfAvrGw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdkLUZYcEeerrOENfAvrGw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdkLUpYcEeerrOENfAvrGw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdkLU5YcEeerrOENfAvrGw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_TdiWIZYcEeerrOENfAvrGw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_TdiWIpYcEeerrOENfAvrGw" fontName="Segoe UI"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TdiWI5YcEeerrOENfAvrGw" points="[-5, -4, 133, 84]$[-113, -73, 25, 15]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdmnkJYcEeerrOENfAvrGw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdmnkZYcEeerrOENfAvrGw" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_TdmnkpYcEeerrOENfAvrGw" type="4001" element="_Tc3AwZYcEeerrOENfAvrGw" source="_Tdgg8JYcEeerrOENfAvrGw" target="_TdO0IJYcEeerrOENfAvrGw">
+          <children xmi:type="notation:Node" xmi:id="_TdnOoJYcEeerrOENfAvrGw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdnOoZYcEeerrOENfAvrGw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdnOopYcEeerrOENfAvrGw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdnOo5YcEeerrOENfAvrGw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_TdnOpJYcEeerrOENfAvrGw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TdnOpZYcEeerrOENfAvrGw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_Tdmnk5YcEeerrOENfAvrGw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_TdmnlJYcEeerrOENfAvrGw" fontName="Segoe UI" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TdmnlZYcEeerrOENfAvrGw" points="[5, -3, -157, 85]$[137, -75, -25, 13]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdnOppYcEeerrOENfAvrGw" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdnOp5YcEeerrOENfAvrGw" id="(0.5,0.5)"/>
+        </edges>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_Tc3As5YcEeerrOENfAvrGw" name="RootFeatureExample" incomingEdges="_Tc3Av5YcEeerrOENfAvrGw _Tc3AwZYcEeerrOENfAvrGw">
+      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_Tc3AtJYcEeerrOENfAvrGw" borderSize="1" borderSizeComputationExpression="1" foregroundColor="194,239,255">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@conditionnalStyles.0/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_Tc3AtZYcEeerrOENfAvrGw" name="OptionalFeatureB">
+      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+      <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_Tc3AtpYcEeerrOENfAvrGw" outgoingEdges="_Tc3Av5YcEeerrOENfAvrGw" width="1" height="1">
+        <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+        <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" xmi:id="_Tc3At5YcEeerrOENfAvrGw"/>
+        <ownedStyle xmi:type="diagram:Dot" xmi:id="_Tc3AuJYcEeerrOENfAvrGw" showIcon="false" hideLabelByDefault="true" backgroundColor="255,255,255">
+          <description xmi:type="style:DotDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']"/>
+      </ownedBorderedNodes>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_Tc3AuZYcEeerrOENfAvrGw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_Tc3AupYcEeerrOENfAvrGw" name="MandatoryFeatureA">
+      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+      <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_Tc3Au5YcEeerrOENfAvrGw" outgoingEdges="_Tc3AwZYcEeerrOENfAvrGw" width="1" height="1">
+        <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+        <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" xmi:id="_Tc3AvJYcEeerrOENfAvrGw"/>
+        <ownedStyle xmi:type="diagram:Dot" xmi:id="_Tc3AvZYcEeerrOENfAvrGw" showIcon="false" hideLabelByDefault="true" backgroundColor="0,0,0">
+          <description xmi:type="style:DotDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']"/>
+      </ownedBorderedNodes>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_Tc3AvpYcEeerrOENfAvrGw" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Tc3Av5YcEeerrOENfAvrGw" sourceNode="_Tc3AtpYcEeerrOENfAvrGw" targetNode="_Tc3As5YcEeerrOENfAvrGw">
+      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Tc3AwJYcEeerrOENfAvrGw" targetArrow="NoDecoration" size="2" centered="Both" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='optional_relation']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='optional_relation']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_Tc3AwZYcEeerrOENfAvrGw" sourceNode="_Tc3Au5YcEeerrOENfAvrGw" targetNode="_Tc3As5YcEeerrOENfAvrGw">
+      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Tc3AwpYcEeerrOENfAvrGw" targetArrow="NoDecoration" size="2" centered="Both" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='mandatory_relation']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Tc3Aw5YcEeerrOENfAvrGw"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='mandatory_relation']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_Tc3AxJYcEeerrOENfAvrGw"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer"/>
+    <target xmi:type="concernStrategy:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

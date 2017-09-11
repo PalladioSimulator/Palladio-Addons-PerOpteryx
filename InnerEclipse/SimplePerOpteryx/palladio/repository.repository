@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
   <repository:Repository id="_yUT1IGFaEeetxOZObiabqg" entityName="ShopRepo">
     <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="Payment">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1Cmx8GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_LtcnoGFbEeetxOZObiabqg"/>
@@ -114,18 +114,23 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_4JzMYGFbEeetxOZObiabqg">
       <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_vMFqgGFbEeetxOZObiabqg">
       <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_8Z-BEGFbEeetxOZObiabqg">
       <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
-      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#//@concerns.0/@annotationtarget.0"/>
-      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#//@concerns.0/@components.1/@annotationenrich.0"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="_yUT1IGFaEeetxOZObiabqg">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../peropteryx/transform.transformationmodel#//@transformation.0"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

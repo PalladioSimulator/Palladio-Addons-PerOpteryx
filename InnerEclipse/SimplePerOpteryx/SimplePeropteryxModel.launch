@@ -103,7 +103,7 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="10"/>
+<stringAttribute key="maxIterations" value="1"/>
 <stringAttribute key="maximumMeasurementCount" value="10000"/>
 <stringAttribute key="number of DSE iterations" value=""/>
 <intAttribute key="numberOfEvaluatedSystemStates" value="1"/>
