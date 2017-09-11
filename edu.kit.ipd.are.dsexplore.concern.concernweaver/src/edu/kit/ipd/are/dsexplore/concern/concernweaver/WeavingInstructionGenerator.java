@@ -144,6 +144,7 @@ public class WeavingInstructionGenerator {
 			boolean deleteMe = this.checkDelete(instruct, optChoice);
 			if (deleteMe) {
 				iter.remove();
+				System.out.println("DEBUG: Deleting WeavingInstruction " + instruct);
 			}
 		}
 	}

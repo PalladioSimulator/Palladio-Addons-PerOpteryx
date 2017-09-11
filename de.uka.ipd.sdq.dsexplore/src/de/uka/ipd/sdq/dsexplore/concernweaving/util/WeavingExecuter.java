@@ -70,7 +70,7 @@ public class WeavingExecuter {
 				this.optChoice.add(Pair.of((OptionalAsDegree) dofi, ch));
 			}
 		}
-		choices.removeIf(ch -> ch instanceof OptionalAsDegree);
+		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof OptionalAsDegree);
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {
