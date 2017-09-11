@@ -795,7 +795,13 @@ public class DSEProblem {
 		List<Feature> features = new ArrayList<>();
 		for (ElementaryConcernComponent ecc : eccs) {
 			Feature feature = this.getFeatureProvidedBy(ecc);
-			this.getThisAndSubfeatures(features, feature);
+			// INFO:
+			// For now only features which are directly mapped to an ECC will be
+			// mentioned here ..
+			// Maybe someone will decide to search features recursively .. then
+			// you can use this line ..
+			// this.getThisAndSubfeatures(features, feature);
+			features.add(feature);
 		}
 		List<Feature> optionals = new ArrayList<>();
 		for (Feature f : features) {
@@ -857,7 +863,7 @@ public class DSEProblem {
 	private void initInitialOptional(OptionalAsDegree oad, Feature op, DesignDecisionGenotype initialCandidate) {
 		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
 		// TODO DTHF1 Sth useful.
-		ch.setValue(false);
+		ch.setValue(true);
 		ch.setDegreeOfFreedomInstance(oad);
 		initialCandidate.add(ch);
 	}

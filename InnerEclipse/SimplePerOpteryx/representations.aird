@@ -177,6 +177,7 @@
     <semanticResources>palladio/PerOpteryx_results/allCandidates0_2017-09-11-111541.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/population0_2017-09-11-111541.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2017-09-11-111541.designdecision</semanticResources>
+    <semanticResources>platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="ShopRepoDiagram" representation="_zv_wAWFaEeetxOZObiabqg">
@@ -5064,7 +5065,7 @@
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']"/>
         </ownedElements>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQGniBEeeRzZ_keTeuDw" name="ComponentA" outgoingEdges="_oycQJHiBEeeRzZ_keTeuDw">
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQGniBEeeRzZ_keTeuDw" name="ECCA" outgoingEdges="_oycQJHiBEeeRzZ_keTeuDw">
         <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
         <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -5091,7 +5092,7 @@
           </ownedElements>
         </ownedDiagramElements>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQIHiBEeeRzZ_keTeuDw" name="ComponentB" incomingEdges="_oycQJHiBEeeRzZ_keTeuDw">
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_oycQIHiBEeeRzZ_keTeuDw" name="ECCB" incomingEdges="_oycQJHiBEeeRzZ_keTeuDw">
         <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
         <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>

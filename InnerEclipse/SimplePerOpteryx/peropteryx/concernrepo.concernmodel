@@ -6,10 +6,10 @@
         <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
         <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
       </strategies>
-      <components requires="/0/@concerns.0/@components.1" name="ComponentA">
+      <components requires="/0/@concerns.0/@components.1" name="ECCA">
         <annotationenrich name="EnrichA(RequireB)" description="" maxAmount="1"/>
       </components>
-      <components name="ComponentB" description="">
+      <components name="ECCB" description="">
         <annotationenrich name="EnrichB" maxAmount="1"/>
       </components>
       <annotationtarget name="TargetExample" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
@@ -23,6 +23,10 @@
     <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.1">
       <extension href="../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
       <provides href="strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:concernStrategy" appliedTo="/0/@concerns.0/@strategies.0">
+      <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_rV-DQF4-EeaB9J8tDaDTlA"/>
+      <featureSet href="strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/StrategyProfile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

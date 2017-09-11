@@ -22,6 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
@@ -36,6 +37,7 @@ public class WeavingExecuter {
 	private Pair<Concern, Repository> concernWithSolutionPair;
 	private List<ClassChoice> eccClassChoices = new ArrayList<>();
 	private PCMInstance wovenPCM = null;
+	private List<Pair<OptionalAsDegree, Choice>> optChoice;
 
 	public WeavingExecuter(List<Choice> choices) {
 
@@ -56,21 +58,29 @@ public class WeavingExecuter {
 
 		this.initSolutionMap(concernChoice.get());
 		this.initECCClassChoices(choices);
+		this.initOptionalDegrees(choices);
 
+	}
+
+	private void initOptionalDegrees(List<Choice> choices) {
+		this.optChoice = new ArrayList<>();
+		for (Choice ch : choices) {
+			DegreeOfFreedomInstance dofi = ch.getDegreeOfFreedomInstance();
+			if (dofi instanceof OptionalAsDegree) {
+				this.optChoice.add(Pair.of((OptionalAsDegree) dofi, ch));
+			}
+		}
+		choices.removeIf(ch -> ch instanceof OptionalAsDegree);
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {
-
 		this.concernWithSolutionPair = Pair.of(this.getConcernFrom(concernChoice), (Repository) concernChoice.getChosenValue());
-
 	}
 
 	private void initECCClassChoices(List<Choice> choices) {
-
 		List<ClassChoice> eccAllocDegrees = this.getAllocDegreesRelatedTo(this.concernWithSolutionPair.getFirst(), choices);
 		this.eccClassChoices.addAll(eccAllocDegrees);
 		choices.removeAll(eccAllocDegrees);
-
 	}
 
 	private Optional<ClassChoice> getConcernChoiceFrom(List<Choice> choices) {
@@ -145,7 +155,7 @@ public class WeavingExecuter {
 		}
 
 		WeavingManager weavingManager = WeavingManager.getInstance().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.weavingManagerIsNotInitialized()));
-		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap());
+		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap(), this.optChoice);
 
 		return this.wovenPCM;
 

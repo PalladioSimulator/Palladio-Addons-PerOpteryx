@@ -42,6 +42,7 @@ public class WeavingInstruction {
 		this.weavingLocation = weavingLocation;
 		this.transformationStrategy = transformationStrategy;
 		this.resourceContainer = resourceContainer;
+
 	}
 
 	/**

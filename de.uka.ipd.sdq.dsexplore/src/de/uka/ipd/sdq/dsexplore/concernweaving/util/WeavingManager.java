@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -29,8 +30,11 @@ import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 public class WeavingManager {
 
@@ -186,12 +190,12 @@ public class WeavingManager {
 		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, concernSolutions));
 	}
 
-	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution, HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap)
-			throws ConcernWeavingException, IOException {
+	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap,
+			List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException, IOException {
 
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
-		new WeavingJob(concern, this.getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute();
+		new WeavingJob(concern, this.getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute(optChoice);
 
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 

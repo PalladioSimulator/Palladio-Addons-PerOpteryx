@@ -57,7 +57,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
@@ -174,9 +173,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		 * TODO Make the selection of the appropriate applyChange method more
 		 * implicit. Maybe move the method to DesignDecision itself.
 		 */
-		if (OptionalAsDegree.class.isInstance(designDecision)) {
-			this.applyChangeOptionalAsDegree((OptionalAsDegree) designDecision, choice, trans, pcm);
-		} else if (ProcessingRateDegree.class.isInstance(designDecision)) {
+		if (ProcessingRateDegree.class.isInstance(designDecision)) {
 			this.applyChangeProcessingRateDecision((ProcessingRateDegree) designDecision, choice);
 
 			// Monitoring degree added
@@ -206,11 +203,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 				e.printStackTrace();
 			}
 		}
-	}
-
-	private void applyChangeOptionalAsDegree(OptionalAsDegree designDecision, Choice choice, GenomeToCandidateModelTransformation trans, PCMInstance pcm) {
-		// TODO DTHF1 Apply Change ..
-
 	}
 
 	private void applyChangeATNumberOfReplicaDegree(ATNumberOfReplicaDegree designDecision, Choice choice) {

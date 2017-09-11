@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.function.UnaryOperator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -23,13 +25,19 @@ import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import TransformationModel.Transformation;
+import concernStrategy.Feature;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
 
@@ -101,18 +109,22 @@ public class WeavingInstructionGenerator {
 	/**
 	 * Derives all weaving instructions from the annotated PCM model.
 	 *
+	 * @param optChoice
+	 *            all optional choices
 	 * @return the generated weaving instructions.
+	 *
 	 * @throws ConcernWeavingException
 	 *             - Will be thrown if an error occurs during the generation of
 	 *             the weaving instructions.
 	 */
-	public List<WeavingInstruction> getWeavingInstructions() throws ConcernWeavingException {
+	public List<WeavingInstruction> getWeavingInstructions(List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException {
 		try {
 			List<Pair<AnnotationTarget, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
 			List<WeavingInstruction> instructions = new ArrayList<>();
 			for (Pair<AnnotationTarget, WeavingLocation> targetLoc : targetLocs) {
 				instructions.add(this.generate(targetLoc));
 			}
+			this.applyOptionalAsDegree(optChoice, instructions);
 			return instructions;
 			// return
 			// this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs()).map(each
@@ -124,6 +136,54 @@ public class WeavingInstructionGenerator {
 		}
 
 	}
+
+	private void applyOptionalAsDegree(List<Pair<OptionalAsDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
+		Iterator<WeavingInstruction> iter = instructions.iterator();
+		while (iter.hasNext()) {
+			WeavingInstruction instruct = iter.next();
+			boolean deleteMe = this.checkDelete(instruct, optChoice);
+			if (deleteMe) {
+				iter.remove();
+			}
+		}
+	}
+
+	private boolean checkDelete(WeavingInstruction instruct, List<Pair<OptionalAsDegree, Choice>> optChoice) {
+		Feature feature = this.getFeatureProvidedBy(instruct.getECCWithConsumedFeatures().getFirst());
+		Object id = feature.getId();
+		Choice ch = null;
+		for (Pair<OptionalAsDegree, Choice> p : optChoice) {
+			Feature cF = (Feature) p.getFirst().getPrimaryChanged();
+			Object cId = cF.getId();
+			if (id.equals(cId)) {
+				ch = p.getSecond();
+				break;
+			}
+		}
+
+		if (ch == null) {
+			return false;
+		}
+		return !((BoolChoice) ch).isChosenValue();
+	}
+
+	///////////////////////////////////////
+	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
+	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
+		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
+		return this.getFeatureFrom(stereotypeApplication).orElseGet(() -> null);
+	}
+
+	private Optional<Feature> getFeatureFrom(StereotypeApplication stereotypeApplication) {
+		List<Feature> features = this.getFeaturesFrom(stereotypeApplication);
+		return features.isEmpty() ? Optional.empty() : Optional.of(features.get(0));
+	}
+
+	private List<Feature> getFeaturesFrom(StereotypeApplication stereotypeApplication) {
+		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
+	}
+
+	////////////////////////////////////////////////
 
 	private List<Pair<AnnotationTarget, WeavingLocation>> getWeavingLocationsFrom(List<Pair<AnnotationTarget, EObject>> targetAnnotatedElements) throws ConcernWeavingException {
 		return new WeavingLocationHandler(this.pcmInstance).extractWeavingLocationsFrom(targetAnnotatedElements);
