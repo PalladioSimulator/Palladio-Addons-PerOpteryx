@@ -110,6 +110,7 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_4JzMYGFbEeetxOZObiabqg">
       <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

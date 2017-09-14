@@ -13,7 +13,7 @@
         <annotationenrich name="Enrich_ECCB" maxAmount="1"/>
       </components>
       <annotationtarget name="Target_A_Req" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
-      <annotationtarget name="Target_B_Prov" maxAmount="1" joinPoint="INTERFACE_PROVIDES"/>
+      <annotationtarget name="Target_B_Prov" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>
