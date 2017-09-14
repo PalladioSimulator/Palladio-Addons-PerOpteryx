@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_Dbn-kGFfEeetxOZObiabqg">
   <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="PerfCostContractType">
-    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
     <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="PerfCostContract" contractType="_Gw0_1GFfEeetxOZObiabqg">
-    <criteria xsi:type="QMLContract:Objective" id="_byjGJWFfEeetxOZObiabqg">
-      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
-      <aspects xsi:type="QMLContract:Mean" id="_fLbGcmFfEeetxOZObiabqg"/>
-    </criteria>
     <criteria xsi:type="QMLContract:Objective" id="_XJ0ngGFfEeetxOZObiabqg">
       <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
       <aspects xsi:type="QMLContract:Value" id="_amT8hGFfEeetxOZObiabqg"/>
