@@ -7,22 +7,23 @@
         <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
       </strategies>
       <components requires="/0/@concerns.0/@components.1" name="ECCA">
-        <annotationenrich name="EnrichA(RequireB)" description="" maxAmount="1"/>
+        <annotationenrich name="Enrich_ECCA_(ReqB)" description="" maxAmount="1"/>
       </components>
       <components name="ECCB" description="">
-        <annotationenrich name="EnrichB" maxAmount="1"/>
+        <annotationenrich name="Enrich_ECCB" maxAmount="1"/>
       </components>
-      <annotationtarget name="TargetExample" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Target_A_Req" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Target_B_Prov" maxAmount="1" joinPoint="INTERFACE_PROVIDES"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.0">
       <extension href="../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
-      <provides href="strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+      <provides href="strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:ECCInterface" appliedTo="/0/@concerns.0/@components.1">
       <extension href="../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_ti_TEGLhEeaAKZu-_EZXZQ"/>
-      <provides href="strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+      <provides href="strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernStrategyProfile:concernStrategy" appliedTo="/0/@concerns.0/@strategies.0">
       <extension href="../../ConcernStrategyProfile/strategy.emfprofile_diagram#_rV-DQF4-EeaB9J8tDaDTlA"/>
