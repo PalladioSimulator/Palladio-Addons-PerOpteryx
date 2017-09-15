@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
-  <repository:Repository id="_yUT1IGFaEeetxOZObiabqg" entityName="PalladioMain" repositoryDescription="Basic Model stuff">
-    <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="Payment">
+  <repository:Repository id="_yUT1IGFaEeetxOZObiabqg" entityName="BaseRepository" repositoryDescription="Contains the basic components">
+    <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="ComponentTgtOptional">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1Cmx8GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_LtcnoGFbEeetxOZObiabqg"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_2dnXYGFbEeetxOZObiabqg" entityName="OperationRequiredRole1" requiredInterface__OperationRequiredRole="_Q6y2QGFbEeetxOZObiabqg"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_1Cy_MGFbEeetxOZObiabqg" describedService__SEFF="_Ugd8cGFbEeetxOZObiabqg">
@@ -13,7 +13,7 @@
         <steps_Behaviour xsi:type="seff:StopAction" id="_1EC8YmFbEeetxOZObiabqg" predecessor_AbstractAction="_1EC8YWFbEeetxOZObiabqg"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
-    <components__Repository xsi:type="repository:BasicComponent" id="_4JzMYGFbEeetxOZObiabqg" entityName="PaymentProvider-1">
+    <components__Repository xsi:type="repository:BasicComponent" id="_4JzMYGFbEeetxOZObiabqg" entityName="ComponentTgtMandatory">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-5O40GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-5afAGFbEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
         <steps_Behaviour xsi:type="seff:StartAction" id="_-5bGEGFbEeetxOZObiabqg" successor_AbstractAction="_-5bGEWFbEeetxOZObiabqg"/>
@@ -30,7 +30,7 @@
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
-    <components__Repository xsi:type="repository:BasicComponent" id="_8Z-BEGFbEeetxOZObiabqg" entityName="PaymentProvider-2">
+    <components__Repository xsi:type="repository:BasicComponent" id="_8Z-BEGFbEeetxOZObiabqg" entityName="ComonentWithoutAnnotations">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_AY_bYGFcEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_AZACcGFcEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
         <steps_Behaviour xsi:type="seff:StartAction" id="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
@@ -53,7 +53,7 @@
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
-    <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Payment">
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Interface1">
       <signatures__OperationInterface id="_Ugd8cGFbEeetxOZObiabqg" entityName="pay">
         <parameters__OperationSignature parameterName="from">
           <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
@@ -73,7 +73,7 @@
         <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
       </signatures__OperationInterface>
     </interfaces__Repository>
-    <interfaces__Repository xsi:type="repository:OperationInterface" id="_Q6y2QGFbEeetxOZObiabqg" entityName="PaymentProvider">
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_Q6y2QGFbEeetxOZObiabqg" entityName="Interface2">
       <signatures__OperationInterface id="_lIfeoGFbEeetxOZObiabqg" entityName="doPay">
         <parameters__OperationSignature parameterName="id">
           <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>

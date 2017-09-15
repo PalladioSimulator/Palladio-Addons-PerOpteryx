@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <concernStrategy:FeatureDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" id="_hkPYcGxWEeeQ_Pc6h3L3Dg" name="StrategyExample">
-  <rootFeature id="_refbEGxWEeeQ_Pc6h3L3Dg" name="RootFeatureExample">
+  <rootFeature id="_refbEGxWEeeQ_Pc6h3L3Dg" name="RootFeature">
     <childrelation xsi:type="concernStrategy:Simple">
       <optionalChildren id="_xRQD4GxWEeeQ_Pc6h3L3Dg" name="OptionalFeature"/>
       <mandatoryChildren id="_uUNrAWxWEeeQ_Pc6h3L3Dg" name="MandatoryFeature"/>

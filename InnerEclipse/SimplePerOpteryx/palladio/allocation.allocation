@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_VHIMcGFeEeetxOZObiabqg" entityName="New Allocation">
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_VHIMcGFeEeetxOZObiabqg" entityName="BaseAllocation">
   <targetResourceEnvironment_Allocation href="environment.resourceenvironment#/"/>
   <system_Allocation href="assembly.system#_gNGQwGFdEeetxOZObiabqg"/>
   <allocationContexts_Allocation id="_g3DXQGFeEeetxOZObiabqg" entityName="Allocation_Assembly_Payment">

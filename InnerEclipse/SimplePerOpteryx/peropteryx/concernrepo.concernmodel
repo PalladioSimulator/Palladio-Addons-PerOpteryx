@@ -6,14 +6,14 @@
         <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
         <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
       </strategies>
-      <components requires="/0/@concerns.0/@components.1" name="ECCA">
-        <annotationenrich name="Enrich_ECCA_(ReqB)" description="" maxAmount="1"/>
+      <components requires="/0/@concerns.0/@components.1" name="ECC4Optional">
+        <annotationenrich name="Enrich_ECC4Optional" description="" maxAmount="1"/>
       </components>
-      <components name="ECCB" description="">
-        <annotationenrich name="Enrich_ECCB" maxAmount="1"/>
+      <components name="ECC4Mandatory" description="">
+        <annotationenrich name="Enrich_ECC4Mandatory" maxAmount="1"/>
       </components>
-      <annotationtarget name="Target_A_Req" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
-      <annotationtarget name="Target_B_Prov" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Target4Optional" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Target4Mandatory" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>
