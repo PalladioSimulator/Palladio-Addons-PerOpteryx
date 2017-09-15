@@ -6,7 +6,7 @@
   <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="solutions.repository#_UUrhMJmYEeeDvYNI8KVQWQ"/>
   </cost>
-  <cost xsi:type="cost:ComponentCost" componentInitialCost="300.0">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="solutions.repository#_SftjoJmYEeeDvYNI8KVQWQ"/>
   </cost>
 </cost:CostRepository>
