@@ -788,8 +788,20 @@ public class DSEProblem {
 		}
 	}
 
+	/**
+	 * Determine {@link OptionalAsDegree}-DoFs.
+	 *
+	 * @param cd
+	 *            the concern degree
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @param concernRepo
+	 *            the concern repo
+	 * @author Dominik Fuchss
+	 */
 	private void determineOptionalAsDegreeDecisions(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
-		// TODO DTHF1 Break
 		Concern c = (Concern) cd.getPrimaryChanged();
 		List<ElementaryConcernComponent> eccs = c.getComponents();
 		List<Feature> features = new ArrayList<>();
@@ -805,29 +817,32 @@ public class DSEProblem {
 		}
 		List<Feature> optionals = new ArrayList<>();
 		for (Feature f : features) {
+			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
+			// not needed so far.
 			boolean isOptional = f.getSimpleOptional() != null;
-			// boolean isFGroup = f.getFeaturegroup() != null;
-
 			if (isOptional) {
 				optionals.add(f);
-				// continue;
 			}
-			// if (isFGroup) {
-			// // TODO What to do with FeatureGroup ..?
-			// optionals.add(f);
-			// }
-
 		}
 		for (Feature op : optionals) {
 			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
-			this.initInitialOptional(oad, op, initialCandidate);
+			this.initInitialOptional(oad, initialCandidate);
 		}
 
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * This method will add all features (including start) to a list
+	 *
+	 * @param features
+	 *            the target-list of features
+	 * @param start
+	 *            the start feature
+	 * @author Dominik Fuchss
+	 */
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
 		features.add(start);
 		ChildRelation rel = start.getChildrelation();
@@ -860,9 +875,19 @@ public class DSEProblem {
 
 	}
 
-	private void initInitialOptional(OptionalAsDegree oad, Feature op, DesignDecisionGenotype initialCandidate) {
+	/**
+	 * Initialize initial candidate with OptionalDegre
+	 *
+	 * @param oad
+	 *            the {@link OptionalAsDegree}-DoF
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @author Dominik Fuchss
+	 */
+	private void initInitialOptional(OptionalAsDegree oad, DesignDecisionGenotype initialCandidate) {
 		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
-		// TODO DTHF1 Sth useful.
+		// As all will weaved in the initial candidate, set choice for
+		// OptionalAsDegree to true
 		ch.setValue(true);
 		ch.setDegreeOfFreedomInstance(oad);
 		initialCandidate.add(ch);
@@ -870,6 +895,7 @@ public class DSEProblem {
 
 	///////////////////////////////////////
 	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
+
 	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
 		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
 		return this.getFeatureFrom(stereotypeApplication).orElseGet(() -> null);

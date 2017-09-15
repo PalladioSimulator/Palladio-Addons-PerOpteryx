@@ -137,6 +137,16 @@ public class WeavingInstructionGenerator {
 
 	}
 
+	/**
+	 * Apply {@link OptionalAsDegree}-Choices to the {@link WeavingInstruction
+	 * WeavingInstructions}.
+	 *
+	 * @param optChoice
+	 *            the {@link OptionalAsDegree}-Choices
+	 * @param instructions
+	 *            the {@link WeavingInstruction WeavingInstructions}
+	 * @author Dominik Fuchss
+	 */
 	private void applyOptionalAsDegree(List<Pair<OptionalAsDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
 		Iterator<WeavingInstruction> iter = instructions.iterator();
 		while (iter.hasNext()) {
@@ -149,6 +159,18 @@ public class WeavingInstructionGenerator {
 		}
 	}
 
+	/**
+	 * Check whether a {@link WeavingInstruction} shall be deleted because of an
+	 * {@link OptionalAsDegree}-Choice.
+	 * 
+	 * @param instruct
+	 *            the {@link WeavingInstruction}
+	 * @param optChoice
+	 *            all {@link OptionalAsDegree}-Choices
+	 * @return {@code true} if instruction shall deleted, {@code false}
+	 *         otherwise
+	 * @author Dominik Fuchss
+	 */
 	private boolean checkDelete(WeavingInstruction instruct, List<Pair<OptionalAsDegree, Choice>> optChoice) {
 		Feature feature = this.getFeatureProvidedBy(instruct.getECCWithConsumedFeatures().getFirst());
 		Object id = feature.getId();

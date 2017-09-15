@@ -37,31 +37,38 @@ public class WeavingExecuter {
 	private Pair<Concern, Repository> concernWithSolutionPair;
 	private List<ClassChoice> eccClassChoices = new ArrayList<>();
 	private PCMInstance wovenPCM = null;
+	/**
+	 * The list maps {@link OptionalAsDegree OptionalAsDegrees} to their
+	 * {@link Choice Choices}
+	 *
+	 * @author Dominik Fuchss
+	 */
 	private List<Pair<OptionalAsDegree, Choice>> optChoice;
 
 	public WeavingExecuter(List<Choice> choices) {
-
 		this.initialize(choices);
-
 	}
 
 	private void initialize(List<Choice> choices) {
-
 		Optional<ClassChoice> concernChoice = this.getConcernChoiceFrom(choices);
 		if (!concernChoice.isPresent()) {
-
 			return;
-
 		}
-
 		choices.remove(concernChoice.get());
-
 		this.initSolutionMap(concernChoice.get());
 		this.initECCClassChoices(choices);
 		this.initOptionalDegrees(choices);
 
 	}
 
+	/**
+	 * Initialize {@link OptionalAsDegree}-Choices (delete them from list of
+	 * choices, as they will processed in another way)
+	 *
+	 * @param choices
+	 *            the list of choices
+	 * @author Dominik Fuchss
+	 */
 	private void initOptionalDegrees(List<Choice> choices) {
 		this.optChoice = new ArrayList<>();
 		for (Choice ch : choices) {
@@ -115,80 +122,57 @@ public class WeavingExecuter {
 	}
 
 	private Concern getConcernFrom(ClassChoice concernChoice) {
-
 		ConcernDegree concernDegree = (ConcernDegree) concernChoice.getDegreeOfFreedomInstance();
 		return (Concern) (concernDegree).getPrimaryChanged();
-
 	}
 
 	private Concern getConcernFrom(AllocationDegree allocDegree) {
-
 		ElementaryConcernComponent ecc = (ElementaryConcernComponent) allocDegree.getPrimaryChanged();
 		return (Concern) ecc.eContainer();
-
 	}
 
 	private boolean isConcernDegree(DegreeOfFreedomInstance degreeOfFreedomInstance) {
-
 		return degreeOfFreedomInstance instanceof ConcernDegree;
-
 	}
 
 	private boolean isAllocationDegreeWithECC(DegreeOfFreedomInstance degreeOfFreedomInstance) {
-
 		return degreeOfFreedomInstance instanceof AllocationDegree && ((AllocationDegree) degreeOfFreedomInstance).getPrimaryChanged() instanceof ElementaryConcernComponent;
-
 	}
 
 	private boolean isRelatedTo(Concern concern, AllocationDegree allocDegree) {
-
 		String expectedConcernName = concern.getName();
 		String actualConcernName = this.getConcernFrom(allocDegree).getName();
 		return expectedConcernName.equals(actualConcernName);
-
 	}
 
 	public PCMInstance getWeavedPCMInstanceOf(PCMInstance pcm) throws ConcernWeavingException, IOException {
-
 		if (!WeavingManager.getInstance().isPresent()) {
 			return pcm;
 		}
-
 		WeavingManager weavingManager = WeavingManager.getInstance().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.weavingManagerIsNotInitialized()));
 		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap(), this.optChoice);
-
 		return this.wovenPCM;
-
 	}
 
 	private HashMap<ElementaryConcernComponent, ResourceContainer> getECCAllocationMap() {
-
 		HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap = new HashMap<>();
 		for (ClassChoice eccClassChoice : this.eccClassChoices) {
-
 			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			ResourceContainer chosenResourceContainer = (ResourceContainer) eccClassChoice.getChosenValue();
 			eccAllocationMap.put(ecc, chosenResourceContainer);
-
 		}
-
 		return eccAllocationMap;
-
 	}
 
 	public List<ClassChoice> getConvertedECCClassChoices() {
-
 		if (!this.checkIfPCMInstanceWasWoven()) {
-
 			return Collections.emptyList();
-
 		}
 
 		PcmAllocationManager allocManager = PcmAllocationManager.getInstanceBy(this.wovenPCM.getAllocation());
 		List<ClassChoice> allocChoices = new ArrayList<>();
 
 		for (ClassChoice eccClassChoice : this.eccClassChoices) {
-
 			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernSolutionManager.getInstanceBy(this.concernWithSolutionPair.getSecond()));
 			for (RepositoryComponent comp : eccHandler.getStructureOfECCAccordingTo(component -> Arrays.asList(component))) {
@@ -203,19 +187,13 @@ public class WeavingExecuter {
 				} catch (Exception e) {
 					// Can be ignored
 				}
-
 			}
-
 		}
-
 		return allocChoices;
-
 	}
 
 	private boolean checkIfPCMInstanceWasWoven() {
-
 		return !(this.wovenPCM == null);
-
 	}
 
 }
