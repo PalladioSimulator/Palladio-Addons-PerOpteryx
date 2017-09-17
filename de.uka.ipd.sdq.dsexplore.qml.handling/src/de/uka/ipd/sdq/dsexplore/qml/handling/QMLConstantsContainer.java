@@ -26,7 +26,7 @@ public class QMLConstantsContainer {
 	public static final String QUALITY_ATTRIBUTE_DIMENSION_MAX_UTIL_DEFINITION_PATH = "pathmap://PCM_MODELS/Dimension_maxCPUUtilization.qmlcontracttype";
 
 	// added:
-	public static final String QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH = "platform:/resource/BRSOptimisationTactics/QMLSecurity/Security.qmlcontracttype";
+	public static final String QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH = "platform:/plugin/edu.kit.ipd.are.dsexplore.analysis.security/Security.qmlcontracttype";
 
 	public static final String[] QUALITY_ATTRIBUTE_DIMENSION_DEFINITION_PATHS = new String[] {
 			QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH,

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" id="_SSqgAEXvEeeKzrt5EpePag" entityName="Security">
+  <type xsi:type="QMLContractType:DimensionTypeNumeric" id="_rroTYkXvEeer5JtvxHqL2g">
+    <relationSemantics id="_uL7F4EXvEeer5JtvxHqL2g" relSem="increasing"/>
+    <range id="_sOw1oUXvEeer5JtvxHqL2g" upperLimit="1.0"/>
+  </type>
+</QMLContractType:Dimension>
