@@ -87,7 +87,7 @@
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
 <stringAttribute key="featureConfig" value="pathmap://PCM_MODELS/ConnectorConfig.featureconfig"/>
-<stringAttribute key="indivPerGeneration" value="10"/>
+<stringAttribute key="indivPerGeneration" value="15"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
@@ -141,7 +141,7 @@
 <intAttribute key="solvingTimeLimit" value="1"/>
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
 <booleanAttribute key="store results as CSV" value="true"/>
-<booleanAttribute key="store results as EMF" value="true"/>
+<booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
 <stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>

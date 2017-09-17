@@ -6,7 +6,7 @@
   <cost xsi:type="cost:ComponentCost" componentInitialCost="2.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="../palladio/repository.repository#_8Z-BEGFbEeetxOZObiabqg"/>
   </cost>
-  <cost xsi:type="cost:ComponentCost" componentInitialCost="5.0">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="4.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="../palladio/repository.repository#_vMFqgGFbEeetxOZObiabqg"/>
   </cost>
 </cost:CostRepository>

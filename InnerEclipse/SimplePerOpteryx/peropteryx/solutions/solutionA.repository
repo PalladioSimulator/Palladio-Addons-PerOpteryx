@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
-  <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionRepo">
+  <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionARepo">
     <components__Repository xsi:type="repository:BasicComponent" id="_JHQmgJmYEeeDvYNI8KVQWQ" entityName="ComponentA_SolA">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_bgFX8JmYEeeDvYNI8KVQWQ" entityName="Provided_CompA_ComponentA_SolA" providedInterface__OperationProvidedRole="_VwU_0JmYEeeDvYNI8KVQWQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_h4MJgJmYEeeDvYNI8KVQWQ" entityName="Required_CompB_ComponentA_SolA" requiredInterface__OperationRequiredRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
@@ -16,11 +16,11 @@
         <steps_Behaviour xsi:type="seff:StopAction" id="_6F4KoZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_6F4KoJmaEee4PoOYbWOA6A"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
-    <components__Repository xsi:type="repository:BasicComponent" id="_SftjoJmYEeeDvYNI8KVQWQ" entityName="ComponentB_SolB">
-      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_cvNdgJmYEeeDvYNI8KVQWQ" entityName="Provided_CompB_ComponentB_SolB" providedInterface__OperationProvidedRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
-      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_4SikwJmaEee4PoOYbWOA6A" describedService__SEFF="_0fph8JmaEee4PoOYbWOA6A">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_4uQQYJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_4uQQYZmaEee4PoOYbWOA6A"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_4uQQYZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_4uQQYJmaEee4PoOYbWOA6A"/>
+    <components__Repository xsi:type="repository:BasicComponent" id="_JpKa0Jp2Eee4BdGBkPWzUg" entityName="ComponentB_SolC">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_MHUfUJp2Eee4BdGBkPWzUg" entityName="Provided_CompB_ComponentB_SolC" providedInterface__OperationProvidedRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_MHUfUZp2Eee4BdGBkPWzUg" describedService__SEFF="_0fph8JmaEee4PoOYbWOA6A">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_MHUfUpp2Eee4BdGBkPWzUg" entityName="start" successor_AbstractAction="_MHUfU5p2Eee4BdGBkPWzUg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_MHUfU5p2Eee4BdGBkPWzUg" entityName="stop" predecessor_AbstractAction="_MHUfUpp2Eee4BdGBkPWzUg"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_VwU_0JmYEeeDvYNI8KVQWQ" entityName="CompA">
@@ -51,11 +51,11 @@
       <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
       <solutionTag href="../solution.solutionmodel#//@solutions.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_SftjoJmYEeeDvYNI8KVQWQ">
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation">
       <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
       <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_SftjoJmYEeeDvYNI8KVQWQ">
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions">
       <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
       <solutionTag href="../solution.solutionmodel#//@solutions.1"/>
     </stereotypeApplications>
@@ -72,13 +72,25 @@
       <extension href="../../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
       <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_cvNdgJmYEeeDvYNI8KVQWQ">
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter">
       <extension href="../../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
       <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions">
       <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
       <solutionTag href="../solution.solutionmodel#//@solutions.1"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_JpKa0Jp2Eee4BdGBkPWzUg">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_JpKa0Jp2Eee4BdGBkPWzUg">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.2"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_MHUfUJp2Eee4BdGBkPWzUg">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/StrategyProfile/strategy.emfprofile_diagram"/>

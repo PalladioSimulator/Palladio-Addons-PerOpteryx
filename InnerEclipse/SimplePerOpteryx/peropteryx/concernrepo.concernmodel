@@ -12,8 +12,8 @@
       <components name="ECC4Mandatory" description="">
         <annotationenrich name="Enrich_ECC4Mandatory" maxAmount="1"/>
       </components>
-      <annotationtarget name="Target4Optional" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
-      <annotationtarget name="Target4Mandatory" maxAmount="1" joinPoint="INTERFACE_REQUIRES"/>
+      <annotationtarget name="Target4Optional" maxAmount="1" joinPoint="INTERFACE_PROVIDES"/>
+      <annotationtarget name="Target4Mandatory" maxAmount="1" joinPoint="INTERFACE_PROVIDES"/>
     </concerns>
   </Concern:ConcernRepository>
   <emfprofileapplication:ProfileApplication>

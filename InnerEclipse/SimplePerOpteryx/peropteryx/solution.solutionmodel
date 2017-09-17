@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Solution:SolutionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Solution="http://are.ipd.kit.edu/SolutionModel/1.0.0">
   <solutions name="SolutionA">
-    <repository href="solutions/solutions.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
+    <repository href="solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
     <costRepository href="solutions/solutions.cost#/"/>
   </solutions>
   <solutions name="SolutionB">
-    <repository href="solutions/solutions.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
+    <repository href="solutions/solutionB.repository#_l0s-IJpjEeeEPdMZenYK9Q"/>
+    <costRepository href="solutions/solutions.cost#/"/>
+  </solutions>
+  <solutions name="SolutionC">
+    <repository href="solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
     <costRepository href="solutions/solutions.cost#/"/>
   </solutions>
 </Solution:SolutionRepository>
