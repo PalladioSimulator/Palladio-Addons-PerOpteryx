@@ -22,6 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -44,6 +45,13 @@ public class WeavingExecuter {
 	 * @author Dominik Fuchss
 	 */
 	private List<Pair<OptionalAsDegree, Choice>> optChoice;
+	/**
+	 * The list maps {@link FeatureActiveIndicator FeatureActiveIndicators} to
+	 * their {@link Choice Choices}
+	 *
+	 * @author Dominik Fuchss
+	 */
+	private List<Pair<FeatureActiveIndicator, Choice>> featureIndicators;
 
 	public WeavingExecuter(List<Choice> choices) {
 		this.initialize(choices);
@@ -58,6 +66,7 @@ public class WeavingExecuter {
 		this.initSolutionMap(concernChoice.get());
 		this.initECCClassChoices(choices);
 		this.initOptionalDegrees(choices);
+		this.initFeatureIndicators(choices);
 
 	}
 
@@ -78,6 +87,26 @@ public class WeavingExecuter {
 			}
 		}
 		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof OptionalAsDegree);
+	}
+
+	/**
+	 * Initialize {@link FeatureActiveIndicator FeatureActiveIndicators} (delete
+	 * them from list of choices, as they will processed in another way)
+	 *
+	 * @param choices
+	 *            the list of choices
+	 * @author Dominik Fuchss
+	 */
+	private void initFeatureIndicators(List<Choice> choices) {
+		this.featureIndicators = new ArrayList<>();
+		for (Choice ch : choices) {
+			DegreeOfFreedomInstance dofi = ch.getDegreeOfFreedomInstance();
+			if (dofi instanceof FeatureActiveIndicator) {
+				this.featureIndicators.add(Pair.of((FeatureActiveIndicator) dofi, ch));
+			}
+		}
+		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureActiveIndicator);
+
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {
@@ -150,7 +179,8 @@ public class WeavingExecuter {
 			return pcm;
 		}
 		WeavingManager weavingManager = WeavingManager.getInstance().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.weavingManagerIsNotInitialized()));
-		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap(), this.optChoice);
+		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap(), //
+				this.optChoice, this.featureIndicators);
 		return this.wovenPCM;
 	}
 

@@ -28,6 +28,7 @@ import TransformationModel.Transformation;
 import concernStrategy.Feature;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
@@ -111,13 +112,15 @@ public class WeavingInstructionGenerator {
 	 *
 	 * @param optChoice
 	 *            all optional choices
+	 * @param featureIndicators
 	 * @return the generated weaving instructions.
 	 *
 	 * @throws ConcernWeavingException
 	 *             - Will be thrown if an error occurs during the generation of
 	 *             the weaving instructions.
 	 */
-	public List<WeavingInstruction> getWeavingInstructions(List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException {
+	public List<WeavingInstruction> getWeavingInstructions(List<Pair<OptionalAsDegree, Choice>> optChoice, List<Pair<FeatureActiveIndicator, Choice>> featureIndicators)
+			throws ConcernWeavingException {
 		try {
 			List<Pair<AnnotationTarget, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
 			List<WeavingInstruction> instructions = new ArrayList<>();
@@ -125,6 +128,7 @@ public class WeavingInstructionGenerator {
 				instructions.add(this.generate(targetLoc));
 			}
 			this.applyOptionalAsDegree(optChoice, instructions);
+			this.setFeatureIndicators(featureIndicators, instructions);
 			return instructions;
 			// return
 			// this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs()).map(each
@@ -148,6 +152,9 @@ public class WeavingInstructionGenerator {
 	 * @author Dominik Fuchss
 	 */
 	private void applyOptionalAsDegree(List<Pair<OptionalAsDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
+		if (optChoice == null) {
+			return;
+		}
 		Iterator<WeavingInstruction> iter = instructions.iterator();
 		while (iter.hasNext()) {
 			WeavingInstruction instruct = iter.next();
@@ -160,9 +167,38 @@ public class WeavingInstructionGenerator {
 	}
 
 	/**
+	 * Set the {@link FeatureActiveIndicator FeatureActiveIndicators} by
+	 * {@link WeavingInstruction WeavingInstructions}
+	 *
+	 * @param featureIndicators
+	 *            the indicators
+	 * @param instructions
+	 *            the instructions
+	 */
+	private void setFeatureIndicators(List<Pair<FeatureActiveIndicator, Choice>> featureIndicators, List<WeavingInstruction> instructions) {
+		if (featureIndicators == null) {
+			return;
+		}
+		// Reset all to false (may not needed ..)
+		featureIndicators.forEach(fc -> ((BoolChoice) fc.getSecond()).setChosenValue(false));
+		for (WeavingInstruction instruction : instructions) {
+			final Feature active = this.getFeatureProvidedBy(instruction.getECCWithConsumedFeatures().getFirst());
+			if (active == null) {
+				continue;
+			}
+			Pair<FeatureActiveIndicator, Choice> provided = featureIndicators.stream().filter(fi -> active.getId().equals(((Feature) fi.getFirst().getPrimaryChanged()).getId())).findFirst()
+					.orElseGet(null);
+			if (provided != null) {
+				((BoolChoice) provided.getSecond()).setChosenValue(true);
+			}
+		}
+
+	}
+
+	/**
 	 * Check whether a {@link WeavingInstruction} shall be deleted because of an
 	 * {@link OptionalAsDegree}-Choice.
-	 * 
+	 *
 	 * @param instruct
 	 *            the {@link WeavingInstruction}
 	 * @param optChoice

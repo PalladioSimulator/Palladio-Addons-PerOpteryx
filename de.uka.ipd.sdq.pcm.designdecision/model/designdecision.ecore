@@ -441,7 +441,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="ConcernDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
-  	<eClassifiers xsi:type="ecore:EClass" name="OptionalAsDegree" eSuperTypes="#//specific/ClassAsReferenceDegree">
+    <eClassifiers xsi:type="ecore:EClass" name="OptionalAsDegree" eSuperTypes="#//specific/ClassAsReferenceDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This Degree of Freedom is representing the existence of an optional feature in the current assembly.&#xD;&#xA;The Feature itself will set as &quot;PrimaryChanged&quot;."/>
       </eAnnotations>
@@ -452,6 +452,16 @@
           <details key="documentation" value="This bool indicates whether the OptionalFeature can be present or not."/>
         </eAnnotations>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IndicatorDegree" abstract="true" eSuperTypes="#//DegreeOfFreedomInstance">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This Degree of Freedom is representing an indicator. That degree cannot set randomly but indicates some design decision which made by other degrees."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FeatureActiveIndicator" eSuperTypes="#//specific/IndicatorDegree">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This indicates whether a Feature is active in the current instance.&#xD;&#xA;The Feature will set as &quot;PrimaryChanged&quot;"/>
+      </eAnnotations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

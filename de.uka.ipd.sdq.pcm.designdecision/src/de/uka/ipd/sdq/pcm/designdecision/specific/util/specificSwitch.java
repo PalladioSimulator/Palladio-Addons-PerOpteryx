@@ -743,6 +743,30 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case specificPackage.INDICATOR_DEGREE: {
+			IndicatorDegree indicatorDegree = (IndicatorDegree) theEObject;
+			T result = caseIndicatorDegree(indicatorDegree);
+			if (result == null)
+				result = caseDegreeOfFreedomInstance(indicatorDegree);
+			if (result == null)
+				result = caseNamedElement(indicatorDegree);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case specificPackage.FEATURE_ACTIVE_INDICATOR: {
+			FeatureActiveIndicator featureActiveIndicator = (FeatureActiveIndicator) theEObject;
+			T result = caseFeatureActiveIndicator(featureActiveIndicator);
+			if (result == null)
+				result = caseIndicatorDegree(featureActiveIndicator);
+			if (result == null)
+				result = caseDegreeOfFreedomInstance(featureActiveIndicator);
+			if (result == null)
+				result = caseNamedElement(featureActiveIndicator);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -1289,6 +1313,36 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOptionalAsDegree(OptionalAsDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Indicator Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Indicator Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndicatorDegree(IndicatorDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Active Indicator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Active Indicator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureActiveIndicator(FeatureActiveIndicator object) {
 		return null;
 	}
 

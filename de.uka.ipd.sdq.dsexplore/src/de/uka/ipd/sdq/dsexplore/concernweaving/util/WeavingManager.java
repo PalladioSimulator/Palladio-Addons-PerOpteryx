@@ -31,6 +31,7 @@ import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -191,11 +192,11 @@ public class WeavingManager {
 	}
 
 	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap,
-			List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException, IOException {
+			List<Pair<OptionalAsDegree, Choice>> optChoice, List<Pair<FeatureActiveIndicator, Choice>> featureIndicators) throws ConcernWeavingException, IOException {
 
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
-		new WeavingJob(concern, this.getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute(optChoice);
+		new WeavingJob(concern, this.getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute(optChoice, featureIndicators);
 
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 

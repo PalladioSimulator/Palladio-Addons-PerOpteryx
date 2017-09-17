@@ -55,6 +55,7 @@ public class specificTests extends TestSuite {
 		suite.addTestSuite(ATNumberOfReplicaDegreeTest.class);
 		suite.addTestSuite(ConcernDegreeTest.class);
 		suite.addTestSuite(OptionalAsDegreeTest.class);
+		suite.addTestSuite(FeatureActiveIndicatorTest.class);
 		return suite;
 	}
 

@@ -10,6 +10,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.ConcernWeaver;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstructionGenerator;
@@ -26,8 +27,8 @@ public class WeavingJob {
 		this.concernWeaver = ConcernWeaver.getBy(pcmToWeave, concernSolution);
 	}
 
-	public void execute(List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException {
-		this.concernWeaver.start(this.generator.getWeavingInstructions(optChoice));
+	public void execute(List<Pair<OptionalAsDegree, Choice>> optChoice, List<Pair<FeatureActiveIndicator, Choice>> featureIndicators) throws ConcernWeavingException {
+		this.concernWeaver.start(this.generator.getWeavingInstructions(optChoice, featureIndicators));
 	}
 
 }

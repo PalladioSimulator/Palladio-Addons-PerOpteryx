@@ -81,6 +81,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
@@ -181,38 +182,24 @@ public class DSEProblem {
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		List<ConcernRepository> concernRepo;
 		try {
-
 			concernRepo = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
-
 		} catch (Exception ex) {
-
 			return Collections.emptyList();
-
 		}
-
 		return this.getConcernCostsFrom(concernRepo.stream());
-
 	}
 
 	private List<Solution> getConcernCostsFrom(Stream<ConcernRepository> concernRepo) {
-
 		return concernRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each -> each.getStrategies().stream()).flatMap(each -> each.getConcernSolutions().stream())
 				.filter(each -> each.getCostRepository() instanceof CostRepository).collect(Collectors.toList());
-
 	}
 
 	private Optional<String> getCostModelFileName() {
-
 		try {
-
 			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
-
 		} catch (CoreException e) {
-
 			return Optional.empty();
-
 		}
-
 	}
 
 	private Optional<CostRepository> getCostModel() {
@@ -567,6 +554,7 @@ public class DSEProblem {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
 			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
 			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
+			this.determineFeatureActiveIndicators(eachConcernDegree, dds, initialCandidate, concernRepo);
 		}
 
 	}
@@ -911,6 +899,58 @@ public class DSEProblem {
 	}
 
 	////////////////////////////////////////////////
+
+	/**
+	 * Find all possible features and add {@link FeatureActiveIndicator}.
+	 *
+	 * @param cd
+	 *            the concern degree
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @param concernRepo
+	 *            the concern repo
+	 * @author Dominik Fuchss
+	 */
+	private void determineFeatureActiveIndicators(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
+		Concern c = (Concern) cd.getPrimaryChanged();
+		List<ElementaryConcernComponent> eccs = c.getComponents();
+		List<Feature> features = new ArrayList<>();
+		for (ElementaryConcernComponent ecc : eccs) {
+			Feature feature = this.getFeatureProvidedBy(ecc);
+			features.add(feature);
+		}
+
+		for (Feature feature : features) {
+			if (feature != null) {
+				this.addFeatureActiveIndicator(feature, dds, initialCandidate);
+			}
+		}
+
+	}
+
+	/**
+	 * Create (Add) a {@link FeatureActiveIndicator}.
+	 *
+	 * @param feature
+	 *            the feature
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 */
+	private void addFeatureActiveIndicator(Feature feature, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+		FeatureActiveIndicator ind = this.specificDesignDecisionFactory.createFeatureActiveIndicator();
+		ind.setPrimaryChanged(feature);
+		dds.add(ind);
+		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+		ch.setDegreeOfFreedomInstance(ind);
+		ch.setChosenValue(false);
+		initialCandidate.add(ch);
+
+	}
+
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
 		return this.pcmProblem.getDegreesOfFreedom().get(index);
 	}
