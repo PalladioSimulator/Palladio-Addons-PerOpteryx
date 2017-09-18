@@ -691,6 +691,52 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureActiveIndicatorItemProvider featureActiveIndicatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureActiveIndicatorAdapter() {
+		if (featureActiveIndicatorItemProvider == null) {
+			featureActiveIndicatorItemProvider = new FeatureActiveIndicatorItemProvider(this);
+		}
+
+		return featureActiveIndicatorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SolutionIndicatorItemProvider solutionIndicatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSolutionIndicatorAdapter() {
+		if (solutionIndicatorItemProvider == null) {
+			solutionIndicatorItemProvider = new SolutionIndicatorItemProvider(this);
+		}
+
+		return solutionIndicatorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -843,6 +889,10 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			concernDegreeItemProvider.dispose();
 		if (optionalAsDegreeItemProvider != null)
 			optionalAsDegreeItemProvider.dispose();
+		if (featureActiveIndicatorItemProvider != null)
+			featureActiveIndicatorItemProvider.dispose();
+		if (solutionIndicatorItemProvider != null)
+			solutionIndicatorItemProvider.dispose();
 	}
 
 }

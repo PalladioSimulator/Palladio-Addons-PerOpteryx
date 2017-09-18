@@ -25,8 +25,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
+import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 
 /**
  * The {@link DSECreator} is responsible for randomly creating genotypes in the
@@ -116,7 +119,9 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		designdecisionFactory factory = designdecisionFactoryImpl.init();
 
 		Choice choice;
-		if (degree instanceof OptionalAsDegree) {
+		if (degree instanceof IndicatorDegree) {
+			choice = this.processIndicator(degree, factory);
+		} else if (degree instanceof OptionalAsDegree) {
 			BoolChoice setOrNotSet = factory.createBoolChoice();
 			setOrNotSet.setChosenValue(this.random.nextBoolean());
 			choice = setOrNotSet;
@@ -154,6 +159,32 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		}
 		choice.setDegreeOfFreedomInstance(degree);
 		return choice;
+	}
+
+	/**
+	 * Process an {@link IndicatorDegree}.
+	 *
+	 * @param degree
+	 *            the degree
+	 * @param factory
+	 *            the factory
+	 * @return the choice (initialized with {@code null} or another default
+	 *         value) for the degree
+	 * @author Dominik Fuchss
+	 */
+	private Choice processIndicator(DegreeOfFreedomInstance degree, designdecisionFactory factory) {
+		if (degree instanceof FeatureActiveIndicator) {
+			BoolChoice ch = factory.createBoolChoice();
+			ch.setChosenValue(false);
+			ch.setDegreeOfFreedomInstance(degree);
+			return ch;
+		}
+		if (degree instanceof SolutionIndicator) {
+			ClassChoice ch = factory.createClassChoice();
+			ch.setDegreeOfFreedomInstance(degree);
+			return ch;
+		}
+		throw new RuntimeException("Unknown indicator " + degree.getClass().getName());
 	}
 
 	private Object createRandomValue(DegreeOfFreedomInstance degree) {

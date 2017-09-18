@@ -111,6 +111,7 @@ public class WeavingInstructionGenerator {
 	 *
 	 * @param optChoice
 	 *            all optional choices
+	 * @param featureIndicators
 	 * @return the generated weaving instructions.
 	 *
 	 * @throws ConcernWeavingException
@@ -148,13 +149,15 @@ public class WeavingInstructionGenerator {
 	 * @author Dominik Fuchss
 	 */
 	private void applyOptionalAsDegree(List<Pair<OptionalAsDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
+		if (optChoice == null) {
+			return;
+		}
 		Iterator<WeavingInstruction> iter = instructions.iterator();
 		while (iter.hasNext()) {
 			WeavingInstruction instruct = iter.next();
 			boolean deleteMe = this.checkDelete(instruct, optChoice);
 			if (deleteMe) {
 				iter.remove();
-				System.out.println("DEBUG: Deleting WeavingInstruction " + instruct);
 			}
 		}
 	}
@@ -162,7 +165,7 @@ public class WeavingInstructionGenerator {
 	/**
 	 * Check whether a {@link WeavingInstruction} shall be deleted because of an
 	 * {@link OptionalAsDegree}-Choice.
-	 * 
+	 *
 	 * @param instruct
 	 *            the {@link WeavingInstruction}
 	 * @param optChoice

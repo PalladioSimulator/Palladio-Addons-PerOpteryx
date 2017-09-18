@@ -2,7 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.impl;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,18 +13,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Concern Degree</b></em>'.
+ * An implementation of the model object '<em><b>Feature Active Indicator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ConcernDegreeImpl#getFeatureDiagram <em>Feature Diagram</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureActiveIndicatorImpl#getFeatureDiagram <em>Feature Diagram</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements ConcernDegree {
+public class FeatureActiveIndicatorImpl extends IndicatorDegreeImpl implements FeatureActiveIndicator {
 	/**
 	 * The cached value of the '{@link #getFeatureDiagram() <em>Feature Diagram</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -40,7 +40,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConcernDegreeImpl() {
+	protected FeatureActiveIndicatorImpl() {
 		super();
 	}
 
@@ -51,7 +51,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return specificPackage.Literals.CONCERN_DEGREE;
+		return specificPackage.Literals.FEATURE_ACTIVE_INDICATOR;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 			featureDiagram = eResolveProxy(oldFeatureDiagram);
 			if (featureDiagram != oldFeatureDiagram) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM, oldFeatureDiagram, featureDiagram));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM, oldFeatureDiagram, featureDiagram));
 			}
 		}
 		return featureDiagram;
@@ -91,7 +91,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 		EObject oldFeatureDiagram = featureDiagram;
 		featureDiagram = newFeatureDiagram;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM, oldFeatureDiagram, featureDiagram));
+			eNotify(new ENotificationImpl(this, Notification.SET, specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM, oldFeatureDiagram, featureDiagram));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM:
+		case specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM:
 			if (resolve)
 				return getFeatureDiagram();
 			return basicGetFeatureDiagram();
@@ -118,7 +118,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM:
+		case specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM:
 			setFeatureDiagram((EObject) newValue);
 			return;
 		}
@@ -133,7 +133,7 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM:
+		case specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM:
 			setFeatureDiagram((EObject) null);
 			return;
 		}
@@ -148,10 +148,10 @@ public class ConcernDegreeImpl extends ClassAsReferenceDegreeImpl implements Con
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case specificPackage.CONCERN_DEGREE__FEATURE_DIAGRAM:
+		case specificPackage.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM:
 			return featureDiagram != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ConcernDegreeImpl
+} //FeatureActiveIndicatorImpl

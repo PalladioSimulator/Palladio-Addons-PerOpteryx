@@ -8,8 +8,4 @@
     <repository href="solutions/solutionB.repository#_l0s-IJpjEeeEPdMZenYK9Q"/>
     <costRepository href="solutions/solutions.cost#/"/>
   </solutions>
-  <solutions name="SolutionC">
-    <repository href="solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
-    <costRepository href="solutions/solutions.cost#/"/>
-  </solutions>
 </Solution:SolutionRepository>

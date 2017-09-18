@@ -2,29 +2,35 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
+import de.uka.ipd.sdq.pcm.designdecision.provider.DegreeOfFreedomInstanceItemProvider;
+import de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin;
+
+import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree} object.
+ * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProvider {
+public class IndicatorDegreeItemProvider extends DegreeOfFreedomInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionalAsDegreeItemProvider(AdapterFactory adapterFactory) {
+	public IndicatorDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,17 +50,6 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	}
 
 	/**
-	 * This returns OptionalAsDegree.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OptionalAsDegree"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,8 +57,8 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OptionalAsDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_OptionalAsDegree_type") : getString("_UI_OptionalAsDegree_type") + " " + label;
+		String label = ((IndicatorDegree) object).getEntityName();
+		return label == null || label.length() == 0 ? getString("_UI_IndicatorDegree_type") : getString("_UI_IndicatorDegree_type") + " " + label;
 	}
 
 	/**
@@ -89,6 +84,17 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DesignDecisionEditPlugin.INSTANCE;
 	}
 
 }

@@ -40,9 +40,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureConfigDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureSubset;
+import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsListDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresAsRangeDegree;
@@ -58,6 +60,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringSetDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
@@ -313,6 +316,27 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	private EClass optionalAsDegreeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass indicatorDegreeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureActiveIndicatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass solutionIndicatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -928,6 +952,16 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getConcernDegree_FeatureDiagram() {
+		return (EReference) concernDegreeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getOptionalAsDegree() {
 		return optionalAsDegreeEClass;
 	}
@@ -938,8 +972,38 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getOptionalAsDegree_IsSet() {
-		return (EAttribute) optionalAsDegreeEClass.getEStructuralFeatures().get(0);
+	public EClass getIndicatorDegree() {
+		return indicatorDegreeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureActiveIndicator() {
+		return featureActiveIndicatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureActiveIndicator_FeatureDiagram() {
+		return (EReference) featureActiveIndicatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSolutionIndicator() {
+		return solutionIndicatorEClass;
 	}
 
 	/**
@@ -1065,9 +1129,16 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		atNumberOfReplicaDegreeEClass = createEClass(AT_NUMBER_OF_REPLICA_DEGREE);
 
 		concernDegreeEClass = createEClass(CONCERN_DEGREE);
+		createEReference(concernDegreeEClass, CONCERN_DEGREE__FEATURE_DIAGRAM);
 
 		optionalAsDegreeEClass = createEClass(OPTIONAL_AS_DEGREE);
-		createEAttribute(optionalAsDegreeEClass, OPTIONAL_AS_DEGREE__IS_SET);
+
+		indicatorDegreeEClass = createEClass(INDICATOR_DEGREE);
+
+		featureActiveIndicatorEClass = createEClass(FEATURE_ACTIVE_INDICATOR);
+		createEReference(featureActiveIndicatorEClass, FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM);
+
+		solutionIndicatorEClass = createEClass(SOLUTION_INDICATOR);
 	}
 
 	/**
@@ -1152,6 +1223,9 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		atNumberOfReplicaDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
 		concernDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 		optionalAsDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
+		indicatorDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
+		featureActiveIndicatorEClass.getESuperTypes().add(this.getIndicatorDegree());
+		solutionIndicatorEClass.getESuperTypes().add(this.getIndicatorDegree());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(exchangeComponentRuleEClass, ExchangeComponentRule.class, "ExchangeComponentRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1271,10 +1345,18 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(atNumberOfReplicaDegreeEClass, ATNumberOfReplicaDegree.class, "ATNumberOfReplicaDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(concernDegreeEClass, ConcernDegree.class, "ConcernDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConcernDegree_FeatureDiagram(), theEcorePackage.getEObject(), null, "FeatureDiagram", null, 0, 1, ConcernDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(optionalAsDegreeEClass, OptionalAsDegree.class, "OptionalAsDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOptionalAsDegree_IsSet(), theTypesPackage.getBoolean(), "isSet", "false", 0, 1, OptionalAsDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				!IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(indicatorDegreeEClass, IndicatorDegree.class, "IndicatorDegree", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(featureActiveIndicatorEClass, FeatureActiveIndicator.class, "FeatureActiveIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureActiveIndicator_FeatureDiagram(), theEcorePackage.getEObject(), null, "FeatureDiagram", null, 0, 1, FeatureActiveIndicator.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(solutionIndicatorEClass, SolutionIndicator.class, "SolutionIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // specificPackageImpl

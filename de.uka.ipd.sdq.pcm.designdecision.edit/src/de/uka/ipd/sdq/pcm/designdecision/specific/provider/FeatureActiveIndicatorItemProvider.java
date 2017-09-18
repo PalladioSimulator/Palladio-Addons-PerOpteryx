@@ -2,29 +2,32 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
+
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree} object.
+ * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProvider {
+public class FeatureActiveIndicatorItemProvider extends IndicatorDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionalAsDegreeItemProvider(AdapterFactory adapterFactory) {
+	public FeatureActiveIndicatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -39,19 +42,33 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFeatureDiagramPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns OptionalAsDegree.gif.
+	 * This adds a property descriptor for the Feature Diagram feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFeatureDiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(
+				createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FeatureActiveIndicator_FeatureDiagram_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureActiveIndicator_FeatureDiagram_feature", "_UI_FeatureActiveIndicator_type"),
+						specificPackage.Literals.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This returns FeatureActiveIndicator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OptionalAsDegree"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureActiveIndicator"));
 	}
 
 	/**
@@ -62,8 +79,8 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OptionalAsDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_OptionalAsDegree_type") : getString("_UI_OptionalAsDegree_type") + " " + label;
+		String label = ((FeatureActiveIndicator) object).getEntityName();
+		return label == null || label.length() == 0 ? getString("_UI_FeatureActiveIndicator_type") : getString("_UI_FeatureActiveIndicator_type") + " " + label;
 	}
 
 	/**

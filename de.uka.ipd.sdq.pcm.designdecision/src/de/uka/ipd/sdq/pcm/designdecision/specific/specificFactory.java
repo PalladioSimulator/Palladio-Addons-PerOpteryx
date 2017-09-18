@@ -257,6 +257,24 @@ public interface specificFactory extends EFactory {
 	OptionalAsDegree createOptionalAsDegree();
 
 	/**
+	 * Returns a new object of class '<em>Feature Active Indicator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Active Indicator</em>'.
+	 * @generated
+	 */
+	FeatureActiveIndicator createFeatureActiveIndicator();
+
+	/**
+	 * Returns a new object of class '<em>Solution Indicator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solution Indicator</em>'.
+	 * @generated
+	 */
+	SolutionIndicator createSolutionIndicator();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

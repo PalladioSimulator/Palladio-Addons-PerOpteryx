@@ -3258,13 +3258,22 @@ public interface specificPackage extends EPackage {
 	int CONCERN_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
 
 	/**
+	 * The feature id for the '<em><b>Feature Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCERN_DEGREE__FEATURE_DIAGRAM = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Concern Degree</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCERN_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+	int CONCERN_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl <em>Optional As Degree</em>}' class.
@@ -3331,22 +3340,214 @@ public interface specificPackage extends EPackage {
 	int OPTIONAL_AS_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Is Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPTIONAL_AS_DEGREE__IS_SET = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Optional As Degree</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONAL_AS_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 1;
+	int OPTIONAL_AS_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.IndicatorDegreeImpl <em>Indicator Degree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.IndicatorDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getIndicatorDegree()
+	 * @generated
+	 */
+	int INDICATOR_DEGREE = 40;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE__ENTITY_NAME = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE__PRIMARY_CHANGED = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE__DOF = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE__CHANGEABLE_ELEMENTS = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE__DECORATOR_MODEL = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE__DECORATOR_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Indicator Degree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDICATOR_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureActiveIndicatorImpl <em>Feature Active Indicator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureActiveIndicatorImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getFeatureActiveIndicator()
+	 * @generated
+	 */
+	int FEATURE_ACTIVE_INDICATOR = 41;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__ENTITY_NAME = INDICATOR_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__PRIMARY_CHANGED = INDICATOR_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__DOF = INDICATOR_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__CHANGEABLE_ELEMENTS = INDICATOR_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__DECORATOR_MODEL = INDICATOR_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The feature id for the '<em><b>Feature Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM = INDICATOR_DEGREE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Feature Active Indicator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_ACTIVE_INDICATOR_FEATURE_COUNT = INDICATOR_DEGREE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.SolutionIndicatorImpl <em>Solution Indicator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.SolutionIndicatorImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getSolutionIndicator()
+	 * @generated
+	 */
+	int SOLUTION_INDICATOR = 42;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR__ENTITY_NAME = INDICATOR_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR__PRIMARY_CHANGED = INDICATOR_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR__DOF = INDICATOR_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR__CHANGEABLE_ELEMENTS = INDICATOR_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR__DECORATOR_MODEL = INDICATOR_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Solution Indicator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION_INDICATOR_FEATURE_COUNT = INDICATOR_DEGREE_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule <em>Exchange Component Rule</em>}'.
@@ -3905,6 +4106,17 @@ public interface specificPackage extends EPackage {
 	EClass getConcernDegree();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree#getFeatureDiagram <em>Feature Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Feature Diagram</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree#getFeatureDiagram()
+	 * @see #getConcernDegree()
+	 * @generated
+	 */
+	EReference getConcernDegree_FeatureDiagram();
+
+	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree <em>Optional As Degree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3915,15 +4127,45 @@ public interface specificPackage extends EPackage {
 	EClass getOptionalAsDegree();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree#isSet <em>Is Set</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree <em>Indicator Degree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Set</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree#isSet()
-	 * @see #getOptionalAsDegree()
+	 * @return the meta object for class '<em>Indicator Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree
 	 * @generated
 	 */
-	EAttribute getOptionalAsDegree_IsSet();
+	EClass getIndicatorDegree();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator <em>Feature Active Indicator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Active Indicator</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator
+	 * @generated
+	 */
+	EClass getFeatureActiveIndicator();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator#getFeatureDiagram <em>Feature Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Feature Diagram</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator#getFeatureDiagram()
+	 * @see #getFeatureActiveIndicator()
+	 * @generated
+	 */
+	EReference getFeatureActiveIndicator_FeatureDiagram();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator <em>Solution Indicator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Solution Indicator</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator
+	 * @generated
+	 */
+	EClass getSolutionIndicator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4466,6 +4708,14 @@ public interface specificPackage extends EPackage {
 		EClass CONCERN_DEGREE = eINSTANCE.getConcernDegree();
 
 		/**
+		 * The meta object literal for the '<em><b>Feature Diagram</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCERN_DEGREE__FEATURE_DIAGRAM = eINSTANCE.getConcernDegree_FeatureDiagram();
+
+		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.OptionalAsDegreeImpl <em>Optional As Degree</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4476,12 +4726,42 @@ public interface specificPackage extends EPackage {
 		EClass OPTIONAL_AS_DEGREE = eINSTANCE.getOptionalAsDegree();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Set</b></em>' attribute feature.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.IndicatorDegreeImpl <em>Indicator Degree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.IndicatorDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getIndicatorDegree()
+		 * @generated
+		 */
+		EClass INDICATOR_DEGREE = eINSTANCE.getIndicatorDegree();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureActiveIndicatorImpl <em>Feature Active Indicator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureActiveIndicatorImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getFeatureActiveIndicator()
+		 * @generated
+		 */
+		EClass FEATURE_ACTIVE_INDICATOR = eINSTANCE.getFeatureActiveIndicator();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature Diagram</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPTIONAL_AS_DEGREE__IS_SET = eINSTANCE.getOptionalAsDegree_IsSet();
+		EReference FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM = eINSTANCE.getFeatureActiveIndicator_FeatureDiagram();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.SolutionIndicatorImpl <em>Solution Indicator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.SolutionIndicatorImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getSolutionIndicator()
+		 * @generated
+		 */
+		EClass SOLUTION_INDICATOR = eINSTANCE.getSolutionIndicator();
 
 	}
 

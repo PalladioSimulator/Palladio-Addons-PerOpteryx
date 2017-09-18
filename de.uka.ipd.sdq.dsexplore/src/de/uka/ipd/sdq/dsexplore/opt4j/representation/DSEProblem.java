@@ -41,6 +41,7 @@ import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import concernStrategy.ChildRelation;
 import concernStrategy.Feature;
+import concernStrategy.FeatureDiagram;
 import concernStrategy.FeatureGroup;
 import concernStrategy.Simple;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
@@ -81,12 +82,14 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -181,38 +184,24 @@ public class DSEProblem {
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		List<ConcernRepository> concernRepo;
 		try {
-
 			concernRepo = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
-
 		} catch (Exception ex) {
-
 			return Collections.emptyList();
-
 		}
-
 		return this.getConcernCostsFrom(concernRepo.stream());
-
 	}
 
 	private List<Solution> getConcernCostsFrom(Stream<ConcernRepository> concernRepo) {
-
 		return concernRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each -> each.getStrategies().stream()).flatMap(each -> each.getConcernSolutions().stream())
 				.filter(each -> each.getCostRepository() instanceof CostRepository).collect(Collectors.toList());
-
 	}
 
 	private Optional<String> getCostModelFileName() {
-
 		try {
-
 			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
-
 		} catch (CoreException e) {
-
 			return Optional.empty();
-
 		}
-
 	}
 
 	private Optional<CostRepository> getCostModel() {
@@ -567,6 +556,8 @@ public class DSEProblem {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
 			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
 			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
+			this.determineFeatureActiveIndicators(eachConcernDegree, dds, initialCandidate, concernRepo);
+			this.addSolutionIndicator(eachConcernDegree, dds, initialCandidate, concernRepo);
 		}
 
 	}
@@ -805,6 +796,7 @@ public class DSEProblem {
 		Concern c = (Concern) cd.getPrimaryChanged();
 		List<ElementaryConcernComponent> eccs = c.getComponents();
 		List<Feature> features = new ArrayList<>();
+
 		for (ElementaryConcernComponent ecc : eccs) {
 			Feature feature = this.getFeatureProvidedBy(ecc);
 			// INFO:
@@ -815,6 +807,7 @@ public class DSEProblem {
 			// this.getThisAndSubfeatures(features, feature);
 			features.add(feature);
 		}
+
 		List<Feature> optionals = new ArrayList<>();
 		for (Feature f : features) {
 			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
@@ -828,7 +821,9 @@ public class DSEProblem {
 			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
-			this.initInitialOptional(oad, initialCandidate);
+			BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+			ch.setDegreeOfFreedomInstance(oad);
+			initialCandidate.add(ch);
 		}
 
 	}
@@ -842,7 +837,7 @@ public class DSEProblem {
 	 *            the start feature
 	 * @author Dominik Fuchss
 	 */
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
 		features.add(start);
 		ChildRelation rel = start.getChildrelation();
@@ -875,24 +870,6 @@ public class DSEProblem {
 
 	}
 
-	/**
-	 * Initialize initial candidate with OptionalDegre
-	 *
-	 * @param oad
-	 *            the {@link OptionalAsDegree}-DoF
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @author Dominik Fuchss
-	 */
-	private void initInitialOptional(OptionalAsDegree oad, DesignDecisionGenotype initialCandidate) {
-		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
-		// As all will weaved in the initial candidate, set choice for
-		// OptionalAsDegree to true
-		ch.setValue(true);
-		ch.setDegreeOfFreedomInstance(oad);
-		initialCandidate.add(ch);
-	}
-
 	///////////////////////////////////////
 	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
 
@@ -911,6 +888,80 @@ public class DSEProblem {
 	}
 
 	////////////////////////////////////////////////
+
+	/**
+	 * Find all possible features and add {@link FeatureActiveIndicator}.
+	 *
+	 * @param cd
+	 *            the concern degree
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @param concernRepo
+	 *            the concern repo
+	 * @author Dominik Fuchss
+	 */
+	private void determineFeatureActiveIndicators(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
+		FeatureDiagram fd = (FeatureDiagram) cd.getFeatureDiagram();
+		if (fd == null) {
+			return;
+		}
+		Feature root = fd.getRootFeature();
+		List<Feature> allFeatures = new ArrayList<>();
+		this.getThisAndSubfeatures(allFeatures, root);
+		for (Feature feature : allFeatures) {
+			this.addFeatureActiveIndicator(fd, feature, dds, initialCandidate);
+		}
+
+	}
+
+	/**
+	 * Create (Add) a {@link FeatureActiveIndicator}.
+	 *
+	 * @param featureDiagram
+	 *            the featureDiagram
+	 * @param feature
+	 *            the feature
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @author Dominik Fuchss
+	 */
+	private void addFeatureActiveIndicator(FeatureDiagram featureDiagram, Feature feature, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+		FeatureActiveIndicator ind = this.specificDesignDecisionFactory.createFeatureActiveIndicator();
+		ind.setFeatureDiagram(featureDiagram);
+		ind.setPrimaryChanged(feature);
+		dds.add(ind);
+		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+		ch.setDegreeOfFreedomInstance(ind);
+		initialCandidate.add(ch);
+	}
+
+	/**
+	 * Add a {@link SolutionIndicator}.
+	 *
+	 * @param cd
+	 *            the concern degree
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @param concernRepo
+	 *            the concern repo
+	 * @author Dominik Fuchss
+	 */
+
+	private void addSolutionIndicator(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
+		SolutionIndicator ind = this.specificDesignDecisionFactory.createSolutionIndicator();
+		ind.setPrimaryChanged(cd.getPrimaryChanged());
+		dds.add(ind);
+		ClassChoice ch = this.designDecisionFactory.createClassChoice();
+		ch.setDegreeOfFreedomInstance(ind);
+		initialCandidate.add(ch);
+	}
+
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
 		return this.pcmProblem.getDegreesOfFreedom().get(index);
 	}
