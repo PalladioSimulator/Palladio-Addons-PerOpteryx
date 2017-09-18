@@ -185,6 +185,8 @@ public class DecisionSpaceItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createOptionalAsDegree()));
 
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createFeatureActiveIndicator()));
+
+		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createSolutionIndicator()));
 	}
 
 	/**

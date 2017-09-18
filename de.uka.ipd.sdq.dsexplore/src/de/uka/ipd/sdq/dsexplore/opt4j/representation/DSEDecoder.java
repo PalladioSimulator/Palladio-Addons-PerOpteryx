@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
@@ -31,6 +33,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
+import SolutionModel.Solution;
 import concernStrategy.Feature;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
@@ -71,6 +74,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
@@ -175,6 +179,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		List<RepositoryComponent> assembled = this.pcm.getSystem().getAssemblyContexts__ComposedStructure().stream().map(ac -> ac.getEncapsulatedComponent__AssemblyContext())
 				.collect(Collectors.toList());
 		this.setActiveFeaturesIndicator(choices, assembled);
+		this.setSolutionIndicator(choices, assembled);
 	}
 
 	/**
@@ -192,6 +197,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			List<RequiredRole> rr = rc.getRequiredRoles_InterfaceRequiringEntity();
 			actives.addAll(this.extractFeatures(pr, rr));
 		}
+		actives = this.deleteDuplicates(actives, (f1, f2) -> f1.getId().equals(f2.getId()));
 		for (Feature active : actives) {
 			this.setFeatureToActive(active.getId(), choices);
 		}
@@ -221,6 +227,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 				return;
 			}
 		}
+		DSEDecoder.logger.error("No FeatureActiveIndicator found for Feature with id " + id);
 	}
 
 	/**
@@ -237,21 +244,84 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	private List<Feature> extractFeatures(List<ProvidedRole> prs, List<RequiredRole> rrs) {
 		List<Feature> features = new ArrayList<>();
 		for (ProvidedRole pr : prs) {
-			List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(pr);
-			for (StereotypeApplication appl : appls) {
-				List<Feature> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(Feature.class);
-				features.addAll(provided);
-			}
+			features.addAll(this.getViaStereoTypeFrom(pr, Feature.class));
 		}
 
 		for (RequiredRole rr : rrs) {
-			List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(rr);
-			for (StereotypeApplication appl : appls) {
-				List<Feature> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(Feature.class);
-				features.addAll(provided);
-			}
+			features.addAll(this.getViaStereoTypeFrom(rr, Feature.class));
 		}
 		return features;
+	}
+
+	/**
+	 * Initialize {@link SolutionIndicator SolutionIndicators} (delete them from
+	 * list of choices, as they will processed in another way)
+	 *
+	 * @param choices
+	 *            the list of choices
+	 * @author Dominik Fuchss
+	 */
+	private void setSolutionIndicator(List<Choice> choices, List<RepositoryComponent> assembled) {
+		Iterator<Choice> iter = choices.iterator();
+
+		List<Solution> tmp = new ArrayList<>();
+		assembled.forEach(c -> tmp.addAll(this.getViaStereoTypeFrom(c, Solution.class)));
+		List<Solution> solutions = this.deleteDuplicates(tmp, (s1, s2) -> s1.getName().equals(s2.getName()));
+		if (solutions.size() > 1) {
+			DSEDecoder.logger.error("Multiple Solutions found: " + solutions + " this is not supported!");
+			return;
+		}
+		if (solutions.isEmpty()) {
+			DSEDecoder.logger.info("No Solution found.");
+			return;
+		}
+		Choice current = null;
+		while (iter.hasNext()) {
+			current = iter.next();
+			if (!(current.getDegreeOfFreedomInstance() instanceof SolutionIndicator)) {
+				continue;
+			}
+			iter.remove();
+			current.setValue(solutions.get(0));
+			return;
+		}
+
+	}
+
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
+	}
+
+	/**
+	 * Create a list without duplicated by isEqual-function.
+	 *
+	 * @param in
+	 *            the input list
+	 * @param isEqual
+	 *            the isEqual-function
+	 * @return a list without duplicates
+	 * @author Dominik Fuchss
+	 */
+	private <T> List<T> deleteDuplicates(final List<T> in, BiFunction<T, T, Boolean> isEqual) {
+		TreeSet<T> ts = new TreeSet<>((a, b) -> isEqual.apply(a, b) ? 0 : 1);
+		ts.addAll(in);
+		return new ArrayList<>(ts);
 	}
 
 	/**
@@ -681,7 +751,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		// DegreeOfFreedomInstance designDecision =
 		// choice.getDegreeOfFreedomInstance();
 
-		String result = choice.getValue().toString();
+		String result = String.valueOf(choice.getValue());
 
 		if (choice.getValue() instanceof Entity) {
 			result = DSEDecoder.getDecisionString((Entity) choice.getValue());

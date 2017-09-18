@@ -451,13 +451,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This Degree of Freedom is representing the existence of an optional feature in the current assembly.&#xD;&#xA;The Feature itself will set as &quot;PrimaryChanged&quot;."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSet" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-          defaultValueLiteral="false">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="This bool indicates whether the OptionalFeature can be present or not."/>
-        </eAnnotations>
-      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IndicatorDegree" abstract="true" eSuperTypes="#//DegreeOfFreedomInstance">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -473,6 +466,11 @@
           <details key="documentation" value="The FeatureDiagram of the Feature (PrimaryChanged)"/>
         </eAnnotations>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SolutionIndicator" eSuperTypes="#//specific/IndicatorDegree">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This indicates what Solution has been chosen.&#xD;&#xA;The Concern will set as &quot;PrimaryChanged&quot;"/>
+      </eAnnotations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

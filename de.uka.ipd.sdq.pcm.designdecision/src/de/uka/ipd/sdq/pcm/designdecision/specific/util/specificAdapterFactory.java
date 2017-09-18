@@ -316,6 +316,11 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSolutionIndicator(SolutionIndicator object) {
+			return createSolutionIndicatorAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
@@ -909,6 +914,20 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureActiveIndicatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator <em>Solution Indicator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator
+	 * @generated
+	 */
+	public Adapter createSolutionIndicatorAdapter() {
 		return null;
 	}
 

@@ -29,6 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 
 /**
  * The {@link DSECreator} is responsible for randomly creating genotypes in the
@@ -178,7 +179,11 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 			ch.setDegreeOfFreedomInstance(degree);
 			return ch;
 		}
-
+		if (degree instanceof SolutionIndicator) {
+			ClassChoice ch = factory.createClassChoice();
+			ch.setDegreeOfFreedomInstance(degree);
+			return ch;
+		}
 		throw new RuntimeException("Unknown indicator " + degree.getClass().getName());
 	}
 

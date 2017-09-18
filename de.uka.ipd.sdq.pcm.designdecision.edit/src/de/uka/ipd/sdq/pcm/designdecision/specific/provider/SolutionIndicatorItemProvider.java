@@ -2,7 +2,8 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -12,19 +13,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree} object.
+ * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProvider {
+public class SolutionIndicatorItemProvider extends IndicatorDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionalAsDegreeItemProvider(AdapterFactory adapterFactory) {
+	public SolutionIndicatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,14 +45,14 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	}
 
 	/**
-	 * This returns OptionalAsDegree.gif.
+	 * This returns SolutionIndicator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OptionalAsDegree"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SolutionIndicator"));
 	}
 
 	/**
@@ -62,8 +63,8 @@ public class OptionalAsDegreeItemProvider extends ClassAsReferenceDegreeItemProv
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OptionalAsDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_OptionalAsDegree_type") : getString("_UI_OptionalAsDegree_type") + " " + label;
+		String label = ((SolutionIndicator) object).getEntityName();
+		return label == null || label.length() == 0 ? getString("_UI_SolutionIndicator_type") : getString("_UI_SolutionIndicator_type") + " " + label;
 	}
 
 	/**
