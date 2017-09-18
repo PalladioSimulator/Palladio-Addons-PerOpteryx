@@ -944,6 +944,16 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getConcernDegree_FeatureDiagram() {
+		return (EReference) concernDegreeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getOptionalAsDegree() {
 		return optionalAsDegreeEClass;
 	}
@@ -976,6 +986,16 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	@Override
 	public EClass getFeatureActiveIndicator() {
 		return featureActiveIndicatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureActiveIndicator_FeatureDiagram() {
+		return (EReference) featureActiveIndicatorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1101,6 +1121,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		atNumberOfReplicaDegreeEClass = createEClass(AT_NUMBER_OF_REPLICA_DEGREE);
 
 		concernDegreeEClass = createEClass(CONCERN_DEGREE);
+		createEReference(concernDegreeEClass, CONCERN_DEGREE__FEATURE_DIAGRAM);
 
 		optionalAsDegreeEClass = createEClass(OPTIONAL_AS_DEGREE);
 		createEAttribute(optionalAsDegreeEClass, OPTIONAL_AS_DEGREE__IS_SET);
@@ -1108,6 +1129,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		indicatorDegreeEClass = createEClass(INDICATOR_DEGREE);
 
 		featureActiveIndicatorEClass = createEClass(FEATURE_ACTIVE_INDICATOR);
+		createEReference(featureActiveIndicatorEClass, FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM);
 	}
 
 	/**
@@ -1313,6 +1335,8 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(atNumberOfReplicaDegreeEClass, ATNumberOfReplicaDegree.class, "ATNumberOfReplicaDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(concernDegreeEClass, ConcernDegree.class, "ConcernDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConcernDegree_FeatureDiagram(), theEcorePackage.getEObject(), null, "FeatureDiagram", null, 0, 1, ConcernDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(optionalAsDegreeEClass, OptionalAsDegree.class, "OptionalAsDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOptionalAsDegree_IsSet(), theTypesPackage.getBoolean(), "isSet", "false", 0, 1, OptionalAsDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
@@ -1321,6 +1345,8 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(indicatorDegreeEClass, IndicatorDegree.class, "IndicatorDegree", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(featureActiveIndicatorEClass, FeatureActiveIndicator.class, "FeatureActiveIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureActiveIndicator_FeatureDiagram(), theEcorePackage.getEObject(), null, "FeatureDiagram", null, 0, 1, FeatureActiveIndicator.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // specificPackageImpl

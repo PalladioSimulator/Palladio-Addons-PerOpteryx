@@ -175,6 +175,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		if (degree instanceof FeatureActiveIndicator) {
 			BoolChoice ch = factory.createBoolChoice();
 			ch.setChosenValue(false);
+			ch.setDegreeOfFreedomInstance(degree);
 			return ch;
 		}
 

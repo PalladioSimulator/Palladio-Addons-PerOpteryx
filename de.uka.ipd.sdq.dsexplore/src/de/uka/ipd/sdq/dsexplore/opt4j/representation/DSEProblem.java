@@ -41,6 +41,7 @@ import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import concernStrategy.ChildRelation;
 import concernStrategy.Feature;
+import concernStrategy.FeatureDiagram;
 import concernStrategy.FeatureGroup;
 import concernStrategy.Simple;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
@@ -793,6 +794,7 @@ public class DSEProblem {
 		Concern c = (Concern) cd.getPrimaryChanged();
 		List<ElementaryConcernComponent> eccs = c.getComponents();
 		List<Feature> features = new ArrayList<>();
+
 		for (ElementaryConcernComponent ecc : eccs) {
 			Feature feature = this.getFeatureProvidedBy(ecc);
 			// INFO:
@@ -803,6 +805,7 @@ public class DSEProblem {
 			// this.getThisAndSubfeatures(features, feature);
 			features.add(feature);
 		}
+
 		List<Feature> optionals = new ArrayList<>();
 		for (Feature f : features) {
 			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
@@ -816,7 +819,10 @@ public class DSEProblem {
 			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
-			this.initInitialOptional(oad, initialCandidate);
+			BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+			ch.setDegreeOfFreedomInstance(oad);
+			// TODO Which value ?
+			initialCandidate.add(ch);
 		}
 
 	}
@@ -830,7 +836,7 @@ public class DSEProblem {
 	 *            the start feature
 	 * @author Dominik Fuchss
 	 */
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
 		features.add(start);
 		ChildRelation rel = start.getChildrelation();
@@ -861,24 +867,6 @@ public class DSEProblem {
 			}
 		}
 
-	}
-
-	/**
-	 * Initialize initial candidate with OptionalDegre
-	 *
-	 * @param oad
-	 *            the {@link OptionalAsDegree}-DoF
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @author Dominik Fuchss
-	 */
-	private void initInitialOptional(OptionalAsDegree oad, DesignDecisionGenotype initialCandidate) {
-		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
-		// As all will weaved in the initial candidate, set choice for
-		// OptionalAsDegree to true
-		ch.setValue(true);
-		ch.setDegreeOfFreedomInstance(oad);
-		initialCandidate.add(ch);
 	}
 
 	///////////////////////////////////////
@@ -914,18 +902,15 @@ public class DSEProblem {
 	 * @author Dominik Fuchss
 	 */
 	private void determineFeatureActiveIndicators(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
-		Concern c = (Concern) cd.getPrimaryChanged();
-		List<ElementaryConcernComponent> eccs = c.getComponents();
-		List<Feature> features = new ArrayList<>();
-		for (ElementaryConcernComponent ecc : eccs) {
-			Feature feature = this.getFeatureProvidedBy(ecc);
-			features.add(feature);
+		FeatureDiagram fd = (FeatureDiagram) cd.getFeatureDiagram();
+		if (fd == null) {
+			return;
 		}
-
-		for (Feature feature : features) {
-			if (feature != null) {
-				this.addFeatureActiveIndicator(feature, dds, initialCandidate);
-			}
+		Feature root = fd.getRootFeature();
+		List<Feature> allFeatures = new ArrayList<>();
+		this.getThisAndSubfeatures(allFeatures, root);
+		for (Feature feature : allFeatures) {
+			this.addFeatureActiveIndicator(fd, feature, dds, initialCandidate);
 		}
 
 	}
@@ -933,22 +918,25 @@ public class DSEProblem {
 	/**
 	 * Create (Add) a {@link FeatureActiveIndicator}.
 	 *
+	 * @param featureDiagram
+	 *            the featureDiagram
 	 * @param feature
 	 *            the feature
 	 * @param dds
 	 *            all DoFs do far
 	 * @param initialCandidate
 	 *            the initial candidate
+	 * @author Dominik Fuchss
 	 */
-	private void addFeatureActiveIndicator(Feature feature, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+	private void addFeatureActiveIndicator(FeatureDiagram featureDiagram, Feature feature, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 		FeatureActiveIndicator ind = this.specificDesignDecisionFactory.createFeatureActiveIndicator();
+		ind.setFeatureDiagram(featureDiagram);
 		ind.setPrimaryChanged(feature);
 		dds.add(ind);
 		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
 		ch.setDegreeOfFreedomInstance(ind);
-		ch.setChosenValue(false);
+		// TODO Which value ?
 		initialCandidate.add(ch);
-
 	}
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {

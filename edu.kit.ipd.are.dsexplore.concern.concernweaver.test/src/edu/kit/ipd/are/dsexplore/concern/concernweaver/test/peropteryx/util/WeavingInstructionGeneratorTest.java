@@ -60,7 +60,7 @@ public class WeavingInstructionGeneratorTest extends WeavingTest {
 		try {
 
 			this.weavingInstructions = WeavingInstructionGenerator.getInstanceBy(WeavingTest.pcmToAdapt, WeavingTest.concern.getConcerns().get(0), WeavingTest.concernSolution)
-					.getWeavingInstructions(null, null);
+					.getWeavingInstructions(null);
 
 		} catch (ConcernWeavingException ex) {
 

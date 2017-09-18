@@ -2,21 +2,26 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.problem.Decoder;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.PassiveResource;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -26,6 +31,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
+import concernStrategy.Feature;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
@@ -55,6 +61,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
+import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingRateDegree;
@@ -63,7 +71,9 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into
@@ -128,7 +138,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		// GDoF defined for them.
 		// adjust values as in genotype
 		for (final Choice doubleGene : notTransformedChoices) {
-
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
@@ -143,16 +152,106 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		}
 
 		for (final Choice doubleGene : weavingExecuter.getConvertedECCClassChoices()) {
-
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
-
+		this.setIndicators(notTransformedChoices);
 		final String genotypeString = DSEDecoder.getGenotypeString(genotype);
 
 		// encapsulate as phenotype
 		// return new
 		// PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
 		return new PCMPhenotype(this.pcm, genotypeString, genotype.getNumericID());
+	}
+
+	/**
+	 * Initialize {@link IndicatorDegree Indicators} (delete them from list of
+	 * choices, as they will processed in another way)
+	 *
+	 * @param choices
+	 *            the list of choices
+	 * @author Dominik Fuchss
+	 */
+	private void setIndicators(List<Choice> choices) {
+		List<RepositoryComponent> assembled = this.pcm.getSystem().getAssemblyContexts__ComposedStructure().stream().map(ac -> ac.getEncapsulatedComponent__AssemblyContext())
+				.collect(Collectors.toList());
+		this.setActiveFeaturesIndicator(choices, assembled);
+	}
+
+	/**
+	 * Initialize {@link FeatureActiveIndicator FeatureActiveIndicators} (delete
+	 * them from list of choices, as they will processed in another way)
+	 *
+	 * @param choices
+	 *            the list of choices
+	 * @author Dominik Fuchss
+	 */
+	private void setActiveFeaturesIndicator(List<Choice> choices, List<RepositoryComponent> assembled) {
+		List<Feature> actives = new ArrayList<>();
+		for (RepositoryComponent rc : assembled) {
+			List<ProvidedRole> pr = rc.getProvidedRoles_InterfaceProvidingEntity();
+			List<RequiredRole> rr = rc.getRequiredRoles_InterfaceRequiringEntity();
+			actives.addAll(this.extractFeatures(pr, rr));
+		}
+		for (Feature active : actives) {
+			this.setFeatureToActive(active.getId(), choices);
+		}
+	}
+
+	/**
+	 * Set a Feature (id) to active (and delete the Choice from ListOfChoices)
+	 *
+	 * @param id
+	 *            the id
+	 * @param choices
+	 *            all choices
+	 * @author Dominik Fuchss
+	 */
+	private void setFeatureToActive(String id, List<Choice> choices) {
+		Iterator<Choice> iter = choices.iterator();
+		Choice current = null;
+		while (iter.hasNext()) {
+			current = iter.next();
+			if (!(current.getDegreeOfFreedomInstance() instanceof FeatureActiveIndicator)) {
+				continue;
+			}
+			Feature cf = (Feature) ((FeatureActiveIndicator) current.getDegreeOfFreedomInstance()).getPrimaryChanged();
+			if (id.equals(cf.getId())) {
+				iter.remove();
+				current.setValue(true);
+				return;
+			}
+		}
+	}
+
+	/**
+	 * Extract features of ProvidedRole and RequiredRoles
+	 *
+	 * @param prs
+	 *            all {@link ProvidedRole}
+	 *
+	 * @param rrs
+	 *            all {@link RequiredRole}
+	 * @return the annotated Features
+	 * @author Dominik Fuchss
+	 */
+	private List<Feature> extractFeatures(List<ProvidedRole> prs, List<RequiredRole> rrs) {
+		List<Feature> features = new ArrayList<>();
+		for (ProvidedRole pr : prs) {
+			List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(pr);
+			for (StereotypeApplication appl : appls) {
+				List<Feature> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(Feature.class);
+				features.addAll(provided);
+			}
+		}
+
+		for (RequiredRole rr : rrs) {
+			List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(rr);
+			for (StereotypeApplication appl : appls) {
+				List<Feature> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(Feature.class);
+				features.addAll(provided);
+			}
+		}
+		return features;
 	}
 
 	/**
@@ -168,7 +267,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	 * @param pcm
 	 */
 	private void applyChange(final DegreeOfFreedomInstance designDecision, final Choice choice, final GenomeToCandidateModelTransformation trans, final PCMInstance pcm) {
-
+		if (designDecision instanceof IndicatorDegree) {
+			// No Changes needed ..
+			return;
+		}
 		/**
 		 * TODO Make the selection of the appropriate applyChange method more
 		 * implicit. Maybe move the method to DesignDecision itself.

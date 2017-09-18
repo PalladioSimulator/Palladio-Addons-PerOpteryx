@@ -4,12 +4,14 @@ package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
@@ -40,8 +42,22 @@ public class FeatureActiveIndicatorItemProvider extends IndicatorDegreeItemProvi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFeatureDiagramPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Feature Diagram feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFeatureDiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(
+				createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FeatureActiveIndicator_FeatureDiagram_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureActiveIndicator_FeatureDiagram_feature", "_UI_FeatureActiveIndicator_type"),
+						specificPackage.Literals.FEATURE_ACTIVE_INDICATOR__FEATURE_DIAGRAM, true, false, true, null, null, null));
 	}
 
 	/**
