@@ -59,7 +59,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceSelectionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.StringSetDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.UnorderedDegree;
@@ -322,13 +321,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	private EClass indicatorDegreeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass solutionIndicatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -944,16 +936,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getConcernDegree_FeatureDiagram() {
-		return (EReference) concernDegreeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getFeatureDegree() {
 		return featureDegreeEClass;
 	}
@@ -966,16 +948,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	@Override
 	public EClass getIndicatorDegree() {
 		return indicatorDegreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getSolutionIndicator() {
-		return solutionIndicatorEClass;
 	}
 
 	/**
@@ -1101,13 +1073,10 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		atNumberOfReplicaDegreeEClass = createEClass(AT_NUMBER_OF_REPLICA_DEGREE);
 
 		concernDegreeEClass = createEClass(CONCERN_DEGREE);
-		createEReference(concernDegreeEClass, CONCERN_DEGREE__FEATURE_DIAGRAM);
 
 		featureDegreeEClass = createEClass(FEATURE_DEGREE);
 
 		indicatorDegreeEClass = createEClass(INDICATOR_DEGREE);
-
-		solutionIndicatorEClass = createEClass(SOLUTION_INDICATOR);
 	}
 
 	/**
@@ -1193,7 +1162,6 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		concernDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 		featureDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 		indicatorDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
-		solutionIndicatorEClass.getESuperTypes().add(this.getIndicatorDegree());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(exchangeComponentRuleEClass, ExchangeComponentRule.class, "ExchangeComponentRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1313,14 +1281,10 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		initEClass(atNumberOfReplicaDegreeEClass, ATNumberOfReplicaDegree.class, "ATNumberOfReplicaDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(concernDegreeEClass, ConcernDegree.class, "ConcernDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConcernDegree_FeatureDiagram(), theEcorePackage.getEObject(), null, "FeatureDiagram", null, 0, 1, ConcernDegree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureDegreeEClass, FeatureDegree.class, "FeatureDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(indicatorDegreeEClass, IndicatorDegree.class, "IndicatorDegree", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(solutionIndicatorEClass, SolutionIndicator.class, "SolutionIndicator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // specificPackageImpl

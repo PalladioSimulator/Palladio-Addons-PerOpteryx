@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.URI;
@@ -17,7 +16,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -190,34 +188,35 @@ public class WeavingManager {
 		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, concernSolutions));
 	}
 
-	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Repository concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap,
+	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Solution concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap,
 			List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException, IOException {
 
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
-		new WeavingJob(concern, this.getConcernSolution(pcm, concernSolution.getId()), pcm, eccAllocationMap).execute(optChoice);
+		new WeavingJob(concern, concernSolution, pcm, eccAllocationMap).execute(optChoice);
 
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 
 		if (this.pcmCostManager.isPresent()) {
-			this.pcmCostManager.get().updateCostModelBy(concernSolution.getId());
+			this.pcmCostManager.get().updateCostModelBy(concernSolution.getRepository().getId());
 		}
 
 		return pcm;
 
 	}
 
-	private Repository getConcernSolution(PCMInstance pcm, String concernSolutionId) {
-		List<Repository> repos = pcm.getRepositories();
-		for (Repository repo : repos) {
-			if (repo.getId().contentEquals(concernSolutionId)) {
-				return repo;
-			}
-		}
-		throw new NoSuchElementException();
-		// return pcm.getRepositories().stream().filter(eachRepo ->
-		// eachRepo.getId().equals(concernSolutionId)).findFirst().get();
-
-	}
+	// private Repository getConcernSolution(PCMInstance pcm, String
+	// concernSolutionId) {
+	// List<Repository> repos = pcm.getRepositories();
+	// for (Repository repo : repos) {
+	// if (repo.getId().contentEquals(concernSolutionId)) {
+	// return repo;
+	// }
+	// }
+	// throw new NoSuchElementException();
+	// // return pcm.getRepositories().stream().filter(eachRepo ->
+	// // eachRepo.getId().equals(concernSolutionId)).findFirst().get();
+	//
+	// }
 
 }

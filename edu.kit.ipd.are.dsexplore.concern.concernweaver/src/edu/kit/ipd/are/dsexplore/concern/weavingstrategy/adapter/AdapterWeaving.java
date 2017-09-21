@@ -1,10 +1,10 @@
 package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
@@ -37,7 +37,7 @@ public abstract class AdapterWeaving {
 	 * @param concernSolution
 	 *            - The concern solution which will extend the PCM model.
 	 */
-	public static void setManagersWith(PCMInstance pcmToAdapt, Repository concernSolution) {
+	public static void setManagersWith(PCMInstance pcmToAdapt, Solution concernSolution) {
 		AdapterWeaving.concernRepositoryManager = ConcernSolutionManager.getInstanceBy(concernSolution);
 		AdapterWeaving.pcmAllocationManager = PcmAllocationManager.getInstanceBy(pcmToAdapt.getAllocation());
 		AdapterWeaving.pcmSystemManager = PcmSystemManager.getInstanceBy(pcmToAdapt.getSystem());

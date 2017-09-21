@@ -33,7 +33,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
-import SolutionModel.Solution;
 import concernStrategy.Feature;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
@@ -73,7 +72,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
@@ -178,7 +176,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		List<RepositoryComponent> assembled = this.pcm.getSystem().getAssemblyContexts__ComposedStructure().stream().map(ac -> ac.getEncapsulatedComponent__AssemblyContext())
 				.collect(Collectors.toList());
 		this.setActiveFeaturesIndicator(choices, assembled);
-		this.setSolutionIndicator(choices, assembled);
+		// this.setSolutionIndicator(choices, assembled);
 	}
 
 	/**
@@ -257,40 +255,46 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		return features;
 	}
 
-	/**
-	 * Initialize {@link SolutionIndicator SolutionIndicators} (delete them from
-	 * list of choices, as they will processed in another way)
-	 *
-	 * @param choices
-	 *            the list of choices
-	 * @author Dominik Fuchss
-	 */
-	private void setSolutionIndicator(List<Choice> choices, List<RepositoryComponent> assembled) {
-		Iterator<Choice> iter = choices.iterator();
-
-		List<Solution> tmp = new ArrayList<>();
-		assembled.forEach(c -> tmp.addAll(this.getViaStereoTypeFrom(c, Solution.class)));
-		List<Solution> solutions = this.deleteDuplicates(tmp, (s1, s2) -> s1.getName().equals(s2.getName()));
-		if (solutions.size() > 1) {
-			DSEDecoder.logger.error("Multiple Solutions found: " + solutions + " this is not supported!");
-			return;
-		}
-		if (solutions.isEmpty()) {
-			DSEDecoder.logger.info("No Solution found.");
-			return;
-		}
-		Choice current = null;
-		while (iter.hasNext()) {
-			current = iter.next();
-			if (!(current.getDegreeOfFreedomInstance() instanceof SolutionIndicator)) {
-				continue;
-			}
-			iter.remove();
-			current.setValue(solutions.get(0));
-			return;
-		}
-
-	}
+	// /**
+	// * Initialize {@link SolutionIndicator SolutionIndicators} (delete them
+	// from
+	// * list of choices, as they will processed in another way)
+	// *
+	// * @param choices
+	// * the list of choices
+	// * @author Dominik Fuchss
+	// */
+	// private void setSolutionIndicator(List<Choice> choices,
+	// List<RepositoryComponent> assembled) {
+	// Iterator<Choice> iter = choices.iterator();
+	//
+	// List<Solution> tmp = new ArrayList<>();
+	// assembled.forEach(c -> tmp.addAll(this.getViaStereoTypeFrom(c,
+	// Solution.class)));
+	// List<Solution> solutions = this.deleteDuplicates(tmp, (s1, s2) ->
+	// s1.getName().equals(s2.getName()));
+	// if (solutions.size() > 1) {
+	// DSEDecoder.logger.error("Multiple Solutions found: " + solutions + " this
+	// is not supported!");
+	// return;
+	// }
+	// if (solutions.isEmpty()) {
+	// DSEDecoder.logger.info("No Solution found.");
+	// return;
+	// }
+	// Choice current = null;
+	// while (iter.hasNext()) {
+	// current = iter.next();
+	// if (!(current.getDegreeOfFreedomInstance() instanceof SolutionIndicator))
+	// {
+	// continue;
+	// }
+	// iter.remove();
+	// current.setValue(solutions.get(0));
+	// return;
+	// }
+	//
+	// }
 
 	/**
 	 * Find all referenced Elements by type and base

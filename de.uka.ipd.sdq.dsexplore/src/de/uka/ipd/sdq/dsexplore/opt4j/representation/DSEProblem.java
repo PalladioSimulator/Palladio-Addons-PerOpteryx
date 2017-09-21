@@ -87,7 +87,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -554,7 +553,6 @@ public class DSEProblem {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
 			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
 			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
-			this.addSolutionIndicator(eachConcernDegree, dds, initialCandidate, concernRepo);
 		}
 
 	}
@@ -885,29 +883,6 @@ public class DSEProblem {
 	}
 
 	////////////////////////////////////////////////
-
-	/**
-	 * Add a {@link SolutionIndicator}.
-	 *
-	 * @param cd
-	 *            the concern degree
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @param concernRepo
-	 *            the concern repo
-	 * @author Dominik Fuchss
-	 */
-
-	private void addSolutionIndicator(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
-		SolutionIndicator ind = this.specificDesignDecisionFactory.createSolutionIndicator();
-		ind.setPrimaryChanged(cd.getPrimaryChanged());
-		dds.add(ind);
-		ClassChoice ch = this.designDecisionFactory.createClassChoice();
-		ch.setDegreeOfFreedomInstance(ind);
-		initialCandidate.add(ch);
-	}
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
 		return this.pcmProblem.getDegreesOfFreedom().get(index);

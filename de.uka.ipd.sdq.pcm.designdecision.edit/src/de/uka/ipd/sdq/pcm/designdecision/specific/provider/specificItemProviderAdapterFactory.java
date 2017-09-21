@@ -691,29 +691,6 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SolutionIndicatorItemProvider solutionIndicatorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSolutionIndicatorAdapter() {
-		if (solutionIndicatorItemProvider == null) {
-			solutionIndicatorItemProvider = new SolutionIndicatorItemProvider(this);
-		}
-
-		return solutionIndicatorItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,8 +843,6 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			concernDegreeItemProvider.dispose();
 		if (featureDegreeItemProvider != null)
 			featureDegreeItemProvider.dispose();
-		if (solutionIndicatorItemProvider != null)
-			solutionIndicatorItemProvider.dispose();
 	}
 
 }

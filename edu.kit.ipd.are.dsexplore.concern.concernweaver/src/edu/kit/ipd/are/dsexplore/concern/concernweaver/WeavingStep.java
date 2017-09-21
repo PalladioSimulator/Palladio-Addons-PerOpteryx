@@ -1,8 +1,8 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import SolutionModel.Solution;
 import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
@@ -18,7 +18,7 @@ import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
 public abstract class WeavingStep {
 
 	private static PCMInstance pcmToAdapt;
-	private static Repository concernSolution;
+	private static Solution concernSolution;
 	private static IWeavingStrategy weavingStrategy;
 
 	/**
@@ -30,7 +30,7 @@ public abstract class WeavingStep {
 	 * @param newConcernSolution
 	 *            - The repository containing the concern solution.
 	 */
-	public static void setGlobalSettings(PCMInstance newPcmToAdapt, Repository newConcernSolution) {
+	public static void setGlobalSettings(PCMInstance newPcmToAdapt, Solution newConcernSolution) {
 		WeavingStep.pcmToAdapt = newPcmToAdapt;
 		WeavingStep.concernSolution = newConcernSolution;
 	}
@@ -40,7 +40,7 @@ public abstract class WeavingStep {
 	 *
 	 * @return the concern solution.
 	 */
-	public static Repository getConcernSolution() {
+	public static Solution getConcernSolution() {
 		return WeavingStep.concernSolution;
 	}
 

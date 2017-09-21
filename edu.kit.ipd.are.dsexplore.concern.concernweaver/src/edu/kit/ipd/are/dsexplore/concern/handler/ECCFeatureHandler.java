@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 
 import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
 import concernStrategy.Feature;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -35,7 +35,7 @@ public class ECCFeatureHandler {
 	 *            - The concern solution which is explored in order to filter
 	 *            all provided services.
 	 */
-	public ECCFeatureHandler(Repository concernSolution) {
+	public ECCFeatureHandler(Solution concernSolution) {
 		this.concernRepositoryManager = ConcernSolutionManager.getInstanceBy(concernSolution);
 	}
 

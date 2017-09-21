@@ -183,8 +183,6 @@ public class DecisionSpaceItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createConcernDegree()));
 
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createFeatureDegree()));
-
-		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.DECISION_SPACE__DEGREES_OF_FREEDOM, specificFactory.eINSTANCE.createSolutionIndicator()));
 	}
 
 	/**

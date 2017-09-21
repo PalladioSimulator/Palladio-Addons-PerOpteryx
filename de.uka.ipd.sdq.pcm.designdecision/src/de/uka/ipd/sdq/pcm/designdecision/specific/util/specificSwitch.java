@@ -754,19 +754,6 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case specificPackage.SOLUTION_INDICATOR: {
-			SolutionIndicator solutionIndicator = (SolutionIndicator) theEObject;
-			T result = caseSolutionIndicator(solutionIndicator);
-			if (result == null)
-				result = caseIndicatorDegree(solutionIndicator);
-			if (result == null)
-				result = caseDegreeOfFreedomInstance(solutionIndicator);
-			if (result == null)
-				result = caseNamedElement(solutionIndicator);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -1328,21 +1315,6 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIndicatorDegree(IndicatorDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Solution Indicator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Solution Indicator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSolutionIndicator(SolutionIndicator object) {
 		return null;
 	}
 

@@ -13,7 +13,6 @@ import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -21,6 +20,7 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
 import ConcernModel.Annotation;
+import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 
 /**
@@ -32,7 +32,7 @@ import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 public class ConcernSolutionManager {
 
 	private static ConcernSolutionManager eInstance = null;
-	private Repository concernSolution = null;
+	private Solution concernSolution = null;
 
 	private ConcernSolutionManager() {
 	}
@@ -44,7 +44,7 @@ public class ConcernSolutionManager {
 	 *            - A given concern solution.
 	 * @return a ConcernSolutionManager-instance.
 	 */
-	public static ConcernSolutionManager getInstanceBy(Repository concernSolution) {
+	public static ConcernSolutionManager getInstanceBy(Solution concernSolution) {
 		if (ConcernSolutionManager.eInstance == null) {
 			ConcernSolutionManager.eInstance = new ConcernSolutionManager();
 		}
@@ -77,11 +77,11 @@ public class ConcernSolutionManager {
 	 * @return all components annotated by a set of annotations.
 	 */
 	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
-		return new AnnotationFilter(Arrays.asList(this.concernSolution)).getComponentsAnnotatedWith(annotations);
+		return new AnnotationFilter(Arrays.asList(this.concernSolution.getRepository())).getComponentsAnnotatedWith(annotations);
 	}
 
 	private List<RepositoryComponent> getAllComponents() {
-		return this.concernSolution.getComponents__Repository();
+		return this.concernSolution.getRepository().getComponents__Repository();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class ConcernSolutionManager {
 	}
 
 	private void addAdapter(BasicComponent adapter) {
-		this.concernSolution.getComponents__Repository().add(adapter);
+		this.concernSolution.getRepository().getComponents__Repository().add(adapter);
 	}
 
 	private BasicComponent createAdapter(String name) {
@@ -197,7 +197,7 @@ public class ConcernSolutionManager {
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
 		List<ProvidedRole> roles = new ArrayList<>();
-		for (RepositoryComponent c : this.concernSolution.getComponents__Repository()) {
+		for (RepositoryComponent c : this.concernSolution.getRepository().getComponents__Repository()) {
 			List<ProvidedRole> role = this.getAllProvidedRolesOf(c);
 			roles.addAll(role);
 		}

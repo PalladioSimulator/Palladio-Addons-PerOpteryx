@@ -3,9 +3,9 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.allocation.AllocationWeaver;
 import edu.kit.ipd.are.dsexplore.concern.assembly.AssemblyWeaver;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -41,7 +41,7 @@ public class ConcernWeaver {
 	 *            - The concrete realization of a specific concern.
 	 * @return The created or re-configured ConcernWeaver-instance.
 	 */
-	public static ConcernWeaver getBy(PCMInstance pcmToAdapt, Repository concernSolution) {
+	public static ConcernWeaver getBy(PCMInstance pcmToAdapt, Solution concernSolution) {
 		if (ConcernWeaver.eInstance == null) {
 			ConcernWeaver.eInstance = new ConcernWeaver();
 		}
@@ -49,7 +49,7 @@ public class ConcernWeaver {
 		return ConcernWeaver.eInstance;
 	}
 
-	private void initialize(PCMInstance pcmToAdapt, Repository concernSolution) {
+	private void initialize(PCMInstance pcmToAdapt, Solution concernSolution) {
 		this.initializePcmToAdapt(pcmToAdapt);
 		this.initializeWeavingChain(concernSolution);
 	}
@@ -58,7 +58,7 @@ public class ConcernWeaver {
 		this.pcmToAdapt = pcmToAdapt;
 	}
 
-	private void initializeWeavingChain(Repository concernSolution) {
+	private void initializeWeavingChain(Solution concernSolution) {
 		WeavingStep.setGlobalSettings(this.pcmToAdapt, concernSolution);
 		this.weavingChain = new LinkedHashSet<>();
 		this.weavingChain.add(new RepositoryWeaver());

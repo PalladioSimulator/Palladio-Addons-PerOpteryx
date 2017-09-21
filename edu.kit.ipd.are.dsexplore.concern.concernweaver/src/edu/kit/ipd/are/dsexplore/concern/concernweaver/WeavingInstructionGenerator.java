@@ -15,7 +15,6 @@ import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -24,6 +23,7 @@ import ConcernModel.AnnotationEnrich;
 import ConcernModel.AnnotationTarget;
 import ConcernModel.Concern;
 import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
 import TransformationModel.Transformation;
 import concernStrategy.Feature;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
@@ -69,7 +69,7 @@ public class WeavingInstructionGenerator {
 	 *            - The concern solution realizing a concern.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Repository concernSolution) {
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Solution concernSolution) {
 		WeavingInstructionGenerator.initialize(pcmInstance, concern, concernSolution, new HashMap<ElementaryConcernComponent, ResourceContainer>());
 		return WeavingInstructionGenerator.instance;
 	}
@@ -89,13 +89,13 @@ public class WeavingInstructionGenerator {
 	 *            suppose to be allocated.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Repository concernSolution,
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Solution concernSolution,
 			Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
 		WeavingInstructionGenerator.initialize(pcmInstance, concern, concernSolution, eccToResourceContainerMap);
 		return WeavingInstructionGenerator.instance;
 	}
 
-	private static void initialize(PCMInstance pcmInstance, Concern concern, Repository concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
+	private static void initialize(PCMInstance pcmInstance, Concern concern, Solution concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
 		if (WeavingInstructionGenerator.instance == null) {
 			WeavingInstructionGenerator.instance = new WeavingInstructionGenerator();
 		}

@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.palladiosimulator.solver.transformations.EMFHelper;
 
+import SolutionModel.Solution;
+import SolutionModel.SolutionModelFactory;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingStep;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.test.util.ConcernWeavingTestUtil;
@@ -18,8 +20,10 @@ public class RepositoryWeavingTest extends WeavingTest {
 
 	@Before
 	public void setUp() {
+		Solution sol = SolutionModelFactory.eINSTANCE.createSolution();
+		sol.setRepository(this.getPcmConcernRepository());
 
-		WeavingStep.setGlobalSettings(WeavingTest.pcmToAdapt, this.getPcmConcernRepository());
+		WeavingStep.setGlobalSettings(WeavingTest.pcmToAdapt, sol);
 
 	}
 

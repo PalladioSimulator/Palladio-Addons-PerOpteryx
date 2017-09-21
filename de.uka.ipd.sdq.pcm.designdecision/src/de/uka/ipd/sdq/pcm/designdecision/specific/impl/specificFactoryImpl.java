@@ -126,8 +126,6 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 			return createConcernDegree();
 		case specificPackage.FEATURE_DEGREE:
 			return createFeatureDegree();
-		case specificPackage.SOLUTION_INDICATOR:
-			return createSolutionIndicator();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -393,17 +391,6 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	public FeatureDegree createFeatureDegree() {
 		FeatureDegreeImpl featureDegree = new FeatureDegreeImpl();
 		return featureDegree;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SolutionIndicator createSolutionIndicator() {
-		SolutionIndicatorImpl solutionIndicator = new SolutionIndicatorImpl();
-		return solutionIndicator;
 	}
 
 	/**
