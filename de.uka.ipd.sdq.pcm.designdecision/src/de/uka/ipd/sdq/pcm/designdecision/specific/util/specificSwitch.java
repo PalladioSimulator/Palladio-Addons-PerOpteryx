@@ -728,17 +728,17 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case specificPackage.OPTIONAL_AS_DEGREE: {
-			OptionalAsDegree optionalAsDegree = (OptionalAsDegree) theEObject;
-			T result = caseOptionalAsDegree(optionalAsDegree);
+		case specificPackage.FEATURE_DEGREE: {
+			FeatureDegree featureDegree = (FeatureDegree) theEObject;
+			T result = caseFeatureDegree(featureDegree);
 			if (result == null)
-				result = caseClassAsReferenceDegree(optionalAsDegree);
+				result = caseClassAsReferenceDegree(featureDegree);
 			if (result == null)
-				result = caseClassDegree(optionalAsDegree);
+				result = caseClassDegree(featureDegree);
 			if (result == null)
-				result = caseDegreeOfFreedomInstance(optionalAsDegree);
+				result = caseDegreeOfFreedomInstance(featureDegree);
 			if (result == null)
-				result = caseNamedElement(optionalAsDegree);
+				result = caseNamedElement(featureDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -750,19 +750,6 @@ public class specificSwitch<T> extends Switch<T> {
 				result = caseDegreeOfFreedomInstance(indicatorDegree);
 			if (result == null)
 				result = caseNamedElement(indicatorDegree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case specificPackage.FEATURE_ACTIVE_INDICATOR: {
-			FeatureActiveIndicator featureActiveIndicator = (FeatureActiveIndicator) theEObject;
-			T result = caseFeatureActiveIndicator(featureActiveIndicator);
-			if (result == null)
-				result = caseIndicatorDegree(featureActiveIndicator);
-			if (result == null)
-				result = caseDegreeOfFreedomInstance(featureActiveIndicator);
-			if (result == null)
-				result = caseNamedElement(featureActiveIndicator);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1315,17 +1302,17 @@ public class specificSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Optional As Degree</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Optional As Degree</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Degree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOptionalAsDegree(OptionalAsDegree object) {
+	public T caseFeatureDegree(FeatureDegree object) {
 		return null;
 	}
 
@@ -1341,21 +1328,6 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIndicatorDegree(IndicatorDegree object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature Active Indicator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature Active Indicator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeatureActiveIndicator(FeatureActiveIndicator object) {
 		return null;
 	}
 

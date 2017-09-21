@@ -41,7 +41,6 @@ import TransformationModel.TransformationModelPackage;
 import TransformationModel.TransformationRepository;
 import concernStrategy.ChildRelation;
 import concernStrategy.Feature;
-import concernStrategy.FeatureDiagram;
 import concernStrategy.FeatureGroup;
 import concernStrategy.Simple;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
@@ -82,10 +81,9 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
@@ -556,7 +554,6 @@ public class DSEProblem {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
 			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
 			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
-			this.determineFeatureActiveIndicators(eachConcernDegree, dds, initialCandidate, concernRepo);
 			this.addSolutionIndicator(eachConcernDegree, dds, initialCandidate, concernRepo);
 		}
 
@@ -818,7 +815,7 @@ public class DSEProblem {
 			}
 		}
 		for (Feature op : optionals) {
-			OptionalAsDegree oad = this.specificDesignDecisionFactory.createOptionalAsDegree();
+			FeatureDegree oad = this.specificDesignDecisionFactory.createFeatureDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
 			BoolChoice ch = this.designDecisionFactory.createBoolChoice();
@@ -837,7 +834,7 @@ public class DSEProblem {
 	 *            the start feature
 	 * @author Dominik Fuchss
 	 */
-	@SuppressWarnings({ "unchecked" })
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
 		features.add(start);
 		ChildRelation rel = start.getChildrelation();
@@ -888,56 +885,6 @@ public class DSEProblem {
 	}
 
 	////////////////////////////////////////////////
-
-	/**
-	 * Find all possible features and add {@link FeatureActiveIndicator}.
-	 *
-	 * @param cd
-	 *            the concern degree
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @param concernRepo
-	 *            the concern repo
-	 * @author Dominik Fuchss
-	 */
-	private void determineFeatureActiveIndicators(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
-		FeatureDiagram fd = (FeatureDiagram) cd.getFeatureDiagram();
-		if (fd == null) {
-			return;
-		}
-		Feature root = fd.getRootFeature();
-		List<Feature> allFeatures = new ArrayList<>();
-		this.getThisAndSubfeatures(allFeatures, root);
-		for (Feature feature : allFeatures) {
-			this.addFeatureActiveIndicator(fd, feature, dds, initialCandidate);
-		}
-
-	}
-
-	/**
-	 * Create (Add) a {@link FeatureActiveIndicator}.
-	 *
-	 * @param featureDiagram
-	 *            the featureDiagram
-	 * @param feature
-	 *            the feature
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @author Dominik Fuchss
-	 */
-	private void addFeatureActiveIndicator(FeatureDiagram featureDiagram, Feature feature, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		FeatureActiveIndicator ind = this.specificDesignDecisionFactory.createFeatureActiveIndicator();
-		ind.setFeatureDiagram(featureDiagram);
-		ind.setPrimaryChanged(feature);
-		dds.add(ind);
-		BoolChoice ch = this.designDecisionFactory.createBoolChoice();
-		ch.setDegreeOfFreedomInstance(ind);
-		initialCandidate.add(ch);
-	}
 
 	/**
 	 * Add a {@link SolutionIndicator}.

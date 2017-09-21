@@ -28,7 +28,7 @@ import TransformationModel.Transformation;
 import concernStrategy.Feature;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -118,7 +118,7 @@ public class WeavingInstructionGenerator {
 	 *             - Will be thrown if an error occurs during the generation of
 	 *             the weaving instructions.
 	 */
-	public List<WeavingInstruction> getWeavingInstructions(List<Pair<OptionalAsDegree, Choice>> optChoice) throws ConcernWeavingException {
+	public List<WeavingInstruction> getWeavingInstructions(List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException {
 		try {
 			List<Pair<AnnotationTarget, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
 			List<WeavingInstruction> instructions = new ArrayList<>();
@@ -139,16 +139,16 @@ public class WeavingInstructionGenerator {
 	}
 
 	/**
-	 * Apply {@link OptionalAsDegree}-Choices to the {@link WeavingInstruction
+	 * Apply {@link FeatureDegree}-Choices to the {@link WeavingInstruction
 	 * WeavingInstructions}.
 	 *
 	 * @param optChoice
-	 *            the {@link OptionalAsDegree}-Choices
+	 *            the {@link FeatureDegree}-Choices
 	 * @param instructions
 	 *            the {@link WeavingInstruction WeavingInstructions}
 	 * @author Dominik Fuchss
 	 */
-	private void applyOptionalAsDegree(List<Pair<OptionalAsDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
+	private void applyOptionalAsDegree(List<Pair<FeatureDegree, Choice>> optChoice, List<WeavingInstruction> instructions) {
 		if (optChoice == null) {
 			return;
 		}
@@ -164,21 +164,21 @@ public class WeavingInstructionGenerator {
 
 	/**
 	 * Check whether a {@link WeavingInstruction} shall be deleted because of an
-	 * {@link OptionalAsDegree}-Choice.
+	 * {@link FeatureDegree}-Choice.
 	 *
 	 * @param instruct
 	 *            the {@link WeavingInstruction}
 	 * @param optChoice
-	 *            all {@link OptionalAsDegree}-Choices
+	 *            all {@link FeatureDegree}-Choices
 	 * @return {@code true} if instruction shall deleted, {@code false}
 	 *         otherwise
 	 * @author Dominik Fuchss
 	 */
-	private boolean checkDelete(WeavingInstruction instruct, List<Pair<OptionalAsDegree, Choice>> optChoice) {
+	private boolean checkDelete(WeavingInstruction instruct, List<Pair<FeatureDegree, Choice>> optChoice) {
 		Feature feature = this.getFeatureProvidedBy(instruct.getECCWithConsumedFeatures().getFirst());
 		Object id = feature.getId();
 		Choice ch = null;
-		for (Pair<OptionalAsDegree, Choice> p : optChoice) {
+		for (Pair<FeatureDegree, Choice> p : optChoice) {
 			Feature cF = (Feature) p.getFirst().getPrimaryChanged();
 			Object cId = cF.getId();
 			if (id.equals(cId)) {

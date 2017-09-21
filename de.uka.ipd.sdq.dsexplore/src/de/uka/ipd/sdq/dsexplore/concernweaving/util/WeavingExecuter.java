@@ -22,7 +22,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
@@ -38,12 +38,12 @@ public class WeavingExecuter {
 	private List<ClassChoice> eccClassChoices = new ArrayList<>();
 	private PCMInstance wovenPCM = null;
 	/**
-	 * The list maps {@link OptionalAsDegree OptionalAsDegrees} to their
-	 * {@link Choice Choices}
+	 * The list maps {@link FeatureDegree FeatureDegrees} to their {@link Choice
+	 * Choices}
 	 *
 	 * @author Dominik Fuchss
 	 */
-	private List<Pair<OptionalAsDegree, Choice>> optChoice;
+	private List<Pair<FeatureDegree, Choice>> optChoice;
 
 	public WeavingExecuter(List<Choice> choices) {
 		this.initialize(choices);
@@ -73,11 +73,11 @@ public class WeavingExecuter {
 		this.optChoice = new ArrayList<>();
 		for (Choice ch : choices) {
 			DegreeOfFreedomInstance dofi = ch.getDegreeOfFreedomInstance();
-			if (dofi instanceof OptionalAsDegree) {
-				this.optChoice.add(Pair.of((OptionalAsDegree) dofi, ch));
+			if (dofi instanceof FeatureDegree) {
+				this.optChoice.add(Pair.of((FeatureDegree) dofi, ch));
 			}
 		}
-		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof OptionalAsDegree);
+		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree);
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {

@@ -248,22 +248,13 @@ public interface specificFactory extends EFactory {
 	ConcernDegree createConcernDegree();
 
 	/**
-	 * Returns a new object of class '<em>Optional As Degree</em>'.
+	 * Returns a new object of class '<em>Feature Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Optional As Degree</em>'.
+	 * @return a new object of class '<em>Feature Degree</em>'.
 	 * @generated
 	 */
-	OptionalAsDegree createOptionalAsDegree();
-
-	/**
-	 * Returns a new object of class '<em>Feature Active Indicator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Active Indicator</em>'.
-	 * @generated
-	 */
-	FeatureActiveIndicator createFeatureActiveIndicator();
+	FeatureDegree createFeatureDegree();
 
 	/**
 	 * Returns a new object of class '<em>Solution Indicator</em>'.

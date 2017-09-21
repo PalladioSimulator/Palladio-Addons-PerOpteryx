@@ -301,18 +301,13 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseOptionalAsDegree(OptionalAsDegree object) {
-			return createOptionalAsDegreeAdapter();
+		public Adapter caseFeatureDegree(FeatureDegree object) {
+			return createFeatureDegreeAdapter();
 		}
 
 		@Override
 		public Adapter caseIndicatorDegree(IndicatorDegree object) {
 			return createIndicatorDegreeAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureActiveIndicator(FeatureActiveIndicator object) {
-			return createFeatureActiveIndicatorAdapter();
 		}
 
 		@Override
@@ -876,16 +871,16 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree <em>Optional As Degree</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree <em>Feature Degree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree
 	 * @generated
 	 */
-	public Adapter createOptionalAsDegreeAdapter() {
+	public Adapter createFeatureDegreeAdapter() {
 		return null;
 	}
 
@@ -900,20 +895,6 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIndicatorDegreeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator <em>Feature Active Indicator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator
-	 * @generated
-	 */
-	public Adapter createFeatureActiveIndicatorAdapter() {
 		return null;
 	}
 

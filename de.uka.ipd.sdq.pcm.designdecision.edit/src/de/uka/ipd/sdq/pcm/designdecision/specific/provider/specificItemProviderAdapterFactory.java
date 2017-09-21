@@ -668,49 +668,26 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree} instances.
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OptionalAsDegreeItemProvider optionalAsDegreeItemProvider;
+	protected FeatureDegreeItemProvider featureDegreeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree}.
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOptionalAsDegreeAdapter() {
-		if (optionalAsDegreeItemProvider == null) {
-			optionalAsDegreeItemProvider = new OptionalAsDegreeItemProvider(this);
+	public Adapter createFeatureDegreeAdapter() {
+		if (featureDegreeItemProvider == null) {
+			featureDegreeItemProvider = new FeatureDegreeItemProvider(this);
 		}
 
-		return optionalAsDegreeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureActiveIndicatorItemProvider featureActiveIndicatorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureActiveIndicatorAdapter() {
-		if (featureActiveIndicatorItemProvider == null) {
-			featureActiveIndicatorItemProvider = new FeatureActiveIndicatorItemProvider(this);
-		}
-
-		return featureActiveIndicatorItemProvider;
+		return featureDegreeItemProvider;
 	}
 
 	/**
@@ -887,10 +864,8 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			atNumberOfReplicaDegreeItemProvider.dispose();
 		if (concernDegreeItemProvider != null)
 			concernDegreeItemProvider.dispose();
-		if (optionalAsDegreeItemProvider != null)
-			optionalAsDegreeItemProvider.dispose();
-		if (featureActiveIndicatorItemProvider != null)
-			featureActiveIndicatorItemProvider.dispose();
+		if (featureDegreeItemProvider != null)
+			featureDegreeItemProvider.dispose();
 		if (solutionIndicatorItemProvider != null)
 			solutionIndicatorItemProvider.dispose();
 	}

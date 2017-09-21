@@ -124,10 +124,8 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 			return createATNumberOfReplicaDegree();
 		case specificPackage.CONCERN_DEGREE:
 			return createConcernDegree();
-		case specificPackage.OPTIONAL_AS_DEGREE:
-			return createOptionalAsDegree();
-		case specificPackage.FEATURE_ACTIVE_INDICATOR:
-			return createFeatureActiveIndicator();
+		case specificPackage.FEATURE_DEGREE:
+			return createFeatureDegree();
 		case specificPackage.SOLUTION_INDICATOR:
 			return createSolutionIndicator();
 		default:
@@ -392,20 +390,9 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	 * @generated
 	 */
 	@Override
-	public OptionalAsDegree createOptionalAsDegree() {
-		OptionalAsDegreeImpl optionalAsDegree = new OptionalAsDegreeImpl();
-		return optionalAsDegree;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FeatureActiveIndicator createFeatureActiveIndicator() {
-		FeatureActiveIndicatorImpl featureActiveIndicator = new FeatureActiveIndicatorImpl();
-		return featureActiveIndicator;
+	public FeatureDegree createFeatureDegree() {
+		FeatureDegreeImpl featureDegree = new FeatureDegreeImpl();
+		return featureDegree;
 	}
 
 	/**

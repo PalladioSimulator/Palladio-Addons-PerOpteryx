@@ -25,9 +25,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.OptionalAsDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SolutionIndicator;
 
@@ -121,7 +120,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		Choice choice;
 		if (degree instanceof IndicatorDegree) {
 			choice = this.processIndicator(degree, factory);
-		} else if (degree instanceof OptionalAsDegree) {
+		} else if (degree instanceof FeatureDegree) {
 			BoolChoice setOrNotSet = factory.createBoolChoice();
 			setOrNotSet.setChosenValue(this.random.nextBoolean());
 			choice = setOrNotSet;
@@ -173,12 +172,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 	 * @author Dominik Fuchss
 	 */
 	private Choice processIndicator(DegreeOfFreedomInstance degree, designdecisionFactory factory) {
-		if (degree instanceof FeatureActiveIndicator) {
-			BoolChoice ch = factory.createBoolChoice();
-			ch.setChosenValue(false);
-			ch.setDegreeOfFreedomInstance(degree);
-			return ch;
-		}
+
 		if (degree instanceof SolutionIndicator) {
 			ClassChoice ch = factory.createClassChoice();
 			ch.setDegreeOfFreedomInstance(degree);

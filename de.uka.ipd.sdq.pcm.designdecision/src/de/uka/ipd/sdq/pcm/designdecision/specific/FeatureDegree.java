@@ -4,7 +4,7 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Optional As Degree</b></em>'.
+ * A representation of the model object '<em><b>Feature Degree</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -13,10 +13,9 @@ package de.uka.ipd.sdq.pcm.designdecision.specific;
  * <!-- end-model-doc -->
  *
  *
- * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getOptionalAsDegree()
+ * @see de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage#getFeatureDegree()
  * @model
  * @generated
  */
-public interface OptionalAsDegree extends ClassAsReferenceDegree {
-
-} // OptionalAsDegree
+public interface FeatureDegree extends ClassAsReferenceDegree {
+} // FeatureDegree

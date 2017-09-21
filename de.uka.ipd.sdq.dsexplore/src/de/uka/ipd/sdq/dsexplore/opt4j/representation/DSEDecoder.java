@@ -64,7 +64,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureActiveIndicator;
 import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
@@ -217,15 +216,20 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		Choice current = null;
 		while (iter.hasNext()) {
 			current = iter.next();
-			if (!(current.getDegreeOfFreedomInstance() instanceof FeatureActiveIndicator)) {
-				continue;
-			}
-			Feature cf = (Feature) ((FeatureActiveIndicator) current.getDegreeOfFreedomInstance()).getPrimaryChanged();
-			if (id.equals(cf.getId())) {
-				iter.remove();
-				current.setValue(true);
-				return;
-			}
+			// if (!(current.getDegreeOfFreedomInstance() instanceof
+			// FeatureActiveIndicator)) {
+			// continue;
+			// }
+			// Feature cf = (Feature) ((FeatureActiveIndicator)
+			// current.getDegreeOfFreedomInstance()).getPrimaryChanged();
+			// if (id.equals(cf.getId())) {
+			// iter.remove();
+			// current.setValue(true);
+			// return;
+			// }
+			// TODO DTHF1
+			System.out.println("Activate: " + id);
+			return;
 		}
 		DSEDecoder.logger.error("No FeatureActiveIndicator found for Feature with id " + id);
 	}
