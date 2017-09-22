@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -62,7 +63,7 @@ public class WeavingExecuter {
 	}
 
 	/**
-	 * Initialize {@link OptionalAsDegree}-Choices (delete them from list of
+	 * Initialize {@link FeatureDegree}-Choices (delete them from list of
 	 * choices, as they will processed in another way)
 	 *
 	 * @param choices
@@ -97,10 +98,6 @@ public class WeavingExecuter {
 			}
 		}
 		return Optional.empty();
-		// return choices.stream().filter(eachChoice ->
-		// this.isConcernDegree(eachChoice.getDegreeOfFreedomInstance())).map(eachChoice
-		// -> (ClassChoice) eachChoice).findFirst();
-
 	}
 
 	private List<ClassChoice> getAllocDegreesRelatedTo(Concern concern, List<Choice> notTransformedChoices) {
@@ -110,13 +107,6 @@ public class WeavingExecuter {
 				res.add((ClassChoice) choice);
 			}
 		}
-		// List<ClassChoice> res =
-		// notTransformedChoices.stream().filter(eachChoice ->
-		// this.isAllocationDegreeWithECC(eachChoice.getDegreeOfFreedomInstance()))
-		// .filter(eachChoice -> this.isRelatedTo(concern, (AllocationDegree)
-		// eachChoice.getDegreeOfFreedomInstance())).map(eachChoice ->
-		// (ClassChoice) eachChoice).collect(Collectors.toList());
-
 		return res;
 
 	}
@@ -154,8 +144,8 @@ public class WeavingExecuter {
 		return this.wovenPCM;
 	}
 
-	private HashMap<ElementaryConcernComponent, ResourceContainer> getECCAllocationMap() {
-		HashMap<ElementaryConcernComponent, ResourceContainer> eccAllocationMap = new HashMap<>();
+	private Map<ElementaryConcernComponent, ResourceContainer> getECCAllocationMap() {
+		Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap = new HashMap<>();
 		for (ClassChoice eccClassChoice : this.eccClassChoices) {
 			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			ResourceContainer chosenResourceContainer = (ResourceContainer) eccClassChoice.getChosenValue();

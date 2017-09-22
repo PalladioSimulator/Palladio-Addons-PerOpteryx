@@ -259,47 +259,6 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		return features;
 	}
 
-	// /**
-	// * Initialize {@link SolutionIndicator SolutionIndicators} (delete them
-	// from
-	// * list of choices, as they will processed in another way)
-	// *
-	// * @param choices
-	// * the list of choices
-	// * @author Dominik Fuchss
-	// */
-	// private void setSolutionIndicator(List<Choice> choices,
-	// List<RepositoryComponent> assembled) {
-	// Iterator<Choice> iter = choices.iterator();
-	//
-	// List<Solution> tmp = new ArrayList<>();
-	// assembled.forEach(c -> tmp.addAll(this.getViaStereoTypeFrom(c,
-	// Solution.class)));
-	// List<Solution> solutions = this.deleteDuplicates(tmp, (s1, s2) ->
-	// s1.getName().equals(s2.getName()));
-	// if (solutions.size() > 1) {
-	// DSEDecoder.logger.error("Multiple Solutions found: " + solutions + " this
-	// is not supported!");
-	// return;
-	// }
-	// if (solutions.isEmpty()) {
-	// DSEDecoder.logger.info("No Solution found.");
-	// return;
-	// }
-	// Choice current = null;
-	// while (iter.hasNext()) {
-	// current = iter.next();
-	// if (!(current.getDegreeOfFreedomInstance() instanceof SolutionIndicator))
-	// {
-	// continue;
-	// }
-	// iter.remove();
-	// current.setValue(solutions.get(0));
-	// return;
-	// }
-	//
-	// }
-
 	/**
 	 * Find all referenced Elements by type and base
 	 *

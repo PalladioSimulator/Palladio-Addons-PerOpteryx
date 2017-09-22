@@ -70,7 +70,6 @@ public class ConcernSolutionManager {
 			}
 		}
 		return Optional.empty();
-		// return this.getAllComponents().filter(searchCriteria).findFirst();
 	}
 
 	/**
@@ -258,14 +257,9 @@ public class ConcernSolutionManager {
 			roles.addAll(role);
 		}
 		return roles;
-		// return
-		// this.concernSolution.getComponents__Repository().stream().flatMap(eachComponent
-		// ->
-		// this.getAllProvidedRolesOf(eachComponent)).collect(Collectors.toList());
 	}
 
 	private List<ProvidedRole> getAllProvidedRolesOf(RepositoryComponent component) {
 		return component.getProvidedRoles_InterfaceProvidingEntity();
-		// .stream().map(each -> each);
 	}
 }

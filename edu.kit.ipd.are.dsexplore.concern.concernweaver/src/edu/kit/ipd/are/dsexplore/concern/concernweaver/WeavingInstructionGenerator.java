@@ -127,10 +127,6 @@ public class WeavingInstructionGenerator {
 			}
 			this.applyOptionalAsDegree(optChoice, instructions);
 			return instructions;
-			// return
-			// this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs()).map(each
-			// -> this.generate(each)).collect(Collectors.toList());
-
 		} catch (Exception ex) {
 			// TODO HERE Exception ... :(
 			throw new ConcernWeavingException(ex.getMessage());

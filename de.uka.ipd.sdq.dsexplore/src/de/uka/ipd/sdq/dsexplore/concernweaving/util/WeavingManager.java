@@ -54,17 +54,9 @@ public class WeavingManager {
 				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom((CostRepository) s.getCostRepository());
 				this.concernSolutionToComponentsCostsMap.put(s, costs);
 			}
-			// concernSolutions.forEach(eachSolution ->
-			// this.concernSolutionToComponentsCostsMap.put(eachSolution.getRepository().getId(),
-			// this.filterOnlyComponentsCostsFrom((CostRepository)
-			// eachSolution.getCostRepository())));
-
 			for (Cost c : cachedCosts) {
 				this.cachedCosts.add(EcoreUtil.copy(c));
 			}
-			// cachedCosts.forEach(eachCost ->
-			// this.cachedCosts.add(EcoreUtil.copy(eachCost)));
-
 		}
 
 		private List<ComponentCost> filterOnlyComponentsCostsFrom(CostRepository costRepo) {
@@ -75,10 +67,6 @@ public class WeavingManager {
 				}
 			}
 			return cc;
-			// return costRepo.getCost().stream().filter(eachCost -> eachCost
-			// instanceof ComponentCost).map(eachCost -> (ComponentCost)
-			// eachCost).collect(Collectors.toList());
-
 		}
 
 		public void updateCostModelBy(Solution sol) throws IOException {
@@ -203,19 +191,5 @@ public class WeavingManager {
 		return pcm;
 
 	}
-
-	// private Repository getConcernSolution(PCMInstance pcm, String
-	// concernSolutionId) {
-	// List<Repository> repos = pcm.getRepositories();
-	// for (Repository repo : repos) {
-	// if (repo.getId().contentEquals(concernSolutionId)) {
-	// return repo;
-	// }
-	// }
-	// throw new NoSuchElementException();
-	// // return pcm.getRepositories().stream().filter(eachRepo ->
-	// // eachRepo.getId().equals(concernSolutionId)).findFirst().get();
-	//
-	// }
 
 }

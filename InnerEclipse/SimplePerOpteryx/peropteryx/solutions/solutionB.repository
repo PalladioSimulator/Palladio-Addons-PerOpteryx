@@ -72,6 +72,10 @@
       <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
       <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_5hV18JplEee_CIQQKJtzCQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.1"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
     <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/StrategyProfile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
