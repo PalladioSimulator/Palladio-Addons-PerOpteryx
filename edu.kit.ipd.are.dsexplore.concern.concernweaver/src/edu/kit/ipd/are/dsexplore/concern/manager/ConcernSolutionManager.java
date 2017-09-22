@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import org.eclipse.emf.ecore.EObject;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
@@ -22,6 +24,8 @@ import org.palladiosimulator.pcm.repository.SourceRole;
 import ConcernModel.Annotation;
 import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
 /**
  * This class provides all operations performed on a concern solution.
@@ -77,11 +81,63 @@ public class ConcernSolutionManager {
 	 * @return all components annotated by a set of annotations.
 	 */
 	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
-		return new AnnotationFilter(Arrays.asList(this.concernSolution.getRepository())).getComponentsAnnotatedWith(annotations);
+		List<RepositoryComponent> annotated = new AnnotationFilter(Arrays.asList(this.concernSolution.getRepository())).getComponentsAnnotatedWith(annotations);
+
+		List<RepositoryComponent> all = this.getAllComponents();
+		annotated.removeIf(rc -> !all.contains(rc));
+		return annotated;
 	}
 
 	private List<RepositoryComponent> getAllComponents() {
-		return this.concernSolution.getRepository().getComponents__Repository();
+		List<RepositoryComponent> res = new ArrayList<>();
+		for (RepositoryComponent rc : this.concernSolution.getRepository().getComponents__Repository()) {
+			if (this.belongsToSolutionOrIsGeneral(rc)) {
+				res.add(rc);
+			}
+		}
+
+		return res;
+	}
+
+	/**
+	 * Check whether {@link RepositoryComponent} belongs to this solution or at
+	 * least to no other solution
+	 *
+	 * @param rc
+	 *            the repository component
+	 * @return {@code true} if SolutionStereoType is set to this solution or
+	 *         none
+	 * @author Dominik Fuchss
+	 */
+	private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
+		List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
+		if (sols.size() == 0) {
+			return true;
+		}
+		if (sols.size() == 1) {
+			return this.concernSolution.getName().equals(sols.get(0).getName());
+		}
+		return false;
+	}
+
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
 	}
 
 	/**
@@ -197,7 +253,7 @@ public class ConcernSolutionManager {
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
 		List<ProvidedRole> roles = new ArrayList<>();
-		for (RepositoryComponent c : this.concernSolution.getRepository().getComponents__Repository()) {
+		for (RepositoryComponent c : this.getAllComponents()) {
 			List<ProvidedRole> role = this.getAllProvidedRolesOf(c);
 			roles.addAll(role);
 		}

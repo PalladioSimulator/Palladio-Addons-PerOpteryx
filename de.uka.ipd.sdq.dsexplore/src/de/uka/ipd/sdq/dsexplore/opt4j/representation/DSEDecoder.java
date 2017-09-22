@@ -196,20 +196,24 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		}
 		actives = this.deleteDuplicates(actives, (f1, f2) -> f1.getId().equals(f2.getId()));
 		for (Feature active : actives) {
-			this.setFeatureToActive(active.getId(), choices);
+			this.setFeatureToActive(active, choices);
 		}
 	}
 
 	/**
 	 * Set a Feature (id) to active (and delete the Choice from ListOfChoices)
 	 *
-	 * @param id
-	 *            the id
+	 * @param feature
+	 *            the feature
 	 * @param choices
 	 *            all choices
 	 * @author Dominik Fuchss
 	 */
-	private void setFeatureToActive(String id, List<Choice> choices) {
+	private void setFeatureToActive(Feature feature, List<Choice> choices) {
+		if (feature.getSimpleOptional() == null) {
+			// Not optional
+			return;
+		}
 		Iterator<Choice> iter = choices.iterator();
 		Choice current = null;
 		while (iter.hasNext()) {
@@ -226,10 +230,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			// return;
 			// }
 			// TODO DTHF1
-			System.out.println("Activate: " + id);
+			System.out.println("Activate: " + feature.getId());
 			return;
 		}
-		DSEDecoder.logger.error("No FeatureActiveIndicator found for Feature with id " + id);
+		DSEDecoder.logger.error("No FeatureDegree found for Feature with id " + feature.getId());
 	}
 
 	/**

@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,21 +39,20 @@ public class WeavingManager {
 	private class PCMCostManager {
 		private final String costModelFileName;
 		private final List<Cost> cachedCosts;
-		private final HashMap<String, List<ComponentCost>> concernSolutionToComponentsCostsMap;
+		private final Map<Solution, List<ComponentCost>> concernSolutionToComponentsCostsMap;
 
 		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, List<Solution> concernSolutions) {
 			this.costModelFileName = costModelFileName;
 			this.cachedCosts = new ArrayList<>();
-			this.concernSolutionToComponentsCostsMap = new HashMap<>();
+			this.concernSolutionToComponentsCostsMap = new TreeMap<>((s1, s2) -> s1.getName().compareTo(s2.getName()));
 
 			this.initialize(concernSolutions, cachedCosts);
 		}
 
 		private void initialize(List<Solution> concernSolutions, List<Cost> cachedCosts) {
 			for (Solution s : concernSolutions) {
-				String id = s.getRepository().getId();
 				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom((CostRepository) s.getCostRepository());
-				this.concernSolutionToComponentsCostsMap.put(id, costs);
+				this.concernSolutionToComponentsCostsMap.put(s, costs);
 			}
 			// concernSolutions.forEach(eachSolution ->
 			// this.concernSolutionToComponentsCostsMap.put(eachSolution.getRepository().getId(),
@@ -82,7 +81,7 @@ public class WeavingManager {
 
 		}
 
-		public void updateCostModelBy(String id) throws IOException {
+		public void updateCostModelBy(Solution sol) throws IOException {
 			if (this.cachedCosts.isEmpty()) {
 				return;
 			}
@@ -94,7 +93,7 @@ public class WeavingManager {
 
 			original.get().getCost().clear();
 			original.get().getCost().addAll(this.cachedCosts);
-			original.get().getCost().addAll(this.concernSolutionToComponentsCostsMap.get(id));
+			original.get().getCost().addAll(this.concernSolutionToComponentsCostsMap.get(sol));
 
 			original.get().eResource().save(Collections.EMPTY_MAP);
 
@@ -198,7 +197,7 @@ public class WeavingManager {
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 
 		if (this.pcmCostManager.isPresent()) {
-			this.pcmCostManager.get().updateCostModelBy(concernSolution.getRepository().getId());
+			this.pcmCostManager.get().updateCostModelBy(concernSolution);
 		}
 
 		return pcm;

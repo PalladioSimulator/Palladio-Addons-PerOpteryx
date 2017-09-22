@@ -31,67 +31,9 @@ public class ConcernDesignDecision {
 		ConcernDegree concernDegree = specificFactory.eINSTANCE.createConcernDegree();
 		concernDegree.setPrimaryChanged(concern);
 		concernDegree.getClassDesignOptions().addAll(this.getConcernSolutionsOf(concern));
-		// this.tryToAddFeatureDiagram(concernDegree, concern);
 		return concernDegree;
 
 	}
-
-	// /**
-	// * Try to add the FeatureDiagram to the ConcernDegree (if present)
-	// *
-	// * @param concernDegree
-	// * the {@link ConcernDegree}
-	// * @param concern
-	// * the {@link Concern}
-	// * @author Dominik Fuchss
-	// */
-	// // assert: Only one FeatureDiagram per Concern
-	// private void tryToAddFeatureDiagram(ConcernDegree concernDegree, Concern
-	// concern) {
-	// FeatureDiagram fd = null;
-	// for (ElementaryConcernComponent ecc : concern.getComponents()) {
-	// Feature feature = this.getFeatureProvidedBy(ecc);
-	// FeatureDiagram cfd = this.getFeatureDiagram(feature);
-	// if (cfd != null) {
-	// fd = cfd;
-	// break;
-	// }
-	// }
-	// if (fd != null) {
-	// concernDegree.setFeatureDiagram(fd);
-	// }
-	// }
-
-	// private FeatureDiagram getFeatureDiagram(Feature f) {
-	// EObject obj = f;
-	// while (obj != null && !(obj instanceof FeatureDiagram)) {
-	// obj = obj.eContainer();
-	// }
-	// return (FeatureDiagram) obj;
-	// }
-	///////////////////////////////////////
-	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
-
-	// private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
-	// StereotypeApplication stereotypeApplication =
-	// EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
-	// return this.getFeatureFrom(stereotypeApplication).orElseGet(() -> null);
-	// }
-	//
-	// private Optional<Feature> getFeatureFrom(StereotypeApplication
-	// stereotypeApplication) {
-	// List<Feature> features = this.getFeaturesFrom(stereotypeApplication);
-	// return features.isEmpty() ? Optional.empty() :
-	// Optional.of(features.get(0));
-	// }
-	//
-	// private List<Feature> getFeaturesFrom(StereotypeApplication
-	// stereotypeApplication) {
-	// return new
-	// EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
-	// }
-
-	////////////////////////////////////////////////
 
 	private boolean hasDesignOptions(ConcernDegree concernDegree) {
 
