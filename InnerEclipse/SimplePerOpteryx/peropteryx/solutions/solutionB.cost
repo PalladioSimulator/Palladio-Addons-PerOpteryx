@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutionB.repository#_7TQKYJpjEeeEPdMZenYK9Q"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="420000.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutionB.repository#_5hV18JplEee_CIQQKJtzCQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="2000.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutionB.repository#_o7m8gJ94EeeJZszD8Z8qxw"/>
+  </cost>
+</cost:CostRepository>

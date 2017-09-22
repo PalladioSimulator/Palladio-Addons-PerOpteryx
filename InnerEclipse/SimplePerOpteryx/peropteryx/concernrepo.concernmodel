@@ -6,6 +6,7 @@
         <concernSolutions href="solution.solutionmodel#//@solutions.0"/>
         <concernSolutions href="solution.solutionmodel#//@solutions.1"/>
         <concernSolutions href="solution.solutionmodel#//@solutions.2"/>
+        <concernSolutions href="solution.solutionmodel#//@solutions.3"/>
       </strategies>
       <components requires="/0/@concerns.0/@components.1" name="ECC4Optional">
         <annotationenrich name="Enrich_ECC4Optional" description="" maxAmount="1"/>

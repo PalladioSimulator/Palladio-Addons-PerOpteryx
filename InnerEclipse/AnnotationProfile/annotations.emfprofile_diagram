@@ -30,7 +30,7 @@
     </eClassifiers>
     <eClassifiers xmi:type="emfprofile:Stereotype" xmi:id="_RCd_sOPUEeaia9tH8AAbnA" name="Solutions">
       <eSuperTypes xmi:type="ecore:EClass" href="http://www.modelversioning.org/emfprofile/application/1.1#//StereotypeApplication"/>
-      <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Y7OrsOPUEeaia9tH8AAbnA" name="solutionTag">
+      <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Y7OrsOPUEeaia9tH8AAbnA" name="solutionTag" lowerBound="1" upperBound="-1">
         <eType xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/SolutionModel/1.0.0#//Solution"/>
       </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_aLKCgOPUEeaia9tH8AAbnA">

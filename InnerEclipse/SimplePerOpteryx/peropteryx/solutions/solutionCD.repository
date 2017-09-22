@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+  <repository:Repository id="__j5ekJ-lEeeIIbiPWGRxIQ" entityName="SolutionCDRepo">
+    <components__Repository xsi:type="repository:BasicComponent" id="_T9w6sJ-mEeeIIbiPWGRxIQ" entityName="Component_SolC">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_VoTw8J-mEeeIIbiPWGRxIQ" entityName="Provided_CompB3_Component_SolC" providedInterface__OperationProvidedRole="_KWT4QJ-mEeeIIbiPWGRxIQ"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_WGndkJ-mEeeIIbiPWGRxIQ" entityName="Provided_CompA3_Component_SolC" providedInterface__OperationProvidedRole="_LKl04J-mEeeIIbiPWGRxIQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_VoWNMJ-mEeeIIbiPWGRxIQ" describedService__SEFF="_NeNdUJ-mEeeIIbiPWGRxIQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_VoW0QJ-mEeeIIbiPWGRxIQ" entityName="start" successor_AbstractAction="_VoW0QZ-mEeeIIbiPWGRxIQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_VoW0QZ-mEeeIIbiPWGRxIQ" entityName="stop" predecessor_AbstractAction="_VoW0QJ-mEeeIIbiPWGRxIQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_WGndkZ-mEeeIIbiPWGRxIQ" describedService__SEFF="_PezcEJ-mEeeIIbiPWGRxIQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_WGoEoJ-mEeeIIbiPWGRxIQ" entityName="start" successor_AbstractAction="_WGoEoZ-mEeeIIbiPWGRxIQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_WGoEoZ-mEeeIIbiPWGRxIQ" entityName="stop" predecessor_AbstractAction="_WGoEoJ-mEeeIIbiPWGRxIQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_XKLzYJ-mEeeIIbiPWGRxIQ" entityName="ComponentB_SolD">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_aZeZ4J-mEeeIIbiPWGRxIQ" entityName="Provided_CompB3_ComponentA_SolD" providedInterface__OperationProvidedRole="_KWT4QJ-mEeeIIbiPWGRxIQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_aZfA8J-mEeeIIbiPWGRxIQ" describedService__SEFF="_NeNdUJ-mEeeIIbiPWGRxIQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_aZfA8Z-mEeeIIbiPWGRxIQ" entityName="start" successor_AbstractAction="_aZfA8p-mEeeIIbiPWGRxIQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_aZfA8p-mEeeIIbiPWGRxIQ" entityName="stop" predecessor_AbstractAction="_aZfA8Z-mEeeIIbiPWGRxIQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_KWT4QJ-mEeeIIbiPWGRxIQ" entityName="CompB3">
+      <signatures__OperationInterface id="_NeNdUJ-mEeeIIbiPWGRxIQ" entityName="mand">
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_LKl04J-mEeeIIbiPWGRxIQ" entityName="CompA3">
+      <signatures__OperationInterface id="_PezcEJ-mEeeIIbiPWGRxIQ" entityName="opt">
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+  </repository:Repository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="__j5ekJ-lEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.1"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_T9w6sJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_T9w6sJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.2"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_XKLzYJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_XKLzYJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.3"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_VoTw8J-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_WGndkJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_aZeZ4J-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>
