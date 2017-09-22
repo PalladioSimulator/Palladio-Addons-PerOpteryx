@@ -26,8 +26,8 @@ import ConcernModel.ElementaryConcernComponent;
 import SolutionModel.Solution;
 import TransformationModel.Transformation;
 import concernStrategy.Feature;
-import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
@@ -186,7 +186,7 @@ public class WeavingInstructionGenerator {
 		if (ch == null) {
 			return false;
 		}
-		return !((BoolChoice) ch).isChosenValue();
+		return !((FeatureChoice) ch).isSelected();
 	}
 
 	///////////////////////////////////////

@@ -110,6 +110,8 @@ public class designdecisionValidator extends EObjectValidator {
 			return validateCandidates((Candidates) value, diagnostics, context);
 		case designdecisionPackage.BOOL_CHOICE:
 			return validateBoolChoice((BoolChoice) value, diagnostics, context);
+		case designdecisionPackage.FEATURE_CHOICE:
+			return validateFeatureChoice((FeatureChoice) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -214,6 +216,15 @@ public class designdecisionValidator extends EObjectValidator {
 	 */
 	public boolean validateBoolChoice(BoolChoice boolChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(boolChoice, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFeatureChoice(FeatureChoice featureChoice, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(featureChoice, diagnostics, context);
 	}
 
 	/**

@@ -61,13 +61,13 @@ import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
-import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
@@ -816,7 +816,7 @@ public class DSEProblem {
 			FeatureDegree oad = this.specificDesignDecisionFactory.createFeatureDegree();
 			oad.setPrimaryChanged(op);
 			dds.add(oad);
-			BoolChoice ch = this.designDecisionFactory.createBoolChoice();
+			FeatureChoice ch = this.designDecisionFactory.createFeatureChoice();
 			ch.setDegreeOfFreedomInstance(oad);
 			initialCandidate.add(ch);
 		}

@@ -73,6 +73,8 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 			return createCandidates();
 		case designdecisionPackage.BOOL_CHOICE:
 			return createBoolChoice();
+		case designdecisionPackage.FEATURE_CHOICE:
+			return createFeatureChoice();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -157,6 +159,17 @@ public class designdecisionFactoryImpl extends EFactoryImpl implements designdec
 	public BoolChoice createBoolChoice() {
 		BoolChoiceImpl boolChoice = new BoolChoiceImpl();
 		return boolChoice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureChoice createFeatureChoice() {
+		FeatureChoiceImpl featureChoice = new FeatureChoiceImpl();
+		return featureChoice;
 	}
 
 	/**

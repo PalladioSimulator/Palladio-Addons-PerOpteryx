@@ -26,6 +26,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
@@ -97,6 +98,13 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	 * @generated
 	 */
 	private EClass boolChoiceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureChoiceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -419,6 +427,36 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureChoice() {
+		return featureChoiceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureChoice_Selected() {
+		return (EAttribute) featureChoiceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureChoice_Present() {
+		return (EAttribute) featureChoiceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -478,6 +516,10 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 
 		boolChoiceEClass = createEClass(BOOL_CHOICE);
 		createEAttribute(boolChoiceEClass, BOOL_CHOICE__CHOSEN_VALUE);
+
+		featureChoiceEClass = createEClass(FEATURE_CHOICE);
+		createEAttribute(featureChoiceEClass, FEATURE_CHOICE__SELECTED);
+		createEAttribute(featureChoiceEClass, FEATURE_CHOICE__PRESENT);
 	}
 
 	/**
@@ -530,6 +572,7 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		decisionSpaceEClass.getESuperTypes().add(thefeaturemodelPackage.getNamedElement());
 		candidateEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 		boolChoiceEClass.getESuperTypes().add(this.getChoice());
+		featureChoiceEClass.getESuperTypes().add(this.getChoice());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(discreteRangeChoiceEClass, DiscreteRangeChoice.class, "DiscreteRangeChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -592,6 +635,12 @@ public class designdecisionPackageImpl extends EPackageImpl implements designdec
 		initEClass(boolChoiceEClass, BoolChoice.class, "BoolChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBoolChoice_ChosenValue(), theTypesPackage.getBoolean(), "chosenValue", "false", 1, 1, BoolChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(featureChoiceEClass, FeatureChoice.class, "FeatureChoice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFeatureChoice_Selected(), theTypesPackage.getBoolean(), "selected", null, 0, 1, FeatureChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureChoice_Present(), theTypesPackage.getBoolean(), "present", null, 0, 1, FeatureChoice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -91,6 +91,15 @@ public interface designdecisionFactory extends EFactory {
 	BoolChoice createBoolChoice();
 
 	/**
+	 * Returns a new object of class '<em>Feature Choice</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Choice</em>'.
+	 * @generated
+	 */
+	FeatureChoice createFeatureChoice();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

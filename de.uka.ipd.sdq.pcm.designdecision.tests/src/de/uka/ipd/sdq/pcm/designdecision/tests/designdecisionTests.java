@@ -37,6 +37,7 @@ public class designdecisionTests extends TestSuite {
 		suite.addTestSuite(ContinousRangeChoiceTest.class);
 		suite.addTestSuite(CandidatesTest.class);
 		suite.addTestSuite(BoolChoiceTest.class);
+		suite.addTestSuite(FeatureChoiceTest.class);
 		return suite;
 	}
 

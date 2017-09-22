@@ -78,7 +78,6 @@ public class WeavingExecuter {
 				this.optChoice.add(Pair.of((FeatureDegree) dofi, ch));
 			}
 		}
-		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree);
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {

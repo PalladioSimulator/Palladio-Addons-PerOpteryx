@@ -13,12 +13,12 @@ import com.google.inject.Inject;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
@@ -120,8 +120,8 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		if (degree instanceof IndicatorDegree) {
 			choice = this.processIndicator(degree, factory);
 		} else if (degree instanceof FeatureDegree) {
-			BoolChoice setOrNotSet = factory.createBoolChoice();
-			setOrNotSet.setChosenValue(this.random.nextBoolean());
+			FeatureChoice setOrNotSet = factory.createFeatureChoice();
+			setOrNotSet.setSelected(this.random.nextBoolean());
 			choice = setOrNotSet;
 		} else if (degree instanceof DiscreteDegree) {
 			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice();

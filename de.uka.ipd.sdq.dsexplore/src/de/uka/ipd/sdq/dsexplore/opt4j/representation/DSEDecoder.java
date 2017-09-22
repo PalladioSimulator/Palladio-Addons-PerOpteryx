@@ -51,6 +51,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ATNumberOfReplicaDegree;
@@ -63,6 +64,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
@@ -180,8 +182,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	}
 
 	/**
-	 * Initialize {@link FeatureActiveIndicator FeatureActiveIndicators} (delete
-	 * them from list of choices, as they will processed in another way)
+	 * Set {@link FeatureDegree FeatureDegree} (delete them from list of
+	 * choices, as they will processed in another way)
 	 *
 	 * @param choices
 	 *            the list of choices
@@ -195,9 +197,12 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			actives.addAll(this.extractFeatures(pr, rr));
 		}
 		actives = this.deleteDuplicates(actives, (f1, f2) -> f1.getId().equals(f2.getId()));
+		// Set all active to false.
+		choices.stream().filter(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree).forEach(c -> c.setIsActive(false));
 		for (Feature active : actives) {
 			this.setFeatureToActive(active, choices);
 		}
+		choices.removeIf(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree);
 	}
 
 	/**
@@ -214,24 +219,20 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			// Not optional
 			return;
 		}
+		String id = feature.getId();
 		Iterator<Choice> iter = choices.iterator();
 		Choice current = null;
 		while (iter.hasNext()) {
 			current = iter.next();
-			// if (!(current.getDegreeOfFreedomInstance() instanceof
-			// FeatureActiveIndicator)) {
-			// continue;
-			// }
-			// Feature cf = (Feature) ((FeatureActiveIndicator)
-			// current.getDegreeOfFreedomInstance()).getPrimaryChanged();
-			// if (id.equals(cf.getId())) {
-			// iter.remove();
-			// current.setValue(true);
-			// return;
-			// }
-			// TODO DTHF1
-			System.out.println("Activate: " + feature.getId());
-			return;
+			if (!(current.getDegreeOfFreedomInstance() instanceof FeatureDegree)) {
+				continue;
+			}
+			Feature cf = (Feature) ((FeatureDegree) current.getDegreeOfFreedomInstance()).getPrimaryChanged();
+			if (id.equals(cf.getId())) {
+				iter.remove();
+				((FeatureChoice) current).setPresent(true);
+				return;
+			}
 		}
 		DSEDecoder.logger.error("No FeatureDegree found for Feature with id " + feature.getId());
 	}
@@ -727,7 +728,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		if (choice.getValue() instanceof Entity) {
 			result = DSEDecoder.getDecisionString((Entity) choice.getValue());
 		}
-
+		// TODO DTHF: This is not very nice ..
+		if (choice instanceof FeatureChoice) {
+			FeatureChoice ch = (FeatureChoice) choice;
+			result = "[FeatureChoice] Selected: " + ch.isSelected() + " Present: " + ch.isPresent();
+		}
 		return result;
 	}
 

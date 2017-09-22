@@ -252,6 +252,29 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureChoiceItemProvider featureChoiceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureChoiceAdapter() {
+		if (featureChoiceItemProvider == null) {
+			featureChoiceItemProvider = new FeatureChoiceItemProvider(this);
+		}
+
+		return featureChoiceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,6 +391,8 @@ public class designdecisionItemProviderAdapterFactory extends designdecisionAdap
 			candidatesItemProvider.dispose();
 		if (boolChoiceItemProvider != null)
 			boolChoiceItemProvider.dispose();
+		if (featureChoiceItemProvider != null)
+			featureChoiceItemProvider.dispose();
 	}
 
 }

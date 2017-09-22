@@ -526,6 +526,70 @@ public interface designdecisionPackage extends EPackage {
 	int BOOL_CHOICE_FEATURE_COUNT = CHOICE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl <em>Feature Choice</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getFeatureChoice()
+	 * @generated
+	 */
+	int FEATURE_CHOICE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE__IS_ACTIVE = CHOICE__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE__VALUE = CHOICE__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Degree Of Freedom Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE__DEGREE_OF_FREEDOM_INSTANCE = CHOICE__DEGREE_OF_FREEDOM_INSTANCE;
+
+	/**
+	 * The feature id for the '<em><b>Selected</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE__SELECTED = CHOICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Present</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE__PRESENT = CHOICE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Feature Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CHOICE_FEATURE_COUNT = CHOICE_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice <em>Discrete Range Choice</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Discrete Range Choice</em>'.
@@ -781,6 +845,38 @@ public interface designdecisionPackage extends EPackage {
 	EAttribute getBoolChoice_ChosenValue();
 
 	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice <em>Feature Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Choice</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.FeatureChoice
+	 * @generated
+	 */
+	EClass getFeatureChoice();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice#isSelected <em>Selected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selected</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.FeatureChoice#isSelected()
+	 * @see #getFeatureChoice()
+	 * @generated
+	 */
+	EAttribute getFeatureChoice_Selected();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice#isPresent <em>Present</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Present</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.FeatureChoice#isPresent()
+	 * @see #getFeatureChoice()
+	 * @generated
+	 */
+	EAttribute getFeatureChoice_Present();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -1006,6 +1102,32 @@ public interface designdecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BOOL_CHOICE__CHOSEN_VALUE = eINSTANCE.getBoolChoice_ChosenValue();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl <em>Feature Choice</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionPackageImpl#getFeatureChoice()
+		 * @generated
+		 */
+		EClass FEATURE_CHOICE = eINSTANCE.getFeatureChoice();
+
+		/**
+		 * The meta object literal for the '<em><b>Selected</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_CHOICE__SELECTED = eINSTANCE.getFeatureChoice_Selected();
+
+		/**
+		 * The meta object literal for the '<em><b>Present</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_CHOICE__PRESENT = eINSTANCE.getFeatureChoice_Present();
 
 	}
 

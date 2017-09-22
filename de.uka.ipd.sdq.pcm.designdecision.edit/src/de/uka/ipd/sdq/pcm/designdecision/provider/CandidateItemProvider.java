@@ -139,6 +139,8 @@ public class CandidateItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATE__CHOICES, designdecisionFactory.eINSTANCE.createBoolChoice()));
 
+		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATE__CHOICES, designdecisionFactory.eINSTANCE.createFeatureChoice()));
+
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY, qualitypropertiesFactory.eINSTANCE.createElementQualityProperty()));
 
 		newChildDescriptors.add(createChildParameter(designdecisionPackage.Literals.CANDIDATE__QUALITY_PROPERTY, qualitypropertiesFactory.eINSTANCE.createIntegerQualityProperty()));

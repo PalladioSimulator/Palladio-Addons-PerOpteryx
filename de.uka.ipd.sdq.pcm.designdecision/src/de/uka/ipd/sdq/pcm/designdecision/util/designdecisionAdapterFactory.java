@@ -117,6 +117,11 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseFeatureChoice(FeatureChoice object) {
+			return createFeatureChoiceAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
@@ -270,6 +275,20 @@ public class designdecisionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBoolChoiceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.FeatureChoice <em>Feature Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.FeatureChoice
+	 * @generated
+	 */
+	public Adapter createFeatureChoiceAdapter() {
 		return null;
 	}
 
