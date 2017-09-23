@@ -110,13 +110,10 @@ public class ConcernSolutionManager {
 	 */
 	private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
 		List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
-		if (sols.size() == 0) {
-			return true;
-		}
-		if (sols.size() == 1) {
-			return this.concernSolution.getName().equals(sols.get(0).getName());
-		}
-		return false;
+		// Size == 0 must be included, as generated adapters cannot be annotated
+		// easily
+		boolean contains = sols.contains(this.concernSolution) || sols.size() == 0;
+		return contains;
 	}
 
 	/**

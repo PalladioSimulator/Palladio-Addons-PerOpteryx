@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -61,8 +60,7 @@ public class WeavingJob {
 
 		for (RepositoryComponent rc : rcs) {
 			List<ProvidedRole> pr = rc.getProvidedRoles_InterfaceProvidingEntity();
-			List<RequiredRole> rr = rc.getRequiredRoles_InterfaceRequiringEntity();
-			allFeatures.addAll(this.extractFeatures(pr, rr));
+			allFeatures.addAll(this.extractFeatures(pr));
 		}
 		Iterator<WeavingInstruction> iter = instructions.iterator();
 		while (iter.hasNext()) {
@@ -84,24 +82,18 @@ public class WeavingJob {
 	}
 
 	/**
-	 * Extract features of ProvidedRole and RequiredRoles
+	 * Extract features of ProvidedRole
 	 *
 	 * @param prs
 	 *            all {@link ProvidedRole}
 	 *
-	 * @param rrs
-	 *            all {@link RequiredRole}
 	 * @return the annotated Features
 	 * @author Dominik Fuchss
 	 */
-	private List<Feature> extractFeatures(List<ProvidedRole> prs, List<RequiredRole> rrs) {
+	private List<Feature> extractFeatures(List<ProvidedRole> prs) {
 		List<Feature> features = new ArrayList<>();
 		for (ProvidedRole pr : prs) {
 			features.addAll(this.getViaStereoTypeFrom(pr, Feature.class));
-		}
-
-		for (RequiredRole rr : rrs) {
-			features.addAll(this.getViaStereoTypeFrom(rr, Feature.class));
 		}
 		return features;
 	}
@@ -131,13 +123,10 @@ public class WeavingJob {
 	 */
 	private boolean belongsToSolutionOrIsGeneral(Solution sol, RepositoryComponent rc) {
 		List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
-		if (sols.size() == 0) {
-			return true;
-		}
-		if (sols.size() == 1) {
-			return sol.getName().equals(sols.get(0).getName());
-		}
-		return false;
+		// Size == 0 must be included, as generated adapters cannot be annotated
+		// easily
+		boolean contains = sols.contains(sol) || sols.size() == 0;
+		return contains;
 	}
 
 	/**

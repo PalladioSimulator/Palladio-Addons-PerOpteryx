@@ -171,7 +171,7 @@ public class WeavingInstructionGenerator {
 	 * @author Dominik Fuchss
 	 */
 	private boolean checkDelete(WeavingInstruction instruct, List<Pair<FeatureDegree, Choice>> optChoice) {
-		Feature feature = this.getFeatureProvidedBy(instruct.getECCWithConsumedFeatures().getFirst());
+		Feature feature = this.getViaStereoTypeFrom(instruct.getECCWithConsumedFeatures().getFirst(), Feature.class).get(0);
 		Object id = feature.getId();
 		Choice ch = null;
 		for (Pair<FeatureDegree, Choice> p : optChoice) {
@@ -189,23 +189,25 @@ public class WeavingInstructionGenerator {
 		return !((FeatureChoice) ch).isSelected();
 	}
 
-	///////////////////////////////////////
-	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
-	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
-		return this.getFeatureFrom(stereotypeApplication).orElseGet(() -> null);
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
 	}
-
-	private Optional<Feature> getFeatureFrom(StereotypeApplication stereotypeApplication) {
-		List<Feature> features = this.getFeaturesFrom(stereotypeApplication);
-		return features.isEmpty() ? Optional.empty() : Optional.of(features.get(0));
-	}
-
-	private List<Feature> getFeaturesFrom(StereotypeApplication stereotypeApplication) {
-		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
-	}
-
-	////////////////////////////////////////////////
 
 	private List<Pair<AnnotationTarget, WeavingLocation>> getWeavingLocationsFrom(List<Pair<AnnotationTarget, EObject>> targetAnnotatedElements) throws ConcernWeavingException {
 		return new WeavingLocationHandler(this.pcmInstance).extractWeavingLocationsFrom(targetAnnotatedElements);

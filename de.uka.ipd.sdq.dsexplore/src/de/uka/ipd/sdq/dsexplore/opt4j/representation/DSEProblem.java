@@ -793,7 +793,7 @@ public class DSEProblem {
 		List<Feature> features = new ArrayList<>();
 
 		for (ElementaryConcernComponent ecc : eccs) {
-			Feature feature = this.getFeatureProvidedBy(ecc);
+			Feature feature = this.getViaStereoTypeFrom(ecc, Feature.class).get(0);
 			// INFO:
 			// For now only features which are directly mapped to an ECC will be
 			// mentioned here ..
@@ -865,24 +865,25 @@ public class DSEProblem {
 
 	}
 
-	///////////////////////////////////////
-	// See edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler
-
-	private Feature getFeatureProvidedBy(ElementaryConcernComponent ecc) {
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(ecc).get(0);
-		return this.getFeatureFrom(stereotypeApplication).orElseGet(() -> null);
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
 	}
-
-	private Optional<Feature> getFeatureFrom(StereotypeApplication stereotypeApplication) {
-		List<Feature> features = this.getFeaturesFrom(stereotypeApplication);
-		return features.isEmpty() ? Optional.empty() : Optional.of(features.get(0));
-	}
-
-	private List<Feature> getFeaturesFrom(StereotypeApplication stereotypeApplication) {
-		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
-	}
-
-	////////////////////////////////////////////////
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
 		return this.pcmProblem.getDegreesOfFreedom().get(index);

@@ -23,7 +23,6 @@ import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -193,8 +192,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		List<Feature> actives = new ArrayList<>();
 		for (RepositoryComponent rc : assembled) {
 			List<ProvidedRole> pr = rc.getProvidedRoles_InterfaceProvidingEntity();
-			List<RequiredRole> rr = rc.getRequiredRoles_InterfaceRequiringEntity();
-			actives.addAll(this.extractFeatures(pr, rr));
+			actives.addAll(this.extractFeatures(pr));
 		}
 		actives = this.deleteDuplicates(actives, (f1, f2) -> f1.getId().equals(f2.getId()));
 		// Set all active to false.
@@ -238,25 +236,20 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	}
 
 	/**
-	 * Extract features of ProvidedRole and RequiredRoles
+	 * Extract features of ProvidedRole
 	 *
 	 * @param prs
 	 *            all {@link ProvidedRole}
 	 *
-	 * @param rrs
-	 *            all {@link RequiredRole}
 	 * @return the annotated Features
 	 * @author Dominik Fuchss
 	 */
-	private List<Feature> extractFeatures(List<ProvidedRole> prs, List<RequiredRole> rrs) {
+	private List<Feature> extractFeatures(List<ProvidedRole> prs) {
 		List<Feature> features = new ArrayList<>();
 		for (ProvidedRole pr : prs) {
 			features.addAll(this.getViaStereoTypeFrom(pr, Feature.class));
 		}
 
-		for (RequiredRole rr : rrs) {
-			features.addAll(this.getViaStereoTypeFrom(rr, Feature.class));
-		}
 		return features;
 	}
 
@@ -317,27 +310,24 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		 * TODO Make the selection of the appropriate applyChange method more
 		 * implicit. Maybe move the method to DesignDecision itself.
 		 */
-		if (ProcessingRateDegree.class.isInstance(designDecision)) {
+		if (designDecision instanceof ProcessingRateDegree) {
 			this.applyChangeProcessingRateDecision((ProcessingRateDegree) designDecision, choice);
-
-			// Monitoring degree added
-			// added by Suman Jojiju
-		} else if (MonitoringDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof MonitoringDegree) {
+			// Monitoring degree added added by Suman Jojiju
 			this.applyChangeMonitoringDecision((MonitoringDegree) designDecision, choice);
-
-		} else if (AssembledComponentDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof AssembledComponentDegree) {
 			this.applyChangeAssembledComponentDecision((AssembledComponentDegree) designDecision, choice);
-		} else if (AllocationDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof AllocationDegree) {
 			this.applyChangeAllocationDecision((AllocationDegree) designDecision, choice);
-		} else if (SchedulingPolicyDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof SchedulingPolicyDegree) {
 			this.applyChangeSchedulingDecision((SchedulingPolicyDegree) designDecision, choice);
-		} else if (CapacityDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof CapacityDegree) {
 			this.applyChangeCapacityDecision((CapacityDegree) designDecision, choice);
-		} else if (NumberOfCoresDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof NumberOfCoresDegree) {
 			this.applyChangeNumberOfCoresDecision((NumberOfCoresDegree) designDecision, choice);
-		} else if (ResourceContainerReplicationDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof ResourceContainerReplicationDegree) {
 			this.applyChangeResourceContainerReplicationDegree((ResourceContainerReplicationDegree) designDecision, choice);
-		} else if (ATNumberOfReplicaDegree.class.isInstance(designDecision)) {
+		} else if (designDecision instanceof ATNumberOfReplicaDegree) {
 			this.applyChangeATNumberOfReplicaDegree((ATNumberOfReplicaDegree) designDecision, choice);
 		} else {
 			try {
