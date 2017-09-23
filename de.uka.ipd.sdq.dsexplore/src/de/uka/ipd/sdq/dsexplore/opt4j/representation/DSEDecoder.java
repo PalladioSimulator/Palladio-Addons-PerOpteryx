@@ -195,8 +195,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			actives.addAll(this.extractFeatures(pr));
 		}
 		actives = this.deleteDuplicates(actives, (f1, f2) -> f1.getId().equals(f2.getId()));
-		// Set all active to false.
-		choices.stream().filter(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree).forEach(c -> c.setIsActive(false));
+		// Set all to not present.
+		choices.stream().filter(ch -> ch.getDegreeOfFreedomInstance() instanceof FeatureDegree).map(ch -> (FeatureChoice) ch).forEach(c -> c.setPresent(false));
 		for (Feature active : actives) {
 			this.setFeatureToActive(active, choices);
 		}
