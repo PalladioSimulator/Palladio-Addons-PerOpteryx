@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -961,6 +962,20 @@ public class DSEProblem {
 
 	public DecisionSpace getEMFProblem() {
 		return this.pcmProblem;
+	}
+
+	/**
+	 * Perform cleanup jobs (e.g. CostRepo)
+	 *
+	 * @author Dominik Fuchss
+	 */
+	public void cleanup() {
+		try {
+			WeavingManager.cleanup();
+		} catch (IOException e) {
+			DSEProblem.logger.error("Cleanup failed: " + e.getMessage());
+		}
+
 	}
 
 }

@@ -78,12 +78,13 @@ public class WeavingManager {
 			if (!original.isPresent()) {
 				return;
 			}
-
-			original.get().getCost().clear();
-			original.get().getCost().addAll(this.cachedCosts);
-			original.get().getCost().addAll(this.concernSolutionToComponentsCostsMap.get(sol));
-
-			original.get().eResource().save(Collections.EMPTY_MAP);
+			CostRepository cr = original.get();
+			cr.getCost().clear();
+			cr.getCost().addAll(this.cachedCosts);
+			if (sol != null) {
+				cr.getCost().addAll(this.concernSolutionToComponentsCostsMap.get(sol));
+			}
+			cr.eResource().save(Collections.EMPTY_MAP);
 
 		}
 
@@ -189,6 +190,26 @@ public class WeavingManager {
 		}
 
 		return pcm;
+
+	}
+
+	/**
+	 * Perform cleanup jobs (e.g. CostRepo)
+	 *
+	 * @author Dominik Fuchss
+	 * @throws IOException
+	 *             - if cost model cannot be saved
+	 */
+	public static void cleanup() throws IOException {
+		WeavingManager instance = WeavingManager.getInstance().orElse(null);
+		if (instance == null) {
+			return;
+		}
+		PCMCostManager cm = instance.pcmCostManager.orElse(null);
+		if (cm == null) {
+			return;
+		}
+		cm.updateCostModelBy(null);
 
 	}
 
