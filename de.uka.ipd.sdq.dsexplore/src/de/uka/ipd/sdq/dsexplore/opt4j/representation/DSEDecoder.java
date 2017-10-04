@@ -156,28 +156,17 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		for (final Choice doubleGene : weavingExecuter.getConvertedECCClassChoices()) {
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
-		this.setIndicators(notTransformedChoices);
+
+		this.setActiveFeatureDegrees( //
+				notTransformedChoices, //
+				this.pcm.getSystem().getAssemblyContexts__ComposedStructure().stream().map(ac -> ac.getEncapsulatedComponent__AssemblyContext()).collect(Collectors.toList()) //
+		);
 		final String genotypeString = DSEDecoder.getGenotypeString(genotype);
 
 		// encapsulate as phenotype
 		// return new
 		// PCMPhenotype(pcm.deepCopy(),genotypeStringBuilder.toString());
 		return new PCMPhenotype(this.pcm, genotypeString, genotype.getNumericID());
-	}
-
-	/**
-	 * Initialize {@link IndicatorDegree Indicators} (delete them from list of
-	 * choices, as they will processed in another way)
-	 *
-	 * @param choices
-	 *            the list of choices
-	 * @author Dominik Fuchss
-	 */
-	private void setIndicators(List<Choice> choices) {
-		List<RepositoryComponent> assembled = this.pcm.getSystem().getAssemblyContexts__ComposedStructure().stream().map(ac -> ac.getEncapsulatedComponent__AssemblyContext())
-				.collect(Collectors.toList());
-		this.setActiveFeaturesIndicator(choices, assembled);
-		// this.setSolutionIndicator(choices, assembled);
 	}
 
 	/**
@@ -188,7 +177,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	 *            the list of choices
 	 * @author Dominik Fuchss
 	 */
-	private void setActiveFeaturesIndicator(List<Choice> choices, List<RepositoryComponent> assembled) {
+	private void setActiveFeatureDegrees(List<Choice> choices, List<RepositoryComponent> assembled) {
 		List<Feature> actives = new ArrayList<>();
 		for (RepositoryComponent rc : assembled) {
 			List<ProvidedRole> pr = rc.getProvidedRoles_InterfaceProvidingEntity();
