@@ -710,7 +710,9 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		// TODO DTHF: This is not very nice ..
 		if (choice instanceof FeatureChoice) {
 			FeatureChoice ch = (FeatureChoice) choice;
-			result = "[FeatureChoice] Selected: " + ch.isSelected() + " Present: " + ch.isPresent();
+			// result = "[FeatureChoice] Selected: " + (ch.isSelected() ? "T" :
+			// "F") + " Present: " + (ch.isPresent() ? "T" : "F");
+			result = "[FeatureChoice] Present: " + (ch.isPresent() ? "TRUE" : "FALSE");
 		}
 		return result;
 	}
