@@ -794,14 +794,18 @@ public class DSEProblem {
 		List<Feature> features = new ArrayList<>();
 
 		for (ElementaryConcernComponent ecc : eccs) {
-			Feature feature = this.getViaStereoTypeFrom(ecc, Feature.class).get(0);
+			List<Feature> provided = this.getViaStereoTypeFrom(ecc, Feature.class);
+			if (provided.isEmpty()) {
+				DSEProblem.logger.error(ecc + " does not provide a Feature.");
+				continue;
+			}
 			// INFO:
 			// For now only features which are directly mapped to an ECC will be
 			// mentioned here ..
 			// Maybe someone will decide to search features recursively .. then
 			// you can use this line ..
 			// this.getThisAndSubfeatures(features, feature);
-			features.add(feature);
+			features.addAll(provided);
 		}
 
 		List<Feature> optionals = new ArrayList<>();

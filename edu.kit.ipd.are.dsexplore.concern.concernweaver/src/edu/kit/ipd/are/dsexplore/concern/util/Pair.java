@@ -50,4 +50,9 @@ public class Pair<T, U> {
 		return new Pair<>(first, second);
 	}
 
+	@Override
+	public String toString() {
+		return "Pair [first=" + this.first + ", second=" + this.second + "]";
+	}
+
 }
