@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
   <repository:Repository id="_DUudQOAPEeet5-YK7iqCIg" entityName="New Repository">
     <components__Repository xsi:type="repository:BasicComponent" id="_IVHN8OAPEeet5-YK7iqCIg" entityName="BasicComponent1">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_OeZgYOAPEeet5-YK7iqCIg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_G6zzIOAPEeet5-YK7iqCIg"/>
@@ -36,12 +36,18 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_IVHN8OAPEeet5-YK7iqCIg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_RDJPoODAEeej0N6u9kvNjQ"/>
       <realizes href="Logger.featurecompletion#_kPYzYOACEeeRbZI5ff6AcQ"/>
+      <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="log4j.featuresolution#_2g-qcOC9EeeyL60Mx6KWTg"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_UggMwOAPEeet5-YK7iqCIg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_RDJPoODAEeej0N6u9kvNjQ"/>
       <realizes href="Logger.featurecompletion#_zKrcEOAEEee0c7T3_fmbuQ"/>
+      <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="log4j.featuresolution#_2g-qcOC9EeeyL60Mx6KWTg"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_G6zzIOAPEeet5-YK7iqCIg">
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_G6zzIOAPEeet5-YK7iqCIg">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_LLRloOPnEee3g9lOpcFRnQ"/>
+      <fulfills href="Logger.featurecompletion#_9q2WkeABEeejfInt2IIwaA"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_QItGEOAPEeet5-YK7iqCIg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_QJWg4ODAEeej0N6u9kvNjQ"/>
       <requires href="Logger.featurecompletion#_-pJqgeAEEee0c7T3_fmbuQ"/>
     </stereotypeApplications>
