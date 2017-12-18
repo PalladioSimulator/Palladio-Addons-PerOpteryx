@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated featureCompletions -->
+      <package
+            uri="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1"
+            class="FeatureCompletionModel.FeatureCompletionPackage"
+            genModel="model/featureCompletions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated featureCompletions -->
+      <package
+            uri="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0"
+            class="featureObjective.FeatureObjectivePackage"
+            genModel="model/featureCompletions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated featureCompletions -->
+      <package
+            uri="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0"
+            class="featureSolution.FeatureSolutionPackage"
+            genModel="model/featureCompletions.genmodel"/>
+   </extension>
+</plugin>
