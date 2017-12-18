@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" id="_HK_I0N59EeeWjoCvywdeUA" entityName="defaultSystem">
+  <assemblyContexts__ComposedStructure id="_HxiygN59EeeWjoCvywdeUA" entityName="Assembly_cGUI &lt;cGUI>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="sba.repository#_2urHYN58EeeWjoCvywdeUA"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_LKo1QN59EeeWjoCvywdeUA" entityName="Assembly_cBusinessLogic &lt;cBusinessLogic>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="sba.repository#_3xt4wN58EeeWjoCvywdeUA"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_M2esAN59EeeWjoCvywdeUA" entityName="Assembly_cDatabase &lt;cDatabase>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="sba.repository#_4pFloN58EeeWjoCvywdeUA"/>
+  </assemblyContexts__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_OJek8N59EeeWjoCvywdeUA" entityName="Connector Assembly_cGUI &lt;cGUI> -> Assembly_cBusinessLogic &lt;cBusinessLogic>" requiringAssemblyContext_AssemblyConnector="_HxiygN59EeeWjoCvywdeUA" providingAssemblyContext_AssemblyConnector="_LKo1QN59EeeWjoCvywdeUA">
+    <providedRole_AssemblyConnector href="sba.repository#_79hx4N58EeeWjoCvywdeUA"/>
+    <requiredRole_AssemblyConnector href="sba.repository#_9TNLYN58EeeWjoCvywdeUA"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_PbfmcN59EeeWjoCvywdeUA" entityName="Connector Assembly_cBusinessLogic &lt;cBusinessLogic> -> Assembly_cDatabase &lt;cDatabase>" requiringAssemblyContext_AssemblyConnector="_LKo1QN59EeeWjoCvywdeUA" providingAssemblyContext_AssemblyConnector="_M2esAN59EeeWjoCvywdeUA">
+    <providedRole_AssemblyConnector href="sba.repository#_8Zf8MN58EeeWjoCvywdeUA"/>
+    <requiredRole_AssemblyConnector href="sba.repository#_86YbsN58EeeWjoCvywdeUA"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_T8cpIN59EeeWjoCvywdeUA" entityName="ProvDelegation Provided_GUI -> Provided_GUI_cGUI" outerProvidedRole_ProvidedDelegationConnector="_R2ZioN59EeeWjoCvywdeUA" assemblyContext_ProvidedDelegationConnector="_HxiygN59EeeWjoCvywdeUA">
+    <innerProvidedRole_ProvidedDelegationConnector href="sba.repository#_7aQFsN58EeeWjoCvywdeUA"/>
+  </connectors__ComposedStructure>
+  <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_R2ZioN59EeeWjoCvywdeUA" entityName="Provided_GUI">
+    <providedInterface__OperationProvidedRole href="sba.repository#_hxrJAN58EeeWjoCvywdeUA"/>
+  </providedRoles_InterfaceProvidingEntity>
+</system:System>
