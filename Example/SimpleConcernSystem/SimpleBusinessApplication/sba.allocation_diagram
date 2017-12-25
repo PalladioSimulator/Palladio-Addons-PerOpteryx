@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment" xmi:id="_hj_c4N59EeeWjoCvywdeUA" type="allocation" name="sba.allocation_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_hmG8wN59EeeWjoCvywdeUA" type="2003" fontName=".SF NS Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_hmHj0N59EeeWjoCvywdeUA" type="5008"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hmHj0d59EeeWjoCvywdeUA" type="7003">
+      <children xmi:type="notation:Shape" xmi:id="_ikpBkN59EeeWjoCvywdeUA" type="3002" fontName=".SF NS Text">
+        <children xmi:type="notation:DecorationNode" xmi:id="_ikpBkt59EeeWjoCvywdeUA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_ikpBk959EeeWjoCvywdeUA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="sba.allocation#_iPG2cN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ikpBkd59EeeWjoCvywdeUA" x="35" y="185"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_jRqfoN59EeeWjoCvywdeUA" type="3002" fontName=".SF NS Text">
+        <children xmi:type="notation:DecorationNode" xmi:id="_jRqfot59EeeWjoCvywdeUA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_jRqfo959EeeWjoCvywdeUA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="sba.allocation#_i-MxEN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jRqfod59EeeWjoCvywdeUA" x="168" y="53"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_kHhJkN59EeeWjoCvywdeUA" type="3002" fontName=".SF NS Text">
+        <children xmi:type="notation:DecorationNode" xmi:id="_kHhJkt59EeeWjoCvywdeUA" type="5006"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_kHhJk959EeeWjoCvywdeUA" type="5007"/>
+        <element xmi:type="allocation:AllocationContext" href="sba.allocation#_j3gXoN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kHhJkd59EeeWjoCvywdeUA" x="405" y="176"/>
+      </children>
+    </children>
+    <element xmi:type="resourceenvironment:ResourceContainer" href="sba.resourceenvironment#_YFbQsN59EeeWjoCvywdeUA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hmG8wd59EeeWjoCvywdeUA" x="348" y="240" width="505" height="317"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_hj_c4d59EeeWjoCvywdeUA"/>
+  <element xmi:type="allocation:Allocation" href="sba.allocation#_hj9nsN59EeeWjoCvywdeUA"/>
+</notation:Diagram>

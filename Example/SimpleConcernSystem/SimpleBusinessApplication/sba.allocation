@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_hj9nsN59EeeWjoCvywdeUA" entityName="defaultAllocation">
+  <targetResourceEnvironment_Allocation href="sba.resourceenvironment#/"/>
+  <system_Allocation href="sba.system#_HK_I0N59EeeWjoCvywdeUA"/>
+  <allocationContexts_Allocation id="_iPG2cN59EeeWjoCvywdeUA" entityName="Allocation_Assembly_cGUI &lt;cGUI> &lt;cGUI>">
+    <resourceContainer_AllocationContext href="sba.resourceenvironment#_YFbQsN59EeeWjoCvywdeUA"/>
+    <assemblyContext_AllocationContext href="sba.system#_HxiygN59EeeWjoCvywdeUA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_i-MxEN59EeeWjoCvywdeUA" entityName="Allocation_Assembly_cBusinessLogic &lt;cBusinessLogic> &lt;cBusinessLogic>">
+    <resourceContainer_AllocationContext href="sba.resourceenvironment#_YFbQsN59EeeWjoCvywdeUA"/>
+    <assemblyContext_AllocationContext href="sba.system#_LKo1QN59EeeWjoCvywdeUA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_j3gXoN59EeeWjoCvywdeUA" entityName="Allocation_Assembly_cDatabase &lt;cDatabase> &lt;cDatabase>">
+    <resourceContainer_AllocationContext href="sba.resourceenvironment#_YFbQsN59EeeWjoCvywdeUA"/>
+    <assemblyContext_AllocationContext href="sba.system#_M2esAN59EeeWjoCvywdeUA"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>
