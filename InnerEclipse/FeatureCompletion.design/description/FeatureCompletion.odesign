@@ -15,15 +15,15 @@
           </style>
         </edgeMappings>
         <containerMappings name="FeatureCompletionRepository" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Rename']" semanticCandidatesExpression="[self/]" domainClass="FeatureCompletionModel.FeatureCompletionRepository">
-          <subNodeMappings name="FeatureObjective Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Rename']" semanticCandidatesExpression="[featureCompletions.featureObjectives/]" domainClass="FeatureObjective">
+          <subNodeMappings name="FeatureObjective Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Rename']" semanticCandidatesExpression="[featureCompletions.featureObjectives/]" doubleClickDescription="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FeatureObjective']" domainClass="FeatureObjective">
             <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subNodeMappings>
-          <subContainerMappings name="FeatureCompletion Container" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Rename']" semanticCandidatesExpression="feature:eAllContents" doubleClickDescription="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='']" domainClass="FeatureCompletionModel.FeatureCompletion" childrenPresentation="List">
-            <subNodeMappings name="FeatureCompletion Description Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FC%20Description']" semanticCandidatesExpression="var:self" doubleClickDescription="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='']" domainClass="FeatureCompletionModel.FeatureCompletion">
+          <subContainerMappings name="FeatureCompletion Container" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Rename']" semanticCandidatesExpression="feature:eAllContents" doubleClickDescription="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FeatureCompletion']" domainClass="FeatureCompletionModel.FeatureCompletion" childrenPresentation="List">
+            <subNodeMappings name="FeatureCompletion Description Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FC%20Description']" semanticCandidatesExpression="var:self" doubleClickDescription="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FeatureCompletion']" domainClass="FeatureCompletionModel.FeatureCompletion">
               <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="feature:description" labelAlignment="LEFT" sizeComputationExpression="5" labelPosition="node" resizeKind="NSEW" width="3">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -45,7 +45,7 @@
           </style>
         </containerMappings>
         <toolSections name="FeatureCompletionRepository">
-          <ownedTools xsi:type="tool:DoubleClickDescription" mappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletionRepository']/@subContainerMappings[name='FeatureCompletion%20Container']/@subNodeMappings[name='FeatureCompletion%20Description%20Node'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletionRepository']/@subContainerMappings[name='FeatureCompletion%20Container']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="FeatureCompletion" mappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletionRepository']/@subContainerMappings[name='FeatureCompletion%20Container']/@subNodeMappings[name='FeatureCompletion%20Description%20Node'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletionRepository']/@subContainerMappings[name='FeatureCompletion%20Container']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -79,6 +79,13 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="FeatureObjective" mappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletionRepository%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletionRepository']/@subNodeMappings[name='FeatureObjective%20Node']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']"/>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
@@ -87,7 +94,7 @@
       <metamodel href="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0#/"/>
       <metamodel href="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0#/"/>
       <defaultLayer name="Default">
-        <edgeMappings sourceMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']" targetMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']" targetFinderExpression="feature:requiredComponents">
+        <edgeMappings name="RequiredComponent" sourceMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']" targetMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']" targetFinderExpression="feature:requiredComponents">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="requires">
@@ -95,17 +102,10 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="FeatureCompletion Container" domainClass="FeatureCompletionModel.FeatureCompletion">
-          <borderedNodeMappings name="FeatureObjective Bordered" semanticCandidatesExpression="feature:featureObjectives" domainClass="FeatureObjective">
-            <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </borderedNodeMappings>
+        <containerMappings name="FeatureCompletion Container" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" domainClass="FeatureCompletionModel.FeatureCompletion">
           <subContainerMappings name="CompletionComponent Container" semanticCandidatesExpression="feature:completionComponents" domainClass="CompletionComponent" childrenPresentation="VerticalStack">
             <subContainerMappings name="PerimeterRequiring Container" semanticCandidatesExpression="feature:perimeterRequiring" domainClass="FeatureCompletionModel.PerimeterRequiring" childrenPresentation="List">
-              <subNodeMappings name="PerimeterRequiring Node" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.PerimeterRequiring">
+              <subNodeMappings name="PerimeterRequiring Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.PerimeterRequiring">
                 <style xsi:type="style:SquareDescription" showIcon="false" labelPosition="node" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -120,7 +120,7 @@
               </style>
             </subContainerMappings>
             <subContainerMappings name="PerimeterProviding Container" semanticCandidatesExpression="feature:perimeterProviding" domainClass="FeatureCompletionModel.PerimeterProviding" childrenPresentation="List">
-              <subNodeMappings name="PerimeterProviding Node" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.PerimeterProviding">
+              <subNodeMappings name="PerimeterProviding Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.PerimeterProviding">
                 <style xsi:type="style:SquareDescription" showIcon="false" labelPosition="node" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -156,7 +156,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="Complementum Container" preconditionExpression="[not(self.eClass().toString().contains('Visnetis'))/]" semanticCandidatesExpression="feature:complementa" domainClass="FeatureCompletionModel.Complementum" childrenPresentation="VerticalStack">
+          <subContainerMappings name="Complementum Container" preconditionExpression="[not(self.eClass().toString().contains('Visnetis'))/]" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="feature:complementa" domainClass="FeatureCompletionModel.Complementum" childrenPresentation="VerticalStack">
             <subContainerMappings name="Replication Container C" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.Complementum" childrenPresentation="List">
               <subNodeMappings name="Replication Node C" semanticCandidatesExpression="var:self" domainClass="FeatureCompletionModel.Complementum">
                 <style xsi:type="style:SquareDescription" borderLineStyle="dash" showIcon="false" labelExpression="[replication.toString()/]" labelPosition="node" resizeKind="NSEW">
@@ -196,9 +196,9 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="ComplementumVisnetis Container" reusedNodeMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Replication%20Container%20C']/@subNodeMappings[name='Replication%20Node%20C'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Visnetum%20Container%20C']/@subNodeMappings[name='Visnetum%20Node%20C']" reusedContainerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Replication%20Container%20C'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Visnetum%20Container%20C']" childrenPresentation="VerticalStack" importedMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']">
+          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="ComplementumVisnetis Container" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="feature:complementa" reusedNodeMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Replication%20Container%20C']/@subNodeMappings[name='Replication%20Node%20C'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Visnetum%20Container%20C']/@subNodeMappings[name='Visnetum%20Node%20C']" reusedContainerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Replication%20Container%20C'] //@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']/@subContainerMappings[name='Visnetum%20Container%20C']" childrenPresentation="VerticalStack" importedMapping="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']">
             <subContainerMappings name="Complementary Feature Container" semanticCandidatesExpression="feature:complementaryFeature" domainClass="Feature" childrenPresentation="List">
-              <subNodeMappings name="Feature Node" semanticCandidatesExpression="var:self" domainClass="Feature">
+              <subNodeMappings name="Feature Node" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="var:self" domainClass="Feature">
                 <style xsi:type="style:SquareDescription" borderLineStyle="dash" labelPosition="node" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelFormat>italic</labelFormat>
@@ -214,6 +214,176 @@
               </style>
             </subContainerMappings>
           </subContainerMappings>
+          <subContainerMappings name="FeatureObjective" semanticCandidatesExpression="feature:featureObjectives" domainClass="featureObjective.FeatureObjective">
+            <subContainerMappings name="Feature FO" labelDirectEdit="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Rename']" semanticCandidatesExpression="feature:rootFeature" domainClass="Feature" childrenPresentation="VerticalStack">
+              <subContainerMappings name="FeatureGroup" semanticCandidatesExpression="feature:featuregroup" domainClass="FeatureGroup" childrenPresentation="List">
+                <subNodeMappings name="Feature" semanticCandidatesExpression="feature:children" domainClass="Feature">
+                  <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
+                    <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                    <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                    <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                  </style>
+                </subNodeMappings>
+                <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="['Feature Group'/]">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                  <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                </style>
+              </subContainerMappings>
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="ComplementumVisnetis">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ComplementumVisnetis" containerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='ComplementumVisnetis%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="FeatureCompletionModel.ComplementumVisnetis" referenceName="complementa">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Complementum ' + container.complementa->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Complementum">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ComplementumVisnetis" containerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='Complementum%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="FeatureCompletionModel.Complementum" referenceName="complementa">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Complementum ' + container.complementa->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="CompletionComponent">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompletionComponent" containerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="FeatureCompletionModel.CompletionComponent" referenceName="completionComponents">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Completion ' + container.completionComponents->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="PerimeterProviding" containerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']/@subContainerMappings[name='PerimeterProviding%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="FeatureCompletionModel.PerimeterProviding" referenceName="perimeterProviding">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Unnamed PerimeterProviding'/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="PerimeterRequiring" containerMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@containerMappings[name='FeatureCompletion%20Container']/@subContainerMappings[name='CompletionComponent%20Container']/@subContainerMappings[name='PerimeterRequiring%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="FeatureCompletionModel.PerimeterRequiring" referenceName="perimeterRequiring">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Unnamed PerimeterRequiring'/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="RequiredComponent" edgeMappings="//@ownedViewpoints[name='FeatureCompletion']/@ownedRepresentations[name='FeatureCompletion%20Diagram']/@defaultLayer/@edgeMappings[name='RequiredComponent']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[source/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="requiredComponents" valueExpression="[target/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Edit">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Rename">
+            <mask mask="{0}"/>
+            <initialOperation/>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="FeatureCompletion.design.Services"/>
+  </ownedViewpoints>
+  <ownedViewpoints name="FeatureObjective" modelFileExtension="featureobjective">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FeatureObjective Diagram" domainClass="FeatureObjective" enablePopupBars="true">
+      <metamodel href="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0#/"/>
+      <metamodel href="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1#/"/>
+      <defaultLayer name="Default">
+        <containerMappings name="Feature FO" semanticCandidatesExpression="feature:rootFeature" domainClass="Feature">
+          <subNodeMappings name="SimpleMandatory Outer" semanticCandidatesExpression="feature:simpleMandatory" domainClass="Simple">
+            <style xsi:type="style:SquareDescription" labelExpression="['Mandatory Simpel'/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="SimpleOptional Outer" semanticCandidatesExpression="feature:simpleOptional" domainClass="Simple">
+            <style xsi:type="style:SquareDescription" labelExpression="['Optional Simpel'/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <subContainerMappings name="FeatureGroup" semanticCandidatesExpression="feature:featuregroup" domainClass="FeatureGroup" childrenPresentation="VerticalStack">
+            <subContainerMappings name="Feature test" semanticCandidatesExpression="feature:children" domainClass="Feature" childrenPresentation="List">
+              <subNodeMappings name="SimpleMandatory" semanticCandidatesExpression="feature:simpleMandatory" domainClass="Simple">
+                <style xsi:type="style:SquareDescription" labelExpression="['Mandatory Simpel'/]" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                </style>
+              </subNodeMappings>
+              <subNodeMappings name="SimpleOptional" semanticCandidatesExpression="feature:simpleOptional" domainClass="Simple">
+                <style xsi:type="style:SquareDescription" labelExpression="['Optional Simpel'/]" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                </style>
+              </subNodeMappings>
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="['Feature Group'/]">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subContainerMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -223,6 +393,5 @@
         </containerMappings>
       </defaultLayer>
     </ownedRepresentations>
-    <ownedJavaExtensions qualifiedClassName="FeatureCompletion.design.Services"/>
   </ownedViewpoints>
 </description:Group>
