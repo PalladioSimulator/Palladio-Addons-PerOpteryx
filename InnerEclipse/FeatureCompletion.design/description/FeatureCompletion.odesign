@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="FeatureCompletion" version="11.1.1.201610211630">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="FeatureCompletion" version="12.0.0.2017041100">
   <ownedViewpoints name="FeatureCompletion" modelFileExtension="featurecompletion">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FeatureCompletionRepository Diagram" initialisation="true" domainClass="FeatureCompletionModel.FeatureCompletionRepository" enablePopupBars="true">
       <metamodel href="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1#/"/>
@@ -391,7 +391,130 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
+        <containerMappings name="Required Constraints" labelDirectEdit="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Label%20Edit']" semanticCandidatesExpression="feature:constraints" domainClass="featureObjective::RequiredConstraint" childrenPresentation="List">
+          <subNodeMappings name="Feature Constraint Source" semanticCandidatesExpression="feature:source" domainClass="featureObjective::Feature">
+            <style xsi:type="style:SquareDescription" labelExpression="['Source: ' + name/]" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="Feature Constraint Target" semanticCandidatesExpression="feature:target" domainClass="featureObjective::Feature">
+            <style xsi:type="style:SquareDescription" labelExpression="['Target:  ' + name/]" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="['Required Constraint: ' + name/]">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="Prohibits Constraints" labelDirectEdit="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Label%20Edit']" semanticCandidatesExpression="feature:constraints" domainClass="featureObjective::ProhibitsConstraint" childrenPresentation="List">
+          <subNodeMappings name="Feature Constraint Source" semanticCandidatesExpression="feature:source" domainClass="featureObjective::Feature">
+            <style xsi:type="style:SquareDescription" labelExpression="['Source: ' + name/]" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="Feature Constraint Target" semanticCandidatesExpression="feature:target" domainClass="featureObjective::Feature">
+            <style xsi:type="style:SquareDescription" labelExpression="['Target:  ' + name/]" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="['Prohibits Constraint: ' + name/]">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Feature">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Prohibits Constraint" containerMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='Prohibits%20Constraints']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::ProhibitsConstraint" referenceName="constraints">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Constraint ' + container.constraints->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Required Constraint" containerMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='Required%20Constraints']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::RequiredConstraint" referenceName="constraints">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Constraint ' + container.constraints->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Label Edit">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0.substring(arg0.indexOf(':')+1).trim()/]"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
       </defaultLayer>
     </ownedRepresentations>
   </ownedViewpoints>
+  <ownedViewpoints name="Repository Enriched" modelFileExtension="repository">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Enriched Repository" domainClass="repository.Repository" enablePopupBars="true">
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//repository"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//seff"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//subsystem"/>
+      <metamodel href="http://sdq.ipd.uka.de/StochasticExpressions/2.2#/"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/entity"/>
+      <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//resourcetype"/>
+      <diagramInitialisation>
+        <firstModelOperations xsi:type="tool:ExternalJavaAction" name="Load Resources" id="LoadResources">
+          <parameters name="PrimitiveTypes.repository" value="aql:'pathmap://PCM_MODELS/PrimitiveTypes.repository'"/>
+          <parameters name="Palladio.resourcetype" value="aql:'pathmap://PCM_MODELS/Palladio.resourcetype'"/>
+          <parameters name="FailureTypes.repository" value="aql:'pathmap://PCM_MODELS/FailureTypes.repository'"/>
+        </firstModelOperations>
+      </diagramInitialisation>
+      <defaultLayer name="Default"/>
+      <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.repository.Services"/>
+      <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.services.PCMServices"/>
+    </ownedRepresentations>
+  </ownedViewpoints>
+  <extensions xsi:type="properties:ViewExtensionDescription" name="Properties">
+    <metamodels href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>
+    <metamodels href="http://palladiosimulator.org/PalladioComponentModel/5.2#//repository"/>
+    <categories name="Default">
+      <pages name="OperationInterface" labelExpression="Operations" domainClass="repository::OperationInterface" semanticCandidateExpression="var:self" groups="//@extensions.0/@categories.0/@groups.0"/>
+      <pages name="InfrastructureInterface" labelExpression="Operations" domainClass="repository::InfrastructureInterface" semanticCandidateExpression="var:self" groups="//@extensions.0/@categories.0/@groups.1"/>
+      <pages name="EventGroup" labelExpression="Operations" domainClass="repository::EventGroup" semanticCandidateExpression="var:self" groups="//@extensions.0/@categories.0/@groups.2"/>
+      <groups name="OperationInterface group" domainClass="repository::OperationInterface" semanticCandidateExpression="var:self">
+        <controls xsi:type="properties:CustomDescription" name="org.palladiosimulator.editors.sirius.repository.custom.properties.OperationInterface">
+          <customExpressions name="valueExpression" customExpression="aql:self"/>
+        </controls>
+        <style barStyle="NO_TITLE" toggleStyle="NONE"/>
+      </groups>
+      <groups name="InfrastructureInterface group" domainClass="repository::InfrastructureInterface" semanticCandidateExpression="var:self">
+        <controls xsi:type="properties:CustomDescription" name="org.palladiosimulator.editors.sirius.repository.custom.properties.InfrastructureInterface">
+          <customExpressions name="valueExpression" customExpression="aql:self"/>
+        </controls>
+        <style barStyle="NO_TITLE" toggleStyle="NONE"/>
+      </groups>
+      <groups name="EventGroup group" domainClass="repository::EventGroup" semanticCandidateExpression="var:self">
+        <controls xsi:type="properties:CustomDescription" name="org.palladiosimulator.editors.sirius.repository.custom.properties.EventGroup">
+          <customExpressions name="valueExpression" customExpression="aql:self"/>
+        </controls>
+        <style barStyle="NO_TITLE" toggleStyle="NONE"/>
+      </groups>
+    </categories>
+  </extensions>
 </description:Group>
