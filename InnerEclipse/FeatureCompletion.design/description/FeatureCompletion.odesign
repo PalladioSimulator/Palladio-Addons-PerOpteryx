@@ -446,7 +446,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::ProhibitsConstraint" referenceName="constraints">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[container.constraints->size()/]"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['' + container.constraints->size()/]"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -457,7 +457,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::RequiredConstraint" referenceName="constraints">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[container.constraints->size()/]"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['' + container.constraints->size()/]"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
