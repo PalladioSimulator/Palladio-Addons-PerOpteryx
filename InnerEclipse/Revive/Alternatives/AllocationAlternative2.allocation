@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.1" id="_tK0DsHriEeCvn6sgw8TM-w" entityName="defaultAllocation">
+  <targetResourceEnvironment_Allocation href="ResourceAlternative2.resourceenvironment#/"/>
+  <system_Allocation href="SystemAlternative2.system#_kdqi0HrhEeCvn6sgw8TM-w"/>
+  <allocationContexts_Allocation id="_xaIj0HriEeCvn6sgw8TM-w" entityName="Allocation_&lt;BoxUploadASPX> &lt;BoxUploadASPX>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_3oZPIHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_qZtqgHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_y5Mi0HriEeCvn6sgw8TM-w" entityName="Allocation_&lt;ASPNet Container> Connector &lt;ASPNet Container>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_3oZPIHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_srI6kHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_zzox0HriEeCvn6sgw8TM-w" entityName="Allocation_&lt;ASPNet Container> Application &lt;ASPNet Container>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5EVosHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_uMkREHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_0gge4HriEeCvn6sgw8TM-w" entityName="Allocation_&lt;RobotDataServices> &lt;RobotDataServices>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5EVosHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_vyz2IHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_1P4GUHriEeCvn6sgw8TM-w" entityName="Allocation_&lt;Diagnostics> &lt;Diagnostics>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5EVosHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_w6vukHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_16ABYHriEeCvn6sgw8TM-w" entityName="Allocation_&lt;InternalWebsite> &lt;InternalWebsite>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5EVosHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_zE21sHrhEeCvn6sgw8TM-w"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_mSNicHsJEeC-l8Ke5d5Rzw" entityName="Allocation_&lt;DataAccessServices> &lt;DataAccessServices>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5EVosHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_od3A0HrsEeC-l8Ke5d5Rzw"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_u4e2QIBPEeCISLuxOJx0Lw" entityName="Allocation_Assembly_MSSQL &lt;MSSQL> &lt;MSSQL>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_5yfvMHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_EMjpUHuZEeC-l8Ke5d5Rzw"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_MS8FcItOEeCNDrDtHza5HQ" entityName="Allocation_&lt;ParserService> &lt;ParserService>">
+    <resourceContainer_AllocationContext href="ResourceAlternative2.resourceenvironment#_3oZPIHrdEeCvn6sgw8TM-w"/>
+    <assemblyContext_AllocationContext href="SystemAlternative2.system#_GTY90ItOEeCNDrDtHza5HQ"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>

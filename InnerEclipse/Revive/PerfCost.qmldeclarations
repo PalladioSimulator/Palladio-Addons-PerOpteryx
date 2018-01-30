@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_EKvu4GHgEeWgJ7wllc3r3g">
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_FPRG8GHgEeWgJ7wllc3r3g" entityName="PerfCostProfile">
+    <usageModel href="LoadScenarios/ProductionLoad2010TDG.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_xojwoGHgEeWgJ7wllc3r3g" requireContract="_3de8omHgEeWgJ7wllc3r3g">
+      <usageScenario href="LoadScenarios/ProductionLoad2010TDG.usagemodel#_A_l1wHrjEeCvn6sgw8TM-w"/>
+    </requirements>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_3de8omHgEeWgJ7wllc3r3g" entityName="PerfoCostC" contractType="_6rl3ZGHgEeWgJ7wllc3r3g">
+    <criteria xsi:type="QMLContract:Objective" id="_K9v3QGHhEeWgJ7wllc3r3g">
+      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Value" id="_SCz1dGHhEeWgJ7wllc3r3g"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_OzINYGHhEeWgJ7wllc3r3g">
+      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Mean" id="_S9MaEmHhEeWgJ7wllc3r3g"/>
+    </criteria>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_6rl3ZGHgEeWgJ7wllc3r3g" entityName="PerfCostCT">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>

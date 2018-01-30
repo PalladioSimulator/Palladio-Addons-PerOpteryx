@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.1" id="_kdqi0HrhEeCvn6sgw8TM-w" entityName="defaultSystem">
+  <assemblyContexts__ComposedStructure id="_qZtqgHrhEeCvn6sgw8TM-w" entityName="&lt;BoxUploadASPX>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_fi_usHrYEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_vyz2IHrhEeCvn6sgw8TM-w" entityName="&lt;RobotDataServices>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_HfQzcHrZEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_w6vukHrhEeCvn6sgw8TM-w" entityName="&lt;Diagnostics>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_PvK0IHrZEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_zE21sHrhEeCvn6sgw8TM-w" entityName="&lt;InternalWebsite>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#__FmkYHrZEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_od3A0HrsEeC-l8Ke5d5Rzw" entityName="&lt;DataAccessServices>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_2r3UcHroEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_EMjpUHuZEeC-l8Ke5d5Rzw" entityName="Assembly_MSSQL &lt;MSSQL>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_qfIB0HuYEeC-l8Ke5d5Rzw"/>
+  </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_GTY90ItOEeCNDrDtHza5HQ" entityName="&lt;ParserService>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_nBm1UHrYEeCvn6sgw8TM-w"/>
+  </assemblyContexts__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_epwOAHriEeCvn6sgw8TM-w" entityName="Connector &lt;Diagnostics> -> &lt;Diagnostics>" requiringAssemblyContext_AssemblyConnector="_w6vukHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_w6vukHrhEeCvn6sgw8TM-w">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_gvKxcHrZEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_hzmp8HrZEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_fMZoEHriEeCvn6sgw8TM-w" entityName="Connector &lt;RobotDataServices> -> &lt;Diagnostics>" requiringAssemblyContext_AssemblyConnector="_vyz2IHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_w6vukHrhEeCvn6sgw8TM-w">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_gvKxcHrZEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_REkxwHriEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_tPbSYHrsEeC-l8Ke5d5Rzw" entityName="Connector &lt;Diagnostics> -> &lt;DataAccessServices>" requiringAssemblyContext_AssemblyConnector="_w6vukHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_od3A0HrsEeC-l8Ke5d5Rzw">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_6pQXEHroEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_p8QMEHrZEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_thhH8HrsEeC-l8Ke5d5Rzw" entityName="Connector &lt;RobotDataServices> -> &lt;DataAccessServices>" requiringAssemblyContext_AssemblyConnector="_vyz2IHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_od3A0HrsEeC-l8Ke5d5Rzw">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_6pQXEHroEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_qw1DoHrZEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_t6TbYHrsEeC-l8Ke5d5Rzw" entityName="Connector &lt;InternalWebsite> -> &lt;DataAccessServices>" requiringAssemblyContext_AssemblyConnector="_zE21sHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_od3A0HrsEeC-l8Ke5d5Rzw">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_6pQXEHroEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_AxvWEHraEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_jlqS0HucEeC-l8Ke5d5Rzw" entityName="Connector &lt;DataAccessServices> -> Assembly_MSSQL &lt;MSSQL>" requiringAssemblyContext_AssemblyConnector="_od3A0HrsEeC-l8Ke5d5Rzw" providingAssemblyContext_AssemblyConnector="_EMjpUHuZEeC-l8Ke5d5Rzw">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_tYdmcHuYEeC-l8Ke5d5Rzw"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_Iw6d8HucEeC-l8Ke5d5Rzw"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_j3XG0HucEeC-l8Ke5d5Rzw" entityName="Connector &lt;DataAccessServices> -> Assembly_MSSQL &lt;MSSQL>" requiringAssemblyContext_AssemblyConnector="_od3A0HrsEeC-l8Ke5d5Rzw" providingAssemblyContext_AssemblyConnector="_EMjpUHuZEeC-l8Ke5d5Rzw">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_rjpZ4HuYEeC-l8Ke5d5Rzw"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_IT2ugHucEeC-l8Ke5d5Rzw"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_JBTVkItOEeCNDrDtHza5HQ" entityName="Connector &lt;ParserService> -> &lt;RobotDataServices>" requiringAssemblyContext_AssemblyConnector="_GTY90ItOEeCNDrDtHza5HQ" providingAssemblyContext_AssemblyConnector="_vyz2IHrhEeCvn6sgw8TM-w">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_JUAHgHrZEeCvn6sgw8TM-w"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_GvvbAHrZEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_Yo9DULkWEeCMw850zxHf7w" entityName="Connector &lt;BoxUploadASPX> -> &lt;ParserService>" requiringAssemblyContext_AssemblyConnector="_qZtqgHrhEeCvn6sgw8TM-w" providingAssemblyContext_AssemblyConnector="_GTY90ItOEeCNDrDtHza5HQ">
+    <providedRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_oPrzYLggEeCjlZECxtUXyg"/>
+    <requiredRole_AssemblyConnector href="../FutureArchitecture_Repository.repository#_E22BELghEeCjlZECxtUXyg"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_kLibkHriEeCvn6sgw8TM-w" entityName="ProvDelegation Provided_IBoxUploadASPX -> Provided_BoxUploadASPX_BoxUploadASPX" outerProvidedRole_ProvidedDelegationConnector="_lXJIgHrhEeCvn6sgw8TM-w" assemblyContext_ProvidedDelegationConnector="_qZtqgHrhEeCvn6sgw8TM-w">
+    <innerProvidedRole_ProvidedDelegationConnector href="../FutureArchitecture_Repository.repository#_hRVf0HrYEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_kkLlEHriEeCvn6sgw8TM-w" entityName="ProvDelegation Provided_IInternalWebsite -> Provided_IInternalWebsite_InternalWebsite" outerProvidedRole_ProvidedDelegationConnector="_nlCjcHrhEeCvn6sgw8TM-w" assemblyContext_ProvidedDelegationConnector="_zE21sHrhEeCvn6sgw8TM-w">
+    <innerProvidedRole_ProvidedDelegationConnector href="../FutureArchitecture_Repository.repository#_ALgcgHraEeCvn6sgw8TM-w"/>
+  </connectors__ComposedStructure>
+  <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_lXJIgHrhEeCvn6sgw8TM-w" entityName="Provided_IBoxUploadASPX">
+    <providedInterface__OperationProvidedRole href="../FutureArchitecture_Repository.repository#_WNSjkHrYEeCvn6sgw8TM-w"/>
+  </providedRoles_InterfaceProvidingEntity>
+  <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_nlCjcHrhEeCvn6sgw8TM-w" entityName="Provided_IInternalWebsite">
+    <providedInterface__OperationProvidedRole href="../FutureArchitecture_Repository.repository#_0VWt4HrZEeCvn6sgw8TM-w"/>
+  </providedRoles_InterfaceProvidingEntity>
+</system:System>

@@ -7,5 +7,23 @@ Bundle-SymbolicName: org.palladiosimulator.aes; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.5.0"
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.13.0",
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.13.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.palladiosimulator.aes.generator,
+ org.palladiosimulator.aes.parser.antlr,
+ org.palladiosimulator.aes.architectureEffectSpecification.impl,
+ org.palladiosimulator.aes.validation,
+ org.palladiosimulator.aes.scoping,
+ org.palladiosimulator.aes.services,
+ org.palladiosimulator.aes.architectureEffectSpecification,
+ org.palladiosimulator.aes.architectureEffectSpecification.util,
+ org.palladiosimulator.aes.serializer,
+ org.palladiosimulator.aes.parser.antlr.internal,
+ org.palladiosimulator.aes
+Import-Package: org.apache.log4j

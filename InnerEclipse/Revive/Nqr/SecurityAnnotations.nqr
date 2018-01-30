@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nqr:NqrRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:nqr="http://sdq.ipd.uka.de/Nqr/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.1">
+  <nqr>
+    <annotatedElement xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_qfIB0HuYEeC-l8Ke5d5Rzw"/>
+    <criterion xsi:type="QMLContract:Objective" id="_kiBW4GW_EeWDW4i3LSq8fQ">
+      <dimension href="DataLossPrevention_dimension.qmlcontracttype#_VYirwGW-EeWDW4i3LSq8fQ"/>
+      <aspects xsi:type="QMLContract:Value" id="_lFScBGW_EeWDW4i3LSq8fQ">
+        <aspectRequirement xsi:type="QMLContract:Goal" id="_lg9EUWW_EeWDW4i3LSq8fQ">
+          <aspectRequirementLiteral xsi:type="QMLContract:SetLiteral" id="_mH1eIWW_EeWDW4i3LSq8fQ">
+            <values href="DataLossPrevention_dimension.qmlcontracttype#_Y9icgWW-EeWDW4i3LSq8fQ"/>
+          </aspectRequirementLiteral>
+        </aspectRequirement>
+      </aspects>
+    </criterion>
+  </nqr>
+  <nqr>
+    <annotatedElement xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_hKPVAGW6EeWDW4i3LSq8fQ"/>
+    <criterion xsi:type="QMLContract:Objective" id="_ntGy0GW_EeWDW4i3LSq8fQ">
+      <dimension href="DataLossPrevention_dimension.qmlcontracttype#_VYirwGW-EeWDW4i3LSq8fQ"/>
+      <aspects xsi:type="QMLContract:Value" id="_oGMoRGW_EeWDW4i3LSq8fQ">
+        <aspectRequirement xsi:type="QMLContract:Goal" id="_oaonMWW_EeWDW4i3LSq8fQ">
+          <aspectRequirementLiteral xsi:type="QMLContract:SetLiteral" id="_oso9MmW_EeWDW4i3LSq8fQ">
+            <values href="DataLossPrevention_dimension.qmlcontracttype#_blYogWW-EeWDW4i3LSq8fQ"/>
+          </aspectRequirementLiteral>
+        </aspectRequirement>
+      </aspects>
+    </criterion>
+  </nqr>
+  <nqr>
+    <annotatedElement xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_nBm1UHrYEeCvn6sgw8TM-w"/>
+    <criterion xsi:type="QMLContract:Objective" id="_bmDE8GXAEeWDW4i3LSq8fQ">
+      <dimension href="IntrusionPrevention_dimension.qmlcontracttype#_pKkRcGQhEeWG1LD_i_D7cg"/>
+      <aspects xsi:type="QMLContract:Value" id="_b62QRGXAEeWDW4i3LSq8fQ">
+        <aspectRequirement xsi:type="QMLContract:Goal" id="_cROI4WXAEeWDW4i3LSq8fQ">
+          <aspectRequirementLiteral xsi:type="QMLContract:SetLiteral" id="_cy-yImXAEeWDW4i3LSq8fQ">
+            <values href="IntrusionPrevention_dimension.qmlcontracttype#_y2Q6sWQhEeWG1LD_i_D7cg"/>
+          </aspectRequirementLiteral>
+        </aspectRequirement>
+      </aspects>
+    </criterion>
+  </nqr>
+  <nqr>
+    <annotatedElement xsi:type="repository:BasicComponent" href="../FutureArchitecture_Repository.repository#_T-IgEGW6EeWDW4i3LSq8fQ"/>
+    <criterion xsi:type="QMLContract:Objective" id="_dP5-sGXAEeWDW4i3LSq8fQ">
+      <dimension href="IntrusionPrevention_dimension.qmlcontracttype#_pKkRcGQhEeWG1LD_i_D7cg"/>
+      <aspects xsi:type="QMLContract:Value" id="_dgMddGXAEeWDW4i3LSq8fQ">
+        <aspectRequirement xsi:type="QMLContract:Goal" id="_d1fYAWXAEeWDW4i3LSq8fQ">
+          <aspectRequirementLiteral xsi:type="QMLContract:SetLiteral" id="_eIaUAmXAEeWDW4i3LSq8fQ">
+            <values href="IntrusionPrevention_dimension.qmlcontracttype#_vD-74WQhEeWG1LD_i_D7cg"/>
+          </aspectRequirementLiteral>
+        </aspectRequirement>
+      </aspects>
+    </criterion>
+  </nqr>
+</nqr:NqrRepository>

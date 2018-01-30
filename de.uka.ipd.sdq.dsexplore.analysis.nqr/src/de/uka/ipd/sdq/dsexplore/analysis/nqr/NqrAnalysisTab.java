@@ -12,6 +12,9 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+
+import org.palladiosimulator.aes.architectureEffectSpecification.ArchitectureEffectSpecificationPackage;
+
 import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 import org.palladiosimulator.qualitymodel.QualityModelPackage;
 import org.palladiosimulator.qualitymodel.ReasoningSystem;
@@ -29,6 +32,7 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
     private Text dimension;
     private Text reduction;
     private Text system;
+    private Text architectureEffectSpecification;
 
     @Override
     public void activated(final ILaunchConfigurationWorkingCopy workingCopy) {}
@@ -64,7 +68,11 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         system = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener, "Reasoning System File",
                 DSEConstantsContainer.REASONING_MODEL_EXTENSION, system, getShell(), "");
-
+        
+        // Add Architecture Effect Specification input section
+        architectureEffectSpecification = new Text(container, SWT.SINGLE | SWT.BORDER);
+        TabHelper.createFileInputSection(container, modifyListener, "Architecture Effect Specification File",
+                DSEConstantsContainer.ARCHITECTURE_EFFECT_SPECIFICATION_EXTENSION, architectureEffectSpecification, getShell(), "");
     }
 
     @Override
@@ -85,12 +93,13 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         setText(configuration, dimension, DSEConstantsContainer.QML_CONTRACT_FILE);
         setText(configuration, reduction, DSEConstantsContainer.REASONING_REDUCTION_FILE);
         setText(configuration, system, DSEConstantsContainer.REASONING_SYSTEM_FILE);
+        setText(configuration, architectureEffectSpecification, DSEConstantsContainer.ARCHITECTURE_EFFECT_SPECIFICATION_FILE);
     }
 
     @Override
     public boolean isValid(final ILaunchConfiguration launchConfig) {
         return isValidDimension(dimension.getText()) && isValidReduction(reduction.getText())
-                && isValidSystem(system.getText());
+                && isValidSystem(system.getText()) && isValidArchitectureEffectSpecification(architectureEffectSpecification.getText());
     }
 
     private boolean isValidDimension(final String uri) {
@@ -152,6 +161,31 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
 
         return error(null);
     }
+    
+    private boolean isValidArchitectureEffectSpecification(final String uri) { 
+        final String extension = DSEConstantsContainer.ARCHITECTURE_EFFECT_SPECIFICATION_EXTENSION[0].substring(1);
+        if ((uri == null) || !uri.endsWith(extension)) {
+            return error("Architecture Effect Specification File is missing!");
+        }
+
+        URI loadFrom = URI.createURI(uri);
+        if (!loadFrom.isPlatform()) {
+            loadFrom = URI.createFileURI(uri);
+        }
+        
+        System.err.println(loadFrom.toString());
+        
+        // TODO load xtext
+        final EObject object = EMFHelper.loadFromXMIFile(loadFrom, ArchitectureEffectSpecificationPackage.eINSTANCE);
+        System.err.println(object.toString());
+        System.err.println(object.getClass());
+        
+        if (!(object instanceof ReasoningSystem)) {
+            return error("Valid Reasoning System is missing!");
+        }
+
+        return error(loadFrom.toString());
+    }
 
     @Override
     public void performApply(final ILaunchConfigurationWorkingCopy configuration) {
@@ -163,6 +197,7 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, dimension.getText());
         configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, reduction.getText());
         configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, system.getText());
+        configuration.setAttribute(DSEConstantsContainer.ARCHITECTURE_EFFECT_SPECIFICATION_FILE, architectureEffectSpecification.getText());        
     }
 
     @Override
@@ -178,6 +213,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, "");
         setText(system, "");
         configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, "");
+        setText(architectureEffectSpecification, "");
+        configuration.setAttribute(DSEConstantsContainer.ARCHITECTURE_EFFECT_SPECIFICATION_FILE, "");
     }
 
     private boolean setText(final ILaunchConfiguration configuration, final Text textWidget, final String attributeName) {

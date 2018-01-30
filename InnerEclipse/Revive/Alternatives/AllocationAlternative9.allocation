@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.1" id="_8EKMMIeIEeCbWqFt5kbVKA" entityName="defaultAllocation">
+  <targetResourceEnvironment_Allocation href="ResourceAlternative9.resourceenvironment#/"/>
+  <system_Allocation href="SystemAlternative9.system#_mll5MIeFEeCbWqFt5kbVKA"/>
+  <allocationContexts_Allocation id="_8vdzAIeIEeCbWqFt5kbVKA" entityName="Allocation_Assembly_LoadBalancer &lt;LoadBalancer> &lt;LoadBalancer>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_7tDwQIeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_qteUkIeFEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="__dzBgIeIEeCbWqFt5kbVKA" entityName="Allocation_&lt;MSSQL_sync> A &lt;MSSQL_sync>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_DGuFcIeIEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_j9wpYIeHEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_BIFZEIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;MSSQL_sync> B &lt;MSSQL_sync>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_EyOlAIeIEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_mvE6cIeHEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_EoxRkIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;WebServicesPackage> A1 &lt;WebServicesPackage>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_-dJ5UIeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_XMcvgIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_FqnwIIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;WebServicesPackage> A2 &lt;WebServicesPackage>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_A4zcYIeIEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_1moaAIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_GguRsIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;WebServicesPackage> B1 &lt;WebServicesPackage>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_BwlY8IeIEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_441KkIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_HcdhMIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;WebServicesPackage> B2 &lt;WebServicesPackage>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_CqyXYIeIEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_6uazMIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_IV1ZMIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;BoxUploadASPX> A1 &lt;BoxUploadASPX>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_8rtJ0IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_-31VEIeFEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_JNidQIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;BoxUploadASPX> A2 &lt;BoxUploadASPX>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_8rtJ0IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_BZL3gIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_KBBvsIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ASPNet Container> A &lt;ASPNet Container>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_8rtJ0IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_Dgce8IeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_KyjTQIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ParserService> A1 &lt;ParserService>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_8rtJ0IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_M7rDQIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Lx86wIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ParserService> A2 &lt;ParserService>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_8rtJ0IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_Qk5MsIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_M8HAwIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;BoxUploadASPX> B1 &lt;BoxUploadASPX>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_9lZK4IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_GEK_8IeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_N00KYIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;BoxUploadASPX> B2 &lt;BoxUploadASPX>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_9lZK4IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_IZn0YIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_OnsY0IeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ASPNet Container> B &lt;ASPNet Container>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_9lZK4IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_KNgM0IeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Pb9HUIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ParserService> B1 &lt;ParserService>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_9lZK4IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_SS5moIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_QjhMUIeJEeCbWqFt5kbVKA" entityName="Allocation_&lt;ParserService> B2 &lt;ParserService>">
+    <resourceContainer_AllocationContext href="ResourceAlternative9.resourceenvironment#_9lZK4IeHEeCbWqFt5kbVKA"/>
+    <assemblyContext_AllocationContext href="SystemAlternative9.system#_UtKCkIeGEeCbWqFt5kbVKA"/>
+  </allocationContexts_Allocation>
+</Allocation>

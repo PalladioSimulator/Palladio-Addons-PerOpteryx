@@ -22,5 +22,6 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.palladiosimulator.analyzer.workflow,
  org.palladiosimulator.qualitymodel;bundle-version="1.0.0",
  org.palladiosimulator.mdsdprofiles;bundle-version="1.0.1",
- org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1"
+ org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1",
+ org.palladiosimulator.aes;bundle-version="1.0.0"
 Bundle-Vendor: sdq.ipd.uka.de
