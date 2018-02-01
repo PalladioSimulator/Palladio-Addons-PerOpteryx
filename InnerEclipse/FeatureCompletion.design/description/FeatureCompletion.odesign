@@ -525,49 +525,55 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="Interface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.OperationInterface" childrenPresentation="List">
-          <subNodeMappings name="ST_fulfillsComplementumVisnetis" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Fullfills: ' + self.eGet('fulfills').name/]" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="ST_requiresComplementum" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Requires: ' + self.eGet('requires').name/]" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="OperationSignature" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:signatures__OperationInterface" domainClass="repository.OperationSignature">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'void ' + self.entityName + '(' + self.printParameters() + ')'" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-            <conditionnalStyles predicateExpression="[self.returnType__OperationSignature.oclIsTypeOf(PrimitiveDataType)/]">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.returnType__OperationSignature.oclAsType(repository::PrimitiveDataType).type.toString().toLower() + ' ' + self.entityName + '('+ self.printParameters() +')'" labelPosition="node" resizeKind="NSEW">
+        <containerMappings name="Interface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.OperationInterface" childrenPresentation="VerticalStack">
+          <subContainerMappings name="OperationSignature" semanticCandidatesExpression="feature:signatures__OperationInterface" domainClass="repository.OperationSignature" childrenPresentation="List">
+            <subNodeMappings name="ST_fulfillsComplementumVisnetisNode" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='fulfillsComplementumVisnetis']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Fullfills: ' + self.eGet('fulfills').name/]" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <subNodeMappings name="ST_requiresComplementumNode" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='requiresComplementum']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Requires: ' + self.eGet('requires').name/]" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'void ' + self.entityName + '(' + self.printParameters() + ')'">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+            <conditionnalStyles predicateExpression="[self.returnType__OperationSignature.oclIsTypeOf(PrimitiveDataType)/]">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.returnType__OperationSignature.oclAsType(repository::PrimitiveDataType).type.toString().toLower() + ' ' + self.entityName + '('+ self.printParameters() +')'">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[self.returnType__OperationSignature.oclIsTypeOf(CompositeDataType)/]">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.returnType__OperationSignature.oclAsType(repository::CompositeDataType).entityName + ' ' + self.entityName + '(' + self.printParameters() + ')'" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.returnType__OperationSignature.oclAsType(repository::CompositeDataType).entityName + ' ' + self.entityName + '(' + self.printParameters() + ')'">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="[self.returnType__OperationSignature.oclIsTypeOf(CollectionDataType)/]">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:if self.returnType__OperationSignature.oclIsTypeOf(repository::CollectionDataType) and self.returnType__OperationSignature.oclAsType(repository::CollectionDataType).innerType_CollectionDataType.oclIsTypeOf(repository::PrimitiveDataType) then &#xD;self.returnType__OperationSignature.oclAsType(repository::CollectionDataType).innerType_CollectionDataType.oclAsType(repository::PrimitiveDataType).type.toString().toLower() + '[]' else self.returnType__OperationSignature.oclAsType(repository::CollectionDataType).entityName endif  + ' ' + self.entityName + '(' + self.printParameters() + ')'" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:if self.returnType__OperationSignature.oclIsTypeOf(repository::CollectionDataType) and self.returnType__OperationSignature.oclAsType(repository::CollectionDataType).innerType_CollectionDataType.oclIsTypeOf(repository::PrimitiveDataType) then ...">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               </style>
             </conditionnalStyles>
-          </subNodeMappings>
+          </subContainerMappings>
+          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="ST_fulfillsComplementumVisnetisImport" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='fulfillsComplementumVisnetis']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis" reusedNodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ST_fulfillsComplementumVisnetisCompartment']/@subNodeMappings[name='ComplementumVisnetis']" childrenPresentation="List" importedMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ST_fulfillsComplementumVisnetisCompartment']"/>
+          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="ST_requiresComplementumImport" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='requiresComplementum']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum" reusedNodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ST_requiresComplementumCompartment']/@subNodeMappings[name='Complementum']" childrenPresentation="List" importedMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ST_requiresComplementumCompartment']"/>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;Interface>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -581,20 +587,6 @@
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="ST_fulfillsComplementumVisnetisInfra" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Fullfills: ' + self.eGet('fulfills').name/]" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="ST_requiresComplementumInfra" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Requires: ' + self.eGet('requires').name/]" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
             </style>
           </subNodeMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;InfrarstructureInterface>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="10">
@@ -687,7 +679,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="ST_fulfillsComplementumVisnetisCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis" childrenPresentation="List">
+          <subContainerMappings name="ST_fulfillsComplementumVisnetisCompartment" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='fulfillsComplementumVisnetis']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis" childrenPresentation="List">
             <subNodeMappings name="ComplementumVisnetis" semanticCandidatesExpression="[self.eGet('fulfills')/]" domainClass="FeatureCompletionModel::ComplementumVisnetis">
               <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -702,7 +694,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="ST_requiresComplementumCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum" childrenPresentation="List">
+          <subContainerMappings name="ST_requiresComplementumCompartment" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='requiresComplementum']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum" childrenPresentation="List">
             <subNodeMappings name="Complementum" semanticCandidatesExpression="[self.eGet('requires')/]" domainClass="FeatureCompletionModel::Complementum">
               <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -717,7 +709,7 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <subContainerMappings name="ST_isSolutionForCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="isSolutionFor" childrenPresentation="List">
+          <subContainerMappings name="ST_isSolutionForCompartment" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='isSolutionFor']" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="isSolutionFor" childrenPresentation="List">
             <subNodeMappings name="CompletionComponent" semanticCandidatesExpression="[self.eGet('realizes')/]" domainClass="FeatureCompletionModel::CompletionComponent">
               <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1139,7 +1131,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Internal Elements">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Signature" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']/@subNodeMappings[name='OperationSignature'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']/@subNodeMappings[name='InfrastructureSignature']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Signature" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']/@subNodeMappings[name='InfrastructureSignature']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1330,6 +1322,53 @@
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:SetValue" featureName="serviceEffectSpecifications__BasicComponent" valueExpression="aql:copiedElement.copyIdentifier()"/>
               </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="FeatureCompletion">
+          <ownedTools xsi:type="tool_1:ToolDescription" name="fulfillsComplementumVisnetis" precondition="[oclIsKindOf(RepositoryComponent) or oclIsKindOf(Interface) or oclIsKindOf(Signature)/]">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:addStereotypeFulfillsComplementumVisnetis()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolDescription" name="requiresComplementum" precondition="[oclIsKindOf(RepositoryComponent) or oclIsKindOf(Interface) or oclIsKindOf(Signature)/]">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:addStereotypeRequiresComplementum()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolDescription" name="isSolutionFor" precondition="[oclIsKindOf(RepositoryComponent)/]">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:addStereotypeIsSolutionFor()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="fulfillsComplementumVisnetis">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:removeStereotypeFulfillsComplementumVisnetis()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="requiresComplementum">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:removeStereotypeRequiresComplementum()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="isSolutionFor">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:removeStereotypeIsSolutionFor()"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
@@ -1893,6 +1932,7 @@
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.repository.Services"/>
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.services.PCMServices"/>
+    <ownedJavaExtensions qualifiedClassName="edu.kit.ipd.are.dsexplore.featurecompletions.design.Services"/>
   </ownedViewpoints>
   <extensions xsi:type="properties:ViewExtensionDescription" name="Properties">
     <metamodels href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Feature Completion Diagram Editor
 Bundle-SymbolicName: FeatureCompletion.design;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: FeatureCompletion.design.Activator
+Bundle-Activator: edu.kit.ipd.are.dsexplore.featurecompletions.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.sirius,
@@ -13,7 +13,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.emf.transaction,
  org.palladiosimulator.commons,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1",
+ org.modelversioning.emfprofile;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: palladiosimulator.org
+Import-Package: org.palladiosimulator.mdsdprofiles.api
