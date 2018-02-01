@@ -1,0 +1,9 @@
+grammar org.palladiosimulator.qes.QualityEffectSpecification with org.eclipse.xtext.common.Terminals
+
+generate qualityEffectSpecification "http://www.palladiosimulator.org/qes/QualityEffectSpecification"
+
+Model:
+    elements+=FindByName+;
+
+FindByName:
+    'Find' name=ID;

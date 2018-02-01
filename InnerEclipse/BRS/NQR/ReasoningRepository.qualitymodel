@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QualityModel:ReasoningRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0">
+  <reasonings id="_qyiGUFp2EeeQAfxZnxEbow" entityName="Recoverability_positive_Backupability">
+    <transformations href="TransformationRepository.qualitymodel#_lCd3EFp0EeeQAfxZnxEbow"/>
+    <output href="Recoverability.qmlcontracttype#_7DG5MFpzEeeQAfxZnxEbow"/>
+  </reasonings>
+  <reasonings id="_rwUkQFp2EeeQAfxZnxEbow" entityName="Usability_positive_Recoverability">
+    <transformations href="TransformationRepository.qualitymodel#_FF4wQFp1EeeQAfxZnxEbow"/>
+    <output href="Usability.qmlcontracttype#_ijBOkFpzEeeQAfxZnxEbow"/>
+  </reasonings>
+</QualityModel:ReasoningRepository>

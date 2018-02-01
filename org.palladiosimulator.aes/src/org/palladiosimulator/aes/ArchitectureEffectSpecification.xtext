@@ -1,9 +1,0 @@
-grammar org.palladiosimulator.aes.ArchitectureEffectSpecification with org.eclipse.xtext.common.Terminals
-
-generate architectureEffectSpecification "http://www.palladiosimulator.org/aes/ArchitectureEffectSpecification"
-
-Model:
-    elements+=FindByName+;
-    
-FindByName:
-    'Find' name=ID;

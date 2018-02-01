@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_J3vPYLfXEd2PvvnrNadJLQ" entityName="BRS allocation">
+  <targetResourceEnvironment_Allocation href="brs.resourceenvironment#/"/>
+  <system_Allocation href="brs.system#_Mkm7gNo_EdyxgfK4Hy_RFA"/>
+  <allocationContexts_Allocation id="_J7SXcGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_WebServer1 &lt;WebServer1> &lt;WebServer1>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_8-cpgNo_EdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_3ZPDcGMOEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Kl2XYGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_UserManagement &lt;UserManagement> &lt;UserManagement>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#__8HqgGMOEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_LsrckGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_Scheduler &lt;Scheduler> &lt;Scheduler>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_98D3QGMOEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_MkoYQGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_OnlineReporting &lt;OnlineReporting> &lt;OnlineReporting>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_ChaRwGMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_NiAmgGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_GraphicalReporting &lt;GraphicalReporting> &lt;GraphicalReporting>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_EPdH8GMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_OcG3QGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_CoreOnlineEngine &lt;CoreOnlineEngine> &lt;CoreOnlineEngine>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_U2Nv4dpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_GJEU8GMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Rf1G8GMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_CoreGraphicEngine &lt;CoreGraphicEngine> &lt;CoreGraphicEngine>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_U2Nv4dpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_NTmB8GMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_SmtPcGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_CacheInfo &lt;CacheInfo> &lt;CacheInfo>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_U2Nv4dpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_SgHKIGMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Tp5KwGMREeeDXYFiHFBz2w" entityName="Allocation_Assembly_Database1 &lt;Database1> &lt;Database1>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_L0Dy4dpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_VJfnMGMPEeeQcb13NHzTgQ"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>
