@@ -473,7 +473,7 @@
     </ownedRepresentations>
   </ownedViewpoints>
   <ownedViewpoints name="EnrichedRepository" modelFileExtension="repository">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Repository Diagram" initialisation="true" pasteDescriptions="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Repository%20Component%20Copy%20Paste'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Interface%20Copy%20Paste']" domainClass="repository.Repository" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Enriched Repository Diagram" initialisation="true" pasteDescriptions="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Repository%20Component%20Copy%20Paste'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Interface%20Copy%20Paste']" domainClass="repository.Repository" enablePopupBars="true">
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//repository"/>
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//seff"/>
@@ -482,6 +482,9 @@
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core"/>
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/entity"/>
       <metamodel href="http://palladiosimulator.org/PalladioComponentModel/5.2#//resourcetype"/>
+      <metamodel href="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1#/"/>
+      <metamodel href="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0#/"/>
+      <metamodel href="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0#/"/>
       <diagramInitialisation>
         <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="Load Resources" id="LoadResources">
           <parameters name="PrimitiveTypes.repository" value="aql:'pathmap://PCM_MODELS/PrimitiveTypes.repository'"/>
@@ -490,7 +493,7 @@
         </firstModelOperations>
       </diagramInitialisation>
       <defaultLayer name="Default">
-        <edgeMappings name="RequiredRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']" targetFinderExpression="feature:requiredInterface__OperationRequiredRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.OperationRequiredRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationRequiredRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source']">
+        <edgeMappings name="RequiredRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']" targetFinderExpression="feature:requiredInterface__OperationRequiredRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.OperationRequiredRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationRequiredRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Requires>>">
@@ -498,7 +501,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="ProvidedRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']" targetFinderExpression="feature:providedInterface__OperationProvidedRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.OperationProvidedRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationProvidedRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationProvidedRole%27s%20Source']">
+        <edgeMappings name="ProvidedRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']" targetFinderExpression="feature:providedInterface__OperationProvidedRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.OperationProvidedRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationProvidedRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationProvidedRole%27s%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Provides>>">
@@ -506,7 +509,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="InfrastructureRequiredRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']" targetFinderExpression="feature:requiredInterface__InfrastructureRequiredRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.InfrastructureRequiredRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureRequiredRole%27s%20Target']">
+        <edgeMappings name="InfrastructureRequiredRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']" targetFinderExpression="feature:requiredInterface__InfrastructureRequiredRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.InfrastructureRequiredRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureRequiredRole%27s%20Target']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Requires>>">
@@ -514,7 +517,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="InfrastructureProvidedRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']" targetFinderExpression="feature:providedInterface__InfrastructureProvidedRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.InfrastructureProvidedRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureProvidedRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureProvidedRole%27s%20Source']">
+        <edgeMappings name="InfrastructureProvidedRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']" targetFinderExpression="feature:providedInterface__InfrastructureProvidedRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.InfrastructureProvidedRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureProvidedRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureProvidedRole%27s%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Provides>>">
@@ -522,8 +525,22 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="Interface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.OperationInterface" childrenPresentation="List">
-          <subNodeMappings name="OperationSignature" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:signatures__OperationInterface" domainClass="repository.OperationSignature">
+        <containerMappings name="Interface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='OperationInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.OperationInterface" childrenPresentation="List">
+          <subNodeMappings name="ST_fulfillsComplementumVisnetis" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Fullfills: ' + self.eGet('fulfills').name/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ST_requiresComplementum" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Requires: ' + self.eGet('requires').name/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="OperationSignature" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:signatures__OperationInterface" domainClass="repository.OperationSignature">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'void ' + self.entityName + '(' + self.printParameters() + ')'" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -558,12 +575,26 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="InfrastructureInterface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.InfrastructureInterface" childrenPresentation="List">
-          <subNodeMappings name="InfrastructureSignature" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:infrastructureSignatures__InfrastructureInterface" domainClass="repository.InfrastructureSignature">
+        <containerMappings name="InfrastructureInterface" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureInterface%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.InfrastructureInterface" childrenPresentation="List">
+          <subNodeMappings name="InfrastructureSignature" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:infrastructureSignatures__InfrastructureInterface" domainClass="repository.InfrastructureSignature">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.entityName + '(' + self.printParameters() + ')'" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ST_fulfillsComplementumVisnetisInfra" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Fullfills: ' + self.eGet('fulfills').name/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ST_requiresComplementumInfra" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Requires: ' + self.eGet('requires').name/]" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
             </style>
           </subNodeMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;InfrarstructureInterface>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="10">
@@ -573,9 +604,9 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="BasicComponent" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.BasicComponent" childrenPresentation="VerticalStack">
-          <subContainerMappings name="SEFFCompartment" pasteDescriptions="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='SEFF%20Copy%20Paste']" semanticCandidatesExpression="var:self" domainClass="repository.BasicComponent" childrenPresentation="List">
-            <subNodeMappings name="SEFF" semanticCandidatesExpression="feature:serviceEffectSpecifications__BasicComponent" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='SEFF%20Representation']" domainClass="seff.ResourceDemandingSEFF">
+        <containerMappings name="BasicComponent" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.BasicComponent" childrenPresentation="VerticalStack">
+          <subContainerMappings name="SEFFCompartment" pasteDescriptions="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='SEFF%20Copy%20Paste']" semanticCandidatesExpression="var:self" domainClass="repository.BasicComponent" childrenPresentation="List">
+            <subNodeMappings name="SEFF" semanticCandidatesExpression="feature:serviceEffectSpecifications__BasicComponent" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='SEFF%20Representation']" domainClass="seff.ResourceDemandingSEFF">
               <style xsi:type="style:SquareDescription" labelExpression="[self.describedService__SEFF.eContainer().oclAsType(Interface).entityName +  '.' + self.describedService__SEFF.entityName/]" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -597,7 +628,7 @@
             </style>
           </subContainerMappings>
           <subContainerMappings name="PassiveResourcesCompartment" semanticCandidatesExpression="var:self" domainClass="repository.BasicComponent" childrenPresentation="List">
-            <subNodeMappings name="PassiveResource" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:passiveResource_BasicComponent" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20Capacity']" domainClass="repository.PassiveResource">
+            <subNodeMappings name="PassiveResource" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:passiveResource_BasicComponent" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20Capacity']" domainClass="repository.PassiveResource">
               <style xsi:type="style:SquareDescription" labelExpression="aql:self.entityName + '&lt;Capacity: ' + self.capacity_PassiveResource.specification + '>'" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -612,8 +643,8 @@
             </style>
           </subContainerMappings>
           <subContainerMappings name="ComponentParameterCompartment" semanticCandidatesExpression="var:self" domainClass="repository.BasicComponent">
-            <subContainerMappings name="ComponentParameter" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Variable%20Usage']" semanticCandidatesExpression="feature:componentParameterUsage_ImplementationComponentType" domainClass="parameter.VariableUsage" childrenPresentation="List">
-              <subNodeMappings name="Variable Characterisation" semanticCandidatesExpression="feature:variableCharacterisation_VariableUsage" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20VariableCharacterisation']" domainClass="parameter.VariableCharacterisation">
+            <subContainerMappings name="ComponentParameter" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Variable%20Usage']" semanticCandidatesExpression="feature:componentParameterUsage_ImplementationComponentType" domainClass="parameter.VariableUsage" childrenPresentation="List">
+              <subNodeMappings name="Variable Characterisation" semanticCandidatesExpression="feature:variableCharacterisation_VariableUsage" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20VariableCharacterisation']" domainClass="parameter.VariableCharacterisation">
                 <style xsi:type="style:SquareDescription" labelExpression="aql:self.type + ' = ' + self.specification_VariableCharacterisation.specification" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW">
                   <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                   <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -642,7 +673,7 @@
             </style>
           </subContainerMappings>
           <subContainerMappings name="ResourceRequiredRolesCompartment" semanticCandidatesExpression="var:self" domainClass="repository.BasicComponent" childrenPresentation="List">
-            <subNodeMappings name="ResourceRequiredRole" semanticCandidatesExpression="feature:resourceRequiredRoles__ResourceInterfaceRequiringEntity" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20ResourceInterface']" domainClass="entity.ResourceRequiredRole">
+            <subNodeMappings name="ResourceRequiredRole" semanticCandidatesExpression="feature:resourceRequiredRoles__ResourceInterfaceRequiringEntity" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20ResourceInterface']" domainClass="entity.ResourceRequiredRole">
               <style xsi:type="style:SquareDescription" labelExpression="aql:self.entityName + '&lt;' + self.requiredResourceInterface__ResourceRequiredRole.entityName + '>'" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -656,6 +687,58 @@
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
+          <subContainerMappings name="ST_fulfillsComplementumVisnetisCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="fulfillsComplementumVisnetis" childrenPresentation="List">
+            <subNodeMappings name="ComplementumVisnetis" semanticCandidatesExpression="[self.eGet('fulfills')/]" domainClass="FeatureCompletionModel::ComplementumVisnetis">
+              <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="FulfillsComplementumVisnetis">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="ST_requiresComplementumCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="requiresComplementum" childrenPresentation="List">
+            <subNodeMappings name="Complementum" semanticCandidatesExpression="[self.eGet('requires')/]" domainClass="FeatureCompletionModel::Complementum">
+              <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="RequiresComplementum">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="ST_isSolutionForCompartment" semanticCandidatesExpression="service:getStereotypeApplications()" domainClass="isSolutionFor" childrenPresentation="List">
+            <subNodeMappings name="CompletionComponent" semanticCandidatesExpression="[self.eGet('realizes')/]" domainClass="FeatureCompletionModel::CompletionComponent">
+              <style xsi:type="style:SquareDescription" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <subNodeMappings name="InclusionMechanism" semanticCandidatesExpression="[self.eGet('usesMechanism')/]" domainClass="InclusionMechanism">
+              <style xsi:type="style:SquareDescription" labelExpression="['using ' + name/]" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='chocolate']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="IsSolutionFor">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subContainerMappings>
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;BasicComponent>>\n'.concat(self.entityName)" widthComputationExpression="" heightComputationExpression="">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -663,7 +746,7 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="CompositeComponent" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CompositeComponent%20Representation']" domainClass="repository.CompositeComponent" childrenPresentation="List">
+        <containerMappings name="CompositeComponent" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='CompositeComponent%20Representation']" domainClass="repository.CompositeComponent" childrenPresentation="List">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;CompositeComponent>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -671,7 +754,7 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="SubSystem" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SubSystem%20Representation']" domainClass="subsystem.SubSystem" childrenPresentation="List">
+        <containerMappings name="SubSystem" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SubSystem%20Representation']" domainClass="subsystem.SubSystem" childrenPresentation="List">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;SubSystem>>\n'.concat(self.entityName)" widthComputationExpression="10" heightComputationExpression="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -680,7 +763,7 @@
           </style>
         </containerMappings>
         <toolSections name="Basic Model Elements">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Interface" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Interface" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -691,7 +774,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="BasicComponent" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="BasicComponent" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -702,7 +785,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompositeComponent" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompositeComponent" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -713,7 +796,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="SubSystem" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="SubSystem" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -724,7 +807,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="InfrastructureInterface" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="InfrastructureInterface" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -749,7 +832,7 @@
               <firstModelOperations xsi:type="tool_1:SetValue" featureName="entityName" valueExpression="var:0"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="RequiredRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@edgeMappings[name='RequiredRole']" extraSourceMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="RequiredRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@edgeMappings[name='RequiredRole']" extraSourceMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -763,7 +846,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ProvidedRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(OperationProvidedRole)) and (x.oclAsType(OperationProvidedRole).providedInterface__OperationProvidedRole = preTarget)) = false or preSource.oclIsTypeOf(CompositeComponent)/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@edgeMappings[name='ProvidedRole']" extraSourceMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ProvidedRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(OperationProvidedRole)) and (x.oclAsType(OperationProvidedRole).providedInterface__OperationProvidedRole = preTarget)) = false or preSource.oclIsTypeOf(CompositeComponent)/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@edgeMappings[name='ProvidedRole']" extraSourceMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -802,7 +885,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="InfrastructureRequiredRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@edgeMappings[name='InfrastructureRequiredRole']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="InfrastructureRequiredRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@edgeMappings[name='InfrastructureRequiredRole']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -816,7 +899,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="InfrastructureProvidedRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(InfrastructureProvidedRole)) and (x.oclAsType(InfrastructureProvidedRole).providedInterface__InfrastructureProvidedRole = preTarget)) = false/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@edgeMappings[name='InfrastructureProvidedRole']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="InfrastructureProvidedRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(InfrastructureProvidedRole)) and (x.oclAsType(InfrastructureProvidedRole).providedInterface__InfrastructureProvidedRole = preTarget)) = false/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@edgeMappings[name='InfrastructureProvidedRole']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1008,7 +1091,7 @@
             </initialOperation>
             <edgeView name="edgeView"/>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="SubSystem Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="SubSystem Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1020,7 +1103,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="CompositeComponent Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="CompositeComponent Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1056,7 +1139,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Internal Elements">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Signature" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']/@subNodeMappings[name='OperationSignature'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']/@subNodeMappings[name='InfrastructureSignature']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Signature" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='Interface']/@subNodeMappings[name='OperationSignature'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='InfrastructureInterface']/@subNodeMappings[name='InfrastructureSignature']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1074,7 +1157,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Passive Resource" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment']/@subNodeMappings[name='PassiveResource']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Passive Resource" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment']/@subNodeMappings[name='PassiveResource']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1091,7 +1174,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ComponentParameter" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ComponentParameter" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1108,7 +1191,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="VariableCharacterisation" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']/@subNodeMappings[name='Variable%20Characterisation']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="VariableCharacterisation" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']/@subNodeMappings[name='Variable%20Characterisation']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1125,7 +1208,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="SEFF" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment']/@subNodeMappings[name='SEFF']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="SEFF" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment']/@subNodeMappings[name='SEFF']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1158,7 +1241,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="ResourceRequiredRole" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']/@subNodeMappings[name='ResourceRequiredRole']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="ResourceRequiredRole" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']/@subNodeMappings[name='ResourceRequiredRole']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1188,7 +1271,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit VariableCharacterisation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']/@subNodeMappings[name='Variable%20Characterisation']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit VariableCharacterisation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ComponentParameterCompartment']/@subContainerMappings[name='ComponentParameter']/@subNodeMappings[name='Variable%20Characterisation']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1202,7 +1285,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit Capacity" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment']/@subNodeMappings[name='PassiveResource']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit Capacity" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='PassiveResourcesCompartment']/@subNodeMappings[name='PassiveResource']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1216,7 +1299,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="SEFF Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment']/@subNodeMappings[name='SEFF']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="SEFF Representation" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='SEFFCompartment']/@subNodeMappings[name='SEFF']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1227,7 +1310,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit ResourceInterface" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']/@subNodeMappings[name='ResourceRequiredRole']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit ResourceInterface" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRolesCompartment']/@subNodeMappings[name='ResourceRequiredRole']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1252,7 +1335,7 @@
         </toolSections>
       </defaultLayer>
       <additionalLayers name="Component Types" activeByDefault="true">
-        <edgeMappings name="Conforms Provides Type" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Delete%20Conforms%20Provides%20Relation']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType']" targetFinderExpression="feature:parentProvidesComponentTypes" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Provides%20Relation%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Provides%20Relation%20-%20Source']">
+        <edgeMappings name="Conforms Provides Type" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Delete%20Conforms%20Provides%20Relation']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType']" targetFinderExpression="feature:parentProvidesComponentTypes" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Provides%20Relation%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Provides%20Relation%20-%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Conforms>>">
@@ -1260,7 +1343,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Conforms Complete Type" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Delete%20Conforms%20Complete%20Relation']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetFinderExpression="feature:parentCompleteComponentTypes" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Complete%20Relation%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Complete%20Relation%20-%20Source']">
+        <edgeMappings name="Conforms Complete Type" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Delete%20Conforms%20Complete%20Relation']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetFinderExpression="feature:parentCompleteComponentTypes" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Complete%20Relation%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@toolSections.0/@ownedTools[name='Conforms%20Complete%20Relation%20-%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Conforms>>">
@@ -1268,7 +1351,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="ProvidesComponentType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.ProvidesComponentType">
+        <containerMappings name="ProvidesComponentType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.ProvidesComponentType">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;ProvidesComponent>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1276,7 +1359,7 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="CompleteComponentType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.CompleteComponentType">
+        <containerMappings name="CompleteComponentType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:components__Repository" domainClass="repository.CompleteComponentType">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql: '&lt;&lt;CompleteComponent>>\n'.concat(self.entityName)" widthComputationExpression="20" heightComputationExpression="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1285,7 +1368,7 @@
           </style>
         </containerMappings>
         <toolSections name="Componenent Types">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ProvidesComponentType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ProvidesComponentType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1296,7 +1379,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompleteComponentType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompleteComponentType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1307,7 +1390,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Conforms Provided Type" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@edgeMappings[name='Conforms%20Provides%20Type']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Conforms Provided Type" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@edgeMappings[name='Conforms%20Provides%20Type']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1318,7 +1401,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Conforms Complete Type" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@edgeMappings[name='Conforms%20Complete%20Type']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Conforms Complete Type" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@edgeMappings[name='Conforms%20Complete%20Type']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1410,7 +1493,7 @@
         </toolSections>
       </additionalLayers>
       <additionalLayers name="Event-Based Communication" activeByDefault="true">
-        <edgeMappings name="SourceRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']" targetFinderExpression="feature:eventGroup__SourceRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.SourceRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SourceRole%27s%20Target']">
+        <edgeMappings name="SourceRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']" targetFinderExpression="feature:eventGroup__SourceRole" sourceFinderExpression="feature:requiringEntity_RequiredRole" domainClass="repository.SourceRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='RequiredRole%27s%20Source'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SourceRole%27s%20Target']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Emits>>">
@@ -1418,7 +1501,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="SinkRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']" targetFinderExpression="feature:eventGroup__SinkRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.SinkRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='SinkRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='SinkRole%27s%20Source']">
+        <edgeMappings name="SinkRole" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='CompositeComponent'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='SubSystem'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='ProvidesComponentType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']/@containerMappings[name='CompleteComponentType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']" targetFinderExpression="feature:eventGroup__SinkRole" sourceFinderExpression="feature:providingEntity_ProvidedRole" domainClass="repository.SinkRole" useDomainElement="true" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='SinkRole%27s%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='SinkRole%27s%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Handles>>">
@@ -1426,8 +1509,8 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="EventGroup" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='EventGroup%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.EventGroup" childrenPresentation="List">
-          <subNodeMappings name="EventType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:eventTypes__EventGroup" domainClass="repository.EventType">
+        <containerMappings name="EventGroup" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@toolSections.0/@ownedTools[name='EventGroup%20Deletion']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:interfaces__Repository" domainClass="repository.EventGroup" childrenPresentation="List">
+          <subNodeMappings name="EventType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Signature']" semanticCandidatesExpression="feature:eventTypes__EventGroup" domainClass="repository.EventType">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.entityName + '(' + self.parameter__EventType.dataType__Parameter.getDataTypeName() + ' ' + self.parameter__EventType.parameterName + ')'" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1442,7 +1525,7 @@
           </style>
         </containerMappings>
         <toolSections name="Event-Based Communication">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Event Group" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Event Group" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1453,7 +1536,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="EventType" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']/@subNodeMappings[name='EventType']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="EventType" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@containerMappings[name='EventGroup']/@subNodeMappings[name='EventType']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1464,7 +1547,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SourceRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@edgeMappings[name='SourceRole']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SourceRole" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@edgeMappings[name='SourceRole']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1478,7 +1561,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SinkRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(SinkRole)) and (x.oclAsType(SinkRole).eventGroup__SinkRole = preTarget)) = false/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@edgeMappings[name='SinkRole']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SinkRole" precondition="[preSource.oclAsType(RepositoryComponent).providedRoles_InterfaceProvidingEntity->exists(x |  (x.oclIsTypeOf(SinkRole)) and (x.oclAsType(SinkRole).eventGroup__SinkRole = preTarget)) = false/]" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']/@edgeMappings[name='SinkRole']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1567,7 +1650,7 @@
         </toolSections>
       </additionalLayers>
       <additionalLayers name="DataTypes" activeByDefault="true">
-        <edgeMappings name="Contains" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20Contains']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']" targetFinderExpression="aql:self.innerDeclaration_CompositeDataType.datatype_InnerDeclaration" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Contains%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Contains%20-%20Source']">
+        <edgeMappings name="Contains" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20Contains']" sourceMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']" targetMapping="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']" targetFinderExpression="aql:self.innerDeclaration_CompositeDataType.datatype_InnerDeclaration" reconnections="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Contains%20-%20Target'] //@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Contains%20-%20Source']">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;Contains>>">
@@ -1575,8 +1658,8 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="CollectionDataType" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20CollectionDataType']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:dataTypes__Repository" domainClass="repository.CollectionDataType" childrenPresentation="List">
-          <subNodeMappings name="InnerType" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20Inner%20Type']" semanticCandidatesExpression="feature:innerType_CollectionDataType" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Edit%20InnerType']" domainClass="repository.DataType">
+        <containerMappings name="CollectionDataType" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20CollectionDataType']" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:dataTypes__Repository" domainClass="repository.CollectionDataType" childrenPresentation="List">
+          <subNodeMappings name="InnerType" deletionDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Delete%20Inner%20Type']" semanticCandidatesExpression="feature:innerType_CollectionDataType" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Edit%20InnerType']" domainClass="repository.DataType">
             <style xsi:type="style:BundledImageDescription" labelExpression="" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1604,8 +1687,8 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="CompositeDataType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:dataTypes__Repository" domainClass="repository.CompositeDataType" childrenPresentation="List">
-          <subNodeMappings name="InnerDeclaration" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:innerDeclaration_CompositeDataType" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Edit%20InnerDeclaration']" domainClass="repository.InnerDeclaration">
+        <containerMappings name="CompositeDataType" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:dataTypes__Repository" domainClass="repository.CompositeDataType" childrenPresentation="List">
+          <subNodeMappings name="InnerDeclaration" labelDirectEdit="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Edit%20Name']" semanticCandidatesExpression="feature:innerDeclaration_CompositeDataType" doubleClickDescription="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@toolSections.0/@ownedTools[name='Edit%20InnerDeclaration']" domainClass="repository.InnerDeclaration">
             <style xsi:type="style:BundledImageDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1641,7 +1724,7 @@
           </style>
         </containerMappings>
         <toolSections name="DataTypes">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CollectionDataType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CollectionDataType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1658,7 +1741,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompositeDataType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CompositeDataType" containerMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1669,7 +1752,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="InnerDeclaration" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']/@subNodeMappings[name='InnerDeclaration']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="InnerDeclaration" nodeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']/@subNodeMappings[name='InnerDeclaration']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -1683,7 +1766,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Contains" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@edgeMappings[name='Contains']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Contains" edgeMappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@edgeMappings[name='Contains']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -1743,7 +1826,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit InnerDeclaration" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']/@subNodeMappings[name='InnerDeclaration']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit InnerDeclaration" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CompositeDataType']/@subNodeMappings[name='InnerDeclaration']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
@@ -1752,7 +1835,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit InnerType" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType']/@subNodeMappings[name='InnerType']">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Edit InnerType" mappings="//@ownedViewpoints[name='EnrichedRepository']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']/@containerMappings[name='CollectionDataType']/@subNodeMappings[name='InnerType']">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
