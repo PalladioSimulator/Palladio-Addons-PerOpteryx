@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
   <extension point="org.eclipse.sirius.componentization">
-    <component class="FeatureCompletion.design.Activator"
+    <component class="edu.kit.ipd.are.dsexplore.featurecompletions.design.Activator"
                id="FeatureCompletion.design"
 	       name="FeatureCompletion">
     </component>
