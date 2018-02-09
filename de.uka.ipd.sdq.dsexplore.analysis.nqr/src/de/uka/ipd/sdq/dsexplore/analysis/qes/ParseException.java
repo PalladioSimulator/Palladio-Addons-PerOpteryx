@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.analysis.nqr.qes;
+package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 public class ParseException extends Exception {
 

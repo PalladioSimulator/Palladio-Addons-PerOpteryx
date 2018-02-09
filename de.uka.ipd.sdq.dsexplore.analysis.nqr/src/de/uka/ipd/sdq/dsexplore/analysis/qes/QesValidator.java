@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.analysis.nqr.qes;
+package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.util.Diagnostician;

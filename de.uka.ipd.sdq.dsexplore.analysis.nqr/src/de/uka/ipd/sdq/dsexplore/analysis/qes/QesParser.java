@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.analysis.nqr.qes;
+package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;

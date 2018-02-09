@@ -17,9 +17,9 @@ import org.palladiosimulator.qualitymodel.QualityModelPackage;
 import org.palladiosimulator.qualitymodel.ReasoningSystem;
 import org.palladiosimulator.qualitymodel.Reduction;
 
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.qes.ParseException;
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.qes.QesParser;
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.qes.QesValidator;
+import de.uka.ipd.sdq.dsexplore.analysis.qes.ParseException;
+import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;
+import de.uka.ipd.sdq.dsexplore.analysis.qes.QesValidator;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
