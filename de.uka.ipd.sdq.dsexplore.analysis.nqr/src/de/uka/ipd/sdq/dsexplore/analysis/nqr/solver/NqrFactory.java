@@ -38,7 +38,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.EnumRelationSemantics;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order;
 
-public class ProxyFactory {
+public class NqrFactory {
 
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
 
@@ -162,7 +162,7 @@ public class ProxyFactory {
             }
         }
         throw new CoreException(new Status(ERROR, "de.uka.ipd.sdq.dsexplore.analysis.nqr", 0,
-                "ReductionProxy ProxyFactory " + String.valueOf(uri) + " could not be loaded.", null));
+                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
     private static Reduction loadReduction(final String uri) throws CoreException {
@@ -179,7 +179,7 @@ public class ProxyFactory {
             }
         }
         throw new CoreException(new Status(ERROR, "de.uka.ipd.sdq.dsexplore.analysis.nqr", 0,
-                "ReductionProxy ProxyFactory " + String.valueOf(uri) + " could not be loaded.", null));
+                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
     private static <T> T requireNonNull(final T object) {
@@ -201,7 +201,7 @@ public class ProxyFactory {
     private Map<List<String>, String> reductionMapping;
     private final List<Dimension> dimensions;
 
-    public ProxyFactory(final String reasoningComponentUri, final String reductionUri, final String dimensionTypeSetUri)
+    public NqrFactory(final String reasoningComponentUri, final String reductionUri, final String dimensionTypeSetUri)
             throws CoreException {
         dimensions = new LinkedList<Dimension>();
         dimensionTypeSet = loadDimensionTypeSet(dimensionTypeSetUri);

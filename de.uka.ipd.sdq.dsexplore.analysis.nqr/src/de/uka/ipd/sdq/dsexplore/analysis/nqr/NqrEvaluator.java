@@ -18,7 +18,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.graph.DirectedGraph;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrReductionProxy;
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ProxyFactory;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ReasoningProxy;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -38,7 +38,7 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis {
         logger.info("\t" + String.valueOf(reduction));
     }
 
-    private ProxyFactory factory;
+    private NqrFactory factory;
 
     private List<NqrProxy> nqrResult;
 
@@ -149,7 +149,7 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis {
     @Override
     public void initialise(final DSEWorkflowConfiguration configuration) throws CoreException {
         final ILaunchConfiguration rawConfiguration = configuration.getRawConfiguration();
-        factory = new ProxyFactory(rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, ""),
+        factory = new NqrFactory(rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, ""),
                 rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, ""),
                 rawConfiguration.getAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, ""));
 

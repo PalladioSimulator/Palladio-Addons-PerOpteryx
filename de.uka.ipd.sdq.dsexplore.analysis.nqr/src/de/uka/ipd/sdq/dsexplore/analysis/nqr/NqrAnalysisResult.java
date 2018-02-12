@@ -9,7 +9,7 @@ import org.opt4j.core.Criterion;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ProxyFactory;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 
@@ -20,11 +20,11 @@ public class NqrAnalysisResult implements IAnalysisResult {
     private final Map<Criterion, EvaluationAspectWithContext> criterionToAspectMap;
     private NqrSolverQualityAttributeDeclaration nqrQualityDimensionDeclaration;
     private final List<NqrProxy> nqrs;
-    private final ProxyFactory factory;
+    private final NqrFactory factory;
 
     public NqrAnalysisResult(Map<Criterion, EvaluationAspectWithContext> criterionToAspect,
             NqrSolverQualityAttributeDeclaration nqrSolverQualityAttributeDeclaration, List<NqrProxy> nqrResults,
-            ProxyFactory factory) {
+            NqrFactory factory) {
         criterionToAspectMap = criterionToAspect;
         this.nqrs = nqrResults;
         this.nqrQualityDimensionDeclaration = nqrSolverQualityAttributeDeclaration;

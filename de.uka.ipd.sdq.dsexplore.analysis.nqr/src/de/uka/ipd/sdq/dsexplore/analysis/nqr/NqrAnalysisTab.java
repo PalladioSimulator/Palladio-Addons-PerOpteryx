@@ -61,7 +61,7 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
 
         // Add ReductionProxy input section
         reduction = new Text(container, SWT.SINGLE | SWT.BORDER);
-        TabHelper.createFileInputSection(container, modifyListener, "ReductionProxy ProxyFactory File",
+        TabHelper.createFileInputSection(container, modifyListener, "ReductionProxy NqrFactory File",
                 DSEConstantsContainer.REASONING_MODEL_EXTENSION, reduction, getShell(), "");
 
         // Add System input section

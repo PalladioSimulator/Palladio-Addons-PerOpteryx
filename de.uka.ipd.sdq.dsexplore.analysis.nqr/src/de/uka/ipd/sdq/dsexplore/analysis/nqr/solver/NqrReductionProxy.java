@@ -11,10 +11,10 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 
 public class NqrReductionProxy {
 
-    private final ProxyFactory factory;
+    private final NqrFactory factory;
     private final Map<Dimension, ReductionProxy> map;
 
-    public NqrReductionProxy(final ProxyFactory factory) {
+    public NqrReductionProxy(final NqrFactory factory) {
         this.factory = factory;
         map = new HashMap<Dimension, ReductionProxy>();
 
