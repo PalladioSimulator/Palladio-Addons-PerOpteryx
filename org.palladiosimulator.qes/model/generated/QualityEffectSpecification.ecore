@@ -3,10 +3,76 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="qualityEffectSpecification" nsURI="http://www.palladiosimulator.org/qes/QualityEffectSpecification"
     nsPrefix="qualityEffectSpecification">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//FindByName" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformations" upperBound="-1"
+        eType="#//Transformation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FindByName">
+  <eClassifiers xsi:type="ecore:EClass" name="Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//Propertie" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Propertie"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Propertie">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertie" eType="#//ComponentPropertie"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertie" eSuperTypes="#//Propertie"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ComponentPropertie #//RolePropertie">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ComponentPropertie #//RolePropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//ComponentPropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ComponentType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComponentType">
+    <eLiterals name="BASIC" literal="basic"/>
+    <eLiterals name="COMPOSITE" value="1" literal="composite"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//ComponentPropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="types" unique="false" upperBound="-1"
+        eType="#//RoleType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//RolePropertie" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RoleType">
+    <eLiterals name="REQUIRED" literal="required"/>
+    <eLiterals name="PROVIDED" value="1" literal="provided"/>
+    <eLiterals name="COMPONENT" value="2" literal="component"/>
+    <eLiterals name="INFRASTRUCTURE" value="3" literal="infrastructure"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RolePropertie"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Assembly" eSuperTypes="#//ComponentPropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assemblyType" eType="#//AssemblyType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyComponent" eType="#//Component"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssemblyType">
+    <eLiterals name="REQUIRED" literal="required"/>
+    <eLiterals name="PROVIDED" value="1" literal="provided"/>
+    <eLiterals name="ASSEMBLY" value="2" literal="assembly"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NQA" eSuperTypes="#//Transformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reasoning" eSuperTypes="#//Transformation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//Rule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualities" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+        eType="#//Entry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

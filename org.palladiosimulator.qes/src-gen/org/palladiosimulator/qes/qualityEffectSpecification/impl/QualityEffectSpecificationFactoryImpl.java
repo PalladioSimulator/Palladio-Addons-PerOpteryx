@@ -4,6 +4,7 @@
 package org.palladiosimulator.qes.qualityEffectSpecification.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -66,9 +67,65 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
     switch (eClass.getClassifierID())
     {
       case QualityEffectSpecificationPackage.MODEL: return createModel();
-      case QualityEffectSpecificationPackage.FIND_BY_NAME: return createFindByName();
+      case QualityEffectSpecificationPackage.COMPONENT: return createComponent();
+      case QualityEffectSpecificationPackage.PROPERTIE: return createPropertie();
+      case QualityEffectSpecificationPackage.NEGATION: return createNegation();
+      case QualityEffectSpecificationPackage.COMPONENT_PROPERTIE: return createComponentPropertie();
+      case QualityEffectSpecificationPackage.NAME: return createName();
+      case QualityEffectSpecificationPackage.IDENTIFIER: return createIdentifier();
+      case QualityEffectSpecificationPackage.TYPE: return createType();
+      case QualityEffectSpecificationPackage.ROLE: return createRole();
+      case QualityEffectSpecificationPackage.ROLE_PROPERTIE: return createRolePropertie();
+      case QualityEffectSpecificationPackage.ASSEMBLY: return createAssembly();
+      case QualityEffectSpecificationPackage.TRANSFORMATION: return createTransformation();
+      case QualityEffectSpecificationPackage.NQA: return createNQA();
+      case QualityEffectSpecificationPackage.REASONING: return createReasoning();
+      case QualityEffectSpecificationPackage.RULE: return createRule();
+      case QualityEffectSpecificationPackage.ENTRY: return createEntry();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case QualityEffectSpecificationPackage.COMPONENT_TYPE:
+        return createComponentTypeFromString(eDataType, initialValue);
+      case QualityEffectSpecificationPackage.ROLE_TYPE:
+        return createRoleTypeFromString(eDataType, initialValue);
+      case QualityEffectSpecificationPackage.ASSEMBLY_TYPE:
+        return createAssemblyTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case QualityEffectSpecificationPackage.COMPONENT_TYPE:
+        return convertComponentTypeToString(eDataType, instanceValue);
+      case QualityEffectSpecificationPackage.ROLE_TYPE:
+        return convertRoleTypeToString(eDataType, instanceValue);
+      case QualityEffectSpecificationPackage.ASSEMBLY_TYPE:
+        return convertAssemblyTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -88,10 +145,230 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public FindByName createFindByName()
+  public Component createComponent()
   {
-    FindByNameImpl findByName = new FindByNameImpl();
-    return findByName;
+    ComponentImpl component = new ComponentImpl();
+    return component;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Propertie createPropertie()
+  {
+    PropertieImpl propertie = new PropertieImpl();
+    return propertie;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Negation createNegation()
+  {
+    NegationImpl negation = new NegationImpl();
+    return negation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComponentPropertie createComponentPropertie()
+  {
+    ComponentPropertieImpl componentPropertie = new ComponentPropertieImpl();
+    return componentPropertie;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Name createName()
+  {
+    NameImpl name = new NameImpl();
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Identifier createIdentifier()
+  {
+    IdentifierImpl identifier = new IdentifierImpl();
+    return identifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type createType()
+  {
+    TypeImpl type = new TypeImpl();
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Role createRole()
+  {
+    RoleImpl role = new RoleImpl();
+    return role;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RolePropertie createRolePropertie()
+  {
+    RolePropertieImpl rolePropertie = new RolePropertieImpl();
+    return rolePropertie;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Assembly createAssembly()
+  {
+    AssemblyImpl assembly = new AssemblyImpl();
+    return assembly;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Transformation createTransformation()
+  {
+    TransformationImpl transformation = new TransformationImpl();
+    return transformation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NQA createNQA()
+  {
+    NQAImpl nqa = new NQAImpl();
+    return nqa;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Reasoning createReasoning()
+  {
+    ReasoningImpl reasoning = new ReasoningImpl();
+    return reasoning;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Rule createRule()
+  {
+    RuleImpl rule = new RuleImpl();
+    return rule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entry createEntry()
+  {
+    EntryImpl entry = new EntryImpl();
+    return entry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComponentType createComponentTypeFromString(EDataType eDataType, String initialValue)
+  {
+    ComponentType result = ComponentType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertComponentTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RoleType createRoleTypeFromString(EDataType eDataType, String initialValue)
+  {
+    RoleType result = RoleType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertRoleTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssemblyType createAssemblyTypeFromString(EDataType eDataType, String initialValue)
+  {
+    AssemblyType result = AssemblyType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAssemblyTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

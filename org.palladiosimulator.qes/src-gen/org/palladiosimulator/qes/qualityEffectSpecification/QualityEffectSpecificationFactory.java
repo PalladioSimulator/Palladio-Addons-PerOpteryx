@@ -33,13 +33,139 @@ public interface QualityEffectSpecificationFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Find By Name</em>'.
+   * Returns a new object of class '<em>Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Find By Name</em>'.
+   * @return a new object of class '<em>Component</em>'.
    * @generated
    */
-  FindByName createFindByName();
+  Component createComponent();
+
+  /**
+   * Returns a new object of class '<em>Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Propertie</em>'.
+   * @generated
+   */
+  Propertie createPropertie();
+
+  /**
+   * Returns a new object of class '<em>Negation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Negation</em>'.
+   * @generated
+   */
+  Negation createNegation();
+
+  /**
+   * Returns a new object of class '<em>Component Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Component Propertie</em>'.
+   * @generated
+   */
+  ComponentPropertie createComponentPropertie();
+
+  /**
+   * Returns a new object of class '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name</em>'.
+   * @generated
+   */
+  Name createName();
+
+  /**
+   * Returns a new object of class '<em>Identifier</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Identifier</em>'.
+   * @generated
+   */
+  Identifier createIdentifier();
+
+  /**
+   * Returns a new object of class '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type</em>'.
+   * @generated
+   */
+  Type createType();
+
+  /**
+   * Returns a new object of class '<em>Role</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role</em>'.
+   * @generated
+   */
+  Role createRole();
+
+  /**
+   * Returns a new object of class '<em>Role Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role Propertie</em>'.
+   * @generated
+   */
+  RolePropertie createRolePropertie();
+
+  /**
+   * Returns a new object of class '<em>Assembly</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assembly</em>'.
+   * @generated
+   */
+  Assembly createAssembly();
+
+  /**
+   * Returns a new object of class '<em>Transformation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Transformation</em>'.
+   * @generated
+   */
+  Transformation createTransformation();
+
+  /**
+   * Returns a new object of class '<em>NQA</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>NQA</em>'.
+   * @generated
+   */
+  NQA createNQA();
+
+  /**
+   * Returns a new object of class '<em>Reasoning</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reasoning</em>'.
+   * @generated
+   */
+  Reasoning createReasoning();
+
+  /**
+   * Returns a new object of class '<em>Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rule</em>'.
+   * @generated
+   */
+  Rule createRule();
+
+  /**
+   * Returns a new object of class '<em>Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entry</em>'.
+   * @generated
+   */
+  Entry createEntry();
 
   /**
    * Returns the package supported by this factory.

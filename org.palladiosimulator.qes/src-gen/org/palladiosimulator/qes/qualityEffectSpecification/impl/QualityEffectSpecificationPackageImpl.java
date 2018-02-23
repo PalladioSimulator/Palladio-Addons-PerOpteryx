@@ -5,15 +5,32 @@ package org.palladiosimulator.qes.qualityEffectSpecification.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.palladiosimulator.qes.qualityEffectSpecification.FindByName;
+import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
+import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
+import org.palladiosimulator.qes.qualityEffectSpecification.Component;
+import org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie;
+import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
+import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
+import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
+import org.palladiosimulator.qes.qualityEffectSpecification.Name;
+import org.palladiosimulator.qes.qualityEffectSpecification.Negation;
+import org.palladiosimulator.qes.qualityEffectSpecification.Propertie;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationFactory;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
+import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
+import org.palladiosimulator.qes.qualityEffectSpecification.Role;
+import org.palladiosimulator.qes.qualityEffectSpecification.RolePropertie;
+import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
+import org.palladiosimulator.qes.qualityEffectSpecification.Rule;
+import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
+import org.palladiosimulator.qes.qualityEffectSpecification.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +52,126 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass findByNameEClass = null;
+  private EClass componentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertieEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass negationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass componentPropertieEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass nameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass identifierEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass roleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rolePropertieEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assemblyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass transformationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass nqaEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass reasoningEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ruleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum componentTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum roleTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum assemblyTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -115,7 +251,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Elements()
+  public EReference getModel_Components()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -125,9 +261,9 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFindByName()
+  public EReference getModel_Transformations()
   {
-    return findByNameEClass;
+    return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -135,9 +271,339 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFindByName_Name()
+  public EClass getComponent()
   {
-    return (EAttribute)findByNameEClass.getEStructuralFeatures().get(0);
+    return componentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getComponent_Properties()
+  {
+    return (EReference)componentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertie()
+  {
+    return propertieEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNegation()
+  {
+    return negationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNegation_Propertie()
+  {
+    return (EReference)negationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getComponentPropertie()
+  {
+    return componentPropertieEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getName_()
+  {
+    return nameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getName_Name()
+  {
+    return (EAttribute)nameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIdentifier()
+  {
+    return identifierEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIdentifier_Id()
+  {
+    return (EAttribute)identifierEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getType()
+  {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getType_Type()
+  {
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRole()
+  {
+    return roleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRole_Types()
+  {
+    return (EAttribute)roleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRole_Properties()
+  {
+    return (EReference)roleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRolePropertie()
+  {
+    return rolePropertieEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssembly()
+  {
+    return assemblyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAssembly_AssemblyType()
+  {
+    return (EAttribute)assemblyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssembly_AssemblyComponent()
+  {
+    return (EReference)assemblyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTransformation()
+  {
+    return transformationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTransformation_Quality()
+  {
+    return (EAttribute)transformationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNQA()
+  {
+    return nqaEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNQA_Element()
+  {
+    return (EAttribute)nqaEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getReasoning()
+  {
+    return reasoningEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getReasoning_Rules()
+  {
+    return (EReference)reasoningEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRule()
+  {
+    return ruleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRule_Qualities()
+  {
+    return (EAttribute)ruleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRule_Entries()
+  {
+    return (EReference)ruleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEntry()
+  {
+    return entryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEntry_Key()
+  {
+    return (EAttribute)entryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEntry_Value()
+  {
+    return (EAttribute)entryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getComponentType()
+  {
+    return componentTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getRoleType()
+  {
+    return roleTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getAssemblyType()
+  {
+    return assemblyTypeEEnum;
   }
 
   /**
@@ -171,10 +637,59 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__ELEMENTS);
+    createEReference(modelEClass, MODEL__COMPONENTS);
+    createEReference(modelEClass, MODEL__TRANSFORMATIONS);
 
-    findByNameEClass = createEClass(FIND_BY_NAME);
-    createEAttribute(findByNameEClass, FIND_BY_NAME__NAME);
+    componentEClass = createEClass(COMPONENT);
+    createEReference(componentEClass, COMPONENT__PROPERTIES);
+
+    propertieEClass = createEClass(PROPERTIE);
+
+    negationEClass = createEClass(NEGATION);
+    createEReference(negationEClass, NEGATION__PROPERTIE);
+
+    componentPropertieEClass = createEClass(COMPONENT_PROPERTIE);
+
+    nameEClass = createEClass(NAME);
+    createEAttribute(nameEClass, NAME__NAME);
+
+    identifierEClass = createEClass(IDENTIFIER);
+    createEAttribute(identifierEClass, IDENTIFIER__ID);
+
+    typeEClass = createEClass(TYPE);
+    createEAttribute(typeEClass, TYPE__TYPE);
+
+    roleEClass = createEClass(ROLE);
+    createEAttribute(roleEClass, ROLE__TYPES);
+    createEReference(roleEClass, ROLE__PROPERTIES);
+
+    rolePropertieEClass = createEClass(ROLE_PROPERTIE);
+
+    assemblyEClass = createEClass(ASSEMBLY);
+    createEAttribute(assemblyEClass, ASSEMBLY__ASSEMBLY_TYPE);
+    createEReference(assemblyEClass, ASSEMBLY__ASSEMBLY_COMPONENT);
+
+    transformationEClass = createEClass(TRANSFORMATION);
+    createEAttribute(transformationEClass, TRANSFORMATION__QUALITY);
+
+    nqaEClass = createEClass(NQA);
+    createEAttribute(nqaEClass, NQA__ELEMENT);
+
+    reasoningEClass = createEClass(REASONING);
+    createEReference(reasoningEClass, REASONING__RULES);
+
+    ruleEClass = createEClass(RULE);
+    createEAttribute(ruleEClass, RULE__QUALITIES);
+    createEReference(ruleEClass, RULE__ENTRIES);
+
+    entryEClass = createEClass(ENTRY);
+    createEAttribute(entryEClass, ENTRY__KEY);
+    createEAttribute(entryEClass, ENTRY__VALUE);
+
+    // Create enums
+    componentTypeEEnum = createEEnum(COMPONENT_TYPE);
+    roleTypeEEnum = createEEnum(ROLE_TYPE);
+    assemblyTypeEEnum = createEEnum(ASSEMBLY_TYPE);
   }
 
   /**
@@ -206,13 +721,84 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    negationEClass.getESuperTypes().add(this.getPropertie());
+    componentPropertieEClass.getESuperTypes().add(this.getPropertie());
+    nameEClass.getESuperTypes().add(this.getComponentPropertie());
+    nameEClass.getESuperTypes().add(this.getRolePropertie());
+    identifierEClass.getESuperTypes().add(this.getComponentPropertie());
+    identifierEClass.getESuperTypes().add(this.getRolePropertie());
+    typeEClass.getESuperTypes().add(this.getComponentPropertie());
+    roleEClass.getESuperTypes().add(this.getComponentPropertie());
+    assemblyEClass.getESuperTypes().add(this.getComponentPropertie());
+    nqaEClass.getESuperTypes().add(this.getTransformation());
+    reasoningEClass.getESuperTypes().add(this.getTransformation());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Elements(), this.getFindByName(), null, "elements", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Components(), this.getComponent(), null, "components", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Transformations(), this.getTransformation(), null, "transformations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(findByNameEClass, FindByName.class, "FindByName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFindByName_Name(), ecorePackage.getEString(), "name", null, 0, 1, FindByName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getComponent_Properties(), this.getPropertie(), null, "properties", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertieEClass, Propertie.class, "Propertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(negationEClass, Negation.class, "Negation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNegation_Propertie(), this.getComponentPropertie(), null, "propertie", null, 0, 1, Negation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(componentPropertieEClass, ComponentPropertie.class, "ComponentPropertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getName_Name(), ecorePackage.getEString(), "name", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdentifier_Id(), ecorePackage.getEString(), "id", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getType_Type(), this.getComponentType(), "type", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(roleEClass, Role.class, "Role", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRole_Types(), this.getRoleType(), "types", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRole_Properties(), this.getRolePropertie(), null, "properties", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rolePropertieEClass, RolePropertie.class, "RolePropertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(assemblyEClass, Assembly.class, "Assembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAssembly_AssemblyType(), this.getAssemblyType(), "assemblyType", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssembly_AssemblyComponent(), this.getComponent(), null, "assemblyComponent", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTransformation_Quality(), ecorePackage.getEString(), "quality", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(nqaEClass, org.palladiosimulator.qes.qualityEffectSpecification.NQA.class, "NQA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNQA_Element(), ecorePackage.getEString(), "element", null, 0, 1, org.palladiosimulator.qes.qualityEffectSpecification.NQA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(reasoningEClass, Reasoning.class, "Reasoning", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReasoning_Rules(), this.getRule(), null, "rules", null, 0, -1, Reasoning.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRule_Qualities(), ecorePackage.getEString(), "qualities", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRule_Entries(), this.getEntry(), null, "entries", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntry_Key(), ecorePackage.getEString(), "key", null, 0, -1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEntry_Value(), ecorePackage.getEString(), "value", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(componentTypeEEnum, ComponentType.class, "ComponentType");
+    addEEnumLiteral(componentTypeEEnum, ComponentType.BASIC);
+    addEEnumLiteral(componentTypeEEnum, ComponentType.COMPOSITE);
+
+    initEEnum(roleTypeEEnum, RoleType.class, "RoleType");
+    addEEnumLiteral(roleTypeEEnum, RoleType.REQUIRED);
+    addEEnumLiteral(roleTypeEEnum, RoleType.PROVIDED);
+    addEEnumLiteral(roleTypeEEnum, RoleType.COMPONENT);
+    addEEnumLiteral(roleTypeEEnum, RoleType.INFRASTRUCTURE);
+
+    initEEnum(assemblyTypeEEnum, AssemblyType.class, "AssemblyType");
+    addEEnumLiteral(assemblyTypeEEnum, AssemblyType.REQUIRED);
+    addEEnumLiteral(assemblyTypeEEnum, AssemblyType.PROVIDED);
+    addEEnumLiteral(assemblyTypeEEnum, AssemblyType.ASSEMBLY);
 
     // Create resource
     createResource(eNS_URI);

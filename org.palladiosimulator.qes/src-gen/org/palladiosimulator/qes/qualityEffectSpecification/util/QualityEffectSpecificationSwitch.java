@@ -80,10 +80,124 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.FIND_BY_NAME:
+      case QualityEffectSpecificationPackage.COMPONENT:
       {
-        FindByName findByName = (FindByName)theEObject;
-        T result = caseFindByName(findByName);
+        Component component = (Component)theEObject;
+        T result = caseComponent(component);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.PROPERTIE:
+      {
+        Propertie propertie = (Propertie)theEObject;
+        T result = casePropertie(propertie);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.NEGATION:
+      {
+        Negation negation = (Negation)theEObject;
+        T result = caseNegation(negation);
+        if (result == null) result = casePropertie(negation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.COMPONENT_PROPERTIE:
+      {
+        ComponentPropertie componentPropertie = (ComponentPropertie)theEObject;
+        T result = caseComponentPropertie(componentPropertie);
+        if (result == null) result = casePropertie(componentPropertie);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.NAME:
+      {
+        Name name = (Name)theEObject;
+        T result = caseName(name);
+        if (result == null) result = caseComponentPropertie(name);
+        if (result == null) result = caseRolePropertie(name);
+        if (result == null) result = casePropertie(name);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.IDENTIFIER:
+      {
+        Identifier identifier = (Identifier)theEObject;
+        T result = caseIdentifier(identifier);
+        if (result == null) result = caseComponentPropertie(identifier);
+        if (result == null) result = caseRolePropertie(identifier);
+        if (result == null) result = casePropertie(identifier);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.TYPE:
+      {
+        Type type = (Type)theEObject;
+        T result = caseType(type);
+        if (result == null) result = caseComponentPropertie(type);
+        if (result == null) result = casePropertie(type);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.ROLE:
+      {
+        Role role = (Role)theEObject;
+        T result = caseRole(role);
+        if (result == null) result = caseComponentPropertie(role);
+        if (result == null) result = casePropertie(role);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.ROLE_PROPERTIE:
+      {
+        RolePropertie rolePropertie = (RolePropertie)theEObject;
+        T result = caseRolePropertie(rolePropertie);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.ASSEMBLY:
+      {
+        Assembly assembly = (Assembly)theEObject;
+        T result = caseAssembly(assembly);
+        if (result == null) result = caseComponentPropertie(assembly);
+        if (result == null) result = casePropertie(assembly);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.TRANSFORMATION:
+      {
+        Transformation transformation = (Transformation)theEObject;
+        T result = caseTransformation(transformation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.NQA:
+      {
+        NQA nqa = (NQA)theEObject;
+        T result = caseNQA(nqa);
+        if (result == null) result = caseTransformation(nqa);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.REASONING:
+      {
+        Reasoning reasoning = (Reasoning)theEObject;
+        T result = caseReasoning(reasoning);
+        if (result == null) result = caseTransformation(reasoning);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.RULE:
+      {
+        Rule rule = (Rule)theEObject;
+        T result = caseRule(rule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.ENTRY:
+      {
+        Entry entry = (Entry)theEObject;
+        T result = caseEntry(entry);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -108,17 +222,241 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Find By Name</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Component</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Find By Name</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Component</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFindByName(FindByName object)
+  public T caseComponent(Component object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Propertie</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertie(Propertie object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Negation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Negation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNegation(Negation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Component Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Component Propertie</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComponentPropertie(ComponentPropertie object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseName(Name object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIdentifier(Identifier object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseType(Type object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Role</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Role</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRole(Role object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Role Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Role Propertie</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRolePropertie(RolePropertie object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Assembly</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assembly</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssembly(Assembly object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Transformation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Transformation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTransformation(Transformation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>NQA</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>NQA</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNQA(NQA object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Reasoning</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Reasoning</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReasoning(Reasoning object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRule(Rule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entry</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entry</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntry(Entry object)
   {
     return null;
   }

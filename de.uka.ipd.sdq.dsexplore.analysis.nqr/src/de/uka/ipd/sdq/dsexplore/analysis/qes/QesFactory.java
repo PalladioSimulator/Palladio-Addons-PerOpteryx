@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.qes.qualityEffectSpecification.FindByName;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
@@ -56,20 +55,20 @@ public class QesFactory extends NqrFactory {
 
         effectedComponents = new HashSet<>();
 
-        for (final FindByName byName : model.getElements()) {
-            final String name = byName.getName();
-            for (final Connector c : pheno.getPCMInstance().getSystem().getConnectors__ComposedStructure()) {
-                if ((c != null) && (c instanceof AssemblyConnectorImpl)) {
-                    final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
-
-                    equalsName(name, ac.basicGetProvidingAssemblyContext_AssemblyConnector()
-                            .getEncapsulatedComponent__AssemblyContext());
-
-                    equalsName(name, ac.getRequiringAssemblyContext_AssemblyConnector()
-                            .getEncapsulatedComponent__AssemblyContext());
-                }
-            }
-        }
+        // for (final FindByName byName : model.getElements()) {
+        // final String name = byName.getName();
+        // for (final Connector c : pheno.getPCMInstance().getSystem().getConnectors__ComposedStructure()) {
+        // if ((c != null) && (c instanceof AssemblyConnectorImpl)) {
+        // final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
+        //
+        // equalsName(name, ac.basicGetProvidingAssemblyContext_AssemblyConnector()
+        // .getEncapsulatedComponent__AssemblyContext());
+        //
+        // equalsName(name, ac.getRequiringAssemblyContext_AssemblyConnector()
+        // .getEncapsulatedComponent__AssemblyContext());
+        // }
+        // }
+        // }
     }
 
     private void equalsName(final String name, final RepositoryComponent component) {
@@ -117,11 +116,11 @@ public class QesFactory extends NqrFactory {
         }
         builder.append("]").append(System.lineSeparator());
         builder.append("Model (").append(String.valueOf(model)).append(") ]").append(System.lineSeparator());
-        if (model != null && model.getElements() != null && !model.getElements().isEmpty()) {
-            for (Object element : model.getElements()) {
-                builder.append("\t").append(String.valueOf(element)).append(System.lineSeparator());
-            }
-        }
+        // if (model != null && model.getElements() != null && !model.getElements().isEmpty()) {
+        // for (Object element : model.getElements()) {
+        // builder.append("\t").append(String.valueOf(element)).append(System.lineSeparator());
+        // }
+        // }
         builder.append("]").append(System.lineSeparator());
         return builder.toString();
 

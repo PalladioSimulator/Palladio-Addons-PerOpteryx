@@ -17,9 +17,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.palladiosimulator.qes.qualityEffectSpecification.FindByName;
+import org.palladiosimulator.qes.qualityEffectSpecification.Component;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
+import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +30,8 @@ import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecifi
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getTransformations <em>Transformations</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +39,24 @@ import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecifi
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+   * The cached value of the '{@link #getComponents() <em>Components</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getElements()
+   * @see #getComponents()
    * @generated
    * @ordered
    */
-  protected EList<FindByName> elements;
+  protected EList<Component> components;
+
+  /**
+   * The cached value of the '{@link #getTransformations() <em>Transformations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTransformations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Transformation> transformations;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,13 +84,27 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<FindByName> getElements()
+  public EList<Component> getComponents()
   {
-    if (elements == null)
+    if (components == null)
     {
-      elements = new EObjectContainmentEList<FindByName>(FindByName.class, this, QualityEffectSpecificationPackage.MODEL__ELEMENTS);
+      components = new EObjectContainmentEList<Component>(Component.class, this, QualityEffectSpecificationPackage.MODEL__COMPONENTS);
     }
-    return elements;
+    return components;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Transformation> getTransformations()
+  {
+    if (transformations == null)
+    {
+      transformations = new EObjectContainmentEList<Transformation>(Transformation.class, this, QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS);
+    }
+    return transformations;
   }
 
   /**
@@ -91,8 +117,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__ELEMENTS:
-        return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
+        return ((InternalEList<?>)getComponents()).basicRemove(otherEnd, msgs);
+      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
+        return ((InternalEList<?>)getTransformations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +135,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__ELEMENTS:
-        return getElements();
+      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
+        return getComponents();
+      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
+        return getTransformations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +154,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__ELEMENTS:
-        getElements().clear();
-        getElements().addAll((Collection<? extends FindByName>)newValue);
+      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
+        getComponents().clear();
+        getComponents().addAll((Collection<? extends Component>)newValue);
+        return;
+      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
+        getTransformations().clear();
+        getTransformations().addAll((Collection<? extends Transformation>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +176,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__ELEMENTS:
-        getElements().clear();
+      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
+        getComponents().clear();
+        return;
+      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
+        getTransformations().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,8 +196,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__ELEMENTS:
-        return elements != null && !elements.isEmpty();
+      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
+        return components != null && !components.isEmpty();
+      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
+        return transformations != null && !transformations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

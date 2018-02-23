@@ -3,10 +3,19 @@ grammar org.palladiosimulator.qes.QualityEffectSpecification with org.eclipse.xt
 generate qualityEffectSpecification "http://www.palladiosimulator.org/qes/QualityEffectSpecification"
 
 Model:
-    constraints+=Constraint+ ":" transformations+=Transformation+;
+    components+=Component+ ":" transformations+=Transformation+;
 
-Constraint:
-   Name | Identifier | Role;
+Component:
+    'Component(' properties+=Propertie+ ')';
+
+Propertie:
+    Negation | ComponentPropertie;
+
+Negation:
+    'Not(' propertie=ComponentPropertie ')';
+
+ComponentPropertie:
+    Name | Identifier | Type | Role | Assembly;
 
 Name:
     'Name(' name=ID ')';
@@ -14,8 +23,26 @@ Name:
 Identifier:
     'Id(' id=ID ')';
 
+Type:
+    'Type(' type=ComponentType ')';
+
+enum ComponentType:
+    BASIC='basic' | COMPOSITE='composite';
+
 Role:
-    'Role('')';
+    'Role(' types+=RoleType+ properties+=RolePropertie+ ')';
+
+enum RoleType:
+    REQUIRED='required' | PROVIDED='provided' | COMPONENT='component' | INFRASTRUCTURE='infrastructure';
+
+RolePropertie:
+    Name | Identifier ;
+
+Assembly:
+    'Assembly(' assemblyType=AssemblyType assemblyComponent=Component ')';
+
+enum AssemblyType:
+    REQUIRED='required' | PROVIDED='provided' | ASSEMBLY='assembly';
 
 Transformation:
     NQA | Reasoning;
@@ -24,10 +51,10 @@ NQA:
     'NQA(' quality=ID '=' element=ID ')';
 
 Reasoning:
-    'Reasoning(' quality=ID '(' rules+=Rule '))';
+    'Reasoning(' quality=ID '{' rules+=Rule+ '})';
 
 Rule:
-    '(' qualities+=ID '=' entries+=Entry ')';
+    '(' qualities+=ID+ '=' entries+=Entry ')';
 
 Entry:
-    '(' key+=ID '=' value=ID ')';
+    '[' key+=ID+ '=' value=ID ']';

@@ -31,9 +31,44 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getFindByNameAccess().getGroup(), "rule__FindByName__Group__0");
-					put(grammarAccess.getModelAccess().getElementsAssignment(), "rule__Model__ElementsAssignment");
-					put(grammarAccess.getFindByNameAccess().getNameAssignment_1(), "rule__FindByName__NameAssignment_1");
+					put(grammarAccess.getPropertieAccess().getAlternatives(), "rule__Propertie__Alternatives");
+					put(grammarAccess.getComponentPropertieAccess().getAlternatives(), "rule__ComponentPropertie__Alternatives");
+					put(grammarAccess.getRolePropertieAccess().getAlternatives(), "rule__RolePropertie__Alternatives");
+					put(grammarAccess.getTransformationAccess().getAlternatives(), "rule__Transformation__Alternatives");
+					put(grammarAccess.getComponentTypeAccess().getAlternatives(), "rule__ComponentType__Alternatives");
+					put(grammarAccess.getRoleTypeAccess().getAlternatives(), "rule__RoleType__Alternatives");
+					put(grammarAccess.getAssemblyTypeAccess().getAlternatives(), "rule__AssemblyType__Alternatives");
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
+					put(grammarAccess.getNegationAccess().getGroup(), "rule__Negation__Group__0");
+					put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
+					put(grammarAccess.getIdentifierAccess().getGroup(), "rule__Identifier__Group__0");
+					put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
+					put(grammarAccess.getRoleAccess().getGroup(), "rule__Role__Group__0");
+					put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
+					put(grammarAccess.getNQAAccess().getGroup(), "rule__NQA__Group__0");
+					put(grammarAccess.getReasoningAccess().getGroup(), "rule__Reasoning__Group__0");
+					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
+					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
+					put(grammarAccess.getModelAccess().getComponentsAssignment_0(), "rule__Model__ComponentsAssignment_0");
+					put(grammarAccess.getModelAccess().getTransformationsAssignment_2(), "rule__Model__TransformationsAssignment_2");
+					put(grammarAccess.getComponentAccess().getPropertiesAssignment_1(), "rule__Component__PropertiesAssignment_1");
+					put(grammarAccess.getNegationAccess().getPropertieAssignment_1(), "rule__Negation__PropertieAssignment_1");
+					put(grammarAccess.getNameAccess().getNameAssignment_1(), "rule__Name__NameAssignment_1");
+					put(grammarAccess.getIdentifierAccess().getIdAssignment_1(), "rule__Identifier__IdAssignment_1");
+					put(grammarAccess.getTypeAccess().getTypeAssignment_1(), "rule__Type__TypeAssignment_1");
+					put(grammarAccess.getRoleAccess().getTypesAssignment_1(), "rule__Role__TypesAssignment_1");
+					put(grammarAccess.getRoleAccess().getPropertiesAssignment_2(), "rule__Role__PropertiesAssignment_2");
+					put(grammarAccess.getAssemblyAccess().getAssemblyTypeAssignment_1(), "rule__Assembly__AssemblyTypeAssignment_1");
+					put(grammarAccess.getAssemblyAccess().getAssemblyComponentAssignment_2(), "rule__Assembly__AssemblyComponentAssignment_2");
+					put(grammarAccess.getNQAAccess().getQualityAssignment_1(), "rule__NQA__QualityAssignment_1");
+					put(grammarAccess.getNQAAccess().getElementAssignment_3(), "rule__NQA__ElementAssignment_3");
+					put(grammarAccess.getReasoningAccess().getQualityAssignment_1(), "rule__Reasoning__QualityAssignment_1");
+					put(grammarAccess.getReasoningAccess().getRulesAssignment_3(), "rule__Reasoning__RulesAssignment_3");
+					put(grammarAccess.getRuleAccess().getQualitiesAssignment_1(), "rule__Rule__QualitiesAssignment_1");
+					put(grammarAccess.getRuleAccess().getEntriesAssignment_3(), "rule__Rule__EntriesAssignment_3");
+					put(grammarAccess.getEntryAccess().getKeyAssignment_1(), "rule__Entry__KeyAssignment_1");
+					put(grammarAccess.getEntryAccess().getValueAssignment_3(), "rule__Entry__ValueAssignment_3");
 				}
 			};
 		}
