@@ -3,7 +3,31 @@ grammar org.palladiosimulator.qes.QualityEffectSpecification with org.eclipse.xt
 generate qualityEffectSpecification "http://www.palladiosimulator.org/qes/QualityEffectSpecification"
 
 Model:
-    elements+=FindByName+;
+    constraints+=Constraint+ ":" transformations+=Transformation+;
 
-FindByName:
-    'Find' name=ID;
+Constraint:
+   Name | Identifier | Role;
+
+Name:
+    'Name(' name=ID ')';
+
+Identifier:
+    'Id(' id=ID ')';
+
+Role:
+    'Role('')';
+
+Transformation:
+    NQA | Reasoning;
+
+NQA:
+    'NQA(' quality=ID '=' element=ID ')';
+
+Reasoning:
+    'Reasoning(' quality=ID '(' rules+=Rule '))';
+
+Rule:
+    '(' qualities+=ID '=' entries+=Entry ')';
+
+Entry:
+    '(' key+=ID '=' value=ID ')';

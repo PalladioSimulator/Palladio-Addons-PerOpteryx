@@ -63,4 +63,6 @@ Temporary Items
 ###Xtext###
 src-gen/
 xtend-gen/
+*.xtendbin
 org.palladiosimulator.temporary/
+PerOpteryx_results/
