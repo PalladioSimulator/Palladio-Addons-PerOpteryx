@@ -10,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
@@ -53,28 +51,10 @@ public class QesFactory extends NqrFactory {
             return;
         }
 
-        effectedComponents = new HashSet<>();
+        QesFinder finder = new QesFinder(pheno.getPCMInstance());
 
-        // for (final FindByName byName : model.getElements()) {
-        // final String name = byName.getName();
-        // for (final Connector c : pheno.getPCMInstance().getSystem().getConnectors__ComposedStructure()) {
-        // if ((c != null) && (c instanceof AssemblyConnectorImpl)) {
-        // final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
-        //
-        // equalsName(name, ac.basicGetProvidingAssemblyContext_AssemblyConnector()
-        // .getEncapsulatedComponent__AssemblyContext());
-        //
-        // equalsName(name, ac.getRequiringAssemblyContext_AssemblyConnector()
-        // .getEncapsulatedComponent__AssemblyContext());
-        // }
-        // }
-        // }
-    }
+        // effectedComponents = finder.getEffectedComponents(model.get);
 
-    private void equalsName(final String name, final RepositoryComponent component) {
-        if (component.getEntityName().equalsIgnoreCase(name)) {
-            effectedComponents.add(component.getId());
-        }
     }
 
     @Override
