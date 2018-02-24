@@ -67,9 +67,8 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
     switch (eClass.getClassifierID())
     {
       case QualityEffectSpecificationPackage.MODEL: return createModel();
+      case QualityEffectSpecificationPackage.QES: return createQES();
       case QualityEffectSpecificationPackage.COMPONENT: return createComponent();
-      case QualityEffectSpecificationPackage.PROPERTIE: return createPropertie();
-      case QualityEffectSpecificationPackage.NEGATION: return createNegation();
       case QualityEffectSpecificationPackage.COMPONENT_PROPERTIE: return createComponentPropertie();
       case QualityEffectSpecificationPackage.NAME: return createName();
       case QualityEffectSpecificationPackage.IDENTIFIER: return createIdentifier();
@@ -77,6 +76,8 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
       case QualityEffectSpecificationPackage.ROLE: return createRole();
       case QualityEffectSpecificationPackage.ROLE_PROPERTIE: return createRolePropertie();
       case QualityEffectSpecificationPackage.ASSEMBLY: return createAssembly();
+      case QualityEffectSpecificationPackage.RESOURCE: return createResource();
+      case QualityEffectSpecificationPackage.RESOURCE_PROPERTIE: return createResourcePropertie();
       case QualityEffectSpecificationPackage.TRANSFORMATION: return createTransformation();
       case QualityEffectSpecificationPackage.NQA: return createNQA();
       case QualityEffectSpecificationPackage.REASONING: return createReasoning();
@@ -145,32 +146,21 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  public QES createQES()
+  {
+    QESImpl qes = new QESImpl();
+    return qes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Component createComponent()
   {
     ComponentImpl component = new ComponentImpl();
     return component;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Propertie createPropertie()
-  {
-    PropertieImpl propertie = new PropertieImpl();
-    return propertie;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Negation createNegation()
-  {
-    NegationImpl negation = new NegationImpl();
-    return negation;
   }
 
   /**
@@ -248,6 +238,28 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
   {
     AssemblyImpl assembly = new AssemblyImpl();
     return assembly;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Resource createResource()
+  {
+    ResourceImpl resource = new ResourceImpl();
+    return resource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResourcePropertie createResourcePropertie()
+  {
+    ResourcePropertieImpl resourcePropertie = new ResourcePropertieImpl();
+    return resourcePropertie;
   }
 
   /**

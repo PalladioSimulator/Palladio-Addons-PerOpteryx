@@ -132,7 +132,7 @@
 <stringAttribute key="psQuantum" value="0.001"/>
 <stringAttribute key="qmlDefinitionFile" value="platform:/resource/BRS/NQR/PerfCostUsability.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value="platform:/resource/BRS/NQR/SignAlgebra.qmlcontracttype"/>
-<stringAttribute key="qualityEffectSpecificationFile" value="platform:/resource/BRS/NQR/findByName.qes"/>
+<stringAttribute key="qualityEffectSpecificationFile" value="platform:/resource/BRS/NQR/test.qes"/>
 <stringAttribute key="qualitymodelFile" value="platform:/resource/QualityModelTest/StatisticReductionFactory.qualitymodel"/>
 <stringAttribute key="qualitymodelReductionFile" value="platform:/resource/BRS/NQR/StatisticReduction.qualitymodel"/>
 <stringAttribute key="qualitymodelSystemFile" value="platform:/resource/BRS/NQR/ReasoningComponentRepository.qualitymodel"/>

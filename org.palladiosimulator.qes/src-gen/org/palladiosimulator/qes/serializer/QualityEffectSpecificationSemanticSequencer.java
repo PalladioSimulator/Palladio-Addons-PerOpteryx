@@ -21,9 +21,10 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
-import org.palladiosimulator.qes.qualityEffectSpecification.Negation;
+import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
+import org.palladiosimulator.qes.qualityEffectSpecification.Resource;
 import org.palladiosimulator.qes.qualityEffectSpecification.Role;
 import org.palladiosimulator.qes.qualityEffectSpecification.Rule;
 import org.palladiosimulator.qes.qualityEffectSpecification.Type;
@@ -64,11 +65,14 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 			case QualityEffectSpecificationPackage.NAME:
 				sequence_Name(context, (Name) semanticObject); 
 				return; 
-			case QualityEffectSpecificationPackage.NEGATION:
-				sequence_Negation(context, (Negation) semanticObject); 
+			case QualityEffectSpecificationPackage.QES:
+				sequence_QES(context, (QES) semanticObject); 
 				return; 
 			case QualityEffectSpecificationPackage.REASONING:
 				sequence_Reasoning(context, (Reasoning) semanticObject); 
+				return; 
+			case QualityEffectSpecificationPackage.RESOURCE:
+				sequence_Resource(context, (Resource) semanticObject); 
 				return; 
 			case QualityEffectSpecificationPackage.ROLE:
 				sequence_Role(context, (Role) semanticObject); 
@@ -86,24 +90,14 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Assembly
 	 *     ComponentPropertie returns Assembly
 	 *     Assembly returns Assembly
 	 *
 	 * Constraint:
-	 *     (assemblyType=AssemblyType assemblyComponent=Component)
+	 *     (not?='Not'? type=AssemblyType components+=Component+)
 	 */
 	protected void sequence_Assembly(ISerializationContext context, Assembly semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.ASSEMBLY__ASSEMBLY_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.ASSEMBLY__ASSEMBLY_TYPE));
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.ASSEMBLY__ASSEMBLY_COMPONENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.ASSEMBLY__ASSEMBLY_COMPONENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssemblyAccess().getAssemblyTypeAssemblyTypeEnumRuleCall_1_0(), semanticObject.getAssemblyType());
-		feeder.accept(grammarAccess.getAssemblyAccess().getAssemblyComponentComponentParserRuleCall_2_0(), semanticObject.getAssemblyComponent());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -112,7 +106,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Component returns Component
 	 *
 	 * Constraint:
-	 *     properties+=Propertie+
+	 *     properties+=ComponentPropertie+
 	 */
 	protected void sequence_Component(ISerializationContext context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -124,7 +118,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Entry returns Entry
 	 *
 	 * Constraint:
-	 *     (key+=ID+ value=ID)
+	 *     (key+=STRING+ value=STRING)
 	 */
 	protected void sequence_Entry(ISerializationContext context, Entry semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -133,22 +127,16 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Identifier
 	 *     ComponentPropertie returns Identifier
 	 *     Identifier returns Identifier
 	 *     RolePropertie returns Identifier
+	 *     ResourcePropertie returns Identifier
 	 *
 	 * Constraint:
-	 *     id=ID
+	 *     (not?='Not'? id=ID)
 	 */
 	protected void sequence_Identifier(ISerializationContext context, Identifier semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.IDENTIFIER__ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.IDENTIFIER__ID));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIdentifierAccess().getIdIDTerminalRuleCall_1_0(), semanticObject.getId());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -157,7 +145,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (components+=Component+ transformations+=Transformation+)
+	 *     specifications+=QES+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -170,7 +158,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     NQA returns NQA
 	 *
 	 * Constraint:
-	 *     (quality=ID element=ID)
+	 *     (quality=STRING element=STRING)
 	 */
 	protected void sequence_NQA(ISerializationContext context, NQA semanticObject) {
 		if (errorAcceptor != null) {
@@ -180,49 +168,36 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NQA__ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNQAAccess().getQualityIDTerminalRuleCall_1_0(), semanticObject.getQuality());
-		feeder.accept(grammarAccess.getNQAAccess().getElementIDTerminalRuleCall_3_0(), semanticObject.getElement());
+		feeder.accept(grammarAccess.getNQAAccess().getQualitySTRINGTerminalRuleCall_1_0(), semanticObject.getQuality());
+		feeder.accept(grammarAccess.getNQAAccess().getElementSTRINGTerminalRuleCall_3_0(), semanticObject.getElement());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Name
 	 *     ComponentPropertie returns Name
 	 *     Name returns Name
 	 *     RolePropertie returns Name
+	 *     ResourcePropertie returns Name
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (not?='Not'? name=STRING)
 	 */
 	protected void sequence_Name(ISerializationContext context, Name semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NAME__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNameAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Negation
-	 *     Negation returns Negation
+	 *     QES returns QES
 	 *
 	 * Constraint:
-	 *     propertie=ComponentPropertie
+	 *     (components+=Component+ transformations+=Transformation+)
 	 */
-	protected void sequence_Negation(ISerializationContext context, Negation semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.NEGATION__PROPERTIE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NEGATION__PROPERTIE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNegationAccess().getPropertieComponentPropertieParserRuleCall_1_0(), semanticObject.getPropertie());
-		feeder.finish();
+	protected void sequence_QES(ISerializationContext context, QES semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -232,7 +207,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Reasoning returns Reasoning
 	 *
 	 * Constraint:
-	 *     (quality=ID rules+=Rule+)
+	 *     (quality=STRING rules+=Rule+)
 	 */
 	protected void sequence_Reasoning(ISerializationContext context, Reasoning semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -241,12 +216,24 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Role
+	 *     ComponentPropertie returns Resource
+	 *     Resource returns Resource
+	 *
+	 * Constraint:
+	 *     properties+=ResourcePropertie+
+	 */
+	protected void sequence_Resource(ISerializationContext context, Resource semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ComponentPropertie returns Role
 	 *     Role returns Role
 	 *
 	 * Constraint:
-	 *     (types+=RoleType+ properties+=RolePropertie+)
+	 *     (not?='Not'? type=RoleType properties+=RolePropertie+)
 	 */
 	protected void sequence_Role(ISerializationContext context, Role semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -258,7 +245,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Rule returns Rule
 	 *
 	 * Constraint:
-	 *     (qualities+=ID+ entries+=Entry)
+	 *     (qualities+=STRING+ entries+=Entry+)
 	 */
 	protected void sequence_Rule(ISerializationContext context, Rule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -267,21 +254,14 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	
 	/**
 	 * Contexts:
-	 *     Propertie returns Type
 	 *     ComponentPropertie returns Type
 	 *     Type returns Type
 	 *
 	 * Constraint:
-	 *     type=ComponentType
+	 *     (not?='Not'? type=ComponentType)
 	 */
 	protected void sequence_Type(ISerializationContext context, Type semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.TYPE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.TYPE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeAccess().getTypeComponentTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

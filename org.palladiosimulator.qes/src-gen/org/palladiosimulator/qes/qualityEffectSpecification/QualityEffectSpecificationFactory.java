@@ -33,6 +33,15 @@ public interface QualityEffectSpecificationFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>QES</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>QES</em>'.
+   * @generated
+   */
+  QES createQES();
+
+  /**
    * Returns a new object of class '<em>Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -40,24 +49,6 @@ public interface QualityEffectSpecificationFactory extends EFactory
    * @generated
    */
   Component createComponent();
-
-  /**
-   * Returns a new object of class '<em>Propertie</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Propertie</em>'.
-   * @generated
-   */
-  Propertie createPropertie();
-
-  /**
-   * Returns a new object of class '<em>Negation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Negation</em>'.
-   * @generated
-   */
-  Negation createNegation();
 
   /**
    * Returns a new object of class '<em>Component Propertie</em>'.
@@ -121,6 +112,24 @@ public interface QualityEffectSpecificationFactory extends EFactory
    * @generated
    */
   Assembly createAssembly();
+
+  /**
+   * Returns a new object of class '<em>Resource</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Resource</em>'.
+   * @generated
+   */
+  Resource createResource();
+
+  /**
+   * Returns a new object of class '<em>Resource Propertie</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Resource Propertie</em>'.
+   * @generated
+   */
+  ResourcePropertie createResourcePropertie();
 
   /**
    * Returns a new object of class '<em>Transformation</em>'.

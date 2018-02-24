@@ -81,19 +81,14 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseQES(QES object)
+      {
+        return createQESAdapter();
+      }
+      @Override
       public Adapter caseComponent(Component object)
       {
         return createComponentAdapter();
-      }
-      @Override
-      public Adapter casePropertie(Propertie object)
-      {
-        return createPropertieAdapter();
-      }
-      @Override
-      public Adapter caseNegation(Negation object)
-      {
-        return createNegationAdapter();
       }
       @Override
       public Adapter caseComponentPropertie(ComponentPropertie object)
@@ -129,6 +124,16 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAssembly(Assembly object)
       {
         return createAssemblyAdapter();
+      }
+      @Override
+      public Adapter caseResource(Resource object)
+      {
+        return createResourceAdapter();
+      }
+      @Override
+      public Adapter caseResourcePropertie(ResourcePropertie object)
+      {
+        return createResourcePropertieAdapter();
       }
       @Override
       public Adapter caseTransformation(Transformation object)
@@ -193,6 +198,21 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.QES <em>QES</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.QES
+   * @generated
+   */
+  public Adapter createQESAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Component <em>Component</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -203,36 +223,6 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createComponentAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Propertie <em>Propertie</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Propertie
-   * @generated
-   */
-  public Adapter createPropertieAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Negation <em>Negation</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Negation
-   * @generated
-   */
-  public Adapter createNegationAdapter()
   {
     return null;
   }
@@ -338,6 +328,36 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAssemblyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Resource <em>Resource</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Resource
+   * @generated
+   */
+  public Adapter createResourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ResourcePropertie <em>Resource Propertie</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.ResourcePropertie
+   * @generated
+   */
+  public Adapter createResourcePropertieAdapter()
   {
     return null;
   }

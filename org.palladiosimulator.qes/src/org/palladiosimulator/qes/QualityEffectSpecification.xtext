@@ -3,58 +3,61 @@ grammar org.palladiosimulator.qes.QualityEffectSpecification with org.eclipse.xt
 generate qualityEffectSpecification "http://www.palladiosimulator.org/qes/QualityEffectSpecification"
 
 Model:
-    components+=Component+ ":" transformations+=Transformation+;
+    specifications+=QES+;
+
+QES:
+    'For{' components+=Component+ '}' 'Do{' transformations+=Transformation+ '}';
 
 Component:
-    'Component(' properties+=Propertie+ ')';
-
-Propertie:
-    Negation | ComponentPropertie;
-
-Negation:
-    'Not(' propertie=ComponentPropertie ')';
+    'Component(' properties+=ComponentPropertie+ ')';
 
 ComponentPropertie:
-    Name | Identifier | Type | Role | Assembly;
+    Name | Identifier | Type | Role | Assembly | Resource;
 
 Name:
-    'Name(' name=ID ')';
+    'Name(' not?='Not'? name=STRING ')';
 
 Identifier:
-    'Id(' id=ID ')';
+    'Id(' not?='Not'? id=ID ')';
 
 Type:
-    'Type(' type=ComponentType ')';
+    'Type(' not?='Not'? type=ComponentType ')';
 
 enum ComponentType:
-    BASIC='basic' | COMPOSITE='composite';
+    ANY='AnyComponent' | BASIC='Basic' | COMPOSITE='Composite';
 
 Role:
-    'Role(' types+=RoleType+ properties+=RolePropertie+ ')';
+    'Role(' not?='Not'? type=RoleType properties+=RolePropertie+ ')';
 
 enum RoleType:
-    REQUIRED='required' | PROVIDED='provided' | COMPONENT='component' | INFRASTRUCTURE='infrastructure';
+    ANY='AnyRole' | COMPONENT='Component' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE='Infrastructure' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 
 RolePropertie:
     Name | Identifier ;
 
 Assembly:
-    'Assembly(' assemblyType=AssemblyType assemblyComponent=Component ')';
+    'Assembly(' not?='Not'? type=AssemblyType components+=Component+ ')';
 
 enum AssemblyType:
-    REQUIRED='required' | PROVIDED='provided' | ASSEMBLY='assembly';
+    ANY='AnyAssembly' | REQUIRED='Required' | PROVIDED='Provided';
+
+Resource:
+    'Resource(' properties+=ResourcePropertie+ ')';
+
+ResourcePropertie:
+    Name | Identifier ;
 
 Transformation:
     NQA | Reasoning;
 
 NQA:
-    'NQA(' quality=ID '=' element=ID ')';
+    'NQA(' quality=STRING '=' element=STRING ')';
 
 Reasoning:
-    'Reasoning(' quality=ID '{' rules+=Rule+ '})';
+    'Reasoning(' quality=STRING ':' rules+=Rule+ ')';
 
 Rule:
-    '(' qualities+=ID+ '=' entries+=Entry ')';
+    '(' qualities+=STRING+ ':' entries+=Entry+ ')';
 
 Entry:
-    '[' key+=ID+ '=' value=ID ']';
+    '[' key+=STRING+ '=' value=STRING ']';

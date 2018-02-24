@@ -20,11 +20,11 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
-import org.palladiosimulator.qes.qualityEffectSpecification.Negation;
-import org.palladiosimulator.qes.qualityEffectSpecification.Propertie;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationFactory;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
+import org.palladiosimulator.qes.qualityEffectSpecification.Resource;
+import org.palladiosimulator.qes.qualityEffectSpecification.ResourcePropertie;
 import org.palladiosimulator.qes.qualityEffectSpecification.Role;
 import org.palladiosimulator.qes.qualityEffectSpecification.RolePropertie;
 import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
@@ -52,21 +52,14 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass qesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass componentEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass propertieEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass negationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,6 +109,20 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * @generated
    */
   private EClass assemblyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass resourceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass resourcePropertieEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -251,7 +258,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Components()
+  public EReference getModel_Specifications()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -261,9 +268,29 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Transformations()
+  public EClass getQES()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(1);
+    return qesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQES_Components()
+  {
+    return (EReference)qesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQES_Transformations()
+  {
+    return (EReference)qesEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -291,36 +318,6 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPropertie()
-  {
-    return propertieEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getNegation()
-  {
-    return negationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNegation_Propertie()
-  {
-    return (EReference)negationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getComponentPropertie()
   {
     return componentPropertieEClass;
@@ -341,9 +338,19 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getName_Name()
+  public EAttribute getName_Not()
   {
     return (EAttribute)nameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getName_Name()
+  {
+    return (EAttribute)nameEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -361,9 +368,19 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getIdentifier_Id()
+  public EAttribute getIdentifier_Not()
   {
     return (EAttribute)identifierEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIdentifier_Id()
+  {
+    return (EAttribute)identifierEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -381,9 +398,19 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_Type()
+  public EAttribute getType_Not()
   {
     return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getType_Type()
+  {
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -401,7 +428,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRole_Types()
+  public EAttribute getRole_Not()
   {
     return (EAttribute)roleEClass.getEStructuralFeatures().get(0);
   }
@@ -411,9 +438,19 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRole_Type()
+  {
+    return (EAttribute)roleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getRole_Properties()
   {
-    return (EReference)roleEClass.getEStructuralFeatures().get(1);
+    return (EReference)roleEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -441,7 +478,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssembly_AssemblyType()
+  public EAttribute getAssembly_Not()
   {
     return (EAttribute)assemblyEClass.getEStructuralFeatures().get(0);
   }
@@ -451,9 +488,49 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAssembly_AssemblyComponent()
+  public EAttribute getAssembly_Type()
   {
-    return (EReference)assemblyEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)assemblyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssembly_Components()
+  {
+    return (EReference)assemblyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getResource()
+  {
+    return resourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getResource_Properties()
+  {
+    return (EReference)resourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getResourcePropertie()
+  {
+    return resourcePropertieEClass;
   }
 
   /**
@@ -637,37 +714,45 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__COMPONENTS);
-    createEReference(modelEClass, MODEL__TRANSFORMATIONS);
+    createEReference(modelEClass, MODEL__SPECIFICATIONS);
+
+    qesEClass = createEClass(QES);
+    createEReference(qesEClass, QES__COMPONENTS);
+    createEReference(qesEClass, QES__TRANSFORMATIONS);
 
     componentEClass = createEClass(COMPONENT);
     createEReference(componentEClass, COMPONENT__PROPERTIES);
 
-    propertieEClass = createEClass(PROPERTIE);
-
-    negationEClass = createEClass(NEGATION);
-    createEReference(negationEClass, NEGATION__PROPERTIE);
-
     componentPropertieEClass = createEClass(COMPONENT_PROPERTIE);
 
     nameEClass = createEClass(NAME);
+    createEAttribute(nameEClass, NAME__NOT);
     createEAttribute(nameEClass, NAME__NAME);
 
     identifierEClass = createEClass(IDENTIFIER);
+    createEAttribute(identifierEClass, IDENTIFIER__NOT);
     createEAttribute(identifierEClass, IDENTIFIER__ID);
 
     typeEClass = createEClass(TYPE);
+    createEAttribute(typeEClass, TYPE__NOT);
     createEAttribute(typeEClass, TYPE__TYPE);
 
     roleEClass = createEClass(ROLE);
-    createEAttribute(roleEClass, ROLE__TYPES);
+    createEAttribute(roleEClass, ROLE__NOT);
+    createEAttribute(roleEClass, ROLE__TYPE);
     createEReference(roleEClass, ROLE__PROPERTIES);
 
     rolePropertieEClass = createEClass(ROLE_PROPERTIE);
 
     assemblyEClass = createEClass(ASSEMBLY);
-    createEAttribute(assemblyEClass, ASSEMBLY__ASSEMBLY_TYPE);
-    createEReference(assemblyEClass, ASSEMBLY__ASSEMBLY_COMPONENT);
+    createEAttribute(assemblyEClass, ASSEMBLY__NOT);
+    createEAttribute(assemblyEClass, ASSEMBLY__TYPE);
+    createEReference(assemblyEClass, ASSEMBLY__COMPONENTS);
+
+    resourceEClass = createEClass(RESOURCE);
+    createEReference(resourceEClass, RESOURCE__PROPERTIES);
+
+    resourcePropertieEClass = createEClass(RESOURCE_PROPERTIE);
 
     transformationEClass = createEClass(TRANSFORMATION);
     createEAttribute(transformationEClass, TRANSFORMATION__QUALITY);
@@ -721,51 +806,60 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    negationEClass.getESuperTypes().add(this.getPropertie());
-    componentPropertieEClass.getESuperTypes().add(this.getPropertie());
     nameEClass.getESuperTypes().add(this.getComponentPropertie());
     nameEClass.getESuperTypes().add(this.getRolePropertie());
+    nameEClass.getESuperTypes().add(this.getResourcePropertie());
     identifierEClass.getESuperTypes().add(this.getComponentPropertie());
     identifierEClass.getESuperTypes().add(this.getRolePropertie());
+    identifierEClass.getESuperTypes().add(this.getResourcePropertie());
     typeEClass.getESuperTypes().add(this.getComponentPropertie());
     roleEClass.getESuperTypes().add(this.getComponentPropertie());
     assemblyEClass.getESuperTypes().add(this.getComponentPropertie());
+    resourceEClass.getESuperTypes().add(this.getComponentPropertie());
     nqaEClass.getESuperTypes().add(this.getTransformation());
     reasoningEClass.getESuperTypes().add(this.getTransformation());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Components(), this.getComponent(), null, "components", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Transformations(), this.getTransformation(), null, "transformations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Specifications(), this.getQES(), null, "specifications", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(qesEClass, org.palladiosimulator.qes.qualityEffectSpecification.QES.class, "QES", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getQES_Components(), this.getComponent(), null, "components", null, 0, -1, org.palladiosimulator.qes.qualityEffectSpecification.QES.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQES_Transformations(), this.getTransformation(), null, "transformations", null, 0, -1, org.palladiosimulator.qes.qualityEffectSpecification.QES.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getComponent_Properties(), this.getPropertie(), null, "properties", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(propertieEClass, Propertie.class, "Propertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(negationEClass, Negation.class, "Negation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNegation_Propertie(), this.getComponentPropertie(), null, "propertie", null, 0, 1, Negation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComponent_Properties(), this.getComponentPropertie(), null, "properties", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(componentPropertieEClass, ComponentPropertie.class, "ComponentPropertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getName_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getName_Name(), ecorePackage.getEString(), "name", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdentifier_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIdentifier_Id(), ecorePackage.getEString(), "id", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getType_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getType_Type(), this.getComponentType(), "type", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleEClass, Role.class, "Role", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRole_Types(), this.getRoleType(), "types", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRole_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRole_Type(), this.getRoleType(), "type", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRole_Properties(), this.getRolePropertie(), null, "properties", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rolePropertieEClass, RolePropertie.class, "RolePropertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(assemblyEClass, Assembly.class, "Assembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAssembly_AssemblyType(), this.getAssemblyType(), "assemblyType", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAssembly_AssemblyComponent(), this.getComponent(), null, "assemblyComponent", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssembly_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssembly_Type(), this.getAssemblyType(), "type", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssembly_Components(), this.getComponent(), null, "components", null, 0, -1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(resourceEClass, Resource.class, "Resource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getResource_Properties(), this.getResourcePropertie(), null, "properties", null, 0, -1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(resourcePropertieEClass, ResourcePropertie.class, "ResourcePropertie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTransformation_Quality(), ecorePackage.getEString(), "quality", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -786,19 +880,23 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
 
     // Initialize enums and add enum literals
     initEEnum(componentTypeEEnum, ComponentType.class, "ComponentType");
+    addEEnumLiteral(componentTypeEEnum, ComponentType.ANY);
     addEEnumLiteral(componentTypeEEnum, ComponentType.BASIC);
     addEEnumLiteral(componentTypeEEnum, ComponentType.COMPOSITE);
 
     initEEnum(roleTypeEEnum, RoleType.class, "RoleType");
-    addEEnumLiteral(roleTypeEEnum, RoleType.REQUIRED);
-    addEEnumLiteral(roleTypeEEnum, RoleType.PROVIDED);
+    addEEnumLiteral(roleTypeEEnum, RoleType.ANY);
     addEEnumLiteral(roleTypeEEnum, RoleType.COMPONENT);
+    addEEnumLiteral(roleTypeEEnum, RoleType.COMPONENT_REQUIRED);
+    addEEnumLiteral(roleTypeEEnum, RoleType.COMPONENT_PROVIDED);
     addEEnumLiteral(roleTypeEEnum, RoleType.INFRASTRUCTURE);
+    addEEnumLiteral(roleTypeEEnum, RoleType.INFRASTRUCTURE_REQUIRED);
+    addEEnumLiteral(roleTypeEEnum, RoleType.INFRASTRUCTURE_PROVIDED);
 
     initEEnum(assemblyTypeEEnum, AssemblyType.class, "AssemblyType");
+    addEEnumLiteral(assemblyTypeEEnum, AssemblyType.ANY);
     addEEnumLiteral(assemblyTypeEEnum, AssemblyType.REQUIRED);
     addEEnumLiteral(assemblyTypeEEnum, AssemblyType.PROVIDED);
-    addEEnumLiteral(assemblyTypeEEnum, AssemblyType.ASSEMBLY);
 
     // Create resource
     createResource(eNS_URI);

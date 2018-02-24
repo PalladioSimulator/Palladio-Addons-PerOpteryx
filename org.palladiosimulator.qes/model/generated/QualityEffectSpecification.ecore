@@ -3,6 +3,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="qualityEffectSpecification" nsURI="http://www.palladiosimulator.org/qes/QualityEffectSpecification"
     nsPrefix="qualityEffectSpecification">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"
+        eType="#//QES" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QES">
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//Component" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformations" upperBound="-1"
@@ -10,50 +14,58 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//Propertie" containment="true"/>
+        eType="#//ComponentPropertie" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Propertie"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Propertie">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="propertie" eType="#//ComponentPropertie"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertie" eSuperTypes="#//Propertie"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ComponentPropertie #//RolePropertie">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertie"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ComponentPropertie #//RolePropertie #//ResourcePropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ComponentPropertie #//RolePropertie">
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ComponentPropertie #//RolePropertie #//ResourcePropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//ComponentPropertie">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ComponentType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ComponentType">
-    <eLiterals name="BASIC" literal="basic"/>
-    <eLiterals name="COMPOSITE" value="1" literal="composite"/>
+    <eLiterals name="ANY" literal="AnyComponent"/>
+    <eLiterals name="BASIC" value="1" literal="Basic"/>
+    <eLiterals name="COMPOSITE" value="2" literal="Composite"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//ComponentPropertie">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="types" unique="false" upperBound="-1"
-        eType="#//RoleType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//RoleType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//RolePropertie" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RoleType">
-    <eLiterals name="REQUIRED" literal="required"/>
-    <eLiterals name="PROVIDED" value="1" literal="provided"/>
-    <eLiterals name="COMPONENT" value="2" literal="component"/>
-    <eLiterals name="INFRASTRUCTURE" value="3" literal="infrastructure"/>
+    <eLiterals name="ANY" literal="AnyRole"/>
+    <eLiterals name="COMPONENT" value="1" literal="Component"/>
+    <eLiterals name="COMPONENT_REQUIRED" value="2" literal="ComponentRequired"/>
+    <eLiterals name="COMPONENT_PROVIDED" value="3" literal="ComponentProvided"/>
+    <eLiterals name="INFRASTRUCTURE" value="4" literal="Infrastructure"/>
+    <eLiterals name="INFRASTRUCTURE_REQUIRED" value="5" literal="InfrastructureRequired"/>
+    <eLiterals name="INFRASTRUCTURE_PROVIDED" value="6" literal="InfrastructureProvided"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RolePropertie"/>
   <eClassifiers xsi:type="ecore:EClass" name="Assembly" eSuperTypes="#//ComponentPropertie">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assemblyType" eType="#//AssemblyType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyComponent" eType="#//Component"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//AssemblyType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Component" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssemblyType">
-    <eLiterals name="REQUIRED" literal="required"/>
-    <eLiterals name="PROVIDED" value="1" literal="provided"/>
-    <eLiterals name="ASSEMBLY" value="2" literal="assembly"/>
+    <eLiterals name="ANY" literal="AnyAssembly"/>
+    <eLiterals name="REQUIRED" value="1" literal="Required"/>
+    <eLiterals name="PROVIDED" value="2" literal="Provided"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//ComponentPropertie">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//ResourcePropertie" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourcePropertie"/>
   <eClassifiers xsi:type="ecore:EClass" name="Transformation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

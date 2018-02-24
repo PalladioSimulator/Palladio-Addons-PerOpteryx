@@ -17,10 +17,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.palladiosimulator.qes.qualityEffectSpecification.Component;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
+import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
-import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,8 +29,7 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getComponents <em>Components</em>}</li>
- *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getTransformations <em>Transformations</em>}</li>
+ *   <li>{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ModelImpl#getSpecifications <em>Specifications</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,24 +37,14 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getComponents() <em>Components</em>}' containment reference list.
+   * The cached value of the '{@link #getSpecifications() <em>Specifications</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getComponents()
+   * @see #getSpecifications()
    * @generated
    * @ordered
    */
-  protected EList<Component> components;
-
-  /**
-   * The cached value of the '{@link #getTransformations() <em>Transformations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTransformations()
-   * @generated
-   * @ordered
-   */
-  protected EList<Transformation> transformations;
+  protected EList<QES> specifications;
 
   /**
    * <!-- begin-user-doc -->
@@ -84,27 +72,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Component> getComponents()
+  public EList<QES> getSpecifications()
   {
-    if (components == null)
+    if (specifications == null)
     {
-      components = new EObjectContainmentEList<Component>(Component.class, this, QualityEffectSpecificationPackage.MODEL__COMPONENTS);
+      specifications = new EObjectContainmentEList<QES>(QES.class, this, QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS);
     }
-    return components;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Transformation> getTransformations()
-  {
-    if (transformations == null)
-    {
-      transformations = new EObjectContainmentEList<Transformation>(Transformation.class, this, QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS);
-    }
-    return transformations;
+    return specifications;
   }
 
   /**
@@ -117,10 +91,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
-        return ((InternalEList<?>)getComponents()).basicRemove(otherEnd, msgs);
-      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
-        return ((InternalEList<?>)getTransformations()).basicRemove(otherEnd, msgs);
+      case QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS:
+        return ((InternalEList<?>)getSpecifications()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,10 +107,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
-        return getComponents();
-      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
-        return getTransformations();
+      case QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS:
+        return getSpecifications();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,13 +124,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
-        getComponents().clear();
-        getComponents().addAll((Collection<? extends Component>)newValue);
-        return;
-      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
-        getTransformations().clear();
-        getTransformations().addAll((Collection<? extends Transformation>)newValue);
+      case QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS:
+        getSpecifications().clear();
+        getSpecifications().addAll((Collection<? extends QES>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -176,11 +142,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
-        getComponents().clear();
-        return;
-      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
-        getTransformations().clear();
+      case QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS:
+        getSpecifications().clear();
         return;
     }
     super.eUnset(featureID);
@@ -196,10 +159,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case QualityEffectSpecificationPackage.MODEL__COMPONENTS:
-        return components != null && !components.isEmpty();
-      case QualityEffectSpecificationPackage.MODEL__TRANSFORMATIONS:
-        return transformations != null && !transformations.isEmpty();
+      case QualityEffectSpecificationPackage.MODEL__SPECIFICATIONS:
+        return specifications != null && !specifications.isEmpty();
     }
     return super.eIsSet(featureID);
   }

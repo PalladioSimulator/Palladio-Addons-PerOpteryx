@@ -1,0 +1,41 @@
+For{
+	Component(Name(Not"Name"))
+} Do{
+	NQA("name"="+")
+}
+
+For{
+	Component(Id(test))
+} Do{
+	NQA("id"="0")
+}
+
+For{
+	Component( Type( Basic ))
+} Do{
+	NQA("Basic"="-")
+}
+
+For{
+	Component( Type( Not Composite ))
+} Do{
+	NQA("Basic"="-")
+}
+
+For{
+	Component( Role(Not Infrastructure Id(_)))
+} Do{
+	NQA("NotInfrastructure"="0")
+}
+
+For{
+	Component( Role(Not Infrastructure Id(_)))
+} Do{
+	NQA("NotInfrastructure"="0")
+}
+
+For{
+	Component( Assembly(AnyAssembly Component(Id(_))))
+} Do{
+	NQA("AnyAssembly"="+")
+}
