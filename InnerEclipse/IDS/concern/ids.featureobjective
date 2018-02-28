@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_DSgc8PwtEeeksIwNL6l_iA" name="IDSObjectives">
+  <rootFeature id="_DmvAgPwtEeeksIwNL6l_iA">
+    <childrelation xsi:type="featureObjective:Simple">
+      <optionalChildren id="_s9nzsPwuEeeueJ0KPUiSsg" name="DBLogging"/>
+      <optionalChildren id="_vE3NAPwuEeeueJ0KPUiSsg" name="tbd"/>
+      <mandatoryChildren id="_GAa0sfwtEeeksIwNL6l_iA" name="CSVAttackLogging"/>
+    </childrelation>
+  </rootFeature>
+</featureObjective:FeatureObjective>
