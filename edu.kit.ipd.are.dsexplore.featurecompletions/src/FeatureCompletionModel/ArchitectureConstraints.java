@@ -63,9 +63,9 @@ public interface ArchitectureConstraints extends DescribedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Architecture Elements</em>' reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getArchitectureConstraints_ArchitectureElements()
-	 * @model type="FeatureCompletionModel.ConstrainableElement" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	EList getArchitectureElements();
+	EList<ConstrainableElement> getArchitectureElements();
 
 } // ArchitectureConstraints

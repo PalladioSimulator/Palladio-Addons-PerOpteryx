@@ -236,13 +236,22 @@ public interface FeatureCompletionPackage extends EPackage {
 	int FEATURE_COMPLETION__COMPLEMENTA = DESCRIBED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Architecture Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS = DESCRIBED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Feature Completion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_FEATURE_COUNT = DESCRIBED_ELEMENT_FEATURE_COUNT + 3;
+	int FEATURE_COMPLETION_FEATURE_COUNT = DESCRIBED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link FeatureCompletionModel.impl.ConstrainableElementImpl <em>Constrainable Element</em>}' class.
@@ -547,13 +556,22 @@ public interface FeatureCompletionPackage extends EPackage {
 	int COMPLEMENTUM_VISNETIS__COMPLEMENTARY_FEATURE = COMPLEMENTUM_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Requires Complementum</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM = COMPLEMENTUM_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Complementum Visnetis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEMENTUM_VISNETIS_FEATURE_COUNT = COMPLEMENTUM_FEATURE_COUNT + 1;
+	int COMPLEMENTUM_VISNETIS_FEATURE_COUNT = COMPLEMENTUM_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link FeatureCompletionModel.impl.ArchitectureConstraintsImpl <em>Architecture Constraints</em>}' class.
@@ -761,6 +779,17 @@ public interface FeatureCompletionPackage extends EPackage {
 	EReference getFeatureCompletion_Complementa();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link FeatureCompletionModel.FeatureCompletion#getArchitectureConstraints <em>Architecture Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Architecture Constraints</em>'.
+	 * @see FeatureCompletionModel.FeatureCompletion#getArchitectureConstraints()
+	 * @see #getFeatureCompletion()
+	 * @generated
+	 */
+	EReference getFeatureCompletion_ArchitectureConstraints();
+
+	/**
 	 * Returns the meta object for class '{@link FeatureCompletionModel.CompletionComponent <em>Completion Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -897,6 +926,17 @@ public interface FeatureCompletionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getComplementumVisnetis_ComplementaryFeature();
+
+	/**
+	 * Returns the meta object for the reference list '{@link FeatureCompletionModel.ComplementumVisnetis#getRequiresComplementum <em>Requires Complementum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Requires Complementum</em>'.
+	 * @see FeatureCompletionModel.ComplementumVisnetis#getRequiresComplementum()
+	 * @see #getComplementumVisnetis()
+	 * @generated
+	 */
+	EReference getComplementumVisnetis_RequiresComplementum();
 
 	/**
 	 * Returns the meta object for class '{@link FeatureCompletionModel.Complementum <em>Complementum</em>}'.
@@ -1098,6 +1138,14 @@ public interface FeatureCompletionPackage extends EPackage {
 		EReference FEATURE_COMPLETION__COMPLEMENTA = eINSTANCE.getFeatureCompletion_Complementa();
 
 		/**
+		 * The meta object literal for the '<em><b>Architecture Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS = eINSTANCE.getFeatureCompletion_ArchitectureConstraints();
+
+		/**
 		 * The meta object literal for the '{@link FeatureCompletionModel.impl.CompletionComponentImpl <em>Completion Component</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1210,6 +1258,14 @@ public interface FeatureCompletionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPLEMENTUM_VISNETIS__COMPLEMENTARY_FEATURE = eINSTANCE.getComplementumVisnetis_ComplementaryFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Requires Complementum</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM = eINSTANCE.getComplementumVisnetis_RequiresComplementum();
 
 		/**
 		 * The meta object literal for the '{@link FeatureCompletionModel.impl.ComplementumImpl <em>Complementum</em>}' class.

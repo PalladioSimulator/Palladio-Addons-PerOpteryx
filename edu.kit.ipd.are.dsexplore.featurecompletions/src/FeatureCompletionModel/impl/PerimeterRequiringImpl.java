@@ -36,7 +36,7 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * @generated
 	 * @ordered
 	 */
-	protected EList complementum;
+	protected EList<Complementum> complementum;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -52,6 +52,7 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.PERIMETER_REQUIRING;
 	}
@@ -61,9 +62,9 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getComplementum() {
+	public EList<Complementum> getComplementum() {
 		if (complementum == null) {
-			complementum = new EObjectResolvingEList(Complementum.class, this, FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM);
+			complementum = new EObjectResolvingEList<Complementum>(Complementum.class, this, FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM);
 		}
 		return complementum;
 	}
@@ -73,6 +74,7 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM:
@@ -86,11 +88,13 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM:
 				getComplementum().clear();
-				getComplementum().addAll((Collection)newValue);
+				getComplementum().addAll((Collection<? extends Complementum>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -101,6 +105,7 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM:
@@ -115,6 +120,7 @@ public class PerimeterRequiringImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_REQUIRING__COMPLEMENTUM:

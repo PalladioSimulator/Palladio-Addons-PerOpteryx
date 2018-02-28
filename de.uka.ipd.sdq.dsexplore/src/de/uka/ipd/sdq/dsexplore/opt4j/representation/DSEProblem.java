@@ -2,11 +2,10 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -17,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
@@ -27,33 +27,28 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.RepositoryPackage;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
+import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import ConcernModel.Concern;
-import ConcernModel.ConcernModelPackage;
-import ConcernModel.ConcernRepository;
-import ConcernModel.ElementaryConcernComponent;
-import SolutionModel.Solution;
-import TransformationModel.TransformationModelPackage;
-import TransformationModel.TransformationRepository;
-import concernStrategy.ChildRelation;
-import concernStrategy.Feature;
-import concernStrategy.FeatureGroup;
-import concernStrategy.Simple;
+import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.FeatureCompletion;
+import FeatureCompletionModel.FeatureCompletionPackage;
+import FeatureCompletionModel.FeatureCompletionRepository;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
-import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
-import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ConcernDesignDecision;
-import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ECCAllocDegreeDesignDecision;
+import de.uka.ipd.sdq.dsexplore.designdecisions.completions.CompletionDesignDecision;
+import de.uka.ipd.sdq.dsexplore.designdecisions.completions.FCCAllocDegreeDesignDecision;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
+import de.uka.ipd.sdq.dsexplore.helper.StereotypeApiHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
@@ -77,11 +72,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
@@ -93,8 +88,11 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
 import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
+import featureObjective.ChildRelation;
+import featureObjective.Feature;
+import featureObjective.FeatureGroup;
+import featureObjective.Simple;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the
@@ -142,8 +140,7 @@ public class DSEProblem {
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 
-		DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
-		this.initTransformationRepository(pcmPartition);
+		// this.initTransformationRepository(pcmPartition);
 
 		if (newProblem) {
 			this.initialiseProblem();
@@ -177,22 +174,35 @@ public class DSEProblem {
 		 */
 	}
 
-	private List<Solution> getConcernSolutionsWithCosts() {
+	private Repository getFullyInitializedFCSolutionRepo() {
 
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		List<ConcernRepository> concernRepo;
-		try {
-			concernRepo = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
-		} catch (Exception ex) {
-			return Collections.emptyList();
+		System pcmSystem = pcmPartition.getSystem();
+		List<Repository> solutionRepos = StereotypeApiHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
+
+		if (solutionRepos.isEmpty()) {
+			return null;
 		}
-		return this.getConcernCostsFrom(concernRepo.stream());
+
+		Repository mergedRepo = (Repository) RepositoryPackage.eINSTANCE.getRepository();
+		for (Repository sr : solutionRepos) {
+			Copier copier = new Copier();
+			Collection<RepositoryComponent> copiedContent = copier.copyAll(sr.getComponents__Repository());
+			// epcopyResourceSet.createResource(URI.createURI(resource.getURI().toString()));
+			mergedRepo.getComponents__Repository().addAll(copiedContent);
+			copier.copyReferences();
+		}
+		return mergedRepo;
 	}
 
-	private List<Solution> getConcernCostsFrom(Stream<ConcernRepository> concernRepo) {
-		return concernRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each -> each.getStrategies().stream()).flatMap(each -> each.getConcernSolutions().stream())
-				.filter(each -> each.getCostRepository() instanceof CostRepository).collect(Collectors.toList());
-	}
+	// private List<Solution>
+	// getConcernCostsFrom(Stream<FeatureCompletionRepository> fccRepo) {
+	// return fccRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each
+	// -> each.getStrategies().stream())
+	// .flatMap(each -> each.getConcernSolutions().stream())
+	// .filter(each -> each.getCostRepository() instanceof
+	// CostRepository).collect(Collectors.toList());
+	// }
 
 	private Optional<String> getCostModelFileName() {
 		try {
@@ -216,16 +226,20 @@ public class DSEProblem {
 		return cr == null ? Optional.empty() : Optional.of(cr);
 	}
 
-	private void initTransformationRepository(PCMResourceSetPartition pcmPartition) {
-		try {
-			List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
-			TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
-		} catch (Exception ex) {
-			// No concern is involved
-			DSEProblem.logger.error("Error while init TransformationRepository : .. " + ex.getMessage());
-		}
-
-	}
+	// private void initTransformationRepository(PCMResourceSetPartition
+	// pcmPartition) {
+	// try {
+	// List<EObject> transRepos = pcmPartition
+	// .getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
+	// TransformationRepositoryManager.initialize((TransformationRepository)
+	// transRepos.get(0));
+	// } catch (Exception ex) {
+	// // No concern is involved
+	// DSEProblem.logger.error("Error while init TransformationRepository : .. "
+	// + ex.getMessage());
+	// }
+	//
+	// }
 
 	private DecisionSpace loadProblem() throws CoreException {
 		final URI filename = this.dseConfig.getDesignDecisionFileName();
@@ -293,8 +307,8 @@ public class DSEProblem {
 					final AssemblyContext ac = (AssemblyContext) acd.getPrimaryChanged();
 					final RepositoryComponent rc = ac.getEncapsulatedComponent__AssemblyContext();
 					choice.setChosenValue(rc);
-				} else if (dd instanceof ConcernDegree) {
-					final ConcernDegree concernDegree = (ConcernDegree) dd;
+				} else if (dd instanceof FeatureCompletionDegree) {
+					final FeatureCompletionDegree concernDegree = (FeatureCompletionDegree) dd;
 					choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
 				} else if (dd instanceof AllocationDegree) {
 					final AllocationDegree ad = (AllocationDegree) dd;
@@ -424,15 +438,15 @@ public class DSEProblem {
 		}
 		;
 
-		List<ConcernDegree> concernDegrees = this.getConcernFrom(problem.getDegreesOfFreedom());
+		List<FeatureCompletionDegree> concernDegrees = this.getFCFrom(problem.getDegreesOfFreedom());
 		if (!concernDegrees.isEmpty()) {
 
 			this.initializeWeavingManager();
 
-			for (ConcernDegree each : concernDegrees) {
+			for (FeatureCompletionDegree each : concernDegrees) {
 
 				try {
-					this.createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype);
+					this.createFCCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype);
 				} catch (ConcernWeavingException e) {
 					throw new RuntimeException(String.format("Ann error occurred. Error message:", e.getMessage()));
 				}
@@ -458,21 +472,21 @@ public class DSEProblem {
 		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		Optional<String> costModelFileName = this.getCostModelFileName();
 		Optional<CostRepository> costModel = this.getCostModel();
-		List<Solution> concernSolutions = this.getConcernSolutionsWithCosts();
-		if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || concernSolutions.isEmpty()) {
+		// List<Solution> concernSolutions = this.getFCSolutionsWithCosts();
+		Repository mergedRepo = this.getFullyInitializedFCSolutionRepo();
+		if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || mergedRepo == null) {
 
 			WeavingManager.initialize(this.blackboard, initialPartition);
 			return;
 
 		}
-
-		WeavingManager.initialize(this.blackboard, initialPartition, costModelFileName.get(), costModel.get().getCost(), concernSolutions);
+		WeavingManager.initialize(this.blackboard, initialPartition, costModelFileName.get(), costModel.get().getCost(), mergedRepo);
 
 	}
 
-	private List<ConcernDegree> getConcernFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
+	private List<FeatureCompletionDegree> getFCFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
 
-		return degreesOfFreedom.stream().filter(each -> each instanceof ConcernDegree).map(each -> (ConcernDegree) each).collect(Collectors.toList());
+		return degreesOfFreedom.stream().filter(each -> each instanceof FeatureCompletionDegree).map(each -> (FeatureCompletionDegree) each).collect(Collectors.toList());
 
 	}
 
@@ -528,7 +542,7 @@ public class DSEProblem {
 	}
 
 	private void determineConcernDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		Optional<ConcernRepository> concernRepo = this.getConcernRepository();
+		Optional<FeatureCompletionRepository> concernRepo = this.getFCRepository();
 		if (!concernRepo.isPresent()) {
 			return;
 		}
@@ -541,24 +555,24 @@ public class DSEProblem {
 
 	}
 
-	private void createConcernDegreeBy(ConcernRepository concernRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
+	private void createConcernDegreeBy(FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
 
-		List<ConcernDegree> concernDegrees = new ConcernDesignDecision(concernRepo).generateConcernDegrees();
-		if (concernDegrees.isEmpty()) {
+		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo).generateConcernDegrees();
+		if (featureCompletionDegrees.isEmpty()) {
 			return;
 		}
 
 		this.initializeWeavingManager();
 
-		for (ConcernDegree eachConcernDegree : concernDegrees) {
+		for (FeatureCompletionDegree eachConcernDegree : featureCompletionDegrees) {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
-			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
-			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
+			this.createFCCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
+			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, fcRepo);
 		}
 
 	}
 
-	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+	private void createClassChoice(FeatureCompletionDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 
 		ClassChoice choice = this.designDecisionFactory.createClassChoice();
 		choice.setDegreeOfFreedomInstance(concernDegree);
@@ -570,25 +584,26 @@ public class DSEProblem {
 
 	}
 
-	private Optional<ConcernRepository> getConcernRepository() {
+	private Optional<FeatureCompletionRepository> getFCRepository() {
 
-		List<EObject> concernRepository;
+		List<EObject> fccRepository;
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		try {
-			concernRepository = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
-			return Optional.of((ConcernRepository) concernRepository.get(0));
+			fccRepository = pcmPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
+			return Optional.of((FeatureCompletionRepository) fccRepository.get(0));
 		} catch (Exception e) {
 			return Optional.empty();
 		}
 	}
 
-	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
+	private void createFCCAllocationDegreesFrom(FeatureCompletionDegree completionDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
 
-		ECCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), this.initialInstance.getRepositories());
+		FCCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new FCCAllocDegreeDesignDecision((FeatureCompletion) completionDegree.getPrimaryChanged(),
+				this.initialInstance.getSystem().getAssemblyContexts__ComposedStructure());
 
 		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
 
-		List<ClassChoice> choices = eccAllocDegreeDesignDecision.getECCClassChoicesFrom(allPcmResourceContainer);
+		List<ClassChoice> choices = eccAllocDegreeDesignDecision.getFCCClassChoicesFrom(allPcmResourceContainer);
 		for (ClassChoice eccClassChoice : choices) {
 			initialCandidate.add(eccClassChoice);
 			dds.add(eccClassChoice.getDegreeOfFreedomInstance());
@@ -784,16 +799,16 @@ public class DSEProblem {
 	 *            all DoFs do far
 	 * @param initialCandidate
 	 *            the initial candidate
-	 * @param concernRepo
+	 * @param fcRepo
 	 *            the concern repo
 	 * @author Dominik Fuchss
 	 */
-	private void determineOptionalAsDegreeDecisions(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
-		Concern c = (Concern) cd.getPrimaryChanged();
-		List<ElementaryConcernComponent> eccs = c.getComponents();
+	private void determineOptionalAsDegreeDecisions(FeatureCompletionDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, FeatureCompletionRepository fcRepo) {
+		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
+		List<CompletionComponent> fccs = c.getCompletionComponents();
 		List<Feature> features = new ArrayList<>();
 
-		for (ElementaryConcernComponent ecc : eccs) {
+		for (CompletionComponent ecc : fccs) {
 			List<Feature> provided = this.getViaStereoTypeFrom(ecc, Feature.class);
 			if (provided.isEmpty()) {
 				DSEProblem.logger.error(ecc + " does not provide a Feature.");

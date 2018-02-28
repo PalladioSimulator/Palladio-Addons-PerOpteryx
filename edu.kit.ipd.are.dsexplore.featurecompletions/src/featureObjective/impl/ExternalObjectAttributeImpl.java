@@ -29,6 +29,7 @@ public class ExternalObjectAttributeImpl extends AttributeImpl implements Extern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.EXTERNAL_OBJECT_ATTRIBUTE;
 	}

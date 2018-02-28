@@ -2,12 +2,12 @@ package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
-import org.eclipse.emf.ecore.EObject;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
@@ -15,17 +15,16 @@ import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import ConcernModel.Annotation;
-import SolutionModel.Solution;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
-import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
+import FeatureCompletionModel.CompletionComponent;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.ComponentsToBeWovenFilter;
+import edu.kit.ipd.are.dsexplore.concern.util.StereotypeApiHelper;
 
 /**
  * This class provides all operations performed on a concern solution.
@@ -36,7 +35,7 @@ import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 public class ConcernSolutionManager {
 
 	private static ConcernSolutionManager eInstance = null;
-	private Solution concernSolution = null;
+	private Repository mergedRepo = null;
 
 	private ConcernSolutionManager() {
 	}
@@ -48,11 +47,11 @@ public class ConcernSolutionManager {
 	 *            - A given concern solution.
 	 * @return a ConcernSolutionManager-instance.
 	 */
-	public static ConcernSolutionManager getInstanceBy(Solution concernSolution) {
+	public static ConcernSolutionManager getInstanceBy(Repository mergedRepo) {
 		if (ConcernSolutionManager.eInstance == null) {
 			ConcernSolutionManager.eInstance = new ConcernSolutionManager();
 		}
-		ConcernSolutionManager.eInstance.concernSolution = concernSolution;
+		ConcernSolutionManager.eInstance.mergedRepo = mergedRepo;
 		return ConcernSolutionManager.eInstance;
 	}
 
@@ -71,6 +70,14 @@ public class ConcernSolutionManager {
 		}
 		return Optional.empty();
 	}
+	
+	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn){
+		for (CompletionComponent completionComponent : realizedCCs) {
+			if (listToContainedIn.contains(completionComponent))
+				return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Retrieves all components annotated by a set of annotations.
@@ -79,62 +86,42 @@ public class ConcernSolutionManager {
 	 *            - The set of annotations.
 	 * @return all components annotated by a set of annotations.
 	 */
-	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
-		List<RepositoryComponent> annotated = new AnnotationFilter(Arrays.asList(this.concernSolution.getRepository())).getComponentsAnnotatedWith(annotations);
-
-		List<RepositoryComponent> all = this.getAllComponents();
-		annotated.removeIf(rc -> !all.contains(rc));
-		return annotated;
+	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
+		Set<RepositoryComponent> affectedComponents = new HashSet<RepositoryComponent>();
+		for(RepositoryComponent rcs: this.getAllComponents())
+		{
+			List<CompletionComponent> realizedCCs = StereotypeApiHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (anyContainedInList(realizedCCs, fccs))
+				affectedComponents.add(rcs);
+		}
+		return new ArrayList<RepositoryComponent>(affectedComponents);
 	}
 
 	private List<RepositoryComponent> getAllComponents() {
 		List<RepositoryComponent> res = new ArrayList<>();
-		for (RepositoryComponent rc : this.concernSolution.getRepository().getComponents__Repository()) {
-			if (this.belongsToSolutionOrIsGeneral(rc)) {
-				res.add(rc);
-			}
-		}
-
+		res.addAll(mergedRepo.getComponents__Repository());
 		return res;
 	}
 
-	/**
+	/*
 	 * Check whether {@link RepositoryComponent} belongs to this solution or at
 	 * least to no other solution
 	 *
-	 * @param rc
-	 *            the repository component
-	 * @return {@code true} if SolutionStereoType is set to this solution or
-	 *         none
-	 * @author Dominik Fuchss
-	 */
-	private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
-		List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
-		// Size == 0 must be included, as generated adapters cannot be annotated
-		// easily
-		boolean contains = sols.contains(this.concernSolution) || sols.size() == 0;
-		return contains;
-	}
-
-	/**
-	 * Find all referenced Elements by type and base
+	 * @param rc the repository component
 	 *
-	 * @param base
-	 *            the base (search location)
-	 * @param target
-	 *            the target type
-	 * @return a list of Elements found
+	 * @return {@code true} if SolutionStereoType is set to this solution or
+	 * none
+	 *
 	 * @author Dominik Fuchss
 	 */
-	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
-		List<ElementType> res = new ArrayList<>();
-		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
-		for (StereotypeApplication appl : appls) {
-			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
-			res.addAll(provided);
-		}
-		return res;
-	}
+	// private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
+	// List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
+	// // Size == 0 must be included, as generated adapters cannot be annotated
+	// // easily
+	// boolean contains = sols.contains(this.concernSolution) || sols.size() ==
+	// 0;
+	// return contains;
+	// }
 
 	/**
 	 * Creates and add a adapter component to the concern solution repository.
@@ -150,7 +137,7 @@ public class ConcernSolutionManager {
 	}
 
 	private void addAdapter(BasicComponent adapter) {
-		this.concernSolution.getRepository().getComponents__Repository().add(adapter);
+		this.mergedRepo.getComponents__Repository().add(adapter);
 	}
 
 	private BasicComponent createAdapter(String name) {

@@ -32,7 +32,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
-import concernStrategy.Feature;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
@@ -76,6 +75,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
+import featureObjective.Feature;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into
@@ -153,7 +153,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			e.printStackTrace();
 		}
 
-		for (final Choice doubleGene : weavingExecuter.getConvertedECCClassChoices()) {
+		for (final Choice doubleGene : weavingExecuter.getConvertedFCCClassChoices()) {
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 

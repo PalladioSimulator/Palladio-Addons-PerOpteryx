@@ -29,6 +29,7 @@ public class ConstrainableElementImpl extends DescribedElementImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.CONSTRAINABLE_ELEMENT;
 	}

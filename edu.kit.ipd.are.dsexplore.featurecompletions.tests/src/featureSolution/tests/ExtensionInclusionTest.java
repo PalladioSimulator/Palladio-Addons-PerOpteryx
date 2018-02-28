@@ -40,7 +40,8 @@ public class ExtensionInclusionTest extends InclusionMechanismTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExtensionInclusion getFixture() {
+	@Override
+	protected ExtensionInclusion getFixture() {
 		return (ExtensionInclusion)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class ExtensionInclusionTest extends InclusionMechanismTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureSolutionFactory.eINSTANCE.createExtensionInclusion());
 	}
@@ -60,6 +62,7 @@ public class ExtensionInclusionTest extends InclusionMechanismTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

@@ -32,21 +32,24 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		this.setAdapterComponentRegarding(weavingInstruction);
-		this.connectAdapterTo(weavingInstruction.getECCWithConsumedFeatures().getSecond());
+		this.connectAdapterTo(weavingInstruction.getFCCWithConsumedFeatures().getSecond());
 		this.weaveAdapterIntoRepository(weavingInstruction.getWeavingLocation());
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
-		String uniqueAdapterName = ConcernWeaverUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
-		if (weavingInstruction.getTransformationStrategy().isMultiple()) {
-			AdapterWeaving.setAdapterComponent(AdapterWeaving.concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
+		String uniqueAdapterName = ConcernWeaverUtil
+				.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
+		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
+			AdapterWeaving.setAdapterComponent(
+					AdapterWeaving.concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
 		} else {
 			AdapterWeaving.setAdapterComponent(this.getOrCreateAdapterComponent(uniqueAdapterName));
 		}
 	}
 
 	private RepositoryComponent getOrCreateAdapterComponent(String name) {
-		return this.getExistingAdapter().orElseGet(() -> AdapterWeaving.concernRepositoryManager.createAndAddAdapter(name));
+		return this.getExistingAdapter()
+				.orElseGet(() -> AdapterWeaving.concernRepositoryManager.createAndAddAdapter(name));
 	}
 
 	// Assumption: When multiple == false then for each concern solution there
@@ -70,12 +73,14 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	}
 
 	private RequiredRole createComplimentaryRequiredRoleOf(ProvidedRole providedRole) throws ConcernWeavingException {
-		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, AdapterWeaving.concernRepositoryManager).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
+		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, AdapterWeaving.concernRepositoryManager)
+				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
 		return roleHandler.createRequiredRoleOf(providedRole);
 	}
 
 	private boolean isNotAlreadyContainedInAdapter(RequiredRole requiredRole) {
-		return !AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole -> ConcernWeaverUtil.referencesSameInterface(eachRequRole, requiredRole));
+		return !AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream()
+				.anyMatch(eachRequRole -> ConcernWeaverUtil.referencesSameInterface(eachRequRole, requiredRole));
 	}
 
 	/**

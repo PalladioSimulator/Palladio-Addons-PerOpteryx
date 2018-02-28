@@ -40,7 +40,8 @@ public class StringAttributeTest extends AttributeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StringAttribute getFixture() {
+	@Override
+	protected StringAttribute getFixture() {
 		return (StringAttribute)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class StringAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createStringAttribute());
 	}
@@ -60,6 +62,7 @@ public class StringAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -16,13 +15,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import ConcernModel.Concern;
-import ConcernModel.ElementaryConcernComponent;
-import SolutionModel.Solution;
+import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
+import de.uka.ipd.sdq.dsexplore.helper.StereotypeApiHelper;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.Cost;
@@ -38,24 +38,28 @@ public class WeavingManager {
 
 	private class PCMCostManager {
 		private final String costModelFileName;
-		private final List<Cost> cachedCosts;
-		private final Map<Solution, List<ComponentCost>> concernSolutionToComponentsCostsMap;
+		private final List<Cost> originalCostsFromMainModel;
+		private final List<ComponentCost> componentCosts;
 
-		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, List<Solution> concernSolutions) {
+		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, Repository mergedRepo) {
 			this.costModelFileName = costModelFileName;
-			this.cachedCosts = new ArrayList<>();
-			this.concernSolutionToComponentsCostsMap = new TreeMap<>((s1, s2) -> s1.getName().compareTo(s2.getName()));
+			this.originalCostsFromMainModel = new ArrayList<>();
+			this.componentCosts = new ArrayList<>();
+			// this.concernSolutionToComponentsCostsMap = new TreeMap<>((s1, s2)
+			// -> s1.getName().compareTo(s2.getName()));
 
-			this.initialize(concernSolutions, cachedCosts);
+			this.initialize(mergedRepo, cachedCosts);
 		}
 
-		private void initialize(List<Solution> concernSolutions, List<Cost> cachedCosts) {
-			for (Solution s : concernSolutions) {
-				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom((CostRepository) s.getCostRepository());
-				this.concernSolutionToComponentsCostsMap.put(s, costs);
+		private void initialize(Repository mergedRepo, List<Cost> cachedCosts) {
+			List<CostRepository> costRepos = StereotypeApiHelper.getViaStereoTypeFrom(mergedRepo, CostRepository.class);
+			for (CostRepository costRepo : costRepos) {
+
+				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom(costRepo);
+				this.componentCosts.addAll(costs);
 			}
 			for (Cost c : cachedCosts) {
-				this.cachedCosts.add(EcoreUtil.copy(c));
+				this.originalCostsFromMainModel.add(EcoreUtil.copy(c));
 			}
 		}
 
@@ -69,8 +73,8 @@ public class WeavingManager {
 			return cc;
 		}
 
-		public void updateCostModelBy(Solution sol) throws IOException {
-			if (this.cachedCosts.isEmpty()) {
+		public void updateCostModelBy(boolean cleanup) throws IOException {
+			if (this.originalCostsFromMainModel.isEmpty()) {
 				return;
 			}
 
@@ -80,9 +84,9 @@ public class WeavingManager {
 			}
 			CostRepository cr = original.get();
 			cr.getCost().clear();
-			cr.getCost().addAll(this.cachedCosts);
-			if (sol != null) {
-				cr.getCost().addAll(this.concernSolutionToComponentsCostsMap.get(sol));
+			cr.getCost().addAll(this.originalCostsFromMainModel);
+			if (!cleanup) {
+				cr.getCost().addAll(this.componentCosts);
 			}
 			cr.eResource().save(Collections.EMPTY_MAP);
 
@@ -156,12 +160,12 @@ public class WeavingManager {
 		WeavingManager.instance.pcmCostManager = Optional.empty();
 	}
 
-	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition, String costModelFileName, List<Cost> costsToCache, List<Solution> concernSolutions) {
+	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition, String costModelFileName, List<Cost> costsToCache, Repository mergedRepo) {
 		if (WeavingManager.instance == null) {
 			WeavingManager.instance = new WeavingManager();
 		}
 		WeavingManager.instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
-		WeavingManager.instance.setPCMCostManager(costModelFileName, costsToCache, concernSolutions);
+		WeavingManager.instance.setPCMCostManager(costModelFileName, costsToCache, mergedRepo);
 	}
 
 	public static Optional<WeavingManager> getInstance() {
@@ -172,21 +176,21 @@ public class WeavingManager {
 		this.pcmPartitionManager = new PCMPartitionManager(blackboard, unweavedPCMPartition);
 	}
 
-	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, List<Solution> concernSolutions) {
-		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, concernSolutions));
+	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, Repository mergedRepos) {
+		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, mergedRepos));
 	}
 
-	public PCMInstance getWeavedPCMInstanceOf(Concern concern, Solution concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap,
-			List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException, IOException {
+	public PCMInstance getWeavedPCMInstanceOf(FeatureCompletion fc, Repository mergedRepo, Map<CompletionComponent, ResourceContainer> eccAllocationMap, List<Pair<FeatureDegree, Choice>> optChoice)
+			throws ConcernWeavingException, IOException {
 
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);
-		new WeavingJob(concern, concernSolution, pcm, eccAllocationMap).execute(optChoice);
+		new WeavingJob(fc, pcm, eccAllocationMap, mergedRepo).execute(optChoice);
 
 		this.pcmPartitionManager.updatePCMResourcePartitionWith(pcmPartition);
 
 		if (this.pcmCostManager.isPresent()) {
-			this.pcmCostManager.get().updateCostModelBy(concernSolution);
+			this.pcmCostManager.get().updateCostModelBy(false);
 		}
 
 		return pcm;
@@ -209,7 +213,7 @@ public class WeavingManager {
 		if (cm == null) {
 			return;
 		}
-		cm.updateCostModelBy(null);
+		cm.updateCostModelBy(true);
 
 	}
 
