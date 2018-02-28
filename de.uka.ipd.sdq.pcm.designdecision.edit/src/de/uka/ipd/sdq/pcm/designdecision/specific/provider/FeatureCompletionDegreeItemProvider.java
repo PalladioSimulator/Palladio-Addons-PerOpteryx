@@ -2,7 +2,7 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.provider;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,19 +13,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree} object.
+ * This is the item provider adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConcernDegreeItemProvider extends ClassAsReferenceDegreeItemProvider {
+public class FeatureCompletionDegreeItemProvider extends ClassAsReferenceDegreeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConcernDegreeItemProvider(AdapterFactory adapterFactory) {
+	public FeatureCompletionDegreeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,14 +45,14 @@ public class ConcernDegreeItemProvider extends ClassAsReferenceDegreeItemProvide
 	}
 
 	/**
-	 * This returns ConcernDegree.gif.
+	 * This returns FeatureCompletionDegree.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConcernDegree"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureCompletionDegree"));
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class ConcernDegreeItemProvider extends ClassAsReferenceDegreeItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConcernDegree) object).getEntityName();
-		return label == null || label.length() == 0 ? getString("_UI_ConcernDegree_type") : getString("_UI_ConcernDegree_type") + " " + label;
+		String label = ((FeatureCompletionDegree) object).getEntityName();
+		return label == null || label.length() == 0 ? getString("_UI_FeatureCompletionDegree_type") : getString("_UI_FeatureCompletionDegree_type") + " " + label;
 	}
 
 	/**

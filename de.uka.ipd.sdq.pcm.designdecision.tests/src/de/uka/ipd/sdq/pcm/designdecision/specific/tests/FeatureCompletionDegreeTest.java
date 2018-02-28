@@ -2,18 +2,18 @@
  */
 package de.uka.ipd.sdq.pcm.designdecision.specific.tests;
 
-import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 
 import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Concern Degree</b></em>'.
+ * A test case for the model object '<em><b>Feature Completion Degree</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConcernDegreeTest extends ClassAsReferenceDegreeTest {
+public class FeatureCompletionDegreeTest extends ClassAsReferenceDegreeTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -21,28 +21,28 @@ public class ConcernDegreeTest extends ClassAsReferenceDegreeTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(ConcernDegreeTest.class);
+		TestRunner.run(FeatureCompletionDegreeTest.class);
 	}
 
 	/**
-	 * Constructs a new Concern Degree test case with the given name.
+	 * Constructs a new Feature Completion Degree test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConcernDegreeTest(String name) {
+	public FeatureCompletionDegreeTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Concern Degree test case.
+	 * Returns the fixture for this Feature Completion Degree test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected ConcernDegree getFixture() {
-		return (ConcernDegree) fixture;
+	protected FeatureCompletionDegree getFixture() {
+		return (FeatureCompletionDegree) fixture;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class ConcernDegreeTest extends ClassAsReferenceDegreeTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(specificFactory.eINSTANCE.createConcernDegree());
+		setFixture(specificFactory.eINSTANCE.createFeatureCompletionDegree());
 	}
 
 	/**
@@ -67,4 +67,4 @@ public class ConcernDegreeTest extends ClassAsReferenceDegreeTest {
 		setFixture(null);
 	}
 
-} //ConcernDegreeTest
+} //FeatureCompletionDegreeTest
