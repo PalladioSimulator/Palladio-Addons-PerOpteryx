@@ -1,4 +1,4 @@
-package FeatureCompletion.design;
+package edu.kit.ipd.are.dsexplore.featurecompletions.design;
 
 import java.util.HashSet;
 import java.util.Set;

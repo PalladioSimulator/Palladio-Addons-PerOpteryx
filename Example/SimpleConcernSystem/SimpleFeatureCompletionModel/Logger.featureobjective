@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_RI9uEOPREeeAZZsxprVXFA">
-  <rootFeature id="_TtjRYOAFEee0c7T3_fmbuQ" name="Logging">
+  <rootFeature id="_TtjRYOAFEee0c7T3_fmbuQ" name="Logging" featuregroup="//@rootFeature/@childrelation">
     <childrelation xsi:type="featureObjective:FeatureGroup">
       <children id="_ZOg_kOAFEee0c7T3_fmbuQ" name="File"/>
       <children id="_aHt4cOAFEee0c7T3_fmbuQ" name="SQL"/>
