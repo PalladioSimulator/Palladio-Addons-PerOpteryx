@@ -25,7 +25,6 @@ Require-Bundle:
  org.palladiosimulator.editors.sirius.ui,
  org.palladiosimulator.mdsdprofiles.api,
  org.palladiosimulator.editors.sirius.services;bundle-version="1.0.0",
- edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
  AnnotationProfile;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
