@@ -13,10 +13,10 @@ Require-Bundle: org.palladiosimulator.solver;bundle-version="3.0.0",
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
  org.palladiosimulator.pcm,
  de.uka.ipd.sdq.pcm.designdecision,
- edu.kit.ipd.are.dsexplore.featurecompletions
+ edu.kit.ipd.are.dsexplore.featurecompletions,
+ de.uka.ipd.sdq.dsexplore.tools
 Export-Package: edu.kit.ipd.are.dsexplore.concern.assembly,
  edu.kit.ipd.are.dsexplore.concern.concernweaver,
- edu.kit.ipd.are.dsexplore.concern.emfprofilefilter,
  edu.kit.ipd.are.dsexplore.concern.exception,
  edu.kit.ipd.are.dsexplore.concern.handler,
  edu.kit.ipd.are.dsexplore.concern.manager,

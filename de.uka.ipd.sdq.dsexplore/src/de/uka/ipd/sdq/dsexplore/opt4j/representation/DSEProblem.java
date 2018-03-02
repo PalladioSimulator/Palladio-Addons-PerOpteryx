@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -48,12 +47,12 @@ import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;
-import de.uka.ipd.sdq.dsexplore.helper.StereotypeApiHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -86,9 +85,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import featureObjective.ChildRelation;
 import featureObjective.Feature;
 import featureObjective.FeatureGroup;
@@ -175,10 +172,10 @@ public class DSEProblem {
 	}
 
 	private Repository getFullyInitializedFCSolutionRepo() {
-
+		// TODO DTHF1 Merged Repo
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		System pcmSystem = pcmPartition.getSystem();
-		List<Repository> solutionRepos = StereotypeApiHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
+		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
 
 		if (solutionRepos.isEmpty()) {
 			return null;
@@ -194,15 +191,6 @@ public class DSEProblem {
 		}
 		return mergedRepo;
 	}
-
-	// private List<Solution>
-	// getConcernCostsFrom(Stream<FeatureCompletionRepository> fccRepo) {
-	// return fccRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each
-	// -> each.getStrategies().stream())
-	// .flatMap(each -> each.getConcernSolutions().stream())
-	// .filter(each -> each.getCostRepository() instanceof
-	// CostRepository).collect(Collectors.toList());
-	// }
 
 	private Optional<String> getCostModelFileName() {
 		try {
@@ -225,21 +213,6 @@ public class DSEProblem {
 		CostRepository cr = (CostRepository) EMFHelper.loadFromXMIFile(locationToLoadFrom, costPackage.eINSTANCE);
 		return cr == null ? Optional.empty() : Optional.of(cr);
 	}
-
-	// private void initTransformationRepository(PCMResourceSetPartition
-	// pcmPartition) {
-	// try {
-	// List<EObject> transRepos = pcmPartition
-	// .getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
-	// TransformationRepositoryManager.initialize((TransformationRepository)
-	// transRepos.get(0));
-	// } catch (Exception ex) {
-	// // No concern is involved
-	// DSEProblem.logger.error("Error while init TransformationRepository : .. "
-	// + ex.getMessage());
-	// }
-	//
-	// }
 
 	private DecisionSpace loadProblem() throws CoreException {
 		final URI filename = this.dseConfig.getDesignDecisionFileName();
@@ -473,7 +446,10 @@ public class DSEProblem {
 		Optional<String> costModelFileName = this.getCostModelFileName();
 		Optional<CostRepository> costModel = this.getCostModel();
 		// List<Solution> concernSolutions = this.getFCSolutionsWithCosts();
+
+		// TODO DTHF1 Merged Repo
 		Repository mergedRepo = this.getFullyInitializedFCSolutionRepo();
+
 		if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || mergedRepo == null) {
 
 			WeavingManager.initialize(this.blackboard, initialPartition);
@@ -557,7 +533,7 @@ public class DSEProblem {
 
 	private void createConcernDegreeBy(FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
 
-		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo).generateConcernDegrees();
+		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(this.initialInstance, fcRepo).generateConcernDegrees();
 		if (featureCompletionDegrees.isEmpty()) {
 			return;
 		}
@@ -809,7 +785,7 @@ public class DSEProblem {
 		List<Feature> features = new ArrayList<>();
 
 		for (CompletionComponent ecc : fccs) {
-			List<Feature> provided = this.getViaStereoTypeFrom(ecc, Feature.class);
+			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
 			if (provided.isEmpty()) {
 				DSEProblem.logger.error(ecc + " does not provide a Feature.");
 				continue;
@@ -883,26 +859,6 @@ public class DSEProblem {
 			}
 		}
 
-	}
-
-	/**
-	 * Find all referenced Elements by type and base
-	 *
-	 * @param base
-	 *            the base (search location)
-	 * @param target
-	 *            the target type
-	 * @return a list of Elements found
-	 * @author Dominik Fuchss
-	 */
-	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
-		List<ElementType> res = new ArrayList<>();
-		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
-		for (StereotypeApplication appl : appls) {
-			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
-			res.addAll(provided);
-		}
-		return res;
 	}
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {

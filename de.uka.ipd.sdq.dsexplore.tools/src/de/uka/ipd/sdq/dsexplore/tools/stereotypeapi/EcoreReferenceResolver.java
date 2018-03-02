@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.concern.util;
+package de.uka.ipd.sdq.dsexplore.tools.stereotypeapi;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.concern.emfprofilefilter;
+package de.uka.ipd.sdq.dsexplore.tools.stereotypeapi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,6 @@ public class EMFProfileFilter {
 			}
 		}
 		return annotations;
-		// return stereotypeApplications.stream().flatMap(eachApplication ->
-		// eachApplication.eCrossReferences().stream()).filter(condition).collect(Collectors.toList());
 	}
 
 	public static List<StereotypeApplication> getStereotypeApplicationsFrom(EObject object) {

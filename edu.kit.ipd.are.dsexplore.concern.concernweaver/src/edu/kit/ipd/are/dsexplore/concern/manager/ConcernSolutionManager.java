@@ -1,7 +1,6 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +22,7 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
 import FeatureCompletionModel.CompletionComponent;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.ComponentsToBeWovenFilter;
-import edu.kit.ipd.are.dsexplore.concern.util.StereotypeApiHelper;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 
 /**
  * This class provides all operations performed on a concern solution.
@@ -70,11 +68,12 @@ public class ConcernSolutionManager {
 		}
 		return Optional.empty();
 	}
-	
-	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn){
+
+	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
 		for (CompletionComponent completionComponent : realizedCCs) {
-			if (listToContainedIn.contains(completionComponent))
+			if (listToContainedIn.contains(completionComponent)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -87,19 +86,19 @@ public class ConcernSolutionManager {
 	 * @return all components annotated by a set of annotations.
 	 */
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
-		Set<RepositoryComponent> affectedComponents = new HashSet<RepositoryComponent>();
-		for(RepositoryComponent rcs: this.getAllComponents())
-		{
-			List<CompletionComponent> realizedCCs = StereotypeApiHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-			if (anyContainedInList(realizedCCs, fccs))
+		Set<RepositoryComponent> affectedComponents = new HashSet<>();
+		for (RepositoryComponent rcs : this.getAllComponents()) {
+			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (this.anyContainedInList(realizedCCs, fccs)) {
 				affectedComponents.add(rcs);
+			}
 		}
-		return new ArrayList<RepositoryComponent>(affectedComponents);
+		return new ArrayList<>(affectedComponents);
 	}
 
 	private List<RepositoryComponent> getAllComponents() {
 		List<RepositoryComponent> res = new ArrayList<>();
-		res.addAll(mergedRepo.getComponents__Repository());
+		res.addAll(this.mergedRepo.getComponents__Repository());
 		return res;
 	}
 

@@ -8,9 +8,9 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
@@ -37,19 +37,16 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
-		String uniqueAdapterName = ConcernWeaverUtil
-				.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
+		String uniqueAdapterName = ConcernWeaverUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
 		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
-			AdapterWeaving.setAdapterComponent(
-					AdapterWeaving.concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
+			AdapterWeaving.setAdapterComponent(AdapterWeaving.concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
 		} else {
 			AdapterWeaving.setAdapterComponent(this.getOrCreateAdapterComponent(uniqueAdapterName));
 		}
 	}
 
 	private RepositoryComponent getOrCreateAdapterComponent(String name) {
-		return this.getExistingAdapter()
-				.orElseGet(() -> AdapterWeaving.concernRepositoryManager.createAndAddAdapter(name));
+		return this.getExistingAdapter().orElseGet(() -> AdapterWeaving.concernRepositoryManager.createAndAddAdapter(name));
 	}
 
 	// Assumption: When multiple == false then for each concern solution there
@@ -73,14 +70,12 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	}
 
 	private RequiredRole createComplimentaryRequiredRoleOf(ProvidedRole providedRole) throws ConcernWeavingException {
-		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, AdapterWeaving.concernRepositoryManager)
-				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
+		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, AdapterWeaving.concernRepositoryManager).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
 		return roleHandler.createRequiredRoleOf(providedRole);
 	}
 
 	private boolean isNotAlreadyContainedInAdapter(RequiredRole requiredRole) {
-		return !AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream()
-				.anyMatch(eachRequRole -> ConcernWeaverUtil.referencesSameInterface(eachRequRole, requiredRole));
+		return !AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole -> ConcernWeaverUtil.referencesSameInterface(eachRequRole, requiredRole));
 	}
 
 	/**

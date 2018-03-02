@@ -10,11 +10,11 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 
 import FeatureCompletionModel.CompletionComponent;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
-import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import featureObjective.Feature;
 
 /**
@@ -77,8 +77,7 @@ public class FCCFeatureHandler {
 	}
 
 	private Predicate<ProvidedRole> isAnnotatedWithFeatureAndFeatureIsEqualTo(Feature providedECCFeature) {
-		return eachProvidedRole -> this.isFeature(eachProvidedRole)
-				&& this.areEqual(providedECCFeature, this.getFeatureOf(eachProvidedRole));
+		return eachProvidedRole -> this.isFeature(eachProvidedRole) && this.areEqual(providedECCFeature, this.getFeatureOf(eachProvidedRole));
 	}
 
 	private boolean isFeature(ProvidedRole providedRole) {
@@ -91,13 +90,11 @@ public class FCCFeatureHandler {
 
 	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws ConcernWeavingException {
 		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(fcc).get(0);
-		return this.getFeatureFrom(stereotypeApplication).orElseThrow(
-				() -> new ConcernWeavingException(ErrorMessage.annotationError(fcc.getName(), Feature.class)));
+		return this.getFeatureFrom(stereotypeApplication).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.annotationError(fcc.getName(), Feature.class)));
 	}
 
 	private Feature getFeatureOf(ProvidedRole providedRole) {
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(providedRole)
-				.get(0);
+		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(providedRole).get(0);
 		return this.getFeatureFrom(stereotypeApplication).get();
 	}
 

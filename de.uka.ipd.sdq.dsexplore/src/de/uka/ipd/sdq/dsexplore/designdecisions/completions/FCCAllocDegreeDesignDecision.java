@@ -13,7 +13,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PerimeterProviding;
-import de.uka.ipd.sdq.dsexplore.helper.StereotypeApiHelper;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
@@ -49,7 +49,7 @@ public class FCCAllocDegreeDesignDecision {
 		Set<Feature> allFeatures = new HashSet<>();
 
 		for (AssemblyContext assembly : this.assemblies) {
-			List<Feature> featurePerAssembly = StereotypeApiHelper.getViaStereoTypeFrom(assembly, Feature.class);
+			List<Feature> featurePerAssembly = StereotypeAPIHelper.getViaStereoTypeFrom(assembly, Feature.class);
 			allFeatures.addAll(featurePerAssembly);
 		}
 

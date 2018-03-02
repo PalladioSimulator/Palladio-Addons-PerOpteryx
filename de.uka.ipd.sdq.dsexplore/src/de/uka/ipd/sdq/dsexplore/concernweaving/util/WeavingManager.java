@@ -22,8 +22,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
-import de.uka.ipd.sdq.dsexplore.helper.StereotypeApiHelper;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
@@ -45,14 +45,11 @@ public class WeavingManager {
 			this.costModelFileName = costModelFileName;
 			this.originalCostsFromMainModel = new ArrayList<>();
 			this.componentCosts = new ArrayList<>();
-			// this.concernSolutionToComponentsCostsMap = new TreeMap<>((s1, s2)
-			// -> s1.getName().compareTo(s2.getName()));
-
 			this.initialize(mergedRepo, cachedCosts);
 		}
 
 		private void initialize(Repository mergedRepo, List<Cost> cachedCosts) {
-			List<CostRepository> costRepos = StereotypeApiHelper.getViaStereoTypeFrom(mergedRepo, CostRepository.class);
+			List<CostRepository> costRepos = StereotypeAPIHelper.getViaStereoTypeFrom(mergedRepo, CostRepository.class);
 			for (CostRepository costRepo : costRepos) {
 
 				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom(costRepo);
@@ -147,6 +144,7 @@ public class WeavingManager {
 
 	private PCMPartitionManager pcmPartitionManager;
 	private Optional<PCMCostManager> pcmCostManager;
+	private Repository mergedRepo;
 
 	private WeavingManager() {
 
@@ -158,6 +156,7 @@ public class WeavingManager {
 		}
 		WeavingManager.instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
 		WeavingManager.instance.pcmCostManager = Optional.empty();
+		WeavingManager.instance.mergedRepo = null;
 	}
 
 	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition, String costModelFileName, List<Cost> costsToCache, Repository mergedRepo) {
@@ -166,6 +165,7 @@ public class WeavingManager {
 		}
 		WeavingManager.instance.setPCMPartitionManager(blackboard, unweavedPCMPartition);
 		WeavingManager.instance.setPCMCostManager(costModelFileName, costsToCache, mergedRepo);
+		WeavingManager.instance.mergedRepo = mergedRepo;
 	}
 
 	public static Optional<WeavingManager> getInstance() {
@@ -178,6 +178,10 @@ public class WeavingManager {
 
 	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, Repository mergedRepos) {
 		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, mergedRepos));
+	}
+
+	public Repository getMergedRepo() {
+		return this.mergedRepo;
 	}
 
 	public PCMInstance getWeavedPCMInstanceOf(FeatureCompletion fc, Repository mergedRepo, Map<CompletionComponent, ResourceContainer> eccAllocationMap, List<Pair<FeatureDegree, Choice>> optChoice)
