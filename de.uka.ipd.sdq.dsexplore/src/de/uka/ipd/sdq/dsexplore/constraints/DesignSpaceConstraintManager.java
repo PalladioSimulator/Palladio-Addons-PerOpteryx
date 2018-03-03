@@ -26,7 +26,7 @@ import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 public class DesignSpaceConstraintManager {
 
 	private static DesignSpaceConstraintManager instance = new DesignSpaceConstraintManager();
-	private FeatureCompletion featureCompletion;
+
 	private Map<Constraint, BiFunction<ArchitectureConstraints, DesignDecisionGenotype, Boolean>> constraintHandlers;
 
 	private DesignSpaceConstraintManager() {
@@ -38,7 +38,6 @@ public class DesignSpaceConstraintManager {
 	}
 
 	public static Optional<DesignSpaceConstraintManager> getInstanceBy(DesignDecisionGenotype genotype) throws NullPointerException {
-
 		Optional<FeatureCompletion> featureCompletion = DesignSpaceConstraintManager.getFCFrom(genotype);
 		if (!featureCompletion.isPresent()) {
 			return Optional.empty();
@@ -53,8 +52,12 @@ public class DesignSpaceConstraintManager {
 	}
 
 	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) throws ConcernWeavingException {
+		Optional<FeatureCompletion> fc = DesignSpaceConstraintManager.getFCFrom(genotype);
+		if (!fc.isPresent()) {
+			return true;
+		}
 
-		List<ArchitectureConstraints> archConstraints = this.featureCompletion.getArchitectureConstraints();
+		List<ArchitectureConstraints> archConstraints = fc.get().getArchitectureConstraints();
 		for (ArchitectureConstraints ac : archConstraints) {
 			boolean valid = this.constraintHandlers.get(ac.getConstraint()).apply(ac, genotype);
 			if (!valid) {

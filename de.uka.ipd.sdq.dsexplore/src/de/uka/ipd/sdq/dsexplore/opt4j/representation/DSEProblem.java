@@ -26,7 +26,7 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
+import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
@@ -181,7 +181,7 @@ public class DSEProblem {
 			return null;
 		}
 
-		Repository mergedRepo = (Repository) RepositoryPackage.eINSTANCE.getRepository();
+		Repository mergedRepo = RepositoryFactory.eINSTANCE.createRepository();
 		for (Repository sr : solutionRepos) {
 			Copier copier = new Copier();
 			Collection<RepositoryComponent> copiedContent = copier.copyAll(sr.getComponents__Repository());
@@ -499,7 +499,6 @@ public class DSEProblem {
 
 		this.initialGenotypeList = new ArrayList<>();
 		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
-
 		this.determineConcernDecisions(dds, initialCandidate);
 		this.determineProcessingRateDecisions(dds, initialCandidate);
 		// find equivalent components
@@ -526,19 +525,18 @@ public class DSEProblem {
 			this.createConcernDegreeBy(concernRepo.get(), dds, initialCandidate);
 		} catch (Exception ex) {
 			DSEProblem.logger.error("Error while creating ConcernDegree ..: " + ex.getMessage());
+			ex.printStackTrace();
 			return;
 		}
 
 	}
 
 	private void createConcernDegreeBy(FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
-
+		this.initializeWeavingManager();
 		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(this.initialInstance, fcRepo).generateConcernDegrees();
 		if (featureCompletionDegrees.isEmpty()) {
 			return;
 		}
-
-		this.initializeWeavingManager();
 
 		for (FeatureCompletionDegree eachConcernDegree : featureCompletionDegrees) {
 			this.createClassChoice(eachConcernDegree, dds, initialCandidate);

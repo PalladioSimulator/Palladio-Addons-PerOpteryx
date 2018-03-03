@@ -62,6 +62,9 @@ public class FCCAllocDegreeDesignDecision {
 
 		for (CompletionComponent c : this.featureCompletion.getCompletionComponents()) {
 			PerimeterProviding pp = c.getPerimeterProviding();
+			if (pp == null) {
+				continue;
+			}
 			for (Feature ppf : pp.getFeatureProviding()) {
 				if (allUsedFeatures.contains(ppf)) {
 					usedFCCs.add(c);

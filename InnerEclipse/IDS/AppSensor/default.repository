@@ -1473,6 +1473,14 @@
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
       <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="../concern/appsensor.featuresolution#_ed5I0PwwEeeueJ0KPUiSsg"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_vCoUgNWBEeWS-LePWVyd9g">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../concern/ids.featurecompletion#_16UT0PwsEeeksIwNL6l_iA"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_vCoUgNWBEeWS-LePWVyd9g">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_0FPKABfiEeixnp8iZNZNhA"/>
+      <fulfills href="../concern/ids.featurecompletion#_-QzLsvwuEeeueJ0KPUiSsg"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>
