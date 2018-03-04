@@ -13,7 +13,7 @@ import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
  * The services class used by VSM.
  */
 public class Services {
-	private static Logger logger = Logger.getLogger(Services.class.getName());
+//	private static Logger logger = Logger.getLogger(Services.class.getName());
     
 	public void applyFeatureCompletionStereotype(Resource resource) {
 		ProfileAPI.applyProfile(resource, "FeatureCompletionProfile");
@@ -32,15 +32,15 @@ public class Services {
 	}
 	
 	public void removeStereotypeFulfillsComplementumVisnetis(EObject eObject) {
-		this.removeStereotypeWithName(eObject, "fulfillsComplementumVisnetis");
+		removeStereotypeWithName(eObject, "fulfillsComplementumVisnetis");
 	}
 	
 	public void removeStereotypeRequiresComplementum(EObject eObject) {
-		this.removeStereotypeWithName(eObject, "requiresComplementum");
+		removeStereotypeWithName(eObject, "requiresComplementum");
 	}
 	
 	public void removeStereotypeIsSolutionFor(EObject eObject) {
-		this.removeStereotypeWithName(eObject, "isSolutionFor");
+		removeStereotypeWithName(eObject, "isSolutionFor");
 	}
 	
 
@@ -63,7 +63,7 @@ public class Services {
 	/**
 	 * @see StereotypeAPI#unapplyStereotype(EObject, Stereotype)
 	 */
-	private void removeStereotypeWithName(EObject eObject, String name) {
+	public static void removeStereotypeWithName(EObject eObject, String name) {
 		StereotypeAPI.unapplyStereotype(eObject, name);
 	}
 }

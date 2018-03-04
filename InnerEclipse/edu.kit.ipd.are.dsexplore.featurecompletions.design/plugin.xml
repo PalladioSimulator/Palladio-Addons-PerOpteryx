@@ -7,4 +7,11 @@
 	       name="FeatureCompletion">
     </component>
   </extension>
+  <extension
+        point="org.eclipse.sirius.externalJavaAction">
+     <javaActions
+           actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.RemoveFullfillsComplementumVisnetis"
+           id="edu.kit.ipd.are.dsexplore.featurecompletions.design.RemoveFullfillsComplementumVisnetis">
+     </javaActions>
+  </extension>
 </plugin>
