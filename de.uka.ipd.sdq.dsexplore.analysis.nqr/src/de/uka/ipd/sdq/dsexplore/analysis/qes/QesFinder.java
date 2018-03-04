@@ -38,10 +38,10 @@ public class QesFinder {
         return Collections.unmodifiableSet(components);
     }
 
-    private final Set<RepositoryComponent> components;
+    private final Set<RepositoryComponent> repositoryComponents;
 
     public QesFinder(PCMInstance instance) {
-        components = getComponents(instance.getRepositories());
+        repositoryComponents = getComponents(instance.getRepositories());
     }
 
     public Set<String> getEffectedComponents(List<Component> components) {
@@ -105,7 +105,7 @@ public class QesFinder {
         final boolean not = name.isNot();
         final String valueOfName = String.valueOf(name.getName());
 
-        for (final RepositoryComponent component : components) {
+        for (final RepositoryComponent component : repositoryComponents) {
             final String componentName = String.valueOf(component.getEntityName());
             final boolean equals = componentName.equalsIgnoreCase(valueOfName);
 
@@ -123,7 +123,7 @@ public class QesFinder {
         final boolean not = identifier.isNot();
         final String valueOfId = String.valueOf(identifier.getId());
 
-        for (final RepositoryComponent component : components) {
+        for (final RepositoryComponent component : repositoryComponents) {
             final String componentIdentifier = String.valueOf(component.getId());
 
             if (valueOfId.equals(IDENTIFIER_WILDCARD)) {

@@ -39,9 +39,8 @@ public class NqrFactory {
 
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
 
-    public static void collectionToString(final StringBuilder builder,
-            final Collection<?> collection, final String delimiter, final String prefix,
-            final String suffix) {
+    public static void collectionToString(final StringBuilder builder, final Collection<?> collection,
+            final String delimiter, final String prefix, final String suffix) {
         if (builder == null) {
             return;
         }
@@ -68,8 +67,7 @@ public class NqrFactory {
     }
 
 
-    private static Map<String, String> loadDimensionIdNameMap(
-            final DimensionTypeSet dimensionTypeSet) {
+    private static Map<String, String> loadDimensionIdNameMap(final DimensionTypeSet dimensionTypeSet) {
         final Map<String, String> idNameMap = new HashMap<String, String>();
         for (final Element element : requireNonNull(dimensionTypeSet).getElements()) {
             idNameMap.put(element.getId(), element.getEntityName());
@@ -99,15 +97,13 @@ public class NqrFactory {
             }
         }
 
-        if (dimensionTypeSet.getRelationSemantics().getRelSem()
-                .equals(EnumRelationSemantics.INCREASING)) {
+        if (dimensionTypeSet.getRelationSemantics().getRelSem().equals(EnumRelationSemantics.INCREASING)) {
             Collections.reverse(resultOrder);
         }
         return Collections.unmodifiableList(resultOrder);
     }
 
-    private static Map<String, Integer> loadDimensionIdOrderMap(
-            final List<String> loadDimensionIdOrderList) {
+    private static Map<String, Integer> loadDimensionIdOrderMap(final List<String> loadDimensionIdOrderList) {
         final Map<String, Integer> idOrderMap = new HashMap<String, Integer>();
         int i = 0;
         for (final String element : requireNonNull(loadDimensionIdOrderList)) {
@@ -116,8 +112,7 @@ public class NqrFactory {
         return Collections.unmodifiableMap(idOrderMap);
     }
 
-    private static Map<Integer, String> loadDimensionOrderIdMap(
-            final List<String> loadDimensionIdOrderList) {
+    private static Map<Integer, String> loadDimensionOrderIdMap(final List<String> loadDimensionIdOrderList) {
         final Map<Integer, String> idOrderMap = new HashMap<Integer, String>();
         int i = 0;
         for (final String element : requireNonNull(loadDimensionIdOrderList)) {
@@ -133,8 +128,7 @@ public class NqrFactory {
             if (!loadFrom.isPlatform()) {
                 loadFrom = URI.createFileURI(uri);
             }
-            final EObject object =
-                    EMFHelper.loadFromXMIFile(loadFrom, QMLContractPackage.eINSTANCE);
+            final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QMLContractPackage.eINSTANCE);
 
             if ((object != null) && (object instanceof DimensionTypeSet)) {
                 return (DimensionTypeSet) object;
@@ -144,23 +138,20 @@ public class NqrFactory {
                 "Dimension Type Set " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
-    private static List<ReasoningComponent> loadReasoningComponents(final String uri)
-            throws CoreException {
+    private static List<ReasoningComponent> loadReasoningComponents(final String uri) throws CoreException {
         final String extension = DSEConstantsContainer.REASONING_MODEL_EXTENSION[0].substring(1);
         if ((uri != null) && uri.endsWith(extension)) {
             URI loadFrom = URI.createURI(uri);
             if (!loadFrom.isPlatform()) {
                 loadFrom = URI.createFileURI(uri);
             }
-            final EObject object =
-                    EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
+            final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
 
             if ((object != null) && (object instanceof ReasoningSystem)) {
                 final List<ReasoningComponent> components = new ArrayList<ReasoningComponent>();
                 final ReasoningSystem system = (ReasoningSystem) object;
                 for (final Object reasoningComponent : system.getComponents()) {
-                    if ((reasoningComponent != null)
-                            && (reasoningComponent instanceof ReasoningComponent)) {
+                    if ((reasoningComponent != null) && (reasoningComponent instanceof ReasoningComponent)) {
                         components.add((ReasoningComponent) reasoningComponent);
                     }
                 }
@@ -168,8 +159,7 @@ public class NqrFactory {
             }
         }
         throw new CoreException(new Status(ERROR, "de.uka.ipd.sdq.dsexplore.analysis.nqr", 0,
-                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.",
-                null));
+                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
     private static Reduction loadReduction(final String uri) throws CoreException {
@@ -179,16 +169,14 @@ public class NqrFactory {
             if (!loadFrom.isPlatform()) {
                 loadFrom = URI.createFileURI(uri);
             }
-            final EObject object =
-                    EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
+            final EObject object = EMFHelper.loadFromXMIFile(loadFrom, QualityModelPackage.eINSTANCE);
 
             if ((object != null) && (object instanceof Reduction)) {
                 return (Reduction) object;
             }
         }
         throw new CoreException(new Status(ERROR, "de.uka.ipd.sdq.dsexplore.analysis.nqr", 0,
-                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.",
-                null));
+                "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
     private static <T> T requireNonNull(final T object) {
@@ -204,14 +192,14 @@ public class NqrFactory {
     private final List<String> dimensionIdOrderList;
     private final Map<String, Integer> dimensionIdOrderMap;
     private final Map<Integer, String> dimensionOrderIdMap;
-    private final Map<String, String> dimensionsIdNameMap;
+    protected final Map<String, String> dimensionsIdNameMap;
     private final DimensionTypeSet dimensionTypeSet;
     private String reductionIdentity;
     private Map<List<String>, String> reductionMapping;
     private final List<Dimension> dimensions;
 
-    public NqrFactory(final String reasoningComponentUri, final String reductionUri,
-            final String dimensionTypeSetUri) throws CoreException {
+    public NqrFactory(final String reasoningComponentUri, final String reductionUri, final String dimensionTypeSetUri)
+            throws CoreException {
         dimensions = new LinkedList<Dimension>();
         dimensionTypeSet = loadDimensionTypeSet(dimensionTypeSetUri);
         dimensionsIdNameMap = loadDimensionIdNameMap(dimensionTypeSet);
@@ -277,8 +265,7 @@ public class NqrFactory {
     }
 
     public NqrProxy createNqrProxy(final Dimension dimension, final String element) {
-        if ((dimension == null) || (element == null)
-                || !(dimensionsIdNameMap.containsKey(element))) {
+        if ((dimension == null) || (element == null) || !(dimensionsIdNameMap.containsKey(element))) {
             return null;
         }
         return new NqrProxy(dimension, getElement(element), dimensionsIdNameMap.get(element));
@@ -322,8 +309,7 @@ public class NqrFactory {
 
         final List<TransformationProxy> transformations = new ArrayList<TransformationProxy>();
         for (final Object transformation : reasoning.getTransformations()) {
-            final TransformationProxy transformationProxy =
-                    createTransformationProxy(transformation);
+            final TransformationProxy transformationProxy = createTransformationProxy(transformation);
             if (transformationProxy != null) {
                 transformations.add(transformationProxy);
             }
@@ -344,11 +330,9 @@ public class NqrFactory {
 
     }
 
-
     public ReductionProxy createReductionProxy() {
         return (reductionMapping != null) && (reductionIdentity != null)
-                ? new QuantityReductionProxy(reductionIdentity, reductionMapping,
-                        dimensionsIdNameMap)
+                ? new QuantityReductionProxy(reductionIdentity, reductionMapping, dimensionsIdNameMap)
                 : new StatisticReductionProxy(dimensionsIdNameMap, dimensionOrderIdMap);
     }
 
@@ -360,8 +344,7 @@ public class NqrFactory {
 
         final List<Dimension> input = new ArrayList<Dimension>();
         for (final Object dimension : transformation.getInput()) {
-            if ((dimension == null) || input.contains(dimension)
-                    || ((dimension instanceof Dimension) == false)) {
+            if ((dimension == null) || input.contains(dimension) || ((dimension instanceof Dimension) == false)) {
                 return null;
             }
             input.add((Dimension) dimension);
@@ -379,14 +362,13 @@ public class NqrFactory {
             return null;
         }
 
-        return new TransformationProxy(Collections.unmodifiableList(input),
-                Collections.unmodifiableMap(map), dimensionsIdNameMap);
+        return new TransformationProxy(Collections.unmodifiableList(input), Collections.unmodifiableMap(map),
+                dimensionsIdNameMap);
     }
 
 
     public String getComponentName(final String componentId) {
-        return componentIdMap.containsKey(componentId)
-                ? String.valueOf(componentIdMap.get(componentId).getEntityName())
+        return componentIdMap.containsKey(componentId) ? String.valueOf(componentIdMap.get(componentId).getEntityName())
                 : String.valueOf(componentId);
     }
 
@@ -410,20 +392,29 @@ public class NqrFactory {
     }
 
     public String getDimensionName(final String dimensionId) {
-        return dimensionsIdNameMap.containsKey(dimensionId)
-                ? String.valueOf(dimensionsIdNameMap.get(dimensionId))
+        return dimensionsIdNameMap.containsKey(dimensionId) ? String.valueOf(dimensionsIdNameMap.get(dimensionId))
                 : String.valueOf(dimensionId);
     }
 
     public int getDimensionOrder(final String dimensionId) {
-        return dimensionIdOrderMap.containsKey(dimensionId) ? dimensionIdOrderMap.get(dimensionId)
-                : -1;
+        return dimensionIdOrderMap.containsKey(dimensionId) ? dimensionIdOrderMap.get(dimensionId) : -1;
     }
 
     private Element getElement(final String id) {
         if (id != null) {
             for (final Element element : dimensionTypeSet.getElements()) {
                 if (id.equals(element.getId())) {
+                    return element;
+                }
+            }
+        }
+        return null;
+    }
+
+    protected Element getElementByName(final String name) {
+        if (name != null && !name.isEmpty()) {
+            for (final Element element : dimensionTypeSet.getElements()) {
+                if (name.equalsIgnoreCase(element.getEntityName())) {
                     return element;
                 }
             }
@@ -514,8 +505,7 @@ public class NqrFactory {
         }
         builder.append("]").append(System.lineSeparator());
         final ReductionProxy reduction = createReductionProxy();
-        builder.append(reduction.getClass().getSimpleName()).append(" ")
-                .append(reduction.toString());
+        builder.append(reduction.getClass().getSimpleName()).append(" ").append(reduction.toString());
         builder.append(System.lineSeparator());
         for (final String id : componentIdMap.keySet()) {
             builder.append(componentIdMap.get(id).getEntityName());

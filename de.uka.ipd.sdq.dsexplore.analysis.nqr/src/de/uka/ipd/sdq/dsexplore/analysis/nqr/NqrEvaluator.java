@@ -47,16 +47,14 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis {
 
     @Override
     public void analyse(final PCMPhenotype pheno, final IProgressMonitor monitor)
-            throws CoreException, UserCanceledException, JobFailedException,
-            AnalysisFailedException {
+            throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 
-        ((QesFactory) factory).determineEffectedComponents(pheno);
+        ((QesFactory) factory).setInstance(pheno.getPCMInstance());
         debugFactory();
 
         final DirectedGraph<String> components = DirectedGraph.createDirectedComponentGraph(pheno);
         final Map<String, List<NqrProxy>> nqrs = new HashMap<String, List<NqrProxy>>();
-        final Map<String, List<ReasoningProxy>> reasonings =
-                new HashMap<String, List<ReasoningProxy>>();
+        final Map<String, List<ReasoningProxy>> reasonings = new HashMap<String, List<ReasoningProxy>>();
         final Map<String, List<NqrProxy>> results = new HashMap<String, List<NqrProxy>>();
 
         for (final String id : components.getTopologicalSort()) {
@@ -96,10 +94,9 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis {
         System.out.println();
     }
 
-    private void debugComponent(final DirectedGraph<String> components,
-            final Map<String, List<NqrProxy>> nqrs,
-            final Map<String, List<ReasoningProxy>> reasonings,
-            final Map<String, List<NqrProxy>> results, final String id) {
+    private void debugComponent(final DirectedGraph<String> components, final Map<String, List<NqrProxy>> nqrs,
+            final Map<String, List<ReasoningProxy>> reasonings, final Map<String, List<NqrProxy>> results,
+            final String id) {
 
         if (!DEBUG) {
             return;
@@ -160,23 +157,20 @@ public class NqrEvaluator extends AbstractAnalysis implements IAnalysis {
         // rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, ""),
         // rawConfiguration.getAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, ""));
 
-        factory = new QesFactory(
-                rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, ""),
+        factory = new QesFactory(rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, ""),
                 rawConfiguration.getAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, ""),
                 rawConfiguration.getAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, ""),
-                rawConfiguration
-                        .getAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, ""));
+                rawConfiguration.getAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, ""));
 
-        ((NqrSolverQualityAttributeDeclaration) qualityAttribute)
-                .addAllDimensions(factory.getAllDimensions());
+        ((NqrSolverQualityAttributeDeclaration) qualityAttribute).addAllDimensions(factory.getAllDimensions());
         initialiseCriteria(configuration);
     }
 
     @Override
     public IAnalysisResult retrieveResultsFor(final PCMPhenotype pheno, final Criterion criterion)
             throws CoreException, AnalysisFailedException {
-        return new NqrAnalysisResult(criterionToAspect,
-                ((NqrSolverQualityAttributeDeclaration) qualityAttribute), nqrResult, factory);
+        return new NqrAnalysisResult(criterionToAspect, ((NqrSolverQualityAttributeDeclaration) qualityAttribute),
+                nqrResult, factory);
     }
 
     @Override

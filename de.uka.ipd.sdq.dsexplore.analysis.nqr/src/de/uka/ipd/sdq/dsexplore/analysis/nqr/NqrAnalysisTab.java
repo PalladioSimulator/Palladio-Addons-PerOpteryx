@@ -16,10 +16,8 @@ import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 import org.palladiosimulator.qualitymodel.QualityModelPackage;
 import org.palladiosimulator.qualitymodel.ReasoningSystem;
 import org.palladiosimulator.qualitymodel.Reduction;
-
 import de.uka.ipd.sdq.dsexplore.analysis.qes.ParseException;
 import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.QesValidator;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
@@ -28,7 +26,7 @@ import de.uka.ipd.sdq.workflow.launchconfig.LaunchConfigPlugin;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
-	
+
     private Text dimension;
     private Text reduction;
     private Text system;
@@ -68,11 +66,12 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         system = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener, "Reasoning System File",
                 DSEConstantsContainer.REASONING_MODEL_EXTENSION, system, getShell(), "");
-        
+
         // Add Architecture Effect Specification input section
         qualityEffectSpecification = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener, "Quality Effect Specification File",
-                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION, qualityEffectSpecification, getShell(), "");
+                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION, qualityEffectSpecification, getShell(),
+                "");
     }
 
     @Override
@@ -99,7 +98,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
     @Override
     public boolean isValid(final ILaunchConfiguration launchConfig) {
         return isValidDimension(dimension.getText()) && isValidReduction(reduction.getText())
-                && isValidSystem(system.getText()) && isValidQualityEffectSpecification(qualityEffectSpecification.getText());
+                && isValidSystem(system.getText())
+                && isValidQualityEffectSpecification(qualityEffectSpecification.getText());
     }
 
     private boolean isValidDimension(final String uri) {
@@ -161,7 +161,7 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
 
         return error(null);
     }
-    
+
     private boolean isValidQualityEffectSpecification(final String uri) {
         final String extension = DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION[0].substring(1);
         if ((uri == null) || !uri.endsWith(extension)) {
@@ -172,13 +172,13 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         if (!loadFrom.isPlatform()) {
             loadFrom = URI.createFileURI(uri);
         }
-        
+
         try {
-        		return error(new QesValidator().isValidModel(new QesParser().getModel(loadFrom)) ? null : "Valid Quality Effect Specification is missing!");
-		} catch (ParseException e) {
-			return error(e.getMessage());
-		}
-        
+            return error(new QesParser(loadFrom).isValid() ? null : "Valid Quality Effect Specification is missing!");
+        } catch (ParseException e) {
+            return error(e.getMessage());
+        }
+
     }
 
     @Override
@@ -191,7 +191,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, dimension.getText());
         configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, reduction.getText());
         configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, system.getText());
-        configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, qualityEffectSpecification.getText());        
+        configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE,
+                qualityEffectSpecification.getText());
     }
 
     @Override
@@ -211,7 +212,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, "");
     }
 
-    private boolean setText(final ILaunchConfiguration configuration, final Text textWidget, final String attributeName) {
+    private boolean setText(final ILaunchConfiguration configuration, final Text textWidget,
+            final String attributeName) {
         try {
             textWidget.setText(configuration.getAttribute(attributeName, ""));
             return true;
