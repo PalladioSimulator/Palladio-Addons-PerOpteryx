@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1">
+  <featureCompletions id="_LQNIwPwsEeer-ouyR5V3ig" name="IDS">
+    <featureObjectives href="ids.featureobjective#_DSgc8PwtEeeksIwNL6l_iA"/>
+    <completionComponents id="_16UT0PwsEeeksIwNL6l_iA" name="Sensor">
+      <perimeterProviding id="_WI57MPwtEeeksIwNL6l_iA" name="Logging">
+        <featureProviding href="ids.featureobjective#_GAa0sfwtEeeksIwNL6l_iA"/>
+        <featureProviding href="ids.featureobjective#_s9nzsPwuEeeueJ0KPUiSsg"/>
+      </perimeterProviding>
+    </completionComponents>
+    <completionComponents id="_4yDV8PwsEeeksIwNL6l_iA" name="Analyzer" requiredComponents="_16UT0PwsEeeksIwNL6l_iA"/>
+    <completionComponents id="_6cHrEPwsEeeksIwNL6l_iA" name="Response" requiredComponents="_4yDV8PwsEeeksIwNL6l_iA"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_-QzLsvwuEeeueJ0KPUiSsg" name="CSVLogging">
+      <complementaryFeature href="ids.featureobjective#_GAa0sfwtEeeksIwNL6l_iA"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_LaizsvwwEeeueJ0KPUiSsg" name="DBLogging">
+      <complementaryFeature href="ids.featureobjective#_s9nzsPwuEeeueJ0KPUiSsg"/>
+    </complementa>
+  </featureCompletions>
+</FeatureCompletion:FeatureCompletionRepository>

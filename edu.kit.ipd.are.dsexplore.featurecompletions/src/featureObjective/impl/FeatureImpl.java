@@ -61,7 +61,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList attributes;
+	protected EList<Attribute> attributes;
 
 	/**
 	 * The cached value of the '{@link #getChildrelation() <em>Childrelation</em>}' containment reference.
@@ -117,6 +117,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.FEATURE;
 	}
@@ -126,9 +127,9 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAttributes() {
+	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList(Attribute.class, this, FeatureObjectivePackage.FEATURE__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, FeatureObjectivePackage.FEATURE__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -295,7 +296,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean EachAttributeNameDefinedJustOnce(DiagnosticChain diagnostics, Map context) {
+	public boolean EachAttributeNameDefinedJustOnce(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -320,10 +321,11 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE__ATTRIBUTES:
-				return ((InternalEList)getAttributes()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 			case FeatureObjectivePackage.FEATURE__CHILDRELATION:
 				return basicSetChildrelation(null, msgs);
 		}
@@ -335,6 +337,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE__ATTRIBUTES:
@@ -359,11 +362,13 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE__ATTRIBUTES:
 				getAttributes().clear();
-				getAttributes().addAll((Collection)newValue);
+				getAttributes().addAll((Collection<? extends Attribute>)newValue);
 				return;
 			case FeatureObjectivePackage.FEATURE__CHILDRELATION:
 				setChildrelation((ChildRelation)newValue);
@@ -386,6 +391,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE__ATTRIBUTES:
@@ -412,6 +418,7 @@ public class FeatureImpl extends NamedElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE__ATTRIBUTES:

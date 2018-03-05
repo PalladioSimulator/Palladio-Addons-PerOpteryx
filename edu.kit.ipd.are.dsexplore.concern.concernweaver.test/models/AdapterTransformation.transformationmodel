@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TransformationModel:AdapterTransformation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" name="Adapter">
-  <injectable href="concern.concernmodel#//@concerns.0/@components.0/@annotationenrich.0"/>
-  <target href="concern.concernmodel#//@concerns.0/@annotationtarget.0"/>
-</TransformationModel:AdapterTransformation>

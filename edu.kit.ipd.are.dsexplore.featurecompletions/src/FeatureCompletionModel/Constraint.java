@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +17,47 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * @model
  * @generated
  */
-public final class Constraint extends AbstractEnumerator {
+public enum Constraint implements Enumerator {
+	/**
+	 * The '<em><b>ANY</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ANY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ANY(0, "ANY", "ANY"),
+
+	/**
+	 * The '<em><b>TOGETHER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TOGETHER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TOGETHER(1, "TOGETHER", "TOGETHER"),
+
+	/**
+	 * The '<em><b>ISOLATED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ISOLATED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ISOLATED(2, "ISOLATED", "ISOLATED"),
+
+	/**
+	 * The '<em><b>SEPARATED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SEPARATED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SEPARATED(3, "SEPARATED", "SEPARATED");
+
 	/**
 	 * The '<em><b>ANY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -26,12 +66,12 @@ public final class Constraint extends AbstractEnumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ANY_LITERAL
+	 * @see #ANY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANY = 0;
+	public static final int ANY_VALUE = 0;
 
 	/**
 	 * The '<em><b>TOGETHER</b></em>' literal value.
@@ -41,12 +81,12 @@ public final class Constraint extends AbstractEnumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TOGETHER_LITERAL
+	 * @see #TOGETHER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TOGETHER = 1;
+	public static final int TOGETHER_VALUE = 1;
 
 	/**
 	 * The '<em><b>ISOLATED</b></em>' literal value.
@@ -56,12 +96,12 @@ public final class Constraint extends AbstractEnumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ISOLATED_LITERAL
+	 * @see #ISOLATED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ISOLATED = 2;
+	public static final int ISOLATED_VALUE = 2;
 
 	/**
 	 * The '<em><b>SEPARATED</b></em>' literal value.
@@ -71,52 +111,12 @@ public final class Constraint extends AbstractEnumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEPARATED_LITERAL
+	 * @see #SEPARATED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEPARATED = 3;
-
-	/**
-	 * The '<em><b>ANY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANY
-	 * @generated
-	 * @ordered
-	 */
-	public static final Constraint ANY_LITERAL = new Constraint(ANY, "ANY", "ANY");
-
-	/**
-	 * The '<em><b>TOGETHER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOGETHER
-	 * @generated
-	 * @ordered
-	 */
-	public static final Constraint TOGETHER_LITERAL = new Constraint(TOGETHER, "TOGETHER", "TOGETHER");
-
-	/**
-	 * The '<em><b>ISOLATED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ISOLATED
-	 * @generated
-	 * @ordered
-	 */
-	public static final Constraint ISOLATED_LITERAL = new Constraint(ISOLATED, "ISOLATED", "ISOLATED");
-
-	/**
-	 * The '<em><b>SEPARATED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SEPARATED
-	 * @generated
-	 * @ordered
-	 */
-	public static final Constraint SEPARATED_LITERAL = new Constraint(SEPARATED, "SEPARATED", "SEPARATED");
+	public static final int SEPARATED_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Constraint</b></em>' enumerators.
@@ -126,10 +126,10 @@ public final class Constraint extends AbstractEnumerator {
 	 */
 	private static final Constraint[] VALUES_ARRAY =
 		new Constraint[] {
-			ANY_LITERAL,
-			TOGETHER_LITERAL,
-			ISOLATED_LITERAL,
-			SEPARATED_LITERAL,
+			ANY,
+			TOGETHER,
+			ISOLATED,
+			SEPARATED,
 		};
 
 	/**
@@ -138,7 +138,7 @@ public final class Constraint extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Constraint> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Constraint</b></em>' literal with the specified literal value.
@@ -186,13 +186,34 @@ public final class Constraint extends AbstractEnumerator {
 	 */
 	public static Constraint get(int value) {
 		switch (value) {
-			case ANY: return ANY_LITERAL;
-			case TOGETHER: return TOGETHER_LITERAL;
-			case ISOLATED: return ISOLATED_LITERAL;
-			case SEPARATED: return SEPARATED_LITERAL;
+			case ANY_VALUE: return ANY;
+			case TOGETHER_VALUE: return TOGETHER;
+			case ISOLATED_VALUE: return ISOLATED;
+			case SEPARATED_VALUE: return SEPARATED;
 		}
 		return null;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
@@ -201,7 +222,47 @@ public final class Constraint extends AbstractEnumerator {
 	 * @generated
 	 */
 	private Constraint(int value, String name, String literal) {
-		super(value, name, literal);
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getValue() {
+	  return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+	  return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLiteral() {
+	  return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
+	
 } //Constraint

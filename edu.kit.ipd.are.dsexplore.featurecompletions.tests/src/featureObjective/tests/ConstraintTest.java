@@ -30,7 +30,8 @@ public abstract class ConstraintTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Constraint getFixture() {
+	@Override
+	protected Constraint getFixture() {
 		return (Constraint)fixture;
 	}
 

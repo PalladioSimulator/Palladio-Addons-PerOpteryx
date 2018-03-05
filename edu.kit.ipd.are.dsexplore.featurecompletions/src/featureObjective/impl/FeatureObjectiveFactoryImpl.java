@@ -54,6 +54,7 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE: return createFeatureObjective();
@@ -77,6 +78,7 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureObjectivePackage.ATTRIBUTE_TYPES:
@@ -91,6 +93,7 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureObjectivePackage.ATTRIBUTE_TYPES:
@@ -245,6 +248,7 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static FeatureObjectivePackage getPackage() {
 		return FeatureObjectivePackage.eINSTANCE;
 	}

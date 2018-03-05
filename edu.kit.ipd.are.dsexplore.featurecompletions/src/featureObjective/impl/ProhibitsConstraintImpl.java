@@ -29,6 +29,7 @@ public class ProhibitsConstraintImpl extends ConstraintImpl implements Prohibits
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.PROHIBITS_CONSTRAINT;
 	}

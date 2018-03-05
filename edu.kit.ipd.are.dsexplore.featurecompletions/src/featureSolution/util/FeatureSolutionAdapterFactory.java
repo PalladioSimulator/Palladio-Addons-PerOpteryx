@@ -53,6 +53,7 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -69,36 +70,34 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FeatureSolutionSwitch modelSwitch =
-		new FeatureSolutionSwitch() {
-			public Object caseSolutionRepository(SolutionRepository object) {
-				return createSolutionRepositoryAdapter();
-			}
-			public Object caseSolution(Solution object) {
-				return createSolutionAdapter();
-			}
-			public Object caseInclusionMechanism(InclusionMechanism object) {
+	protected FeatureSolutionSwitch<Adapter> modelSwitch =
+		new FeatureSolutionSwitch<Adapter>() {
+			@Override
+			public Adapter caseInclusionMechanism(InclusionMechanism object) {
 				return createInclusionMechanismAdapter();
 			}
-			public Object caseAdapterInclusion(AdapterInclusion object) {
+			@Override
+			public Adapter caseAdapterInclusion(AdapterInclusion object) {
 				return createAdapterInclusionAdapter();
 			}
-			public Object caseExtensionInclusion(ExtensionInclusion object) {
+			@Override
+			public Adapter caseExtensionInclusion(ExtensionInclusion object) {
 				return createExtensionInclusionAdapter();
 			}
-			public Object caseSolutionComponent(SolutionComponent object) {
-				return createSolutionComponentAdapter();
-			}
-			public Object caseIdentifier(Identifier object) {
+			@Override
+			public Adapter caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
-			public Object caseNamedElement(NamedElement object) {
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
-			public Object caseDescribedElement(DescribedElement object) {
+			@Override
+			public Adapter caseDescribedElement(DescribedElement object) {
 				return createDescribedElementAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -111,38 +110,11 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureSolution.SolutionRepository <em>Solution Repository</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureSolution.SolutionRepository
-	 * @generated
-	 */
-	public Adapter createSolutionRepositoryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureSolution.Solution <em>Solution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureSolution.Solution
-	 * @generated
-	 */
-	public Adapter createSolutionAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link featureSolution.InclusionMechanism <em>Inclusion Mechanism</em>}'.
@@ -183,20 +155,6 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtensionInclusionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureSolution.SolutionComponent <em>Solution Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureSolution.SolutionComponent
-	 * @generated
-	 */
-	public Adapter createSolutionComponentAdapter() {
 		return null;
 	}
 

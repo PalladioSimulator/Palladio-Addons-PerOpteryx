@@ -1,8 +1,8 @@
 package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
@@ -24,8 +24,8 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 *            - Represents the concern solution which is going to extend a
 	 *            given PCM model.
 	 */
-	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, Solution concernSolution) {
-		AdapterWeaving.setManagersWith(pcmToAdapt, concernSolution);
+	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, Repository mergedRepo) {
+		AdapterWeaving.setManagersWith(pcmToAdapt, mergedRepo);
 	}
 
 	/**
@@ -33,7 +33,8 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveRepository(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		AdapterWeavingFactory.getAdapterRepositoryWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
+		AdapterWeavingFactory.getAdapterRepositoryWeaverBy(weavingInstruction.getWeavingLocation())
+				.weave(weavingInstruction);
 	}
 
 	/**
@@ -41,7 +42,8 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 */
 	@Override
 	public void weaveAssembly(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		AdapterWeavingFactory.getAdapterAssemblyWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
+		AdapterWeavingFactory.getAdapterAssemblyWeaverBy(weavingInstruction.getWeavingLocation())
+				.weave(weavingInstruction);
 	}
 
 	/**

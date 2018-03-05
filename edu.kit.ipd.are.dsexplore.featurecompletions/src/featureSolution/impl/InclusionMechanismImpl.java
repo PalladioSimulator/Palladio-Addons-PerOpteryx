@@ -61,6 +61,7 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureSolutionPackage.Literals.INCLUSION_MECHANISM;
 	}
@@ -91,10 +92,11 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureSolutionPackage.INCLUSION_MECHANISM__MULTIPLE:
-				return isMultiple() ? Boolean.TRUE : Boolean.FALSE;
+				return isMultiple();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -104,10 +106,11 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureSolutionPackage.INCLUSION_MECHANISM__MULTIPLE:
-				setMultiple(((Boolean)newValue).booleanValue());
+				setMultiple((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -118,6 +121,7 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureSolutionPackage.INCLUSION_MECHANISM__MULTIPLE:
@@ -132,6 +136,7 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureSolutionPackage.INCLUSION_MECHANISM__MULTIPLE:
@@ -145,6 +150,7 @@ public abstract class InclusionMechanismImpl extends DescribedElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -713,17 +713,17 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case specificPackage.CONCERN_DEGREE: {
-			ConcernDegree concernDegree = (ConcernDegree) theEObject;
-			T result = caseConcernDegree(concernDegree);
+		case specificPackage.FEATURE_COMPLETION_DEGREE: {
+			FeatureCompletionDegree featureCompletionDegree = (FeatureCompletionDegree) theEObject;
+			T result = caseFeatureCompletionDegree(featureCompletionDegree);
 			if (result == null)
-				result = caseClassAsReferenceDegree(concernDegree);
+				result = caseClassAsReferenceDegree(featureCompletionDegree);
 			if (result == null)
-				result = caseClassDegree(concernDegree);
+				result = caseClassDegree(featureCompletionDegree);
 			if (result == null)
-				result = caseDegreeOfFreedomInstance(concernDegree);
+				result = caseDegreeOfFreedomInstance(featureCompletionDegree);
 			if (result == null)
-				result = caseNamedElement(concernDegree);
+				result = caseNamedElement(featureCompletionDegree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1274,17 +1274,17 @@ public class specificSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Concern Degree</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Completion Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Concern Degree</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Completion Degree</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConcernDegree(ConcernDegree object) {
+	public T caseFeatureCompletionDegree(FeatureCompletionDegree object) {
 		return null;
 	}
 

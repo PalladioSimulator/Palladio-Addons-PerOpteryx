@@ -3,8 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.are.dsexplore.featurecompletions/src"
     modelPluginID="edu.kit.ipd.are.dsexplore.featurecompletions" modelName="FeatureCompletions"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier"
-    operationReflection="false" importOrganizing="true">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier"
+    importOrganizing="true">
   <foreignModel>featureCompletions.ecore</foreignModel>
   <foreignModel>featureObjective.ecore</foreignModel>
   <foreignModel>featureSolution.ecore</foreignModel>
@@ -32,13 +32,14 @@
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//FeatureCompletion">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/featureObjectives"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/completionComponents"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/complementaVisnetis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/completionComponents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/complementa"/>
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//CompletionComponent">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/requiredComponents"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/perimeter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/perimeterProviding"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/componentConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/perimeterRequiring"/>
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//DescribedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//DescribedElement/description"/>
@@ -46,12 +47,12 @@
     <genClasses ecoreClass="featureCompletions.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//NamedElement/name"/>
     </genClasses>
-    <genClasses ecoreClass="featureCompletions.ecore#//PerimeterProvidingRequiring">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterProvidingRequiring/featureProviding"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterProvidingRequiring/complementum"/>
+    <genClasses ecoreClass="featureCompletions.ecore#//PerimeterProviding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterProviding/featureProviding"/>
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//ComplementumVisnetis">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ComplementumVisnetis/complementaryFeature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ComplementumVisnetis/requiresComplementum"/>
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//Complementum">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//Complementum/replication"/>
@@ -62,6 +63,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ArchitectureConstraints/architectureElements"/>
     </genClasses>
     <genClasses ecoreClass="featureCompletions.ecore#//ConstrainableElement"/>
+    <genClasses ecoreClass="featureCompletions.ecore#//PerimeterRequiring">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterRequiring/complementum"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="FeatureObjective" disposableProviderFactory="true" ecorePackage="featureObjective.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureObjective.ecore#//AttributeTypes">
@@ -166,8 +170,6 @@
     <genClasses ecoreClass="featureSolution.ecore#//ExtensionInclusion"/>
     <genClasses ecoreClass="featureSolution.ecore#//SolutionComponent">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//SolutionComponent/realizes"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//SolutionComponent/implements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//SolutionComponent/requires"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

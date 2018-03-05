@@ -48,7 +48,7 @@ public abstract class IntervalRangeTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IntervalRange getFixture() {
+	protected IntervalRange getFixture() {
 		return fixture;
 	}
 

@@ -40,7 +40,8 @@ public class ArchitectureConstraintsTest extends DescribedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ArchitectureConstraints getFixture() {
+	@Override
+	protected ArchitectureConstraints getFixture() {
 		return (ArchitectureConstraints)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class ArchitectureConstraintsTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createArchitectureConstraints());
 	}
@@ -60,6 +62,7 @@ public class ArchitectureConstraintsTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

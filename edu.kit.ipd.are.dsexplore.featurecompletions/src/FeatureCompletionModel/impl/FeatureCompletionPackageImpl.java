@@ -287,6 +287,15 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFeatureCompletion_ArchitectureConstraints() {
+		return (EReference)featureCompletionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompletionComponent() {
 		return completionComponentEClass;
 	}
@@ -397,6 +406,15 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 */
 	public EReference getComplementumVisnetis_ComplementaryFeature() {
 		return (EReference)complementumVisnetisEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComplementumVisnetis_RequiresComplementum() {
+		return (EReference)complementumVisnetisEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -542,6 +560,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		createEReference(featureCompletionEClass, FEATURE_COMPLETION__FEATURE_OBJECTIVES);
 		createEReference(featureCompletionEClass, FEATURE_COMPLETION__COMPLETION_COMPONENTS);
 		createEReference(featureCompletionEClass, FEATURE_COMPLETION__COMPLEMENTA);
+		createEReference(featureCompletionEClass, FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS);
 
 		completionComponentEClass = createEClass(COMPLETION_COMPONENT);
 		createEReference(completionComponentEClass, COMPLETION_COMPONENT__REQUIRED_COMPONENTS);
@@ -560,6 +579,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 		complementumVisnetisEClass = createEClass(COMPLEMENTUM_VISNETIS);
 		createEReference(complementumVisnetisEClass, COMPLEMENTUM_VISNETIS__COMPLEMENTARY_FEATURE);
+		createEReference(complementumVisnetisEClass, COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM);
 
 		complementumEClass = createEClass(COMPLEMENTUM);
 		createEAttribute(complementumEClass, COMPLEMENTUM__REPLICATION);
@@ -607,6 +627,10 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		FeatureObjectivePackage theFeatureObjectivePackage = (FeatureObjectivePackage)EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
 		IdentifierPackage theIdentifierPackage = (IdentifierPackage)EPackage.Registry.INSTANCE.getEPackage(IdentifierPackage.eNS_URI);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		featureCompletionEClass.getESuperTypes().add(this.getDescribedElement());
 		completionComponentEClass.getESuperTypes().add(this.getConstrainableElement());
@@ -628,6 +652,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		initEReference(getFeatureCompletion_FeatureObjectives(), theFeatureObjectivePackage.getFeatureObjective(), null, "featureObjectives", null, 1, 1, FeatureCompletion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCompletion_CompletionComponents(), this.getCompletionComponent(), null, "completionComponents", null, 0, -1, FeatureCompletion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCompletion_Complementa(), this.getComplementum(), null, "complementa", null, 1, -1, FeatureCompletion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureCompletion_ArchitectureConstraints(), this.getArchitectureConstraints(), null, "architectureConstraints", null, 0, -1, FeatureCompletion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(completionComponentEClass, CompletionComponent.class, "CompletionComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompletionComponent_RequiredComponents(), this.getCompletionComponent(), null, "requiredComponents", null, 0, -1, CompletionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -646,6 +671,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 		initEClass(complementumVisnetisEClass, ComplementumVisnetis.class, "ComplementumVisnetis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComplementumVisnetis_ComplementaryFeature(), theFeatureObjectivePackage.getFeature(), null, "complementaryFeature", null, 1, 1, ComplementumVisnetis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComplementumVisnetis_RequiresComplementum(), this.getComplementum(), null, "requiresComplementum", null, 0, -1, ComplementumVisnetis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complementumEClass, Complementum.class, "Complementum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComplementum_Replication(), this.getReplication(), "replication", "SINGLE", 1, 1, Complementum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -662,22 +688,22 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 		// Initialize enums and add enum literals
 		initEEnum(visnetumEEnum, Visnetum.class, "Visnetum");
-		addEEnumLiteral(visnetumEEnum, Visnetum.SIGNATURE_LITERAL);
-		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE_LITERAL);
-		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE_REQUIRES_LITERAL);
-		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE_PROVIDES_LITERAL);
-		addEEnumLiteral(visnetumEEnum, Visnetum.COMPONENT_LITERAL);
+		addEEnumLiteral(visnetumEEnum, Visnetum.SIGNATURE);
+		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE);
+		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE_REQUIRES);
+		addEEnumLiteral(visnetumEEnum, Visnetum.INTERFACE_PROVIDES);
+		addEEnumLiteral(visnetumEEnum, Visnetum.COMPONENT);
 
 		initEEnum(replicationEEnum, Replication.class, "Replication");
-		addEEnumLiteral(replicationEEnum, Replication.SINGLE_LITERAL);
-		addEEnumLiteral(replicationEEnum, Replication.DOUBLE_LITERAL);
-		addEEnumLiteral(replicationEEnum, Replication.ANY_LITERAL);
+		addEEnumLiteral(replicationEEnum, Replication.SINGLE);
+		addEEnumLiteral(replicationEEnum, Replication.DOUBLE);
+		addEEnumLiteral(replicationEEnum, Replication.ANY);
 
 		initEEnum(constraintEEnum, Constraint.class, "Constraint");
-		addEEnumLiteral(constraintEEnum, Constraint.ANY_LITERAL);
-		addEEnumLiteral(constraintEEnum, Constraint.TOGETHER_LITERAL);
-		addEEnumLiteral(constraintEEnum, Constraint.ISOLATED_LITERAL);
-		addEEnumLiteral(constraintEEnum, Constraint.SEPARATED_LITERAL);
+		addEEnumLiteral(constraintEEnum, Constraint.ANY);
+		addEEnumLiteral(constraintEEnum, Constraint.TOGETHER);
+		addEEnumLiteral(constraintEEnum, Constraint.ISOLATED);
+		addEEnumLiteral(constraintEEnum, Constraint.SEPARATED);
 
 		// Create resource
 		createResource(eNS_URI);
