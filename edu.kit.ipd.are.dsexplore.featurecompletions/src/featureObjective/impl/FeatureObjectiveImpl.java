@@ -3,6 +3,7 @@
 package featureObjective.impl;
 
 import FeatureCompletionModel.impl.DescribedElementImpl;
+
 import featureObjective.Constraint;
 import featureObjective.Feature;
 import featureObjective.FeatureObjective;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -58,7 +60,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * @generated
 	 * @ordered
 	 */
-	protected EList constraints;
+	protected EList<Constraint> constraints;
 
 	/**
 	 * The cached value of the '{@link #getAnnotatableElement() <em>Annotatable Element</em>}' reference list.
@@ -68,7 +70,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * @generated
 	 * @ordered
 	 */
-	protected EList annotatableElement;
+	protected EList<EObject> annotatableElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,6 +86,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE;
 	}
@@ -136,9 +139,9 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConstraints() {
+	public EList<Constraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentEList(Constraint.class, this, FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS);
+			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS);
 		}
 		return constraints;
 	}
@@ -148,9 +151,9 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAnnotatableElement() {
+	public EList<EObject> getAnnotatableElement() {
 		if (annotatableElement == null) {
-			annotatableElement = new EObjectResolvingEList(EObject.class, this, FeatureObjectivePackage.FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT);
+			annotatableElement = new EObjectResolvingEList<EObject>(EObject.class, this, FeatureObjectivePackage.FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT);
 		}
 		return annotatableElement;
 	}
@@ -160,12 +163,13 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
 				return basicSetRootFeature(null, msgs);
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
-				return ((InternalEList)getConstraints()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -175,6 +179,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
@@ -192,6 +197,8 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
@@ -199,11 +206,11 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 				return;
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				getConstraints().clear();
-				getConstraints().addAll((Collection)newValue);
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT:
 				getAnnotatableElement().clear();
-				getAnnotatableElement().addAll((Collection)newValue);
+				getAnnotatableElement().addAll((Collection<? extends EObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,6 +221,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
@@ -234,6 +242,7 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:

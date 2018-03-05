@@ -30,7 +30,8 @@ public abstract class AttributeTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Attribute getFixture() {
+	@Override
+	protected Attribute getFixture() {
 		return (Attribute)fixture;
 	}
 

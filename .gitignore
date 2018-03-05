@@ -59,10 +59,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-###Xtext###
+### Xtext ###
 src-gen/
 xtend-gen/
 *.xtendbin
 org.palladiosimulator.temporary/
 PerOpteryx_results/
+InnerEclipse/IDS/BRS/PerOpteryx_results/

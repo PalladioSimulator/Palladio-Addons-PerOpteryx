@@ -55,7 +55,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
 	 * This constructs an instance.
@@ -72,50 +72,6 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link featureSolution.SolutionRepository} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SolutionRepositoryItemProvider solutionRepositoryItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureSolution.SolutionRepository}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createSolutionRepositoryAdapter() {
-		if (solutionRepositoryItemProvider == null) {
-			solutionRepositoryItemProvider = new SolutionRepositoryItemProvider(this);
-		}
-
-		return solutionRepositoryItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureSolution.Solution} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SolutionItemProvider solutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureSolution.Solution}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createSolutionAdapter() {
-		if (solutionItemProvider == null) {
-			solutionItemProvider = new SolutionItemProvider(this);
-		}
-
-		return solutionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link featureSolution.AdapterInclusion} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,6 +85,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapterInclusionAdapter() {
 		if (adapterInclusionItemProvider == null) {
 			adapterInclusionItemProvider = new AdapterInclusionItemProvider(this);
@@ -151,34 +108,13 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createExtensionInclusionAdapter() {
 		if (extensionInclusionItemProvider == null) {
 			extensionInclusionItemProvider = new ExtensionInclusionItemProvider(this);
 		}
 
 		return extensionInclusionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureSolution.SolutionComponent} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SolutionComponentItemProvider solutionComponentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureSolution.SolutionComponent}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createSolutionComponentAdapter() {
-		if (solutionComponentItemProvider == null) {
-			solutionComponentItemProvider = new SolutionComponentItemProvider(this);
-		}
-
-		return solutionComponentItemProvider;
 	}
 
 	/**
@@ -206,6 +142,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -216,6 +153,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -225,10 +163,11 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -277,11 +216,8 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 * @generated
 	 */
 	public void dispose() {
-		if (solutionRepositoryItemProvider != null) solutionRepositoryItemProvider.dispose();
-		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (adapterInclusionItemProvider != null) adapterInclusionItemProvider.dispose();
 		if (extensionInclusionItemProvider != null) extensionInclusionItemProvider.dispose();
-		if (solutionComponentItemProvider != null) solutionComponentItemProvider.dispose();
 	}
 
 }

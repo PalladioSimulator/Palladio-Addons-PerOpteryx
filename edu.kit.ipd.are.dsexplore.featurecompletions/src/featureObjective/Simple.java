@@ -36,10 +36,10 @@ public interface Simple extends ChildRelation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optional Children</em>' containment reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getSimple_OptionalChildren()
-	 * @model type="featureObjective.Feature" containment="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList getOptionalChildren();
+	EList<Feature> getOptionalChildren();
 
 	/**
 	 * Returns the value of the '<em><b>Mandatory Children</b></em>' containment reference list.
@@ -52,10 +52,10 @@ public interface Simple extends ChildRelation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mandatory Children</em>' containment reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getSimple_MandatoryChildren()
-	 * @model type="featureObjective.Feature" containment="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList getMandatoryChildren();
+	EList<Feature> getMandatoryChildren();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,9 +65,9 @@ public interface Simple extends ChildRelation {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.optionalChildren-&gt;size()+self.mandatoryChildren-&gt;size()&gt;=1'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.optionalChildren->size()+self.mandatoryChildren->size()>=1'"
 	 * @generated
 	 */
-	boolean atLeastOneChild(DiagnosticChain diagnostics, Map context);
+	boolean atLeastOneChild(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Simple

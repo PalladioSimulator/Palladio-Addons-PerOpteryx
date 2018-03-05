@@ -40,7 +40,8 @@ public class CompletionComponentTest extends ConstrainableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CompletionComponent getFixture() {
+	@Override
+	protected CompletionComponent getFixture() {
 		return (CompletionComponent)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class CompletionComponentTest extends ConstrainableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createCompletionComponent());
 	}
@@ -60,6 +62,7 @@ public class CompletionComponentTest extends ConstrainableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

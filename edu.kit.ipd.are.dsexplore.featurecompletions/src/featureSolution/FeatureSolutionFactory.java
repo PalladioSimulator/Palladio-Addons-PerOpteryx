@@ -22,24 +22,6 @@ public interface FeatureSolutionFactory extends EFactory {
 	FeatureSolutionFactory eINSTANCE = featureSolution.impl.FeatureSolutionFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Solution Repository</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Solution Repository</em>'.
-	 * @generated
-	 */
-	SolutionRepository createSolutionRepository();
-
-	/**
-	 * Returns a new object of class '<em>Solution</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Solution</em>'.
-	 * @generated
-	 */
-	Solution createSolution();
-
-	/**
 	 * Returns a new object of class '<em>Adapter Inclusion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,15 +38,6 @@ public interface FeatureSolutionFactory extends EFactory {
 	 * @generated
 	 */
 	ExtensionInclusion createExtensionInclusion();
-
-	/**
-	 * Returns a new object of class '<em>Solution Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Solution Component</em>'.
-	 * @generated
-	 */
-	SolutionComponent createSolutionComponent();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -3,7 +3,10 @@
 package featureObjective;
 
 import FeatureCompletionModel.DescribedElement;
+
 import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,10 +64,10 @@ public interface FeatureObjective extends DescribedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getFeatureObjective_Constraints()
-	 * @model type="featureObjective.Constraint" containment="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList getConstraints();
+	EList<Constraint> getConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Annotatable Element</b></em>' reference list.
@@ -77,9 +80,9 @@ public interface FeatureObjective extends DescribedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Annotatable Element</em>' reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getFeatureObjective_AnnotatableElement()
-	 * @model type="org.eclipse.emf.ecore.EObject" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
-	EList getAnnotatableElement();
+	EList<EObject> getAnnotatableElement();
 
 } // FeatureObjective

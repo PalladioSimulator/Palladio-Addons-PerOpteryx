@@ -55,7 +55,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * @generated
 	 * @ordered
 	 */
-	protected EList target;
+	protected EList<Feature> target;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -91,6 +91,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.CONSTRAINT;
 	}
@@ -138,9 +139,9 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTarget() {
+	public EList<Feature> getTarget() {
 		if (target == null) {
-			target = new EObjectResolvingEList(Feature.class, this, FeatureObjectivePackage.CONSTRAINT__TARGET);
+			target = new EObjectResolvingEList<Feature>(Feature.class, this, FeatureObjectivePackage.CONSTRAINT__TARGET);
 		}
 		return target;
 	}
@@ -171,6 +172,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.CONSTRAINT__SOURCE:
@@ -189,6 +191,8 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.CONSTRAINT__SOURCE:
@@ -196,7 +200,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 				return;
 			case FeatureObjectivePackage.CONSTRAINT__TARGET:
 				getTarget().clear();
-				getTarget().addAll((Collection)newValue);
+				getTarget().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case FeatureObjectivePackage.CONSTRAINT__DESCRIPTION:
 				setDescription((String)newValue);
@@ -210,6 +214,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.CONSTRAINT__SOURCE:
@@ -230,6 +235,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.CONSTRAINT__SOURCE:
@@ -247,6 +253,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

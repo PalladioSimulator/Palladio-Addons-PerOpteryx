@@ -42,7 +42,8 @@ public class FeatureObjectiveTest extends DescribedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FeatureObjective getFixture() {
+	@Override
+	protected FeatureObjective getFixture() {
 		return (FeatureObjective)fixture;
 	}
 
@@ -52,6 +53,7 @@ public class FeatureObjectiveTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createFeatureObjective());
 	}
@@ -62,6 +64,7 @@ public class FeatureObjectiveTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

@@ -42,7 +42,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Constraint CONSTRAINT_EDEFAULT = Constraint.ANY_LITERAL;
+	protected static final Constraint CONSTRAINT_EDEFAULT = Constraint.ANY;
 
 	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' attribute.
@@ -62,7 +62,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList architectureElements;
+	protected EList<ConstrainableElement> architectureElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,6 +78,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.ARCHITECTURE_CONSTRAINTS;
 	}
@@ -108,9 +109,9 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getArchitectureElements() {
+	public EList<ConstrainableElement> getArchitectureElements() {
 		if (architectureElements == null) {
-			architectureElements = new EObjectResolvingEList(ConstrainableElement.class, this, FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__ARCHITECTURE_ELEMENTS);
+			architectureElements = new EObjectResolvingEList<ConstrainableElement>(ConstrainableElement.class, this, FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__ARCHITECTURE_ELEMENTS);
 		}
 		return architectureElements;
 	}
@@ -120,6 +121,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__CONSTRAINT:
@@ -135,6 +137,8 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__CONSTRAINT:
@@ -142,7 +146,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 				return;
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__ARCHITECTURE_ELEMENTS:
 				getArchitectureElements().clear();
-				getArchitectureElements().addAll((Collection)newValue);
+				getArchitectureElements().addAll((Collection<? extends ConstrainableElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,6 +157,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__CONSTRAINT:
@@ -170,6 +175,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS__CONSTRAINT:
@@ -185,6 +191,7 @@ public class ArchitectureConstraintsImpl extends DescribedElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

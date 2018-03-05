@@ -36,7 +36,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Replication REPLICATION_EDEFAULT = Replication.SINGLE_LITERAL;
+	protected static final Replication REPLICATION_EDEFAULT = Replication.SINGLE;
 
 	/**
 	 * The cached value of the '{@link #getReplication() <em>Replication</em>}' attribute.
@@ -56,7 +56,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Visnetum VISNETUM_EDEFAULT = Visnetum.SIGNATURE_LITERAL;
+	protected static final Visnetum VISNETUM_EDEFAULT = Visnetum.SIGNATURE;
 
 	/**
 	 * The cached value of the '{@link #getVisnetum() <em>Visnetum</em>}' attribute.
@@ -82,6 +82,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.COMPLEMENTUM;
 	}
@@ -133,6 +134,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLEMENTUM__REPLICATION:
@@ -148,6 +150,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLEMENTUM__REPLICATION:
@@ -165,6 +168,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLEMENTUM__REPLICATION:
@@ -182,6 +186,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLEMENTUM__REPLICATION:
@@ -197,6 +202,7 @@ public class ComplementumImpl extends DescribedElementImpl implements Complement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -9,10 +9,10 @@ import de.uka.ipd.sdq.identifier.Identifier;
 
 import featureSolution.*;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see featureSolution.FeatureSolutionPackage
  * @generated
  */
-public class FeatureSolutionSwitch {
+public class FeatureSolutionSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -49,14 +49,16 @@ public class FeatureSolutionSwitch {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @param ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -66,46 +68,12 @@ public class FeatureSolutionSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case FeatureSolutionPackage.SOLUTION_REPOSITORY: {
-				SolutionRepository solutionRepository = (SolutionRepository)theEObject;
-				Object result = caseSolutionRepository(solutionRepository);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.SOLUTION: {
-				Solution solution = (Solution)theEObject;
-				Object result = caseSolution(solution);
-				if (result == null) result = caseDescribedElement(solution);
-				if (result == null) result = caseNamedElement(solution);
-				if (result == null) result = caseIdentifier(solution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FeatureSolutionPackage.INCLUSION_MECHANISM: {
 				InclusionMechanism inclusionMechanism = (InclusionMechanism)theEObject;
-				Object result = caseInclusionMechanism(inclusionMechanism);
+				T result = caseInclusionMechanism(inclusionMechanism);
 				if (result == null) result = caseDescribedElement(inclusionMechanism);
 				if (result == null) result = caseNamedElement(inclusionMechanism);
 				if (result == null) result = caseIdentifier(inclusionMechanism);
@@ -114,7 +82,7 @@ public class FeatureSolutionSwitch {
 			}
 			case FeatureSolutionPackage.ADAPTER_INCLUSION: {
 				AdapterInclusion adapterInclusion = (AdapterInclusion)theEObject;
-				Object result = caseAdapterInclusion(adapterInclusion);
+				T result = caseAdapterInclusion(adapterInclusion);
 				if (result == null) result = caseInclusionMechanism(adapterInclusion);
 				if (result == null) result = caseDescribedElement(adapterInclusion);
 				if (result == null) result = caseNamedElement(adapterInclusion);
@@ -124,7 +92,7 @@ public class FeatureSolutionSwitch {
 			}
 			case FeatureSolutionPackage.EXTENSION_INCLUSION: {
 				ExtensionInclusion extensionInclusion = (ExtensionInclusion)theEObject;
-				Object result = caseExtensionInclusion(extensionInclusion);
+				T result = caseExtensionInclusion(extensionInclusion);
 				if (result == null) result = caseInclusionMechanism(extensionInclusion);
 				if (result == null) result = caseDescribedElement(extensionInclusion);
 				if (result == null) result = caseNamedElement(extensionInclusion);
@@ -132,44 +100,8 @@ public class FeatureSolutionSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeatureSolutionPackage.SOLUTION_COMPONENT: {
-				SolutionComponent solutionComponent = (SolutionComponent)theEObject;
-				Object result = caseSolutionComponent(solutionComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Solution Repository</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Solution Repository</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseSolutionRepository(SolutionRepository object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Solution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Solution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseSolution(Solution object) {
-		return null;
 	}
 
 	/**
@@ -183,7 +115,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInclusionMechanism(InclusionMechanism object) {
+	public T caseInclusionMechanism(InclusionMechanism object) {
 		return null;
 	}
 
@@ -198,7 +130,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAdapterInclusion(AdapterInclusion object) {
+	public T caseAdapterInclusion(AdapterInclusion object) {
 		return null;
 	}
 
@@ -213,22 +145,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseExtensionInclusion(ExtensionInclusion object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Solution Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Solution Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseSolutionComponent(SolutionComponent object) {
+	public T caseExtensionInclusion(ExtensionInclusion object) {
 		return null;
 	}
 
@@ -243,7 +160,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIdentifier(Identifier object) {
+	public T caseIdentifier(Identifier object) {
 		return null;
 	}
 
@@ -258,7 +175,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNamedElement(NamedElement object) {
+	public T caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -273,7 +190,7 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDescribedElement(DescribedElement object) {
+	public T caseDescribedElement(DescribedElement object) {
 		return null;
 	}
 
@@ -288,7 +205,8 @@ public class FeatureSolutionSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	@Override
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

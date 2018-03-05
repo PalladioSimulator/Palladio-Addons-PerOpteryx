@@ -15,7 +15,6 @@ Require-Bundle:
  org.eclipse.core.resources,
  org.palladiosimulator.editors.sirius.ui;bundle-version="1.0.1",
  org.eclipse.emf.transaction,
- StrategyProfile,
  org.palladiosimulator.editors.sirius.repository,
  org.modelversioning.emfprofile,
  org.palladiosimulator.pcm,
@@ -25,9 +24,8 @@ Require-Bundle:
  org.palladiosimulator.editors.sirius.ui,
  org.palladiosimulator.mdsdprofiles.api,
  org.palladiosimulator.editors.sirius.services;bundle-version="1.0.0",
- edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
- AnnotationProfile;bundle-version="1.0.0"
+ FeatureCompletionProfile;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: palladiosimulator.org

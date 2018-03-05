@@ -40,7 +40,8 @@ public class PerimeterRequiringTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PerimeterRequiring getFixture() {
+	@Override
+	protected PerimeterRequiring getFixture() {
 		return (PerimeterRequiring)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class PerimeterRequiringTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createPerimeterRequiring());
 	}
@@ -60,6 +62,7 @@ public class PerimeterRequiringTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

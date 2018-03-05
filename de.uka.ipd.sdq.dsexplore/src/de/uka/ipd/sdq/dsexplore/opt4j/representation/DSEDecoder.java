@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.core.problem.Decoder;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -32,7 +31,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
-import concernStrategy.Feature;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
@@ -44,6 +42,7 @@ import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -73,9 +72,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
+import featureObjective.Feature;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into
@@ -153,7 +151,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			e.printStackTrace();
 		}
 
-		for (final Choice doubleGene : weavingExecuter.getConvertedECCClassChoices()) {
+		for (final Choice doubleGene : weavingExecuter.getConvertedFCCClassChoices()) {
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
@@ -236,30 +234,10 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 	private List<Feature> extractFeatures(List<ProvidedRole> prs) {
 		List<Feature> features = new ArrayList<>();
 		for (ProvidedRole pr : prs) {
-			features.addAll(this.getViaStereoTypeFrom(pr, Feature.class));
+			features.addAll(StereotypeAPIHelper.getViaStereoTypeFrom(pr, Feature.class));
 		}
 
 		return features;
-	}
-
-	/**
-	 * Find all referenced Elements by type and base
-	 *
-	 * @param base
-	 *            the base (search location)
-	 * @param target
-	 *            the target type
-	 * @return a list of Elements found
-	 * @author Dominik Fuchss
-	 */
-	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
-		List<ElementType> res = new ArrayList<>();
-		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
-		for (StereotypeApplication appl : appls) {
-			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
-			res.addAll(provided);
-		}
-		return res;
 	}
 
 	/**
