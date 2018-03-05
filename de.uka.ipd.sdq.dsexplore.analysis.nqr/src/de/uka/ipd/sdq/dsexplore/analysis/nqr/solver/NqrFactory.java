@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
@@ -38,6 +39,13 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Order;
 public class NqrFactory {
 
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
+
+    private static <T> T requireNonNull(final T object) {
+        if (object == null) {
+            throw new NullPointerException();
+        }
+        return object;
+    }
 
     public static void collectionToString(final StringBuilder builder, final Collection<?> collection,
             final String delimiter, final String prefix, final String suffix) {
@@ -179,11 +187,36 @@ public class NqrFactory {
                 "ReductionProxy NqrFactory " + String.valueOf(uri) + " could not be loaded.", null));
     }
 
-    private static <T> T requireNonNull(final T object) {
-        if (object == null) {
-            throw new NullPointerException();
+    private static Set<Dimension> loadDimensions(final Collection<List<NqrProxy>> nqrs,
+            final Collection<List<ReasoningProxy>> reasonings) {
+        final Set<Dimension> dimensions = new HashSet<Dimension>();
+        if (nqrs == null || reasonings == null || (nqrs.isEmpty() && reasonings == null)) {
+            return Collections.unmodifiableSet(dimensions);
         }
-        return object;
+
+        for (final List<NqrProxy> nqrList : nqrs) {
+            if (nqrList == null || nqrList.isEmpty()) {
+                continue;
+            }
+            for (final NqrProxy nqr : nqrList) {
+                if (nqr != null && !dimensions.contains(nqr.getDimension())) {
+                    dimensions.add(nqr.getDimension());
+                }
+            }
+        }
+
+        for (final List<ReasoningProxy> reasoningList : reasonings) {
+            if (reasoningList == null || reasoningList.isEmpty()) {
+                continue;
+            }
+            for (final ReasoningProxy reasoning : reasoningList) {
+                if (reasoning != null && !dimensions.contains(reasoning.getOutput())) {
+                    dimensions.add(reasoning.getOutput());
+                }
+            }
+        }
+
+        return Collections.unmodifiableSet(dimensions);
     }
 
     private Map<String, RepositoryComponent> componentIdMap;
@@ -196,11 +229,10 @@ public class NqrFactory {
     private final DimensionTypeSet dimensionTypeSet;
     private String reductionIdentity;
     private Map<List<String>, String> reductionMapping;
-    private final List<Dimension> dimensions;
+    private final Set<Dimension> dimensions;
 
     public NqrFactory(final String reasoningComponentUri, final String reductionUri, final String dimensionTypeSetUri)
             throws CoreException {
-        dimensions = new LinkedList<Dimension>();
         dimensionTypeSet = loadDimensionTypeSet(dimensionTypeSetUri);
         dimensionsIdNameMap = loadDimensionIdNameMap(dimensionTypeSet);
         dimensionIdOrderList = loadDimensionIdOrderList(dimensionTypeSet);
@@ -209,6 +241,8 @@ public class NqrFactory {
 
         setReduction(loadReduction(reductionUri));
         setReasoningComponents(loadReasoningComponents(reasoningComponentUri));
+
+        dimensions = loadDimensions(componentIdNqrMap.values(), componentIdReasoningsMap.values());
     }
 
     public Element createElement(final Object object) {
@@ -268,7 +302,7 @@ public class NqrFactory {
         if ((dimension == null) || (element == null) || !(dimensionsIdNameMap.containsKey(element))) {
             return null;
         }
-        return new NqrProxy(dimension, getElement(element), dimensionsIdNameMap.get(element));
+        return new NqrProxy(dimension, getElementById(element), dimensionsIdNameMap.get(element));
     }
 
     public NqrProxy createNqrProxy(final Object object) {
@@ -302,7 +336,6 @@ public class NqrFactory {
         final Reasoning reasoning = (Reasoning) object;
 
         final Dimension output = reasoning.getOutput();
-        addDimension(output); // TODO
         if (output == null) {
             return null;
         }
@@ -320,14 +353,6 @@ public class NqrFactory {
         }
 
         return new ReasoningProxy(output, Collections.unmodifiableList(transformations), this);
-    }
-
-    private boolean addDimension(Dimension dimension) {
-        if (dimension != null && !dimensions.contains(dimension)) {
-            return dimensions.add(dimension);
-        }
-        return false;
-
     }
 
     public ReductionProxy createReductionProxy() {
@@ -348,7 +373,6 @@ public class NqrFactory {
                 return null;
             }
             input.add((Dimension) dimension);
-            addDimension((Dimension) dimension); // TODO
         }
 
         final int size = input.size();
@@ -400,8 +424,8 @@ public class NqrFactory {
         return dimensionIdOrderMap.containsKey(dimensionId) ? dimensionIdOrderMap.get(dimensionId) : -1;
     }
 
-    private Element getElement(final String id) {
-        if (id != null) {
+    protected Element getElementById(final String id) {
+        if (id != null && !id.isEmpty()) {
             for (final Element element : dimensionTypeSet.getElements()) {
                 if (id.equals(element.getId())) {
                     return element;
@@ -530,8 +554,30 @@ public class NqrFactory {
     }
 
 
-    public List<Dimension> getAllDimensions() {
-        return Collections.unmodifiableList(dimensions);
+    // public List<Dimension> getAllDimensions() {
+    // return Collections.unmodifiableList(dimensions);
+    // }
+
+    protected Dimension getDimensionById(final String id) {
+        if (id != null && !id.isEmpty()) {
+            for (final Dimension dimension : dimensions) {
+                if (id.equals(dimension.getId())) {
+                    return dimension;
+                }
+            }
+        }
+        return null;
+    }
+
+    protected Dimension getDimensionByName(final String name) {
+        if (name != null && !name.isEmpty()) {
+            for (final Dimension dimension : dimensions) {
+                if (name.equalsIgnoreCase(dimension.getEntityName())) {
+                    return dimension;
+                }
+            }
+        }
+        return null;
     }
 
 }

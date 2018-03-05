@@ -2,26 +2,21 @@ package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 import static org.eclipse.core.runtime.IStatus.ERROR;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.StringJoiner;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.URI;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
 import org.palladiosimulator.solver.models.PCMInstance;
-import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrReductionProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ReasoningProxy;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 
 public class QesFactory extends NqrFactory {
 
@@ -53,42 +48,71 @@ public class QesFactory extends NqrFactory {
 
     @Override
     public List<NqrProxy> getNqrList(final String componentId) {
-        if (finder == null || parser.getNqaSpecifications().isEmpty()) {
+        if ((finder == null) || parser.getNqaSpecifications().isEmpty()) {
             return super.getNqrList(componentId);
         }
-        final List<NqrProxy> nqrs = new ArrayList<>(super.getNqrList(componentId));
 
-        for (QES specification : parser.getNqaSpecifications()) {
+        final NqrReductionProxy reduction = createNqrReductionProxy();
+        for (final QES specification : parser.getNqaSpecifications()) {
             if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
                 continue;
             }
-            for (Transformation transformation : specification.getTransformations()) {
-                if (transformation == null || (transformation instanceof NQA) == false) {
-                    continue;
-                }
-                NqrProxy newNqr = createNqrProxy((NQA) transformation);
-                for (NqrProxy nqr : nqrs) {
-                    if (nqr.getDimension().getEntityName().equalsIgnoreCase(newNqr.getDimension().getEntityName())) {
-
-                    }
+            for (final Transformation transformation : specification.getTransformations()) {
+                if ((transformation != null) && (transformation instanceof NQA)) {
+                    reduction.add(createNqrProxy((NQA) transformation));
                 }
             }
         }
 
-        LOG.error("Is effected: " + getComponentName(componentId));
-        return nqrs;
+        final List<NqrProxy> nqrs = new ArrayList<>(reduction.get());
+        for (final NqrProxy original : super.getNqrList(componentId)) {
+            boolean contains = false;
+            for (final NqrProxy transformation : nqrs) {
+                if (transformation.getDimensionId().equals(original.getDimensionId())) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (contains == false) {
+                nqrs.add(original);
+            }
+        }
+
+        return Collections.unmodifiableList(nqrs);
     }
 
     public NqrProxy createNqrProxy(final NQA nqa) {
+        if (nqa == null) {
+            return null;
+        }
+
         final String quality = nqa.getQuality();
         final String element = nqa.getElement();
 
-        if ((quality == null) || (element == null) || !(dimensionsIdNameMap.containsKey(element))) {
+        if ((quality == null) || (element == null)) {
             return null;
         }
-        // TODO NqrProxy quality
-        // return new NqrProxy(quality, getElementByName(element), dimensionsIdNameMap.get(element));
-        return null;
+
+        // Dimension S
+        Dimension nqrDimension = getDimensionByName(quality);
+        if (nqrDimension == null) {
+            nqrDimension = getDimensionById(quality);
+        }
+        if (nqrDimension == null) {
+            return null;
+        }
+
+        // Element +
+        Element nqrElement = getElementByName(element);
+        if (nqrElement == null) {
+            nqrElement = getElementById(element);
+        }
+        if (nqrElement == null) {
+            return null;
+        }
+
+        return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(element));
+
     }
 
     @Override
