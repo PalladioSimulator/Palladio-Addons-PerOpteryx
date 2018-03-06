@@ -4,68 +4,68 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.CompositeComponent;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.subsystem.SubSystem;
+import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.Component;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie;
+import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
+import org.palladiosimulator.qes.qualityEffectSpecification.Resource;
+import org.palladiosimulator.qes.qualityEffectSpecification.Role;
+import org.palladiosimulator.qes.qualityEffectSpecification.Type;
 import org.palladiosimulator.solver.models.PCMInstance;
+import de.uka.ipd.sdq.dsexplore.analysis.nqr.graph.DirectedGraph;
 
 public class QesFinder {
 
     private static final String IDENTIFIER_WILDCARD = "_";
 
-    private static Set<RepositoryComponent> getComponents(List<Repository> repositories) {
-        final Set<RepositoryComponent> components = new HashSet<>();
-
-        if ((repositories == null) || repositories.isEmpty()) {
-            return Collections.unmodifiableSet(components);
-        }
-
-        for (final Repository repository : repositories) {
-            final List<RepositoryComponent> repositoryComponents = repository.getComponents__Repository();
-            if ((repositoryComponents == null) || repositoryComponents.isEmpty()) {
-                continue;
-            }
-            for (final RepositoryComponent component : repositoryComponents) {
-                if (component != null) {
-                    components.add(component);
-                }
-            }
-        }
-
-        return Collections.unmodifiableSet(components);
-    }
-
-    private final Set<RepositoryComponent> repositoryComponents;
+    final DirectedGraph<RepositoryComponent> componentGraph;
 
     public QesFinder(PCMInstance instance) {
-        repositoryComponents = getComponents(instance.getRepositories());
+        componentGraph = new DirectedGraph<>();
+        for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
+            if ((c != null) && (c instanceof AssemblyConnectorImpl)) {
+                final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
+                // Requiring -> Providing | -( --> O-
+                componentGraph.addEdge(
+                        ac.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext(),
+                        ac.basicGetProvidingAssemblyContext_AssemblyConnector()
+                                .getEncapsulatedComponent__AssemblyContext());
+            }
+        }
     }
 
-    public Set<String> getEffectedComponents(List<Component> components) {
+    public Set<String> getEffectedComponents(List<Component> componentsSpecifications) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        if ((components == null) || components.isEmpty()) {
-            return effectedComponents;
+        if ((componentsSpecifications == null) || componentsSpecifications.isEmpty()) {
+            return Collections.unmodifiableSet(effectedComponents);
         }
 
-        for (final Component component : components) {
+        for (final Component component : componentsSpecifications) {
             effectedComponents.addAll(getComponents(component));
         }
 
-        return effectedComponents;
+        return Collections.unmodifiableSet(effectedComponents);
     }
 
-    private Set<String> getComponents(Component component) {
+    private Set<String> getComponents(Component componentSpecifications) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        if ((component == null) || (component.getProperties() == null) || component.getProperties().isEmpty()) {
+        if ((componentSpecifications == null) || (componentSpecifications.getProperties() == null)
+                || componentSpecifications.getProperties().isEmpty()) {
             return effectedComponents;
         }
 
-        for (final ComponentPropertie propertie : component.getProperties()) {
+        for (final ComponentPropertie propertie : componentSpecifications.getProperties()) {
             if (effectedComponents.isEmpty()) {
                 effectedComponents.addAll(getComponents(propertie));
             } else {
@@ -95,6 +95,21 @@ public class QesFinder {
             return getComponents((Identifier) propertie);
         }
 
+        if (propertie instanceof Type) {
+            return getComponents((Type) propertie);
+        }
+
+        if (propertie instanceof Role) {
+            return getComponents((Role) propertie);
+        }
+
+        if (propertie instanceof Assembly) {
+            return getComponents((Assembly) propertie);
+        }
+
+        if (propertie instanceof Resource) {
+            return getComponents((Resource) propertie);
+        }
 
         return effectedComponents;
     }
@@ -102,14 +117,14 @@ public class QesFinder {
     private Set<String> getComponents(Name name) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        final boolean not = name.isNot();
+        final boolean isNot = name.isNot();
         final String valueOfName = String.valueOf(name.getName());
 
-        for (final RepositoryComponent component : repositoryComponents) {
+        for (final RepositoryComponent component : componentGraph) {
             final String componentName = String.valueOf(component.getEntityName());
             final boolean equals = componentName.equalsIgnoreCase(valueOfName);
 
-            if (not != equals) {
+            if (isNot != equals) {
                 effectedComponents.add(String.valueOf(component.getId()));
             }
         }
@@ -120,10 +135,10 @@ public class QesFinder {
     private Set<String> getComponents(Identifier identifier) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        final boolean not = identifier.isNot();
+        final boolean isNot = identifier.isNot();
         final String valueOfId = String.valueOf(identifier.getId());
 
-        for (final RepositoryComponent component : repositoryComponents) {
+        for (final RepositoryComponent component : componentGraph) {
             final String componentIdentifier = String.valueOf(component.getId());
 
             if (valueOfId.equals(IDENTIFIER_WILDCARD)) {
@@ -133,13 +148,60 @@ public class QesFinder {
 
             final boolean equals = componentIdentifier.equalsIgnoreCase(valueOfId);
 
-            if (not != equals) {
+            if (isNot != equals) {
                 effectedComponents.add(componentIdentifier);
             }
 
         }
 
         return effectedComponents;
+    }
+
+    private Set<String> getComponents(Type type) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        final boolean isNot = type.isNot();
+        final ComponentType componentType = type.getType();
+        if (componentType == null || (componentType == ComponentType.ANY && isNot)) { // NON
+            return effectedComponents;
+        }
+
+        for (final RepositoryComponent component : componentGraph) {
+            if (componentType == ComponentType.ANY && isNot == false) { // ANY
+                effectedComponents.add(String.valueOf(component.getId()));
+            } else if ((componentType == ComponentType.BASIC && isNot == false)
+                    || (componentType == ComponentType.COMPOSITE && isNot)) { // BASIC
+                if (component instanceof BasicComponent) {
+                    effectedComponents.add(String.valueOf(component.getId()));
+                }
+            } else if ((componentType == ComponentType.COMPOSITE && isNot == false)
+                    || (componentType == ComponentType.BASIC && isNot)) { // COMPOSITE
+                if (component instanceof CompositeComponent || component instanceof SubSystem) {
+                    effectedComponents.add(String.valueOf(component.getId()));
+                }
+            }
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(Role role) {
+        return new HashSet<>(); // TODO
+    }
+
+    private Set<String> getComponents(Assembly assembly) {
+        final Set<String> effectedComponents = new HashSet<>();
+        final Set<String> assemblyComponents = getEffectedComponents(assembly.getComponents());
+
+        if (assemblyComponents.isEmpty()) {
+            return effectedComponents;
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(Resource resource) {
+        return new HashSet<>(); // TODO
     }
 
 }

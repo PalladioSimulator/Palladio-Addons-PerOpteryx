@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
+import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
 import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
@@ -21,6 +22,21 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 public class QesFactory extends NqrFactory {
 
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.qes");
+
+    private static void debug(String name, Transformation transformation) {
+        StringBuilder message = new StringBuilder(name);
+        message.append(": ");
+        if (transformation instanceof NQA) {
+            NQA nqa = (NQA) transformation;
+            message.append(nqa.getQuality()).append("=").append(nqa.getElement());
+        } else if (transformation instanceof Reasoning) {
+            Reasoning reasoning = (Reasoning) transformation;
+            message.append(reasoning.getQuality());
+        }
+
+        LOG.warn(message.toString());
+    }
+
 
     private static QesParser loadParser(final String qualityEffectSpecificationUri) throws CoreException {
         try {
@@ -59,6 +75,7 @@ public class QesFactory extends NqrFactory {
             }
             for (final Transformation transformation : specification.getTransformations()) {
                 if ((transformation != null) && (transformation instanceof NQA)) {
+                    debug(getComponentName(componentId), transformation); // TODO
                     reduction.add(createNqrProxy((NQA) transformation));
                 }
             }
@@ -81,7 +98,7 @@ public class QesFactory extends NqrFactory {
         return Collections.unmodifiableList(nqrs);
     }
 
-    public NqrProxy createNqrProxy(final NQA nqa) {
+    private NqrProxy createNqrProxy(final NQA nqa) {
         if (nqa == null) {
             return null;
         }
@@ -111,13 +128,62 @@ public class QesFactory extends NqrFactory {
             return null;
         }
 
-        return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(element));
+        return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(nqrDimension.getId()));
 
     }
 
     @Override
     public List<ReasoningProxy> getReasoningList(final String componentId) {
-        return super.getReasoningList(componentId);
+        if ((finder == null) || parser.getReasoningSpecifications().isEmpty()) {
+            return super.getReasoningList(componentId);
+        }
+
+        List<ReasoningProxy> reasonings = new ArrayList<ReasoningProxy>();
+
+        for (final QES specification : parser.getReasoningSpecifications()) {
+            if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
+                continue;
+            }
+            for (final Transformation transformation : specification.getTransformations()) {
+                if ((transformation == null) || (transformation instanceof Reasoning) == false) {
+                    continue;
+                }
+                ReasoningProxy newReasoning = createReasoningProxy((Reasoning) transformation);
+                if (newReasoning == null) {
+                    continue;
+                }
+                boolean contains = false;
+                for (final ReasoningProxy reasoning : reasonings) {
+                    if (reasoning.getOutput().getId().equals(newReasoning.getOutput().getId())) {
+                        contains = true;
+                        break;
+                    }
+                }
+                if (contains == false) {
+                    debug(getComponentName(componentId), transformation); // TODO
+                    reasonings.add(newReasoning);
+                }
+            }
+        }
+
+        for (final ReasoningProxy original : super.getReasoningList(componentId)) {
+            boolean contains = false;
+            for (final ReasoningProxy transformation : reasonings) {
+                if (transformation.getOutput().getId().equals(original.getOutput().getId())) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (contains == false) {
+                reasonings.add(original);
+            }
+        }
+
+        return Collections.unmodifiableList(reasonings);
+    }
+
+    private ReasoningProxy createReasoningProxy(final Reasoning reasoning) {
+        return null; // TODO
     }
 
     @Override
