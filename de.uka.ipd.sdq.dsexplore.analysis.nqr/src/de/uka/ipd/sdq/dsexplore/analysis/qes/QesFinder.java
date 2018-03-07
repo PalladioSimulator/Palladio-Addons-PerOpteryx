@@ -12,8 +12,8 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.subsystem.SubSystem;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
-import org.palladiosimulator.qes.qualityEffectSpecification.Component;
-import org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie;
+import org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification;
+import org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
@@ -42,21 +42,21 @@ public class QesFinder {
         }
     }
 
-    public Set<String> getEffectedComponents(List<Component> componentsSpecifications) {
+    public Set<String> getEffectedComponents(List<ComponentSpecification> componentsSpecifications) {
         final Set<String> effectedComponents = new HashSet<>();
 
         if ((componentsSpecifications == null) || componentsSpecifications.isEmpty()) {
             return Collections.unmodifiableSet(effectedComponents);
         }
 
-        for (final Component component : componentsSpecifications) {
+        for (final ComponentSpecification component : componentsSpecifications) {
             effectedComponents.addAll(getComponents(component));
         }
 
         return Collections.unmodifiableSet(effectedComponents);
     }
 
-    private Set<String> getComponents(Component componentSpecifications) {
+    private Set<String> getComponents(ComponentSpecification componentSpecifications) {
         final Set<String> effectedComponents = new HashSet<>();
 
         if ((componentSpecifications == null) || (componentSpecifications.getProperties() == null)
@@ -64,11 +64,11 @@ public class QesFinder {
             return effectedComponents;
         }
 
-        for (final ComponentPropertie propertie : componentSpecifications.getProperties()) {
+        for (final ComponentProperty property : componentSpecifications.getProperties()) {
             if (effectedComponents.isEmpty()) {
-                effectedComponents.addAll(getComponents(propertie));
+                effectedComponents.addAll(getComponents(property));
             } else {
-                effectedComponents.retainAll(getComponents(propertie));
+                effectedComponents.retainAll(getComponents(property));
             }
 
             if (effectedComponents.isEmpty()) {
@@ -79,35 +79,35 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private Set<String> getComponents(ComponentPropertie propertie) {
+    private Set<String> getComponents(ComponentProperty property) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        if (propertie == null) {
+        if (property == null) {
             return effectedComponents;
         }
 
-        if (propertie instanceof Name) {
-            return getComponents((Name) propertie);
+        if (property instanceof Name) {
+            return getComponents((Name) property);
         }
 
-        if (propertie instanceof Identifier) {
-            return getComponents((Identifier) propertie);
+        if (property instanceof Identifier) {
+            return getComponents((Identifier) property);
         }
 
-        if (propertie instanceof Type) {
-            return getComponents((Type) propertie);
+        if (property instanceof Type) {
+            return getComponents((Type) property);
         }
 
-        if (propertie instanceof Role) {
-            return getComponents((Role) propertie);
+        if (property instanceof Role) {
+            return getComponents((Role) property);
         }
 
-        if (propertie instanceof Assembly) {
-            return getComponents((Assembly) propertie);
+        if (property instanceof Assembly) {
+            return getComponents((Assembly) property);
         }
 
-        if (propertie instanceof Resource) {
-            return getComponents((Resource) propertie);
+        if (property instanceof Resource) {
+            return getComponents((Resource) property);
         }
 
         return effectedComponents;

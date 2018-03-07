@@ -11,7 +11,7 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
-import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
+import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 
 public class QesParser {
 
@@ -43,7 +43,7 @@ public class QesParser {
         isEmpty = (model.getSpecifications() == null) || model.getSpecifications().isEmpty();
 
         for (final QES specification : model.getSpecifications()) {
-            for (final Transformation transformation : specification.getTransformations()) {
+            for (final TransformationSpecification transformation : specification.getTransformations()) {
                 if (transformation instanceof NQA) {
                     n.add(specification);
                 } else if (transformation instanceof Reasoning) {

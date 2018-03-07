@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.Status;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
-import org.palladiosimulator.qes.qualityEffectSpecification.Transformation;
+import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
@@ -23,7 +23,7 @@ public class QesFactory extends NqrFactory {
 
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.qes");
 
-    private static void debug(String name, Transformation transformation) {
+    private static void debug(String name, TransformationSpecification transformation) {
         StringBuilder message = new StringBuilder(name);
         message.append(": ");
         if (transformation instanceof NQA) {
@@ -73,7 +73,7 @@ public class QesFactory extends NqrFactory {
             if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
                 continue;
             }
-            for (final Transformation transformation : specification.getTransformations()) {
+            for (final TransformationSpecification transformation : specification.getTransformations()) {
                 if ((transformation != null) && (transformation instanceof NQA)) {
                     debug(getComponentName(componentId), transformation); // TODO
                     reduction.add(createNqrProxy((NQA) transformation));
@@ -144,7 +144,7 @@ public class QesFactory extends NqrFactory {
             if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
                 continue;
             }
-            for (final Transformation transformation : specification.getTransformations()) {
+            for (final TransformationSpecification transformation : specification.getTransformations()) {
                 if ((transformation == null) || (transformation instanceof Reasoning) == false) {
                     continue;
                 }
