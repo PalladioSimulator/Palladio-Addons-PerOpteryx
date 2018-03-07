@@ -124,14 +124,14 @@ public interface QualityEffectSpecificationPackage extends EPackage
   int QES_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentImpl <em>Component</em>}' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentSpecificationImpl <em>Component Specification</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponent()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentSpecificationImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentSpecification()
    * @generated
    */
-  int COMPONENT = 2;
+  int COMPONENT_SPECIFICATION = 2;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -140,35 +140,35 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMPONENT__PROPERTIES = 0;
+  int COMPONENT_SPECIFICATION__PROPERTIES = 0;
 
   /**
-   * The number of structural features of the '<em>Component</em>' class.
+   * The number of structural features of the '<em>Component Specification</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPONENT_FEATURE_COUNT = 1;
+  int COMPONENT_SPECIFICATION_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertieImpl <em>Component Propertie</em>}' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertyImpl <em>Component Property</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertieImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentPropertie()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertyImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentProperty()
    * @generated
    */
-  int COMPONENT_PROPERTIE = 3;
+  int COMPONENT_PROPERTY = 3;
 
   /**
-   * The number of structural features of the '<em>Component Propertie</em>' class.
+   * The number of structural features of the '<em>Component Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPONENT_PROPERTIE_FEATURE_COUNT = 0;
+  int COMPONENT_PROPERTY_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NameImpl <em>Name</em>}' class.
@@ -187,7 +187,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAME__NOT = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int NAME__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -196,7 +196,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAME__NAME = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int NAME__NAME = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Name</em>' class.
@@ -205,7 +205,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAME_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 2;
+  int NAME_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.IdentifierImpl <em>Identifier</em>}' class.
@@ -224,7 +224,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IDENTIFIER__NOT = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int IDENTIFIER__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -233,7 +233,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IDENTIFIER__ID = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int IDENTIFIER__ID = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Identifier</em>' class.
@@ -242,7 +242,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IDENTIFIER_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 2;
+  int IDENTIFIER_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TypeImpl <em>Type</em>}' class.
@@ -261,7 +261,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE__NOT = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int TYPE__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -270,7 +270,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE__TYPE = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int TYPE__TYPE = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -279,7 +279,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 2;
+  int TYPE_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RoleImpl <em>Role</em>}' class.
@@ -298,7 +298,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROLE__NOT = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int ROLE__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -307,7 +307,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROLE__TYPE = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int ROLE__TYPE = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -316,7 +316,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROLE__PROPERTIES = COMPONENT_PROPERTIE_FEATURE_COUNT + 2;
+  int ROLE__PROPERTIES = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Role</em>' class.
@@ -325,26 +325,110 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROLE_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 3;
+  int ROLE_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertieImpl <em>Role Propertie</em>}' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertyImpl <em>Role Property</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertieImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRolePropertie()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertyImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleProperty()
    * @generated
    */
-  int ROLE_PROPERTIE = 8;
+  int ROLE_PROPERTY = 8;
 
   /**
-   * The number of structural features of the '<em>Role Propertie</em>' class.
+   * The number of structural features of the '<em>Role Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLE_PROPERTIE_FEATURE_COUNT = 0;
+  int ROLE_PROPERTY_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl <em>Interface</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterface()
+   * @generated
+   */
+  int INTERFACE = 9;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERFACE__PROPERTIES = ROLE_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Interface</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERFACE_FEATURE_COUNT = ROLE_PROPERTY_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl <em>Interface Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterfaceProperty()
+   * @generated
+   */
+  int INTERFACE_PROPERTY = 10;
+
+  /**
+   * The number of structural features of the '<em>Interface Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERFACE_PROPERTY_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl <em>Method Signature</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getMethodSignature()
+   * @generated
+   */
+  int METHOD_SIGNATURE = 11;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD_SIGNATURE__NAME = INTERFACE_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Parameter Types</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD_SIGNATURE__PARAMETER_TYPES = INTERFACE_PROPERTY_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Method Signature</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD_SIGNATURE_FEATURE_COUNT = INTERFACE_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AssemblyImpl <em>Assembly</em>}' class.
@@ -354,7 +438,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssembly()
    * @generated
    */
-  int ASSEMBLY = 9;
+  int ASSEMBLY = 12;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -363,7 +447,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSEMBLY__NOT = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int ASSEMBLY__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -372,7 +456,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSEMBLY__TYPE = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int ASSEMBLY__TYPE = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Components</b></em>' containment reference list.
@@ -381,7 +465,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSEMBLY__COMPONENTS = COMPONENT_PROPERTIE_FEATURE_COUNT + 2;
+  int ASSEMBLY__COMPONENTS = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Assembly</em>' class.
@@ -390,7 +474,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSEMBLY_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 3;
+  int ASSEMBLY_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourceImpl <em>Resource</em>}' class.
@@ -400,7 +484,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResource()
    * @generated
    */
-  int RESOURCE = 10;
+  int RESOURCE = 13;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -409,7 +493,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__PROPERTIES = COMPONENT_PROPERTIE_FEATURE_COUNT + 0;
+  int RESOURCE__PROPERTIES = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Resource</em>' class.
@@ -418,54 +502,45 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE_FEATURE_COUNT = COMPONENT_PROPERTIE_FEATURE_COUNT + 1;
+  int RESOURCE_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertieImpl <em>Resource Propertie</em>}' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertyImpl <em>Resource Property</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertieImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourcePropertie()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertyImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourceProperty()
    * @generated
    */
-  int RESOURCE_PROPERTIE = 11;
+  int RESOURCE_PROPERTY = 14;
 
   /**
-   * The number of structural features of the '<em>Resource Propertie</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RESOURCE_PROPERTIE_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationImpl <em>Transformation</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformation()
-   * @generated
-   */
-  int TRANSFORMATION = 12;
-
-  /**
-   * The feature id for the '<em><b>Quality</b></em>' attribute.
+   * The number of structural features of the '<em>Resource Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANSFORMATION__QUALITY = 0;
+  int RESOURCE_PROPERTY_FEATURE_COUNT = 0;
 
   /**
-   * The number of structural features of the '<em>Transformation</em>' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationSpecificationImpl <em>Transformation Specification</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationSpecificationImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationSpecification()
+   * @generated
+   */
+  int TRANSFORMATION_SPECIFICATION = 15;
+
+  /**
+   * The number of structural features of the '<em>Transformation Specification</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANSFORMATION_FEATURE_COUNT = 1;
+  int TRANSFORMATION_SPECIFICATION_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NQAImpl <em>NQA</em>}' class.
@@ -475,7 +550,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getNQA()
    * @generated
    */
-  int NQA = 13;
+  int NQA = 16;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -484,7 +559,16 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NQA__QUALITY = TRANSFORMATION__QUALITY;
+  int NQA__QUALITY = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NQA__TYPE = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' attribute.
@@ -493,7 +577,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NQA__ELEMENT = TRANSFORMATION_FEATURE_COUNT + 0;
+  int NQA__ELEMENT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>NQA</em>' class.
@@ -502,7 +586,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NQA_FEATURE_COUNT = TRANSFORMATION_FEATURE_COUNT + 1;
+  int NQA_FEATURE_COUNT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ReasoningImpl <em>Reasoning</em>}' class.
@@ -512,7 +596,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getReasoning()
    * @generated
    */
-  int REASONING = 14;
+  int REASONING = 17;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -521,7 +605,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REASONING__QUALITY = TRANSFORMATION__QUALITY;
+  int REASONING__QUALITY = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -530,7 +614,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REASONING__RULES = TRANSFORMATION_FEATURE_COUNT + 0;
+  int REASONING__RULES = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Reasoning</em>' class.
@@ -539,7 +623,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REASONING_FEATURE_COUNT = TRANSFORMATION_FEATURE_COUNT + 1;
+  int REASONING_FEATURE_COUNT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RuleImpl <em>Rule</em>}' class.
@@ -549,7 +633,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRule()
    * @generated
    */
-  int RULE = 15;
+  int RULE = 18;
 
   /**
    * The feature id for the '<em><b>Qualities</b></em>' attribute list.
@@ -586,7 +670,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getEntry()
    * @generated
    */
-  int ENTRY = 16;
+  int ENTRY = 19;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute list.
@@ -616,6 +700,43 @@ public interface QualityEffectSpecificationPackage extends EPackage
   int ENTRY_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl <em>Cost</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
+   * @generated
+   */
+  int COST = 20;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COST__TYPE = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Cost</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COST__COST = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Cost</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COST_FEATURE_COUNT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -623,7 +744,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentType()
    * @generated
    */
-  int COMPONENT_TYPE = 17;
+  int COMPONENT_TYPE = 21;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.RoleType <em>Role Type</em>}' enum.
@@ -633,7 +754,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleType()
    * @generated
    */
-  int ROLE_TYPE = 18;
+  int ROLE_TYPE = 22;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType <em>Assembly Type</em>}' enum.
@@ -643,7 +764,17 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssemblyType()
    * @generated
    */
-  int ASSEMBLY_TYPE = 19;
+  int ASSEMBLY_TYPE = 23;
+
+  /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationType <em>Transformation Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.TransformationType
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationType()
+   * @generated
+   */
+  int TRANSFORMATION_TYPE = 24;
 
 
   /**
@@ -700,35 +831,35 @@ public interface QualityEffectSpecificationPackage extends EPackage
   EReference getQES_Transformations();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Component <em>Component</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification <em>Component Specification</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Component</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Component
+   * @return the meta object for class '<em>Component Specification</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification
    * @generated
    */
-  EClass getComponent();
+  EClass getComponentSpecification();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.palladiosimulator.qes.qualityEffectSpecification.Component#getProperties <em>Properties</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Properties</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Component#getProperties()
-   * @see #getComponent()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification#getProperties()
+   * @see #getComponentSpecification()
    * @generated
    */
-  EReference getComponent_Properties();
+  EReference getComponentSpecification_Properties();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie <em>Component Propertie</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty <em>Component Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Component Propertie</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie
+   * @return the meta object for class '<em>Component Property</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty
    * @generated
    */
-  EClass getComponentPropertie();
+  EClass getComponentProperty();
 
   /**
    * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Name <em>Name</em>}'.
@@ -870,14 +1001,77 @@ public interface QualityEffectSpecificationPackage extends EPackage
   EReference getRole_Properties();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.RolePropertie <em>Role Propertie</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.RoleProperty <em>Role Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Role Propertie</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.RolePropertie
+   * @return the meta object for class '<em>Role Property</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.RoleProperty
    * @generated
    */
-  EClass getRolePropertie();
+  EClass getRoleProperty();
+
+  /**
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Interface <em>Interface</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Interface</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Interface
+   * @generated
+   */
+  EClass getInterface();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.palladiosimulator.qes.qualityEffectSpecification.Interface#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Interface#getProperties()
+   * @see #getInterface()
+   * @generated
+   */
+  EReference getInterface_Properties();
+
+  /**
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty <em>Interface Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Interface Property</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty
+   * @generated
+   */
+  EClass getInterfaceProperty();
+
+  /**
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature <em>Method Signature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Method Signature</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature
+   * @generated
+   */
+  EClass getMethodSignature();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getName()
+   * @see #getMethodSignature()
+   * @generated
+   */
+  EAttribute getMethodSignature_Name();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getParameterTypes <em>Parameter Types</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Parameter Types</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getParameterTypes()
+   * @see #getMethodSignature()
+   * @generated
+   */
+  EAttribute getMethodSignature_ParameterTypes();
 
   /**
    * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Assembly <em>Assembly</em>}'.
@@ -944,35 +1138,24 @@ public interface QualityEffectSpecificationPackage extends EPackage
   EReference getResource_Properties();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ResourcePropertie <em>Resource Propertie</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.ResourceProperty <em>Resource Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Resource Propertie</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.ResourcePropertie
+   * @return the meta object for class '<em>Resource Property</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.ResourceProperty
    * @generated
    */
-  EClass getResourcePropertie();
+  EClass getResourceProperty();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Transformation <em>Transformation</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification <em>Transformation Specification</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Transformation</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Transformation
+   * @return the meta object for class '<em>Transformation Specification</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification
    * @generated
    */
-  EClass getTransformation();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Transformation#getQuality <em>Quality</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Quality</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Transformation#getQuality()
-   * @see #getTransformation()
-   * @generated
-   */
-  EAttribute getTransformation_Quality();
+  EClass getTransformationSpecification();
 
   /**
    * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.NQA <em>NQA</em>}'.
@@ -983,6 +1166,28 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    */
   EClass getNQA();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NQA#getQuality <em>Quality</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Quality</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NQA#getQuality()
+   * @see #getNQA()
+   * @generated
+   */
+  EAttribute getNQA_Quality();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NQA#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NQA#getType()
+   * @see #getNQA()
+   * @generated
+   */
+  EAttribute getNQA_Type();
 
   /**
    * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NQA#getElement <em>Element</em>}'.
@@ -1004,6 +1209,17 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    */
   EClass getReasoning();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Reasoning#getQuality <em>Quality</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Quality</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Reasoning#getQuality()
+   * @see #getReasoning()
+   * @generated
+   */
+  EAttribute getReasoning_Quality();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.palladiosimulator.qes.qualityEffectSpecification.Reasoning#getRules <em>Rules</em>}'.
@@ -1081,6 +1297,38 @@ public interface QualityEffectSpecificationPackage extends EPackage
   EAttribute getEntry_Value();
 
   /**
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost <em>Cost</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cost</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost
+   * @generated
+   */
+  EClass getCost();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost#getType()
+   * @see #getCost()
+   * @generated
+   */
+  EAttribute getCost_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost#getCost <em>Cost</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Cost</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost#getCost()
+   * @see #getCost()
+   * @generated
+   */
+  EAttribute getCost_Cost();
+
+  /**
    * Returns the meta object for enum '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1109,6 +1357,16 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    */
   EEnum getAssemblyType();
+
+  /**
+   * Returns the meta object for enum '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationType <em>Transformation Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Transformation Type</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.TransformationType
+   * @generated
+   */
+  EEnum getTransformationType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1178,14 +1436,14 @@ public interface QualityEffectSpecificationPackage extends EPackage
     EReference QES__TRANSFORMATIONS = eINSTANCE.getQES_Transformations();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentImpl <em>Component</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentSpecificationImpl <em>Component Specification</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponent()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentSpecificationImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentSpecification()
      * @generated
      */
-    EClass COMPONENT = eINSTANCE.getComponent();
+    EClass COMPONENT_SPECIFICATION = eINSTANCE.getComponentSpecification();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
@@ -1193,17 +1451,17 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPONENT__PROPERTIES = eINSTANCE.getComponent_Properties();
+    EReference COMPONENT_SPECIFICATION__PROPERTIES = eINSTANCE.getComponentSpecification_Properties();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertieImpl <em>Component Propertie</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertyImpl <em>Component Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertieImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentPropertie()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ComponentPropertyImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentProperty()
      * @generated
      */
-    EClass COMPONENT_PROPERTIE = eINSTANCE.getComponentPropertie();
+    EClass COMPONENT_PROPERTY = eINSTANCE.getComponentProperty();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NameImpl <em>Name</em>}' class.
@@ -1318,14 +1576,68 @@ public interface QualityEffectSpecificationPackage extends EPackage
     EReference ROLE__PROPERTIES = eINSTANCE.getRole_Properties();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertieImpl <em>Role Propertie</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertyImpl <em>Role Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertieImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRolePropertie()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.RolePropertyImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleProperty()
      * @generated
      */
-    EClass ROLE_PROPERTIE = eINSTANCE.getRolePropertie();
+    EClass ROLE_PROPERTY = eINSTANCE.getRoleProperty();
+
+    /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl <em>Interface</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterface()
+     * @generated
+     */
+    EClass INTERFACE = eINSTANCE.getInterface();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INTERFACE__PROPERTIES = eINSTANCE.getInterface_Properties();
+
+    /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl <em>Interface Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterfaceProperty()
+     * @generated
+     */
+    EClass INTERFACE_PROPERTY = eINSTANCE.getInterfaceProperty();
+
+    /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl <em>Method Signature</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getMethodSignature()
+     * @generated
+     */
+    EClass METHOD_SIGNATURE = eINSTANCE.getMethodSignature();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METHOD_SIGNATURE__NAME = eINSTANCE.getMethodSignature_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Parameter Types</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METHOD_SIGNATURE__PARAMETER_TYPES = eINSTANCE.getMethodSignature_ParameterTypes();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AssemblyImpl <em>Assembly</em>}' class.
@@ -1380,32 +1692,24 @@ public interface QualityEffectSpecificationPackage extends EPackage
     EReference RESOURCE__PROPERTIES = eINSTANCE.getResource_Properties();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertieImpl <em>Resource Propertie</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertyImpl <em>Resource Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertieImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourcePropertie()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.ResourcePropertyImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourceProperty()
      * @generated
      */
-    EClass RESOURCE_PROPERTIE = eINSTANCE.getResourcePropertie();
+    EClass RESOURCE_PROPERTY = eINSTANCE.getResourceProperty();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationImpl <em>Transformation</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationSpecificationImpl <em>Transformation Specification</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformation()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.TransformationSpecificationImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationSpecification()
      * @generated
      */
-    EClass TRANSFORMATION = eINSTANCE.getTransformation();
-
-    /**
-     * The meta object literal for the '<em><b>Quality</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TRANSFORMATION__QUALITY = eINSTANCE.getTransformation_Quality();
+    EClass TRANSFORMATION_SPECIFICATION = eINSTANCE.getTransformationSpecification();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NQAImpl <em>NQA</em>}' class.
@@ -1416,6 +1720,22 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * @generated
      */
     EClass NQA = eINSTANCE.getNQA();
+
+    /**
+     * The meta object literal for the '<em><b>Quality</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NQA__QUALITY = eINSTANCE.getNQA_Quality();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NQA__TYPE = eINSTANCE.getNQA_Type();
 
     /**
      * The meta object literal for the '<em><b>Element</b></em>' attribute feature.
@@ -1434,6 +1754,14 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * @generated
      */
     EClass REASONING = eINSTANCE.getReasoning();
+
+    /**
+     * The meta object literal for the '<em><b>Quality</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REASONING__QUALITY = eINSTANCE.getReasoning_Quality();
 
     /**
      * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
@@ -1496,6 +1824,32 @@ public interface QualityEffectSpecificationPackage extends EPackage
     EAttribute ENTRY__VALUE = eINSTANCE.getEntry_Value();
 
     /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl <em>Cost</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
+     * @generated
+     */
+    EClass COST = eINSTANCE.getCost();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COST__TYPE = eINSTANCE.getCost_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COST__COST = eINSTANCE.getCost_Cost();
+
+    /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1524,6 +1878,16 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * @generated
      */
     EEnum ASSEMBLY_TYPE = eINSTANCE.getAssemblyType();
+
+    /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationType <em>Transformation Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.TransformationType
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationType()
+     * @generated
+     */
+    EEnum TRANSFORMATION_TYPE = eINSTANCE.getTransformationType();
 
   }
 

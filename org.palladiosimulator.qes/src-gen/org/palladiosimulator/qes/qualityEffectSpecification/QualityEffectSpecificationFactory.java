@@ -42,22 +42,22 @@ public interface QualityEffectSpecificationFactory extends EFactory
   QES createQES();
 
   /**
-   * Returns a new object of class '<em>Component</em>'.
+   * Returns a new object of class '<em>Component Specification</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Component</em>'.
+   * @return a new object of class '<em>Component Specification</em>'.
    * @generated
    */
-  Component createComponent();
+  ComponentSpecification createComponentSpecification();
 
   /**
-   * Returns a new object of class '<em>Component Propertie</em>'.
+   * Returns a new object of class '<em>Component Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Component Propertie</em>'.
+   * @return a new object of class '<em>Component Property</em>'.
    * @generated
    */
-  ComponentPropertie createComponentPropertie();
+  ComponentProperty createComponentProperty();
 
   /**
    * Returns a new object of class '<em>Name</em>'.
@@ -96,13 +96,40 @@ public interface QualityEffectSpecificationFactory extends EFactory
   Role createRole();
 
   /**
-   * Returns a new object of class '<em>Role Propertie</em>'.
+   * Returns a new object of class '<em>Role Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Role Propertie</em>'.
+   * @return a new object of class '<em>Role Property</em>'.
    * @generated
    */
-  RolePropertie createRolePropertie();
+  RoleProperty createRoleProperty();
+
+  /**
+   * Returns a new object of class '<em>Interface</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Interface</em>'.
+   * @generated
+   */
+  Interface createInterface();
+
+  /**
+   * Returns a new object of class '<em>Interface Property</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Interface Property</em>'.
+   * @generated
+   */
+  InterfaceProperty createInterfaceProperty();
+
+  /**
+   * Returns a new object of class '<em>Method Signature</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Method Signature</em>'.
+   * @generated
+   */
+  MethodSignature createMethodSignature();
 
   /**
    * Returns a new object of class '<em>Assembly</em>'.
@@ -123,22 +150,22 @@ public interface QualityEffectSpecificationFactory extends EFactory
   Resource createResource();
 
   /**
-   * Returns a new object of class '<em>Resource Propertie</em>'.
+   * Returns a new object of class '<em>Resource Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Resource Propertie</em>'.
+   * @return a new object of class '<em>Resource Property</em>'.
    * @generated
    */
-  ResourcePropertie createResourcePropertie();
+  ResourceProperty createResourceProperty();
 
   /**
-   * Returns a new object of class '<em>Transformation</em>'.
+   * Returns a new object of class '<em>Transformation Specification</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Transformation</em>'.
+   * @return a new object of class '<em>Transformation Specification</em>'.
    * @generated
    */
-  Transformation createTransformation();
+  TransformationSpecification createTransformationSpecification();
 
   /**
    * Returns a new object of class '<em>NQA</em>'.
@@ -175,6 +202,15 @@ public interface QualityEffectSpecificationFactory extends EFactory
    * @generated
    */
   Entry createEntry();
+
+  /**
+   * Returns a new object of class '<em>Cost</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cost</em>'.
+   * @generated
+   */
+  Cost createCost();
 
   /**
    * Returns the package supported by this factory.

@@ -6,12 +6,12 @@ Model:
     specifications+=QES+;
 
 QES:
-    'For{' components+=Component+ '}' 'Do{' transformations+=Transformation+ '}';
+    'For{' components+=ComponentSpecification+ '}' 'Do{' transformations+=TransformationSpecification+ '}';
 
-Component:
-    'Component(' properties+=ComponentPropertie+ ')';
+ComponentSpecification:
+    'Component(' properties+=ComponentProperty+ ')';
 
-ComponentPropertie:
+ComponentProperty:
     Name | Identifier | Type | Role | Assembly | Resource;
 
 Name:
@@ -24,34 +24,46 @@ Type:
     'Type(' not?='Not'? type=ComponentType ')';
 
 enum ComponentType:
-    ANY='AnyComponent' | BASIC='Basic' | COMPOSITE='Composite';
+    ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite';
 
 Role:
-    'Role(' not?='Not'? type=RoleType properties+=RolePropertie+ ')';
+    'Role(' not?='Not'? type=RoleType properties+=RoleProperty+ ')';
 
 enum RoleType:
-    ANY='AnyRole' | COMPONENT='Component' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE='Infrastructure' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
+    ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 
-RolePropertie:
-    Name | Identifier ;
+RoleProperty:
+    Name | Identifier | Interface;
+
+Interface:
+    'Interface(' properties+=InterfaceProperty+ ')';
+
+InterfaceProperty:
+    Name | Identifier | MethodSignature;
+
+MethodSignature:
+    'Method(' name=STRING ':' parameterTypes+=STRING* ')';
 
 Assembly:
-    'Assembly(' not?='Not'? type=AssemblyType components+=Component+ ')';
+    'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';
 
 enum AssemblyType:
     ANY='AnyAssembly' | REQUIRED='Required' | PROVIDED='Provided';
 
 Resource:
-    'Resource(' properties+=ResourcePropertie+ ')';
+    'Resource(' properties+=ResourceProperty+ ')';
 
-ResourcePropertie:
-    Name | Identifier ;
+ResourceProperty:
+    Name | Identifier;
 
-Transformation:
-    NQA | Reasoning;
+TransformationSpecification:
+    NQA | Reasoning | Cost;
 
 NQA:
-    'NQA(' quality=STRING '=' element=STRING ')';
+    'NQA(' quality=STRING type=TransformationType element=STRING ')';
+
+enum TransformationType:
+    IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/' ;
 
 Reasoning:
     'Reasoning(' quality=STRING ':' rules+=Rule+ ')';
@@ -60,4 +72,7 @@ Rule:
     '(' qualities+=STRING+ ':' entries+=Entry+ ')';
 
 Entry:
-    '[' key+=STRING+ '=' value=STRING ']';
+    '[' key+=STRING+ ':' value=STRING ']';
+
+Cost:
+     'Cost(' type=TransformationType cost=INT ')';

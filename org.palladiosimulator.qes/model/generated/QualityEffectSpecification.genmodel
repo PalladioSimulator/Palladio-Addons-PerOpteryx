@@ -13,10 +13,10 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="QualityEffectSpecification.ecore#//RoleType">
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/ANY"/>
-      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/COMPONENT"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/COMPONENT_REQUIRED_PROVIDED"/>
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/COMPONENT_REQUIRED"/>
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/COMPONENT_PROVIDED"/>
-      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/INFRASTRUCTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/INFRASTRUCTURE_REQUIRED_PROVIDED"/>
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/INFRASTRUCTURE_REQUIRED"/>
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//RoleType/INFRASTRUCTURE_PROVIDED"/>
     </genEnums>
@@ -25,6 +25,13 @@
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//AssemblyType/REQUIRED"/>
       <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//AssemblyType/PROVIDED"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="QualityEffectSpecification.ecore#//TransformationType">
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//TransformationType/IS"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//TransformationType/PLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//TransformationType/MINUS"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//TransformationType/MULTIPLICATION"/>
+      <genEnumLiterals ecoreEnumLiteral="QualityEffectSpecification.ecore#//TransformationType/DIVISION"/>
+    </genEnums>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Model/specifications"/>
     </genClasses>
@@ -32,10 +39,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//QES/components"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//QES/transformations"/>
     </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Component">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Component/properties"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//ComponentSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//ComponentSpecification/properties"/>
     </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//ComponentPropertie"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//ComponentProperty"/>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Name">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Name/not"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Name/name"/>
@@ -53,7 +60,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Role/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Role/properties"/>
     </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//RolePropertie"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//RoleProperty"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Interface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Interface/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//InterfaceProperty"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//MethodSignature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//MethodSignature/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//MethodSignature/parameterTypes"/>
+    </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Assembly">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Assembly/not"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Assembly/type"/>
@@ -62,14 +77,15 @@
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Resource">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Resource/properties"/>
     </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//ResourcePropertie"/>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Transformation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Transformation/quality"/>
-    </genClasses>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//ResourceProperty"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//TransformationSpecification"/>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//NQA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NQA/quality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NQA/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NQA/element"/>
     </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Reasoning">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Reasoning/quality"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Reasoning/rules"/>
     </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Rule">
@@ -79,6 +95,10 @@
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Entry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Entry/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Entry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Cost">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Cost/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Cost/cost"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -31,29 +31,34 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getComponentPropertieAccess().getAlternatives(), "rule__ComponentPropertie__Alternatives");
-					put(grammarAccess.getRolePropertieAccess().getAlternatives(), "rule__RolePropertie__Alternatives");
-					put(grammarAccess.getResourcePropertieAccess().getAlternatives(), "rule__ResourcePropertie__Alternatives");
-					put(grammarAccess.getTransformationAccess().getAlternatives(), "rule__Transformation__Alternatives");
+					put(grammarAccess.getComponentPropertyAccess().getAlternatives(), "rule__ComponentProperty__Alternatives");
+					put(grammarAccess.getRolePropertyAccess().getAlternatives(), "rule__RoleProperty__Alternatives");
+					put(grammarAccess.getInterfacePropertyAccess().getAlternatives(), "rule__InterfaceProperty__Alternatives");
+					put(grammarAccess.getResourcePropertyAccess().getAlternatives(), "rule__ResourceProperty__Alternatives");
+					put(grammarAccess.getTransformationSpecificationAccess().getAlternatives(), "rule__TransformationSpecification__Alternatives");
 					put(grammarAccess.getComponentTypeAccess().getAlternatives(), "rule__ComponentType__Alternatives");
 					put(grammarAccess.getRoleTypeAccess().getAlternatives(), "rule__RoleType__Alternatives");
 					put(grammarAccess.getAssemblyTypeAccess().getAlternatives(), "rule__AssemblyType__Alternatives");
+					put(grammarAccess.getTransformationTypeAccess().getAlternatives(), "rule__TransformationType__Alternatives");
 					put(grammarAccess.getQESAccess().getGroup(), "rule__QES__Group__0");
-					put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
+					put(grammarAccess.getComponentSpecificationAccess().getGroup(), "rule__ComponentSpecification__Group__0");
 					put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
 					put(grammarAccess.getIdentifierAccess().getGroup(), "rule__Identifier__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
 					put(grammarAccess.getRoleAccess().getGroup(), "rule__Role__Group__0");
+					put(grammarAccess.getInterfaceAccess().getGroup(), "rule__Interface__Group__0");
+					put(grammarAccess.getMethodSignatureAccess().getGroup(), "rule__MethodSignature__Group__0");
 					put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
 					put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 					put(grammarAccess.getNQAAccess().getGroup(), "rule__NQA__Group__0");
 					put(grammarAccess.getReasoningAccess().getGroup(), "rule__Reasoning__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
+					put(grammarAccess.getCostAccess().getGroup(), "rule__Cost__Group__0");
 					put(grammarAccess.getModelAccess().getSpecificationsAssignment(), "rule__Model__SpecificationsAssignment");
 					put(grammarAccess.getQESAccess().getComponentsAssignment_1(), "rule__QES__ComponentsAssignment_1");
 					put(grammarAccess.getQESAccess().getTransformationsAssignment_4(), "rule__QES__TransformationsAssignment_4");
-					put(grammarAccess.getComponentAccess().getPropertiesAssignment_1(), "rule__Component__PropertiesAssignment_1");
+					put(grammarAccess.getComponentSpecificationAccess().getPropertiesAssignment_1(), "rule__ComponentSpecification__PropertiesAssignment_1");
 					put(grammarAccess.getNameAccess().getNotAssignment_1(), "rule__Name__NotAssignment_1");
 					put(grammarAccess.getNameAccess().getNameAssignment_2(), "rule__Name__NameAssignment_2");
 					put(grammarAccess.getIdentifierAccess().getNotAssignment_1(), "rule__Identifier__NotAssignment_1");
@@ -63,11 +68,15 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getRoleAccess().getNotAssignment_1(), "rule__Role__NotAssignment_1");
 					put(grammarAccess.getRoleAccess().getTypeAssignment_2(), "rule__Role__TypeAssignment_2");
 					put(grammarAccess.getRoleAccess().getPropertiesAssignment_3(), "rule__Role__PropertiesAssignment_3");
+					put(grammarAccess.getInterfaceAccess().getPropertiesAssignment_1(), "rule__Interface__PropertiesAssignment_1");
+					put(grammarAccess.getMethodSignatureAccess().getNameAssignment_1(), "rule__MethodSignature__NameAssignment_1");
+					put(grammarAccess.getMethodSignatureAccess().getParameterTypesAssignment_3(), "rule__MethodSignature__ParameterTypesAssignment_3");
 					put(grammarAccess.getAssemblyAccess().getNotAssignment_1(), "rule__Assembly__NotAssignment_1");
 					put(grammarAccess.getAssemblyAccess().getTypeAssignment_2(), "rule__Assembly__TypeAssignment_2");
 					put(grammarAccess.getAssemblyAccess().getComponentsAssignment_3(), "rule__Assembly__ComponentsAssignment_3");
 					put(grammarAccess.getResourceAccess().getPropertiesAssignment_1(), "rule__Resource__PropertiesAssignment_1");
 					put(grammarAccess.getNQAAccess().getQualityAssignment_1(), "rule__NQA__QualityAssignment_1");
+					put(grammarAccess.getNQAAccess().getTypeAssignment_2(), "rule__NQA__TypeAssignment_2");
 					put(grammarAccess.getNQAAccess().getElementAssignment_3(), "rule__NQA__ElementAssignment_3");
 					put(grammarAccess.getReasoningAccess().getQualityAssignment_1(), "rule__Reasoning__QualityAssignment_1");
 					put(grammarAccess.getReasoningAccess().getRulesAssignment_3(), "rule__Reasoning__RulesAssignment_3");
@@ -75,6 +84,8 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getRuleAccess().getEntriesAssignment_3(), "rule__Rule__EntriesAssignment_3");
 					put(grammarAccess.getEntryAccess().getKeyAssignment_1(), "rule__Entry__KeyAssignment_1");
 					put(grammarAccess.getEntryAccess().getValueAssignment_3(), "rule__Entry__ValueAssignment_3");
+					put(grammarAccess.getCostAccess().getTypeAssignment_1(), "rule__Cost__TypeAssignment_1");
+					put(grammarAccess.getCostAccess().getCostAssignment_2(), "rule__Cost__CostAssignment_2");
 				}
 			};
 		}

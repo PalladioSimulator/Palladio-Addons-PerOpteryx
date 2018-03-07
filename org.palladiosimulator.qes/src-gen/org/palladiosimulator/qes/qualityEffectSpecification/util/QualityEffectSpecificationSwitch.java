@@ -87,17 +87,17 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.COMPONENT:
+      case QualityEffectSpecificationPackage.COMPONENT_SPECIFICATION:
       {
-        Component component = (Component)theEObject;
-        T result = caseComponent(component);
+        ComponentSpecification componentSpecification = (ComponentSpecification)theEObject;
+        T result = caseComponentSpecification(componentSpecification);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.COMPONENT_PROPERTIE:
+      case QualityEffectSpecificationPackage.COMPONENT_PROPERTY:
       {
-        ComponentPropertie componentPropertie = (ComponentPropertie)theEObject;
-        T result = caseComponentPropertie(componentPropertie);
+        ComponentProperty componentProperty = (ComponentProperty)theEObject;
+        T result = caseComponentProperty(componentProperty);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -105,9 +105,10 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Name name = (Name)theEObject;
         T result = caseName(name);
-        if (result == null) result = caseComponentPropertie(name);
-        if (result == null) result = caseRolePropertie(name);
-        if (result == null) result = caseResourcePropertie(name);
+        if (result == null) result = caseComponentProperty(name);
+        if (result == null) result = caseRoleProperty(name);
+        if (result == null) result = caseInterfaceProperty(name);
+        if (result == null) result = caseResourceProperty(name);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -115,9 +116,10 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Identifier identifier = (Identifier)theEObject;
         T result = caseIdentifier(identifier);
-        if (result == null) result = caseComponentPropertie(identifier);
-        if (result == null) result = caseRolePropertie(identifier);
-        if (result == null) result = caseResourcePropertie(identifier);
+        if (result == null) result = caseComponentProperty(identifier);
+        if (result == null) result = caseRoleProperty(identifier);
+        if (result == null) result = caseInterfaceProperty(identifier);
+        if (result == null) result = caseResourceProperty(identifier);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,7 +127,7 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Type type = (Type)theEObject;
         T result = caseType(type);
-        if (result == null) result = caseComponentPropertie(type);
+        if (result == null) result = caseComponentProperty(type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -133,14 +135,37 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Role role = (Role)theEObject;
         T result = caseRole(role);
-        if (result == null) result = caseComponentPropertie(role);
+        if (result == null) result = caseComponentProperty(role);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.ROLE_PROPERTIE:
+      case QualityEffectSpecificationPackage.ROLE_PROPERTY:
       {
-        RolePropertie rolePropertie = (RolePropertie)theEObject;
-        T result = caseRolePropertie(rolePropertie);
+        RoleProperty roleProperty = (RoleProperty)theEObject;
+        T result = caseRoleProperty(roleProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.INTERFACE:
+      {
+        Interface interface_ = (Interface)theEObject;
+        T result = caseInterface(interface_);
+        if (result == null) result = caseRoleProperty(interface_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.INTERFACE_PROPERTY:
+      {
+        InterfaceProperty interfaceProperty = (InterfaceProperty)theEObject;
+        T result = caseInterfaceProperty(interfaceProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.METHOD_SIGNATURE:
+      {
+        MethodSignature methodSignature = (MethodSignature)theEObject;
+        T result = caseMethodSignature(methodSignature);
+        if (result == null) result = caseInterfaceProperty(methodSignature);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -148,7 +173,7 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Assembly assembly = (Assembly)theEObject;
         T result = caseAssembly(assembly);
-        if (result == null) result = caseComponentPropertie(assembly);
+        if (result == null) result = caseComponentProperty(assembly);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -156,21 +181,21 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Resource resource = (Resource)theEObject;
         T result = caseResource(resource);
-        if (result == null) result = caseComponentPropertie(resource);
+        if (result == null) result = caseComponentProperty(resource);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.RESOURCE_PROPERTIE:
+      case QualityEffectSpecificationPackage.RESOURCE_PROPERTY:
       {
-        ResourcePropertie resourcePropertie = (ResourcePropertie)theEObject;
-        T result = caseResourcePropertie(resourcePropertie);
+        ResourceProperty resourceProperty = (ResourceProperty)theEObject;
+        T result = caseResourceProperty(resourceProperty);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.TRANSFORMATION:
+      case QualityEffectSpecificationPackage.TRANSFORMATION_SPECIFICATION:
       {
-        Transformation transformation = (Transformation)theEObject;
-        T result = caseTransformation(transformation);
+        TransformationSpecification transformationSpecification = (TransformationSpecification)theEObject;
+        T result = caseTransformationSpecification(transformationSpecification);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -178,7 +203,7 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         NQA nqa = (NQA)theEObject;
         T result = caseNQA(nqa);
-        if (result == null) result = caseTransformation(nqa);
+        if (result == null) result = caseTransformationSpecification(nqa);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -186,7 +211,7 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Reasoning reasoning = (Reasoning)theEObject;
         T result = caseReasoning(reasoning);
-        if (result == null) result = caseTransformation(reasoning);
+        if (result == null) result = caseTransformationSpecification(reasoning);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -201,6 +226,14 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         Entry entry = (Entry)theEObject;
         T result = caseEntry(entry);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case QualityEffectSpecificationPackage.COST:
+      {
+        Cost cost = (Cost)theEObject;
+        T result = caseCost(cost);
+        if (result == null) result = caseTransformationSpecification(cost);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -241,33 +274,33 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Component</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Component Specification</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Component</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Component Specification</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseComponent(Component object)
+  public T caseComponentSpecification(ComponentSpecification object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Component Propertie</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Component Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Component Propertie</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Component Property</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseComponentPropertie(ComponentPropertie object)
+  public T caseComponentProperty(ComponentProperty object)
   {
     return null;
   }
@@ -337,17 +370,65 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Role Propertie</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Role Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Role Propertie</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Role Property</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRolePropertie(RolePropertie object)
+  public T caseRoleProperty(RoleProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInterface(Interface object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Interface Property</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Interface Property</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInterfaceProperty(InterfaceProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Method Signature</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Method Signature</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMethodSignature(MethodSignature object)
   {
     return null;
   }
@@ -385,33 +466,33 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Resource Propertie</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Resource Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Resource Propertie</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Resource Property</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseResourcePropertie(ResourcePropertie object)
+  public T caseResourceProperty(ResourceProperty object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Transformation</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Transformation Specification</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Transformation</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Transformation Specification</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTransformation(Transformation object)
+  public T caseTransformationSpecification(TransformationSpecification object)
   {
     return null;
   }
@@ -476,6 +557,22 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEntry(Entry object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cost</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cost</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCost(Cost object)
   {
     return null;
   }

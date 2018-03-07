@@ -45,28 +45,28 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cForKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cComponentsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cComponentsComponentParserRuleCall_1_0 = (RuleCall)cComponentsAssignment_1.eContents().get(0);
+		private final RuleCall cComponentsComponentSpecificationParserRuleCall_1_0 = (RuleCall)cComponentsAssignment_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cDoKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTransformationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cTransformationsTransformationParserRuleCall_4_0 = (RuleCall)cTransformationsAssignment_4.eContents().get(0);
+		private final RuleCall cTransformationsTransformationSpecificationParserRuleCall_4_0 = (RuleCall)cTransformationsAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//QES:
-		//	'For{' components+=Component+ '}' 'Do{' transformations+=Transformation+ '}';
+		//	'For{' components+=ComponentSpecification+ '}' 'Do{' transformations+=TransformationSpecification+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'For{' components+=Component+ '}' 'Do{' transformations+=Transformation+ '}'
+		//'For{' components+=ComponentSpecification+ '}' 'Do{' transformations+=TransformationSpecification+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'For{'
 		public Keyword getForKeyword_0() { return cForKeyword_0; }
 		
-		//components+=Component+
+		//components+=ComponentSpecification+
 		public Assignment getComponentsAssignment_1() { return cComponentsAssignment_1; }
 		
-		//Component
-		public RuleCall getComponentsComponentParserRuleCall_1_0() { return cComponentsComponentParserRuleCall_1_0; }
+		//ComponentSpecification
+		public RuleCall getComponentsComponentSpecificationParserRuleCall_1_0() { return cComponentsComponentSpecificationParserRuleCall_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
@@ -74,44 +74,44 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//'Do{'
 		public Keyword getDoKeyword_3() { return cDoKeyword_3; }
 		
-		//transformations+=Transformation+
+		//transformations+=TransformationSpecification+
 		public Assignment getTransformationsAssignment_4() { return cTransformationsAssignment_4; }
 		
-		//Transformation
-		public RuleCall getTransformationsTransformationParserRuleCall_4_0() { return cTransformationsTransformationParserRuleCall_4_0; }
+		//TransformationSpecification
+		public RuleCall getTransformationsTransformationSpecificationParserRuleCall_4_0() { return cTransformationsTransformationSpecificationParserRuleCall_4_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
-	public class ComponentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Component");
+	public class ComponentSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ComponentSpecification");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cComponentKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertiesComponentPropertieParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
+		private final RuleCall cPropertiesComponentPropertyParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//Component:
-		//	'Component(' properties+=ComponentPropertie+ ')';
+		//ComponentSpecification:
+		//	'Component(' properties+=ComponentProperty+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Component(' properties+=ComponentPropertie+ ')'
+		//'Component(' properties+=ComponentProperty+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Component('
 		public Keyword getComponentKeyword_0() { return cComponentKeyword_0; }
 		
-		//properties+=ComponentPropertie+
+		//properties+=ComponentProperty+
 		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
 		
-		//ComponentPropertie
-		public RuleCall getPropertiesComponentPropertieParserRuleCall_1_0() { return cPropertiesComponentPropertieParserRuleCall_1_0; }
+		//ComponentProperty
+		public RuleCall getPropertiesComponentPropertyParserRuleCall_1_0() { return cPropertiesComponentPropertyParserRuleCall_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
-	public class ComponentPropertieElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ComponentPropertie");
+	public class ComponentPropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ComponentProperty");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -120,7 +120,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final RuleCall cAssemblyParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cResourceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
-		//ComponentPropertie:
+		//ComponentProperty:
 		//	Name | Identifier | Type | Role | Assembly | Resource;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -259,14 +259,14 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeRoleTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Assignment cPropertiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPropertiesRolePropertieParserRuleCall_3_0 = (RuleCall)cPropertiesAssignment_3.eContents().get(0);
+		private final RuleCall cPropertiesRolePropertyParserRuleCall_3_0 = (RuleCall)cPropertiesAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Role:
-		//	'Role(' not?='Not'? type=RoleType properties+=RolePropertie+ ')';
+		//	'Role(' not?='Not'? type=RoleType properties+=RoleProperty+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Role(' not?='Not'? type=RoleType properties+=RolePropertie+ ')'
+		//'Role(' not?='Not'? type=RoleType properties+=RoleProperty+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Role('
@@ -284,26 +284,27 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//RoleType
 		public RuleCall getTypeRoleTypeEnumRuleCall_2_0() { return cTypeRoleTypeEnumRuleCall_2_0; }
 		
-		//properties+=RolePropertie+
+		//properties+=RoleProperty+
 		public Assignment getPropertiesAssignment_3() { return cPropertiesAssignment_3; }
 		
-		//RolePropertie
-		public RuleCall getPropertiesRolePropertieParserRuleCall_3_0() { return cPropertiesRolePropertieParserRuleCall_3_0; }
+		//RoleProperty
+		public RuleCall getPropertiesRolePropertyParserRuleCall_3_0() { return cPropertiesRolePropertyParserRuleCall_3_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
-	public class RolePropertieElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.RolePropertie");
+	public class RolePropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cInterfaceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//RolePropertie:
-		//	Name | Identifier;
+		//RoleProperty:
+		//	Name | Identifier | Interface;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name | Identifier
+		//Name | Identifier | Interface
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Name
@@ -311,6 +312,98 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		
 		//Identifier
 		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
+		
+		//Interface
+		public RuleCall getInterfaceParserRuleCall_2() { return cInterfaceParserRuleCall_2; }
+	}
+	public class InterfaceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Interface");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cInterfaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPropertiesInterfacePropertyParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Interface:
+		//	'Interface(' properties+=InterfaceProperty+ ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Interface(' properties+=InterfaceProperty+ ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'Interface('
+		public Keyword getInterfaceKeyword_0() { return cInterfaceKeyword_0; }
+		
+		//properties+=InterfaceProperty+
+		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
+		
+		//InterfaceProperty
+		public RuleCall getPropertiesInterfacePropertyParserRuleCall_1_0() { return cPropertiesInterfacePropertyParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+	public class InterfacePropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.InterfaceProperty");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cMethodSignatureParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//InterfaceProperty:
+		//	Name | Identifier | MethodSignature;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Name | Identifier | MethodSignature
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Name
+		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
+		
+		//Identifier
+		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
+		
+		//MethodSignature
+		public RuleCall getMethodSignatureParserRuleCall_2() { return cMethodSignatureParserRuleCall_2; }
+	}
+	public class MethodSignatureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.MethodSignature");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMethodKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cParameterTypesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cParameterTypesSTRINGTerminalRuleCall_3_0 = (RuleCall)cParameterTypesAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//MethodSignature:
+		//	'Method(' name=STRING ':' parameterTypes+=STRING* ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Method(' name=STRING ':' parameterTypes+=STRING* ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'Method('
+		public Keyword getMethodKeyword_0() { return cMethodKeyword_0; }
+		
+		//name=STRING
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//parameterTypes+=STRING*
+		public Assignment getParameterTypesAssignment_3() { return cParameterTypesAssignment_3; }
+		
+		//STRING
+		public RuleCall getParameterTypesSTRINGTerminalRuleCall_3_0() { return cParameterTypesSTRINGTerminalRuleCall_3_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class AssemblyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Assembly");
@@ -321,14 +414,14 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeAssemblyTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Assignment cComponentsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cComponentsComponentParserRuleCall_3_0 = (RuleCall)cComponentsAssignment_3.eContents().get(0);
+		private final RuleCall cComponentsComponentSpecificationParserRuleCall_3_0 = (RuleCall)cComponentsAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Assembly:
-		//	'Assembly(' not?='Not'? type=AssemblyType components+=Component+ ')';
+		//	'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Assembly(' not?='Not'? type=AssemblyType components+=Component+ ')'
+		//'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Assembly('
@@ -346,11 +439,11 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//AssemblyType
 		public RuleCall getTypeAssemblyTypeEnumRuleCall_2_0() { return cTypeAssemblyTypeEnumRuleCall_2_0; }
 		
-		//components+=Component+
+		//components+=ComponentSpecification+
 		public Assignment getComponentsAssignment_3() { return cComponentsAssignment_3; }
 		
-		//Component
-		public RuleCall getComponentsComponentParserRuleCall_3_0() { return cComponentsComponentParserRuleCall_3_0; }
+		//ComponentSpecification
+		public RuleCall getComponentsComponentSpecificationParserRuleCall_3_0() { return cComponentsComponentSpecificationParserRuleCall_3_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -360,35 +453,35 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cResourceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertiesResourcePropertieParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
+		private final RuleCall cPropertiesResourcePropertyParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Resource:
-		//	'Resource(' properties+=ResourcePropertie+ ')';
+		//	'Resource(' properties+=ResourceProperty+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Resource(' properties+=ResourcePropertie+ ')'
+		//'Resource(' properties+=ResourceProperty+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Resource('
 		public Keyword getResourceKeyword_0() { return cResourceKeyword_0; }
 		
-		//properties+=ResourcePropertie+
+		//properties+=ResourceProperty+
 		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
 		
-		//ResourcePropertie
-		public RuleCall getPropertiesResourcePropertieParserRuleCall_1_0() { return cPropertiesResourcePropertieParserRuleCall_1_0; }
+		//ResourceProperty
+		public RuleCall getPropertiesResourcePropertyParserRuleCall_1_0() { return cPropertiesResourcePropertyParserRuleCall_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
-	public class ResourcePropertieElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ResourcePropertie");
+	public class ResourcePropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ResourceProperty");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//ResourcePropertie:
+		//ResourceProperty:
 		//	Name | Identifier;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -401,17 +494,18 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//Identifier
 		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
 	}
-	public class TransformationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Transformation");
+	public class TransformationSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.TransformationSpecification");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNQAParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cReasoningParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cCostParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//Transformation:
-		//	NQA | Reasoning;
+		//TransformationSpecification:
+		//	NQA | Reasoning | Cost;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//NQA | Reasoning
+		//NQA | Reasoning | Cost
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//NQA
@@ -419,6 +513,9 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		
 		//Reasoning
 		public RuleCall getReasoningParserRuleCall_1() { return cReasoningParserRuleCall_1; }
+		
+		//Cost
+		public RuleCall getCostParserRuleCall_2() { return cCostParserRuleCall_2; }
 	}
 	public class NQAElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.NQA");
@@ -426,16 +523,17 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Keyword cNQAKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cQualityAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cQualitySTRINGTerminalRuleCall_1_0 = (RuleCall)cQualityAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeTransformationTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Assignment cElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cElementSTRINGTerminalRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//NQA:
-		//	'NQA(' quality=STRING '=' element=STRING ')';
+		//	'NQA(' quality=STRING type=TransformationType element=STRING ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'NQA(' quality=STRING '=' element=STRING ')'
+		//'NQA(' quality=STRING type=TransformationType element=STRING ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'NQA('
@@ -447,8 +545,11 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//STRING
 		public RuleCall getQualitySTRINGTerminalRuleCall_1_0() { return cQualitySTRINGTerminalRuleCall_1_0; }
 		
-		//'='
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		//type=TransformationType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//TransformationType
+		public RuleCall getTypeTransformationTypeEnumRuleCall_2_0() { return cTypeTransformationTypeEnumRuleCall_2_0; }
 		
 		//element=STRING
 		public Assignment getElementAssignment_3() { return cElementAssignment_3; }
@@ -543,16 +644,16 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cKeyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cKeySTRINGTerminalRuleCall_1_0 = (RuleCall)cKeyAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cValueSTRINGTerminalRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Entry:
-		//	'[' key+=STRING+ '=' value=STRING ']';
+		//	'[' key+=STRING+ ':' value=STRING ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'[' key+=STRING+ '=' value=STRING ']'
+		//'[' key+=STRING+ ':' value=STRING ']'
 		public Group getGroup() { return cGroup; }
 		
 		//'['
@@ -564,8 +665,8 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//STRING
 		public RuleCall getKeySTRINGTerminalRuleCall_1_0() { return cKeySTRINGTerminalRuleCall_1_0; }
 		
-		//'='
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
 		//value=STRING
 		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
@@ -576,29 +677,64 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//']'
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
+	public class CostElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Cost");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCostKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeTransformationTypeEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Assignment cCostAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCostINTTerminalRuleCall_2_0 = (RuleCall)cCostAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Cost:
+		//	'Cost(' type=TransformationType cost=INT ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Cost(' type=TransformationType cost=INT ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'Cost('
+		public Keyword getCostKeyword_0() { return cCostKeyword_0; }
+		
+		//type=TransformationType
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//TransformationType
+		public RuleCall getTypeTransformationTypeEnumRuleCall_1_0() { return cTypeTransformationTypeEnumRuleCall_1_0; }
+		
+		//cost=INT
+		public Assignment getCostAssignment_2() { return cCostAssignment_2; }
+		
+		//INT
+		public RuleCall getCostINTTerminalRuleCall_2_0() { return cCostINTTerminalRuleCall_2_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
 	
 	public class ComponentTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.ComponentType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cANYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cANYAnyComponentKeyword_0_0 = (Keyword)cANYEnumLiteralDeclaration_0.eContents().get(0);
+		private final Keyword cANYAnyComponentTypeKeyword_0_0 = (Keyword)cANYEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cBASICEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cBASICBasicKeyword_1_0 = (Keyword)cBASICEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cCOMPOSITEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cCOMPOSITECompositeKeyword_2_0 = (Keyword)cCOMPOSITEEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum ComponentType:
-		//	ANY='AnyComponent' | BASIC='Basic' | COMPOSITE='Composite';
+		//	ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite';
 		public EnumRule getRule() { return rule; }
 		
-		//ANY='AnyComponent' | BASIC='Basic' | COMPOSITE='Composite'
+		//ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ANY='AnyComponent'
+		//ANY='AnyComponentType'
 		public EnumLiteralDeclaration getANYEnumLiteralDeclaration_0() { return cANYEnumLiteralDeclaration_0; }
 		
-		//'AnyComponent'
-		public Keyword getANYAnyComponentKeyword_0_0() { return cANYAnyComponentKeyword_0_0; }
+		//'AnyComponentType'
+		public Keyword getANYAnyComponentTypeKeyword_0_0() { return cANYAnyComponentTypeKeyword_0_0; }
 		
 		//BASIC='Basic'
 		public EnumLiteralDeclaration getBASICEnumLiteralDeclaration_1() { return cBASICEnumLiteralDeclaration_1; }
@@ -616,42 +752,42 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.RoleType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cANYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cANYAnyRoleKeyword_0_0 = (Keyword)cANYEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cCOMPONENTEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cCOMPONENTComponentKeyword_1_0 = (Keyword)cCOMPONENTEnumLiteralDeclaration_1.eContents().get(0);
+		private final Keyword cANYAnyRoleTypeKeyword_0_0 = (Keyword)cANYEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cCOMPONENT_REQUIRED_PROVIDEDEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cCOMPONENT_REQUIRED_PROVIDEDComponentRequiredProvidedKeyword_1_0 = (Keyword)cCOMPONENT_REQUIRED_PROVIDEDEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cCOMPONENT_REQUIREDEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cCOMPONENT_REQUIREDComponentRequiredKeyword_2_0 = (Keyword)cCOMPONENT_REQUIREDEnumLiteralDeclaration_2.eContents().get(0);
 		private final EnumLiteralDeclaration cCOMPONENT_PROVIDEDEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cCOMPONENT_PROVIDEDComponentProvidedKeyword_3_0 = (Keyword)cCOMPONENT_PROVIDEDEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cINFRASTRUCTUREEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cINFRASTRUCTUREInfrastructureKeyword_4_0 = (Keyword)cINFRASTRUCTUREEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cINFRASTRUCTURE_REQUIRED_PROVIDEDEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cINFRASTRUCTURE_REQUIRED_PROVIDEDInfrastructureRequiredProvidedKeyword_4_0 = (Keyword)cINFRASTRUCTURE_REQUIRED_PROVIDEDEnumLiteralDeclaration_4.eContents().get(0);
 		private final EnumLiteralDeclaration cINFRASTRUCTURE_REQUIREDEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
 		private final Keyword cINFRASTRUCTURE_REQUIREDInfrastructureRequiredKeyword_5_0 = (Keyword)cINFRASTRUCTURE_REQUIREDEnumLiteralDeclaration_5.eContents().get(0);
 		private final EnumLiteralDeclaration cINFRASTRUCTURE_PROVIDEDEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
 		private final Keyword cINFRASTRUCTURE_PROVIDEDInfrastructureProvidedKeyword_6_0 = (Keyword)cINFRASTRUCTURE_PROVIDEDEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum RoleType:
-		//	ANY='AnyRole' | COMPONENT='Component' | COMPONENT_REQUIRED='ComponentRequired' |
-		//	COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE='Infrastructure' |
+		//	ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' |
+		//	COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' |
 		//	INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 		public EnumRule getRule() { return rule; }
 		
-		//ANY='AnyRole' | COMPONENT='Component' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided'
-		//| INFRASTRUCTURE='Infrastructure' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' |
-		//INFRASTRUCTURE_PROVIDED='InfrastructureProvided'
+		//ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' |
+		//COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' |
+		//INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ANY='AnyRole'
+		//ANY='AnyRoleType'
 		public EnumLiteralDeclaration getANYEnumLiteralDeclaration_0() { return cANYEnumLiteralDeclaration_0; }
 		
-		//'AnyRole'
-		public Keyword getANYAnyRoleKeyword_0_0() { return cANYAnyRoleKeyword_0_0; }
+		//'AnyRoleType'
+		public Keyword getANYAnyRoleTypeKeyword_0_0() { return cANYAnyRoleTypeKeyword_0_0; }
 		
-		//COMPONENT='Component'
-		public EnumLiteralDeclaration getCOMPONENTEnumLiteralDeclaration_1() { return cCOMPONENTEnumLiteralDeclaration_1; }
+		//COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided'
+		public EnumLiteralDeclaration getCOMPONENT_REQUIRED_PROVIDEDEnumLiteralDeclaration_1() { return cCOMPONENT_REQUIRED_PROVIDEDEnumLiteralDeclaration_1; }
 		
-		//'Component'
-		public Keyword getCOMPONENTComponentKeyword_1_0() { return cCOMPONENTComponentKeyword_1_0; }
+		//'ComponentRequiredProvided'
+		public Keyword getCOMPONENT_REQUIRED_PROVIDEDComponentRequiredProvidedKeyword_1_0() { return cCOMPONENT_REQUIRED_PROVIDEDComponentRequiredProvidedKeyword_1_0; }
 		
 		//COMPONENT_REQUIRED='ComponentRequired'
 		public EnumLiteralDeclaration getCOMPONENT_REQUIREDEnumLiteralDeclaration_2() { return cCOMPONENT_REQUIREDEnumLiteralDeclaration_2; }
@@ -665,11 +801,11 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//'ComponentProvided'
 		public Keyword getCOMPONENT_PROVIDEDComponentProvidedKeyword_3_0() { return cCOMPONENT_PROVIDEDComponentProvidedKeyword_3_0; }
 		
-		//INFRASTRUCTURE='Infrastructure'
-		public EnumLiteralDeclaration getINFRASTRUCTUREEnumLiteralDeclaration_4() { return cINFRASTRUCTUREEnumLiteralDeclaration_4; }
+		//INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided'
+		public EnumLiteralDeclaration getINFRASTRUCTURE_REQUIRED_PROVIDEDEnumLiteralDeclaration_4() { return cINFRASTRUCTURE_REQUIRED_PROVIDEDEnumLiteralDeclaration_4; }
 		
-		//'Infrastructure'
-		public Keyword getINFRASTRUCTUREInfrastructureKeyword_4_0() { return cINFRASTRUCTUREInfrastructureKeyword_4_0; }
+		//'InfrastructureRequiredProvided'
+		public Keyword getINFRASTRUCTURE_REQUIRED_PROVIDEDInfrastructureRequiredProvidedKeyword_4_0() { return cINFRASTRUCTURE_REQUIRED_PROVIDEDInfrastructureRequiredProvidedKeyword_4_0; }
 		
 		//INFRASTRUCTURE_REQUIRED='InfrastructureRequired'
 		public EnumLiteralDeclaration getINFRASTRUCTURE_REQUIREDEnumLiteralDeclaration_5() { return cINFRASTRUCTURE_REQUIREDEnumLiteralDeclaration_5; }
@@ -718,27 +854,83 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//'Provided'
 		public Keyword getPROVIDEDProvidedKeyword_2_0() { return cPROVIDEDProvidedKeyword_2_0; }
 	}
+	public class TransformationTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.TransformationType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cISEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cISEqualsSignKeyword_0_0 = (Keyword)cISEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cPLUSEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cPLUSPlusSignKeyword_1_0 = (Keyword)cPLUSEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cMINUSEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cMINUSHyphenMinusKeyword_2_0 = (Keyword)cMINUSEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cMULTIPLICATIONEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cMULTIPLICATIONAsteriskKeyword_3_0 = (Keyword)cMULTIPLICATIONEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cDIVISIONEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cDIVISIONSolidusKeyword_4_0 = (Keyword)cDIVISIONEnumLiteralDeclaration_4.eContents().get(0);
+		
+		//enum TransformationType:
+		//	IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/';
+		public EnumRule getRule() { return rule; }
+		
+		//IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//IS='='
+		public EnumLiteralDeclaration getISEnumLiteralDeclaration_0() { return cISEnumLiteralDeclaration_0; }
+		
+		//'='
+		public Keyword getISEqualsSignKeyword_0_0() { return cISEqualsSignKeyword_0_0; }
+		
+		//PLUS='+'
+		public EnumLiteralDeclaration getPLUSEnumLiteralDeclaration_1() { return cPLUSEnumLiteralDeclaration_1; }
+		
+		//'+'
+		public Keyword getPLUSPlusSignKeyword_1_0() { return cPLUSPlusSignKeyword_1_0; }
+		
+		//MINUS='-'
+		public EnumLiteralDeclaration getMINUSEnumLiteralDeclaration_2() { return cMINUSEnumLiteralDeclaration_2; }
+		
+		//'-'
+		public Keyword getMINUSHyphenMinusKeyword_2_0() { return cMINUSHyphenMinusKeyword_2_0; }
+		
+		//MULTIPLICATION='*'
+		public EnumLiteralDeclaration getMULTIPLICATIONEnumLiteralDeclaration_3() { return cMULTIPLICATIONEnumLiteralDeclaration_3; }
+		
+		//'*'
+		public Keyword getMULTIPLICATIONAsteriskKeyword_3_0() { return cMULTIPLICATIONAsteriskKeyword_3_0; }
+		
+		//DIVISION='/'
+		public EnumLiteralDeclaration getDIVISIONEnumLiteralDeclaration_4() { return cDIVISIONEnumLiteralDeclaration_4; }
+		
+		//'/'
+		public Keyword getDIVISIONSolidusKeyword_4_0() { return cDIVISIONSolidusKeyword_4_0; }
+	}
 	
 	private final ModelElements pModel;
 	private final QESElements pQES;
-	private final ComponentElements pComponent;
-	private final ComponentPropertieElements pComponentPropertie;
+	private final ComponentSpecificationElements pComponentSpecification;
+	private final ComponentPropertyElements pComponentProperty;
 	private final NameElements pName;
 	private final IdentifierElements pIdentifier;
 	private final TypeElements pType;
 	private final ComponentTypeElements eComponentType;
 	private final RoleElements pRole;
 	private final RoleTypeElements eRoleType;
-	private final RolePropertieElements pRolePropertie;
+	private final RolePropertyElements pRoleProperty;
+	private final InterfaceElements pInterface;
+	private final InterfacePropertyElements pInterfaceProperty;
+	private final MethodSignatureElements pMethodSignature;
 	private final AssemblyElements pAssembly;
 	private final AssemblyTypeElements eAssemblyType;
 	private final ResourceElements pResource;
-	private final ResourcePropertieElements pResourcePropertie;
-	private final TransformationElements pTransformation;
+	private final ResourcePropertyElements pResourceProperty;
+	private final TransformationSpecificationElements pTransformationSpecification;
 	private final NQAElements pNQA;
+	private final TransformationTypeElements eTransformationType;
 	private final ReasoningElements pReasoning;
 	private final RuleElements pRule;
 	private final EntryElements pEntry;
+	private final CostElements pCost;
 	
 	private final Grammar grammar;
 	
@@ -751,24 +943,29 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
 		this.pQES = new QESElements();
-		this.pComponent = new ComponentElements();
-		this.pComponentPropertie = new ComponentPropertieElements();
+		this.pComponentSpecification = new ComponentSpecificationElements();
+		this.pComponentProperty = new ComponentPropertyElements();
 		this.pName = new NameElements();
 		this.pIdentifier = new IdentifierElements();
 		this.pType = new TypeElements();
 		this.eComponentType = new ComponentTypeElements();
 		this.pRole = new RoleElements();
 		this.eRoleType = new RoleTypeElements();
-		this.pRolePropertie = new RolePropertieElements();
+		this.pRoleProperty = new RolePropertyElements();
+		this.pInterface = new InterfaceElements();
+		this.pInterfaceProperty = new InterfacePropertyElements();
+		this.pMethodSignature = new MethodSignatureElements();
 		this.pAssembly = new AssemblyElements();
 		this.eAssemblyType = new AssemblyTypeElements();
 		this.pResource = new ResourceElements();
-		this.pResourcePropertie = new ResourcePropertieElements();
-		this.pTransformation = new TransformationElements();
+		this.pResourceProperty = new ResourcePropertyElements();
+		this.pTransformationSpecification = new TransformationSpecificationElements();
 		this.pNQA = new NQAElements();
+		this.eTransformationType = new TransformationTypeElements();
 		this.pReasoning = new ReasoningElements();
 		this.pRule = new RuleElements();
 		this.pEntry = new EntryElements();
+		this.pCost = new CostElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -809,7 +1006,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//QES:
-	//	'For{' components+=Component+ '}' 'Do{' transformations+=Transformation+ '}';
+	//	'For{' components+=ComponentSpecification+ '}' 'Do{' transformations+=TransformationSpecification+ '}';
 	public QESElements getQESAccess() {
 		return pQES;
 	}
@@ -818,24 +1015,24 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		return getQESAccess().getRule();
 	}
 	
-	//Component:
-	//	'Component(' properties+=ComponentPropertie+ ')';
-	public ComponentElements getComponentAccess() {
-		return pComponent;
+	//ComponentSpecification:
+	//	'Component(' properties+=ComponentProperty+ ')';
+	public ComponentSpecificationElements getComponentSpecificationAccess() {
+		return pComponentSpecification;
 	}
 	
-	public ParserRule getComponentRule() {
-		return getComponentAccess().getRule();
+	public ParserRule getComponentSpecificationRule() {
+		return getComponentSpecificationAccess().getRule();
 	}
 	
-	//ComponentPropertie:
+	//ComponentProperty:
 	//	Name | Identifier | Type | Role | Assembly | Resource;
-	public ComponentPropertieElements getComponentPropertieAccess() {
-		return pComponentPropertie;
+	public ComponentPropertyElements getComponentPropertyAccess() {
+		return pComponentProperty;
 	}
 	
-	public ParserRule getComponentPropertieRule() {
-		return getComponentPropertieAccess().getRule();
+	public ParserRule getComponentPropertyRule() {
+		return getComponentPropertyAccess().getRule();
 	}
 	
 	//Name:
@@ -869,7 +1066,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//enum ComponentType:
-	//	ANY='AnyComponent' | BASIC='Basic' | COMPOSITE='Composite';
+	//	ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite';
 	public ComponentTypeElements getComponentTypeAccess() {
 		return eComponentType;
 	}
@@ -879,7 +1076,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//Role:
-	//	'Role(' not?='Not'? type=RoleType properties+=RolePropertie+ ')';
+	//	'Role(' not?='Not'? type=RoleType properties+=RoleProperty+ ')';
 	public RoleElements getRoleAccess() {
 		return pRole;
 	}
@@ -889,8 +1086,8 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//enum RoleType:
-	//	ANY='AnyRole' | COMPONENT='Component' | COMPONENT_REQUIRED='ComponentRequired' |
-	//	COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE='Infrastructure' |
+	//	ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' |
+	//	COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' |
 	//	INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 	public RoleTypeElements getRoleTypeAccess() {
 		return eRoleType;
@@ -900,18 +1097,48 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		return getRoleTypeAccess().getRule();
 	}
 	
-	//RolePropertie:
-	//	Name | Identifier;
-	public RolePropertieElements getRolePropertieAccess() {
-		return pRolePropertie;
+	//RoleProperty:
+	//	Name | Identifier | Interface;
+	public RolePropertyElements getRolePropertyAccess() {
+		return pRoleProperty;
 	}
 	
-	public ParserRule getRolePropertieRule() {
-		return getRolePropertieAccess().getRule();
+	public ParserRule getRolePropertyRule() {
+		return getRolePropertyAccess().getRule();
+	}
+	
+	//Interface:
+	//	'Interface(' properties+=InterfaceProperty+ ')';
+	public InterfaceElements getInterfaceAccess() {
+		return pInterface;
+	}
+	
+	public ParserRule getInterfaceRule() {
+		return getInterfaceAccess().getRule();
+	}
+	
+	//InterfaceProperty:
+	//	Name | Identifier | MethodSignature;
+	public InterfacePropertyElements getInterfacePropertyAccess() {
+		return pInterfaceProperty;
+	}
+	
+	public ParserRule getInterfacePropertyRule() {
+		return getInterfacePropertyAccess().getRule();
+	}
+	
+	//MethodSignature:
+	//	'Method(' name=STRING ':' parameterTypes+=STRING* ')';
+	public MethodSignatureElements getMethodSignatureAccess() {
+		return pMethodSignature;
+	}
+	
+	public ParserRule getMethodSignatureRule() {
+		return getMethodSignatureAccess().getRule();
 	}
 	
 	//Assembly:
-	//	'Assembly(' not?='Not'? type=AssemblyType components+=Component+ ')';
+	//	'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';
 	public AssemblyElements getAssemblyAccess() {
 		return pAssembly;
 	}
@@ -931,7 +1158,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//Resource:
-	//	'Resource(' properties+=ResourcePropertie+ ')';
+	//	'Resource(' properties+=ResourceProperty+ ')';
 	public ResourceElements getResourceAccess() {
 		return pResource;
 	}
@@ -940,34 +1167,44 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		return getResourceAccess().getRule();
 	}
 	
-	//ResourcePropertie:
+	//ResourceProperty:
 	//	Name | Identifier;
-	public ResourcePropertieElements getResourcePropertieAccess() {
-		return pResourcePropertie;
+	public ResourcePropertyElements getResourcePropertyAccess() {
+		return pResourceProperty;
 	}
 	
-	public ParserRule getResourcePropertieRule() {
-		return getResourcePropertieAccess().getRule();
+	public ParserRule getResourcePropertyRule() {
+		return getResourcePropertyAccess().getRule();
 	}
 	
-	//Transformation:
-	//	NQA | Reasoning;
-	public TransformationElements getTransformationAccess() {
-		return pTransformation;
+	//TransformationSpecification:
+	//	NQA | Reasoning | Cost;
+	public TransformationSpecificationElements getTransformationSpecificationAccess() {
+		return pTransformationSpecification;
 	}
 	
-	public ParserRule getTransformationRule() {
-		return getTransformationAccess().getRule();
+	public ParserRule getTransformationSpecificationRule() {
+		return getTransformationSpecificationAccess().getRule();
 	}
 	
 	//NQA:
-	//	'NQA(' quality=STRING '=' element=STRING ')';
+	//	'NQA(' quality=STRING type=TransformationType element=STRING ')';
 	public NQAElements getNQAAccess() {
 		return pNQA;
 	}
 	
 	public ParserRule getNQARule() {
 		return getNQAAccess().getRule();
+	}
+	
+	//enum TransformationType:
+	//	IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/';
+	public TransformationTypeElements getTransformationTypeAccess() {
+		return eTransformationType;
+	}
+	
+	public EnumRule getTransformationTypeRule() {
+		return getTransformationTypeAccess().getRule();
 	}
 	
 	//Reasoning:
@@ -991,13 +1228,23 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//Entry:
-	//	'[' key+=STRING+ '=' value=STRING ']';
+	//	'[' key+=STRING+ ':' value=STRING ']';
 	public EntryElements getEntryAccess() {
 		return pEntry;
 	}
 	
 	public ParserRule getEntryRule() {
 		return getEntryAccess().getRule();
+	}
+	
+	//Cost:
+	//	'Cost(' type=TransformationType cost=INT ')';
+	public CostElements getCostAccess() {
+		return pCost;
+	}
+	
+	public ParserRule getCostRule() {
+		return getCostAccess().getRule();
 	}
 	
 	//terminal ID:

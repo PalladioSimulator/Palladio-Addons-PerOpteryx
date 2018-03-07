@@ -68,21 +68,25 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
     {
       case QualityEffectSpecificationPackage.MODEL: return createModel();
       case QualityEffectSpecificationPackage.QES: return createQES();
-      case QualityEffectSpecificationPackage.COMPONENT: return createComponent();
-      case QualityEffectSpecificationPackage.COMPONENT_PROPERTIE: return createComponentPropertie();
+      case QualityEffectSpecificationPackage.COMPONENT_SPECIFICATION: return createComponentSpecification();
+      case QualityEffectSpecificationPackage.COMPONENT_PROPERTY: return createComponentProperty();
       case QualityEffectSpecificationPackage.NAME: return createName();
       case QualityEffectSpecificationPackage.IDENTIFIER: return createIdentifier();
       case QualityEffectSpecificationPackage.TYPE: return createType();
       case QualityEffectSpecificationPackage.ROLE: return createRole();
-      case QualityEffectSpecificationPackage.ROLE_PROPERTIE: return createRolePropertie();
+      case QualityEffectSpecificationPackage.ROLE_PROPERTY: return createRoleProperty();
+      case QualityEffectSpecificationPackage.INTERFACE: return createInterface();
+      case QualityEffectSpecificationPackage.INTERFACE_PROPERTY: return createInterfaceProperty();
+      case QualityEffectSpecificationPackage.METHOD_SIGNATURE: return createMethodSignature();
       case QualityEffectSpecificationPackage.ASSEMBLY: return createAssembly();
       case QualityEffectSpecificationPackage.RESOURCE: return createResource();
-      case QualityEffectSpecificationPackage.RESOURCE_PROPERTIE: return createResourcePropertie();
-      case QualityEffectSpecificationPackage.TRANSFORMATION: return createTransformation();
+      case QualityEffectSpecificationPackage.RESOURCE_PROPERTY: return createResourceProperty();
+      case QualityEffectSpecificationPackage.TRANSFORMATION_SPECIFICATION: return createTransformationSpecification();
       case QualityEffectSpecificationPackage.NQA: return createNQA();
       case QualityEffectSpecificationPackage.REASONING: return createReasoning();
       case QualityEffectSpecificationPackage.RULE: return createRule();
       case QualityEffectSpecificationPackage.ENTRY: return createEntry();
+      case QualityEffectSpecificationPackage.COST: return createCost();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -104,6 +108,8 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
         return createRoleTypeFromString(eDataType, initialValue);
       case QualityEffectSpecificationPackage.ASSEMBLY_TYPE:
         return createAssemblyTypeFromString(eDataType, initialValue);
+      case QualityEffectSpecificationPackage.TRANSFORMATION_TYPE:
+        return createTransformationTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -125,6 +131,8 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
         return convertRoleTypeToString(eDataType, instanceValue);
       case QualityEffectSpecificationPackage.ASSEMBLY_TYPE:
         return convertAssemblyTypeToString(eDataType, instanceValue);
+      case QualityEffectSpecificationPackage.TRANSFORMATION_TYPE:
+        return convertTransformationTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -157,10 +165,10 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public Component createComponent()
+  public ComponentSpecification createComponentSpecification()
   {
-    ComponentImpl component = new ComponentImpl();
-    return component;
+    ComponentSpecificationImpl componentSpecification = new ComponentSpecificationImpl();
+    return componentSpecification;
   }
 
   /**
@@ -168,10 +176,10 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public ComponentPropertie createComponentPropertie()
+  public ComponentProperty createComponentProperty()
   {
-    ComponentPropertieImpl componentPropertie = new ComponentPropertieImpl();
-    return componentPropertie;
+    ComponentPropertyImpl componentProperty = new ComponentPropertyImpl();
+    return componentProperty;
   }
 
   /**
@@ -223,10 +231,43 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public RolePropertie createRolePropertie()
+  public RoleProperty createRoleProperty()
   {
-    RolePropertieImpl rolePropertie = new RolePropertieImpl();
-    return rolePropertie;
+    RolePropertyImpl roleProperty = new RolePropertyImpl();
+    return roleProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Interface createInterface()
+  {
+    InterfaceImpl interface_ = new InterfaceImpl();
+    return interface_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InterfaceProperty createInterfaceProperty()
+  {
+    InterfacePropertyImpl interfaceProperty = new InterfacePropertyImpl();
+    return interfaceProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MethodSignature createMethodSignature()
+  {
+    MethodSignatureImpl methodSignature = new MethodSignatureImpl();
+    return methodSignature;
   }
 
   /**
@@ -256,10 +297,10 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public ResourcePropertie createResourcePropertie()
+  public ResourceProperty createResourceProperty()
   {
-    ResourcePropertieImpl resourcePropertie = new ResourcePropertieImpl();
-    return resourcePropertie;
+    ResourcePropertyImpl resourceProperty = new ResourcePropertyImpl();
+    return resourceProperty;
   }
 
   /**
@@ -267,10 +308,10 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public Transformation createTransformation()
+  public TransformationSpecification createTransformationSpecification()
   {
-    TransformationImpl transformation = new TransformationImpl();
-    return transformation;
+    TransformationSpecificationImpl transformationSpecification = new TransformationSpecificationImpl();
+    return transformationSpecification;
   }
 
   /**
@@ -315,6 +356,17 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
   {
     EntryImpl entry = new EntryImpl();
     return entry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Cost createCost()
+  {
+    CostImpl cost = new CostImpl();
+    return cost;
   }
 
   /**
@@ -379,6 +431,28 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * @generated
    */
   public String convertAssemblyTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TransformationType createTransformationTypeFromString(EDataType eDataType, String initialValue)
+  {
+    TransformationType result = TransformationType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTransformationTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }
