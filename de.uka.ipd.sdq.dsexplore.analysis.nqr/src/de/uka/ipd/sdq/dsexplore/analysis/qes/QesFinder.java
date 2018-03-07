@@ -8,10 +8,10 @@ import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.CompositeComponent;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.subsystem.SubSystem;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
+import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Component;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentPropertie;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
@@ -27,7 +27,7 @@ public class QesFinder {
 
     private static final String IDENTIFIER_WILDCARD = "_";
 
-    final DirectedGraph<RepositoryComponent> componentGraph;
+    private final DirectedGraph<RepositoryComponent> componentGraph;
 
     public QesFinder(PCMInstance instance) {
         componentGraph = new DirectedGraph<>();
@@ -37,8 +37,7 @@ public class QesFinder {
                 // Requiring -> Providing | -( --> O-
                 componentGraph.addEdge(
                         ac.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext(),
-                        ac.basicGetProvidingAssemblyContext_AssemblyConnector()
-                                .getEncapsulatedComponent__AssemblyContext());
+                        ac.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext());
             }
         }
     }
@@ -191,10 +190,55 @@ public class QesFinder {
 
     private Set<String> getComponents(Assembly assembly) {
         final Set<String> effectedComponents = new HashSet<>();
-        final Set<String> assemblyComponents = getEffectedComponents(assembly.getComponents());
 
+        boolean isNot = assembly.isNot();
+        AssemblyType type = assembly.getType();
+        if (isNot && type == AssemblyType.ANY) {
+            return effectedComponents; // not any?
+        }
+
+        final Set<String> assemblyComponents = getEffectedComponents(assembly.getComponents());
         if (assemblyComponents.isEmpty()) {
             return effectedComponents;
+        }
+
+        boolean provided = true;
+        boolean required = true;
+
+        if ((isNot && type == AssemblyType.PROVIDED) || (isNot == false && type == AssemblyType.REQUIRED)) {
+            provided = false;
+        } else if ((isNot && type == AssemblyType.REQUIRED) || (isNot == false && type == AssemblyType.PROVIDED)) {
+            required = false;
+        }
+
+        if (required) {
+            for (RepositoryComponent component : componentGraph) {
+                for (RepositoryComponent edge : componentGraph.edgesFrom(component)) {
+                    boolean equals = false;
+                    for (String id : assemblyComponents) {
+                        if (id.equalsIgnoreCase(edge.getId())) {
+                            equals = true;
+                            break;
+                        }
+                    }
+                    if (equals) {
+                        effectedComponents.add(component.getId());
+                    }
+                }
+            }
+        }
+        if (provided) {
+            for (RepositoryComponent component : componentGraph) {
+                for (String id : assemblyComponents) {
+                    if (id.equalsIgnoreCase(component.getId())) {
+                        for (RepositoryComponent edge : componentGraph.edgesFrom(component)) {
+                            effectedComponents.add(edge.getId());
+                        }
+                        break;
+                    }
+                }
+            }
+
         }
 
         return effectedComponents;
