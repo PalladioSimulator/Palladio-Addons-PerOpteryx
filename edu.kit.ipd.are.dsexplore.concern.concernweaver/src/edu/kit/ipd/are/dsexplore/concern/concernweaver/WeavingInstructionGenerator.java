@@ -1,13 +1,13 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
-import java.util.function.UnaryOperator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,6 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
-import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
@@ -51,6 +50,8 @@ import featureSolution.InclusionMechanism;
  */
 public class WeavingInstructionGenerator {
 
+	private static final Random RANDOM = new Random();
+
 	private static WeavingInstructionGenerator instance = null;
 
 	private PCMInstance pcmInstance;
@@ -58,6 +59,7 @@ public class WeavingInstructionGenerator {
 	private FCCFeatureHandler featureHandler;
 	private Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap;
 	private FeatureCompletion fc;
+	private Repository mergedRepo;
 
 	/**
 	 * Returns an already existing or newly created
@@ -106,6 +108,7 @@ public class WeavingInstructionGenerator {
 		WeavingInstructionGenerator.instance.featureHandler = new FCCFeatureHandler(mergedRepo);
 		WeavingInstructionGenerator.instance.eccToResourceContainerMap = eccToResourceContainerMap;
 		WeavingInstructionGenerator.instance.fc = fc;
+		WeavingInstructionGenerator.instance.mergedRepo = mergedRepo;
 	}
 
 	/**
@@ -121,8 +124,17 @@ public class WeavingInstructionGenerator {
 	 *             the weaving instructions.
 	 */
 	public List<WeavingInstruction> getWeavingInstructions(List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException {
-		System pcmSystem = this.pcmInstance.getSystem();
-		List<Repository> pcmSolutionRepository = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
+		// TODO DTHF1 Check
+		/*
+		 * System pcmSystem = this.pcmInstance.getSystem(); List<Repository>
+		 * pcmSolutionRepository =
+		 * StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem,
+		 * Repository.class);
+		 */
+		// TODO DTHF1 Fix merge. Stereotypes will be not accessible after merge
+		// ..
+
+		List<Repository> pcmSolutionRepository = Arrays.asList(this.mergedRepo);
 		try {
 			List<Pair<ComplementumVisnetis, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs(pcmSolutionRepository));
 			List<WeavingInstruction> instructions = new ArrayList<>();
@@ -218,7 +230,8 @@ public class WeavingInstructionGenerator {
 	}
 
 	private List<Pair<ComplementumVisnetis, EObject>> getTargetAnnotatedElementPairs(List<Repository> pcmSolutionRepository) throws ConcernWeavingException {
-		return this.considerOnlyInstantiatedComponents(this.getUncheckedComplementumVisnetisAnnotatedElementPairs(pcmSolutionRepository));
+		List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP = this.getUncheckedComplementumVisnetisAnnotatedElementPairs(pcmSolutionRepository);
+		return this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
 	}
 
 	private List<Pair<ComplementumVisnetis, EObject>> getUncheckedComplementumVisnetisAnnotatedElementPairs(List<Repository> pcmSolutionRepository) {
@@ -253,42 +266,33 @@ public class WeavingInstructionGenerator {
 		}
 
 		return resultPair;
-		// return annotatedElements.map(each ->
-		// Pair.of(AnnotationFilter.getTargetAnnotationFrom(each).get(),
-		// each)).collect(Collectors.toList());
 
 	}
 
 	private List<Pair<ComplementumVisnetis, EObject>> considerOnlyInstantiatedComponents(List<Pair<ComplementumVisnetis, EObject>> annotatedElements) throws ConcernWeavingException {
-		annotatedElements.replaceAll(this.nonInstantiatedComponents());
+		List<Pair<ComplementumVisnetis, EObject>> result = new ArrayList<>();
+		Iterator<Pair<ComplementumVisnetis, EObject>> iter = annotatedElements.iterator();
+		Pair<ComplementumVisnetis, EObject> current;
+		while (iter.hasNext()) {
+			current = iter.next();
+			if (!(current.getSecond() instanceof RepositoryComponent)) {
+				result.add(current);
+				continue;
+			}
+			Pair<ComplementumVisnetis, EObject> replace = Pair.of(current.getFirst(), this.getInstantiatedComponent((RepositoryComponent) current.getSecond()));
+			result.add(replace);
+		}
+		annotatedElements.clear();
+		annotatedElements.addAll(result);
 		return annotatedElements;
-	}
-
-	private UnaryOperator<Pair<ComplementumVisnetis, EObject>> nonInstantiatedComponents() throws ConcernWeavingException {
-		try {
-			return pair -> this.isComponent(pair.getSecond()) ? this.getInstantiatedComponentAndCheckException(pair) : pair;
-		} catch (Exception ex) {
-			throw new ConcernWeavingException(ex.getMessage());
-		}
-	}
-
-	private boolean isComponent(EObject obj) {
-		return obj instanceof RepositoryComponent;
-	}
-
-	private Pair<ComplementumVisnetis, EObject> getInstantiatedComponentAndCheckException(Pair<ComplementumVisnetis, EObject> pair) {
-		try {
-			return Pair.of(pair.getFirst(), this.getInstantiatedComponent((RepositoryComponent) pair.getSecond()));
-		} catch (ConcernWeavingException ex) {
-			throw new RuntimeException(ex);
-		}
 	}
 
 	private EObject getInstantiatedComponent(RepositoryComponent component) throws ConcernWeavingException {
 		if (this.isInstantiated(component)) {
 			return component;
 		}
-		return this.getInstantiatedAlternativeOf(component).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingInstantiation(component)));
+		Optional<RepositoryComponent> alternative = this.getInstantiatedAlternativeOf(component);
+		return alternative.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingInstantiation(component)));
 	}
 
 	private boolean isInstantiated(EObject object) {
@@ -302,8 +306,6 @@ public class WeavingInstructionGenerator {
 			}
 		}
 		return Optional.empty();
-		// return
-		// this.getAllInstantiatedComponents().filter(this.ifFunctionalEqual(component)).findFirst();
 	}
 
 	private boolean ifFunctionalEqual(RepositoryComponent component1, RepositoryComponent toTest) {
@@ -339,24 +341,15 @@ public class WeavingInstructionGenerator {
 			}
 		}
 		return interfaces;
-		// return providedRoles.stream().flatMap(eachProvidedRole ->
-		// eachProvidedRole.eCrossReferences().stream()).filter(eachEObject ->
-		// eachEObject instanceof Interface)
-		// .map(eachEObject -> (Interface)
-		// eachEObject).collect(Collectors.toList());
-
 	}
 
-	private WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> pair, List<Repository> solutionRepos) {
-		try {
-			return this.generateWeavingInstructionFrom(this.getFCCWithRequiredFeaturesFrom(pair.getFirst()), pair.getSecond(), solutionRepos);
-		} catch (ConcernWeavingException ex) {
-			throw new RuntimeException(ex);
-		}
+	private WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> pair, List<Repository> solutionRepos) throws ConcernWeavingException {
+		Pair<CompletionComponent, List<ProvidedRole>> fccWithReqFeatures = this.getFCCWithRequiredFeaturesFrom(pair.getFirst());
+		return this.generateWeavingInstructionFrom(fccWithReqFeatures, pair.getSecond(), solutionRepos);
+
 	}
 
 	private CompletionComponent getFCCByVisnetis(ComplementumVisnetis cv) {
-
 		String featureID = cv.getComplementaryFeature().getId();
 		for (CompletionComponent fccCurrent : this.fc.getCompletionComponents()) {
 			for (Feature fccCurrentProvidedFeature : fccCurrent.getPerimeterProviding().getFeatureProviding()) {
@@ -373,11 +366,12 @@ public class WeavingInstructionGenerator {
 		return Pair.of(fcc, this.featureHandler.getProvidedFeaturesOf(fcc));
 	}
 
-	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation weavingLocation, List<Repository> solutionRepos)
+	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl, List<Repository> solutionRepos)
 			throws ConcernWeavingException {
 
-		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(this.getResourceContainerFrom(fccWithRequiredFeatures.getFirst()))
-				.setTransformationStrategy(this.getTransformationStrategy(solutionRepos)).setWeavingLocation(weavingLocation).build();
+		ResourceContainer container = this.getResourceContainerFrom(fccWithRequiredFeatures.getFirst());
+		InclusionMechanism im = this.getTransformationStrategy(solutionRepos);
+		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(container).setTransformationStrategy(im).setWeavingLocation(wl).build();
 
 	}
 
@@ -389,10 +383,6 @@ public class WeavingInstructionGenerator {
 			components.add(c);
 		}
 		return components;
-		// return
-		// this.pcmInstance.getSystem().getAssemblyContexts__ComposedStructure().stream().map(each
-		// -> each.getEncapsulatedComponent__AssemblyContext());
-
 	}
 
 	private InclusionMechanism getTransformationStrategy(List<Repository> solutionRepos) throws ConcernWeavingException {
@@ -419,7 +409,7 @@ public class WeavingInstructionGenerator {
 	}
 
 	private int getRandomIndex(int bound) {
-		return new Random(java.lang.System.currentTimeMillis()).nextInt(--bound);
+		return WeavingInstructionGenerator.RANDOM.nextInt(--bound);
 	}
 
 }
