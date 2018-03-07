@@ -245,6 +245,10 @@ public class NqrFactory {
         dimensions = loadDimensions(componentIdNqrMap.values(), componentIdReasoningsMap.values());
     }
 
+    public Set<Dimension> getAllDimensions() {
+        return Collections.unmodifiableSet(dimensions);
+    }
+
     public Element createElement(final Object object) {
         if ((object == null) || ((object instanceof SetLiteral) == false)) {
             return error("No SetLiteral");
