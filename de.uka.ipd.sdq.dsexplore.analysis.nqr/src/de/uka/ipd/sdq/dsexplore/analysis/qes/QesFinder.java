@@ -32,7 +32,7 @@ public class QesFinder {
     public QesFinder(PCMInstance instance) {
         componentGraph = new DirectedGraph<>();
         for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
-            if ((c != null) && (c instanceof AssemblyConnectorImpl)) {
+            if (c instanceof AssemblyConnectorImpl) {
                 final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
                 // Requiring -> Providing | -( --> O-
                 componentGraph.addEdge(

@@ -11,6 +11,7 @@ import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
+import org.palladiosimulator.qes.qualityEffectSpecification.TransformationType;
 import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
@@ -24,13 +25,13 @@ public class QesFactory extends NqrFactory {
     private static final Logger LOG = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.qes");
 
     private static void debug(String name, TransformationSpecification transformation) {
-        StringBuilder message = new StringBuilder(name);
+        final StringBuilder message = new StringBuilder(name);
         message.append(": ");
         if (transformation instanceof NQA) {
-            NQA nqa = (NQA) transformation;
+            final NQA nqa = (NQA) transformation;
             message.append(nqa.getQuality()).append("=").append(nqa.getElement());
         } else if (transformation instanceof Reasoning) {
-            Reasoning reasoning = (Reasoning) transformation;
+            final Reasoning reasoning = (Reasoning) transformation;
             message.append(reasoning.getQuality());
         }
 
@@ -68,6 +69,7 @@ public class QesFactory extends NqrFactory {
             return super.getNqrList(componentId);
         }
 
+        final List<NqrProxy> originalNqrs = super.getNqrList(componentId);
         final NqrReductionProxy reduction = createNqrReductionProxy();
         for (final QES specification : parser.getNqaSpecifications()) {
             if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
@@ -76,13 +78,13 @@ public class QesFactory extends NqrFactory {
             for (final TransformationSpecification transformation : specification.getTransformations()) {
                 if ((transformation != null) && (transformation instanceof NQA)) {
                     debug(getComponentName(componentId), transformation); // TODO
-                    reduction.add(createNqrProxy((NQA) transformation));
+                    reduction.add(createNqrProxy((NQA) transformation, originalNqrs));
                 }
             }
         }
 
         final List<NqrProxy> nqrs = new ArrayList<>(reduction.get());
-        for (final NqrProxy original : super.getNqrList(componentId)) {
+        for (final NqrProxy original : originalNqrs) {
             boolean contains = false;
             for (final NqrProxy transformation : nqrs) {
                 if (transformation.getDimensionId().equals(original.getDimensionId())) {
@@ -98,15 +100,19 @@ public class QesFactory extends NqrFactory {
         return Collections.unmodifiableList(nqrs);
     }
 
-    private NqrProxy createNqrProxy(final NQA nqa) {
+    private NqrProxy createNqrProxy(final NQA nqa, List<NqrProxy> originalNqrs) {
         if (nqa == null) {
             return null;
         }
 
         final String quality = nqa.getQuality();
         final String element = nqa.getElement();
+        final TransformationType type = nqa.getType();
+        if ((quality == null) || (element == null) || (type == null)) {
+            return null;
+        }
 
-        if ((quality == null) || (element == null)) {
+        if ((type != TransformationType.IS) && ((originalNqrs == null) || originalNqrs.isEmpty())) {
             return null;
         }
 
@@ -120,16 +126,62 @@ public class QesFactory extends NqrFactory {
         }
 
         // Element +
-        Element nqrElement = getElementByName(element);
-        if (nqrElement == null) {
-            nqrElement = getElementById(element);
+        Element nqrElement = null;
+        if (type == TransformationType.IS) {
+            nqrElement = getElementByName(element);
+            if (nqrElement == null) {
+                nqrElement = getElementById(element);
+            }
+            if (nqrElement == null) {
+                try {
+                    nqrElement = getElementById(getDimensionId(Double.valueOf(element).intValue()));
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
+            if (nqrElement == null) {
+                return null;
+            }
+            return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(nqrDimension.getId()));
         }
+
+        Element originalElement = null;
+        for (final NqrProxy nqrProxy : originalNqrs) {
+            if ((nqrProxy != null) && nqrProxy.getDimensionId().equals(nqrDimension.getId())) {
+                originalElement = nqrProxy.getElement();
+                break;
+            }
+        }
+        if (originalElement == null) {
+            return null;
+        }
+
+        int order = getDimensionOrder(originalElement.getId());
+        if (order == -1) {
+            return null;
+        }
+
+        try {
+            final double value = Double.valueOf(element);
+            if (type == TransformationType.PLUS) {
+                order += value;
+            } else if (type == TransformationType.MINUS) {
+                order -= value;
+            } else if (type == TransformationType.MULTIPLICATION) {
+                order *= value;
+            } else if (type == TransformationType.DIVISION) {
+                order /= value;
+            }
+        } catch (NumberFormatException | ArithmeticException e) {
+            return null;
+        }
+
+        nqrElement = getElementById(getDimensionId(order));
         if (nqrElement == null) {
             return null;
         }
 
         return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(nqrDimension.getId()));
-
     }
 
     @Override
@@ -138,17 +190,17 @@ public class QesFactory extends NqrFactory {
             return super.getReasoningList(componentId);
         }
 
-        List<ReasoningProxy> reasonings = new ArrayList<ReasoningProxy>();
+        final List<ReasoningProxy> reasonings = new ArrayList<>();
 
         for (final QES specification : parser.getReasoningSpecifications()) {
             if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
                 continue;
             }
             for (final TransformationSpecification transformation : specification.getTransformations()) {
-                if ((transformation == null) || (transformation instanceof Reasoning) == false) {
+                if ((transformation == null) || ((transformation instanceof Reasoning) == false)) {
                     continue;
                 }
-                ReasoningProxy newReasoning = createReasoningProxy((Reasoning) transformation);
+                final ReasoningProxy newReasoning = createReasoningProxy((Reasoning) transformation);
                 if (newReasoning == null) {
                     continue;
                 }

@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
@@ -20,10 +21,11 @@ public class QesParser {
         return loadFrom.isPlatform() ? loadFrom : URI.createFileURI(string);
     }
 
-    private final boolean isEmpty;
     private final Model model;
-    private final Set<QES> nqas;
-    private final Set<QES> reasonings;
+    private final boolean isEmpty;
+    private final Set<QES> nqa;
+    private final Set<QES> reasoning;
+    private final Set<QES> cost;
 
     public QesParser(String string) throws ParseException {
         this(createURI(string));
@@ -40,6 +42,7 @@ public class QesParser {
 
         final Set<QES> n = new HashSet<>();
         final Set<QES> r = new HashSet<>();
+        final Set<QES> c = new HashSet<>();
         isEmpty = (model.getSpecifications() == null) || model.getSpecifications().isEmpty();
 
         for (final QES specification : model.getSpecifications()) {
@@ -48,12 +51,15 @@ public class QesParser {
                     n.add(specification);
                 } else if (transformation instanceof Reasoning) {
                     r.add(specification);
+                } else if (transformation instanceof Cost) {
+                    c.add(specification);
                 }
             }
         }
 
-        nqas = Collections.unmodifiableSet(n);
-        reasonings = Collections.unmodifiableSet(r);
+        nqa = Collections.unmodifiableSet(n);
+        reasoning = Collections.unmodifiableSet(r);
+        cost = Collections.unmodifiableSet(c);
     }
 
     @Override
@@ -66,11 +72,15 @@ public class QesParser {
     }
 
     public Set<QES> getNqaSpecifications() {
-        return nqas;
+        return nqa;
     }
 
     public Set<QES> getReasoningSpecifications() {
-        return reasonings;
+        return reasoning;
+    }
+
+    public Set<QES> getCostSpecifications() {
+        return cost;
     }
 
     @Override

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 
 public class NqrReductionProxy {
