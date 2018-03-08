@@ -3194,14 +3194,14 @@ public interface specificPackage extends EPackage {
 	int AT_NUMBER_OF_REPLICA_DEGREE_FEATURE_COUNT = DISCRETE_RANGE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureCompletionDegreeImpl <em>Feature Completion Degree</em>}' class.
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ConcernDegreeImpl <em>Concern Degree</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureCompletionDegreeImpl
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getFeatureCompletionDegree()
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.ConcernDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getConcernDegree()
 	 * @generated
 	 */
-	int FEATURE_COMPLETION_DEGREE = 38;
+	int CONCERN_DEGREE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
@@ -3210,7 +3210,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+	int CONCERN_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
@@ -3219,7 +3219,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
+	int CONCERN_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
 
 	/**
 	 * The feature id for the '<em><b>Dof</b></em>' reference.
@@ -3228,7 +3228,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
+	int CONCERN_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
 
 	/**
 	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
@@ -3237,7 +3237,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+	int CONCERN_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
@@ -3246,7 +3246,7 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__DECORATOR_MODEL = CLASS_AS_REFERENCE_DEGREE__DECORATOR_MODEL;
+	int CONCERN_DEGREE__DECORATOR_MODEL = CLASS_AS_REFERENCE_DEGREE__DECORATOR_MODEL;
 
 	/**
 	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
@@ -3255,16 +3255,16 @@ public interface specificPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
+	int CONCERN_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
 
 	/**
-	 * The number of structural features of the '<em>Feature Completion Degree</em>' class.
+	 * The number of structural features of the '<em>Concern Degree</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_COMPLETION_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+	int CONCERN_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureDegreeImpl <em>Feature Degree</em>}' class.
@@ -3950,14 +3950,14 @@ public interface specificPackage extends EPackage {
 	EClass getATNumberOfReplicaDegree();
 
 	/**
-	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree <em>Feature Completion Degree</em>}'.
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree <em>Concern Degree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Feature Completion Degree</em>'.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree
+	 * @return the meta object for class '<em>Concern Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree
 	 * @generated
 	 */
-	EClass getFeatureCompletionDegree();
+	EClass getConcernDegree();
 
 	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree <em>Feature Degree</em>}'.
@@ -4510,14 +4510,14 @@ public interface specificPackage extends EPackage {
 		EClass AT_NUMBER_OF_REPLICA_DEGREE = eINSTANCE.getATNumberOfReplicaDegree();
 
 		/**
-		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureCompletionDegreeImpl <em>Feature Completion Degree</em>}' class.
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ConcernDegreeImpl <em>Concern Degree</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureCompletionDegreeImpl
-		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getFeatureCompletionDegree()
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.ConcernDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getConcernDegree()
 		 * @generated
 		 */
-		EClass FEATURE_COMPLETION_DEGREE = eINSTANCE.getFeatureCompletionDegree();
+		EClass CONCERN_DEGREE = eINSTANCE.getConcernDegree();
 
 		/**
 		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureDegreeImpl <em>Feature Degree</em>}' class.

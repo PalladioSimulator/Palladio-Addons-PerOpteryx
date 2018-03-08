@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.are.dsexplore.concern.structureModel/src"
+    modelPluginID="edu.kit.ipd.are.dsexplore.concern.structureModel" modelName="ConcernStructure"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.palladiosimulator.pcm/model/pcm.genmodel#//pcm platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier ../../de.uka.ipd.sdq.probfunction/model/ProbabilityFunction.genmodel#//probfunction ../../de.uka.ipd.sdq.stoex/model/stoex.genmodel#//stoex ../../de.uka.ipd.sdq.units/model/Units.genmodel#//units"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>transformation.ecore</foreignModel>
+  <genPackages prefix="TransformationModel" disposableProviderFactory="true" ecorePackage="transformation.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="transformation.ecore#//Appearance">
+      <genEnumLiterals ecoreEnumLiteral="transformation.ecore#//Appearance/BEFORE"/>
+      <genEnumLiterals ecoreEnumLiteral="transformation.ecore#//Appearance/AFTER"/>
+      <genEnumLiterals ecoreEnumLiteral="transformation.ecore#//Appearance/AROUND"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="transformation.ecore#//Transformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transformation.ecore#//Transformation/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transformation.ecore#//Transformation/multiple"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transformation.ecore#//Transformation/injectable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transformation.ecore#//Transformation/target"/>
+    </genClasses>
+    <genClasses ecoreClass="transformation.ecore#//TransformationRepository">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transformation.ecore#//TransformationRepository/transformations"/>
+    </genClasses>
+    <genClasses ecoreClass="transformation.ecore#//DecoratorTransformation"/>
+    <genClasses ecoreClass="transformation.ecore#//AdapterTransformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transformation.ecore#//AdapterTransformation/appear"/>
+    </genClasses>
+  </genPackages>
+    <foreignModel>solution.ecore</foreignModel>
+    <genPackages prefix="SolutionModel" disposableProviderFactory="true" ecorePackage="solution.ecore#/">
+        <genClasses image="false" ecoreClass="solution.ecore#//Solution">
+        	
+        </genClasses>
+    </genPackages>
+  <genPackages prefix="ConcernModel" disposableProviderFactory="true" ecorePackage="concerns.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="concerns.ecore#//Association">
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//Association/INDIFFERENT"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//Association/TOGETHER"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//Association/ISOLATED"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//Association/SEPARATED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="concerns.ecore#//JoinPoint">
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//JoinPoint/SIGNATURE"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//JoinPoint/INTERFACE"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//JoinPoint/INTERFACE_REQUIRES"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//JoinPoint/INTERFACE_PROVIDES"/>
+      <genEnumLiterals ecoreEnumLiteral="concerns.ecore#//JoinPoint/COMPONENT"/>
+    </genEnums>
+    <genClasses ecoreClass="concerns.ecore#//ConcernRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//ConcernRepository/concerns"/>
+    </genClasses>
+    <genClasses ecoreClass="concerns.ecore#//Concern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//Concern/strategies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//Concern/components"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//Concern/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//Concern/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//Concern/annotationtarget"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//Concern/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="concerns.ecore#//ConcernStrategy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//ConcernStrategy/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//ConcernStrategy/description"/>
+    </genClasses>
+    <genClasses ecoreClass="concerns.ecore#//ElementarayConcernComponent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference concerns.ecore#//ElementarayConcernComponent/requires"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//ElementarayConcernComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//ElementarayConcernComponent/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference concerns.ecore#//ElementarayConcernComponent/annotationenrich"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference concerns.ecore#//ElementarayConcernComponent/perimeterInterface"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="concerns.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//Annotation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//Annotation/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//Annotation/maxAmount"/>
+    </genClasses>
+    <genClasses ecoreClass="concerns.ecore#//AnnotationTarget">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//AnnotationTarget/joinPoint"/>
+    </genClasses>
+    <genClasses ecoreClass="concerns.ecore#//AnnotationEnrich"/>
+    <genClasses ecoreClass="concerns.ecore#//DeploymentConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute concerns.ecore#//DeploymentConstraint/association"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference concerns.ecore#//DeploymentConstraint/annotations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

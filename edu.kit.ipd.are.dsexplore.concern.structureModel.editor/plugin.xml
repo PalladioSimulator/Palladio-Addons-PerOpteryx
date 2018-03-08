@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated concernStructure -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="TransformationModel.presentation.TransformationModelModelWizardID"
+            name="%_UI_TransformationModelModelWizard_label"
+            class="TransformationModel.presentation.TransformationModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TransformationModelModelFile.gif">
+         <description>%_UI_TransformationModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated concernStructure -->
+      <editor
+            id="TransformationModel.presentation.TransformationModelEditorID"
+            name="%_UI_TransformationModelEditor_label"
+            icon="icons/full/obj16/TransformationModelModelFile.gif"
+            extensions="transformationmodel"
+            class="TransformationModel.presentation.TransformationModelEditor"
+            contributorClass="TransformationModel.presentation.TransformationModelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated concernStructure -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="SolutionModel.presentation.SolutionModelModelWizardID"
+            name="%_UI_SolutionModelModelWizard_label"
+            class="SolutionModel.presentation.SolutionModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SolutionModelModelFile.gif">
+         <description>%_UI_SolutionModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated concernStructure -->
+      <editor
+            id="SolutionModel.presentation.SolutionModelEditorID"
+            name="%_UI_SolutionModelEditor_label"
+            icon="icons/full/obj16/SolutionModelModelFile.gif"
+            extensions="solutionmodel"
+            class="SolutionModel.presentation.SolutionModelEditor"
+            contributorClass="SolutionModel.presentation.SolutionModelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated concernStructure -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="ConcernModel.presentation.ConcernModelModelWizardID"
+            name="%_UI_ConcernModelModelWizard_label"
+            class="ConcernModel.presentation.ConcernModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ConcernModelModelFile.gif">
+         <description>%_UI_ConcernModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated concernStructure -->
+      <editor
+            id="ConcernModel.presentation.ConcernModelEditorID"
+            name="%_UI_ConcernModelEditor_label"
+            icon="icons/full/obj16/ConcernModelModelFile.gif"
+            extensions="concernmodel"
+            class="ConcernModel.presentation.ConcernModelEditor"
+            contributorClass="ConcernModel.presentation.ConcernModelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

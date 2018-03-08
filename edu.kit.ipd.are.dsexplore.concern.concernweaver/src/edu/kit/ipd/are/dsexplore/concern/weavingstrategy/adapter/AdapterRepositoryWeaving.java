@@ -8,9 +8,9 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
@@ -32,13 +32,13 @@ public abstract class AdapterRepositoryWeaving extends AdapterWeaving {
 	@Override
 	public void weave(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
 		this.setAdapterComponentRegarding(weavingInstruction);
-		this.connectAdapterTo(weavingInstruction.getFCCWithConsumedFeatures().getSecond());
+		this.connectAdapterTo(weavingInstruction.getECCWithConsumedFeatures().getSecond());
 		this.weaveAdapterIntoRepository(weavingInstruction.getWeavingLocation());
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
 		String uniqueAdapterName = ConcernWeaverUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
-		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
+		if (weavingInstruction.getTransformationStrategy().isMultiple()) {
 			AdapterWeaving.setAdapterComponent(AdapterWeaving.concernRepositoryManager.createAndAddAdapter(uniqueAdapterName));
 		} else {
 			AdapterWeaving.setAdapterComponent(this.getOrCreateAdapterComponent(uniqueAdapterName));

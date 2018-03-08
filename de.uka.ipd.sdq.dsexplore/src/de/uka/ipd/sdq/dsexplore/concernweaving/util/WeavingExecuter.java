@@ -10,24 +10,24 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.CompletionComponent;
-import FeatureCompletionModel.FeatureCompletion;
+import ConcernModel.Concern;
+import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
-import edu.kit.ipd.are.dsexplore.concern.handler.FCCStructureHandler;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCStructureHandler;
 import edu.kit.ipd.are.dsexplore.concern.manager.ConcernSolutionManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
@@ -35,8 +35,8 @@ import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 //XXX This implementation assumes that only one concern is going to be woven.
 public class WeavingExecuter {
 
-	private Pair<FeatureCompletion, Repository> concernWithSolutionPair;
-	private List<ClassChoice> fccClassChoices = new ArrayList<>();
+	private Pair<Concern, Solution> concernWithSolutionPair;
+	private List<ClassChoice> eccClassChoices = new ArrayList<>();
 	private PCMInstance wovenPCM = null;
 	/**
 	 * The list maps {@link FeatureDegree FeatureDegrees} to their {@link Choice
@@ -81,12 +81,12 @@ public class WeavingExecuter {
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {
-		this.concernWithSolutionPair = Pair.of(this.getConcernFrom(concernChoice), (Repository) concernChoice.getChosenValue());
+		this.concernWithSolutionPair = Pair.of(this.getConcernFrom(concernChoice), (Solution) concernChoice.getChosenValue());
 	}
 
 	private void initECCClassChoices(List<Choice> choices) {
 		List<ClassChoice> eccAllocDegrees = this.getAllocDegreesRelatedTo(this.concernWithSolutionPair.getFirst(), choices);
-		this.fccClassChoices.addAll(eccAllocDegrees);
+		this.eccClassChoices.addAll(eccAllocDegrees);
 		choices.removeAll(eccAllocDegrees);
 	}
 
@@ -99,10 +99,10 @@ public class WeavingExecuter {
 		return Optional.empty();
 	}
 
-	private List<ClassChoice> getAllocDegreesRelatedTo(FeatureCompletion fc, List<Choice> notTransformedChoices) {
+	private List<ClassChoice> getAllocDegreesRelatedTo(Concern concern, List<Choice> notTransformedChoices) {
 		List<ClassChoice> res = new ArrayList<>();
 		for (Choice choice : notTransformedChoices) {
-			if (this.isAllocationDegreeWithECC(choice.getDegreeOfFreedomInstance()) && this.isRelatedTo(fc, (AllocationDegree) choice.getDegreeOfFreedomInstance())) {
+			if (this.isAllocationDegreeWithECC(choice.getDegreeOfFreedomInstance()) && this.isRelatedTo(concern, (AllocationDegree) choice.getDegreeOfFreedomInstance())) {
 				res.add((ClassChoice) choice);
 			}
 		}
@@ -110,27 +110,27 @@ public class WeavingExecuter {
 
 	}
 
-	private FeatureCompletion getConcernFrom(ClassChoice fcChoice) {
-		FeatureCompletionDegree fcDegree = (FeatureCompletionDegree) fcChoice.getDegreeOfFreedomInstance();
-		return (FeatureCompletion) (fcDegree).getPrimaryChanged();
+	private Concern getConcernFrom(ClassChoice concernChoice) {
+		ConcernDegree concernDegree = (ConcernDegree) concernChoice.getDegreeOfFreedomInstance();
+		return (Concern) (concernDegree).getPrimaryChanged();
 	}
 
-	private FeatureCompletion getFCFrom(AllocationDegree allocDegree) {
-		CompletionComponent fcc = (CompletionComponent) allocDegree.getPrimaryChanged();
-		return (FeatureCompletion) fcc.eContainer();
+	private Concern getConcernFrom(AllocationDegree allocDegree) {
+		ElementaryConcernComponent ecc = (ElementaryConcernComponent) allocDegree.getPrimaryChanged();
+		return (Concern) ecc.eContainer();
 	}
 
 	private boolean isConcernDegree(DegreeOfFreedomInstance degreeOfFreedomInstance) {
-		return degreeOfFreedomInstance instanceof FeatureCompletionDegree;
+		return degreeOfFreedomInstance instanceof ConcernDegree;
 	}
 
 	private boolean isAllocationDegreeWithECC(DegreeOfFreedomInstance degreeOfFreedomInstance) {
-		return degreeOfFreedomInstance instanceof AllocationDegree && ((AllocationDegree) degreeOfFreedomInstance).getPrimaryChanged() instanceof CompletionComponent;
+		return degreeOfFreedomInstance instanceof AllocationDegree && ((AllocationDegree) degreeOfFreedomInstance).getPrimaryChanged() instanceof ElementaryConcernComponent;
 	}
 
-	private boolean isRelatedTo(FeatureCompletion fc, AllocationDegree allocDegree) {
-		String expectedConcernName = fc.getName();
-		String actualConcernName = this.getFCFrom(allocDegree).getName();
+	private boolean isRelatedTo(Concern concern, AllocationDegree allocDegree) {
+		String expectedConcernName = concern.getName();
+		String actualConcernName = this.getConcernFrom(allocDegree).getName();
 		return expectedConcernName.equals(actualConcernName);
 	}
 
@@ -139,21 +139,21 @@ public class WeavingExecuter {
 			return pcm;
 		}
 		WeavingManager weavingManager = WeavingManager.getInstance().orElseThrow(() -> new ConcernWeavingException(ErrorMessage.weavingManagerIsNotInitialized()));
-		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getFCCAllocationMap(), this.optChoice);
+		this.wovenPCM = weavingManager.getWeavedPCMInstanceOf(this.concernWithSolutionPair.getFirst(), this.concernWithSolutionPair.getSecond(), this.getECCAllocationMap(), this.optChoice);
 		return this.wovenPCM;
 	}
 
-	private Map<CompletionComponent, ResourceContainer> getFCCAllocationMap() {
-		Map<CompletionComponent, ResourceContainer> fccAllocationMap = new HashMap<>();
-		for (ClassChoice fccClassChoice : this.fccClassChoices) {
-			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
-			ResourceContainer chosenResourceContainer = (ResourceContainer) fccClassChoice.getChosenValue();
-			fccAllocationMap.put(fcc, chosenResourceContainer);
+	private Map<ElementaryConcernComponent, ResourceContainer> getECCAllocationMap() {
+		Map<ElementaryConcernComponent, ResourceContainer> eccAllocationMap = new HashMap<>();
+		for (ClassChoice eccClassChoice : this.eccClassChoices) {
+			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			ResourceContainer chosenResourceContainer = (ResourceContainer) eccClassChoice.getChosenValue();
+			eccAllocationMap.put(ecc, chosenResourceContainer);
 		}
-		return fccAllocationMap;
+		return eccAllocationMap;
 	}
 
-	public List<ClassChoice> getConvertedFCCClassChoices() {
+	public List<ClassChoice> getConvertedECCClassChoices() {
 		if (!this.checkIfPCMInstanceWasWoven()) {
 			return Collections.emptyList();
 		}
@@ -161,17 +161,17 @@ public class WeavingExecuter {
 		PcmAllocationManager allocManager = PcmAllocationManager.getInstanceBy(this.wovenPCM.getAllocation());
 		List<ClassChoice> allocChoices = new ArrayList<>();
 
-		for (ClassChoice fccClassChoice : this.fccClassChoices) {
-			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
-			FCCStructureHandler eccHandler = new FCCStructureHandler(fcc, ConcernSolutionManager.getInstanceBy(this.concernWithSolutionPair.getSecond()));
-			for (RepositoryComponent comp : eccHandler.getStructureOfFCCAccordingTo(component -> Arrays.asList(component))) {
+		for (ClassChoice eccClassChoice : this.eccClassChoices) {
+			ElementaryConcernComponent ecc = (ElementaryConcernComponent) eccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			ECCStructureHandler eccHandler = new ECCStructureHandler(ecc, ConcernSolutionManager.getInstanceBy(this.concernWithSolutionPair.getSecond()));
+			for (RepositoryComponent comp : eccHandler.getStructureOfECCAccordingTo(component -> Arrays.asList(component))) {
 				try {
 					AllocationContext alloc = allocManager.getAllocationContextContaining(comp);
 					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
 					ad.setPrimaryChanged(alloc);
 					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
 					choice.setDegreeOfFreedomInstance(ad);
-					choice.setChosenValue(fccClassChoice.getChosenValue());
+					choice.setChosenValue(eccClassChoice.getChosenValue());
 					allocChoices.add(choice);
 				} catch (Exception e) {
 					// Can be ignored

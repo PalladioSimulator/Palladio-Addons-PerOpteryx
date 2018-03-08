@@ -21,8 +21,8 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 import org.palladiosimulator.pcm.system.System;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 /**

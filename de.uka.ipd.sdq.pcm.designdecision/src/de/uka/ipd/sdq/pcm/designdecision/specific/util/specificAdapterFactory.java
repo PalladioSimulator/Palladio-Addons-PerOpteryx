@@ -296,8 +296,8 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseFeatureCompletionDegree(FeatureCompletionDegree object) {
-			return createFeatureCompletionDegreeAdapter();
+		public Adapter caseConcernDegree(ConcernDegree object) {
+			return createConcernDegreeAdapter();
 		}
 
 		@Override
@@ -852,16 +852,16 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree <em>Feature Completion Degree</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree <em>Concern Degree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree
 	 * @generated
 	 */
-	public Adapter createFeatureCompletionDegreeAdapter() {
+	public Adapter createConcernDegreeAdapter() {
 		return null;
 	}
 

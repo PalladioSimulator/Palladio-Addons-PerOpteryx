@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Signature;
 
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
@@ -81,8 +80,8 @@ public class WeavingLocationMerger {
 		// w1.getLocation())).get();
 	}
 
-	private List<OperationSignature> mergeSignaturesOf(WeavingLocation w1, WeavingLocation w2) {
-		List<OperationSignature> sigs = new ArrayList<>();
+	private List<Signature> mergeSignaturesOf(WeavingLocation w1, WeavingLocation w2) {
+		List<Signature> sigs = new ArrayList<>();
 		sigs.addAll(w1.getAffectedSignatures());
 		sigs.addAll(w2.getAffectedSignatures());
 		return sigs.stream().distinct().collect(Collectors.toList());

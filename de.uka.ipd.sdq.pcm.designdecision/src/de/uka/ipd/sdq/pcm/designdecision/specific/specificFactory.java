@@ -239,13 +239,13 @@ public interface specificFactory extends EFactory {
 	ATNumberOfReplicaDegree createATNumberOfReplicaDegree();
 
 	/**
-	 * Returns a new object of class '<em>Feature Completion Degree</em>'.
+	 * Returns a new object of class '<em>Concern Degree</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Completion Degree</em>'.
+	 * @return a new object of class '<em>Concern Degree</em>'.
 	 * @generated
 	 */
-	FeatureCompletionDegree createFeatureCompletionDegree();
+	ConcernDegree createConcernDegree();
 
 	/**
 	 * Returns a new object of class '<em>Feature Degree</em>'.

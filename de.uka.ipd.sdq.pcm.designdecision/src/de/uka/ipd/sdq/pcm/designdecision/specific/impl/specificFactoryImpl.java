@@ -122,8 +122,8 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 			return createMonitoringDegree();
 		case specificPackage.AT_NUMBER_OF_REPLICA_DEGREE:
 			return createATNumberOfReplicaDegree();
-		case specificPackage.FEATURE_COMPLETION_DEGREE:
-			return createFeatureCompletionDegree();
+		case specificPackage.CONCERN_DEGREE:
+			return createConcernDegree();
 		case specificPackage.FEATURE_DEGREE:
 			return createFeatureDegree();
 		default:
@@ -377,9 +377,9 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	 * @generated
 	 */
 	@Override
-	public FeatureCompletionDegree createFeatureCompletionDegree() {
-		FeatureCompletionDegreeImpl featureCompletionDegree = new FeatureCompletionDegreeImpl();
-		return featureCompletionDegree;
+	public ConcernDegree createConcernDegree() {
+		ConcernDegreeImpl concernDegree = new ConcernDegreeImpl();
+		return concernDegree;
 	}
 
 	/**

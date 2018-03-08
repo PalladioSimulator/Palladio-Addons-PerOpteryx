@@ -13,7 +13,6 @@ import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import de.uka.ipd.sdq.identifier.Identifier;
 
 public class ConcernWeaverUtil {

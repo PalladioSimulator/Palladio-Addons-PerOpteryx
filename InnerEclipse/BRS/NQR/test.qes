@@ -23,18 +23,6 @@ For{
 }
 
 For{
-	Component( Role(Not Infrastructure Id(_)))
-} Do{
-	NQA("NotInfrastructure"="0")
-}
-
-For{
-	Component( Role(Not Infrastructure Id(_)))
-} Do{
-	NQA("NotInfrastructure"="0")
-}
-
-For{
 	Component( Assembly(AnyAssembly Component(Id(_))))
 } Do{
 	NQA("AnyAssembly"="+")

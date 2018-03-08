@@ -3,7 +3,6 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 import java.util.List;
 
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Signature;
 
 /**
@@ -14,7 +13,7 @@ import org.palladiosimulator.pcm.repository.Signature;
  */
 public class WeavingLocation {
 
-	private final List<? extends OperationSignature> affectedSignatures;
+	private final List<? extends Signature> affectedSignatures;
 	private final Connector location;
 
 	/**
@@ -26,7 +25,7 @@ public class WeavingLocation {
 	 * @param location
 	 *            - Represents the concrete location that needs to be woven.
 	 */
-	public WeavingLocation(List<? extends OperationSignature> affectedSignatures, Connector location) {
+	public WeavingLocation(List<? extends Signature> affectedSignatures, Connector location) {
 		this.affectedSignatures = affectedSignatures;
 		this.location = location;
 	}
@@ -36,7 +35,7 @@ public class WeavingLocation {
 	 *
 	 * @return the affected signatures.
 	 */
-	public List<? extends OperationSignature> getAffectedSignatures() {
+	public List<? extends Signature> getAffectedSignatures() {
 		return this.affectedSignatures;
 	}
 

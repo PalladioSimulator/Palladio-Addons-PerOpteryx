@@ -1,45 +1,45 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.function.UnaryOperator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.ComplementumVisnetis;
-import FeatureCompletionModel.CompletionComponent;
-import FeatureCompletionModel.FeatureCompletion;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+import ConcernModel.AnnotationEnrich;
+import ConcernModel.AnnotationTarget;
+import ConcernModel.Concern;
+import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
+import TransformationModel.Transformation;
+import concernStrategy.Feature;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
-import edu.kit.ipd.are.dsexplore.concern.handler.FCCFeatureHandler;
-import edu.kit.ipd.are.dsexplore.concern.manager.FeatureCompletionManager;
+import edu.kit.ipd.are.dsexplore.concern.handler.ECCFeatureHandler;
+import edu.kit.ipd.are.dsexplore.concern.manager.ConcernManager;
 import edu.kit.ipd.are.dsexplore.concern.manager.PcmSystemManager;
+import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 import edu.kit.ipd.are.dsexplore.concern.util.WeavingInstructionBuilder;
-import featureObjective.Feature;
-import featureSolution.InclusionMechanism;
 
 /**
  * This class is responsible to derive all weaving instructions from an
@@ -50,16 +50,12 @@ import featureSolution.InclusionMechanism;
  */
 public class WeavingInstructionGenerator {
 
-	private static final Random RANDOM = new Random();
-
 	private static WeavingInstructionGenerator instance = null;
 
 	private PCMInstance pcmInstance;
-	private FeatureCompletionManager concernManager;
-	private FCCFeatureHandler featureHandler;
-	private Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap;
-	private FeatureCompletion fc;
-	private Repository mergedRepo;
+	private ConcernManager concernManager;
+	private ECCFeatureHandler featureHandler;
+	private Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap;
 
 	/**
 	 * Returns an already existing or newly created
@@ -67,14 +63,14 @@ public class WeavingInstructionGenerator {
 	 *
 	 * @param pcmInstance
 	 *            - The annotated PCM model.
-	 * @param fc
+	 * @param concern
 	 *            - The concern model.
 	 * @param concernSolution
 	 *            - The concern solution realizing a concern.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo) {
-		WeavingInstructionGenerator.initialize(pcmInstance, fc, mergedRepo, new HashMap<CompletionComponent, ResourceContainer>());
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Solution concernSolution) {
+		WeavingInstructionGenerator.initialize(pcmInstance, concern, concernSolution, new HashMap<ElementaryConcernComponent, ResourceContainer>());
 		return WeavingInstructionGenerator.instance;
 	}
 
@@ -93,22 +89,21 @@ public class WeavingInstructionGenerator {
 	 *            suppose to be allocated.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo,
-			Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap) {
-		WeavingInstructionGenerator.initialize(pcmInstance, fc, mergedRepo, eccToResourceContainerMap);
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, Concern concern, Solution concernSolution,
+			Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
+		WeavingInstructionGenerator.initialize(pcmInstance, concern, concernSolution, eccToResourceContainerMap);
 		return WeavingInstructionGenerator.instance;
 	}
 
-	private static void initialize(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo, Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap) {
+	private static void initialize(PCMInstance pcmInstance, Concern concern, Solution concernSolution, Map<ElementaryConcernComponent, ResourceContainer> eccToResourceContainerMap) {
 		if (WeavingInstructionGenerator.instance == null) {
 			WeavingInstructionGenerator.instance = new WeavingInstructionGenerator();
 		}
 		WeavingInstructionGenerator.instance.pcmInstance = pcmInstance;
-		WeavingInstructionGenerator.instance.concernManager = FeatureCompletionManager.getInstanceBy(fc);
-		WeavingInstructionGenerator.instance.featureHandler = new FCCFeatureHandler(mergedRepo);
+		WeavingInstructionGenerator.instance.concernManager = ConcernManager.getInstanceBy(concern);
+		WeavingInstructionGenerator.instance.featureHandler = new ECCFeatureHandler(concernSolution);
 		WeavingInstructionGenerator.instance.eccToResourceContainerMap = eccToResourceContainerMap;
-		WeavingInstructionGenerator.instance.fc = fc;
-		WeavingInstructionGenerator.instance.mergedRepo = mergedRepo;
+
 	}
 
 	/**
@@ -124,27 +119,16 @@ public class WeavingInstructionGenerator {
 	 *             the weaving instructions.
 	 */
 	public List<WeavingInstruction> getWeavingInstructions(List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException {
-		// TODO DTHF1 Check
-		/*
-		 * System pcmSystem = this.pcmInstance.getSystem(); List<Repository>
-		 * pcmSolutionRepository =
-		 * StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem,
-		 * Repository.class);
-		 */
-		// TODO DTHF1 Fix merge. Stereotypes will be not accessible after merge
-		// ..
-
-		List<Repository> pcmSolutionRepository = Arrays.asList(this.mergedRepo);
 		try {
-			List<Pair<ComplementumVisnetis, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs(pcmSolutionRepository));
+			List<Pair<AnnotationTarget, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
 			List<WeavingInstruction> instructions = new ArrayList<>();
-			for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : targetLocs) {
-				instructions.add(this.generate(targetLoc, pcmSolutionRepository));
+			for (Pair<AnnotationTarget, WeavingLocation> targetLoc : targetLocs) {
+				instructions.add(this.generate(targetLoc));
 			}
 			this.applyOptionalAsDegree(optChoice, instructions);
 			return instructions;
 		} catch (Exception ex) {
-			// Exception ... :(
+			// TODO HERE Exception ... :(
 			throw new ConcernWeavingException(ex.getMessage());
 		}
 
@@ -187,7 +171,7 @@ public class WeavingInstructionGenerator {
 	 * @author Dominik Fuchss
 	 */
 	private boolean checkDelete(WeavingInstruction instruct, List<Pair<FeatureDegree, Choice>> optChoice) {
-		Feature feature = this.getViaStereoTypeFrom(instruct.getFCCWithConsumedFeatures().getFirst(), Feature.class).get(0);
+		Feature feature = this.getViaStereoTypeFrom(instruct.getECCWithConsumedFeatures().getFirst(), Feature.class).get(0);
 		Object id = feature.getId();
 		Choice ch = null;
 		for (Pair<FeatureDegree, Choice> p : optChoice) {
@@ -225,74 +209,58 @@ public class WeavingInstructionGenerator {
 		return res;
 	}
 
-	private List<Pair<ComplementumVisnetis, WeavingLocation>> getWeavingLocationsFrom(List<Pair<ComplementumVisnetis, EObject>> targetAnnotatedElements) throws ConcernWeavingException {
+	private List<Pair<AnnotationTarget, WeavingLocation>> getWeavingLocationsFrom(List<Pair<AnnotationTarget, EObject>> targetAnnotatedElements) throws ConcernWeavingException {
 		return new WeavingLocationHandler(this.pcmInstance).extractWeavingLocationsFrom(targetAnnotatedElements);
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> getTargetAnnotatedElementPairs(List<Repository> pcmSolutionRepository) throws ConcernWeavingException {
-		List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP = this.getUncheckedComplementumVisnetisAnnotatedElementPairs(pcmSolutionRepository);
-		return this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
+	private List<Pair<AnnotationTarget, EObject>> getTargetAnnotatedElementPairs() throws ConcernWeavingException {
+		return this.considerOnlyInstantiatedComponents(this.getUncheckedTargetAnnotatedElementPairs());
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> getUncheckedComplementumVisnetisAnnotatedElementPairs(List<Repository> pcmSolutionRepository) {
-		List<Pair<ComplementumVisnetis, EObject>> resultPair = new ArrayList<>();
-		for (Repository pcmRepo : pcmSolutionRepository) {
-			for (RepositoryComponent pcmSolutionRepoComponent : pcmRepo.getComponents__Repository()) {
-				List<ComplementumVisnetis> solutionComponentAnnotatedComplVisnetis = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSolutionRepoComponent, ComplementumVisnetis.class,
-						"fulfillsComplementumVisnetis");
-				for (ComplementumVisnetis solutionCV : solutionComponentAnnotatedComplVisnetis) {
-					resultPair.add(new Pair<ComplementumVisnetis, EObject>(solutionCV, pcmSolutionRepoComponent));
-				}
-			}
-			for (Interface pcmSolutionInterface : pcmRepo.getInterfaces__Repository()) {
-				if (!(pcmSolutionInterface instanceof OperationInterface)) {
-					continue;
-				}
-				OperationInterface pcmSolutionOperationInterface = (OperationInterface) pcmSolutionInterface;
-				List<ComplementumVisnetis> solutionInterfaceAnnotatedComplVisnetis = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSolutionOperationInterface, ComplementumVisnetis.class,
-						"fulfillsComplementumVisnetis");
-				for (ComplementumVisnetis solutionCV : solutionInterfaceAnnotatedComplVisnetis) {
-					resultPair.add(new Pair<ComplementumVisnetis, EObject>(solutionCV, pcmSolutionOperationInterface));
-				}
-
-				for (OperationSignature pcmSolutionOperationSignature : pcmSolutionOperationInterface.getSignatures__OperationInterface()) {
-					List<ComplementumVisnetis> solutionOperationSignatureAnnotatedComplVisnetis = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSolutionOperationSignature, ComplementumVisnetis.class,
-							"fulfillsComplementumVisnetis");
-					for (ComplementumVisnetis solutionCV : solutionOperationSignatureAnnotatedComplVisnetis) {
-						resultPair.add(new Pair<ComplementumVisnetis, EObject>(solutionCV, pcmSolutionOperationSignature));
-					}
-				}
-			}
+	private List<Pair<AnnotationTarget, EObject>> getUncheckedTargetAnnotatedElementPairs() {
+		List<EObject> annotatedElements = new AnnotationFilter(this.pcmInstance.getRepositories()).getTargetAnnotatedElements();
+		List<Pair<AnnotationTarget, EObject>> targetsObjects = new ArrayList<>();
+		for (EObject each : annotatedElements) {
+			Pair<AnnotationTarget, EObject> pair = Pair.of(AnnotationFilter.getTargetAnnotationFrom(each).get(), each);
+			targetsObjects.add(pair);
 		}
-
-		return resultPair;
+		return targetsObjects;
+		// return annotatedElements.map(each ->
+		// Pair.of(AnnotationFilter.getTargetAnnotationFrom(each).get(),
+		// each)).collect(Collectors.toList());
 
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> considerOnlyInstantiatedComponents(List<Pair<ComplementumVisnetis, EObject>> annotatedElements) throws ConcernWeavingException {
-		List<Pair<ComplementumVisnetis, EObject>> result = new ArrayList<>();
-		Iterator<Pair<ComplementumVisnetis, EObject>> iter = annotatedElements.iterator();
-		Pair<ComplementumVisnetis, EObject> current;
-		while (iter.hasNext()) {
-			current = iter.next();
-			if (!(current.getSecond() instanceof RepositoryComponent)) {
-				result.add(current);
-				continue;
-			}
-			Pair<ComplementumVisnetis, EObject> replace = Pair.of(current.getFirst(), this.getInstantiatedComponent((RepositoryComponent) current.getSecond()));
-			result.add(replace);
-		}
-		annotatedElements.clear();
-		annotatedElements.addAll(result);
+	private List<Pair<AnnotationTarget, EObject>> considerOnlyInstantiatedComponents(List<Pair<AnnotationTarget, EObject>> annotatedElements) throws ConcernWeavingException {
+		annotatedElements.replaceAll(this.nonInstantiatedComponents());
 		return annotatedElements;
+	}
+
+	private UnaryOperator<Pair<AnnotationTarget, EObject>> nonInstantiatedComponents() throws ConcernWeavingException {
+		try {
+			return pair -> this.isComponent(pair.getSecond()) ? this.getInstantiatedComponentAndCheckException(pair) : pair;
+		} catch (Exception ex) {
+			throw new ConcernWeavingException(ex.getMessage());
+		}
+	}
+
+	private boolean isComponent(EObject obj) {
+		return obj instanceof RepositoryComponent;
+	}
+
+	private Pair<AnnotationTarget, EObject> getInstantiatedComponentAndCheckException(Pair<AnnotationTarget, EObject> pair) {
+		try {
+			return Pair.of(pair.getFirst(), this.getInstantiatedComponent((RepositoryComponent) pair.getSecond()));
+		} catch (ConcernWeavingException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 
 	private EObject getInstantiatedComponent(RepositoryComponent component) throws ConcernWeavingException {
 		if (this.isInstantiated(component)) {
 			return component;
 		}
-		Optional<RepositoryComponent> alternative = this.getInstantiatedAlternativeOf(component);
-		return alternative.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingInstantiation(component)));
+		return this.getInstantiatedAlternativeOf(component).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingInstantiation(component)));
 	}
 
 	private boolean isInstantiated(EObject object) {
@@ -306,6 +274,8 @@ public class WeavingInstructionGenerator {
 			}
 		}
 		return Optional.empty();
+		// return
+		// this.getAllInstantiatedComponents().filter(this.ifFunctionalEqual(component)).findFirst();
 	}
 
 	private boolean ifFunctionalEqual(RepositoryComponent component1, RepositoryComponent toTest) {
@@ -341,37 +311,27 @@ public class WeavingInstructionGenerator {
 			}
 		}
 		return interfaces;
+		// return providedRoles.stream().flatMap(eachProvidedRole ->
+		// eachProvidedRole.eCrossReferences().stream()).filter(eachEObject ->
+		// eachEObject instanceof Interface)
+		// .map(eachEObject -> (Interface)
+		// eachEObject).collect(Collectors.toList());
+
 	}
 
-	private WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> pair, List<Repository> solutionRepos) throws ConcernWeavingException {
-		Pair<CompletionComponent, List<ProvidedRole>> fccWithReqFeatures = this.getFCCWithRequiredFeaturesFrom(pair.getFirst());
-		return this.generateWeavingInstructionFrom(fccWithReqFeatures, pair.getSecond(), solutionRepos);
-
-	}
-
-	private CompletionComponent getFCCByVisnetis(ComplementumVisnetis cv) {
-		String featureID = cv.getComplementaryFeature().getId();
-		for (CompletionComponent fccCurrent : this.fc.getCompletionComponents()) {
-			for (Feature fccCurrentProvidedFeature : fccCurrent.getPerimeterProviding().getFeatureProviding()) {
-				if (fccCurrentProvidedFeature.getId().equalsIgnoreCase(featureID)) {
-					return fccCurrent;
-				}
-			}
+	private WeavingInstruction generate(Pair<AnnotationTarget, WeavingLocation> pair) {
+		try {
+			return this.generateWeavingInstructionFrom(this.getECCWithRequiredFeaturesFrom(pair.getFirst()), pair.getSecond(), pair.getFirst());
+		} catch (ConcernWeavingException ex) {
+			throw new RuntimeException(ex);
 		}
-		throw new ConcernWeavingException("No FCC found for Complementum Visnetis with ID " + cv.getId());
 	}
 
-	private Pair<CompletionComponent, List<ProvidedRole>> getFCCWithRequiredFeaturesFrom(ComplementumVisnetis cv) {
-		CompletionComponent fcc = this.getFCCByVisnetis(cv);
-		return Pair.of(fcc, this.featureHandler.getProvidedFeaturesOf(fcc));
-	}
+	private WeavingInstruction generateWeavingInstructionFrom(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithRequiredFeatures, WeavingLocation weavingLocation,
+			AnnotationTarget targetAnnotation) throws ConcernWeavingException {
 
-	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl, List<Repository> solutionRepos)
-			throws ConcernWeavingException {
-
-		ResourceContainer container = this.getResourceContainerFrom(fccWithRequiredFeatures.getFirst());
-		InclusionMechanism im = this.getTransformationStrategy(solutionRepos);
-		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(container).setTransformationStrategy(im).setWeavingLocation(wl).build();
+		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(eccWithRequiredFeatures).setResourceContainer(this.getResourceContainerFrom(eccWithRequiredFeatures.getFirst()))
+				.setTransformationStrategy(this.getTransformationStrategy(targetAnnotation)).setWeavingLocation(weavingLocation).build();
 
 	}
 
@@ -383,24 +343,24 @@ public class WeavingInstructionGenerator {
 			components.add(c);
 		}
 		return components;
+		// return
+		// this.pcmInstance.getSystem().getAssemblyContexts__ComposedStructure().stream().map(each
+		// -> each.getEncapsulatedComponent__AssemblyContext());
+
 	}
 
-	private InclusionMechanism getTransformationStrategy(List<Repository> solutionRepos) throws ConcernWeavingException {
-		InclusionMechanism inclusionMechanism = null;
-		for (Repository solutionRepo : solutionRepos) {
-			for (InclusionMechanism currentMechanism : StereotypeAPIHelper.getViaStereoTypeFrom(solutionRepo, InclusionMechanism.class)) {
-				if (inclusionMechanism != null && !inclusionMechanism.getId().equalsIgnoreCase(currentMechanism.getId())) {
-					throw new ConcernWeavingException("Multiple InclusionMechanisms currently not supported");
-				} else {
-					inclusionMechanism = currentMechanism;
-				}
-			}
-		}
-		return inclusionMechanism;
+	private Transformation getTransformationStrategy(AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+
+		TransformationRepositoryManager transManager = TransformationRepositoryManager.getInstance();
+		AnnotationEnrich enrichAnnotation = transManager.getEnrichAnnotationBy(targetAnnotation)
+				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingAnnotationOpponent(targetAnnotation)));
+		return TransformationRepositoryManager.getInstance().getTransformationBy(enrichAnnotation, targetAnnotation)
+				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingTransformation(targetAnnotation, enrichAnnotation)));
+
 	}
 
-	private ResourceContainer getResourceContainerFrom(CompletionComponent fcc) {
-		return this.eccToResourceContainerMap.keySet().contains(fcc) ? this.eccToResourceContainerMap.get(fcc) : this.getRandomResourceContainer();
+	private ResourceContainer getResourceContainerFrom(ElementaryConcernComponent ecc) {
+		return this.eccToResourceContainerMap.keySet().contains(ecc) ? this.eccToResourceContainerMap.get(ecc) : this.getRandomResourceContainer();
 	}
 
 	private ResourceContainer getRandomResourceContainer() {
@@ -409,7 +369,22 @@ public class WeavingInstructionGenerator {
 	}
 
 	private int getRandomIndex(int bound) {
-		return WeavingInstructionGenerator.RANDOM.nextInt(--bound);
+		return new Random(System.currentTimeMillis()).nextInt(--bound);
+	}
+
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithRequiredFeaturesFrom(AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+		AnnotationEnrich enrich = this.getEnrichAnnotationBy(targetAnnotation);
+		ElementaryConcernComponent ecc = this.getECCWith(enrich);
+		// At this point all provided ecc features are going to be used
+		return Pair.of(ecc, this.featureHandler.getProvidedFeaturesOf(ecc));
+	}
+
+	private AnnotationEnrich getEnrichAnnotationBy(AnnotationTarget target) throws ConcernWeavingException {
+		return TransformationRepositoryManager.getInstance().getEnrichAnnotationBy(target).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingAnnotationOpponent(target)));
+	}
+
+	private ElementaryConcernComponent getECCWith(AnnotationEnrich enrich) throws ConcernWeavingException {
+		return this.concernManager.getElementaryConcernComponentBy(enrich).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingECC(enrich)));
 	}
 
 }

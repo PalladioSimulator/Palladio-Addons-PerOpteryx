@@ -645,26 +645,26 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree} instances.
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FeatureCompletionDegreeItemProvider featureCompletionDegreeItemProvider;
+	protected ConcernDegreeItemProvider concernDegreeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree}.
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFeatureCompletionDegreeAdapter() {
-		if (featureCompletionDegreeItemProvider == null) {
-			featureCompletionDegreeItemProvider = new FeatureCompletionDegreeItemProvider(this);
+	public Adapter createConcernDegreeAdapter() {
+		if (concernDegreeItemProvider == null) {
+			concernDegreeItemProvider = new ConcernDegreeItemProvider(this);
 		}
 
-		return featureCompletionDegreeItemProvider;
+		return concernDegreeItemProvider;
 	}
 
 	/**
@@ -839,8 +839,8 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			monitoringDegreeItemProvider.dispose();
 		if (atNumberOfReplicaDegreeItemProvider != null)
 			atNumberOfReplicaDegreeItemProvider.dispose();
-		if (featureCompletionDegreeItemProvider != null)
-			featureCompletionDegreeItemProvider.dispose();
+		if (concernDegreeItemProvider != null)
+			concernDegreeItemProvider.dispose();
 		if (featureDegreeItemProvider != null)
 			featureDegreeItemProvider.dispose();
 	}

@@ -29,6 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassWithCopyDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousComponentParamDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
@@ -39,7 +40,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.EnumDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureConfigDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureGroupDegree;
@@ -306,7 +306,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass featureCompletionDegreeEClass = null;
+	private EClass concernDegreeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -926,8 +926,8 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getFeatureCompletionDegree() {
-		return featureCompletionDegreeEClass;
+	public EClass getConcernDegree() {
+		return concernDegreeEClass;
 	}
 
 	/**
@@ -1072,7 +1072,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 
 		atNumberOfReplicaDegreeEClass = createEClass(AT_NUMBER_OF_REPLICA_DEGREE);
 
-		featureCompletionDegreeEClass = createEClass(FEATURE_COMPLETION_DEGREE);
+		concernDegreeEClass = createEClass(CONCERN_DEGREE);
 
 		featureDegreeEClass = createEClass(FEATURE_DEGREE);
 
@@ -1159,7 +1159,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 		capacityDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
 		monitoringDegreeEClass.getESuperTypes().add(this.getContinuousRangeDegree());
 		atNumberOfReplicaDegreeEClass.getESuperTypes().add(this.getDiscreteRangeDegree());
-		featureCompletionDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
+		concernDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 		featureDegreeEClass.getESuperTypes().add(this.getClassAsReferenceDegree());
 		indicatorDegreeEClass.getESuperTypes().add(thedesigndecisionPackage.getDegreeOfFreedomInstance());
 
@@ -1280,7 +1280,7 @@ public class specificPackageImpl extends EPackageImpl implements specificPackage
 
 		initEClass(atNumberOfReplicaDegreeEClass, ATNumberOfReplicaDegree.class, "ATNumberOfReplicaDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(featureCompletionDegreeEClass, FeatureCompletionDegree.class, "FeatureCompletionDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(concernDegreeEClass, ConcernDegree.class, "ConcernDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(featureDegreeEClass, FeatureDegree.class, "FeatureDegree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
