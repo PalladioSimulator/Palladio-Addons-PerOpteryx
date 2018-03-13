@@ -3,12 +3,12 @@ package de.uka.ipd.sdq.dsexplore.designdecisions.completions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionRepository;
 import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 
@@ -31,15 +31,15 @@ public class CompletionDesignDecision {
 		FeatureCompletionDegree completionDegree = specificFactory.eINSTANCE.createFeatureCompletionDegree();
 		completionDegree.setPrimaryChanged(featureCompletion);
 
-		Repository mergedPalladioRepo = this.getMergedRepository();
+		MergedRepository mergedPalladioRepo = this.getMergedRepository();
 		completionDegree.getClassDesignOptions().add(mergedPalladioRepo);
 		return completionDegree;
 
 	}
 
-	private Repository getMergedRepository() {
+	private MergedRepository getMergedRepository() {
 		// TODO DTHF1 merged ..
-		Repository merged = WeavingManager.getInstance().map(WeavingManager::getMergedRepo).orElse(null);
+		MergedRepository merged = WeavingManager.getInstance().map(WeavingManager::getMergedRepo).orElse(null);
 		return merged;
 	}
 

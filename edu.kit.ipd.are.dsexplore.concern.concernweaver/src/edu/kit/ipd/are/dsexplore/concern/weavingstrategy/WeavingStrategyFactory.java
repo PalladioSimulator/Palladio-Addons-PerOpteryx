@@ -3,9 +3,9 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterWeavingStrategy;
 import featureSolution.AdapterInclusion;
 import featureSolution.InclusionMechanism;
@@ -19,10 +19,9 @@ import featureSolution.InclusionMechanism;
  */
 public class WeavingStrategyFactory {
 
-	private static HashMap<Class<? extends InclusionMechanism>, BiFunction<PCMInstance, Repository, IWeavingStrategy>> transformationToStrategyMap = new HashMap<>();
+	private static HashMap<Class<? extends InclusionMechanism>, BiFunction<PCMInstance, MergedRepository, IWeavingStrategy>> transformationToStrategyMap = new HashMap<>();
 	static {
-		WeavingStrategyFactory.transformationToStrategyMap.put(AdapterInclusion.class,
-				(pcmToAdapt, pcmConcernRepository) -> new AdapterWeavingStrategy(pcmToAdapt, pcmConcernRepository));
+		WeavingStrategyFactory.transformationToStrategyMap.put(AdapterInclusion.class, (pcmToAdapt, pcmConcernRepository) -> new AdapterWeavingStrategy(pcmToAdapt, pcmConcernRepository));
 	}
 
 	/**
@@ -38,10 +37,8 @@ public class WeavingStrategyFactory {
 	 *            - The concern solution which is going to extend the PCM model.
 	 * @return
 	 */
-	public static IWeavingStrategy createBy(InclusionMechanism inclusionMechanism, PCMInstance pcmToAdapt,
-			Repository mergedRepo) {
-		return WeavingStrategyFactory.transformationToStrategyMap.get(inclusionMechanism.getClass()).apply(pcmToAdapt,
-				mergedRepo);
+	public static IWeavingStrategy createBy(InclusionMechanism inclusionMechanism, PCMInstance pcmToAdapt, MergedRepository mergedRepo) {
+		return WeavingStrategyFactory.transformationToStrategyMap.get(inclusionMechanism.getClass()).apply(pcmToAdapt, mergedRepo);
 	}
 
 }

@@ -1,20 +1,15 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
-import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -22,7 +17,7 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
 import FeatureCompletionModel.CompletionComponent;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 
 /**
  * This class provides all operations performed on a concern solution.
@@ -33,7 +28,7 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 public class ConcernSolutionManager {
 
 	private static ConcernSolutionManager eInstance = null;
-	private Repository mergedRepo = null;
+	private MergedRepository mergedRepo = null;
 
 	private ConcernSolutionManager() {
 	}
@@ -45,7 +40,7 @@ public class ConcernSolutionManager {
 	 *            - A given concern solution.
 	 * @return a ConcernSolutionManager-instance.
 	 */
-	public static ConcernSolutionManager getInstanceBy(Repository mergedRepo) {
+	public static ConcernSolutionManager getInstanceBy(MergedRepository mergedRepo) {
 		if (ConcernSolutionManager.eInstance == null) {
 			ConcernSolutionManager.eInstance = new ConcernSolutionManager();
 		}
@@ -61,21 +56,12 @@ public class ConcernSolutionManager {
 	 * @return the first filtered component.
 	 */
 	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
-		for (RepositoryComponent c : this.getAllComponents()) {
+		for (RepositoryComponent c : this.mergedRepo.getAsRepoWithoutStereotypes().getComponents__Repository()) {
 			if (searchCriteria.test(c)) {
 				return Optional.of(c);
 			}
 		}
 		return Optional.empty();
-	}
-
-	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
-		for (CompletionComponent completionComponent : realizedCCs) {
-			if (listToContainedIn.contains(completionComponent)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -86,41 +72,8 @@ public class ConcernSolutionManager {
 	 * @return all components annotated by a set of annotations.
 	 */
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
-		Set<RepositoryComponent> affectedComponents = new HashSet<>();
-		for (RepositoryComponent rcs : this.getAllComponents()) {
-			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-			if (this.anyContainedInList(realizedCCs, fccs)) {
-				affectedComponents.add(rcs);
-			}
-		}
-		return new ArrayList<>(affectedComponents);
+		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
 	}
-
-	private List<RepositoryComponent> getAllComponents() {
-		List<RepositoryComponent> res = new ArrayList<>();
-		res.addAll(this.mergedRepo.getComponents__Repository());
-		return res;
-	}
-
-	/*
-	 * Check whether {@link RepositoryComponent} belongs to this solution or at
-	 * least to no other solution
-	 *
-	 * @param rc the repository component
-	 *
-	 * @return {@code true} if SolutionStereoType is set to this solution or
-	 * none
-	 *
-	 * @author Dominik Fuchss
-	 */
-	// private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
-	// List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
-	// // Size == 0 must be included, as generated adapters cannot be annotated
-	// // easily
-	// boolean contains = sols.contains(this.concernSolution) || sols.size() ==
-	// 0;
-	// return contains;
-	// }
 
 	/**
 	 * Creates and add a adapter component to the concern solution repository.
@@ -130,20 +83,7 @@ public class ConcernSolutionManager {
 	 * @return the created adapter component.
 	 */
 	public RepositoryComponent createAndAddAdapter(String name) {
-		BasicComponent adapter = this.createAdapter(name);
-		this.addAdapter(adapter);
-		return adapter;
-	}
-
-	private void addAdapter(BasicComponent adapter) {
-		this.mergedRepo.getComponents__Repository().add(adapter);
-	}
-
-	private BasicComponent createAdapter(String name) {
-		BasicComponent adapter = RepositoryFactory.eINSTANCE.createBasicComponent();
-		adapter.setComponentType(ComponentType.BUSINESS_COMPONENT);
-		adapter.setEntityName(name);
-		return adapter;
+		return this.mergedRepo.createAndAddAdapter(name);
 	}
 
 	/**
@@ -234,15 +174,6 @@ public class ConcernSolutionManager {
 	 * @return the provided role space.
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
-		List<ProvidedRole> roles = new ArrayList<>();
-		for (RepositoryComponent c : this.getAllComponents()) {
-			List<ProvidedRole> role = this.getAllProvidedRolesOf(c);
-			roles.addAll(role);
-		}
-		return roles;
-	}
-
-	private List<ProvidedRole> getAllProvidedRolesOf(RepositoryComponent component) {
-		return component.getProvidedRoles_InterfaceProvidingEntity();
+		return this.mergedRepo.getAllProvidedRoles();
 	}
 }

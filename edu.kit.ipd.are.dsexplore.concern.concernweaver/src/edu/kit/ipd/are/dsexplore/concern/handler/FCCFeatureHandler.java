@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 
 import FeatureCompletionModel.CompletionComponent;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -35,7 +35,7 @@ public class FCCFeatureHandler {
 	 *            - The concern solution which is explored in order to filter
 	 *            all provided services.
 	 */
-	public FCCFeatureHandler(Repository mergRepo) {
+	public FCCFeatureHandler(MergedRepository mergRepo) {
 		this.concernRepositoryManager = ConcernSolutionManager.getInstanceBy(mergRepo);
 	}
 

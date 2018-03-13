@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.FeatureCompletionWeaver;
@@ -26,7 +26,7 @@ public class WeavingJob {
 	private final FeatureCompletionWeaver concernWeaver;
 	// private final Solution solution;
 
-	public WeavingJob(FeatureCompletion fc, PCMInstance pcmToWeave, Map<CompletionComponent, ResourceContainer> eccAllocationMap, Repository mergedRepo) {
+	public WeavingJob(FeatureCompletion fc, PCMInstance pcmToWeave, Map<CompletionComponent, ResourceContainer> eccAllocationMap, MergedRepository mergedRepo) {
 		this.generator = WeavingInstructionGenerator.getInstanceBy(pcmToWeave, fc, mergedRepo, eccAllocationMap);
 		this.concernWeaver = FeatureCompletionWeaver.getBy(pcmToWeave, mergedRepo);
 	}

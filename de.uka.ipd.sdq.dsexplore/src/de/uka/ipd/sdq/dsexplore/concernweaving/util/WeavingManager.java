@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -23,7 +22,7 @@ import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.cost.ComponentCost;
 import de.uka.ipd.sdq.pcm.cost.Cost;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
@@ -41,15 +40,15 @@ public class WeavingManager {
 		private final List<Cost> originalCostsFromMainModel;
 		private final List<ComponentCost> componentCosts;
 
-		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, Repository mergedRepo) {
+		public PCMCostManager(String costModelFileName, List<Cost> cachedCosts, MergedRepository mergedRepo) {
 			this.costModelFileName = costModelFileName;
 			this.originalCostsFromMainModel = new ArrayList<>();
 			this.componentCosts = new ArrayList<>();
 			this.initialize(mergedRepo, cachedCosts);
 		}
 
-		private void initialize(Repository mergedRepo, List<Cost> cachedCosts) {
-			List<CostRepository> costRepos = StereotypeAPIHelper.getViaStereoTypeFrom(mergedRepo, CostRepository.class);
+		private void initialize(MergedRepository mergedRepo, List<Cost> cachedCosts) {
+			List<CostRepository> costRepos = mergedRepo.getCostRepos();
 			for (CostRepository costRepo : costRepos) {
 
 				List<ComponentCost> costs = this.filterOnlyComponentsCostsFrom(costRepo);
@@ -144,7 +143,7 @@ public class WeavingManager {
 
 	private PCMPartitionManager pcmPartitionManager;
 	private Optional<PCMCostManager> pcmCostManager;
-	private Repository mergedRepo;
+	private MergedRepository mergedRepo;
 
 	private WeavingManager() {
 
@@ -159,7 +158,7 @@ public class WeavingManager {
 		WeavingManager.instance.mergedRepo = null;
 	}
 
-	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition, String costModelFileName, List<Cost> costsToCache, Repository mergedRepo) {
+	public static void initialize(MDSDBlackboard blackboard, PCMResourceSetPartition unweavedPCMPartition, String costModelFileName, List<Cost> costsToCache, MergedRepository mergedRepo) {
 		if (WeavingManager.instance == null) {
 			WeavingManager.instance = new WeavingManager();
 		}
@@ -176,16 +175,16 @@ public class WeavingManager {
 		this.pcmPartitionManager = new PCMPartitionManager(blackboard, unweavedPCMPartition);
 	}
 
-	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, Repository mergedRepos) {
+	private void setPCMCostManager(String costModelFileName, List<Cost> costsToCache, MergedRepository mergedRepos) {
 		this.pcmCostManager = Optional.of(new PCMCostManager(costModelFileName, costsToCache, mergedRepos));
 	}
 
-	public Repository getMergedRepo() {
+	public MergedRepository getMergedRepo() {
 		return this.mergedRepo;
 	}
 
-	public PCMInstance getWeavedPCMInstanceOf(FeatureCompletion fc, Repository mergedRepo, Map<CompletionComponent, ResourceContainer> eccAllocationMap, List<Pair<FeatureDegree, Choice>> optChoice)
-			throws ConcernWeavingException, IOException {
+	public PCMInstance getWeavedPCMInstanceOf(FeatureCompletion fc, MergedRepository mergedRepo, Map<CompletionComponent, ResourceContainer> eccAllocationMap,
+			List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException, IOException {
 
 		PCMResourceSetPartition pcmPartition = this.pcmPartitionManager.getCopyOfUnweavedPCMPartition();
 		PCMInstance pcm = new PCMInstance(pcmPartition);

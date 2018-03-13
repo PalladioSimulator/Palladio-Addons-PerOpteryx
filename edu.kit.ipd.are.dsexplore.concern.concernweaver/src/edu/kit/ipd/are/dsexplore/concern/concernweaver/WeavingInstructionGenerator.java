@@ -1,7 +1,6 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +24,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
@@ -59,7 +59,7 @@ public class WeavingInstructionGenerator {
 	private FCCFeatureHandler featureHandler;
 	private Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap;
 	private FeatureCompletion fc;
-	private Repository mergedRepo;
+	private MergedRepository mergedRepo;
 
 	/**
 	 * Returns an already existing or newly created
@@ -73,7 +73,7 @@ public class WeavingInstructionGenerator {
 	 *            - The concern solution realizing a concern.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo) {
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, MergedRepository mergedRepo) {
 		WeavingInstructionGenerator.initialize(pcmInstance, fc, mergedRepo, new HashMap<CompletionComponent, ResourceContainer>());
 		return WeavingInstructionGenerator.instance;
 	}
@@ -93,13 +93,13 @@ public class WeavingInstructionGenerator {
 	 *            suppose to be allocated.
 	 * @return a WeavingInsztructiongenerator-instance
 	 */
-	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo,
+	public static WeavingInstructionGenerator getInstanceBy(PCMInstance pcmInstance, FeatureCompletion fc, MergedRepository mergedRepo,
 			Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap) {
 		WeavingInstructionGenerator.initialize(pcmInstance, fc, mergedRepo, eccToResourceContainerMap);
 		return WeavingInstructionGenerator.instance;
 	}
 
-	private static void initialize(PCMInstance pcmInstance, FeatureCompletion fc, Repository mergedRepo, Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap) {
+	private static void initialize(PCMInstance pcmInstance, FeatureCompletion fc, MergedRepository mergedRepo, Map<CompletionComponent, ResourceContainer> eccToResourceContainerMap) {
 		if (WeavingInstructionGenerator.instance == null) {
 			WeavingInstructionGenerator.instance = new WeavingInstructionGenerator();
 		}
@@ -134,12 +134,11 @@ public class WeavingInstructionGenerator {
 		// TODO DTHF1 Fix merge. Stereotypes will be not accessible after merge
 		// ..
 
-		List<Repository> pcmSolutionRepository = Arrays.asList(this.mergedRepo);
 		try {
-			List<Pair<ComplementumVisnetis, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs(pcmSolutionRepository));
+			List<Pair<ComplementumVisnetis, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
 			List<WeavingInstruction> instructions = new ArrayList<>();
 			for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : targetLocs) {
-				instructions.add(this.generate(targetLoc, pcmSolutionRepository));
+				instructions.add(this.generate(targetLoc));
 			}
 			this.applyOptionalAsDegree(optChoice, instructions);
 			return instructions;
@@ -229,14 +228,14 @@ public class WeavingInstructionGenerator {
 		return new WeavingLocationHandler(this.pcmInstance).extractWeavingLocationsFrom(targetAnnotatedElements);
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> getTargetAnnotatedElementPairs(List<Repository> pcmSolutionRepository) throws ConcernWeavingException {
-		List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP = this.getUncheckedComplementumVisnetisAnnotatedElementPairs(pcmSolutionRepository);
+	private List<Pair<ComplementumVisnetis, EObject>> getTargetAnnotatedElementPairs() throws ConcernWeavingException {
+		List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP = this.getUncheckedComplementumVisnetisAnnotatedElementPairs();
 		return this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> getUncheckedComplementumVisnetisAnnotatedElementPairs(List<Repository> pcmSolutionRepository) {
+	private List<Pair<ComplementumVisnetis, EObject>> getUncheckedComplementumVisnetisAnnotatedElementPairs() {
 		List<Pair<ComplementumVisnetis, EObject>> resultPair = new ArrayList<>();
-		for (Repository pcmRepo : pcmSolutionRepository) {
+		for (Repository pcmRepo : this.mergedRepo) {
 			for (RepositoryComponent pcmSolutionRepoComponent : pcmRepo.getComponents__Repository()) {
 				List<ComplementumVisnetis> solutionComponentAnnotatedComplVisnetis = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSolutionRepoComponent, ComplementumVisnetis.class,
 						"fulfillsComplementumVisnetis");
@@ -343,9 +342,9 @@ public class WeavingInstructionGenerator {
 		return interfaces;
 	}
 
-	private WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> pair, List<Repository> solutionRepos) throws ConcernWeavingException {
+	private WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> pair) throws ConcernWeavingException {
 		Pair<CompletionComponent, List<ProvidedRole>> fccWithReqFeatures = this.getFCCWithRequiredFeaturesFrom(pair.getFirst());
-		return this.generateWeavingInstructionFrom(fccWithReqFeatures, pair.getSecond(), solutionRepos);
+		return this.generateWeavingInstructionFrom(fccWithReqFeatures, pair.getSecond());
 
 	}
 
@@ -366,11 +365,10 @@ public class WeavingInstructionGenerator {
 		return Pair.of(fcc, this.featureHandler.getProvidedFeaturesOf(fcc));
 	}
 
-	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl, List<Repository> solutionRepos)
-			throws ConcernWeavingException {
+	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl) throws ConcernWeavingException {
 
 		ResourceContainer container = this.getResourceContainerFrom(fccWithRequiredFeatures.getFirst());
-		InclusionMechanism im = this.getTransformationStrategy(solutionRepos);
+		InclusionMechanism im = this.getTransformationStrategy();
 		return new WeavingInstructionBuilder().setECCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(container).setTransformationStrategy(im).setWeavingLocation(wl).build();
 
 	}
@@ -385,9 +383,9 @@ public class WeavingInstructionGenerator {
 		return components;
 	}
 
-	private InclusionMechanism getTransformationStrategy(List<Repository> solutionRepos) throws ConcernWeavingException {
+	private InclusionMechanism getTransformationStrategy() throws ConcernWeavingException {
 		InclusionMechanism inclusionMechanism = null;
-		for (Repository solutionRepo : solutionRepos) {
+		for (Repository solutionRepo : this.mergedRepo) {
 			for (InclusionMechanism currentMechanism : StereotypeAPIHelper.getViaStereoTypeFrom(solutionRepo, InclusionMechanism.class)) {
 				if (inclusionMechanism != null && !inclusionMechanism.getId().equalsIgnoreCase(currentMechanism.getId())) {
 					throw new ConcernWeavingException("Multiple InclusionMechanisms currently not supported");

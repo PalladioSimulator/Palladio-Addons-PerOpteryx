@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
@@ -35,7 +35,7 @@ import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 //XXX This implementation assumes that only one concern is going to be woven.
 public class WeavingExecuter {
 
-	private Pair<FeatureCompletion, Repository> concernWithSolutionPair;
+	private Pair<FeatureCompletion, MergedRepository> concernWithSolutionPair;
 	private List<ClassChoice> fccClassChoices = new ArrayList<>();
 	private PCMInstance wovenPCM = null;
 	/**
@@ -81,7 +81,7 @@ public class WeavingExecuter {
 	}
 
 	private void initSolutionMap(ClassChoice concernChoice) {
-		this.concernWithSolutionPair = Pair.of(this.getConcernFrom(concernChoice), (Repository) concernChoice.getChosenValue());
+		this.concernWithSolutionPair = Pair.of(this.getConcernFrom(concernChoice), (MergedRepository) concernChoice.getChosenValue());
 	}
 
 	private void initECCClassChoices(List<Choice> choices) {

@@ -1,8 +1,8 @@
 package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
@@ -18,7 +18,7 @@ import featureSolution.InclusionMechanism;
 public abstract class WeavingStep {
 
 	private static PCMInstance pcmToAdapt;
-	private static Repository mergedRepo;
+	private static MergedRepository mergedRepo;
 	private static IWeavingStrategy weavingStrategy;
 
 	/**
@@ -30,7 +30,7 @@ public abstract class WeavingStep {
 	 * @param newConcernSolution
 	 *            - The repository containing the concern solution.
 	 */
-	public static void setGlobalSettings(PCMInstance newPcmToAdapt, Repository mergedRepo) {
+	public static void setGlobalSettings(PCMInstance newPcmToAdapt, MergedRepository mergedRepo) {
 		WeavingStep.pcmToAdapt = newPcmToAdapt;
 		WeavingStep.mergedRepo = mergedRepo;
 	}
@@ -40,7 +40,7 @@ public abstract class WeavingStep {
 	 *
 	 * @return the concern solution.
 	 */
-	public static Repository getFCCSolutionMergedRepository() {
+	public static MergedRepository getFCCSolutionMergedRepository() {
 		return WeavingStep.mergedRepo;
 	}
 
@@ -53,8 +53,7 @@ public abstract class WeavingStep {
 	 *            mechanism.
 	 */
 	public static void setWeavingStrategy(InclusionMechanism inclusionMechanism) {
-		WeavingStep.weavingStrategy = WeavingStrategyFactory.createBy(inclusionMechanism, WeavingStep.pcmToAdapt,
-				WeavingStep.mergedRepo);
+		WeavingStep.weavingStrategy = WeavingStrategyFactory.createBy(inclusionMechanism, WeavingStep.pcmToAdapt, WeavingStep.mergedRepo);
 	}
 
 	/**

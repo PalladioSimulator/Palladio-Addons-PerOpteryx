@@ -45,3 +45,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Eclipse-BuddyPolicy: dependent 
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy
+Import-Package: edu.kit.ipd.are.dsexplore.concern.exception

@@ -2,7 +2,6 @@ package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -26,7 +24,6 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
@@ -52,6 +49,7 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
@@ -171,7 +169,7 @@ public class DSEProblem {
 		 */
 	}
 
-	private Repository getFullyInitializedFCSolutionRepo() {
+	private MergedRepository getFullyInitializedFCSolutionRepo() {
 		// TODO DTHF1 Merged Repo
 		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		System pcmSystem = pcmPartition.getSystem();
@@ -180,16 +178,20 @@ public class DSEProblem {
 		if (solutionRepos.isEmpty()) {
 			return null;
 		}
-
-		Repository mergedRepo = RepositoryFactory.eINSTANCE.createRepository();
-		for (Repository sr : solutionRepos) {
-			Copier copier = new Copier();
-			Collection<RepositoryComponent> copiedContent = copier.copyAll(sr.getComponents__Repository());
-			// epcopyResourceSet.createResource(URI.createURI(resource.getURI().toString()));
-			mergedRepo.getComponents__Repository().addAll(copiedContent);
-			copier.copyReferences();
-		}
-		return mergedRepo;
+		return new MergedRepository(solutionRepos);
+		/*
+		 * Repository mergedRepo =
+		 * RepositoryFactory.eINSTANCE.createRepository(); for (Repository sr :
+		 * solutionRepos) { Copier copier = new Copier();
+		 * Collection<RepositoryComponent> copiedContent =
+		 * copier.copyAll(sr.getComponents__Repository()); //
+		 * epcopyResourceSet.createResource(URI.createURI(resource.getURI().
+		 * toString()));
+		 * mergedRepo.getComponents__Repository().addAll(copiedContent);
+		 * copier.copyReferences(); }
+		 */
+		// return mergedRepo;
+		// return solutionRepos.get(0);
 	}
 
 	private Optional<String> getCostModelFileName() {
@@ -448,7 +450,7 @@ public class DSEProblem {
 		// List<Solution> concernSolutions = this.getFCSolutionsWithCosts();
 
 		// TODO DTHF1 Merged Repo
-		Repository mergedRepo = this.getFullyInitializedFCSolutionRepo();
+		MergedRepository mergedRepo = this.getFullyInitializedFCSolutionRepo();
 
 		if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || mergedRepo == null) {
 

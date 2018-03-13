@@ -3,9 +3,9 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.allocation.AllocationWeaver;
 import edu.kit.ipd.are.dsexplore.concern.assembly.AssemblyWeaver;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
@@ -41,7 +41,7 @@ public class FeatureCompletionWeaver {
 	 *            - The concrete realization of a specific concern.
 	 * @return The created or re-configured ConcernWeaver-instance.
 	 */
-	public static FeatureCompletionWeaver getBy(PCMInstance pcmToAdapt, Repository mergedRepo) {
+	public static FeatureCompletionWeaver getBy(PCMInstance pcmToAdapt, MergedRepository mergedRepo) {
 		if (FeatureCompletionWeaver.eInstance == null) {
 			FeatureCompletionWeaver.eInstance = new FeatureCompletionWeaver();
 		}
@@ -49,7 +49,7 @@ public class FeatureCompletionWeaver {
 		return FeatureCompletionWeaver.eInstance;
 	}
 
-	private void initialize(PCMInstance pcmToAdapt, Repository mergedRepo) {
+	private void initialize(PCMInstance pcmToAdapt, MergedRepository mergedRepo) {
 		this.initializePcmToAdapt(pcmToAdapt);
 		this.initializeWeavingChain(mergedRepo);
 	}
@@ -58,7 +58,7 @@ public class FeatureCompletionWeaver {
 		this.pcmToAdapt = pcmToAdapt;
 	}
 
-	private void initializeWeavingChain(Repository mergedRepo) {
+	private void initializeWeavingChain(MergedRepository mergedRepo) {
 		WeavingStep.setGlobalSettings(this.pcmToAdapt, mergedRepo);
 		this.weavingChain = new LinkedHashSet<>();
 		this.weavingChain.add(new RepositoryWeaver());
