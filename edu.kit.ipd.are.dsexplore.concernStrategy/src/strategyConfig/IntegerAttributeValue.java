@@ -28,7 +28,7 @@ public interface IntegerAttributeValue extends AttributeValue {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.confignode.origin.attributes->one(a | a.name = self.name)\r\n and\r\n self.confignode.origin.attributes->any(a | a.name = self.name).oclIsTypeOf(featuremodel::IntegerAttribute)\r\n'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.confignode.origin.attributes-&gt;one(a | a.name = self.name)\r\n and\r\n self.confignode.origin.attributes-&gt;any(a | a.name = self.name).oclIsTypeOf(featuremodel::IntegerAttribute)\r\n'"
 	 * @generated
 	 */
 	boolean AttributeValueIsDefinedInFeatureAndEqualsTypeInteger(DiagnosticChain diagnostics, Map context);

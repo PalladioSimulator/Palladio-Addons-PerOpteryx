@@ -183,7 +183,7 @@ public interface FeatureConfig extends EObject {
 	 *  ) endif
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if (configurationDefault->size() = 1 and configurationDefault.defaultConfig = self) then FeatureConfigState::DEFAULT\r\n else (\r\n if (configurationOverrides->size() = 1 and configurationOverrides.configOverrides->size() > 0 and configurationOverrides.configOverrides->includes(self)) then FeatureConfigState::OVERRIDE\r\n else FeatureConfigState::NOT_SET\r\n endif\r\n ) endif'"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if (configurationDefault-&gt;size() = 1 and configurationDefault.defaultConfig = self) then FeatureConfigState::DEFAULT\r\n else (\r\n if (configurationOverrides-&gt;size() = 1 and configurationOverrides.configOverrides-&gt;size() &gt; 0 and configurationOverrides.configOverrides-&gt;includes(self)) then FeatureConfigState::OVERRIDE\r\n else FeatureConfigState::NOT_SET\r\n endif\r\n ) endif'"
 	 * @generated
 	 */
 	FeatureConfigState showFeatureConfigState();

@@ -122,7 +122,7 @@ public interface ConfigNode extends EObject {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--let childSelectedCount : Integer = self.children->select(c|c.configState = ConfigState::USER_SELECTED or c.configState = ConfigState::MASCHINE_SELECTED)->size() \r\n--in \r\n--\t if self.origin.oclIsTypeOf(featuremodel::FeatureGroup) then\r\n--\t \tchildSelectedCount >= self.origin.min and (childSelectedCount <= self.origin.max or self.origin.max = -1)\r\n--\t else\r\n--\t \tself.origin.min  >= 1 implies (self.configState = ConfigState::USER_SELECTED or self.configState = ConfigState::MASCHINE_SELECTED)\r\n--\t endif'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--let childSelectedCount : Integer = self.children-&gt;select(c|c.configState = ConfigState::USER_SELECTED or c.configState = ConfigState::MASCHINE_SELECTED)-&gt;size() \r\n--in \r\n--\t if self.origin.oclIsTypeOf(featuremodel::FeatureGroup) then\r\n--\t \tchildSelectedCount &gt;= self.origin.min and (childSelectedCount &lt;= self.origin.max or self.origin.max = -1)\r\n--\t else\r\n--\t \tself.origin.min  &gt;= 1 implies (self.configState = ConfigState::USER_SELECTED or self.configState = ConfigState::MASCHINE_SELECTED)\r\n--\t endif'"
 	 * @generated
 	 */
 	boolean ConfigCardinalityInvalid(DiagnosticChain diagnostics, Map context);
@@ -136,7 +136,7 @@ public interface ConfigNode extends EObject {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true\r\n--not self.origin.featuregroup->isEmpty() implies (self.origin.featuregroup.children->size() <=  self.origin.featuregroup.max and self.origin.featuregroup.children->size() >=  self.origin.featuregroup.min)'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true\r\n--not self.origin.featuregroup-&gt;isEmpty() implies (self.origin.featuregroup.children-&gt;size() &lt;=  self.origin.featuregroup.max and self.origin.featuregroup.children-&gt;size() &gt;=  self.origin.featuregroup.min)'"
 	 * @generated
 	 */
 	boolean CheckMultiplicityOfFeatureGroup(DiagnosticChain diagnostics, Map context);
