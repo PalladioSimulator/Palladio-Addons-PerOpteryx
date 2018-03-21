@@ -1,6 +1,6 @@
 /**
  */
-package strategyConfig.presentation;
+package concernStrategy.presentation;
 
 import de.uka.ipd.sdq.identifier.provider.IdentifierEditPlugin;
 

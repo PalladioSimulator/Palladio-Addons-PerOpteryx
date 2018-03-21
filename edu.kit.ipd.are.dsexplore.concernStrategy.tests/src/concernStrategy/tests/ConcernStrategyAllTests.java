@@ -1,8 +1,6 @@
 /**
  */
-package strategyConfig.tests;
-
-import concernStrategy.tests.StrategymodelTests;
+package concernStrategy.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -33,7 +31,6 @@ public class ConcernStrategyAllTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new ConcernStrategyAllTests("ConcernStrategy Tests");
-		suite.addTest(ConcernconfigTests.suite());
 		suite.addTest(StrategymodelTests.suite());
 		return suite;
 	}

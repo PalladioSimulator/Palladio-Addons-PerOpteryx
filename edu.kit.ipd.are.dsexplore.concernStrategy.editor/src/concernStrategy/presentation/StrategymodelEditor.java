@@ -160,10 +160,6 @@ import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import strategyConfig.presentation.ConcernStrategyEditorPlugin;
-
-import strategyConfig.provider.ConcernconfigItemProviderAdapterFactory;
-
 
 /**
  * This is an example of a Strategymodel model editor.
@@ -703,7 +699,6 @@ public class StrategymodelEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ConcernconfigItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StrategymodelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
