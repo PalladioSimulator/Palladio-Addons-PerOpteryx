@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="concernStrategy" version="12.0.0.2017041100">
-  <ownedViewpoints documentation="The difference between &quot;optional_relation&quot; and &quot;optional_relation_&quot; is, that the former is for the feature diagram while the latter is for the configuration diagram." name="feature_viewpoint" modelFileExtension="strategymodel">
+  <ownedViewpoints name="feature_viewpoint" modelFileExtension="strategymodel">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="feature_diagram" domainClass="concernStrategy::FeatureDiagram" enablePopupBars="true">
       <metamodel href="http://edu.kit.ipd.are/ConcernStrategyModel/1.0#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="attribute_filter">
