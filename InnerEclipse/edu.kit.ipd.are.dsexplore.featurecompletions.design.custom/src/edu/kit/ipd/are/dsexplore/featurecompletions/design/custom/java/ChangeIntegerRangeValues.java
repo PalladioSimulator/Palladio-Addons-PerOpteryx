@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
+import featureObjective.Attribute;
 import featureObjective.IntegerAttribute;
 import featureObjective.IntegerIntervalRange;
 
@@ -59,9 +60,10 @@ public class ChangeIntegerRangeValues implements org.eclipse.sirius.tools.api.ui
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException("Cannot parse 'to' of the provided range");
 		}
-
-		IntegerAttribute intAttribute = (IntegerAttribute) arg1.get("attribute");
-		IntegerIntervalRange range = (IntegerIntervalRange) intAttribute.getRange();
+		
+		
+		Attribute attribute = (Attribute) arg1.get("attribute");
+		IntegerIntervalRange range = (IntegerIntervalRange) attribute.getRange();
 
 		range.setFrom(from);
 		range.setTo(to);
