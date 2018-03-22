@@ -83,7 +83,7 @@
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true"/>
+              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
@@ -1827,9 +1827,9 @@
     <ownedJavaExtensions qualifiedClassName="org.palladiosimulator.editors.sirius.services.PCMServices"/>
     <ownedJavaExtensions qualifiedClassName="edu.kit.ipd.are.dsexplore.featurecompletions.design.Services"/>
   </ownedViewpoints>
-  <ownedViewpoints name="FeatureObjective" modelFileExtension="strategymodel">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FeatureObjective Diagram" domainClass="concernStrategy::FeatureDiagram" enablePopupBars="true">
-      <metamodel href="http://edu.kit.ipd.are/ConcernStrategyModel/1.0#/"/>
+  <ownedViewpoints name="FeatureObjective" modelFileExtension="featureobjective">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FeatureObjective Diagram" domainClass="featureObjective::FeatureObjective" enablePopupBars="true">
+      <metamodel href="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="attribute_filter">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute'] //@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='external_object_attribute'] //@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='double_attribute'] //@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='string_attribute']"/>
       </filters>
@@ -1838,12 +1838,12 @@
       </filters>
       <layout xsi:type="description_1:OrderedTreeLayout" childrenExpression="aql:self.getChildren()" nodeMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
       <defaultLayer name="Default">
-        <edgeMappings name="optional_relation" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.eContainer().eContainer()">
+        <edgeMappings name="optional_relation" doubleClickDescription="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Change%20simple%20Relation%20Type']" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.eContainer().eContainer()" reconnections="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
           <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </edgeMappings>
-        <edgeMappings name="mandatory_relation" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.eContainer().eContainer()">
+        <edgeMappings name="mandatory_relation" doubleClickDescription="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Change%20simple%20Relation%20Type']" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.eContainer().eContainer()" reconnections="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
           <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -1851,7 +1851,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="requires_constraint" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="[self.target/]" sourceFinderExpression="[self.source/]" domainClass="concernStrategy::RequiredConstraint" useDomainElement="true">
+        <edgeMappings name="requires_constraint" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="[self.target/]" sourceFinderExpression="[self.source/]" domainClass="featureObjective::RequiredConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
           <style lineStyle="dash" sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -1859,7 +1859,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="prohibits_constraint" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy::ProhibitsConstraint" useDomainElement="true">
+        <edgeMappings name="prohibits_constraint" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="featureObjective::ProhibitsConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
           <style lineStyle="dash" sourceArrow="InputArrow" sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             <centerLabelStyleDescription>
@@ -1867,7 +1867,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="feature_group_relation" preconditionExpression="aql:self.featuregroup" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='FeatureGroupFan']" targetFinderExpression="[self.eContainer(Feature)/]">
+        <edgeMappings name="feature_group_relation" sourceMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='FeatureGroupFan']" targetFinderExpression="[self.featuregroup/]" reconnections="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
           <style targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -1875,62 +1875,62 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="FeatureNodeContainer" semanticCandidatesExpression="feature:eAllContents" domainClass="concernStrategy::Feature" childrenPresentation="List">
-          <borderedNodeMappings name="FeatureGroupFan" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::FeatureGroup">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:'&lt;' + self.min + '-' + self.max + '>'" workspacePath="/edu.kit.ipd.are.dsexplore.concernStrategy.design/images/fan_black.svg">
+        <containerMappings name="FeatureNodeContainer" deletionDescription="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" labelDirectEdit="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Feature%20Name%20Edit']" semanticCandidatesExpression="feature:eAllContents" domainClass="featureObjective::Feature" childrenPresentation="List">
+          <borderedNodeMappings name="FeatureGroupFan" semanticCandidatesExpression="feature:eContents" domainClass="featureObjective::FeatureGroup">
+            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="['&lt;' + self.min + '-' + self.max + '>'/]" workspacePath="/edu.kit.ipd.are.dsexplore.featurecompletions.design/images/fan_black.svg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
             <conditionnalStyles predicateExpression="aql:self.min=1 and self.max=1">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:''" labelPosition="node" workspacePath="/edu.kit.ipd.are.dsexplore.concernStrategy.design/images/fan_white.svg">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:''" labelPosition="node" workspacePath="/edu.kit.ipd.are.dsexplore.featurecompletions.design/images/fan_white.svg">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <borderedNodeMappings name="OptionalCircle" semanticCandidatesExpression="[self.eContainer(Simple).optionalChildren->select(p|p = self)/]" domainClass="concernStrategy::Feature">
+          <borderedNodeMappings name="OptionalCircle" semanticCandidatesExpression="[self.eContainer(Simple).optionalChildren->select(p|p = self)/]" domainClass="featureObjective::Feature">
             <style xsi:type="style:DotDescription" showIcon="false" labelExpression="aql:null" hideLabelByDefault="true" sizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </borderedNodeMappings>
-          <borderedNodeMappings name="MandatoryCircle" semanticCandidatesExpression="[self.eContainer(Simple).mandatoryChildren->select(p|p = self)/]" domainClass="concernStrategy::Feature">
+          <borderedNodeMappings name="MandatoryCircle" semanticCandidatesExpression="[self.eContainer(Simple).mandatoryChildren->select(p|p = self)/]" domainClass="featureObjective::Feature">
             <style xsi:type="style:DotDescription" showIcon="false" labelExpression="aql:null" hideLabelByDefault="true" sizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </borderedNodeMappings>
-          <subNodeMappings name="integer_attribute" semanticCandidatesExpression="feature:attributes" domainClass="concernStrategy::IntegerAttribute">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['[Int] ' + self.name/]" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
+          <subNodeMappings name="integer_attribute" labelDirectEdit="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20int%20range%20values']" semanticCandidatesExpression="feature:attributes" domainClass="featureObjective::IntegerAttribute">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['[Int] ' + self.name/]" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else '?' endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else '?' endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="double_attribute" semanticCandidatesExpression="feature:attributes" domainClass="concernStrategy::DoubleAttribute">
-            <borderedNodeMappings name="double_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.DoubleAttribute">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
+          <subNodeMappings name="double_attribute" labelDirectEdit="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20int%20range%20values']" semanticCandidatesExpression="feature:attributes" domainClass="featureObjective::DoubleAttribute">
+            <borderedNodeMappings name="double_attribute" semanticCandidatesExpression="feature:eContents" domainClass="featureObjective::DoubleAttribute">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else '?' endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else '?' endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
               </style>
             </borderedNodeMappings>
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else '?' endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else '?' endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="string_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::StringAttribute">
+          <subNodeMappings name="string_attribute" semanticCandidatesExpression="feature:eContents" domainClass="featureObjective::StringAttribute">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[String] ' + self.name" tooltipExpression="aql:'The default value is &quot;' + self.defaultValue + '&quot;'" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="external_object_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::ExternalObjectAttribute">
+          <subNodeMappings name="external_object_attribute" semanticCandidatesExpression="feature:eContents" domainClass="featureObjective::ExternalObjectAttribute">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Ext.Obj] ' + self.name" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1943,7 +1943,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
-          <conditionnalStyles predicateExpression="[self.eContainer(FeatureDiagram).rootFeature/]">
+          <conditionnalStyles predicateExpression="[self.eContainer(FeatureObjective).rootFeature/]">
             <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -1956,14 +1956,7 @@
           <ownedTools xsi:type="tool_1:OperationAction" name="Create feature below" precondition="aql:self.eClass().name.equalsIgnoreCase('Feature')">
             <view name="views"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateFeatureBelow" id="CreateFeatureBelow"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:DoubleClickDescription" name="Change simple relation type (optional/mandatory)">
-            <element name="element"/>
-            <elementView name="elementView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeMandatoryOptional" id="ChangeMandatoryOptional"/>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="CreateFeatureBelow" id="action.CreateFeatureBelow"/>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool:DirectEditLabel" name="Feature Name Edit">
@@ -1975,7 +1968,7 @@
           <ownedTools xsi:type="tool_1:OperationAction" name="Change children relationship type" precondition="aql:self.eClass().name.equalsIgnoreCase('Feature')">
             <view name="views"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeChildrenRelationshipType" id="ChangeChildrenRelationshipType"/>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeChildrenRelationshipType" id="action.ChangeChildrenRelationshipType"/>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="Reconnect Feature" forceRefresh="true">
@@ -1985,7 +1978,7 @@
             <targetView name="targetView"/>
             <element name="element"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeFeatureParent" forceRefresh="true" id="ChangeFeatureParent">
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeFeatureParent" forceRefresh="true" id="action.ChangeFeatureParent">
                 <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:edgeView">
                   <subModelOperations xsi:type="tool_1:DeleteView"/>
                 </subModelOperations>
@@ -2001,7 +1994,7 @@
             <elementView name="elementView"/>
             <containerView name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="Delete feature from all constraints" id="DeleteFeatureFromConstraints">
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="Delete feature from all constraints" id="action.DeleteFeatureFromConstraints">
                 <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
                   <subModelOperations xsi:type="tool_1:RemoveElement"/>
                 </subModelOperations>
@@ -2010,27 +2003,32 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create root feature" precondition="[container.rootFeature->size()&lt;1/]">
-            <containerMappings href="../../edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create root feature" precondition="[container.rootFeature->size()&lt;1/]" containerMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy::Feature" referenceName="rootFeature">
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::Feature" referenceName="rootFeature">
                 <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="Root Feature"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Change simple Relation Type" mappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@edgeMappings[name='mandatory_relation'] //@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@edgeMappings[name='optional_relation']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeMandatoryOptional" id="action.ChangeMandatoryOptional"/>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
         <toolSections name="Attributes">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="New double attribute" precondition="aql: container.eClass().name='Feature'">
-            <nodeMappings href="../../edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='double_attribute']"/>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="New double attribute" precondition="[container.oclIsKindOf(Feature)/]" nodeMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='double_attribute']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy.DoubleAttribute" referenceName="attributes">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::DoubleAttribute" referenceName="attributes">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="New Double"/>
                   </subModelOperations>
@@ -2038,13 +2036,12 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="New integer attribute" precondition="[container.eClass().name='Feature'/]">
-            <nodeMappings href="../../edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute']"/>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="New integer attribute" precondition="[container.oclIsKindOf(Feature)/]" nodeMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy::IntegerAttribute" referenceName="attributes">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::IntegerAttribute" referenceName="attributes">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['New Integer'/]"/>
                   </subModelOperations>
@@ -2052,13 +2049,12 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="New string attribute" precondition="aql: container.eClass().name='Feature'">
-            <nodeMappings href="../../edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='string_attribute']"/>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="New string attribute" precondition="[container.oclIsKindOf(Feature)/]" nodeMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='string_attribute']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy.StringAttribute" referenceName="attributes">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::StringAttribute" referenceName="attributes">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="New String"/>
                   </subModelOperations>
@@ -2066,13 +2062,12 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="New external object attribute" precondition="aql: container.eClass().name='Feature'">
-            <nodeMappings href="../../edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='external_object_attribute']"/>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="New external object attribute" precondition="[container.oclIsKindOf(Feature)/]" nodeMappings="//@ownedViewpoints[name='FeatureObjective']/@ownedRepresentations[name='FeatureObjective%20Diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='external_object_attribute']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy.ExternalObjectAttribute" referenceName="attributes">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::ExternalObjectAttribute" referenceName="attributes">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="New external object"/>
                   </subModelOperations>
@@ -2083,46 +2078,21 @@
           <ownedTools xsi:type="tool:DirectEditLabel" name="Edit int range values" precondition="aql:self.eContents()->size() &lt;> 0" inputLabelExpression="aql:self.getInterval()">
             <mask mask="{0}"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeIntegerRangeValues" id="ChangeIntegerRangeValues">
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeIntegerRangeValues" id="action.ChangeIntegerRangeValues">
                 <parameters name="expression" value="var:0"/>
                 <parameters name="attribute" value="var:self"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:DirectEditLabel" name="Edit double range values" precondition="aql:self.eContents()->size() &lt;> 0" inputLabelExpression="aql:self.getInterval()">
-            <mask mask="{0}"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="ChangeContinousRangeValues" id="ChangeContinousRangeValues">
-                <parameters name="expression" value="var:0"/>
-                <parameters name="attribute" value="aql:self"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:OperationAction" name="Create new integer range" precondition="[self.oclIsKindOf(IntegerAttribute) and self.eContents()->isEmpty()/]">
+          <ownedTools xsi:type="tool_1:OperationAction" name="Create new integer range" precondition="[(self.oclIsKindOf(IntegerAttribute) or self.oclIsKindOf(DoubleAttribute))and self.eContents()->isEmpty()/]">
             <view name="views"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy::IntegerIntervalRange" referenceName="range">
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::IntegerIntervalRange" referenceName="range">
                 <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="lowerBoundIncluded" valueExpression="true">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="upperBoundIncluded" valueExpression="true">
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="from" valueExpression="1">
                         <subModelOperations xsi:type="tool_1:SetValue" featureName="to" valueExpression="2"/>
-                      </subModelOperations>
-                    </subModelOperations>
-                  </subModelOperations>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:OperationAction" name="Create new continous range" precondition="[self.oclIsKindOf(DoubleAttribute) and self.eContents()->isEmpty()/]">
-            <view name="views"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy::ContinousIntervalRange" referenceName="range">
-                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="lowerBoundIncluded" valueExpression="true">
-                    <subModelOperations xsi:type="tool_1:SetValue" featureName="upperBoundIncluded" valueExpression="true">
-                      <subModelOperations xsi:type="tool_1:SetValue" featureName="from" valueExpression="1.0">
-                        <subModelOperations xsi:type="tool_1:SetValue" featureName="to" valueExpression="2.0"/>
                       </subModelOperations>
                     </subModelOperations>
                   </subModelOperations>
@@ -2155,13 +2125,13 @@
             </initialOperation>
             <edgeView name="edgeView"/>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:PaneBasedSelectionWizardDescription" name="Create prohibits constraint" precondition="aql:container.eClass().name = 'Feature'" windowTitle="Choose targets for prohibits constraint" choiceOfValuesMessage="Potential targets" candidatesExpression="aql:self.getRoot().eAllContents()->select(p|p.eClass().name='Feature' and p &lt;> self)" selectedValuesMessage="Selected Targets">
+          <ownedTools xsi:type="tool_1:PaneBasedSelectionWizardDescription" name="Create prohibits constraint" precondition="aql:container.eClass().name = 'Feature'" windowTitle="Choose targets for prohibits constraint" choiceOfValuesMessage="Potential targets" candidatesExpression="aql:self.getRoot().eAllContents()->select(p|p.eClass().name='Feature')" selectedValuesMessage="Selected Targets">
             <element name="element"/>
             <containerView name="containerView"/>
             <container name="container"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.getRoot()">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy.ProhibitsConstraint" referenceName="constraints">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::ProhibitsConstraint" referenceName="constraints">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:container">
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:element">
@@ -2175,13 +2145,13 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:PaneBasedSelectionWizardDescription" name="Create requires constraint" precondition="aql:container.eClass().name = 'Feature'" windowTitle="Choose targets for requires constraint" choiceOfValuesMessage="Potential targets" candidatesExpression="aql:self.getRoot().eAllContents()->select(p|p.eClass().name='Feature' and p &lt;> self)">
+          <ownedTools xsi:type="tool_1:PaneBasedSelectionWizardDescription" name="Create requires constraint" precondition="aql:container.eClass().name = 'Feature'" windowTitle="Choose targets for requires constraint" choiceOfValuesMessage="Potential targets" candidatesExpression="aql:self.getRoot().eAllContents()->select(p|p.eClass().name='Feature')">
             <element name="element"/>
             <containerView name="containerView"/>
             <container name="container"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.getRoot()">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="concernStrategy.RequiredConstraint" referenceName="constraints">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featureObjective::RequiredConstraint" referenceName="constraints">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:container">
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:element">
@@ -2198,7 +2168,7 @@
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
-    <ownedJavaExtensions qualifiedClassName="edu.kit.ipd.are.dsexplore.concernStrategy.design.HelperFunctions"/>
+    <ownedJavaExtensions qualifiedClassName="edu.kit.ipd.are.dsexplore.featurecompletions.design.Services"/>
   </ownedViewpoints>
   <extensions xsi:type="properties:ViewExtensionDescription" name="Properties">
     <metamodels href="http://palladiosimulator.org/PalladioComponentModel/5.2#//parameter"/>

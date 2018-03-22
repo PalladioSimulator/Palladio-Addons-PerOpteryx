@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis xmi:id="_0jN1EFVuEeaya_4-OTsh-g" selectedViews="_0k7FQFVuEeaya_4-OTsh-g _0k8TYFVuEeaya_4-OTsh-g _0k-voFVuEeaya_4-OTsh-g _0k_9wFVuEeaya_4-OTsh-g" version="11.1.0.201608251200">
+  <viewpoint:DAnalysis xmi:id="_0jN1EFVuEeaya_4-OTsh-g" selectedViews="_0k7FQFVuEeaya_4-OTsh-g _0k8TYFVuEeaya_4-OTsh-g _0k-voFVuEeaya_4-OTsh-g _0k_9wFVuEeaya_4-OTsh-g" version="12.1.0.201708031200">
     <semanticResources>concerns.ecore</semanticResources>
     <semanticResources>platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore</semanticResources>
     <semanticResources>platform:/plugin/de.uka.ipd.sdq.stoex/model/stoex.ecore</semanticResources>
@@ -12,7 +12,7 @@
     <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_0k7FQFVuEeaya_4-OTsh-g">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="__HGhIOF0EeaqJ5c7d-qc6A" name="Concern Structure class diagram" representation="_4eHkYFVuEeaya_4-OTsh-g">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="__HGhIOF0EeaqJ5c7d-qc6A" name="Concern Structure class diagram" repPath="#_2qbt4C0bEeiV6PH2NXtg_A">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="concerns.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -27,7 +27,7 @@
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']"/>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram xmi:id="_4eHkYFVuEeaya_4-OTsh-g" name="Concern Structure class diagram">
+  <diagram:DSemanticDiagram xmi:id="_4eHkYFVuEeaya_4-OTsh-g" name="Concern Structure class diagram" uid="_2qbt4C0bEeiV6PH2NXtg_A">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_4eHkYVVuEeaya_4-OTsh-g" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_4eHkYlVuEeaya_4-OTsh-g">
         <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_SPb-oFV1Eeaya_4-OTsh-g" sourceArrow="FillDiamond" routingStyle="manhattan">
@@ -159,13 +159,16 @@
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_r4nJglV7Eeaya_4-OTsh-g" x="52" y="88" width="212"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_99pU4FV-Eeaya_4-OTsh-g" type="Note" fontName=".SF NS Text" description="OCL constraint missing" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2r-mAC0bEeiV6PH2NXtg_A" source="specificStyles">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2r-mAS0bEeiV6PH2NXtg_A" key="verticalAlignment" value="8"/>
+          </eAnnotations>
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_99pU5FV-Eeaya_4-OTsh-g" type="DiagramName">
             <element xsi:nil="true"/>
           </children>
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_99pU5VV-Eeaya_4-OTsh-g" type="Description">
             <element xsi:nil="true"/>
           </children>
-          <styles xmi:type="notation:TextStyle" xmi:id="_99pU4VV-Eeaya_4-OTsh-g"/>
+          <styles xmi:type="notation:TextStyle" xmi:id="_99pU4VV-Eeaya_4-OTsh-g" textAlignment="Center"/>
           <styles xmi:type="notation:LineTypeStyle" xmi:id="_99pU4lV-Eeaya_4-OTsh-g"/>
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_99pU41V-Eeaya_4-OTsh-g" x="712" y="214"/>
@@ -293,7 +296,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_P16igVV1Eeaya_4-OTsh-g" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_P16iglV1Eeaya_4-OTsh-g" fontColor="7490599" fontName=".SF NS Text" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_P16ig1V1Eeaya_4-OTsh-g" points="[7, -20, 0, -90]$[7, 70, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_P16ig1V1Eeaya_4-OTsh-g" points="[0, 0, -8, -68]$[0, 34, -8, -34]$[8, 34, 0, -34]$[8, 68, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_P17wplV1Eeaya_4-OTsh-g" id="(0.4406779661016949,1.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_P17wp1V1Eeaya_4-OTsh-g" id="(0.5,0.0)"/>
         </edges>
@@ -357,7 +360,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_C6YCsVWBEeaya_4-OTsh-g" routing="Tree"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_C6YCslWBEeaya_4-OTsh-g" fontName=".SF NS Text" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_C6YCs1WBEeaya_4-OTsh-g" points="[0, 0, -19, -117]$[19, 117, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_C6YCs1WBEeaya_4-OTsh-g" points="[0, 0, -20, -126]$[12, 76, -8, -50]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_C6YCulWBEeaya_4-OTsh-g" id="(0.3389830508474576,1.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_C6YCu1WBEeaya_4-OTsh-g" id="(0.5,0.5)"/>
         </edges>
@@ -389,7 +392,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_M-i2UVWBEeaya_4-OTsh-g" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_M-i2UlWBEeaya_4-OTsh-g" fontColor="7490599" fontName=".SF NS Text" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M-i2U1WBEeaya_4-OTsh-g" points="[0, 0, -192, -67]$[192, 67, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M-i2U1WBEeaya_4-OTsh-g" points="[0, 0, -192, -65]$[0, 32, -192, -33]$[192, 32, 0, -33]$[192, 65, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M-i2WlWBEeaya_4-OTsh-g" id="(0.6101694915254238,1.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M-i2W1WBEeaya_4-OTsh-g" id="(0.6101694915254238,0.0)"/>
         </edges>
@@ -437,7 +440,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_1xIdEVWXEeaya_4-OTsh-g" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_1xIdElWXEeaya_4-OTsh-g" fontColor="7490599" fontName=".SF NS Text" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1xIdE1WXEeaya_4-OTsh-g" points="[0, 0, -74, -24]$[74, 24, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1xIdE1WXEeaya_4-OTsh-g" points="[0, 0, -72, -23]$[72, 0, 0, -23]$[72, 23, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1xJEJlWXEeaya_4-OTsh-g" id="(1.0,0.8571428571428571)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1xJEJ1WXEeaya_4-OTsh-g" id="(0.2711864406779661,0.0)"/>
         </edges>

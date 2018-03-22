@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.ui,
  edu.kit.ipd.are.dsexplore.featurecompletions
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java

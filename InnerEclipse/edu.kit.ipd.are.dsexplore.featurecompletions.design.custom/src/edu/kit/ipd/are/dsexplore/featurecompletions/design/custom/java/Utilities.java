@@ -35,7 +35,7 @@ public class Utilities {
 	 * Determines whether the feature is an optional child (as opposed to a
 	 * mandatory). Can only be used if feature is in a simple relationship.
 	 */
-	protected static boolean isOptionalChild(Feature feature) {
+	public static boolean isOptionalChild(Feature feature) {
 		Simple simple = (Simple) feature.eContainer();
 		Iterator list = simple.getOptionalChildren().iterator();
 

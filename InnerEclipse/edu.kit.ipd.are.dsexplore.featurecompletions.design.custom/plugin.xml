@@ -5,39 +5,27 @@
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.CreateFeatureBelow"
-            id="CreateFeatureBelow">
+            id="action.CreateFeatureBelow">
       </javaActions>
       <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ChangeMandatoryOptional"
-            id="ChangeMandatoryOptional">
+            id="action.ChangeMandatoryOptional">
       </javaActions>
       <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ChangeChildrenRelationshipType"
-            id="ChangeChildrenRelationshipType">
-      </javaActions>
-      <javaActions
-            actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ReconnectConstraintEdge"
-            id="ReconnectConstraintEdge">
+            id="action.ChangeChildrenRelationshipType">
       </javaActions>
       <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ChangeFeatureParent"
-            id="ChangeFeatureParent">
+            id="action.ChangeFeatureParent">
       </javaActions>
      <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.DeleteFeatureFromConstraints"
-            id="DeleteFeatureFromConstraints">
-      </javaActions>
-      <javaActions
-            actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.CreateConfigNode"
-            id="CreateConfigNode">
+            id="action.DeleteFeatureFromConstraints">
       </javaActions>
       <javaActions
             actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ChangeIntegerRangeValues"
-            id="ChangeIntegerRangeValues">
-      </javaActions>
-      <javaActions
-            actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java.ChangeContinousRangeValues"
-            id="ChangeContinousRangeValues">
+            id="action.ChangeIntegerRangeValues">
       </javaActions>
       
 	</extension>

@@ -26,7 +26,6 @@ public class ChangeMandatoryOptional implements org.eclipse.sirius.tools.api.ui.
 	 */
 	@Override
 	public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-
 		FeatureObjectivePackage stratModPack = FeatureObjectivePackageImpl.init();
 		FeatureObjectiveFactory stratFactory = FeatureObjectiveFactoryImpl.init();
 
@@ -47,6 +46,5 @@ public class ChangeMandatoryOptional implements org.eclipse.sirius.tools.api.ui.
 			simple.getMandatoryChildren().remove(target);
 			simple.getOptionalChildren().add(target);
 		}
-
 	}
 }
