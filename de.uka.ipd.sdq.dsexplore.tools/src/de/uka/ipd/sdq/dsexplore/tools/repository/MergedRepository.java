@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -50,11 +51,20 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 
 	private void createRepo() {
 		Repository repo = RepositoryFactory.eINSTANCE.createRepository();
+
 		for (Repository r : this.repositories) {
-			repo.getComponents__Repository().addAll(r.getComponents__Repository());
+			Repository copy = this.copyOf(r);
+			repo.getComponents__Repository().addAll(copy.getComponents__Repository());
 		}
 		this.repoWithoutAnnotations = repo;
 
+	}
+
+	private Repository copyOf(Repository repo) {
+		Copier copier = new Copier();
+		Repository newRepo = (Repository) copier.copy(repo);
+		copier.copyReferences();
+		return newRepo;
 	}
 
 	public List<CostRepository> getCostRepos() {

@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.system.System;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PerimeterProviding;
@@ -24,14 +26,14 @@ public class FCCAllocDegreeDesignDecision {
 
 	// private final FeatureCompletionManager concernManager;
 	// private final ComponentsToBeWovenFilter annotationFilter;
-	private final List<AssemblyContext> assemblies;
+	private final System system;
 	private final FeatureCompletion featureCompletion;
 
-	public FCCAllocDegreeDesignDecision(FeatureCompletion featureCompletion, List<AssemblyContext> assemblies) {
+	public FCCAllocDegreeDesignDecision(FeatureCompletion featureCompletion, System system) {
 		// this.concernManager =
 		// FeatureCompletionManager.getInstanceBy(featureCompletion);
 		this.featureCompletion = featureCompletion;
-		this.assemblies = assemblies;
+		this.system = system;
 		// this.annotationFilter = new ComponentsToBeWovenFilter(repositories);
 	}
 
@@ -48,9 +50,14 @@ public class FCCAllocDegreeDesignDecision {
 	private List<Feature> getAllUsedFeatures() {
 		Set<Feature> allFeatures = new HashSet<>();
 
-		for (AssemblyContext assembly : this.assemblies) {
-			List<Feature> featurePerAssembly = StereotypeAPIHelper.getViaStereoTypeFrom(assembly, Feature.class);
-			allFeatures.addAll(featurePerAssembly);
+		for (Connector assembly : this.system.getConnectors__ComposedStructure()) {
+			List<ComplementumVisnetis> cvs = StereotypeAPIHelper.getViaStereoTypeFrom(assembly, ComplementumVisnetis.class);
+			for (ComplementumVisnetis cv : cvs) {
+				if (cv.getComplementaryFeature() != null) {
+					allFeatures.add(cv.getComplementaryFeature());
+				}
+			}
+
 		}
 
 		return new ArrayList<>(allFeatures);

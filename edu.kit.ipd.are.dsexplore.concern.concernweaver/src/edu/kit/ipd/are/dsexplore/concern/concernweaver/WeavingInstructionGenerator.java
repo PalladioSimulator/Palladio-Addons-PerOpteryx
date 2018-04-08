@@ -10,7 +10,6 @@ import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
@@ -25,8 +24,6 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
@@ -124,15 +121,6 @@ public class WeavingInstructionGenerator {
 	 *             the weaving instructions.
 	 */
 	public List<WeavingInstruction> getWeavingInstructions(List<Pair<FeatureDegree, Choice>> optChoice) throws ConcernWeavingException {
-		// TODO DTHF1 Check
-		/*
-		 * System pcmSystem = this.pcmInstance.getSystem(); List<Repository>
-		 * pcmSolutionRepository =
-		 * StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem,
-		 * Repository.class);
-		 */
-		// TODO DTHF1 Fix merge. Stereotypes will be not accessible after merge
-		// ..
 
 		try {
 			List<Pair<ComplementumVisnetis, WeavingLocation>> targetLocs = this.getWeavingLocationsFrom(this.getTargetAnnotatedElementPairs());
@@ -144,6 +132,9 @@ public class WeavingInstructionGenerator {
 			return instructions;
 		} catch (Exception ex) {
 			// Exception ... :(
+			if (ex instanceof ConcernWeavingException) {
+				throw ex;
+			}
 			throw new ConcernWeavingException(ex.getMessage());
 		}
 
@@ -186,7 +177,7 @@ public class WeavingInstructionGenerator {
 	 * @author Dominik Fuchss
 	 */
 	private boolean checkDelete(WeavingInstruction instruct, List<Pair<FeatureDegree, Choice>> optChoice) {
-		Feature feature = this.getViaStereoTypeFrom(instruct.getFCCWithConsumedFeatures().getFirst(), Feature.class).get(0);
+		Feature feature = StereotypeAPIHelper.getViaStereoTypeFrom(instruct.getFCCWithConsumedFeatures().getFirst(), Feature.class).get(0);
 		Object id = feature.getId();
 		Choice ch = null;
 		for (Pair<FeatureDegree, Choice> p : optChoice) {
@@ -202,26 +193,6 @@ public class WeavingInstructionGenerator {
 			return false;
 		}
 		return !((FeatureChoice) ch).isSelected();
-	}
-
-	/**
-	 * Find all referenced Elements by type and base
-	 *
-	 * @param base
-	 *            the base (search location)
-	 * @param target
-	 *            the target type
-	 * @return a list of Elements found
-	 * @author Dominik Fuchss
-	 */
-	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
-		List<ElementType> res = new ArrayList<>();
-		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
-		for (StereotypeApplication appl : appls) {
-			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
-			res.addAll(provided);
-		}
-		return res;
 	}
 
 	private List<Pair<ComplementumVisnetis, WeavingLocation>> getWeavingLocationsFrom(List<Pair<ComplementumVisnetis, EObject>> targetAnnotatedElements) throws ConcernWeavingException {

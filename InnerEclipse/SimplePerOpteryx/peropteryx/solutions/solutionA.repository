@@ -44,6 +44,10 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
       <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="../Solution.featuresolution#_KQ7R8CeuEeiIeo5GuXQT1g"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_UUrhMJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../FCompletion.featurecompletion#_X-aVoCeuEeiIeo5GuXQT1g"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

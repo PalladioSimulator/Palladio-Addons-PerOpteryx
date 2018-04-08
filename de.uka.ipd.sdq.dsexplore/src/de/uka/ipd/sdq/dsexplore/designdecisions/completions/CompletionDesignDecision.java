@@ -38,7 +38,6 @@ public class CompletionDesignDecision {
 	}
 
 	private MergedRepository getMergedRepository() {
-		// TODO DTHF1 merged ..
 		MergedRepository merged = WeavingManager.getInstance().map(WeavingManager::getMergedRepo).orElse(null);
 		return merged;
 	}
