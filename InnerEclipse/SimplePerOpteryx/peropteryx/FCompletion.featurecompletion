@@ -6,7 +6,7 @@
         <featureProviding href="Features.featureobjective#_n_GLASeuEeiIeo5GuXQT1g"/>
       </perimeterProviding>
     </completionComponents>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_uj5UwieuEeiIeo5GuXQT1g" name="CV_A">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_uj5UwieuEeiIeo5GuXQT1g" name="CV_A" visnetum="INTERFACE">
       <complementaryFeature href="Features.featureobjective#_n_GLASeuEeiIeo5GuXQT1g"/>
     </complementa>
   </featureCompletions>

@@ -11,6 +11,7 @@ import java.util.Random;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationSignature;
@@ -18,6 +19,7 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
@@ -201,7 +203,29 @@ public class WeavingInstructionGenerator {
 
 	private List<Pair<ComplementumVisnetis, EObject>> getTargetAnnotatedElementPairs() throws ConcernWeavingException {
 		List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP = this.getUncheckedComplementumVisnetisAnnotatedElementPairs();
-		return this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
+		this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
+		return uncheckedCVAEP;
+		// return this.considerOnlyInstantiatedComponents(uncheckedCVAEP);
+	}
+
+	private void considerOnlyInstantiatedComponents(List<Pair<ComplementumVisnetis, EObject>> uncheckedCVAEP) {
+		System system = this.pcmInstance.getSystem();
+		List<ComplementumVisnetis> activeCV = new ArrayList<>();
+		for (Connector conn : system.getConnectors__ComposedStructure()) {
+			List<ComplementumVisnetis> cvs = StereotypeAPIHelper.getViaStereoTypeFrom(conn, ComplementumVisnetis.class, "target");
+			activeCV.addAll(cvs);
+		}
+		uncheckedCVAEP.removeIf(cv -> !this.contains(activeCV, cv));
+
+	}
+
+	private boolean contains(List<ComplementumVisnetis> activeCV, Pair<ComplementumVisnetis, EObject> cve) {
+		for (ComplementumVisnetis cv : activeCV) {
+			if (cv.getId().equals(cve.getFirst().getId())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private List<Pair<ComplementumVisnetis, EObject>> getUncheckedComplementumVisnetisAnnotatedElementPairs() {
@@ -239,7 +263,7 @@ public class WeavingInstructionGenerator {
 
 	}
 
-	private List<Pair<ComplementumVisnetis, EObject>> considerOnlyInstantiatedComponents(List<Pair<ComplementumVisnetis, EObject>> annotatedElements) throws ConcernWeavingException {
+	private List<Pair<ComplementumVisnetis, EObject>> considerOnlyInstantiatedComponentsX(List<Pair<ComplementumVisnetis, EObject>> annotatedElements) throws ConcernWeavingException {
 		List<Pair<ComplementumVisnetis, EObject>> result = new ArrayList<>();
 		Iterator<Pair<ComplementumVisnetis, EObject>> iter = annotatedElements.iterator();
 		Pair<ComplementumVisnetis, EObject> current;

@@ -20,7 +20,6 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
-import FeatureCompletionModel.FeatureCompletion;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
@@ -324,7 +323,13 @@ public class WeavingLocationHandler {
 	}
 
 	private boolean containsAffectedRole(Connector connector, Role affectedRole) {
-		return connector.eCrossReferences().stream().anyMatch(eachObject -> ConcernWeaverUtil.areEqual(eachObject, affectedRole));
+		for (EObject ref : connector.eCrossReferences()) {
+			if (ConcernWeaverUtil.areEqual(ref, affectedRole)) {
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 }
