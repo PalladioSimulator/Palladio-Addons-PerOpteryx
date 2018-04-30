@@ -61,6 +61,7 @@ public class QesFactory extends NqrFactory {
 
     public void setInstance(PCMInstance instance) {
         finder = new QesFinder(instance);
+        System.out.println(instance); // XXX
     }
 
     @Override

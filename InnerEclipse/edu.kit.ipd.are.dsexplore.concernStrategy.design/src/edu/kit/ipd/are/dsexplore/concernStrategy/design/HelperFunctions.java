@@ -7,20 +7,13 @@ import org.eclipse.sirius.diagram.DEdge;
 
 import concernStrategy.Attribute;
 import concernStrategy.ChildRelation;
-import concernStrategy.Constraint;
 import concernStrategy.ContinousIntervalRange;
 import concernStrategy.DoubleAttribute;
 import concernStrategy.Feature;
-import concernStrategy.FeatureDiagram;
 import concernStrategy.FeatureGroup;
 import concernStrategy.IntegerAttribute;
 import concernStrategy.IntegerIntervalRange;
-import concernStrategy.ProhibitsConstraint;
-import concernStrategy.RequiredConstraint;
 import concernStrategy.Simple;
-import strategyConfig.ConfigNode;
-import strategyConfig.ConfigState;
-import strategyConfig.Configuration;
 
 /*
  * These functions are accessible in AQL expressions for the viewpoint specification.
@@ -65,20 +58,6 @@ public class HelperFunctions {
 		return null;
 	}
 
-	/*
-	 * Gets the config node corresponding to the feature.
-	 */
-	public ConfigNode getConfigNode(EObject feature, Configuration configuration) {
-		EList<ConfigNode> nodes = configuration.getDefaultConfig().getConfignode();
-		
-		for (ConfigNode node : nodes) {
-			if (node.getOrigin() == feature) {
-				return node;
-			}
-		}
-
-		return null;
-	}
 
 	/*
 	 * Get the name of the edge removing the first part which is like
@@ -161,203 +140,5 @@ public class HelperFunctions {
 
 		return s;
 	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * feature group cardinalities are met.
-	 */
-	public boolean hasValidFeatureGroup(EObject o, Configuration configuration) {
-		Feature feature = (Feature) o;
-
-		if (feature.getChildrelation() == null || !(feature.getChildrelation() instanceof FeatureGroup)) {
-			return true;
-		}
-
-		if (this.isAnyParentEliminated(feature, configuration)) {
-			return true;
-		}
-
-		FeatureGroup fg = (FeatureGroup) feature.getChildrelation();
-
-		int selectedFeatures = 0;
-
-		EList<Feature> list = fg.getChildren();
-
-		for (Feature f : list) {
-			ConfigNode cn = this.getConfigNode(f, configuration);
-
-			if (cn == null) {
-				continue;
-			}
-			if (this.getConfigNode(f, configuration).getConfigState().equals(ConfigState.SELECTED_LITERAL)) {
-				selectedFeatures++;
-			}
-		}
-
-		if (selectedFeatures <= fg.getMax() && selectedFeatures >= fg.getMin()) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * mandatory children of a feature group are selected.
-	 */
-	public boolean hasValidSimple(EObject o, Configuration configuration) {
-		Feature feature = (Feature) o;
-
-		if (feature.getChildrelation() == null || !(feature.getChildrelation() instanceof Simple)) {
-			return true;
-		}
-
-		if (this.isAnyParentEliminated(feature, configuration)) {
-			return true;
-		}
-
-		Simple simple = (Simple) feature.getChildrelation();
-		EList<Feature> mandatoryChildren = simple.getMandatoryChildren();
-
-		for (Feature f : mandatoryChildren) {
-			if (!isSelected(f, configuration)) {
-				return false;
-			}
-		}
-		return true;
-
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the any
-	 * parent feature is eliminated.
-	 */
-	private boolean isAnyParentEliminated(Feature f, Configuration configuration) {
-		Feature rootFeature = ((FeatureDiagram) this.getRoot(f)).getRootFeature();
-		Feature currentFeature = f;
-
-		while (currentFeature != rootFeature) {
-			if (this.isEliminated(currentFeature, configuration)) {
-				return true;
-			}
-
-			currentFeature = (Feature) currentFeature.eContainer().eContainer();
-		}
-
-		return false;
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * feature is eliminated.
-	 */
-	private boolean isEliminated(Feature f, Configuration configuration) {
-		if (this.getConfigNode(f, configuration) == null) {
-			return false;
-		}
-
-		return this.getConfigNode(f, configuration).getConfigState().equals(ConfigState.ELIMINATED_LITERAL);
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * feature is selected.
-	 */
-	private boolean isSelected(Feature f, Configuration configuration) {
-		if (this.getConfigNode(f, configuration) == null) {
-			return false;
-		}
-
-		return this.getConfigNode(f, configuration).getConfigState().equals(ConfigState.SELECTED_LITERAL);
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * feature is selected and if thats true, that the targets associated with a
-	 * prohibit constraint are also selected.
-	 */
-	public boolean isSelectedAndProhibitedTargetsAreSelected(EObject o, Configuration configuration) {
-		Feature feature = (Feature) o;
-
-		if (!isSelected(feature, configuration)) {
-			return false;
-		}
-
-		if (this.isAnyParentEliminated(feature, configuration)) {
-			return false;
-		}
-
-		FeatureDiagram fd = (FeatureDiagram) this.getRoot(feature);
-		EList<Constraint> constraints = fd.getConstraints();
-
-		for (Constraint c : constraints) {
-			if (c instanceof ProhibitsConstraint) {
-				ProhibitsConstraint pc = (ProhibitsConstraint) c;
-				EList<Feature> targets = pc.getTarget();
-
-				if (pc.getSource() == feature) {
-					for (Feature f : targets) {
-						if (isSelected(f, configuration) && !isAnyParentEliminated(f, configuration)) {
-							return true;
-						}
-					}
-				} else {
-					if (isSelected(pc.getSource(), configuration)) {
-						for (Feature f : targets) {
-							if (f == feature && !isAnyParentEliminated(f, configuration)) {
-								return true;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/*
-	 * This method checks in the configuration diagram editor, whether the
-	 * feature is selected and if thats true, that the targets associated with a
-	 * required constraint are also selected.
-	 */
-	public boolean isSelectedAndRequiredTargetsAreSelected(EObject o, Configuration configuration) {
-		Feature feature = (Feature) o;
-
-		if (!isSelected(feature, configuration)) {
-			return true;
-		}
-
-		if (this.isAnyParentEliminated(feature, configuration)) {
-			return true;
-		}
-
-		FeatureDiagram fd = (FeatureDiagram) this.getRoot(feature);
-		EList<Constraint> constraints = fd.getConstraints();
-		for (Constraint c : constraints) {
-			if (c instanceof RequiredConstraint) {
-				RequiredConstraint pc = (RequiredConstraint) c;
-				EList<Feature> targets = pc.getTarget();
-
-				if (pc.getSource() == feature) {
-					for (Feature f : targets) {
-						if (!isSelected(f, configuration)) {
-							return false;
-						} else {
-							if (isAnyParentEliminated(f, configuration)) {
-								return false;
-							}
-
-						}
-
-					}
-				}
-			}
-
-		}
-
-		return true;
-	}
-
+	
 }

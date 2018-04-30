@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="concernStrategy" version="10.1.0.201507271600">
-  <ownedViewpoints documentation="The difference between &quot;optional_relation&quot; and &quot;optional_relation_&quot; is, that the former is for the feature diagram while the latter is for the configuration diagram." name="feature_viewpoint">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="feature_diagram" domainClass="concernStrategy.FeatureDiagram" enablePopupBars="true">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" name="concernStrategy" version="12.0.0.2017041100">
+  <ownedViewpoints name="feature_viewpoint" modelFileExtension="strategymodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="feature_diagram" domainClass="concernStrategy::FeatureDiagram" enablePopupBars="true">
+      <metamodel href="http://edu.kit.ipd.are/ConcernStrategyModel/1.0#/"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="attribute_filter">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='string_attribute'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='external_object_attribute'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='double_attribute']"/>
       </filters>
@@ -23,7 +24,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="requires_constraint" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy.RequiredConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
+        <edgeMappings name="requires_constraint" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="[self.target/]" sourceFinderExpression="[self.source/]" domainClass="concernStrategy::RequiredConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
           <style lineStyle="dash" sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -31,7 +32,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="prohibits_constraint" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy.ProhibitsConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
+        <edgeMappings name="prohibits_constraint" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy::ProhibitsConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
           <style lineStyle="dash" sourceArrow="InputArrow" sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             <centerLabelStyleDescription>
@@ -39,7 +40,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="feature_group_relation" preconditionExpression="aql:self.featuregroup" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='FeatureGroupFan']" targetFinderExpression="aql:self.eContainer()" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
+        <edgeMappings name="feature_group_relation" preconditionExpression="aql:self.featuregroup" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='FeatureGroupFan']" targetFinderExpression="[self.eContainer(Feature)/]" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
           <style targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -47,8 +48,8 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="FeatureNodeContainer" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Feature%20Name%20Edit']" semanticCandidatesExpression="feature:eAllContents" domainClass="concernStrategy.Feature" childrenPresentation="List">
-          <borderedNodeMappings name="FeatureGroupFan" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.FeatureGroup">
+        <containerMappings name="FeatureNodeContainer" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Feature%20Name%20Edit']" semanticCandidatesExpression="feature:eAllContents" domainClass="concernStrategy::Feature" childrenPresentation="List">
+          <borderedNodeMappings name="FeatureGroupFan" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::FeatureGroup">
             <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:'&lt;' + self.min + '-' + self.max + '>'" workspacePath="/edu.kit.ipd.are.dsexplore.concernStrategy.design/images/fan_black.svg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -60,49 +61,49 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <borderedNodeMappings name="OptionalCircle" semanticCandidatesExpression="aql:self.eContainer().optionalChildren->select(p|p = self)" domainClass="concernStrategy.Feature">
+          <borderedNodeMappings name="OptionalCircle" semanticCandidatesExpression="[self.eContainer(Simple).optionalChildren->select(p|p = self)/]" domainClass="concernStrategy::Feature">
             <style xsi:type="style:DotDescription" showIcon="false" labelExpression="aql:null" hideLabelByDefault="true" sizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </borderedNodeMappings>
-          <borderedNodeMappings name="MandatoryCircle" semanticCandidatesExpression="aql:self.eContainer().mandatoryChildren->select(p|p = self)" domainClass="concernStrategy.Feature">
+          <borderedNodeMappings name="MandatoryCircle" semanticCandidatesExpression="[self.eContainer(Simple).mandatoryChildren->select(p|p = self)/]" domainClass="concernStrategy::Feature">
             <style xsi:type="style:DotDescription" showIcon="false" labelExpression="aql:null" hideLabelByDefault="true" sizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </borderedNodeMappings>
-          <subNodeMappings name="integer_attribute" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20int%20range%20values']" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.IntegerAttribute">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Int] ' + self.name" tooltipExpression="aql:'The default value is ' + self.defaultValue + (if self.range != null then ' and the range is from ' + self.range.from + ' to ' + self.range.to else '' endif)" labelPosition="node" resizeKind="NSEW">
+          <subNodeMappings name="integer_attribute" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20int%20range%20values']" semanticCandidatesExpression="feature:attributes" domainClass="concernStrategy::IntegerAttribute">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['[Int] ' + self.name/]" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="double_attribute" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20double%20range%20values']" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.DoubleAttribute">
+          <subNodeMappings name="double_attribute" labelDirectEdit="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Edit%20double%20range%20values']" semanticCandidatesExpression="feature:attributes" domainClass="concernStrategy::DoubleAttribute">
             <borderedNodeMappings name="double_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.DoubleAttribute">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="aql:'The default value is ' + self.defaultValue + (if self.range != null then ' and the range is from ' + self.range.from + (if self.range.lowerBoundIncluded then '(included)' else '(not included)' endif)  + ' to ' + self.range.to + (if self.range.upperBoundIncluded then '(included)' else '(not included)' endif) else '' endif)" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
               </style>
             </borderedNodeMappings>
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="aql:'The default value is ' + self.defaultValue + (if self.range != null then ' and the range is from ' + self.range.from + (if self.range.lowerBoundIncluded then '(included)' else '(not included)' endif)  + ' to ' + self.range.to + (if self.range.upperBoundIncluded then '(included)' else '(not included)' endif) else '' endif)" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name" tooltipExpression="['The default value is ' + self.defaultValue + (if self.range.oclIsUndefined() then '' else ' and the range is ' + (if self.range.lowerBoundIncluded then '[' else '(' endif) + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).from else self.range.oclAsType(ContinousIntervalRange).from endif) + ';' + (if self.range.oclIsKindOf(IntegerIntervalRange) then self.range.oclAsType(IntegerIntervalRange).to else self.range.oclAsType(ContinousIntervalRange).to endif) + (if self.range.upperBoundIncluded then ']' else ')' endif) endif)/]" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="string_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.StringAttribute">
+          <subNodeMappings name="string_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::StringAttribute">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[String] ' + self.name" tooltipExpression="aql:'The default value is &quot;' + self.defaultValue + '&quot;'" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
             </style>
           </subNodeMappings>
-          <subNodeMappings name="external_object_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.ExternalObjectAttribute">
+          <subNodeMappings name="external_object_attribute" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy::ExternalObjectAttribute">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Ext.Obj] ' + self.name" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -115,7 +116,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.eContainer().rootFeature">
+          <conditionnalStyles predicateExpression="[self.eContainer(FeatureDiagram).rootFeature/]">
             <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -182,11 +183,11 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Create root feature" containerMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Create root feature" precondition="[container.rootFeature->size()&lt;1/]" containerMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy.Feature" referenceName="rootFeature">
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy::Feature" referenceName="rootFeature">
                 <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
                   <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="Root Feature"/>
                 </subModelOperations>
@@ -208,14 +209,14 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New integer attribute" precondition="aql: container.eClass().name='Feature'" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute']">
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New integer attribute" precondition="[container.eClass().name='Feature'/]" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@subNodeMappings[name='integer_attribute']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy.IntegerAttribute" referenceName="attributes">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy::IntegerAttribute" referenceName="attributes">
                   <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New Integer"/>
+                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="['New Integer'/]"/>
                   </subModelOperations>
                 </subModelOperations>
               </firstModelOperations>
@@ -252,7 +253,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool:ExternalJavaAction" name="ChangeIntegerRangeValues" id="ChangeIntegerRangeValues">
                 <parameters name="expression" value="var:0"/>
-                <parameters name="attribute" value="aql:self"/>
+                <parameters name="attribute" value="var:self"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -265,10 +266,10 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:OperationAction" name="Create new integer range" precondition="aql:self.eClass().name.equalsIgnoreCase('IntegerAttribute') and self.eContents()->size() = 0">
+          <ownedTools xsi:type="tool:OperationAction" name="Create new integer range" precondition="[self.oclIsKindOf(IntegerAttribute) and self.eContents()->isEmpty()/]">
             <view name="views"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy.IntegerIntervalRange" referenceName="range">
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy::IntegerIntervalRange" referenceName="range">
                 <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
                   <subModelOperations xsi:type="tool:SetValue" featureName="lowerBoundIncluded" valueExpression="true">
                     <subModelOperations xsi:type="tool:SetValue" featureName="upperBoundIncluded" valueExpression="true">
@@ -281,10 +282,10 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:OperationAction" name="Create new continous range" precondition="aql:self.eClass().name.equalsIgnoreCase('DoubleAttribute') and self.eContents()->size() = 0">
+          <ownedTools xsi:type="tool:OperationAction" name="Create new continous range" precondition="[self.oclIsKindOf(DoubleAttribute) and self.eContents()->isEmpty()/]">
             <view name="views"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy.ContinousIntervalRange" referenceName="range">
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="concernStrategy::ContinousIntervalRange" referenceName="range">
                 <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
                   <subModelOperations xsi:type="tool:SetValue" featureName="lowerBoundIncluded" valueExpression="true">
                     <subModelOperations xsi:type="tool:SetValue" featureName="upperBoundIncluded" valueExpression="true">
@@ -359,293 +360,6 @@
                     </subModelOperations>
                   </subModelOperations>
                 </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-        </toolSections>
-      </defaultLayer>
-    </ownedRepresentations>
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="configuration_diagram" domainClass="strategyConfig.Configuration" enablePopupBars="true">
-      <filters xsi:type="filter:CompositeFilterDescription" name="attribute_filter_">
-        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='integer_attribute_'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='double_attribute_'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='string_attribute_'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='external_object_attribute_']"/>
-      </filters>
-      <filters xsi:type="filter:CompositeFilterDescription" name="constraint_filter_">
-        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@edgeMappings[name='requires_constraint_'] //@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@edgeMappings[name='prohibits_constraint_']"/>
-      </filters>
-      <filters xsi:type="filter:CompositeFilterDescription" name="Default config filter">
-        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@nodeMappings[name='Default%20Config']"/>
-      </filters>
-      <defaultLayer name="Default">
-        <nodeMappings name="Default Config" semanticCandidatesExpression="feature:eAllContents" domainClass="strategyConfig.FeatureConfig">
-          <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="Default configuration" labelPosition="node" resizeKind="NSEW">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
-          </style>
-        </nodeMappings>
-        <edgeMappings name="optional_relation_" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@borderedNodeMappings[name='OptionalCircle_']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetFinderExpression="aql:self.eContainer().eContainer()" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
-          <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="mandatory_relation_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@borderedNodeMappings[name='MandatoryCircle_']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetFinderExpression="aql:self.eContainer().eContainer()" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
-          <style targetArrow="NoDecoration" sizeComputationExpression="2" endsCentering="Both">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="feature_group_relation_" preconditionExpression="aql:self.featuregroup" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@borderedNodeMappings[name='FeatureGroupFan_']" targetFinderExpression="aql:self.eContainer()" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Reconnect%20Feature']">
-          <style targetArrow="NoDecoration" sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="requires_constraint_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy.RequiredConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
-          <style lineStyle="dash" sizeComputationExpression="2" routingStyle="manhattan">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="prohibits_constraint_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" sourceMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetMapping="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']" targetFinderExpression="aql:self.target" sourceFinderExpression="aql:self.source" domainClass="concernStrategy.ProhibitsConstraint" useDomainElement="true" reconnections="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Reconnect%20constraint']">
-          <style lineStyle="dash" sourceArrow="InputArrow" sizeComputationExpression="2" routingStyle="manhattan">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <containerMappings xsi:type="description_1:ContainerMappingImport" name="FeatureNodeContainer_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" semanticCandidatesExpression="aql:self.defaultConfig.annotatedElement.eAllContents()" domainClass="concernStrategy.Feature" childrenPresentation="List">
-          <borderedNodeMappings name="OptionalCircle_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" semanticCandidatesExpression="aql:self.eContainer().optionalChildren->select(p|p = self)" domainClass="concernStrategy.Feature">
-            <style xsi:type="style:DotDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" strokeSizeComputationExpression="1">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </borderedNodeMappings>
-          <borderedNodeMappings name="MandatoryCircle_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" semanticCandidatesExpression="aql:self.eContainer().mandatoryChildren->select(p|p = self)" domainClass="concernStrategy.Feature">
-            <style xsi:type="style:DotDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" strokeSizeComputationExpression="1">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </borderedNodeMappings>
-          <borderedNodeMappings name="FeatureGroupFan_" deletionDescription="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Delete%20Overwrite']" semanticCandidatesExpression="feature:eContents" domainClass="concernStrategy.FeatureGroup">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:'&lt;' + self.min + '-' + self.max + '>'" workspacePath="/edu.kit.ipd.are.dsexplore.concernStrategy.design/images/fan_black.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-            <conditionnalStyles predicateExpression="aql:self.min=1 and self.max=1">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:''" labelPosition="node" workspacePath="/edu.kit.ipd.are.dsexplore.concernStrategy.design/images/fan_white.svg">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              </style>
-            </conditionnalStyles>
-          </borderedNodeMappings>
-          <borderedNodeMappings name="ConfigNode" preconditionExpression="aql:self.origin=container" domainClass="strategyConfig.ConfigNode">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-            <conditionnalStyles predicateExpression="aql:self.configState.toString()='DEFAULT'">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" width="2" height="2">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              </style>
-            </conditionnalStyles>
-            <conditionnalStyles predicateExpression="aql:self.configState.toString()='SELECTED'">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" width="2" height="2">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
-              </style>
-            </conditionnalStyles>
-            <conditionnalStyles predicateExpression="aql:self.configState.toString()='ELIMINATED'">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" width="2" height="2">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-              </style>
-            </conditionnalStyles>
-          </borderedNodeMappings>
-          <subNodeMappings name="double_attribute_" semanticCandidatesExpression="aql:self.getConfigNode().eContents()" domainClass="strategyConfig.DoubleAttributeValue">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Double] ' + self.name + ': ' + self.value" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="integer_attribute_" semanticCandidatesExpression="aql:self.getConfigNode().eContents()" domainClass="strategyConfig.IntegerAttributeValue">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[Int] ' + self.name + ': ' + self.value" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="string_attribute_" semanticCandidatesExpression="aql:self.getConfigNode().eContents()" domainClass="strategyConfig.StringAttributeValue">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[String] ' + self.name + ': ' + self.value" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <subNodeMappings name="external_object_attribute_" semanticCandidatesExpression="aql:self.getConfigNode().eContents()" domainClass="strategyConfig.ExternalObjectAttributeValue">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:'[String] ' + self.name + ': ' + self.value" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" tooltipExpression="aql:''">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-          </style>
-          <conditionnalStyles predicateExpression="aql: not self.hasValidFeatureGroup(container)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" tooltipExpression="Feature Group is not valid because the amount of the selected features is not in the min-max range.">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql: not self.hasValidSimple(container)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" tooltipExpression="This feature is not valid because it has mandatory children which are not selected.">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql: self.isSelectedAndProhibitedTargetsAreSelected(container)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" tooltipExpression="This feature is not valid because at least one prohibited feature is selected.">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql: not self.isSelectedAndRequiredTargetsAreSelected(container)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" tooltipExpression="This feature is not valid because at least one required feature is not selected or the required feature has a parent that is eliminated.">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
-          </conditionnalStyles>
-        </containerMappings>
-        <toolSections name="Attributes">
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New integer attribute" precondition="aql: container.eClass().name='Feature' and container.getConfigNode(containerView.eContainer().target) &lt;> null" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='integer_attribute_']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.getConfigNode()">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="strategyConfig.IntegerAttributeValue" referenceName="attributevalue">
-                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New integer attribute">
-                      <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="aql:'0'"/>
-                    </subModelOperations>
-                  </subModelOperations>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New double attribute" precondition="aql: container.eClass().name='Feature' and container.getConfigNode(containerView.eContainer().target) &lt;> null" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='double_attribute_']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.getConfigNode()">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="strategyConfig.DoubleAttributeValue" referenceName="attributevalue">
-                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New integer attribute">
-                      <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="aql:'0.0'"/>
-                    </subModelOperations>
-                  </subModelOperations>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New string attribute" precondition="aql: container.eClass().name='Feature' and container.getConfigNode(containerView.eContainer().target) &lt;> null" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='string_attribute_']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.getConfigNode()">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="strategyConfig.StringAttributeValue" referenceName="attributevalue">
-                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New integer attribute">
-                      <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="aql:'New Value'"/>
-                    </subModelOperations>
-                  </subModelOperations>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New external object attribute" precondition="aql: container.eClass().name='Feature' and container.getConfigNode(containerView.eContainer().target) &lt;> null" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer_']/@subNodeMappings[name='external_object_attribute_']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.getConfigNode()">
-                <subModelOperations xsi:type="tool:CreateInstance" typeName="strategyConfig.ExternalObjectAttributeValue" referenceName="attributevalue">
-                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:instance">
-                    <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New integer attribute">
-                      <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="aql:'New external object value'"/>
-                    </subModelOperations>
-                  </subModelOperations>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-        </toolSections>
-        <toolSections name="Configuration tools">
-          <ownedTools xsi:type="tool:PopupMenu" name="Change Config State" precondition="aql:self.eClass().name.equalsIgnoreCase('ConfigNode')">
-            <menuItemDescription xsi:type="tool:OperationAction" name="Default" precondition="aql:self.configState &lt;> strategyConfig::ConfigState::DEFAULT" forceRefresh="true">
-              <view name="views"/>
-              <initialOperation>
-                <firstModelOperations xsi:type="tool:SetValue" featureName="configState" valueExpression="DEFAULT"/>
-              </initialOperation>
-            </menuItemDescription>
-            <menuItemDescription xsi:type="tool:OperationAction" name="Selected" precondition="aql:self.configState &lt;> strategyConfig::ConfigState::SELECTED">
-              <view name="views"/>
-              <initialOperation>
-                <firstModelOperations xsi:type="tool:SetValue" featureName="configState" valueExpression="SELECTED"/>
-              </initialOperation>
-            </menuItemDescription>
-            <menuItemDescription xsi:type="tool:OperationAction" name="Eliminated" precondition="aql:self.configState &lt;> strategyConfig::ConfigState::ELIMINATED">
-              <view name="views"/>
-              <initialOperation>
-                <firstModelOperations xsi:type="tool:SetValue" featureName="configState" valueExpression="ELIMINATED"/>
-              </initialOperation>
-            </menuItemDescription>
-          </ownedTools>
-          <ownedTools xsi:type="tool:OperationAction" name="Create config node" precondition="aql: self.eClass().name.equalsIgnoreCase('Feature') and self.getConfigNode(views->first().eContainer().target) = null">
-            <view name="views"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ExternalJavaAction" name="CreateConfigNode" id="CreateConfigNode">
-                <parameters name="feature" value="var:self"/>
-                <parameters name="diagram" value="var:diagram"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:DeleteElementDescription" documentation="This field has no function, because it shall override the default delete behaviour. Effectivly it prohibits the deletion of the feature tree." name="Delete Overwrite">
-            <element name="element"/>
-            <elementView name="elementView"/>
-            <containerView name="containerView"/>
-            <initialOperation/>
-          </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="Create default configuration" precondition="aql:self.configurationDefault &lt;> null" nodeMappings="//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']/@defaultLayer/@nodeMappings[name='Default%20Config']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:CreateInstance" typeName="strategyConfig.FeatureConfig" referenceName="defaultConfig">
-                <subModelOperations xsi:type="tool:SetValue" featureName="featureConfigState" valueExpression="DEFAULT"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

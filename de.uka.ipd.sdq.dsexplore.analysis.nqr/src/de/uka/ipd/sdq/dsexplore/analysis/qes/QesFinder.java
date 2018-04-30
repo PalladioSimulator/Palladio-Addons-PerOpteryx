@@ -1,8 +1,10 @@
 package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
@@ -18,7 +20,9 @@ import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
 import org.palladiosimulator.qes.qualityEffectSpecification.Resource;
+import org.palladiosimulator.qes.qualityEffectSpecification.ResourceProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.Role;
+import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Type;
 import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.graph.DirectedGraph;
@@ -28,9 +32,22 @@ public class QesFinder {
     private static final String IDENTIFIER_WILDCARD = "_";
 
     private final DirectedGraph<RepositoryComponent> componentGraph;
+    private final Map<String, RepositoryComponent> serverMap;
 
     public QesFinder(PCMInstance instance) {
-        componentGraph = new DirectedGraph<>();
+        componentGraph = getComponentGraph(instance);
+        serverMap = getServerMap(instance);
+    }
+
+    private static Map<String, RepositoryComponent> getServerMap(PCMInstance instance) {
+        final Map<String, RepositoryComponent> serverMap = new HashMap<>();
+        // instance.getRe
+        // instance.getAllocation().getSystem_Allocation(); // TODO
+        return serverMap;
+    }
+
+    private static DirectedGraph<RepositoryComponent> getComponentGraph(PCMInstance instance) {
+        DirectedGraph<RepositoryComponent> componentGraph = new DirectedGraph<>();
         for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
             if (c instanceof AssemblyConnectorImpl) {
                 final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
@@ -40,6 +57,7 @@ public class QesFinder {
                         ac.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext());
             }
         }
+        return componentGraph;
     }
 
     public Set<String> getEffectedComponents(List<ComponentSpecification> componentsSpecifications) {
@@ -184,8 +202,16 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private Set<String> getComponents(Role role) {
-        return new HashSet<>(); // TODO
+    private Set<String> getComponents(Role role) { // TODO
+        final Set<String> effectedComponents = new HashSet<>();
+
+        boolean isNot = role.isNot();
+        RoleType type = role.getType();
+        if (isNot && type == RoleType.ANY) {
+            return effectedComponents; // not any?
+        }
+
+        return effectedComponents;
     }
 
     private Set<String> getComponents(Assembly assembly) {
@@ -244,8 +270,21 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private Set<String> getComponents(Resource resource) {
-        return new HashSet<>(); // TODO
+    private Set<String> getComponents(Resource resource) { // TODO
+        final Set<String> effectedComponents = new HashSet<>();
+
+        for (ResourceProperty property : resource.getProperties()) {
+            if (property instanceof Name) {
+                Name nameProperty = (Name) property;
+                boolean isNot = nameProperty.isNot();
+                String name = nameProperty.getName();
+            } else if (property instanceof Identifier) {
+                Identifier identifier = (Identifier) property;
+            }
+
+        }
+
+        return effectedComponents;
     }
 
 }

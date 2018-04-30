@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.kit.ipd.are.dsexplore.featurecompletions.design.custom
+Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.design.custom;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.sirius,
+ org.eclipse.sirius.common.acceleo.aql,
+ org.eclipse.sirius.diagram,
+ edu.kit.ipd.are.dsexplore.featurecompletions
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.design.custom.java

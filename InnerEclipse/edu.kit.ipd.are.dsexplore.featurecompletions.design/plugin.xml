@@ -11,7 +11,7 @@
         point="org.eclipse.sirius.externalJavaAction">
      <javaActions
            actionClass="edu.kit.ipd.are.dsexplore.featurecompletions.design.RemoveFullfillsComplementumVisnetis"
-           id="edu.kit.ipd.are.dsexplore.featurecompletions.design.RemoveFullfillsComplementumVisnetis">
+           id="action.RemoveFullfillsComplementumVisnetis">
      </javaActions>
   </extension>
 </plugin>
