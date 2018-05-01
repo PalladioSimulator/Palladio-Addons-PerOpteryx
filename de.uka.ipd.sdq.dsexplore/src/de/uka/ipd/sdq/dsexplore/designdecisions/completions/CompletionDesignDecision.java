@@ -3,11 +3,8 @@ package de.uka.ipd.sdq.dsexplore.designdecisions.completions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.palladiosimulator.solver.models.PCMInstance;
-
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionRepository;
-import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
@@ -15,31 +12,22 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 public class CompletionDesignDecision {
 
 	private final FeatureCompletionRepository fcRepository;
-	private final PCMInstance pcm;
+	private final MergedRepository merged;
 
-	public CompletionDesignDecision(PCMInstance pcm, FeatureCompletionRepository fcRepository) {
+	public CompletionDesignDecision(FeatureCompletionRepository fcRepository, MergedRepository merged) {
 		this.fcRepository = fcRepository;
-		this.pcm = pcm;
+		this.merged = merged;
 	}
 
-	public List<FeatureCompletionDegree> generateConcernDegrees() {
+	public List<FeatureCompletionDegree> generateFCCDegrees() {
 		return this.fcRepository.getFeatureCompletions().stream().map(this::generateCompletionDegreeWith).filter(this::hasDesignOptions).collect(Collectors.toList());
-
 	}
 
 	private FeatureCompletionDegree generateCompletionDegreeWith(FeatureCompletion featureCompletion) {
 		FeatureCompletionDegree completionDegree = specificFactory.eINSTANCE.createFeatureCompletionDegree();
 		completionDegree.setPrimaryChanged(featureCompletion);
-
-		MergedRepository mergedPalladioRepo = this.getMergedRepository();
-		completionDegree.getClassDesignOptions().add(mergedPalladioRepo);
+		completionDegree.getClassDesignOptions().add(this.merged);
 		return completionDegree;
-
-	}
-
-	private MergedRepository getMergedRepository() {
-		MergedRepository merged = WeavingManager.getInstance().map(WeavingManager::getMergedRepo).orElse(null);
-		return merged;
 	}
 
 	private boolean hasDesignOptions(FeatureCompletionDegree completionDegree) {

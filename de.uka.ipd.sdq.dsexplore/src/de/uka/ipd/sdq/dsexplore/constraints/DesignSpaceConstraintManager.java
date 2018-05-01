@@ -21,7 +21,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception.FCCWeaverException;
 
 public class DesignSpaceConstraintManager {
 
@@ -51,7 +51,7 @@ public class DesignSpaceConstraintManager {
 				.map(choice -> (FeatureCompletion) (choice.getDegreeOfFreedomInstance().getPrimaryChanged())).findFirst();
 	}
 
-	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) throws ConcernWeavingException {
+	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) throws FCCWeaverException {
 		Optional<FeatureCompletion> fc = DesignSpaceConstraintManager.getFCFrom(genotype);
 		if (!fc.isPresent()) {
 			return true;
@@ -77,14 +77,14 @@ public class DesignSpaceConstraintManager {
 		return allocationChoices;
 	}
 
-	private ClassChoice findConstrainableElementInClassChoice(List<ClassChoice> allocationChoices, ConstrainableElement ce) throws ConcernWeavingException {
+	private ClassChoice findConstrainableElementInClassChoice(List<ClassChoice> allocationChoices, ConstrainableElement ce) {
 		for (ClassChoice classChoice : allocationChoices) {
 			CompletionComponent fcc = (CompletionComponent) (((AllocationDegree) classChoice.getDegreeOfFreedomInstance()).getPrimaryChanged());
 			if (fcc.getId().equals(ce.getId())) {
 				return classChoice;
 			}
 		}
-		throw new ConcernWeavingException("no class choice found for " + ce);
+		throw new FCCWeaverException("no class choice found for " + ce);
 	}
 
 	private int countAllocationsOnResourceContainer(List<Choice> allChoices, ResourceContainer resource) {

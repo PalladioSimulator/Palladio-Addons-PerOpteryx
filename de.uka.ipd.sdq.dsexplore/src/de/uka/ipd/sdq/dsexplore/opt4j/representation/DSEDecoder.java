@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -32,7 +31,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import com.google.inject.Inject;
 
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
-import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingExecuter;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
@@ -72,7 +70,8 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception.FCCWeaverException;
 import featureObjective.Feature;
 
 /**
@@ -131,7 +130,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			notTransformedChoices = genotype;
 		}
 
-		WeavingExecuter weavingExecuter = new WeavingExecuter(notTransformedChoices);
+		FCCWeaver weaver = Opt4JStarter.getProblem().getWeaver();
+		if (weaver != null) {
+			weaver.nextDecodeStart();
+			weaver.grabChoices(notTransformedChoices);
+		}
 
 		// then, use old way for choices that have not been transformed, e.g.
 		// because there is no
@@ -142,16 +145,15 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		}
 
 		try {
-			this.pcm = weavingExecuter.getWeavedPCMInstanceOf(this.pcm);
-		} catch (ConcernWeavingException e) {
+			if (weaver != null) {
+				this.pcm = weaver.getWeavedInstance(this.pcm);
+			}
+		} catch (FCCWeaverException e) {
 			DSEDecoder.logger.error(String.format("An error occured during the concern weaving process. Failure was:%s", e.getMessage()));
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			DSEDecoder.logger.error(String.format("The cost model has not been saved properly."));
-			e.printStackTrace();
+			throw e;
 		}
 
-		for (final Choice doubleGene : weavingExecuter.getConvertedFCCClassChoices()) {
+		for (final Choice doubleGene : weaver.getConvertedFCCClassChoices()) {
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
