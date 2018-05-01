@@ -169,18 +169,6 @@ public class DSEProblem {
 		 */
 	}
 
-	private MergedRepository getFullyInitializedFCSolutionRepo() {
-		// TODO DTHF1 Merged Repo
-		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		System pcmSystem = pcmPartition.getSystem();
-		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
-
-		if (solutionRepos.isEmpty()) {
-			return null;
-		}
-		return new MergedRepository(solutionRepos);
-	}
-
 	private Optional<String> getCostModelFileName() {
 		try {
 			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
@@ -420,23 +408,6 @@ public class DSEProblem {
 		return result;
 	}
 
-	private void initializeWeaver() {
-		if (this.weaver != null) {
-			return;
-		}
-		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		Optional<String> costModelFileName = this.getCostModelFileName();
-		Optional<CostRepository> costModel = this.getCostModel();
-		MergedRepository mergedRepo = this.getFullyInitializedFCSolutionRepo();
-		if (mergedRepo == null) {
-			// No solutions accessible via stereotype
-			return;
-		}
-
-		this.weaver = new FCCWeaver(initialPartition, this.initialInstance, mergedRepo, costModelFileName, costModel);
-
-	}
-
 	private List<FeatureCompletionDegree> getFCFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
 		List<FeatureCompletionDegree> fcd = new ArrayList<>();
 		for (DegreeOfFreedomInstance dofi : degreesOfFreedom) {
@@ -513,6 +484,16 @@ public class DSEProblem {
 
 	}
 
+	private Optional<FeatureCompletionRepository> getFCRepository() {
+		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		try {
+			List<EObject> fccRepository = pcmPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
+			return Optional.of((FeatureCompletionRepository) fccRepository.get(0));
+		} catch (Exception e) {
+			return Optional.empty();
+		}
+	}
+
 	private void createFCCDegreeBy(FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 		this.initializeWeaver();
 		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo, this.weaver.getMergedRepo()).generateFCCDegrees();
@@ -527,22 +508,34 @@ public class DSEProblem {
 
 	}
 
+	private void initializeWeaver() {
+		if (this.weaver != null) {
+			return;
+		}
+		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		System pcmSystem = initialPartition.getSystem();
+
+		Optional<String> costModelFileName = this.getCostModelFileName();
+		Optional<CostRepository> costModel = this.getCostModel();
+
+		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
+		MergedRepository merged = solutionRepos.size() > 0 ? new MergedRepository(solutionRepos) : null;
+
+		if (merged == null) {
+			// No solutions accessible via stereotype
+			return;
+		}
+
+		this.weaver = new FCCWeaver(initialPartition, this.initialInstance, merged, costModelFileName, costModel);
+
+	}
+
 	private void createClassChoice(FeatureCompletionDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
 		ClassChoice choice = this.designDecisionFactory.createClassChoice();
 		choice.setDegreeOfFreedomInstance(concernDegree);
 		choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
 		initialCandidate.add(choice);
 		dds.add(concernDegree);
-	}
-
-	private Optional<FeatureCompletionRepository> getFCRepository() {
-		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		try {
-			List<EObject> fccRepository = pcmPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
-			return Optional.of((FeatureCompletionRepository) fccRepository.get(0));
-		} catch (Exception e) {
-			return Optional.empty();
-		}
 	}
 
 	private void createFCCAllocationDegreesFrom(FeatureCompletionDegree completionDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
@@ -795,7 +788,7 @@ public class DSEProblem {
 	 *            the start feature
 	 * @author Dominik Fuchss
 	 */
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unused" })
 	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
 		features.add(start);
 		ChildRelation rel = start.getChildrelation();

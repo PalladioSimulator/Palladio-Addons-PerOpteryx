@@ -71,7 +71,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDe
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception.FCCWeaverException;
 import featureObjective.Feature;
 
 /**
@@ -144,17 +143,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
-		try {
-			if (weaver != null) {
-				this.pcm = weaver.getWeavedInstance(this.pcm);
+		if (weaver != null) {
+			this.pcm = weaver.getWeavedInstance(this.pcm);
+			for (final Choice doubleGene : weaver.getConvertedFCCClassChoices()) {
+				this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 			}
-		} catch (FCCWeaverException e) {
-			DSEDecoder.logger.error(String.format("An error occured during the concern weaving process. Failure was:%s", e.getMessage()));
-			throw e;
-		}
-
-		for (final Choice doubleGene : weaver.getConvertedFCCClassChoices()) {
-			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
 		this.setActiveFeatureDegrees( //
