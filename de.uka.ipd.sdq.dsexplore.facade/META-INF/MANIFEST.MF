@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Facade
+Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.facade
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.uka.ipd.sdq.dsexplore.facade
