@@ -7,6 +7,10 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.palladiosimulator.solver,
  de.uka.ipd.sdq.dsexplore.tools,
  de.uka.ipd.sdq.pcm.designdecision,
- org.palladiosimulator.analyzer.workflow
+ org.palladiosimulator.analyzer.workflow,
+ de.uka.ipd.sdq.dsexplore.facade,
+ de.uka.ipd.sdq.workflow.mdsd,
+ edu.kit.ipd.are.dsexplore.featurecompletions,
+ org.opt4j
 Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.weaver,
  edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception

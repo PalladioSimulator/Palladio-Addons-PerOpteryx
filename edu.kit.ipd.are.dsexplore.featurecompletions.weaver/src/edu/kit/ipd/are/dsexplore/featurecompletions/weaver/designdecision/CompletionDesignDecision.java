@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.designdecisions.completions;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision;
 
 import java.util.List;
 import java.util.stream.Collectors;
