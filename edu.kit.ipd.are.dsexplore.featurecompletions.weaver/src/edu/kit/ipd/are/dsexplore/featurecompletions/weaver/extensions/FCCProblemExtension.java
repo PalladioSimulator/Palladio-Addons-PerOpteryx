@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +31,10 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import featureObjective.Feature;
 
 public class FCCProblemExtension implements IProblemExtension {

@@ -1,6 +1,8 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception.FCCWeaverException;
+import org.palladiosimulator.solver.models.PCMInstance;
+
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
  * The weaving strategy interface contains all methods that need to be
@@ -23,7 +25,7 @@ public interface IWeavingStrategy {
 	 *             - Will be thrown if there occurs any error during the weaving
 	 *             process.
 	 */
-	public abstract void weaveRepository(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weaveRepository(WeavingInstruction weavingInstruction) throws FCCWeaverException;
 
 	/**
 	 * Weaves an adapter into the PCM system.
@@ -35,7 +37,7 @@ public interface IWeavingStrategy {
 	 *             - Will be thrown if there occurs any error during the weaving
 	 *             process.
 	 */
-	public abstract void weaveAssembly(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weaveAssembly(WeavingInstruction weavingInstruction) throws FCCWeaverException;
 
 	/**
 	 * Weaves an adapter into the PCM allocation.
@@ -47,7 +49,7 @@ public interface IWeavingStrategy {
 	 *             - Will be thrown if there occurs any error during the weaving
 	 *             process.
 	 */
-	public abstract void weaveAllocation(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weaveAllocation(WeavingInstruction weavingInstruction) throws FCCWeaverException;
 
 	/**
 	 * Weaves adapters SEFF.
@@ -59,7 +61,7 @@ public interface IWeavingStrategy {
 	 *             - Will be thrown if there occurs any error during the weaving
 	 *             process.
 	 */
-	public abstract void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws FCCWeaverException;
 
 	/**
 	 * Weaves an adapter into the PCM usage model.
@@ -71,6 +73,8 @@ public interface IWeavingStrategy {
 	 *             - Will be thrown if there occurs any error during the weaving
 	 *             process.
 	 */
-	public abstract void weaveUsageModel(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weaveUsageModel(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+
+	void setPCMToAdapt(PCMInstance pcmToAdapt);
 
 }

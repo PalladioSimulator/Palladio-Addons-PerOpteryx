@@ -21,7 +21,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception.FCCWeaverException;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 public class DesignSpaceConstraintManager {
 
@@ -51,7 +51,7 @@ public class DesignSpaceConstraintManager {
 				.map(choice -> (FeatureCompletion) (choice.getDegreeOfFreedomInstance().getPrimaryChanged())).findFirst();
 	}
 
-	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) throws FCCWeaverException {
+	public boolean violatesNoConstraint(DesignDecisionGenotype genotype) {
 		Optional<FeatureCompletion> fc = DesignSpaceConstraintManager.getFCFrom(genotype);
 		if (!fc.isPresent()) {
 			return true;
@@ -84,6 +84,7 @@ public class DesignSpaceConstraintManager {
 				return classChoice;
 			}
 		}
+		// TODO DTHF1 check whether this should also be in the module.
 		throw new FCCWeaverException("no class choice found for " + ce);
 	}
 

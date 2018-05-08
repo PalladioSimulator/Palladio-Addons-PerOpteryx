@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +17,8 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import featureObjective.Feature;
 
 public class FCCDecoderExtension implements IDecodeExtension {

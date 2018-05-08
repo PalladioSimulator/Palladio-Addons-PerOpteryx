@@ -7,7 +7,7 @@ import featureSolution.InclusionMechanism;
 /**
  * Create mapping between {@link InclusionMechanism} and
  * {@link IWeavingStrategy}.
- * 
+ *
  * @author Dominik Fuchss
  *
  */
@@ -23,9 +23,12 @@ public enum WeavingStrategies {
 		this.strategy = strategy;
 	}
 
-	public static IWeavingStrategy getStrategy(Class<? extends InclusionMechanism> mechanism) {
+	public static IWeavingStrategy getStrategy(InclusionMechanism mechanism) {
+		if (mechanism == null) {
+			return null;
+		}
 		for (WeavingStrategies strategy : WeavingStrategies.values()) {
-			if (strategy.mechanism == mechanism) {
+			if (strategy.mechanism == mechanism.getClass()) {
 				return strategy.strategy;
 			}
 		}

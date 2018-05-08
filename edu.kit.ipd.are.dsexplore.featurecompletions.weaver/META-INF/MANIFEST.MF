@@ -12,5 +12,4 @@ Require-Bundle: org.palladiosimulator.solver,
  de.uka.ipd.sdq.workflow.mdsd,
  edu.kit.ipd.are.dsexplore.featurecompletions,
  org.opt4j
-Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.weaver,
- edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception
+Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port

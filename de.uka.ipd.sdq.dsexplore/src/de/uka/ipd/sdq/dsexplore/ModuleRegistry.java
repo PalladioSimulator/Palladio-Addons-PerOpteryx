@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.facade.IModule;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 
 public final class ModuleRegistry {
 	private ModuleRegistry() {
@@ -16,7 +17,7 @@ public final class ModuleRegistry {
 		return ModuleRegistry.MODULE_REGISTRY;
 	}
 
-	private List<IModule> modules = Arrays.asList();
+	private List<IModule> modules = Arrays.asList(new FCCModule());
 
 	public List<IModule> getModules() {
 		return new ArrayList<>(this.modules);

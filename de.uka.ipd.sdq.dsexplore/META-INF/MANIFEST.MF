@@ -29,8 +29,8 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
  edu.kit.ipd.are.dsexplore.featurecompletions,
  de.uka.ipd.sdq.dsexplore.tools,
- edu.kit.ipd.are.dsexplore.featurecompletions.weaver,
- de.uka.ipd.sdq.dsexplore.facade
+ de.uka.ipd.sdq.dsexplore.facade,
+ edu.kit.ipd.are.dsexplore.featurecompletions.weaver
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
