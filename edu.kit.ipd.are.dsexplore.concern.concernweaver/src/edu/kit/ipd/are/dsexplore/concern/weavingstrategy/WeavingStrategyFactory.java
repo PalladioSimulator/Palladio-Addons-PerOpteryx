@@ -7,7 +7,9 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterWeavingStrategy;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.extension.ExtensionWeavingStrategy;
 import featureSolution.AdapterInclusion;
+import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
 
 /**
@@ -22,6 +24,7 @@ public class WeavingStrategyFactory {
 	private static HashMap<Class<? extends InclusionMechanism>, BiFunction<PCMInstance, MergedRepository, IWeavingStrategy>> transformationToStrategyMap = new HashMap<>();
 	static {
 		WeavingStrategyFactory.transformationToStrategyMap.put(AdapterInclusion.class, (pcmToAdapt, pcmConcernRepository) -> new AdapterWeavingStrategy(pcmToAdapt, pcmConcernRepository));
+		WeavingStrategyFactory.transformationToStrategyMap.put(ExtensionInclusion.class, (pcmToAdapt, pcmConcernRepository) -> new ExtensionWeavingStrategy(pcmToAdapt, pcmConcernRepository));
 	}
 
 	/**
