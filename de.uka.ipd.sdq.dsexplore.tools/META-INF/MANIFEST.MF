@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.kit.ipd.are.dsexplore.featurecompletions,
  de.uka.ipd.sdq.pcm.cost
 Export-Package: de.uka.ipd.sdq.dsexplore.tools.repository,
- de.uka.ipd.sdq.dsexplore.tools.stereotypeapi
+ de.uka.ipd.sdq.dsexplore.tools.stereotypeapi, de.uka.ipd.sdq.dsexplore.tools.primitives
