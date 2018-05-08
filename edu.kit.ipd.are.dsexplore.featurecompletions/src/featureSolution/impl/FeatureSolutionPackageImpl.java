@@ -19,6 +19,7 @@ import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.InclusionMechanism;
 
+import featureSolution.PlacementPolicy;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -61,6 +62,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EEnum appearanceEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum placementPolicyEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -185,8 +193,35 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExtensionInclusion_Placement() {
+		return (EAttribute)extensionInclusionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtensionInclusion_Appears() {
+		return (EAttribute)extensionInclusionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPlacementPolicy() {
+		return placementPolicyEEnum;
 	}
 
 	/**
@@ -224,9 +259,12 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		createEAttribute(adapterInclusionEClass, ADAPTER_INCLUSION__APPEARS);
 
 		extensionInclusionEClass = createEClass(EXTENSION_INCLUSION);
+		createEAttribute(extensionInclusionEClass, EXTENSION_INCLUSION__PLACEMENT);
+		createEAttribute(extensionInclusionEClass, EXTENSION_INCLUSION__APPEARS);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
+		placementPolicyEEnum = createEEnum(PLACEMENT_POLICY);
 	}
 
 	/**
@@ -273,12 +311,19 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEAttribute(getAdapterInclusion_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, AdapterInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(extensionInclusionEClass, ExtensionInclusion.class, "ExtensionInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExtensionInclusion_Placement(), this.getPlacementPolicy(), "placement", "MANDATORY", 1, 1, ExtensionInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtensionInclusion_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, ExtensionInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");
 		addEEnumLiteral(appearanceEEnum, Appearance.BEFORE);
 		addEEnumLiteral(appearanceEEnum, Appearance.AFTER);
 		addEEnumLiteral(appearanceEEnum, Appearance.AROUND);
+
+		initEEnum(placementPolicyEEnum, PlacementPolicy.class, "PlacementPolicy");
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.MANDATORY);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OBLIGATORY);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.PROHIBITED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -223,13 +223,31 @@ public interface FeatureSolutionPackage extends EPackage {
 	int EXTENSION_INCLUSION__MULTIPLE = INCLUSION_MECHANISM__MULTIPLE;
 
 	/**
+	 * The feature id for the '<em><b>Placement</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_INCLUSION__PLACEMENT = INCLUSION_MECHANISM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Appears</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_INCLUSION__APPEARS = INCLUSION_MECHANISM_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Extension Inclusion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 0;
+	int EXTENSION_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
@@ -240,6 +258,17 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	int APPEARANCE = 3;
+
+
+	/**
+	 * The meta object id for the '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see featureSolution.PlacementPolicy
+	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getPlacementPolicy()
+	 * @generated
+	 */
+	int PLACEMENT_POLICY = 4;
 
 
 	/**
@@ -295,6 +324,28 @@ public interface FeatureSolutionPackage extends EPackage {
 	EClass getExtensionInclusion();
 
 	/**
+	 * Returns the meta object for the attribute '{@link featureSolution.ExtensionInclusion#getPlacement <em>Placement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Placement</em>'.
+	 * @see featureSolution.ExtensionInclusion#getPlacement()
+	 * @see #getExtensionInclusion()
+	 * @generated
+	 */
+	EAttribute getExtensionInclusion_Placement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link featureSolution.ExtensionInclusion#getAppears <em>Appears</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Appears</em>'.
+	 * @see featureSolution.ExtensionInclusion#getAppears()
+	 * @see #getExtensionInclusion()
+	 * @generated
+	 */
+	EAttribute getExtensionInclusion_Appears();
+
+	/**
 	 * Returns the meta object for enum '{@link featureSolution.Appearance <em>Appearance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,6 +354,16 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAppearance();
+
+	/**
+	 * Returns the meta object for enum '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Placement Policy</em>'.
+	 * @see featureSolution.PlacementPolicy
+	 * @generated
+	 */
+	EEnum getPlacementPolicy();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -373,6 +434,22 @@ public interface FeatureSolutionPackage extends EPackage {
 		EClass EXTENSION_INCLUSION = eINSTANCE.getExtensionInclusion();
 
 		/**
+		 * The meta object literal for the '<em><b>Placement</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENSION_INCLUSION__PLACEMENT = eINSTANCE.getExtensionInclusion_Placement();
+
+		/**
+		 * The meta object literal for the '<em><b>Appears</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENSION_INCLUSION__APPEARS = eINSTANCE.getExtensionInclusion_Appears();
+
+		/**
 		 * The meta object literal for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -381,6 +458,16 @@ public interface FeatureSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum APPEARANCE = eINSTANCE.getAppearance();
+
+		/**
+		 * The meta object literal for the '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see featureSolution.PlacementPolicy
+		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getPlacementPolicy()
+		 * @generated
+		 */
+		EEnum PLACEMENT_POLICY = eINSTANCE.getPlacementPolicy();
 
 	}
 

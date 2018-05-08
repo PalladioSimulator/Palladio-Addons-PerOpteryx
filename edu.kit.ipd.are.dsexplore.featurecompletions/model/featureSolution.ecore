@@ -10,10 +10,20 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtensionInclusion" eSuperTypes="#//InclusionMechanism"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionInclusion" eSuperTypes="#//InclusionMechanism">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placement" lowerBound="1"
+        eType="#//PlacementPolicy" defaultValueLiteral="MANDATORY"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
+        eType="#//Appearance" defaultValueLiteral="BEFORE"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
     <eLiterals name="BEFORE"/>
     <eLiterals name="AFTER" value="1"/>
     <eLiterals name="AROUND" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PlacementPolicy">
+    <eLiterals name="MANDATORY" literal="MANDATORY"/>
+    <eLiterals name="OBLIGATORY" value="1" literal="OBLIGATORY"/>
+    <eLiterals name="PROHIBITED" value="2" literal="PROHIBITED"/>
   </eClassifiers>
 </ecore:EPackage>
