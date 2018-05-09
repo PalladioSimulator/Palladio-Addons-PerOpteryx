@@ -85,6 +85,22 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 				return createExtensionInclusionAdapter();
 			}
 			@Override
+			public Adapter casePlacementStrategy(PlacementStrategy object) {
+				return createPlacementStrategyAdapter();
+			}
+			@Override
+			public Adapter caseExternalCallPlacementStrategy(ExternalCallPlacementStrategy object) {
+				return createExternalCallPlacementStrategyAdapter();
+			}
+			@Override
+			public Adapter caseInternalActionPlacementStrategy(InternalActionPlacementStrategy object) {
+				return createInternalActionPlacementStrategyAdapter();
+			}
+			@Override
+			public Adapter caseControlFlowPlacementStrategy(ControlFlowPlacementStrategy object) {
+				return createControlFlowPlacementStrategyAdapter();
+			}
+			@Override
 			public Adapter caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
@@ -155,6 +171,62 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtensionInclusionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.PlacementStrategy <em>Placement Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.PlacementStrategy
+	 * @generated
+	 */
+	public Adapter createPlacementStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.ExternalCallPlacementStrategy <em>External Call Placement Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.ExternalCallPlacementStrategy
+	 * @generated
+	 */
+	public Adapter createExternalCallPlacementStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.InternalActionPlacementStrategy <em>Internal Action Placement Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.InternalActionPlacementStrategy
+	 * @generated
+	 */
+	public Adapter createInternalActionPlacementStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.ControlFlowPlacementStrategy <em>Control Flow Placement Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.ControlFlowPlacementStrategy
+	 * @generated
+	 */
+	public Adapter createControlFlowPlacementStrategyAdapter() {
 		return null;
 	}
 

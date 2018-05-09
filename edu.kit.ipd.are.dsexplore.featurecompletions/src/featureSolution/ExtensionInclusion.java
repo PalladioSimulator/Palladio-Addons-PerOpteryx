@@ -2,6 +2,8 @@
  */
 package featureSolution;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +14,8 @@ package featureSolution;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.ExtensionInclusion#getPlacement <em>Placement</em>}</li>
  *   <li>{@link featureSolution.ExtensionInclusion#getAppears <em>Appears</em>}</li>
+ *   <li>{@link featureSolution.ExtensionInclusion#getPlacementStrategy <em>Placement Strategy</em>}</li>
  * </ul>
  *
  * @see featureSolution.FeatureSolutionPackage#getExtensionInclusion()
@@ -21,36 +23,6 @@ package featureSolution;
  * @generated
  */
 public interface ExtensionInclusion extends InclusionMechanism {
-
-	/**
-	 * Returns the value of the '<em><b>Placement</b></em>' attribute.
-	 * The default value is <code>"MANDATORY"</code>.
-	 * The literals are from the enumeration {@link featureSolution.PlacementPolicy}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Placement</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Placement</em>' attribute.
-	 * @see featureSolution.PlacementPolicy
-	 * @see #setPlacement(PlacementPolicy)
-	 * @see featureSolution.FeatureSolutionPackage#getExtensionInclusion_Placement()
-	 * @model default="MANDATORY" required="true"
-	 * @generated
-	 */
-	PlacementPolicy getPlacement();
-
-	/**
-	 * Sets the value of the '{@link featureSolution.ExtensionInclusion#getPlacement <em>Placement</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Placement</em>' attribute.
-	 * @see featureSolution.PlacementPolicy
-	 * @see #getPlacement()
-	 * @generated
-	 */
-	void setPlacement(PlacementPolicy value);
 
 	/**
 	 * Returns the value of the '<em><b>Appears</b></em>' attribute.
@@ -81,4 +53,20 @@ public interface ExtensionInclusion extends InclusionMechanism {
 	 * @generated
 	 */
 	void setAppears(Appearance value);
+
+	/**
+	 * Returns the value of the '<em><b>Placement Strategy</b></em>' containment reference list.
+	 * The list contents are of type {@link featureSolution.PlacementStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Placement Strategy</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Placement Strategy</em>' containment reference list.
+	 * @see featureSolution.FeatureSolutionPackage#getExtensionInclusion_PlacementStrategy()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PlacementStrategy> getPlacementStrategy();
 } // ExtensionInclusion

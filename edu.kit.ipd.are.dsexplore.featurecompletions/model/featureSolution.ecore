@@ -11,10 +11,10 @@
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtensionInclusion" eSuperTypes="#//InclusionMechanism">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placement" lowerBound="1"
-        eType="#//PlacementPolicy" defaultValueLiteral="MANDATORY"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="placementStrategy" upperBound="-1"
+        eType="#//PlacementStrategy" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
     <eLiterals name="BEFORE"/>
@@ -25,5 +25,16 @@
     <eLiterals name="MANDATORY" literal="MANDATORY"/>
     <eLiterals name="OBLIGATORY" value="1" literal="OBLIGATORY"/>
     <eLiterals name="PROHIBITED" value="2" literal="PROHIBITED"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementStrategy"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalCallPlacementStrategy" eSuperTypes="#//PlacementStrategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchingSignature" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/Signature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InternalActionPlacementStrategy" eSuperTypes="#//PlacementStrategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchingInternalAction"
+        eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//seff/InternalAction"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlowPlacementStrategy" eSuperTypes="#//PlacementStrategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchingControlFlow" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//seff/AbstractLoopAction"/>
   </eClassifiers>
 </ecore:EPackage>

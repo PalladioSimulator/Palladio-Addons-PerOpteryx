@@ -40,6 +40,42 @@ public interface FeatureSolutionFactory extends EFactory {
 	ExtensionInclusion createExtensionInclusion();
 
 	/**
+	 * Returns a new object of class '<em>Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Placement Strategy</em>'.
+	 * @generated
+	 */
+	PlacementStrategy createPlacementStrategy();
+
+	/**
+	 * Returns a new object of class '<em>External Call Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Call Placement Strategy</em>'.
+	 * @generated
+	 */
+	ExternalCallPlacementStrategy createExternalCallPlacementStrategy();
+
+	/**
+	 * Returns a new object of class '<em>Internal Action Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Internal Action Placement Strategy</em>'.
+	 * @generated
+	 */
+	InternalActionPlacementStrategy createInternalActionPlacementStrategy();
+
+	/**
+	 * Returns a new object of class '<em>Control Flow Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Control Flow Placement Strategy</em>'.
+	 * @generated
+	 */
+	ControlFlowPlacementStrategy createControlFlowPlacementStrategy();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

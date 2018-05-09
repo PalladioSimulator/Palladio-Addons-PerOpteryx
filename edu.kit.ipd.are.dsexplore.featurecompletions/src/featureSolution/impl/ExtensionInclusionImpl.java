@@ -5,11 +5,16 @@ package featureSolution.impl;
 import featureSolution.Appearance;
 import featureSolution.ExtensionInclusion;
 import featureSolution.FeatureSolutionPackage;
-
-import featureSolution.PlacementPolicy;
+import featureSolution.PlacementStrategy;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,31 +24,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getPlacement <em>Placement</em>}</li>
  *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getAppears <em>Appears</em>}</li>
+ *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getPlacementStrategy <em>Placement Strategy</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ExtensionInclusionImpl extends InclusionMechanismImpl implements ExtensionInclusion {
-	/**
-	 * The default value of the '{@link #getPlacement() <em>Placement</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPlacement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final PlacementPolicy PLACEMENT_EDEFAULT = PlacementPolicy.MANDATORY;
-	/**
-	 * The cached value of the '{@link #getPlacement() <em>Placement</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPlacement()
-	 * @generated
-	 * @ordered
-	 */
-	protected PlacementPolicy placement = PLACEMENT_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getAppears() <em>Appears</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,6 +51,16 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	protected Appearance appears = APPEARS_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getPlacementStrategy() <em>Placement Strategy</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlacementStrategy()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PlacementStrategy> placementStrategy;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80,27 +77,6 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	protected EClass eStaticClass() {
 		return FeatureSolutionPackage.Literals.EXTENSION_INCLUSION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PlacementPolicy getPlacement() {
-		return placement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPlacement(PlacementPolicy newPlacement) {
-		PlacementPolicy oldPlacement = placement;
-		placement = newPlacement == null ? PLACEMENT_EDEFAULT : newPlacement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT, oldPlacement, placement));
 	}
 
 	/**
@@ -129,13 +105,39 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PlacementStrategy> getPlacementStrategy() {
+		if (placementStrategy == null) {
+			placementStrategy = new EObjectContainmentEList<PlacementStrategy>(PlacementStrategy.class, this, FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY);
+		}
+		return placementStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY:
+				return ((InternalEList<?>)getPlacementStrategy()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT:
-				return getPlacement();
 			case FeatureSolutionPackage.EXTENSION_INCLUSION__APPEARS:
 				return getAppears();
+			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY:
+				return getPlacementStrategy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -145,14 +147,16 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT:
-				setPlacement((PlacementPolicy)newValue);
-				return;
 			case FeatureSolutionPackage.EXTENSION_INCLUSION__APPEARS:
 				setAppears((Appearance)newValue);
+				return;
+			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY:
+				getPlacementStrategy().clear();
+				getPlacementStrategy().addAll((Collection<? extends PlacementStrategy>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -166,11 +170,11 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT:
-				setPlacement(PLACEMENT_EDEFAULT);
-				return;
 			case FeatureSolutionPackage.EXTENSION_INCLUSION__APPEARS:
 				setAppears(APPEARS_EDEFAULT);
+				return;
+			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY:
+				getPlacementStrategy().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -184,10 +188,10 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT:
-				return placement != PLACEMENT_EDEFAULT;
 			case FeatureSolutionPackage.EXTENSION_INCLUSION__APPEARS:
 				return appears != APPEARS_EDEFAULT;
+			case FeatureSolutionPackage.EXTENSION_INCLUSION__PLACEMENT_STRATEGY:
+				return placementStrategy != null && !placementStrategy.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -202,9 +206,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (placement: ");
-		result.append(placement);
-		result.append(", appears: ");
+		result.append(" (appears: ");
 		result.append(appears);
 		result.append(')');
 		return result.toString();

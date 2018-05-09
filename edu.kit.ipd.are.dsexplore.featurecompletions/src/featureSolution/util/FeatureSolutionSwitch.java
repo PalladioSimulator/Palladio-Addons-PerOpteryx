@@ -100,6 +100,33 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FeatureSolutionPackage.PLACEMENT_STRATEGY: {
+				PlacementStrategy placementStrategy = (PlacementStrategy)theEObject;
+				T result = casePlacementStrategy(placementStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FeatureSolutionPackage.EXTERNAL_CALL_PLACEMENT_STRATEGY: {
+				ExternalCallPlacementStrategy externalCallPlacementStrategy = (ExternalCallPlacementStrategy)theEObject;
+				T result = caseExternalCallPlacementStrategy(externalCallPlacementStrategy);
+				if (result == null) result = casePlacementStrategy(externalCallPlacementStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY: {
+				InternalActionPlacementStrategy internalActionPlacementStrategy = (InternalActionPlacementStrategy)theEObject;
+				T result = caseInternalActionPlacementStrategy(internalActionPlacementStrategy);
+				if (result == null) result = casePlacementStrategy(internalActionPlacementStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY: {
+				ControlFlowPlacementStrategy controlFlowPlacementStrategy = (ControlFlowPlacementStrategy)theEObject;
+				T result = caseControlFlowPlacementStrategy(controlFlowPlacementStrategy);
+				if (result == null) result = casePlacementStrategy(controlFlowPlacementStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -146,6 +173,66 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtensionInclusion(ExtensionInclusion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Placement Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePlacementStrategy(PlacementStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Call Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Call Placement Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalCallPlacementStrategy(ExternalCallPlacementStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Internal Action Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Internal Action Placement Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInternalActionPlacementStrategy(InternalActionPlacementStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Control Flow Placement Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Control Flow Placement Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseControlFlowPlacementStrategy(ControlFlowPlacementStrategy object) {
 		return null;
 	}
 

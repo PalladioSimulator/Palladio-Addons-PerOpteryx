@@ -59,6 +59,10 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 		switch (eClass.getClassifierID()) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION: return createAdapterInclusion();
 			case FeatureSolutionPackage.EXTENSION_INCLUSION: return createExtensionInclusion();
+			case FeatureSolutionPackage.PLACEMENT_STRATEGY: return createPlacementStrategy();
+			case FeatureSolutionPackage.EXTERNAL_CALL_PLACEMENT_STRATEGY: return createExternalCallPlacementStrategy();
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY: return createInternalActionPlacementStrategy();
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY: return createControlFlowPlacementStrategy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -116,6 +120,46 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	public ExtensionInclusion createExtensionInclusion() {
 		ExtensionInclusionImpl extensionInclusion = new ExtensionInclusionImpl();
 		return extensionInclusion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PlacementStrategy createPlacementStrategy() {
+		PlacementStrategyImpl placementStrategy = new PlacementStrategyImpl();
+		return placementStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalCallPlacementStrategy createExternalCallPlacementStrategy() {
+		ExternalCallPlacementStrategyImpl externalCallPlacementStrategy = new ExternalCallPlacementStrategyImpl();
+		return externalCallPlacementStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InternalActionPlacementStrategy createInternalActionPlacementStrategy() {
+		InternalActionPlacementStrategyImpl internalActionPlacementStrategy = new InternalActionPlacementStrategyImpl();
+		return internalActionPlacementStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlowPlacementStrategy createControlFlowPlacementStrategy() {
+		ControlFlowPlacementStrategyImpl controlFlowPlacementStrategy = new ControlFlowPlacementStrategyImpl();
+		return controlFlowPlacementStrategy;
 	}
 
 	/**
