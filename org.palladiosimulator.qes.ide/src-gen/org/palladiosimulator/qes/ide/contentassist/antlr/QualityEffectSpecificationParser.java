@@ -43,6 +43,7 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getComponentSpecificationAccess().getGroup(), "rule__ComponentSpecification__Group__0");
 					put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
 					put(grammarAccess.getIdentifierAccess().getGroup(), "rule__Identifier__Group__0");
+					put(grammarAccess.getAnnotationAccess().getGroup(), "rule__Annotation__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
 					put(grammarAccess.getRoleAccess().getGroup(), "rule__Role__Group__0");
 					put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
@@ -60,6 +61,8 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getNameAccess().getNameAssignment_2(), "rule__Name__NameAssignment_2");
 					put(grammarAccess.getIdentifierAccess().getNotAssignment_1(), "rule__Identifier__NotAssignment_1");
 					put(grammarAccess.getIdentifierAccess().getIdAssignment_2(), "rule__Identifier__IdAssignment_2");
+					put(grammarAccess.getAnnotationAccess().getNotAssignment_1(), "rule__Annotation__NotAssignment_1");
+					put(grammarAccess.getAnnotationAccess().getAnnotationAssignment_2(), "rule__Annotation__AnnotationAssignment_2");
 					put(grammarAccess.getTypeAccess().getNotAssignment_1(), "rule__Type__NotAssignment_1");
 					put(grammarAccess.getTypeAccess().getTypeAssignment_2(), "rule__Type__TypeAssignment_2");
 					put(grammarAccess.getRoleAccess().getNotAssignment_1(), "rule__Role__NotAssignment_1");

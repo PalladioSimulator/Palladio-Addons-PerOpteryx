@@ -106,6 +106,11 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
         return createIdentifierAdapter();
       }
       @Override
+      public Adapter caseAnnotation(Annotation object)
+      {
+        return createAnnotationAdapter();
+      }
+      @Override
       public Adapter caseType(Type object)
       {
         return createTypeAdapter();
@@ -273,6 +278,21 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIdentifierAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Annotation <em>Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Annotation
+   * @generated
+   */
+  public Adapter createAnnotationAdapter()
   {
     return null;
   }

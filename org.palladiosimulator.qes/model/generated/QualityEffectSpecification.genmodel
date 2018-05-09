@@ -51,6 +51,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Identifier/not"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Identifier/id"/>
     </genClasses>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Annotation/not"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Annotation/annotation"/>
+    </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Type">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Type/not"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Type/type"/>

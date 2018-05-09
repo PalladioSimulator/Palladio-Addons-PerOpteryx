@@ -72,6 +72,7 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
       case QualityEffectSpecificationPackage.COMPONENT_PROPERTY: return createComponentProperty();
       case QualityEffectSpecificationPackage.NAME: return createName();
       case QualityEffectSpecificationPackage.IDENTIFIER: return createIdentifier();
+      case QualityEffectSpecificationPackage.ANNOTATION: return createAnnotation();
       case QualityEffectSpecificationPackage.TYPE: return createType();
       case QualityEffectSpecificationPackage.ROLE: return createRole();
       case QualityEffectSpecificationPackage.ROLE_PROPERTY: return createRoleProperty();
@@ -199,6 +200,17 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
   {
     IdentifierImpl identifier = new IdentifierImpl();
     return identifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Annotation createAnnotation()
+  {
+    AnnotationImpl annotation = new AnnotationImpl();
+    return annotation;
   }
 
   /**

@@ -19,6 +19,7 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.subsystem.SubSystem;
+import org.palladiosimulator.qes.qualityEffectSpecification.Annotation;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty;
@@ -121,6 +122,10 @@ public class QesFinder {
             return getComponents((Identifier) property);
         }
 
+        if (property instanceof Annotation) {
+            return getComponents((Annotation) property);
+        }
+
         if (property instanceof Type) {
             return getComponents((Type) property);
         }
@@ -170,6 +175,20 @@ public class QesFinder {
         return effectedComponents;
     }
 
+    private Set<String> getComponents(final Annotation annotation) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        for (final RepositoryComponent component : componentGraph) {
+        	// TODO component.getAnnotation()?
+//            if (equalsIgnoreCase(component.getAnnotation(), annotation.isNot(), annotation.getAnnotation())) {
+//                effectedComponents.add(component.getId());
+//            }
+        }
+
+        return effectedComponents;
+    }
+
+
     private Set<String> getComponents(final Type type) {
         final Set<String> effectedComponents = new HashSet<>();
 
@@ -218,6 +237,15 @@ public class QesFinder {
                             effectedComponents.add(component.getId());
                         }
                     }
+
+                    // TODO entity.getAnnotation() ?
+//                    if (property instanceof Annotation) {
+//                        if (equalsIgnoreCase(entity.getAnnotation(), ((Annotation) property).isNot(),
+//                                ((Annotation) property).getAnnotation())) {
+//                            effectedComponents.add(component.getId());
+//                        }
+//
+//                    }
 
                 }
             }

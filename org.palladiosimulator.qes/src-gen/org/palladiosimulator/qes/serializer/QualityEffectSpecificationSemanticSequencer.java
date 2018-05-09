@@ -14,6 +14,7 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.palladiosimulator.qes.qualityEffectSpecification.Annotation;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
@@ -45,6 +46,9 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == QualityEffectSpecificationPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case QualityEffectSpecificationPackage.ANNOTATION:
+				sequence_Annotation(context, (Annotation) semanticObject); 
+				return; 
 			case QualityEffectSpecificationPackage.ASSEMBLY:
 				sequence_Assembly(context, (Assembly) semanticObject); 
 				return; 
@@ -91,6 +95,20 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     ComponentProperty returns Annotation
+	 *     Annotation returns Annotation
+	 *     RoleProperty returns Annotation
+	 *
+	 * Constraint:
+	 *     (not?='Not'? annotation=STRING)
+	 */
+	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:

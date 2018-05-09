@@ -115,16 +115,17 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cRoleParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cAssemblyParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cResourceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cAnnotationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRoleParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cAssemblyParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cResourceParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//ComponentProperty:
-		//	Name | Identifier | Type | Role | Assembly | Resource;
+		//	Name | Identifier | Annotation | Type | Role | Assembly | Resource;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name | Identifier | Type | Role | Assembly | Resource
+		//Name | Identifier | Annotation | Type | Role | Assembly | Resource
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Name
@@ -133,17 +134,20 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//Identifier
 		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
 		
+		//Annotation
+		public RuleCall getAnnotationParserRuleCall_2() { return cAnnotationParserRuleCall_2; }
+		
 		//Type
-		public RuleCall getTypeParserRuleCall_2() { return cTypeParserRuleCall_2; }
+		public RuleCall getTypeParserRuleCall_3() { return cTypeParserRuleCall_3; }
 		
 		//Role
-		public RuleCall getRoleParserRuleCall_3() { return cRoleParserRuleCall_3; }
+		public RuleCall getRoleParserRuleCall_4() { return cRoleParserRuleCall_4; }
 		
 		//Assembly
-		public RuleCall getAssemblyParserRuleCall_4() { return cAssemblyParserRuleCall_4; }
+		public RuleCall getAssemblyParserRuleCall_5() { return cAssemblyParserRuleCall_5; }
 		
 		//Resource
-		public RuleCall getResourceParserRuleCall_5() { return cResourceParserRuleCall_5; }
+		public RuleCall getResourceParserRuleCall_6() { return cResourceParserRuleCall_6; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Name");
@@ -211,6 +215,41 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		
 		//ID
 		public RuleCall getIdIDTerminalRuleCall_2_0() { return cIdIDTerminalRuleCall_2_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+	public class AnnotationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Annotation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAnnotationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNotAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cNotNotKeyword_1_0 = (Keyword)cNotAssignment_1.eContents().get(0);
+		private final Assignment cAnnotationAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cAnnotationSTRINGTerminalRuleCall_2_0 = (RuleCall)cAnnotationAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Annotation:
+		//	'Annotation(' not?='Not'? annotation=STRING ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Annotation(' not?='Not'? annotation=STRING ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'Annotation('
+		public Keyword getAnnotationKeyword_0() { return cAnnotationKeyword_0; }
+		
+		//not?='Not'?
+		public Assignment getNotAssignment_1() { return cNotAssignment_1; }
+		
+		//'Not'
+		public Keyword getNotNotKeyword_1_0() { return cNotNotKeyword_1_0; }
+		
+		//annotation=STRING
+		public Assignment getAnnotationAssignment_2() { return cAnnotationAssignment_2; }
+		
+		//STRING
+		public RuleCall getAnnotationSTRINGTerminalRuleCall_2_0() { return cAnnotationSTRINGTerminalRuleCall_2_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -298,12 +337,13 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cAnnotationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//RoleProperty:
-		//	Name | Identifier;
+		//	Name | Identifier | Annotation;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name | Identifier
+		//Name | Identifier | Annotation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Name
@@ -311,6 +351,9 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		
 		//Identifier
 		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
+		
+		//Annotation
+		public RuleCall getAnnotationParserRuleCall_2() { return cAnnotationParserRuleCall_2; }
 	}
 	public class AssemblyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Assembly");
@@ -819,6 +862,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	private final ComponentPropertyElements pComponentProperty;
 	private final NameElements pName;
 	private final IdentifierElements pIdentifier;
+	private final AnnotationElements pAnnotation;
 	private final TypeElements pType;
 	private final ComponentTypeElements eComponentType;
 	private final RoleElements pRole;
@@ -851,6 +895,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		this.pComponentProperty = new ComponentPropertyElements();
 		this.pName = new NameElements();
 		this.pIdentifier = new IdentifierElements();
+		this.pAnnotation = new AnnotationElements();
 		this.pType = new TypeElements();
 		this.eComponentType = new ComponentTypeElements();
 		this.pRole = new RoleElements();
@@ -927,7 +972,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//ComponentProperty:
-	//	Name | Identifier | Type | Role | Assembly | Resource;
+	//	Name | Identifier | Annotation | Type | Role | Assembly | Resource;
 	public ComponentPropertyElements getComponentPropertyAccess() {
 		return pComponentProperty;
 	}
@@ -954,6 +999,16 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	
 	public ParserRule getIdentifierRule() {
 		return getIdentifierAccess().getRule();
+	}
+	
+	//Annotation:
+	//	'Annotation(' not?='Not'? annotation=STRING ')';
+	public AnnotationElements getAnnotationAccess() {
+		return pAnnotation;
+	}
+	
+	public ParserRule getAnnotationRule() {
+		return getAnnotationAccess().getRule();
 	}
 	
 	//Type:
@@ -999,7 +1054,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//RoleProperty:
-	//	Name | Identifier;
+	//	Name | Identifier | Annotation;
 	public RolePropertyElements getRolePropertyAccess() {
 		return pRoleProperty;
 	}

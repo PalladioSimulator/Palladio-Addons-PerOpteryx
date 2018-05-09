@@ -245,6 +245,43 @@ public interface QualityEffectSpecificationPackage extends EPackage
   int IDENTIFIER_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AnnotationImpl <em>Annotation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.AnnotationImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAnnotation()
+   * @generated
+   */
+  int ANNOTATION = 6;
+
+  /**
+   * The feature id for the '<em><b>Not</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__NOT = COMPONENT_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Annotation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION__ANNOTATION = COMPONENT_PROPERTY_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Annotation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANNOTATION_FEATURE_COUNT = COMPONENT_PROPERTY_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TypeImpl <em>Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -252,7 +289,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getType()
    * @generated
    */
-  int TYPE = 6;
+  int TYPE = 7;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -289,7 +326,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRole()
    * @generated
    */
-  int ROLE = 7;
+  int ROLE = 8;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -335,7 +372,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleProperty()
    * @generated
    */
-  int ROLE_PROPERTY = 8;
+  int ROLE_PROPERTY = 9;
 
   /**
    * The number of structural features of the '<em>Role Property</em>' class.
@@ -354,7 +391,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssembly()
    * @generated
    */
-  int ASSEMBLY = 9;
+  int ASSEMBLY = 10;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -400,7 +437,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResource()
    * @generated
    */
-  int RESOURCE = 10;
+  int RESOURCE = 11;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -428,7 +465,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourceProperty()
    * @generated
    */
-  int RESOURCE_PROPERTY = 11;
+  int RESOURCE_PROPERTY = 12;
 
   /**
    * The number of structural features of the '<em>Resource Property</em>' class.
@@ -447,7 +484,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationSpecification()
    * @generated
    */
-  int TRANSFORMATION_SPECIFICATION = 12;
+  int TRANSFORMATION_SPECIFICATION = 13;
 
   /**
    * The number of structural features of the '<em>Transformation Specification</em>' class.
@@ -466,7 +503,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getNQA()
    * @generated
    */
-  int NQA = 13;
+  int NQA = 14;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -512,7 +549,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getReasoning()
    * @generated
    */
-  int REASONING = 14;
+  int REASONING = 15;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -549,7 +586,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRule()
    * @generated
    */
-  int RULE = 15;
+  int RULE = 16;
 
   /**
    * The feature id for the '<em><b>Qualities</b></em>' attribute list.
@@ -586,7 +623,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getEntry()
    * @generated
    */
-  int ENTRY = 16;
+  int ENTRY = 17;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute list.
@@ -623,7 +660,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
    * @generated
    */
-  int COST = 17;
+  int COST = 18;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -660,7 +697,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentType()
    * @generated
    */
-  int COMPONENT_TYPE = 18;
+  int COMPONENT_TYPE = 19;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.RoleType <em>Role Type</em>}' enum.
@@ -670,7 +707,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleType()
    * @generated
    */
-  int ROLE_TYPE = 19;
+  int ROLE_TYPE = 20;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType <em>Assembly Type</em>}' enum.
@@ -680,7 +717,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssemblyType()
    * @generated
    */
-  int ASSEMBLY_TYPE = 20;
+  int ASSEMBLY_TYPE = 21;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationType <em>Transformation Type</em>}' enum.
@@ -690,7 +727,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationType()
    * @generated
    */
-  int TRANSFORMATION_TYPE = 21;
+  int TRANSFORMATION_TYPE = 22;
 
 
   /**
@@ -840,6 +877,38 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    */
   EAttribute getIdentifier_Id();
+
+  /**
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Annotation <em>Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Annotation</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Annotation
+   * @generated
+   */
+  EClass getAnnotation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Annotation#isNot <em>Not</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Not</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Annotation#isNot()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EAttribute getAnnotation_Not();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Annotation#getAnnotation <em>Annotation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Annotation</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.Annotation#getAnnotation()
+   * @see #getAnnotation()
+   * @generated
+   */
+  EAttribute getAnnotation_Annotation();
 
   /**
    * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Type <em>Type</em>}'.
@@ -1367,6 +1436,32 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * @generated
      */
     EAttribute IDENTIFIER__ID = eINSTANCE.getIdentifier_Id();
+
+    /**
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AnnotationImpl <em>Annotation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.AnnotationImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAnnotation()
+     * @generated
+     */
+    EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+    /**
+     * The meta object literal for the '<em><b>Not</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION__NOT = eINSTANCE.getAnnotation_Not();
+
+    /**
+     * The meta object literal for the '<em><b>Annotation</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANNOTATION__ANNOTATION = eINSTANCE.getAnnotation_Annotation();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.TypeImpl <em>Type</em>}' class.

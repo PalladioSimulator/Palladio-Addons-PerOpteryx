@@ -12,13 +12,16 @@ ComponentSpecification:
     'Component(' properties+=ComponentProperty+ ')';
 
 ComponentProperty:
-    Name | Identifier | Type | Role | Assembly | Resource;
+    Name | Identifier | Annotation | Type | Role | Assembly | Resource;
 
 Name:
     'Name(' not?='Not'? name=STRING ')';
 
 Identifier:
     'Id(' not?='Not'? id=ID ')';
+
+Annotation:
+    'Annotation(' not?='Not'? annotation=STRING ')';
 
 Type:
     'Type(' not?='Not'? type=ComponentType ')';
@@ -33,7 +36,7 @@ enum RoleType:
     ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 
 RoleProperty:
-    Name | Identifier;
+    Name | Identifier | Annotation;
 
 Assembly:
     'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';

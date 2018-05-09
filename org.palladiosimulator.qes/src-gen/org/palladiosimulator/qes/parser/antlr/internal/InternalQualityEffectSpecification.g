@@ -251,38 +251,47 @@ ruleComponentProperty returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getComponentPropertyAccess().getTypeParserRuleCall_2());
+			newCompositeNode(grammarAccess.getComponentPropertyAccess().getAnnotationParserRuleCall_2());
 		}
-		this_Type_2=ruleType
+		this_Annotation_2=ruleAnnotation
 		{
-			$current = $this_Type_2.current;
+			$current = $this_Annotation_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getComponentPropertyAccess().getRoleParserRuleCall_3());
+			newCompositeNode(grammarAccess.getComponentPropertyAccess().getTypeParserRuleCall_3());
 		}
-		this_Role_3=ruleRole
+		this_Type_3=ruleType
 		{
-			$current = $this_Role_3.current;
+			$current = $this_Type_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getComponentPropertyAccess().getAssemblyParserRuleCall_4());
+			newCompositeNode(grammarAccess.getComponentPropertyAccess().getRoleParserRuleCall_4());
 		}
-		this_Assembly_4=ruleAssembly
+		this_Role_4=ruleRole
 		{
-			$current = $this_Assembly_4.current;
+			$current = $this_Role_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getComponentPropertyAccess().getResourceParserRuleCall_5());
+			newCompositeNode(grammarAccess.getComponentPropertyAccess().getAssemblyParserRuleCall_5());
 		}
-		this_Resource_5=ruleResource
+		this_Assembly_5=ruleAssembly
 		{
-			$current = $this_Resource_5.current;
+			$current = $this_Assembly_5.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getComponentPropertyAccess().getResourceParserRuleCall_6());
+		}
+		this_Resource_6=ruleResource
+		{
+			$current = $this_Resource_6.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -402,6 +411,65 @@ ruleIdentifier returns [EObject current=null]
 		otherlv_3=')'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getIdentifierAccess().getRightParenthesisKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleAnnotation
+entryRuleAnnotation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAnnotationRule()); }
+	iv_ruleAnnotation=ruleAnnotation
+	{ $current=$iv_ruleAnnotation.current; }
+	EOF;
+
+// Rule Annotation
+ruleAnnotation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Annotation('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAnnotationAccess().getAnnotationKeyword_0());
+		}
+		(
+			(
+				lv_not_1_0='Not'
+				{
+					newLeafNode(lv_not_1_0, grammarAccess.getAnnotationAccess().getNotNotKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAnnotationRule());
+					}
+					setWithLastConsumed($current, "not", true, "Not");
+				}
+			)
+		)?
+		(
+			(
+				lv_annotation_2_0=RULE_STRING
+				{
+					newLeafNode(lv_annotation_2_0, grammarAccess.getAnnotationAccess().getAnnotationSTRINGTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAnnotationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"annotation",
+						lv_annotation_2_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_3=')'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAnnotationAccess().getRightParenthesisKeyword_3());
 		}
 	)
 ;
@@ -576,6 +644,15 @@ ruleRoleProperty returns [EObject current=null]
 		this_Identifier_1=ruleIdentifier
 		{
 			$current = $this_Identifier_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getRolePropertyAccess().getAnnotationParserRuleCall_2());
+		}
+		this_Annotation_2=ruleAnnotation
+		{
+			$current = $this_Annotation_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

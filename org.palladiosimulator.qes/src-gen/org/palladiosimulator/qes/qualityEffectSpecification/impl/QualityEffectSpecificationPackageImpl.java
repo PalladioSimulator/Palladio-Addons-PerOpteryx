@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.palladiosimulator.qes.qualityEffectSpecification.Annotation;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty;
@@ -83,6 +84,13 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * @generated
    */
   private EClass identifierEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass annotationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -397,6 +405,36 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
   public EAttribute getIdentifier_Id()
   {
     return (EAttribute)identifierEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAnnotation()
+  {
+    return annotationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAnnotation_Not()
+  {
+    return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAnnotation_Annotation()
+  {
+    return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -809,6 +847,10 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     createEAttribute(identifierEClass, IDENTIFIER__NOT);
     createEAttribute(identifierEClass, IDENTIFIER__ID);
 
+    annotationEClass = createEClass(ANNOTATION);
+    createEAttribute(annotationEClass, ANNOTATION__NOT);
+    createEAttribute(annotationEClass, ANNOTATION__ANNOTATION);
+
     typeEClass = createEClass(TYPE);
     createEAttribute(typeEClass, TYPE__NOT);
     createEAttribute(typeEClass, TYPE__TYPE);
@@ -895,6 +937,8 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     identifierEClass.getESuperTypes().add(this.getComponentProperty());
     identifierEClass.getESuperTypes().add(this.getRoleProperty());
     identifierEClass.getESuperTypes().add(this.getResourceProperty());
+    annotationEClass.getESuperTypes().add(this.getComponentProperty());
+    annotationEClass.getESuperTypes().add(this.getRoleProperty());
     typeEClass.getESuperTypes().add(this.getComponentProperty());
     roleEClass.getESuperTypes().add(this.getComponentProperty());
     assemblyEClass.getESuperTypes().add(this.getComponentProperty());
@@ -923,6 +967,10 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIdentifier_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIdentifier_Id(), ecorePackage.getEString(), "id", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAnnotation_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAnnotation_Annotation(), ecorePackage.getEString(), "annotation", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getType_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
