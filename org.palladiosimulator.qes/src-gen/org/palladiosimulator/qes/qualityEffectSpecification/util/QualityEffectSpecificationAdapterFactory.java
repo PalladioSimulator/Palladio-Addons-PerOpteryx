@@ -121,21 +121,6 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
         return createRolePropertyAdapter();
       }
       @Override
-      public Adapter caseInterface(Interface object)
-      {
-        return createInterfaceAdapter();
-      }
-      @Override
-      public Adapter caseInterfaceProperty(InterfaceProperty object)
-      {
-        return createInterfacePropertyAdapter();
-      }
-      @Override
-      public Adapter caseMethodSignature(MethodSignature object)
-      {
-        return createMethodSignatureAdapter();
-      }
-      @Override
       public Adapter caseAssembly(Assembly object)
       {
         return createAssemblyAdapter();
@@ -333,51 +318,6 @@ public class QualityEffectSpecificationAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRolePropertyAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Interface <em>Interface</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Interface
-   * @generated
-   */
-  public Adapter createInterfaceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty <em>Interface Property</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty
-   * @generated
-   */
-  public Adapter createInterfacePropertyAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature <em>Method Signature</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature
-   * @generated
-   */
-  public Adapter createMethodSignatureAdapter()
   {
     return null;
   }

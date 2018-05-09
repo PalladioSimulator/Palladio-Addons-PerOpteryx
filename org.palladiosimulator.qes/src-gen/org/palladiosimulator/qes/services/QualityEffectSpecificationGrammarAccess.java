@@ -298,13 +298,12 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cInterfaceParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//RoleProperty:
-		//	Name | Identifier | Interface;
+		//	Name | Identifier;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name | Identifier | Interface
+		//Name | Identifier
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Name
@@ -312,98 +311,6 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		
 		//Identifier
 		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
-		
-		//Interface
-		public RuleCall getInterfaceParserRuleCall_2() { return cInterfaceParserRuleCall_2; }
-	}
-	public class InterfaceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Interface");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cInterfaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertiesInterfacePropertyParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		
-		//Interface:
-		//	'Interface(' properties+=InterfaceProperty+ ')';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Interface(' properties+=InterfaceProperty+ ')'
-		public Group getGroup() { return cGroup; }
-		
-		//'Interface('
-		public Keyword getInterfaceKeyword_0() { return cInterfaceKeyword_0; }
-		
-		//properties+=InterfaceProperty+
-		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
-		
-		//InterfaceProperty
-		public RuleCall getPropertiesInterfacePropertyParserRuleCall_1_0() { return cPropertiesInterfacePropertyParserRuleCall_1_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
-	}
-	public class InterfacePropertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.InterfaceProperty");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cMethodSignatureParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		
-		//InterfaceProperty:
-		//	Name | Identifier | MethodSignature;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Name | Identifier | MethodSignature
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Name
-		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
-		
-		//Identifier
-		public RuleCall getIdentifierParserRuleCall_1() { return cIdentifierParserRuleCall_1; }
-		
-		//MethodSignature
-		public RuleCall getMethodSignatureParserRuleCall_2() { return cMethodSignatureParserRuleCall_2; }
-	}
-	public class MethodSignatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.MethodSignature");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cMethodKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cParameterTypesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cParameterTypesSTRINGTerminalRuleCall_3_0 = (RuleCall)cParameterTypesAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//MethodSignature:
-		//	'Method(' name=STRING ':' parameterTypes+=STRING* ')';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Method(' name=STRING ':' parameterTypes+=STRING* ')'
-		public Group getGroup() { return cGroup; }
-		
-		//'Method('
-		public Keyword getMethodKeyword_0() { return cMethodKeyword_0; }
-		
-		//name=STRING
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
-		
-		//':'
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
-		
-		//parameterTypes+=STRING*
-		public Assignment getParameterTypesAssignment_3() { return cParameterTypesAssignment_3; }
-		
-		//STRING
-		public RuleCall getParameterTypesSTRINGTerminalRuleCall_3_0() { return cParameterTypesSTRINGTerminalRuleCall_3_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class AssemblyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Assembly");
@@ -917,9 +824,6 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	private final RoleElements pRole;
 	private final RoleTypeElements eRoleType;
 	private final RolePropertyElements pRoleProperty;
-	private final InterfaceElements pInterface;
-	private final InterfacePropertyElements pInterfaceProperty;
-	private final MethodSignatureElements pMethodSignature;
 	private final AssemblyElements pAssembly;
 	private final AssemblyTypeElements eAssemblyType;
 	private final ResourceElements pResource;
@@ -952,9 +856,6 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		this.pRole = new RoleElements();
 		this.eRoleType = new RoleTypeElements();
 		this.pRoleProperty = new RolePropertyElements();
-		this.pInterface = new InterfaceElements();
-		this.pInterfaceProperty = new InterfacePropertyElements();
-		this.pMethodSignature = new MethodSignatureElements();
 		this.pAssembly = new AssemblyElements();
 		this.eAssemblyType = new AssemblyTypeElements();
 		this.pResource = new ResourceElements();
@@ -1098,43 +999,13 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//RoleProperty:
-	//	Name | Identifier | Interface;
+	//	Name | Identifier;
 	public RolePropertyElements getRolePropertyAccess() {
 		return pRoleProperty;
 	}
 	
 	public ParserRule getRolePropertyRule() {
 		return getRolePropertyAccess().getRule();
-	}
-	
-	//Interface:
-	//	'Interface(' properties+=InterfaceProperty+ ')';
-	public InterfaceElements getInterfaceAccess() {
-		return pInterface;
-	}
-	
-	public ParserRule getInterfaceRule() {
-		return getInterfaceAccess().getRule();
-	}
-	
-	//InterfaceProperty:
-	//	Name | Identifier | MethodSignature;
-	public InterfacePropertyElements getInterfacePropertyAccess() {
-		return pInterfaceProperty;
-	}
-	
-	public ParserRule getInterfacePropertyRule() {
-		return getInterfacePropertyAccess().getRule();
-	}
-	
-	//MethodSignature:
-	//	'Method(' name=STRING ':' parameterTypes+=STRING* ')';
-	public MethodSignatureElements getMethodSignatureAccess() {
-		return pMethodSignature;
-	}
-	
-	public ParserRule getMethodSignatureRule() {
-		return getMethodSignatureAccess().getRule();
 	}
 	
 	//Assembly:

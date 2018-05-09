@@ -33,16 +33,7 @@ enum RoleType:
     ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 
 RoleProperty:
-    Name | Identifier | Interface;
-
-Interface:
-    'Interface(' properties+=InterfaceProperty+ ')';
-
-InterfaceProperty:
-    Name | Identifier | MethodSignature;
-
-MethodSignature:
-    'Method(' name=STRING ':' parameterTypes+=STRING* ')';
+    Name | Identifier;
 
 Assembly:
     'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';

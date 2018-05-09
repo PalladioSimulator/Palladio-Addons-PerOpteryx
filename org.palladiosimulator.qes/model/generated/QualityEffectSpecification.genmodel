@@ -61,14 +61,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Role/properties"/>
     </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//RoleProperty"/>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Interface">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference QualityEffectSpecification.ecore#//Interface/properties"/>
-    </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//InterfaceProperty"/>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//MethodSignature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//MethodSignature/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//MethodSignature/parameterTypes"/>
-    </genClasses>
     <genClasses ecoreClass="QualityEffectSpecification.ecore#//Assembly">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Assembly/not"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Assembly/type"/>

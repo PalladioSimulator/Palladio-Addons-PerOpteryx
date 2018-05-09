@@ -107,7 +107,6 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
         T result = caseName(name);
         if (result == null) result = caseComponentProperty(name);
         if (result == null) result = caseRoleProperty(name);
-        if (result == null) result = caseInterfaceProperty(name);
         if (result == null) result = caseResourceProperty(name);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -118,7 +117,6 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
         T result = caseIdentifier(identifier);
         if (result == null) result = caseComponentProperty(identifier);
         if (result == null) result = caseRoleProperty(identifier);
-        if (result == null) result = caseInterfaceProperty(identifier);
         if (result == null) result = caseResourceProperty(identifier);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -143,29 +141,6 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
       {
         RoleProperty roleProperty = (RoleProperty)theEObject;
         T result = caseRoleProperty(roleProperty);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QualityEffectSpecificationPackage.INTERFACE:
-      {
-        Interface interface_ = (Interface)theEObject;
-        T result = caseInterface(interface_);
-        if (result == null) result = caseRoleProperty(interface_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QualityEffectSpecificationPackage.INTERFACE_PROPERTY:
-      {
-        InterfaceProperty interfaceProperty = (InterfaceProperty)theEObject;
-        T result = caseInterfaceProperty(interfaceProperty);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QualityEffectSpecificationPackage.METHOD_SIGNATURE:
-      {
-        MethodSignature methodSignature = (MethodSignature)theEObject;
-        T result = caseMethodSignature(methodSignature);
-        if (result == null) result = caseInterfaceProperty(methodSignature);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -381,54 +356,6 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRoleProperty(RoleProperty object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInterface(Interface object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Interface Property</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Interface Property</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInterfaceProperty(InterfaceProperty object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Method Signature</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Method Signature</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseMethodSignature(MethodSignature object)
   {
     return null;
   }

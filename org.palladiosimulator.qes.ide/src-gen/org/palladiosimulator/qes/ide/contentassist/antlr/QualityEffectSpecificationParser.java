@@ -33,7 +33,6 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 				{
 					put(grammarAccess.getComponentPropertyAccess().getAlternatives(), "rule__ComponentProperty__Alternatives");
 					put(grammarAccess.getRolePropertyAccess().getAlternatives(), "rule__RoleProperty__Alternatives");
-					put(grammarAccess.getInterfacePropertyAccess().getAlternatives(), "rule__InterfaceProperty__Alternatives");
 					put(grammarAccess.getResourcePropertyAccess().getAlternatives(), "rule__ResourceProperty__Alternatives");
 					put(grammarAccess.getTransformationSpecificationAccess().getAlternatives(), "rule__TransformationSpecification__Alternatives");
 					put(grammarAccess.getComponentTypeAccess().getAlternatives(), "rule__ComponentType__Alternatives");
@@ -46,8 +45,6 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getIdentifierAccess().getGroup(), "rule__Identifier__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
 					put(grammarAccess.getRoleAccess().getGroup(), "rule__Role__Group__0");
-					put(grammarAccess.getInterfaceAccess().getGroup(), "rule__Interface__Group__0");
-					put(grammarAccess.getMethodSignatureAccess().getGroup(), "rule__MethodSignature__Group__0");
 					put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
 					put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 					put(grammarAccess.getNQAAccess().getGroup(), "rule__NQA__Group__0");
@@ -68,9 +65,6 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getRoleAccess().getNotAssignment_1(), "rule__Role__NotAssignment_1");
 					put(grammarAccess.getRoleAccess().getTypeAssignment_2(), "rule__Role__TypeAssignment_2");
 					put(grammarAccess.getRoleAccess().getPropertiesAssignment_3(), "rule__Role__PropertiesAssignment_3");
-					put(grammarAccess.getInterfaceAccess().getPropertiesAssignment_1(), "rule__Interface__PropertiesAssignment_1");
-					put(grammarAccess.getMethodSignatureAccess().getNameAssignment_1(), "rule__MethodSignature__NameAssignment_1");
-					put(grammarAccess.getMethodSignatureAccess().getParameterTypesAssignment_3(), "rule__MethodSignature__ParameterTypesAssignment_3");
 					put(grammarAccess.getAssemblyAccess().getNotAssignment_1(), "rule__Assembly__NotAssignment_1");
 					put(grammarAccess.getAssemblyAccess().getTypeAssignment_2(), "rule__Assembly__TypeAssignment_2");
 					put(grammarAccess.getAssemblyAccess().getComponentsAssignment_3(), "rule__Assembly__ComponentsAssignment_3");

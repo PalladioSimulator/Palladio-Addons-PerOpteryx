@@ -105,33 +105,6 @@ public interface QualityEffectSpecificationFactory extends EFactory
   RoleProperty createRoleProperty();
 
   /**
-   * Returns a new object of class '<em>Interface</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Interface</em>'.
-   * @generated
-   */
-  Interface createInterface();
-
-  /**
-   * Returns a new object of class '<em>Interface Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Interface Property</em>'.
-   * @generated
-   */
-  InterfaceProperty createInterfaceProperty();
-
-  /**
-   * Returns a new object of class '<em>Method Signature</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Method Signature</em>'.
-   * @generated
-   */
-  MethodSignature createMethodSignature();
-
-  /**
    * Returns a new object of class '<em>Assembly</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

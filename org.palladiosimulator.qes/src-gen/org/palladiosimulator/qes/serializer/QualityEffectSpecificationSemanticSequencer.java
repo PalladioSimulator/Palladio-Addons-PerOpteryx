@@ -19,8 +19,6 @@ import org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecificati
 import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
-import org.palladiosimulator.qes.qualityEffectSpecification.Interface;
-import org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
@@ -61,12 +59,6 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 				return; 
 			case QualityEffectSpecificationPackage.IDENTIFIER:
 				sequence_Identifier(context, (Identifier) semanticObject); 
-				return; 
-			case QualityEffectSpecificationPackage.INTERFACE:
-				sequence_Interface(context, (Interface) semanticObject); 
-				return; 
-			case QualityEffectSpecificationPackage.METHOD_SIGNATURE:
-				sequence_MethodSignature(context, (MethodSignature) semanticObject); 
 				return; 
 			case QualityEffectSpecificationPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -164,39 +156,12 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     ComponentProperty returns Identifier
 	 *     Identifier returns Identifier
 	 *     RoleProperty returns Identifier
-	 *     InterfaceProperty returns Identifier
 	 *     ResourceProperty returns Identifier
 	 *
 	 * Constraint:
 	 *     (not?='Not'? id=ID)
 	 */
 	protected void sequence_Identifier(ISerializationContext context, Identifier semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RoleProperty returns Interface
-	 *     Interface returns Interface
-	 *
-	 * Constraint:
-	 *     properties+=InterfaceProperty+
-	 */
-	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     InterfaceProperty returns MethodSignature
-	 *     MethodSignature returns MethodSignature
-	 *
-	 * Constraint:
-	 *     (name=STRING parameterTypes+=STRING*)
-	 */
-	protected void sequence_MethodSignature(ISerializationContext context, MethodSignature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -243,7 +208,6 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     ComponentProperty returns Name
 	 *     Name returns Name
 	 *     RoleProperty returns Name
-	 *     InterfaceProperty returns Name
 	 *     ResourceProperty returns Name
 	 *
 	 * Constraint:

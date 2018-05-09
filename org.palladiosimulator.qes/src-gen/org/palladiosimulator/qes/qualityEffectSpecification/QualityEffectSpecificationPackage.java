@@ -347,90 +347,6 @@ public interface QualityEffectSpecificationPackage extends EPackage
   int ROLE_PROPERTY_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl <em>Interface</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterface()
-   * @generated
-   */
-  int INTERFACE = 9;
-
-  /**
-   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERFACE__PROPERTIES = ROLE_PROPERTY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Interface</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERFACE_FEATURE_COUNT = ROLE_PROPERTY_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl <em>Interface Property</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterfaceProperty()
-   * @generated
-   */
-  int INTERFACE_PROPERTY = 10;
-
-  /**
-   * The number of structural features of the '<em>Interface Property</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERFACE_PROPERTY_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl <em>Method Signature</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getMethodSignature()
-   * @generated
-   */
-  int METHOD_SIGNATURE = 11;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METHOD_SIGNATURE__NAME = INTERFACE_PROPERTY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Parameter Types</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METHOD_SIGNATURE__PARAMETER_TYPES = INTERFACE_PROPERTY_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Method Signature</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METHOD_SIGNATURE_FEATURE_COUNT = INTERFACE_PROPERTY_FEATURE_COUNT + 2;
-
-  /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AssemblyImpl <em>Assembly</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -438,7 +354,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssembly()
    * @generated
    */
-  int ASSEMBLY = 12;
+  int ASSEMBLY = 9;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -484,7 +400,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResource()
    * @generated
    */
-  int RESOURCE = 13;
+  int RESOURCE = 10;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -512,7 +428,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getResourceProperty()
    * @generated
    */
-  int RESOURCE_PROPERTY = 14;
+  int RESOURCE_PROPERTY = 11;
 
   /**
    * The number of structural features of the '<em>Resource Property</em>' class.
@@ -531,7 +447,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationSpecification()
    * @generated
    */
-  int TRANSFORMATION_SPECIFICATION = 15;
+  int TRANSFORMATION_SPECIFICATION = 12;
 
   /**
    * The number of structural features of the '<em>Transformation Specification</em>' class.
@@ -550,7 +466,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getNQA()
    * @generated
    */
-  int NQA = 16;
+  int NQA = 13;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -596,7 +512,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getReasoning()
    * @generated
    */
-  int REASONING = 17;
+  int REASONING = 14;
 
   /**
    * The feature id for the '<em><b>Quality</b></em>' attribute.
@@ -633,7 +549,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRule()
    * @generated
    */
-  int RULE = 18;
+  int RULE = 15;
 
   /**
    * The feature id for the '<em><b>Qualities</b></em>' attribute list.
@@ -670,7 +586,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getEntry()
    * @generated
    */
-  int ENTRY = 19;
+  int ENTRY = 16;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute list.
@@ -707,7 +623,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
    * @generated
    */
-  int COST = 20;
+  int COST = 17;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -744,7 +660,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getComponentType()
    * @generated
    */
-  int COMPONENT_TYPE = 21;
+  int COMPONENT_TYPE = 18;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.RoleType <em>Role Type</em>}' enum.
@@ -754,7 +670,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getRoleType()
    * @generated
    */
-  int ROLE_TYPE = 22;
+  int ROLE_TYPE = 19;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType <em>Assembly Type</em>}' enum.
@@ -764,7 +680,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getAssemblyType()
    * @generated
    */
-  int ASSEMBLY_TYPE = 23;
+  int ASSEMBLY_TYPE = 20;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.TransformationType <em>Transformation Type</em>}' enum.
@@ -774,7 +690,7 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getTransformationType()
    * @generated
    */
-  int TRANSFORMATION_TYPE = 24;
+  int TRANSFORMATION_TYPE = 21;
 
 
   /**
@@ -1009,69 +925,6 @@ public interface QualityEffectSpecificationPackage extends EPackage
    * @generated
    */
   EClass getRoleProperty();
-
-  /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Interface <em>Interface</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Interface</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Interface
-   * @generated
-   */
-  EClass getInterface();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.palladiosimulator.qes.qualityEffectSpecification.Interface#getProperties <em>Properties</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Properties</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Interface#getProperties()
-   * @see #getInterface()
-   * @generated
-   */
-  EReference getInterface_Properties();
-
-  /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty <em>Interface Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Interface Property</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty
-   * @generated
-   */
-  EClass getInterfaceProperty();
-
-  /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature <em>Method Signature</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Method Signature</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature
-   * @generated
-   */
-  EClass getMethodSignature();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getName()
-   * @see #getMethodSignature()
-   * @generated
-   */
-  EAttribute getMethodSignature_Name();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getParameterTypes <em>Parameter Types</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Parameter Types</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature#getParameterTypes()
-   * @see #getMethodSignature()
-   * @generated
-   */
-  EAttribute getMethodSignature_ParameterTypes();
 
   /**
    * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Assembly <em>Assembly</em>}'.
@@ -1584,60 +1437,6 @@ public interface QualityEffectSpecificationPackage extends EPackage
      * @generated
      */
     EClass ROLE_PROPERTY = eINSTANCE.getRoleProperty();
-
-    /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl <em>Interface</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfaceImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterface()
-     * @generated
-     */
-    EClass INTERFACE = eINSTANCE.getInterface();
-
-    /**
-     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INTERFACE__PROPERTIES = eINSTANCE.getInterface_Properties();
-
-    /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl <em>Interface Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.InterfacePropertyImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getInterfaceProperty()
-     * @generated
-     */
-    EClass INTERFACE_PROPERTY = eINSTANCE.getInterfaceProperty();
-
-    /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl <em>Method Signature</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.MethodSignatureImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getMethodSignature()
-     * @generated
-     */
-    EClass METHOD_SIGNATURE = eINSTANCE.getMethodSignature();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METHOD_SIGNATURE__NAME = eINSTANCE.getMethodSignature_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Parameter Types</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute METHOD_SIGNATURE__PARAMETER_TYPES = eINSTANCE.getMethodSignature_ParameterTypes();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.AssemblyImpl <em>Assembly</em>}' class.

@@ -19,9 +19,6 @@ import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
-import org.palladiosimulator.qes.qualityEffectSpecification.Interface;
-import org.palladiosimulator.qes.qualityEffectSpecification.InterfaceProperty;
-import org.palladiosimulator.qes.qualityEffectSpecification.MethodSignature;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationFactory;
@@ -107,27 +104,6 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * @generated
    */
   private EClass rolePropertyEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass interfaceEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass interfacePropertyEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass methodSignatureEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -508,66 +484,6 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getInterface()
-  {
-    return interfaceEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getInterface_Properties()
-  {
-    return (EReference)interfaceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInterfaceProperty()
-  {
-    return interfacePropertyEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getMethodSignature()
-  {
-    return methodSignatureEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getMethodSignature_Name()
-  {
-    return (EAttribute)methodSignatureEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getMethodSignature_ParameterTypes()
-  {
-    return (EAttribute)methodSignatureEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getAssembly()
   {
     return assemblyEClass;
@@ -904,15 +820,6 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
 
     rolePropertyEClass = createEClass(ROLE_PROPERTY);
 
-    interfaceEClass = createEClass(INTERFACE);
-    createEReference(interfaceEClass, INTERFACE__PROPERTIES);
-
-    interfacePropertyEClass = createEClass(INTERFACE_PROPERTY);
-
-    methodSignatureEClass = createEClass(METHOD_SIGNATURE);
-    createEAttribute(methodSignatureEClass, METHOD_SIGNATURE__NAME);
-    createEAttribute(methodSignatureEClass, METHOD_SIGNATURE__PARAMETER_TYPES);
-
     assemblyEClass = createEClass(ASSEMBLY);
     createEAttribute(assemblyEClass, ASSEMBLY__NOT);
     createEAttribute(assemblyEClass, ASSEMBLY__TYPE);
@@ -984,16 +891,12 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     // Add supertypes to classes
     nameEClass.getESuperTypes().add(this.getComponentProperty());
     nameEClass.getESuperTypes().add(this.getRoleProperty());
-    nameEClass.getESuperTypes().add(this.getInterfaceProperty());
     nameEClass.getESuperTypes().add(this.getResourceProperty());
     identifierEClass.getESuperTypes().add(this.getComponentProperty());
     identifierEClass.getESuperTypes().add(this.getRoleProperty());
-    identifierEClass.getESuperTypes().add(this.getInterfaceProperty());
     identifierEClass.getESuperTypes().add(this.getResourceProperty());
     typeEClass.getESuperTypes().add(this.getComponentProperty());
     roleEClass.getESuperTypes().add(this.getComponentProperty());
-    interfaceEClass.getESuperTypes().add(this.getRoleProperty());
-    methodSignatureEClass.getESuperTypes().add(this.getInterfaceProperty());
     assemblyEClass.getESuperTypes().add(this.getComponentProperty());
     resourceEClass.getESuperTypes().add(this.getComponentProperty());
     nqaEClass.getESuperTypes().add(this.getTransformationSpecification());
@@ -1031,15 +934,6 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     initEReference(getRole_Properties(), this.getRoleProperty(), null, "properties", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rolePropertyEClass, RoleProperty.class, "RoleProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInterface_Properties(), this.getInterfaceProperty(), null, "properties", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(interfacePropertyEClass, InterfaceProperty.class, "InterfaceProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(methodSignatureEClass, MethodSignature.class, "MethodSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMethodSignature_Name(), ecorePackage.getEString(), "name", null, 0, 1, MethodSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMethodSignature_ParameterTypes(), ecorePackage.getEString(), "parameterTypes", null, 0, -1, MethodSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assemblyEClass, Assembly.class, "Assembly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAssembly_Not(), ecorePackage.getEBoolean(), "not", null, 0, 1, Assembly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

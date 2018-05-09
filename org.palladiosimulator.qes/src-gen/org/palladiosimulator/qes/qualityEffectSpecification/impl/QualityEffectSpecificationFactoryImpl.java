@@ -75,9 +75,6 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
       case QualityEffectSpecificationPackage.TYPE: return createType();
       case QualityEffectSpecificationPackage.ROLE: return createRole();
       case QualityEffectSpecificationPackage.ROLE_PROPERTY: return createRoleProperty();
-      case QualityEffectSpecificationPackage.INTERFACE: return createInterface();
-      case QualityEffectSpecificationPackage.INTERFACE_PROPERTY: return createInterfaceProperty();
-      case QualityEffectSpecificationPackage.METHOD_SIGNATURE: return createMethodSignature();
       case QualityEffectSpecificationPackage.ASSEMBLY: return createAssembly();
       case QualityEffectSpecificationPackage.RESOURCE: return createResource();
       case QualityEffectSpecificationPackage.RESOURCE_PROPERTY: return createResourceProperty();
@@ -235,39 +232,6 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
   {
     RolePropertyImpl roleProperty = new RolePropertyImpl();
     return roleProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Interface createInterface()
-  {
-    InterfaceImpl interface_ = new InterfaceImpl();
-    return interface_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InterfaceProperty createInterfaceProperty()
-  {
-    InterfacePropertyImpl interfaceProperty = new InterfacePropertyImpl();
-    return interfaceProperty;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MethodSignature createMethodSignature()
-  {
-    MethodSignatureImpl methodSignature = new MethodSignatureImpl();
-    return methodSignature;
   }
 
   /**

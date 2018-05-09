@@ -17,11 +17,11 @@
         eType="#//ComponentProperty" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentProperty"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ComponentProperty #//RoleProperty #//InterfaceProperty #//ResourceProperty">
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ComponentProperty #//RoleProperty #//ResourceProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ComponentProperty #//RoleProperty #//InterfaceProperty #//ResourceProperty">
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ComponentProperty #//RoleProperty #//ResourceProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -50,16 +50,6 @@
     <eLiterals name="INFRASTRUCTURE_PROVIDED" value="6" literal="InfrastructureProvided"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoleProperty"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//RoleProperty">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//InterfaceProperty" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InterfaceProperty"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MethodSignature" eSuperTypes="#//InterfaceProperty">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterTypes" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assembly" eSuperTypes="#//ComponentProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//AssemblyType"/>
