@@ -8,7 +8,10 @@ Bundle-Vendor: are.ipd.kit.edu
 Bundle-Localization: plugin
 Export-Package: concernStrategy,
  concernStrategy.impl,
- concernStrategy.util
+ concernStrategy.util,
+ strategyConfig,
+ strategyConfig.impl,
+ strategyConfig.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

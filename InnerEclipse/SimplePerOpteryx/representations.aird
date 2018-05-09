@@ -103,7 +103,6 @@
     <semanticResources>palladio/PerOpteryx_results/allCandidates9_2017-07-06-234342.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/population9_2017-07-06-234342.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/archiveCandidates9_2017-07-06-234342.designdecision</semanticResources>
-    <semanticResources>peropteryx/strategy.strategymodel</semanticResources>
     <semanticResources>peropteryx/designdecision.designdecision</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/PerOpteryx/My.cost</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/newRepository.repository</semanticResources>
@@ -201,6 +200,13 @@
     <semanticResources>peropteryx/solutions/solutionsCD.cost</semanticResources>
     <semanticResources>peropteryx/solutions/solutionA.cost</semanticResources>
     <semanticResources>peropteryx/solutions/solutionB.cost</semanticResources>
+    <semanticResources>platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram</semanticResources>
+    <semanticResources>http://sdq.ipd.uka.de/CostModel/1.0</semanticResources>
+    <semanticResources>http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0</semanticResources>
+    <semanticResources>http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1</semanticResources>
+    <semanticResources>peropteryx/Solution.featuresolution</semanticResources>
+    <semanticResources>peropteryx/FCompletion.featurecompletion</semanticResources>
+    <semanticResources>peropteryx/Features.featureobjective</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" representation="_zv_wAWFaEeetxOZObiabqg">
@@ -1039,8 +1045,8 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer/@containerMappings[name='InternalAction']/@subContainerMappings[name='ResourceDemand%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_4zswgJucEeeoubAyC5894w" name="DoublePDF[(5.0; 0.1)(15.0; 0.8)(50.0; 0. ...">
-          <target xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#/0/@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
-          <semanticElements xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#/0/@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <target xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#//@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <semanticElements xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#//@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_4zulsJucEeeoubAyC5894w" labelPosition="node">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer/@containerMappings[name='InternalAction']/@subContainerMappings[name='ResourceDemand%20Container']/@subNodeMappings[name='ResourceDemand']/@conditionnalStyles.0/@style"/>
           </ownedStyle>

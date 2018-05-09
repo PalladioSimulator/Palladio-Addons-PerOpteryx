@@ -12,6 +12,34 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
+            id="strategyConfig.presentation.ConcernconfigModelWizardID"
+            name="%_UI_ConcernconfigModelWizard_label"
+            class="strategyConfig.presentation.ConcernconfigModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ConcernconfigModelFile.gif">
+         <description>%_UI_ConcernconfigModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated strategy -->
+      <editor
+            id="strategyConfig.presentation.ConcernconfigEditorID"
+            name="%_UI_ConcernconfigEditor_label"
+            icon="icons/full/obj16/ConcernconfigModelFile.gif"
+            extensions="concernconfig"
+            class="strategyConfig.presentation.ConcernconfigEditor"
+            contributorClass="strategyConfig.presentation.ConcernconfigActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated strategy -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
             id="concernStrategy.presentation.StrategymodelModelWizardID"
             name="%_UI_StrategymodelModelWizard_label"
             class="concernStrategy.presentation.StrategymodelModelWizard"

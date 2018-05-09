@@ -160,6 +160,10 @@ import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
+import strategyConfig.presentation.ConcernStrategyEditorPlugin;
+
+import strategyConfig.provider.ConcernconfigItemProviderAdapterFactory;
+
 
 /**
  * This is an example of a Strategymodel model editor.
@@ -406,8 +410,6 @@ public class StrategymodelEditor
 	 */
 	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
-			protected boolean dispatching;
-
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
 					switch (notification.getFeatureID(Resource.class)) {
@@ -422,26 +424,21 @@ public class StrategymodelEditor
 							else {
 								resourceToDiagnosticMap.remove(resource);
 							}
-							dispatchUpdateProblemIndication();
+
+							if (updateProblemIndication) {
+								getSite().getShell().getDisplay().asyncExec
+									(new Runnable() {
+										 public void run() {
+											 updateProblemIndication();
+										 }
+									 });
+							}
 							break;
 						}
 					}
 				}
 				else {
 					super.notifyChanged(notification);
-				}
-			}
-
-			protected void dispatchUpdateProblemIndication() {
-				if (updateProblemIndication && !dispatching) {
-					dispatching = true;
-					getSite().getShell().getDisplay().asyncExec
-						(new Runnable() {
-							 public void run() {
-								 dispatching = false;
-								 updateProblemIndication();
-							 }
-						 });
 				}
 			}
 
@@ -452,7 +449,14 @@ public class StrategymodelEditor
 			protected void unsetTarget(Resource target) {
 				basicUnsetTarget(target);
 				resourceToDiagnosticMap.remove(target);
-				dispatchUpdateProblemIndication();
+				if (updateProblemIndication) {
+					getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							 public void run() {
+								 updateProblemIndication();
+							 }
+						 });
+				}
 			}
 		};
 
@@ -699,6 +703,7 @@ public class StrategymodelEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ConcernconfigItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StrategymodelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
@@ -1034,7 +1039,6 @@ public class StrategymodelEditor
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1325,7 +1329,6 @@ public class StrategymodelEditor
 
 					// Set up the tree viewer.
 					//
-					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1464,9 +1467,8 @@ public class StrategymodelEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					List resources = editingDomain.getResourceSet().getResources();
-					for (int i = 0; i < resources.size(); ++i) {
-						Resource resource = (Resource)resources.get(i);
+					for (Iterator i = editingDomain.getResourceSet().getResources().iterator(); i.hasNext(); ) {
+						Resource resource = (Resource)i.next();
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
 								resource.save(saveOptions);

@@ -6,5 +6,9 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore,
  org.modelversioning.emfprofile,
- org.palladiosimulator.mdsdprofiles.api
-Export-Package: de.uka.ipd.sdq.dsexplore.tools.stereotypeapi
+ org.palladiosimulator.mdsdprofiles.api,
+ org.palladiosimulator.pcm,
+ edu.kit.ipd.are.dsexplore.featurecompletions,
+ de.uka.ipd.sdq.pcm.cost
+Export-Package: de.uka.ipd.sdq.dsexplore.tools.repository,
+ de.uka.ipd.sdq.dsexplore.tools.stereotypeapi, de.uka.ipd.sdq.dsexplore.tools.primitives

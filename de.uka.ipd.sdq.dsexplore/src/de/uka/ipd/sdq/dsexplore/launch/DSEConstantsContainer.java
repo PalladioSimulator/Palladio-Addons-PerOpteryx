@@ -47,7 +47,7 @@ public class DSEConstantsContainer {
 	public static final String CACHE_INSTANCES = "cacheInstances";
 	public static final String ALL_CANDIDATES = "allCandidates";
 	public static final String ARCHIVE_CANDIDATES = "archiveCandidates";
-	public static final String QUALITY_EFFECT_SPECIFICATION_FILE = "qualityEffectSpecificationFile";
+
 
 	public static final String DESIGN_DECISION_FILE = "designDecisionFile";
 
@@ -61,7 +61,7 @@ public class DSEConstantsContainer {
 	public static final String[] NQR_MODEL_EXTENSION = new String[] { "*.nqr" };
 	public static final String[] REASONING_MODEL_EXTENSION = new String[] {"*.qualitymodel"};
 	public static final String[] QML_CONTRACT_EXTENSION = new String[] {"*.qmlcontracttype"};
-	public static final String[] QUALITY_EFFECT_SPECIFICATION_EXTENSION = new String[] {"*.qes"};
+
 	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
 
 	/**

@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import strategyConfig.provider.ConcernStrategyEditPlugin;
+
 /**
  * This is the item provider adapter for a {@link concernStrategy.ChildRelation} object.
  * <!-- begin-user-doc -->

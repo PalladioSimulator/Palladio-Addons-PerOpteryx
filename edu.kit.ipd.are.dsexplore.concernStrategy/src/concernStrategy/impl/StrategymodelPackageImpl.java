@@ -38,6 +38,10 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import strategyConfig.ConcernconfigPackage;
+
+import strategyConfig.impl.ConcernconfigPackageImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -221,11 +225,16 @@ public class StrategymodelPackageImpl extends EPackageImpl implements Strategymo
 		EcorePackage.eINSTANCE.eClass();
 		IdentifierPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		ConcernconfigPackageImpl theConcernconfigPackage = (ConcernconfigPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConcernconfigPackage.eNS_URI) instanceof ConcernconfigPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConcernconfigPackage.eNS_URI) : ConcernconfigPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theStrategymodelPackage.createPackageContents();
+		theConcernconfigPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStrategymodelPackage.initializePackageContents();
+		theConcernconfigPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put

@@ -20,6 +20,8 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import strategyConfig.provider.ConcernStrategyEditPlugin;
+
 /**
  * This is the item provider adapter for a {@link concernStrategy.NamedElement} object.
  * <!-- begin-user-doc -->

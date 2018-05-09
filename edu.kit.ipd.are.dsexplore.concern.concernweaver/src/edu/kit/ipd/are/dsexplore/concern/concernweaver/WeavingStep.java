@@ -2,11 +2,11 @@ package edu.kit.ipd.are.dsexplore.concern.concernweaver;
 
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import SolutionModel.Solution;
-import TransformationModel.Transformation;
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
+import featureSolution.InclusionMechanism;
 
 /**
  * This abstract class needs to be extended by each class which implements the
@@ -18,7 +18,7 @@ import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.WeavingStrategyFactory;
 public abstract class WeavingStep {
 
 	private static PCMInstance pcmToAdapt;
-	private static Solution concernSolution;
+	private static MergedRepository mergedRepo;
 	private static IWeavingStrategy weavingStrategy;
 
 	/**
@@ -30,9 +30,9 @@ public abstract class WeavingStep {
 	 * @param newConcernSolution
 	 *            - The repository containing the concern solution.
 	 */
-	public static void setGlobalSettings(PCMInstance newPcmToAdapt, Solution newConcernSolution) {
+	public static void setGlobalSettings(PCMInstance newPcmToAdapt, MergedRepository mergedRepo) {
 		WeavingStep.pcmToAdapt = newPcmToAdapt;
-		WeavingStep.concernSolution = newConcernSolution;
+		WeavingStep.mergedRepo = mergedRepo;
 	}
 
 	/**
@@ -40,8 +40,8 @@ public abstract class WeavingStep {
 	 *
 	 * @return the concern solution.
 	 */
-	public static Solution getConcernSolution() {
-		return WeavingStep.concernSolution;
+	public static MergedRepository getFCCSolutionMergedRepository() {
+		return WeavingStep.mergedRepo;
 	}
 
 	/**
@@ -52,8 +52,8 @@ public abstract class WeavingStep {
 	 *            - The transformation strategy which represents the integration
 	 *            mechanism.
 	 */
-	public static void setWeavingStrategy(Transformation transformationStrategy) {
-		WeavingStep.weavingStrategy = WeavingStrategyFactory.createBy(transformationStrategy, WeavingStep.pcmToAdapt, WeavingStep.concernSolution);
+	public static void setWeavingStrategy(InclusionMechanism inclusionMechanism) {
+		WeavingStep.weavingStrategy = WeavingStrategyFactory.createBy(inclusionMechanism, WeavingStep.pcmToAdapt, WeavingStep.mergedRepo);
 	}
 
 	/**
