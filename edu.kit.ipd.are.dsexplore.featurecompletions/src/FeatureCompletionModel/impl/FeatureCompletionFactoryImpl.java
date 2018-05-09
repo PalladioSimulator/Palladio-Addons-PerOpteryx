@@ -54,7 +54,6 @@ public class FeatureCompletionFactoryImpl extends EFactoryImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY: return createFeatureCompletionRepository();
@@ -78,7 +77,6 @@ public class FeatureCompletionFactoryImpl extends EFactoryImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureCompletionPackage.VISNETUM:
@@ -97,7 +95,6 @@ public class FeatureCompletionFactoryImpl extends EFactoryImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureCompletionPackage.VISNETUM:
@@ -296,7 +293,6 @@ public class FeatureCompletionFactoryImpl extends EFactoryImpl implements Featur
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
 	public static FeatureCompletionPackage getPackage() {
 		return FeatureCompletionPackage.eINSTANCE;
 	}

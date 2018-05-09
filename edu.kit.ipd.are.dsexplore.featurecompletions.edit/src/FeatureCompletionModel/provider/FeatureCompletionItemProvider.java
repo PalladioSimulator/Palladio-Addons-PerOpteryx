@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -42,12 +41,12 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+	public List getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFeatureObjectivesPropertyDescriptor(object);
+			addCompletionComponentsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,6 +74,28 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Completion Components feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompletionComponentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FeatureCompletion_completionComponents_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureCompletion_completionComponents_feature", "_UI_FeatureCompletion_type"),
+				 FeatureCompletionPackage.Literals.FEATURE_COMPLETION__COMPLETION_COMPONENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -82,13 +103,10 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__COMPLETION_COMPONENTS);
 			childrenFeatures.add(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__COMPLEMENTA);
-			childrenFeatures.add(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -98,7 +116,6 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
@@ -112,7 +129,6 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureCompletion"));
 	}
@@ -123,7 +139,6 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getText(Object object) {
 		String label = ((FeatureCompletion)object).getName();
 		return label == null || label.length() == 0 ?
@@ -139,14 +154,11 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureCompletion.class)) {
-			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLETION_COMPONENTS:
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
-			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -160,14 +172,8 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__COMPLETION_COMPONENTS,
-				 FeatureCompletionFactory.eINSTANCE.createCompletionComponent()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -178,11 +184,6 @@ public class FeatureCompletionItemProvider extends DescribedElementItemProvider 
 			(createChildParameter
 				(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__COMPLEMENTA,
 				 FeatureCompletionFactory.eINSTANCE.createComplementumVisnetis()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(FeatureCompletionPackage.Literals.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS,
-				 FeatureCompletionFactory.eINSTANCE.createArchitectureConstraints()));
 	}
 
 }

@@ -91,10 +91,10 @@ public interface FeatureGroup extends ChildRelation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Children</em>' containment reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getFeatureGroup_Children()
-	 * @model containment="true" lower="2" ordered="false"
+	 * @model type="featureObjective.Feature" containment="true" lower="2" ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getChildren();
+	EList getChildren();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,10 +106,10 @@ public interface FeatureGroup extends ChildRelation {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--(self.groupType = GroupTypes::OR or self.groupType = GroupTypes::XOR) implies self.children->forAll(c|c.isMandatory)\r\n'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--(self.groupType = GroupTypes::OR or self.groupType = GroupTypes::XOR) implies self.children-&gt;forAll(c|c.isMandatory)\r\n'"
 	 * @generated
 	 */
-	boolean XORorORImpliesChildrenAreMandatory(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean XORorORImpliesChildrenAreMandatory(DiagnosticChain diagnostics, Map context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,7 +124,7 @@ public interface FeatureGroup extends ChildRelation {
 	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n --self.groupType = GroupTypes::ALL implies (self.min = -1 and self.max = -1)\r\n'"
 	 * @generated
 	 */
-	boolean ALLImpliesCardinalitiesToBeMinusOne(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean ALLImpliesCardinalitiesToBeMinusOne(DiagnosticChain diagnostics, Map context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,7 +138,7 @@ public interface FeatureGroup extends ChildRelation {
 	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--self.groupType = GroupTypes::OR implies (self.min = 1  and self.max = -1)'"
 	 * @generated
 	 */
-	boolean ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne(DiagnosticChain diagnostics, Map context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,6 +153,6 @@ public interface FeatureGroup extends ChildRelation {
 	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n --self.groupType = GroupTypes::XOR implies (self.min = 1 and self.max = 1)\r\n'"
 	 * @generated
 	 */
-	boolean XORImpliesCardinalitiesToBeOne(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean XORImpliesCardinalitiesToBeOne(DiagnosticChain diagnostics, Map context);
 
 } // FeatureGroup

@@ -36,7 +36,6 @@ import featureSolution.impl.FeatureSolutionPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -719,10 +718,6 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		FeatureCompletionPackage theFeatureCompletionPackage = (FeatureCompletionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
-		// Create type parameters
-
-		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		featureObjectiveEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		featureEClass.getESuperTypes().add(theFeatureCompletionPackage.getNamedElement());
@@ -751,14 +746,9 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		initEReference(getFeature_SimpleOptional(), this.getSimple(), null, "simpleOptional", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeature_Featuregroup(), this.getFeatureGroup(), null, "featuregroup", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = addEOperation(featureEClass, ecorePackage.getEBoolean(), "EachAttributeNameDefinedJustOnce", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(featureEClass, ecorePackage.getEBoolean(), "EachAttributeNameDefinedJustOnce", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_Range(), this.getIntervalRange(), null, "range", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -773,55 +763,30 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		initEReference(getSimple_OptionalChildren(), this.getFeature(), null, "optionalChildren", null, 0, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSimple_MandatoryChildren(), this.getFeature(), null, "mandatoryChildren", null, 0, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(simpleEClass, ecorePackage.getEBoolean(), "atLeastOneChild", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(simpleEClass, ecorePackage.getEBoolean(), "atLeastOneChild", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
 		initEClass(featureGroupEClass, FeatureGroup.class, "FeatureGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeatureGroup_Min(), ecorePackage.getEInt(), "min", "1", 1, 1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureGroup_Max(), ecorePackage.getEInt(), "max", "1", 1, 1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureGroup_Children(), this.getFeature(), null, "children", null, 2, -1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORorORImpliesChildrenAreMandatory", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORorORImpliesChildrenAreMandatory", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
-		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "ALLImpliesCardinalitiesToBeMinusOne", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "ALLImpliesCardinalitiesToBeMinusOne", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
-		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
-		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORImpliesCardinalitiesToBeOne", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORImpliesCardinalitiesToBeOne", 0, 1);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1);
+		addEParameter(op, ecorePackage.getEMap(), "context", 0, 1);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraint_Source(), this.getFeature(), null, "source", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -849,9 +814,9 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 		// Initialize enums and add enum literals
 		initEEnum(attributeTypesEEnum, AttributeTypes.class, "AttributeTypes");
-		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.INT);
-		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.STRING);
-		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.REAL);
+		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.INT_LITERAL);
+		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.STRING_LITERAL);
+		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.REAL_LITERAL);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -870,37 +835,37 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	protected void createGenModelAnnotations() {
 		String source = "http://www.eclipse.org/uml2/1.1.0/GenModel";	
 		addAnnotation
-		  (featureEClass.getEOperations().get(0), 
+		  ((EOperation)featureEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "true \r\n--each attribute name is unique for this feature\r\n--self.attributes->isUnique(attr | attr.name)\r\n"
 		   });	
 		addAnnotation
-		  (simpleEClass.getEOperations().get(0), 
+		  ((EOperation)simpleEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "self.optionalChildren->size()+self.mandatoryChildren->size()>=1"
 		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(0), 
+		  ((EOperation)featureGroupEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "true \r\n--(self.groupType = GroupTypes::OR or self.groupType = GroupTypes::XOR) implies self.children->forAll(c|c.isMandatory)\r\n"
 		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(1), 
+		  ((EOperation)featureGroupEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
 			 "body", "true \r\n --self.groupType = GroupTypes::ALL implies (self.min = -1 and self.max = -1)\r\n"
 		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(2), 
+		  ((EOperation)featureGroupEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
 			 "body", "true \r\n--self.groupType = GroupTypes::OR implies (self.min = 1  and self.max = -1)"
 		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(3), 
+		  ((EOperation)featureGroupEClass.getEOperations().get(3), 
 		   source, 
 		   new String[] {
 			 "body", "true \r\n --self.groupType = GroupTypes::XOR implies (self.min = 1 and self.max = 1)\r\n"

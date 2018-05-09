@@ -34,9 +34,9 @@ public interface FeatureCompletionRepository extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Feature Completions</em>' containment reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletionRepository_FeatureCompletions()
-	 * @model containment="true"
+	 * @model type="FeatureCompletionModel.FeatureCompletion" containment="true"
 	 * @generated
 	 */
-	EList<FeatureCompletion> getFeatureCompletions();
+	EList getFeatureCompletions();
 
 } // FeatureCompletionRepository

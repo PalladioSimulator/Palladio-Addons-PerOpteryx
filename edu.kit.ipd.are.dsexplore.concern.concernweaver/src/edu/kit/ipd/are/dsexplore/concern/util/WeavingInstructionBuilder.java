@@ -5,20 +5,19 @@ import java.util.List;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
-import FeatureCompletionModel.CompletionComponent;
+import ConcernModel.ElementaryConcernComponent;
+import TransformationModel.Transformation;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingLocation;
-import featureSolution.InclusionMechanism;
 
 public class WeavingInstructionBuilder {
 
-	private Pair<CompletionComponent, List<ProvidedRole>> eccWithConsumedFeatures = null;
+	private Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures = null;
 	private WeavingLocation weavingLocation = null;
-	private InclusionMechanism inclusionMechanism = null;
+	private Transformation transformationStrategy = null;
 	private ResourceContainer resourceContainer = null;
 
-	public WeavingInstructionBuilder setECCWithConsumedFeatures(
-			Pair<CompletionComponent, List<ProvidedRole>> eccWithConsumedFeatures) {
+	public WeavingInstructionBuilder setECCWithConsumedFeatures(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures) {
 		this.eccWithConsumedFeatures = eccWithConsumedFeatures;
 		return this;
 	}
@@ -28,8 +27,8 @@ public class WeavingInstructionBuilder {
 		return this;
 	}
 
-	public WeavingInstructionBuilder setTransformationStrategy(InclusionMechanism inclusionMechanism) {
-		this.inclusionMechanism = inclusionMechanism;
+	public WeavingInstructionBuilder setTransformationStrategy(Transformation transformationStrategy) {
+		this.transformationStrategy = transformationStrategy;
 		return this;
 	}
 
@@ -39,8 +38,7 @@ public class WeavingInstructionBuilder {
 	}
 
 	public WeavingInstruction build() {
-		return new WeavingInstruction(this.eccWithConsumedFeatures, this.weavingLocation, this.inclusionMechanism,
-				this.resourceContainer);
+		return new WeavingInstruction(this.eccWithConsumedFeatures, this.weavingLocation, this.transformationStrategy, this.resourceContainer);
 	}
 
 }

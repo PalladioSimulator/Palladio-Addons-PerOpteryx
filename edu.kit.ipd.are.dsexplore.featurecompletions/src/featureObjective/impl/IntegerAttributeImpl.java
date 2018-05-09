@@ -59,7 +59,6 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.INTEGER_ATTRIBUTE;
 	}
@@ -90,11 +89,10 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_ATTRIBUTE__DEFAULT_VALUE:
-				return getDefaultValue();
+				return new Integer(getDefaultValue());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -104,11 +102,10 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_ATTRIBUTE__DEFAULT_VALUE:
-				setDefaultValue((Integer)newValue);
+				setDefaultValue(((Integer)newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,7 +116,6 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_ATTRIBUTE__DEFAULT_VALUE:
@@ -134,7 +130,6 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_ATTRIBUTE__DEFAULT_VALUE:
@@ -148,7 +143,6 @@ public class IntegerAttributeImpl extends AttributeImpl implements IntegerAttrib
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

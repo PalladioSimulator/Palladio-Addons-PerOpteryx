@@ -29,7 +29,6 @@ public class RequiredConstraintImpl extends ConstraintImpl implements RequiredCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.REQUIRED_CONSTRAINT;
 	}

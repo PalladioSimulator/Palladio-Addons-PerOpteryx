@@ -30,8 +30,7 @@ public abstract class InclusionMechanismTest extends DescribedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected InclusionMechanism getFixture() {
+	private InclusionMechanism getFixture() {
 		return (InclusionMechanism)fixture;
 	}
 

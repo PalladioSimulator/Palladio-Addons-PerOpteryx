@@ -40,8 +40,6 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 
-import org.eclipse.jface.util.LocalSelectionTransfer;
-
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -61,7 +59,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 
 import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 
 import org.eclipse.swt.events.ControlAdapter;
@@ -82,6 +79,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
@@ -120,6 +118,8 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -147,10 +147,8 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
@@ -222,7 +220,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
+	protected List propertySheetPages = new ArrayList();
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
@@ -305,7 +303,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
+	protected Collection selectionChangedListeners = new ArrayList();
 
 	/**
 	 * This keeps track of the selection of the editor as a whole.
@@ -370,7 +368,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Resource> removedResources = new ArrayList<Resource>();
+	protected Collection removedResources = new ArrayList();
 
 	/**
 	 * Resources that have been changed since last activation.
@@ -378,7 +376,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Resource> changedResources = new ArrayList<Resource>();
+	protected Collection changedResources = new ArrayList();
 
 	/**
 	 * Resources that have been saved.
@@ -386,7 +384,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Resource> savedResources = new ArrayList<Resource>();
+	protected Collection savedResources = new ArrayList();
 
 	/**
 	 * Map to store the diagnostic associated with a resource.
@@ -394,7 +392,7 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+	protected Map resourceToDiagnosticMap = new LinkedHashMap();
 
 	/**
 	 * Controls whether the problem indication should be updated.
@@ -412,7 +410,8 @@ public class FeatureCompletionEditor
 	 */
 	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
-			@Override
+			protected boolean dispatching;
+
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
 					switch (notification.getFeatureID(Resource.class)) {
@@ -427,15 +426,7 @@ public class FeatureCompletionEditor
 							else {
 								resourceToDiagnosticMap.remove(resource);
 							}
-
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 public void run() {
-											 updateProblemIndication();
-										 }
-									 });
-							}
+							dispatchUpdateProblemIndication();
 							break;
 						}
 					}
@@ -445,23 +436,27 @@ public class FeatureCompletionEditor
 				}
 			}
 
-			@Override
-			protected void setTarget(Resource target) {
-				basicSetTarget(target);
-			}
-
-			@Override
-			protected void unsetTarget(Resource target) {
-				basicUnsetTarget(target);
-				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
+			protected void dispatchUpdateProblemIndication() {
+				if (updateProblemIndication && !dispatching) {
+					dispatching = true;
 					getSite().getShell().getDisplay().asyncExec
 						(new Runnable() {
 							 public void run() {
+								 dispatching = false;
 								 updateProblemIndication();
 							 }
 						 });
 				}
+			}
+
+			protected void setTarget(Resource target) {
+				basicSetTarget(target);
+			}
+
+			protected void unsetTarget(Resource target) {
+				basicUnsetTarget(target);
+				resourceToDiagnosticMap.remove(target);
+				dispatchUpdateProblemIndication();
 			}
 		};
 
@@ -478,8 +473,8 @@ public class FeatureCompletionEditor
 				try {
 					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 						protected ResourceSet resourceSet = editingDomain.getResourceSet();
-						protected Collection<Resource> changedResources = new ArrayList<Resource>();
-						protected Collection<Resource> removedResources = new ArrayList<Resource>();
+						protected Collection changedResources = new ArrayList();
+						protected Collection removedResources = new ArrayList();
 
 						public boolean visit(IResourceDelta delta) {
 							if (delta.getResource().getType() == IResource.FILE) {
@@ -501,11 +496,11 @@ public class FeatureCompletionEditor
 							return true;
 						}
 
-						public Collection<Resource> getChangedResources() {
+						public Collection getChangedResources() {
 							return changedResources;
 						}
 
-						public Collection<Resource> getRemovedResources() {
+						public Collection getRemovedResources() {
 							return removedResources;
 						}
 					}
@@ -592,7 +587,8 @@ public class FeatureCompletionEditor
 			editingDomain.getCommandStack().flush();
 
 			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
+			for (Iterator i = changedResources.iterator(); i.hasNext(); ) {
+				Resource resource = (Resource)i.next();
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
@@ -606,9 +602,6 @@ public class FeatureCompletionEditor
 				}
 			}
 
-			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
-				setSelection(StructuredSelection.EMPTY);
-			}
 
 			updateProblemIndication = true;
 			updateProblemIndication();
@@ -630,7 +623,8 @@ public class FeatureCompletionEditor
 					 0,
 					 null,
 					 new Object [] { editingDomain.getResourceSet() });
-			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+			for (Iterator i = resourceToDiagnosticMap.values().iterator(); i.hasNext(); ) {
+				Diagnostic childDiagnostic = (Diagnostic)i.next();
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
 				}
@@ -736,8 +730,8 @@ public class FeatureCompletionEditor
 								  if (mostRecentCommand != null) {
 									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 								  }
-								  for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext(); ) {
-									  PropertySheetPage propertySheetPage = i.next();
+								  for (Iterator i = propertySheetPages.iterator(); i.hasNext(); ) {
+									  PropertySheetPage propertySheetPage = (PropertySheetPage)i.next();
 									  if (propertySheetPage.getControl().isDisposed()) {
 										  i.remove();
 									  }
@@ -752,7 +746,7 @@ public class FeatureCompletionEditor
 
 		// Create the editing domain with a special command stack.
 		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap());
 	}
 
 	/**
@@ -761,7 +755,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-			@Override
 	protected void firePropertyChange(int action) {
 		super.firePropertyChange(action);
 	}
@@ -772,8 +765,8 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelectionToViewer(Collection<?> collection) {
-		final Collection<?> theSelection = collection;
+	public void setSelectionToViewer(Collection collection) {
+		final Collection theSelection = collection;
 		// Make sure it's okay.
 		//
 		if (theSelection != null && !theSelection.isEmpty()) {
@@ -823,7 +816,6 @@ public class FeatureCompletionEditor
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Object [] getElements(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
@@ -834,7 +826,6 @@ public class FeatureCompletionEditor
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Object [] getChildren(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
@@ -845,7 +836,6 @@ public class FeatureCompletionEditor
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public boolean hasChildren(Object object) {
 			Object parent = super.getParent(object);
 			return parent != null;
@@ -856,7 +846,6 @@ public class FeatureCompletionEditor
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public Object getParent(Object object) {
 			return null;
 		}
@@ -946,10 +935,10 @@ public class FeatureCompletionEditor
 		contextMenu.addMenuListener(this);
 		Menu menu= contextMenu.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
+		getSite().registerContextMenu(contextMenu, viewer);
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
@@ -961,7 +950,10 @@ public class FeatureCompletionEditor
 	 * @generated
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
+		// Assumes that the input is a file object.
+		//
+		IFileEditorInput modelFile = (IFileEditorInput)getEditorInput();
+		URI resourceURI = URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString(), true);
 		Exception exception = null;
 		Resource resource = null;
 		try {
@@ -1021,7 +1013,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void createPages() {
 		// Creates the model from the editor input
 		//
@@ -1035,13 +1026,11 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
 							TreeViewer newTreeViewer = new TreeViewer(tree);
 							return newTreeViewer;
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1051,6 +1040,7 @@ public class FeatureCompletionEditor
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1069,13 +1059,11 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
 							TreeViewer newTreeViewer = new TreeViewer(tree);
 							return newTreeViewer;
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1098,11 +1086,9 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1123,11 +1109,9 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1150,11 +1134,9 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1193,11 +1175,9 @@ public class FeatureCompletionEditor
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), FeatureCompletionEditor.this) {
-						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
 						}
-						@Override
 						public void requestActivation() {
 							super.requestActivation();
 							setCurrentViewerPane(this);
@@ -1245,7 +1225,6 @@ public class FeatureCompletionEditor
 		getContainer().addControlListener
 			(new ControlAdapter() {
 				boolean guard = false;
-				@Override
 				public void controlResized(ControlEvent event) {
 					if (!guard) {
 						guard = true;
@@ -1305,7 +1284,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected void pageChange(int pageIndex) {
 		super.pageChange(pageIndex);
 
@@ -1320,8 +1298,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
-	@Override
 	public Object getAdapter(Class key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? getContentOutlinePage() : null;
@@ -1348,7 +1324,6 @@ public class FeatureCompletionEditor
 			// The content outline is just a tree.
 			//
 			class MyContentOutlinePage extends ContentOutlinePage {
-				@Override
 				public void createControl(Composite parent) {
 					super.createControl(parent);
 					contentOutlineViewer = getTreeViewer();
@@ -1356,6 +1331,7 @@ public class FeatureCompletionEditor
 
 					// Set up the tree viewer.
 					//
+					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1371,13 +1347,11 @@ public class FeatureCompletionEditor
 					}
 				}
 
-				@Override
 				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					contentOutlineStatusLineManager = statusLineManager;
 				}
 
-				@Override
 				public void setActionBars(IActionBars actionBars) {
 					super.setActionBars(actionBars);
 					getActionBarContributor().shareGlobalActions(this, actionBars);
@@ -1410,13 +1384,11 @@ public class FeatureCompletionEditor
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
 			new ExtendedPropertySheetPage(editingDomain) {
-				@Override
-				public void setSelectionToViewer(List<?> selection) {
+				public void setSelectionToViewer(List selection) {
 					FeatureCompletionEditor.this.setSelectionToViewer(selection);
 					FeatureCompletionEditor.this.setFocus();
 				}
 
-				@Override
 				public void setActionBars(IActionBars actionBars) {
 					super.setActionBars(actionBars);
 					getActionBarContributor().shareGlobalActions(this, actionBars);
@@ -1436,7 +1408,7 @@ public class FeatureCompletionEditor
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
-			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
+			Iterator selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
 				//
@@ -1445,7 +1417,7 @@ public class FeatureCompletionEditor
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
 				if (currentViewerPane.getViewer() == selectionViewer) {
-					ArrayList<Object> selectionList = new ArrayList<Object>();
+					ArrayList selectionList = new ArrayList();
 					selectionList.add(selectedElement);
 					while (selectedElements.hasNext()) {
 						selectionList.add(selectedElements.next());
@@ -1473,7 +1445,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isDirty() {
 		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
@@ -1484,13 +1455,10 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// Save only resources that have actually changed.
 		//
-		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
+		final Map saveOptions = new HashMap();
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
@@ -1498,19 +1466,17 @@ public class FeatureCompletionEditor
 			new WorkspaceModifyOperation() {
 				// This is the method that gets invoked when the operation runs.
 				//
-				@Override
 				public void execute(IProgressMonitor monitor) {
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					List resources = editingDomain.getResourceSet().getResources();
+					for (int i = 0; i < resources.size(); ++i) {
+						Resource resource = (Resource)resources.get(i);
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
-								long timeStamp = resource.getTimeStamp();
 								resource.save(saveOptions);
-								if (resource.getTimeStamp() != timeStamp) {
-									savedResources.add(resource);
-								}
+								savedResources.add(resource);
 							}
 							catch (Exception exception) {
 								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
@@ -1569,7 +1535,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -1580,7 +1545,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void doSaveAs() {
 		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
 		saveAsDialog.open();
@@ -1599,7 +1563,7 @@ public class FeatureCompletionEditor
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+		((Resource)editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor =
@@ -1615,9 +1579,20 @@ public class FeatureCompletionEditor
 	 * @generated
 	 */
 	public void gotoMarker(IMarker marker) {
-		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
-		if (!targetObjects.isEmpty()) {
-			setSelectionToViewer(targetObjects);
+		try {
+			if (marker.isSubtypeOf(EValidator.MARKER)) {
+				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+				if (uriAttribute != null) {
+					URI uri = URI.createURI(uriAttribute);
+					EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+					if (eObject != null) {
+					  setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+					}
+				}
+			}
+		}
+		catch (CoreException exception) {
+			FeatureCompletionsEditorPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1627,7 +1602,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void init(IEditorSite site, IEditorInput editorInput) {
 		setSite(site);
 		setInputWithNotify(editorInput);
@@ -1642,7 +1616,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFocus() {
 		if (currentViewerPane != null) {
 			currentViewerPane.setFocus();
@@ -1692,7 +1665,8 @@ public class FeatureCompletionEditor
 	public void setSelection(ISelection selection) {
 		editorSelection = selection;
 
-		for (ISelectionChangedListener listener : selectionChangedListeners) {
+		for (Iterator listeners = selectionChangedListeners.iterator(); listeners.hasNext(); ) {
+			ISelectionChangedListener listener = (ISelectionChangedListener)listeners.next();
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
 		setStatusLineManager(selection);
@@ -1709,7 +1683,7 @@ public class FeatureCompletionEditor
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
-				Collection<?> collection = ((IStructuredSelection)selection).toList();
+				Collection collection = ((IStructuredSelection)selection).toList();
 				switch (collection.size()) {
 					case 0: {
 						statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
@@ -1794,7 +1768,6 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void dispose() {
 		updateProblemIndication = false;
 
@@ -1808,7 +1781,8 @@ public class FeatureCompletionEditor
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		for (PropertySheetPage propertySheetPage : propertySheetPages) {
+		for (Iterator i = propertySheetPages.iterator(); i.hasNext(); ) {
+			PropertySheetPage propertySheetPage = (PropertySheetPage)i.next();
 			propertySheetPage.dispose();
 		}
 

@@ -6,10 +6,10 @@ import FeatureCompletionModel.*;
 
 import de.uka.ipd.sdq.identifier.Identifier;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import java.util.List;
 
-import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * @see FeatureCompletionModel.FeatureCompletionPackage
  * @generated
  */
-public class FeatureCompletionSwitch<T> extends Switch<T> {
+public class FeatureCompletionSwitch {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -46,16 +46,14 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Checks whether this is a switch for the given package.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
-	 * @return whether this is a switch for the given package.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
+	public Object doSwitch(EObject theEObject) {
+		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
 	/**
@@ -65,18 +63,37 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+		if (theEClass.eContainer() == modelPackage) {
+			return doSwitch(theEClass.getClassifierID(), theEObject);
+		}
+		else {
+			List eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+		}
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY: {
 				FeatureCompletionRepository featureCompletionRepository = (FeatureCompletionRepository)theEObject;
-				T result = caseFeatureCompletionRepository(featureCompletionRepository);
+				Object result = caseFeatureCompletionRepository(featureCompletionRepository);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureCompletionPackage.FEATURE_COMPLETION: {
 				FeatureCompletion featureCompletion = (FeatureCompletion)theEObject;
-				T result = caseFeatureCompletion(featureCompletion);
+				Object result = caseFeatureCompletion(featureCompletion);
 				if (result == null) result = caseDescribedElement(featureCompletion);
 				if (result == null) result = caseNamedElement(featureCompletion);
 				if (result == null) result = caseIdentifier(featureCompletion);
@@ -85,7 +102,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.COMPLETION_COMPONENT: {
 				CompletionComponent completionComponent = (CompletionComponent)theEObject;
-				T result = caseCompletionComponent(completionComponent);
+				Object result = caseCompletionComponent(completionComponent);
 				if (result == null) result = caseConstrainableElement(completionComponent);
 				if (result == null) result = caseDescribedElement(completionComponent);
 				if (result == null) result = caseNamedElement(completionComponent);
@@ -95,7 +112,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.DESCRIBED_ELEMENT: {
 				DescribedElement describedElement = (DescribedElement)theEObject;
-				T result = caseDescribedElement(describedElement);
+				Object result = caseDescribedElement(describedElement);
 				if (result == null) result = caseNamedElement(describedElement);
 				if (result == null) result = caseIdentifier(describedElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -103,14 +120,14 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
-				T result = caseNamedElement(namedElement);
+				Object result = caseNamedElement(namedElement);
 				if (result == null) result = caseIdentifier(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureCompletionPackage.PERIMETER_PROVIDING: {
 				PerimeterProviding perimeterProviding = (PerimeterProviding)theEObject;
-				T result = casePerimeterProviding(perimeterProviding);
+				Object result = casePerimeterProviding(perimeterProviding);
 				if (result == null) result = caseNamedElement(perimeterProviding);
 				if (result == null) result = caseIdentifier(perimeterProviding);
 				if (result == null) result = defaultCase(theEObject);
@@ -118,7 +135,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS: {
 				ComplementumVisnetis complementumVisnetis = (ComplementumVisnetis)theEObject;
-				T result = caseComplementumVisnetis(complementumVisnetis);
+				Object result = caseComplementumVisnetis(complementumVisnetis);
 				if (result == null) result = caseComplementum(complementumVisnetis);
 				if (result == null) result = caseConstrainableElement(complementumVisnetis);
 				if (result == null) result = caseDescribedElement(complementumVisnetis);
@@ -129,7 +146,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.COMPLEMENTUM: {
 				Complementum complementum = (Complementum)theEObject;
-				T result = caseComplementum(complementum);
+				Object result = caseComplementum(complementum);
 				if (result == null) result = caseDescribedElement(complementum);
 				if (result == null) result = caseNamedElement(complementum);
 				if (result == null) result = caseIdentifier(complementum);
@@ -138,7 +155,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.ARCHITECTURE_CONSTRAINTS: {
 				ArchitectureConstraints architectureConstraints = (ArchitectureConstraints)theEObject;
-				T result = caseArchitectureConstraints(architectureConstraints);
+				Object result = caseArchitectureConstraints(architectureConstraints);
 				if (result == null) result = caseDescribedElement(architectureConstraints);
 				if (result == null) result = caseNamedElement(architectureConstraints);
 				if (result == null) result = caseIdentifier(architectureConstraints);
@@ -147,7 +164,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.CONSTRAINABLE_ELEMENT: {
 				ConstrainableElement constrainableElement = (ConstrainableElement)theEObject;
-				T result = caseConstrainableElement(constrainableElement);
+				Object result = caseConstrainableElement(constrainableElement);
 				if (result == null) result = caseDescribedElement(constrainableElement);
 				if (result == null) result = caseNamedElement(constrainableElement);
 				if (result == null) result = caseIdentifier(constrainableElement);
@@ -156,7 +173,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 			}
 			case FeatureCompletionPackage.PERIMETER_REQUIRING: {
 				PerimeterRequiring perimeterRequiring = (PerimeterRequiring)theEObject;
-				T result = casePerimeterRequiring(perimeterRequiring);
+				Object result = casePerimeterRequiring(perimeterRequiring);
 				if (result == null) result = caseNamedElement(perimeterRequiring);
 				if (result == null) result = caseIdentifier(perimeterRequiring);
 				if (result == null) result = defaultCase(theEObject);
@@ -177,7 +194,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureCompletionRepository(FeatureCompletionRepository object) {
+	public Object caseFeatureCompletionRepository(FeatureCompletionRepository object) {
 		return null;
 	}
 
@@ -192,7 +209,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureCompletion(FeatureCompletion object) {
+	public Object caseFeatureCompletion(FeatureCompletion object) {
 		return null;
 	}
 
@@ -207,7 +224,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompletionComponent(CompletionComponent object) {
+	public Object caseCompletionComponent(CompletionComponent object) {
 		return null;
 	}
 
@@ -222,7 +239,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescribedElement(DescribedElement object) {
+	public Object caseDescribedElement(DescribedElement object) {
 		return null;
 	}
 
@@ -237,7 +254,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElement(NamedElement object) {
+	public Object caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -252,7 +269,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePerimeterProviding(PerimeterProviding object) {
+	public Object casePerimeterProviding(PerimeterProviding object) {
 		return null;
 	}
 
@@ -267,7 +284,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplementumVisnetis(ComplementumVisnetis object) {
+	public Object caseComplementumVisnetis(ComplementumVisnetis object) {
 		return null;
 	}
 
@@ -282,7 +299,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComplementum(Complementum object) {
+	public Object caseComplementum(Complementum object) {
 		return null;
 	}
 
@@ -297,7 +314,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseArchitectureConstraints(ArchitectureConstraints object) {
+	public Object caseArchitectureConstraints(ArchitectureConstraints object) {
 		return null;
 	}
 
@@ -312,7 +329,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConstrainableElement(ConstrainableElement object) {
+	public Object caseConstrainableElement(ConstrainableElement object) {
 		return null;
 	}
 
@@ -327,7 +344,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePerimeterRequiring(PerimeterRequiring object) {
+	public Object casePerimeterRequiring(PerimeterRequiring object) {
 		return null;
 	}
 
@@ -342,7 +359,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdentifier(Identifier object) {
+	public Object caseIdentifier(Identifier object) {
 		return null;
 	}
 
@@ -357,8 +374,7 @@ public class FeatureCompletionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
-	public T defaultCase(EObject object) {
+	public Object defaultCase(EObject object) {
 		return null;
 	}
 

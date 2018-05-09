@@ -40,8 +40,7 @@ public class AdapterInclusionTest extends InclusionMechanismTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected AdapterInclusion getFixture() {
+	private AdapterInclusion getFixture() {
 		return (AdapterInclusion)fixture;
 	}
 
@@ -51,7 +50,6 @@ public class AdapterInclusionTest extends InclusionMechanismTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureSolutionFactory.eINSTANCE.createAdapterInclusion());
 	}
@@ -62,7 +60,6 @@ public class AdapterInclusionTest extends InclusionMechanismTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

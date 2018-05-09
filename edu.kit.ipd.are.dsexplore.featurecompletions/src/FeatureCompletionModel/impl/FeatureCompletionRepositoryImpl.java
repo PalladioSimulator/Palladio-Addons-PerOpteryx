@@ -42,7 +42,7 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FeatureCompletion> featureCompletions;
+	protected EList featureCompletions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,7 +58,6 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.FEATURE_COMPLETION_REPOSITORY;
 	}
@@ -68,9 +67,9 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FeatureCompletion> getFeatureCompletions() {
+	public EList getFeatureCompletions() {
 		if (featureCompletions == null) {
-			featureCompletions = new EObjectContainmentEList<FeatureCompletion>(FeatureCompletion.class, this, FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS);
+			featureCompletions = new EObjectContainmentEList(FeatureCompletion.class, this, FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS);
 		}
 		return featureCompletions;
 	}
@@ -80,11 +79,10 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS:
-				return ((InternalEList<?>)getFeatureCompletions()).basicRemove(otherEnd, msgs);
+				return ((InternalEList)getFeatureCompletions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,7 +92,6 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS:
@@ -108,13 +105,11 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS:
 				getFeatureCompletions().clear();
-				getFeatureCompletions().addAll((Collection<? extends FeatureCompletion>)newValue);
+				getFeatureCompletions().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,7 +120,6 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS:
@@ -140,7 +134,6 @@ public class FeatureCompletionRepositoryImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY__FEATURE_COMPLETIONS:

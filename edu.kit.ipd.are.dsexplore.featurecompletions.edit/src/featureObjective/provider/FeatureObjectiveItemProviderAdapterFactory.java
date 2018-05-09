@@ -55,7 +55,7 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection supportedTypes = new ArrayList();
 
 	/**
 	 * This constructs an instance.
@@ -85,7 +85,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createFeatureObjectiveAdapter() {
 		if (featureObjectiveItemProvider == null) {
 			featureObjectiveItemProvider = new FeatureObjectiveItemProvider(this);
@@ -108,7 +107,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createFeatureAdapter() {
 		if (featureItemProvider == null) {
 			featureItemProvider = new FeatureItemProvider(this);
@@ -131,7 +129,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createSimpleAdapter() {
 		if (simpleItemProvider == null) {
 			simpleItemProvider = new SimpleItemProvider(this);
@@ -154,7 +151,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createFeatureGroupAdapter() {
 		if (featureGroupItemProvider == null) {
 			featureGroupItemProvider = new FeatureGroupItemProvider(this);
@@ -177,7 +173,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createRequiredConstraintAdapter() {
 		if (requiredConstraintItemProvider == null) {
 			requiredConstraintItemProvider = new RequiredConstraintItemProvider(this);
@@ -200,7 +195,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createProhibitsConstraintAdapter() {
 		if (prohibitsConstraintItemProvider == null) {
 			prohibitsConstraintItemProvider = new ProhibitsConstraintItemProvider(this);
@@ -223,7 +217,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createIntegerIntervalRangeAdapter() {
 		if (integerIntervalRangeItemProvider == null) {
 			integerIntervalRangeItemProvider = new IntegerIntervalRangeItemProvider(this);
@@ -246,7 +239,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createIntegerAttributeAdapter() {
 		if (integerAttributeItemProvider == null) {
 			integerAttributeItemProvider = new IntegerAttributeItemProvider(this);
@@ -269,7 +261,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createDoubleAttributeAdapter() {
 		if (doubleAttributeItemProvider == null) {
 			doubleAttributeItemProvider = new DoubleAttributeItemProvider(this);
@@ -292,7 +283,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createStringAttributeAdapter() {
 		if (stringAttributeItemProvider == null) {
 			stringAttributeItemProvider = new StringAttributeItemProvider(this);
@@ -315,7 +305,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createExternalObjectAttributeAdapter() {
 		if (externalObjectAttributeItemProvider == null) {
 			externalObjectAttributeItemProvider = new ExternalObjectAttributeItemProvider(this);
@@ -349,7 +338,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -360,7 +348,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -370,11 +357,10 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

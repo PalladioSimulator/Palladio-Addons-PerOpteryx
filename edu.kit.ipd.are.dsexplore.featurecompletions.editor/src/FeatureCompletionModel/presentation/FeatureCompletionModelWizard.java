@@ -8,12 +8,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
-
-import org.eclipse.emf.common.CommonPlugin;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -98,7 +97,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS =
+	public static final List FILE_EXTENSIONS =
 		Collections.unmodifiableList(Arrays.asList(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
@@ -164,7 +163,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected List<String> initialObjectNames;
+	protected List initialObjectNames;
 
 	/**
 	 * This just records the information.
@@ -185,10 +184,11 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<String> getInitialObjectNames() {
+	protected Collection getInitialObjectNames() {
 		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : featureCompletionPackage.getEClassifiers()) {
+			initialObjectNames = new ArrayList();
+			for (Iterator classifiers = featureCompletionPackage.getEClassifiers().iterator(); classifiers.hasNext(); ) {
+				EClassifier eClassifier = (EClassifier)classifiers.next();
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -196,7 +196,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 					}
 				}
 			}
-			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+			Collections.sort(initialObjectNames, java.text.Collator.getInstance());
 		}
 		return initialObjectNames;
 	}
@@ -219,7 +219,6 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean performFinish() {
 		try {
 			// Remember the file.
@@ -230,7 +229,6 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 			//
 			WorkspaceModifyOperation operation =
 				new WorkspaceModifyOperation() {
-					@Override
 					protected void execute(IProgressMonitor progressMonitor) {
 						try {
 							// Create a resource set
@@ -254,7 +252,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 
 							// Save the contents of the resource to the file system.
 							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
+							Map options = new HashMap();
 							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 							resource.save(options);
 						}
@@ -327,7 +325,6 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
 				String extension = new Path(getFileName()).getFileExtension();
@@ -370,7 +367,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 */
-		protected List<String> encodings;
+		protected List encodings;
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -395,7 +392,8 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -425,8 +423,8 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 				initialObjectField.setLayoutData(data);
 			}
 
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
+				initialObjectField.add(getLabel((String)i.next()));
 			}
 
 			if (initialObjectField.getItemCount() == 1) {
@@ -450,8 +448,8 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 				encodingField.setLayoutData(data);
 			}
 
-			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
+			for (Iterator i = getEncodings().iterator(); i.hasNext(); ) {
+				encodingField.add((String)i.next());
 			}
 
 			encodingField.select(0);
@@ -487,7 +485,6 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
 			if (visible) {
@@ -510,7 +507,8 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		public String getInitialObjectName() {
 			String label = initialObjectField.getText();
 
-			for (String name : getInitialObjectNames()) {
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
+				String name = (String)i.next();
 				if (getLabel(name).equals(label)) {
 					return name;
 				}
@@ -548,9 +546,9 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected Collection<String> getEncodings() {
+		protected Collection getEncodings() {
 			if (encodings == null) {
-				encodings = new ArrayList<String>();
+				encodings = new ArrayList();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
@@ -565,14 +563,13 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new FeatureCompletionModelWizardNewFileCreationPage("Whatever", selection);
 		newFileCreationPage.setTitle(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionModelWizard_label"));
 		newFileCreationPage.setDescription(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionModelWizard_description"));
-		newFileCreationPage.setFileName(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setFileName(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionEditorFilenameDefaultBase") + "." + (String)FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -599,7 +596,7 @@ public class FeatureCompletionModelWizard extends Wizard implements INewWizard {
 					// Make up a unique new name here.
 					//
 					String defaultModelBaseFilename = FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_FeatureCompletionEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
+					String defaultModelFilenameExtension = (String)FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
 						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;

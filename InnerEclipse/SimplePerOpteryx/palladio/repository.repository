@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_yUT1IGFaEeetxOZObiabqg" entityName="BaseRepository" repositoryDescription="Contains the basic components">
-  <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="ComponentTgtOptional">
-    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1Cmx8GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_LtcnoGFbEeetxOZObiabqg"/>
-    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_2dnXYGFbEeetxOZObiabqg" entityName="OperationRequiredRole1" requiredInterface__OperationRequiredRole="_Q6y2QGFbEeetxOZObiabqg"/>
-    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_1Cy_MGFbEeetxOZObiabqg" describedService__SEFF="_Ugd8cGFbEeetxOZObiabqg">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_1Cy_MWFbEeetxOZObiabqg" successor_AbstractAction="_1CzmQGFbEeetxOZObiabqg"/>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_1CzmQGFbEeetxOZObiabqg" predecessor_AbstractAction="_1Cy_MWFbEeetxOZObiabqg"/>
-    </serviceEffectSpecifications__BasicComponent>
-  </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_4JzMYGFbEeetxOZObiabqg" entityName="ComponentTgtMandatory">
-    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-5O40GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
-    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-5afAGFbEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_-5bGEGFbEeetxOZObiabqg" successor_AbstractAction="_-5bGEWFbEeetxOZObiabqg"/>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_-5bGEWFbEeetxOZObiabqg" predecessor_AbstractAction="_-5bGEGFbEeetxOZObiabqg"/>
-    </serviceEffectSpecifications__BasicComponent>
-  </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_8Z-BEGFbEeetxOZObiabqg" entityName="ComonentWithoutAnnotations">
-    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_AY_bYGFcEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
-    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_AZACcGFcEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_AZACcmFcEeetxOZObiabqg" predecessor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
-      <steps_Behaviour xsi:type="seff:InternalAction" id="__ugegGFcEeetxOZObiabqg" entityName="InternalAction1" predecessor_AbstractAction="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="_AZACcmFcEeetxOZObiabqg">
-        <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="DoublePDF[(5.0; 0.1)(15.0; 0.8)(50.0; 0.1)]"/>
-          <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-        </resourceDemand_Action>
-      </steps_Behaviour>
-    </serviceEffectSpecifications__BasicComponent>
-  </components__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Interface1">
-    <signatures__OperationInterface id="_Ugd8cGFbEeetxOZObiabqg" entityName="pay">
-      <parameters__OperationSignature parameterName="from">
-        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
-      </parameters__OperationSignature>
-      <parameters__OperationSignature parameterName="amount">
-        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
-      </parameters__OperationSignature>
-      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
-    </signatures__OperationInterface>
-  </interfaces__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_Q6y2QGFbEeetxOZObiabqg" entityName="Interface2">
-    <signatures__OperationInterface id="_lIfeoGFbEeetxOZObiabqg" entityName="doPay">
-      <parameters__OperationSignature parameterName="id">
-        <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
-      </parameters__OperationSignature>
-      <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
-    </signatures__OperationInterface>
-  </interfaces__Repository>
-</repository:Repository>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+  <repository:Repository id="_yUT1IGFaEeetxOZObiabqg" entityName="BaseRepository" repositoryDescription="Contains the basic components">
+    <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="ComponentTgtOptional">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1Cmx8GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_LtcnoGFbEeetxOZObiabqg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_2dnXYGFbEeetxOZObiabqg" entityName="OperationRequiredRole1" requiredInterface__OperationRequiredRole="_Q6y2QGFbEeetxOZObiabqg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_1Cy_MGFbEeetxOZObiabqg" describedService__SEFF="_Ugd8cGFbEeetxOZObiabqg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_1Cy_MWFbEeetxOZObiabqg" successor_AbstractAction="_1CzmQGFbEeetxOZObiabqg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_1CzmQGFbEeetxOZObiabqg" predecessor_AbstractAction="_1Cy_MWFbEeetxOZObiabqg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_4JzMYGFbEeetxOZObiabqg" entityName="ComponentTgtMandatory">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-5O40GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-5afAGFbEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_-5bGEGFbEeetxOZObiabqg" successor_AbstractAction="_-5bGEWFbEeetxOZObiabqg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_-5bGEWFbEeetxOZObiabqg" predecessor_AbstractAction="_-5bGEGFbEeetxOZObiabqg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_8Z-BEGFbEeetxOZObiabqg" entityName="ComonentWithoutAnnotations">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_AY_bYGFcEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_Q6y2QGFbEeetxOZObiabqg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_AZACcGFcEeetxOZObiabqg" describedService__SEFF="_lIfeoGFbEeetxOZObiabqg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_AZACcmFcEeetxOZObiabqg" predecessor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="__ugegGFcEeetxOZObiabqg" entityName="InternalAction1" predecessor_AbstractAction="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="_AZACcmFcEeetxOZObiabqg">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePDF[(5.0; 0.1)(15.0; 0.8)(50.0; 0.1)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Interface1">
+      <signatures__OperationInterface id="_Ugd8cGFbEeetxOZObiabqg" entityName="pay">
+        <parameters__OperationSignature parameterName="from">
+          <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+        </parameters__OperationSignature>
+        <parameters__OperationSignature parameterName="amount">
+          <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.0"/>
+        </parameters__OperationSignature>
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_Q6y2QGFbEeetxOZObiabqg" entityName="Interface2">
+      <signatures__OperationInterface id="_lIfeoGFbEeetxOZObiabqg" entityName="doPay">
+        <parameters__OperationSignature parameterName="id">
+          <dataType__Parameter xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.1"/>
+        </parameters__OperationSignature>
+        <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
+      </signatures__OperationInterface>
+    </interfaces__Repository>
+  </repository:Repository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_vMFqgGFbEeetxOZObiabqg">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_4JzMYGFbEeetxOZObiabqg">
+      <extension href="../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationTarget" href="../peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

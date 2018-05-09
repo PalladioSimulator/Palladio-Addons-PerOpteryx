@@ -40,8 +40,7 @@ public class DescribedElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected DescribedElement getFixture() {
+	private DescribedElement getFixture() {
 		return (DescribedElement)fixture;
 	}
 
@@ -51,7 +50,6 @@ public class DescribedElementTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createDescribedElement());
 	}
@@ -62,7 +60,6 @@ public class DescribedElementTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

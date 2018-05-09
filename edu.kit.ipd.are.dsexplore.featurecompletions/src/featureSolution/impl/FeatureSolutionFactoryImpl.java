@@ -54,11 +54,13 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case FeatureSolutionPackage.SOLUTION_REPOSITORY: return createSolutionRepository();
+			case FeatureSolutionPackage.SOLUTION: return createSolution();
 			case FeatureSolutionPackage.ADAPTER_INCLUSION: return createAdapterInclusion();
 			case FeatureSolutionPackage.EXTENSION_INCLUSION: return createExtensionInclusion();
+			case FeatureSolutionPackage.SOLUTION_COMPONENT: return createSolutionComponent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -69,7 +71,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureSolutionPackage.APPEARANCE:
@@ -84,7 +85,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case FeatureSolutionPackage.APPEARANCE:
@@ -92,6 +92,26 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SolutionRepository createSolutionRepository() {
+		SolutionRepositoryImpl solutionRepository = new SolutionRepositoryImpl();
+		return solutionRepository;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Solution createSolution() {
+		SolutionImpl solution = new SolutionImpl();
+		return solution;
 	}
 
 	/**
@@ -112,6 +132,16 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	public ExtensionInclusion createExtensionInclusion() {
 		ExtensionInclusionImpl extensionInclusion = new ExtensionInclusionImpl();
 		return extensionInclusion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SolutionComponent createSolutionComponent() {
+		SolutionComponentImpl solutionComponent = new SolutionComponentImpl();
+		return solutionComponent;
 	}
 
 	/**
@@ -149,7 +179,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
 	public static FeatureSolutionPackage getPackage() {
 		return FeatureSolutionPackage.eINSTANCE;
 	}

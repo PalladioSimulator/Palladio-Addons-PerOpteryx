@@ -37,7 +37,7 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> featureProviding;
+	protected EList featureProviding;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,6 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.PERIMETER_PROVIDING;
 	}
@@ -63,9 +62,9 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getFeatureProviding() {
+	public EList getFeatureProviding() {
 		if (featureProviding == null) {
-			featureProviding = new EObjectResolvingEList<Feature>(Feature.class, this, FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING);
+			featureProviding = new EObjectResolvingEList(Feature.class, this, FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING);
 		}
 		return featureProviding;
 	}
@@ -75,7 +74,6 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING:
@@ -89,13 +87,11 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING:
 				getFeatureProviding().clear();
-				getFeatureProviding().addAll((Collection<? extends Feature>)newValue);
+				getFeatureProviding().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -106,7 +102,6 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING:
@@ -121,7 +116,6 @@ public class PerimeterProvidingImpl extends NamedElementImpl implements Perimete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.PERIMETER_PROVIDING__FEATURE_PROVIDING:

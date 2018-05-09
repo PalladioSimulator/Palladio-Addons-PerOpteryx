@@ -9,10 +9,10 @@ import de.uka.ipd.sdq.identifier.Identifier;
 
 import featureObjective.*;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import java.util.List;
 
-import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * @see featureObjective.FeatureObjectivePackage
  * @generated
  */
-public class FeatureObjectiveSwitch<T> extends Switch<T> {
+public class FeatureObjectiveSwitch {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -49,16 +49,14 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Checks whether this is a switch for the given package.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
-	 * @return whether this is a switch for the given package.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
+	public Object doSwitch(EObject theEObject) {
+		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
 	/**
@@ -68,12 +66,31 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+		if (theEClass.eContainer() == modelPackage) {
+			return doSwitch(theEClass.getClassifierID(), theEObject);
+		}
+		else {
+			List eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+		}
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE: {
 				FeatureObjective featureObjective = (FeatureObjective)theEObject;
-				T result = caseFeatureObjective(featureObjective);
+				Object result = caseFeatureObjective(featureObjective);
 				if (result == null) result = caseDescribedElement(featureObjective);
 				if (result == null) result = caseNamedElement(featureObjective);
 				if (result == null) result = caseIdentifier(featureObjective);
@@ -82,7 +99,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.FEATURE: {
 				Feature feature = (Feature)theEObject;
-				T result = caseFeature(feature);
+				Object result = caseFeature(feature);
 				if (result == null) result = caseNamedElement(feature);
 				if (result == null) result = caseIdentifier(feature);
 				if (result == null) result = defaultCase(theEObject);
@@ -90,7 +107,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.ATTRIBUTE: {
 				Attribute attribute = (Attribute)theEObject;
-				T result = caseAttribute(attribute);
+				Object result = caseAttribute(attribute);
 				if (result == null) result = caseNamedElement(attribute);
 				if (result == null) result = caseIdentifier(attribute);
 				if (result == null) result = defaultCase(theEObject);
@@ -98,33 +115,33 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.INTERVAL_RANGE: {
 				IntervalRange intervalRange = (IntervalRange)theEObject;
-				T result = caseIntervalRange(intervalRange);
+				Object result = caseIntervalRange(intervalRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureObjectivePackage.CHILD_RELATION: {
 				ChildRelation childRelation = (ChildRelation)theEObject;
-				T result = caseChildRelation(childRelation);
+				Object result = caseChildRelation(childRelation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureObjectivePackage.SIMPLE: {
 				Simple simple = (Simple)theEObject;
-				T result = caseSimple(simple);
+				Object result = caseSimple(simple);
 				if (result == null) result = caseChildRelation(simple);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureObjectivePackage.FEATURE_GROUP: {
 				FeatureGroup featureGroup = (FeatureGroup)theEObject;
-				T result = caseFeatureGroup(featureGroup);
+				Object result = caseFeatureGroup(featureGroup);
 				if (result == null) result = caseChildRelation(featureGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureObjectivePackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
-				T result = caseConstraint(constraint);
+				Object result = caseConstraint(constraint);
 				if (result == null) result = caseNamedElement(constraint);
 				if (result == null) result = caseIdentifier(constraint);
 				if (result == null) result = defaultCase(theEObject);
@@ -132,7 +149,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.REQUIRED_CONSTRAINT: {
 				RequiredConstraint requiredConstraint = (RequiredConstraint)theEObject;
-				T result = caseRequiredConstraint(requiredConstraint);
+				Object result = caseRequiredConstraint(requiredConstraint);
 				if (result == null) result = caseConstraint(requiredConstraint);
 				if (result == null) result = caseNamedElement(requiredConstraint);
 				if (result == null) result = caseIdentifier(requiredConstraint);
@@ -141,7 +158,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.PROHIBITS_CONSTRAINT: {
 				ProhibitsConstraint prohibitsConstraint = (ProhibitsConstraint)theEObject;
-				T result = caseProhibitsConstraint(prohibitsConstraint);
+				Object result = caseProhibitsConstraint(prohibitsConstraint);
 				if (result == null) result = caseConstraint(prohibitsConstraint);
 				if (result == null) result = caseNamedElement(prohibitsConstraint);
 				if (result == null) result = caseIdentifier(prohibitsConstraint);
@@ -150,14 +167,14 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE: {
 				IntegerIntervalRange integerIntervalRange = (IntegerIntervalRange)theEObject;
-				T result = caseIntegerIntervalRange(integerIntervalRange);
+				Object result = caseIntegerIntervalRange(integerIntervalRange);
 				if (result == null) result = caseIntervalRange(integerIntervalRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case FeatureObjectivePackage.INTEGER_ATTRIBUTE: {
 				IntegerAttribute integerAttribute = (IntegerAttribute)theEObject;
-				T result = caseIntegerAttribute(integerAttribute);
+				Object result = caseIntegerAttribute(integerAttribute);
 				if (result == null) result = caseAttribute(integerAttribute);
 				if (result == null) result = caseNamedElement(integerAttribute);
 				if (result == null) result = caseIdentifier(integerAttribute);
@@ -166,7 +183,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.DOUBLE_ATTRIBUTE: {
 				DoubleAttribute doubleAttribute = (DoubleAttribute)theEObject;
-				T result = caseDoubleAttribute(doubleAttribute);
+				Object result = caseDoubleAttribute(doubleAttribute);
 				if (result == null) result = caseAttribute(doubleAttribute);
 				if (result == null) result = caseNamedElement(doubleAttribute);
 				if (result == null) result = caseIdentifier(doubleAttribute);
@@ -175,7 +192,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.STRING_ATTRIBUTE: {
 				StringAttribute stringAttribute = (StringAttribute)theEObject;
-				T result = caseStringAttribute(stringAttribute);
+				Object result = caseStringAttribute(stringAttribute);
 				if (result == null) result = caseAttribute(stringAttribute);
 				if (result == null) result = caseNamedElement(stringAttribute);
 				if (result == null) result = caseIdentifier(stringAttribute);
@@ -184,7 +201,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 			}
 			case FeatureObjectivePackage.EXTERNAL_OBJECT_ATTRIBUTE: {
 				ExternalObjectAttribute externalObjectAttribute = (ExternalObjectAttribute)theEObject;
-				T result = caseExternalObjectAttribute(externalObjectAttribute);
+				Object result = caseExternalObjectAttribute(externalObjectAttribute);
 				if (result == null) result = caseAttribute(externalObjectAttribute);
 				if (result == null) result = caseNamedElement(externalObjectAttribute);
 				if (result == null) result = caseIdentifier(externalObjectAttribute);
@@ -206,7 +223,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureObjective(FeatureObjective object) {
+	public Object caseFeatureObjective(FeatureObjective object) {
 		return null;
 	}
 
@@ -221,7 +238,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeature(Feature object) {
+	public Object caseFeature(Feature object) {
 		return null;
 	}
 
@@ -236,7 +253,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttribute(Attribute object) {
+	public Object caseAttribute(Attribute object) {
 		return null;
 	}
 
@@ -251,7 +268,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIntervalRange(IntervalRange object) {
+	public Object caseIntervalRange(IntervalRange object) {
 		return null;
 	}
 
@@ -266,7 +283,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChildRelation(ChildRelation object) {
+	public Object caseChildRelation(ChildRelation object) {
 		return null;
 	}
 
@@ -281,7 +298,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimple(Simple object) {
+	public Object caseSimple(Simple object) {
 		return null;
 	}
 
@@ -296,7 +313,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureGroup(FeatureGroup object) {
+	public Object caseFeatureGroup(FeatureGroup object) {
 		return null;
 	}
 
@@ -311,7 +328,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConstraint(Constraint object) {
+	public Object caseConstraint(Constraint object) {
 		return null;
 	}
 
@@ -326,7 +343,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRequiredConstraint(RequiredConstraint object) {
+	public Object caseRequiredConstraint(RequiredConstraint object) {
 		return null;
 	}
 
@@ -341,7 +358,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProhibitsConstraint(ProhibitsConstraint object) {
+	public Object caseProhibitsConstraint(ProhibitsConstraint object) {
 		return null;
 	}
 
@@ -356,7 +373,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIntegerIntervalRange(IntegerIntervalRange object) {
+	public Object caseIntegerIntervalRange(IntegerIntervalRange object) {
 		return null;
 	}
 
@@ -371,7 +388,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIntegerAttribute(IntegerAttribute object) {
+	public Object caseIntegerAttribute(IntegerAttribute object) {
 		return null;
 	}
 
@@ -386,7 +403,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDoubleAttribute(DoubleAttribute object) {
+	public Object caseDoubleAttribute(DoubleAttribute object) {
 		return null;
 	}
 
@@ -401,7 +418,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringAttribute(StringAttribute object) {
+	public Object caseStringAttribute(StringAttribute object) {
 		return null;
 	}
 
@@ -416,7 +433,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalObjectAttribute(ExternalObjectAttribute object) {
+	public Object caseExternalObjectAttribute(ExternalObjectAttribute object) {
 		return null;
 	}
 
@@ -431,7 +448,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdentifier(Identifier object) {
+	public Object caseIdentifier(Identifier object) {
 		return null;
 	}
 
@@ -446,7 +463,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElement(NamedElement object) {
+	public Object caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -461,7 +478,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDescribedElement(DescribedElement object) {
+	public Object caseDescribedElement(DescribedElement object) {
 		return null;
 	}
 
@@ -476,8 +493,7 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
-	public T defaultCase(EObject object) {
+	public Object defaultCase(EObject object) {
 		return null;
 	}
 

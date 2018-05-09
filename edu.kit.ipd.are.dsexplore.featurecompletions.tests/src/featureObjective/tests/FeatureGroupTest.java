@@ -49,8 +49,7 @@ public class FeatureGroupTest extends ChildRelationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected FeatureGroup getFixture() {
+	private FeatureGroup getFixture() {
 		return (FeatureGroup)fixture;
 	}
 
@@ -60,7 +59,6 @@ public class FeatureGroupTest extends ChildRelationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createFeatureGroup());
 	}
@@ -71,7 +69,6 @@ public class FeatureGroupTest extends ChildRelationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

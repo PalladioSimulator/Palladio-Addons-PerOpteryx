@@ -53,7 +53,6 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -70,82 +69,63 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FeatureObjectiveSwitch<Adapter> modelSwitch =
-		new FeatureObjectiveSwitch<Adapter>() {
-			@Override
-			public Adapter caseFeatureObjective(FeatureObjective object) {
+	protected FeatureObjectiveSwitch modelSwitch =
+		new FeatureObjectiveSwitch() {
+			public Object caseFeatureObjective(FeatureObjective object) {
 				return createFeatureObjectiveAdapter();
 			}
-			@Override
-			public Adapter caseFeature(Feature object) {
+			public Object caseFeature(Feature object) {
 				return createFeatureAdapter();
 			}
-			@Override
-			public Adapter caseAttribute(Attribute object) {
+			public Object caseAttribute(Attribute object) {
 				return createAttributeAdapter();
 			}
-			@Override
-			public Adapter caseIntervalRange(IntervalRange object) {
+			public Object caseIntervalRange(IntervalRange object) {
 				return createIntervalRangeAdapter();
 			}
-			@Override
-			public Adapter caseChildRelation(ChildRelation object) {
+			public Object caseChildRelation(ChildRelation object) {
 				return createChildRelationAdapter();
 			}
-			@Override
-			public Adapter caseSimple(Simple object) {
+			public Object caseSimple(Simple object) {
 				return createSimpleAdapter();
 			}
-			@Override
-			public Adapter caseFeatureGroup(FeatureGroup object) {
+			public Object caseFeatureGroup(FeatureGroup object) {
 				return createFeatureGroupAdapter();
 			}
-			@Override
-			public Adapter caseConstraint(Constraint object) {
+			public Object caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
-			@Override
-			public Adapter caseRequiredConstraint(RequiredConstraint object) {
+			public Object caseRequiredConstraint(RequiredConstraint object) {
 				return createRequiredConstraintAdapter();
 			}
-			@Override
-			public Adapter caseProhibitsConstraint(ProhibitsConstraint object) {
+			public Object caseProhibitsConstraint(ProhibitsConstraint object) {
 				return createProhibitsConstraintAdapter();
 			}
-			@Override
-			public Adapter caseIntegerIntervalRange(IntegerIntervalRange object) {
+			public Object caseIntegerIntervalRange(IntegerIntervalRange object) {
 				return createIntegerIntervalRangeAdapter();
 			}
-			@Override
-			public Adapter caseIntegerAttribute(IntegerAttribute object) {
+			public Object caseIntegerAttribute(IntegerAttribute object) {
 				return createIntegerAttributeAdapter();
 			}
-			@Override
-			public Adapter caseDoubleAttribute(DoubleAttribute object) {
+			public Object caseDoubleAttribute(DoubleAttribute object) {
 				return createDoubleAttributeAdapter();
 			}
-			@Override
-			public Adapter caseStringAttribute(StringAttribute object) {
+			public Object caseStringAttribute(StringAttribute object) {
 				return createStringAttributeAdapter();
 			}
-			@Override
-			public Adapter caseExternalObjectAttribute(ExternalObjectAttribute object) {
+			public Object caseExternalObjectAttribute(ExternalObjectAttribute object) {
 				return createExternalObjectAttributeAdapter();
 			}
-			@Override
-			public Adapter caseIdentifier(Identifier object) {
+			public Object caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
-			@Override
-			public Adapter caseNamedElement(NamedElement object) {
+			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
-			@Override
-			public Adapter caseDescribedElement(DescribedElement object) {
+			public Object caseDescribedElement(DescribedElement object) {
 				return createDescribedElementAdapter();
 			}
-			@Override
-			public Adapter defaultCase(EObject object) {
+			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -158,9 +138,8 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
 

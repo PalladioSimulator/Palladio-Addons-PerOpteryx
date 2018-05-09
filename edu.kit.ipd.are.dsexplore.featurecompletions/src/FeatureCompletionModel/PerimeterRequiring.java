@@ -32,9 +32,9 @@ public interface PerimeterRequiring extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complementum</em>' reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getPerimeterRequiring_Complementum()
-	 * @model
+	 * @model type="FeatureCompletionModel.Complementum"
 	 * @generated
 	 */
-	EList<Complementum> getComplementum();
+	EList getComplementum();
 
 } // PerimeterRequiring

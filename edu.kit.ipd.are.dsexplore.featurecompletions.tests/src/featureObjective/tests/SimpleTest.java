@@ -46,8 +46,7 @@ public class SimpleTest extends ChildRelationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected Simple getFixture() {
+	private Simple getFixture() {
 		return (Simple)fixture;
 	}
 
@@ -57,7 +56,6 @@ public class SimpleTest extends ChildRelationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createSimple());
 	}
@@ -68,7 +66,6 @@ public class SimpleTest extends ChildRelationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

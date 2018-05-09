@@ -40,8 +40,7 @@ public class ProhibitsConstraintTest extends ConstraintTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected ProhibitsConstraint getFixture() {
+	private ProhibitsConstraint getFixture() {
 		return (ProhibitsConstraint)fixture;
 	}
 
@@ -51,7 +50,6 @@ public class ProhibitsConstraintTest extends ConstraintTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createProhibitsConstraint());
 	}
@@ -62,7 +60,6 @@ public class ProhibitsConstraintTest extends ConstraintTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

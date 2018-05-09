@@ -59,7 +59,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.DESCRIBED_ELEMENT;
 	}
@@ -90,7 +89,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.DESCRIBED_ELEMENT__DESCRIPTION:
@@ -104,7 +102,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.DESCRIBED_ELEMENT__DESCRIPTION:
@@ -119,7 +116,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.DESCRIBED_ELEMENT__DESCRIPTION:
@@ -134,7 +130,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.DESCRIBED_ELEMENT__DESCRIPTION:
@@ -148,7 +143,6 @@ public class DescribedElementImpl extends NamedElementImpl implements DescribedE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

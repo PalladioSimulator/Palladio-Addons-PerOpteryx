@@ -41,10 +41,10 @@ public interface Feature extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getFeature_Attributes()
-	 * @model containment="true" ordered="false"
+	 * @model type="featureObjective.Attribute" containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Attribute> getAttributes();
+	EList getAttributes();
 
 	/**
 	 * Returns the value of the '<em><b>Childrelation</b></em>' containment reference.
@@ -161,9 +161,9 @@ public interface Feature extends NamedElement {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--each attribute name is unique for this feature\r\n--self.attributes->isUnique(attr | attr.name)\r\n'"
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='true \r\n--each attribute name is unique for this feature\r\n--self.attributes-&gt;isUnique(attr | attr.name)\r\n'"
 	 * @generated
 	 */
-	boolean EachAttributeNameDefinedJustOnce(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean EachAttributeNameDefinedJustOnce(DiagnosticChain diagnostics, Map context);
 
 } // Feature

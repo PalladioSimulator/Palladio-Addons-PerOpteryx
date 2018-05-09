@@ -1,10 +1,15 @@
 package edu.kit.ipd.are.dsexplore.concern.manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import org.eclipse.emf.ecore.EObject;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -16,8 +21,11 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import FeatureCompletionModel.CompletionComponent;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
+import ConcernModel.Annotation;
+import SolutionModel.Solution;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
 /**
  * This class provides all operations performed on a concern solution.
@@ -28,7 +36,7 @@ import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 public class ConcernSolutionManager {
 
 	private static ConcernSolutionManager eInstance = null;
-	private MergedRepository mergedRepo = null;
+	private Solution concernSolution = null;
 
 	private ConcernSolutionManager() {
 	}
@@ -40,11 +48,11 @@ public class ConcernSolutionManager {
 	 *            - A given concern solution.
 	 * @return a ConcernSolutionManager-instance.
 	 */
-	public static ConcernSolutionManager getInstanceBy(MergedRepository mergedRepo) {
+	public static ConcernSolutionManager getInstanceBy(Solution concernSolution) {
 		if (ConcernSolutionManager.eInstance == null) {
 			ConcernSolutionManager.eInstance = new ConcernSolutionManager();
 		}
-		ConcernSolutionManager.eInstance.mergedRepo = mergedRepo;
+		ConcernSolutionManager.eInstance.concernSolution = concernSolution;
 		return ConcernSolutionManager.eInstance;
 	}
 
@@ -56,7 +64,7 @@ public class ConcernSolutionManager {
 	 * @return the first filtered component.
 	 */
 	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
-		for (RepositoryComponent c : this.mergedRepo.getAsRepoWithoutStereotypes().getComponents__Repository()) {
+		for (RepositoryComponent c : this.getAllComponents()) {
 			if (searchCriteria.test(c)) {
 				return Optional.of(c);
 			}
@@ -71,8 +79,61 @@ public class ConcernSolutionManager {
 	 *            - The set of annotations.
 	 * @return all components annotated by a set of annotations.
 	 */
-	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
-		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
+	public List<RepositoryComponent> getComponentsAnnotatedWith(List<Annotation> annotations) {
+		List<RepositoryComponent> annotated = new AnnotationFilter(Arrays.asList(this.concernSolution.getRepository())).getComponentsAnnotatedWith(annotations);
+
+		List<RepositoryComponent> all = this.getAllComponents();
+		annotated.removeIf(rc -> !all.contains(rc));
+		return annotated;
+	}
+
+	private List<RepositoryComponent> getAllComponents() {
+		List<RepositoryComponent> res = new ArrayList<>();
+		for (RepositoryComponent rc : this.concernSolution.getRepository().getComponents__Repository()) {
+			if (this.belongsToSolutionOrIsGeneral(rc)) {
+				res.add(rc);
+			}
+		}
+
+		return res;
+	}
+
+	/**
+	 * Check whether {@link RepositoryComponent} belongs to this solution or at
+	 * least to no other solution
+	 *
+	 * @param rc
+	 *            the repository component
+	 * @return {@code true} if SolutionStereoType is set to this solution or
+	 *         none
+	 * @author Dominik Fuchss
+	 */
+	private boolean belongsToSolutionOrIsGeneral(RepositoryComponent rc) {
+		List<Solution> sols = this.getViaStereoTypeFrom(rc, Solution.class);
+		// Size == 0 must be included, as generated adapters cannot be annotated
+		// easily
+		boolean contains = sols.contains(this.concernSolution) || sols.size() == 0;
+		return contains;
+	}
+
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
 	}
 
 	/**
@@ -83,7 +144,20 @@ public class ConcernSolutionManager {
 	 * @return the created adapter component.
 	 */
 	public RepositoryComponent createAndAddAdapter(String name) {
-		return this.mergedRepo.createAndAddAdapter(name);
+		BasicComponent adapter = this.createAdapter(name);
+		this.addAdapter(adapter);
+		return adapter;
+	}
+
+	private void addAdapter(BasicComponent adapter) {
+		this.concernSolution.getRepository().getComponents__Repository().add(adapter);
+	}
+
+	private BasicComponent createAdapter(String name) {
+		BasicComponent adapter = RepositoryFactory.eINSTANCE.createBasicComponent();
+		adapter.setComponentType(ComponentType.BUSINESS_COMPONENT);
+		adapter.setEntityName(name);
+		return adapter;
 	}
 
 	/**
@@ -174,6 +248,15 @@ public class ConcernSolutionManager {
 	 * @return the provided role space.
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
-		return this.mergedRepo.getAllProvidedRoles();
+		List<ProvidedRole> roles = new ArrayList<>();
+		for (RepositoryComponent c : this.getAllComponents()) {
+			List<ProvidedRole> role = this.getAllProvidedRolesOf(c);
+			roles.addAll(role);
+		}
+		return roles;
+	}
+
+	private List<ProvidedRole> getAllProvidedRolesOf(RepositoryComponent component) {
+		return component.getProvidedRoles_InterfaceProvidingEntity();
 	}
 }

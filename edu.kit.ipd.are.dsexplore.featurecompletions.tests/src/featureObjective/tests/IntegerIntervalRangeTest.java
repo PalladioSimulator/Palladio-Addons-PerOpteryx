@@ -40,8 +40,7 @@ public class IntegerIntervalRangeTest extends IntervalRangeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected IntegerIntervalRange getFixture() {
+	private IntegerIntervalRange getFixture() {
 		return (IntegerIntervalRange)fixture;
 	}
 
@@ -51,7 +50,6 @@ public class IntegerIntervalRangeTest extends IntervalRangeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createIntegerIntervalRange());
 	}
@@ -62,7 +60,6 @@ public class IntegerIntervalRangeTest extends IntervalRangeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

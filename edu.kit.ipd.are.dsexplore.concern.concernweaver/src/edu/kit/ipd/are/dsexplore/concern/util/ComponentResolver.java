@@ -1,18 +1,19 @@
 package edu.kit.ipd.are.dsexplore.concern.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.core.composition.DelegationConnector;
-import org.palladiosimulator.pcm.system.System;
+import org.palladiosimulator.pcm.repository.Interface;
+import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.Signature;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
-import featureObjective.Feature;
+import ConcernModel.AnnotationTarget;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.AnnotationFilter;
 
 /**
  * This class is responsible to retrieve all components that are target
@@ -23,10 +24,10 @@ import featureObjective.Feature;
  */
 public class ComponentResolver {
 
-	private final System system;
+	private final List<Repository> repositories;
 
-	public ComponentResolver(System system) {
-		this.system = system;
+	public ComponentResolver(List<Repository> repositories) {
+		this.repositories = repositories;
 	}
 
 	/**
@@ -37,107 +38,88 @@ public class ComponentResolver {
 	 *            - The target annotation which only needs to be considered.
 	 * @return all components affected by a given target annotation.
 	 */
-	public List<AssemblyContext> getOnlyAffectedComponentsConsidering(Feature targetFeature) {
-		List<EObject> allAffectedObjects = this.getAllElementsWithFeature(targetFeature);
-		List<AssemblyContext> affectedAssemblyContexts = this.getAllAffectedAssemblyContextsBy(allAffectedObjects);
-		List<AssemblyContext> indirectlyAffectedAssemblyContexts = this.getIndirectlyAffectedAssemblyContextsOf(allAffectedObjects);
-
-		Set<AssemblyContext> result = new HashSet<>();
-		result.addAll(affectedAssemblyContexts);
-		result.addAll(indirectlyAffectedAssemblyContexts);
-		return new ArrayList<>(result);
+	public List<RepositoryComponent> getOnlyAffectedComponentsConsidering(AnnotationTarget target) {
+		return this.getAllAffectedComponentsBy(this.getElementsAnnotatedWith(target));
 	}
 
-	/*
+	/**
 	 * Retrieves all components affected by all target annotations of a specific
 	 * element.
 	 *
 	 * @return all affected components.
 	 */
-	// public List<AssemblyContext> getAllAffectedAssemblyContexts() {
-	// return
-	// this.getAllAffectedAssemblyContextsBy(this.getAllTargetAnnotatedAssemblyContexts());
-	// }
+	public List<RepositoryComponent> getAllAffectedComponents() {
+		return this.getAllAffectedComponentsBy(this.getAllTargetAnnotatedObjects());
+	}
 
-	private List<AssemblyContext> getAllAffectedAssemblyContextsBy(List<EObject> targetAnnotatedObjects) {
-		List<AssemblyContext> result = new ArrayList<>();
-		for (EObject o : targetAnnotatedObjects) {
-			if (o instanceof AssemblyContext) {
-				result.add((AssemblyContext) o);
+	private List<RepositoryComponent> getAllAffectedComponentsBy(List<EObject> targetAnnotatedObjects) {
+		return Stream.concat(this.getAnnotatedComponentsOf(targetAnnotatedObjects), this.getInderectlyAffectedComponentsOf(targetAnnotatedObjects)).collect(Collectors.toList());
+	}
+
+	private List<EObject> getAllTargetAnnotatedObjects() {
+		return new AnnotationFilter(this.repositories).getTargetAnnotatedElements();
+	}
+
+	private List<EObject> getElementsAnnotatedWith(AnnotationTarget target) {
+		List<EObject> result = new ArrayList<>();
+		for (EObject o : this.getAllTargetAnnotatedObjects()) {
+			if (this.onlyElementsAnnotatedWith(target).test(o)) {
+				result.add(o);
 			}
 		}
 		return result;
+		// return
+		// this.getAllTargetAnnotatedObjects().stream().filter(this.onlyElementsAnnotatedWith(target)).collect(Collectors.toList());
+
 	}
 
-	private List<EObject> getAllElementsWithFeature(Feature feature) {
-		List<EObject> results = new ArrayList<>();
-		Iterator<EObject> iterator = this.system.eAllContents();
-		while (iterator.hasNext()) {
-			EObject o = iterator.next();
-			List<Feature> possibleFeatures = StereotypeAPIHelper.getViaStereoTypeFrom(o, Feature.class);
-			if (possibleFeatures.contains(feature)) {
-				results.add(o);
-			}
-		}
-		return results;
+	private Predicate<EObject> onlyElementsAnnotatedWith(AnnotationTarget target) {
+		return obj -> AnnotationFilter.getTargetAnnotationFrom(obj).get().getName().equals(target.getName());
 	}
 
-	// private List<AssemblyContext> getAllTargetAnnotatedAssemblyContexts() {
-	// List<AssemblyContext> assemblies = new ArrayList<AssemblyContext>();
-	// for (AssemblyContext assemblyContext :
-	// this.system.getAssemblyContexts__ComposedStructure()) {
-	// List<Feature> features =
-	// StereotypeApiHelper.getViaStereoTypeFrom(assemblyContext, Feature.class);
-	// if (features.size() > 0)
-	// assemblies.add(assemblyContext);
-	// }
-	// return assemblies;
-	// }
+	private Stream<RepositoryComponent> getAnnotatedComponentsOf(List<EObject> targetAnnotatedObjects) {
+		return targetAnnotatedObjects.stream().filter(each -> each instanceof RepositoryComponent).map(each -> (RepositoryComponent) each);
+	}
 
-	// private List<AssemblyContext> getElementsAnnotatedWith(Feature
-	// targetFeature) {
-	// List<AssemblyContext> result = new ArrayList<>();
-	// for (AssemblyContext ac : this.getAllTargetAnnotatedAssemblyContexts()) {
-	// if (this.onlyElementsAnnotatedWith(ac, targetFeature)) {
-	// result.add(ac);
-	// }
-	// }
-	// return result;
-	// // return
-	// //
-	// this.getAllTargetAnnotatedObjects().stream().filter(this.onlyElementsAnnotatedWith(target)).collect(Collectors.toList());
-	//
-	// }
-
-	// private boolean onlyElementsAnnotatedWith(AssemblyContext ac, Feature
-	// target) {
-	// return StereotypeApiHelper.getViaStereoTypeFrom(ac,
-	// Feature.class).contains(target);
-	// }
-
-	private List<AssemblyContext> getIndirectlyAffectedAssemblyContextsOf(List<EObject> targetAnnotatedObjects) {
-		List<AssemblyContext> affectedAssemblyContexts = new ArrayList<>();
+	private Stream<RepositoryComponent> getInderectlyAffectedComponentsOf(List<EObject> targetAnnotatedObjects) {
+		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (EObject each : targetAnnotatedObjects) {
-			if (each instanceof DelegationConnector) {
-				List<AssemblyContext> to = ((DelegationConnector) each).getParentStructure__Connector().getAssemblyContexts__ComposedStructure();
-				affectedAssemblyContexts.addAll(to);
+			if (each instanceof Signature) {
+				affectedComponents.addAll(this.getComponentsWhichRequiredInterfacesContains((Signature) each));
 			}
 		}
-		return affectedAssemblyContexts;
+		return affectedComponents.stream();
 	}
 
-	// private List<RepositoryComponent>
-	// getComponentsWhichRequiredInterfacesContains(Signature signature) {
-	// List<RepositoryComponent> result = new ArrayList<>();
-	// for (RepositoryComponent c : this.getAllComponents()) {
-	// if (this.componentsWhichRequiredInterfacesContains(signature).test(c)) {
-	// result.add(c);
-	// }
-	// }
-	// return result;
-	// // return
-	// //
-	// this.getAllComponents().stream().filter(this.componentsWhichRequiredInterfacesContains(signature)).collect(Collectors.toList());
-	// }
+	private List<RepositoryComponent> getComponentsWhichRequiredInterfacesContains(Signature signature) {
+		List<RepositoryComponent> result = new ArrayList<>();
+		for (RepositoryComponent c : this.getAllComponents()) {
+			if (this.componentsWhichRequiredInterfacesContains(signature).test(c)) {
+				result.add(c);
+			}
+		}
+		return result;
+		// return
+		// this.getAllComponents().stream().filter(this.componentsWhichRequiredInterfacesContains(signature)).collect(Collectors.toList());
+	}
+
+	private List<RepositoryComponent> getAllComponents() {
+		List<RepositoryComponent> result = new ArrayList<>();
+		for (Repository c : this.repositories) {
+			List<RepositoryComponent> cmps = c.getComponents__Repository();
+			result.addAll(cmps);
+		}
+		return result;
+		// return this.repositories.stream().flatMap(each ->
+		// each.getComponents__Repository().stream()).collect(Collectors.toList());
+	}
+
+	private Predicate<RepositoryComponent> componentsWhichRequiredInterfacesContains(Signature signature) {
+		return component -> this.getRequiredInterfacesOf(component).stream().anyMatch(each -> ConcernWeaverUtil.areEqual(each, signature.eContainer()));
+	}
+
+	private List<Interface> getRequiredInterfacesOf(RepositoryComponent component) {
+		return component.getRequiredRoles_InterfaceRequiringEntity().stream().map(each -> ConcernWeaverUtil.getInterfaceFrom(each).get()).collect(Collectors.toList());
+	}
 
 }

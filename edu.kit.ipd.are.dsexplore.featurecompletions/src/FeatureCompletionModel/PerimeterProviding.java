@@ -2,8 +2,6 @@
  */
 package FeatureCompletionModel;
 
-import featureObjective.Feature;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -34,9 +32,9 @@ public interface PerimeterProviding extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Feature Providing</em>' reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getPerimeterProviding_FeatureProviding()
-	 * @model required="true"
+	 * @model type="featureObjective.Feature" required="true"
 	 * @generated
 	 */
-	EList<Feature> getFeatureProviding();
+	EList getFeatureProviding();
 
 } // PerimeterProviding

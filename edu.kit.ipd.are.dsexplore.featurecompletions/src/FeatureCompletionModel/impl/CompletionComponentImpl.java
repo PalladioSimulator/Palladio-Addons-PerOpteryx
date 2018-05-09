@@ -49,7 +49,7 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompletionComponent> requiredComponents;
+	protected EList requiredComponents;
 
 	/**
 	 * The cached value of the '{@link #getPerimeterProviding() <em>Perimeter Providing</em>}' containment reference.
@@ -69,7 +69,7 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ArchitectureConstraints> componentConstraints;
+	protected EList componentConstraints;
 
 	/**
 	 * The cached value of the '{@link #getPerimeterRequiring() <em>Perimeter Requiring</em>}' containment reference.
@@ -95,7 +95,6 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.COMPLETION_COMPONENT;
 	}
@@ -105,9 +104,9 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompletionComponent> getRequiredComponents() {
+	public EList getRequiredComponents() {
 		if (requiredComponents == null) {
-			requiredComponents = new EObjectResolvingEList<CompletionComponent>(CompletionComponent.class, this, FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS);
+			requiredComponents = new EObjectResolvingEList(CompletionComponent.class, this, FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS);
 		}
 		return requiredComponents;
 	}
@@ -160,9 +159,9 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ArchitectureConstraints> getComponentConstraints() {
+	public EList getComponentConstraints() {
 		if (componentConstraints == null) {
-			componentConstraints = new EObjectContainmentEList<ArchitectureConstraints>(ArchitectureConstraints.class, this, FeatureCompletionPackage.COMPLETION_COMPONENT__COMPONENT_CONSTRAINTS);
+			componentConstraints = new EObjectContainmentEList(ArchitectureConstraints.class, this, FeatureCompletionPackage.COMPLETION_COMPONENT__COMPONENT_CONSTRAINTS);
 		}
 		return componentConstraints;
 	}
@@ -215,13 +214,12 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__PERIMETER_PROVIDING:
 				return basicSetPerimeterProviding(null, msgs);
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__COMPONENT_CONSTRAINTS:
-				return ((InternalEList<?>)getComponentConstraints()).basicRemove(otherEnd, msgs);
+				return ((InternalEList)getComponentConstraints()).basicRemove(otherEnd, msgs);
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__PERIMETER_REQUIRING:
 				return basicSetPerimeterRequiring(null, msgs);
 		}
@@ -233,7 +231,6 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS:
@@ -253,20 +250,18 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS:
 				getRequiredComponents().clear();
-				getRequiredComponents().addAll((Collection<? extends CompletionComponent>)newValue);
+				getRequiredComponents().addAll((Collection)newValue);
 				return;
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__PERIMETER_PROVIDING:
 				setPerimeterProviding((PerimeterProviding)newValue);
 				return;
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__COMPONENT_CONSTRAINTS:
 				getComponentConstraints().clear();
-				getComponentConstraints().addAll((Collection<? extends ArchitectureConstraints>)newValue);
+				getComponentConstraints().addAll((Collection)newValue);
 				return;
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__PERIMETER_REQUIRING:
 				setPerimeterRequiring((PerimeterRequiring)newValue);
@@ -280,7 +275,6 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS:
@@ -304,7 +298,6 @@ public class CompletionComponentImpl extends ConstrainableElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.COMPLETION_COMPONENT__REQUIRED_COMPONENTS:

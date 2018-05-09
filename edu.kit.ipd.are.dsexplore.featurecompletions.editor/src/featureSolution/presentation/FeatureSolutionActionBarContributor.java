@@ -6,6 +6,7 @@ import FeatureCompletionModel.presentation.FeatureCompletionsEditorPlugin;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 
@@ -74,7 +75,6 @@ public class FeatureSolutionActionBarContributor
 	 */
 	protected IAction showPropertiesViewAction =
 		new Action(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-			@Override
 			public void run() {
 				try {
 					getPage().showView("org.eclipse.ui.views.PropertySheet");
@@ -94,12 +94,10 @@ public class FeatureSolutionActionBarContributor
 	 */
 	protected IAction refreshViewerAction =
 		new Action(FeatureCompletionsEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
 			}
 
-			@Override
 			public void run() {
 				if (activeEditorPart instanceof IViewerProvider) {
 					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
@@ -117,7 +115,7 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> createChildActions;
+	protected Collection createChildActions;
 
 	/**
 	 * This is the menu manager into which menu contribution items should be added for CreateChild actions.
@@ -134,7 +132,7 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> createSiblingActions;
+	protected Collection createSiblingActions;
 
 	/**
 	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
@@ -163,7 +161,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		toolBarManager.add(new Separator("featuresolution-settings"));
 		toolBarManager.add(new Separator("featuresolution-additions"));
@@ -176,7 +173,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
@@ -215,7 +211,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
 		activeEditorPart = part;
@@ -260,8 +255,8 @@ public class FeatureSolutionActionBarContributor
 
 		// Query the new selection for appropriate new child/sibling descriptors
 		//
-		Collection<?> newChildDescriptors = null;
-		Collection<?> newSiblingDescriptors = null;
+		Collection newChildDescriptors = null;
+		Collection newSiblingDescriptors = null;
 
 		ISelection selection = event.getSelection();
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
@@ -295,11 +290,11 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+	protected Collection generateCreateChildActions(Collection descriptors, ISelection selection) {
+		Collection actions = new ArrayList();
 		if (descriptors != null) {
-			for (Object descriptor : descriptors) {
-				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
+			for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
+				actions.add(new CreateChildAction(activeEditorPart, selection, i.next()));
 			}
 		}
 		return actions;
@@ -312,11 +307,11 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+	protected Collection generateCreateSiblingActions(Collection descriptors, ISelection selection) {
+		Collection actions = new ArrayList();
 		if (descriptors != null) {
-			for (Object descriptor : descriptors) {
-				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
+			for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
+				actions.add(new CreateSiblingAction(activeEditorPart, selection, i.next()));
 			}
 		}
 		return actions;
@@ -331,9 +326,10 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection actions, String contributionID) {
 		if (actions != null) {
-			for (IAction action : actions) {
+			for (Iterator i = actions.iterator(); i.hasNext(); ) {
+				IAction action = (IAction)i.next();
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
 				}
@@ -351,7 +347,7 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
+	protected void depopulateManager(IContributionManager manager, Collection actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (int i = 0; i < items.length; i++) {
@@ -380,7 +376,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
@@ -400,7 +395,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
 		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
@@ -417,7 +411,6 @@ public class FeatureSolutionActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected boolean removeAllReferencesOnDelete() {
 		return true;
 	}

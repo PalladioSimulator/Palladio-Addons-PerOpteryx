@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
-  <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionARepo" repositoryDescription="">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernStrategyProfile="http://are.ipd.kit.edu/ConcernStrategyProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+  <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionARepo">
     <components__Repository xsi:type="repository:BasicComponent" id="_JHQmgJmYEeeDvYNI8KVQWQ" entityName="ComponentA_SolA">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_bgFX8JmYEeeDvYNI8KVQWQ" entityName="Provided_CompA_ComponentA_SolA" providedInterface__OperationProvidedRole="_VwU_0JmYEeeDvYNI8KVQWQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_h4MJgJmYEeeDvYNI8KVQWQ" entityName="Required_CompB_ComponentA_SolA" requiredInterface__OperationRequiredRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
@@ -28,26 +28,63 @@
     </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_JHQmgJmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_0FPKABfiEeixnp8iZNZNhA"/>
-      <fulfills href="../FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_JHQmgJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_JHQmgJmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
-      <realizes href="../FCompletion.featurecompletion#_X-aVoCeuEeiIeo5GuXQT1g"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_JHQmgJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:cost" appliedTo="_FS8AUJmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_Q2mj8BfgEei3NdxpES3jJA"/>
-      <costModel href="solutionA.cost#/"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_UUrhMJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:transformation" appliedTo="_FS8AUJmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
-      <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="../Solution.featuresolution#_KQ7R8CeuEeiIeo5GuXQT1g"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_UUrhMJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.0"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_UUrhMJmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
-      <realizes href="../FCompletion.featurecompletion#_X-aVoCeuEeiIeo5GuXQT1g"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
     </stereotypeApplications>
-    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.1"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="_FS8AUJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.0"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.1"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_bgFX8JmYEeeDvYNI8KVQWQ">
+      <extension href="../../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_cIxIkJmYEeeDvYNI8KVQWQ">
+      <extension href="../../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter">
+      <extension href="../../../../plugin/StrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.1"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/plugin/StrategyProfile/strategy.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

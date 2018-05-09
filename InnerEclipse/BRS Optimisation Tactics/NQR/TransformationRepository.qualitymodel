@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QualityModel:TransformationRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0">
+  <transformations id="_lCd3EFp0EeeQAfxZnxEbow" entityName="Recoverability positive">
+    <mapping href="MappingRepository.qualitymodel#_aecNwFprEeeQAfxZnxEbow"/>
+    <input href="Recoverability.qmlcontracttype#_41_W0FpyEeeQAfxZnxEbow"/>
+  </transformations>
+  <transformations id="_FF4wQFp1EeeQAfxZnxEbow" entityName="Reliability identity">
+    <mapping href="MappingRepository.qualitymodel#_ZR6BQN18EeaWo7Evf1soQw"/>
+    <input href="Reliability.qmlcontracttype#_7DG5MFpzEeeQAfxZnxEbow"/>
+  </transformations>
+</QualityModel:TransformationRepository>

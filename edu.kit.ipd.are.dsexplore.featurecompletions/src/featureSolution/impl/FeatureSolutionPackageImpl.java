@@ -18,11 +18,15 @@ import featureSolution.ExtensionInclusion;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.InclusionMechanism;
+import featureSolution.Solution;
+import featureSolution.SolutionComponent;
+import featureSolution.SolutionRepository;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -34,6 +38,20 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureSolutionPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass solutionRepositoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass solutionEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,6 +72,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EClass extensionInclusionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass solutionComponentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,6 +165,51 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSolutionRepository() {
+		return solutionRepositoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSolutionRepository_Solutions() {
+		return (EReference)solutionRepositoryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSolution() {
+		return solutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSolution_InclusionInstructions() {
+		return (EReference)solutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSolution_SolutionComponents() {
+		return (EReference)solutionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInclusionMechanism() {
 		return inclusionMechanismEClass;
 	}
@@ -185,6 +255,24 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSolutionComponent() {
+		return solutionComponentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSolutionComponent_Realizes() {
+		return (EReference)solutionComponentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
 	}
@@ -217,6 +305,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		isCreated = true;
 
 		// Create classes and their features
+		solutionRepositoryEClass = createEClass(SOLUTION_REPOSITORY);
+		createEReference(solutionRepositoryEClass, SOLUTION_REPOSITORY__SOLUTIONS);
+
+		solutionEClass = createEClass(SOLUTION);
+		createEReference(solutionEClass, SOLUTION__INCLUSION_INSTRUCTIONS);
+		createEReference(solutionEClass, SOLUTION__SOLUTION_COMPONENTS);
+
 		inclusionMechanismEClass = createEClass(INCLUSION_MECHANISM);
 		createEAttribute(inclusionMechanismEClass, INCLUSION_MECHANISM__MULTIPLE);
 
@@ -224,6 +319,9 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		createEAttribute(adapterInclusionEClass, ADAPTER_INCLUSION__APPEARS);
 
 		extensionInclusionEClass = createEClass(EXTENSION_INCLUSION);
+
+		solutionComponentEClass = createEClass(SOLUTION_COMPONENT);
+		createEReference(solutionComponentEClass, SOLUTION_COMPONENT__REALIZES);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
@@ -256,16 +354,20 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		FeatureCompletionPackage theFeatureCompletionPackage = (FeatureCompletionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
-		// Create type parameters
-
-		// Set bounds for type parameters
-
 		// Add supertypes to classes
+		solutionEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		inclusionMechanismEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		adapterInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
 		extensionInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(solutionRepositoryEClass, SolutionRepository.class, "SolutionRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolutionRepository_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, SolutionRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolution_InclusionInstructions(), this.getInclusionMechanism(), null, "inclusionInstructions", null, 1, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolution_SolutionComponents(), this.getSolutionComponent(), null, "solutionComponents", null, 1, -1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(inclusionMechanismEClass, InclusionMechanism.class, "InclusionMechanism", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInclusionMechanism_Multiple(), theEcorePackage.getEBoolean(), "multiple", null, 0, 1, InclusionMechanism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -274,11 +376,14 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		initEClass(extensionInclusionEClass, ExtensionInclusion.class, "ExtensionInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(solutionComponentEClass, SolutionComponent.class, "SolutionComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSolutionComponent_Realizes(), theFeatureCompletionPackage.getCompletionComponent(), null, "realizes", null, 1, 1, SolutionComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");
-		addEEnumLiteral(appearanceEEnum, Appearance.BEFORE);
-		addEEnumLiteral(appearanceEEnum, Appearance.AFTER);
-		addEEnumLiteral(appearanceEEnum, Appearance.AROUND);
+		addEEnumLiteral(appearanceEEnum, Appearance.BEFORE_LITERAL);
+		addEEnumLiteral(appearanceEEnum, Appearance.AFTER_LITERAL);
+		addEEnumLiteral(appearanceEEnum, Appearance.AROUND_LITERAL);
 
 		// Create resource
 		createResource(eNS_URI);

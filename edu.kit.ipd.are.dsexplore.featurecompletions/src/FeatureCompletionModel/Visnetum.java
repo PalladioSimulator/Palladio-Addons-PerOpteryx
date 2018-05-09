@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.AbstractEnumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,57 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum Visnetum implements Enumerator {
-	/**
-	 * The '<em><b>SIGNATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIGNATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIGNATURE(0, "SIGNATURE", "SIGNATURE"),
-
-	/**
-	 * The '<em><b>INTERFACE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACE(1, "INTERFACE", "INTERFACE"),
-
-	/**
-	 * The '<em><b>INTERFACE REQUIRES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_REQUIRES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACE_REQUIRES(2, "INTERFACE_REQUIRES", "INTERFACE_REQUIRES"),
-
-	/**
-	 * The '<em><b>INTERFACE PROVIDES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_PROVIDES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACE_PROVIDES(3, "INTERFACE_PROVIDES", "INTERFACE_PROVIDES"),
-
-	/**
-	 * The '<em><b>COMPONENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPONENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPONENT(4, "COMPONENT", "COMPONENT");
-
+public final class Visnetum extends AbstractEnumerator {
 	/**
 	 * The '<em><b>SIGNATURE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -76,12 +26,12 @@ public enum Visnetum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SIGNATURE
+	 * @see #SIGNATURE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIGNATURE_VALUE = 0;
+	public static final int SIGNATURE = 0;
 
 	/**
 	 * The '<em><b>INTERFACE</b></em>' literal value.
@@ -91,12 +41,12 @@ public enum Visnetum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERFACE
+	 * @see #INTERFACE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERFACE_VALUE = 1;
+	public static final int INTERFACE = 1;
 
 	/**
 	 * The '<em><b>INTERFACE REQUIRES</b></em>' literal value.
@@ -106,12 +56,12 @@ public enum Visnetum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_REQUIRES
+	 * @see #INTERFACE_REQUIRES_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERFACE_REQUIRES_VALUE = 2;
+	public static final int INTERFACE_REQUIRES = 2;
 
 	/**
 	 * The '<em><b>INTERFACE PROVIDES</b></em>' literal value.
@@ -121,12 +71,12 @@ public enum Visnetum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_PROVIDES
+	 * @see #INTERFACE_PROVIDES_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERFACE_PROVIDES_VALUE = 3;
+	public static final int INTERFACE_PROVIDES = 3;
 
 	/**
 	 * The '<em><b>COMPONENT</b></em>' literal value.
@@ -136,12 +86,62 @@ public enum Visnetum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPONENT
+	 * @see #COMPONENT_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COMPONENT_VALUE = 4;
+	public static final int COMPONENT = 4;
+
+	/**
+	 * The '<em><b>SIGNATURE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SIGNATURE
+	 * @generated
+	 * @ordered
+	 */
+	public static final Visnetum SIGNATURE_LITERAL = new Visnetum(SIGNATURE, "SIGNATURE", "SIGNATURE");
+
+	/**
+	 * The '<em><b>INTERFACE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INTERFACE
+	 * @generated
+	 * @ordered
+	 */
+	public static final Visnetum INTERFACE_LITERAL = new Visnetum(INTERFACE, "INTERFACE", "INTERFACE");
+
+	/**
+	 * The '<em><b>INTERFACE REQUIRES</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INTERFACE_REQUIRES
+	 * @generated
+	 * @ordered
+	 */
+	public static final Visnetum INTERFACE_REQUIRES_LITERAL = new Visnetum(INTERFACE_REQUIRES, "INTERFACE_REQUIRES", "INTERFACE_REQUIRES");
+
+	/**
+	 * The '<em><b>INTERFACE PROVIDES</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INTERFACE_PROVIDES
+	 * @generated
+	 * @ordered
+	 */
+	public static final Visnetum INTERFACE_PROVIDES_LITERAL = new Visnetum(INTERFACE_PROVIDES, "INTERFACE_PROVIDES", "INTERFACE_PROVIDES");
+
+	/**
+	 * The '<em><b>COMPONENT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #COMPONENT
+	 * @generated
+	 * @ordered
+	 */
+	public static final Visnetum COMPONENT_LITERAL = new Visnetum(COMPONENT, "COMPONENT", "COMPONENT");
 
 	/**
 	 * An array of all the '<em><b>Visnetum</b></em>' enumerators.
@@ -151,11 +151,11 @@ public enum Visnetum implements Enumerator {
 	 */
 	private static final Visnetum[] VALUES_ARRAY =
 		new Visnetum[] {
-			SIGNATURE,
-			INTERFACE,
-			INTERFACE_REQUIRES,
-			INTERFACE_PROVIDES,
-			COMPONENT,
+			SIGNATURE_LITERAL,
+			INTERFACE_LITERAL,
+			INTERFACE_REQUIRES_LITERAL,
+			INTERFACE_PROVIDES_LITERAL,
+			COMPONENT_LITERAL,
 		};
 
 	/**
@@ -164,7 +164,7 @@ public enum Visnetum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Visnetum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Visnetum</b></em>' literal with the specified literal value.
@@ -212,35 +212,14 @@ public enum Visnetum implements Enumerator {
 	 */
 	public static Visnetum get(int value) {
 		switch (value) {
-			case SIGNATURE_VALUE: return SIGNATURE;
-			case INTERFACE_VALUE: return INTERFACE;
-			case INTERFACE_REQUIRES_VALUE: return INTERFACE_REQUIRES;
-			case INTERFACE_PROVIDES_VALUE: return INTERFACE_PROVIDES;
-			case COMPONENT_VALUE: return COMPONENT;
+			case SIGNATURE: return SIGNATURE_LITERAL;
+			case INTERFACE: return INTERFACE_LITERAL;
+			case INTERFACE_REQUIRES: return INTERFACE_REQUIRES_LITERAL;
+			case INTERFACE_PROVIDES: return INTERFACE_PROVIDES_LITERAL;
+			case COMPONENT: return COMPONENT_LITERAL;
 		}
 		return null;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final int value;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final String name;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
@@ -249,47 +228,7 @@ public enum Visnetum implements Enumerator {
 	 * @generated
 	 */
 	private Visnetum(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
+		super(value, name, literal);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getValue() {
-	  return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-	  return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLiteral() {
-	  return literal;
-	}
-
-	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		return literal;
-	}
-	
 } //Visnetum

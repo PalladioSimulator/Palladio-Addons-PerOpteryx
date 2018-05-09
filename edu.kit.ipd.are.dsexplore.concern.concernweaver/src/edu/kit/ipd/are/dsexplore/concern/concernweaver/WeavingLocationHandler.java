@@ -12,15 +12,15 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.ComplementumVisnetis;
+import ConcernModel.AnnotationTarget;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
@@ -36,7 +36,7 @@ public class WeavingLocationHandler {
 
 		public Optional<Role> affectedRole;
 		public Optional<Connector> affectedConnector;
-		public List<? extends OperationSignature> affectedSignatures;
+		public List<? extends Signature> affectedSignatures;
 
 		/**
 		 * The constructor.
@@ -46,7 +46,7 @@ public class WeavingLocationHandler {
 		 * @param affectedSignatures
 		 *            - The affected signatures.
 		 */
-		public JoinPointInfo(Role affectedRole, List<? extends OperationSignature> affectedSignatures) {
+		public JoinPointInfo(Role affectedRole, List<? extends Signature> affectedSignatures) {
 			this.affectedRole = Optional.of(affectedRole);
 			this.affectedConnector = Optional.empty();
 			this.affectedSignatures = affectedSignatures;
@@ -60,7 +60,7 @@ public class WeavingLocationHandler {
 		 * @param affectedSignatures
 		 *            - The affected signatures.
 		 */
-		public JoinPointInfo(Connector affectedConnector, List<? extends OperationSignature> affectedSignatures) {
+		public JoinPointInfo(Connector affectedConnector, List<? extends Signature> affectedSignatures) {
 			this.affectedRole = Optional.empty();
 			this.affectedConnector = Optional.of(affectedConnector);
 			this.affectedSignatures = affectedSignatures;
@@ -69,7 +69,7 @@ public class WeavingLocationHandler {
 
 	private class WeavingLocationExtractor {
 		private final List<EObject> objectsOfSameAnnotation;
-		private final ComplementumVisnetis targetCV;
+		private final AnnotationTarget target;
 
 		/**
 		 * The constructor.
@@ -81,15 +81,15 @@ public class WeavingLocationHandler {
 		 * @throws ConcernWeavingException
 		 *             - Will be thrown if an error occurs.
 		 */
-		public WeavingLocationExtractor(ComplementumVisnetis targetCV, List<Pair<ComplementumVisnetis, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
-			this.objectsOfSameAnnotation = this.getObjectsWithSame(targetCV, annotatedObjectPairs);
-			this.targetCV = targetCV;
+		public WeavingLocationExtractor(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
+			this.objectsOfSameAnnotation = this.getObjectsWithSame(target, annotatedObjectPairs);
+			this.target = target;
 		}
 
-		private List<EObject> getObjectsWithSame(ComplementumVisnetis targetComplementumVisnetis, List<Pair<ComplementumVisnetis, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
+		private List<EObject> getObjectsWithSame(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
 			List<EObject> objWithSame = new ArrayList<>();
-			for (Pair<ComplementumVisnetis, EObject> each : annotatedObjectPairs) {
-				if (each.getFirst().getId().equals(targetComplementumVisnetis.getId())) {
+			for (Pair<AnnotationTarget, EObject> each : annotatedObjectPairs) {
+				if (each.getFirst().getName().equals(target.getName())) {
 					objWithSame.add(each.getSecond());
 				}
 			}
@@ -115,7 +115,7 @@ public class WeavingLocationHandler {
 		private List<WeavingLocation> extractUnmergedWeavingLocations() throws ConcernWeavingException {
 			List<WeavingLocation> unmergedWeavingLocations = new ArrayList<>();
 			for (EObject each : this.objectsOfSameAnnotation) {
-				unmergedWeavingLocations.addAll(WeavingLocationHandler.this.getWeavingLocationsFrom(each, this.targetCV));
+				unmergedWeavingLocations.addAll(WeavingLocationHandler.this.getWeavingLocationsFrom(each, this.target));
 			}
 			return unmergedWeavingLocations;
 		}
@@ -156,12 +156,12 @@ public class WeavingLocationHandler {
 	 * @throws ConcernWeavingException
 	 *             - Will be thrown if any error occurs.
 	 */
-	public List<Pair<ComplementumVisnetis, WeavingLocation>> extractWeavingLocationsFrom(List<Pair<ComplementumVisnetis, EObject>> annotatedObjects) throws ConcernWeavingException {
-		List<Pair<ComplementumVisnetis, WeavingLocation>> weavingLocations = new ArrayList<>();
+	public List<Pair<AnnotationTarget, WeavingLocation>> extractWeavingLocationsFrom(List<Pair<AnnotationTarget, EObject>> annotatedObjects) throws ConcernWeavingException {
+		List<Pair<AnnotationTarget, WeavingLocation>> weavingLocations = new ArrayList<>();
 
-		List<Pair<ComplementumVisnetis, EObject>> copy = new ArrayList<>(annotatedObjects);
+		List<Pair<AnnotationTarget, EObject>> copy = new ArrayList<>(annotatedObjects);
 		while (!copy.isEmpty()) {
-			ComplementumVisnetis target = copy.get(0).getFirst();
+			AnnotationTarget target = copy.get(0).getFirst();
 			weavingLocations.addAll(this.getPairsOf(this.extractMergedWeavingLocationsBy(target, copy), target));
 			copy.removeIf(each -> each.getFirst().getName().equals(target.getName()));
 		}
@@ -169,16 +169,16 @@ public class WeavingLocationHandler {
 		return weavingLocations;
 	}
 
-	private List<WeavingLocation> extractMergedWeavingLocationsBy(ComplementumVisnetis target, List<Pair<ComplementumVisnetis, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
+	private List<WeavingLocation> extractMergedWeavingLocationsBy(AnnotationTarget target, List<Pair<AnnotationTarget, EObject>> annotatedObjectPairs) throws ConcernWeavingException {
 		return new WeavingLocationExtractor(target, annotatedObjectPairs).extractMergedWeavingLocations();
 	}
 
-	private List<Pair<ComplementumVisnetis, WeavingLocation>> getPairsOf(List<WeavingLocation> locations, ComplementumVisnetis targetCV) {
-		return locations.stream().map(each -> Pair.of(targetCV, each)).collect(Collectors.toList());
+	private List<Pair<AnnotationTarget, WeavingLocation>> getPairsOf(List<WeavingLocation> locations, AnnotationTarget target) {
+		return locations.stream().map(each -> Pair.of(target, each)).collect(Collectors.toList());
 	}
 
-	private List<WeavingLocation> getWeavingLocationsFrom(EObject annotatedObject, ComplementumVisnetis targetCV) throws ConcernWeavingException {
-		switch (targetCV.getVisnetum()) {
+	private List<WeavingLocation> getWeavingLocationsFrom(EObject annotatedObject, AnnotationTarget targetAnnotation) throws ConcernWeavingException {
+		switch (targetAnnotation.getJoinPoint()) {
 		case INTERFACE:
 			return this.getWeavingLocationsFrom(this.getInterfaceJoinPointInfosFrom((RepositoryComponent) annotatedObject));
 		case INTERFACE_PROVIDES:
@@ -186,11 +186,11 @@ public class WeavingLocationHandler {
 		case INTERFACE_REQUIRES:
 			return this.getWeavingLocationsFrom(this.getRequiredInterfaceJoinPointInfosFrom((RepositoryComponent) annotatedObject));
 		case SIGNATURE:
-			return this.getWeavingLocationsFrom(this.getSignatureJointPointInfosFrom((OperationSignature) annotatedObject));
+			return this.getWeavingLocationsFrom(this.getSignatureJointPointInfosFrom((Signature) annotatedObject));
 		default:
 			break;
 		}
-		throw new Error();
+		throw new ConcernWeavingException(ErrorMessage.unhandledJoinPoint(targetAnnotation.getJoinPoint()));
 	}
 
 	private List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos) {
@@ -228,7 +228,7 @@ public class WeavingLocationHandler {
 		return this.getJoinPointInfosFrom(component.getRequiredRoles_InterfaceRequiringEntity());
 	}
 
-	private List<JoinPointInfo> getSignatureJointPointInfosFrom(OperationSignature signature) {
+	private List<JoinPointInfo> getSignatureJointPointInfosFrom(Signature signature) {
 		List<JoinPointInfo> jpi = new ArrayList<>();
 		for (Connector c : this.getAllConnectors()) {
 			if (this.allInterfacesContaining(signature).test(c)) {
@@ -246,7 +246,7 @@ public class WeavingLocationHandler {
 	private List<JoinPointInfo> getJoinPointInfosFrom(List<? extends Role> roles) {
 		List<JoinPointInfo> jpi = new ArrayList<>();
 		for (Role r : roles) {
-			List<OperationSignature> sigs = this.getAllSignaturesOfInterfaceReferencedBy(r);
+			List<Signature> sigs = this.getAllSignaturesOfInterfaceReferencedBy(r);
 			jpi.add(new JoinPointInfo(r, sigs));
 		}
 		return jpi;
@@ -267,7 +267,7 @@ public class WeavingLocationHandler {
 		return this.getCrossReferencedElementFrom(connector, con -> con instanceof Role);
 	}
 
-	private List<OperationSignature> getAllSignaturesOfInterfaceReferencedBy(EObject object) {
+	private List<Signature> getAllSignaturesOfInterfaceReferencedBy(EObject object) {
 		return this.getSignaturesFrom((Interface) this.getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
 	}
 
@@ -275,14 +275,14 @@ public class WeavingLocationHandler {
 		return object.eCrossReferences().stream().filter(withSearchCriteria).findFirst().get();
 	}
 
-	private List<OperationSignature> getSignaturesFrom(Interface refInterface) {
-		List<OperationSignature> signatures = new ArrayList<>();
+	private List<Signature> getSignaturesFrom(Interface refInterface) {
+		List<Signature> signatures = new ArrayList<>();
 
 		TreeIterator<EObject> iterator = refInterface.eAllContents();
 		while (iterator.hasNext()) {
 			EObject current = iterator.next();
-			if (current instanceof OperationSignature) {
-				signatures.add((OperationSignature) current);
+			if (current instanceof Signature) {
+				signatures.add((Signature) current);
 			}
 		}
 		return signatures;
@@ -323,13 +323,7 @@ public class WeavingLocationHandler {
 	}
 
 	private boolean containsAffectedRole(Connector connector, Role affectedRole) {
-		for (EObject ref : connector.eCrossReferences()) {
-			if (ConcernWeaverUtil.areEqual(ref, affectedRole)) {
-				return true;
-			}
-		}
-		return false;
-
+		return connector.eCrossReferences().stream().anyMatch(eachObject -> ConcernWeaverUtil.areEqual(eachObject, affectedRole));
 	}
 
 }

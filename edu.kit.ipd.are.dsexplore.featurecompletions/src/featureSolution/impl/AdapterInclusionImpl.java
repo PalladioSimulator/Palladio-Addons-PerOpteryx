@@ -34,7 +34,7 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Appearance APPEARS_EDEFAULT = Appearance.BEFORE;
+	protected static final Appearance APPEARS_EDEFAULT = Appearance.BEFORE_LITERAL;
 
 	/**
 	 * The cached value of the '{@link #getAppears() <em>Appears</em>}' attribute.
@@ -60,7 +60,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureSolutionPackage.Literals.ADAPTER_INCLUSION;
 	}
@@ -91,7 +90,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION__APPEARS:
@@ -105,7 +103,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION__APPEARS:
@@ -120,7 +117,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION__APPEARS:
@@ -135,7 +131,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION__APPEARS:
@@ -149,7 +144,6 @@ public class AdapterInclusionImpl extends InclusionMechanismImpl implements Adap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

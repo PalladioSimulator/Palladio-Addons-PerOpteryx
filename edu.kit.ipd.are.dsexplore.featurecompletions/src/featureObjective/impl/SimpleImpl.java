@@ -50,7 +50,7 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> optionalChildren;
+	protected EList optionalChildren;
 
 	/**
 	 * The cached value of the '{@link #getMandatoryChildren() <em>Mandatory Children</em>}' containment reference list.
@@ -60,7 +60,7 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Feature> mandatoryChildren;
+	protected EList mandatoryChildren;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,7 +76,6 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.SIMPLE;
 	}
@@ -86,9 +85,9 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getOptionalChildren() {
+	public EList getOptionalChildren() {
 		if (optionalChildren == null) {
-			optionalChildren = new EObjectContainmentEList<Feature>(Feature.class, this, FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN);
+			optionalChildren = new EObjectContainmentEList(Feature.class, this, FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN);
 		}
 		return optionalChildren;
 	}
@@ -98,9 +97,9 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Feature> getMandatoryChildren() {
+	public EList getMandatoryChildren() {
 		if (mandatoryChildren == null) {
-			mandatoryChildren = new EObjectContainmentEList<Feature>(Feature.class, this, FeatureObjectivePackage.SIMPLE__MANDATORY_CHILDREN);
+			mandatoryChildren = new EObjectContainmentEList(Feature.class, this, FeatureObjectivePackage.SIMPLE__MANDATORY_CHILDREN);
 		}
 		return mandatoryChildren;
 	}
@@ -110,7 +109,7 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean atLeastOneChild(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean atLeastOneChild(DiagnosticChain diagnostics, Map context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -135,13 +134,12 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN:
-				return ((InternalEList<?>)getOptionalChildren()).basicRemove(otherEnd, msgs);
+				return ((InternalEList)getOptionalChildren()).basicRemove(otherEnd, msgs);
 			case FeatureObjectivePackage.SIMPLE__MANDATORY_CHILDREN:
-				return ((InternalEList<?>)getMandatoryChildren()).basicRemove(otherEnd, msgs);
+				return ((InternalEList)getMandatoryChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -151,7 +149,6 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN:
@@ -167,17 +164,15 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN:
 				getOptionalChildren().clear();
-				getOptionalChildren().addAll((Collection<? extends Feature>)newValue);
+				getOptionalChildren().addAll((Collection)newValue);
 				return;
 			case FeatureObjectivePackage.SIMPLE__MANDATORY_CHILDREN:
 				getMandatoryChildren().clear();
-				getMandatoryChildren().addAll((Collection<? extends Feature>)newValue);
+				getMandatoryChildren().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,7 +183,6 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN:
@@ -206,7 +200,6 @@ public class SimpleImpl extends ChildRelationImpl implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.SIMPLE__OPTIONAL_CHILDREN:

@@ -55,7 +55,7 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection supportedTypes = new ArrayList();
 
 	/**
 	 * This constructs an instance.
@@ -85,7 +85,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createFeatureCompletionRepositoryAdapter() {
 		if (featureCompletionRepositoryItemProvider == null) {
 			featureCompletionRepositoryItemProvider = new FeatureCompletionRepositoryItemProvider(this);
@@ -108,7 +107,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createFeatureCompletionAdapter() {
 		if (featureCompletionItemProvider == null) {
 			featureCompletionItemProvider = new FeatureCompletionItemProvider(this);
@@ -131,7 +129,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createCompletionComponentAdapter() {
 		if (completionComponentItemProvider == null) {
 			completionComponentItemProvider = new CompletionComponentItemProvider(this);
@@ -154,7 +151,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createDescribedElementAdapter() {
 		if (describedElementItemProvider == null) {
 			describedElementItemProvider = new DescribedElementItemProvider(this);
@@ -177,7 +173,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createNamedElementAdapter() {
 		if (namedElementItemProvider == null) {
 			namedElementItemProvider = new NamedElementItemProvider(this);
@@ -200,7 +195,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createPerimeterProvidingAdapter() {
 		if (perimeterProvidingItemProvider == null) {
 			perimeterProvidingItemProvider = new PerimeterProvidingItemProvider(this);
@@ -223,7 +217,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createComplementumVisnetisAdapter() {
 		if (complementumVisnetisItemProvider == null) {
 			complementumVisnetisItemProvider = new ComplementumVisnetisItemProvider(this);
@@ -246,7 +239,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createComplementumAdapter() {
 		if (complementumItemProvider == null) {
 			complementumItemProvider = new ComplementumItemProvider(this);
@@ -269,7 +261,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createArchitectureConstraintsAdapter() {
 		if (architectureConstraintsItemProvider == null) {
 			architectureConstraintsItemProvider = new ArchitectureConstraintsItemProvider(this);
@@ -292,7 +283,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createConstrainableElementAdapter() {
 		if (constrainableElementItemProvider == null) {
 			constrainableElementItemProvider = new ConstrainableElementItemProvider(this);
@@ -315,7 +305,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter createPerimeterRequiringAdapter() {
 		if (perimeterRequiringItemProvider == null) {
 			perimeterRequiringItemProvider = new PerimeterRequiringItemProvider(this);
@@ -349,7 +338,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -360,7 +348,6 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -370,11 +357,10 @@ public class FeatureCompletionItemProviderAdapterFactory extends FeatureCompleti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

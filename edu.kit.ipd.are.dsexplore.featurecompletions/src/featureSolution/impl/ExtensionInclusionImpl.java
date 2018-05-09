@@ -29,7 +29,6 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureSolutionPackage.Literals.EXTENSION_INCLUSION;
 	}

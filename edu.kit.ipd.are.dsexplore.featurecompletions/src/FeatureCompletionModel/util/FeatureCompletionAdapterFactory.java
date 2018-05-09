@@ -50,7 +50,6 @@ public class FeatureCompletionAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -67,58 +66,45 @@ public class FeatureCompletionAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FeatureCompletionSwitch<Adapter> modelSwitch =
-		new FeatureCompletionSwitch<Adapter>() {
-			@Override
-			public Adapter caseFeatureCompletionRepository(FeatureCompletionRepository object) {
+	protected FeatureCompletionSwitch modelSwitch =
+		new FeatureCompletionSwitch() {
+			public Object caseFeatureCompletionRepository(FeatureCompletionRepository object) {
 				return createFeatureCompletionRepositoryAdapter();
 			}
-			@Override
-			public Adapter caseFeatureCompletion(FeatureCompletion object) {
+			public Object caseFeatureCompletion(FeatureCompletion object) {
 				return createFeatureCompletionAdapter();
 			}
-			@Override
-			public Adapter caseCompletionComponent(CompletionComponent object) {
+			public Object caseCompletionComponent(CompletionComponent object) {
 				return createCompletionComponentAdapter();
 			}
-			@Override
-			public Adapter caseDescribedElement(DescribedElement object) {
+			public Object caseDescribedElement(DescribedElement object) {
 				return createDescribedElementAdapter();
 			}
-			@Override
-			public Adapter caseNamedElement(NamedElement object) {
+			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
-			@Override
-			public Adapter casePerimeterProviding(PerimeterProviding object) {
+			public Object casePerimeterProviding(PerimeterProviding object) {
 				return createPerimeterProvidingAdapter();
 			}
-			@Override
-			public Adapter caseComplementumVisnetis(ComplementumVisnetis object) {
+			public Object caseComplementumVisnetis(ComplementumVisnetis object) {
 				return createComplementumVisnetisAdapter();
 			}
-			@Override
-			public Adapter caseComplementum(Complementum object) {
+			public Object caseComplementum(Complementum object) {
 				return createComplementumAdapter();
 			}
-			@Override
-			public Adapter caseArchitectureConstraints(ArchitectureConstraints object) {
+			public Object caseArchitectureConstraints(ArchitectureConstraints object) {
 				return createArchitectureConstraintsAdapter();
 			}
-			@Override
-			public Adapter caseConstrainableElement(ConstrainableElement object) {
+			public Object caseConstrainableElement(ConstrainableElement object) {
 				return createConstrainableElementAdapter();
 			}
-			@Override
-			public Adapter casePerimeterRequiring(PerimeterRequiring object) {
+			public Object casePerimeterRequiring(PerimeterRequiring object) {
 				return createPerimeterRequiringAdapter();
 			}
-			@Override
-			public Adapter caseIdentifier(Identifier object) {
+			public Object caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
-			@Override
-			public Adapter defaultCase(EObject object) {
+			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -131,9 +117,8 @@ public class FeatureCompletionAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
 

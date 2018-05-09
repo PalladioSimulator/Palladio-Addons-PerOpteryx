@@ -13,14 +13,6 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated strategy -->
       <package
-            uri="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0"
-            class="strategyConfig.ConcernconfigPackage"
-            genModel="model/strategy.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated strategy -->
-      <package
             uri="http://edu.kit.ipd.are/ConcernStrategyModel/1.0"
             class="concernStrategy.StrategymodelPackage"
             genModel="model/strategy.genmodel"/>

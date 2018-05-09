@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.AbstractEnumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,37 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum Appearance implements Enumerator {
-	/**
-	 * The '<em><b>BEFORE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEFORE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BEFORE(0, "BEFORE", "BEFORE"),
-
-	/**
-	 * The '<em><b>AFTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AFTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AFTER(1, "AFTER", "AFTER"),
-
-	/**
-	 * The '<em><b>AROUND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AROUND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AROUND(2, "AROUND", "AROUND");
-
+public final class Appearance extends AbstractEnumerator {
 	/**
 	 * The '<em><b>BEFORE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
@@ -56,12 +26,12 @@ public enum Appearance implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BEFORE
+	 * @see #BEFORE_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BEFORE_VALUE = 0;
+	public static final int BEFORE = 0;
 
 	/**
 	 * The '<em><b>AFTER</b></em>' literal value.
@@ -71,12 +41,12 @@ public enum Appearance implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AFTER
+	 * @see #AFTER_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AFTER_VALUE = 1;
+	public static final int AFTER = 1;
 
 	/**
 	 * The '<em><b>AROUND</b></em>' literal value.
@@ -86,12 +56,42 @@ public enum Appearance implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #AROUND
+	 * @see #AROUND_LITERAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AROUND_VALUE = 2;
+	public static final int AROUND = 2;
+
+	/**
+	 * The '<em><b>BEFORE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BEFORE
+	 * @generated
+	 * @ordered
+	 */
+	public static final Appearance BEFORE_LITERAL = new Appearance(BEFORE, "BEFORE", "BEFORE");
+
+	/**
+	 * The '<em><b>AFTER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AFTER
+	 * @generated
+	 * @ordered
+	 */
+	public static final Appearance AFTER_LITERAL = new Appearance(AFTER, "AFTER", "AFTER");
+
+	/**
+	 * The '<em><b>AROUND</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AROUND
+	 * @generated
+	 * @ordered
+	 */
+	public static final Appearance AROUND_LITERAL = new Appearance(AROUND, "AROUND", "AROUND");
 
 	/**
 	 * An array of all the '<em><b>Appearance</b></em>' enumerators.
@@ -101,9 +101,9 @@ public enum Appearance implements Enumerator {
 	 */
 	private static final Appearance[] VALUES_ARRAY =
 		new Appearance[] {
-			BEFORE,
-			AFTER,
-			AROUND,
+			BEFORE_LITERAL,
+			AFTER_LITERAL,
+			AROUND_LITERAL,
 		};
 
 	/**
@@ -112,7 +112,7 @@ public enum Appearance implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Appearance> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Appearance</b></em>' literal with the specified literal value.
@@ -160,33 +160,12 @@ public enum Appearance implements Enumerator {
 	 */
 	public static Appearance get(int value) {
 		switch (value) {
-			case BEFORE_VALUE: return BEFORE;
-			case AFTER_VALUE: return AFTER;
-			case AROUND_VALUE: return AROUND;
+			case BEFORE: return BEFORE_LITERAL;
+			case AFTER: return AFTER_LITERAL;
+			case AROUND: return AROUND_LITERAL;
 		}
 		return null;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final int value;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final String name;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
@@ -195,47 +174,7 @@ public enum Appearance implements Enumerator {
 	 * @generated
 	 */
 	private Appearance(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
+		super(value, name, literal);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getValue() {
-	  return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-	  return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLiteral() {
-	  return literal;
-	}
-
-	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		return literal;
-	}
-	
 } //Appearance

@@ -5,7 +5,7 @@ import java.util.List;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
 /**
  * This class provides all operations performed on a PCM usage model.

@@ -81,7 +81,6 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.INTERVAL_RANGE;
 	}
@@ -133,13 +132,12 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTERVAL_RANGE__LOWER_BOUND_INCLUDED:
-				return isLowerBoundIncluded();
+				return isLowerBoundIncluded() ? Boolean.TRUE : Boolean.FALSE;
 			case FeatureObjectivePackage.INTERVAL_RANGE__UPPER_BOUND_INCLUDED:
-				return isUpperBoundIncluded();
+				return isUpperBoundIncluded() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,14 +147,13 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTERVAL_RANGE__LOWER_BOUND_INCLUDED:
-				setLowerBoundIncluded((Boolean)newValue);
+				setLowerBoundIncluded(((Boolean)newValue).booleanValue());
 				return;
 			case FeatureObjectivePackage.INTERVAL_RANGE__UPPER_BOUND_INCLUDED:
-				setUpperBoundIncluded((Boolean)newValue);
+				setUpperBoundIncluded(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,7 +164,6 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTERVAL_RANGE__LOWER_BOUND_INCLUDED:
@@ -185,7 +181,6 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTERVAL_RANGE__LOWER_BOUND_INCLUDED:
@@ -201,7 +196,6 @@ public abstract class IntervalRangeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

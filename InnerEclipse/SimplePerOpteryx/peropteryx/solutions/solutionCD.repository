@@ -31,4 +31,42 @@
       </signatures__OperationInterface>
     </interfaces__Repository>
   </repository:Repository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Transformation" appliedTo="__j5ekJ-lEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_eavAEFlVEeaIO8X5CUzwPQ"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.1"/>
+      <transformations xsi:type="TransformationModel:AdapterTransformation" href="../transform.transformationmodel#//@transformation.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_T9w6sJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_T9w6sJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.2"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Annotation" appliedTo="_XKLzYJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_dw71IFlVEeaIO8X5CUzwPQ"/>
+      <tags xsi:type="Concern:AnnotationEnrich" href="../concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernAnnotationProfile:Solutions" appliedTo="_XKLzYJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../AnnotationProfile/annotations.emfprofile_diagram#_aLKCgOPUEeaia9tH8AAbnA"/>
+      <solutionTag href="../solution.solutionmodel#//@solutions.3"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_VoTw8J-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_WGndkJ-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="ConcernStrategyProfile:solutionPerimeter" appliedTo="_aZeZ4J-mEeeIIbiPWGRxIQ">
+      <extension href="../../../ConcernStrategyProfile/strategy.emfprofile_diagram#_gsjjcGLyEea8w7rhgnFrug"/>
+      <realizes href="../strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernStrategyProfile" location="platform:/resource/ConcernStrategyProfile/strategy.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

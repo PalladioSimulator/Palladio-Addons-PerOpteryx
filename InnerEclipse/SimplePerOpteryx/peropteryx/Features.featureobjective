@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_iD2UkCeuEeiIeo5GuXQT1g">
-  <rootFeature id="_iuz9IyeuEeiIeo5GuXQT1g" name="RootFeature">
-    <childrelation xsi:type="featureObjective:Simple">
-      <mandatoryChildren id="_n_GLASeuEeiIeo5GuXQT1g" name="FeatureA"/>
-    </childrelation>
-  </rootFeature>
-</featureObjective:FeatureObjective>

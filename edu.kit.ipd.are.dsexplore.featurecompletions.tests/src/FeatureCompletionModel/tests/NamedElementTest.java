@@ -60,7 +60,7 @@ public class NamedElementTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NamedElement getFixture() {
+	private NamedElement getFixture() {
 		return fixture;
 	}
 
@@ -70,7 +70,6 @@ public class NamedElementTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createNamedElement());
 	}
@@ -81,7 +80,6 @@ public class NamedElementTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

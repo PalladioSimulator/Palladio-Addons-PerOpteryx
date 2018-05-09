@@ -6,8 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: concernStrategy.tests,
- strategyConfig.tests
+Export-Package: concernStrategy.tests
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.ipd.are.dsexplore.concernStrategy;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,

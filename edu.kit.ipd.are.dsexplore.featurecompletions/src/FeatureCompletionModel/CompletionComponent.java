@@ -35,10 +35,10 @@ public interface CompletionComponent extends ConstrainableElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Required Components</em>' reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getCompletionComponent_RequiredComponents()
-	 * @model
+	 * @model type="FeatureCompletionModel.CompletionComponent"
 	 * @generated
 	 */
-	EList<CompletionComponent> getRequiredComponents();
+	EList getRequiredComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Perimeter Providing</b></em>' containment reference.
@@ -77,10 +77,10 @@ public interface CompletionComponent extends ConstrainableElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Component Constraints</em>' containment reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getCompletionComponent_ComponentConstraints()
-	 * @model containment="true"
+	 * @model type="FeatureCompletionModel.ArchitectureConstraints" containment="true"
 	 * @generated
 	 */
-	EList<ArchitectureConstraints> getComponentConstraints();
+	EList getComponentConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Perimeter Requiring</b></em>' containment reference.

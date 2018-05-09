@@ -62,10 +62,10 @@ public interface Constraint extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference list.
 	 * @see featureObjective.FeatureObjectivePackage#getConstraint_Target()
-	 * @model required="true" ordered="false"
+	 * @model type="featureObjective.Feature" required="true" ordered="false"
 	 * @generated
 	 */
-	EList<Feature> getTarget();
+	EList getTarget();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

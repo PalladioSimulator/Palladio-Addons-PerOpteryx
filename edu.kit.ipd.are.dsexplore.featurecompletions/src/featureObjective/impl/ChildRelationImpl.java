@@ -31,7 +31,6 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.CHILD_RELATION;
 	}

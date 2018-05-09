@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -40,8 +39,7 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+	public List getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -101,7 +99,6 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Complementum"));
 	}
@@ -112,7 +109,6 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getText(Object object) {
 		String label = ((Complementum)object).getName();
 		return label == null || label.length() == 0 ?
@@ -128,7 +124,6 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
@@ -148,8 +143,7 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

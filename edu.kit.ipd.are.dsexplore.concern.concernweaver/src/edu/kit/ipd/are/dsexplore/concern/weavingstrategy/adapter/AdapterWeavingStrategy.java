@@ -2,7 +2,7 @@ package edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter;
 
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
+import SolutionModel.Solution;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
@@ -24,8 +24,8 @@ public class AdapterWeavingStrategy implements IWeavingStrategy {
 	 *            - Represents the concern solution which is going to extend a
 	 *            given PCM model.
 	 */
-	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, MergedRepository mergedRepo) {
-		AdapterWeaving.setManagersWith(pcmToAdapt, mergedRepo);
+	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, Solution concernSolution) {
+		AdapterWeaving.setManagersWith(pcmToAdapt, concernSolution);
 	}
 
 	/**

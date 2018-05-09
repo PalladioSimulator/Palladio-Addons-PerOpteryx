@@ -1,8 +1,12 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -13,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -28,10 +33,23 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
+import ConcernModel.Concern;
+import ConcernModel.ConcernModelPackage;
+import ConcernModel.ConcernRepository;
+import ConcernModel.ElementaryConcernComponent;
+import SolutionModel.Solution;
+import TransformationModel.TransformationModelPackage;
+import TransformationModel.TransformationRepository;
+import concernStrategy.ChildRelation;
+import concernStrategy.Feature;
+import concernStrategy.FeatureGroup;
+import concernStrategy.Simple;
+import de.uka.ipd.sdq.dsexplore.concernweaving.util.WeavingManager;
+import de.uka.ipd.sdq.dsexplore.constraints.DesignSpaceConstraintManager;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
+import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ConcernDesignDecision;
+import de.uka.ipd.sdq.dsexplore.designdecisions.concern.ECCAllocDegreeDesignDecision;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
-import de.uka.ipd.sdq.dsexplore.facade.IModule;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
@@ -50,6 +68,7 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
@@ -58,11 +77,12 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ConcernDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
@@ -71,6 +91,10 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.are.dsexplore.concern.emfprofilefilter.EMFProfileFilter;
+import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
+import edu.kit.ipd.are.dsexplore.concern.manager.TransformationRepositoryManager;
+import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the
@@ -100,8 +124,6 @@ public class DSEProblem {
 
 	private MDSDBlackboard blackboard;
 
-	private ModuleRegistry registry = ModuleRegistry.getModuleRegistry();
-
 	/**
 	 * @param pcmInstance
 	 * @throws CoreException
@@ -120,7 +142,8 @@ public class DSEProblem {
 		this.designDecisionFactory = designdecisionFactoryImpl.init();
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 
-		// this.initTransformationRepository(pcmPartition);
+		DesignSpaceConstraintManager.initialize(this.initialInstance.getRepositories());
+		this.initTransformationRepository(pcmPartition);
 
 		if (newProblem) {
 			this.initialiseProblem();
@@ -152,6 +175,56 @@ public class DSEProblem {
 		 *
 		 * Also meta-model the genotype as a choice within the range.
 		 */
+	}
+
+	private List<Solution> getConcernSolutionsWithCosts() {
+
+		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		List<ConcernRepository> concernRepo;
+		try {
+			concernRepo = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+		} catch (Exception ex) {
+			return Collections.emptyList();
+		}
+		return this.getConcernCostsFrom(concernRepo.stream());
+	}
+
+	private List<Solution> getConcernCostsFrom(Stream<ConcernRepository> concernRepo) {
+		return concernRepo.flatMap(each -> each.getConcerns().stream()).flatMap(each -> each.getStrategies().stream()).flatMap(each -> each.getConcernSolutions().stream())
+				.filter(each -> each.getCostRepository() instanceof CostRepository).collect(Collectors.toList());
+	}
+
+	private Optional<String> getCostModelFileName() {
+		try {
+			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
+		} catch (CoreException e) {
+			return Optional.empty();
+		}
+	}
+
+	private Optional<CostRepository> getCostModel() {
+		Optional<String> costModelFileName = this.getCostModelFileName();
+		if (!costModelFileName.isPresent()) {
+			return Optional.empty();
+		}
+		String fileName = costModelFileName.get();
+		URI locationToLoadFrom = URI.createURI(fileName);
+		if (locationToLoadFrom == null || !locationToLoadFrom.isPlatform()) {
+			locationToLoadFrom = URI.createFileURI(fileName);
+		}
+		CostRepository cr = (CostRepository) EMFHelper.loadFromXMIFile(locationToLoadFrom, costPackage.eINSTANCE);
+		return cr == null ? Optional.empty() : Optional.of(cr);
+	}
+
+	private void initTransformationRepository(PCMResourceSetPartition pcmPartition) {
+		try {
+			List<EObject> transRepos = pcmPartition.getElement(TransformationModelPackage.eINSTANCE.getTransformationRepository());
+			TransformationRepositoryManager.initialize((TransformationRepository) transRepos.get(0));
+		} catch (Exception ex) {
+			// No concern is involved
+			DSEProblem.logger.error("Error while init TransformationRepository : .. " + ex.getMessage());
+		}
+
 	}
 
 	private DecisionSpace loadProblem() throws CoreException {
@@ -207,6 +280,7 @@ public class DSEProblem {
 				}
 
 				choice.setDegreeOfFreedomInstance(dd);
+
 				genotype.add(choice);
 				// }
 			} else if (dd instanceof ClassDegree) {
@@ -219,8 +293,8 @@ public class DSEProblem {
 					final AssemblyContext ac = (AssemblyContext) acd.getPrimaryChanged();
 					final RepositoryComponent rc = ac.getEncapsulatedComponent__AssemblyContext();
 					choice.setChosenValue(rc);
-				} else if (dd instanceof FeatureCompletionDegree) {
-					final FeatureCompletionDegree concernDegree = (FeatureCompletionDegree) dd;
+				} else if (dd instanceof ConcernDegree) {
+					final ConcernDegree concernDegree = (ConcernDegree) dd;
 					choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
 				} else if (dd instanceof AllocationDegree) {
 					final AllocationDegree ad = (AllocationDegree) dd;
@@ -348,10 +422,23 @@ public class DSEProblem {
 				this.throwUnknownDegreeException(dd);
 			}
 		}
+		;
 
-		CostRepository costModel = this.getCostModel().orElse(null);
-		for (IModule module : this.registry.getModules()) {
-			module.getProblemExtension().determineInitialGenotype(this.blackboard, problem, genotype, this.initialInstance, costModel);
+		List<ConcernDegree> concernDegrees = this.getConcernFrom(problem.getDegreesOfFreedom());
+		if (!concernDegrees.isEmpty()) {
+
+			this.initializeWeavingManager();
+
+			for (ConcernDegree each : concernDegrees) {
+
+				try {
+					this.createECCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype);
+				} catch (ConcernWeavingException e) {
+					throw new RuntimeException(String.format("Ann error occurred. Error message:", e.getMessage()));
+				}
+
+			}
+
 		}
 
 		// determineProcessingRateDecisions(new ArrayList<DesignDecision>(),
@@ -364,6 +451,29 @@ public class DSEProblem {
 		result.add(genotype);
 		this.initialGenotype = genotype;
 		return result;
+	}
+
+	private void initializeWeavingManager() {
+
+		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		Optional<String> costModelFileName = this.getCostModelFileName();
+		Optional<CostRepository> costModel = this.getCostModel();
+		List<Solution> concernSolutions = this.getConcernSolutionsWithCosts();
+		if ((!costModelFileName.isPresent()) || (!costModel.isPresent()) || concernSolutions.isEmpty()) {
+
+			WeavingManager.initialize(this.blackboard, initialPartition);
+			return;
+
+		}
+
+		WeavingManager.initialize(this.blackboard, initialPartition, costModelFileName.get(), costModel.get().getCost(), concernSolutions);
+
+	}
+
+	private List<ConcernDegree> getConcernFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
+
+		return degreesOfFreedom.stream().filter(each -> each instanceof ConcernDegree).map(each -> (ConcernDegree) each).collect(Collectors.toList());
+
 	}
 
 	private ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd) {
@@ -399,6 +509,8 @@ public class DSEProblem {
 
 		this.initialGenotypeList = new ArrayList<>();
 		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
+
+		this.determineConcernDecisions(dds, initialCandidate);
 		this.determineProcessingRateDecisions(dds, initialCandidate);
 		// find equivalent components
 		this.determineAssembledComponentsDecisions(dds, initialCandidate);
@@ -407,16 +519,80 @@ public class DSEProblem {
 		// determineSOAPOrRMIDecisions();
 		this.determineCapacityDecisions(dds, initialCandidate);
 
-		CostRepository costModel = this.getCostModel().orElse(null);
-		for (IModule module : this.registry.getModules()) {
-			module.getProblemExtension().initializeProblem(this.blackboard, dds, initialCandidate, this.initialInstance, costModel);
-		}
-
 		// TODO: Check if the initial genotype is actually a valid genotype?
 		// (this may not be the case if the degrees of freedom have been reduced
 		// for the
 		// optimisation?)
 		this.initialGenotypeList.add(initialCandidate);
+
+	}
+
+	private void determineConcernDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+		Optional<ConcernRepository> concernRepo = this.getConcernRepository();
+		if (!concernRepo.isPresent()) {
+			return;
+		}
+		try {
+			this.createConcernDegreeBy(concernRepo.get(), dds, initialCandidate);
+		} catch (Exception ex) {
+			DSEProblem.logger.error("Error while creating ConcernDegree ..: " + ex.getMessage());
+			return;
+		}
+
+	}
+
+	private void createConcernDegreeBy(ConcernRepository concernRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
+
+		List<ConcernDegree> concernDegrees = new ConcernDesignDecision(concernRepo).generateConcernDegrees();
+		if (concernDegrees.isEmpty()) {
+			return;
+		}
+
+		this.initializeWeavingManager();
+
+		for (ConcernDegree eachConcernDegree : concernDegrees) {
+			this.createClassChoice(eachConcernDegree, dds, initialCandidate);
+			this.createECCAllocationDegreesFrom(eachConcernDegree, dds, initialCandidate);
+			this.determineOptionalAsDegreeDecisions(eachConcernDegree, dds, initialCandidate, concernRepo);
+		}
+
+	}
+
+	private void createClassChoice(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
+
+		ClassChoice choice = this.designDecisionFactory.createClassChoice();
+		choice.setDegreeOfFreedomInstance(concernDegree);
+		choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
+
+		initialCandidate.add(choice);
+
+		dds.add(concernDegree);
+
+	}
+
+	private Optional<ConcernRepository> getConcernRepository() {
+
+		List<EObject> concernRepository;
+		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		try {
+			concernRepository = pcmPartition.getElement(ConcernModelPackage.eINSTANCE.getConcernRepository());
+			return Optional.of((ConcernRepository) concernRepository.get(0));
+		} catch (Exception e) {
+			return Optional.empty();
+		}
+	}
+
+	private void createECCAllocationDegreesFrom(ConcernDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) throws ConcernWeavingException {
+
+		ECCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new ECCAllocDegreeDesignDecision((Concern) concernDegree.getPrimaryChanged(), this.initialInstance.getRepositories());
+
+		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+
+		List<ClassChoice> choices = eccAllocDegreeDesignDecision.getECCClassChoicesFrom(allPcmResourceContainer);
+		for (ClassChoice eccClassChoice : choices) {
+			initialCandidate.add(eccClassChoice);
+			dds.add(eccClassChoice.getDegreeOfFreedomInstance());
+		}
 
 	}
 
@@ -432,11 +608,13 @@ public class DSEProblem {
 	 * @param initialCandidate
 	 */
 	private void determineCapacityDecisions(final List<DegreeOfFreedomInstance> dds, final DesignDecisionGenotype genotype) {
+
 		final List<Repository> repositories = this.initialInstance.getRepositories();
 		for (final Repository repository : repositories) {
 			final List<RepositoryComponent> components = repository.getComponents__Repository();
 			for (final RepositoryComponent repositoryComponent : components) {
 				if (repositoryComponent instanceof BasicComponent) {
+
 					final BasicComponent basicComponent = (BasicComponent) repositoryComponent;
 					final List<PassiveResource> passiveResources = basicComponent.getPassiveResource_BasicComponent();
 					for (final PassiveResource passiveResource : passiveResources) {
@@ -597,26 +775,119 @@ public class DSEProblem {
 		}
 	}
 
-	private Optional<CostRepository> getCostModel() {
-		Optional<String> costModelFileName = this.getCostModelFileName();
-		if (!costModelFileName.isPresent()) {
-			return Optional.empty();
+	/**
+	 * Determine {@link OptionalAsDegree}-DoFs.
+	 *
+	 * @param cd
+	 *            the concern degree
+	 * @param dds
+	 *            all DoFs do far
+	 * @param initialCandidate
+	 *            the initial candidate
+	 * @param concernRepo
+	 *            the concern repo
+	 * @author Dominik Fuchss
+	 */
+	private void determineOptionalAsDegreeDecisions(ConcernDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, ConcernRepository concernRepo) {
+		Concern c = (Concern) cd.getPrimaryChanged();
+		List<ElementaryConcernComponent> eccs = c.getComponents();
+		List<Feature> features = new ArrayList<>();
+
+		for (ElementaryConcernComponent ecc : eccs) {
+			List<Feature> provided = this.getViaStereoTypeFrom(ecc, Feature.class);
+			if (provided.isEmpty()) {
+				DSEProblem.logger.error(ecc + " does not provide a Feature.");
+				continue;
+			}
+			// INFO:
+			// For now only features which are directly mapped to an ECC will be
+			// mentioned here ..
+			// Maybe someone will decide to search features recursively .. then
+			// you can use this line ..
+			// this.getThisAndSubfeatures(features, feature);
+			features.addAll(provided);
 		}
-		String fileName = costModelFileName.get();
-		URI locationToLoadFrom = URI.createURI(fileName);
-		if (locationToLoadFrom == null || !locationToLoadFrom.isPlatform()) {
-			locationToLoadFrom = URI.createFileURI(fileName);
+
+		List<Feature> optionals = new ArrayList<>();
+		for (Feature f : features) {
+			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
+			// not needed so far.
+			boolean isOptional = f.getSimpleOptional() != null;
+			if (isOptional) {
+				optionals.add(f);
+			}
 		}
-		CostRepository cr = (CostRepository) EMFHelper.loadFromXMIFile(locationToLoadFrom, costPackage.eINSTANCE);
-		return cr == null ? Optional.empty() : Optional.of(cr);
+		for (Feature op : optionals) {
+			FeatureDegree oad = this.specificDesignDecisionFactory.createFeatureDegree();
+			oad.setPrimaryChanged(op);
+			dds.add(oad);
+			FeatureChoice ch = this.designDecisionFactory.createFeatureChoice();
+			ch.setDegreeOfFreedomInstance(oad);
+			initialCandidate.add(ch);
+		}
+
 	}
 
-	private Optional<String> getCostModelFileName() {
-		try {
-			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
-		} catch (CoreException e) {
-			return Optional.empty();
+	/**
+	 * This method will add all features (including start) to a list
+	 *
+	 * @param features
+	 *            the target-list of features
+	 * @param start
+	 *            the start feature
+	 * @author Dominik Fuchss
+	 */
+	@SuppressWarnings({ "unchecked", "unused" })
+	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
+		features.add(start);
+		ChildRelation rel = start.getChildrelation();
+		if (rel == null) {
+			return;
 		}
+		boolean simple = rel instanceof Simple, fGroup = rel instanceof FeatureGroup;
+		if (!simple && !fGroup) {
+			DSEProblem.logger.warn("ChildRelation is no instance of Simple or FeatureGroup. This is currently not supported.");
+			return;
+		}
+
+		if (simple) {
+			Simple sr = (Simple) rel;
+			List<Feature> man = sr.getMandatoryChildren();
+			List<Feature> opt = sr.getOptionalChildren();
+			for (Feature f : man) {
+				this.getThisAndSubfeatures(features, f);
+			}
+			for (Feature f : opt) {
+				this.getThisAndSubfeatures(features, f);
+			}
+		} else {
+			FeatureGroup fg = (FeatureGroup) rel;
+			List<Feature> all = fg.getChildren();
+			for (Feature f : all) {
+				this.getThisAndSubfeatures(features, f);
+			}
+		}
+
+	}
+
+	/**
+	 * Find all referenced Elements by type and base
+	 *
+	 * @param base
+	 *            the base (search location)
+	 * @param target
+	 *            the target type
+	 * @return a list of Elements found
+	 * @author Dominik Fuchss
+	 */
+	private <ElementType, Base extends EObject> List<ElementType> getViaStereoTypeFrom(Base base, Class<ElementType> target) {
+		List<ElementType> res = new ArrayList<>();
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			List<ElementType> provided = new EcoreReferenceResolver(appl).getCrossReferencedElementsOfType(target);
+			res.addAll(provided);
+		}
+		return res;
 	}
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
@@ -703,6 +974,12 @@ public class DSEProblem {
 	 * @author Dominik Fuchss
 	 */
 	public void cleanup() {
-		ModuleRegistry.getModuleRegistry().reset();
+		try {
+			WeavingManager.cleanup();
+		} catch (IOException e) {
+			DSEProblem.logger.error("Cleanup failed: " + e.getMessage());
+		}
+
 	}
+
 }

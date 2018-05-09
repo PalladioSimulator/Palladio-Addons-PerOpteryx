@@ -48,8 +48,7 @@ public class FeatureTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected Feature getFixture() {
+	private Feature getFixture() {
 		return (Feature)fixture;
 	}
 
@@ -59,7 +58,6 @@ public class FeatureTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createFeature());
 	}
@@ -70,7 +68,6 @@ public class FeatureTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
