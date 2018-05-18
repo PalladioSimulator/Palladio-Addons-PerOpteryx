@@ -84,7 +84,7 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
       case QualityEffectSpecificationPackage.REASONING: return createReasoning();
       case QualityEffectSpecificationPackage.RULE: return createRule();
       case QualityEffectSpecificationPackage.ENTRY: return createEntry();
-      case QualityEffectSpecificationPackage.COST: return createCost();
+      case QualityEffectSpecificationPackage.NUMERIC_VALUE: return createNumericValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -339,10 +339,10 @@ public class QualityEffectSpecificationFactoryImpl extends EFactoryImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public Cost createCost()
+  public NumericValue createNumericValue()
   {
-    CostImpl cost = new CostImpl();
-    return cost;
+    NumericValueImpl numericValue = new NumericValueImpl();
+    return numericValue;
   }
 
   /**

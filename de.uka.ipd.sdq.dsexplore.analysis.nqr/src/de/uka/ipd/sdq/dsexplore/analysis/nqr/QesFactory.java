@@ -1,4 +1,4 @@
-package de.uka.ipd.sdq.dsexplore.analysis.qes;
+package de.uka.ipd.sdq.dsexplore.analysis.nqr;
 
 import static org.eclipse.core.runtime.IStatus.ERROR;
 import java.util.ArrayList;
@@ -22,6 +22,8 @@ import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrReductionProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ReasoningProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.TransformationProxy;
+import de.uka.ipd.sdq.dsexplore.analysis.qes.QesFinder;
+import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element;
 

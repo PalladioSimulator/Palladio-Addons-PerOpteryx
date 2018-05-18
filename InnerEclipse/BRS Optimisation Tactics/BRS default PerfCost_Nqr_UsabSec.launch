@@ -14,7 +14,7 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
-<stringAttribute key="EDP2RepositoryID" value="_XkEfgFv5Eeet5qPuSMxLFg"/>
+<stringAttribute key="EDP2RepositoryID" value="_NQ3fUFj6EeiLGu0OLmQSIw"/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
@@ -133,6 +133,7 @@
 <stringAttribute key="psQuantum" value="0.001"/>
 <stringAttribute key="qmlDefinitionFile" value="platform:/resource/BRS Optimisation Tactics/NQR/PerfCostUsability.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value="platform:/resource/BRS Optimisation Tactics/NQR/SignAlgebra.qmlcontracttype"/>
+<stringAttribute key="qualityEffectSpecificationFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value="platform:/resource/BRS Optimisation Tactics/NQR/StatisticReduction.qualitymodel"/>
 <stringAttribute key="qualitymodelSystemFile" value="platform:/resource/BRS Optimisation Tactics/NQR/ReasoningComponentRepository.qualitymodel"/>
 <booleanAttribute key="reliability.simulateFailures" value="true"/>

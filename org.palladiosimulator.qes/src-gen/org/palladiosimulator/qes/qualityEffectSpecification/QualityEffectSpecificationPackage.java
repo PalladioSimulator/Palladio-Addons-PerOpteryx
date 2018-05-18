@@ -653,41 +653,50 @@ public interface QualityEffectSpecificationPackage extends EPackage
   int ENTRY_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl <em>Cost</em>}' class.
+   * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NumericValueImpl <em>Numeric Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.NumericValueImpl
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getNumericValue()
    * @generated
    */
-  int COST = 18;
+  int NUMERIC_VALUE = 18;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Value Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COST__TYPE = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 0;
+  int NUMERIC_VALUE__VALUE_TYPE = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Cost</b></em>' attribute.
+   * The feature id for the '<em><b>Transformation Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COST__COST = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 1;
+  int NUMERIC_VALUE__TRANSFORMATION_TYPE = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Cost</em>' class.
+   * The feature id for the '<em><b>Transformation Number</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COST_FEATURE_COUNT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 2;
+  int NUMERIC_VALUE__TRANSFORMATION_NUMBER = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Numeric Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUMERIC_VALUE_FEATURE_COUNT = TRANSFORMATION_SPECIFICATION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}' enum.
@@ -1219,36 +1228,47 @@ public interface QualityEffectSpecificationPackage extends EPackage
   EAttribute getEntry_Value();
 
   /**
-   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost <em>Cost</em>}'.
+   * Returns the meta object for class '{@link org.palladiosimulator.qes.qualityEffectSpecification.NumericValue <em>Numeric Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Cost</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost
+   * @return the meta object for class '<em>Numeric Value</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NumericValue
    * @generated
    */
-  EClass getCost();
+  EClass getNumericValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getValueType <em>Value Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost#getType()
-   * @see #getCost()
+   * @return the meta object for the attribute '<em>Value Type</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getValueType()
+   * @see #getNumericValue()
    * @generated
    */
-  EAttribute getCost_Type();
+  EAttribute getNumericValue_ValueType();
 
   /**
-   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.Cost#getCost <em>Cost</em>}'.
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getTransformationType <em>Transformation Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Cost</em>'.
-   * @see org.palladiosimulator.qes.qualityEffectSpecification.Cost#getCost()
-   * @see #getCost()
+   * @return the meta object for the attribute '<em>Transformation Type</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getTransformationType()
+   * @see #getNumericValue()
    * @generated
    */
-  EAttribute getCost_Cost();
+  EAttribute getNumericValue_TransformationType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getTransformationNumber <em>Transformation Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Transformation Number</em>'.
+   * @see org.palladiosimulator.qes.qualityEffectSpecification.NumericValue#getTransformationNumber()
+   * @see #getNumericValue()
+   * @generated
+   */
+  EAttribute getNumericValue_TransformationNumber();
 
   /**
    * Returns the meta object for enum '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}'.
@@ -1718,30 +1738,38 @@ public interface QualityEffectSpecificationPackage extends EPackage
     EAttribute ENTRY__VALUE = eINSTANCE.getEntry_Value();
 
     /**
-     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl <em>Cost</em>}' class.
+     * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.impl.NumericValueImpl <em>Numeric Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.CostImpl
-     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getCost()
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.NumericValueImpl
+     * @see org.palladiosimulator.qes.qualityEffectSpecification.impl.QualityEffectSpecificationPackageImpl#getNumericValue()
      * @generated
      */
-    EClass COST = eINSTANCE.getCost();
+    EClass NUMERIC_VALUE = eINSTANCE.getNumericValue();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COST__TYPE = eINSTANCE.getCost_Type();
+    EAttribute NUMERIC_VALUE__VALUE_TYPE = eINSTANCE.getNumericValue_ValueType();
 
     /**
-     * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Transformation Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COST__COST = eINSTANCE.getCost_Cost();
+    EAttribute NUMERIC_VALUE__TRANSFORMATION_TYPE = eINSTANCE.getNumericValue_TransformationType();
+
+    /**
+     * The meta object literal for the '<em><b>Transformation Number</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NUMERIC_VALUE__TRANSFORMATION_NUMBER = eINSTANCE.getNumericValue_TransformationNumber();
 
     /**
      * The meta object literal for the '{@link org.palladiosimulator.qes.qualityEffectSpecification.ComponentType <em>Component Type</em>}' enum.

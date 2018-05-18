@@ -17,11 +17,11 @@ import org.palladiosimulator.qes.qualityEffectSpecification.AssemblyType;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentType;
-import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
+import org.palladiosimulator.qes.qualityEffectSpecification.NumericValue;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationFactory;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
@@ -174,7 +174,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass costEClass = null;
+  private EClass numericValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -732,9 +732,9 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCost()
+  public EClass getNumericValue()
   {
-    return costEClass;
+    return numericValueEClass;
   }
 
   /**
@@ -742,9 +742,9 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCost_Type()
+  public EAttribute getNumericValue_ValueType()
   {
-    return (EAttribute)costEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)numericValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -752,9 +752,19 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCost_Cost()
+  public EAttribute getNumericValue_TransformationType()
   {
-    return (EAttribute)costEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)numericValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNumericValue_TransformationNumber()
+  {
+    return (EAttribute)numericValueEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -891,9 +901,10 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     createEAttribute(entryEClass, ENTRY__KEY);
     createEAttribute(entryEClass, ENTRY__VALUE);
 
-    costEClass = createEClass(COST);
-    createEAttribute(costEClass, COST__TYPE);
-    createEAttribute(costEClass, COST__COST);
+    numericValueEClass = createEClass(NUMERIC_VALUE);
+    createEAttribute(numericValueEClass, NUMERIC_VALUE__VALUE_TYPE);
+    createEAttribute(numericValueEClass, NUMERIC_VALUE__TRANSFORMATION_TYPE);
+    createEAttribute(numericValueEClass, NUMERIC_VALUE__TRANSFORMATION_NUMBER);
 
     // Create enums
     componentTypeEEnum = createEEnum(COMPONENT_TYPE);
@@ -945,7 +956,7 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     resourceEClass.getESuperTypes().add(this.getComponentProperty());
     nqaEClass.getESuperTypes().add(this.getTransformationSpecification());
     reasoningEClass.getESuperTypes().add(this.getTransformationSpecification());
-    costEClass.getESuperTypes().add(this.getTransformationSpecification());
+    numericValueEClass.getESuperTypes().add(this.getTransformationSpecification());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1012,9 +1023,10 @@ public class QualityEffectSpecificationPackageImpl extends EPackageImpl implemen
     initEAttribute(getEntry_Key(), ecorePackage.getEString(), "key", null, 0, -1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntry_Value(), ecorePackage.getEString(), "value", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(costEClass, Cost.class, "Cost", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCost_Type(), this.getTransformationType(), "type", null, 0, 1, Cost.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCost_Cost(), ecorePackage.getEInt(), "cost", null, 0, 1, Cost.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(numericValueEClass, NumericValue.class, "NumericValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNumericValue_ValueType(), ecorePackage.getEString(), "valueType", null, 0, 1, NumericValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNumericValue_TransformationType(), this.getTransformationType(), "transformationType", null, 0, 1, NumericValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNumericValue_TransformationNumber(), ecorePackage.getEString(), "transformationNumber", null, 0, 1, NumericValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(componentTypeEEnum, ComponentType.class, "ComponentType");

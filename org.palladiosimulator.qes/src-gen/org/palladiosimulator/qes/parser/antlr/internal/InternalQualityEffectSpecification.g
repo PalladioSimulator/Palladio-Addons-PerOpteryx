@@ -854,11 +854,11 @@ ruleTransformationSpecification returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getTransformationSpecificationAccess().getCostParserRuleCall_2());
+			newCompositeNode(grammarAccess.getTransformationSpecificationAccess().getNumericValueParserRuleCall_2());
 		}
-		this_Cost_2=ruleCost
+		this_NumericValue_2=ruleNumericValue
 		{
-			$current = $this_Cost_2.current;
+			$current = $this_NumericValue_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1149,15 +1149,15 @@ ruleEntry returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleCost
-entryRuleCost returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCostRule()); }
-	iv_ruleCost=ruleCost
-	{ $current=$iv_ruleCost.current; }
+// Entry rule entryRuleNumericValue
+entryRuleNumericValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNumericValueRule()); }
+	iv_ruleNumericValue=ruleNumericValue
+	{ $current=$iv_ruleNumericValue.current; }
 	EOF;
 
-// Rule Cost
-ruleCost returns [EObject current=null]
+// Rule NumericValue
+ruleNumericValue returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1165,24 +1165,42 @@ ruleCost returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Cost('
+		(
+			(
+				lv_valueType_0_0=RULE_STRING
+				{
+					newLeafNode(lv_valueType_0_0, grammarAccess.getNumericValueAccess().getValueTypeSTRINGTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getNumericValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"valueType",
+						lv_valueType_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_1='('
 		{
-			newLeafNode(otherlv_0, grammarAccess.getCostAccess().getCostKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getNumericValueAccess().getLeftParenthesisKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCostAccess().getTypeTransformationTypeEnumRuleCall_1_0());
+					newCompositeNode(grammarAccess.getNumericValueAccess().getTransformationTypeTransformationTypeEnumRuleCall_2_0());
 				}
-				lv_type_1_0=ruleTransformationType
+				lv_transformationType_2_0=ruleTransformationType
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCostRule());
+						$current = createModelElementForParent(grammarAccess.getNumericValueRule());
 					}
 					set(
 						$current,
-						"type",
-						lv_type_1_0,
+						"transformationType",
+						lv_transformationType_2_0,
 						"org.palladiosimulator.qes.QualityEffectSpecification.TransformationType");
 					afterParserOrEnumRuleCall();
 				}
@@ -1190,25 +1208,25 @@ ruleCost returns [EObject current=null]
 		)
 		(
 			(
-				lv_cost_2_0=RULE_INT
+				lv_transformationNumber_3_0=RULE_NUMBER
 				{
-					newLeafNode(lv_cost_2_0, grammarAccess.getCostAccess().getCostINTTerminalRuleCall_2_0());
+					newLeafNode(lv_transformationNumber_3_0, grammarAccess.getNumericValueAccess().getTransformationNumberNUMBERTerminalRuleCall_3_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCostRule());
+						$current = createModelElement(grammarAccess.getNumericValueRule());
 					}
 					setWithLastConsumed(
 						$current,
-						"cost",
-						lv_cost_2_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"transformationNumber",
+						lv_transformationNumber_3_0,
+						"org.palladiosimulator.qes.QualityEffectSpecification.NUMBER");
 				}
 			)
 		)
-		otherlv_3=')'
+		otherlv_4=')'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getCostAccess().getRightParenthesisKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getNumericValueAccess().getRightParenthesisKeyword_4());
 		}
 	)
 ;
@@ -1401,9 +1419,11 @@ ruleTransformationType returns [Enumerator current=null]
 	)
 ;
 
+RULE_NUMBER : RULE_INT ('.' RULE_INT)?;
+
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-RULE_INT : ('0'..'9')+;
+fragment RULE_INT : ('0'..'9')+;
 
 RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
 

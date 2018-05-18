@@ -17,12 +17,12 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.palladiosimulator.qes.qualityEffectSpecification.Annotation;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
 import org.palladiosimulator.qes.qualityEffectSpecification.ComponentSpecification;
-import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.Identifier;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.Name;
+import org.palladiosimulator.qes.qualityEffectSpecification.NumericValue;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecificationPackage;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
@@ -55,9 +55,6 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 			case QualityEffectSpecificationPackage.COMPONENT_SPECIFICATION:
 				sequence_ComponentSpecification(context, (ComponentSpecification) semanticObject); 
 				return; 
-			case QualityEffectSpecificationPackage.COST:
-				sequence_Cost(context, (Cost) semanticObject); 
-				return; 
 			case QualityEffectSpecificationPackage.ENTRY:
 				sequence_Entry(context, (Entry) semanticObject); 
 				return; 
@@ -72,6 +69,9 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 				return; 
 			case QualityEffectSpecificationPackage.NAME:
 				sequence_Name(context, (Name) semanticObject); 
+				return; 
+			case QualityEffectSpecificationPackage.NUMERIC_VALUE:
+				sequence_NumericValue(context, (NumericValue) semanticObject); 
 				return; 
 			case QualityEffectSpecificationPackage.QES:
 				sequence_QES(context, (QES) semanticObject); 
@@ -132,28 +132,6 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 */
 	protected void sequence_ComponentSpecification(ISerializationContext context, ComponentSpecification semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TransformationSpecification returns Cost
-	 *     Cost returns Cost
-	 *
-	 * Constraint:
-	 *     (type=TransformationType cost=INT)
-	 */
-	protected void sequence_Cost(ISerializationContext context, Cost semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.COST__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.COST__TYPE));
-			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.COST__COST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.COST__COST));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCostAccess().getTypeTransformationTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getCostAccess().getCostINTTerminalRuleCall_2_0(), semanticObject.getCost());
-		feeder.finish();
 	}
 	
 	
@@ -233,6 +211,31 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 */
 	protected void sequence_Name(ISerializationContext context, Name semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TransformationSpecification returns NumericValue
+	 *     NumericValue returns NumericValue
+	 *
+	 * Constraint:
+	 *     (valueType=STRING transformationType=TransformationType transformationNumber=NUMBER)
+	 */
+	protected void sequence_NumericValue(ISerializationContext context, NumericValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__VALUE_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__VALUE_TYPE));
+			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__TRANSFORMATION_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__TRANSFORMATION_TYPE));
+			if (transientValues.isValueTransient(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__TRANSFORMATION_NUMBER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, QualityEffectSpecificationPackage.Literals.NUMERIC_VALUE__TRANSFORMATION_NUMBER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumericValueAccess().getValueTypeSTRINGTerminalRuleCall_0_0(), semanticObject.getValueType());
+		feeder.accept(grammarAccess.getNumericValueAccess().getTransformationTypeTransformationTypeEnumRuleCall_2_0(), semanticObject.getTransformationType());
+		feeder.accept(grammarAccess.getNumericValueAccess().getTransformationNumberNUMBERTerminalRuleCall_3_0(), semanticObject.getTransformationNumber());
+		feeder.finish();
 	}
 	
 	

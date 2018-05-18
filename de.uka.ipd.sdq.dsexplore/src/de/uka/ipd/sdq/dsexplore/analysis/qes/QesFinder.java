@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.eclipse.emf.ecore.EObject;
+import org.modelversioning.emfprofile.Stereotype;
+import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.entity.Entity;
@@ -18,6 +22,7 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.subsystem.SubSystem;
 import org.palladiosimulator.qes.qualityEffectSpecification.Annotation;
 import org.palladiosimulator.qes.qualityEffectSpecification.Assembly;
@@ -34,43 +39,58 @@ import org.palladiosimulator.qes.qualityEffectSpecification.RoleProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Type;
 import org.palladiosimulator.solver.models.PCMInstance;
-import de.uka.ipd.sdq.dsexplore.analysis.nqr.graph.DirectedGraph;
 
 public class QesFinder {
 
-    private static final String WILDCARD = "_";
-
     private final DirectedGraph<RepositoryComponent> componentGraph;
-    private final Map<Entity, List<RepositoryComponent>> serverMap;
+    private final Map<ResourceContainer, Set<RepositoryComponent>> serverMap;
 
     public QesFinder(final PCMInstance instance) {
         componentGraph = getComponentGraph(instance);
         serverMap = getServerMap(instance);
     }
 
-    private static Map<Entity, List<RepositoryComponent>> getServerMap(final PCMInstance instance) {
-        final Map<Entity, List<RepositoryComponent>> serverMap = new HashMap<>();
-        // instance.getAllocation().getAllocationContexts_Allocation().get(0).getAllocation_AllocationContext().get
-        // instance.getRe
-        // instance.getAllocation().getSystem_Allocation(); // TODO
+    private static Map<ResourceContainer, Set<RepositoryComponent>> getServerMap(
+            final PCMInstance instance) {
+        final Map<ResourceContainer, Set<RepositoryComponent>> serverMap = new HashMap<>();
+        for (final AllocationContext allocationContext : instance.getAllocation()
+                .getAllocationContexts_Allocation()) {
+            final ResourceContainer container =
+                    allocationContext.getResourceContainer_AllocationContext();
+            final RepositoryComponent component =
+                    allocationContext.getAssemblyContext_AllocationContext()
+                            .getEncapsulatedComponent__AssemblyContext();
+            if (serverMap.containsKey(container)) {
+                serverMap.get(container).add(component);
+            } else {
+                final HashSet<RepositoryComponent> componentSet = new HashSet<>();
+                componentSet.add(component);
+                serverMap.put(container, componentSet);
+            }
+
+        }
         return serverMap;
     }
 
-    private static DirectedGraph<RepositoryComponent> getComponentGraph(final PCMInstance instance) {
+    private static DirectedGraph<RepositoryComponent> getComponentGraph(
+            final PCMInstance instance) {
         final DirectedGraph<RepositoryComponent> componentGraph = new DirectedGraph<>();
         for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
             if (c instanceof AssemblyConnectorImpl) {
                 final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
                 // Requiring -> Providing | -( --> O-
                 componentGraph.addEdge(
-                        ac.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext(),
-                        ac.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext());
+                        ac.getRequiringAssemblyContext_AssemblyConnector()
+                                .getEncapsulatedComponent__AssemblyContext(),
+                        ac.getProvidingAssemblyContext_AssemblyConnector()
+                                .getEncapsulatedComponent__AssemblyContext());
             }
         }
         return componentGraph;
     }
 
-    public Set<String> getEffectedComponents(final List<ComponentSpecification> componentsSpecifications) {
+    public Set<String> getEffectedComponents(
+            final List<ComponentSpecification> componentsSpecifications) {
         final Set<String> effectedComponents = new HashSet<>();
 
         if ((componentsSpecifications == null) || componentsSpecifications.isEmpty()) {
@@ -145,17 +165,14 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private static boolean equalsIgnoreCase(final Object o1, final boolean isNot, final Object o2) {
-        final String s1 = String.valueOf(o1);
-        final String s2 = String.valueOf(o2);
-        return s1.equalsIgnoreCase(WILDCARD) || s2.equalsIgnoreCase(WILDCARD) || (isNot != s1.equalsIgnoreCase(s2));
-    }
+
 
     private Set<String> getComponents(final Name name) {
         final Set<String> effectedComponents = new HashSet<>();
 
         for (final RepositoryComponent component : componentGraph) {
-            if (equalsIgnoreCase(component.getEntityName(), name.isNot(), name.getName())) {
+            if (QesHelper.equalsIgnoreCase(component.getEntityName(), name.isNot(),
+                    name.getName())) {
                 effectedComponents.add(component.getId());
             }
         }
@@ -167,7 +184,8 @@ public class QesFinder {
         final Set<String> effectedComponents = new HashSet<>();
 
         for (final RepositoryComponent component : componentGraph) {
-            if (equalsIgnoreCase(component.getId(), identifier.isNot(), identifier.getId())) {
+            if (QesHelper.equalsIgnoreCase(component.getId(), identifier.isNot(),
+                    identifier.getId())) {
                 effectedComponents.add(component.getId());
             }
         }
@@ -179,15 +197,23 @@ public class QesFinder {
         final Set<String> effectedComponents = new HashSet<>();
 
         for (final RepositoryComponent component : componentGraph) {
-        	// TODO component.getAnnotation()?
-//            if (equalsIgnoreCase(component.getAnnotation(), annotation.isNot(), annotation.getAnnotation())) {
-//                effectedComponents.add(component.getId());
-//            }
+            if (StereotypeAPI.hasStereotypeApplications(component) == false) {
+                continue;
+            }
+            for (final Stereotype stereotype : StereotypeAPI.getAppliedStereotypes(component)) {
+                for (final EObject refs : stereotype.eCrossReferences()) {
+                    if ((refs instanceof ConcernModel.Annotation) && QesHelper.equalsIgnoreCase(
+                            ((ConcernModel.Annotation) refs).getName(), annotation.isNot(),
+                            annotation.getAnnotation())) {
+                        effectedComponents.add(component.getId());
+                    }
+                }
+            }
+
         }
 
         return effectedComponents;
     }
-
 
     private Set<String> getComponents(final Type type) {
         final Set<String> effectedComponents = new HashSet<>();
@@ -224,29 +250,37 @@ public class QesFinder {
             for (final Entity entity : getRolesEntities(component)) {
                 for (final RoleProperty property : role.getProperties()) {
                     if (property instanceof Name) {
-                        if (equalsIgnoreCase(entity.getEntityName(), ((Name) property).isNot(),
-                                ((Name) property).getName())) {
+                        if (QesHelper.equalsIgnoreCase(entity.getEntityName(),
+                                ((Name) property).isNot(), ((Name) property).getName())) {
                             effectedComponents.add(component.getId());
                         }
 
                     }
 
                     if (property instanceof Identifier) {
-                        if (equalsIgnoreCase(entity.getId(), ((Identifier) property).isNot(),
-                                ((Identifier) property).getId())) {
+                        if (QesHelper.equalsIgnoreCase(entity.getId(),
+                                ((Identifier) property).isNot(), ((Identifier) property).getId())) {
                             effectedComponents.add(component.getId());
                         }
                     }
 
-                    // TODO entity.getAnnotation() ?
-//                    if (property instanceof Annotation) {
-//                        if (equalsIgnoreCase(entity.getAnnotation(), ((Annotation) property).isNot(),
-//                                ((Annotation) property).getAnnotation())) {
-//                            effectedComponents.add(component.getId());
-//                        }
-//
-//                    }
-
+                    if (property instanceof Annotation) {
+                        if (StereotypeAPI.hasStereotypeApplications(property) == false) {
+                            continue;
+                        }
+                        for (final Stereotype stereotype : StereotypeAPI
+                                .getAppliedStereotypes(property)) {
+                            for (final EObject refs : stereotype.eCrossReferences()) {
+                                if ((refs instanceof ConcernModel.Annotation)
+                                        && QesHelper.equalsIgnoreCase(
+                                                ((ConcernModel.Annotation) refs).getName(),
+                                                ((Annotation) property).isNot(),
+                                                ((Annotation) property).getAnnotation())) {
+                                    effectedComponents.add(component.getId());
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -282,38 +316,42 @@ public class QesFinder {
             final boolean isInfrastructureProvided = isInfrastructureProvided(component);
             final boolean isInfrastructureRequired = isInfrastructureRequired(component);
 
-            if ((isNot == false) && isComponentProvided
-                    && ((type == RoleType.COMPONENT_PROVIDED) || (type == RoleType.COMPONENT_REQUIRED_PROVIDED))) {
+            if ((isNot == false) && isComponentProvided && ((type == RoleType.COMPONENT_PROVIDED)
+                    || (type == RoleType.COMPONENT_REQUIRED_PROVIDED))) {
                 effectedComponents.add(component);
                 continue;
             }
-            if ((isNot == false) && isComponentRequired
-                    && ((type == RoleType.COMPONENT_REQUIRED) || (type == RoleType.COMPONENT_REQUIRED_PROVIDED))) {
+            if ((isNot == false) && isComponentRequired && ((type == RoleType.COMPONENT_REQUIRED)
+                    || (type == RoleType.COMPONENT_REQUIRED_PROVIDED))) {
                 effectedComponents.add(component);
                 continue;
             }
 
-            if ((isNot == false) && isInfrastructureProvided && ((type == RoleType.INFRASTRUCTURE_PROVIDED)
-                    || (type == RoleType.INFRASTRUCTURE_REQUIRED_PROVIDED))) {
+            if ((isNot == false) && isInfrastructureProvided
+                    && ((type == RoleType.INFRASTRUCTURE_PROVIDED)
+                            || (type == RoleType.INFRASTRUCTURE_REQUIRED_PROVIDED))) {
                 effectedComponents.add(component);
                 continue;
             }
-            if ((isNot == false) && isInfrastructureRequired && ((type == RoleType.INFRASTRUCTURE_REQUIRED)
-                    || (type == RoleType.INFRASTRUCTURE_REQUIRED_PROVIDED))) {
+            if ((isNot == false) && isInfrastructureRequired
+                    && ((type == RoleType.INFRASTRUCTURE_REQUIRED)
+                            || (type == RoleType.INFRASTRUCTURE_REQUIRED_PROVIDED))) {
                 effectedComponents.add(component);
                 continue;
             }
 
             if (isNot
                     && ((type == RoleType.INFRASTRUCTURE_REQUIRED_PROVIDED)
-                            || (type == RoleType.INFRASTRUCTURE_REQUIRED) || (type == RoleType.INFRASTRUCTURE_PROVIDED))
+                            || (type == RoleType.INFRASTRUCTURE_REQUIRED)
+                            || (type == RoleType.INFRASTRUCTURE_PROVIDED))
                     && (isComponentProvided || isComponentRequired)) {
                 effectedComponents.add(component);
                 continue;
             }
 
             if (isNot
-                    && ((type == RoleType.COMPONENT_REQUIRED_PROVIDED) || (type == RoleType.COMPONENT_REQUIRED)
+                    && ((type == RoleType.COMPONENT_REQUIRED_PROVIDED)
+                            || (type == RoleType.COMPONENT_REQUIRED)
                             || (type == RoleType.COMPONENT_PROVIDED))
                     && (isInfrastructureProvided || isInfrastructureRequired)) {
                 effectedComponents.add(component);
@@ -325,7 +363,8 @@ public class QesFinder {
     }
 
     private static boolean isComponentProvided(final RepositoryComponent component) {
-        if ((component == null) || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
+        if ((component == null)
+                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
             return false;
         }
 
@@ -338,7 +377,8 @@ public class QesFinder {
     }
 
     private static boolean isComponentRequired(final RepositoryComponent component) {
-        if ((component == null) || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
+        if ((component == null)
+                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
             return false;
         }
 
@@ -351,7 +391,8 @@ public class QesFinder {
     }
 
     private static boolean isInfrastructureProvided(final RepositoryComponent component) {
-        if ((component == null) || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
+        if ((component == null)
+                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
             return false;
         }
 
@@ -364,7 +405,8 @@ public class QesFinder {
     }
 
     private static boolean isInfrastructureRequired(final RepositoryComponent component) {
-        if ((component == null) || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
+        if ((component == null)
+                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
             return false;
         }
 
@@ -393,7 +435,8 @@ public class QesFinder {
         boolean provided = true;
         boolean required = true;
 
-        if ((isNot && (type == AssemblyType.PROVIDED)) || ((isNot == false) && (type == AssemblyType.REQUIRED))) {
+        if ((isNot && (type == AssemblyType.PROVIDED))
+                || ((isNot == false) && (type == AssemblyType.REQUIRED))) {
             provided = false;
         } else if ((isNot && (type == AssemblyType.REQUIRED))
                 || ((isNot == false) && (type == AssemblyType.PROVIDED))) {
@@ -439,14 +482,14 @@ public class QesFinder {
         for (final Entity entity : serverMap.keySet()) {
             for (final ResourceProperty property : resource.getProperties()) {
                 if (property instanceof Name) {
-                    if (equalsIgnoreCase(entity.getEntityName(), ((Name) property).isNot(),
-                            ((Name) property).getName())) {
+                    if (QesHelper.equalsIgnoreCase(entity.getEntityName(),
+                            ((Name) property).isNot(), ((Name) property).getName())) {
                         for (final RepositoryComponent component : serverMap.get(entity)) {
                             effectedComponents.add(component.getId());
                         }
                     }
                 } else if (property instanceof Identifier) {
-                    if (equalsIgnoreCase(entity.getId(), ((Identifier) property).isNot(),
+                    if (QesHelper.equalsIgnoreCase(entity.getId(), ((Identifier) property).isNot(),
                             ((Identifier) property).getId())) {
                         for (final RepositoryComponent component : serverMap.get(entity)) {
                             effectedComponents.add(component.getId());

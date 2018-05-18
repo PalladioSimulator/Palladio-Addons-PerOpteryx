@@ -52,7 +52,7 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getReasoningAccess().getGroup(), "rule__Reasoning__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
-					put(grammarAccess.getCostAccess().getGroup(), "rule__Cost__Group__0");
+					put(grammarAccess.getNumericValueAccess().getGroup(), "rule__NumericValue__Group__0");
 					put(grammarAccess.getModelAccess().getSpecificationsAssignment(), "rule__Model__SpecificationsAssignment");
 					put(grammarAccess.getQESAccess().getComponentsAssignment_1(), "rule__QES__ComponentsAssignment_1");
 					put(grammarAccess.getQESAccess().getTransformationsAssignment_4(), "rule__QES__TransformationsAssignment_4");
@@ -81,8 +81,9 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 					put(grammarAccess.getRuleAccess().getEntriesAssignment_3(), "rule__Rule__EntriesAssignment_3");
 					put(grammarAccess.getEntryAccess().getKeyAssignment_1(), "rule__Entry__KeyAssignment_1");
 					put(grammarAccess.getEntryAccess().getValueAssignment_3(), "rule__Entry__ValueAssignment_3");
-					put(grammarAccess.getCostAccess().getTypeAssignment_1(), "rule__Cost__TypeAssignment_1");
-					put(grammarAccess.getCostAccess().getCostAssignment_2(), "rule__Cost__CostAssignment_2");
+					put(grammarAccess.getNumericValueAccess().getValueTypeAssignment_0(), "rule__NumericValue__ValueTypeAssignment_0");
+					put(grammarAccess.getNumericValueAccess().getTransformationTypeAssignment_2(), "rule__NumericValue__TransformationTypeAssignment_2");
+					put(grammarAccess.getNumericValueAccess().getTransformationNumberAssignment_3(), "rule__NumericValue__TransformationNumberAssignment_3");
 				}
 			};
 		}

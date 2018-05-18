@@ -186,13 +186,13 @@ public interface QualityEffectSpecificationFactory extends EFactory
   Entry createEntry();
 
   /**
-   * Returns a new object of class '<em>Cost</em>'.
+   * Returns a new object of class '<em>Numeric Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Cost</em>'.
+   * @return a new object of class '<em>Numeric Value</em>'.
    * @generated
    */
-  Cost createCost();
+  NumericValue createNumericValue();
 
   /**
    * Returns the package supported by this factory.

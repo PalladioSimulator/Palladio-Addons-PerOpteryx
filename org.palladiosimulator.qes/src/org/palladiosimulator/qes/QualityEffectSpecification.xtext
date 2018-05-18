@@ -51,7 +51,7 @@ ResourceProperty:
     Name | Identifier;
 
 TransformationSpecification:
-    NQA | Reasoning | Cost;
+    NQA | Reasoning | NumericValue;
 
 NQA:
     'NQA(' quality=STRING type=TransformationType element=STRING ')';
@@ -68,5 +68,8 @@ Rule:
 Entry:
     '[' key+=STRING+ ':' value=STRING ']';
 
-Cost:
-     'Cost(' type=TransformationType cost=INT ')';
+NumericValue:
+    valueType=STRING'(' transformationType=TransformationType transformationNumber=NUMBER ')';
+
+terminal NUMBER:
+    INT('.'INT)?;

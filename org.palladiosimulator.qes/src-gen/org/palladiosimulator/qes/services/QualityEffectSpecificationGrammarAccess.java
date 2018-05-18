@@ -449,13 +449,13 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNQAParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cReasoningParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cCostParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cNumericValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//TransformationSpecification:
-		//	NQA | Reasoning | Cost;
+		//	NQA | Reasoning | NumericValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//NQA | Reasoning | Cost
+		//NQA | Reasoning | NumericValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//NQA
@@ -464,8 +464,8 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//Reasoning
 		public RuleCall getReasoningParserRuleCall_1() { return cReasoningParserRuleCall_1; }
 		
-		//Cost
-		public RuleCall getCostParserRuleCall_2() { return cCostParserRuleCall_2; }
+		//NumericValue
+		public RuleCall getNumericValueParserRuleCall_2() { return cNumericValueParserRuleCall_2; }
 	}
 	public class NQAElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.NQA");
@@ -627,40 +627,48 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//']'
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
-	public class CostElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Cost");
+	public class NumericValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.NumericValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cCostKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeTransformationTypeEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
-		private final Assignment cCostAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cCostINTTerminalRuleCall_2_0 = (RuleCall)cCostAssignment_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cValueTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValueTypeSTRINGTerminalRuleCall_0_0 = (RuleCall)cValueTypeAssignment_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTransformationTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTransformationTypeTransformationTypeEnumRuleCall_2_0 = (RuleCall)cTransformationTypeAssignment_2.eContents().get(0);
+		private final Assignment cTransformationNumberAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTransformationNumberNUMBERTerminalRuleCall_3_0 = (RuleCall)cTransformationNumberAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//Cost:
-		//	'Cost(' type=TransformationType cost=INT ')';
+		//NumericValue:
+		//	valueType=STRING '(' transformationType=TransformationType transformationNumber=NUMBER ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Cost(' type=TransformationType cost=INT ')'
+		//valueType=STRING '(' transformationType=TransformationType transformationNumber=NUMBER ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'Cost('
-		public Keyword getCostKeyword_0() { return cCostKeyword_0; }
+		//valueType=STRING
+		public Assignment getValueTypeAssignment_0() { return cValueTypeAssignment_0; }
 		
-		//type=TransformationType
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		//STRING
+		public RuleCall getValueTypeSTRINGTerminalRuleCall_0_0() { return cValueTypeSTRINGTerminalRuleCall_0_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//transformationType=TransformationType
+		public Assignment getTransformationTypeAssignment_2() { return cTransformationTypeAssignment_2; }
 		
 		//TransformationType
-		public RuleCall getTypeTransformationTypeEnumRuleCall_1_0() { return cTypeTransformationTypeEnumRuleCall_1_0; }
+		public RuleCall getTransformationTypeTransformationTypeEnumRuleCall_2_0() { return cTransformationTypeTransformationTypeEnumRuleCall_2_0; }
 		
-		//cost=INT
-		public Assignment getCostAssignment_2() { return cCostAssignment_2; }
+		//transformationNumber=NUMBER
+		public Assignment getTransformationNumberAssignment_3() { return cTransformationNumberAssignment_3; }
 		
-		//INT
-		public RuleCall getCostINTTerminalRuleCall_2_0() { return cCostINTTerminalRuleCall_2_0; }
+		//NUMBER
+		public RuleCall getTransformationNumberNUMBERTerminalRuleCall_3_0() { return cTransformationNumberNUMBERTerminalRuleCall_3_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	
 	public class ComponentTypeElements extends AbstractEnumRuleElementFinder {
@@ -878,7 +886,8 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	private final ReasoningElements pReasoning;
 	private final RuleElements pRule;
 	private final EntryElements pEntry;
-	private final CostElements pCost;
+	private final NumericValueElements pNumericValue;
+	private final TerminalRule tNUMBER;
 	
 	private final Grammar grammar;
 	
@@ -911,7 +920,8 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		this.pReasoning = new ReasoningElements();
 		this.pRule = new RuleElements();
 		this.pEntry = new EntryElements();
-		this.pCost = new CostElements();
+		this.pNumericValue = new NumericValueElements();
+		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.NUMBER");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1104,7 +1114,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//TransformationSpecification:
-	//	NQA | Reasoning | Cost;
+	//	NQA | Reasoning | NumericValue;
 	public TransformationSpecificationElements getTransformationSpecificationAccess() {
 		return pTransformationSpecification;
 	}
@@ -1163,14 +1173,20 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		return getEntryAccess().getRule();
 	}
 	
-	//Cost:
-	//	'Cost(' type=TransformationType cost=INT ')';
-	public CostElements getCostAccess() {
-		return pCost;
+	//NumericValue:
+	//	valueType=STRING '(' transformationType=TransformationType transformationNumber=NUMBER ')';
+	public NumericValueElements getNumericValueAccess() {
+		return pNumericValue;
 	}
 	
-	public ParserRule getCostRule() {
-		return getCostAccess().getRule();
+	public ParserRule getNumericValueRule() {
+		return getNumericValueAccess().getRule();
+	}
+	
+	//terminal NUMBER:
+	//	INT ('.' INT)?;
+	public TerminalRule getNUMBERRule() {
+		return tNUMBER;
 	}
 	
 	//terminal ID:

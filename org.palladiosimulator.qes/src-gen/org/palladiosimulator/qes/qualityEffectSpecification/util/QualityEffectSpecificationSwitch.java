@@ -213,11 +213,11 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QualityEffectSpecificationPackage.COST:
+      case QualityEffectSpecificationPackage.NUMERIC_VALUE:
       {
-        Cost cost = (Cost)theEObject;
-        T result = caseCost(cost);
-        if (result == null) result = caseTransformationSpecification(cost);
+        NumericValue numericValue = (NumericValue)theEObject;
+        T result = caseNumericValue(numericValue);
+        if (result == null) result = caseTransformationSpecification(numericValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -514,17 +514,17 @@ public class QualityEffectSpecificationSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Cost</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Numeric Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Cost</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Numeric Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCost(Cost object)
+  public T caseNumericValue(NumericValue object)
   {
     return null;
   }

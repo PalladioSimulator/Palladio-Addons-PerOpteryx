@@ -18,7 +18,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrReductionProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.ReasoningProxy;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.QesFactory;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;

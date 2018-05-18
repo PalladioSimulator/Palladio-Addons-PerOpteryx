@@ -92,9 +92,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Entry/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Entry/value"/>
     </genClasses>
-    <genClasses ecoreClass="QualityEffectSpecification.ecore#//Cost">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Cost/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//Cost/cost"/>
+    <genClasses ecoreClass="QualityEffectSpecification.ecore#//NumericValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NumericValue/valueType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NumericValue/transformationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute QualityEffectSpecification.ecore#//NumericValue/transformationNumber"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -1,34 +1,31 @@
 package de.uka.ipd.sdq.dsexplore.analysis.qes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.palladiosimulator.qes.qualityEffectSpecification.Cost;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
+import org.palladiosimulator.qes.qualityEffectSpecification.NumericValue;
 import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 
 public class QesParser {
 
-    private static URI createURI(String string) {
-        final URI loadFrom = URI.createURI(string);
-        return loadFrom.isPlatform() ? loadFrom : URI.createFileURI(string);
-    }
-
     private final Model model;
     private final boolean isEmpty;
-    private final Set<QES> nqa;
-    private final Set<QES> reasoning;
-    private final Set<QES> cost;
+    private final Set<QES> nqas;
+    private final Set<QES> reasonings;
+    private final Map<String, Set<QES>> values;
 
     public QesParser(String string) throws ParseException {
-        this(createURI(string));
+        this(QesHelper.createURI(string));
     }
 
     public QesParser(URI uri) throws ParseException {
@@ -40,26 +37,35 @@ public class QesParser {
 
         assert isValid();
 
-        final Set<QES> n = new HashSet<>();
-        final Set<QES> r = new HashSet<>();
-        final Set<QES> c = new HashSet<>();
         isEmpty = (model.getSpecifications() == null) || model.getSpecifications().isEmpty();
 
+        final Set<QES> n = new HashSet<>();
+        final Set<QES> r = new HashSet<>();
+        final Map<String, Set<QES>> v = new HashMap<>();
+
         for (final QES specification : model.getSpecifications()) {
-            for (final TransformationSpecification transformation : specification.getTransformations()) {
+            for (final TransformationSpecification transformation : specification
+                    .getTransformations()) {
                 if (transformation instanceof NQA) {
                     n.add(specification);
                 } else if (transformation instanceof Reasoning) {
                     r.add(specification);
-                } else if (transformation instanceof Cost) {
-                    c.add(specification);
+                } else if (transformation instanceof NumericValue) {
+                    final String type = ((NumericValue) transformation).getValueType();
+                    if (v.containsKey(type)) {
+                        v.get(type).add(specification);
+                    } else {
+                        final Set<QES> specifications = new HashSet<>();
+                        specifications.add(specification);
+                        v.put(type, specifications);
+                    }
                 }
             }
         }
 
-        nqa = Collections.unmodifiableSet(n);
-        reasoning = Collections.unmodifiableSet(r);
-        cost = Collections.unmodifiableSet(c);
+        nqas = Collections.unmodifiableSet(n);
+        reasonings = Collections.unmodifiableSet(r);
+        values = Collections.unmodifiableMap(v);
     }
 
     @Override
@@ -72,15 +78,18 @@ public class QesParser {
     }
 
     public Set<QES> getNqaSpecifications() {
-        return nqa;
+        return nqas;
     }
 
     public Set<QES> getReasoningSpecifications() {
-        return reasoning;
+        return reasonings;
     }
 
-    public Set<QES> getCostSpecifications() {
-        return cost;
+    public Set<QES> getSpecifications(String key) {
+        if (key != null && values.containsKey(key)) {
+            return Collections.unmodifiableSet(values.get(key));
+        }
+        return Collections.unmodifiableSet(new HashSet<>());
     }
 
     @Override
