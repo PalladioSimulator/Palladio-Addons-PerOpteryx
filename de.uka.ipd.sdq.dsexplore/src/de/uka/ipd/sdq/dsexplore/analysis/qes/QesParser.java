@@ -12,23 +12,23 @@ import org.eclipse.xtext.resource.XtextResourceSet;
 import org.palladiosimulator.qes.qualityEffectSpecification.Model;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
 import org.palladiosimulator.qes.qualityEffectSpecification.NumericValue;
-import org.palladiosimulator.qes.qualityEffectSpecification.QES;
+import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 
 public class QesParser {
 
-    private final Model model;
     private final boolean isEmpty;
-    private final Set<QES> nqas;
-    private final Set<QES> reasonings;
-    private final Map<String, Set<QES>> values;
+    private final Model model;
+    private final Set<QualityEffectSpecification> nqas;
+    private final Set<QualityEffectSpecification> reasonings;
+    private final Map<String, Set<QualityEffectSpecification>> values;
 
-    public QesParser(String string) throws ParseException {
+    public QesParser(final String string) throws ParseException {
         this(QesHelper.createUri(string));
     }
 
-    public QesParser(URI uri) throws ParseException {
+    public QesParser(final URI uri) throws ParseException {
         try {
             model = (Model) new XtextResourceSet().getResource(uri, true).getContents().get(0);
         } catch (final Exception e) {
@@ -39,11 +39,11 @@ public class QesParser {
 
         isEmpty = (model.getSpecifications() == null) || model.getSpecifications().isEmpty();
 
-        final Set<QES> n = new HashSet<>();
-        final Set<QES> r = new HashSet<>();
-        final Map<String, Set<QES>> v = new HashMap<>();
+        final Set<QualityEffectSpecification> n = new HashSet<>();
+        final Set<QualityEffectSpecification> r = new HashSet<>();
+        final Map<String, Set<QualityEffectSpecification>> v = new HashMap<>();
 
-        for (final QES specification : model.getSpecifications()) {
+        for (final QualityEffectSpecification specification : model.getSpecifications()) {
             for (final TransformationSpecification transformation : specification
                     .getTransformations()) {
                 if (transformation instanceof NQA) {
@@ -55,7 +55,7 @@ public class QesParser {
                     if (v.containsKey(type)) {
                         v.get(type).add(specification);
                     } else {
-                        final Set<QES> specifications = new HashSet<>();
+                        final Set<QualityEffectSpecification> specifications = new HashSet<>();
                         specifications.add(specification);
                         v.put(type, specifications);
                     }
@@ -69,7 +69,7 @@ public class QesParser {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if ((obj == null) || (getClass() != obj.getClass())) {
             return false;
         }
@@ -77,16 +77,16 @@ public class QesParser {
         return model.equals(((QesParser) obj).model);
     }
 
-    public Set<QES> getNqaSpecifications() {
+    public Set<QualityEffectSpecification> getNqaSpecifications() {
         return nqas;
     }
 
-    public Set<QES> getReasoningSpecifications() {
+    public Set<QualityEffectSpecification> getReasoningSpecifications() {
         return reasonings;
     }
 
-    public Set<QES> getSpecifications(String key) {
-        if (key != null && values.containsKey(key)) {
+    public Set<QualityEffectSpecification> getSpecifications(final String key) {
+        if ((key != null) && values.containsKey(key)) {
             return Collections.unmodifiableSet(values.get(key));
         }
         return Collections.unmodifiableSet(new HashSet<>());

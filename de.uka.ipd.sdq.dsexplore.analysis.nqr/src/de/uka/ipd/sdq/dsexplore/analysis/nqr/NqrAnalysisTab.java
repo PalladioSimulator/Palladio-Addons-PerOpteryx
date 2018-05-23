@@ -73,7 +73,7 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         // Add Architecture Effect Specification input section
         qualityEffectSpecification = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener,
-                "Quality Effect Specification File",
+                "Quality Effect Specification File (Optional)",
                 DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION,
                 qualityEffectSpecification, getShell(), DEFAULT_FILE_URI);
     }

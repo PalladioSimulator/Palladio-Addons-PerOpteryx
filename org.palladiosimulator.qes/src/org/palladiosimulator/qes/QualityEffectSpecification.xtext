@@ -3,49 +3,53 @@ grammar org.palladiosimulator.qes.QualityEffectSpecification with org.eclipse.xt
 generate qualityEffectSpecification "http://www.palladiosimulator.org/qes/QualityEffectSpecification"
 
 Model:
-    specifications+=QES+;
+    specifications+=QualityEffectSpecification (NL+ specifications+=QualityEffectSpecification)* NL+;
 
-QES:
-    'For{' components+=ComponentSpecification+ '}' 'Do{' transformations+=TransformationSpecification+ '}';
+QualityEffectSpecification:
+    'For' '{' components+=ComponentSpecification ('and' components+=ComponentSpecification)* '}' 'Do' '{'
+    transformations+=TransformationSpecification ('and' transformations+=TransformationSpecification)* '}';
 
 ComponentSpecification:
-    'Component(' properties+=ComponentProperty+ ')';
+    'Component' '(' properties+=ComponentProperty ('and' properties+=ComponentProperty)* ')';
 
 ComponentProperty:
     Name | Identifier | Annotation | Type | Role | Assembly | Resource;
 
 Name:
-    'Name(' not?='Not'? name=STRING ')';
+    'Name' '(' not?='not'? autonym=STRING ')';
 
 Identifier:
-    'Id(' not?='Not'? id=ID ')';
+    'Id' '(' not?='not'? id=STRING ')';
 
 Annotation:
-    'Annotation(' not?='Not'? annotation=STRING ')';
+    'Annotation' '(' not?='not'? annotation=STRING ')';
 
 Type:
-    'Type(' not?='Not'? type=ComponentType ')';
+    'Type' '(' not?='not'? type=ComponentType ')';
 
 enum ComponentType:
     ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite';
 
 Role:
-    'Role(' not?='Not'? type=RoleType properties+=RoleProperty+ ')';
+    'Role' '(' not?='not'? type=RoleType 'with' properties+=RoleProperty ('and' properties+=RoleProperty)* ')';
 
 enum RoleType:
-    ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' | COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' | INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' | INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
+    ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' |
+    COMPONENT_REQUIRED='ComponentRequired' | COMPONENT_PROVIDED='ComponentProvided' |
+    INFRASTRUCTURE_REQUIRED_PROVIDED='InfrastructureRequiredProvided' |
+    INFRASTRUCTURE_REQUIRED='InfrastructureRequired' | INFRASTRUCTURE_PROVIDED='InfrastructureProvided';
 
 RoleProperty:
     Name | Identifier | Annotation;
 
 Assembly:
-    'Assembly(' not?='Not'? type=AssemblyType components+=ComponentSpecification+ ')';
+    'Assembly' '(' not?='not'? type=AssemblyType 'with' component=ComponentSpecification ')';
 
 enum AssemblyType:
     ANY='AnyAssembly' | REQUIRED='Required' | PROVIDED='Provided';
 
 Resource:
-    'Resource(' properties+=ResourceProperty+ ')';
+    'Resource' '(' properties+=ResourceProperty ('and' properties+=ResourceProperty)* ')';
 
 ResourceProperty:
     Name | Identifier;
@@ -54,22 +58,25 @@ TransformationSpecification:
     NQA | Reasoning | NumericValue;
 
 NQA:
-    'NQA(' quality=STRING type=TransformationType element=STRING ')';
+    'NQA' '(' quality=STRING type=TransformationType element=STRING ')';
 
 enum TransformationType:
-    IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/' ;
+    IS='=' | PLUS='+' | MINUS='-' | MULTIPLICATION='*' | DIVISION='/';
 
 Reasoning:
-    'Reasoning(' quality=STRING ':' rules+=Rule+ ')';
+    'Reasoning' '(' quality=STRING '=' rules+=Rule (',' rules+=Rule)* ')';
 
 Rule:
-    '(' qualities+=STRING+ ':' entries+=Entry+ ')';
+    'Rule' '(' qualities+=STRING (',' qualities+=STRING)* '=' entries+=Entry (',' entries+=Entry)* ')';
 
 Entry:
-    '[' key+=STRING+ ':' value=STRING ']';
+    'Entry' '(' key+=STRING (',' key+=STRING)* '=' value=STRING ')';
 
 NumericValue:
-    valueType=STRING'(' transformationType=TransformationType transformationNumber=NUMBER ')';
+    valueType=ID '(' transformationType=TransformationType transformationNumber=NUMBER ')';
 
 terminal NUMBER:
-    INT('.'INT)?;
+    INT ('.' INT)?;
+
+terminal NL:
+    ('\r'? '\n');

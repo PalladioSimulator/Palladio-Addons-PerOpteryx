@@ -42,12 +42,30 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 public class QesFinder {
 
-    private final DirectedGraph<RepositoryComponent> componentGraph;
-    private final Map<ResourceContainer, Set<RepositoryComponent>> serverMap;
+    private static DirectedGraph<RepositoryComponent> getComponentGraph(
+            final PCMInstance instance) {
+        final DirectedGraph<RepositoryComponent> componentGraph = new DirectedGraph<>();
+        for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
+            if (c instanceof AssemblyConnectorImpl) {
+                final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
+                // Requiring -> Providing | -( --> O-
+                componentGraph.addEdge(
+                        ac.getRequiringAssemblyContext_AssemblyConnector()
+                                .getEncapsulatedComponent__AssemblyContext(),
+                        ac.getProvidingAssemblyContext_AssemblyConnector()
+                                .getEncapsulatedComponent__AssemblyContext());
+            }
+        }
+        return componentGraph;
+    }
 
-    public QesFinder(final PCMInstance instance) {
-        componentGraph = getComponentGraph(instance);
-        serverMap = getServerMap(instance);
+    private static Set<Entity> getRolesEntities(final RepositoryComponent component) {
+        final Set<Entity> effectedComponents = new HashSet<>();
+
+        component.getProvidedRoles_InterfaceProvidingEntity().forEach(effectedComponents::add);
+        component.getRequiredRoles_InterfaceRequiringEntity().forEach(effectedComponents::add);
+
+        return effectedComponents;
     }
 
     private static Map<ResourceContainer, Set<RepositoryComponent>> getServerMap(
@@ -72,125 +90,71 @@ public class QesFinder {
         return serverMap;
     }
 
-    private static DirectedGraph<RepositoryComponent> getComponentGraph(
-            final PCMInstance instance) {
-        final DirectedGraph<RepositoryComponent> componentGraph = new DirectedGraph<>();
-        for (final Connector c : instance.getSystem().getConnectors__ComposedStructure()) {
-            if (c instanceof AssemblyConnectorImpl) {
-                final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
-                // Requiring -> Providing | -( --> O-
-                componentGraph.addEdge(
-                        ac.getRequiringAssemblyContext_AssemblyConnector()
-                                .getEncapsulatedComponent__AssemblyContext(),
-                        ac.getProvidingAssemblyContext_AssemblyConnector()
-                                .getEncapsulatedComponent__AssemblyContext());
+    private static boolean isComponentProvided(final RepositoryComponent component) {
+        if ((component == null)
+                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
+            return false;
+        }
+
+        for (final ProvidedRole role : component.getProvidedRoles_InterfaceProvidingEntity()) {
+            if ((role != null) && (role instanceof OperationProvidedRole)) {
+                return true;
             }
         }
-        return componentGraph;
+        return false;
     }
 
-    public Set<String> getEffectedComponents(
-            final List<ComponentSpecification> componentsSpecifications) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        if ((componentsSpecifications == null) || componentsSpecifications.isEmpty()) {
-            return Collections.unmodifiableSet(effectedComponents);
+    private static boolean isComponentRequired(final RepositoryComponent component) {
+        if ((component == null)
+                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
+            return false;
         }
 
-        for (final ComponentSpecification component : componentsSpecifications) {
-            effectedComponents.addAll(getComponents(component));
-        }
-
-        return Collections.unmodifiableSet(effectedComponents);
-    }
-
-    private Set<String> getComponents(final ComponentSpecification componentSpecifications) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        if ((componentSpecifications == null) || (componentSpecifications.getProperties() == null)
-                || componentSpecifications.getProperties().isEmpty()) {
-            return effectedComponents;
-        }
-
-        for (final ComponentProperty property : componentSpecifications.getProperties()) {
-            if (effectedComponents.isEmpty()) {
-                effectedComponents.addAll(getComponents(property));
-            } else {
-                effectedComponents.retainAll(getComponents(property));
-            }
-
-            if (effectedComponents.isEmpty()) {
-                break;
+        for (final RequiredRole role : component.getRequiredRoles_InterfaceRequiringEntity()) {
+            if ((role != null) && (role instanceof OperationRequiredRole)) {
+                return true;
             }
         }
-
-        return effectedComponents;
+        return false;
     }
 
-    private Set<String> getComponents(final ComponentProperty property) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        if (property == null) {
-            return effectedComponents;
+    private static boolean isInfrastructureProvided(final RepositoryComponent component) {
+        if ((component == null)
+                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
+            return false;
         }
 
-        if (property instanceof Name) {
-            return getComponents((Name) property);
-        }
-
-        if (property instanceof Identifier) {
-            return getComponents((Identifier) property);
-        }
-
-        if (property instanceof Annotation) {
-            return getComponents((Annotation) property);
-        }
-
-        if (property instanceof Type) {
-            return getComponents((Type) property);
-        }
-
-        if (property instanceof Role) {
-            return getComponents((Role) property);
-        }
-
-        if (property instanceof Assembly) {
-            return getComponents((Assembly) property);
-        }
-
-        if (property instanceof Resource) {
-            return getComponents((Resource) property);
-        }
-
-        return effectedComponents;
-    }
-
-
-
-    private Set<String> getComponents(final Name name) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        for (final RepositoryComponent component : componentGraph) {
-            if (QesHelper.equalsIgnoreCase(component.getEntityName(), name.isNot(),
-                    name.getName())) {
-                effectedComponents.add(component.getId());
+        for (final ProvidedRole role : component.getProvidedRoles_InterfaceProvidingEntity()) {
+            if ((role != null) && (role instanceof InfrastructureProvidedRole)) {
+                return true;
             }
         }
-
-        return effectedComponents;
+        return false;
     }
 
-    private Set<String> getComponents(final Identifier identifier) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        for (final RepositoryComponent component : componentGraph) {
-            if (QesHelper.equalsIgnoreCase(component.getId(), identifier.isNot(),
-                    identifier.getId())) {
-                effectedComponents.add(component.getId());
-            }
+    private static boolean isInfrastructureRequired(final RepositoryComponent component) {
+        if ((component == null)
+                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
+            return false;
         }
 
-        return effectedComponents;
+        for (final RequiredRole role : component.getRequiredRoles_InterfaceRequiringEntity()) {
+            if ((role != null) && (role instanceof InfrastructureRequiredRole)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private final DirectedGraph<RepositoryComponent> componentGraph;
+
+
+
+    private final Map<ResourceContainer, Set<RepositoryComponent>> serverMap;
+
+    public QesFinder(final PCMInstance instance) {
+        componentGraph = getComponentGraph(instance);
+        serverMap = getServerMap(instance);
     }
 
     private Set<String> getComponents(final Annotation annotation) {
@@ -215,85 +179,60 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private Set<String> getComponents(final Type type) {
+    private Set<String> getComponents(final Assembly assembly) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        final boolean isNot = type.isNot();
-        final ComponentType componentType = type.getType();
-        if ((componentType == null) || ((componentType == ComponentType.ANY) && isNot)) { // NON
+        final boolean isNot = assembly.isNot();
+        final AssemblyType type = assembly.getType();
+        if (isNot && (type == AssemblyType.ANY)) {
+            return effectedComponents; // not any?
+        }
+
+        final Set<String> assemblyComponents = getComponents(assembly.getComponent());
+        if (assemblyComponents.isEmpty()) {
             return effectedComponents;
         }
 
-        for (final RepositoryComponent component : componentGraph) {
-            if ((componentType == ComponentType.ANY) && (isNot == false)) { // ANY
-                effectedComponents.add(String.valueOf(component.getId()));
-            } else if (((componentType == ComponentType.BASIC) && (isNot == false))
-                    || ((componentType == ComponentType.COMPOSITE) && isNot)) { // BASIC
-                if (component instanceof BasicComponent) {
-                    effectedComponents.add(String.valueOf(component.getId()));
-                }
-            } else if (((componentType == ComponentType.COMPOSITE) && (isNot == false))
-                    || ((componentType == ComponentType.BASIC) && isNot)) { // COMPOSITE
-                if ((component instanceof CompositeComponent) || (component instanceof SubSystem)) {
-                    effectedComponents.add(String.valueOf(component.getId()));
-                }
-            }
+        boolean provided = true;
+        boolean required = true;
+
+        if ((isNot && (type == AssemblyType.PROVIDED))
+                || ((isNot == false) && (type == AssemblyType.REQUIRED))) {
+            provided = false;
+        } else if ((isNot && (type == AssemblyType.REQUIRED))
+                || ((isNot == false) && (type == AssemblyType.PROVIDED))) {
+            required = false;
         }
 
-        return effectedComponents;
-    }
-
-    private Set<String> getComponents(final Role role) {
-        final Set<String> effectedComponents = new HashSet<>();
-
-        for (final RepositoryComponent component : getComponents(role.isNot(), role.getType())) {
-            for (final Entity entity : getRolesEntities(component)) {
-                for (final RoleProperty property : role.getProperties()) {
-                    if (property instanceof Name) {
-                        if (QesHelper.equalsIgnoreCase(entity.getEntityName(),
-                                ((Name) property).isNot(), ((Name) property).getName())) {
-                            effectedComponents.add(component.getId());
-                        }
-
-                    }
-
-                    if (property instanceof Identifier) {
-                        if (QesHelper.equalsIgnoreCase(entity.getId(),
-                                ((Identifier) property).isNot(), ((Identifier) property).getId())) {
-                            effectedComponents.add(component.getId());
+        if (required) {
+            for (final RepositoryComponent component : componentGraph) {
+                for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {
+                    boolean equals = false;
+                    for (final String id : assemblyComponents) {
+                        if (id.equalsIgnoreCase(edge.getId())) {
+                            equals = true;
+                            break;
                         }
                     }
-
-                    if (property instanceof Annotation) {
-                        if (StereotypeAPI.hasStereotypeApplications(property) == false) {
-                            continue;
-                        }
-                        for (final Stereotype stereotype : StereotypeAPI
-                                .getAppliedStereotypes(property)) {
-                            for (final EObject refs : stereotype.eCrossReferences()) {
-                                if ((refs instanceof ConcernModel.Annotation)
-                                        && QesHelper.equalsIgnoreCase(
-                                                ((ConcernModel.Annotation) refs).getName(),
-                                                ((Annotation) property).isNot(),
-                                                ((Annotation) property).getAnnotation())) {
-                                    effectedComponents.add(component.getId());
-                                }
-                            }
-                        }
+                    if (equals) {
+                        effectedComponents.add(component.getId());
                     }
                 }
             }
         }
+        if (provided) {
+            for (final RepositoryComponent component : componentGraph) {
+                for (final String id : assemblyComponents) {
+                    if (id.equalsIgnoreCase(component.getId())) {
+                        for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {
+                            effectedComponents.add(edge.getId());
+                        }
+                        break;
+                    }
+                }
+            }
 
-        return effectedComponents;
-    }
-
-
-    private static Set<Entity> getRolesEntities(final RepositoryComponent component) {
-        final Set<Entity> effectedComponents = new HashSet<>();
-
-        component.getProvidedRoles_InterfaceProvidingEntity().forEach(effectedComponents::add);
-        component.getRequiredRoles_InterfaceRequiringEntity().forEach(effectedComponents::add);
+        }
 
         return effectedComponents;
     }
@@ -362,115 +301,89 @@ public class QesFinder {
         return effectedComponents;
     }
 
-    private static boolean isComponentProvided(final RepositoryComponent component) {
-        if ((component == null)
-                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
-            return false;
-        }
 
-        for (final ProvidedRole role : component.getProvidedRoles_InterfaceProvidingEntity()) {
-            if ((role != null) && (role instanceof OperationProvidedRole)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isComponentRequired(final RepositoryComponent component) {
-        if ((component == null)
-                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
-            return false;
-        }
-
-        for (final RequiredRole role : component.getRequiredRoles_InterfaceRequiringEntity()) {
-            if ((role != null) && (role instanceof OperationRequiredRole)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isInfrastructureProvided(final RepositoryComponent component) {
-        if ((component == null)
-                || (component.getProvidedRoles_InterfaceProvidingEntity() == null)) {
-            return false;
-        }
-
-        for (final ProvidedRole role : component.getProvidedRoles_InterfaceProvidingEntity()) {
-            if ((role != null) && (role instanceof InfrastructureProvidedRole)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isInfrastructureRequired(final RepositoryComponent component) {
-        if ((component == null)
-                || (component.getRequiredRoles_InterfaceRequiringEntity() == null)) {
-            return false;
-        }
-
-        for (final RequiredRole role : component.getRequiredRoles_InterfaceRequiringEntity()) {
-            if ((role != null) && (role instanceof InfrastructureRequiredRole)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private Set<String> getComponents(final Assembly assembly) {
+    private Set<String> getComponents(final ComponentProperty property) {
         final Set<String> effectedComponents = new HashSet<>();
 
-        final boolean isNot = assembly.isNot();
-        final AssemblyType type = assembly.getType();
-        if (isNot && (type == AssemblyType.ANY)) {
-            return effectedComponents; // not any?
-        }
-
-        final Set<String> assemblyComponents = getEffectedComponents(assembly.getComponents());
-        if (assemblyComponents.isEmpty()) {
+        if (property == null) {
             return effectedComponents;
         }
 
-        boolean provided = true;
-        boolean required = true;
-
-        if ((isNot && (type == AssemblyType.PROVIDED))
-                || ((isNot == false) && (type == AssemblyType.REQUIRED))) {
-            provided = false;
-        } else if ((isNot && (type == AssemblyType.REQUIRED))
-                || ((isNot == false) && (type == AssemblyType.PROVIDED))) {
-            required = false;
+        if (property instanceof Name) {
+            return getComponents((Name) property);
         }
 
-        if (required) {
-            for (final RepositoryComponent component : componentGraph) {
-                for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {
-                    boolean equals = false;
-                    for (final String id : assemblyComponents) {
-                        if (id.equalsIgnoreCase(edge.getId())) {
-                            equals = true;
-                            break;
-                        }
-                    }
-                    if (equals) {
-                        effectedComponents.add(component.getId());
-                    }
-                }
-            }
+        if (property instanceof Identifier) {
+            return getComponents((Identifier) property);
         }
-        if (provided) {
-            for (final RepositoryComponent component : componentGraph) {
-                for (final String id : assemblyComponents) {
-                    if (id.equalsIgnoreCase(component.getId())) {
-                        for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {
-                            effectedComponents.add(edge.getId());
-                        }
-                        break;
-                    }
-                }
+
+        if (property instanceof Annotation) {
+            return getComponents((Annotation) property);
+        }
+
+        if (property instanceof Type) {
+            return getComponents((Type) property);
+        }
+
+        if (property instanceof Role) {
+            return getComponents((Role) property);
+        }
+
+        if (property instanceof Assembly) {
+            return getComponents((Assembly) property);
+        }
+
+        if (property instanceof Resource) {
+            return getComponents((Resource) property);
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(final ComponentSpecification componentSpecifications) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        if ((componentSpecifications == null) || (componentSpecifications.getProperties() == null)
+                || componentSpecifications.getProperties().isEmpty()) {
+            return effectedComponents;
+        }
+
+        for (final ComponentProperty property : componentSpecifications.getProperties()) {
+            if (effectedComponents.isEmpty()) {
+                effectedComponents.addAll(getComponents(property));
+            } else {
+                effectedComponents.retainAll(getComponents(property));
             }
 
+            if (effectedComponents.isEmpty()) {
+                break;
+            }
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(final Identifier identifier) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        for (final RepositoryComponent component : componentGraph) {
+            if (QesHelper.equalsIgnoreCase(component.getId(), identifier.isNot(),
+                    identifier.getId())) {
+                effectedComponents.add(component.getId());
+            }
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(final Name name) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        for (final RepositoryComponent component : componentGraph) {
+            if (QesHelper.equalsIgnoreCase(component.getEntityName(), name.isNot(),
+                    name.getAutonym())) {
+                effectedComponents.add(component.getId());
+            }
         }
 
         return effectedComponents;
@@ -483,7 +396,7 @@ public class QesFinder {
             for (final ResourceProperty property : resource.getProperties()) {
                 if (property instanceof Name) {
                     if (QesHelper.equalsIgnoreCase(entity.getEntityName(),
-                            ((Name) property).isNot(), ((Name) property).getName())) {
+                            ((Name) property).isNot(), ((Name) property).getAutonym())) {
                         for (final RepositoryComponent component : serverMap.get(entity)) {
                             effectedComponents.add(component.getId());
                         }
@@ -500,6 +413,94 @@ public class QesFinder {
         }
 
         return effectedComponents;
+    }
+
+    private Set<String> getComponents(final Role role) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        for (final RepositoryComponent component : getComponents(role.isNot(), role.getType())) {
+            for (final Entity entity : getRolesEntities(component)) {
+                for (final RoleProperty property : role.getProperties()) {
+                    if (property instanceof Name) {
+                        if (QesHelper.equalsIgnoreCase(entity.getEntityName(),
+                                ((Name) property).isNot(), ((Name) property).getAutonym())) {
+                            effectedComponents.add(component.getId());
+                        }
+
+                    }
+
+                    if (property instanceof Identifier) {
+                        if (QesHelper.equalsIgnoreCase(entity.getId(),
+                                ((Identifier) property).isNot(), ((Identifier) property).getId())) {
+                            effectedComponents.add(component.getId());
+                        }
+                    }
+
+                    if (property instanceof Annotation) {
+                        if (StereotypeAPI.hasStereotypeApplications(property) == false) {
+                            continue;
+                        }
+                        for (final Stereotype stereotype : StereotypeAPI
+                                .getAppliedStereotypes(property)) {
+                            for (final EObject refs : stereotype.eCrossReferences()) {
+                                if ((refs instanceof ConcernModel.Annotation)
+                                        && QesHelper.equalsIgnoreCase(
+                                                ((ConcernModel.Annotation) refs).getName(),
+                                                ((Annotation) property).isNot(),
+                                                ((Annotation) property).getAnnotation())) {
+                                    effectedComponents.add(component.getId());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return effectedComponents;
+    }
+
+    private Set<String> getComponents(final Type type) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        final boolean isNot = type.isNot();
+        final ComponentType componentType = type.getType();
+        if ((componentType == null) || ((componentType == ComponentType.ANY) && isNot)) { // NON
+            return effectedComponents;
+        }
+
+        for (final RepositoryComponent component : componentGraph) {
+            if ((componentType == ComponentType.ANY) && (isNot == false)) { // ANY
+                effectedComponents.add(String.valueOf(component.getId()));
+            } else if (((componentType == ComponentType.BASIC) && (isNot == false))
+                    || ((componentType == ComponentType.COMPOSITE) && isNot)) { // BASIC
+                if (component instanceof BasicComponent) {
+                    effectedComponents.add(String.valueOf(component.getId()));
+                }
+            } else if (((componentType == ComponentType.COMPOSITE) && (isNot == false))
+                    || ((componentType == ComponentType.BASIC) && isNot)) { // COMPOSITE
+                if ((component instanceof CompositeComponent) || (component instanceof SubSystem)) {
+                    effectedComponents.add(String.valueOf(component.getId()));
+                }
+            }
+        }
+
+        return effectedComponents;
+    }
+
+    public Set<String> getEffectedComponents(
+            final List<ComponentSpecification> componentsSpecifications) {
+        final Set<String> effectedComponents = new HashSet<>();
+
+        if ((componentsSpecifications == null) || componentsSpecifications.isEmpty()) {
+            return Collections.unmodifiableSet(effectedComponents);
+        }
+
+        for (final ComponentSpecification component : componentsSpecifications) {
+            effectedComponents.addAll(getComponents(component));
+        }
+
+        return Collections.unmodifiableSet(effectedComponents);
     }
 
 }

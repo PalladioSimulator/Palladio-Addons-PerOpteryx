@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
 import org.palladiosimulator.qes.qualityEffectSpecification.Entry;
 import org.palladiosimulator.qes.qualityEffectSpecification.NQA;
-import org.palladiosimulator.qes.qualityEffectSpecification.QES;
+import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.Rule;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
@@ -46,66 +46,28 @@ public class QesFactory extends NqrFactory {
     }
 
 
-    private static QesParser loadParser(final String qualityEffectSpecificationUri) throws CoreException {
+    private static QesParser loadParser(final String qualityEffectSpecificationUri)
+            throws CoreException {
         try {
             return new QesParser(qualityEffectSpecificationUri);
         } catch (final Exception e) {
             throw new CoreException(new Status(ERROR, "de.uka.ipd.sdq.dsexplore.analysis.qes", 0,
-                    "Qes Model " + String.valueOf(qualityEffectSpecificationUri) + " could not be loaded.", e));
+                    "Qes Model " + String.valueOf(qualityEffectSpecificationUri)
+                            + " could not be loaded.",
+                    e));
         }
     }
 
-    private final QesParser parser;
     private QesFinder finder;
+    private final QesParser parser;
 
-    public QesFactory(final String reasoningComponentUri, final String reductionUri, final String dimensionTypeSetUri,
-            final String qualityEffectSpecificationUri) throws CoreException {
+    public QesFactory(final String reasoningComponentUri, final String reductionUri,
+            final String dimensionTypeSetUri, final String qualityEffectSpecificationUri)
+            throws CoreException {
         super(reasoningComponentUri, reductionUri, dimensionTypeSetUri);
 
         parser = loadParser(qualityEffectSpecificationUri);
         finder = null;
-    }
-
-    public void setInstance(final PCMInstance instance) {
-        finder = new QesFinder(instance);
-        System.out.println(instance); // XXX
-    }
-
-    @Override
-    public List<NqrProxy> getNqrList(final String componentId) {
-        if ((finder == null) || parser.getNqaSpecifications().isEmpty()) {
-            return super.getNqrList(componentId);
-        }
-
-        final List<NqrProxy> originalNqrs = super.getNqrList(componentId);
-        final NqrReductionProxy reduction = createNqrReductionProxy();
-        for (final QES specification : parser.getNqaSpecifications()) {
-            if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
-                continue;
-            }
-            for (final TransformationSpecification transformation : specification.getTransformations()) {
-                if ((transformation != null) && (transformation instanceof NQA)) {
-                    debug(getComponentName(componentId), transformation); // TODO
-                    reduction.add(createNqrProxy((NQA) transformation, originalNqrs));
-                }
-            }
-        }
-
-        final List<NqrProxy> nqrs = new ArrayList<>(reduction.get());
-        for (final NqrProxy original : originalNqrs) {
-            boolean contains = false;
-            for (final NqrProxy transformation : nqrs) {
-                if (transformation.getDimensionId().equals(original.getDimensionId())) {
-                    contains = true;
-                    break;
-                }
-            }
-            if (contains == false) {
-                nqrs.add(original);
-            }
-        }
-
-        return Collections.unmodifiableList(nqrs);
     }
 
     private NqrProxy createNqrProxy(final NQA nqa, final List<NqrProxy> originalNqrs) {
@@ -137,7 +99,8 @@ public class QesFactory extends NqrFactory {
             if (nqrElement == null) {
                 return null;
             }
-            return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(nqrDimension.getId()));
+            return new NqrProxy(nqrDimension, nqrElement,
+                    dimensionsIdNameMap.get(nqrDimension.getId()));
         }
 
         Element originalElement = null;
@@ -176,7 +139,101 @@ public class QesFactory extends NqrFactory {
             return null;
         }
 
-        return new NqrProxy(nqrDimension, nqrElement, dimensionsIdNameMap.get(nqrDimension.getId()));
+        return new NqrProxy(nqrDimension, nqrElement,
+                dimensionsIdNameMap.get(nqrDimension.getId()));
+    }
+
+    private ReasoningProxy createReasoningProxy(final Reasoning reasoning) {
+        // Dimension S
+        final Dimension dimension = getDimension(reasoning.getQuality());
+        if (dimension == null) {
+            return null;
+        }
+
+        if ((reasoning.getRules() == null) || reasoning.getRules().isEmpty()) {
+            return null;
+        }
+
+        final List<TransformationProxy> transformations =
+                new ArrayList<>(reasoning.getRules().size());
+        for (final Rule rule : reasoning.getRules()) {
+            final TransformationProxy transformationRule = createTransformationProxy(rule);
+            if (transformationRule != null) {
+                transformations.add(transformationRule);
+            }
+        }
+
+        if (transformations.isEmpty()) {
+            return null;
+        }
+
+
+        return new ReasoningProxy(dimension, Collections.unmodifiableList(transformations), this);
+    }
+
+    private TransformationProxy createTransformationProxy(final Rule rule) {
+        if ((rule == null) || (rule.getQualities() == null) || rule.getQualities().isEmpty()
+                || (rule.getEntries() == null) || rule.getEntries().isEmpty()) {
+            return null;
+        }
+
+        final List<Dimension> input = new ArrayList<>();
+        for (final String quality : rule.getQualities()) {
+            final Dimension dimension = getDimension(quality);
+            if ((dimension == null) || input.contains(dimension)) {
+                return null;
+            }
+            input.add(dimension);
+        }
+
+        final int size = input.size();
+        if (size <= 0) {
+            return null;
+        }
+
+        final Map<List<String>, String> map = new HashMap<>();
+        for (final Entry entry : rule.getEntries()) {
+            if ((entry == null) || (entry.getValue() == null) || (entry.getKey() == null)
+                    || entry.getKey().isEmpty()) {
+                continue;
+            }
+
+            final Element element = getElement(entry.getValue());
+            if (element == null) {
+                continue;
+            }
+
+            final List<String> keys = new ArrayList<>();
+            for (final String key : entry.getKey()) {
+                final Element elementKey = getElement(key);
+                if (elementKey == null) {
+                    continue;
+                }
+                keys.add(elementKey.getId());
+            }
+
+            if (keys.size() == size) {
+                map.put(Collections.unmodifiableList(keys), element.getId());
+            }
+
+        }
+
+
+        if (map.isEmpty()) {
+            return null;
+        }
+
+        return new TransformationProxy(Collections.unmodifiableList(input),
+                Collections.unmodifiableMap(map), dimensionsIdNameMap);
+    }
+
+
+    private Dimension getDimension(final String quality) {
+        Dimension nqrDimension = getDimensionByName(quality);
+        if (nqrDimension == null) {
+            nqrDimension = getDimensionById(quality);
+        }
+        return nqrDimension;
     }
 
 
@@ -195,13 +252,43 @@ public class QesFactory extends NqrFactory {
         return nqrElement;
     }
 
-
-    private Dimension getDimension(final String quality) {
-        Dimension nqrDimension = getDimensionByName(quality);
-        if (nqrDimension == null) {
-            nqrDimension = getDimensionById(quality);
+    @Override
+    public List<NqrProxy> getNqrList(final String componentId) {
+        if ((finder == null) || parser.getNqaSpecifications().isEmpty()) {
+            return super.getNqrList(componentId);
         }
-        return nqrDimension;
+
+        final List<NqrProxy> originalNqrs = super.getNqrList(componentId);
+        final NqrReductionProxy reduction = createNqrReductionProxy();
+        for (final QualityEffectSpecification specification : parser.getNqaSpecifications()) {
+            if (finder.getEffectedComponents(specification.getComponents())
+                    .contains(componentId) == false) {
+                continue;
+            }
+            for (final TransformationSpecification transformation : specification
+                    .getTransformations()) {
+                if ((transformation != null) && (transformation instanceof NQA)) {
+                    debug(getComponentName(componentId), transformation); // TODO
+                    reduction.add(createNqrProxy((NQA) transformation, originalNqrs));
+                }
+            }
+        }
+
+        final List<NqrProxy> nqrs = new ArrayList<>(reduction.get());
+        for (final NqrProxy original : originalNqrs) {
+            boolean contains = false;
+            for (final NqrProxy transformation : nqrs) {
+                if (transformation.getDimensionId().equals(original.getDimensionId())) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (contains == false) {
+                nqrs.add(original);
+            }
+        }
+
+        return Collections.unmodifiableList(nqrs);
     }
 
     @Override
@@ -212,15 +299,18 @@ public class QesFactory extends NqrFactory {
 
         final List<ReasoningProxy> reasonings = new ArrayList<>();
 
-        for (final QES specification : parser.getReasoningSpecifications()) {
-            if (finder.getEffectedComponents(specification.getComponents()).contains(componentId) == false) {
+        for (final QualityEffectSpecification specification : parser.getReasoningSpecifications()) {
+            if (finder.getEffectedComponents(specification.getComponents())
+                    .contains(componentId) == false) {
                 continue;
             }
-            for (final TransformationSpecification transformation : specification.getTransformations()) {
+            for (final TransformationSpecification transformation : specification
+                    .getTransformations()) {
                 if ((transformation == null) || ((transformation instanceof Reasoning) == false)) {
                     continue;
                 }
-                final ReasoningProxy newReasoning = createReasoningProxy((Reasoning) transformation);
+                final ReasoningProxy newReasoning =
+                        createReasoningProxy((Reasoning) transformation);
                 if (newReasoning == null) {
                     continue;
                 }
@@ -254,94 +344,19 @@ public class QesFactory extends NqrFactory {
         return Collections.unmodifiableList(reasonings);
     }
 
-    private ReasoningProxy createReasoningProxy(final Reasoning reasoning) {
-        // Dimension S
-        final Dimension dimension = getDimension(reasoning.getQuality());
-        if (dimension == null) {
-            return null;
-        }
 
-        if ((reasoning.getRules() == null) || reasoning.getRules().isEmpty()) {
-            return null;
-        }
-
-        final List<TransformationProxy> transformations = new ArrayList<>(reasoning.getRules().size());
-        for (final Rule rule : reasoning.getRules()) {
-            final TransformationProxy transformationRule = createTransformationProxy(rule);
-            if (transformationRule != null) {
-                transformations.add(transformationRule);
-            }
-        }
-
-        if (transformations.isEmpty()) {
-            return null;
-        }
-
-
-        return new ReasoningProxy(dimension, Collections.unmodifiableList(transformations), this);
-    }
-
-
-    private TransformationProxy createTransformationProxy(final Rule rule) {
-        if ((rule == null) || (rule.getQualities() == null) || rule.getQualities().isEmpty()
-                || (rule.getEntries() == null) || rule.getEntries().isEmpty()) {
-            return null;
-        }
-
-        final List<Dimension> input = new ArrayList<>();
-        for (final String quality : rule.getQualities()) {
-            final Dimension dimension = getDimension(quality);
-            if ((dimension == null) || input.contains(dimension)) {
-                return null;
-            }
-            input.add(dimension);
-        }
-
-        final int size = input.size();
-        if (size <= 0) {
-            return null;
-        }
-
-        final Map<List<String>, String> map = new HashMap<>();
-        for (final Entry entry : rule.getEntries()) {
-            if ((entry == null) || (entry.getValue() == null) || (entry.getKey() == null) || entry.getKey().isEmpty()) {
-                continue;
-            }
-
-            final Element element = getElement(entry.getValue());
-            if (element == null) {
-                continue;
-            }
-
-            final List<String> keys = new ArrayList<>();
-            for (final String key : entry.getKey()) {
-                final Element elementKey = getElement(key);
-                if (elementKey == null) {
-                    continue;
-                }
-                keys.add(elementKey.getId());
-            }
-
-            if (keys.size() == size) {
-                map.put(Collections.unmodifiableList(keys), element.getId());
-            }
-
-        }
-
-
-        if (map.isEmpty()) {
-            return null;
-        }
-
-        return new TransformationProxy(Collections.unmodifiableList(input), Collections.unmodifiableMap(map),
-                dimensionsIdNameMap);
+    @Override
+    public void setInstance(final PCMInstance instance) {
+        finder = new QesFinder(instance);
+        System.out.println(instance); // XXX
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(super.toString());
-        builder.append("Model (").append(String.valueOf(parser)).append(") ]").append(System.lineSeparator());
+        builder.append("Model (").append(String.valueOf(parser)).append(") ]")
+                .append(System.lineSeparator());
         // if (model != null && model.getElements() != null && !model.getElements().isEmpty()) {
         // for (Object element : model.getElements()) {
         // builder.append("\t").append(String.valueOf(element)).append(System.lineSeparator());

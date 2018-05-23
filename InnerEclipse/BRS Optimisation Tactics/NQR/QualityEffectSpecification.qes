@@ -1,2 +1,4 @@
-For{Component(Name("Name"))}Do{"Cost"(=100)}
-For{Component(Name("Name"))}Do{NQA("Recoverability" = "++")}
+For{Component(Name("Name"))}Do{Cost(=100)}
+For{Component(Name(not "Name"))}Do{NQA("Recoverability" = "++")}
+For{Component(Name("Name") and Type(Basic))}Do{NQA("Recoverability" - "+")}
+For{Component(Assembly(not Required with Component(Resource(Id("Id")))))}Do{Reasoning("Quality"=Rule("Qualities"=Entry("Key"="Value"), Entry("Key", "Key" ="Value")))}

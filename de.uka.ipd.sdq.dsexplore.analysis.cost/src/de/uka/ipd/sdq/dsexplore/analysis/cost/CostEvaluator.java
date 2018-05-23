@@ -2,10 +2,8 @@ package de.uka.ipd.sdq.dsexplore.analysis.cost;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -24,16 +22,12 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
-import org.palladiosimulator.qes.qualityEffectSpecification.QES;
 import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.QesFinder;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.QesHelper;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -209,10 +203,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
     private DSEWorkflowConfiguration configuration;
     private CostRepository costModel;
-    private QesFinder finder;
+    private QesCostExtension qesModel;
     private final Map<Long, CostAnalysisResult> previousCostResults;
 
-    private Set<QES> qesCostSpecifications;
 
 
     public CostEvaluator() {
@@ -371,24 +364,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
     @Override
     public void initialise(final DSEWorkflowConfiguration configuration) throws CoreException {
         costModel = CostEvaluator.getCostModel(configuration);
+        qesModel = new QesCostExtension(configuration);
         initialiseCriteria(configuration);
-        initialiseQesModel(configuration);
         this.configuration = configuration;
-
-    }
-
-    private void initialiseQesModel(final DSEWorkflowConfiguration configuration) {
-        qesCostSpecifications = new HashSet<QES>();
-        try {
-            final QesParser parser = new QesParser(configuration.getRawConfiguration()
-                    .getAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, ""));
-            if ((parser.isEmpty() == false) && parser.isValid()) {
-                qesCostSpecifications.addAll(parser.getSpecifications("InitialCost"));
-                qesCostSpecifications.addAll(parser.getSpecifications("OperatingCost"));
-            }
-        } catch (final Exception e) {
-            LOGGER.warn("No Quality Effect Specification File", e);
-        }
     }
 
     private void reloadCostModelIfNecessary() {
@@ -425,11 +403,14 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
         final List<Cost> allCosts = costModel.getCost();
 
         createCostsForReplicas(allCosts, pcmInstance);
-        updateQesModel(pcmInstance);
+
+        if (qesModel != null) {
+            qesModel.updateModel(pcmInstance);
+        }
 
         for (final Cost cost : allCosts) {
-            if (cost instanceof ComponentCost) {
-                QesHelper.evaluateQesCostModel((ComponentCost) cost, finder, qesCostSpecifications);
+            if (cost instanceof ComponentCost && qesModel != null) {
+                qesModel.evaluateQesModel((ComponentCost) cost);
             } else if (cost instanceof ComponentCostPerInstance) {
                 // fix links between model elements (maybe this is not needed
                 // anymore...)
@@ -487,14 +468,6 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
             }
         }
 
-    }
-
-
-    private void updateQesModel(final PCMInstance pcmInstance) {
-        if ((qesCostSpecifications == null) || qesCostSpecifications.isEmpty()) {
-            return;
-        }
-        finder = new QesFinder(pcmInstance);
     }
 
 }
