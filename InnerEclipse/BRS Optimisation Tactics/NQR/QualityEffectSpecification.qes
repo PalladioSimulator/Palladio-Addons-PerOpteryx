@@ -1,0 +1,2 @@
+For{Component(Name("Name"))}Do{"Cost"(=100)}
+For{Component(Name("Name"))}Do{NQA("Recoverability" = "++")}

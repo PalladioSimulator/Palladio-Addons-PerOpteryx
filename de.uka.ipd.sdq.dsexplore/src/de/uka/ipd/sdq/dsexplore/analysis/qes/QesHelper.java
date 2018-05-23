@@ -31,9 +31,22 @@ public final class QesHelper {
         }
     }
 
-    public static URI createURI(final String string) {
+    public static URI createUri(final String string) {
         final URI loadFrom = URI.createURI(string);
         return loadFrom.isPlatform() ? loadFrom : URI.createFileURI(string);
+    }
+
+    public static boolean isValidQesFileUri(final String uri) {
+        if (uri == null || (uri.endsWith("qes") == false)) {
+            return false;
+        }
+
+        try {
+            return new QesParser(createUri(uri)).isValid();
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public static void evaluateQesCostModel(final ComponentCost componentCost,

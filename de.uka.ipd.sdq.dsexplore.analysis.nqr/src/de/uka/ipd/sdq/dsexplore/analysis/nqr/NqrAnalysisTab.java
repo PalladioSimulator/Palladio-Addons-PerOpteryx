@@ -16,7 +16,6 @@ import org.palladiosimulator.analyzer.workflow.runconfig.FileNamesInputTab;
 import org.palladiosimulator.qualitymodel.QualityModelPackage;
 import org.palladiosimulator.qualitymodel.ReasoningSystem;
 import org.palladiosimulator.qualitymodel.Reduction;
-import de.uka.ipd.sdq.dsexplore.analysis.qes.ParseException;
 import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
@@ -27,6 +26,7 @@ import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
 
+    private static final String DEFAULT_FILE_URI = "";
     private Text dimension;
     private Text reduction;
     private Text system;
@@ -55,23 +55,27 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         // Add Dimension Type Set input section
         dimension = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener, "Dimension Type Set File",
-                DSEConstantsContainer.QML_CONTRACT_EXTENSION, dimension, getShell(), "");
+                DSEConstantsContainer.QML_CONTRACT_EXTENSION, dimension, getShell(),
+                DEFAULT_FILE_URI);
 
         // Add ReductionProxy input section
         reduction = new Text(container, SWT.SINGLE | SWT.BORDER);
-        TabHelper.createFileInputSection(container, modifyListener, "ReductionProxy NqrFactory File",
-                DSEConstantsContainer.REASONING_MODEL_EXTENSION, reduction, getShell(), "");
+        TabHelper.createFileInputSection(container, modifyListener,
+                "ReductionProxy NqrFactory File", DSEConstantsContainer.REASONING_MODEL_EXTENSION,
+                reduction, getShell(), DEFAULT_FILE_URI);
 
         // Add System input section
         system = new Text(container, SWT.SINGLE | SWT.BORDER);
         TabHelper.createFileInputSection(container, modifyListener, "Reasoning System File",
-                DSEConstantsContainer.REASONING_MODEL_EXTENSION, system, getShell(), "");
+                DSEConstantsContainer.REASONING_MODEL_EXTENSION, system, getShell(),
+                DEFAULT_FILE_URI);
 
         // Add Architecture Effect Specification input section
         qualityEffectSpecification = new Text(container, SWT.SINGLE | SWT.BORDER);
-        TabHelper.createFileInputSection(container, modifyListener, "Quality Effect Specification File",
-                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION, qualityEffectSpecification, getShell(),
-                "");
+        TabHelper.createFileInputSection(container, modifyListener,
+                "Quality Effect Specification File",
+                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION,
+                qualityEffectSpecification, getShell(), DEFAULT_FILE_URI);
     }
 
     @Override
@@ -92,7 +96,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         setText(configuration, dimension, DSEConstantsContainer.QML_CONTRACT_FILE);
         setText(configuration, reduction, DSEConstantsContainer.REASONING_REDUCTION_FILE);
         setText(configuration, system, DSEConstantsContainer.REASONING_SYSTEM_FILE);
-        setText(configuration, qualityEffectSpecification, DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE);
+        setText(configuration, qualityEffectSpecification,
+                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE);
     }
 
     @Override
@@ -163,19 +168,25 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
     }
 
     private boolean isValidQualityEffectSpecification(final String uri) {
-        final String extension = DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION[0].substring(1);
+        if (DEFAULT_FILE_URI.equals(uri)) {
+            return error(null);
+        }
+
+        final String extension =
+                DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_EXTENSION[0].substring(1);
+
         if ((uri == null) || !uri.endsWith(extension)) {
             return error("Quality Effect Specification File is missing!");
         }
 
-        URI loadFrom = URI.createURI(uri);
-        if (!loadFrom.isPlatform()) {
-            loadFrom = URI.createFileURI(uri);
-        }
-
         try {
-            return error(new QesParser(loadFrom).isValid() ? null : "Valid Quality Effect Specification is missing!");
-        } catch (ParseException e) {
+            URI loadFrom = URI.createURI(uri);
+            if (!loadFrom.isPlatform()) {
+                loadFrom = URI.createFileURI(uri);
+            }
+            return error(new QesParser(loadFrom).isValid() ? null
+                    : "Valid Quality Effect Specification is missing!");
+        } catch (Exception e) {
             return error(e.getMessage());
         }
 
@@ -189,7 +200,8 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
         }
 
         configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, dimension.getText());
-        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, reduction.getText());
+        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE,
+                reduction.getText());
         configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, system.getText());
         configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE,
                 qualityEffectSpecification.getText());
@@ -202,20 +214,22 @@ public class NqrAnalysisTab extends FileNamesInputTab implements ILaunchConfigur
             return;
         }
 
-        setText(dimension, "");
-        configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, "");
-        setText(reduction, "");
-        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE, "");
-        setText(system, "");
-        configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, "");
-        setText(qualityEffectSpecification, "");
-        configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE, "");
+        setText(dimension, DEFAULT_FILE_URI);
+        configuration.setAttribute(DSEConstantsContainer.QML_CONTRACT_FILE, DEFAULT_FILE_URI);
+        setText(reduction, DEFAULT_FILE_URI);
+        configuration.setAttribute(DSEConstantsContainer.REASONING_REDUCTION_FILE,
+                DEFAULT_FILE_URI);
+        setText(system, DEFAULT_FILE_URI);
+        configuration.setAttribute(DSEConstantsContainer.REASONING_SYSTEM_FILE, DEFAULT_FILE_URI);
+        setText(qualityEffectSpecification, DEFAULT_FILE_URI);
+        configuration.setAttribute(DSEConstantsContainer.QUALITY_EFFECT_SPECIFICATION_FILE,
+                DEFAULT_FILE_URI);
     }
 
     private boolean setText(final ILaunchConfiguration configuration, final Text textWidget,
             final String attributeName) {
         try {
-            textWidget.setText(configuration.getAttribute(attributeName, ""));
+            textWidget.setText(configuration.getAttribute(attributeName, DEFAULT_FILE_URI));
             return true;
         } catch (final CoreException e) {
             LaunchConfigPlugin.errorLogger(getName(), attributeName, e.getMessage());

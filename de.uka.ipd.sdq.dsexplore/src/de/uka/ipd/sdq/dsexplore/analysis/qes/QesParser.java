@@ -25,7 +25,7 @@ public class QesParser {
     private final Map<String, Set<QES>> values;
 
     public QesParser(String string) throws ParseException {
-        this(QesHelper.createURI(string));
+        this(QesHelper.createUri(string));
     }
 
     public QesParser(URI uri) throws ParseException {
