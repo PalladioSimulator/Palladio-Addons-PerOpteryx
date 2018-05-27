@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QualityModel:ReasoningRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0">
+  <reasonings id="_wc28kGG5EeiEUbMgG_u56Q" entityName="SensorCoveragePositiveIntrusionDetectionSystem">
+    <transformations href="TransformationRepository.qualitymodel#_f6pj8GG4EeiEUbMgG_u56Q"/>
+    <output href="../QmlDimensions/IntrusionDetectionSystem.qmlcontracttype#_ndtXoGG2EeiEUbMgG_u56Q"/>
+  </reasonings>
+  <reasonings id="_Si_UYGG6EeiEUbMgG_u56Q" entityName="IntrusionDetectionSystemPositiveSecurity">
+    <transformations href="TransformationRepository.qualitymodel#_aje1gGG5EeiEUbMgG_u56Q"/>
+    <output href="../QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+  </reasonings>
+</QualityModel:ReasoningRepository>
