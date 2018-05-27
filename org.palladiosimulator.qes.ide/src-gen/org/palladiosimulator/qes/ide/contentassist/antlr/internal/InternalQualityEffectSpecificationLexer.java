@@ -911,11 +911,11 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4511:13: ( RULE_INT ( '.' RULE_INT )? )
-            // InternalQualityEffectSpecification.g:4511:15: RULE_INT ( '.' RULE_INT )?
+            // InternalQualityEffectSpecification.g:4565:13: ( RULE_INT ( '.' RULE_INT )? )
+            // InternalQualityEffectSpecification.g:4565:15: RULE_INT ( '.' RULE_INT )?
             {
             mRULE_INT(); 
-            // InternalQualityEffectSpecification.g:4511:24: ( '.' RULE_INT )?
+            // InternalQualityEffectSpecification.g:4565:24: ( '.' RULE_INT )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -924,7 +924,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:4511:25: '.' RULE_INT
+                    // InternalQualityEffectSpecification.g:4565:25: '.' RULE_INT
                     {
                     match('.'); 
                     mRULE_INT(); 
@@ -950,10 +950,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4513:9: ( ( '\\r' )? '\\n' )
-            // InternalQualityEffectSpecification.g:4513:11: ( '\\r' )? '\\n'
+            // InternalQualityEffectSpecification.g:4567:9: ( ( '\\r' )? '\\n' )
+            // InternalQualityEffectSpecification.g:4567:11: ( '\\r' )? '\\n'
             {
-            // InternalQualityEffectSpecification.g:4513:11: ( '\\r' )?
+            // InternalQualityEffectSpecification.g:4567:11: ( '\\r' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -962,7 +962,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:4513:11: '\\r'
+                    // InternalQualityEffectSpecification.g:4567:11: '\\r'
                     {
                     match('\r'); 
 
@@ -988,10 +988,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4515:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalQualityEffectSpecification.g:4515:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalQualityEffectSpecification.g:4569:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalQualityEffectSpecification.g:4569:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalQualityEffectSpecification.g:4515:11: ( '^' )?
+            // InternalQualityEffectSpecification.g:4569:11: ( '^' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1000,7 +1000,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:4515:11: '^'
+                    // InternalQualityEffectSpecification.g:4569:11: '^'
                     {
                     match('^'); 
 
@@ -1018,7 +1018,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalQualityEffectSpecification.g:4515:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalQualityEffectSpecification.g:4569:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -1065,10 +1065,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
     // $ANTLR start "RULE_INT"
     public final void mRULE_INT() throws RecognitionException {
         try {
-            // InternalQualityEffectSpecification.g:4517:19: ( ( '0' .. '9' )+ )
-            // InternalQualityEffectSpecification.g:4517:21: ( '0' .. '9' )+
+            // InternalQualityEffectSpecification.g:4571:19: ( ( '0' .. '9' )+ )
+            // InternalQualityEffectSpecification.g:4571:21: ( '0' .. '9' )+
             {
-            // InternalQualityEffectSpecification.g:4517:21: ( '0' .. '9' )+
+            // InternalQualityEffectSpecification.g:4571:21: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1082,7 +1082,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:4517:22: '0' .. '9'
+            	    // InternalQualityEffectSpecification.g:4571:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1112,10 +1112,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4519:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalQualityEffectSpecification.g:4519:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalQualityEffectSpecification.g:4573:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalQualityEffectSpecification.g:4573:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalQualityEffectSpecification.g:4519:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalQualityEffectSpecification.g:4573:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1133,10 +1133,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:4519:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalQualityEffectSpecification.g:4573:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalQualityEffectSpecification.g:4519:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalQualityEffectSpecification.g:4573:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -1152,7 +1152,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // InternalQualityEffectSpecification.g:4519:21: '\\\\' .
+                    	    // InternalQualityEffectSpecification.g:4573:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1160,7 +1160,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalQualityEffectSpecification.g:4519:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalQualityEffectSpecification.g:4573:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1185,10 +1185,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:4519:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalQualityEffectSpecification.g:4573:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalQualityEffectSpecification.g:4519:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalQualityEffectSpecification.g:4573:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -1204,7 +1204,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // InternalQualityEffectSpecification.g:4519:54: '\\\\' .
+                    	    // InternalQualityEffectSpecification.g:4573:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1212,7 +1212,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalQualityEffectSpecification.g:4519:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalQualityEffectSpecification.g:4573:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1255,12 +1255,12 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4521:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalQualityEffectSpecification.g:4521:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalQualityEffectSpecification.g:4575:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalQualityEffectSpecification.g:4575:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalQualityEffectSpecification.g:4521:24: ( options {greedy=false; } : . )*
+            // InternalQualityEffectSpecification.g:4575:24: ( options {greedy=false; } : . )*
             loop9:
             do {
                 int alt9=2;
@@ -1285,7 +1285,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:4521:52: .
+            	    // InternalQualityEffectSpecification.g:4575:52: .
             	    {
             	    matchAny(); 
 
@@ -1315,12 +1315,12 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4523:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalQualityEffectSpecification.g:4523:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalQualityEffectSpecification.g:4577:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalQualityEffectSpecification.g:4577:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalQualityEffectSpecification.g:4523:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalQualityEffectSpecification.g:4577:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop10:
             do {
                 int alt10=2;
@@ -1333,7 +1333,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:4523:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalQualityEffectSpecification.g:4577:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1353,7 +1353,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalQualityEffectSpecification.g:4523:40: ( ( '\\r' )? '\\n' )?
+            // InternalQualityEffectSpecification.g:4577:40: ( ( '\\r' )? '\\n' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1362,9 +1362,9 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:4523:41: ( '\\r' )? '\\n'
+                    // InternalQualityEffectSpecification.g:4577:41: ( '\\r' )? '\\n'
                     {
-                    // InternalQualityEffectSpecification.g:4523:41: ( '\\r' )?
+                    // InternalQualityEffectSpecification.g:4577:41: ( '\\r' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1373,7 +1373,7 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // InternalQualityEffectSpecification.g:4523:41: '\\r'
+                            // InternalQualityEffectSpecification.g:4577:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1405,10 +1405,10 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4525:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalQualityEffectSpecification.g:4525:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalQualityEffectSpecification.g:4579:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalQualityEffectSpecification.g:4579:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalQualityEffectSpecification.g:4525:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalQualityEffectSpecification.g:4579:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt13=0;
             loop13:
             do {
@@ -1462,8 +1462,8 @@ public class InternalQualityEffectSpecificationLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalQualityEffectSpecification.g:4527:16: ( . )
-            // InternalQualityEffectSpecification.g:4527:18: .
+            // InternalQualityEffectSpecification.g:4581:16: ( . )
+            // InternalQualityEffectSpecification.g:4581:18: .
             {
             matchAny(); 
 

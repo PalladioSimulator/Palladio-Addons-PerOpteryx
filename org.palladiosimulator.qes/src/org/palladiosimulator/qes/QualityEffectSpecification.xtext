@@ -31,7 +31,7 @@ enum ComponentType:
     ANY='AnyComponentType' | BASIC='Basic' | COMPOSITE='Composite';
 
 Role:
-    'Role' '(' not?='not'? type=RoleType 'with' properties+=RoleProperty ('and' properties+=RoleProperty)* ')';
+    'Role' '(' not?='not'? type=RoleType ('with' properties+=RoleProperty ('and' properties+=RoleProperty)*)? ')';
 
 enum RoleType:
     ANY='AnyRoleType' | COMPONENT_REQUIRED_PROVIDED='ComponentRequiredProvided' |
@@ -43,7 +43,7 @@ RoleProperty:
     Name | Identifier | Annotation;
 
 Assembly:
-    'Assembly' '(' not?='not'? type=AssemblyType 'with' component=ComponentSpecification ')';
+    'Assembly' '(' not?='not'? type=AssemblyType ('with' component=ComponentSpecification)? ')';
 
 enum AssemblyType:
     ANY='AnyAssembly' | REQUIRED='Required' | PROVIDED='Provided';

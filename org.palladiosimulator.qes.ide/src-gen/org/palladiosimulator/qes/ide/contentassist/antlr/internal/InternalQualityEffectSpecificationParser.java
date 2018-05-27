@@ -7001,7 +7001,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             // InternalQualityEffectSpecification.g:2229:1: ( rule__Role__Group__4__Impl rule__Role__Group__5 )
             // InternalQualityEffectSpecification.g:2230:2: rule__Role__Group__4__Impl rule__Role__Group__5
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_19);
             rule__Role__Group__4__Impl();
 
             state._fsp--;
@@ -7030,21 +7030,42 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Role__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:2237:1: rule__Role__Group__4__Impl : ( 'with' ) ;
+    // InternalQualityEffectSpecification.g:2237:1: rule__Role__Group__4__Impl : ( ( rule__Role__Group_4__0 )? ) ;
     public final void rule__Role__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2241:1: ( ( 'with' ) )
-            // InternalQualityEffectSpecification.g:2242:1: ( 'with' )
+            // InternalQualityEffectSpecification.g:2241:1: ( ( ( rule__Role__Group_4__0 )? ) )
+            // InternalQualityEffectSpecification.g:2242:1: ( ( rule__Role__Group_4__0 )? )
             {
-            // InternalQualityEffectSpecification.g:2242:1: ( 'with' )
-            // InternalQualityEffectSpecification.g:2243:2: 'with'
+            // InternalQualityEffectSpecification.g:2242:1: ( ( rule__Role__Group_4__0 )? )
+            // InternalQualityEffectSpecification.g:2243:2: ( rule__Role__Group_4__0 )?
             {
-             before(grammarAccess.getRoleAccess().getWithKeyword_4()); 
-            match(input,44,FOLLOW_2); 
-             after(grammarAccess.getRoleAccess().getWithKeyword_4()); 
+             before(grammarAccess.getRoleAccess().getGroup_4()); 
+            // InternalQualityEffectSpecification.g:2244:2: ( rule__Role__Group_4__0 )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
+
+            if ( (LA20_0==44) ) {
+                alt20=1;
+            }
+            switch (alt20) {
+                case 1 :
+                    // InternalQualityEffectSpecification.g:2244:3: rule__Role__Group_4__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Role__Group_4__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getRoleAccess().getGroup_4()); 
 
             }
 
@@ -7067,22 +7088,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Role__Group__5"
-    // InternalQualityEffectSpecification.g:2252:1: rule__Role__Group__5 : rule__Role__Group__5__Impl rule__Role__Group__6 ;
+    // InternalQualityEffectSpecification.g:2252:1: rule__Role__Group__5 : rule__Role__Group__5__Impl ;
     public final void rule__Role__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2256:1: ( rule__Role__Group__5__Impl rule__Role__Group__6 )
-            // InternalQualityEffectSpecification.g:2257:2: rule__Role__Group__5__Impl rule__Role__Group__6
+            // InternalQualityEffectSpecification.g:2256:1: ( rule__Role__Group__5__Impl )
+            // InternalQualityEffectSpecification.g:2257:2: rule__Role__Group__5__Impl
             {
-            pushFollow(FOLLOW_14);
-            rule__Role__Group__5__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__Role__Group__6();
+            rule__Role__Group__5__Impl();
 
             state._fsp--;
 
@@ -7105,31 +7121,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Role__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:2264:1: rule__Role__Group__5__Impl : ( ( rule__Role__PropertiesAssignment_5 ) ) ;
+    // InternalQualityEffectSpecification.g:2263:1: rule__Role__Group__5__Impl : ( ')' ) ;
     public final void rule__Role__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2268:1: ( ( ( rule__Role__PropertiesAssignment_5 ) ) )
-            // InternalQualityEffectSpecification.g:2269:1: ( ( rule__Role__PropertiesAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:2267:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:2268:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:2269:1: ( ( rule__Role__PropertiesAssignment_5 ) )
-            // InternalQualityEffectSpecification.g:2270:2: ( rule__Role__PropertiesAssignment_5 )
+            // InternalQualityEffectSpecification.g:2268:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2269:2: ')'
             {
-             before(grammarAccess.getRoleAccess().getPropertiesAssignment_5()); 
-            // InternalQualityEffectSpecification.g:2271:2: ( rule__Role__PropertiesAssignment_5 )
-            // InternalQualityEffectSpecification.g:2271:3: rule__Role__PropertiesAssignment_5
-            {
-            pushFollow(FOLLOW_2);
-            rule__Role__PropertiesAssignment_5();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getRoleAccess().getPropertiesAssignment_5()); 
+             before(grammarAccess.getRoleAccess().getRightParenthesisKeyword_5()); 
+            match(input,38,FOLLOW_2); 
+             after(grammarAccess.getRoleAccess().getRightParenthesisKeyword_5()); 
 
             }
 
@@ -7151,23 +7157,23 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
     // $ANTLR end "rule__Role__Group__5__Impl"
 
 
-    // $ANTLR start "rule__Role__Group__6"
-    // InternalQualityEffectSpecification.g:2279:1: rule__Role__Group__6 : rule__Role__Group__6__Impl rule__Role__Group__7 ;
-    public final void rule__Role__Group__6() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4__0"
+    // InternalQualityEffectSpecification.g:2279:1: rule__Role__Group_4__0 : rule__Role__Group_4__0__Impl rule__Role__Group_4__1 ;
+    public final void rule__Role__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2283:1: ( rule__Role__Group__6__Impl rule__Role__Group__7 )
-            // InternalQualityEffectSpecification.g:2284:2: rule__Role__Group__6__Impl rule__Role__Group__7
+            // InternalQualityEffectSpecification.g:2283:1: ( rule__Role__Group_4__0__Impl rule__Role__Group_4__1 )
+            // InternalQualityEffectSpecification.g:2284:2: rule__Role__Group_4__0__Impl rule__Role__Group_4__1
             {
-            pushFollow(FOLLOW_14);
-            rule__Role__Group__6__Impl();
+            pushFollow(FOLLOW_20);
+            rule__Role__Group_4__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Role__Group__7();
+            rule__Role__Group_4__1();
 
             state._fsp--;
 
@@ -7186,40 +7192,195 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group__6"
+    // $ANTLR end "rule__Role__Group_4__0"
 
 
-    // $ANTLR start "rule__Role__Group__6__Impl"
-    // InternalQualityEffectSpecification.g:2291:1: rule__Role__Group__6__Impl : ( ( rule__Role__Group_6__0 )* ) ;
-    public final void rule__Role__Group__6__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4__0__Impl"
+    // InternalQualityEffectSpecification.g:2291:1: rule__Role__Group_4__0__Impl : ( 'with' ) ;
+    public final void rule__Role__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2295:1: ( ( ( rule__Role__Group_6__0 )* ) )
-            // InternalQualityEffectSpecification.g:2296:1: ( ( rule__Role__Group_6__0 )* )
+            // InternalQualityEffectSpecification.g:2295:1: ( ( 'with' ) )
+            // InternalQualityEffectSpecification.g:2296:1: ( 'with' )
             {
-            // InternalQualityEffectSpecification.g:2296:1: ( ( rule__Role__Group_6__0 )* )
-            // InternalQualityEffectSpecification.g:2297:2: ( rule__Role__Group_6__0 )*
+            // InternalQualityEffectSpecification.g:2296:1: ( 'with' )
+            // InternalQualityEffectSpecification.g:2297:2: 'with'
             {
-             before(grammarAccess.getRoleAccess().getGroup_6()); 
-            // InternalQualityEffectSpecification.g:2298:2: ( rule__Role__Group_6__0 )*
-            loop20:
-            do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+             before(grammarAccess.getRoleAccess().getWithKeyword_4_0()); 
+            match(input,44,FOLLOW_2); 
+             after(grammarAccess.getRoleAccess().getWithKeyword_4_0()); 
 
-                if ( (LA20_0==35) ) {
-                    alt20=1;
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Role__Group_4__0__Impl"
+
+
+    // $ANTLR start "rule__Role__Group_4__1"
+    // InternalQualityEffectSpecification.g:2306:1: rule__Role__Group_4__1 : rule__Role__Group_4__1__Impl rule__Role__Group_4__2 ;
+    public final void rule__Role__Group_4__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2310:1: ( rule__Role__Group_4__1__Impl rule__Role__Group_4__2 )
+            // InternalQualityEffectSpecification.g:2311:2: rule__Role__Group_4__1__Impl rule__Role__Group_4__2
+            {
+            pushFollow(FOLLOW_21);
+            rule__Role__Group_4__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__Role__Group_4__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Role__Group_4__1"
+
+
+    // $ANTLR start "rule__Role__Group_4__1__Impl"
+    // InternalQualityEffectSpecification.g:2318:1: rule__Role__Group_4__1__Impl : ( ( rule__Role__PropertiesAssignment_4_1 ) ) ;
+    public final void rule__Role__Group_4__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2322:1: ( ( ( rule__Role__PropertiesAssignment_4_1 ) ) )
+            // InternalQualityEffectSpecification.g:2323:1: ( ( rule__Role__PropertiesAssignment_4_1 ) )
+            {
+            // InternalQualityEffectSpecification.g:2323:1: ( ( rule__Role__PropertiesAssignment_4_1 ) )
+            // InternalQualityEffectSpecification.g:2324:2: ( rule__Role__PropertiesAssignment_4_1 )
+            {
+             before(grammarAccess.getRoleAccess().getPropertiesAssignment_4_1()); 
+            // InternalQualityEffectSpecification.g:2325:2: ( rule__Role__PropertiesAssignment_4_1 )
+            // InternalQualityEffectSpecification.g:2325:3: rule__Role__PropertiesAssignment_4_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__Role__PropertiesAssignment_4_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getRoleAccess().getPropertiesAssignment_4_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Role__Group_4__1__Impl"
+
+
+    // $ANTLR start "rule__Role__Group_4__2"
+    // InternalQualityEffectSpecification.g:2333:1: rule__Role__Group_4__2 : rule__Role__Group_4__2__Impl ;
+    public final void rule__Role__Group_4__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2337:1: ( rule__Role__Group_4__2__Impl )
+            // InternalQualityEffectSpecification.g:2338:2: rule__Role__Group_4__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__Role__Group_4__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Role__Group_4__2"
+
+
+    // $ANTLR start "rule__Role__Group_4__2__Impl"
+    // InternalQualityEffectSpecification.g:2344:1: rule__Role__Group_4__2__Impl : ( ( rule__Role__Group_4_2__0 )* ) ;
+    public final void rule__Role__Group_4__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2348:1: ( ( ( rule__Role__Group_4_2__0 )* ) )
+            // InternalQualityEffectSpecification.g:2349:1: ( ( rule__Role__Group_4_2__0 )* )
+            {
+            // InternalQualityEffectSpecification.g:2349:1: ( ( rule__Role__Group_4_2__0 )* )
+            // InternalQualityEffectSpecification.g:2350:2: ( rule__Role__Group_4_2__0 )*
+            {
+             before(grammarAccess.getRoleAccess().getGroup_4_2()); 
+            // InternalQualityEffectSpecification.g:2351:2: ( rule__Role__Group_4_2__0 )*
+            loop21:
+            do {
+                int alt21=2;
+                int LA21_0 = input.LA(1);
+
+                if ( (LA21_0==35) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt21) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:2298:3: rule__Role__Group_6__0
+            	    // InternalQualityEffectSpecification.g:2351:3: rule__Role__Group_4_2__0
             	    {
             	    pushFollow(FOLLOW_9);
-            	    rule__Role__Group_6__0();
+            	    rule__Role__Group_4_2__0();
 
             	    state._fsp--;
 
@@ -7228,11 +7389,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop21;
                 }
             } while (true);
 
-             after(grammarAccess.getRoleAccess().getGroup_6()); 
+             after(grammarAccess.getRoleAccess().getGroup_4_2()); 
 
             }
 
@@ -7251,96 +7412,26 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group__6__Impl"
+    // $ANTLR end "rule__Role__Group_4__2__Impl"
 
 
-    // $ANTLR start "rule__Role__Group__7"
-    // InternalQualityEffectSpecification.g:2306:1: rule__Role__Group__7 : rule__Role__Group__7__Impl ;
-    public final void rule__Role__Group__7() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalQualityEffectSpecification.g:2310:1: ( rule__Role__Group__7__Impl )
-            // InternalQualityEffectSpecification.g:2311:2: rule__Role__Group__7__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__Role__Group__7__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Role__Group__7"
-
-
-    // $ANTLR start "rule__Role__Group__7__Impl"
-    // InternalQualityEffectSpecification.g:2317:1: rule__Role__Group__7__Impl : ( ')' ) ;
-    public final void rule__Role__Group__7__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4_2__0"
+    // InternalQualityEffectSpecification.g:2360:1: rule__Role__Group_4_2__0 : rule__Role__Group_4_2__0__Impl rule__Role__Group_4_2__1 ;
+    public final void rule__Role__Group_4_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2321:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:2322:1: ( ')' )
-            {
-            // InternalQualityEffectSpecification.g:2322:1: ( ')' )
-            // InternalQualityEffectSpecification.g:2323:2: ')'
-            {
-             before(grammarAccess.getRoleAccess().getRightParenthesisKeyword_7()); 
-            match(input,38,FOLLOW_2); 
-             after(grammarAccess.getRoleAccess().getRightParenthesisKeyword_7()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Role__Group__7__Impl"
-
-
-    // $ANTLR start "rule__Role__Group_6__0"
-    // InternalQualityEffectSpecification.g:2333:1: rule__Role__Group_6__0 : rule__Role__Group_6__0__Impl rule__Role__Group_6__1 ;
-    public final void rule__Role__Group_6__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalQualityEffectSpecification.g:2337:1: ( rule__Role__Group_6__0__Impl rule__Role__Group_6__1 )
-            // InternalQualityEffectSpecification.g:2338:2: rule__Role__Group_6__0__Impl rule__Role__Group_6__1
+            // InternalQualityEffectSpecification.g:2364:1: ( rule__Role__Group_4_2__0__Impl rule__Role__Group_4_2__1 )
+            // InternalQualityEffectSpecification.g:2365:2: rule__Role__Group_4_2__0__Impl rule__Role__Group_4_2__1
             {
             pushFollow(FOLLOW_20);
-            rule__Role__Group_6__0__Impl();
+            rule__Role__Group_4_2__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Role__Group_6__1();
+            rule__Role__Group_4_2__1();
 
             state._fsp--;
 
@@ -7359,25 +7450,25 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group_6__0"
+    // $ANTLR end "rule__Role__Group_4_2__0"
 
 
-    // $ANTLR start "rule__Role__Group_6__0__Impl"
-    // InternalQualityEffectSpecification.g:2345:1: rule__Role__Group_6__0__Impl : ( 'and' ) ;
-    public final void rule__Role__Group_6__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4_2__0__Impl"
+    // InternalQualityEffectSpecification.g:2372:1: rule__Role__Group_4_2__0__Impl : ( 'and' ) ;
+    public final void rule__Role__Group_4_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2349:1: ( ( 'and' ) )
-            // InternalQualityEffectSpecification.g:2350:1: ( 'and' )
+            // InternalQualityEffectSpecification.g:2376:1: ( ( 'and' ) )
+            // InternalQualityEffectSpecification.g:2377:1: ( 'and' )
             {
-            // InternalQualityEffectSpecification.g:2350:1: ( 'and' )
-            // InternalQualityEffectSpecification.g:2351:2: 'and'
+            // InternalQualityEffectSpecification.g:2377:1: ( 'and' )
+            // InternalQualityEffectSpecification.g:2378:2: 'and'
             {
-             before(grammarAccess.getRoleAccess().getAndKeyword_6_0()); 
+             before(grammarAccess.getRoleAccess().getAndKeyword_4_2_0()); 
             match(input,35,FOLLOW_2); 
-             after(grammarAccess.getRoleAccess().getAndKeyword_6_0()); 
+             after(grammarAccess.getRoleAccess().getAndKeyword_4_2_0()); 
 
             }
 
@@ -7396,21 +7487,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group_6__0__Impl"
+    // $ANTLR end "rule__Role__Group_4_2__0__Impl"
 
 
-    // $ANTLR start "rule__Role__Group_6__1"
-    // InternalQualityEffectSpecification.g:2360:1: rule__Role__Group_6__1 : rule__Role__Group_6__1__Impl ;
-    public final void rule__Role__Group_6__1() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4_2__1"
+    // InternalQualityEffectSpecification.g:2387:1: rule__Role__Group_4_2__1 : rule__Role__Group_4_2__1__Impl ;
+    public final void rule__Role__Group_4_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2364:1: ( rule__Role__Group_6__1__Impl )
-            // InternalQualityEffectSpecification.g:2365:2: rule__Role__Group_6__1__Impl
+            // InternalQualityEffectSpecification.g:2391:1: ( rule__Role__Group_4_2__1__Impl )
+            // InternalQualityEffectSpecification.g:2392:2: rule__Role__Group_4_2__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Role__Group_6__1__Impl();
+            rule__Role__Group_4_2__1__Impl();
 
             state._fsp--;
 
@@ -7429,35 +7520,35 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group_6__1"
+    // $ANTLR end "rule__Role__Group_4_2__1"
 
 
-    // $ANTLR start "rule__Role__Group_6__1__Impl"
-    // InternalQualityEffectSpecification.g:2371:1: rule__Role__Group_6__1__Impl : ( ( rule__Role__PropertiesAssignment_6_1 ) ) ;
-    public final void rule__Role__Group_6__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Role__Group_4_2__1__Impl"
+    // InternalQualityEffectSpecification.g:2398:1: rule__Role__Group_4_2__1__Impl : ( ( rule__Role__PropertiesAssignment_4_2_1 ) ) ;
+    public final void rule__Role__Group_4_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2375:1: ( ( ( rule__Role__PropertiesAssignment_6_1 ) ) )
-            // InternalQualityEffectSpecification.g:2376:1: ( ( rule__Role__PropertiesAssignment_6_1 ) )
+            // InternalQualityEffectSpecification.g:2402:1: ( ( ( rule__Role__PropertiesAssignment_4_2_1 ) ) )
+            // InternalQualityEffectSpecification.g:2403:1: ( ( rule__Role__PropertiesAssignment_4_2_1 ) )
             {
-            // InternalQualityEffectSpecification.g:2376:1: ( ( rule__Role__PropertiesAssignment_6_1 ) )
-            // InternalQualityEffectSpecification.g:2377:2: ( rule__Role__PropertiesAssignment_6_1 )
+            // InternalQualityEffectSpecification.g:2403:1: ( ( rule__Role__PropertiesAssignment_4_2_1 ) )
+            // InternalQualityEffectSpecification.g:2404:2: ( rule__Role__PropertiesAssignment_4_2_1 )
             {
-             before(grammarAccess.getRoleAccess().getPropertiesAssignment_6_1()); 
-            // InternalQualityEffectSpecification.g:2378:2: ( rule__Role__PropertiesAssignment_6_1 )
-            // InternalQualityEffectSpecification.g:2378:3: rule__Role__PropertiesAssignment_6_1
+             before(grammarAccess.getRoleAccess().getPropertiesAssignment_4_2_1()); 
+            // InternalQualityEffectSpecification.g:2405:2: ( rule__Role__PropertiesAssignment_4_2_1 )
+            // InternalQualityEffectSpecification.g:2405:3: rule__Role__PropertiesAssignment_4_2_1
             {
             pushFollow(FOLLOW_2);
-            rule__Role__PropertiesAssignment_6_1();
+            rule__Role__PropertiesAssignment_4_2_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRoleAccess().getPropertiesAssignment_6_1()); 
+             after(grammarAccess.getRoleAccess().getPropertiesAssignment_4_2_1()); 
 
             }
 
@@ -7476,18 +7567,18 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Group_6__1__Impl"
+    // $ANTLR end "rule__Role__Group_4_2__1__Impl"
 
 
     // $ANTLR start "rule__Assembly__Group__0"
-    // InternalQualityEffectSpecification.g:2387:1: rule__Assembly__Group__0 : rule__Assembly__Group__0__Impl rule__Assembly__Group__1 ;
+    // InternalQualityEffectSpecification.g:2414:1: rule__Assembly__Group__0 : rule__Assembly__Group__0__Impl rule__Assembly__Group__1 ;
     public final void rule__Assembly__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2391:1: ( rule__Assembly__Group__0__Impl rule__Assembly__Group__1 )
-            // InternalQualityEffectSpecification.g:2392:2: rule__Assembly__Group__0__Impl rule__Assembly__Group__1
+            // InternalQualityEffectSpecification.g:2418:1: ( rule__Assembly__Group__0__Impl rule__Assembly__Group__1 )
+            // InternalQualityEffectSpecification.g:2419:2: rule__Assembly__Group__0__Impl rule__Assembly__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__Assembly__Group__0__Impl();
@@ -7518,17 +7609,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:2399:1: rule__Assembly__Group__0__Impl : ( 'Assembly' ) ;
+    // InternalQualityEffectSpecification.g:2426:1: rule__Assembly__Group__0__Impl : ( 'Assembly' ) ;
     public final void rule__Assembly__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2403:1: ( ( 'Assembly' ) )
-            // InternalQualityEffectSpecification.g:2404:1: ( 'Assembly' )
+            // InternalQualityEffectSpecification.g:2430:1: ( ( 'Assembly' ) )
+            // InternalQualityEffectSpecification.g:2431:1: ( 'Assembly' )
             {
-            // InternalQualityEffectSpecification.g:2404:1: ( 'Assembly' )
-            // InternalQualityEffectSpecification.g:2405:2: 'Assembly'
+            // InternalQualityEffectSpecification.g:2431:1: ( 'Assembly' )
+            // InternalQualityEffectSpecification.g:2432:2: 'Assembly'
             {
              before(grammarAccess.getAssemblyAccess().getAssemblyKeyword_0()); 
             match(input,45,FOLLOW_2); 
@@ -7555,16 +7646,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__1"
-    // InternalQualityEffectSpecification.g:2414:1: rule__Assembly__Group__1 : rule__Assembly__Group__1__Impl rule__Assembly__Group__2 ;
+    // InternalQualityEffectSpecification.g:2441:1: rule__Assembly__Group__1 : rule__Assembly__Group__1__Impl rule__Assembly__Group__2 ;
     public final void rule__Assembly__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2418:1: ( rule__Assembly__Group__1__Impl rule__Assembly__Group__2 )
-            // InternalQualityEffectSpecification.g:2419:2: rule__Assembly__Group__1__Impl rule__Assembly__Group__2
+            // InternalQualityEffectSpecification.g:2445:1: ( rule__Assembly__Group__1__Impl rule__Assembly__Group__2 )
+            // InternalQualityEffectSpecification.g:2446:2: rule__Assembly__Group__1__Impl rule__Assembly__Group__2
             {
-            pushFollow(FOLLOW_21);
+            pushFollow(FOLLOW_22);
             rule__Assembly__Group__1__Impl();
 
             state._fsp--;
@@ -7593,17 +7684,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:2426:1: rule__Assembly__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:2453:1: rule__Assembly__Group__1__Impl : ( '(' ) ;
     public final void rule__Assembly__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2430:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:2431:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2457:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:2458:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:2431:1: ( '(' )
-            // InternalQualityEffectSpecification.g:2432:2: '('
+            // InternalQualityEffectSpecification.g:2458:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2459:2: '('
             {
              before(grammarAccess.getAssemblyAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -7630,16 +7721,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__2"
-    // InternalQualityEffectSpecification.g:2441:1: rule__Assembly__Group__2 : rule__Assembly__Group__2__Impl rule__Assembly__Group__3 ;
+    // InternalQualityEffectSpecification.g:2468:1: rule__Assembly__Group__2 : rule__Assembly__Group__2__Impl rule__Assembly__Group__3 ;
     public final void rule__Assembly__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2445:1: ( rule__Assembly__Group__2__Impl rule__Assembly__Group__3 )
-            // InternalQualityEffectSpecification.g:2446:2: rule__Assembly__Group__2__Impl rule__Assembly__Group__3
+            // InternalQualityEffectSpecification.g:2472:1: ( rule__Assembly__Group__2__Impl rule__Assembly__Group__3 )
+            // InternalQualityEffectSpecification.g:2473:2: rule__Assembly__Group__2__Impl rule__Assembly__Group__3
             {
-            pushFollow(FOLLOW_21);
+            pushFollow(FOLLOW_22);
             rule__Assembly__Group__2__Impl();
 
             state._fsp--;
@@ -7668,29 +7759,29 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:2453:1: rule__Assembly__Group__2__Impl : ( ( rule__Assembly__NotAssignment_2 )? ) ;
+    // InternalQualityEffectSpecification.g:2480:1: rule__Assembly__Group__2__Impl : ( ( rule__Assembly__NotAssignment_2 )? ) ;
     public final void rule__Assembly__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2457:1: ( ( ( rule__Assembly__NotAssignment_2 )? ) )
-            // InternalQualityEffectSpecification.g:2458:1: ( ( rule__Assembly__NotAssignment_2 )? )
+            // InternalQualityEffectSpecification.g:2484:1: ( ( ( rule__Assembly__NotAssignment_2 )? ) )
+            // InternalQualityEffectSpecification.g:2485:1: ( ( rule__Assembly__NotAssignment_2 )? )
             {
-            // InternalQualityEffectSpecification.g:2458:1: ( ( rule__Assembly__NotAssignment_2 )? )
-            // InternalQualityEffectSpecification.g:2459:2: ( rule__Assembly__NotAssignment_2 )?
+            // InternalQualityEffectSpecification.g:2485:1: ( ( rule__Assembly__NotAssignment_2 )? )
+            // InternalQualityEffectSpecification.g:2486:2: ( rule__Assembly__NotAssignment_2 )?
             {
              before(grammarAccess.getAssemblyAccess().getNotAssignment_2()); 
-            // InternalQualityEffectSpecification.g:2460:2: ( rule__Assembly__NotAssignment_2 )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // InternalQualityEffectSpecification.g:2487:2: ( rule__Assembly__NotAssignment_2 )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==52) ) {
-                alt21=1;
+            if ( (LA22_0==52) ) {
+                alt22=1;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:2460:3: rule__Assembly__NotAssignment_2
+                    // InternalQualityEffectSpecification.g:2487:3: rule__Assembly__NotAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__Assembly__NotAssignment_2();
@@ -7726,14 +7817,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__3"
-    // InternalQualityEffectSpecification.g:2468:1: rule__Assembly__Group__3 : rule__Assembly__Group__3__Impl rule__Assembly__Group__4 ;
+    // InternalQualityEffectSpecification.g:2495:1: rule__Assembly__Group__3 : rule__Assembly__Group__3__Impl rule__Assembly__Group__4 ;
     public final void rule__Assembly__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2472:1: ( rule__Assembly__Group__3__Impl rule__Assembly__Group__4 )
-            // InternalQualityEffectSpecification.g:2473:2: rule__Assembly__Group__3__Impl rule__Assembly__Group__4
+            // InternalQualityEffectSpecification.g:2499:1: ( rule__Assembly__Group__3__Impl rule__Assembly__Group__4 )
+            // InternalQualityEffectSpecification.g:2500:2: rule__Assembly__Group__3__Impl rule__Assembly__Group__4
             {
             pushFollow(FOLLOW_19);
             rule__Assembly__Group__3__Impl();
@@ -7764,21 +7855,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:2480:1: rule__Assembly__Group__3__Impl : ( ( rule__Assembly__TypeAssignment_3 ) ) ;
+    // InternalQualityEffectSpecification.g:2507:1: rule__Assembly__Group__3__Impl : ( ( rule__Assembly__TypeAssignment_3 ) ) ;
     public final void rule__Assembly__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2484:1: ( ( ( rule__Assembly__TypeAssignment_3 ) ) )
-            // InternalQualityEffectSpecification.g:2485:1: ( ( rule__Assembly__TypeAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:2511:1: ( ( ( rule__Assembly__TypeAssignment_3 ) ) )
+            // InternalQualityEffectSpecification.g:2512:1: ( ( rule__Assembly__TypeAssignment_3 ) )
             {
-            // InternalQualityEffectSpecification.g:2485:1: ( ( rule__Assembly__TypeAssignment_3 ) )
-            // InternalQualityEffectSpecification.g:2486:2: ( rule__Assembly__TypeAssignment_3 )
+            // InternalQualityEffectSpecification.g:2512:1: ( ( rule__Assembly__TypeAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:2513:2: ( rule__Assembly__TypeAssignment_3 )
             {
              before(grammarAccess.getAssemblyAccess().getTypeAssignment_3()); 
-            // InternalQualityEffectSpecification.g:2487:2: ( rule__Assembly__TypeAssignment_3 )
-            // InternalQualityEffectSpecification.g:2487:3: rule__Assembly__TypeAssignment_3
+            // InternalQualityEffectSpecification.g:2514:2: ( rule__Assembly__TypeAssignment_3 )
+            // InternalQualityEffectSpecification.g:2514:3: rule__Assembly__TypeAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Assembly__TypeAssignment_3();
@@ -7811,16 +7902,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__4"
-    // InternalQualityEffectSpecification.g:2495:1: rule__Assembly__Group__4 : rule__Assembly__Group__4__Impl rule__Assembly__Group__5 ;
+    // InternalQualityEffectSpecification.g:2522:1: rule__Assembly__Group__4 : rule__Assembly__Group__4__Impl rule__Assembly__Group__5 ;
     public final void rule__Assembly__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2499:1: ( rule__Assembly__Group__4__Impl rule__Assembly__Group__5 )
-            // InternalQualityEffectSpecification.g:2500:2: rule__Assembly__Group__4__Impl rule__Assembly__Group__5
+            // InternalQualityEffectSpecification.g:2526:1: ( rule__Assembly__Group__4__Impl rule__Assembly__Group__5 )
+            // InternalQualityEffectSpecification.g:2527:2: rule__Assembly__Group__4__Impl rule__Assembly__Group__5
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_19);
             rule__Assembly__Group__4__Impl();
 
             state._fsp--;
@@ -7849,21 +7940,42 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:2507:1: rule__Assembly__Group__4__Impl : ( 'with' ) ;
+    // InternalQualityEffectSpecification.g:2534:1: rule__Assembly__Group__4__Impl : ( ( rule__Assembly__Group_4__0 )? ) ;
     public final void rule__Assembly__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2511:1: ( ( 'with' ) )
-            // InternalQualityEffectSpecification.g:2512:1: ( 'with' )
+            // InternalQualityEffectSpecification.g:2538:1: ( ( ( rule__Assembly__Group_4__0 )? ) )
+            // InternalQualityEffectSpecification.g:2539:1: ( ( rule__Assembly__Group_4__0 )? )
             {
-            // InternalQualityEffectSpecification.g:2512:1: ( 'with' )
-            // InternalQualityEffectSpecification.g:2513:2: 'with'
+            // InternalQualityEffectSpecification.g:2539:1: ( ( rule__Assembly__Group_4__0 )? )
+            // InternalQualityEffectSpecification.g:2540:2: ( rule__Assembly__Group_4__0 )?
             {
-             before(grammarAccess.getAssemblyAccess().getWithKeyword_4()); 
-            match(input,44,FOLLOW_2); 
-             after(grammarAccess.getAssemblyAccess().getWithKeyword_4()); 
+             before(grammarAccess.getAssemblyAccess().getGroup_4()); 
+            // InternalQualityEffectSpecification.g:2541:2: ( rule__Assembly__Group_4__0 )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( (LA23_0==44) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // InternalQualityEffectSpecification.g:2541:3: rule__Assembly__Group_4__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Assembly__Group_4__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getAssemblyAccess().getGroup_4()); 
 
             }
 
@@ -7886,22 +7998,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__5"
-    // InternalQualityEffectSpecification.g:2522:1: rule__Assembly__Group__5 : rule__Assembly__Group__5__Impl rule__Assembly__Group__6 ;
+    // InternalQualityEffectSpecification.g:2549:1: rule__Assembly__Group__5 : rule__Assembly__Group__5__Impl ;
     public final void rule__Assembly__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2526:1: ( rule__Assembly__Group__5__Impl rule__Assembly__Group__6 )
-            // InternalQualityEffectSpecification.g:2527:2: rule__Assembly__Group__5__Impl rule__Assembly__Group__6
+            // InternalQualityEffectSpecification.g:2553:1: ( rule__Assembly__Group__5__Impl )
+            // InternalQualityEffectSpecification.g:2554:2: rule__Assembly__Group__5__Impl
             {
-            pushFollow(FOLLOW_16);
-            rule__Assembly__Group__5__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__Assembly__Group__6();
+            rule__Assembly__Group__5__Impl();
 
             state._fsp--;
 
@@ -7924,31 +8031,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:2534:1: rule__Assembly__Group__5__Impl : ( ( rule__Assembly__ComponentAssignment_5 ) ) ;
+    // InternalQualityEffectSpecification.g:2560:1: rule__Assembly__Group__5__Impl : ( ')' ) ;
     public final void rule__Assembly__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2538:1: ( ( ( rule__Assembly__ComponentAssignment_5 ) ) )
-            // InternalQualityEffectSpecification.g:2539:1: ( ( rule__Assembly__ComponentAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:2564:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:2565:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:2539:1: ( ( rule__Assembly__ComponentAssignment_5 ) )
-            // InternalQualityEffectSpecification.g:2540:2: ( rule__Assembly__ComponentAssignment_5 )
+            // InternalQualityEffectSpecification.g:2565:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2566:2: ')'
             {
-             before(grammarAccess.getAssemblyAccess().getComponentAssignment_5()); 
-            // InternalQualityEffectSpecification.g:2541:2: ( rule__Assembly__ComponentAssignment_5 )
-            // InternalQualityEffectSpecification.g:2541:3: rule__Assembly__ComponentAssignment_5
-            {
-            pushFollow(FOLLOW_2);
-            rule__Assembly__ComponentAssignment_5();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getAssemblyAccess().getComponentAssignment_5()); 
+             before(grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_5()); 
+            match(input,38,FOLLOW_2); 
+             after(grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_5()); 
 
             }
 
@@ -7970,18 +8067,23 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
     // $ANTLR end "rule__Assembly__Group__5__Impl"
 
 
-    // $ANTLR start "rule__Assembly__Group__6"
-    // InternalQualityEffectSpecification.g:2549:1: rule__Assembly__Group__6 : rule__Assembly__Group__6__Impl ;
-    public final void rule__Assembly__Group__6() throws RecognitionException {
+    // $ANTLR start "rule__Assembly__Group_4__0"
+    // InternalQualityEffectSpecification.g:2576:1: rule__Assembly__Group_4__0 : rule__Assembly__Group_4__0__Impl rule__Assembly__Group_4__1 ;
+    public final void rule__Assembly__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2553:1: ( rule__Assembly__Group__6__Impl )
-            // InternalQualityEffectSpecification.g:2554:2: rule__Assembly__Group__6__Impl
+            // InternalQualityEffectSpecification.g:2580:1: ( rule__Assembly__Group_4__0__Impl rule__Assembly__Group_4__1 )
+            // InternalQualityEffectSpecification.g:2581:2: rule__Assembly__Group_4__0__Impl rule__Assembly__Group_4__1
             {
+            pushFollow(FOLLOW_7);
+            rule__Assembly__Group_4__0__Impl();
+
+            state._fsp--;
+
             pushFollow(FOLLOW_2);
-            rule__Assembly__Group__6__Impl();
+            rule__Assembly__Group_4__1();
 
             state._fsp--;
 
@@ -8000,25 +8102,25 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Assembly__Group__6"
+    // $ANTLR end "rule__Assembly__Group_4__0"
 
 
-    // $ANTLR start "rule__Assembly__Group__6__Impl"
-    // InternalQualityEffectSpecification.g:2560:1: rule__Assembly__Group__6__Impl : ( ')' ) ;
-    public final void rule__Assembly__Group__6__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Assembly__Group_4__0__Impl"
+    // InternalQualityEffectSpecification.g:2588:1: rule__Assembly__Group_4__0__Impl : ( 'with' ) ;
+    public final void rule__Assembly__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2564:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:2565:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2592:1: ( ( 'with' ) )
+            // InternalQualityEffectSpecification.g:2593:1: ( 'with' )
             {
-            // InternalQualityEffectSpecification.g:2565:1: ( ')' )
-            // InternalQualityEffectSpecification.g:2566:2: ')'
+            // InternalQualityEffectSpecification.g:2593:1: ( 'with' )
+            // InternalQualityEffectSpecification.g:2594:2: 'with'
             {
-             before(grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_6()); 
-            match(input,38,FOLLOW_2); 
-             after(grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_6()); 
+             before(grammarAccess.getAssemblyAccess().getWithKeyword_4_0()); 
+            match(input,44,FOLLOW_2); 
+             after(grammarAccess.getAssemblyAccess().getWithKeyword_4_0()); 
 
             }
 
@@ -8037,18 +8139,98 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Assembly__Group__6__Impl"
+    // $ANTLR end "rule__Assembly__Group_4__0__Impl"
+
+
+    // $ANTLR start "rule__Assembly__Group_4__1"
+    // InternalQualityEffectSpecification.g:2603:1: rule__Assembly__Group_4__1 : rule__Assembly__Group_4__1__Impl ;
+    public final void rule__Assembly__Group_4__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2607:1: ( rule__Assembly__Group_4__1__Impl )
+            // InternalQualityEffectSpecification.g:2608:2: rule__Assembly__Group_4__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__Assembly__Group_4__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Assembly__Group_4__1"
+
+
+    // $ANTLR start "rule__Assembly__Group_4__1__Impl"
+    // InternalQualityEffectSpecification.g:2614:1: rule__Assembly__Group_4__1__Impl : ( ( rule__Assembly__ComponentAssignment_4_1 ) ) ;
+    public final void rule__Assembly__Group_4__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalQualityEffectSpecification.g:2618:1: ( ( ( rule__Assembly__ComponentAssignment_4_1 ) ) )
+            // InternalQualityEffectSpecification.g:2619:1: ( ( rule__Assembly__ComponentAssignment_4_1 ) )
+            {
+            // InternalQualityEffectSpecification.g:2619:1: ( ( rule__Assembly__ComponentAssignment_4_1 ) )
+            // InternalQualityEffectSpecification.g:2620:2: ( rule__Assembly__ComponentAssignment_4_1 )
+            {
+             before(grammarAccess.getAssemblyAccess().getComponentAssignment_4_1()); 
+            // InternalQualityEffectSpecification.g:2621:2: ( rule__Assembly__ComponentAssignment_4_1 )
+            // InternalQualityEffectSpecification.g:2621:3: rule__Assembly__ComponentAssignment_4_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__Assembly__ComponentAssignment_4_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getAssemblyAccess().getComponentAssignment_4_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Assembly__Group_4__1__Impl"
 
 
     // $ANTLR start "rule__Resource__Group__0"
-    // InternalQualityEffectSpecification.g:2576:1: rule__Resource__Group__0 : rule__Resource__Group__0__Impl rule__Resource__Group__1 ;
+    // InternalQualityEffectSpecification.g:2630:1: rule__Resource__Group__0 : rule__Resource__Group__0__Impl rule__Resource__Group__1 ;
     public final void rule__Resource__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2580:1: ( rule__Resource__Group__0__Impl rule__Resource__Group__1 )
-            // InternalQualityEffectSpecification.g:2581:2: rule__Resource__Group__0__Impl rule__Resource__Group__1
+            // InternalQualityEffectSpecification.g:2634:1: ( rule__Resource__Group__0__Impl rule__Resource__Group__1 )
+            // InternalQualityEffectSpecification.g:2635:2: rule__Resource__Group__0__Impl rule__Resource__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__Resource__Group__0__Impl();
@@ -8079,17 +8261,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:2588:1: rule__Resource__Group__0__Impl : ( 'Resource' ) ;
+    // InternalQualityEffectSpecification.g:2642:1: rule__Resource__Group__0__Impl : ( 'Resource' ) ;
     public final void rule__Resource__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2592:1: ( ( 'Resource' ) )
-            // InternalQualityEffectSpecification.g:2593:1: ( 'Resource' )
+            // InternalQualityEffectSpecification.g:2646:1: ( ( 'Resource' ) )
+            // InternalQualityEffectSpecification.g:2647:1: ( 'Resource' )
             {
-            // InternalQualityEffectSpecification.g:2593:1: ( 'Resource' )
-            // InternalQualityEffectSpecification.g:2594:2: 'Resource'
+            // InternalQualityEffectSpecification.g:2647:1: ( 'Resource' )
+            // InternalQualityEffectSpecification.g:2648:2: 'Resource'
             {
              before(grammarAccess.getResourceAccess().getResourceKeyword_0()); 
             match(input,46,FOLLOW_2); 
@@ -8116,16 +8298,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__1"
-    // InternalQualityEffectSpecification.g:2603:1: rule__Resource__Group__1 : rule__Resource__Group__1__Impl rule__Resource__Group__2 ;
+    // InternalQualityEffectSpecification.g:2657:1: rule__Resource__Group__1 : rule__Resource__Group__1__Impl rule__Resource__Group__2 ;
     public final void rule__Resource__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2607:1: ( rule__Resource__Group__1__Impl rule__Resource__Group__2 )
-            // InternalQualityEffectSpecification.g:2608:2: rule__Resource__Group__1__Impl rule__Resource__Group__2
+            // InternalQualityEffectSpecification.g:2661:1: ( rule__Resource__Group__1__Impl rule__Resource__Group__2 )
+            // InternalQualityEffectSpecification.g:2662:2: rule__Resource__Group__1__Impl rule__Resource__Group__2
             {
-            pushFollow(FOLLOW_22);
+            pushFollow(FOLLOW_23);
             rule__Resource__Group__1__Impl();
 
             state._fsp--;
@@ -8154,17 +8336,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:2615:1: rule__Resource__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:2669:1: rule__Resource__Group__1__Impl : ( '(' ) ;
     public final void rule__Resource__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2619:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:2620:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2673:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:2674:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:2620:1: ( '(' )
-            // InternalQualityEffectSpecification.g:2621:2: '('
+            // InternalQualityEffectSpecification.g:2674:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2675:2: '('
             {
              before(grammarAccess.getResourceAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -8191,14 +8373,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__2"
-    // InternalQualityEffectSpecification.g:2630:1: rule__Resource__Group__2 : rule__Resource__Group__2__Impl rule__Resource__Group__3 ;
+    // InternalQualityEffectSpecification.g:2684:1: rule__Resource__Group__2 : rule__Resource__Group__2__Impl rule__Resource__Group__3 ;
     public final void rule__Resource__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2634:1: ( rule__Resource__Group__2__Impl rule__Resource__Group__3 )
-            // InternalQualityEffectSpecification.g:2635:2: rule__Resource__Group__2__Impl rule__Resource__Group__3
+            // InternalQualityEffectSpecification.g:2688:1: ( rule__Resource__Group__2__Impl rule__Resource__Group__3 )
+            // InternalQualityEffectSpecification.g:2689:2: rule__Resource__Group__2__Impl rule__Resource__Group__3
             {
             pushFollow(FOLLOW_14);
             rule__Resource__Group__2__Impl();
@@ -8229,21 +8411,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:2642:1: rule__Resource__Group__2__Impl : ( ( rule__Resource__PropertiesAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:2696:1: rule__Resource__Group__2__Impl : ( ( rule__Resource__PropertiesAssignment_2 ) ) ;
     public final void rule__Resource__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2646:1: ( ( ( rule__Resource__PropertiesAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:2647:1: ( ( rule__Resource__PropertiesAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:2700:1: ( ( ( rule__Resource__PropertiesAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:2701:1: ( ( rule__Resource__PropertiesAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:2647:1: ( ( rule__Resource__PropertiesAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:2648:2: ( rule__Resource__PropertiesAssignment_2 )
+            // InternalQualityEffectSpecification.g:2701:1: ( ( rule__Resource__PropertiesAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:2702:2: ( rule__Resource__PropertiesAssignment_2 )
             {
              before(grammarAccess.getResourceAccess().getPropertiesAssignment_2()); 
-            // InternalQualityEffectSpecification.g:2649:2: ( rule__Resource__PropertiesAssignment_2 )
-            // InternalQualityEffectSpecification.g:2649:3: rule__Resource__PropertiesAssignment_2
+            // InternalQualityEffectSpecification.g:2703:2: ( rule__Resource__PropertiesAssignment_2 )
+            // InternalQualityEffectSpecification.g:2703:3: rule__Resource__PropertiesAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Resource__PropertiesAssignment_2();
@@ -8276,14 +8458,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__3"
-    // InternalQualityEffectSpecification.g:2657:1: rule__Resource__Group__3 : rule__Resource__Group__3__Impl rule__Resource__Group__4 ;
+    // InternalQualityEffectSpecification.g:2711:1: rule__Resource__Group__3 : rule__Resource__Group__3__Impl rule__Resource__Group__4 ;
     public final void rule__Resource__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2661:1: ( rule__Resource__Group__3__Impl rule__Resource__Group__4 )
-            // InternalQualityEffectSpecification.g:2662:2: rule__Resource__Group__3__Impl rule__Resource__Group__4
+            // InternalQualityEffectSpecification.g:2715:1: ( rule__Resource__Group__3__Impl rule__Resource__Group__4 )
+            // InternalQualityEffectSpecification.g:2716:2: rule__Resource__Group__3__Impl rule__Resource__Group__4
             {
             pushFollow(FOLLOW_14);
             rule__Resource__Group__3__Impl();
@@ -8314,33 +8496,33 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:2669:1: rule__Resource__Group__3__Impl : ( ( rule__Resource__Group_3__0 )* ) ;
+    // InternalQualityEffectSpecification.g:2723:1: rule__Resource__Group__3__Impl : ( ( rule__Resource__Group_3__0 )* ) ;
     public final void rule__Resource__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2673:1: ( ( ( rule__Resource__Group_3__0 )* ) )
-            // InternalQualityEffectSpecification.g:2674:1: ( ( rule__Resource__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:2727:1: ( ( ( rule__Resource__Group_3__0 )* ) )
+            // InternalQualityEffectSpecification.g:2728:1: ( ( rule__Resource__Group_3__0 )* )
             {
-            // InternalQualityEffectSpecification.g:2674:1: ( ( rule__Resource__Group_3__0 )* )
-            // InternalQualityEffectSpecification.g:2675:2: ( rule__Resource__Group_3__0 )*
+            // InternalQualityEffectSpecification.g:2728:1: ( ( rule__Resource__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:2729:2: ( rule__Resource__Group_3__0 )*
             {
              before(grammarAccess.getResourceAccess().getGroup_3()); 
-            // InternalQualityEffectSpecification.g:2676:2: ( rule__Resource__Group_3__0 )*
-            loop22:
+            // InternalQualityEffectSpecification.g:2730:2: ( rule__Resource__Group_3__0 )*
+            loop24:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA22_0==35) ) {
-                    alt22=1;
+                if ( (LA24_0==35) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt24) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:2676:3: rule__Resource__Group_3__0
+            	    // InternalQualityEffectSpecification.g:2730:3: rule__Resource__Group_3__0
             	    {
             	    pushFollow(FOLLOW_9);
             	    rule__Resource__Group_3__0();
@@ -8352,7 +8534,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop24;
                 }
             } while (true);
 
@@ -8379,14 +8561,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__4"
-    // InternalQualityEffectSpecification.g:2684:1: rule__Resource__Group__4 : rule__Resource__Group__4__Impl ;
+    // InternalQualityEffectSpecification.g:2738:1: rule__Resource__Group__4 : rule__Resource__Group__4__Impl ;
     public final void rule__Resource__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2688:1: ( rule__Resource__Group__4__Impl )
-            // InternalQualityEffectSpecification.g:2689:2: rule__Resource__Group__4__Impl
+            // InternalQualityEffectSpecification.g:2742:1: ( rule__Resource__Group__4__Impl )
+            // InternalQualityEffectSpecification.g:2743:2: rule__Resource__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Resource__Group__4__Impl();
@@ -8412,17 +8594,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:2695:1: rule__Resource__Group__4__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:2749:1: rule__Resource__Group__4__Impl : ( ')' ) ;
     public final void rule__Resource__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2699:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:2700:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2753:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:2754:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:2700:1: ( ')' )
-            // InternalQualityEffectSpecification.g:2701:2: ')'
+            // InternalQualityEffectSpecification.g:2754:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2755:2: ')'
             {
              before(grammarAccess.getResourceAccess().getRightParenthesisKeyword_4()); 
             match(input,38,FOLLOW_2); 
@@ -8449,16 +8631,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group_3__0"
-    // InternalQualityEffectSpecification.g:2711:1: rule__Resource__Group_3__0 : rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1 ;
+    // InternalQualityEffectSpecification.g:2765:1: rule__Resource__Group_3__0 : rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1 ;
     public final void rule__Resource__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2715:1: ( rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1 )
-            // InternalQualityEffectSpecification.g:2716:2: rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1
+            // InternalQualityEffectSpecification.g:2769:1: ( rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1 )
+            // InternalQualityEffectSpecification.g:2770:2: rule__Resource__Group_3__0__Impl rule__Resource__Group_3__1
             {
-            pushFollow(FOLLOW_22);
+            pushFollow(FOLLOW_23);
             rule__Resource__Group_3__0__Impl();
 
             state._fsp--;
@@ -8487,17 +8669,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group_3__0__Impl"
-    // InternalQualityEffectSpecification.g:2723:1: rule__Resource__Group_3__0__Impl : ( 'and' ) ;
+    // InternalQualityEffectSpecification.g:2777:1: rule__Resource__Group_3__0__Impl : ( 'and' ) ;
     public final void rule__Resource__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2727:1: ( ( 'and' ) )
-            // InternalQualityEffectSpecification.g:2728:1: ( 'and' )
+            // InternalQualityEffectSpecification.g:2781:1: ( ( 'and' ) )
+            // InternalQualityEffectSpecification.g:2782:1: ( 'and' )
             {
-            // InternalQualityEffectSpecification.g:2728:1: ( 'and' )
-            // InternalQualityEffectSpecification.g:2729:2: 'and'
+            // InternalQualityEffectSpecification.g:2782:1: ( 'and' )
+            // InternalQualityEffectSpecification.g:2783:2: 'and'
             {
              before(grammarAccess.getResourceAccess().getAndKeyword_3_0()); 
             match(input,35,FOLLOW_2); 
@@ -8524,14 +8706,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group_3__1"
-    // InternalQualityEffectSpecification.g:2738:1: rule__Resource__Group_3__1 : rule__Resource__Group_3__1__Impl ;
+    // InternalQualityEffectSpecification.g:2792:1: rule__Resource__Group_3__1 : rule__Resource__Group_3__1__Impl ;
     public final void rule__Resource__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2742:1: ( rule__Resource__Group_3__1__Impl )
-            // InternalQualityEffectSpecification.g:2743:2: rule__Resource__Group_3__1__Impl
+            // InternalQualityEffectSpecification.g:2796:1: ( rule__Resource__Group_3__1__Impl )
+            // InternalQualityEffectSpecification.g:2797:2: rule__Resource__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Resource__Group_3__1__Impl();
@@ -8557,21 +8739,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__Group_3__1__Impl"
-    // InternalQualityEffectSpecification.g:2749:1: rule__Resource__Group_3__1__Impl : ( ( rule__Resource__PropertiesAssignment_3_1 ) ) ;
+    // InternalQualityEffectSpecification.g:2803:1: rule__Resource__Group_3__1__Impl : ( ( rule__Resource__PropertiesAssignment_3_1 ) ) ;
     public final void rule__Resource__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2753:1: ( ( ( rule__Resource__PropertiesAssignment_3_1 ) ) )
-            // InternalQualityEffectSpecification.g:2754:1: ( ( rule__Resource__PropertiesAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:2807:1: ( ( ( rule__Resource__PropertiesAssignment_3_1 ) ) )
+            // InternalQualityEffectSpecification.g:2808:1: ( ( rule__Resource__PropertiesAssignment_3_1 ) )
             {
-            // InternalQualityEffectSpecification.g:2754:1: ( ( rule__Resource__PropertiesAssignment_3_1 ) )
-            // InternalQualityEffectSpecification.g:2755:2: ( rule__Resource__PropertiesAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:2808:1: ( ( rule__Resource__PropertiesAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:2809:2: ( rule__Resource__PropertiesAssignment_3_1 )
             {
              before(grammarAccess.getResourceAccess().getPropertiesAssignment_3_1()); 
-            // InternalQualityEffectSpecification.g:2756:2: ( rule__Resource__PropertiesAssignment_3_1 )
-            // InternalQualityEffectSpecification.g:2756:3: rule__Resource__PropertiesAssignment_3_1
+            // InternalQualityEffectSpecification.g:2810:2: ( rule__Resource__PropertiesAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:2810:3: rule__Resource__PropertiesAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__Resource__PropertiesAssignment_3_1();
@@ -8604,14 +8786,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__0"
-    // InternalQualityEffectSpecification.g:2765:1: rule__NQA__Group__0 : rule__NQA__Group__0__Impl rule__NQA__Group__1 ;
+    // InternalQualityEffectSpecification.g:2819:1: rule__NQA__Group__0 : rule__NQA__Group__0__Impl rule__NQA__Group__1 ;
     public final void rule__NQA__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2769:1: ( rule__NQA__Group__0__Impl rule__NQA__Group__1 )
-            // InternalQualityEffectSpecification.g:2770:2: rule__NQA__Group__0__Impl rule__NQA__Group__1
+            // InternalQualityEffectSpecification.g:2823:1: ( rule__NQA__Group__0__Impl rule__NQA__Group__1 )
+            // InternalQualityEffectSpecification.g:2824:2: rule__NQA__Group__0__Impl rule__NQA__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__NQA__Group__0__Impl();
@@ -8642,17 +8824,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:2777:1: rule__NQA__Group__0__Impl : ( 'NQA' ) ;
+    // InternalQualityEffectSpecification.g:2831:1: rule__NQA__Group__0__Impl : ( 'NQA' ) ;
     public final void rule__NQA__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2781:1: ( ( 'NQA' ) )
-            // InternalQualityEffectSpecification.g:2782:1: ( 'NQA' )
+            // InternalQualityEffectSpecification.g:2835:1: ( ( 'NQA' ) )
+            // InternalQualityEffectSpecification.g:2836:1: ( 'NQA' )
             {
-            // InternalQualityEffectSpecification.g:2782:1: ( 'NQA' )
-            // InternalQualityEffectSpecification.g:2783:2: 'NQA'
+            // InternalQualityEffectSpecification.g:2836:1: ( 'NQA' )
+            // InternalQualityEffectSpecification.g:2837:2: 'NQA'
             {
              before(grammarAccess.getNQAAccess().getNQAKeyword_0()); 
             match(input,47,FOLLOW_2); 
@@ -8679,16 +8861,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__1"
-    // InternalQualityEffectSpecification.g:2792:1: rule__NQA__Group__1 : rule__NQA__Group__1__Impl rule__NQA__Group__2 ;
+    // InternalQualityEffectSpecification.g:2846:1: rule__NQA__Group__1 : rule__NQA__Group__1__Impl rule__NQA__Group__2 ;
     public final void rule__NQA__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2796:1: ( rule__NQA__Group__1__Impl rule__NQA__Group__2 )
-            // InternalQualityEffectSpecification.g:2797:2: rule__NQA__Group__1__Impl rule__NQA__Group__2
+            // InternalQualityEffectSpecification.g:2850:1: ( rule__NQA__Group__1__Impl rule__NQA__Group__2 )
+            // InternalQualityEffectSpecification.g:2851:2: rule__NQA__Group__1__Impl rule__NQA__Group__2
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__NQA__Group__1__Impl();
 
             state._fsp--;
@@ -8717,17 +8899,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:2804:1: rule__NQA__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:2858:1: rule__NQA__Group__1__Impl : ( '(' ) ;
     public final void rule__NQA__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2808:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:2809:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2862:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:2863:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:2809:1: ( '(' )
-            // InternalQualityEffectSpecification.g:2810:2: '('
+            // InternalQualityEffectSpecification.g:2863:1: ( '(' )
+            // InternalQualityEffectSpecification.g:2864:2: '('
             {
              before(grammarAccess.getNQAAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -8754,16 +8936,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__2"
-    // InternalQualityEffectSpecification.g:2819:1: rule__NQA__Group__2 : rule__NQA__Group__2__Impl rule__NQA__Group__3 ;
+    // InternalQualityEffectSpecification.g:2873:1: rule__NQA__Group__2 : rule__NQA__Group__2__Impl rule__NQA__Group__3 ;
     public final void rule__NQA__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2823:1: ( rule__NQA__Group__2__Impl rule__NQA__Group__3 )
-            // InternalQualityEffectSpecification.g:2824:2: rule__NQA__Group__2__Impl rule__NQA__Group__3
+            // InternalQualityEffectSpecification.g:2877:1: ( rule__NQA__Group__2__Impl rule__NQA__Group__3 )
+            // InternalQualityEffectSpecification.g:2878:2: rule__NQA__Group__2__Impl rule__NQA__Group__3
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__NQA__Group__2__Impl();
 
             state._fsp--;
@@ -8792,21 +8974,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:2831:1: rule__NQA__Group__2__Impl : ( ( rule__NQA__QualityAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:2885:1: rule__NQA__Group__2__Impl : ( ( rule__NQA__QualityAssignment_2 ) ) ;
     public final void rule__NQA__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2835:1: ( ( ( rule__NQA__QualityAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:2836:1: ( ( rule__NQA__QualityAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:2889:1: ( ( ( rule__NQA__QualityAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:2890:1: ( ( rule__NQA__QualityAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:2836:1: ( ( rule__NQA__QualityAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:2837:2: ( rule__NQA__QualityAssignment_2 )
+            // InternalQualityEffectSpecification.g:2890:1: ( ( rule__NQA__QualityAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:2891:2: ( rule__NQA__QualityAssignment_2 )
             {
              before(grammarAccess.getNQAAccess().getQualityAssignment_2()); 
-            // InternalQualityEffectSpecification.g:2838:2: ( rule__NQA__QualityAssignment_2 )
-            // InternalQualityEffectSpecification.g:2838:3: rule__NQA__QualityAssignment_2
+            // InternalQualityEffectSpecification.g:2892:2: ( rule__NQA__QualityAssignment_2 )
+            // InternalQualityEffectSpecification.g:2892:3: rule__NQA__QualityAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__NQA__QualityAssignment_2();
@@ -8839,16 +9021,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__3"
-    // InternalQualityEffectSpecification.g:2846:1: rule__NQA__Group__3 : rule__NQA__Group__3__Impl rule__NQA__Group__4 ;
+    // InternalQualityEffectSpecification.g:2900:1: rule__NQA__Group__3 : rule__NQA__Group__3__Impl rule__NQA__Group__4 ;
     public final void rule__NQA__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2850:1: ( rule__NQA__Group__3__Impl rule__NQA__Group__4 )
-            // InternalQualityEffectSpecification.g:2851:2: rule__NQA__Group__3__Impl rule__NQA__Group__4
+            // InternalQualityEffectSpecification.g:2904:1: ( rule__NQA__Group__3__Impl rule__NQA__Group__4 )
+            // InternalQualityEffectSpecification.g:2905:2: rule__NQA__Group__3__Impl rule__NQA__Group__4
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__NQA__Group__3__Impl();
 
             state._fsp--;
@@ -8877,21 +9059,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:2858:1: rule__NQA__Group__3__Impl : ( ( rule__NQA__TypeAssignment_3 ) ) ;
+    // InternalQualityEffectSpecification.g:2912:1: rule__NQA__Group__3__Impl : ( ( rule__NQA__TypeAssignment_3 ) ) ;
     public final void rule__NQA__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2862:1: ( ( ( rule__NQA__TypeAssignment_3 ) ) )
-            // InternalQualityEffectSpecification.g:2863:1: ( ( rule__NQA__TypeAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:2916:1: ( ( ( rule__NQA__TypeAssignment_3 ) ) )
+            // InternalQualityEffectSpecification.g:2917:1: ( ( rule__NQA__TypeAssignment_3 ) )
             {
-            // InternalQualityEffectSpecification.g:2863:1: ( ( rule__NQA__TypeAssignment_3 ) )
-            // InternalQualityEffectSpecification.g:2864:2: ( rule__NQA__TypeAssignment_3 )
+            // InternalQualityEffectSpecification.g:2917:1: ( ( rule__NQA__TypeAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:2918:2: ( rule__NQA__TypeAssignment_3 )
             {
              before(grammarAccess.getNQAAccess().getTypeAssignment_3()); 
-            // InternalQualityEffectSpecification.g:2865:2: ( rule__NQA__TypeAssignment_3 )
-            // InternalQualityEffectSpecification.g:2865:3: rule__NQA__TypeAssignment_3
+            // InternalQualityEffectSpecification.g:2919:2: ( rule__NQA__TypeAssignment_3 )
+            // InternalQualityEffectSpecification.g:2919:3: rule__NQA__TypeAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__NQA__TypeAssignment_3();
@@ -8924,14 +9106,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__4"
-    // InternalQualityEffectSpecification.g:2873:1: rule__NQA__Group__4 : rule__NQA__Group__4__Impl rule__NQA__Group__5 ;
+    // InternalQualityEffectSpecification.g:2927:1: rule__NQA__Group__4 : rule__NQA__Group__4__Impl rule__NQA__Group__5 ;
     public final void rule__NQA__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2877:1: ( rule__NQA__Group__4__Impl rule__NQA__Group__5 )
-            // InternalQualityEffectSpecification.g:2878:2: rule__NQA__Group__4__Impl rule__NQA__Group__5
+            // InternalQualityEffectSpecification.g:2931:1: ( rule__NQA__Group__4__Impl rule__NQA__Group__5 )
+            // InternalQualityEffectSpecification.g:2932:2: rule__NQA__Group__4__Impl rule__NQA__Group__5
             {
             pushFollow(FOLLOW_16);
             rule__NQA__Group__4__Impl();
@@ -8962,21 +9144,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:2885:1: rule__NQA__Group__4__Impl : ( ( rule__NQA__ElementAssignment_4 ) ) ;
+    // InternalQualityEffectSpecification.g:2939:1: rule__NQA__Group__4__Impl : ( ( rule__NQA__ElementAssignment_4 ) ) ;
     public final void rule__NQA__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2889:1: ( ( ( rule__NQA__ElementAssignment_4 ) ) )
-            // InternalQualityEffectSpecification.g:2890:1: ( ( rule__NQA__ElementAssignment_4 ) )
+            // InternalQualityEffectSpecification.g:2943:1: ( ( ( rule__NQA__ElementAssignment_4 ) ) )
+            // InternalQualityEffectSpecification.g:2944:1: ( ( rule__NQA__ElementAssignment_4 ) )
             {
-            // InternalQualityEffectSpecification.g:2890:1: ( ( rule__NQA__ElementAssignment_4 ) )
-            // InternalQualityEffectSpecification.g:2891:2: ( rule__NQA__ElementAssignment_4 )
+            // InternalQualityEffectSpecification.g:2944:1: ( ( rule__NQA__ElementAssignment_4 ) )
+            // InternalQualityEffectSpecification.g:2945:2: ( rule__NQA__ElementAssignment_4 )
             {
              before(grammarAccess.getNQAAccess().getElementAssignment_4()); 
-            // InternalQualityEffectSpecification.g:2892:2: ( rule__NQA__ElementAssignment_4 )
-            // InternalQualityEffectSpecification.g:2892:3: rule__NQA__ElementAssignment_4
+            // InternalQualityEffectSpecification.g:2946:2: ( rule__NQA__ElementAssignment_4 )
+            // InternalQualityEffectSpecification.g:2946:3: rule__NQA__ElementAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__NQA__ElementAssignment_4();
@@ -9009,14 +9191,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__5"
-    // InternalQualityEffectSpecification.g:2900:1: rule__NQA__Group__5 : rule__NQA__Group__5__Impl ;
+    // InternalQualityEffectSpecification.g:2954:1: rule__NQA__Group__5 : rule__NQA__Group__5__Impl ;
     public final void rule__NQA__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2904:1: ( rule__NQA__Group__5__Impl )
-            // InternalQualityEffectSpecification.g:2905:2: rule__NQA__Group__5__Impl
+            // InternalQualityEffectSpecification.g:2958:1: ( rule__NQA__Group__5__Impl )
+            // InternalQualityEffectSpecification.g:2959:2: rule__NQA__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NQA__Group__5__Impl();
@@ -9042,17 +9224,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:2911:1: rule__NQA__Group__5__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:2965:1: rule__NQA__Group__5__Impl : ( ')' ) ;
     public final void rule__NQA__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2915:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:2916:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2969:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:2970:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:2916:1: ( ')' )
-            // InternalQualityEffectSpecification.g:2917:2: ')'
+            // InternalQualityEffectSpecification.g:2970:1: ( ')' )
+            // InternalQualityEffectSpecification.g:2971:2: ')'
             {
              before(grammarAccess.getNQAAccess().getRightParenthesisKeyword_5()); 
             match(input,38,FOLLOW_2); 
@@ -9079,14 +9261,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__0"
-    // InternalQualityEffectSpecification.g:2927:1: rule__Reasoning__Group__0 : rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1 ;
+    // InternalQualityEffectSpecification.g:2981:1: rule__Reasoning__Group__0 : rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1 ;
     public final void rule__Reasoning__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2931:1: ( rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1 )
-            // InternalQualityEffectSpecification.g:2932:2: rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1
+            // InternalQualityEffectSpecification.g:2985:1: ( rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1 )
+            // InternalQualityEffectSpecification.g:2986:2: rule__Reasoning__Group__0__Impl rule__Reasoning__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__Reasoning__Group__0__Impl();
@@ -9117,17 +9299,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:2939:1: rule__Reasoning__Group__0__Impl : ( 'Reasoning' ) ;
+    // InternalQualityEffectSpecification.g:2993:1: rule__Reasoning__Group__0__Impl : ( 'Reasoning' ) ;
     public final void rule__Reasoning__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2943:1: ( ( 'Reasoning' ) )
-            // InternalQualityEffectSpecification.g:2944:1: ( 'Reasoning' )
+            // InternalQualityEffectSpecification.g:2997:1: ( ( 'Reasoning' ) )
+            // InternalQualityEffectSpecification.g:2998:1: ( 'Reasoning' )
             {
-            // InternalQualityEffectSpecification.g:2944:1: ( 'Reasoning' )
-            // InternalQualityEffectSpecification.g:2945:2: 'Reasoning'
+            // InternalQualityEffectSpecification.g:2998:1: ( 'Reasoning' )
+            // InternalQualityEffectSpecification.g:2999:2: 'Reasoning'
             {
              before(grammarAccess.getReasoningAccess().getReasoningKeyword_0()); 
             match(input,48,FOLLOW_2); 
@@ -9154,16 +9336,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__1"
-    // InternalQualityEffectSpecification.g:2954:1: rule__Reasoning__Group__1 : rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2 ;
+    // InternalQualityEffectSpecification.g:3008:1: rule__Reasoning__Group__1 : rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2 ;
     public final void rule__Reasoning__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2958:1: ( rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2 )
-            // InternalQualityEffectSpecification.g:2959:2: rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2
+            // InternalQualityEffectSpecification.g:3012:1: ( rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2 )
+            // InternalQualityEffectSpecification.g:3013:2: rule__Reasoning__Group__1__Impl rule__Reasoning__Group__2
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Reasoning__Group__1__Impl();
 
             state._fsp--;
@@ -9192,17 +9374,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:2966:1: rule__Reasoning__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:3020:1: rule__Reasoning__Group__1__Impl : ( '(' ) ;
     public final void rule__Reasoning__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2970:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:2971:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3024:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:3025:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:2971:1: ( '(' )
-            // InternalQualityEffectSpecification.g:2972:2: '('
+            // InternalQualityEffectSpecification.g:3025:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3026:2: '('
             {
              before(grammarAccess.getReasoningAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -9229,16 +9411,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__2"
-    // InternalQualityEffectSpecification.g:2981:1: rule__Reasoning__Group__2 : rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3 ;
+    // InternalQualityEffectSpecification.g:3035:1: rule__Reasoning__Group__2 : rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3 ;
     public final void rule__Reasoning__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2985:1: ( rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3 )
-            // InternalQualityEffectSpecification.g:2986:2: rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3
+            // InternalQualityEffectSpecification.g:3039:1: ( rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3 )
+            // InternalQualityEffectSpecification.g:3040:2: rule__Reasoning__Group__2__Impl rule__Reasoning__Group__3
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_26);
             rule__Reasoning__Group__2__Impl();
 
             state._fsp--;
@@ -9267,21 +9449,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:2993:1: rule__Reasoning__Group__2__Impl : ( ( rule__Reasoning__QualityAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:3047:1: rule__Reasoning__Group__2__Impl : ( ( rule__Reasoning__QualityAssignment_2 ) ) ;
     public final void rule__Reasoning__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:2997:1: ( ( ( rule__Reasoning__QualityAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:2998:1: ( ( rule__Reasoning__QualityAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3051:1: ( ( ( rule__Reasoning__QualityAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:3052:1: ( ( rule__Reasoning__QualityAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:2998:1: ( ( rule__Reasoning__QualityAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:2999:2: ( rule__Reasoning__QualityAssignment_2 )
+            // InternalQualityEffectSpecification.g:3052:1: ( ( rule__Reasoning__QualityAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3053:2: ( rule__Reasoning__QualityAssignment_2 )
             {
              before(grammarAccess.getReasoningAccess().getQualityAssignment_2()); 
-            // InternalQualityEffectSpecification.g:3000:2: ( rule__Reasoning__QualityAssignment_2 )
-            // InternalQualityEffectSpecification.g:3000:3: rule__Reasoning__QualityAssignment_2
+            // InternalQualityEffectSpecification.g:3054:2: ( rule__Reasoning__QualityAssignment_2 )
+            // InternalQualityEffectSpecification.g:3054:3: rule__Reasoning__QualityAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Reasoning__QualityAssignment_2();
@@ -9314,16 +9496,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__3"
-    // InternalQualityEffectSpecification.g:3008:1: rule__Reasoning__Group__3 : rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4 ;
+    // InternalQualityEffectSpecification.g:3062:1: rule__Reasoning__Group__3 : rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4 ;
     public final void rule__Reasoning__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3012:1: ( rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4 )
-            // InternalQualityEffectSpecification.g:3013:2: rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4
+            // InternalQualityEffectSpecification.g:3066:1: ( rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4 )
+            // InternalQualityEffectSpecification.g:3067:2: rule__Reasoning__Group__3__Impl rule__Reasoning__Group__4
             {
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_27);
             rule__Reasoning__Group__3__Impl();
 
             state._fsp--;
@@ -9352,17 +9534,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:3020:1: rule__Reasoning__Group__3__Impl : ( '=' ) ;
+    // InternalQualityEffectSpecification.g:3074:1: rule__Reasoning__Group__3__Impl : ( '=' ) ;
     public final void rule__Reasoning__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3024:1: ( ( '=' ) )
-            // InternalQualityEffectSpecification.g:3025:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3078:1: ( ( '=' ) )
+            // InternalQualityEffectSpecification.g:3079:1: ( '=' )
             {
-            // InternalQualityEffectSpecification.g:3025:1: ( '=' )
-            // InternalQualityEffectSpecification.g:3026:2: '='
+            // InternalQualityEffectSpecification.g:3079:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3080:2: '='
             {
              before(grammarAccess.getReasoningAccess().getEqualsSignKeyword_3()); 
             match(input,26,FOLLOW_2); 
@@ -9389,16 +9571,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__4"
-    // InternalQualityEffectSpecification.g:3035:1: rule__Reasoning__Group__4 : rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5 ;
+    // InternalQualityEffectSpecification.g:3089:1: rule__Reasoning__Group__4 : rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5 ;
     public final void rule__Reasoning__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3039:1: ( rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5 )
-            // InternalQualityEffectSpecification.g:3040:2: rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5
+            // InternalQualityEffectSpecification.g:3093:1: ( rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5 )
+            // InternalQualityEffectSpecification.g:3094:2: rule__Reasoning__Group__4__Impl rule__Reasoning__Group__5
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__Reasoning__Group__4__Impl();
 
             state._fsp--;
@@ -9427,21 +9609,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:3047:1: rule__Reasoning__Group__4__Impl : ( ( rule__Reasoning__RulesAssignment_4 ) ) ;
+    // InternalQualityEffectSpecification.g:3101:1: rule__Reasoning__Group__4__Impl : ( ( rule__Reasoning__RulesAssignment_4 ) ) ;
     public final void rule__Reasoning__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3051:1: ( ( ( rule__Reasoning__RulesAssignment_4 ) ) )
-            // InternalQualityEffectSpecification.g:3052:1: ( ( rule__Reasoning__RulesAssignment_4 ) )
+            // InternalQualityEffectSpecification.g:3105:1: ( ( ( rule__Reasoning__RulesAssignment_4 ) ) )
+            // InternalQualityEffectSpecification.g:3106:1: ( ( rule__Reasoning__RulesAssignment_4 ) )
             {
-            // InternalQualityEffectSpecification.g:3052:1: ( ( rule__Reasoning__RulesAssignment_4 ) )
-            // InternalQualityEffectSpecification.g:3053:2: ( rule__Reasoning__RulesAssignment_4 )
+            // InternalQualityEffectSpecification.g:3106:1: ( ( rule__Reasoning__RulesAssignment_4 ) )
+            // InternalQualityEffectSpecification.g:3107:2: ( rule__Reasoning__RulesAssignment_4 )
             {
              before(grammarAccess.getReasoningAccess().getRulesAssignment_4()); 
-            // InternalQualityEffectSpecification.g:3054:2: ( rule__Reasoning__RulesAssignment_4 )
-            // InternalQualityEffectSpecification.g:3054:3: rule__Reasoning__RulesAssignment_4
+            // InternalQualityEffectSpecification.g:3108:2: ( rule__Reasoning__RulesAssignment_4 )
+            // InternalQualityEffectSpecification.g:3108:3: rule__Reasoning__RulesAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__Reasoning__RulesAssignment_4();
@@ -9474,16 +9656,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__5"
-    // InternalQualityEffectSpecification.g:3062:1: rule__Reasoning__Group__5 : rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6 ;
+    // InternalQualityEffectSpecification.g:3116:1: rule__Reasoning__Group__5 : rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6 ;
     public final void rule__Reasoning__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3066:1: ( rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6 )
-            // InternalQualityEffectSpecification.g:3067:2: rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6
+            // InternalQualityEffectSpecification.g:3120:1: ( rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6 )
+            // InternalQualityEffectSpecification.g:3121:2: rule__Reasoning__Group__5__Impl rule__Reasoning__Group__6
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__Reasoning__Group__5__Impl();
 
             state._fsp--;
@@ -9512,35 +9694,35 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:3074:1: rule__Reasoning__Group__5__Impl : ( ( rule__Reasoning__Group_5__0 )* ) ;
+    // InternalQualityEffectSpecification.g:3128:1: rule__Reasoning__Group__5__Impl : ( ( rule__Reasoning__Group_5__0 )* ) ;
     public final void rule__Reasoning__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3078:1: ( ( ( rule__Reasoning__Group_5__0 )* ) )
-            // InternalQualityEffectSpecification.g:3079:1: ( ( rule__Reasoning__Group_5__0 )* )
+            // InternalQualityEffectSpecification.g:3132:1: ( ( ( rule__Reasoning__Group_5__0 )* ) )
+            // InternalQualityEffectSpecification.g:3133:1: ( ( rule__Reasoning__Group_5__0 )* )
             {
-            // InternalQualityEffectSpecification.g:3079:1: ( ( rule__Reasoning__Group_5__0 )* )
-            // InternalQualityEffectSpecification.g:3080:2: ( rule__Reasoning__Group_5__0 )*
+            // InternalQualityEffectSpecification.g:3133:1: ( ( rule__Reasoning__Group_5__0 )* )
+            // InternalQualityEffectSpecification.g:3134:2: ( rule__Reasoning__Group_5__0 )*
             {
              before(grammarAccess.getReasoningAccess().getGroup_5()); 
-            // InternalQualityEffectSpecification.g:3081:2: ( rule__Reasoning__Group_5__0 )*
-            loop23:
+            // InternalQualityEffectSpecification.g:3135:2: ( rule__Reasoning__Group_5__0 )*
+            loop25:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( (LA23_0==49) ) {
-                    alt23=1;
+                if ( (LA25_0==49) ) {
+                    alt25=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt25) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:3081:3: rule__Reasoning__Group_5__0
+            	    // InternalQualityEffectSpecification.g:3135:3: rule__Reasoning__Group_5__0
             	    {
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_29);
             	    rule__Reasoning__Group_5__0();
 
             	    state._fsp--;
@@ -9550,7 +9732,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop25;
                 }
             } while (true);
 
@@ -9577,14 +9759,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__6"
-    // InternalQualityEffectSpecification.g:3089:1: rule__Reasoning__Group__6 : rule__Reasoning__Group__6__Impl ;
+    // InternalQualityEffectSpecification.g:3143:1: rule__Reasoning__Group__6 : rule__Reasoning__Group__6__Impl ;
     public final void rule__Reasoning__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3093:1: ( rule__Reasoning__Group__6__Impl )
-            // InternalQualityEffectSpecification.g:3094:2: rule__Reasoning__Group__6__Impl
+            // InternalQualityEffectSpecification.g:3147:1: ( rule__Reasoning__Group__6__Impl )
+            // InternalQualityEffectSpecification.g:3148:2: rule__Reasoning__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Reasoning__Group__6__Impl();
@@ -9610,17 +9792,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group__6__Impl"
-    // InternalQualityEffectSpecification.g:3100:1: rule__Reasoning__Group__6__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:3154:1: rule__Reasoning__Group__6__Impl : ( ')' ) ;
     public final void rule__Reasoning__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3104:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:3105:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3158:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:3159:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:3105:1: ( ')' )
-            // InternalQualityEffectSpecification.g:3106:2: ')'
+            // InternalQualityEffectSpecification.g:3159:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3160:2: ')'
             {
              before(grammarAccess.getReasoningAccess().getRightParenthesisKeyword_6()); 
             match(input,38,FOLLOW_2); 
@@ -9647,16 +9829,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group_5__0"
-    // InternalQualityEffectSpecification.g:3116:1: rule__Reasoning__Group_5__0 : rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1 ;
+    // InternalQualityEffectSpecification.g:3170:1: rule__Reasoning__Group_5__0 : rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1 ;
     public final void rule__Reasoning__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3120:1: ( rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1 )
-            // InternalQualityEffectSpecification.g:3121:2: rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1
+            // InternalQualityEffectSpecification.g:3174:1: ( rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1 )
+            // InternalQualityEffectSpecification.g:3175:2: rule__Reasoning__Group_5__0__Impl rule__Reasoning__Group_5__1
             {
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_27);
             rule__Reasoning__Group_5__0__Impl();
 
             state._fsp--;
@@ -9685,17 +9867,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group_5__0__Impl"
-    // InternalQualityEffectSpecification.g:3128:1: rule__Reasoning__Group_5__0__Impl : ( ',' ) ;
+    // InternalQualityEffectSpecification.g:3182:1: rule__Reasoning__Group_5__0__Impl : ( ',' ) ;
     public final void rule__Reasoning__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3132:1: ( ( ',' ) )
-            // InternalQualityEffectSpecification.g:3133:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3186:1: ( ( ',' ) )
+            // InternalQualityEffectSpecification.g:3187:1: ( ',' )
             {
-            // InternalQualityEffectSpecification.g:3133:1: ( ',' )
-            // InternalQualityEffectSpecification.g:3134:2: ','
+            // InternalQualityEffectSpecification.g:3187:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3188:2: ','
             {
              before(grammarAccess.getReasoningAccess().getCommaKeyword_5_0()); 
             match(input,49,FOLLOW_2); 
@@ -9722,14 +9904,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group_5__1"
-    // InternalQualityEffectSpecification.g:3143:1: rule__Reasoning__Group_5__1 : rule__Reasoning__Group_5__1__Impl ;
+    // InternalQualityEffectSpecification.g:3197:1: rule__Reasoning__Group_5__1 : rule__Reasoning__Group_5__1__Impl ;
     public final void rule__Reasoning__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3147:1: ( rule__Reasoning__Group_5__1__Impl )
-            // InternalQualityEffectSpecification.g:3148:2: rule__Reasoning__Group_5__1__Impl
+            // InternalQualityEffectSpecification.g:3201:1: ( rule__Reasoning__Group_5__1__Impl )
+            // InternalQualityEffectSpecification.g:3202:2: rule__Reasoning__Group_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Reasoning__Group_5__1__Impl();
@@ -9755,21 +9937,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__Group_5__1__Impl"
-    // InternalQualityEffectSpecification.g:3154:1: rule__Reasoning__Group_5__1__Impl : ( ( rule__Reasoning__RulesAssignment_5_1 ) ) ;
+    // InternalQualityEffectSpecification.g:3208:1: rule__Reasoning__Group_5__1__Impl : ( ( rule__Reasoning__RulesAssignment_5_1 ) ) ;
     public final void rule__Reasoning__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3158:1: ( ( ( rule__Reasoning__RulesAssignment_5_1 ) ) )
-            // InternalQualityEffectSpecification.g:3159:1: ( ( rule__Reasoning__RulesAssignment_5_1 ) )
+            // InternalQualityEffectSpecification.g:3212:1: ( ( ( rule__Reasoning__RulesAssignment_5_1 ) ) )
+            // InternalQualityEffectSpecification.g:3213:1: ( ( rule__Reasoning__RulesAssignment_5_1 ) )
             {
-            // InternalQualityEffectSpecification.g:3159:1: ( ( rule__Reasoning__RulesAssignment_5_1 ) )
-            // InternalQualityEffectSpecification.g:3160:2: ( rule__Reasoning__RulesAssignment_5_1 )
+            // InternalQualityEffectSpecification.g:3213:1: ( ( rule__Reasoning__RulesAssignment_5_1 ) )
+            // InternalQualityEffectSpecification.g:3214:2: ( rule__Reasoning__RulesAssignment_5_1 )
             {
              before(grammarAccess.getReasoningAccess().getRulesAssignment_5_1()); 
-            // InternalQualityEffectSpecification.g:3161:2: ( rule__Reasoning__RulesAssignment_5_1 )
-            // InternalQualityEffectSpecification.g:3161:3: rule__Reasoning__RulesAssignment_5_1
+            // InternalQualityEffectSpecification.g:3215:2: ( rule__Reasoning__RulesAssignment_5_1 )
+            // InternalQualityEffectSpecification.g:3215:3: rule__Reasoning__RulesAssignment_5_1
             {
             pushFollow(FOLLOW_2);
             rule__Reasoning__RulesAssignment_5_1();
@@ -9802,14 +9984,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__0"
-    // InternalQualityEffectSpecification.g:3170:1: rule__Rule__Group__0 : rule__Rule__Group__0__Impl rule__Rule__Group__1 ;
+    // InternalQualityEffectSpecification.g:3224:1: rule__Rule__Group__0 : rule__Rule__Group__0__Impl rule__Rule__Group__1 ;
     public final void rule__Rule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3174:1: ( rule__Rule__Group__0__Impl rule__Rule__Group__1 )
-            // InternalQualityEffectSpecification.g:3175:2: rule__Rule__Group__0__Impl rule__Rule__Group__1
+            // InternalQualityEffectSpecification.g:3228:1: ( rule__Rule__Group__0__Impl rule__Rule__Group__1 )
+            // InternalQualityEffectSpecification.g:3229:2: rule__Rule__Group__0__Impl rule__Rule__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__Rule__Group__0__Impl();
@@ -9840,17 +10022,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:3182:1: rule__Rule__Group__0__Impl : ( 'Rule' ) ;
+    // InternalQualityEffectSpecification.g:3236:1: rule__Rule__Group__0__Impl : ( 'Rule' ) ;
     public final void rule__Rule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3186:1: ( ( 'Rule' ) )
-            // InternalQualityEffectSpecification.g:3187:1: ( 'Rule' )
+            // InternalQualityEffectSpecification.g:3240:1: ( ( 'Rule' ) )
+            // InternalQualityEffectSpecification.g:3241:1: ( 'Rule' )
             {
-            // InternalQualityEffectSpecification.g:3187:1: ( 'Rule' )
-            // InternalQualityEffectSpecification.g:3188:2: 'Rule'
+            // InternalQualityEffectSpecification.g:3241:1: ( 'Rule' )
+            // InternalQualityEffectSpecification.g:3242:2: 'Rule'
             {
              before(grammarAccess.getRuleAccess().getRuleKeyword_0()); 
             match(input,50,FOLLOW_2); 
@@ -9877,16 +10059,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__1"
-    // InternalQualityEffectSpecification.g:3197:1: rule__Rule__Group__1 : rule__Rule__Group__1__Impl rule__Rule__Group__2 ;
+    // InternalQualityEffectSpecification.g:3251:1: rule__Rule__Group__1 : rule__Rule__Group__1__Impl rule__Rule__Group__2 ;
     public final void rule__Rule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3201:1: ( rule__Rule__Group__1__Impl rule__Rule__Group__2 )
-            // InternalQualityEffectSpecification.g:3202:2: rule__Rule__Group__1__Impl rule__Rule__Group__2
+            // InternalQualityEffectSpecification.g:3255:1: ( rule__Rule__Group__1__Impl rule__Rule__Group__2 )
+            // InternalQualityEffectSpecification.g:3256:2: rule__Rule__Group__1__Impl rule__Rule__Group__2
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Rule__Group__1__Impl();
 
             state._fsp--;
@@ -9915,17 +10097,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:3209:1: rule__Rule__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:3263:1: rule__Rule__Group__1__Impl : ( '(' ) ;
     public final void rule__Rule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3213:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:3214:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3267:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:3268:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:3214:1: ( '(' )
-            // InternalQualityEffectSpecification.g:3215:2: '('
+            // InternalQualityEffectSpecification.g:3268:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3269:2: '('
             {
              before(grammarAccess.getRuleAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -9952,16 +10134,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__2"
-    // InternalQualityEffectSpecification.g:3224:1: rule__Rule__Group__2 : rule__Rule__Group__2__Impl rule__Rule__Group__3 ;
+    // InternalQualityEffectSpecification.g:3278:1: rule__Rule__Group__2 : rule__Rule__Group__2__Impl rule__Rule__Group__3 ;
     public final void rule__Rule__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3228:1: ( rule__Rule__Group__2__Impl rule__Rule__Group__3 )
-            // InternalQualityEffectSpecification.g:3229:2: rule__Rule__Group__2__Impl rule__Rule__Group__3
+            // InternalQualityEffectSpecification.g:3282:1: ( rule__Rule__Group__2__Impl rule__Rule__Group__3 )
+            // InternalQualityEffectSpecification.g:3283:2: rule__Rule__Group__2__Impl rule__Rule__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__Rule__Group__2__Impl();
 
             state._fsp--;
@@ -9990,21 +10172,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:3236:1: rule__Rule__Group__2__Impl : ( ( rule__Rule__QualitiesAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:3290:1: rule__Rule__Group__2__Impl : ( ( rule__Rule__QualitiesAssignment_2 ) ) ;
     public final void rule__Rule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3240:1: ( ( ( rule__Rule__QualitiesAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:3241:1: ( ( rule__Rule__QualitiesAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3294:1: ( ( ( rule__Rule__QualitiesAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:3295:1: ( ( rule__Rule__QualitiesAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:3241:1: ( ( rule__Rule__QualitiesAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:3242:2: ( rule__Rule__QualitiesAssignment_2 )
+            // InternalQualityEffectSpecification.g:3295:1: ( ( rule__Rule__QualitiesAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3296:2: ( rule__Rule__QualitiesAssignment_2 )
             {
              before(grammarAccess.getRuleAccess().getQualitiesAssignment_2()); 
-            // InternalQualityEffectSpecification.g:3243:2: ( rule__Rule__QualitiesAssignment_2 )
-            // InternalQualityEffectSpecification.g:3243:3: rule__Rule__QualitiesAssignment_2
+            // InternalQualityEffectSpecification.g:3297:2: ( rule__Rule__QualitiesAssignment_2 )
+            // InternalQualityEffectSpecification.g:3297:3: rule__Rule__QualitiesAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Rule__QualitiesAssignment_2();
@@ -10037,16 +10219,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__3"
-    // InternalQualityEffectSpecification.g:3251:1: rule__Rule__Group__3 : rule__Rule__Group__3__Impl rule__Rule__Group__4 ;
+    // InternalQualityEffectSpecification.g:3305:1: rule__Rule__Group__3 : rule__Rule__Group__3__Impl rule__Rule__Group__4 ;
     public final void rule__Rule__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3255:1: ( rule__Rule__Group__3__Impl rule__Rule__Group__4 )
-            // InternalQualityEffectSpecification.g:3256:2: rule__Rule__Group__3__Impl rule__Rule__Group__4
+            // InternalQualityEffectSpecification.g:3309:1: ( rule__Rule__Group__3__Impl rule__Rule__Group__4 )
+            // InternalQualityEffectSpecification.g:3310:2: rule__Rule__Group__3__Impl rule__Rule__Group__4
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__Rule__Group__3__Impl();
 
             state._fsp--;
@@ -10075,35 +10257,35 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:3263:1: rule__Rule__Group__3__Impl : ( ( rule__Rule__Group_3__0 )* ) ;
+    // InternalQualityEffectSpecification.g:3317:1: rule__Rule__Group__3__Impl : ( ( rule__Rule__Group_3__0 )* ) ;
     public final void rule__Rule__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3267:1: ( ( ( rule__Rule__Group_3__0 )* ) )
-            // InternalQualityEffectSpecification.g:3268:1: ( ( rule__Rule__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:3321:1: ( ( ( rule__Rule__Group_3__0 )* ) )
+            // InternalQualityEffectSpecification.g:3322:1: ( ( rule__Rule__Group_3__0 )* )
             {
-            // InternalQualityEffectSpecification.g:3268:1: ( ( rule__Rule__Group_3__0 )* )
-            // InternalQualityEffectSpecification.g:3269:2: ( rule__Rule__Group_3__0 )*
+            // InternalQualityEffectSpecification.g:3322:1: ( ( rule__Rule__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:3323:2: ( rule__Rule__Group_3__0 )*
             {
              before(grammarAccess.getRuleAccess().getGroup_3()); 
-            // InternalQualityEffectSpecification.g:3270:2: ( rule__Rule__Group_3__0 )*
-            loop24:
+            // InternalQualityEffectSpecification.g:3324:2: ( rule__Rule__Group_3__0 )*
+            loop26:
             do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
+                int alt26=2;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA24_0==49) ) {
-                    alt24=1;
+                if ( (LA26_0==49) ) {
+                    alt26=1;
                 }
 
 
-                switch (alt24) {
+                switch (alt26) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:3270:3: rule__Rule__Group_3__0
+            	    // InternalQualityEffectSpecification.g:3324:3: rule__Rule__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_29);
             	    rule__Rule__Group_3__0();
 
             	    state._fsp--;
@@ -10113,7 +10295,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop24;
+            	    break loop26;
                 }
             } while (true);
 
@@ -10140,16 +10322,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__4"
-    // InternalQualityEffectSpecification.g:3278:1: rule__Rule__Group__4 : rule__Rule__Group__4__Impl rule__Rule__Group__5 ;
+    // InternalQualityEffectSpecification.g:3332:1: rule__Rule__Group__4 : rule__Rule__Group__4__Impl rule__Rule__Group__5 ;
     public final void rule__Rule__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3282:1: ( rule__Rule__Group__4__Impl rule__Rule__Group__5 )
-            // InternalQualityEffectSpecification.g:3283:2: rule__Rule__Group__4__Impl rule__Rule__Group__5
+            // InternalQualityEffectSpecification.g:3336:1: ( rule__Rule__Group__4__Impl rule__Rule__Group__5 )
+            // InternalQualityEffectSpecification.g:3337:2: rule__Rule__Group__4__Impl rule__Rule__Group__5
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_31);
             rule__Rule__Group__4__Impl();
 
             state._fsp--;
@@ -10178,17 +10360,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:3290:1: rule__Rule__Group__4__Impl : ( '=' ) ;
+    // InternalQualityEffectSpecification.g:3344:1: rule__Rule__Group__4__Impl : ( '=' ) ;
     public final void rule__Rule__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3294:1: ( ( '=' ) )
-            // InternalQualityEffectSpecification.g:3295:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3348:1: ( ( '=' ) )
+            // InternalQualityEffectSpecification.g:3349:1: ( '=' )
             {
-            // InternalQualityEffectSpecification.g:3295:1: ( '=' )
-            // InternalQualityEffectSpecification.g:3296:2: '='
+            // InternalQualityEffectSpecification.g:3349:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3350:2: '='
             {
              before(grammarAccess.getRuleAccess().getEqualsSignKeyword_4()); 
             match(input,26,FOLLOW_2); 
@@ -10215,16 +10397,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__5"
-    // InternalQualityEffectSpecification.g:3305:1: rule__Rule__Group__5 : rule__Rule__Group__5__Impl rule__Rule__Group__6 ;
+    // InternalQualityEffectSpecification.g:3359:1: rule__Rule__Group__5 : rule__Rule__Group__5__Impl rule__Rule__Group__6 ;
     public final void rule__Rule__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3309:1: ( rule__Rule__Group__5__Impl rule__Rule__Group__6 )
-            // InternalQualityEffectSpecification.g:3310:2: rule__Rule__Group__5__Impl rule__Rule__Group__6
+            // InternalQualityEffectSpecification.g:3363:1: ( rule__Rule__Group__5__Impl rule__Rule__Group__6 )
+            // InternalQualityEffectSpecification.g:3364:2: rule__Rule__Group__5__Impl rule__Rule__Group__6
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__Rule__Group__5__Impl();
 
             state._fsp--;
@@ -10253,21 +10435,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:3317:1: rule__Rule__Group__5__Impl : ( ( rule__Rule__EntriesAssignment_5 ) ) ;
+    // InternalQualityEffectSpecification.g:3371:1: rule__Rule__Group__5__Impl : ( ( rule__Rule__EntriesAssignment_5 ) ) ;
     public final void rule__Rule__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3321:1: ( ( ( rule__Rule__EntriesAssignment_5 ) ) )
-            // InternalQualityEffectSpecification.g:3322:1: ( ( rule__Rule__EntriesAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:3375:1: ( ( ( rule__Rule__EntriesAssignment_5 ) ) )
+            // InternalQualityEffectSpecification.g:3376:1: ( ( rule__Rule__EntriesAssignment_5 ) )
             {
-            // InternalQualityEffectSpecification.g:3322:1: ( ( rule__Rule__EntriesAssignment_5 ) )
-            // InternalQualityEffectSpecification.g:3323:2: ( rule__Rule__EntriesAssignment_5 )
+            // InternalQualityEffectSpecification.g:3376:1: ( ( rule__Rule__EntriesAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:3377:2: ( rule__Rule__EntriesAssignment_5 )
             {
              before(grammarAccess.getRuleAccess().getEntriesAssignment_5()); 
-            // InternalQualityEffectSpecification.g:3324:2: ( rule__Rule__EntriesAssignment_5 )
-            // InternalQualityEffectSpecification.g:3324:3: rule__Rule__EntriesAssignment_5
+            // InternalQualityEffectSpecification.g:3378:2: ( rule__Rule__EntriesAssignment_5 )
+            // InternalQualityEffectSpecification.g:3378:3: rule__Rule__EntriesAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__Rule__EntriesAssignment_5();
@@ -10300,16 +10482,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__6"
-    // InternalQualityEffectSpecification.g:3332:1: rule__Rule__Group__6 : rule__Rule__Group__6__Impl rule__Rule__Group__7 ;
+    // InternalQualityEffectSpecification.g:3386:1: rule__Rule__Group__6 : rule__Rule__Group__6__Impl rule__Rule__Group__7 ;
     public final void rule__Rule__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3336:1: ( rule__Rule__Group__6__Impl rule__Rule__Group__7 )
-            // InternalQualityEffectSpecification.g:3337:2: rule__Rule__Group__6__Impl rule__Rule__Group__7
+            // InternalQualityEffectSpecification.g:3390:1: ( rule__Rule__Group__6__Impl rule__Rule__Group__7 )
+            // InternalQualityEffectSpecification.g:3391:2: rule__Rule__Group__6__Impl rule__Rule__Group__7
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__Rule__Group__6__Impl();
 
             state._fsp--;
@@ -10338,35 +10520,35 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__6__Impl"
-    // InternalQualityEffectSpecification.g:3344:1: rule__Rule__Group__6__Impl : ( ( rule__Rule__Group_6__0 )* ) ;
+    // InternalQualityEffectSpecification.g:3398:1: rule__Rule__Group__6__Impl : ( ( rule__Rule__Group_6__0 )* ) ;
     public final void rule__Rule__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3348:1: ( ( ( rule__Rule__Group_6__0 )* ) )
-            // InternalQualityEffectSpecification.g:3349:1: ( ( rule__Rule__Group_6__0 )* )
+            // InternalQualityEffectSpecification.g:3402:1: ( ( ( rule__Rule__Group_6__0 )* ) )
+            // InternalQualityEffectSpecification.g:3403:1: ( ( rule__Rule__Group_6__0 )* )
             {
-            // InternalQualityEffectSpecification.g:3349:1: ( ( rule__Rule__Group_6__0 )* )
-            // InternalQualityEffectSpecification.g:3350:2: ( rule__Rule__Group_6__0 )*
+            // InternalQualityEffectSpecification.g:3403:1: ( ( rule__Rule__Group_6__0 )* )
+            // InternalQualityEffectSpecification.g:3404:2: ( rule__Rule__Group_6__0 )*
             {
              before(grammarAccess.getRuleAccess().getGroup_6()); 
-            // InternalQualityEffectSpecification.g:3351:2: ( rule__Rule__Group_6__0 )*
-            loop25:
+            // InternalQualityEffectSpecification.g:3405:2: ( rule__Rule__Group_6__0 )*
+            loop27:
             do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA25_0==49) ) {
-                    alt25=1;
+                if ( (LA27_0==49) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt25) {
+                switch (alt27) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:3351:3: rule__Rule__Group_6__0
+            	    // InternalQualityEffectSpecification.g:3405:3: rule__Rule__Group_6__0
             	    {
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_29);
             	    rule__Rule__Group_6__0();
 
             	    state._fsp--;
@@ -10376,7 +10558,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop27;
                 }
             } while (true);
 
@@ -10403,14 +10585,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__7"
-    // InternalQualityEffectSpecification.g:3359:1: rule__Rule__Group__7 : rule__Rule__Group__7__Impl ;
+    // InternalQualityEffectSpecification.g:3413:1: rule__Rule__Group__7 : rule__Rule__Group__7__Impl ;
     public final void rule__Rule__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3363:1: ( rule__Rule__Group__7__Impl )
-            // InternalQualityEffectSpecification.g:3364:2: rule__Rule__Group__7__Impl
+            // InternalQualityEffectSpecification.g:3417:1: ( rule__Rule__Group__7__Impl )
+            // InternalQualityEffectSpecification.g:3418:2: rule__Rule__Group__7__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Rule__Group__7__Impl();
@@ -10436,17 +10618,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group__7__Impl"
-    // InternalQualityEffectSpecification.g:3370:1: rule__Rule__Group__7__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:3424:1: rule__Rule__Group__7__Impl : ( ')' ) ;
     public final void rule__Rule__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3374:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:3375:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3428:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:3429:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:3375:1: ( ')' )
-            // InternalQualityEffectSpecification.g:3376:2: ')'
+            // InternalQualityEffectSpecification.g:3429:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3430:2: ')'
             {
              before(grammarAccess.getRuleAccess().getRightParenthesisKeyword_7()); 
             match(input,38,FOLLOW_2); 
@@ -10473,16 +10655,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_3__0"
-    // InternalQualityEffectSpecification.g:3386:1: rule__Rule__Group_3__0 : rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1 ;
+    // InternalQualityEffectSpecification.g:3440:1: rule__Rule__Group_3__0 : rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1 ;
     public final void rule__Rule__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3390:1: ( rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1 )
-            // InternalQualityEffectSpecification.g:3391:2: rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1
+            // InternalQualityEffectSpecification.g:3444:1: ( rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1 )
+            // InternalQualityEffectSpecification.g:3445:2: rule__Rule__Group_3__0__Impl rule__Rule__Group_3__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Rule__Group_3__0__Impl();
 
             state._fsp--;
@@ -10511,17 +10693,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_3__0__Impl"
-    // InternalQualityEffectSpecification.g:3398:1: rule__Rule__Group_3__0__Impl : ( ',' ) ;
+    // InternalQualityEffectSpecification.g:3452:1: rule__Rule__Group_3__0__Impl : ( ',' ) ;
     public final void rule__Rule__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3402:1: ( ( ',' ) )
-            // InternalQualityEffectSpecification.g:3403:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3456:1: ( ( ',' ) )
+            // InternalQualityEffectSpecification.g:3457:1: ( ',' )
             {
-            // InternalQualityEffectSpecification.g:3403:1: ( ',' )
-            // InternalQualityEffectSpecification.g:3404:2: ','
+            // InternalQualityEffectSpecification.g:3457:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3458:2: ','
             {
              before(grammarAccess.getRuleAccess().getCommaKeyword_3_0()); 
             match(input,49,FOLLOW_2); 
@@ -10548,14 +10730,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_3__1"
-    // InternalQualityEffectSpecification.g:3413:1: rule__Rule__Group_3__1 : rule__Rule__Group_3__1__Impl ;
+    // InternalQualityEffectSpecification.g:3467:1: rule__Rule__Group_3__1 : rule__Rule__Group_3__1__Impl ;
     public final void rule__Rule__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3417:1: ( rule__Rule__Group_3__1__Impl )
-            // InternalQualityEffectSpecification.g:3418:2: rule__Rule__Group_3__1__Impl
+            // InternalQualityEffectSpecification.g:3471:1: ( rule__Rule__Group_3__1__Impl )
+            // InternalQualityEffectSpecification.g:3472:2: rule__Rule__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Rule__Group_3__1__Impl();
@@ -10581,21 +10763,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_3__1__Impl"
-    // InternalQualityEffectSpecification.g:3424:1: rule__Rule__Group_3__1__Impl : ( ( rule__Rule__QualitiesAssignment_3_1 ) ) ;
+    // InternalQualityEffectSpecification.g:3478:1: rule__Rule__Group_3__1__Impl : ( ( rule__Rule__QualitiesAssignment_3_1 ) ) ;
     public final void rule__Rule__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3428:1: ( ( ( rule__Rule__QualitiesAssignment_3_1 ) ) )
-            // InternalQualityEffectSpecification.g:3429:1: ( ( rule__Rule__QualitiesAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:3482:1: ( ( ( rule__Rule__QualitiesAssignment_3_1 ) ) )
+            // InternalQualityEffectSpecification.g:3483:1: ( ( rule__Rule__QualitiesAssignment_3_1 ) )
             {
-            // InternalQualityEffectSpecification.g:3429:1: ( ( rule__Rule__QualitiesAssignment_3_1 ) )
-            // InternalQualityEffectSpecification.g:3430:2: ( rule__Rule__QualitiesAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:3483:1: ( ( rule__Rule__QualitiesAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:3484:2: ( rule__Rule__QualitiesAssignment_3_1 )
             {
              before(grammarAccess.getRuleAccess().getQualitiesAssignment_3_1()); 
-            // InternalQualityEffectSpecification.g:3431:2: ( rule__Rule__QualitiesAssignment_3_1 )
-            // InternalQualityEffectSpecification.g:3431:3: rule__Rule__QualitiesAssignment_3_1
+            // InternalQualityEffectSpecification.g:3485:2: ( rule__Rule__QualitiesAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:3485:3: rule__Rule__QualitiesAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__Rule__QualitiesAssignment_3_1();
@@ -10628,16 +10810,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_6__0"
-    // InternalQualityEffectSpecification.g:3440:1: rule__Rule__Group_6__0 : rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1 ;
+    // InternalQualityEffectSpecification.g:3494:1: rule__Rule__Group_6__0 : rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1 ;
     public final void rule__Rule__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3444:1: ( rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1 )
-            // InternalQualityEffectSpecification.g:3445:2: rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1
+            // InternalQualityEffectSpecification.g:3498:1: ( rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1 )
+            // InternalQualityEffectSpecification.g:3499:2: rule__Rule__Group_6__0__Impl rule__Rule__Group_6__1
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_31);
             rule__Rule__Group_6__0__Impl();
 
             state._fsp--;
@@ -10666,17 +10848,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_6__0__Impl"
-    // InternalQualityEffectSpecification.g:3452:1: rule__Rule__Group_6__0__Impl : ( ',' ) ;
+    // InternalQualityEffectSpecification.g:3506:1: rule__Rule__Group_6__0__Impl : ( ',' ) ;
     public final void rule__Rule__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3456:1: ( ( ',' ) )
-            // InternalQualityEffectSpecification.g:3457:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3510:1: ( ( ',' ) )
+            // InternalQualityEffectSpecification.g:3511:1: ( ',' )
             {
-            // InternalQualityEffectSpecification.g:3457:1: ( ',' )
-            // InternalQualityEffectSpecification.g:3458:2: ','
+            // InternalQualityEffectSpecification.g:3511:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3512:2: ','
             {
              before(grammarAccess.getRuleAccess().getCommaKeyword_6_0()); 
             match(input,49,FOLLOW_2); 
@@ -10703,14 +10885,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_6__1"
-    // InternalQualityEffectSpecification.g:3467:1: rule__Rule__Group_6__1 : rule__Rule__Group_6__1__Impl ;
+    // InternalQualityEffectSpecification.g:3521:1: rule__Rule__Group_6__1 : rule__Rule__Group_6__1__Impl ;
     public final void rule__Rule__Group_6__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3471:1: ( rule__Rule__Group_6__1__Impl )
-            // InternalQualityEffectSpecification.g:3472:2: rule__Rule__Group_6__1__Impl
+            // InternalQualityEffectSpecification.g:3525:1: ( rule__Rule__Group_6__1__Impl )
+            // InternalQualityEffectSpecification.g:3526:2: rule__Rule__Group_6__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Rule__Group_6__1__Impl();
@@ -10736,21 +10918,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__Group_6__1__Impl"
-    // InternalQualityEffectSpecification.g:3478:1: rule__Rule__Group_6__1__Impl : ( ( rule__Rule__EntriesAssignment_6_1 ) ) ;
+    // InternalQualityEffectSpecification.g:3532:1: rule__Rule__Group_6__1__Impl : ( ( rule__Rule__EntriesAssignment_6_1 ) ) ;
     public final void rule__Rule__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3482:1: ( ( ( rule__Rule__EntriesAssignment_6_1 ) ) )
-            // InternalQualityEffectSpecification.g:3483:1: ( ( rule__Rule__EntriesAssignment_6_1 ) )
+            // InternalQualityEffectSpecification.g:3536:1: ( ( ( rule__Rule__EntriesAssignment_6_1 ) ) )
+            // InternalQualityEffectSpecification.g:3537:1: ( ( rule__Rule__EntriesAssignment_6_1 ) )
             {
-            // InternalQualityEffectSpecification.g:3483:1: ( ( rule__Rule__EntriesAssignment_6_1 ) )
-            // InternalQualityEffectSpecification.g:3484:2: ( rule__Rule__EntriesAssignment_6_1 )
+            // InternalQualityEffectSpecification.g:3537:1: ( ( rule__Rule__EntriesAssignment_6_1 ) )
+            // InternalQualityEffectSpecification.g:3538:2: ( rule__Rule__EntriesAssignment_6_1 )
             {
              before(grammarAccess.getRuleAccess().getEntriesAssignment_6_1()); 
-            // InternalQualityEffectSpecification.g:3485:2: ( rule__Rule__EntriesAssignment_6_1 )
-            // InternalQualityEffectSpecification.g:3485:3: rule__Rule__EntriesAssignment_6_1
+            // InternalQualityEffectSpecification.g:3539:2: ( rule__Rule__EntriesAssignment_6_1 )
+            // InternalQualityEffectSpecification.g:3539:3: rule__Rule__EntriesAssignment_6_1
             {
             pushFollow(FOLLOW_2);
             rule__Rule__EntriesAssignment_6_1();
@@ -10783,14 +10965,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__0"
-    // InternalQualityEffectSpecification.g:3494:1: rule__Entry__Group__0 : rule__Entry__Group__0__Impl rule__Entry__Group__1 ;
+    // InternalQualityEffectSpecification.g:3548:1: rule__Entry__Group__0 : rule__Entry__Group__0__Impl rule__Entry__Group__1 ;
     public final void rule__Entry__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3498:1: ( rule__Entry__Group__0__Impl rule__Entry__Group__1 )
-            // InternalQualityEffectSpecification.g:3499:2: rule__Entry__Group__0__Impl rule__Entry__Group__1
+            // InternalQualityEffectSpecification.g:3552:1: ( rule__Entry__Group__0__Impl rule__Entry__Group__1 )
+            // InternalQualityEffectSpecification.g:3553:2: rule__Entry__Group__0__Impl rule__Entry__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__Entry__Group__0__Impl();
@@ -10821,17 +11003,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:3506:1: rule__Entry__Group__0__Impl : ( 'Entry' ) ;
+    // InternalQualityEffectSpecification.g:3560:1: rule__Entry__Group__0__Impl : ( 'Entry' ) ;
     public final void rule__Entry__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3510:1: ( ( 'Entry' ) )
-            // InternalQualityEffectSpecification.g:3511:1: ( 'Entry' )
+            // InternalQualityEffectSpecification.g:3564:1: ( ( 'Entry' ) )
+            // InternalQualityEffectSpecification.g:3565:1: ( 'Entry' )
             {
-            // InternalQualityEffectSpecification.g:3511:1: ( 'Entry' )
-            // InternalQualityEffectSpecification.g:3512:2: 'Entry'
+            // InternalQualityEffectSpecification.g:3565:1: ( 'Entry' )
+            // InternalQualityEffectSpecification.g:3566:2: 'Entry'
             {
              before(grammarAccess.getEntryAccess().getEntryKeyword_0()); 
             match(input,51,FOLLOW_2); 
@@ -10858,16 +11040,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__1"
-    // InternalQualityEffectSpecification.g:3521:1: rule__Entry__Group__1 : rule__Entry__Group__1__Impl rule__Entry__Group__2 ;
+    // InternalQualityEffectSpecification.g:3575:1: rule__Entry__Group__1 : rule__Entry__Group__1__Impl rule__Entry__Group__2 ;
     public final void rule__Entry__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3525:1: ( rule__Entry__Group__1__Impl rule__Entry__Group__2 )
-            // InternalQualityEffectSpecification.g:3526:2: rule__Entry__Group__1__Impl rule__Entry__Group__2
+            // InternalQualityEffectSpecification.g:3579:1: ( rule__Entry__Group__1__Impl rule__Entry__Group__2 )
+            // InternalQualityEffectSpecification.g:3580:2: rule__Entry__Group__1__Impl rule__Entry__Group__2
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Entry__Group__1__Impl();
 
             state._fsp--;
@@ -10896,17 +11078,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:3533:1: rule__Entry__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:3587:1: rule__Entry__Group__1__Impl : ( '(' ) ;
     public final void rule__Entry__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3537:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:3538:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3591:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:3592:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:3538:1: ( '(' )
-            // InternalQualityEffectSpecification.g:3539:2: '('
+            // InternalQualityEffectSpecification.g:3592:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3593:2: '('
             {
              before(grammarAccess.getEntryAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -10933,16 +11115,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__2"
-    // InternalQualityEffectSpecification.g:3548:1: rule__Entry__Group__2 : rule__Entry__Group__2__Impl rule__Entry__Group__3 ;
+    // InternalQualityEffectSpecification.g:3602:1: rule__Entry__Group__2 : rule__Entry__Group__2__Impl rule__Entry__Group__3 ;
     public final void rule__Entry__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3552:1: ( rule__Entry__Group__2__Impl rule__Entry__Group__3 )
-            // InternalQualityEffectSpecification.g:3553:2: rule__Entry__Group__2__Impl rule__Entry__Group__3
+            // InternalQualityEffectSpecification.g:3606:1: ( rule__Entry__Group__2__Impl rule__Entry__Group__3 )
+            // InternalQualityEffectSpecification.g:3607:2: rule__Entry__Group__2__Impl rule__Entry__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__Entry__Group__2__Impl();
 
             state._fsp--;
@@ -10971,21 +11153,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:3560:1: rule__Entry__Group__2__Impl : ( ( rule__Entry__KeyAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:3614:1: rule__Entry__Group__2__Impl : ( ( rule__Entry__KeyAssignment_2 ) ) ;
     public final void rule__Entry__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3564:1: ( ( ( rule__Entry__KeyAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:3565:1: ( ( rule__Entry__KeyAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3618:1: ( ( ( rule__Entry__KeyAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:3619:1: ( ( rule__Entry__KeyAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:3565:1: ( ( rule__Entry__KeyAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:3566:2: ( rule__Entry__KeyAssignment_2 )
+            // InternalQualityEffectSpecification.g:3619:1: ( ( rule__Entry__KeyAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3620:2: ( rule__Entry__KeyAssignment_2 )
             {
              before(grammarAccess.getEntryAccess().getKeyAssignment_2()); 
-            // InternalQualityEffectSpecification.g:3567:2: ( rule__Entry__KeyAssignment_2 )
-            // InternalQualityEffectSpecification.g:3567:3: rule__Entry__KeyAssignment_2
+            // InternalQualityEffectSpecification.g:3621:2: ( rule__Entry__KeyAssignment_2 )
+            // InternalQualityEffectSpecification.g:3621:3: rule__Entry__KeyAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Entry__KeyAssignment_2();
@@ -11018,16 +11200,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__3"
-    // InternalQualityEffectSpecification.g:3575:1: rule__Entry__Group__3 : rule__Entry__Group__3__Impl rule__Entry__Group__4 ;
+    // InternalQualityEffectSpecification.g:3629:1: rule__Entry__Group__3 : rule__Entry__Group__3__Impl rule__Entry__Group__4 ;
     public final void rule__Entry__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3579:1: ( rule__Entry__Group__3__Impl rule__Entry__Group__4 )
-            // InternalQualityEffectSpecification.g:3580:2: rule__Entry__Group__3__Impl rule__Entry__Group__4
+            // InternalQualityEffectSpecification.g:3633:1: ( rule__Entry__Group__3__Impl rule__Entry__Group__4 )
+            // InternalQualityEffectSpecification.g:3634:2: rule__Entry__Group__3__Impl rule__Entry__Group__4
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__Entry__Group__3__Impl();
 
             state._fsp--;
@@ -11056,35 +11238,35 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:3587:1: rule__Entry__Group__3__Impl : ( ( rule__Entry__Group_3__0 )* ) ;
+    // InternalQualityEffectSpecification.g:3641:1: rule__Entry__Group__3__Impl : ( ( rule__Entry__Group_3__0 )* ) ;
     public final void rule__Entry__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3591:1: ( ( ( rule__Entry__Group_3__0 )* ) )
-            // InternalQualityEffectSpecification.g:3592:1: ( ( rule__Entry__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:3645:1: ( ( ( rule__Entry__Group_3__0 )* ) )
+            // InternalQualityEffectSpecification.g:3646:1: ( ( rule__Entry__Group_3__0 )* )
             {
-            // InternalQualityEffectSpecification.g:3592:1: ( ( rule__Entry__Group_3__0 )* )
-            // InternalQualityEffectSpecification.g:3593:2: ( rule__Entry__Group_3__0 )*
+            // InternalQualityEffectSpecification.g:3646:1: ( ( rule__Entry__Group_3__0 )* )
+            // InternalQualityEffectSpecification.g:3647:2: ( rule__Entry__Group_3__0 )*
             {
              before(grammarAccess.getEntryAccess().getGroup_3()); 
-            // InternalQualityEffectSpecification.g:3594:2: ( rule__Entry__Group_3__0 )*
-            loop26:
+            // InternalQualityEffectSpecification.g:3648:2: ( rule__Entry__Group_3__0 )*
+            loop28:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA26_0==49) ) {
-                    alt26=1;
+                if ( (LA28_0==49) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt28) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:3594:3: rule__Entry__Group_3__0
+            	    // InternalQualityEffectSpecification.g:3648:3: rule__Entry__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_29);
             	    rule__Entry__Group_3__0();
 
             	    state._fsp--;
@@ -11094,7 +11276,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop28;
                 }
             } while (true);
 
@@ -11121,16 +11303,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__4"
-    // InternalQualityEffectSpecification.g:3602:1: rule__Entry__Group__4 : rule__Entry__Group__4__Impl rule__Entry__Group__5 ;
+    // InternalQualityEffectSpecification.g:3656:1: rule__Entry__Group__4 : rule__Entry__Group__4__Impl rule__Entry__Group__5 ;
     public final void rule__Entry__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3606:1: ( rule__Entry__Group__4__Impl rule__Entry__Group__5 )
-            // InternalQualityEffectSpecification.g:3607:2: rule__Entry__Group__4__Impl rule__Entry__Group__5
+            // InternalQualityEffectSpecification.g:3660:1: ( rule__Entry__Group__4__Impl rule__Entry__Group__5 )
+            // InternalQualityEffectSpecification.g:3661:2: rule__Entry__Group__4__Impl rule__Entry__Group__5
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Entry__Group__4__Impl();
 
             state._fsp--;
@@ -11159,17 +11341,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:3614:1: rule__Entry__Group__4__Impl : ( '=' ) ;
+    // InternalQualityEffectSpecification.g:3668:1: rule__Entry__Group__4__Impl : ( '=' ) ;
     public final void rule__Entry__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3618:1: ( ( '=' ) )
-            // InternalQualityEffectSpecification.g:3619:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3672:1: ( ( '=' ) )
+            // InternalQualityEffectSpecification.g:3673:1: ( '=' )
             {
-            // InternalQualityEffectSpecification.g:3619:1: ( '=' )
-            // InternalQualityEffectSpecification.g:3620:2: '='
+            // InternalQualityEffectSpecification.g:3673:1: ( '=' )
+            // InternalQualityEffectSpecification.g:3674:2: '='
             {
              before(grammarAccess.getEntryAccess().getEqualsSignKeyword_4()); 
             match(input,26,FOLLOW_2); 
@@ -11196,14 +11378,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__5"
-    // InternalQualityEffectSpecification.g:3629:1: rule__Entry__Group__5 : rule__Entry__Group__5__Impl rule__Entry__Group__6 ;
+    // InternalQualityEffectSpecification.g:3683:1: rule__Entry__Group__5 : rule__Entry__Group__5__Impl rule__Entry__Group__6 ;
     public final void rule__Entry__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3633:1: ( rule__Entry__Group__5__Impl rule__Entry__Group__6 )
-            // InternalQualityEffectSpecification.g:3634:2: rule__Entry__Group__5__Impl rule__Entry__Group__6
+            // InternalQualityEffectSpecification.g:3687:1: ( rule__Entry__Group__5__Impl rule__Entry__Group__6 )
+            // InternalQualityEffectSpecification.g:3688:2: rule__Entry__Group__5__Impl rule__Entry__Group__6
             {
             pushFollow(FOLLOW_16);
             rule__Entry__Group__5__Impl();
@@ -11234,21 +11416,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__5__Impl"
-    // InternalQualityEffectSpecification.g:3641:1: rule__Entry__Group__5__Impl : ( ( rule__Entry__ValueAssignment_5 ) ) ;
+    // InternalQualityEffectSpecification.g:3695:1: rule__Entry__Group__5__Impl : ( ( rule__Entry__ValueAssignment_5 ) ) ;
     public final void rule__Entry__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3645:1: ( ( ( rule__Entry__ValueAssignment_5 ) ) )
-            // InternalQualityEffectSpecification.g:3646:1: ( ( rule__Entry__ValueAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:3699:1: ( ( ( rule__Entry__ValueAssignment_5 ) ) )
+            // InternalQualityEffectSpecification.g:3700:1: ( ( rule__Entry__ValueAssignment_5 ) )
             {
-            // InternalQualityEffectSpecification.g:3646:1: ( ( rule__Entry__ValueAssignment_5 ) )
-            // InternalQualityEffectSpecification.g:3647:2: ( rule__Entry__ValueAssignment_5 )
+            // InternalQualityEffectSpecification.g:3700:1: ( ( rule__Entry__ValueAssignment_5 ) )
+            // InternalQualityEffectSpecification.g:3701:2: ( rule__Entry__ValueAssignment_5 )
             {
              before(grammarAccess.getEntryAccess().getValueAssignment_5()); 
-            // InternalQualityEffectSpecification.g:3648:2: ( rule__Entry__ValueAssignment_5 )
-            // InternalQualityEffectSpecification.g:3648:3: rule__Entry__ValueAssignment_5
+            // InternalQualityEffectSpecification.g:3702:2: ( rule__Entry__ValueAssignment_5 )
+            // InternalQualityEffectSpecification.g:3702:3: rule__Entry__ValueAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__Entry__ValueAssignment_5();
@@ -11281,14 +11463,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__6"
-    // InternalQualityEffectSpecification.g:3656:1: rule__Entry__Group__6 : rule__Entry__Group__6__Impl ;
+    // InternalQualityEffectSpecification.g:3710:1: rule__Entry__Group__6 : rule__Entry__Group__6__Impl ;
     public final void rule__Entry__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3660:1: ( rule__Entry__Group__6__Impl )
-            // InternalQualityEffectSpecification.g:3661:2: rule__Entry__Group__6__Impl
+            // InternalQualityEffectSpecification.g:3714:1: ( rule__Entry__Group__6__Impl )
+            // InternalQualityEffectSpecification.g:3715:2: rule__Entry__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Entry__Group__6__Impl();
@@ -11314,17 +11496,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group__6__Impl"
-    // InternalQualityEffectSpecification.g:3667:1: rule__Entry__Group__6__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:3721:1: rule__Entry__Group__6__Impl : ( ')' ) ;
     public final void rule__Entry__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3671:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:3672:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3725:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:3726:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:3672:1: ( ')' )
-            // InternalQualityEffectSpecification.g:3673:2: ')'
+            // InternalQualityEffectSpecification.g:3726:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3727:2: ')'
             {
              before(grammarAccess.getEntryAccess().getRightParenthesisKeyword_6()); 
             match(input,38,FOLLOW_2); 
@@ -11351,16 +11533,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group_3__0"
-    // InternalQualityEffectSpecification.g:3683:1: rule__Entry__Group_3__0 : rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1 ;
+    // InternalQualityEffectSpecification.g:3737:1: rule__Entry__Group_3__0 : rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1 ;
     public final void rule__Entry__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3687:1: ( rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1 )
-            // InternalQualityEffectSpecification.g:3688:2: rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1
+            // InternalQualityEffectSpecification.g:3741:1: ( rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1 )
+            // InternalQualityEffectSpecification.g:3742:2: rule__Entry__Group_3__0__Impl rule__Entry__Group_3__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__Entry__Group_3__0__Impl();
 
             state._fsp--;
@@ -11389,17 +11571,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group_3__0__Impl"
-    // InternalQualityEffectSpecification.g:3695:1: rule__Entry__Group_3__0__Impl : ( ',' ) ;
+    // InternalQualityEffectSpecification.g:3749:1: rule__Entry__Group_3__0__Impl : ( ',' ) ;
     public final void rule__Entry__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3699:1: ( ( ',' ) )
-            // InternalQualityEffectSpecification.g:3700:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3753:1: ( ( ',' ) )
+            // InternalQualityEffectSpecification.g:3754:1: ( ',' )
             {
-            // InternalQualityEffectSpecification.g:3700:1: ( ',' )
-            // InternalQualityEffectSpecification.g:3701:2: ','
+            // InternalQualityEffectSpecification.g:3754:1: ( ',' )
+            // InternalQualityEffectSpecification.g:3755:2: ','
             {
              before(grammarAccess.getEntryAccess().getCommaKeyword_3_0()); 
             match(input,49,FOLLOW_2); 
@@ -11426,14 +11608,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group_3__1"
-    // InternalQualityEffectSpecification.g:3710:1: rule__Entry__Group_3__1 : rule__Entry__Group_3__1__Impl ;
+    // InternalQualityEffectSpecification.g:3764:1: rule__Entry__Group_3__1 : rule__Entry__Group_3__1__Impl ;
     public final void rule__Entry__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3714:1: ( rule__Entry__Group_3__1__Impl )
-            // InternalQualityEffectSpecification.g:3715:2: rule__Entry__Group_3__1__Impl
+            // InternalQualityEffectSpecification.g:3768:1: ( rule__Entry__Group_3__1__Impl )
+            // InternalQualityEffectSpecification.g:3769:2: rule__Entry__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Entry__Group_3__1__Impl();
@@ -11459,21 +11641,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__Group_3__1__Impl"
-    // InternalQualityEffectSpecification.g:3721:1: rule__Entry__Group_3__1__Impl : ( ( rule__Entry__KeyAssignment_3_1 ) ) ;
+    // InternalQualityEffectSpecification.g:3775:1: rule__Entry__Group_3__1__Impl : ( ( rule__Entry__KeyAssignment_3_1 ) ) ;
     public final void rule__Entry__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3725:1: ( ( ( rule__Entry__KeyAssignment_3_1 ) ) )
-            // InternalQualityEffectSpecification.g:3726:1: ( ( rule__Entry__KeyAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:3779:1: ( ( ( rule__Entry__KeyAssignment_3_1 ) ) )
+            // InternalQualityEffectSpecification.g:3780:1: ( ( rule__Entry__KeyAssignment_3_1 ) )
             {
-            // InternalQualityEffectSpecification.g:3726:1: ( ( rule__Entry__KeyAssignment_3_1 ) )
-            // InternalQualityEffectSpecification.g:3727:2: ( rule__Entry__KeyAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:3780:1: ( ( rule__Entry__KeyAssignment_3_1 ) )
+            // InternalQualityEffectSpecification.g:3781:2: ( rule__Entry__KeyAssignment_3_1 )
             {
              before(grammarAccess.getEntryAccess().getKeyAssignment_3_1()); 
-            // InternalQualityEffectSpecification.g:3728:2: ( rule__Entry__KeyAssignment_3_1 )
-            // InternalQualityEffectSpecification.g:3728:3: rule__Entry__KeyAssignment_3_1
+            // InternalQualityEffectSpecification.g:3782:2: ( rule__Entry__KeyAssignment_3_1 )
+            // InternalQualityEffectSpecification.g:3782:3: rule__Entry__KeyAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__Entry__KeyAssignment_3_1();
@@ -11506,14 +11688,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__0"
-    // InternalQualityEffectSpecification.g:3737:1: rule__NumericValue__Group__0 : rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1 ;
+    // InternalQualityEffectSpecification.g:3791:1: rule__NumericValue__Group__0 : rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1 ;
     public final void rule__NumericValue__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3741:1: ( rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1 )
-            // InternalQualityEffectSpecification.g:3742:2: rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1
+            // InternalQualityEffectSpecification.g:3795:1: ( rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1 )
+            // InternalQualityEffectSpecification.g:3796:2: rule__NumericValue__Group__0__Impl rule__NumericValue__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__NumericValue__Group__0__Impl();
@@ -11544,21 +11726,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__0__Impl"
-    // InternalQualityEffectSpecification.g:3749:1: rule__NumericValue__Group__0__Impl : ( ( rule__NumericValue__ValueTypeAssignment_0 ) ) ;
+    // InternalQualityEffectSpecification.g:3803:1: rule__NumericValue__Group__0__Impl : ( ( rule__NumericValue__ValueTypeAssignment_0 ) ) ;
     public final void rule__NumericValue__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3753:1: ( ( ( rule__NumericValue__ValueTypeAssignment_0 ) ) )
-            // InternalQualityEffectSpecification.g:3754:1: ( ( rule__NumericValue__ValueTypeAssignment_0 ) )
+            // InternalQualityEffectSpecification.g:3807:1: ( ( ( rule__NumericValue__ValueTypeAssignment_0 ) ) )
+            // InternalQualityEffectSpecification.g:3808:1: ( ( rule__NumericValue__ValueTypeAssignment_0 ) )
             {
-            // InternalQualityEffectSpecification.g:3754:1: ( ( rule__NumericValue__ValueTypeAssignment_0 ) )
-            // InternalQualityEffectSpecification.g:3755:2: ( rule__NumericValue__ValueTypeAssignment_0 )
+            // InternalQualityEffectSpecification.g:3808:1: ( ( rule__NumericValue__ValueTypeAssignment_0 ) )
+            // InternalQualityEffectSpecification.g:3809:2: ( rule__NumericValue__ValueTypeAssignment_0 )
             {
              before(grammarAccess.getNumericValueAccess().getValueTypeAssignment_0()); 
-            // InternalQualityEffectSpecification.g:3756:2: ( rule__NumericValue__ValueTypeAssignment_0 )
-            // InternalQualityEffectSpecification.g:3756:3: rule__NumericValue__ValueTypeAssignment_0
+            // InternalQualityEffectSpecification.g:3810:2: ( rule__NumericValue__ValueTypeAssignment_0 )
+            // InternalQualityEffectSpecification.g:3810:3: rule__NumericValue__ValueTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__NumericValue__ValueTypeAssignment_0();
@@ -11591,16 +11773,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__1"
-    // InternalQualityEffectSpecification.g:3764:1: rule__NumericValue__Group__1 : rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2 ;
+    // InternalQualityEffectSpecification.g:3818:1: rule__NumericValue__Group__1 : rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2 ;
     public final void rule__NumericValue__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3768:1: ( rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2 )
-            // InternalQualityEffectSpecification.g:3769:2: rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2
+            // InternalQualityEffectSpecification.g:3822:1: ( rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2 )
+            // InternalQualityEffectSpecification.g:3823:2: rule__NumericValue__Group__1__Impl rule__NumericValue__Group__2
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__NumericValue__Group__1__Impl();
 
             state._fsp--;
@@ -11629,17 +11811,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__1__Impl"
-    // InternalQualityEffectSpecification.g:3776:1: rule__NumericValue__Group__1__Impl : ( '(' ) ;
+    // InternalQualityEffectSpecification.g:3830:1: rule__NumericValue__Group__1__Impl : ( '(' ) ;
     public final void rule__NumericValue__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3780:1: ( ( '(' ) )
-            // InternalQualityEffectSpecification.g:3781:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3834:1: ( ( '(' ) )
+            // InternalQualityEffectSpecification.g:3835:1: ( '(' )
             {
-            // InternalQualityEffectSpecification.g:3781:1: ( '(' )
-            // InternalQualityEffectSpecification.g:3782:2: '('
+            // InternalQualityEffectSpecification.g:3835:1: ( '(' )
+            // InternalQualityEffectSpecification.g:3836:2: '('
             {
              before(grammarAccess.getNumericValueAccess().getLeftParenthesisKeyword_1()); 
             match(input,37,FOLLOW_2); 
@@ -11666,16 +11848,16 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__2"
-    // InternalQualityEffectSpecification.g:3791:1: rule__NumericValue__Group__2 : rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3 ;
+    // InternalQualityEffectSpecification.g:3845:1: rule__NumericValue__Group__2 : rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3 ;
     public final void rule__NumericValue__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3795:1: ( rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3 )
-            // InternalQualityEffectSpecification.g:3796:2: rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3
+            // InternalQualityEffectSpecification.g:3849:1: ( rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3 )
+            // InternalQualityEffectSpecification.g:3850:2: rule__NumericValue__Group__2__Impl rule__NumericValue__Group__3
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_32);
             rule__NumericValue__Group__2__Impl();
 
             state._fsp--;
@@ -11704,21 +11886,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__2__Impl"
-    // InternalQualityEffectSpecification.g:3803:1: rule__NumericValue__Group__2__Impl : ( ( rule__NumericValue__TransformationTypeAssignment_2 ) ) ;
+    // InternalQualityEffectSpecification.g:3857:1: rule__NumericValue__Group__2__Impl : ( ( rule__NumericValue__TransformationTypeAssignment_2 ) ) ;
     public final void rule__NumericValue__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3807:1: ( ( ( rule__NumericValue__TransformationTypeAssignment_2 ) ) )
-            // InternalQualityEffectSpecification.g:3808:1: ( ( rule__NumericValue__TransformationTypeAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3861:1: ( ( ( rule__NumericValue__TransformationTypeAssignment_2 ) ) )
+            // InternalQualityEffectSpecification.g:3862:1: ( ( rule__NumericValue__TransformationTypeAssignment_2 ) )
             {
-            // InternalQualityEffectSpecification.g:3808:1: ( ( rule__NumericValue__TransformationTypeAssignment_2 ) )
-            // InternalQualityEffectSpecification.g:3809:2: ( rule__NumericValue__TransformationTypeAssignment_2 )
+            // InternalQualityEffectSpecification.g:3862:1: ( ( rule__NumericValue__TransformationTypeAssignment_2 ) )
+            // InternalQualityEffectSpecification.g:3863:2: ( rule__NumericValue__TransformationTypeAssignment_2 )
             {
              before(grammarAccess.getNumericValueAccess().getTransformationTypeAssignment_2()); 
-            // InternalQualityEffectSpecification.g:3810:2: ( rule__NumericValue__TransformationTypeAssignment_2 )
-            // InternalQualityEffectSpecification.g:3810:3: rule__NumericValue__TransformationTypeAssignment_2
+            // InternalQualityEffectSpecification.g:3864:2: ( rule__NumericValue__TransformationTypeAssignment_2 )
+            // InternalQualityEffectSpecification.g:3864:3: rule__NumericValue__TransformationTypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__NumericValue__TransformationTypeAssignment_2();
@@ -11751,14 +11933,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__3"
-    // InternalQualityEffectSpecification.g:3818:1: rule__NumericValue__Group__3 : rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4 ;
+    // InternalQualityEffectSpecification.g:3872:1: rule__NumericValue__Group__3 : rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4 ;
     public final void rule__NumericValue__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3822:1: ( rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4 )
-            // InternalQualityEffectSpecification.g:3823:2: rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4
+            // InternalQualityEffectSpecification.g:3876:1: ( rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4 )
+            // InternalQualityEffectSpecification.g:3877:2: rule__NumericValue__Group__3__Impl rule__NumericValue__Group__4
             {
             pushFollow(FOLLOW_16);
             rule__NumericValue__Group__3__Impl();
@@ -11789,21 +11971,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__3__Impl"
-    // InternalQualityEffectSpecification.g:3830:1: rule__NumericValue__Group__3__Impl : ( ( rule__NumericValue__TransformationNumberAssignment_3 ) ) ;
+    // InternalQualityEffectSpecification.g:3884:1: rule__NumericValue__Group__3__Impl : ( ( rule__NumericValue__TransformationNumberAssignment_3 ) ) ;
     public final void rule__NumericValue__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3834:1: ( ( ( rule__NumericValue__TransformationNumberAssignment_3 ) ) )
-            // InternalQualityEffectSpecification.g:3835:1: ( ( rule__NumericValue__TransformationNumberAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:3888:1: ( ( ( rule__NumericValue__TransformationNumberAssignment_3 ) ) )
+            // InternalQualityEffectSpecification.g:3889:1: ( ( rule__NumericValue__TransformationNumberAssignment_3 ) )
             {
-            // InternalQualityEffectSpecification.g:3835:1: ( ( rule__NumericValue__TransformationNumberAssignment_3 ) )
-            // InternalQualityEffectSpecification.g:3836:2: ( rule__NumericValue__TransformationNumberAssignment_3 )
+            // InternalQualityEffectSpecification.g:3889:1: ( ( rule__NumericValue__TransformationNumberAssignment_3 ) )
+            // InternalQualityEffectSpecification.g:3890:2: ( rule__NumericValue__TransformationNumberAssignment_3 )
             {
              before(grammarAccess.getNumericValueAccess().getTransformationNumberAssignment_3()); 
-            // InternalQualityEffectSpecification.g:3837:2: ( rule__NumericValue__TransformationNumberAssignment_3 )
-            // InternalQualityEffectSpecification.g:3837:3: rule__NumericValue__TransformationNumberAssignment_3
+            // InternalQualityEffectSpecification.g:3891:2: ( rule__NumericValue__TransformationNumberAssignment_3 )
+            // InternalQualityEffectSpecification.g:3891:3: rule__NumericValue__TransformationNumberAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__NumericValue__TransformationNumberAssignment_3();
@@ -11836,14 +12018,14 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__4"
-    // InternalQualityEffectSpecification.g:3845:1: rule__NumericValue__Group__4 : rule__NumericValue__Group__4__Impl ;
+    // InternalQualityEffectSpecification.g:3899:1: rule__NumericValue__Group__4 : rule__NumericValue__Group__4__Impl ;
     public final void rule__NumericValue__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3849:1: ( rule__NumericValue__Group__4__Impl )
-            // InternalQualityEffectSpecification.g:3850:2: rule__NumericValue__Group__4__Impl
+            // InternalQualityEffectSpecification.g:3903:1: ( rule__NumericValue__Group__4__Impl )
+            // InternalQualityEffectSpecification.g:3904:2: rule__NumericValue__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NumericValue__Group__4__Impl();
@@ -11869,17 +12051,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__Group__4__Impl"
-    // InternalQualityEffectSpecification.g:3856:1: rule__NumericValue__Group__4__Impl : ( ')' ) ;
+    // InternalQualityEffectSpecification.g:3910:1: rule__NumericValue__Group__4__Impl : ( ')' ) ;
     public final void rule__NumericValue__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3860:1: ( ( ')' ) )
-            // InternalQualityEffectSpecification.g:3861:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3914:1: ( ( ')' ) )
+            // InternalQualityEffectSpecification.g:3915:1: ( ')' )
             {
-            // InternalQualityEffectSpecification.g:3861:1: ( ')' )
-            // InternalQualityEffectSpecification.g:3862:2: ')'
+            // InternalQualityEffectSpecification.g:3915:1: ( ')' )
+            // InternalQualityEffectSpecification.g:3916:2: ')'
             {
              before(grammarAccess.getNumericValueAccess().getRightParenthesisKeyword_4()); 
             match(input,38,FOLLOW_2); 
@@ -11906,17 +12088,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Model__SpecificationsAssignment_0"
-    // InternalQualityEffectSpecification.g:3872:1: rule__Model__SpecificationsAssignment_0 : ( ruleQualityEffectSpecification ) ;
+    // InternalQualityEffectSpecification.g:3926:1: rule__Model__SpecificationsAssignment_0 : ( ruleQualityEffectSpecification ) ;
     public final void rule__Model__SpecificationsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3876:1: ( ( ruleQualityEffectSpecification ) )
-            // InternalQualityEffectSpecification.g:3877:2: ( ruleQualityEffectSpecification )
+            // InternalQualityEffectSpecification.g:3930:1: ( ( ruleQualityEffectSpecification ) )
+            // InternalQualityEffectSpecification.g:3931:2: ( ruleQualityEffectSpecification )
             {
-            // InternalQualityEffectSpecification.g:3877:2: ( ruleQualityEffectSpecification )
-            // InternalQualityEffectSpecification.g:3878:3: ruleQualityEffectSpecification
+            // InternalQualityEffectSpecification.g:3931:2: ( ruleQualityEffectSpecification )
+            // InternalQualityEffectSpecification.g:3932:3: ruleQualityEffectSpecification
             {
              before(grammarAccess.getModelAccess().getSpecificationsQualityEffectSpecificationParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -11947,17 +12129,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Model__SpecificationsAssignment_1_1"
-    // InternalQualityEffectSpecification.g:3887:1: rule__Model__SpecificationsAssignment_1_1 : ( ruleQualityEffectSpecification ) ;
+    // InternalQualityEffectSpecification.g:3941:1: rule__Model__SpecificationsAssignment_1_1 : ( ruleQualityEffectSpecification ) ;
     public final void rule__Model__SpecificationsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3891:1: ( ( ruleQualityEffectSpecification ) )
-            // InternalQualityEffectSpecification.g:3892:2: ( ruleQualityEffectSpecification )
+            // InternalQualityEffectSpecification.g:3945:1: ( ( ruleQualityEffectSpecification ) )
+            // InternalQualityEffectSpecification.g:3946:2: ( ruleQualityEffectSpecification )
             {
-            // InternalQualityEffectSpecification.g:3892:2: ( ruleQualityEffectSpecification )
-            // InternalQualityEffectSpecification.g:3893:3: ruleQualityEffectSpecification
+            // InternalQualityEffectSpecification.g:3946:2: ( ruleQualityEffectSpecification )
+            // InternalQualityEffectSpecification.g:3947:3: ruleQualityEffectSpecification
             {
              before(grammarAccess.getModelAccess().getSpecificationsQualityEffectSpecificationParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -11988,17 +12170,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__QualityEffectSpecification__ComponentsAssignment_2"
-    // InternalQualityEffectSpecification.g:3902:1: rule__QualityEffectSpecification__ComponentsAssignment_2 : ( ruleComponentSpecification ) ;
+    // InternalQualityEffectSpecification.g:3956:1: rule__QualityEffectSpecification__ComponentsAssignment_2 : ( ruleComponentSpecification ) ;
     public final void rule__QualityEffectSpecification__ComponentsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3906:1: ( ( ruleComponentSpecification ) )
-            // InternalQualityEffectSpecification.g:3907:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:3960:1: ( ( ruleComponentSpecification ) )
+            // InternalQualityEffectSpecification.g:3961:2: ( ruleComponentSpecification )
             {
-            // InternalQualityEffectSpecification.g:3907:2: ( ruleComponentSpecification )
-            // InternalQualityEffectSpecification.g:3908:3: ruleComponentSpecification
+            // InternalQualityEffectSpecification.g:3961:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:3962:3: ruleComponentSpecification
             {
              before(grammarAccess.getQualityEffectSpecificationAccess().getComponentsComponentSpecificationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12029,17 +12211,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__QualityEffectSpecification__ComponentsAssignment_3_1"
-    // InternalQualityEffectSpecification.g:3917:1: rule__QualityEffectSpecification__ComponentsAssignment_3_1 : ( ruleComponentSpecification ) ;
+    // InternalQualityEffectSpecification.g:3971:1: rule__QualityEffectSpecification__ComponentsAssignment_3_1 : ( ruleComponentSpecification ) ;
     public final void rule__QualityEffectSpecification__ComponentsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3921:1: ( ( ruleComponentSpecification ) )
-            // InternalQualityEffectSpecification.g:3922:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:3975:1: ( ( ruleComponentSpecification ) )
+            // InternalQualityEffectSpecification.g:3976:2: ( ruleComponentSpecification )
             {
-            // InternalQualityEffectSpecification.g:3922:2: ( ruleComponentSpecification )
-            // InternalQualityEffectSpecification.g:3923:3: ruleComponentSpecification
+            // InternalQualityEffectSpecification.g:3976:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:3977:3: ruleComponentSpecification
             {
              before(grammarAccess.getQualityEffectSpecificationAccess().getComponentsComponentSpecificationParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12070,17 +12252,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__QualityEffectSpecification__TransformationsAssignment_7"
-    // InternalQualityEffectSpecification.g:3932:1: rule__QualityEffectSpecification__TransformationsAssignment_7 : ( ruleTransformationSpecification ) ;
+    // InternalQualityEffectSpecification.g:3986:1: rule__QualityEffectSpecification__TransformationsAssignment_7 : ( ruleTransformationSpecification ) ;
     public final void rule__QualityEffectSpecification__TransformationsAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3936:1: ( ( ruleTransformationSpecification ) )
-            // InternalQualityEffectSpecification.g:3937:2: ( ruleTransformationSpecification )
+            // InternalQualityEffectSpecification.g:3990:1: ( ( ruleTransformationSpecification ) )
+            // InternalQualityEffectSpecification.g:3991:2: ( ruleTransformationSpecification )
             {
-            // InternalQualityEffectSpecification.g:3937:2: ( ruleTransformationSpecification )
-            // InternalQualityEffectSpecification.g:3938:3: ruleTransformationSpecification
+            // InternalQualityEffectSpecification.g:3991:2: ( ruleTransformationSpecification )
+            // InternalQualityEffectSpecification.g:3992:3: ruleTransformationSpecification
             {
              before(grammarAccess.getQualityEffectSpecificationAccess().getTransformationsTransformationSpecificationParserRuleCall_7_0()); 
             pushFollow(FOLLOW_2);
@@ -12111,17 +12293,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__QualityEffectSpecification__TransformationsAssignment_8_1"
-    // InternalQualityEffectSpecification.g:3947:1: rule__QualityEffectSpecification__TransformationsAssignment_8_1 : ( ruleTransformationSpecification ) ;
+    // InternalQualityEffectSpecification.g:4001:1: rule__QualityEffectSpecification__TransformationsAssignment_8_1 : ( ruleTransformationSpecification ) ;
     public final void rule__QualityEffectSpecification__TransformationsAssignment_8_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3951:1: ( ( ruleTransformationSpecification ) )
-            // InternalQualityEffectSpecification.g:3952:2: ( ruleTransformationSpecification )
+            // InternalQualityEffectSpecification.g:4005:1: ( ( ruleTransformationSpecification ) )
+            // InternalQualityEffectSpecification.g:4006:2: ( ruleTransformationSpecification )
             {
-            // InternalQualityEffectSpecification.g:3952:2: ( ruleTransformationSpecification )
-            // InternalQualityEffectSpecification.g:3953:3: ruleTransformationSpecification
+            // InternalQualityEffectSpecification.g:4006:2: ( ruleTransformationSpecification )
+            // InternalQualityEffectSpecification.g:4007:3: ruleTransformationSpecification
             {
              before(grammarAccess.getQualityEffectSpecificationAccess().getTransformationsTransformationSpecificationParserRuleCall_8_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12152,17 +12334,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__ComponentSpecification__PropertiesAssignment_2"
-    // InternalQualityEffectSpecification.g:3962:1: rule__ComponentSpecification__PropertiesAssignment_2 : ( ruleComponentProperty ) ;
+    // InternalQualityEffectSpecification.g:4016:1: rule__ComponentSpecification__PropertiesAssignment_2 : ( ruleComponentProperty ) ;
     public final void rule__ComponentSpecification__PropertiesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3966:1: ( ( ruleComponentProperty ) )
-            // InternalQualityEffectSpecification.g:3967:2: ( ruleComponentProperty )
+            // InternalQualityEffectSpecification.g:4020:1: ( ( ruleComponentProperty ) )
+            // InternalQualityEffectSpecification.g:4021:2: ( ruleComponentProperty )
             {
-            // InternalQualityEffectSpecification.g:3967:2: ( ruleComponentProperty )
-            // InternalQualityEffectSpecification.g:3968:3: ruleComponentProperty
+            // InternalQualityEffectSpecification.g:4021:2: ( ruleComponentProperty )
+            // InternalQualityEffectSpecification.g:4022:3: ruleComponentProperty
             {
              before(grammarAccess.getComponentSpecificationAccess().getPropertiesComponentPropertyParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12193,17 +12375,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__ComponentSpecification__PropertiesAssignment_3_1"
-    // InternalQualityEffectSpecification.g:3977:1: rule__ComponentSpecification__PropertiesAssignment_3_1 : ( ruleComponentProperty ) ;
+    // InternalQualityEffectSpecification.g:4031:1: rule__ComponentSpecification__PropertiesAssignment_3_1 : ( ruleComponentProperty ) ;
     public final void rule__ComponentSpecification__PropertiesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3981:1: ( ( ruleComponentProperty ) )
-            // InternalQualityEffectSpecification.g:3982:2: ( ruleComponentProperty )
+            // InternalQualityEffectSpecification.g:4035:1: ( ( ruleComponentProperty ) )
+            // InternalQualityEffectSpecification.g:4036:2: ( ruleComponentProperty )
             {
-            // InternalQualityEffectSpecification.g:3982:2: ( ruleComponentProperty )
-            // InternalQualityEffectSpecification.g:3983:3: ruleComponentProperty
+            // InternalQualityEffectSpecification.g:4036:2: ( ruleComponentProperty )
+            // InternalQualityEffectSpecification.g:4037:3: ruleComponentProperty
             {
              before(grammarAccess.getComponentSpecificationAccess().getPropertiesComponentPropertyParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12234,21 +12416,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Name__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:3992:1: rule__Name__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4046:1: rule__Name__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Name__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:3996:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:3997:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4050:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4051:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:3997:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:3998:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4051:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4052:3: ( 'not' )
             {
              before(grammarAccess.getNameAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:3999:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4000:4: 'not'
+            // InternalQualityEffectSpecification.g:4053:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4054:4: 'not'
             {
              before(grammarAccess.getNameAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12279,17 +12461,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Name__AutonymAssignment_3"
-    // InternalQualityEffectSpecification.g:4011:1: rule__Name__AutonymAssignment_3 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4065:1: rule__Name__AutonymAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Name__AutonymAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4015:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4016:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4069:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4070:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4016:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4017:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4070:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4071:3: RULE_STRING
             {
              before(grammarAccess.getNameAccess().getAutonymSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12316,21 +12498,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Identifier__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:4026:1: rule__Identifier__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4080:1: rule__Identifier__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Identifier__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4030:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:4031:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4084:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4085:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:4031:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:4032:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4085:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4086:3: ( 'not' )
             {
              before(grammarAccess.getIdentifierAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:4033:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4034:4: 'not'
+            // InternalQualityEffectSpecification.g:4087:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4088:4: 'not'
             {
              before(grammarAccess.getIdentifierAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12361,17 +12543,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Identifier__IdAssignment_3"
-    // InternalQualityEffectSpecification.g:4045:1: rule__Identifier__IdAssignment_3 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4099:1: rule__Identifier__IdAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Identifier__IdAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4049:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4050:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4103:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4104:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4050:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4051:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4104:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4105:3: RULE_STRING
             {
              before(grammarAccess.getIdentifierAccess().getIdSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12398,21 +12580,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Annotation__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:4060:1: rule__Annotation__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4114:1: rule__Annotation__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Annotation__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4064:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:4065:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4118:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4119:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:4065:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:4066:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4119:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4120:3: ( 'not' )
             {
              before(grammarAccess.getAnnotationAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:4067:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4068:4: 'not'
+            // InternalQualityEffectSpecification.g:4121:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4122:4: 'not'
             {
              before(grammarAccess.getAnnotationAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12443,17 +12625,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Annotation__AnnotationAssignment_3"
-    // InternalQualityEffectSpecification.g:4079:1: rule__Annotation__AnnotationAssignment_3 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4133:1: rule__Annotation__AnnotationAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Annotation__AnnotationAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4083:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4084:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4137:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4138:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4084:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4085:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4138:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4139:3: RULE_STRING
             {
              before(grammarAccess.getAnnotationAccess().getAnnotationSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12480,21 +12662,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Type__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:4094:1: rule__Type__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4148:1: rule__Type__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Type__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4098:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:4099:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4152:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4153:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:4099:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:4100:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4153:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4154:3: ( 'not' )
             {
              before(grammarAccess.getTypeAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:4101:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4102:4: 'not'
+            // InternalQualityEffectSpecification.g:4155:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4156:4: 'not'
             {
              before(grammarAccess.getTypeAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12525,17 +12707,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Type__TypeAssignment_3"
-    // InternalQualityEffectSpecification.g:4113:1: rule__Type__TypeAssignment_3 : ( ruleComponentType ) ;
+    // InternalQualityEffectSpecification.g:4167:1: rule__Type__TypeAssignment_3 : ( ruleComponentType ) ;
     public final void rule__Type__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4117:1: ( ( ruleComponentType ) )
-            // InternalQualityEffectSpecification.g:4118:2: ( ruleComponentType )
+            // InternalQualityEffectSpecification.g:4171:1: ( ( ruleComponentType ) )
+            // InternalQualityEffectSpecification.g:4172:2: ( ruleComponentType )
             {
-            // InternalQualityEffectSpecification.g:4118:2: ( ruleComponentType )
-            // InternalQualityEffectSpecification.g:4119:3: ruleComponentType
+            // InternalQualityEffectSpecification.g:4172:2: ( ruleComponentType )
+            // InternalQualityEffectSpecification.g:4173:3: ruleComponentType
             {
              before(grammarAccess.getTypeAccess().getTypeComponentTypeEnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -12566,21 +12748,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Role__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:4128:1: rule__Role__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4182:1: rule__Role__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Role__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4132:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:4133:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4186:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4187:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:4133:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:4134:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4187:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4188:3: ( 'not' )
             {
              before(grammarAccess.getRoleAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:4135:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4136:4: 'not'
+            // InternalQualityEffectSpecification.g:4189:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4190:4: 'not'
             {
              before(grammarAccess.getRoleAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12611,17 +12793,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Role__TypeAssignment_3"
-    // InternalQualityEffectSpecification.g:4147:1: rule__Role__TypeAssignment_3 : ( ruleRoleType ) ;
+    // InternalQualityEffectSpecification.g:4201:1: rule__Role__TypeAssignment_3 : ( ruleRoleType ) ;
     public final void rule__Role__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4151:1: ( ( ruleRoleType ) )
-            // InternalQualityEffectSpecification.g:4152:2: ( ruleRoleType )
+            // InternalQualityEffectSpecification.g:4205:1: ( ( ruleRoleType ) )
+            // InternalQualityEffectSpecification.g:4206:2: ( ruleRoleType )
             {
-            // InternalQualityEffectSpecification.g:4152:2: ( ruleRoleType )
-            // InternalQualityEffectSpecification.g:4153:3: ruleRoleType
+            // InternalQualityEffectSpecification.g:4206:2: ( ruleRoleType )
+            // InternalQualityEffectSpecification.g:4207:3: ruleRoleType
             {
              before(grammarAccess.getRoleAccess().getTypeRoleTypeEnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -12651,26 +12833,26 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
     // $ANTLR end "rule__Role__TypeAssignment_3"
 
 
-    // $ANTLR start "rule__Role__PropertiesAssignment_5"
-    // InternalQualityEffectSpecification.g:4162:1: rule__Role__PropertiesAssignment_5 : ( ruleRoleProperty ) ;
-    public final void rule__Role__PropertiesAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__Role__PropertiesAssignment_4_1"
+    // InternalQualityEffectSpecification.g:4216:1: rule__Role__PropertiesAssignment_4_1 : ( ruleRoleProperty ) ;
+    public final void rule__Role__PropertiesAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4166:1: ( ( ruleRoleProperty ) )
-            // InternalQualityEffectSpecification.g:4167:2: ( ruleRoleProperty )
+            // InternalQualityEffectSpecification.g:4220:1: ( ( ruleRoleProperty ) )
+            // InternalQualityEffectSpecification.g:4221:2: ( ruleRoleProperty )
             {
-            // InternalQualityEffectSpecification.g:4167:2: ( ruleRoleProperty )
-            // InternalQualityEffectSpecification.g:4168:3: ruleRoleProperty
+            // InternalQualityEffectSpecification.g:4221:2: ( ruleRoleProperty )
+            // InternalQualityEffectSpecification.g:4222:3: ruleRoleProperty
             {
-             before(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_5_0()); 
+             before(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_1_0()); 
             pushFollow(FOLLOW_2);
             ruleRoleProperty();
 
             state._fsp--;
 
-             after(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_5_0()); 
+             after(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_1_0()); 
 
             }
 
@@ -12689,29 +12871,29 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__PropertiesAssignment_5"
+    // $ANTLR end "rule__Role__PropertiesAssignment_4_1"
 
 
-    // $ANTLR start "rule__Role__PropertiesAssignment_6_1"
-    // InternalQualityEffectSpecification.g:4177:1: rule__Role__PropertiesAssignment_6_1 : ( ruleRoleProperty ) ;
-    public final void rule__Role__PropertiesAssignment_6_1() throws RecognitionException {
+    // $ANTLR start "rule__Role__PropertiesAssignment_4_2_1"
+    // InternalQualityEffectSpecification.g:4231:1: rule__Role__PropertiesAssignment_4_2_1 : ( ruleRoleProperty ) ;
+    public final void rule__Role__PropertiesAssignment_4_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4181:1: ( ( ruleRoleProperty ) )
-            // InternalQualityEffectSpecification.g:4182:2: ( ruleRoleProperty )
+            // InternalQualityEffectSpecification.g:4235:1: ( ( ruleRoleProperty ) )
+            // InternalQualityEffectSpecification.g:4236:2: ( ruleRoleProperty )
             {
-            // InternalQualityEffectSpecification.g:4182:2: ( ruleRoleProperty )
-            // InternalQualityEffectSpecification.g:4183:3: ruleRoleProperty
+            // InternalQualityEffectSpecification.g:4236:2: ( ruleRoleProperty )
+            // InternalQualityEffectSpecification.g:4237:3: ruleRoleProperty
             {
-             before(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_6_1_0()); 
+             before(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_2_1_0()); 
             pushFollow(FOLLOW_2);
             ruleRoleProperty();
 
             state._fsp--;
 
-             after(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_6_1_0()); 
+             after(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_2_1_0()); 
 
             }
 
@@ -12730,25 +12912,25 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Role__PropertiesAssignment_6_1"
+    // $ANTLR end "rule__Role__PropertiesAssignment_4_2_1"
 
 
     // $ANTLR start "rule__Assembly__NotAssignment_2"
-    // InternalQualityEffectSpecification.g:4192:1: rule__Assembly__NotAssignment_2 : ( ( 'not' ) ) ;
+    // InternalQualityEffectSpecification.g:4246:1: rule__Assembly__NotAssignment_2 : ( ( 'not' ) ) ;
     public final void rule__Assembly__NotAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4196:1: ( ( ( 'not' ) ) )
-            // InternalQualityEffectSpecification.g:4197:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4250:1: ( ( ( 'not' ) ) )
+            // InternalQualityEffectSpecification.g:4251:2: ( ( 'not' ) )
             {
-            // InternalQualityEffectSpecification.g:4197:2: ( ( 'not' ) )
-            // InternalQualityEffectSpecification.g:4198:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4251:2: ( ( 'not' ) )
+            // InternalQualityEffectSpecification.g:4252:3: ( 'not' )
             {
              before(grammarAccess.getAssemblyAccess().getNotNotKeyword_2_0()); 
-            // InternalQualityEffectSpecification.g:4199:3: ( 'not' )
-            // InternalQualityEffectSpecification.g:4200:4: 'not'
+            // InternalQualityEffectSpecification.g:4253:3: ( 'not' )
+            // InternalQualityEffectSpecification.g:4254:4: 'not'
             {
              before(grammarAccess.getAssemblyAccess().getNotNotKeyword_2_0()); 
             match(input,52,FOLLOW_2); 
@@ -12779,17 +12961,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Assembly__TypeAssignment_3"
-    // InternalQualityEffectSpecification.g:4211:1: rule__Assembly__TypeAssignment_3 : ( ruleAssemblyType ) ;
+    // InternalQualityEffectSpecification.g:4265:1: rule__Assembly__TypeAssignment_3 : ( ruleAssemblyType ) ;
     public final void rule__Assembly__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4215:1: ( ( ruleAssemblyType ) )
-            // InternalQualityEffectSpecification.g:4216:2: ( ruleAssemblyType )
+            // InternalQualityEffectSpecification.g:4269:1: ( ( ruleAssemblyType ) )
+            // InternalQualityEffectSpecification.g:4270:2: ( ruleAssemblyType )
             {
-            // InternalQualityEffectSpecification.g:4216:2: ( ruleAssemblyType )
-            // InternalQualityEffectSpecification.g:4217:3: ruleAssemblyType
+            // InternalQualityEffectSpecification.g:4270:2: ( ruleAssemblyType )
+            // InternalQualityEffectSpecification.g:4271:3: ruleAssemblyType
             {
              before(grammarAccess.getAssemblyAccess().getTypeAssemblyTypeEnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -12819,26 +13001,26 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
     // $ANTLR end "rule__Assembly__TypeAssignment_3"
 
 
-    // $ANTLR start "rule__Assembly__ComponentAssignment_5"
-    // InternalQualityEffectSpecification.g:4226:1: rule__Assembly__ComponentAssignment_5 : ( ruleComponentSpecification ) ;
-    public final void rule__Assembly__ComponentAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__Assembly__ComponentAssignment_4_1"
+    // InternalQualityEffectSpecification.g:4280:1: rule__Assembly__ComponentAssignment_4_1 : ( ruleComponentSpecification ) ;
+    public final void rule__Assembly__ComponentAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4230:1: ( ( ruleComponentSpecification ) )
-            // InternalQualityEffectSpecification.g:4231:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:4284:1: ( ( ruleComponentSpecification ) )
+            // InternalQualityEffectSpecification.g:4285:2: ( ruleComponentSpecification )
             {
-            // InternalQualityEffectSpecification.g:4231:2: ( ruleComponentSpecification )
-            // InternalQualityEffectSpecification.g:4232:3: ruleComponentSpecification
+            // InternalQualityEffectSpecification.g:4285:2: ( ruleComponentSpecification )
+            // InternalQualityEffectSpecification.g:4286:3: ruleComponentSpecification
             {
-             before(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_5_0()); 
+             before(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_4_1_0()); 
             pushFollow(FOLLOW_2);
             ruleComponentSpecification();
 
             state._fsp--;
 
-             after(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_5_0()); 
+             after(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_4_1_0()); 
 
             }
 
@@ -12857,21 +13039,21 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
         }
         return ;
     }
-    // $ANTLR end "rule__Assembly__ComponentAssignment_5"
+    // $ANTLR end "rule__Assembly__ComponentAssignment_4_1"
 
 
     // $ANTLR start "rule__Resource__PropertiesAssignment_2"
-    // InternalQualityEffectSpecification.g:4241:1: rule__Resource__PropertiesAssignment_2 : ( ruleResourceProperty ) ;
+    // InternalQualityEffectSpecification.g:4295:1: rule__Resource__PropertiesAssignment_2 : ( ruleResourceProperty ) ;
     public final void rule__Resource__PropertiesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4245:1: ( ( ruleResourceProperty ) )
-            // InternalQualityEffectSpecification.g:4246:2: ( ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:4299:1: ( ( ruleResourceProperty ) )
+            // InternalQualityEffectSpecification.g:4300:2: ( ruleResourceProperty )
             {
-            // InternalQualityEffectSpecification.g:4246:2: ( ruleResourceProperty )
-            // InternalQualityEffectSpecification.g:4247:3: ruleResourceProperty
+            // InternalQualityEffectSpecification.g:4300:2: ( ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:4301:3: ruleResourceProperty
             {
              before(grammarAccess.getResourceAccess().getPropertiesResourcePropertyParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12902,17 +13084,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Resource__PropertiesAssignment_3_1"
-    // InternalQualityEffectSpecification.g:4256:1: rule__Resource__PropertiesAssignment_3_1 : ( ruleResourceProperty ) ;
+    // InternalQualityEffectSpecification.g:4310:1: rule__Resource__PropertiesAssignment_3_1 : ( ruleResourceProperty ) ;
     public final void rule__Resource__PropertiesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4260:1: ( ( ruleResourceProperty ) )
-            // InternalQualityEffectSpecification.g:4261:2: ( ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:4314:1: ( ( ruleResourceProperty ) )
+            // InternalQualityEffectSpecification.g:4315:2: ( ruleResourceProperty )
             {
-            // InternalQualityEffectSpecification.g:4261:2: ( ruleResourceProperty )
-            // InternalQualityEffectSpecification.g:4262:3: ruleResourceProperty
+            // InternalQualityEffectSpecification.g:4315:2: ( ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:4316:3: ruleResourceProperty
             {
              before(grammarAccess.getResourceAccess().getPropertiesResourcePropertyParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -12943,17 +13125,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__QualityAssignment_2"
-    // InternalQualityEffectSpecification.g:4271:1: rule__NQA__QualityAssignment_2 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4325:1: rule__NQA__QualityAssignment_2 : ( RULE_STRING ) ;
     public final void rule__NQA__QualityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4275:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4276:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4329:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4330:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4276:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4277:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4330:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4331:3: RULE_STRING
             {
              before(grammarAccess.getNQAAccess().getQualitySTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12980,17 +13162,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__TypeAssignment_3"
-    // InternalQualityEffectSpecification.g:4286:1: rule__NQA__TypeAssignment_3 : ( ruleTransformationType ) ;
+    // InternalQualityEffectSpecification.g:4340:1: rule__NQA__TypeAssignment_3 : ( ruleTransformationType ) ;
     public final void rule__NQA__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4290:1: ( ( ruleTransformationType ) )
-            // InternalQualityEffectSpecification.g:4291:2: ( ruleTransformationType )
+            // InternalQualityEffectSpecification.g:4344:1: ( ( ruleTransformationType ) )
+            // InternalQualityEffectSpecification.g:4345:2: ( ruleTransformationType )
             {
-            // InternalQualityEffectSpecification.g:4291:2: ( ruleTransformationType )
-            // InternalQualityEffectSpecification.g:4292:3: ruleTransformationType
+            // InternalQualityEffectSpecification.g:4345:2: ( ruleTransformationType )
+            // InternalQualityEffectSpecification.g:4346:3: ruleTransformationType
             {
              before(grammarAccess.getNQAAccess().getTypeTransformationTypeEnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -13021,17 +13203,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NQA__ElementAssignment_4"
-    // InternalQualityEffectSpecification.g:4301:1: rule__NQA__ElementAssignment_4 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4355:1: rule__NQA__ElementAssignment_4 : ( RULE_STRING ) ;
     public final void rule__NQA__ElementAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4305:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4306:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4359:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4360:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4306:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4307:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4360:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4361:3: RULE_STRING
             {
              before(grammarAccess.getNQAAccess().getElementSTRINGTerminalRuleCall_4_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13058,17 +13240,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__QualityAssignment_2"
-    // InternalQualityEffectSpecification.g:4316:1: rule__Reasoning__QualityAssignment_2 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4370:1: rule__Reasoning__QualityAssignment_2 : ( RULE_STRING ) ;
     public final void rule__Reasoning__QualityAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4320:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4321:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4374:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4375:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4321:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4322:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4375:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4376:3: RULE_STRING
             {
              before(grammarAccess.getReasoningAccess().getQualitySTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13095,17 +13277,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__RulesAssignment_4"
-    // InternalQualityEffectSpecification.g:4331:1: rule__Reasoning__RulesAssignment_4 : ( ruleRule ) ;
+    // InternalQualityEffectSpecification.g:4385:1: rule__Reasoning__RulesAssignment_4 : ( ruleRule ) ;
     public final void rule__Reasoning__RulesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4335:1: ( ( ruleRule ) )
-            // InternalQualityEffectSpecification.g:4336:2: ( ruleRule )
+            // InternalQualityEffectSpecification.g:4389:1: ( ( ruleRule ) )
+            // InternalQualityEffectSpecification.g:4390:2: ( ruleRule )
             {
-            // InternalQualityEffectSpecification.g:4336:2: ( ruleRule )
-            // InternalQualityEffectSpecification.g:4337:3: ruleRule
+            // InternalQualityEffectSpecification.g:4390:2: ( ruleRule )
+            // InternalQualityEffectSpecification.g:4391:3: ruleRule
             {
              before(grammarAccess.getReasoningAccess().getRulesRuleParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -13136,17 +13318,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Reasoning__RulesAssignment_5_1"
-    // InternalQualityEffectSpecification.g:4346:1: rule__Reasoning__RulesAssignment_5_1 : ( ruleRule ) ;
+    // InternalQualityEffectSpecification.g:4400:1: rule__Reasoning__RulesAssignment_5_1 : ( ruleRule ) ;
     public final void rule__Reasoning__RulesAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4350:1: ( ( ruleRule ) )
-            // InternalQualityEffectSpecification.g:4351:2: ( ruleRule )
+            // InternalQualityEffectSpecification.g:4404:1: ( ( ruleRule ) )
+            // InternalQualityEffectSpecification.g:4405:2: ( ruleRule )
             {
-            // InternalQualityEffectSpecification.g:4351:2: ( ruleRule )
-            // InternalQualityEffectSpecification.g:4352:3: ruleRule
+            // InternalQualityEffectSpecification.g:4405:2: ( ruleRule )
+            // InternalQualityEffectSpecification.g:4406:3: ruleRule
             {
              before(grammarAccess.getReasoningAccess().getRulesRuleParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
@@ -13177,17 +13359,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__QualitiesAssignment_2"
-    // InternalQualityEffectSpecification.g:4361:1: rule__Rule__QualitiesAssignment_2 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4415:1: rule__Rule__QualitiesAssignment_2 : ( RULE_STRING ) ;
     public final void rule__Rule__QualitiesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4365:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4366:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4419:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4420:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4366:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4367:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4420:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4421:3: RULE_STRING
             {
              before(grammarAccess.getRuleAccess().getQualitiesSTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13214,17 +13396,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__QualitiesAssignment_3_1"
-    // InternalQualityEffectSpecification.g:4376:1: rule__Rule__QualitiesAssignment_3_1 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4430:1: rule__Rule__QualitiesAssignment_3_1 : ( RULE_STRING ) ;
     public final void rule__Rule__QualitiesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4380:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4381:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4434:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4435:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4381:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4382:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4435:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4436:3: RULE_STRING
             {
              before(grammarAccess.getRuleAccess().getQualitiesSTRINGTerminalRuleCall_3_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13251,17 +13433,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__EntriesAssignment_5"
-    // InternalQualityEffectSpecification.g:4391:1: rule__Rule__EntriesAssignment_5 : ( ruleEntry ) ;
+    // InternalQualityEffectSpecification.g:4445:1: rule__Rule__EntriesAssignment_5 : ( ruleEntry ) ;
     public final void rule__Rule__EntriesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4395:1: ( ( ruleEntry ) )
-            // InternalQualityEffectSpecification.g:4396:2: ( ruleEntry )
+            // InternalQualityEffectSpecification.g:4449:1: ( ( ruleEntry ) )
+            // InternalQualityEffectSpecification.g:4450:2: ( ruleEntry )
             {
-            // InternalQualityEffectSpecification.g:4396:2: ( ruleEntry )
-            // InternalQualityEffectSpecification.g:4397:3: ruleEntry
+            // InternalQualityEffectSpecification.g:4450:2: ( ruleEntry )
+            // InternalQualityEffectSpecification.g:4451:3: ruleEntry
             {
              before(grammarAccess.getRuleAccess().getEntriesEntryParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -13292,17 +13474,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Rule__EntriesAssignment_6_1"
-    // InternalQualityEffectSpecification.g:4406:1: rule__Rule__EntriesAssignment_6_1 : ( ruleEntry ) ;
+    // InternalQualityEffectSpecification.g:4460:1: rule__Rule__EntriesAssignment_6_1 : ( ruleEntry ) ;
     public final void rule__Rule__EntriesAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4410:1: ( ( ruleEntry ) )
-            // InternalQualityEffectSpecification.g:4411:2: ( ruleEntry )
+            // InternalQualityEffectSpecification.g:4464:1: ( ( ruleEntry ) )
+            // InternalQualityEffectSpecification.g:4465:2: ( ruleEntry )
             {
-            // InternalQualityEffectSpecification.g:4411:2: ( ruleEntry )
-            // InternalQualityEffectSpecification.g:4412:3: ruleEntry
+            // InternalQualityEffectSpecification.g:4465:2: ( ruleEntry )
+            // InternalQualityEffectSpecification.g:4466:3: ruleEntry
             {
              before(grammarAccess.getRuleAccess().getEntriesEntryParserRuleCall_6_1_0()); 
             pushFollow(FOLLOW_2);
@@ -13333,17 +13515,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__KeyAssignment_2"
-    // InternalQualityEffectSpecification.g:4421:1: rule__Entry__KeyAssignment_2 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4475:1: rule__Entry__KeyAssignment_2 : ( RULE_STRING ) ;
     public final void rule__Entry__KeyAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4425:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4426:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4479:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4480:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4426:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4427:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4480:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4481:3: RULE_STRING
             {
              before(grammarAccess.getEntryAccess().getKeySTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13370,17 +13552,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__KeyAssignment_3_1"
-    // InternalQualityEffectSpecification.g:4436:1: rule__Entry__KeyAssignment_3_1 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4490:1: rule__Entry__KeyAssignment_3_1 : ( RULE_STRING ) ;
     public final void rule__Entry__KeyAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4440:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4441:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4494:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4495:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4441:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4442:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4495:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4496:3: RULE_STRING
             {
              before(grammarAccess.getEntryAccess().getKeySTRINGTerminalRuleCall_3_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13407,17 +13589,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__Entry__ValueAssignment_5"
-    // InternalQualityEffectSpecification.g:4451:1: rule__Entry__ValueAssignment_5 : ( RULE_STRING ) ;
+    // InternalQualityEffectSpecification.g:4505:1: rule__Entry__ValueAssignment_5 : ( RULE_STRING ) ;
     public final void rule__Entry__ValueAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4455:1: ( ( RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:4456:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4509:1: ( ( RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:4510:2: ( RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:4456:2: ( RULE_STRING )
-            // InternalQualityEffectSpecification.g:4457:3: RULE_STRING
+            // InternalQualityEffectSpecification.g:4510:2: ( RULE_STRING )
+            // InternalQualityEffectSpecification.g:4511:3: RULE_STRING
             {
              before(grammarAccess.getEntryAccess().getValueSTRINGTerminalRuleCall_5_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -13444,17 +13626,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__ValueTypeAssignment_0"
-    // InternalQualityEffectSpecification.g:4466:1: rule__NumericValue__ValueTypeAssignment_0 : ( RULE_ID ) ;
+    // InternalQualityEffectSpecification.g:4520:1: rule__NumericValue__ValueTypeAssignment_0 : ( RULE_ID ) ;
     public final void rule__NumericValue__ValueTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4470:1: ( ( RULE_ID ) )
-            // InternalQualityEffectSpecification.g:4471:2: ( RULE_ID )
+            // InternalQualityEffectSpecification.g:4524:1: ( ( RULE_ID ) )
+            // InternalQualityEffectSpecification.g:4525:2: ( RULE_ID )
             {
-            // InternalQualityEffectSpecification.g:4471:2: ( RULE_ID )
-            // InternalQualityEffectSpecification.g:4472:3: RULE_ID
+            // InternalQualityEffectSpecification.g:4525:2: ( RULE_ID )
+            // InternalQualityEffectSpecification.g:4526:3: RULE_ID
             {
              before(grammarAccess.getNumericValueAccess().getValueTypeIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -13481,17 +13663,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__TransformationTypeAssignment_2"
-    // InternalQualityEffectSpecification.g:4481:1: rule__NumericValue__TransformationTypeAssignment_2 : ( ruleTransformationType ) ;
+    // InternalQualityEffectSpecification.g:4535:1: rule__NumericValue__TransformationTypeAssignment_2 : ( ruleTransformationType ) ;
     public final void rule__NumericValue__TransformationTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4485:1: ( ( ruleTransformationType ) )
-            // InternalQualityEffectSpecification.g:4486:2: ( ruleTransformationType )
+            // InternalQualityEffectSpecification.g:4539:1: ( ( ruleTransformationType ) )
+            // InternalQualityEffectSpecification.g:4540:2: ( ruleTransformationType )
             {
-            // InternalQualityEffectSpecification.g:4486:2: ( ruleTransformationType )
-            // InternalQualityEffectSpecification.g:4487:3: ruleTransformationType
+            // InternalQualityEffectSpecification.g:4540:2: ( ruleTransformationType )
+            // InternalQualityEffectSpecification.g:4541:3: ruleTransformationType
             {
              before(grammarAccess.getNumericValueAccess().getTransformationTypeTransformationTypeEnumRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -13522,17 +13704,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
 
     // $ANTLR start "rule__NumericValue__TransformationNumberAssignment_3"
-    // InternalQualityEffectSpecification.g:4496:1: rule__NumericValue__TransformationNumberAssignment_3 : ( RULE_NUMBER ) ;
+    // InternalQualityEffectSpecification.g:4550:1: rule__NumericValue__TransformationNumberAssignment_3 : ( RULE_NUMBER ) ;
     public final void rule__NumericValue__TransformationNumberAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalQualityEffectSpecification.g:4500:1: ( ( RULE_NUMBER ) )
-            // InternalQualityEffectSpecification.g:4501:2: ( RULE_NUMBER )
+            // InternalQualityEffectSpecification.g:4554:1: ( ( RULE_NUMBER ) )
+            // InternalQualityEffectSpecification.g:4555:2: ( RULE_NUMBER )
             {
-            // InternalQualityEffectSpecification.g:4501:2: ( RULE_NUMBER )
-            // InternalQualityEffectSpecification.g:4502:3: RULE_NUMBER
+            // InternalQualityEffectSpecification.g:4555:2: ( RULE_NUMBER )
+            // InternalQualityEffectSpecification.g:4556:3: RULE_NUMBER
             {
              before(grammarAccess.getNumericValueAccess().getTransformationNumberNUMBERTerminalRuleCall_3_0()); 
             match(input,RULE_NUMBER,FOLLOW_2); 
@@ -13562,15 +13744,15 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
 
     protected DFA9 dfa9 = new DFA9(this);
     static final String dfa_1s = "\5\uffff";
-    static final String dfa_2s = "\1\uffff\2\4\2\uffff";
+    static final String dfa_2s = "\1\uffff\2\3\2\uffff";
     static final String dfa_3s = "\3\4\2\uffff";
     static final String dfa_4s = "\1\4\2\37\2\uffff";
-    static final String dfa_5s = "\3\uffff\1\1\1\2";
+    static final String dfa_5s = "\3\uffff\1\2\1\1";
     static final String dfa_6s = "\5\uffff}>";
     static final String[] dfa_7s = {
             "\1\1",
-            "\1\2\32\uffff\1\3",
-            "\1\2\32\uffff\1\3",
+            "\1\2\32\uffff\1\4",
+            "\1\2\32\uffff\1\4",
             "",
             ""
     };
@@ -13620,18 +13802,19 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalCo
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x001000000000E000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x00100000007F0000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000104000000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000038000000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0010000003800000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000018000000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x000000007C000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0002004000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0002000004000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0010000003800000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000018000000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x000000007C000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0002004000000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0002000004000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000080L});
 
 }

@@ -400,20 +400,21 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Keyword cNotNotKeyword_2_0 = (Keyword)cNotAssignment_2.eContents().get(0);
 		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypeRoleTypeEnumRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
-		private final Keyword cWithKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cPropertiesRolePropertyParserRuleCall_5_0 = (RuleCall)cPropertiesAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cAndKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cPropertiesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cPropertiesRolePropertyParserRuleCall_6_1_0 = (RuleCall)cPropertiesAssignment_6_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cWithKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cPropertiesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cPropertiesRolePropertyParserRuleCall_4_1_0 = (RuleCall)cPropertiesAssignment_4_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final Keyword cAndKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cPropertiesAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cPropertiesRolePropertyParserRuleCall_4_2_1_0 = (RuleCall)cPropertiesAssignment_4_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Role:
-		//	'Role' '(' not?='not'? type=RoleType 'with' properties+=RoleProperty ('and' properties+=RoleProperty)* ')';
+		//	'Role' '(' not?='not'? type=RoleType ('with' properties+=RoleProperty ('and' properties+=RoleProperty)*)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Role' '(' not?='not'? type=RoleType 'with' properties+=RoleProperty ('and' properties+=RoleProperty)* ')'
+		//'Role' '(' not?='not'? type=RoleType ('with' properties+=RoleProperty ('and' properties+=RoleProperty)*)? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Role'
@@ -434,29 +435,32 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//RoleType
 		public RuleCall getTypeRoleTypeEnumRuleCall_3_0() { return cTypeRoleTypeEnumRuleCall_3_0; }
 		
+		//('with' properties+=RoleProperty ('and' properties+=RoleProperty)*)?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'with'
-		public Keyword getWithKeyword_4() { return cWithKeyword_4; }
+		public Keyword getWithKeyword_4_0() { return cWithKeyword_4_0; }
 		
 		//properties+=RoleProperty
-		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
+		public Assignment getPropertiesAssignment_4_1() { return cPropertiesAssignment_4_1; }
 		
 		//RoleProperty
-		public RuleCall getPropertiesRolePropertyParserRuleCall_5_0() { return cPropertiesRolePropertyParserRuleCall_5_0; }
+		public RuleCall getPropertiesRolePropertyParserRuleCall_4_1_0() { return cPropertiesRolePropertyParserRuleCall_4_1_0; }
 		
 		//('and' properties+=RoleProperty)*
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_4_2() { return cGroup_4_2; }
 		
 		//'and'
-		public Keyword getAndKeyword_6_0() { return cAndKeyword_6_0; }
+		public Keyword getAndKeyword_4_2_0() { return cAndKeyword_4_2_0; }
 		
 		//properties+=RoleProperty
-		public Assignment getPropertiesAssignment_6_1() { return cPropertiesAssignment_6_1; }
+		public Assignment getPropertiesAssignment_4_2_1() { return cPropertiesAssignment_4_2_1; }
 		
 		//RoleProperty
-		public RuleCall getPropertiesRolePropertyParserRuleCall_6_1_0() { return cPropertiesRolePropertyParserRuleCall_6_1_0; }
+		public RuleCall getPropertiesRolePropertyParserRuleCall_4_2_1_0() { return cPropertiesRolePropertyParserRuleCall_4_2_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 	public class RolePropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
@@ -490,16 +494,17 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		private final Keyword cNotNotKeyword_2_0 = (Keyword)cNotAssignment_2.eContents().get(0);
 		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypeAssemblyTypeEnumRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
-		private final Keyword cWithKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cComponentAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cComponentComponentSpecificationParserRuleCall_5_0 = (RuleCall)cComponentAssignment_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cWithKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cComponentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cComponentComponentSpecificationParserRuleCall_4_1_0 = (RuleCall)cComponentAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Assembly:
-		//	'Assembly' '(' not?='not'? type=AssemblyType 'with' component=ComponentSpecification ')';
+		//	'Assembly' '(' not?='not'? type=AssemblyType ('with' component=ComponentSpecification)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Assembly' '(' not?='not'? type=AssemblyType 'with' component=ComponentSpecification ')'
+		//'Assembly' '(' not?='not'? type=AssemblyType ('with' component=ComponentSpecification)? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Assembly'
@@ -520,17 +525,20 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 		//AssemblyType
 		public RuleCall getTypeAssemblyTypeEnumRuleCall_3_0() { return cTypeAssemblyTypeEnumRuleCall_3_0; }
 		
+		//('with' component=ComponentSpecification)?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//'with'
-		public Keyword getWithKeyword_4() { return cWithKeyword_4; }
+		public Keyword getWithKeyword_4_0() { return cWithKeyword_4_0; }
 		
 		//component=ComponentSpecification
-		public Assignment getComponentAssignment_5() { return cComponentAssignment_5; }
+		public Assignment getComponentAssignment_4_1() { return cComponentAssignment_4_1; }
 		
 		//ComponentSpecification
-		public RuleCall getComponentComponentSpecificationParserRuleCall_5_0() { return cComponentComponentSpecificationParserRuleCall_5_0; }
+		public RuleCall getComponentComponentSpecificationParserRuleCall_4_1_0() { return cComponentComponentSpecificationParserRuleCall_4_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 	public class ResourceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.palladiosimulator.qes.QualityEffectSpecification.Resource");
@@ -1280,7 +1288,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//Role:
-	//	'Role' '(' not?='not'? type=RoleType 'with' properties+=RoleProperty ('and' properties+=RoleProperty)* ')';
+	//	'Role' '(' not?='not'? type=RoleType ('with' properties+=RoleProperty ('and' properties+=RoleProperty)*)? ')';
 	public RoleElements getRoleAccess() {
 		return pRole;
 	}
@@ -1313,7 +1321,7 @@ public class QualityEffectSpecificationGrammarAccess extends AbstractGrammarElem
 	}
 	
 	//Assembly:
-	//	'Assembly' '(' not?='not'? type=AssemblyType 'with' component=ComponentSpecification ')';
+	//	'Assembly' '(' not?='not'? type=AssemblyType ('with' component=ComponentSpecification)? ')';
 	public AssemblyElements getAssemblyAccess() {
 		return pAssembly;
 	}

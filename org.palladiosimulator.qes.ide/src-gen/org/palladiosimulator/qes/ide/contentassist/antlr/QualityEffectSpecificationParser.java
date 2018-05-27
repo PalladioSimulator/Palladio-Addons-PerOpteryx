@@ -51,8 +51,10 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 			builder.put(grammarAccess.getAnnotationAccess().getGroup(), "rule__Annotation__Group__0");
 			builder.put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
 			builder.put(grammarAccess.getRoleAccess().getGroup(), "rule__Role__Group__0");
-			builder.put(grammarAccess.getRoleAccess().getGroup_6(), "rule__Role__Group_6__0");
+			builder.put(grammarAccess.getRoleAccess().getGroup_4(), "rule__Role__Group_4__0");
+			builder.put(grammarAccess.getRoleAccess().getGroup_4_2(), "rule__Role__Group_4_2__0");
 			builder.put(grammarAccess.getAssemblyAccess().getGroup(), "rule__Assembly__Group__0");
+			builder.put(grammarAccess.getAssemblyAccess().getGroup_4(), "rule__Assembly__Group_4__0");
 			builder.put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 			builder.put(grammarAccess.getResourceAccess().getGroup_3(), "rule__Resource__Group_3__0");
 			builder.put(grammarAccess.getNQAAccess().getGroup(), "rule__NQA__Group__0");
@@ -82,11 +84,11 @@ public class QualityEffectSpecificationParser extends AbstractContentAssistParse
 			builder.put(grammarAccess.getTypeAccess().getTypeAssignment_3(), "rule__Type__TypeAssignment_3");
 			builder.put(grammarAccess.getRoleAccess().getNotAssignment_2(), "rule__Role__NotAssignment_2");
 			builder.put(grammarAccess.getRoleAccess().getTypeAssignment_3(), "rule__Role__TypeAssignment_3");
-			builder.put(grammarAccess.getRoleAccess().getPropertiesAssignment_5(), "rule__Role__PropertiesAssignment_5");
-			builder.put(grammarAccess.getRoleAccess().getPropertiesAssignment_6_1(), "rule__Role__PropertiesAssignment_6_1");
+			builder.put(grammarAccess.getRoleAccess().getPropertiesAssignment_4_1(), "rule__Role__PropertiesAssignment_4_1");
+			builder.put(grammarAccess.getRoleAccess().getPropertiesAssignment_4_2_1(), "rule__Role__PropertiesAssignment_4_2_1");
 			builder.put(grammarAccess.getAssemblyAccess().getNotAssignment_2(), "rule__Assembly__NotAssignment_2");
 			builder.put(grammarAccess.getAssemblyAccess().getTypeAssignment_3(), "rule__Assembly__TypeAssignment_3");
-			builder.put(grammarAccess.getAssemblyAccess().getComponentAssignment_5(), "rule__Assembly__ComponentAssignment_5");
+			builder.put(grammarAccess.getAssemblyAccess().getComponentAssignment_4_1(), "rule__Assembly__ComponentAssignment_4_1");
 			builder.put(grammarAccess.getResourceAccess().getPropertiesAssignment_2(), "rule__Resource__PropertiesAssignment_2");
 			builder.put(grammarAccess.getResourceAccess().getPropertiesAssignment_3_1(), "rule__Resource__PropertiesAssignment_3_1");
 			builder.put(grammarAccess.getNQAAccess().getQualityAssignment_2(), "rule__NQA__QualityAssignment_2");

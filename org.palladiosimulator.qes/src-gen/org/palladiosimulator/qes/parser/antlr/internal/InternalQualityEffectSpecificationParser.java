@@ -1718,7 +1718,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleRole"
-    // InternalQualityEffectSpecification.g:683:1: ruleRole returns [EObject current=null] : (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* otherlv_8= ')' ) ;
+    // InternalQualityEffectSpecification.g:683:1: ruleRole returns [EObject current=null] : (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )? otherlv_8= ')' ) ;
     public final EObject ruleRole() throws RecognitionException {
         EObject current = null;
 
@@ -1739,11 +1739,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:689:2: ( (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* otherlv_8= ')' ) )
-            // InternalQualityEffectSpecification.g:690:2: (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* otherlv_8= ')' )
+            // InternalQualityEffectSpecification.g:689:2: ( (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )? otherlv_8= ')' ) )
+            // InternalQualityEffectSpecification.g:690:2: (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )? otherlv_8= ')' )
             {
-            // InternalQualityEffectSpecification.g:690:2: (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* otherlv_8= ')' )
-            // InternalQualityEffectSpecification.g:691:3: otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* otherlv_8= ')'
+            // InternalQualityEffectSpecification.g:690:2: (otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )? otherlv_8= ')' )
+            // InternalQualityEffectSpecification.g:691:3: otherlv_0= 'Role' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleRoleType ) ) (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )? otherlv_8= ')'
             {
             otherlv_0=(Token)match(input,26,FOLLOW_11); 
 
@@ -1817,103 +1817,120 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            otherlv_4=(Token)match(input,27,FOLLOW_20); 
+            // InternalQualityEffectSpecification.g:732:3: (otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )* )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            			newLeafNode(otherlv_4, grammarAccess.getRoleAccess().getWithKeyword_4());
-            		
-            // InternalQualityEffectSpecification.g:736:3: ( (lv_properties_5_0= ruleRoleProperty ) )
-            // InternalQualityEffectSpecification.g:737:4: (lv_properties_5_0= ruleRoleProperty )
-            {
-            // InternalQualityEffectSpecification.g:737:4: (lv_properties_5_0= ruleRoleProperty )
-            // InternalQualityEffectSpecification.g:738:5: lv_properties_5_0= ruleRoleProperty
-            {
+            if ( (LA14_0==27) ) {
+                alt14=1;
+            }
+            switch (alt14) {
+                case 1 :
+                    // InternalQualityEffectSpecification.g:733:4: otherlv_4= 'with' ( (lv_properties_5_0= ruleRoleProperty ) ) (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )*
+                    {
+                    otherlv_4=(Token)match(input,27,FOLLOW_20); 
 
-            					newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_5_0());
-            				
-            pushFollow(FOLLOW_13);
-            lv_properties_5_0=ruleRoleProperty();
+                    				newLeafNode(otherlv_4, grammarAccess.getRoleAccess().getWithKeyword_4_0());
+                    			
+                    // InternalQualityEffectSpecification.g:737:4: ( (lv_properties_5_0= ruleRoleProperty ) )
+                    // InternalQualityEffectSpecification.g:738:5: (lv_properties_5_0= ruleRoleProperty )
+                    {
+                    // InternalQualityEffectSpecification.g:738:5: (lv_properties_5_0= ruleRoleProperty )
+                    // InternalQualityEffectSpecification.g:739:6: lv_properties_5_0= ruleRoleProperty
+                    {
 
-            state._fsp--;
+                    						newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_1_0());
+                    					
+                    pushFollow(FOLLOW_13);
+                    lv_properties_5_0=ruleRoleProperty();
+
+                    state._fsp--;
 
 
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getRoleRule());
-            					}
-            					add(
-            						current,
-            						"properties",
-            						lv_properties_5_0,
-            						"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
-            					afterParserOrEnumRuleCall();
-            				
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getRoleRule());
+                    						}
+                    						add(
+                    							current,
+                    							"properties",
+                    							lv_properties_5_0,
+                    							"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
+
+
+                    }
+
+                    // InternalQualityEffectSpecification.g:756:4: (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )*
+                    loop13:
+                    do {
+                        int alt13=2;
+                        int LA13_0 = input.LA(1);
+
+                        if ( (LA13_0==15) ) {
+                            alt13=1;
+                        }
+
+
+                        switch (alt13) {
+                    	case 1 :
+                    	    // InternalQualityEffectSpecification.g:757:5: otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) )
+                    	    {
+                    	    otherlv_6=(Token)match(input,15,FOLLOW_20); 
+
+                    	    					newLeafNode(otherlv_6, grammarAccess.getRoleAccess().getAndKeyword_4_2_0());
+                    	    				
+                    	    // InternalQualityEffectSpecification.g:761:5: ( (lv_properties_7_0= ruleRoleProperty ) )
+                    	    // InternalQualityEffectSpecification.g:762:6: (lv_properties_7_0= ruleRoleProperty )
+                    	    {
+                    	    // InternalQualityEffectSpecification.g:762:6: (lv_properties_7_0= ruleRoleProperty )
+                    	    // InternalQualityEffectSpecification.g:763:7: lv_properties_7_0= ruleRoleProperty
+                    	    {
+
+                    	    							newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_2_1_0());
+                    	    						
+                    	    pushFollow(FOLLOW_13);
+                    	    lv_properties_7_0=ruleRoleProperty();
+
+                    	    state._fsp--;
+
+
+                    	    							if (current==null) {
+                    	    								current = createModelElementForParent(grammarAccess.getRoleRule());
+                    	    							}
+                    	    							add(
+                    	    								current,
+                    	    								"properties",
+                    	    								lv_properties_7_0,
+                    	    								"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
+                    	    							afterParserOrEnumRuleCall();
+                    	    						
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop13;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
 
             }
-
-
-            }
-
-            // InternalQualityEffectSpecification.g:755:3: (otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) ) )*
-            loop13:
-            do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
-
-                if ( (LA13_0==15) ) {
-                    alt13=1;
-                }
-
-
-                switch (alt13) {
-            	case 1 :
-            	    // InternalQualityEffectSpecification.g:756:4: otherlv_6= 'and' ( (lv_properties_7_0= ruleRoleProperty ) )
-            	    {
-            	    otherlv_6=(Token)match(input,15,FOLLOW_20); 
-
-            	    				newLeafNode(otherlv_6, grammarAccess.getRoleAccess().getAndKeyword_6_0());
-            	    			
-            	    // InternalQualityEffectSpecification.g:760:4: ( (lv_properties_7_0= ruleRoleProperty ) )
-            	    // InternalQualityEffectSpecification.g:761:5: (lv_properties_7_0= ruleRoleProperty )
-            	    {
-            	    // InternalQualityEffectSpecification.g:761:5: (lv_properties_7_0= ruleRoleProperty )
-            	    // InternalQualityEffectSpecification.g:762:6: lv_properties_7_0= ruleRoleProperty
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_6_1_0());
-            	    					
-            	    pushFollow(FOLLOW_13);
-            	    lv_properties_7_0=ruleRoleProperty();
-
-            	    state._fsp--;
-
-
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getRoleRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"properties",
-            	    							lv_properties_7_0,
-            	    							"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop13;
-                }
-            } while (true);
 
             otherlv_8=(Token)match(input,20,FOLLOW_2); 
 
-            			newLeafNode(otherlv_8, grammarAccess.getRoleAccess().getRightParenthesisKeyword_7());
+            			newLeafNode(otherlv_8, grammarAccess.getRoleAccess().getRightParenthesisKeyword_5());
             		
 
             }
@@ -1938,7 +1955,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleRoleProperty"
-    // InternalQualityEffectSpecification.g:788:1: entryRuleRoleProperty returns [EObject current=null] : iv_ruleRoleProperty= ruleRoleProperty EOF ;
+    // InternalQualityEffectSpecification.g:790:1: entryRuleRoleProperty returns [EObject current=null] : iv_ruleRoleProperty= ruleRoleProperty EOF ;
     public final EObject entryRuleRoleProperty() throws RecognitionException {
         EObject current = null;
 
@@ -1946,8 +1963,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:788:53: (iv_ruleRoleProperty= ruleRoleProperty EOF )
-            // InternalQualityEffectSpecification.g:789:2: iv_ruleRoleProperty= ruleRoleProperty EOF
+            // InternalQualityEffectSpecification.g:790:53: (iv_ruleRoleProperty= ruleRoleProperty EOF )
+            // InternalQualityEffectSpecification.g:791:2: iv_ruleRoleProperty= ruleRoleProperty EOF
             {
              newCompositeNode(grammarAccess.getRolePropertyRule()); 
             pushFollow(FOLLOW_1);
@@ -1974,7 +1991,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleRoleProperty"
-    // InternalQualityEffectSpecification.g:795:1: ruleRoleProperty returns [EObject current=null] : (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation ) ;
+    // InternalQualityEffectSpecification.g:797:1: ruleRoleProperty returns [EObject current=null] : (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation ) ;
     public final EObject ruleRoleProperty() throws RecognitionException {
         EObject current = null;
 
@@ -1989,37 +2006,37 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:801:2: ( (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation ) )
-            // InternalQualityEffectSpecification.g:802:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation )
+            // InternalQualityEffectSpecification.g:803:2: ( (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation ) )
+            // InternalQualityEffectSpecification.g:804:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation )
             {
-            // InternalQualityEffectSpecification.g:802:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation )
-            int alt14=3;
+            // InternalQualityEffectSpecification.g:804:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier | this_Annotation_2= ruleAnnotation )
+            int alt15=3;
             switch ( input.LA(1) ) {
             case 21:
                 {
-                alt14=1;
+                alt15=1;
                 }
                 break;
             case 23:
                 {
-                alt14=2;
+                alt15=2;
                 }
                 break;
             case 24:
                 {
-                alt14=3;
+                alt15=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:803:3: this_Name_0= ruleName
+                    // InternalQualityEffectSpecification.g:805:3: this_Name_0= ruleName
                     {
 
                     			newCompositeNode(grammarAccess.getRolePropertyAccess().getNameParserRuleCall_0());
@@ -2037,7 +2054,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:812:3: this_Identifier_1= ruleIdentifier
+                    // InternalQualityEffectSpecification.g:814:3: this_Identifier_1= ruleIdentifier
                     {
 
                     			newCompositeNode(grammarAccess.getRolePropertyAccess().getIdentifierParserRuleCall_1());
@@ -2055,7 +2072,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:821:3: this_Annotation_2= ruleAnnotation
+                    // InternalQualityEffectSpecification.g:823:3: this_Annotation_2= ruleAnnotation
                     {
 
                     			newCompositeNode(grammarAccess.getRolePropertyAccess().getAnnotationParserRuleCall_2());
@@ -2095,7 +2112,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleAssembly"
-    // InternalQualityEffectSpecification.g:833:1: entryRuleAssembly returns [EObject current=null] : iv_ruleAssembly= ruleAssembly EOF ;
+    // InternalQualityEffectSpecification.g:835:1: entryRuleAssembly returns [EObject current=null] : iv_ruleAssembly= ruleAssembly EOF ;
     public final EObject entryRuleAssembly() throws RecognitionException {
         EObject current = null;
 
@@ -2103,8 +2120,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:833:49: (iv_ruleAssembly= ruleAssembly EOF )
-            // InternalQualityEffectSpecification.g:834:2: iv_ruleAssembly= ruleAssembly EOF
+            // InternalQualityEffectSpecification.g:835:49: (iv_ruleAssembly= ruleAssembly EOF )
+            // InternalQualityEffectSpecification.g:836:2: iv_ruleAssembly= ruleAssembly EOF
             {
              newCompositeNode(grammarAccess.getAssemblyRule()); 
             pushFollow(FOLLOW_1);
@@ -2131,7 +2148,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleAssembly"
-    // InternalQualityEffectSpecification.g:840:1: ruleAssembly returns [EObject current=null] : (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) otherlv_6= ')' ) ;
+    // InternalQualityEffectSpecification.g:842:1: ruleAssembly returns [EObject current=null] : (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )? otherlv_6= ')' ) ;
     public final EObject ruleAssembly() throws RecognitionException {
         EObject current = null;
 
@@ -2149,11 +2166,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:846:2: ( (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) otherlv_6= ')' ) )
-            // InternalQualityEffectSpecification.g:847:2: (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) otherlv_6= ')' )
+            // InternalQualityEffectSpecification.g:848:2: ( (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )? otherlv_6= ')' ) )
+            // InternalQualityEffectSpecification.g:849:2: (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )? otherlv_6= ')' )
             {
-            // InternalQualityEffectSpecification.g:847:2: (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) otherlv_6= ')' )
-            // InternalQualityEffectSpecification.g:848:3: otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) otherlv_6= ')'
+            // InternalQualityEffectSpecification.g:849:2: (otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )? otherlv_6= ')' )
+            // InternalQualityEffectSpecification.g:850:3: otherlv_0= 'Assembly' otherlv_1= '(' ( (lv_not_2_0= 'not' ) )? ( (lv_type_3_0= ruleAssemblyType ) ) (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )? otherlv_6= ')'
             {
             otherlv_0=(Token)match(input,28,FOLLOW_11); 
 
@@ -2163,19 +2180,19 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getAssemblyAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:856:3: ( (lv_not_2_0= 'not' ) )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // InternalQualityEffectSpecification.g:858:3: ( (lv_not_2_0= 'not' ) )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA15_0==22) ) {
-                alt15=1;
+            if ( (LA16_0==22) ) {
+                alt16=1;
             }
-            switch (alt15) {
+            switch (alt16) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:857:4: (lv_not_2_0= 'not' )
+                    // InternalQualityEffectSpecification.g:859:4: (lv_not_2_0= 'not' )
                     {
-                    // InternalQualityEffectSpecification.g:857:4: (lv_not_2_0= 'not' )
-                    // InternalQualityEffectSpecification.g:858:5: lv_not_2_0= 'not'
+                    // InternalQualityEffectSpecification.g:859:4: (lv_not_2_0= 'not' )
+                    // InternalQualityEffectSpecification.g:860:5: lv_not_2_0= 'not'
                     {
                     lv_not_2_0=(Token)match(input,22,FOLLOW_21); 
 
@@ -2196,11 +2213,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:870:3: ( (lv_type_3_0= ruleAssemblyType ) )
-            // InternalQualityEffectSpecification.g:871:4: (lv_type_3_0= ruleAssemblyType )
+            // InternalQualityEffectSpecification.g:872:3: ( (lv_type_3_0= ruleAssemblyType ) )
+            // InternalQualityEffectSpecification.g:873:4: (lv_type_3_0= ruleAssemblyType )
             {
-            // InternalQualityEffectSpecification.g:871:4: (lv_type_3_0= ruleAssemblyType )
-            // InternalQualityEffectSpecification.g:872:5: lv_type_3_0= ruleAssemblyType
+            // InternalQualityEffectSpecification.g:873:4: (lv_type_3_0= ruleAssemblyType )
+            // InternalQualityEffectSpecification.g:874:5: lv_type_3_0= ruleAssemblyType
             {
 
             					newCompositeNode(grammarAccess.getAssemblyAccess().getTypeAssemblyTypeEnumRuleCall_3_0());
@@ -2227,44 +2244,61 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            otherlv_4=(Token)match(input,27,FOLLOW_7); 
+            // InternalQualityEffectSpecification.g:891:3: (otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) ) )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            			newLeafNode(otherlv_4, grammarAccess.getAssemblyAccess().getWithKeyword_4());
-            		
-            // InternalQualityEffectSpecification.g:893:3: ( (lv_component_5_0= ruleComponentSpecification ) )
-            // InternalQualityEffectSpecification.g:894:4: (lv_component_5_0= ruleComponentSpecification )
-            {
-            // InternalQualityEffectSpecification.g:894:4: (lv_component_5_0= ruleComponentSpecification )
-            // InternalQualityEffectSpecification.g:895:5: lv_component_5_0= ruleComponentSpecification
-            {
-
-            					newCompositeNode(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_5_0());
-            				
-            pushFollow(FOLLOW_16);
-            lv_component_5_0=ruleComponentSpecification();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getAssemblyRule());
-            					}
-            					set(
-            						current,
-            						"component",
-            						lv_component_5_0,
-            						"org.palladiosimulator.qes.QualityEffectSpecification.ComponentSpecification");
-            					afterParserOrEnumRuleCall();
-            				
-
+            if ( (LA17_0==27) ) {
+                alt17=1;
             }
+            switch (alt17) {
+                case 1 :
+                    // InternalQualityEffectSpecification.g:892:4: otherlv_4= 'with' ( (lv_component_5_0= ruleComponentSpecification ) )
+                    {
+                    otherlv_4=(Token)match(input,27,FOLLOW_7); 
 
+                    				newLeafNode(otherlv_4, grammarAccess.getAssemblyAccess().getWithKeyword_4_0());
+                    			
+                    // InternalQualityEffectSpecification.g:896:4: ( (lv_component_5_0= ruleComponentSpecification ) )
+                    // InternalQualityEffectSpecification.g:897:5: (lv_component_5_0= ruleComponentSpecification )
+                    {
+                    // InternalQualityEffectSpecification.g:897:5: (lv_component_5_0= ruleComponentSpecification )
+                    // InternalQualityEffectSpecification.g:898:6: lv_component_5_0= ruleComponentSpecification
+                    {
+
+                    						newCompositeNode(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_4_1_0());
+                    					
+                    pushFollow(FOLLOW_16);
+                    lv_component_5_0=ruleComponentSpecification();
+
+                    state._fsp--;
+
+
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getAssemblyRule());
+                    						}
+                    						set(
+                    							current,
+                    							"component",
+                    							lv_component_5_0,
+                    							"org.palladiosimulator.qes.QualityEffectSpecification.ComponentSpecification");
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
             otherlv_6=(Token)match(input,20,FOLLOW_2); 
 
-            			newLeafNode(otherlv_6, grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_6());
+            			newLeafNode(otherlv_6, grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_5());
             		
 
             }
@@ -2289,7 +2323,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleResource"
-    // InternalQualityEffectSpecification.g:920:1: entryRuleResource returns [EObject current=null] : iv_ruleResource= ruleResource EOF ;
+    // InternalQualityEffectSpecification.g:924:1: entryRuleResource returns [EObject current=null] : iv_ruleResource= ruleResource EOF ;
     public final EObject entryRuleResource() throws RecognitionException {
         EObject current = null;
 
@@ -2297,8 +2331,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:920:49: (iv_ruleResource= ruleResource EOF )
-            // InternalQualityEffectSpecification.g:921:2: iv_ruleResource= ruleResource EOF
+            // InternalQualityEffectSpecification.g:924:49: (iv_ruleResource= ruleResource EOF )
+            // InternalQualityEffectSpecification.g:925:2: iv_ruleResource= ruleResource EOF
             {
              newCompositeNode(grammarAccess.getResourceRule()); 
             pushFollow(FOLLOW_1);
@@ -2325,7 +2359,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleResource"
-    // InternalQualityEffectSpecification.g:927:1: ruleResource returns [EObject current=null] : (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' ) ;
+    // InternalQualityEffectSpecification.g:931:1: ruleResource returns [EObject current=null] : (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' ) ;
     public final EObject ruleResource() throws RecognitionException {
         EObject current = null;
 
@@ -2342,11 +2376,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:933:2: ( (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' ) )
-            // InternalQualityEffectSpecification.g:934:2: (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' )
+            // InternalQualityEffectSpecification.g:937:2: ( (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' ) )
+            // InternalQualityEffectSpecification.g:938:2: (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' )
             {
-            // InternalQualityEffectSpecification.g:934:2: (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' )
-            // InternalQualityEffectSpecification.g:935:3: otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')'
+            // InternalQualityEffectSpecification.g:938:2: (otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')' )
+            // InternalQualityEffectSpecification.g:939:3: otherlv_0= 'Resource' otherlv_1= '(' ( (lv_properties_2_0= ruleResourceProperty ) ) (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )* otherlv_5= ')'
             {
             otherlv_0=(Token)match(input,29,FOLLOW_11); 
 
@@ -2356,11 +2390,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getResourceAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:943:3: ( (lv_properties_2_0= ruleResourceProperty ) )
-            // InternalQualityEffectSpecification.g:944:4: (lv_properties_2_0= ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:947:3: ( (lv_properties_2_0= ruleResourceProperty ) )
+            // InternalQualityEffectSpecification.g:948:4: (lv_properties_2_0= ruleResourceProperty )
             {
-            // InternalQualityEffectSpecification.g:944:4: (lv_properties_2_0= ruleResourceProperty )
-            // InternalQualityEffectSpecification.g:945:5: lv_properties_2_0= ruleResourceProperty
+            // InternalQualityEffectSpecification.g:948:4: (lv_properties_2_0= ruleResourceProperty )
+            // InternalQualityEffectSpecification.g:949:5: lv_properties_2_0= ruleResourceProperty
             {
 
             					newCompositeNode(grammarAccess.getResourceAccess().getPropertiesResourcePropertyParserRuleCall_2_0());
@@ -2387,30 +2421,30 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:962:3: (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )*
-            loop16:
+            // InternalQualityEffectSpecification.g:966:3: (otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) ) )*
+            loop18:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( (LA16_0==15) ) {
-                    alt16=1;
+                if ( (LA18_0==15) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt18) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:963:4: otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) )
+            	    // InternalQualityEffectSpecification.g:967:4: otherlv_3= 'and' ( (lv_properties_4_0= ruleResourceProperty ) )
             	    {
             	    otherlv_3=(Token)match(input,15,FOLLOW_22); 
 
             	    				newLeafNode(otherlv_3, grammarAccess.getResourceAccess().getAndKeyword_3_0());
             	    			
-            	    // InternalQualityEffectSpecification.g:967:4: ( (lv_properties_4_0= ruleResourceProperty ) )
-            	    // InternalQualityEffectSpecification.g:968:5: (lv_properties_4_0= ruleResourceProperty )
+            	    // InternalQualityEffectSpecification.g:971:4: ( (lv_properties_4_0= ruleResourceProperty ) )
+            	    // InternalQualityEffectSpecification.g:972:5: (lv_properties_4_0= ruleResourceProperty )
             	    {
-            	    // InternalQualityEffectSpecification.g:968:5: (lv_properties_4_0= ruleResourceProperty )
-            	    // InternalQualityEffectSpecification.g:969:6: lv_properties_4_0= ruleResourceProperty
+            	    // InternalQualityEffectSpecification.g:972:5: (lv_properties_4_0= ruleResourceProperty )
+            	    // InternalQualityEffectSpecification.g:973:6: lv_properties_4_0= ruleResourceProperty
             	    {
 
             	    						newCompositeNode(grammarAccess.getResourceAccess().getPropertiesResourcePropertyParserRuleCall_3_1_0());
@@ -2442,7 +2476,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2473,7 +2507,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleResourceProperty"
-    // InternalQualityEffectSpecification.g:995:1: entryRuleResourceProperty returns [EObject current=null] : iv_ruleResourceProperty= ruleResourceProperty EOF ;
+    // InternalQualityEffectSpecification.g:999:1: entryRuleResourceProperty returns [EObject current=null] : iv_ruleResourceProperty= ruleResourceProperty EOF ;
     public final EObject entryRuleResourceProperty() throws RecognitionException {
         EObject current = null;
 
@@ -2481,8 +2515,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:995:57: (iv_ruleResourceProperty= ruleResourceProperty EOF )
-            // InternalQualityEffectSpecification.g:996:2: iv_ruleResourceProperty= ruleResourceProperty EOF
+            // InternalQualityEffectSpecification.g:999:57: (iv_ruleResourceProperty= ruleResourceProperty EOF )
+            // InternalQualityEffectSpecification.g:1000:2: iv_ruleResourceProperty= ruleResourceProperty EOF
             {
              newCompositeNode(grammarAccess.getResourcePropertyRule()); 
             pushFollow(FOLLOW_1);
@@ -2509,7 +2543,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleResourceProperty"
-    // InternalQualityEffectSpecification.g:1002:1: ruleResourceProperty returns [EObject current=null] : (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier ) ;
+    // InternalQualityEffectSpecification.g:1006:1: ruleResourceProperty returns [EObject current=null] : (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier ) ;
     public final EObject ruleResourceProperty() throws RecognitionException {
         EObject current = null;
 
@@ -2522,28 +2556,28 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1008:2: ( (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier ) )
-            // InternalQualityEffectSpecification.g:1009:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier )
+            // InternalQualityEffectSpecification.g:1012:2: ( (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier ) )
+            // InternalQualityEffectSpecification.g:1013:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier )
             {
-            // InternalQualityEffectSpecification.g:1009:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalQualityEffectSpecification.g:1013:2: (this_Name_0= ruleName | this_Identifier_1= ruleIdentifier )
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA17_0==21) ) {
-                alt17=1;
+            if ( (LA19_0==21) ) {
+                alt19=1;
             }
-            else if ( (LA17_0==23) ) {
-                alt17=2;
+            else if ( (LA19_0==23) ) {
+                alt19=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt19) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1010:3: this_Name_0= ruleName
+                    // InternalQualityEffectSpecification.g:1014:3: this_Name_0= ruleName
                     {
 
                     			newCompositeNode(grammarAccess.getResourcePropertyAccess().getNameParserRuleCall_0());
@@ -2561,7 +2595,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1019:3: this_Identifier_1= ruleIdentifier
+                    // InternalQualityEffectSpecification.g:1023:3: this_Identifier_1= ruleIdentifier
                     {
 
                     			newCompositeNode(grammarAccess.getResourcePropertyAccess().getIdentifierParserRuleCall_1());
@@ -2601,7 +2635,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleTransformationSpecification"
-    // InternalQualityEffectSpecification.g:1031:1: entryRuleTransformationSpecification returns [EObject current=null] : iv_ruleTransformationSpecification= ruleTransformationSpecification EOF ;
+    // InternalQualityEffectSpecification.g:1035:1: entryRuleTransformationSpecification returns [EObject current=null] : iv_ruleTransformationSpecification= ruleTransformationSpecification EOF ;
     public final EObject entryRuleTransformationSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -2609,8 +2643,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1031:68: (iv_ruleTransformationSpecification= ruleTransformationSpecification EOF )
-            // InternalQualityEffectSpecification.g:1032:2: iv_ruleTransformationSpecification= ruleTransformationSpecification EOF
+            // InternalQualityEffectSpecification.g:1035:68: (iv_ruleTransformationSpecification= ruleTransformationSpecification EOF )
+            // InternalQualityEffectSpecification.g:1036:2: iv_ruleTransformationSpecification= ruleTransformationSpecification EOF
             {
              newCompositeNode(grammarAccess.getTransformationSpecificationRule()); 
             pushFollow(FOLLOW_1);
@@ -2637,7 +2671,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleTransformationSpecification"
-    // InternalQualityEffectSpecification.g:1038:1: ruleTransformationSpecification returns [EObject current=null] : (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue ) ;
+    // InternalQualityEffectSpecification.g:1042:1: ruleTransformationSpecification returns [EObject current=null] : (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue ) ;
     public final EObject ruleTransformationSpecification() throws RecognitionException {
         EObject current = null;
 
@@ -2652,37 +2686,37 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1044:2: ( (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue ) )
-            // InternalQualityEffectSpecification.g:1045:2: (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue )
+            // InternalQualityEffectSpecification.g:1048:2: ( (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue ) )
+            // InternalQualityEffectSpecification.g:1049:2: (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue )
             {
-            // InternalQualityEffectSpecification.g:1045:2: (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue )
-            int alt18=3;
+            // InternalQualityEffectSpecification.g:1049:2: (this_NQA_0= ruleNQA | this_Reasoning_1= ruleReasoning | this_NumericValue_2= ruleNumericValue )
+            int alt20=3;
             switch ( input.LA(1) ) {
             case 30:
                 {
-                alt18=1;
+                alt20=1;
                 }
                 break;
             case 31:
                 {
-                alt18=2;
+                alt20=2;
                 }
                 break;
             case RULE_ID:
                 {
-                alt18=3;
+                alt20=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt18) {
+            switch (alt20) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1046:3: this_NQA_0= ruleNQA
+                    // InternalQualityEffectSpecification.g:1050:3: this_NQA_0= ruleNQA
                     {
 
                     			newCompositeNode(grammarAccess.getTransformationSpecificationAccess().getNQAParserRuleCall_0());
@@ -2700,7 +2734,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1055:3: this_Reasoning_1= ruleReasoning
+                    // InternalQualityEffectSpecification.g:1059:3: this_Reasoning_1= ruleReasoning
                     {
 
                     			newCompositeNode(grammarAccess.getTransformationSpecificationAccess().getReasoningParserRuleCall_1());
@@ -2718,7 +2752,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:1064:3: this_NumericValue_2= ruleNumericValue
+                    // InternalQualityEffectSpecification.g:1068:3: this_NumericValue_2= ruleNumericValue
                     {
 
                     			newCompositeNode(grammarAccess.getTransformationSpecificationAccess().getNumericValueParserRuleCall_2());
@@ -2758,7 +2792,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleNQA"
-    // InternalQualityEffectSpecification.g:1076:1: entryRuleNQA returns [EObject current=null] : iv_ruleNQA= ruleNQA EOF ;
+    // InternalQualityEffectSpecification.g:1080:1: entryRuleNQA returns [EObject current=null] : iv_ruleNQA= ruleNQA EOF ;
     public final EObject entryRuleNQA() throws RecognitionException {
         EObject current = null;
 
@@ -2766,8 +2800,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1076:44: (iv_ruleNQA= ruleNQA EOF )
-            // InternalQualityEffectSpecification.g:1077:2: iv_ruleNQA= ruleNQA EOF
+            // InternalQualityEffectSpecification.g:1080:44: (iv_ruleNQA= ruleNQA EOF )
+            // InternalQualityEffectSpecification.g:1081:2: iv_ruleNQA= ruleNQA EOF
             {
              newCompositeNode(grammarAccess.getNQARule()); 
             pushFollow(FOLLOW_1);
@@ -2794,7 +2828,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleNQA"
-    // InternalQualityEffectSpecification.g:1083:1: ruleNQA returns [EObject current=null] : (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' ) ;
+    // InternalQualityEffectSpecification.g:1087:1: ruleNQA returns [EObject current=null] : (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' ) ;
     public final EObject ruleNQA() throws RecognitionException {
         EObject current = null;
 
@@ -2810,11 +2844,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1089:2: ( (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' ) )
-            // InternalQualityEffectSpecification.g:1090:2: (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' )
+            // InternalQualityEffectSpecification.g:1093:2: ( (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' ) )
+            // InternalQualityEffectSpecification.g:1094:2: (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' )
             {
-            // InternalQualityEffectSpecification.g:1090:2: (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' )
-            // InternalQualityEffectSpecification.g:1091:3: otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')'
+            // InternalQualityEffectSpecification.g:1094:2: (otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')' )
+            // InternalQualityEffectSpecification.g:1095:3: otherlv_0= 'NQA' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) ( (lv_type_3_0= ruleTransformationType ) ) ( (lv_element_4_0= RULE_STRING ) ) otherlv_5= ')'
             {
             otherlv_0=(Token)match(input,30,FOLLOW_11); 
 
@@ -2824,11 +2858,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getNQAAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:1099:3: ( (lv_quality_2_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1100:4: (lv_quality_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1103:3: ( (lv_quality_2_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1104:4: (lv_quality_2_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1100:4: (lv_quality_2_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1101:5: lv_quality_2_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1104:4: (lv_quality_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1105:5: lv_quality_2_0= RULE_STRING
             {
             lv_quality_2_0=(Token)match(input,RULE_STRING,FOLLOW_23); 
 
@@ -2850,11 +2884,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1117:3: ( (lv_type_3_0= ruleTransformationType ) )
-            // InternalQualityEffectSpecification.g:1118:4: (lv_type_3_0= ruleTransformationType )
+            // InternalQualityEffectSpecification.g:1121:3: ( (lv_type_3_0= ruleTransformationType ) )
+            // InternalQualityEffectSpecification.g:1122:4: (lv_type_3_0= ruleTransformationType )
             {
-            // InternalQualityEffectSpecification.g:1118:4: (lv_type_3_0= ruleTransformationType )
-            // InternalQualityEffectSpecification.g:1119:5: lv_type_3_0= ruleTransformationType
+            // InternalQualityEffectSpecification.g:1122:4: (lv_type_3_0= ruleTransformationType )
+            // InternalQualityEffectSpecification.g:1123:5: lv_type_3_0= ruleTransformationType
             {
 
             					newCompositeNode(grammarAccess.getNQAAccess().getTypeTransformationTypeEnumRuleCall_3_0());
@@ -2881,11 +2915,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1136:3: ( (lv_element_4_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1137:4: (lv_element_4_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1140:3: ( (lv_element_4_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1141:4: (lv_element_4_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1137:4: (lv_element_4_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1138:5: lv_element_4_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1141:4: (lv_element_4_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1142:5: lv_element_4_0= RULE_STRING
             {
             lv_element_4_0=(Token)match(input,RULE_STRING,FOLLOW_16); 
 
@@ -2934,7 +2968,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleReasoning"
-    // InternalQualityEffectSpecification.g:1162:1: entryRuleReasoning returns [EObject current=null] : iv_ruleReasoning= ruleReasoning EOF ;
+    // InternalQualityEffectSpecification.g:1166:1: entryRuleReasoning returns [EObject current=null] : iv_ruleReasoning= ruleReasoning EOF ;
     public final EObject entryRuleReasoning() throws RecognitionException {
         EObject current = null;
 
@@ -2942,8 +2976,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1162:50: (iv_ruleReasoning= ruleReasoning EOF )
-            // InternalQualityEffectSpecification.g:1163:2: iv_ruleReasoning= ruleReasoning EOF
+            // InternalQualityEffectSpecification.g:1166:50: (iv_ruleReasoning= ruleReasoning EOF )
+            // InternalQualityEffectSpecification.g:1167:2: iv_ruleReasoning= ruleReasoning EOF
             {
              newCompositeNode(grammarAccess.getReasoningRule()); 
             pushFollow(FOLLOW_1);
@@ -2970,7 +3004,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleReasoning"
-    // InternalQualityEffectSpecification.g:1169:1: ruleReasoning returns [EObject current=null] : (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' ) ;
+    // InternalQualityEffectSpecification.g:1173:1: ruleReasoning returns [EObject current=null] : (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' ) ;
     public final EObject ruleReasoning() throws RecognitionException {
         EObject current = null;
 
@@ -2989,11 +3023,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1175:2: ( (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' ) )
-            // InternalQualityEffectSpecification.g:1176:2: (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' )
+            // InternalQualityEffectSpecification.g:1179:2: ( (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' ) )
+            // InternalQualityEffectSpecification.g:1180:2: (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' )
             {
-            // InternalQualityEffectSpecification.g:1176:2: (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' )
-            // InternalQualityEffectSpecification.g:1177:3: otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')'
+            // InternalQualityEffectSpecification.g:1180:2: (otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')' )
+            // InternalQualityEffectSpecification.g:1181:3: otherlv_0= 'Reasoning' otherlv_1= '(' ( (lv_quality_2_0= RULE_STRING ) ) otherlv_3= '=' ( (lv_rules_4_0= ruleRule ) ) (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )* otherlv_7= ')'
             {
             otherlv_0=(Token)match(input,31,FOLLOW_11); 
 
@@ -3003,11 +3037,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getReasoningAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:1185:3: ( (lv_quality_2_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1186:4: (lv_quality_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1189:3: ( (lv_quality_2_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1190:4: (lv_quality_2_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1186:4: (lv_quality_2_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1187:5: lv_quality_2_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1190:4: (lv_quality_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1191:5: lv_quality_2_0= RULE_STRING
             {
             lv_quality_2_0=(Token)match(input,RULE_STRING,FOLLOW_24); 
 
@@ -3033,11 +3067,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_3, grammarAccess.getReasoningAccess().getEqualsSignKeyword_3());
             		
-            // InternalQualityEffectSpecification.g:1207:3: ( (lv_rules_4_0= ruleRule ) )
-            // InternalQualityEffectSpecification.g:1208:4: (lv_rules_4_0= ruleRule )
+            // InternalQualityEffectSpecification.g:1211:3: ( (lv_rules_4_0= ruleRule ) )
+            // InternalQualityEffectSpecification.g:1212:4: (lv_rules_4_0= ruleRule )
             {
-            // InternalQualityEffectSpecification.g:1208:4: (lv_rules_4_0= ruleRule )
-            // InternalQualityEffectSpecification.g:1209:5: lv_rules_4_0= ruleRule
+            // InternalQualityEffectSpecification.g:1212:4: (lv_rules_4_0= ruleRule )
+            // InternalQualityEffectSpecification.g:1213:5: lv_rules_4_0= ruleRule
             {
 
             					newCompositeNode(grammarAccess.getReasoningAccess().getRulesRuleParserRuleCall_4_0());
@@ -3064,30 +3098,30 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1226:3: (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )*
-            loop19:
+            // InternalQualityEffectSpecification.g:1230:3: (otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) ) )*
+            loop21:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA19_0==33) ) {
-                    alt19=1;
+                if ( (LA21_0==33) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt21) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:1227:4: otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) )
+            	    // InternalQualityEffectSpecification.g:1231:4: otherlv_5= ',' ( (lv_rules_6_0= ruleRule ) )
             	    {
             	    otherlv_5=(Token)match(input,33,FOLLOW_25); 
 
             	    				newLeafNode(otherlv_5, grammarAccess.getReasoningAccess().getCommaKeyword_5_0());
             	    			
-            	    // InternalQualityEffectSpecification.g:1231:4: ( (lv_rules_6_0= ruleRule ) )
-            	    // InternalQualityEffectSpecification.g:1232:5: (lv_rules_6_0= ruleRule )
+            	    // InternalQualityEffectSpecification.g:1235:4: ( (lv_rules_6_0= ruleRule ) )
+            	    // InternalQualityEffectSpecification.g:1236:5: (lv_rules_6_0= ruleRule )
             	    {
-            	    // InternalQualityEffectSpecification.g:1232:5: (lv_rules_6_0= ruleRule )
-            	    // InternalQualityEffectSpecification.g:1233:6: lv_rules_6_0= ruleRule
+            	    // InternalQualityEffectSpecification.g:1236:5: (lv_rules_6_0= ruleRule )
+            	    // InternalQualityEffectSpecification.g:1237:6: lv_rules_6_0= ruleRule
             	    {
 
             	    						newCompositeNode(grammarAccess.getReasoningAccess().getRulesRuleParserRuleCall_5_1_0());
@@ -3119,7 +3153,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop21;
                 }
             } while (true);
 
@@ -3150,7 +3184,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleRule"
-    // InternalQualityEffectSpecification.g:1259:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
+    // InternalQualityEffectSpecification.g:1263:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
     public final EObject entryRuleRule() throws RecognitionException {
         EObject current = null;
 
@@ -3158,8 +3192,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1259:45: (iv_ruleRule= ruleRule EOF )
-            // InternalQualityEffectSpecification.g:1260:2: iv_ruleRule= ruleRule EOF
+            // InternalQualityEffectSpecification.g:1263:45: (iv_ruleRule= ruleRule EOF )
+            // InternalQualityEffectSpecification.g:1264:2: iv_ruleRule= ruleRule EOF
             {
              newCompositeNode(grammarAccess.getRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -3186,7 +3220,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleRule"
-    // InternalQualityEffectSpecification.g:1266:1: ruleRule returns [EObject current=null] : (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' ) ;
+    // InternalQualityEffectSpecification.g:1270:1: ruleRule returns [EObject current=null] : (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' ) ;
     public final EObject ruleRule() throws RecognitionException {
         EObject current = null;
 
@@ -3207,11 +3241,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1272:2: ( (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' ) )
-            // InternalQualityEffectSpecification.g:1273:2: (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' )
+            // InternalQualityEffectSpecification.g:1276:2: ( (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' ) )
+            // InternalQualityEffectSpecification.g:1277:2: (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' )
             {
-            // InternalQualityEffectSpecification.g:1273:2: (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' )
-            // InternalQualityEffectSpecification.g:1274:3: otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')'
+            // InternalQualityEffectSpecification.g:1277:2: (otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')' )
+            // InternalQualityEffectSpecification.g:1278:3: otherlv_0= 'Rule' otherlv_1= '(' ( (lv_qualities_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_entries_6_0= ruleEntry ) ) (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )* otherlv_9= ')'
             {
             otherlv_0=(Token)match(input,34,FOLLOW_11); 
 
@@ -3221,11 +3255,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getRuleAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:1282:3: ( (lv_qualities_2_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1283:4: (lv_qualities_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1286:3: ( (lv_qualities_2_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1287:4: (lv_qualities_2_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1283:4: (lv_qualities_2_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1284:5: lv_qualities_2_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1287:4: (lv_qualities_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1288:5: lv_qualities_2_0= RULE_STRING
             {
             lv_qualities_2_0=(Token)match(input,RULE_STRING,FOLLOW_27); 
 
@@ -3247,30 +3281,30 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1300:3: (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )*
-            loop20:
+            // InternalQualityEffectSpecification.g:1304:3: (otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) ) )*
+            loop22:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA20_0==33) ) {
-                    alt20=1;
+                if ( (LA22_0==33) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:1301:4: otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) )
+            	    // InternalQualityEffectSpecification.g:1305:4: otherlv_3= ',' ( (lv_qualities_4_0= RULE_STRING ) )
             	    {
             	    otherlv_3=(Token)match(input,33,FOLLOW_15); 
 
             	    				newLeafNode(otherlv_3, grammarAccess.getRuleAccess().getCommaKeyword_3_0());
             	    			
-            	    // InternalQualityEffectSpecification.g:1305:4: ( (lv_qualities_4_0= RULE_STRING ) )
-            	    // InternalQualityEffectSpecification.g:1306:5: (lv_qualities_4_0= RULE_STRING )
+            	    // InternalQualityEffectSpecification.g:1309:4: ( (lv_qualities_4_0= RULE_STRING ) )
+            	    // InternalQualityEffectSpecification.g:1310:5: (lv_qualities_4_0= RULE_STRING )
             	    {
-            	    // InternalQualityEffectSpecification.g:1306:5: (lv_qualities_4_0= RULE_STRING )
-            	    // InternalQualityEffectSpecification.g:1307:6: lv_qualities_4_0= RULE_STRING
+            	    // InternalQualityEffectSpecification.g:1310:5: (lv_qualities_4_0= RULE_STRING )
+            	    // InternalQualityEffectSpecification.g:1311:6: lv_qualities_4_0= RULE_STRING
             	    {
             	    lv_qualities_4_0=(Token)match(input,RULE_STRING,FOLLOW_27); 
 
@@ -3297,7 +3331,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop22;
                 }
             } while (true);
 
@@ -3305,11 +3339,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_5, grammarAccess.getRuleAccess().getEqualsSignKeyword_4());
             		
-            // InternalQualityEffectSpecification.g:1328:3: ( (lv_entries_6_0= ruleEntry ) )
-            // InternalQualityEffectSpecification.g:1329:4: (lv_entries_6_0= ruleEntry )
+            // InternalQualityEffectSpecification.g:1332:3: ( (lv_entries_6_0= ruleEntry ) )
+            // InternalQualityEffectSpecification.g:1333:4: (lv_entries_6_0= ruleEntry )
             {
-            // InternalQualityEffectSpecification.g:1329:4: (lv_entries_6_0= ruleEntry )
-            // InternalQualityEffectSpecification.g:1330:5: lv_entries_6_0= ruleEntry
+            // InternalQualityEffectSpecification.g:1333:4: (lv_entries_6_0= ruleEntry )
+            // InternalQualityEffectSpecification.g:1334:5: lv_entries_6_0= ruleEntry
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getEntriesEntryParserRuleCall_5_0());
@@ -3336,30 +3370,30 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1347:3: (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )*
-            loop21:
+            // InternalQualityEffectSpecification.g:1351:3: (otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) ) )*
+            loop23:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA21_0==33) ) {
-                    alt21=1;
+                if ( (LA23_0==33) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:1348:4: otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) )
+            	    // InternalQualityEffectSpecification.g:1352:4: otherlv_7= ',' ( (lv_entries_8_0= ruleEntry ) )
             	    {
             	    otherlv_7=(Token)match(input,33,FOLLOW_28); 
 
             	    				newLeafNode(otherlv_7, grammarAccess.getRuleAccess().getCommaKeyword_6_0());
             	    			
-            	    // InternalQualityEffectSpecification.g:1352:4: ( (lv_entries_8_0= ruleEntry ) )
-            	    // InternalQualityEffectSpecification.g:1353:5: (lv_entries_8_0= ruleEntry )
+            	    // InternalQualityEffectSpecification.g:1356:4: ( (lv_entries_8_0= ruleEntry ) )
+            	    // InternalQualityEffectSpecification.g:1357:5: (lv_entries_8_0= ruleEntry )
             	    {
-            	    // InternalQualityEffectSpecification.g:1353:5: (lv_entries_8_0= ruleEntry )
-            	    // InternalQualityEffectSpecification.g:1354:6: lv_entries_8_0= ruleEntry
+            	    // InternalQualityEffectSpecification.g:1357:5: (lv_entries_8_0= ruleEntry )
+            	    // InternalQualityEffectSpecification.g:1358:6: lv_entries_8_0= ruleEntry
             	    {
 
             	    						newCompositeNode(grammarAccess.getRuleAccess().getEntriesEntryParserRuleCall_6_1_0());
@@ -3391,7 +3425,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop23;
                 }
             } while (true);
 
@@ -3422,7 +3456,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleEntry"
-    // InternalQualityEffectSpecification.g:1380:1: entryRuleEntry returns [EObject current=null] : iv_ruleEntry= ruleEntry EOF ;
+    // InternalQualityEffectSpecification.g:1384:1: entryRuleEntry returns [EObject current=null] : iv_ruleEntry= ruleEntry EOF ;
     public final EObject entryRuleEntry() throws RecognitionException {
         EObject current = null;
 
@@ -3430,8 +3464,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1380:46: (iv_ruleEntry= ruleEntry EOF )
-            // InternalQualityEffectSpecification.g:1381:2: iv_ruleEntry= ruleEntry EOF
+            // InternalQualityEffectSpecification.g:1384:46: (iv_ruleEntry= ruleEntry EOF )
+            // InternalQualityEffectSpecification.g:1385:2: iv_ruleEntry= ruleEntry EOF
             {
              newCompositeNode(grammarAccess.getEntryRule()); 
             pushFollow(FOLLOW_1);
@@ -3458,7 +3492,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleEntry"
-    // InternalQualityEffectSpecification.g:1387:1: ruleEntry returns [EObject current=null] : (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' ) ;
+    // InternalQualityEffectSpecification.g:1391:1: ruleEntry returns [EObject current=null] : (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' ) ;
     public final EObject ruleEntry() throws RecognitionException {
         EObject current = null;
 
@@ -3475,11 +3509,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1393:2: ( (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' ) )
-            // InternalQualityEffectSpecification.g:1394:2: (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' )
+            // InternalQualityEffectSpecification.g:1397:2: ( (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' ) )
+            // InternalQualityEffectSpecification.g:1398:2: (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' )
             {
-            // InternalQualityEffectSpecification.g:1394:2: (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' )
-            // InternalQualityEffectSpecification.g:1395:3: otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')'
+            // InternalQualityEffectSpecification.g:1398:2: (otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')' )
+            // InternalQualityEffectSpecification.g:1399:3: otherlv_0= 'Entry' otherlv_1= '(' ( (lv_key_2_0= RULE_STRING ) ) (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )* otherlv_5= '=' ( (lv_value_6_0= RULE_STRING ) ) otherlv_7= ')'
             {
             otherlv_0=(Token)match(input,35,FOLLOW_11); 
 
@@ -3489,11 +3523,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getEntryAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:1403:3: ( (lv_key_2_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1404:4: (lv_key_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1407:3: ( (lv_key_2_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1408:4: (lv_key_2_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1404:4: (lv_key_2_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1405:5: lv_key_2_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1408:4: (lv_key_2_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1409:5: lv_key_2_0= RULE_STRING
             {
             lv_key_2_0=(Token)match(input,RULE_STRING,FOLLOW_27); 
 
@@ -3515,30 +3549,30 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1421:3: (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )*
-            loop22:
+            // InternalQualityEffectSpecification.g:1425:3: (otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) ) )*
+            loop24:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA22_0==33) ) {
-                    alt22=1;
+                if ( (LA24_0==33) ) {
+                    alt24=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt24) {
             	case 1 :
-            	    // InternalQualityEffectSpecification.g:1422:4: otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) )
+            	    // InternalQualityEffectSpecification.g:1426:4: otherlv_3= ',' ( (lv_key_4_0= RULE_STRING ) )
             	    {
             	    otherlv_3=(Token)match(input,33,FOLLOW_15); 
 
             	    				newLeafNode(otherlv_3, grammarAccess.getEntryAccess().getCommaKeyword_3_0());
             	    			
-            	    // InternalQualityEffectSpecification.g:1426:4: ( (lv_key_4_0= RULE_STRING ) )
-            	    // InternalQualityEffectSpecification.g:1427:5: (lv_key_4_0= RULE_STRING )
+            	    // InternalQualityEffectSpecification.g:1430:4: ( (lv_key_4_0= RULE_STRING ) )
+            	    // InternalQualityEffectSpecification.g:1431:5: (lv_key_4_0= RULE_STRING )
             	    {
-            	    // InternalQualityEffectSpecification.g:1427:5: (lv_key_4_0= RULE_STRING )
-            	    // InternalQualityEffectSpecification.g:1428:6: lv_key_4_0= RULE_STRING
+            	    // InternalQualityEffectSpecification.g:1431:5: (lv_key_4_0= RULE_STRING )
+            	    // InternalQualityEffectSpecification.g:1432:6: lv_key_4_0= RULE_STRING
             	    {
             	    lv_key_4_0=(Token)match(input,RULE_STRING,FOLLOW_27); 
 
@@ -3565,7 +3599,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop24;
                 }
             } while (true);
 
@@ -3573,11 +3607,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_5, grammarAccess.getEntryAccess().getEqualsSignKeyword_4());
             		
-            // InternalQualityEffectSpecification.g:1449:3: ( (lv_value_6_0= RULE_STRING ) )
-            // InternalQualityEffectSpecification.g:1450:4: (lv_value_6_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1453:3: ( (lv_value_6_0= RULE_STRING ) )
+            // InternalQualityEffectSpecification.g:1454:4: (lv_value_6_0= RULE_STRING )
             {
-            // InternalQualityEffectSpecification.g:1450:4: (lv_value_6_0= RULE_STRING )
-            // InternalQualityEffectSpecification.g:1451:5: lv_value_6_0= RULE_STRING
+            // InternalQualityEffectSpecification.g:1454:4: (lv_value_6_0= RULE_STRING )
+            // InternalQualityEffectSpecification.g:1455:5: lv_value_6_0= RULE_STRING
             {
             lv_value_6_0=(Token)match(input,RULE_STRING,FOLLOW_16); 
 
@@ -3626,7 +3660,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "entryRuleNumericValue"
-    // InternalQualityEffectSpecification.g:1475:1: entryRuleNumericValue returns [EObject current=null] : iv_ruleNumericValue= ruleNumericValue EOF ;
+    // InternalQualityEffectSpecification.g:1479:1: entryRuleNumericValue returns [EObject current=null] : iv_ruleNumericValue= ruleNumericValue EOF ;
     public final EObject entryRuleNumericValue() throws RecognitionException {
         EObject current = null;
 
@@ -3634,8 +3668,8 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
         try {
-            // InternalQualityEffectSpecification.g:1475:53: (iv_ruleNumericValue= ruleNumericValue EOF )
-            // InternalQualityEffectSpecification.g:1476:2: iv_ruleNumericValue= ruleNumericValue EOF
+            // InternalQualityEffectSpecification.g:1479:53: (iv_ruleNumericValue= ruleNumericValue EOF )
+            // InternalQualityEffectSpecification.g:1480:2: iv_ruleNumericValue= ruleNumericValue EOF
             {
              newCompositeNode(grammarAccess.getNumericValueRule()); 
             pushFollow(FOLLOW_1);
@@ -3662,7 +3696,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleNumericValue"
-    // InternalQualityEffectSpecification.g:1482:1: ruleNumericValue returns [EObject current=null] : ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' ) ;
+    // InternalQualityEffectSpecification.g:1486:1: ruleNumericValue returns [EObject current=null] : ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' ) ;
     public final EObject ruleNumericValue() throws RecognitionException {
         EObject current = null;
 
@@ -3677,17 +3711,17 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1488:2: ( ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' ) )
-            // InternalQualityEffectSpecification.g:1489:2: ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' )
+            // InternalQualityEffectSpecification.g:1492:2: ( ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' ) )
+            // InternalQualityEffectSpecification.g:1493:2: ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' )
             {
-            // InternalQualityEffectSpecification.g:1489:2: ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' )
-            // InternalQualityEffectSpecification.g:1490:3: ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')'
+            // InternalQualityEffectSpecification.g:1493:2: ( ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')' )
+            // InternalQualityEffectSpecification.g:1494:3: ( (lv_valueType_0_0= RULE_ID ) ) otherlv_1= '(' ( (lv_transformationType_2_0= ruleTransformationType ) ) ( (lv_transformationNumber_3_0= RULE_NUMBER ) ) otherlv_4= ')'
             {
-            // InternalQualityEffectSpecification.g:1490:3: ( (lv_valueType_0_0= RULE_ID ) )
-            // InternalQualityEffectSpecification.g:1491:4: (lv_valueType_0_0= RULE_ID )
+            // InternalQualityEffectSpecification.g:1494:3: ( (lv_valueType_0_0= RULE_ID ) )
+            // InternalQualityEffectSpecification.g:1495:4: (lv_valueType_0_0= RULE_ID )
             {
-            // InternalQualityEffectSpecification.g:1491:4: (lv_valueType_0_0= RULE_ID )
-            // InternalQualityEffectSpecification.g:1492:5: lv_valueType_0_0= RULE_ID
+            // InternalQualityEffectSpecification.g:1495:4: (lv_valueType_0_0= RULE_ID )
+            // InternalQualityEffectSpecification.g:1496:5: lv_valueType_0_0= RULE_ID
             {
             lv_valueType_0_0=(Token)match(input,RULE_ID,FOLLOW_11); 
 
@@ -3713,11 +3747,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             			newLeafNode(otherlv_1, grammarAccess.getNumericValueAccess().getLeftParenthesisKeyword_1());
             		
-            // InternalQualityEffectSpecification.g:1512:3: ( (lv_transformationType_2_0= ruleTransformationType ) )
-            // InternalQualityEffectSpecification.g:1513:4: (lv_transformationType_2_0= ruleTransformationType )
+            // InternalQualityEffectSpecification.g:1516:3: ( (lv_transformationType_2_0= ruleTransformationType ) )
+            // InternalQualityEffectSpecification.g:1517:4: (lv_transformationType_2_0= ruleTransformationType )
             {
-            // InternalQualityEffectSpecification.g:1513:4: (lv_transformationType_2_0= ruleTransformationType )
-            // InternalQualityEffectSpecification.g:1514:5: lv_transformationType_2_0= ruleTransformationType
+            // InternalQualityEffectSpecification.g:1517:4: (lv_transformationType_2_0= ruleTransformationType )
+            // InternalQualityEffectSpecification.g:1518:5: lv_transformationType_2_0= ruleTransformationType
             {
 
             					newCompositeNode(grammarAccess.getNumericValueAccess().getTransformationTypeTransformationTypeEnumRuleCall_2_0());
@@ -3744,11 +3778,11 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
             }
 
-            // InternalQualityEffectSpecification.g:1531:3: ( (lv_transformationNumber_3_0= RULE_NUMBER ) )
-            // InternalQualityEffectSpecification.g:1532:4: (lv_transformationNumber_3_0= RULE_NUMBER )
+            // InternalQualityEffectSpecification.g:1535:3: ( (lv_transformationNumber_3_0= RULE_NUMBER ) )
+            // InternalQualityEffectSpecification.g:1536:4: (lv_transformationNumber_3_0= RULE_NUMBER )
             {
-            // InternalQualityEffectSpecification.g:1532:4: (lv_transformationNumber_3_0= RULE_NUMBER )
-            // InternalQualityEffectSpecification.g:1533:5: lv_transformationNumber_3_0= RULE_NUMBER
+            // InternalQualityEffectSpecification.g:1536:4: (lv_transformationNumber_3_0= RULE_NUMBER )
+            // InternalQualityEffectSpecification.g:1537:5: lv_transformationNumber_3_0= RULE_NUMBER
             {
             lv_transformationNumber_3_0=(Token)match(input,RULE_NUMBER,FOLLOW_16); 
 
@@ -3797,7 +3831,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleComponentType"
-    // InternalQualityEffectSpecification.g:1557:1: ruleComponentType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) ) ;
+    // InternalQualityEffectSpecification.g:1561:1: ruleComponentType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) ) ;
     public final Enumerator ruleComponentType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3809,40 +3843,40 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1563:2: ( ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) ) )
-            // InternalQualityEffectSpecification.g:1564:2: ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) )
+            // InternalQualityEffectSpecification.g:1567:2: ( ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) ) )
+            // InternalQualityEffectSpecification.g:1568:2: ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) )
             {
-            // InternalQualityEffectSpecification.g:1564:2: ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) )
-            int alt23=3;
+            // InternalQualityEffectSpecification.g:1568:2: ( (enumLiteral_0= 'AnyComponentType' ) | (enumLiteral_1= 'Basic' ) | (enumLiteral_2= 'Composite' ) )
+            int alt25=3;
             switch ( input.LA(1) ) {
             case 36:
                 {
-                alt23=1;
+                alt25=1;
                 }
                 break;
             case 37:
                 {
-                alt23=2;
+                alt25=2;
                 }
                 break;
             case 38:
                 {
-                alt23=3;
+                alt25=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt23) {
+            switch (alt25) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1565:3: (enumLiteral_0= 'AnyComponentType' )
+                    // InternalQualityEffectSpecification.g:1569:3: (enumLiteral_0= 'AnyComponentType' )
                     {
-                    // InternalQualityEffectSpecification.g:1565:3: (enumLiteral_0= 'AnyComponentType' )
-                    // InternalQualityEffectSpecification.g:1566:4: enumLiteral_0= 'AnyComponentType'
+                    // InternalQualityEffectSpecification.g:1569:3: (enumLiteral_0= 'AnyComponentType' )
+                    // InternalQualityEffectSpecification.g:1570:4: enumLiteral_0= 'AnyComponentType'
                     {
                     enumLiteral_0=(Token)match(input,36,FOLLOW_2); 
 
@@ -3856,10 +3890,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1573:3: (enumLiteral_1= 'Basic' )
+                    // InternalQualityEffectSpecification.g:1577:3: (enumLiteral_1= 'Basic' )
                     {
-                    // InternalQualityEffectSpecification.g:1573:3: (enumLiteral_1= 'Basic' )
-                    // InternalQualityEffectSpecification.g:1574:4: enumLiteral_1= 'Basic'
+                    // InternalQualityEffectSpecification.g:1577:3: (enumLiteral_1= 'Basic' )
+                    // InternalQualityEffectSpecification.g:1578:4: enumLiteral_1= 'Basic'
                     {
                     enumLiteral_1=(Token)match(input,37,FOLLOW_2); 
 
@@ -3873,10 +3907,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:1581:3: (enumLiteral_2= 'Composite' )
+                    // InternalQualityEffectSpecification.g:1585:3: (enumLiteral_2= 'Composite' )
                     {
-                    // InternalQualityEffectSpecification.g:1581:3: (enumLiteral_2= 'Composite' )
-                    // InternalQualityEffectSpecification.g:1582:4: enumLiteral_2= 'Composite'
+                    // InternalQualityEffectSpecification.g:1585:3: (enumLiteral_2= 'Composite' )
+                    // InternalQualityEffectSpecification.g:1586:4: enumLiteral_2= 'Composite'
                     {
                     enumLiteral_2=(Token)match(input,38,FOLLOW_2); 
 
@@ -3912,7 +3946,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleRoleType"
-    // InternalQualityEffectSpecification.g:1592:1: ruleRoleType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) ) ;
+    // InternalQualityEffectSpecification.g:1596:1: ruleRoleType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) ) ;
     public final Enumerator ruleRoleType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3928,60 +3962,60 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1598:2: ( ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) ) )
-            // InternalQualityEffectSpecification.g:1599:2: ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) )
+            // InternalQualityEffectSpecification.g:1602:2: ( ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) ) )
+            // InternalQualityEffectSpecification.g:1603:2: ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) )
             {
-            // InternalQualityEffectSpecification.g:1599:2: ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) )
-            int alt24=7;
+            // InternalQualityEffectSpecification.g:1603:2: ( (enumLiteral_0= 'AnyRoleType' ) | (enumLiteral_1= 'ComponentRequiredProvided' ) | (enumLiteral_2= 'ComponentRequired' ) | (enumLiteral_3= 'ComponentProvided' ) | (enumLiteral_4= 'InfrastructureRequiredProvided' ) | (enumLiteral_5= 'InfrastructureRequired' ) | (enumLiteral_6= 'InfrastructureProvided' ) )
+            int alt26=7;
             switch ( input.LA(1) ) {
             case 39:
                 {
-                alt24=1;
+                alt26=1;
                 }
                 break;
             case 40:
                 {
-                alt24=2;
+                alt26=2;
                 }
                 break;
             case 41:
                 {
-                alt24=3;
+                alt26=3;
                 }
                 break;
             case 42:
                 {
-                alt24=4;
+                alt26=4;
                 }
                 break;
             case 43:
                 {
-                alt24=5;
+                alt26=5;
                 }
                 break;
             case 44:
                 {
-                alt24=6;
+                alt26=6;
                 }
                 break;
             case 45:
                 {
-                alt24=7;
+                alt26=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt24) {
+            switch (alt26) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1600:3: (enumLiteral_0= 'AnyRoleType' )
+                    // InternalQualityEffectSpecification.g:1604:3: (enumLiteral_0= 'AnyRoleType' )
                     {
-                    // InternalQualityEffectSpecification.g:1600:3: (enumLiteral_0= 'AnyRoleType' )
-                    // InternalQualityEffectSpecification.g:1601:4: enumLiteral_0= 'AnyRoleType'
+                    // InternalQualityEffectSpecification.g:1604:3: (enumLiteral_0= 'AnyRoleType' )
+                    // InternalQualityEffectSpecification.g:1605:4: enumLiteral_0= 'AnyRoleType'
                     {
                     enumLiteral_0=(Token)match(input,39,FOLLOW_2); 
 
@@ -3995,10 +4029,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1608:3: (enumLiteral_1= 'ComponentRequiredProvided' )
+                    // InternalQualityEffectSpecification.g:1612:3: (enumLiteral_1= 'ComponentRequiredProvided' )
                     {
-                    // InternalQualityEffectSpecification.g:1608:3: (enumLiteral_1= 'ComponentRequiredProvided' )
-                    // InternalQualityEffectSpecification.g:1609:4: enumLiteral_1= 'ComponentRequiredProvided'
+                    // InternalQualityEffectSpecification.g:1612:3: (enumLiteral_1= 'ComponentRequiredProvided' )
+                    // InternalQualityEffectSpecification.g:1613:4: enumLiteral_1= 'ComponentRequiredProvided'
                     {
                     enumLiteral_1=(Token)match(input,40,FOLLOW_2); 
 
@@ -4012,10 +4046,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:1616:3: (enumLiteral_2= 'ComponentRequired' )
+                    // InternalQualityEffectSpecification.g:1620:3: (enumLiteral_2= 'ComponentRequired' )
                     {
-                    // InternalQualityEffectSpecification.g:1616:3: (enumLiteral_2= 'ComponentRequired' )
-                    // InternalQualityEffectSpecification.g:1617:4: enumLiteral_2= 'ComponentRequired'
+                    // InternalQualityEffectSpecification.g:1620:3: (enumLiteral_2= 'ComponentRequired' )
+                    // InternalQualityEffectSpecification.g:1621:4: enumLiteral_2= 'ComponentRequired'
                     {
                     enumLiteral_2=(Token)match(input,41,FOLLOW_2); 
 
@@ -4029,10 +4063,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 4 :
-                    // InternalQualityEffectSpecification.g:1624:3: (enumLiteral_3= 'ComponentProvided' )
+                    // InternalQualityEffectSpecification.g:1628:3: (enumLiteral_3= 'ComponentProvided' )
                     {
-                    // InternalQualityEffectSpecification.g:1624:3: (enumLiteral_3= 'ComponentProvided' )
-                    // InternalQualityEffectSpecification.g:1625:4: enumLiteral_3= 'ComponentProvided'
+                    // InternalQualityEffectSpecification.g:1628:3: (enumLiteral_3= 'ComponentProvided' )
+                    // InternalQualityEffectSpecification.g:1629:4: enumLiteral_3= 'ComponentProvided'
                     {
                     enumLiteral_3=(Token)match(input,42,FOLLOW_2); 
 
@@ -4046,10 +4080,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 5 :
-                    // InternalQualityEffectSpecification.g:1632:3: (enumLiteral_4= 'InfrastructureRequiredProvided' )
+                    // InternalQualityEffectSpecification.g:1636:3: (enumLiteral_4= 'InfrastructureRequiredProvided' )
                     {
-                    // InternalQualityEffectSpecification.g:1632:3: (enumLiteral_4= 'InfrastructureRequiredProvided' )
-                    // InternalQualityEffectSpecification.g:1633:4: enumLiteral_4= 'InfrastructureRequiredProvided'
+                    // InternalQualityEffectSpecification.g:1636:3: (enumLiteral_4= 'InfrastructureRequiredProvided' )
+                    // InternalQualityEffectSpecification.g:1637:4: enumLiteral_4= 'InfrastructureRequiredProvided'
                     {
                     enumLiteral_4=(Token)match(input,43,FOLLOW_2); 
 
@@ -4063,10 +4097,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 6 :
-                    // InternalQualityEffectSpecification.g:1640:3: (enumLiteral_5= 'InfrastructureRequired' )
+                    // InternalQualityEffectSpecification.g:1644:3: (enumLiteral_5= 'InfrastructureRequired' )
                     {
-                    // InternalQualityEffectSpecification.g:1640:3: (enumLiteral_5= 'InfrastructureRequired' )
-                    // InternalQualityEffectSpecification.g:1641:4: enumLiteral_5= 'InfrastructureRequired'
+                    // InternalQualityEffectSpecification.g:1644:3: (enumLiteral_5= 'InfrastructureRequired' )
+                    // InternalQualityEffectSpecification.g:1645:4: enumLiteral_5= 'InfrastructureRequired'
                     {
                     enumLiteral_5=(Token)match(input,44,FOLLOW_2); 
 
@@ -4080,10 +4114,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 7 :
-                    // InternalQualityEffectSpecification.g:1648:3: (enumLiteral_6= 'InfrastructureProvided' )
+                    // InternalQualityEffectSpecification.g:1652:3: (enumLiteral_6= 'InfrastructureProvided' )
                     {
-                    // InternalQualityEffectSpecification.g:1648:3: (enumLiteral_6= 'InfrastructureProvided' )
-                    // InternalQualityEffectSpecification.g:1649:4: enumLiteral_6= 'InfrastructureProvided'
+                    // InternalQualityEffectSpecification.g:1652:3: (enumLiteral_6= 'InfrastructureProvided' )
+                    // InternalQualityEffectSpecification.g:1653:4: enumLiteral_6= 'InfrastructureProvided'
                     {
                     enumLiteral_6=(Token)match(input,45,FOLLOW_2); 
 
@@ -4119,7 +4153,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleAssemblyType"
-    // InternalQualityEffectSpecification.g:1659:1: ruleAssemblyType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) ) ;
+    // InternalQualityEffectSpecification.g:1663:1: ruleAssemblyType returns [Enumerator current=null] : ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) ) ;
     public final Enumerator ruleAssemblyType() throws RecognitionException {
         Enumerator current = null;
 
@@ -4131,40 +4165,40 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1665:2: ( ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) ) )
-            // InternalQualityEffectSpecification.g:1666:2: ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) )
+            // InternalQualityEffectSpecification.g:1669:2: ( ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) ) )
+            // InternalQualityEffectSpecification.g:1670:2: ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) )
             {
-            // InternalQualityEffectSpecification.g:1666:2: ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) )
-            int alt25=3;
+            // InternalQualityEffectSpecification.g:1670:2: ( (enumLiteral_0= 'AnyAssembly' ) | (enumLiteral_1= 'Required' ) | (enumLiteral_2= 'Provided' ) )
+            int alt27=3;
             switch ( input.LA(1) ) {
             case 46:
                 {
-                alt25=1;
+                alt27=1;
                 }
                 break;
             case 47:
                 {
-                alt25=2;
+                alt27=2;
                 }
                 break;
             case 48:
                 {
-                alt25=3;
+                alt27=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt25) {
+            switch (alt27) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1667:3: (enumLiteral_0= 'AnyAssembly' )
+                    // InternalQualityEffectSpecification.g:1671:3: (enumLiteral_0= 'AnyAssembly' )
                     {
-                    // InternalQualityEffectSpecification.g:1667:3: (enumLiteral_0= 'AnyAssembly' )
-                    // InternalQualityEffectSpecification.g:1668:4: enumLiteral_0= 'AnyAssembly'
+                    // InternalQualityEffectSpecification.g:1671:3: (enumLiteral_0= 'AnyAssembly' )
+                    // InternalQualityEffectSpecification.g:1672:4: enumLiteral_0= 'AnyAssembly'
                     {
                     enumLiteral_0=(Token)match(input,46,FOLLOW_2); 
 
@@ -4178,10 +4212,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1675:3: (enumLiteral_1= 'Required' )
+                    // InternalQualityEffectSpecification.g:1679:3: (enumLiteral_1= 'Required' )
                     {
-                    // InternalQualityEffectSpecification.g:1675:3: (enumLiteral_1= 'Required' )
-                    // InternalQualityEffectSpecification.g:1676:4: enumLiteral_1= 'Required'
+                    // InternalQualityEffectSpecification.g:1679:3: (enumLiteral_1= 'Required' )
+                    // InternalQualityEffectSpecification.g:1680:4: enumLiteral_1= 'Required'
                     {
                     enumLiteral_1=(Token)match(input,47,FOLLOW_2); 
 
@@ -4195,10 +4229,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:1683:3: (enumLiteral_2= 'Provided' )
+                    // InternalQualityEffectSpecification.g:1687:3: (enumLiteral_2= 'Provided' )
                     {
-                    // InternalQualityEffectSpecification.g:1683:3: (enumLiteral_2= 'Provided' )
-                    // InternalQualityEffectSpecification.g:1684:4: enumLiteral_2= 'Provided'
+                    // InternalQualityEffectSpecification.g:1687:3: (enumLiteral_2= 'Provided' )
+                    // InternalQualityEffectSpecification.g:1688:4: enumLiteral_2= 'Provided'
                     {
                     enumLiteral_2=(Token)match(input,48,FOLLOW_2); 
 
@@ -4234,7 +4268,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
 
 
     // $ANTLR start "ruleTransformationType"
-    // InternalQualityEffectSpecification.g:1694:1: ruleTransformationType returns [Enumerator current=null] : ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) ) ;
+    // InternalQualityEffectSpecification.g:1698:1: ruleTransformationType returns [Enumerator current=null] : ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) ) ;
     public final Enumerator ruleTransformationType() throws RecognitionException {
         Enumerator current = null;
 
@@ -4248,50 +4282,50 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
         	enterRule();
 
         try {
-            // InternalQualityEffectSpecification.g:1700:2: ( ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) ) )
-            // InternalQualityEffectSpecification.g:1701:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) )
+            // InternalQualityEffectSpecification.g:1704:2: ( ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) ) )
+            // InternalQualityEffectSpecification.g:1705:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) )
             {
-            // InternalQualityEffectSpecification.g:1701:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) )
-            int alt26=5;
+            // InternalQualityEffectSpecification.g:1705:2: ( (enumLiteral_0= '=' ) | (enumLiteral_1= '+' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= '*' ) | (enumLiteral_4= '/' ) )
+            int alt28=5;
             switch ( input.LA(1) ) {
             case 32:
                 {
-                alt26=1;
+                alt28=1;
                 }
                 break;
             case 49:
                 {
-                alt26=2;
+                alt28=2;
                 }
                 break;
             case 50:
                 {
-                alt26=3;
+                alt28=3;
                 }
                 break;
             case 51:
                 {
-                alt26=4;
+                alt28=4;
                 }
                 break;
             case 52:
                 {
-                alt26=5;
+                alt28=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt26) {
+            switch (alt28) {
                 case 1 :
-                    // InternalQualityEffectSpecification.g:1702:3: (enumLiteral_0= '=' )
+                    // InternalQualityEffectSpecification.g:1706:3: (enumLiteral_0= '=' )
                     {
-                    // InternalQualityEffectSpecification.g:1702:3: (enumLiteral_0= '=' )
-                    // InternalQualityEffectSpecification.g:1703:4: enumLiteral_0= '='
+                    // InternalQualityEffectSpecification.g:1706:3: (enumLiteral_0= '=' )
+                    // InternalQualityEffectSpecification.g:1707:4: enumLiteral_0= '='
                     {
                     enumLiteral_0=(Token)match(input,32,FOLLOW_2); 
 
@@ -4305,10 +4339,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 2 :
-                    // InternalQualityEffectSpecification.g:1710:3: (enumLiteral_1= '+' )
+                    // InternalQualityEffectSpecification.g:1714:3: (enumLiteral_1= '+' )
                     {
-                    // InternalQualityEffectSpecification.g:1710:3: (enumLiteral_1= '+' )
-                    // InternalQualityEffectSpecification.g:1711:4: enumLiteral_1= '+'
+                    // InternalQualityEffectSpecification.g:1714:3: (enumLiteral_1= '+' )
+                    // InternalQualityEffectSpecification.g:1715:4: enumLiteral_1= '+'
                     {
                     enumLiteral_1=(Token)match(input,49,FOLLOW_2); 
 
@@ -4322,10 +4356,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 3 :
-                    // InternalQualityEffectSpecification.g:1718:3: (enumLiteral_2= '-' )
+                    // InternalQualityEffectSpecification.g:1722:3: (enumLiteral_2= '-' )
                     {
-                    // InternalQualityEffectSpecification.g:1718:3: (enumLiteral_2= '-' )
-                    // InternalQualityEffectSpecification.g:1719:4: enumLiteral_2= '-'
+                    // InternalQualityEffectSpecification.g:1722:3: (enumLiteral_2= '-' )
+                    // InternalQualityEffectSpecification.g:1723:4: enumLiteral_2= '-'
                     {
                     enumLiteral_2=(Token)match(input,50,FOLLOW_2); 
 
@@ -4339,10 +4373,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 4 :
-                    // InternalQualityEffectSpecification.g:1726:3: (enumLiteral_3= '*' )
+                    // InternalQualityEffectSpecification.g:1730:3: (enumLiteral_3= '*' )
                     {
-                    // InternalQualityEffectSpecification.g:1726:3: (enumLiteral_3= '*' )
-                    // InternalQualityEffectSpecification.g:1727:4: enumLiteral_3= '*'
+                    // InternalQualityEffectSpecification.g:1730:3: (enumLiteral_3= '*' )
+                    // InternalQualityEffectSpecification.g:1731:4: enumLiteral_3= '*'
                     {
                     enumLiteral_3=(Token)match(input,51,FOLLOW_2); 
 
@@ -4356,10 +4390,10 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
                     }
                     break;
                 case 5 :
-                    // InternalQualityEffectSpecification.g:1734:3: (enumLiteral_4= '/' )
+                    // InternalQualityEffectSpecification.g:1738:3: (enumLiteral_4= '/' )
                     {
-                    // InternalQualityEffectSpecification.g:1734:3: (enumLiteral_4= '/' )
-                    // InternalQualityEffectSpecification.g:1735:4: enumLiteral_4= '/'
+                    // InternalQualityEffectSpecification.g:1738:3: (enumLiteral_4= '/' )
+                    // InternalQualityEffectSpecification.g:1739:4: enumLiteral_4= '/'
                     {
                     enumLiteral_4=(Token)match(input,52,FOLLOW_2); 
 
@@ -4455,7 +4489,7 @@ public class InternalQualityEffectSpecificationParser extends AbstractInternalAn
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000007000400000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x00003F8000400000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000008100000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000001A00000L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0001C00000400000L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000A00000L});

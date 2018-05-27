@@ -729,40 +729,17 @@ ruleRole returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4='with'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getRoleAccess().getWithKeyword_4());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_5_0());
-				}
-				lv_properties_5_0=ruleRoleProperty
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRoleRule());
-					}
-					add(
-						$current,
-						"properties",
-						lv_properties_5_0,
-						"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_6='and'
+			otherlv_4='with'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getRoleAccess().getAndKeyword_6_0());
+				newLeafNode(otherlv_4, grammarAccess.getRoleAccess().getWithKeyword_4_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_6_1_0());
+						newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_1_0());
 					}
-					lv_properties_7_0=ruleRoleProperty
+					lv_properties_5_0=ruleRoleProperty
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getRoleRule());
@@ -770,16 +747,41 @@ ruleRole returns [EObject current=null]
 						add(
 							$current,
 							"properties",
-							lv_properties_7_0,
+							lv_properties_5_0,
 							"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
+			(
+				otherlv_6='and'
+				{
+					newLeafNode(otherlv_6, grammarAccess.getRoleAccess().getAndKeyword_4_2_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getRoleAccess().getPropertiesRolePropertyParserRuleCall_4_2_1_0());
+						}
+						lv_properties_7_0=ruleRoleProperty
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRoleRule());
+							}
+							add(
+								$current,
+								"properties",
+								lv_properties_7_0,
+								"org.palladiosimulator.qes.QualityEffectSpecification.RoleProperty");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+		)?
 		otherlv_8=')'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getRoleAccess().getRightParenthesisKeyword_7());
+			newLeafNode(otherlv_8, grammarAccess.getRoleAccess().getRightParenthesisKeyword_5());
 		}
 	)
 ;
@@ -886,32 +888,34 @@ ruleAssembly returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4='with'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getAssemblyAccess().getWithKeyword_4());
-		}
 		(
+			otherlv_4='with'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getAssemblyAccess().getWithKeyword_4_0());
+			}
 			(
-				{
-					newCompositeNode(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_5_0());
-				}
-				lv_component_5_0=ruleComponentSpecification
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAssemblyRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getAssemblyAccess().getComponentComponentSpecificationParserRuleCall_4_1_0());
 					}
-					set(
-						$current,
-						"component",
-						lv_component_5_0,
-						"org.palladiosimulator.qes.QualityEffectSpecification.ComponentSpecification");
-					afterParserOrEnumRuleCall();
-				}
+					lv_component_5_0=ruleComponentSpecification
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAssemblyRule());
+						}
+						set(
+							$current,
+							"component",
+							lv_component_5_0,
+							"org.palladiosimulator.qes.QualityEffectSpecification.ComponentSpecification");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
+		)?
 		otherlv_6=')'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_6());
+			newLeafNode(otherlv_6, grammarAccess.getAssemblyAccess().getRightParenthesisKeyword_5());
 		}
 	)
 ;

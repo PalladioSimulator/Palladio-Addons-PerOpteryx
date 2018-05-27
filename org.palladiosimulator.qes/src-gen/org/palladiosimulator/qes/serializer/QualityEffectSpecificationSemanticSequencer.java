@@ -116,7 +116,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Assembly returns Assembly
 	 *
 	 * Constraint:
-	 *     (not?='not'? type=AssemblyType component=ComponentSpecification)
+	 *     (not?='not'? type=AssemblyType component=ComponentSpecification?)
 	 */
 	protected void sequence_Assembly(ISerializationContext context, Assembly semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -288,7 +288,7 @@ public class QualityEffectSpecificationSemanticSequencer extends AbstractDelegat
 	 *     Role returns Role
 	 *
 	 * Constraint:
-	 *     (not?='not'? type=RoleType properties+=RoleProperty properties+=RoleProperty*)
+	 *     (not?='not'? type=RoleType (properties+=RoleProperty properties+=RoleProperty*)?)
 	 */
 	protected void sequence_Role(ISerializationContext context, Role semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
