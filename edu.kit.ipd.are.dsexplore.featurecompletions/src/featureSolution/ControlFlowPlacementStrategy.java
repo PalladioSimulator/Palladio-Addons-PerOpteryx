@@ -2,7 +2,7 @@
  */
 package featureSolution;
 
-import org.palladiosimulator.pcm.seff.AbstractLoopAction;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +13,7 @@ import org.palladiosimulator.pcm.seff.AbstractLoopAction;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.ControlFlowPlacementStrategy#getMatchingControlFlow <em>Matching Control Flow</em>}</li>
+ *   <li>{@link featureSolution.ControlFlowPlacementStrategy#getForAllControlFlowsIn <em>For All Control Flows In</em>}</li>
  * </ul>
  *
  * @see featureSolution.FeatureSolutionPackage#getControlFlowPlacementStrategy()
@@ -22,29 +22,29 @@ import org.palladiosimulator.pcm.seff.AbstractLoopAction;
  */
 public interface ControlFlowPlacementStrategy extends PlacementStrategy {
 	/**
-	 * Returns the value of the '<em><b>Matching Control Flow</b></em>' reference.
+	 * Returns the value of the '<em><b>For All Control Flows In</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Matching Control Flow</em>' reference isn't clear,
+	 * If the meaning of the '<em>For All Control Flows In</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matching Control Flow</em>' reference.
-	 * @see #setMatchingControlFlow(AbstractLoopAction)
-	 * @see featureSolution.FeatureSolutionPackage#getControlFlowPlacementStrategy_MatchingControlFlow()
+	 * @return the value of the '<em>For All Control Flows In</em>' reference.
+	 * @see #setForAllControlFlowsIn(RepositoryComponent)
+	 * @see featureSolution.FeatureSolutionPackage#getControlFlowPlacementStrategy_ForAllControlFlowsIn()
 	 * @model
 	 * @generated
 	 */
-	AbstractLoopAction getMatchingControlFlow();
+	RepositoryComponent getForAllControlFlowsIn();
 
 	/**
-	 * Sets the value of the '{@link featureSolution.ControlFlowPlacementStrategy#getMatchingControlFlow <em>Matching Control Flow</em>}' reference.
+	 * Sets the value of the '{@link featureSolution.ControlFlowPlacementStrategy#getForAllControlFlowsIn <em>For All Control Flows In</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matching Control Flow</em>' reference.
-	 * @see #getMatchingControlFlow()
+	 * @param value the new value of the '<em>For All Control Flows In</em>' reference.
+	 * @see #getForAllControlFlowsIn()
 	 * @generated
 	 */
-	void setMatchingControlFlow(AbstractLoopAction value);
+	void setForAllControlFlowsIn(RepositoryComponent value);
 
 } // ControlFlowPlacementStrategy

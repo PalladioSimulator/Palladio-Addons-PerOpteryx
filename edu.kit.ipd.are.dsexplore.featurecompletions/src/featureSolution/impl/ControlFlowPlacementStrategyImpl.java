@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.seff.AbstractLoopAction;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,21 +22,21 @@ import org.palladiosimulator.pcm.seff.AbstractLoopAction;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.impl.ControlFlowPlacementStrategyImpl#getMatchingControlFlow <em>Matching Control Flow</em>}</li>
+ *   <li>{@link featureSolution.impl.ControlFlowPlacementStrategyImpl#getForAllControlFlowsIn <em>For All Control Flows In</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl implements ControlFlowPlacementStrategy {
 	/**
-	 * The cached value of the '{@link #getMatchingControlFlow() <em>Matching Control Flow</em>}' reference.
+	 * The cached value of the '{@link #getForAllControlFlowsIn() <em>For All Control Flows In</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMatchingControlFlow()
+	 * @see #getForAllControlFlowsIn()
 	 * @generated
 	 * @ordered
 	 */
-	protected AbstractLoopAction matchingControlFlow;
+	protected RepositoryComponent forAllControlFlowsIn;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,16 +62,16 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractLoopAction getMatchingControlFlow() {
-		if (matchingControlFlow != null && ((EObject)matchingControlFlow).eIsProxy()) {
-			InternalEObject oldMatchingControlFlow = (InternalEObject)matchingControlFlow;
-			matchingControlFlow = (AbstractLoopAction)eResolveProxy(oldMatchingControlFlow);
-			if (matchingControlFlow != oldMatchingControlFlow) {
+	public RepositoryComponent getForAllControlFlowsIn() {
+		if (forAllControlFlowsIn != null && ((EObject)forAllControlFlowsIn).eIsProxy()) {
+			InternalEObject oldForAllControlFlowsIn = (InternalEObject)forAllControlFlowsIn;
+			forAllControlFlowsIn = (RepositoryComponent)eResolveProxy(oldForAllControlFlowsIn);
+			if (forAllControlFlowsIn != oldForAllControlFlowsIn) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW, oldMatchingControlFlow, matchingControlFlow));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN, oldForAllControlFlowsIn, forAllControlFlowsIn));
 			}
 		}
-		return matchingControlFlow;
+		return forAllControlFlowsIn;
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractLoopAction basicGetMatchingControlFlow() {
-		return matchingControlFlow;
+	public RepositoryComponent basicGetForAllControlFlowsIn() {
+		return forAllControlFlowsIn;
 	}
 
 	/**
@@ -88,11 +88,11 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMatchingControlFlow(AbstractLoopAction newMatchingControlFlow) {
-		AbstractLoopAction oldMatchingControlFlow = matchingControlFlow;
-		matchingControlFlow = newMatchingControlFlow;
+	public void setForAllControlFlowsIn(RepositoryComponent newForAllControlFlowsIn) {
+		RepositoryComponent oldForAllControlFlowsIn = forAllControlFlowsIn;
+		forAllControlFlowsIn = newForAllControlFlowsIn;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW, oldMatchingControlFlow, matchingControlFlow));
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN, oldForAllControlFlowsIn, forAllControlFlowsIn));
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW:
-				if (resolve) return getMatchingControlFlow();
-				return basicGetMatchingControlFlow();
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN:
+				if (resolve) return getForAllControlFlowsIn();
+				return basicGetForAllControlFlowsIn();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +118,8 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW:
-				setMatchingControlFlow((AbstractLoopAction)newValue);
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN:
+				setForAllControlFlowsIn((RepositoryComponent)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +133,8 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW:
-				setMatchingControlFlow((AbstractLoopAction)null);
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN:
+				setForAllControlFlowsIn((RepositoryComponent)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,8 +148,8 @@ public class ControlFlowPlacementStrategyImpl extends PlacementStrategyImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW:
-				return matchingControlFlow != null;
+			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN:
+				return forAllControlFlowsIn != null;
 		}
 		return super.eIsSet(featureID);
 	}

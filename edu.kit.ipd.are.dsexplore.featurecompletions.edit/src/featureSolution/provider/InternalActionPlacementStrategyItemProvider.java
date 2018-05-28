@@ -4,7 +4,6 @@ package featureSolution.provider;
 
 
 import featureSolution.FeatureSolutionPackage;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -42,25 +41,25 @@ public class InternalActionPlacementStrategyItemProvider extends PlacementStrate
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMatchingInternalActionPropertyDescriptor(object);
+			addForAllInternalActionsInPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Matching Internal Action feature.
+	 * This adds a property descriptor for the For All Internal Actions In feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMatchingInternalActionPropertyDescriptor(Object object) {
+	protected void addForAllInternalActionsInPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_InternalActionPlacementStrategy_matchingInternalAction_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InternalActionPlacementStrategy_matchingInternalAction_feature", "_UI_InternalActionPlacementStrategy_type"),
-				 FeatureSolutionPackage.Literals.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION,
+				 getString("_UI_InternalActionPlacementStrategy_forAllInternalActionsIn_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InternalActionPlacementStrategy_forAllInternalActionsIn_feature", "_UI_InternalActionPlacementStrategy_type"),
+				 FeatureSolutionPackage.Literals.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN,
 				 true,
 				 false,
 				 true,

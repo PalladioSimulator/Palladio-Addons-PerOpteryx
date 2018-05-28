@@ -2,7 +2,7 @@
  */
 package featureSolution;
 
-import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +13,7 @@ import org.palladiosimulator.pcm.seff.InternalAction;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.InternalActionPlacementStrategy#getMatchingInternalAction <em>Matching Internal Action</em>}</li>
+ *   <li>{@link featureSolution.InternalActionPlacementStrategy#getForAllInternalActionsIn <em>For All Internal Actions In</em>}</li>
  * </ul>
  *
  * @see featureSolution.FeatureSolutionPackage#getInternalActionPlacementStrategy()
@@ -22,29 +22,29 @@ import org.palladiosimulator.pcm.seff.InternalAction;
  */
 public interface InternalActionPlacementStrategy extends PlacementStrategy {
 	/**
-	 * Returns the value of the '<em><b>Matching Internal Action</b></em>' reference.
+	 * Returns the value of the '<em><b>For All Internal Actions In</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Matching Internal Action</em>' reference isn't clear,
+	 * If the meaning of the '<em>For All Internal Actions In</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matching Internal Action</em>' reference.
-	 * @see #setMatchingInternalAction(InternalAction)
-	 * @see featureSolution.FeatureSolutionPackage#getInternalActionPlacementStrategy_MatchingInternalAction()
+	 * @return the value of the '<em>For All Internal Actions In</em>' reference.
+	 * @see #setForAllInternalActionsIn(RepositoryComponent)
+	 * @see featureSolution.FeatureSolutionPackage#getInternalActionPlacementStrategy_ForAllInternalActionsIn()
 	 * @model
 	 * @generated
 	 */
-	InternalAction getMatchingInternalAction();
+	RepositoryComponent getForAllInternalActionsIn();
 
 	/**
-	 * Sets the value of the '{@link featureSolution.InternalActionPlacementStrategy#getMatchingInternalAction <em>Matching Internal Action</em>}' reference.
+	 * Sets the value of the '{@link featureSolution.InternalActionPlacementStrategy#getForAllInternalActionsIn <em>For All Internal Actions In</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matching Internal Action</em>' reference.
-	 * @see #getMatchingInternalAction()
+	 * @param value the new value of the '<em>For All Internal Actions In</em>' reference.
+	 * @see #getForAllInternalActionsIn()
 	 * @generated
 	 */
-	void setMatchingInternalAction(InternalAction value);
+	void setForAllInternalActionsIn(RepositoryComponent value);
 
 } // InternalActionPlacementStrategy

@@ -63,6 +63,9 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 			case FeatureSolutionPackage.EXTERNAL_CALL_PLACEMENT_STRATEGY: return createExternalCallPlacementStrategy();
 			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY: return createInternalActionPlacementStrategy();
 			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY: return createControlFlowPlacementStrategy();
+			case FeatureSolutionPackage.POINT_CUT: return createPointCut();
+			case FeatureSolutionPackage.ADVICE: return createAdvice();
+			case FeatureSolutionPackage.IMPORT: return createImport();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,6 +83,8 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 				return createAppearanceFromString(eDataType, initialValue);
 			case FeatureSolutionPackage.PLACEMENT_POLICY:
 				return createPlacementPolicyFromString(eDataType, initialValue);
+			case FeatureSolutionPackage.CONTROL_FLOW:
+				return createControlFlowFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -97,6 +102,8 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 				return convertAppearanceToString(eDataType, instanceValue);
 			case FeatureSolutionPackage.PLACEMENT_POLICY:
 				return convertPlacementPolicyToString(eDataType, instanceValue);
+			case FeatureSolutionPackage.CONTROL_FLOW:
+				return convertControlFlowToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -167,6 +174,36 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PointCut createPointCut() {
+		PointCutImpl pointCut = new PointCutImpl();
+		return pointCut;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Advice createAdvice() {
+		AdviceImpl advice = new AdviceImpl();
+		return advice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Import createImport() {
+		ImportImpl import_ = new ImportImpl();
+		return import_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Appearance createAppearanceFromString(EDataType eDataType, String initialValue) {
 		Appearance result = Appearance.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -199,6 +236,26 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * @generated
 	 */
 	public String convertPlacementPolicyToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow createControlFlowFromString(EDataType eDataType, String initialValue) {
+		ControlFlow result = ControlFlow.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertControlFlowToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

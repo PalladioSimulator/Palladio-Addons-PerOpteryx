@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.seff.InternalAction;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,21 +22,21 @@ import org.palladiosimulator.pcm.seff.InternalAction;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.impl.InternalActionPlacementStrategyImpl#getMatchingInternalAction <em>Matching Internal Action</em>}</li>
+ *   <li>{@link featureSolution.impl.InternalActionPlacementStrategyImpl#getForAllInternalActionsIn <em>For All Internal Actions In</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl implements InternalActionPlacementStrategy {
 	/**
-	 * The cached value of the '{@link #getMatchingInternalAction() <em>Matching Internal Action</em>}' reference.
+	 * The cached value of the '{@link #getForAllInternalActionsIn() <em>For All Internal Actions In</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMatchingInternalAction()
+	 * @see #getForAllInternalActionsIn()
 	 * @generated
 	 * @ordered
 	 */
-	protected InternalAction matchingInternalAction;
+	protected RepositoryComponent forAllInternalActionsIn;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,16 +62,16 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InternalAction getMatchingInternalAction() {
-		if (matchingInternalAction != null && ((EObject)matchingInternalAction).eIsProxy()) {
-			InternalEObject oldMatchingInternalAction = (InternalEObject)matchingInternalAction;
-			matchingInternalAction = (InternalAction)eResolveProxy(oldMatchingInternalAction);
-			if (matchingInternalAction != oldMatchingInternalAction) {
+	public RepositoryComponent getForAllInternalActionsIn() {
+		if (forAllInternalActionsIn != null && ((EObject)forAllInternalActionsIn).eIsProxy()) {
+			InternalEObject oldForAllInternalActionsIn = (InternalEObject)forAllInternalActionsIn;
+			forAllInternalActionsIn = (RepositoryComponent)eResolveProxy(oldForAllInternalActionsIn);
+			if (forAllInternalActionsIn != oldForAllInternalActionsIn) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION, oldMatchingInternalAction, matchingInternalAction));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN, oldForAllInternalActionsIn, forAllInternalActionsIn));
 			}
 		}
-		return matchingInternalAction;
+		return forAllInternalActionsIn;
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InternalAction basicGetMatchingInternalAction() {
-		return matchingInternalAction;
+	public RepositoryComponent basicGetForAllInternalActionsIn() {
+		return forAllInternalActionsIn;
 	}
 
 	/**
@@ -88,11 +88,11 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMatchingInternalAction(InternalAction newMatchingInternalAction) {
-		InternalAction oldMatchingInternalAction = matchingInternalAction;
-		matchingInternalAction = newMatchingInternalAction;
+	public void setForAllInternalActionsIn(RepositoryComponent newForAllInternalActionsIn) {
+		RepositoryComponent oldForAllInternalActionsIn = forAllInternalActionsIn;
+		forAllInternalActionsIn = newForAllInternalActionsIn;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION, oldMatchingInternalAction, matchingInternalAction));
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN, oldForAllInternalActionsIn, forAllInternalActionsIn));
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION:
-				if (resolve) return getMatchingInternalAction();
-				return basicGetMatchingInternalAction();
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN:
+				if (resolve) return getForAllInternalActionsIn();
+				return basicGetForAllInternalActionsIn();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +118,8 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION:
-				setMatchingInternalAction((InternalAction)newValue);
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN:
+				setForAllInternalActionsIn((RepositoryComponent)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +133,8 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION:
-				setMatchingInternalAction((InternalAction)null);
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN:
+				setForAllInternalActionsIn((RepositoryComponent)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,8 +148,8 @@ public class InternalActionPlacementStrategyImpl extends PlacementStrategyImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__MATCHING_INTERNAL_ACTION:
-				return matchingInternalAction != null;
+			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN:
+				return forAllInternalActionsIn != null;
 		}
 		return super.eIsSet(featureID);
 	}

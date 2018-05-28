@@ -42,25 +42,25 @@ public class ControlFlowPlacementStrategyItemProvider extends PlacementStrategyI
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMatchingControlFlowPropertyDescriptor(object);
+			addForAllControlFlowsInPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Matching Control Flow feature.
+	 * This adds a property descriptor for the For All Control Flows In feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMatchingControlFlowPropertyDescriptor(Object object) {
+	protected void addForAllControlFlowsInPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ControlFlowPlacementStrategy_matchingControlFlow_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ControlFlowPlacementStrategy_matchingControlFlow_feature", "_UI_ControlFlowPlacementStrategy_type"),
-				 FeatureSolutionPackage.Literals.CONTROL_FLOW_PLACEMENT_STRATEGY__MATCHING_CONTROL_FLOW,
+				 getString("_UI_ControlFlowPlacementStrategy_forAllControlFlowsIn_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ControlFlowPlacementStrategy_forAllControlFlowsIn_feature", "_UI_ControlFlowPlacementStrategy_type"),
+				 FeatureSolutionPackage.Literals.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN,
 				 true,
 				 false,
 				 true,

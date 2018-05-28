@@ -1,0 +1,12 @@
+import "platform:/resource/SimplePerOpteryx/palladio/repository.repository";
+
+ExtensionInclusion extensionIncl {
+	description bla
+	pointCut {
+		PointCut {
+			placementStrategy ExternalCallPlacementStrategy {
+				matchingSignature doPay
+			}
+		}
+	}
+}

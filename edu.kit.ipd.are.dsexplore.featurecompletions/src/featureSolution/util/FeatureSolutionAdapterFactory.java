@@ -101,6 +101,18 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 				return createControlFlowPlacementStrategyAdapter();
 			}
 			@Override
+			public Adapter casePointCut(PointCut object) {
+				return createPointCutAdapter();
+			}
+			@Override
+			public Adapter caseAdvice(Advice object) {
+				return createAdviceAdapter();
+			}
+			@Override
+			public Adapter caseImport(Import object) {
+				return createImportAdapter();
+			}
+			@Override
 			public Adapter caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
@@ -111,6 +123,10 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDescribedElement(DescribedElement object) {
 				return createDescribedElementAdapter();
+			}
+			@Override
+			public Adapter caseEntity_NamedElement(org.palladiosimulator.pcm.core.entity.NamedElement object) {
+				return createEntity_NamedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -231,6 +247,48 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.PointCut <em>Point Cut</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.PointCut
+	 * @generated
+	 */
+	public Adapter createPointCutAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.Advice <em>Advice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.Advice
+	 * @generated
+	 */
+	public Adapter createAdviceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.Import <em>Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.Import
+	 * @generated
+	 */
+	public Adapter createImportAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -269,6 +327,20 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDescribedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.palladiosimulator.pcm.core.entity.NamedElement
+	 * @generated
+	 */
+	public Adapter createEntity_NamedElementAdapter() {
 		return null;
 	}
 
