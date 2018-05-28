@@ -15,6 +15,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
  */
 public class AssemblyLocationRepositoryWeaving extends RepositoryWeaving {
 
+	public AssemblyLocationRepositoryWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
+
 	@Override
 	protected void weaveAdapterIntoRepository(WeavingLocation weavingLocation) {
 		AssemblyConnector location = (AssemblyConnector) weavingLocation.getLocation();
@@ -22,8 +26,8 @@ public class AssemblyLocationRepositoryWeaving extends RepositoryWeaving {
 		OperationRequiredRole requiredConnectionEnd = location.getRequiredRole_AssemblyConnector();
 		OperationProvidedRole providedConnectionEnd = location.getProvidedRole_AssemblyConnector();
 
-		AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().add(AdapterWeaving.concernRepositoryManager.createProvidedRoleBy(requiredConnectionEnd));
-		AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().add(AdapterWeaving.concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
+		this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity().add(this.parent.getMergedRepoManager().createProvidedRoleBy(requiredConnectionEnd));
+		this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().add(this.parent.getMergedRepoManager().createRequiredRoleBy(providedConnectionEnd));
 	}
 
 }

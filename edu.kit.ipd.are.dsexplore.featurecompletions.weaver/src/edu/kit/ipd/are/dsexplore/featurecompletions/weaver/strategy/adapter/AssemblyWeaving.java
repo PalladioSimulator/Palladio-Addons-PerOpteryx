@@ -17,15 +17,15 @@ import org.palladiosimulator.pcm.repository.Role;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
-import edu.kit.ipd.are.dsexplore.concern.handler.FCCStructureHandler;
-import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandler;
-import edu.kit.ipd.are.dsexplore.concern.handler.RoleHandlerFactory;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGeneratorExplorationFactory;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandlerFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 
@@ -37,8 +37,12 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
  *
  */
 public abstract class AssemblyWeaving {
+	protected final IAdapterWeaving parent;
 
-	@Override
+	public AssemblyWeaving(IAdapterWeaving parent) {
+		this.parent = parent;
+	}
+
 	public void weave(WeavingInstruction weavingInstruction) throws FCCWeaverException {
 		this.setAdapterAssemblyContextRegarding(weavingInstruction.getInclusionMechanism().isMultiple());
 		this.establishConnectionTo(weavingInstruction.getFCCWithConsumedFeatures());
@@ -58,7 +62,7 @@ public abstract class AssemblyWeaving {
 		this.createConnectorsFromFCCToRequiredFCCs(fccAndProvidedFeatures.getFirst());
 	}
 
-	private void createConnectorsFromAdapterTo(List<ProvidedRole> providedECCFeatures) throws ConcernWeavingException {
+	private void createConnectorsFromAdapterTo(List<ProvidedRole> providedECCFeatures) throws FCCWeaverException {
 		AssemblyContext eccAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedECCFeatures.get(0).eContainer());
 
 		for (ProvidedRole eachProvidedFeature : providedECCFeatures) {

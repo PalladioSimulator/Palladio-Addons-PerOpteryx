@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
@@ -14,6 +15,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
  */
 public class DelegationLocationRepositoryWeaving extends RepositoryWeaving {
 
+	public DelegationLocationRepositoryWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
+
 	/**
 	 * @see AdapterRepositoryWeaving#weaveAdapterIntoRepository(WeavingLocation)
 	 */
@@ -24,9 +29,9 @@ public class DelegationLocationRepositoryWeaving extends RepositoryWeaving {
 		OperationProvidedRole delegatedConnectionEnd = location.getOuterProvidedRole_ProvidedDelegationConnector();
 		OperationProvidedRole providedConnectionEnd = location.getInnerProvidedRole_ProvidedDelegationConnector();
 
-		AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity()
-				.add(AdapterWeaving.concernRepositoryManager.createProvidedRoleBy(delegatedConnectionEnd, AdapterWeaving.adapter.getEntityName()));
-		AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().add(AdapterWeaving.concernRepositoryManager.createRequiredRoleBy(providedConnectionEnd));
+		RepositoryComponent adapter = this.parent.getAdapterComponent();
+		adapter.getProvidedRoles_InterfaceProvidingEntity().add(this.parent.getMergedRepoManager().createProvidedRoleBy(delegatedConnectionEnd, adapter.getEntityName()));
+		adapter.getRequiredRoles_InterfaceRequiringEntity().add(this.parent.getMergedRepoManager().createRequiredRoleBy(providedConnectionEnd));
 
 	}
 

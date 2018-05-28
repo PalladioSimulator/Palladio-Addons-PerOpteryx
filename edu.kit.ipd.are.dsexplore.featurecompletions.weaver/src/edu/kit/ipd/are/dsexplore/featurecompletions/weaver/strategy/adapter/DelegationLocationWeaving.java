@@ -10,13 +10,13 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.concern.util.AssemblyConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.concern.util.DelegationConnectorGenerator;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 
 /**
  * This class is responsible to weave the adapter in the system if the
@@ -28,6 +28,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
  */
 public class DelegationLocationWeaving extends AssemblyWeaving {
 
+	public DelegationLocationWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
+
 	/**
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
@@ -37,7 +41,7 @@ public class DelegationLocationWeaving extends AssemblyWeaving {
 	}
 
 	private void replace(ProvidedDelegationConnector assemblyConnectorToReplace) throws FCCWeaverException {
-		AdapterWeaving.pcmSystemManager.remove(assemblyConnectorToReplace);
+		this.parent.getPCMSystemManager().remove(assemblyConnectorToReplace);
 		this.replaceOldConnectorWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
 	}
 
@@ -51,31 +55,31 @@ public class DelegationLocationWeaving extends AssemblyWeaving {
 		RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(providedRole, this.getRequiredRolesOfAdapter());
 		AssemblyContext providedAssemblyContext = delegationConnectorToReplace.getAssemblyContext_ProvidedDelegationConnector();
 
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, AdapterWeaving.adapterAssemblyContext, providedAssemblyContext);
-		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, this.parent.getAdapterAssemblyContext(), providedAssemblyContext);
+		this.addConnector(new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
 	}
 
 	private void createDelegationConnectorFromOuterProvidedRoleToAdapter(ProvidedDelegationConnector delegationConnectorToReplace) throws FCCWeaverException {
 		ProvidedRole outerProvidedRole = delegationConnectorToReplace.getOuterProvidedRole_ProvidedDelegationConnector();
 		ProvidedRole innerProvidedRole = this.getDelegatedProvidedRoleOfAdapter(outerProvidedRole);
 
-		ConnectionInfo connectionInfo = new ConnectionInfo(outerProvidedRole, innerProvidedRole, null, AdapterWeaving.adapterAssemblyContext);
-		this.addConnector(new DelegationConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
+		ConnectionInfo connectionInfo = new ConnectionInfo(outerProvidedRole, innerProvidedRole, null, this.parent.getAdapterAssemblyContext());
+		this.addConnector(new DelegationConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
 	}
 
 	private ProvidedRole getDelegatedProvidedRoleOfAdapter(ProvidedRole outerProvidedRole) throws FCCWeaverException {
 		Interface interface1 = ((OperationProvidedRole) outerProvidedRole).getProvidedInterface__OperationProvidedRole();
 		for (OperationProvidedRole eachProvidedRole : this.getOperationProvidedRolesOfAdapter()) {
 			Interface interface2 = eachProvidedRole.getProvidedInterface__OperationProvidedRole();
-			if (FCCWeaverUtil.areEqual(interface1, interface2)) {
+			if (FCCUtil.areEqual(interface1, interface2)) {
 				return eachProvidedRole;
 			}
 		}
-		throw new FCCWeaverException(ErrorMessage.missingDelegatedRole(outerProvidedRole, AdapterWeaving.adapter));
+		throw new FCCWeaverException(ErrorMessage.missingDelegatedRole(outerProvidedRole, this.parent.getAdapterComponent()));
 	}
 
 	private List<OperationProvidedRole> getOperationProvidedRolesOfAdapter() {
-		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().stream().filter(each -> each instanceof OperationProvidedRole).map(each -> (OperationProvidedRole) each)
+		return this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity().stream().filter(each -> each instanceof OperationProvidedRole).map(each -> (OperationProvidedRole) each)
 				.collect(Collectors.toList());
 	}
 

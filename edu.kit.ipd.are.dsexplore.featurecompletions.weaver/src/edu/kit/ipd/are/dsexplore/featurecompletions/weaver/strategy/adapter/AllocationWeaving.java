@@ -14,8 +14,11 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import FeatureCompletionModel.CompletionComponent;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 
 /**
  * This class is responsible for weaving the allocation view-type in the context
@@ -25,11 +28,14 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstr
  *
  */
 public class AllocationWeaving {
-	private ResourceContainer resourceContainer;
 
-	private void setResourceContainer(ResourceContainer resourceContainer) {
-		this.resourceContainer = resourceContainer;
+	private final IAdapterWeaving parent;
+
+	public AllocationWeaving(IAdapterWeaving parent) {
+		this.parent = parent;
 	}
+
+	private ResourceContainer resourceContainer;
 
 	public void weave(WeavingInstruction weavingInstruction) throws FCCWeaverException {
 		this.resourceContainer = weavingInstruction.getResourceContainer();
@@ -54,16 +60,16 @@ public class AllocationWeaving {
 	}
 
 	private void createAndAddAdapterAllocationContext() {
-		AllocationContext adapterAllocContext = AdapterWeaving.pcmAllocationManager.createAllocationContextBy(AdapterWeaving.adapterAssemblyContext, this.resourceContainer);
+		AllocationContext adapterAllocContext = this.parent.getPCMAllocationManager().createAllocationContextBy(this.parent.getAdapterAssemblyContext(), this.resourceContainer);
 		this.addAllocationContext(adapterAllocContext);
 	}
 
 	private Optional<AllocationContext> getExistingAdapterAllocationContext() {
-		return AdapterWeaving.pcmAllocationManager.getAllocationContextBy(this.adapterAllocationContextSearchCriteria());
+		return this.parent.getPCMAllocationManager().getAllocationContextBy(this.adapterAllocationContextSearchCriteria());
 	}
 
 	private Predicate<AllocationContext> adapterAllocationContextSearchCriteria() {
-		return alloc -> FCCWeaverUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), AdapterWeaving.adapterAssemblyContext);
+		return alloc -> FCCUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), this.parent.getAdapterAssemblyContext());
 	}
 
 	private void addECCAndRequiredAllocationContexts(CompletionComponent fcc) throws FCCWeaverException {
@@ -71,15 +77,15 @@ public class AllocationWeaving {
 	}
 
 	private void addAllocationContext(AllocationContext allocationContextToAdd) {
-		if (AdapterWeaving.pcmAllocationManager.existAllocationContextWith(allocationContextToAdd.getAssemblyContext_AllocationContext())) {
+		if (this.parent.getPCMAllocationManager().existAllocationContextWith(allocationContextToAdd.getAssemblyContext_AllocationContext())) {
 			return;
 		}
-		AdapterWeaving.pcmAllocationManager.addAllocationContext(allocationContextToAdd);
+		this.parent.getPCMAllocationManager().addAllocationContext(allocationContextToAdd);
 	}
 
 	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(CompletionComponent fcc) throws FCCWeaverException {
 		try {
-			return this.getECCAndRequiredAssemblyContexts(fcc).map(eachAssemblyContext -> AdapterWeaving.pcmAllocationManager.createAllocationContextBy(eachAssemblyContext, this.resourceContainer))
+			return this.getECCAndRequiredAssemblyContexts(fcc).map(eachAssemblyContext -> this.parent.getPCMAllocationManager().createAllocationContextBy(eachAssemblyContext, this.resourceContainer))
 					.collect(Collectors.toList());
 		} catch (Exception ex) {
 			throw new FCCWeaverException(ex.getMessage());
@@ -88,7 +94,7 @@ public class AllocationWeaving {
 
 	private Stream<AssemblyContext> getECCAndRequiredAssemblyContexts(CompletionComponent fcc) {
 		try {
-			return new FCCStructureHandler(fcc, AdapterWeaving.concernRepositoryManager).getStructureOfECCAndRequiredAccordingTo(this.getAssemblyContextCollector()).stream();
+			return new FCCStructureHandler(fcc, this.parent.getMergedRepoManager()).getStructureOfECCAndRequiredAccordingTo(this.getAssemblyContextCollector()).stream();
 		} catch (FCCWeaverException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -114,7 +120,7 @@ public class AllocationWeaving {
 	// Notice, this method is only used for FCC related components which should
 	// be allocated exactly once.
 	private AssemblyContext getUniqueAssemblyContextOf(RepositoryComponent component) throws FCCWeaverException {
-		List<AssemblyContext> foundAssemblyContexts = AdapterWeaving.pcmSystemManager.getAssemblyContextsInstantiating(component);
+		List<AssemblyContext> foundAssemblyContexts = this.parent.getPCMSystemManager().getAssemblyContextsInstantiating(component);
 		if (foundAssemblyContexts.size() != 1) {
 			throw new FCCWeaverException(ErrorMessage.instantiationError(component, foundAssemblyContexts.size()));
 		}

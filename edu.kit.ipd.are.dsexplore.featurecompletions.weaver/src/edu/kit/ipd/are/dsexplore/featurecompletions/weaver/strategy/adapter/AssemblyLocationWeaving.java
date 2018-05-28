@@ -21,6 +21,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
  */
 public class AssemblyLocationWeaving extends AssemblyWeaving {
 
+	public AssemblyLocationWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
+
 	/**
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
@@ -30,7 +34,7 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 	}
 
 	private void replace(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {
-		AdapterWeaving.pcmSystemManager.remove(assemblyConnectorToReplace);
+		this.parent.getPCMSystemManager().remove(assemblyConnectorToReplace);
 		this.replaceWithAssemblyConnectorsToAdapter(assemblyConnectorToReplace);
 	}
 
@@ -59,7 +63,7 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 	}
 
 	private List<ProvidedRole> getProvidedRolesOfAdapter() {
-		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity();
+		return this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity();
 	}
 
 }

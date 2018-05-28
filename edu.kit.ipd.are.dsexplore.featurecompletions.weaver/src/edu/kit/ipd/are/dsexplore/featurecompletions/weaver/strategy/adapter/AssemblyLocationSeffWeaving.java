@@ -24,6 +24,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  */
 public class AssemblyLocationSeffWeaving extends ServiceEffectSpecificationWeaving {
 
+	public AssemblyLocationSeffWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
+
 	/**
 	 * @see AdapterServiceEffectSpecificationWeaving#getCallingComponent()
 	 */

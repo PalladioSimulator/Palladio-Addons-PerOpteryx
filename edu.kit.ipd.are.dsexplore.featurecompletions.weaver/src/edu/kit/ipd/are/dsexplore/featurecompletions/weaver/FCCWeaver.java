@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -27,16 +28,20 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrat
 import featureSolution.InclusionMechanism;
 
 public final class FCCWeaver {
+	public final static String ADAPTER_NAME = "Adapter";
+	public final static String CONCERN_REPOSITORY_NAME = "TemporaryConcernRepository";
+	public final static String CONCERN_REPSITORY_DESCRIPTION = "Include components of all reused concerns.";
+
 	private final MergedRepository mergedRepo;
 	private final IWeavingStrategy strategy;
 
 	public FCCWeaver(PCMResourceSetPartition initialPartition, PCMInstance pcm, MergedRepository solutions, CostRepository costModel) {
 		this.mergedRepo = solutions;
-		this.strategy = this.determineStrategy(solutions);
+		this.strategy = this.determineStrategy(solutions).apply(pcm, solutions);
 
 	}
 
-	private IWeavingStrategy determineStrategy(MergedRepository solutions) {
+	private BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> determineStrategy(MergedRepository solutions) {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {
 			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
@@ -50,7 +55,7 @@ public final class FCCWeaver {
 			}
 		}
 
-		IWeavingStrategy strategy = WeavingStrategies.getStrategy(meachanism);
+		BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy = WeavingStrategies.getStrategy(meachanism);
 		if (strategy == null) {
 			throw new FCCWeaverException("No Strategy found for " + meachanism);
 		}

@@ -11,9 +11,9 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 
 /**
  * This class is responsible for weaving the usage model view-type in the
@@ -23,6 +23,11 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
  *
  */
 public class UsageModelWeaving {
+	protected final IAdapterWeaving parent;
+
+	public UsageModelWeaving(IAdapterWeaving parent) {
+		this.parent = parent;
+	}
 
 	public void weave(WeavingInstruction weavingInstruction) {
 		if (this.isUsageModelAffected(weavingInstruction.getWeavingLocation())) {
@@ -44,7 +49,7 @@ public class UsageModelWeaving {
 	}
 
 	private void editEntryLevelSystemCalls() {
-		AdapterWeaving.pcmUsageModelManager.getEntryLevelSystemCalls().forEach(entryLevelSystemCall -> this.replaceProvidedRoleOf(entryLevelSystemCall));
+		this.parent.getPCMUsageModelManager().getEntryLevelSystemCalls().forEach(entryLevelSystemCall -> this.replaceProvidedRoleOf(entryLevelSystemCall));
 	}
 
 	private void replaceProvidedRoleOf(EntryLevelSystemCall entryLevelSystemCallToEdit) {
@@ -60,7 +65,7 @@ public class UsageModelWeaving {
 	}
 
 	private Stream<ProvidedRole> getAllProvidedRolesOfAdapter() {
-		return AdapterWeaving.adapter.getProvidedRoles_InterfaceProvidingEntity().stream();
+		return this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity().stream();
 	}
 
 	private Predicate<ProvidedRole> ifProvidedRoleIsReferencing(OperationInterface givenInterface) {
@@ -72,7 +77,7 @@ public class UsageModelWeaving {
 	}
 
 	private Predicate<ProvidedRole> isReferencing(OperationInterface givenInterface) {
-		return providedRole -> FCCWeaverUtil.areEqual(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole(), givenInterface);
+		return providedRole -> FCCUtil.areEqual(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole(), givenInterface);
 	}
 
 }

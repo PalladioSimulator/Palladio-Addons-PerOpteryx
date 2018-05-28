@@ -21,9 +21,9 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
-import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 
 /**
  * This class returns informations for the SEFF depending on the connection of
@@ -33,6 +33,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
  *
  */
 public class DelegationLocationSeffWeaving extends ServiceEffectSpecificationWeaving {
+
+	public DelegationLocationSeffWeaving(IAdapterWeaving parent) {
+		super(parent);
+	}
 
 	/**
 	 * @see AdapterServiceEffectSpecificationWeaving#getCallingComponent()
@@ -113,22 +117,22 @@ public class DelegationLocationSeffWeaving extends ServiceEffectSpecificationWea
 	}
 
 	private EntryLevelSystemCall getEntryLevelSystemCallInvoking(Signature calledService) throws FCCWeaverException {
-		Stream<EntryLevelSystemCall> entryLevelSystemCalls = AdapterWeaving.pcmUsageModelManager.getEntryLevelSystemCalls().stream();
+		Stream<EntryLevelSystemCall> entryLevelSystemCalls = this.parent.getPCMUsageModelManager().getEntryLevelSystemCalls().stream();
 		return entryLevelSystemCalls.filter(this.entryLevelSystemCallsInvoking(calledService)).findFirst()
 				.orElseThrow(() -> new FCCWeaverException(ErrorMessage.missingEntryLevelSystemCall(calledService)));
 	}
 
 	private Predicate<EntryLevelSystemCall> entryLevelSystemCallsInvoking(Signature calledService) {
-		return eachSystemCall -> FCCWeaverUtil.areEqual(eachSystemCall.getOperationSignature__EntryLevelSystemCall(), calledService);
+		return eachSystemCall -> FCCUtil.areEqual(eachSystemCall.getOperationSignature__EntryLevelSystemCall(), calledService);
 	}
 
 	private Optional<Connector> getAssemblyConnectorOf(OperationProvidedRole outerProvidedRole) {
-		List<Connector> matchingAssConnectors = AdapterWeaving.pcmSystemManager.getConnectorsBy(this.contains(outerProvidedRole));
+		List<Connector> matchingAssConnectors = this.parent.getPCMSystemManager().getConnectorsBy(this.contains(outerProvidedRole));
 		return matchingAssConnectors.isEmpty() ? Optional.empty() : Optional.of(matchingAssConnectors.get(0));
 	}
 
 	private Predicate<Connector> contains(OperationProvidedRole providedRole) {
-		return connector -> (connector instanceof AssemblyConnector) && FCCWeaverUtil.areEqual(((AssemblyConnector) connector).getProvidedRole_AssemblyConnector(), providedRole);
+		return connector -> (connector instanceof AssemblyConnector) && FCCUtil.areEqual(((AssemblyConnector) connector).getProvidedRole_AssemblyConnector(), providedRole);
 	}
 
 }

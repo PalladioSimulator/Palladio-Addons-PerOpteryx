@@ -19,14 +19,11 @@ import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.SetVariableAction;
 
-import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.exception.ErrorMessage;
-import edu.kit.ipd.are.dsexplore.concern.manager.PcmServiceEffectSpecificationManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.ServiceEffectSpecificationWeaving.ExternalCallInfo;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 import featureSolution.AdapterInclusion;
 import featureSolution.InclusionMechanism;
 
@@ -61,7 +58,12 @@ public abstract class ServiceEffectSpecificationWeaving {
 		}
 	}
 
-	private PcmServiceEffectSpecificationManager pcmSeffManager = PcmServiceEffectSpecificationManager.getInstance();
+	protected final IAdapterWeaving parent;
+
+	public ServiceEffectSpecificationWeaving(IAdapterWeaving parent) {
+		this.parent = parent;
+	}
+
 	private InclusionMechanism inclusionMechanism;
 	private List<ProvidedRole> consumedFeautresOfECC;
 
@@ -125,7 +127,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 
 	private void createServiceEffectSpecificationForAdapterBy(BasicComponent calledComponent) throws FCCWeaverException {
 		this.createServiceEffectSpecificationsBy(calledComponent)
-				.forEach(eachCreatedSeff -> this.pcmSeffManager.addServiceEffectSpecificationTo((BasicComponent) AdapterWeaving.adapter, eachCreatedSeff));
+				.forEach(eachCreatedSeff -> this.parent.getPCMSEFFManager().addServiceEffectSpecificationTo((BasicComponent) this.parent.getAdapterComponent(), eachCreatedSeff));
 	}
 
 	private List<ServiceEffectSpecification> createServiceEffectSpecificationsBy(BasicComponent calledComponent) throws FCCWeaverException {
@@ -141,15 +143,15 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private boolean isInvokedByAdapter(Signature signature) {
-		return this.getAllRequiredServicesOfAdapter().anyMatch(eachSignature -> FCCWeaverUtil.areEqual(eachSignature, signature));
+		return this.getAllRequiredServicesOfAdapter().anyMatch(eachSignature -> FCCUtil.areEqual(eachSignature, signature));
 	}
 
 	private Stream<Signature> getAllRequiredServicesOfAdapter() {
-		return this.getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> FCCWeaverUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole));
+		return this.getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> FCCUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole));
 	}
 
 	private Stream<RequiredRole> getAllRequiredRolesOfAdapter() {
-		return AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity().stream();
+		return this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().stream();
 	}
 
 	private ServiceEffectSpecification transformToAdaperSeffAndCheckForException(ServiceEffectSpecification seffToTransform) {
@@ -161,11 +163,11 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private ServiceEffectSpecification transformToAdapterSeff(ServiceEffectSpecification seffToTransform) throws FCCWeaverException {
-		ServiceEffectSpecification createdAdapterSeff = this.pcmSeffManager.createServiceEffectSpecificationFor(seffToTransform.getDescribedService__SEFF());
+		ServiceEffectSpecification createdAdapterSeff = this.parent.getPCMSEFFManager().createServiceEffectSpecificationFor(seffToTransform.getDescribedService__SEFF());
 		if (this.isAffected(seffToTransform.getDescribedService__SEFF())) {
-			return this.pcmSeffManager.addExternalCallActionPipeBy(this.createOrderedExternalCallActionPipeBy(seffToTransform), createdAdapterSeff);
+			return this.parent.getPCMSEFFManager().addExternalCallActionPipeBy(this.createOrderedExternalCallActionPipeBy(seffToTransform), createdAdapterSeff);
 		}
-		return this.pcmSeffManager.addExternalCallActionPipeBy(this.createOrdinaryPutThroughActionPipeBy(seffToTransform), createdAdapterSeff);
+		return this.parent.getPCMSEFFManager().addExternalCallActionPipeBy(this.createOrdinaryPutThroughActionPipeBy(seffToTransform), createdAdapterSeff);
 	}
 
 	private boolean isAffected(Signature describedService) {
@@ -209,19 +211,19 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private boolean existConnection(RequiredRole requiredRole, List<ProvidedRole> providedRoles) {
-		return providedRoles.stream().anyMatch(eachProvidedRole -> FCCWeaverUtil.referencesSameInterface(requiredRole, eachProvidedRole));
+		return providedRoles.stream().anyMatch(eachProvidedRole -> FCCUtil.referencesSameInterface(requiredRole, eachProvidedRole));
 	}
 
 	protected RequiredRole getRequiredRoleOfAdapterBy(Signature signature) throws FCCWeaverException {
-		return this.getAllRequiredRolesOfAdapter().filter(eachRequiredRole -> FCCWeaverUtil.areEqual(FCCWeaverUtil.getInterfaceFrom(eachRequiredRole).get(), signature.eContainer())).findFirst()
-				.orElseThrow(() -> new FCCWeaverException(ErrorMessage.missingRoleReferencing(signature, AdapterWeaving.adapter)));
+		return this.getAllRequiredRolesOfAdapter().filter(eachRequiredRole -> FCCUtil.areEqual(FCCUtil.getInterfaceFrom(eachRequiredRole).get(), signature.eContainer())).findFirst()
+				.orElseThrow(() -> new FCCWeaverException(ErrorMessage.missingRoleReferencing(signature, this.parent.getAdapterComponent())));
 	}
 
 	// At this stage there is no possibility to get the value characterizations
 	// of input or output parameters of a given ECC.
 	// TODO implement variable usage
 	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
-		return FCCWeaverUtil.getSignaturesOfReferencedInterfaceBy(requiredRole).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
+		return FCCUtil.getSignaturesOfReferencedInterfaceBy(requiredRole).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
 	}
 
 	protected List<SetVariableAction> getSetVariableActions(ServiceEffectSpecification seffToTransform) {
@@ -252,7 +254,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 			EObject current = iterator.next();
 			if (this.isExternalCallAction(current)) {
 				ExternalCallAction extCallAction = (ExternalCallAction) current;
-				if (FCCWeaverUtil.areEqual(calledService, extCallAction.getCalledService_ExternalService())) {
+				if (FCCUtil.areEqual(calledService, extCallAction.getCalledService_ExternalService())) {
 					return Optional.of(extCallAction);
 				}
 			}
