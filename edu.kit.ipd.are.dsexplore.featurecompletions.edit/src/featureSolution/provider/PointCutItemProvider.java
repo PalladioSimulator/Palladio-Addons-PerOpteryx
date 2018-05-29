@@ -18,9 +18,16 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link featureSolution.PointCut} object.
@@ -29,7 +36,7 @@ import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
  * @generated
  */
 public class PointCutItemProvider 
-	extends NamedElementItemProvider {
+	extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -51,8 +58,31 @@ public class PointCutItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PointCut_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PointCut_name_feature", "_UI_PointCut_type"),
+				 FeatureSolutionPackage.Literals.POINT_CUT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -104,7 +134,7 @@ public class PointCutItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PointCut)object).getEntityName();
+		String label = ((PointCut)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PointCut_type") :
 			getString("_UI_PointCut_type") + " " + label;
@@ -123,6 +153,9 @@ public class PointCutItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PointCut.class)) {
+			case FeatureSolutionPackage.POINT_CUT__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case FeatureSolutionPackage.POINT_CUT__PLACEMENT_STRATEGY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

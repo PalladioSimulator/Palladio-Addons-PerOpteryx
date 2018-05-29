@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,11 +24,12 @@ import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
  * </p>
  * <ul>
  *   <li>{@link featureSolution.impl.PointCutImpl#getPlacementStrategy <em>Placement Strategy</em>}</li>
+ *   <li>{@link featureSolution.impl.PointCutImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PointCutImpl extends NamedElementImpl implements PointCut {
+public class PointCutImpl extends MinimalEObjectImpl.Container implements PointCut {
 	/**
 	 * The cached value of the '{@link #getPlacementStrategy() <em>Placement Strategy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -38,6 +39,25 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 	 * @ordered
 	 */
 	protected PlacementStrategy placementStrategy;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,6 +126,27 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.POINT_CUT__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -125,6 +166,8 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 		switch (featureID) {
 			case FeatureSolutionPackage.POINT_CUT__PLACEMENT_STRATEGY:
 				return getPlacementStrategy();
+			case FeatureSolutionPackage.POINT_CUT__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,6 +182,9 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 		switch (featureID) {
 			case FeatureSolutionPackage.POINT_CUT__PLACEMENT_STRATEGY:
 				setPlacementStrategy((PlacementStrategy)newValue);
+				return;
+			case FeatureSolutionPackage.POINT_CUT__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -155,6 +201,9 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 			case FeatureSolutionPackage.POINT_CUT__PLACEMENT_STRATEGY:
 				setPlacementStrategy((PlacementStrategy)null);
 				return;
+			case FeatureSolutionPackage.POINT_CUT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -169,8 +218,26 @@ public class PointCutImpl extends NamedElementImpl implements PointCut {
 		switch (featureID) {
 			case FeatureSolutionPackage.POINT_CUT__PLACEMENT_STRATEGY:
 				return placementStrategy != null;
+			case FeatureSolutionPackage.POINT_CUT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PointCutImpl

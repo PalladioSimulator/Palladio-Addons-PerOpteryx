@@ -1,12 +1,31 @@
-import "platform:/resource/SimplePerOpteryx/palladio/repository.repository";
+import "platform:/resource/SimplePerOpteryx/palladio/repository.repository"
+import "platform:/resource/SimplePerOpteryx/peropteryx/FCompletion.featurecompletion"
 
 ExtensionInclusion extensionIncl {
 	description bla
 	pointCut {
-		PointCut {
+		PointCut allDoPayCalls {
 			placementStrategy ExternalCallPlacementStrategy {
 				matchingSignature doPay
 			}
+		},
+		PointCut allActionsIn {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn ComponentTgtMandatory
+			}
+		},
+		PointCut allControlFlowsIn {
+			placementStrategy ControlFlowPlacementStrategy {
+				forAllControlFlowsIn ComponentTgtOptional
+			}
+		}
+	}
+	
+	advice {
+		Advice {
+			appears BEFORE 
+			pointCut allDoPayCalls
+			Completion CV_A
 		}
 	}
 }

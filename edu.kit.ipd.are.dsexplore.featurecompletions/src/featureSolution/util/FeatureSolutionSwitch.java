@@ -130,7 +130,6 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 			case FeatureSolutionPackage.POINT_CUT: {
 				PointCut pointCut = (PointCut)theEObject;
 				T result = casePointCut(pointCut);
-				if (result == null) result = caseEntity_NamedElement(pointCut);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

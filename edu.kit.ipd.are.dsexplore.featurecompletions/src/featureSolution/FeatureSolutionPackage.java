@@ -374,22 +374,22 @@ public interface FeatureSolutionPackage extends EPackage {
 	int POINT_CUT = 7;
 
 	/**
-	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POINT_CUT__ENTITY_NAME = EntityPackage.NAMED_ELEMENT__ENTITY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Placement Strategy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POINT_CUT__PLACEMENT_STRATEGY = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int POINT_CUT__PLACEMENT_STRATEGY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_CUT__NAME = 1;
 
 	/**
 	 * The number of structural features of the '<em>Point Cut</em>' class.
@@ -398,7 +398,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POINT_CUT_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int POINT_CUT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.impl.AdviceImpl <em>Advice</em>}' class.
@@ -705,6 +705,17 @@ public interface FeatureSolutionPackage extends EPackage {
 	EReference getPointCut_PlacementStrategy();
 
 	/**
+	 * Returns the meta object for the attribute '{@link featureSolution.PointCut#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see featureSolution.PointCut#getName()
+	 * @see #getPointCut()
+	 * @generated
+	 */
+	EAttribute getPointCut_Name();
+
+	/**
 	 * Returns the meta object for class '{@link featureSolution.Advice <em>Advice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -982,6 +993,14 @@ public interface FeatureSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference POINT_CUT__PLACEMENT_STRATEGY = eINSTANCE.getPointCut_PlacementStrategy();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POINT_CUT__NAME = eINSTANCE.getPointCut_Name();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.impl.AdviceImpl <em>Advice</em>}' class.

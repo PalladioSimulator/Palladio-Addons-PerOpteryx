@@ -4,9 +4,7 @@ package featureSolution.tests;
 
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.PointCut;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -60,6 +58,7 @@ public class PointCutTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected PointCut getFixture() {
 		return fixture;
 	}

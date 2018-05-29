@@ -365,6 +365,15 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPointCut_Name() {
+		return (EAttribute)pointCutEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAdvice() {
 		return adviceEClass;
 	}
@@ -502,6 +511,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		pointCutEClass = createEClass(POINT_CUT);
 		createEReference(pointCutEClass, POINT_CUT__PLACEMENT_STRATEGY);
+		createEAttribute(pointCutEClass, POINT_CUT__NAME);
 
 		adviceEClass = createEClass(ADVICE);
 		createEReference(adviceEClass, ADVICE__POINT_CUT);
@@ -558,7 +568,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		externalCallPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
 		internalActionPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
 		controlFlowPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
-		pointCutEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 		adviceEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -586,6 +595,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		initEClass(pointCutEClass, PointCut.class, "PointCut", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPointCut_PlacementStrategy(), this.getPlacementStrategy(), null, "placementStrategy", null, 0, 1, PointCut.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPointCut_Name(), ecorePackage.getEString(), "name", null, 0, 1, PointCut.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(adviceEClass, Advice.class, "Advice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdvice_PointCut(), this.getPointCut(), null, "pointCut", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

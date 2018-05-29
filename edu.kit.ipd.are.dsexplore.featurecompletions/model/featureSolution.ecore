@@ -43,9 +43,10 @@
     <eLiterals name="LOOP" literal="LOOP"/>
     <eLiterals name="BRANCH" value="1" literal="BRANCH"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PointCut" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PointCut">
     <eStructuralFeatures xsi:type="ecore:EReference" name="placementStrategy" eType="#//PlacementStrategy"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Advice" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" eType="#//PointCut"/>
