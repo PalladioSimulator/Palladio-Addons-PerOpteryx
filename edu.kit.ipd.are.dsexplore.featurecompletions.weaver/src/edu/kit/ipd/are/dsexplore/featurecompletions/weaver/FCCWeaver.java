@@ -24,7 +24,9 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
 import featureSolution.InclusionMechanism;
 
 public final class FCCWeaver {
@@ -71,10 +73,23 @@ public final class FCCWeaver {
 	}
 
 	public PCMInstance getWeavedInstance(PCMInstance original) {
+		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(original);
 
 		List<WeavingInstruction> instructions = this.determineInstructions(original);
 
 		return original;
+	}
+
+	private List<Pair<ComplementumVisnetis, WeavingLocation>> determineLocations(PCMInstance original) {
+		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
+		System pcmSystem = original.getSystem();
+		List<Pair<Connector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
+		for (Pair<Connector, ComplementumVisnetis> connector : availableCVs) {
+			WeavingLocation location = LocationExtractor.extractLocation(connector, original);
+			result.add(Pair.of(connector.second, location));
+		}
+
+		return result;
 	}
 
 	private List<WeavingInstruction> determineInstructions(PCMInstance original) {
