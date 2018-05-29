@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.Interface;
@@ -83,8 +84,8 @@ public final class FCCWeaver {
 	private List<Pair<ComplementumVisnetis, WeavingLocation>> determineLocations(PCMInstance original) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
 		System pcmSystem = original.getSystem();
-		List<Pair<Connector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
-		for (Pair<Connector, ComplementumVisnetis> connector : availableCVs) {
+		List<Pair<AssemblyConnector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
+		for (Pair<AssemblyConnector, ComplementumVisnetis> connector : availableCVs) {
 			WeavingLocation location = LocationExtractor.extractLocation(connector, original);
 			result.add(Pair.of(connector.second, location));
 		}
@@ -94,21 +95,21 @@ public final class FCCWeaver {
 
 	private List<WeavingInstruction> determineInstructions(PCMInstance original) {
 		System pcmSystem = original.getSystem();
-		List<Pair<Connector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
+		List<Pair<AssemblyConnector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
 		List<Pair<Entity, ComplementumVisnetis>> providedCVs = this.extractProvidedCVs();
 
 		return null;
 	}
 
-	private List<Pair<Connector, ComplementumVisnetis>> extractAvailableCVs(System pcmSystem) {
-		List<Pair<Connector, ComplementumVisnetis>> result = new ArrayList<>();
+	private List<Pair<AssemblyConnector, ComplementumVisnetis>> extractAvailableCVs(System pcmSystem) {
+		List<Pair<AssemblyConnector, ComplementumVisnetis>> result = new ArrayList<>();
 
 		for (Connector c : pcmSystem.getConnectors__ComposedStructure()) {
 			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class, "target");
 			if (cv.isEmpty()) {
 				continue;
 			}
-			result.add(Pair.of(c, cv.get(0)));
+			result.add(Pair.of((AssemblyConnector) c, cv.get(0)));
 		}
 
 		return result;
