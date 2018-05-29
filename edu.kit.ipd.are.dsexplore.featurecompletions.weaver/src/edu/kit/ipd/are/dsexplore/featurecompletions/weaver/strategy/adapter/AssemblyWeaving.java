@@ -16,18 +16,17 @@ import org.palladiosimulator.pcm.repository.Role;
 
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
-import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
-import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGenerator;
-import edu.kit.ipd.are.dsexplore.concern.util.ConnectorGeneratorExplorationFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectionInfo;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGenerator;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGeneratorExplorationFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandlerFactory;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.FCCWeaverUtil;
 
 /**
  * This class is responsible for weaving the assembly view-type in the context
@@ -51,9 +50,9 @@ public abstract class AssemblyWeaving {
 
 	private void setAdapterAssemblyContextRegarding(boolean isMultiple) {
 		if (isMultiple) {
-			AdapterWeaving.setAdapterAssemblyContext(AdapterWeaving.pcmSystemManager.createAndAddAssemblyContextOf(AdapterWeaving.adapter));
+			this.parent.setAdapter(this.parent.getPCMSystemManager().createAndAddAssemblyContextOf(this.parent.getAdapterComponent()));
 		} else {
-			AdapterWeaving.setAdapterAssemblyContext(this.getOrCreateAssemblyContextOf(AdapterWeaving.adapter));
+			this.parent.setAdapter(this.getOrCreateAssemblyContextOf(this.parent.getAdapterComponent()));
 		}
 	}
 
@@ -67,30 +66,30 @@ public abstract class AssemblyWeaving {
 
 		for (ProvidedRole eachProvidedFeature : providedECCFeatures) {
 			RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(eachProvidedFeature, this.getRequiredRolesOfAdapter());
-			ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, eachProvidedFeature, AdapterWeaving.adapterAssemblyContext, eccAssemblyContext);
+			ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, eachProvidedFeature, this.parent.getAdapterAssemblyContext(), eccAssemblyContext);
 			this.addConnector(this.createConnectorBy(connectionInfo));
 		}
 	}
 
 	private AssemblyContext getOrCreateAssemblyContextOf(RepositoryComponent component) {
-		Optional<AssemblyContext> result = AdapterWeaving.pcmSystemManager.getAssemblyContextBy(this.getAssemblyContextInstantiating(component));
+		Optional<AssemblyContext> result = this.parent.getPCMSystemManager().getAssemblyContextBy(this.getAssemblyContextInstantiating(component));
 		if (result.isPresent()) {
 			return result.get();
 		}
-		return AdapterWeaving.pcmSystemManager.createAndAddAssemblyContextOf(component);
+		return this.parent.getPCMSystemManager().createAndAddAssemblyContextOf(component);
 	}
 
 	private Predicate<AssemblyContext> getAssemblyContextInstantiating(RepositoryComponent component) {
-		return assemblyContext -> FCCWeaverUtil.areEqual(assemblyContext.getEncapsulatedComponent__AssemblyContext(), component);
+		return assemblyContext -> FCCUtil.areEqual(assemblyContext.getEncapsulatedComponent__AssemblyContext(), component);
 	}
 
 	private <T extends Role> ConnectorGenerator getApplicableConnectorGeneratorBy(ConnectionInfo connectionInfo) throws FCCWeaverException {
-		ConnectorGeneratorExplorationFactory factory = ConnectorGeneratorExplorationFactory.getBy(AdapterWeaving.pcmSystemManager);
+		ConnectorGeneratorExplorationFactory factory = new ConnectorGeneratorExplorationFactory(this.parent.getPCMSystemManager());
 		return factory.getApplicableConnectorGeneratorBy(connectionInfo);
 	}
 
 	private void createConnectorsFromFCCToRequiredFCCs(CompletionComponent fcc) throws FCCWeaverException {
-		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, AdapterWeaving.concernRepositoryManager);
+		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.parent.getMergedRepoManager());
 		for (RepositoryComponent eachComponent : fccHandler.getStructureOfECCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
 			this.createConnectorsBy(eachComponent).forEach(this::addConnector);
 		}
@@ -105,7 +104,7 @@ public abstract class AssemblyWeaving {
 
 		List<Connector> createdConnectors = new ArrayList<>();
 		for (RequiredRole eachRequiredRole : component.getRequiredRoles_InterfaceRequiringEntity()) {
-			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, AdapterWeaving.concernRepositoryManager.getAllProvidedRoles());
+			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, this.parent.getMergedRepoManager().getAllProvidedRoles());
 			AssemblyContext providedAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
 
 			ConnectionInfo connectionInfo = new ConnectionInfo(eachRequiredRole, providedRole, requiredAssemblyContext, providedAssemblyContext);
@@ -117,11 +116,11 @@ public abstract class AssemblyWeaving {
 
 	protected <T extends Role> Role getComplimentaryRoleOf(Role role, List<T> complimentaryRoleSpace) throws FCCWeaverException {
 		return this.getRoleHandlerBy(role).getComplimentaryRoleOf(role, complimentaryRoleSpace)
-				.orElseThrow(() -> new ConcernWeavingException(ErrorMessage.missingComplimentaryRole((RepositoryComponent) role.eContainer(), role)));
+				.orElseThrow(() -> new FCCWeaverException(ErrorMessage.missingComplimentaryRole((RepositoryComponent) role.eContainer(), role)));
 	}
 
 	private RoleHandler getRoleHandlerBy(Role role) throws FCCWeaverException {
-		return RoleHandlerFactory.getBy(role, AdapterWeaving.concernRepositoryManager).orElseThrow(() -> new ConcernWeavingException(ErrorMessage.unsupportedRole()));
+		return RoleHandlerFactory.getBy(role, this.parent.getMergedRepoManager()).orElseThrow(() -> new FCCWeaverException(ErrorMessage.unsupportedRole()));
 	}
 
 	private Connector createConnectorBy(ConnectionInfo connectionInfo) throws FCCWeaverException {
@@ -130,12 +129,12 @@ public abstract class AssemblyWeaving {
 	}
 
 	protected List<RequiredRole> getRequiredRolesOfAdapter() {
-		return AdapterWeaving.adapter.getRequiredRoles_InterfaceRequiringEntity();
+		return this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity();
 	}
 
 	protected void addConnector(Connector connectorToAdd) {
-		if (!AdapterWeaving.pcmSystemManager.existConnector(connectorToAdd)) {
-			AdapterWeaving.pcmSystemManager.addConnectors(connectorToAdd);
+		if (!this.parent.getPCMSystemManager().existConnector(connectorToAdd)) {
+			this.parent.getPCMSystemManager().addConnectors(connectorToAdd);
 		}
 	}
 

@@ -9,7 +9,8 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.AssemblyConnectorGenerator;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectionInfo;
 
 /**
  * This class is responsible to weave the adapter in the system if the
@@ -49,8 +50,8 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 		RequiredRole requiredRole = (RequiredRole) this.getComplimentaryRoleOf(providedRole, this.getRequiredRolesOfAdapter());
 		AssemblyContext providedAssemblyContext = assemblyConnectorToReplace.getProvidingAssemblyContext_AssemblyConnector();
 
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, AdapterWeaving.adapterAssemblyContext, providedAssemblyContext);
-		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, this.parent.getAdapterAssemblyContext(), providedAssemblyContext);
+		this.addConnector(new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
 	}
 
 	private void createAssemblyConnectorFromRequiredEndToAdapter(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {
@@ -58,8 +59,8 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 		ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, this.getProvidedRolesOfAdapter());
 		AssemblyContext requiredAssemblyContext = assemblyConnectorToReplace.getRequiringAssemblyContext_AssemblyConnector();
 
-		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, AdapterWeaving.adapterAssemblyContext);
-		this.addConnector(new AssemblyConnectorGenerator(AdapterWeaving.pcmSystemManager).createConnectorBy(connectionInfo));
+		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, this.parent.getAdapterAssemblyContext());
+		this.addConnector(new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
 	}
 
 	private List<ProvidedRole> getProvidedRolesOfAdapter() {

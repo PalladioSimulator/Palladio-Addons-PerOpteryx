@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.HashMap;
+import java.util.function.Function;
 
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
@@ -18,22 +19,22 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
  */
 public class AdapterWeavingFactory {
 
-	private static final HashMap<Class<? extends Connector>, AssemblyWeaving> assemblyWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends Connector>, Function<IAdapterWeaving, AssemblyWeaving>> assemblyWeaverMap = new HashMap<>();
 	static {
-		AdapterWeavingFactory.assemblyWeaverMap.put(AssemblyConnectorImpl.class, new AssemblyLocationWeaving());
-		AdapterWeavingFactory.assemblyWeaverMap.put(ProvidedDelegationConnectorImpl.class, new DelegationLocationWeaving());
+		AdapterWeavingFactory.assemblyWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationWeaving::new);
+		AdapterWeavingFactory.assemblyWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationWeaving::new);
 	}
 
-	private static final HashMap<Class<? extends Connector>, RepositoryWeaving> repositoryWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends Connector>, Function<IAdapterWeaving, RepositoryWeaving>> repositoryWeaverMap = new HashMap<>();
 	static {
-		AdapterWeavingFactory.repositoryWeaverMap.put(AssemblyConnectorImpl.class, new AssemblyLocationRepositoryWeaving());
-		AdapterWeavingFactory.repositoryWeaverMap.put(ProvidedDelegationConnectorImpl.class, new DelegationLocationRepositoryWeaving());
+		AdapterWeavingFactory.repositoryWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationRepositoryWeaving::new);
+		AdapterWeavingFactory.repositoryWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationRepositoryWeaving::new);
 	}
 
-	private static final HashMap<Class<? extends Connector>, ServiceEffectSpecificationWeaving> seffWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends Connector>, Function<IAdapterWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
 	static {
-		AdapterWeavingFactory.seffWeaverMap.put(AssemblyConnectorImpl.class, new AssemblyLocationSeffWeaving());
-		AdapterWeavingFactory.seffWeaverMap.put(ProvidedDelegationConnectorImpl.class, new DelegationLocationSeffWeaving());
+		AdapterWeavingFactory.seffWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationSeffWeaving::new);
+		AdapterWeavingFactory.seffWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationSeffWeaving::new);
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static AssemblyWeaving getAdapterAssemblyWeaverBy(WeavingLocation weavingLocation) {
+	public static Function<IAdapterWeaving, AssemblyWeaving> getAdapterAssemblyWeaverBy(WeavingLocation weavingLocation) {
 		return AdapterWeavingFactory.assemblyWeaverMap.get(weavingLocation.getLocation().getClass());
 	}
 
@@ -58,7 +59,7 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static RepositoryWeaving getAdapterRepositoryWeaverBy(WeavingLocation weavingLocation) {
+	public static Function<IAdapterWeaving, RepositoryWeaving> getAdapterRepositoryWeaverBy(WeavingLocation weavingLocation) {
 		return AdapterWeavingFactory.repositoryWeaverMap.get(weavingLocation.getLocation().getClass());
 	}
 
@@ -70,7 +71,7 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static ServiceEffectSpecificationWeaving getAdapterSeffWeaverBy(WeavingLocation weavingLocation) {
+	public static Function<IAdapterWeaving, ServiceEffectSpecificationWeaving> getAdapterSeffWeaverBy(WeavingLocation weavingLocation) {
 		return AdapterWeavingFactory.seffWeaverMap.get(weavingLocation.getLocation().getClass());
 	}
 

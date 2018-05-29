@@ -10,13 +10,13 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import edu.kit.ipd.are.dsexplore.concern.util.AssemblyConnectorGenerator;
-import edu.kit.ipd.are.dsexplore.concern.util.DelegationConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ConnectionInfo;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.AssemblyConnectorGenerator;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectionInfo;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.DelegationConnectorGenerator;
 
 /**
  * This class is responsible to weave the adapter in the system if the
