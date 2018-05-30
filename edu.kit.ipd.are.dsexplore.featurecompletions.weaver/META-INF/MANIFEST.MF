@@ -11,5 +11,6 @@ Require-Bundle: org.palladiosimulator.solver,
  de.uka.ipd.sdq.dsexplore.facade,
  de.uka.ipd.sdq.workflow.mdsd,
  edu.kit.ipd.are.dsexplore.featurecompletions,
- org.opt4j
+ org.opt4j,
+ org.modelversioning.emfprofile
 Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port

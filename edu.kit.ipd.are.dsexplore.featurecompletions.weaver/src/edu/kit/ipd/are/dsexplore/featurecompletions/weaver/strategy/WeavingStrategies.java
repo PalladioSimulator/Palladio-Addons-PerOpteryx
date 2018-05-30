@@ -1,5 +1,10 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
+import java.util.function.BiFunction;
+
+import org.palladiosimulator.solver.models.PCMInstance;
+
+import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterWeavingStrategy;
 import featureSolution.AdapterInclusion;
 import featureSolution.InclusionMechanism;
@@ -13,17 +18,17 @@ import featureSolution.InclusionMechanism;
  */
 public enum WeavingStrategies {
 
-	ADAPTER(AdapterInclusion.class, new AdapterWeavingStrategy());
+	ADAPTER(AdapterInclusion.class, AdapterWeavingStrategy::new);
 
 	private final Class<? extends InclusionMechanism> mechanism;
-	private final IWeavingStrategy strategy;
+	private final BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy;
 
-	private WeavingStrategies(Class<? extends InclusionMechanism> mechanism, IWeavingStrategy strategy) {
+	private WeavingStrategies(Class<? extends InclusionMechanism> mechanism, BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy) {
 		this.mechanism = mechanism;
 		this.strategy = strategy;
 	}
 
-	public static IWeavingStrategy getStrategy(InclusionMechanism mechanism) {
+	public static BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> getStrategy(InclusionMechanism mechanism) {
 		if (mechanism == null) {
 			return null;
 		}

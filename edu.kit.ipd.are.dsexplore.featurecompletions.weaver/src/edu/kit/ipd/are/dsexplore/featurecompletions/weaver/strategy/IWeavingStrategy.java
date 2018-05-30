@@ -1,7 +1,5 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
-import org.palladiosimulator.solver.models.PCMInstance;
-
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
@@ -74,7 +72,5 @@ public interface IWeavingStrategy {
 	 *             process.
 	 */
 	void weaveUsageModel(WeavingInstruction weavingInstruction) throws FCCWeaverException;
-
-	void setPCMToAdapt(PCMInstance pcmToAdapt);
 
 }
