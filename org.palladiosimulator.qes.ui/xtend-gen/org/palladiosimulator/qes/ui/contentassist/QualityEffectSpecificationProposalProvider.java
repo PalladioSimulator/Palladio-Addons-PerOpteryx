@@ -3,6 +3,7 @@
  */
 package org.palladiosimulator.qes.ui.contentassist;
 
+import javax.annotation.Generated;
 import org.palladiosimulator.qes.ui.contentassist.AbstractQualityEffectSpecificationProposalProvider;
 
 /**
@@ -10,5 +11,6 @@ import org.palladiosimulator.qes.ui.contentassist.AbstractQualityEffectSpecifica
  * on how to customize the content assistant.
  */
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationProposalProvider extends AbstractQualityEffectSpecificationProposalProvider {
 }

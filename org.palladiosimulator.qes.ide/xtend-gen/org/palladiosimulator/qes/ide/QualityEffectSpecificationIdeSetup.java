@@ -5,6 +5,7 @@ package org.palladiosimulator.qes.ide;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import javax.annotation.Generated;
 import org.eclipse.xtext.util.Modules2;
 import org.palladiosimulator.qes.QualityEffectSpecificationRuntimeModule;
 import org.palladiosimulator.qes.QualityEffectSpecificationStandaloneSetup;
@@ -14,6 +15,7 @@ import org.palladiosimulator.qes.ide.QualityEffectSpecificationIdeModule;
  * Initialization support for running Xtext languages as language servers.
  */
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationIdeSetup extends QualityEffectSpecificationStandaloneSetup {
   @Override
   public Injector createInjector() {

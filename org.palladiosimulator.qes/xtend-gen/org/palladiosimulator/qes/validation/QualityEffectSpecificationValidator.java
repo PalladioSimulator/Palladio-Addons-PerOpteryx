@@ -3,6 +3,7 @@
  */
 package org.palladiosimulator.qes.validation;
 
+import javax.annotation.Generated;
 import org.palladiosimulator.qes.validation.AbstractQualityEffectSpecificationValidator;
 
 /**
@@ -11,5 +12,6 @@ import org.palladiosimulator.qes.validation.AbstractQualityEffectSpecificationVa
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationValidator extends AbstractQualityEffectSpecificationValidator {
 }

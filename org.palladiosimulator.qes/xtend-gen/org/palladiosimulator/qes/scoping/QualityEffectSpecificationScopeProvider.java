@@ -3,6 +3,7 @@
  */
 package org.palladiosimulator.qes.scoping;
 
+import javax.annotation.Generated;
 import org.palladiosimulator.qes.scoping.AbstractQualityEffectSpecificationScopeProvider;
 
 /**
@@ -12,5 +13,6 @@ import org.palladiosimulator.qes.scoping.AbstractQualityEffectSpecificationScope
  * on how and when to use it.
  */
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationScopeProvider extends AbstractQualityEffectSpecificationScopeProvider {
 }

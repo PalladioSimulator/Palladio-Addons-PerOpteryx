@@ -3,11 +3,13 @@
  */
 package org.palladiosimulator.qes.ide;
 
+import javax.annotation.Generated;
 import org.palladiosimulator.qes.ide.AbstractQualityEffectSpecificationIdeModule;
 
 /**
  * Use this class to register ide components.
  */
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationIdeModule extends AbstractQualityEffectSpecificationIdeModule {
 }

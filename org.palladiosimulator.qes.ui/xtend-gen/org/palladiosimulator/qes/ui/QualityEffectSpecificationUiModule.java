@@ -3,6 +3,7 @@
  */
 package org.palladiosimulator.qes.ui;
 
+import javax.annotation.Generated;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 import org.palladiosimulator.qes.ui.AbstractQualityEffectSpecificationUiModule;
@@ -12,6 +13,7 @@ import org.palladiosimulator.qes.ui.AbstractQualityEffectSpecificationUiModule;
  */
 @FinalFieldsConstructor
 @SuppressWarnings("all")
+@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationUiModule extends AbstractQualityEffectSpecificationUiModule {
   public QualityEffectSpecificationUiModule(final AbstractUIPlugin plugin) {
     super(plugin);
