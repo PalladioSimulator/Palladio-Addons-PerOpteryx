@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_RI9uEOPREeeAZZsxprVXFA">
-  <rootFeature id="_TtjRYOAFEee0c7T3_fmbuQ" name="Logging">
+  <rootFeature id="_TtjRYOAFEee0c7T3_fmbuQ" name="Logging" featuregroup="//@rootFeature/@childrelation">
     <childrelation xsi:type="featureObjective:FeatureGroup">
-      <children id="_ZOg_kOAFEee0c7T3_fmbuQ" name="File" featuregroup="//@rootFeature/@childrelation">
-        <attributes xsi:type="featureObjective:DoubleAttribute" id="_E-szwC3XEeiMcKjR3F2klw" name="New Double">
-          <range xsi:type="featureObjective:IntegerIntervalRange" lowerBoundIncluded="true" upperBoundIncluded="true" to="2" from="4"/>
-        </attributes>
-        <childrelation xsi:type="featureObjective:Simple">
-          <optionalChildren id="_D_67UC2rEeiGoreRv8bYRw" name="optSF1" simpleMandatory="//@rootFeature/@childrelation/@children.0/@childrelation" simpleOptional="//@rootFeature/@childrelation/@children.0/@childrelation">
-            <attributes xsi:type="featureObjective:IntegerAttribute" id="__fvNUC2tEei74YOtYrczcA" name="i">
-              <range xsi:type="featureObjective:IntegerIntervalRange" lowerBoundIncluded="true" to="1"/>
-            </attributes>
-          </optionalChildren>
-          <mandatoryChildren id="_smAfgS2zEei74YOtYrczcA" name="manSF1"/>
-        </childrelation>
-      </children>
-      <children id="_aHt4cOAFEee0c7T3_fmbuQ" name="SQL" featuregroup="//@rootFeature/@childrelation">
-        <attributes xsi:type="featureObjective:DoubleAttribute" id="_XC3D8C2vEei74YOtYrczcA" name="New Double"/>
-        <attributes xsi:type="featureObjective:IntegerAttribute" id="_nHjPkC2vEei74YOtYrczcA" name="New Integer">
-          <range xsi:type="featureObjective:IntegerIntervalRange" lowerBoundIncluded="true" upperBoundIncluded="true" to="3" from="2"/>
-        </attributes>
-        <attributes xsi:type="featureObjective:StringAttribute" id="_nkMIQC2vEei74YOtYrczcA" name="New String"/>
-        <attributes xsi:type="featureObjective:ExternalObjectAttribute" id="_oJ3oMC2vEei74YOtYrczcA" name="New external object"/>
-      </children>
+      <children id="_ZOg_kOAFEee0c7T3_fmbuQ" name="File"/>
+      <children id="_aHt4cOAFEee0c7T3_fmbuQ" name="SQL"/>
     </childrelation>
   </rootFeature>
-  <constraints xsi:type="featureObjective:ProhibitsConstraint" id="_RiNUQC2uEei74YOtYrczcA" name="New prohibits constraint" source="_aHt4cOAFEee0c7T3_fmbuQ" target="_TtjRYOAFEee0c7T3_fmbuQ" description="New description"/>
-  <constraints xsi:type="featureObjective:RequiredConstraint" id="_TBLMoC2uEei74YOtYrczcA" name="New requires constraint" source="_ZOg_kOAFEee0c7T3_fmbuQ" target="_TtjRYOAFEee0c7T3_fmbuQ" description="New description"/>
 </featureObjective:FeatureObjective>

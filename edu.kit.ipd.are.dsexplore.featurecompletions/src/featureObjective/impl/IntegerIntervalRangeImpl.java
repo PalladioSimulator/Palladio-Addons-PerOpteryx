@@ -80,6 +80,7 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.INTEGER_INTERVAL_RANGE;
 	}
@@ -131,12 +132,13 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__TO:
-				return new Integer(getTo());
+				return getTo();
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__FROM:
-				return new Integer(getFrom());
+				return getFrom();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -146,13 +148,14 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__TO:
-				setTo(((Integer)newValue).intValue());
+				setTo((Integer)newValue);
 				return;
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__FROM:
-				setFrom(((Integer)newValue).intValue());
+				setFrom((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -163,6 +166,7 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__TO:
@@ -180,6 +184,7 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE__TO:
@@ -195,6 +200,7 @@ public class IntegerIntervalRangeImpl extends IntervalRangeImpl implements Integ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

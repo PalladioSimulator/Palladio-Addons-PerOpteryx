@@ -455,7 +455,7 @@
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ATNumberOfReplicaDegree" eSuperTypes="#//specific/DiscreteRangeDegree"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ConcernDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FeatureCompletionDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureDegree" eSuperTypes="#//specific/ClassAsReferenceDegree">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This Degree of Freedom is representing the existence of an optional feature in the current assembly.&#xD;&#xA;The Feature itself will set as &quot;PrimaryChanged&quot;."/>

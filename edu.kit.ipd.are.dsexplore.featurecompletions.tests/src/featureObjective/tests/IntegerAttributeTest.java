@@ -40,7 +40,8 @@ public class IntegerAttributeTest extends AttributeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IntegerAttribute getFixture() {
+	@Override
+	protected IntegerAttribute getFixture() {
 		return (IntegerAttribute)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class IntegerAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createIntegerAttribute());
 	}
@@ -60,6 +62,7 @@ public class IntegerAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

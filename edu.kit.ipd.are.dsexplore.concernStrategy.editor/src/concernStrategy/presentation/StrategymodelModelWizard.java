@@ -70,7 +70,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 import concernStrategy.StrategymodelFactory;
 import concernStrategy.StrategymodelPackage;
-import concernStrategy.provider.ConcernStrategyEditPlugin;
+import strategyConfig.provider.ConcernStrategyEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -82,6 +82,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+
+import strategyConfig.presentation.ConcernStrategyEditorPlugin;
 
 
 /**

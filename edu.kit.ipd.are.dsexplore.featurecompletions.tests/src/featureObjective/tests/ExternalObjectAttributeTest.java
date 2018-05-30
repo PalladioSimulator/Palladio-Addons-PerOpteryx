@@ -40,7 +40,8 @@ public class ExternalObjectAttributeTest extends AttributeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExternalObjectAttribute getFixture() {
+	@Override
+	protected ExternalObjectAttribute getFixture() {
 		return (ExternalObjectAttribute)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class ExternalObjectAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createExternalObjectAttribute());
 	}
@@ -60,6 +62,7 @@ public class ExternalObjectAttributeTest extends AttributeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

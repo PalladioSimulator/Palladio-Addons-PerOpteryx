@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: edu.kit.ipd.are.dsexplore.concernStrategy.design.custom
+Bundle-Name: edu.kit.test
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.concernStrategy.design.custom;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.Activator

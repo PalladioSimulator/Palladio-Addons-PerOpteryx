@@ -94,7 +94,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList children;
+	protected EList<Feature> children;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,6 +110,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureObjectivePackage.Literals.FEATURE_GROUP;
 	}
@@ -161,9 +162,9 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getChildren() {
+	public EList<Feature> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentEList(Feature.class, this, FeatureObjectivePackage.FEATURE_GROUP__CHILDREN);
+			children = new EObjectContainmentEList<Feature>(Feature.class, this, FeatureObjectivePackage.FEATURE_GROUP__CHILDREN);
 		}
 		return children;
 	}
@@ -173,7 +174,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean XORorORImpliesChildrenAreMandatory(DiagnosticChain diagnostics, Map context) {
+	public boolean XORorORImpliesChildrenAreMandatory(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -198,7 +199,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ALLImpliesCardinalitiesToBeMinusOne(DiagnosticChain diagnostics, Map context) {
+	public boolean ALLImpliesCardinalitiesToBeMinusOne(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -223,7 +224,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne(DiagnosticChain diagnostics, Map context) {
+	public boolean ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -248,7 +249,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean XORImpliesCardinalitiesToBeOne(DiagnosticChain diagnostics, Map context) {
+	public boolean XORImpliesCardinalitiesToBeOne(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -273,10 +274,11 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				return ((InternalEList)getChildren()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -286,12 +288,13 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				return new Integer(getMin());
+				return getMin();
 			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				return new Integer(getMax());
+				return getMax();
 			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
 				return getChildren();
 		}
@@ -303,17 +306,19 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				setMin(((Integer)newValue).intValue());
+				setMin((Integer)newValue);
 				return;
 			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				setMax(((Integer)newValue).intValue());
+				setMax((Integer)newValue);
 				return;
 			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
 				getChildren().clear();
-				getChildren().addAll((Collection)newValue);
+				getChildren().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,6 +329,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
@@ -344,6 +350,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
@@ -361,6 +368,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

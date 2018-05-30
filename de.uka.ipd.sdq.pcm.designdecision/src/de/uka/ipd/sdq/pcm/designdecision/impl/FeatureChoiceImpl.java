@@ -16,19 +16,16 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl#isSelected
- * <em>Selected</em>}</li>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl#isPresent
- * <em>Present</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl#isSelected <em>Selected</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.FeatureChoiceImpl#isPresent <em>Present</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 	/**
-	 * The default value of the '{@link #isSelected() <em>Selected</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isSelected() <em>Selected</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isSelected()
 	 * @generated
 	 * @ordered
@@ -36,19 +33,17 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 	protected static final boolean SELECTED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isSelected() <em>Selected</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isSelected() <em>Selected</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isSelected()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean selected = FeatureChoiceImpl.SELECTED_EDEFAULT;
+	protected boolean selected = SELECTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isPresent() <em>Present</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isPresent() <em>Present</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isPresent()
 	 * @generated
 	 * @ordered
@@ -56,18 +51,16 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 	protected static final boolean PRESENT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isPresent() <em>Present</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isPresent() <em>Present</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isPresent()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean present = FeatureChoiceImpl.PRESENT_EDEFAULT;
+	protected boolean present = PRESENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureChoiceImpl() {
@@ -76,7 +69,6 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,81 +78,73 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSelected() {
-		return this.selected;
+		return selected;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setSelected(boolean newSelected) {
-		boolean oldSelected = this.selected;
-		this.selected = newSelected;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.FEATURE_CHOICE__SELECTED, oldSelected, this.selected));
-		}
+		boolean oldSelected = selected;
+		selected = newSelected;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.FEATURE_CHOICE__SELECTED, oldSelected, selected));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isPresent() {
-		return this.present;
+		return present;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setPresent(boolean newPresent) {
-		boolean oldPresent = this.present;
-		this.present = newPresent;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.FEATURE_CHOICE__PRESENT, oldPresent, this.present));
-		}
+		boolean oldPresent = present;
+		present = newPresent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, designdecisionPackage.FEATURE_CHOICE__PRESENT, oldPresent, present));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case designdecisionPackage.FEATURE_CHOICE__SELECTED:
-			return this.isSelected();
+			return isSelected();
 		case designdecisionPackage.FEATURE_CHOICE__PRESENT:
-			return this.isPresent();
+			return isPresent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case designdecisionPackage.FEATURE_CHOICE__SELECTED:
-			this.setSelected((Boolean) newValue);
+			setSelected((Boolean) newValue);
 			return;
 		case designdecisionPackage.FEATURE_CHOICE__PRESENT:
-			this.setPresent((Boolean) newValue);
+			setPresent((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -168,17 +152,16 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case designdecisionPackage.FEATURE_CHOICE__SELECTED:
-			this.setSelected(FeatureChoiceImpl.SELECTED_EDEFAULT);
+			setSelected(SELECTED_EDEFAULT);
 			return;
 		case designdecisionPackage.FEATURE_CHOICE__PRESENT:
-			this.setPresent(FeatureChoiceImpl.PRESENT_EDEFAULT);
+			setPresent(PRESENT_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -186,36 +169,33 @@ public class FeatureChoiceImpl extends ChoiceImpl implements FeatureChoice {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case designdecisionPackage.FEATURE_CHOICE__SELECTED:
-			return this.selected != FeatureChoiceImpl.SELECTED_EDEFAULT;
+			return selected != SELECTED_EDEFAULT;
 		case designdecisionPackage.FEATURE_CHOICE__PRESENT:
-			return this.present != FeatureChoiceImpl.PRESENT_EDEFAULT;
+			return present != PRESENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (this.eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (selected: ");
-		result.append(this.selected);
+		result.append(selected);
 		result.append(", present: ");
-		result.append(this.present);
+		result.append(present);
 		result.append(')');
 		return result.toString();
 	}

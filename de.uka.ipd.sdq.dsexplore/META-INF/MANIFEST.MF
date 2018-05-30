@@ -23,19 +23,20 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.0",
  org.modelversioning.emfprofile;bundle-version="1.1.0",
  org.eclipse.swt,
- edu.kit.ipd.are.dsexplore.concern.structureModel;bundle-version="1.0.2",
  edu.kit.ipd.are.dsexplore.concern.concernweaver,
  org.eclipse.emf.ecore,
  org.palladiosimulator.pcm,
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
- org.palladiosimulator.qes;bundle-version="1.0.0",
- org.eclipse.xtext,
- edu.kit.ipd.are.dsexplore.featurecompletions
+ edu.kit.ipd.are.dsexplore.featurecompletions,
+ de.uka.ipd.sdq.dsexplore.tools,
+ de.uka.ipd.sdq.dsexplore.facade,
+ edu.kit.ipd.are.dsexplore.featurecompletions.weaver,
+ org.palladiosimulator.qes,
+ org.eclipse.xtext
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
  de.uka.ipd.sdq.dsexplore.analysis.qes,
- de.uka.ipd.sdq.dsexplore.concernweaving.util,
  de.uka.ipd.sdq.dsexplore.constraints,
  de.uka.ipd.sdq.dsexplore.exception,
  de.uka.ipd.sdq.dsexplore.helper,
@@ -44,7 +45,7 @@ Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.opt4j.representation
 Bundle-ClassPath: .,
  log4j/
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Eclipse-BuddyPolicy: dependent 
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy

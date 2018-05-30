@@ -40,6 +40,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import strategyConfig.presentation.ConcernStrategyEditorPlugin;
+
 /**
  * This is the action bar contributor for the Strategymodel model editor.
  * <!-- begin-user-doc -->

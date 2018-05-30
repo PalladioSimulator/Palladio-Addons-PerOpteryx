@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: FeatureCompletionModel.tests,
  featureObjective.tests,
  featureSolution.tests
@@ -15,5 +16,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy

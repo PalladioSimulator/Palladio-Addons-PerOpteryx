@@ -40,7 +40,8 @@ public class ConstrainableElementTest extends DescribedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConstrainableElement getFixture() {
+	@Override
+	protected ConstrainableElement getFixture() {
 		return (ConstrainableElement)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class ConstrainableElementTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureCompletionFactory.eINSTANCE.createConstrainableElement());
 	}
@@ -60,6 +62,7 @@ public class ConstrainableElementTest extends DescribedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

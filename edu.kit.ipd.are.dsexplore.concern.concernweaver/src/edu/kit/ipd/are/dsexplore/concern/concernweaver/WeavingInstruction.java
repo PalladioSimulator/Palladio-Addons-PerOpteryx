@@ -5,9 +5,9 @@ import java.util.List;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
-import ConcernModel.ElementaryConcernComponent;
-import TransformationModel.Transformation;
+import FeatureCompletionModel.CompletionComponent;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
+import featureSolution.InclusionMechanism;
 
 /**
  * This class is a container for the weaving instruction informations required
@@ -18,9 +18,9 @@ import edu.kit.ipd.are.dsexplore.concern.util.Pair;
  */
 public class WeavingInstruction {
 
-	private final Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures;
+	private final Pair<CompletionComponent, List<ProvidedRole>> fccWithConsumedFeatures;
 	private final WeavingLocation weavingLocation;
-	private final Transformation transformationStrategy;
+	private final InclusionMechanism inclusionMechanism;
 	private final ResourceContainer resourceContainer;
 
 	/**
@@ -36,11 +36,12 @@ public class WeavingInstruction {
 	 * @param resourceContainer
 	 *            - The resource container the ECC is going to be allocated.
 	 */
-	public WeavingInstruction(Pair<ElementaryConcernComponent, List<ProvidedRole>> eccWithConsumedFeatures, WeavingLocation weavingLocation, Transformation transformationStrategy,
+	public WeavingInstruction(Pair<CompletionComponent, List<ProvidedRole>> eccWithConsumedFeatures,
+			WeavingLocation weavingLocation, InclusionMechanism inclusionMechanism,
 			ResourceContainer resourceContainer) {
-		this.eccWithConsumedFeatures = eccWithConsumedFeatures;
+		this.fccWithConsumedFeatures = eccWithConsumedFeatures;
 		this.weavingLocation = weavingLocation;
-		this.transformationStrategy = transformationStrategy;
+		this.inclusionMechanism = inclusionMechanism;
 		this.resourceContainer = resourceContainer;
 
 	}
@@ -50,8 +51,8 @@ public class WeavingInstruction {
 	 *
 	 * @return a pair of an ECC and its provided features.
 	 */
-	public Pair<ElementaryConcernComponent, List<ProvidedRole>> getECCWithConsumedFeatures() {
-		return this.eccWithConsumedFeatures;
+	public Pair<CompletionComponent, List<ProvidedRole>> getFCCWithConsumedFeatures() {
+		return this.fccWithConsumedFeatures;
 	}
 
 	/**
@@ -69,8 +70,8 @@ public class WeavingInstruction {
 	 * @return the transformation strategy which defines the integration
 	 *         mechanism.
 	 */
-	public Transformation getTransformationStrategy() {
-		return this.transformationStrategy;
+	public InclusionMechanism getInclusionMechanism() {
+		return this.inclusionMechanism;
 	}
 
 	/**

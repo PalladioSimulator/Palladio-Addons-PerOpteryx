@@ -40,7 +40,8 @@ public class RequiredConstraintTest extends ConstraintTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RequiredConstraint getFixture() {
+	@Override
+	protected RequiredConstraint getFixture() {
 		return (RequiredConstraint)fixture;
 	}
 
@@ -50,6 +51,7 @@ public class RequiredConstraintTest extends ConstraintTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(FeatureObjectiveFactory.eINSTANCE.createRequiredConstraint());
 	}
@@ -60,6 +62,7 @@ public class RequiredConstraintTest extends ConstraintTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

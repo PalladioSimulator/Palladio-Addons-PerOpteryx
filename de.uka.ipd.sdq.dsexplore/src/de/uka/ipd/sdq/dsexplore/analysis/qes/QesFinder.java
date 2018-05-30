@@ -39,6 +39,7 @@ import org.palladiosimulator.qes.qualityEffectSpecification.RoleProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Type;
 import org.palladiosimulator.solver.models.PCMInstance;
+import FeatureCompletionModel.ComplementumVisnetis;
 
 public class QesFinder {
 
@@ -166,9 +167,8 @@ public class QesFinder {
             }
             for (final Stereotype stereotype : StereotypeAPI.getAppliedStereotypes(component)) {
                 for (final EObject refs : stereotype.eCrossReferences()) {
-                    if ((refs instanceof FeatureCompletionModel.ComplementumVisnetis)
-                            && QesHelper.equalsIgnoreCase(
-                                    ((FeatureCompletionModel.ComplementumVisnetis) refs).getName(),
+                    if ((refs instanceof ComplementumVisnetis)
+                            && QesHelper.equalsIgnoreCase(((ComplementumVisnetis) refs).getName(),
                                     annotation.isNot(), annotation.getAnnotation())) {
                         effectedComponents.add(component.getId());
                     }
@@ -444,9 +444,8 @@ public class QesFinder {
                         for (final Stereotype stereotype : StereotypeAPI
                                 .getAppliedStereotypes(property)) {
                             for (final EObject refs : stereotype.eCrossReferences()) {
-                                if ((refs instanceof ConcernModel.Annotation)
-                                        && QesHelper.equalsIgnoreCase(
-                                                ((ConcernModel.Annotation) refs).getName(),
+                                if ((refs instanceof ComplementumVisnetis) && QesHelper
+                                        .equalsIgnoreCase(((ComplementumVisnetis) refs).getName(),
                                                 ((Annotation) property).isNot(),
                                                 ((Annotation) property).getAnnotation())) {
                                     effectedComponents.add(component.getId());

@@ -6,13 +6,11 @@ import FeatureCompletionModel.*;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
@@ -74,6 +72,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EPackage getEPackage() {
 	  return FeatureCompletionPackage.eINSTANCE;
 	}
@@ -84,7 +83,8 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map context) {
+	@Override
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION_REPOSITORY:
 				return validateFeatureCompletionRepository((FeatureCompletionRepository)value, diagnostics, context);
@@ -124,7 +124,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFeatureCompletionRepository(FeatureCompletionRepository featureCompletionRepository, DiagnosticChain diagnostics, Map context) {
+	public boolean validateFeatureCompletionRepository(FeatureCompletionRepository featureCompletionRepository, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(featureCompletionRepository, diagnostics, context);
 	}
 
@@ -133,15 +133,28 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFeatureCompletion(FeatureCompletion featureCompletion, DiagnosticChain diagnostics, Map context) {
+	public boolean validateFeatureCompletion(FeatureCompletion featureCompletion, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(featureCompletion, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(featureCompletion, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(featureCompletion, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(featureCompletion, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(featureCompletion, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryProxyResolves(featureCompletion, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_UniqueID(featureCompletion, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(featureCompletion, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(featureCompletion, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFeatureCompletion_requiredComponentsHaveToBePartOfCompletion(featureCompletion, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the requiredComponentsHaveToBePartOfCompletion constraint of '<em>Feature Completion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String FEATURE_COMPLETION__REQUIRED_COMPONENTS_HAVE_TO_BE_PART_OF_COMPLETION__EEXPRESSION = "\n" +
+		"\t\t\tcompletionComponents.requiredComponents->exists(self.completionComponents)";
 
 	/**
 	 * Validates the requiredComponentsHaveToBePartOfCompletion constraint of '<em>Feature Completion</em>'.
@@ -149,24 +162,19 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFeatureCompletion_requiredComponentsHaveToBePartOfCompletion(FeatureCompletion featureCompletion, DiagnosticChain diagnostics, Map context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "requiredComponentsHaveToBePartOfCompletion", getObjectLabel(featureCompletion, context) }),
-						 new Object[] { featureCompletion }));
-			}
-			return false;
-		}
-		return true;
+	public boolean validateFeatureCompletion_requiredComponentsHaveToBePartOfCompletion(FeatureCompletion featureCompletion, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(FeatureCompletionPackage.Literals.FEATURE_COMPLETION,
+				 featureCompletion,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "requiredComponentsHaveToBePartOfCompletion",
+				 FEATURE_COMPLETION__REQUIRED_COMPONENTS_HAVE_TO_BE_PART_OF_COMPLETION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -174,7 +182,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCompletionComponent(CompletionComponent completionComponent, DiagnosticChain diagnostics, Map context) {
+	public boolean validateCompletionComponent(CompletionComponent completionComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(completionComponent, diagnostics, context);
 	}
 
@@ -183,7 +191,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDescribedElement(DescribedElement describedElement, DiagnosticChain diagnostics, Map context) {
+	public boolean validateDescribedElement(DescribedElement describedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(describedElement, diagnostics, context);
 	}
 
@@ -192,7 +200,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map context) {
+	public boolean validateNamedElement(NamedElement namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(namedElement, diagnostics, context);
 	}
 
@@ -201,7 +209,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePerimeterProviding(PerimeterProviding perimeterProviding, DiagnosticChain diagnostics, Map context) {
+	public boolean validatePerimeterProviding(PerimeterProviding perimeterProviding, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(perimeterProviding, diagnostics, context);
 	}
 
@@ -210,7 +218,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplementumVisnetis(ComplementumVisnetis complementumVisnetis, DiagnosticChain diagnostics, Map context) {
+	public boolean validateComplementumVisnetis(ComplementumVisnetis complementumVisnetis, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(complementumVisnetis, diagnostics, context);
 	}
 
@@ -219,7 +227,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComplementum(Complementum complementum, DiagnosticChain diagnostics, Map context) {
+	public boolean validateComplementum(Complementum complementum, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(complementum, diagnostics, context);
 	}
 
@@ -228,7 +236,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateArchitectureConstraints(ArchitectureConstraints architectureConstraints, DiagnosticChain diagnostics, Map context) {
+	public boolean validateArchitectureConstraints(ArchitectureConstraints architectureConstraints, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(architectureConstraints, diagnostics, context);
 	}
 
@@ -237,7 +245,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConstrainableElement(ConstrainableElement constrainableElement, DiagnosticChain diagnostics, Map context) {
+	public boolean validateConstrainableElement(ConstrainableElement constrainableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(constrainableElement, diagnostics, context);
 	}
 
@@ -246,7 +254,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePerimeterRequiring(PerimeterRequiring perimeterRequiring, DiagnosticChain diagnostics, Map context) {
+	public boolean validatePerimeterRequiring(PerimeterRequiring perimeterRequiring, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(perimeterRequiring, diagnostics, context);
 	}
 
@@ -255,7 +263,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVisnetum(Visnetum visnetum, DiagnosticChain diagnostics, Map context) {
+	public boolean validateVisnetum(Visnetum visnetum, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -264,7 +272,7 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReplication(Replication replication, DiagnosticChain diagnostics, Map context) {
+	public boolean validateReplication(Replication replication, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -273,8 +281,22 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConstraint(Constraint constraint, DiagnosticChain diagnostics, Map context) {
+	public boolean validateConstraint(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
+	}
+
+	/**
+	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		// TODO
+		// Specialize this to return a resource locator for messages specific to this validator.
+		// Ensure that you remove @generated or mark it @generated NOT
+		return super.getResourceLocator();
 	}
 
 } //FeatureCompletionValidator

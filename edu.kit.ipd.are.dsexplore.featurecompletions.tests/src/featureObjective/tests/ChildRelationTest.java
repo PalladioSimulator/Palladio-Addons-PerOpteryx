@@ -48,7 +48,7 @@ public abstract class ChildRelationTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ChildRelation getFixture() {
+	protected ChildRelation getFixture() {
 		return fixture;
 	}
 

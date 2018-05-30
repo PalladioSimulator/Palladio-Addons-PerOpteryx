@@ -18,11 +18,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link FeatureCompletionModel.FeatureCompletion#getFeatureObjectives <em>Feature Objectives</em>}</li>
  *   <li>{@link FeatureCompletionModel.FeatureCompletion#getCompletionComponents <em>Completion Components</em>}</li>
  *   <li>{@link FeatureCompletionModel.FeatureCompletion#getComplementa <em>Complementa</em>}</li>
+ *   <li>{@link FeatureCompletionModel.FeatureCompletion#getArchitectureConstraints <em>Architecture Constraints</em>}</li>
  * </ul>
  *
  * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletion()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='requiredComponentsHaveToBePartOfCompletion'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot requiredComponentsHaveToBePartOfCompletion='\n\t\t\tcompletionComponents.requiredComponents-&gt;exists(self.completionComponents)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot requiredComponentsHaveToBePartOfCompletion='\n\t\t\tcompletionComponents.requiredComponents->exists(self.completionComponents)'"
  * @generated
  */
 public interface FeatureCompletion extends DescribedElement {
@@ -63,10 +64,10 @@ public interface FeatureCompletion extends DescribedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Completion Components</em>' containment reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletion_CompletionComponents()
-	 * @model type="FeatureCompletionModel.CompletionComponent" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getCompletionComponents();
+	EList<CompletionComponent> getCompletionComponents();
 
 	/**
 	 * Returns the value of the '<em><b>Complementa</b></em>' containment reference list.
@@ -79,9 +80,25 @@ public interface FeatureCompletion extends DescribedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complementa</em>' containment reference list.
 	 * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletion_Complementa()
-	 * @model type="FeatureCompletionModel.Complementum" containment="true" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList getComplementa();
+	EList<Complementum> getComplementa();
+
+	/**
+	 * Returns the value of the '<em><b>Architecture Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link FeatureCompletionModel.ArchitectureConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Architecture Constraints</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Architecture Constraints</em>' containment reference list.
+	 * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletion_ArchitectureConstraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ArchitectureConstraints> getArchitectureConstraints();
 
 } // FeatureCompletion

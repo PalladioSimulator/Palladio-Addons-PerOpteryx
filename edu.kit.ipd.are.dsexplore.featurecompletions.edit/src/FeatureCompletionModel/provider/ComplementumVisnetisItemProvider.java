@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
  * This is the item provider adapter for a {@link FeatureCompletionModel.ComplementumVisnetis} object.
@@ -37,11 +38,13 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addComplementaryFeaturePropertyDescriptor(object);
+			addRequiresComplementumPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -69,11 +72,34 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Requires Complementum feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiresComplementumPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ComplementumVisnetis_requiresComplementum_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComplementumVisnetis_requiresComplementum_feature", "_UI_ComplementumVisnetis_type"),
+				 FeatureCompletionPackage.Literals.COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ComplementumVisnetis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplementumVisnetis"));
 	}
@@ -84,6 +110,7 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText(Object object) {
 		String label = ((ComplementumVisnetis)object).getName();
 		return label == null || label.length() == 0 ?
@@ -99,6 +126,7 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
@@ -111,7 +139,8 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Concern="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:TransformationModel="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernModel_1.0.1="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:TransformationModel_1.0.0="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
   <viewpoint:DAnalysis xmi:id="_zrSPIGFaEeetxOZObiabqg" selectedViews="_ztnxcGFaEeetxOZObiabqg _1C-lYGFbEeetxOZObiabqg _jpA-AGFdEeetxOZObiabqg _Ovn30GFeEeetxOZObiabqg _bx6pcGFeEeetxOZObiabqg _l7COgGFeEeetxOZObiabqg _ig74oGjREeegN5on4EwZjA _io46wGjREeegN5on4EwZjA _ovUDkHiBEeeRzZ_keTeuDw _YWMiUJn6EeewW63v2sGHuw" version="11.1.0.201608251200">
     <semanticResources>palladio/repository.repository</semanticResources>
     <semanticResources>pathmap://PCM_MODELS/Palladio.resourcetype</semanticResources>
@@ -103,8 +103,6 @@
     <semanticResources>palladio/PerOpteryx_results/allCandidates9_2017-07-06-234342.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/population9_2017-07-06-234342.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/archiveCandidates9_2017-07-06-234342.designdecision</semanticResources>
-    <semanticResources>peropteryx/concernrepo.concernmodel</semanticResources>
-    <semanticResources>peropteryx/strategy.strategymodel</semanticResources>
     <semanticResources>peropteryx/designdecision.designdecision</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/PerOpteryx/My.cost</semanticResources>
     <semanticResources>platform:/resource/SimplePalladioModel/newRepository.repository</semanticResources>
@@ -202,6 +200,13 @@
     <semanticResources>peropteryx/solutions/solutionsCD.cost</semanticResources>
     <semanticResources>peropteryx/solutions/solutionA.cost</semanticResources>
     <semanticResources>peropteryx/solutions/solutionB.cost</semanticResources>
+    <semanticResources>platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram</semanticResources>
+    <semanticResources>http://sdq.ipd.uka.de/CostModel/1.0</semanticResources>
+    <semanticResources>http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0</semanticResources>
+    <semanticResources>http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1</semanticResources>
+    <semanticResources>peropteryx/Solution.featuresolution</semanticResources>
+    <semanticResources>peropteryx/FCompletion.featurecompletion</semanticResources>
+    <semanticResources>peropteryx/Features.featureobjective</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" representation="_zv_wAWFaEeetxOZObiabqg">
@@ -305,19 +310,19 @@
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ovm-gHiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" representation="_ovm-gXiBEeeRzZ_keTeuDw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
-        <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
+        <target xmi:type="ConcernModel_1.0.1:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
       </ownedRepresentationDescriptors>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oycQEHiBEeeRzZ_keTeuDw" name="Concern Detail Diagram" representation="_oycQEXiBEeeRzZ_keTeuDw">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
-        <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+        <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       </ownedRepresentationDescriptors>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ozCF8HiBEeeRzZ_keTeuDw" name="Concern Overview Diagram">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
-        <target xmi:type="Concern:ConcernRepository" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0"/>
+        <target xmi:type="ConcernModel_1.0.1:ConcernRepository" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0"/>
       </ownedRepresentationDescriptors>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ozL28HiBEeeRzZ_keTeuDw" name="Concern Detail Diagram">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
-        <target xmi:type="Concern:Concern" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0/@concerns.0"/>
+        <target xmi:type="ConcernModel_1.0.1:Concern" href="platform:/resource/SimplePalladioModel/PerOpteryx/My.concernmodel#/0/@concerns.0"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_YWMiUJn6EeewW63v2sGHuw">
@@ -1040,8 +1045,8 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer/@containerMappings[name='InternalAction']/@subContainerMappings[name='ResourceDemand%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_4zswgJucEeeoubAyC5894w" name="DoublePDF[(5.0; 0.1)(15.0; 0.8)(50.0; 0. ...">
-          <target xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#/0/@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
-          <semanticElements xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#/0/@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <target xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#//@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <semanticElements xmi:type="seff_performance:ParametricResourceDemand" href="palladio/repository.repository#//@components__Repository.2/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_4zulsJucEeeoubAyC5894w" labelPosition="node">
             <description xmi:type="style:SquareDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer/@containerMappings[name='InternalAction']/@subContainerMappings[name='ResourceDemand%20Container']/@subNodeMappings[name='ResourceDemand']/@conditionnalStyles.0/@style"/>
           </ownedStyle>
@@ -2064,36 +2069,36 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PEY_wJn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PEY_wZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PEY_xJn6Eeeq0d2p6xwmTg" name="TransformationA">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PEY_xZn6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PEY_wpn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PEY_w5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PEY_xpn6Eeeq0d2p6xwmTg" name="TransformationB">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PEY_x5n6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PEY_yJn6Eeeq0d2p6xwmTg" name="&lt;&lt;Interface>>&#xA;Interface1" incomingEdges="_PHYCU5n6Eeeq0d2p6xwmTg" width="20" height="10">
       <target xmi:type="repository:OperationInterface" href="palladio/repository.repository#_LtcnoGFbEeetxOZObiabqg"/>
@@ -2199,28 +2204,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PEiw05n6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PEiw1Jn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PFvDkJn6Eeeq0d2p6xwmTg" name="Target4Optional">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PGxlYJn6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PG7WYJn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PG7WYJn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PG7WYZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PEiww5n6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComponentTgtMandatory" outgoingEdges="_PHYCVpn6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -2279,28 +2284,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PHEgWZn6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PHEgWpn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PHEgW5n6Eeeq0d2p6xwmTg" name="Target4Mandatory">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PHEgXJn6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PHEgXZn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PHEgXZn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PHEgXpn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PEiwxZn6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComonentWithoutAnnotations" outgoingEdges="_PHhMQJn6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -2440,36 +2445,36 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PH0uQJn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PH0uQZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PH0uRJn6Eeeq0d2p6xwmTg" name="TransformationA">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PH0uRZn6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PH0uQpn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PH0uQ5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PH0uRpn6Eeeq0d2p6xwmTg" name="TransformationB">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PH0uR5n6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ioZylGjREeegN5on4EwZjA"/>
@@ -2516,36 +2521,36 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PIQzIJn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PIQzIZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PIQzJJn6Eeeq0d2p6xwmTg" name="TransformationA">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PIQzJZn6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PIQzIpn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PIQzI5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PIQzJpn6Eeeq0d2p6xwmTg" name="TransformationB">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PIQzJ5n6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_iojjlGjREeegN5on4EwZjA"/>
@@ -2909,36 +2914,36 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PItfEJn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PItfEZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PItfFJn6Eeeq0d2p6xwmTg" name="TransformationA">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PItfFZn6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PItfEpn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PItfE5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PItfFpn6Eeeq0d2p6xwmTg" name="TransformationB">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PItfF5n6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PItfGJn6Eeeq0d2p6xwmTg" name="&lt;&lt;Interface>>&#xA;Interface1" incomingEdges="_PJZbkJn6Eeeq0d2p6xwmTg" width="20" height="10">
       <target xmi:type="repository:OperationInterface" href="palladio/repository.repository#_LtcnoGFbEeetxOZObiabqg"/>
@@ -3044,28 +3049,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI3QJZn6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PI3QJpn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PI3QJ5n6Eeeq0d2p6xwmTg" name="Target4Optional">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PI3QKJn6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI8voJn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI8voJn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PI8voZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PI3QFZn6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComponentTgtMandatory" outgoingEdges="_PJZbk5n6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -3124,28 +3129,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI8vrpn6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PI8vr5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PI8vsJn6Eeeq0d2p6xwmTg" name="Target4Mandatory">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PI8vsZn6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI8vspn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PI8vspn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PI8vs5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PI3QF5n6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComonentWithoutAnnotations" outgoingEdges="_PJZblpn6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -3602,36 +3607,36 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJsWgJn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJsWgZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PJsWhJn6Eeeq0d2p6xwmTg" name="TransformationA">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PJsWhZn6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJsWgpn6Eeeq0d2p6xwmTg" name="Transformation">
-      <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-      <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJsWg5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PJsWhpn6Eeeq0d2p6xwmTg" name="TransformationB">
-        <target xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
-        <semanticElements xmi:type="TransformationModel:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_PJsWh5n6Eeeq0d2p6xwmTg" labelPosition="node" color="209,209,209">
           <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']/@containerMappings[name='Transformation%20Container']/@subNodeMappings[name='Transformation%20Node']"/>
+        <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+        <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
       </ownedElements>
+      <target xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
+      <semanticElements xmi:type="TransformationModel_1.0.0:AdapterTransformation" href="peropteryx/transform.transformationmodel#//@transformation.1"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJsWiJn6Eeeq0d2p6xwmTg" name="&lt;&lt;Interface>>&#xA;Interface1" incomingEdges="_PKJCc5n6Eeeq0d2p6xwmTg" width="20" height="10">
       <target xmi:type="repository:OperationInterface" href="palladio/repository.repository#_LtcnoGFbEeetxOZObiabqg"/>
@@ -3737,28 +3742,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ2HjJn6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJ2HjZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PJ2Hjpn6Eeeq0d2p6xwmTg" name="Target4Optional">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PJ2Hj5n6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ2HkJn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ2HkJn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJ2HkZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.0"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PJsWlpn6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComponentTgtMandatory" outgoingEdges="_PKJCdpn6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -3817,28 +3822,28 @@
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='ResourceRequiredRoles']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ2Hnpn6Eeeq0d2p6xwmTg" name="Annotations">
-        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
-        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJ2Hn5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_PJ_RcJn6Eeeq0d2p6xwmTg" name="Target4Mandatory">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_PJ_RcZn6Eeeq0d2p6xwmTg" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" labelPosition="node" color="255,255,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Annotation%20Container']/@subNodeMappings[name='Applied%20Annotation%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
         </ownedElements>
-      </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ_Rcpn6Eeeq0d2p6xwmTg" name="Solutions">
         <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
         <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PJ_Rcpn6Eeeq0d2p6xwmTg" name="Solutions">
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PJ_Rc5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer/@containerMappings[name='BasicComponent']/@subContainerMappings[name='StereotypeApplication%20Solution%20Container']"/>
+        <target xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
+        <semanticElements xmi:type="ConcernAnnotationProfile:Annotation" href="palladio/repository.repository#/1/@stereotypeApplications.1"/>
       </ownedDiagramElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_PJsWmJn6Eeeq0d2p6xwmTg" name="&lt;&lt;BasicComponent>>&#xA;ComonentWithoutAnnotations" outgoingEdges="_PKJCeZn6Eeeq0d2p6xwmTg" childrenPresentation="VerticalStack">
@@ -3963,17 +3968,17 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_C3WQkJn5EeeNTJ4Nfc4D1Q" name="ExampleConcern" width="14" height="6" resizeKind="NSEW">
-      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       <ownedStyle xmi:type="diagram:Square" xmi:id="_C3WQkZn5EeeNTJ4Nfc4D1Q" labelPosition="node" width="14" height="6" color="209,209,209">
         <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']"/>
+      <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+      <semanticElements xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ovm-iHiBEeeRzZ_keTeuDw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer"/>
-    <target xmi:type="Concern:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
+    <target xmi:type="ConcernModel_1.0.1:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram xmi:id="_oycQEXiBEeeRzZ_keTeuDw" name="Concern Detail Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_oycQEniBEeeRzZ_keTeuDw" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -4091,47 +4096,43 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_C3YFwJn5EeeNTJ4Nfc4D1Q" name="ExampleConcern">
-      <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
-      <semanticElements xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_C3YFwZn5EeeNTJ4Nfc4D1Q" borderSize="1" borderSizeComputationExpression="1" backgroundColor="209,209,209">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']"/>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_C3YFwpn5EeeNTJ4Nfc4D1Q" name="Target_A_Req">
-        <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
-        <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_C3h2wJn5EeeNTJ4Nfc4D1Q" iconPath="/concernmodeleditor.design/icons/target-icon.png" borderSize="1" borderSizeComputationExpression="1" backgroundColor="194,239,255" foregroundColor="194,239,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_C3pLgJn5EeeNTJ4Nfc4D1Q" name="Max Amount = 1">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_C3vSIJn5EeeNTJ4Nfc4D1Q" showIcon="false" labelPosition="node" width="8" height="3" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
         </ownedElements>
+        <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
+        <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.0"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_C3h2wZn5EeeNTJ4Nfc4D1Q" name="Target_B_Prov">
-        <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
-        <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
         <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_C3h2wpn5EeeNTJ4Nfc4D1Q" iconPath="/concernmodeleditor.design/icons/target-icon.png" borderSize="1" borderSizeComputationExpression="1" backgroundColor="194,239,255" foregroundColor="194,239,255">
           <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']"/>
         <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_C3vSIZn5EeeNTJ4Nfc4D1Q" name="Max Amount = 1">
-          <target xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
-          <semanticElements xmi:type="Concern:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_C3v5MJn5EeeNTJ4Nfc4D1Q" showIcon="false" labelPosition="node" width="8" height="3" color="194,239,255">
             <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']/@subNodeMappings[name='Annotation%20Target%20Node']"/>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
         </ownedElements>
+        <target xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
+        <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationTarget" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@annotationtarget.1"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_C3v5MZn5EeeNTJ4Nfc4D1Q" name="ECCA" outgoingEdges="_C4L-EJn5EeeNTJ4Nfc4D1Q">
-        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
-        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -4140,25 +4141,25 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']"/>
         <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_C3wgQJn5EeeNTJ4Nfc4D1Q" name="Enrich_ECCA_(ReqB)">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
           <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_C3wgQZn5EeeNTJ4Nfc4D1Q" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif" borderSize="1" borderSizeComputationExpression="1">
             <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']"/>
           <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_C31_0Jn5EeeNTJ4Nfc4D1Q" name="Max Amount = 1">
-            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
-            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
             <ownedStyle xmi:type="diagram:Square" xmi:id="_C38GcJn5EeeNTJ4Nfc4D1Q" showIcon="false" labelPosition="node" width="8" height="3" color="255,255,255">
               <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']"/>
+            <target xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+            <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
           </ownedElements>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0/@annotationenrich.0"/>
         </ownedDiagramElements>
+        <target xmi:type="ConcernModel_1.0.1:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
+        <semanticElements xmi:type="ConcernModel_1.0.1:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_C3v5M5n5EeeNTJ4Nfc4D1Q" name="ECCB" incomingEdges="_C4L-EJn5EeeNTJ4Nfc4D1Q">
-        <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
-        <semanticElements xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -4167,8 +4168,6 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']"/>
         <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_C38tgJn5EeeNTJ4Nfc4D1Q" name="Enrich_ECCB">
-          <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-          <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
           <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
           <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
           <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -4177,36 +4176,42 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']"/>
           <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_C39UkJn5EeeNTJ4Nfc4D1Q" name="Max Amount = 1">
-            <target xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
-            <semanticElements xmi:type="Concern:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
             <ownedStyle xmi:type="diagram:Square" xmi:id="_C39UkZn5EeeNTJ4Nfc4D1Q" showIcon="false" labelPosition="node" width="8" height="3" color="255,255,255">
               <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']/@style"/>
             </ownedStyle>
             <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']/@subNodeMappings[name='Annotation%20Enrich%20Node']"/>
+            <target xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+            <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
           </ownedElements>
+          <target xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
+          <semanticElements xmi:type="ConcernModel_1.0.1:AnnotationEnrich" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1/@annotationenrich.0"/>
         </ownedDiagramElements>
+        <target xmi:type="ConcernModel_1.0.1:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
+        <semanticElements xmi:type="ConcernModel_1.0.1:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.1"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNode" xmi:id="_C397oJn5EeeNTJ4Nfc4D1Q" name="StrategyExample" width="8" height="3" resizeKind="NSEW">
-        <target xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
-        <semanticElements xmi:type="Concern:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
         <ownedStyle xmi:type="diagram:Square" xmi:id="_C4F3cJn5EeeNTJ4Nfc4D1Q" iconPath="/concernmodeleditor.design/icons/strategy-icon.png" labelPosition="node" width="8" height="3" color="246,139,139">
           <description xmi:type="style:SquareDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subNodeMappings[name='Concern%20Strategy%20Node']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subNodeMappings[name='Concern%20Strategy%20Node']"/>
+        <target xmi:type="ConcernModel_1.0.1:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
+        <semanticElements xmi:type="ConcernModel_1.0.1:ConcernStrategy" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@strategies.0"/>
       </ownedDiagramElements>
+      <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+      <semanticElements xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_C4L-EJn5EeeNTJ4Nfc4D1Q" name="requires" sourceNode="_C3v5MZn5EeeNTJ4Nfc4D1Q" targetNode="_C3v5M5n5EeeNTJ4Nfc4D1Q">
-      <target xmi:type="Concern:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_C4L-EZn5EeeNTJ4Nfc4D1Q" size="2" centered="Both" strokeColor="224,133,3">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@edgeMappings[name='Elementary%20Concern%20Requirement%20Edge']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_C4L-Epn5EeeNTJ4Nfc4D1Q" showIcon="false" labelColor="224,133,3"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@edgeMappings[name='Elementary%20Concern%20Requirement%20Edge']"/>
+      <target xmi:type="ConcernModel_1.0.1:ElementaryConcernComponent" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0/@components.0"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_oycQJ3iBEeeRzZ_keTeuDw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer"/>
-    <target xmi:type="Concern:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
+    <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram xmi:id="_Tc3AsJYcEeerrOENfAvrGw" name="Feature Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Tc3AsZYcEeerrOENfAvrGw" source="DANNOTATION_CUSTOMIZATION_KEY">

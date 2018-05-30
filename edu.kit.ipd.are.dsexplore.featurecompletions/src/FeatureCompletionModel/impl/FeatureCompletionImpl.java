@@ -2,6 +2,7 @@
  */
 package FeatureCompletionModel.impl;
 
+import FeatureCompletionModel.ArchitectureConstraints;
 import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link FeatureCompletionModel.impl.FeatureCompletionImpl#getFeatureObjectives <em>Feature Objectives</em>}</li>
  *   <li>{@link FeatureCompletionModel.impl.FeatureCompletionImpl#getCompletionComponents <em>Completion Components</em>}</li>
  *   <li>{@link FeatureCompletionModel.impl.FeatureCompletionImpl#getComplementa <em>Complementa</em>}</li>
+ *   <li>{@link FeatureCompletionModel.impl.FeatureCompletionImpl#getArchitectureConstraints <em>Architecture Constraints</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,7 +60,7 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList completionComponents;
+	protected EList<CompletionComponent> completionComponents;
 
 	/**
 	 * The cached value of the '{@link #getComplementa() <em>Complementa</em>}' containment reference list.
@@ -68,7 +70,17 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList complementa;
+	protected EList<Complementum> complementa;
+
+	/**
+	 * The cached value of the '{@link #getArchitectureConstraints() <em>Architecture Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArchitectureConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ArchitectureConstraints> architectureConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,6 +96,7 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return FeatureCompletionPackage.Literals.FEATURE_COMPLETION;
 	}
@@ -131,9 +144,9 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCompletionComponents() {
+	public EList<CompletionComponent> getCompletionComponents() {
 		if (completionComponents == null) {
-			completionComponents = new EObjectContainmentEList(CompletionComponent.class, this, FeatureCompletionPackage.FEATURE_COMPLETION__COMPLETION_COMPONENTS);
+			completionComponents = new EObjectContainmentEList<CompletionComponent>(CompletionComponent.class, this, FeatureCompletionPackage.FEATURE_COMPLETION__COMPLETION_COMPONENTS);
 		}
 		return completionComponents;
 	}
@@ -143,9 +156,9 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getComplementa() {
+	public EList<Complementum> getComplementa() {
 		if (complementa == null) {
-			complementa = new EObjectContainmentEList(Complementum.class, this, FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA);
+			complementa = new EObjectContainmentEList<Complementum>(Complementum.class, this, FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA);
 		}
 		return complementa;
 	}
@@ -155,12 +168,27 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ArchitectureConstraints> getArchitectureConstraints() {
+		if (architectureConstraints == null) {
+			architectureConstraints = new EObjectContainmentEList<ArchitectureConstraints>(ArchitectureConstraints.class, this, FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS);
+		}
+		return architectureConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLETION_COMPONENTS:
-				return ((InternalEList)getCompletionComponents()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getCompletionComponents()).basicRemove(otherEnd, msgs);
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
-				return ((InternalEList)getComplementa()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getComplementa()).basicRemove(otherEnd, msgs);
+			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
+				return ((InternalEList<?>)getArchitectureConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,6 +198,7 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION__FEATURE_OBJECTIVES:
@@ -179,6 +208,8 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 				return getCompletionComponents();
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
 				return getComplementa();
+			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
+				return getArchitectureConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,6 +219,8 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION__FEATURE_OBJECTIVES:
@@ -195,11 +228,15 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 				return;
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLETION_COMPONENTS:
 				getCompletionComponents().clear();
-				getCompletionComponents().addAll((Collection)newValue);
+				getCompletionComponents().addAll((Collection<? extends CompletionComponent>)newValue);
 				return;
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
 				getComplementa().clear();
-				getComplementa().addAll((Collection)newValue);
+				getComplementa().addAll((Collection<? extends Complementum>)newValue);
+				return;
+			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
+				getArchitectureConstraints().clear();
+				getArchitectureConstraints().addAll((Collection<? extends ArchitectureConstraints>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -210,6 +247,7 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION__FEATURE_OBJECTIVES:
@@ -221,6 +259,9 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
 				getComplementa().clear();
 				return;
+			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
+				getArchitectureConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,6 +271,7 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case FeatureCompletionPackage.FEATURE_COMPLETION__FEATURE_OBJECTIVES:
@@ -238,6 +280,8 @@ public class FeatureCompletionImpl extends DescribedElementImpl implements Featu
 				return completionComponents != null && !completionComponents.isEmpty();
 			case FeatureCompletionPackage.FEATURE_COMPLETION__COMPLEMENTA:
 				return complementa != null && !complementa.isEmpty();
+			case FeatureCompletionPackage.FEATURE_COMPLETION__ARCHITECTURE_CONSTRAINTS:
+				return architectureConstraints != null && !architectureConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

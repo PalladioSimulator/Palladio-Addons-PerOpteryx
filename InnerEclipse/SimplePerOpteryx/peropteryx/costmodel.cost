@@ -9,4 +9,28 @@
   <cost xsi:type="cost:ComponentCost" componentInitialCost="4.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="../palladio/repository.repository#_vMFqgGFbEeetxOZObiabqg"/>
   </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionB.repository#_7TQKYJpjEeeEPdMZenYK9Q"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="420000.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionB.repository#_5hV18JplEee_CIQQKJtzCQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionA.repository#_JHQmgJmYEeeDvYNI8KVQWQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="20.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionA.repository#_UUrhMJmYEeeDvYNI8KVQWQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionB.repository#_7TQKYJpjEeeEPdMZenYK9Q"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="420000.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionB.repository#_5hV18JplEee_CIQQKJtzCQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionA.repository#_JHQmgJmYEeeDvYNI8KVQWQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="20.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="solutions/solutionA.repository#_UUrhMJmYEeeDvYNI8KVQWQ"/>
+  </cost>
 </cost:CostRepository>

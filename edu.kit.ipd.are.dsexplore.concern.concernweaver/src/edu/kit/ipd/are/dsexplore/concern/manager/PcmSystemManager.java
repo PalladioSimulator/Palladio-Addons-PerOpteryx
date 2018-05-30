@@ -21,8 +21,8 @@ import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 import org.palladiosimulator.pcm.system.System;
 
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.ConcernWeaverUtil;
-import edu.kit.ipd.are.dsexplore.concern.util.EcoreReferenceResolver;
 import edu.kit.ipd.are.dsexplore.concern.util.Pair;
 
 /**
@@ -157,22 +157,16 @@ public class PcmSystemManager {
 	public List<AssemblyContext> getAssemblyContextsInstantiating(RepositoryComponent component) {
 		List<AssemblyContext> result = new ArrayList<>();
 		for (AssemblyContext ac : this.getAllAssemblyContexts()) {
-			if (this.assemblyContextsInstantiating(component).test(ac)) {
+			RepositoryComponent ec = ac.getEncapsulatedComponent__AssemblyContext();
+			if (ConcernWeaverUtil.areEqual(ec, component)) {
 				result.add(ac);
 			}
 		}
 		return result;
-		// return
-		// this.getAllAssemblyContexts().filter(this.assemblyContextsInstantiating(component)).collect(Collectors.toList());
-
 	}
 
 	private List<AssemblyContext> getAllAssemblyContexts() {
 		return this.system.getAssemblyContexts__ComposedStructure();
-	}
-
-	private Predicate<AssemblyContext> assemblyContextsInstantiating(RepositoryComponent component) {
-		return assContext -> ConcernWeaverUtil.areEqual(assContext.getEncapsulatedComponent__AssemblyContext(), component);
 	}
 
 	/**
@@ -325,8 +319,6 @@ public class PcmSystemManager {
 			result.add(ac);
 		}
 		return result;
-		// return components.stream().map(eachComponent ->
-		// this.createAssemblyContextOf(eachComponent)).collect(Collectors.toList());
 	}
 
 	/**

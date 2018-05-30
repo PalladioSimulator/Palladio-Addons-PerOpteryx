@@ -4,10 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.concernStrategy.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: concernStrategy.presentation.ConcernStrategyEditorPlugin$Implementation
+Bundle-Activator: strategyConfig.presentation.ConcernStrategyEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: concernStrategy.presentation
+Export-Package: concernStrategy.presentation,
+ strategyConfig.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  edu.kit.ipd.are.dsexplore.concernStrategy.edit;visibility:=reexport,
