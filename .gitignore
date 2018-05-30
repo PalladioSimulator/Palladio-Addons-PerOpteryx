@@ -1,68 +1,88 @@
-*.aird
-
-# Java #
+# Java
+.mtj.tmp/
 *.class
+*.ctxt
+*.ear
+*.jar
+*.log
+*.nar
+*.rar
+*.tar.gz
+*.war
+*.zip
+hs_err_pid*
 
-###Eclipse###
-
-*.pydevproject
-.metadata
-.gradle
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
-# sbteclipse plugin
-.target
-
-# TeXlipse plugin
-.texlipse
-
-
-###OSX###
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-### Xtext ###
+# Xtext
+*.xtendbin
 src-gen/
 xtend-gen/
-*.xtendbin
+
+# Palladio
 org.palladiosimulator.temporary/
 PerOpteryx_results/
-InnerEclipse/IDS/BRS/PerOpteryx_results/
+
+# Eclipse 
+.autotools
+.buildpath
+.cache-main
+.cproject
+.externalToolBuilders/
+.factorypath
+.gradle
+.loadpath
+.metadata
+.recommenders
+.recommenders/
+.scala_dependencies
+.settings/
+.springBeans
+.target
+.tern-project
+.texlipse
+.worksheet
+*.bak
+*.launch
+*.pydevproject
+*.swp
+*.tmp
+*~.nib
+bin/
+local.properties
+tmp/
+
+# macOS
+._*
+.apdisk
+.AppleDB
+.AppleDesktop
+.AppleDouble
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
+.DS_Store
+.fseventsd
+.LSOverride
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Linux
+.directory
+.fuse_hidden*
+.nfs*
+.Trash-*
+*~
+
+# Windows
+[Dd]esktop.ini
+*.cab
+*.lnk
+*.msi
+*.msix
+*.msm
+*.msp
+*.stackdump
+$RECYCLE.BIN/
+ehthumbs_vista.db
+ehthumbs.db
+Thumbs.db
