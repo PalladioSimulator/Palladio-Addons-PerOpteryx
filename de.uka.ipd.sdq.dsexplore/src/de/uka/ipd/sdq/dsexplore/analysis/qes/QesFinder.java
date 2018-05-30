@@ -166,9 +166,10 @@ public class QesFinder {
             }
             for (final Stereotype stereotype : StereotypeAPI.getAppliedStereotypes(component)) {
                 for (final EObject refs : stereotype.eCrossReferences()) {
-                    if ((refs instanceof ConcernModel.Annotation) && QesHelper.equalsIgnoreCase(
-                            ((ConcernModel.Annotation) refs).getName(), annotation.isNot(),
-                            annotation.getAnnotation())) {
+                    if ((refs instanceof FeatureCompletionModel.ComplementumVisnetis)
+                            && QesHelper.equalsIgnoreCase(
+                                    ((FeatureCompletionModel.ComplementumVisnetis) refs).getName(),
+                                    annotation.isNot(), annotation.getAnnotation())) {
                         effectedComponents.add(component.getId());
                     }
                 }

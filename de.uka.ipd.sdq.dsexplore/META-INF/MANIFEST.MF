@@ -29,7 +29,8 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  org.palladiosimulator.pcm,
  edu.kit.ipd.are.dsexplore.concernStrategy;bundle-version="1.0.0",
  org.palladiosimulator.qes;bundle-version="1.0.0",
- org.eclipse.xtext
+ org.eclipse.xtext,
+ edu.kit.ipd.are.dsexplore.featurecompletions
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
