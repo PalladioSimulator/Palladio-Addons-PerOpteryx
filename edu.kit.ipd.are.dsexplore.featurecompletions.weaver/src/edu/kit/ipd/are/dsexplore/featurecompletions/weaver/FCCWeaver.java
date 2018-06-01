@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -75,8 +76,7 @@ public final class FCCWeaver {
 
 	public PCMInstance getWeavedInstance(PCMInstance original) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(original);
-
-		List<WeavingInstruction> instructions = this.determineInstructions(original);
+		List<WeavingInstruction> instructions = this.determineInstructions(original, locations);
 
 		return original;
 	}
@@ -86,14 +86,21 @@ public final class FCCWeaver {
 		System pcmSystem = original.getSystem();
 		List<Pair<AssemblyConnector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
 		for (Pair<AssemblyConnector, ComplementumVisnetis> connector : availableCVs) {
-			WeavingLocation location = LocationExtractor.extractLocation(connector, original);
-			result.add(Pair.of(connector.second, location));
+			List<WeavingLocation> location = LocationExtractor.extractLocation(connector, original);
+			result.addAll(this.getPairs(connector, location));
 		}
-
 		return result;
 	}
 
-	private List<WeavingInstruction> determineInstructions(PCMInstance original) {
+	private Collection<? extends Pair<ComplementumVisnetis, WeavingLocation>> getPairs(Pair<AssemblyConnector, ComplementumVisnetis> connector, List<WeavingLocation> locations) {
+		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
+		for (WeavingLocation location : locations) {
+			result.add(Pair.of(connector.second, location));
+		}
+		return result;
+	}
+
+	private List<WeavingInstruction> determineInstructions(PCMInstance original, List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
 		System pcmSystem = original.getSystem();
 		List<Pair<AssemblyConnector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
 		List<Pair<Entity, ComplementumVisnetis>> providedCVs = this.extractProvidedCVs();
