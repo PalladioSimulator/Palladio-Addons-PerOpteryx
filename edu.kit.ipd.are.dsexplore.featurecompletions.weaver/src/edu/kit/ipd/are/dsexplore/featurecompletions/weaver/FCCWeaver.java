@@ -3,10 +3,8 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.BiFunction;
 
-import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -21,11 +19,8 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
-import FeatureCompletionModel.FeatureCompletionFactory;
 import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
-import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
-import de.uka.ipd.sdq.dsexplore.opt4j.representation.ConcernRepository;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
@@ -47,13 +42,31 @@ public final class FCCWeaver {
 
 	private final MergedRepository mergedRepo;
 	private final IWeavingStrategy strategy;
+	private final InclusionMechanism im;
 	private final FeatureCompletion fc;
 
 	public FCCWeaver(PCMResourceSetPartition initialPartition, PCMInstance pcm, MergedRepository solutions, CostRepository costModel) {
 		this.mergedRepo = solutions;
-		this.strategy = this.determineStrategy(solutions).apply(pcm, solutions);
+		this.im = this.determineIM(solutions);
+		this.strategy = this.determineStrategy().apply(pcm, solutions);
 		this.fc = this.determineFC(initialPartition);
 
+	}
+
+	private InclusionMechanism determineIM(MergedRepository solutions) {
+		InclusionMechanism meachanism = null;
+		for (Repository repo : solutions) {
+			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
+			if (meachanisms.size() != 0) {
+				continue;
+			}
+			if (meachanism == null) {
+				meachanism = meachanisms.get(0);
+			} else if (!meachanism.getId().equals(meachanisms.get(0).getId())) {
+				throw new FCCWeaverException("Multiple InclusionMechanisms are not supported yet.");
+			}
+		}
+		return meachanism;
 	}
 
 	private FeatureCompletion determineFC(PCMResourceSetPartition initialPartition) {
@@ -70,23 +83,10 @@ public final class FCCWeaver {
 		return fcl.get(0);
 	}
 
-	private BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> determineStrategy(MergedRepository solutions) {
-		InclusionMechanism meachanism = null;
-		for (Repository repo : solutions) {
-			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
-			if (meachanisms.size() != 0) {
-				continue;
-			}
-			if (meachanism == null) {
-				meachanism = meachanisms.get(0);
-			} else if (!meachanism.getId().equals(meachanisms.get(0).getId())) {
-				throw new FCCWeaverException("Multiple InclusionMechanisms are not supported yet.");
-			}
-		}
-
-		BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy = WeavingStrategies.getStrategy(meachanism);
+	private BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> determineStrategy() {
+		BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy = WeavingStrategies.getStrategy(this.im);
 		if (strategy == null) {
-			throw new FCCWeaverException("No Strategy found for " + meachanism);
+			throw new FCCWeaverException("No Strategy found for " + this.im);
 		}
 		return strategy;
 	}
@@ -128,10 +128,10 @@ public final class FCCWeaver {
 	private List<WeavingInstruction> determineInstructions(PCMInstance original, List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
 		System pcmSystem = original.getSystem();
 		List<Pair<Entity, ComplementumVisnetis>> providedCVs = this.extractProvidedCVs();
-		InstructionGenerator ig = new InstructionGenerator(this.fc)
+		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, this.fcch, original);
 		List<WeavingInstruction> instructions = new ArrayList<>();
 		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
-			instructions.add(InstructionGenerator.generate(targetLoc));
+			instructions.add(ig.generate(targetLoc));
 		}
 		// this.applyOptionalAsDegree(optChoice, instructions);
 		return instructions;
