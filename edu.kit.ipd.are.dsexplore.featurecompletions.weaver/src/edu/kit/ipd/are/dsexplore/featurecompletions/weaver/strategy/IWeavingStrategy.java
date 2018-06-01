@@ -1,5 +1,9 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
+import java.util.List;
+
+import FeatureCompletionModel.ComplementumVisnetis;
+import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
@@ -12,6 +16,8 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  *
  */
 public interface IWeavingStrategy {
+
+	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations);
 
 	/**
 	 * Weaves an adapter into the PCM repository.

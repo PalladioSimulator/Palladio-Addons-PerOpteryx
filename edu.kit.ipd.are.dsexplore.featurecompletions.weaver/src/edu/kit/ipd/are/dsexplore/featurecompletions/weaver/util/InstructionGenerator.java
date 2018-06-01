@@ -26,15 +26,15 @@ public final class InstructionGenerator {
 	private final FeatureCompletion fc;
 	private final InclusionMechanism im;
 
-	private final FCCFeatureHandler fcch;
+	private final FCCFeatureHandler fccfh;
 	private final PCMInstance pcm;
 
 	private final Map<CompletionComponent, ResourceContainer> fccToResourceContainerMap = new HashMap<>();
 
-	public InstructionGenerator(FeatureCompletion fc, InclusionMechanism im, FCCFeatureHandler fcch, PCMInstance pcm) {
+	public InstructionGenerator(FeatureCompletion fc, InclusionMechanism im, FCCFeatureHandler fccfh, PCMInstance pcm) {
 		this.fc = fc;
 		this.im = im;
-		this.fcch = fcch;
+		this.fccfh = fccfh;
 		this.pcm = pcm;
 	}
 
@@ -57,7 +57,7 @@ public final class InstructionGenerator {
 
 	private Pair<CompletionComponent, List<ProvidedRole>> getFCCWithRequiredFeaturesFrom(ComplementumVisnetis cv) {
 		CompletionComponent fcc = this.getFCCByVisnetis(cv);
-		return Pair.of(fcc, this.fcch.getProvidedFeaturesOf(fcc));
+		return Pair.of(fcc, this.fccfh.getProvidedFeaturesOf(fcc));
 	}
 
 	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl) throws FCCWeaverException {

@@ -3,17 +3,11 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.BiFunction;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -28,10 +22,8 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
 import featureSolution.InclusionMechanism;
 
@@ -48,8 +40,8 @@ public final class FCCWeaver {
 	public FCCWeaver(PCMResourceSetPartition initialPartition, PCMInstance pcm, MergedRepository solutions, CostRepository costModel) {
 		this.mergedRepo = solutions;
 		this.im = this.determineIM(solutions);
-		this.strategy = this.determineStrategy().apply(pcm, solutions);
 		this.fc = this.determineFC(initialPartition);
+		this.strategy = this.determineStrategy().create(pcm, solutions, this.fc, this.im);
 
 	}
 
@@ -83,8 +75,8 @@ public final class FCCWeaver {
 		return fcl.get(0);
 	}
 
-	private BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> determineStrategy() {
-		BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> strategy = WeavingStrategies.getStrategy(this.im);
+	private WeavingStrategies.Constructor determineStrategy() {
+		WeavingStrategies.Constructor strategy = WeavingStrategies.getStrategy(this.im);
 		if (strategy == null) {
 			throw new FCCWeaverException("No Strategy found for " + this.im);
 		}
@@ -101,7 +93,7 @@ public final class FCCWeaver {
 
 	public PCMInstance getWeavedInstance(PCMInstance original) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(original);
-		List<WeavingInstruction> instructions = this.determineInstructions(original, locations);
+		this.strategy.initialize(locations);
 
 		return original;
 	}
@@ -125,19 +117,6 @@ public final class FCCWeaver {
 		return result;
 	}
 
-	private List<WeavingInstruction> determineInstructions(PCMInstance original, List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
-		System pcmSystem = original.getSystem();
-		List<Pair<Entity, ComplementumVisnetis>> providedCVs = this.extractProvidedCVs();
-		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, this.fcch, original);
-		List<WeavingInstruction> instructions = new ArrayList<>();
-		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
-			instructions.add(ig.generate(targetLoc));
-		}
-		// this.applyOptionalAsDegree(optChoice, instructions);
-		return instructions;
-
-	}
-
 	private List<Pair<AssemblyConnector, ComplementumVisnetis>> extractAvailableCVs(System pcmSystem) {
 		List<Pair<AssemblyConnector, ComplementumVisnetis>> result = new ArrayList<>();
 
@@ -147,38 +126,6 @@ public final class FCCWeaver {
 				continue;
 			}
 			result.add(Pair.of((AssemblyConnector) c, cv.get(0)));
-		}
-
-		return result;
-	}
-
-	private List<Pair<Entity, ComplementumVisnetis>> extractProvidedCVs() {
-		List<Pair<Entity, ComplementumVisnetis>> result = new ArrayList<>();
-
-		for (Repository pcmRepo : this.mergedRepo) {
-			for (RepositoryComponent rc : pcmRepo.getComponents__Repository()) {
-				List<ComplementumVisnetis> cvsRc = StereotypeAPIHelper.getViaStereoTypeFrom(rc, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-				for (ComplementumVisnetis cv : cvsRc) {
-					result.add(Pair.of(rc, cv));
-				}
-			}
-			for (Interface iface : pcmRepo.getInterfaces__Repository()) {
-				if (!(iface instanceof OperationInterface)) {
-					continue;
-				}
-				OperationInterface opIface = (OperationInterface) iface;
-				List<ComplementumVisnetis> cvsIface = StereotypeAPIHelper.getViaStereoTypeFrom(opIface, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-				for (ComplementumVisnetis cv : cvsIface) {
-					result.add(Pair.of(opIface, cv));
-				}
-
-				for (OperationSignature opSig : opIface.getSignatures__OperationInterface()) {
-					List<ComplementumVisnetis> cvsSig = StereotypeAPIHelper.getViaStereoTypeFrom(opSig, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-					for (ComplementumVisnetis cv : cvsSig) {
-						result.add(Pair.of(opSig, cv));
-					}
-				}
-			}
 		}
 
 		return result;
