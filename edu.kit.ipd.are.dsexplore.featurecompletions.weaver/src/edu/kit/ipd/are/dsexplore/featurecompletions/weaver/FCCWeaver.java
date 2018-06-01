@@ -3,8 +3,10 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -20,6 +22,10 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionFactory;
+import FeatureCompletionModel.FeatureCompletionPackage;
+import FeatureCompletionModel.FeatureCompletionRepository;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.ConcernRepository;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
@@ -51,13 +57,17 @@ public final class FCCWeaver {
 	}
 
 	private FeatureCompletion determineFC(PCMResourceSetPartition initialPartition) {
-		// TODO DTHF1: Get FC
-
-		for (Repository repo : initialPartition.getRepositories()) {
-
+		List<FeatureCompletionRepository> fcrs = initialPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
+		if (fcrs == null || fcrs.size() != 1) {
+			return null;
 		}
 
-		return null;
+		FeatureCompletionRepository fcr = fcrs.get(0);
+		List<FeatureCompletion> fcl = fcr.getFeatureCompletions();
+		if (fcl == null || fcl.size() != 1) {
+			return null;
+		}
+		return fcl.get(0);
 	}
 
 	private BiFunction<PCMInstance, MergedRepository, IWeavingStrategy> determineStrategy(MergedRepository solutions) {
