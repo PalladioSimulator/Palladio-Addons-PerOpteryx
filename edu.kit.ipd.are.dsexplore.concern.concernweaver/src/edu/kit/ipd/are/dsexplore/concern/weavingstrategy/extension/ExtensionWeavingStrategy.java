@@ -6,8 +6,16 @@ import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.concern.concernweaver.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.concern.exception.ConcernWeavingException;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.IWeavingStrategy;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterAllocationWeaving;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterUsageModelWeaving;
 import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterWeaving;
+import edu.kit.ipd.are.dsexplore.concern.weavingstrategy.adapter.AdapterWeavingFactory;
 
+/**
+ * Taken from AdapterWeavingStrategy //TODO adopt for Extension Mechanism
+ * @author Maximilian Eckert (maxieckert@web.de)
+ *
+ */
 public class ExtensionWeavingStrategy implements IWeavingStrategy {
 	
 	/**
@@ -22,36 +30,36 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy {
 	public ExtensionWeavingStrategy(PCMInstance pcmToAdapt, MergedRepository mergedRepo) {
 		System.out.println("-------------- ExtensionWeavingStrategy called ------------------");
 		
-		//AdapterWeaving.setManagersWith(pcmToAdapt, mergedRepo);
+		ExtensionWeaving.setManagersWith(pcmToAdapt, mergedRepo);
 	}
 
 	@Override
 	public void weaveRepository(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		// TODO Auto-generated method stub
+		ExtensionWeavingFactory.getExtensionRepositoryWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
 
 	}
 
 	@Override
 	public void weaveAssembly(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		// TODO Auto-generated method stub
+		ExtensionWeavingFactory.getExtensionAssemblyWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
 
 	}
 
 	@Override
 	public void weaveAllocation(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		// TODO Auto-generated method stub
+		new ExtensionAllocationWeaving().weave(weavingInstruction);
 
 	}
 
 	@Override
 	public void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		// TODO Auto-generated method stub
+		ExtensionWeavingFactory.getExtensionSeffWeaverBy(weavingInstruction.getWeavingLocation()).weave(weavingInstruction);
 
 	}
 
 	@Override
 	public void weaveUsageModel(WeavingInstruction weavingInstruction) throws ConcernWeavingException {
-		// TODO Auto-generated method stub
+		new ExtensionUsageModelWeaving().weave(weavingInstruction);
 
 	}
 
