@@ -141,7 +141,7 @@ public class FCCProblemExtension implements IProblemExtension {
 			return;
 		}
 
-		this.weaver.set(new FCCWeaver(initialPartition, this.initialInstance, merged, costModel));
+		this.weaver.set(new FCCWeaver(initialPartition, merged, costModel));
 
 	}
 
