@@ -50,32 +50,28 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	}
 
 	@Override
-	public void weaveRepository(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		// TODO Auto-generated method stub
+	public void weave() throws FCCWeaverException {
+		/*
+		 * this.weavingChain.add(new RepositoryWeaver());
+		 * this.weavingChain.add(new AssemblyWeaver());
+		 * this.weavingChain.add(new AllocationWeaver());
+		 * this.weavingChain.add(new ServiceEffectSpecificationWeaver());
+		 * this.weavingChain.add(new UsageModelWeaver());
+		 */
+		AllocationWeaving alw = new AllocationWeaving(this);
+		UsageModelWeaving umw = new UsageModelWeaving(this);
+		for (WeavingInstruction instruction : this.instructions) {
+			RepositoryWeaving rw = AdapterWeavingFactory.getAdapterRepositoryWeaverBy(instruction.getWeavingLocation()).apply(this);
+			AssemblyWeaving asw = AdapterWeavingFactory.getAdapterAssemblyWeaverBy(instruction.getWeavingLocation()).apply(this);
+			ServiceEffectSpecificationWeaving sew = AdapterWeavingFactory.getAdapterSeffWeaverBy(instruction.getWeavingLocation()).apply(this);
 
-	}
-
-	@Override
-	public void weaveAssembly(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void weaveAllocation(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void weaveUsageModel(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		// TODO Auto-generated method stub
+			// Weave it ..
+			rw.weave(instruction);
+			asw.weave(instruction);
+			alw.weave(instruction);
+			sew.weave(instruction);
+			umw.weave(instruction);
+		}
 
 	}
 
@@ -146,11 +142,12 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	}
 
 	///////////////////// INITIALIZE //////////////////////////
+	private List<WeavingInstruction> instructions;
 
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
 		List<WeavingInstruction> instructions = this.determineInstructions(locations);
-
+		this.instructions = instructions;
 	}
 
 	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {

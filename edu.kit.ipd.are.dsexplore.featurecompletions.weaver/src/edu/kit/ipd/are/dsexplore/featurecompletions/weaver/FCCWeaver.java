@@ -24,6 +24,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies.Constructor;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
 import featureSolution.InclusionMechanism;
 
@@ -33,15 +34,15 @@ public final class FCCWeaver {
 	public final static String CONCERN_REPSITORY_DESCRIPTION = "Include components of all reused concerns.";
 
 	private final MergedRepository mergedRepo;
-	private final IWeavingStrategy strategy;
+	private final Constructor strategy;
 	private final InclusionMechanism im;
 	private final FeatureCompletion fc;
 
-	public FCCWeaver(PCMResourceSetPartition initialPartition, PCMInstance pcm, MergedRepository solutions, CostRepository costModel) {
+	public FCCWeaver(PCMResourceSetPartition initialPartition, MergedRepository solutions, CostRepository costModel) {
 		this.mergedRepo = solutions;
 		this.im = this.determineIM(solutions);
 		this.fc = this.determineFC(initialPartition);
-		this.strategy = this.determineStrategy().create(pcm, solutions, this.fc, this.im);
+		this.strategy = this.determineStrategy();
 
 	}
 
@@ -83,19 +84,26 @@ public final class FCCWeaver {
 		return strategy;
 	}
 
-	public void nextDecodeStart() {
+	private List<Choice> fccChoices;
 
+	public void nextDecodeStart() {
+		this.fccChoices = new ArrayList<>();
 	}
 
 	public void grabChoices(List<Choice> notTransformedChoices) {
 
 	}
 
-	public PCMInstance getWeavedInstance(PCMInstance original) {
-		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(original);
-		this.strategy.initialize(locations);
+	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
+		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
+		IWeavingStrategy strategy = this.strategy.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
+		strategy.initialize(locations);
+		strategy.weave();
+		return pcmToAdopt;
+	}
 
-		return original;
+	public List<Choice> getConvertedFCCClassChoices() {
+		return new ArrayList<>();
 	}
 
 	private List<Pair<ComplementumVisnetis, WeavingLocation>> determineLocations(PCMInstance original) {
@@ -133,10 +141,6 @@ public final class FCCWeaver {
 
 	public MergedRepository getMergedRepo() {
 		return this.mergedRepo;
-	}
-
-	public List<Choice> getConvertedFCCClassChoices() {
-		return new ArrayList<>();
 	}
 
 }
