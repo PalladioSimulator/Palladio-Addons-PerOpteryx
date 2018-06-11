@@ -20,6 +20,8 @@ import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
@@ -84,14 +86,27 @@ public final class FCCWeaver {
 		return strategy;
 	}
 
-	private List<Choice> fccChoices;
+	private Choice fccChoice;
+	private List<Choice> featureChoices;
 
 	public void nextDecodeStart() {
-		this.fccChoices = new ArrayList<>();
+		this.fccChoice = null;
+		this.featureChoices = new ArrayList<>();
 	}
 
 	public void grabChoices(List<Choice> notTransformedChoices) {
+		for (Choice c : notTransformedChoices) {
+			if (c.getDegreeOfFreedomInstance() instanceof FeatureCompletionDegree) {
+				this.fccChoice = c;
+			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
+				this.featureChoices.add(c);
+			}
+		}
 
+		notTransformedChoices.remove(this.fccChoice);
+		for (Choice fc : this.featureChoices) {
+			notTransformedChoices.remove(fc);
+		}
 	}
 
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {

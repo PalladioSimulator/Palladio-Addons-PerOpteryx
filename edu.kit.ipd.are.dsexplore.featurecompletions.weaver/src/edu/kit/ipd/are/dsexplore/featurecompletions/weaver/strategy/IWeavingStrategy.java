@@ -4,6 +4,7 @@ import java.util.List;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
@@ -16,7 +17,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  *
  */
 public interface IWeavingStrategy {
-	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations);
+	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices);
 
 	void weave() throws FCCWeaverException;
 }

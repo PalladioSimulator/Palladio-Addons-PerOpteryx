@@ -18,6 +18,7 @@ import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
@@ -145,7 +146,8 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	private List<WeavingInstruction> instructions;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices) {
+		// TODO featureChoices
 		List<WeavingInstruction> instructions = this.determineInstructions(locations);
 		this.instructions = instructions;
 	}
