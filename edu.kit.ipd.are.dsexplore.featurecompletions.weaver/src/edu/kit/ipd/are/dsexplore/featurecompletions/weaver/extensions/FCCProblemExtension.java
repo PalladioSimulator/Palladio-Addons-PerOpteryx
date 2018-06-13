@@ -88,7 +88,7 @@ public class FCCProblemExtension implements IProblemExtension {
 		try {
 			this.createFCCDegreeBy(blackboard, costRepo, fcRepo, dds, initialCandidate);
 		} catch (Exception ex) {
-			FCCModule.logger.error("Error while creating ConcernDegree ..: " + ex.getMessage());
+			FCCModule.logger.error("Error while creating FeatureCompletionDegree ..: " + ex.getMessage());
 			ex.printStackTrace();
 			return;
 		}

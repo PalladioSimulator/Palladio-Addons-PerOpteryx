@@ -22,7 +22,6 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_gNGQwGFdEeetxOZObiabqg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_eXBxIBfiEeixnp8iZNZNhA"/>
       <solutionRepositories href="../peropteryx/solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
-      <solutionRepositories href="../peropteryx/solutions/solutionB.repository#_l0s-IJpjEeeEPdMZenYK9Q"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_9JfHkGFdEeetxOZObiabqg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_LNnQQBfiEeixnp8iZNZNhA"/>

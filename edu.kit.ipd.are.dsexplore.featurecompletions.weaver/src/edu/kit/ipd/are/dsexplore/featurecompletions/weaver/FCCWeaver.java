@@ -54,7 +54,7 @@ public final class FCCWeaver {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {
 			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
-			if (meachanisms.size() != 0) {
+			if (meachanisms.size() != 1) {
 				continue;
 			}
 			if (meachanism == null) {

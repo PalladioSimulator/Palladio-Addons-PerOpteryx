@@ -68,6 +68,8 @@ public class FCCFeatureHandler {
 	}
 
 	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
+		// TODO Get Features by FCC.
+
 		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(fcc).get(0);
 		return this.getFeatureFrom(stereotypeApplication).orElseThrow(() -> new FCCWeaverException(ErrorMessage.annotationError(fcc.getName(), Feature.class)));
 	}
