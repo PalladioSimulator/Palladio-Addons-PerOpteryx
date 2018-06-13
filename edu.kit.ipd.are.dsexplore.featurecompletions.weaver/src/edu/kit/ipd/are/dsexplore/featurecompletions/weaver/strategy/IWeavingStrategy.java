@@ -17,7 +17,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  *
  */
 public interface IWeavingStrategy {
-	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices);
+	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices);
 
 	void weave() throws FCCWeaverException;
+
+	List<Choice> getConvertedFCCClassChoices();
 }

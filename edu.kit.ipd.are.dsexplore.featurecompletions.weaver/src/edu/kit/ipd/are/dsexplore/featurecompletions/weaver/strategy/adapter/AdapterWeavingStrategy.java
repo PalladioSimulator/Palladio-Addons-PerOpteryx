@@ -1,8 +1,10 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.Interface;
@@ -14,16 +16,23 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
+import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
@@ -144,12 +153,14 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 
 	///////////////////// INITIALIZE //////////////////////////
 	private List<WeavingInstruction> instructions;
+	private List<Choice> allocationChoices;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		// TODO featureChoices
 		List<WeavingInstruction> instructions = this.determineInstructions(locations);
 		this.instructions = instructions;
+		this.allocationChoices = allocationChoices;
 	}
 
 	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
@@ -197,6 +208,29 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		}
 
 		return result;
+	}
+
+	@Override
+	public List<Choice> getConvertedFCCClassChoices() {
+		List<Choice> allocChoices = new ArrayList<>();
+		for (Choice fccClassChoice : this.allocationChoices) {
+			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.mrm);
+			for (RepositoryComponent comp : fccHandler.getStructureOfFCCAccordingTo(component -> Arrays.asList(component))) {
+				try {
+					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextContaining(comp);
+					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
+					ad.setPrimaryChanged(alloc);
+					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
+					choice.setDegreeOfFreedomInstance(ad);
+					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
+					allocChoices.add(choice);
+				} catch (Exception e) {
+					FCCModule.logger.warn(e.getMessage());
+				}
+			}
+		}
+		return allocChoices;
 	}
 
 }
