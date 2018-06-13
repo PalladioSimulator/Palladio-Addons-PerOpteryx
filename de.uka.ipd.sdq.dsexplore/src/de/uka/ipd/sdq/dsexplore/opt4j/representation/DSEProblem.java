@@ -1,6 +1,5 @@
 package de.uka.ipd.sdq.dsexplore.opt4j.representation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,17 +26,12 @@ import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecifica
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
-import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.CompletionComponent;
-import FeatureCompletionModel.FeatureCompletion;
-import FeatureCompletionModel.FeatureCompletionPackage;
-import FeatureCompletionModel.FeatureCompletionRepository;
+import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
-import de.uka.ipd.sdq.dsexplore.designdecisions.completions.CompletionDesignDecision;
-import de.uka.ipd.sdq.dsexplore.designdecisions.completions.FCCAllocDegreeDesignDecision;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
+import de.uka.ipd.sdq.dsexplore.facade.IModule;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
@@ -47,8 +41,6 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.cost.costPackage;
 import de.uka.ipd.sdq.pcm.cost.helper.CostUtil;
@@ -58,7 +50,6 @@ import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
@@ -72,7 +63,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MonitoringDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.NumberOfCoresDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ProcessingResourceDegree;
@@ -81,11 +71,6 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
-import featureObjective.ChildRelation;
-import featureObjective.Feature;
-import featureObjective.FeatureGroup;
-import featureObjective.Simple;
 
 /**
  * The {@link DSEProblem} defines the problem. Therefore, it reads in the
@@ -115,7 +100,7 @@ public class DSEProblem {
 
 	private MDSDBlackboard blackboard;
 
-	private FCCWeaver weaver;
+	private ModuleRegistry registry = ModuleRegistry.getModuleRegistry();
 
 	/**
 	 * @param pcmInstance
@@ -167,28 +152,6 @@ public class DSEProblem {
 		 *
 		 * Also meta-model the genotype as a choice within the range.
 		 */
-	}
-
-	private Optional<String> getCostModelFileName() {
-		try {
-			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
-		} catch (CoreException e) {
-			return Optional.empty();
-		}
-	}
-
-	private Optional<CostRepository> getCostModel() {
-		Optional<String> costModelFileName = this.getCostModelFileName();
-		if (!costModelFileName.isPresent()) {
-			return Optional.empty();
-		}
-		String fileName = costModelFileName.get();
-		URI locationToLoadFrom = URI.createURI(fileName);
-		if (locationToLoadFrom == null || !locationToLoadFrom.isPlatform()) {
-			locationToLoadFrom = URI.createFileURI(fileName);
-		}
-		CostRepository cr = (CostRepository) EMFHelper.loadFromXMIFile(locationToLoadFrom, costPackage.eINSTANCE);
-		return cr == null ? Optional.empty() : Optional.of(cr);
 	}
 
 	private DecisionSpace loadProblem() throws CoreException {
@@ -244,7 +207,6 @@ public class DSEProblem {
 				}
 
 				choice.setDegreeOfFreedomInstance(dd);
-
 				genotype.add(choice);
 				// }
 			} else if (dd instanceof ClassDegree) {
@@ -387,13 +349,9 @@ public class DSEProblem {
 			}
 		}
 
-		List<FeatureCompletionDegree> fccDegree = this.getFCFrom(problem.getDegreesOfFreedom());
-		if (!fccDegree.isEmpty()) {
-			this.initializeWeaver();
-			for (FeatureCompletionDegree each : fccDegree) {
-				this.createFCCAllocationDegreesFrom(each, problem.getDegreesOfFreedom(), genotype);
-			}
-
+		CostRepository costModel = this.getCostModel().orElse(null);
+		for (IModule module : this.registry.getModules()) {
+			module.getProblemExtension().determineInitialGenotype(this.blackboard, problem, genotype, this.initialInstance, costModel);
 		}
 
 		// determineProcessingRateDecisions(new ArrayList<DesignDecision>(),
@@ -406,17 +364,6 @@ public class DSEProblem {
 		result.add(genotype);
 		this.initialGenotype = genotype;
 		return result;
-	}
-
-	private List<FeatureCompletionDegree> getFCFrom(List<DegreeOfFreedomInstance> degreesOfFreedom) {
-		List<FeatureCompletionDegree> fcd = new ArrayList<>();
-		for (DegreeOfFreedomInstance dofi : degreesOfFreedom) {
-			if (!(dofi instanceof FeatureCompletionDegree)) {
-				continue;
-			}
-			fcd.add((FeatureCompletionDegree) dofi);
-		}
-		return fcd;
 	}
 
 	private ProcessingResourceSpecification getProcessingResourceSpec(final ProcessingResourceDegree prd) {
@@ -452,7 +399,6 @@ public class DSEProblem {
 
 		this.initialGenotypeList = new ArrayList<>();
 		final DesignDecisionGenotype initialCandidate = new DesignDecisionGenotype();
-		this.determineFCCDecisions(dds, initialCandidate);
 		this.determineProcessingRateDecisions(dds, initialCandidate);
 		// find equivalent components
 		this.determineAssembledComponentsDecisions(dds, initialCandidate);
@@ -461,91 +407,16 @@ public class DSEProblem {
 		// determineSOAPOrRMIDecisions();
 		this.determineCapacityDecisions(dds, initialCandidate);
 
+		CostRepository costModel = this.getCostModel().orElse(null);
+		for (IModule module : this.registry.getModules()) {
+			module.getProblemExtension().initializeProblem(this.blackboard, dds, initialCandidate, this.initialInstance, costModel);
+		}
+
 		// TODO: Check if the initial genotype is actually a valid genotype?
 		// (this may not be the case if the degrees of freedom have been reduced
 		// for the
 		// optimisation?)
 		this.initialGenotypeList.add(initialCandidate);
-
-	}
-
-	private void determineFCCDecisions(List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		Optional<FeatureCompletionRepository> concernRepo = this.getFCRepository();
-		if (!concernRepo.isPresent()) {
-			return;
-		}
-		try {
-			this.createFCCDegreeBy(concernRepo.get(), dds, initialCandidate);
-		} catch (Exception ex) {
-			DSEProblem.logger.error("Error while creating ConcernDegree ..: " + ex.getMessage());
-			ex.printStackTrace();
-			return;
-		}
-
-	}
-
-	private Optional<FeatureCompletionRepository> getFCRepository() {
-		PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		try {
-			List<EObject> fccRepository = pcmPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
-			return Optional.of((FeatureCompletionRepository) fccRepository.get(0));
-		} catch (Exception e) {
-			return Optional.empty();
-		}
-	}
-
-	private void createFCCDegreeBy(FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		this.initializeWeaver();
-		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo, this.weaver.getMergedRepo()).generateFCCDegrees();
-		if (featureCompletionDegrees.size() != 1) {
-			DSEProblem.logger.warn("FCCRepo count: " + featureCompletionDegrees.size() + " -> skipping!");
-			return;
-		}
-		FeatureCompletionDegree degree = featureCompletionDegrees.get(0);
-		this.createClassChoice(degree, dds, initialCandidate);
-		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
-		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
-
-	}
-
-	private void initializeWeaver() {
-		if (this.weaver != null) {
-			return;
-		}
-		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) this.blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-		System pcmSystem = initialPartition.getSystem();
-
-		Optional<String> costModelFileName = this.getCostModelFileName();
-		Optional<CostRepository> costModel = this.getCostModel();
-
-		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
-		MergedRepository merged = solutionRepos.size() > 0 ? new MergedRepository(solutionRepos) : null;
-
-		if (merged == null) {
-			// No solutions accessible via stereotype
-			return;
-		}
-
-		this.weaver = new FCCWeaver(initialPartition, this.initialInstance, merged, costModelFileName, costModel);
-
-	}
-
-	private void createClassChoice(FeatureCompletionDegree concernDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		ClassChoice choice = this.designDecisionFactory.createClassChoice();
-		choice.setDegreeOfFreedomInstance(concernDegree);
-		choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
-		initialCandidate.add(choice);
-		dds.add(concernDegree);
-	}
-
-	private void createFCCAllocationDegreesFrom(FeatureCompletionDegree completionDegree, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate) {
-		FCCAllocDegreeDesignDecision eccAllocDegreeDesignDecision = new FCCAllocDegreeDesignDecision((FeatureCompletion) completionDegree.getPrimaryChanged(), this.initialInstance.getSystem());
-		List<ResourceContainer> allPcmResourceContainer = this.initialInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
-		List<ClassChoice> choices = eccAllocDegreeDesignDecision.getFCCClassChoicesFrom(allPcmResourceContainer);
-		for (ClassChoice eccClassChoice : choices) {
-			initialCandidate.add(eccClassChoice);
-			dds.add(eccClassChoice.getDegreeOfFreedomInstance());
-		}
 
 	}
 
@@ -726,99 +597,26 @@ public class DSEProblem {
 		}
 	}
 
-	/**
-	 * Determine {@link OptionalAsDegree}-DoFs.
-	 *
-	 * @param cd
-	 *            the concern degree
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @param fcRepo
-	 *            the concern repo
-	 * @author Dominik Fuchss
-	 */
-	private void determineOptionalAsDegreeDecisions(FeatureCompletionDegree cd, List<DegreeOfFreedomInstance> dds, DesignDecisionGenotype initialCandidate, FeatureCompletionRepository fcRepo) {
-		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
-		List<CompletionComponent> fccs = c.getCompletionComponents();
-		List<Feature> features = new ArrayList<>();
-
-		for (CompletionComponent ecc : fccs) {
-			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
-			if (provided.isEmpty()) {
-				DSEProblem.logger.error(ecc + " does not provide a Feature.");
-				continue;
-			}
-			// INFO:
-			// For now only features which are directly mapped to an ECC will be
-			// mentioned here ..
-			// Maybe someone will decide to search features recursively .. then
-			// you can use this line ..
-			// this.getThisAndSubfeatures(features, feature);
-			features.addAll(provided);
+	private Optional<CostRepository> getCostModel() {
+		Optional<String> costModelFileName = this.getCostModelFileName();
+		if (!costModelFileName.isPresent()) {
+			return Optional.empty();
 		}
-
-		List<Feature> optionals = new ArrayList<>();
-		for (Feature f : features) {
-			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
-			// not needed so far.
-			boolean isOptional = f.getSimpleOptional() != null;
-			if (isOptional) {
-				optionals.add(f);
-			}
+		String fileName = costModelFileName.get();
+		URI locationToLoadFrom = URI.createURI(fileName);
+		if (locationToLoadFrom == null || !locationToLoadFrom.isPlatform()) {
+			locationToLoadFrom = URI.createFileURI(fileName);
 		}
-		for (Feature op : optionals) {
-			FeatureDegree oad = this.specificDesignDecisionFactory.createFeatureDegree();
-			oad.setPrimaryChanged(op);
-			dds.add(oad);
-			FeatureChoice ch = this.designDecisionFactory.createFeatureChoice();
-			ch.setDegreeOfFreedomInstance(oad);
-			initialCandidate.add(ch);
-		}
-
+		CostRepository cr = (CostRepository) EMFHelper.loadFromXMIFile(locationToLoadFrom, costPackage.eINSTANCE);
+		return cr == null ? Optional.empty() : Optional.of(cr);
 	}
 
-	/**
-	 * This method will add all features (including start) to a list
-	 *
-	 * @param features
-	 *            the target-list of features
-	 * @param start
-	 *            the start feature
-	 * @author Dominik Fuchss
-	 */
-	@SuppressWarnings({ "unused" })
-	private void getThisAndSubfeatures(List<Feature> features, Feature start) {
-		features.add(start);
-		ChildRelation rel = start.getChildrelation();
-		if (rel == null) {
-			return;
+	private Optional<String> getCostModelFileName() {
+		try {
+			return Optional.of(this.dseConfig.getRawConfiguration().getAttribute(DSEConstantsContainer.COST_FILE, ""));
+		} catch (CoreException e) {
+			return Optional.empty();
 		}
-		boolean simple = rel instanceof Simple, fGroup = rel instanceof FeatureGroup;
-		if (!simple && !fGroup) {
-			DSEProblem.logger.warn("ChildRelation is no instance of Simple or FeatureGroup. This is currently not supported.");
-			return;
-		}
-
-		if (simple) {
-			Simple sr = (Simple) rel;
-			List<Feature> man = sr.getMandatoryChildren();
-			List<Feature> opt = sr.getOptionalChildren();
-			for (Feature f : man) {
-				this.getThisAndSubfeatures(features, f);
-			}
-			for (Feature f : opt) {
-				this.getThisAndSubfeatures(features, f);
-			}
-		} else {
-			FeatureGroup fg = (FeatureGroup) rel;
-			List<Feature> all = fg.getChildren();
-			for (Feature f : all) {
-				this.getThisAndSubfeatures(features, f);
-			}
-		}
-
 	}
 
 	protected DegreeOfFreedomInstance getDesignDecision(final int index) {
@@ -905,17 +703,6 @@ public class DSEProblem {
 	 * @author Dominik Fuchss
 	 */
 	public void cleanup() {
-		try {
-			// TODO DTHF1
-			// WeavingManager.cleanup();
-			throw new IOException("TODO");
-		} catch (IOException e) {
-			DSEProblem.logger.error("Cleanup failed: " + e.getMessage());
-		}
-
-	}
-
-	public FCCWeaver getWeaver() {
-		return this.weaver;
+		ModuleRegistry.getModuleRegistry().reset();
 	}
 }

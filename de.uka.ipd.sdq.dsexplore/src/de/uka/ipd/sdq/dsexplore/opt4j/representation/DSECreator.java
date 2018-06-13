@@ -10,6 +10,8 @@ import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
 
+import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
+import de.uka.ipd.sdq.dsexplore.facade.IModule;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
@@ -117,7 +119,10 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		designdecisionFactory factory = designdecisionFactoryImpl.init();
 
 		Choice choice;
-		if (degree instanceof IndicatorDegree) {
+		IModule module;
+		if ((module = this.getModule(degree)) != null) {
+			choice = module.getCreateExtension().getChoice(degree);
+		} else if (degree instanceof IndicatorDegree) {
 			choice = this.processIndicator(degree, factory);
 		} else if (degree instanceof FeatureDegree) {
 			FeatureChoice setOrNotSet = factory.createFeatureChoice();
@@ -157,6 +162,15 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 		}
 		choice.setDegreeOfFreedomInstance(degree);
 		return choice;
+	}
+
+	private IModule getModule(DegreeOfFreedomInstance degree) {
+		for (IModule module : ModuleRegistry.getModuleRegistry().getModules()) {
+			if (module.getCreateExtension().shallHandle(degree)) {
+				return module;
+			}
+		}
+		return null;
 	}
 
 	/**

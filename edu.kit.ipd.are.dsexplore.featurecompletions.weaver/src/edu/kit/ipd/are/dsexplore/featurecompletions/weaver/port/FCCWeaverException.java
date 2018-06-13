@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.exception;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port;
 
 public final class FCCWeaverException extends RuntimeException {
 
