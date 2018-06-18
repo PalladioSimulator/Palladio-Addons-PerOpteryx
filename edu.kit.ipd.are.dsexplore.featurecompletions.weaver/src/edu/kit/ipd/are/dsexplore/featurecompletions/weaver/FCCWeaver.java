@@ -52,9 +52,10 @@ public final class FCCWeaver {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {
 			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
-			if (meachanisms.size() != 0) {
-				continue;
-			}
+			//TODO: does not make sense?
+//			if (meachanisms.size() != 0) {
+//				continue;
+//			}
 			if (meachanism == null) {
 				meachanism = meachanisms.get(0);
 			} else if (!meachanism.getId().equals(meachanisms.get(0).getId())) {
@@ -112,7 +113,8 @@ public final class FCCWeaver {
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
 		IWeavingStrategy strategy = this.strategy.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
-		strategy.initialize(locations);
+		//TODO strategy.initialize(locations); does not work
+		strategy.initialize(locations, featureChoices);
 		strategy.weave();
 		return pcmToAdopt;
 	}

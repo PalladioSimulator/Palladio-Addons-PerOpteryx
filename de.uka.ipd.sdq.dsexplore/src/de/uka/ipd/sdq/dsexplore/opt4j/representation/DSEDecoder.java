@@ -134,9 +134,11 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 		// because there is no
 		// GDoF defined for them.
 		// adjust values as in genotype
-		for (final Choice doubleGene : notTransformedChoices) {
-			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
-		}
+		
+		//TODO: raises exception
+//		for (final Choice doubleGene : notTransformedChoices) {
+//			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
+//		}
 
 		for (IModule module : ModuleRegistry.getModuleRegistry().getModules()) {
 			Pointer<PCMInstance> pcm = new Pointer<>(this.pcm);
