@@ -3,15 +3,14 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 
 import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.PerimeterProviding;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
 import featureObjective.Feature;
@@ -32,19 +31,22 @@ public class FCCFeatureHandler {
 	}
 
 	/**
-	 * Retrieves the provided services of a given ECC.
+	 * Retrieves the provided services of a given FCC.
 	 *
 	 * @param fcc
-	 *            - The ECC which provided services are suppose to be retrieved.
+	 *            - The FCC which provided services are suppose to be retrieved.
 	 * @return The provided services of a given ECC.
 	 * @throws FCCWeaverException
 	 *             - Will be thrown if the ECC is incorrectly annotated.
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
+		// TODO Welche Provided Roles?
 		Feature providedECCFeature = this.getFeatureProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 		for (ProvidedRole role : this.getProvidedRoleSpace()) {
-			if (this.isAnnotatedWithFeatureAndFeatureIsEqualTo(providedECCFeature).test(role)) {
+			boolean match = this.isFeature(role);
+			match = match && this.areEqual(providedECCFeature, this.getFeatureOf(role));
+			if (match) {
 				result.add(role);
 			}
 		}
@@ -53,10 +55,6 @@ public class FCCFeatureHandler {
 
 	private List<ProvidedRole> getProvidedRoleSpace() {
 		return this.mergedRepoManager.getAllProvidedRoles();
-	}
-
-	private Predicate<ProvidedRole> isAnnotatedWithFeatureAndFeatureIsEqualTo(Feature providedECCFeature) {
-		return eachProvidedRole -> this.isFeature(eachProvidedRole) && this.areEqual(providedECCFeature, this.getFeatureOf(eachProvidedRole));
 	}
 
 	private boolean isFeature(ProvidedRole providedRole) {
@@ -68,10 +66,15 @@ public class FCCFeatureHandler {
 	}
 
 	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
-		// TODO Get Features by FCC.
-
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(fcc).get(0);
-		return this.getFeatureFrom(stereotypeApplication).orElseThrow(() -> new FCCWeaverException(ErrorMessage.annotationError(fcc.getName(), Feature.class)));
+		PerimeterProviding pp = fcc.getPerimeterProviding();
+		if (pp == null) {
+			throw new FCCWeaverException("No suitable amount of features provided: NIL");
+		}
+		List<Feature> features = pp.getFeatureProviding();
+		if (features.size() != 1) {
+			throw new FCCWeaverException("No suitable amount of features provided: " + features.size());
+		}
+		return features.get(0);
 	}
 
 	private Feature getFeatureOf(ProvidedRole providedRole) {
