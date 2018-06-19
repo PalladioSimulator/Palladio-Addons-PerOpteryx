@@ -8,6 +8,10 @@ import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.composition.impl.ProvidedDelegationConnectorImpl;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import featureSolution.ControlFlowPlacementStrategy;
+import featureSolution.ExternalCallPlacementStrategy;
+import featureSolution.InternalActionPlacementStrategy;
+import featureSolution.PlacementStrategy;
 
 
 
@@ -18,59 +22,62 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
  */
 public class ExtensionWeavingFactory {
 	
-	private static final HashMap<Class<? extends Connector>, Function<IExtensionWeaving, AssemblyWeaving>> assemblyWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, AssemblyWeaving>> assemblyWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.assemblyWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationWeaving::new);
-		ExtensionWeavingFactory.assemblyWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(ExternalCallPlacementStrategy.class, AssemblyWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(InternalActionPlacementStrategy.class, AssemblyWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(ControlFlowPlacementStrategy.class, AssemblyWeaving::new);
 	}
 
-	private static final HashMap<Class<? extends Connector>, Function<IExtensionWeaving, RepositoryWeaving>> repositoryWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, RepositoryWeaving>> repositoryWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.repositoryWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationRepositoryWeaving::new);
-		ExtensionWeavingFactory.repositoryWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationRepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(ExternalCallPlacementStrategy.class, RepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(InternalActionPlacementStrategy.class, RepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(ControlFlowPlacementStrategy.class, RepositoryWeaving::new);
 	}
 
-	private static final HashMap<Class<? extends Connector>, Function<IExtensionWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.seffWeaverMap.put(AssemblyConnectorImpl.class, AssemblyLocationSeffWeaving::new);
-		ExtensionWeavingFactory.seffWeaverMap.put(ProvidedDelegationConnectorImpl.class, DelegationLocationSeffWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(ExternalCallPlacementStrategy.class, ServiceEffectSpecificationWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(InternalActionPlacementStrategy.class, ServiceEffectSpecificationWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(ControlFlowPlacementStrategy.class, ServiceEffectSpecificationWeaving::new);
 	}
 
 	/**
 	 * Returns the proper subassemblyweaving-class based on the weaving
 	 * location.
 	 *
-	 * @param weavingLocation
+	 * @param placementStrategy
 	 *            - Contains the informations that are necessary to get the
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IExtensionWeaving, AssemblyWeaving> getAdapterAssemblyWeaverBy(WeavingLocation weavingLocation) {
-		return ExtensionWeavingFactory.assemblyWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IExtensionWeaving, AssemblyWeaving> getExtensionAssemblyWeaverBy(PlacementStrategy placementStrategy) {
+		return ExtensionWeavingFactory.assemblyWeaverMap.get(placementStrategy.getClass());
 	}
 
 	/**
 	 * Returns the proper subrepositoryweaving-class based on the weaving
 	 * location.
 	 *
-	 * @param weavingLocation
+	 * @param placementStrategy
 	 *            - Contains the informations that are necessary to get the
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IExtensionWeaving, RepositoryWeaving> getAdapterRepositoryWeaverBy(WeavingLocation weavingLocation) {
-		return ExtensionWeavingFactory.repositoryWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IExtensionWeaving, RepositoryWeaving> getExtensionRepositoryWeaverBy(PlacementStrategy placementStrategy) {
+		return ExtensionWeavingFactory.repositoryWeaverMap.get(placementStrategy.getClass());
 	}
 
 	/**
 	 * Returns the proper subSEFFweaving-class based on the weaving location.
 	 *
-	 * @param weavingLocation
+	 * @param placementStrategy
 	 *            - Contains the informations that are necessary to get the
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IExtensionWeaving, ServiceEffectSpecificationWeaving> getAdapterSeffWeaverBy(WeavingLocation weavingLocation) {
-		return ExtensionWeavingFactory.seffWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IExtensionWeaving, ServiceEffectSpecificationWeaving> getExtensionSeffWeaverBy(PlacementStrategy placementStrategy) {
+		return ExtensionWeavingFactory.seffWeaverMap.get(placementStrategy.getClass());
 	}
 }

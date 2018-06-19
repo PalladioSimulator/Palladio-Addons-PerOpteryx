@@ -29,8 +29,8 @@ public class UsageModelWeaving {
 		this.parent = parent;
 	}
 
-	public void weave(WeavingInstruction weavingInstruction) {
-		if (this.isUsageModelAffected(weavingInstruction.getWeavingLocation())) {
+	public void weave(IWeavingInstruction instruction) {
+		if (this.isUsageModelAffected(instruction.getWeavingLocation())) {
 			this.editEntryLevelSystemCalls();
 		}
 	}

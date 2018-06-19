@@ -1,7 +1,7 @@
 import "platform:/resource/SimplePerOpteryx/palladio/repository.repository"
 import "platform:/resource/SimplePerOpteryx/peropteryx/FCompletion.featurecompletion"
 
-ExtensionInclusion extensionIncl {
+ExtensionInclusion extensionIncl _ZZ {
 	description bla
 	pointCut {
 		PointCut allDoPayCalls {
@@ -25,6 +25,16 @@ ExtensionInclusion extensionIncl {
 		Advice {
 			appears BEFORE 
 			pointCut allDoPayCalls
+			Completion CV_A
+		},
+		Advice {
+			appears BEFORE 
+			pointCut allActionsIn
+			Completion CV_A
+		},
+		Advice {
+			appears BEFORE 
+			pointCut allControlFlowsIn
 			Completion CV_A
 		}
 	}
