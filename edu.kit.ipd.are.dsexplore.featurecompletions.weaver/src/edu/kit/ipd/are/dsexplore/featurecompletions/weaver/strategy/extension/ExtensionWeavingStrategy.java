@@ -194,13 +194,14 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		System.out.println("--------------- ExtensionWeavingStrategy.weave --------------");
 		
 		AllocationWeaving alw = new AllocationWeaving(this);
-		UsageModelWeaving umw = new UsageModelWeaving(this);
+		
 		
 		for (IWeavingInstruction instruction : this.instructions) {
 			RepositoryWeaving rw = ExtensionWeavingFactory.getExtensionRepositoryWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 			AssemblyWeaving asw = ExtensionWeavingFactory.getExtensionAssemblyWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 			ServiceEffectSpecificationWeaving sew = ExtensionWeavingFactory.getExtensionSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
-
+			UsageModelWeaving umw = ExtensionWeavingFactory.getExtensionUsageModelWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			
 			// Weave it ..
 			rw.weave(instruction);
 			asw.weave(instruction);

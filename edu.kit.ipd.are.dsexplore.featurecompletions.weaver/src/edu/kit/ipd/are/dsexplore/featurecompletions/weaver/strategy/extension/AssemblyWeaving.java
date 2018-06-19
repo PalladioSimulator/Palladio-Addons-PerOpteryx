@@ -3,14 +3,14 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.IAdapterWeaving;
+
 
 /**
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
  *
  */
-public class AssemblyWeaving {
+public abstract class AssemblyWeaving {
 	protected final IExtensionWeaving parent;
 
 	public AssemblyWeaving(IExtensionWeaving parent) {
@@ -20,8 +20,5 @@ public class AssemblyWeaving {
 	/**
 	 * @param instruction
 	 */
-	public void weave(IWeavingInstruction instruction) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void weave(IWeavingInstruction instruction);
 }

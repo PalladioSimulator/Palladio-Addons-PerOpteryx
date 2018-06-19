@@ -39,8 +39,9 @@ public class AllocationWeaving {
 
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
 		this.resourceContainer = instruction.getResourceContainer();
-		this.addAdapterAllocationContextRegarding(instruction.getInclusionMechanism().isMultiple());
-		this.addECCAndRequiredAllocationContexts(instruction.getFCCWithConsumedFeatures().getFirst());
+		//TODO
+		//this.addAdapterAllocationContextRegarding(instruction.getInclusionMechanism().isMultiple());
+		//this.addECCAndRequiredAllocationContexts(instruction.getFCCWithConsumedFeatures().getFirst());
 	}
 
 	private void addAdapterAllocationContextRegarding(boolean isMultiple) throws FCCWeaverException {

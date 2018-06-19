@@ -8,7 +8,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
  * 
  *
  */
-public class ServiceEffectSpecificationWeaving {
+public abstract class ServiceEffectSpecificationWeaving {
 
 	protected final IExtensionWeaving parent;
 
@@ -19,8 +19,5 @@ public class ServiceEffectSpecificationWeaving {
 	/**
 	 * @param instruction
 	 */
-	public void weave(IWeavingInstruction instruction) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void weave(IWeavingInstruction instruction);
 }
