@@ -10,6 +10,7 @@
 *.tar.gz
 *.war
 *.zip
+*.java._trace
 hs_err_pid*
 
 # Xtext
@@ -18,6 +19,7 @@ src-gen/
 xtend-gen/
 
 # Palladio
+de.uka.ipd.sdq.temporary/
 org.palladiosimulator.temporary/
 PerOpteryx_results/
 
