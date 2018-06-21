@@ -5,8 +5,11 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.List;
 
+import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import FeatureCompletionModel.CompletionComponent;
+import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import featureSolution.Advice;
 
 /**
@@ -24,4 +27,6 @@ public interface IWeavingInstruction {
 	 * @return
 	 */
 	public ResourceContainer getResourceContainer();
+	
+	public Pair<CompletionComponent, List<OperationInterface>> getFccWithConsumedFeatures();
 }

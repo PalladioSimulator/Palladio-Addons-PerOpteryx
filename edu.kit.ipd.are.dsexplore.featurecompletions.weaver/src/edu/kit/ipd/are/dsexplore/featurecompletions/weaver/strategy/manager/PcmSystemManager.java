@@ -128,6 +128,17 @@ public class PcmSystemManager {
 		// return
 		// this.getAllAssemblyContexts().filter(searchCriteria).findFirst();
 	}
+	
+	//TODO added for extension
+	public List<AssemblyContext> getAssemblyContextsBy(Predicate<AssemblyContext> searchCriteria) {
+		List<AssemblyContext> result = new ArrayList<>();
+		for (AssemblyContext ac : this.getAllAssemblyContexts()) {
+			if (searchCriteria.test(ac)) {
+				result.add(ac);
+			}
+		}
+		return result;
+	}
 
 	/**
 	 * Retrieves all assembly contexts which instantiates a given component.

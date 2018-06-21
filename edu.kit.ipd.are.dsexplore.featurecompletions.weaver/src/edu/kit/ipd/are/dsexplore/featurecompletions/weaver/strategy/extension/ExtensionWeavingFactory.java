@@ -12,6 +12,9 @@ import featureSolution.ControlFlowPlacementStrategy;
 import featureSolution.ExternalCallPlacementStrategy;
 import featureSolution.InternalActionPlacementStrategy;
 import featureSolution.PlacementStrategy;
+import featureSolution.impl.ControlFlowPlacementStrategyImpl;
+import featureSolution.impl.ExternalCallPlacementStrategyImpl;
+import featureSolution.impl.InternalActionPlacementStrategyImpl;
 
 
 
@@ -24,30 +27,30 @@ public class ExtensionWeavingFactory {
 	
 	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, AssemblyWeaving>> assemblyWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.assemblyWeaverMap.put(ExternalCallPlacementStrategy.class, ExternalCallAssemblyWeaving::new);
-		ExtensionWeavingFactory.assemblyWeaverMap.put(InternalActionPlacementStrategy.class, InternalActionAssemblyWeaving::new);
-		ExtensionWeavingFactory.assemblyWeaverMap.put(ControlFlowPlacementStrategy.class, ControlFlowAssemblyWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallAssemblyWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionAssemblyWeaving::new);
+		ExtensionWeavingFactory.assemblyWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowAssemblyWeaving::new);
 	}
 
 	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, RepositoryWeaving>> repositoryWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.repositoryWeaverMap.put(ExternalCallPlacementStrategy.class, ExternalCallRepositoryWeaving::new);
-		ExtensionWeavingFactory.repositoryWeaverMap.put(InternalActionPlacementStrategy.class, InternalActionRepositoryWeaving::new);
-		ExtensionWeavingFactory.repositoryWeaverMap.put(ControlFlowPlacementStrategy.class, ControlFlowRepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallRepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionRepositoryWeaving::new);
+		ExtensionWeavingFactory.repositoryWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowRepositoryWeaving::new);
 	}
 
 	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.seffWeaverMap.put(ExternalCallPlacementStrategy.class, ExternalCallServiceEffectSpecificationWeaving::new);
-		ExtensionWeavingFactory.seffWeaverMap.put(InternalActionPlacementStrategy.class, InternalActionServiceEffectSpecificationWeaving::new);
-		ExtensionWeavingFactory.seffWeaverMap.put(ControlFlowPlacementStrategy.class, ControlFlowServiceEffectSpecificationWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallServiceEffectSpecificationWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionServiceEffectSpecificationWeaving::new);
+		ExtensionWeavingFactory.seffWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowServiceEffectSpecificationWeaving::new);
 	}
 	
 	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, UsageModelWeaving>> usageModelWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.usageModelWeaverMap.put(ExternalCallPlacementStrategy.class, ExternalCallUsageModelWeaving::new);
-		ExtensionWeavingFactory.usageModelWeaverMap.put(InternalActionPlacementStrategy.class, InternalActionUsageModelWeaving::new);
-		ExtensionWeavingFactory.usageModelWeaverMap.put(ControlFlowPlacementStrategy.class, ControlFlowUsageModelWeaving::new);
+		ExtensionWeavingFactory.usageModelWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallUsageModelWeaving::new);
+		ExtensionWeavingFactory.usageModelWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionUsageModelWeaving::new);
+		ExtensionWeavingFactory.usageModelWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowUsageModelWeaving::new);
 	}
 
 	/**

@@ -6,8 +6,13 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import FeatureCompletionModel.CompletionComponent;
+import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import featureSolution.Advice;
 
 /**
@@ -17,6 +22,7 @@ import featureSolution.Advice;
  */
 public class ExtensionWeavingInstruction implements IWeavingInstruction {
 
+	private final Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures;
 	
 	private final Advice advice;
 	
@@ -28,10 +34,11 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	 * @param advice
 	 * @param weavingLocations
 	 */
-	public ExtensionWeavingInstruction(Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer) {
+	public ExtensionWeavingInstruction(Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer) {
 		this.advice = advice;
 		this.weavingLocations = weavingLocations;
 		this.resourceContainer = resourceContainer;
+		this.fccWithConsumedFeatures = fccWithConsumedFeatures;
 	}
 
 	/**
@@ -53,5 +60,12 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	 */
 	public ResourceContainer getResourceContainer() {
 		return resourceContainer;
+	}
+
+	/**
+	 * @return the fccWithConsumedFeatures
+	 */
+	public Pair<CompletionComponent, List<OperationInterface>> getFccWithConsumedFeatures() {
+		return fccWithConsumedFeatures;
 	}
 }

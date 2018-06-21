@@ -31,13 +31,10 @@ public class ExternalCallUsageModelWeaving extends UsageModelWeaving {
 
 	@Override 
 	public void weave(IWeavingInstruction instruction) {
-		//if (this.isUsageModelAffected(instruction.getWeavingLocation())) {
-		//TODO usage model can only be affected if weaving location is of type ExternalCallWeavingLocation 
-		if (instruction.getWeavingLocations().stream().anyMatch(location -> isUsageModelAffected((ExternalCallWeavingLocation) location))) {
-			this.editEntryLevelSystemCalls();
-		}
-	}
+		// TODO nothing to do here in this strategy? Remove?
 
+	}
+/*
 	private boolean isUsageModelAffected(ExternalCallWeavingLocation weavingLocation) {
 		return this.isDelegationConnectorLocation(weavingLocation) && this.isOuterProvidedRoleExposedByTheSystem(weavingLocation);
 	}
@@ -82,5 +79,5 @@ public class ExternalCallUsageModelWeaving extends UsageModelWeaving {
 	private Predicate<ProvidedRole> isReferencing(OperationInterface givenInterface) {
 		return providedRole -> FCCUtil.areEqual(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole(), givenInterface);
 	}
-
+*/
 }
