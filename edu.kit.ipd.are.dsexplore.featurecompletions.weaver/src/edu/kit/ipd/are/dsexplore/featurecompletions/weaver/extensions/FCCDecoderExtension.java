@@ -31,26 +31,41 @@ public class FCCDecoderExtension implements IDecodeExtension {
 
 	@Override
 	public void nextDecodeStart() {
-		// TODO Auto-generated method stub
+		FCCWeaver weaver = this.weaver.get();
+		if (weaver == null) {
+			return;
+		}
+		weaver.nextDecodeStart();
 
 	}
 
 	@Override
 	public void grabChoices(List<Choice> notTransformedChoices) {
-		// TODO Auto-generated method stub
-
+		FCCWeaver weaver = this.weaver.get();
+		if (weaver == null) {
+			return;
+		}
+		weaver.grabChoices(notTransformedChoices);
 	}
 
 	@Override
 	public void decode(Pointer<PCMInstance> pcm) {
-		// TODO Auto-generated method stub
-
+		FCCWeaver weaver = this.weaver.get();
+		if (weaver == null) {
+			return;
+		}
+		PCMInstance weaved = weaver.getWeavedInstance(pcm.get());
+		pcm.set(weaved);
 	}
 
 	@Override
 	public List<Choice> getChoices() {
-		// TODO Auto-generated method stub
-		return null;
+		FCCWeaver weaver = this.weaver.get();
+		if (weaver == null) {
+			return new ArrayList<>();
+		}
+
+		return weaver.getConvertedFCCClassChoices();
 	}
 
 	@Override

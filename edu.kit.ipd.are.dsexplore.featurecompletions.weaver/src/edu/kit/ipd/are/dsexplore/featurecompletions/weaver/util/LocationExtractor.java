@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -15,7 +16,6 @@ import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
-import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
@@ -27,37 +27,56 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
 public final class LocationExtractor {
 	public static List<WeavingLocation> extractLocation(Pair<AssemblyConnector, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
-		// TODO DTHF1: Welche Seite des connectors?
 		AssemblyContext target = connector.first.getProvidingAssemblyContext_AssemblyConnector();
 		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
 
 		switch (visnetum) {
 		case INTERFACE:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getInterfaceJoinPointInfosFrom(component));
+			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getInterfaceJoinPointInfosFrom(component), pcm);
 		case INTERFACE_PROVIDES:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getProvidedInterfaceJoinPointInfosFrom(component));
+			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getProvidedInterfaceJoinPointInfosFrom(component), pcm);
 		case INTERFACE_REQUIRES:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getRequiredInterfaceJoinPointInfosFrom(component));
-		case SIGNATURE:
-			// TODO Signature ?!
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getSignatureJointPointInfosFrom((OperationSignature) component));
+			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getRequiredInterfaceJoinPointInfosFrom(component), pcm);
+		default:
+			break;
 		}
 
 		throw new Error("Unidentified Visnetum " + visnetum);
 	}
 
-	private static List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos) {
+	private static EList<Connector> getAllConnectors(PCMInstance pcm) {
+		return pcm.getSystem().getConnectors__ComposedStructure();
+	}
+
+	private static EObject getCrossReferencedElementFrom(EObject object, Predicate<EObject> withSearchCriteria) {
+		return object.eCrossReferences().stream().filter(withSearchCriteria).findFirst().get();
+	}
+
+	private static List<OperationSignature> getSignaturesFrom(Interface refInterface) {
+		List<OperationSignature> signatures = new ArrayList<>();
+
+		TreeIterator<EObject> iterator = refInterface.eAllContents();
+		while (iterator.hasNext()) {
+			EObject current = iterator.next();
+			if (current instanceof OperationSignature) {
+				signatures.add((OperationSignature) current);
+			}
+		}
+		return signatures;
+	}
+
+	private static List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos, PCMInstance pcm) {
 		List<WeavingLocation> locations = new ArrayList<>();
 		for (JoinPointInfo info : extractedJoinPointInfos) {
-			List<WeavingLocation> locs = LocationExtractor.toWeavingLocations(info);
+			List<WeavingLocation> locs = LocationExtractor.toWeavingLocations(info, pcm);
 			locations.addAll(locs);
 		}
 		return locations;
 	}
 
-	private static List<WeavingLocation> toWeavingLocations(JoinPointInfo joinPointInfo) {
+	private static List<WeavingLocation> toWeavingLocations(JoinPointInfo joinPointInfo, PCMInstance pcm) {
 		List<WeavingLocation> locations = new ArrayList<>();
-		List<Connector> connectors = LocationExtractor.getLocationsFrom(joinPointInfo);
+		List<Connector> connectors = LocationExtractor.getLocationsFrom(joinPointInfo, pcm);
 		for (Connector c : connectors) {
 			locations.add(new WeavingLocation(joinPointInfo.affectedSignatures, c));
 		}
@@ -65,8 +84,8 @@ public final class LocationExtractor {
 
 	}
 
-	private static List<Connector> getLocationsFrom(Role affectedRole) {
-		EList<Connector> connectors = getAllConnectors();
+	private static List<Connector> getLocationsFrom(Role affectedRole, PCMInstance pcm) {
+		EList<Connector> connectors = LocationExtractor.getAllConnectors(pcm);
 		List<Connector> locations = new ArrayList<>();
 		for (Connector c : connectors) {
 			if (LocationExtractor.containsAffectedRole(c, affectedRole)) {
@@ -86,14 +105,14 @@ public final class LocationExtractor {
 
 	}
 
-	private static List<Connector> getLocationsFrom(JoinPointInfo joinPointInfo) {
+	private static List<Connector> getLocationsFrom(JoinPointInfo joinPointInfo, PCMInstance pcm) {
 		if (joinPointInfo.affectedConnector.isPresent()) {
 			return Arrays.asList(joinPointInfo.affectedConnector.get());
 		}
-		return LocationExtractor.getLocationsFrom(joinPointInfo.affectedRole.get());
+		return LocationExtractor.getLocationsFrom(joinPointInfo.affectedRole.get(), pcm);
 	}
 
-	private List<JoinPointInfo> getJoinPointInfosFrom(List<? extends Role> roles) {
+	private static List<JoinPointInfo> getJoinPointInfosFrom(List<? extends Role> roles) {
 		List<JoinPointInfo> jpi = new ArrayList<>();
 		for (Role r : roles) {
 			List<OperationSignature> sigs = LocationExtractor.getAllSignaturesOfInterfaceReferencedBy(r);
@@ -103,23 +122,7 @@ public final class LocationExtractor {
 	}
 
 	private static List<OperationSignature> getAllSignaturesOfInterfaceReferencedBy(EObject object) {
-		return getSignaturesFrom((Interface) getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
-	}
-
-	private static List<JoinPointInfo> getSignatureJointPointInfosFrom(OperationSignature signature) {
-		List<JoinPointInfo> jpi = new ArrayList<>();
-		for (Connector c : getAllConnectors()) {
-			if (LocationExtractor.allInterfacesContaining(signature).test(c)) {
-				jpi.add(new JoinPointInfo(c, Arrays.asList(signature)));
-			}
-		}
-		return jpi;
-
-	}
-
-	// TODO DTHF1: Lambda weg ..
-	private static Predicate<? super Connector> allInterfacesContaining(Signature signature) {
-		return connector -> this.getAllSignaturesOfInterfaceReferencedBy(this.getAnyRoleOf(connector)).contains(signature);
+		return LocationExtractor.getSignaturesFrom((Interface) LocationExtractor.getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
 	}
 
 	private static List<JoinPointInfo> getInterfaceJoinPointInfosFrom(RepositoryComponent component) {
@@ -134,22 +137,11 @@ public final class LocationExtractor {
 	}
 
 	private static List<JoinPointInfo> getProvidedInterfaceJoinPointInfosFrom(RepositoryComponent component) {
-		return this.getJoinPointInfosFrom(component.getProvidedRoles_InterfaceProvidingEntity());
+		return LocationExtractor.getJoinPointInfosFrom(component.getProvidedRoles_InterfaceProvidingEntity());
 	}
 
 	private static List<JoinPointInfo> getRequiredInterfaceJoinPointInfosFrom(RepositoryComponent component) {
-		return this.getJoinPointInfosFrom(component.getRequiredRoles_InterfaceRequiringEntity());
-	}
-
-	private static WeavingLocation handleInterface(Pair<AssemblyConnector, ComplementumVisnetis> connector, PCMInstance pcm) {
-		// TODO DTHF1: Welche Seite des connectors?
-		AssemblyContext target = connector.first.getProvidingAssemblyContext_AssemblyConnector();
-		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
-
-		List<OperationSignature> signatures = null;
-
-		WeavingLocation wl = new WeavingLocation(signatures, connector.first);
-		return null;
+		return LocationExtractor.getJoinPointInfosFrom(component.getRequiredRoles_InterfaceRequiringEntity());
 	}
 
 	private static class JoinPointInfo {

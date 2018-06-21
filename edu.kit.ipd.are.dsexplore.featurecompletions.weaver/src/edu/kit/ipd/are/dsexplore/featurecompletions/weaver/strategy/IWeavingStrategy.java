@@ -1,5 +1,10 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
+import java.util.List;
+
+import FeatureCompletionModel.ComplementumVisnetis;
+import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
@@ -12,65 +17,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  *
  */
 public interface IWeavingStrategy {
+	void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices);
 
-	/**
-	 * Weaves an adapter into the PCM repository.
-	 *
-	 * @param weavingInstruction
-	 *            - The weaving instructions contains all informations necessary
-	 *            to perform a proper weaving process.
-	 * @throws FCCWeaverException
-	 *             - Will be thrown if there occurs any error during the weaving
-	 *             process.
-	 */
-	void weaveRepository(WeavingInstruction weavingInstruction) throws FCCWeaverException;
+	void weave() throws FCCWeaverException;
 
-	/**
-	 * Weaves an adapter into the PCM system.
-	 *
-	 * @param weavingInstruction
-	 *            - The weaving instructions contains all informations necessary
-	 *            to perform a proper weaving process.
-	 * @throws FCCWeaverException
-	 *             - Will be thrown if there occurs any error during the weaving
-	 *             process.
-	 */
-	void weaveAssembly(WeavingInstruction weavingInstruction) throws FCCWeaverException;
-
-	/**
-	 * Weaves an adapter into the PCM allocation.
-	 *
-	 * @param weavingInstruction
-	 *            - The weaving instructions contains all informations necessary
-	 *            to perform a proper weaving process.
-	 * @throws FCCWeaverException
-	 *             - Will be thrown if there occurs any error during the weaving
-	 *             process.
-	 */
-	void weaveAllocation(WeavingInstruction weavingInstruction) throws FCCWeaverException;
-
-	/**
-	 * Weaves adapters SEFF.
-	 *
-	 * @param weavingInstruction
-	 *            - The weaving instructions contains all informations necessary
-	 *            to perform a proper weaving process.
-	 * @throws FCCWeaverException
-	 *             - Will be thrown if there occurs any error during the weaving
-	 *             process.
-	 */
-	void weaveServiceEffectSpecification(WeavingInstruction weavingInstruction) throws FCCWeaverException;
-
-	/**
-	 * Weaves an adapter into the PCM usage model.
-	 *
-	 * @param weavingInstruction
-	 *            - The weaving instructions contains all informations necessary
-	 *            to perform a proper weaving process.
-	 * @throws FCCWeaverException
-	 *             - Will be thrown if there occurs any error during the weaving
-	 *             process.
-	 */
-	void weaveUsageModel(WeavingInstruction weavingInstruction) throws FCCWeaverException;
-
+	List<Choice> getConvertedFCCClassChoices();
 }
