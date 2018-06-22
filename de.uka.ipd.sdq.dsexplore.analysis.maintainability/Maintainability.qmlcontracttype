@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" id="_zq4ZAG-1EeifXO1xpz6bOQ" entityName="maintainability">
+  <type xsi:type="QMLContractType:DimensionTypeNumeric" id="_1Meup2-1EeifXO1xpz6bOQ" domain="integer">
+    <relationSemantics id="_6tVIEG-1EeifXO1xpz6bOQ"/>
+    <range id="_8vjegW-1EeifXO1xpz6bOQ" upperLimit="1000.0"/>
+  </type>
+</QMLContractType:Dimension>

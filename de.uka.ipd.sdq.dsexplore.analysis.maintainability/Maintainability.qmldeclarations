@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_QJuGQG-4EeibE50JOSW-Jw">
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_QjHdsW-4EeibE50JOSW-Jw" entityName="Maintainability">
+    <dimensions href="Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_WEolgm-4EeibE50JOSW-Jw" entityName="MaintainabilityContract" contractType="_QjHdsW-4EeibE50JOSW-Jw">
+    <criteria xsi:type="QMLContract:Objective" id="_fCbm8G-4EeibE50JOSW-Jw">
+      <dimension href="Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
+      <aspects xsi:type="QMLContract:Value" id="_kB2HRG-4EeibE50JOSW-Jw"/>
+    </criteria>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_ZTvl0G-4EeibE50JOSW-Jw" entityName="MaintainabilityProfile">
+    <usageModel href="../kamp_test.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_cqhUYG-4EeibE50JOSW-Jw" requireContract="_WEolgm-4EeibE50JOSW-Jw">
+      <usageScenario href="../kamp_test.usagemodel#_zxEn4HB2EeiTZ7o6haFSAg"/>
+    </requirements>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>
