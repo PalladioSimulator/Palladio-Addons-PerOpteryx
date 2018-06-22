@@ -14,6 +14,7 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
+<stringAttribute key="EDP2RepositoryID" value=""/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
@@ -64,30 +65,37 @@
 <stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
 <stringAttribute key="cacheInstances" value=""/>
-<booleanAttribute key="clear" value="true"/>
-<intAttribute key="confidenceBatchSize" value="200"/>
-<intAttribute key="confidenceHalfWidth" value="10"/>
-<intAttribute key="confidenceLevel" value="95"/>
-<intAttribute key="confidenceMinNumberOfBatches" value="60"/>
+<booleanAttribute key="clear" value="false"/>
+<stringAttribute key="confidenceBatchSize" value="200"/>
+<stringAttribute key="confidenceHalfWidth" value="10"/>
+<stringAttribute key="confidenceLevel" value="95"/>
+<stringAttribute key="confidenceMinNumberOfBatches" value="60"/>
 <stringAttribute key="confidenceModelElementName" value=""/>
 <stringAttribute key="confidenceModelElementURI" value=""/>
 <booleanAttribute key="confidenceUseAutomaticBatches" value="true"/>
 <stringAttribute key="convValue" value="0.001"/>
 <stringAttribute key="costFile" value="platform:/resource/SimplePerOpteryx/peropteryx/costmodel.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
+<intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
 <stringAttribute key="designDecisionFile" value="design.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
 <stringAttribute key="featureConfig" value="pathmap://PCM_MODELS/ConnectorConfig.featureconfig"/>
-<stringAttribute key="indivPerGeneration" value="250"/>
+<stringAttribute key="fixedSeed0" value="0"/>
+<stringAttribute key="fixedSeed1" value="1"/>
+<stringAttribute key="fixedSeed2" value="2"/>
+<stringAttribute key="fixedSeed3" value="3"/>
+<stringAttribute key="fixedSeed4" value="4"/>
+<stringAttribute key="fixedSeed5" value="5"/>
+<stringAttribute key="indivPerGeneration" value="2"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
@@ -103,8 +111,10 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="2"/>
+<stringAttribute key="maxIterations" value="1"/>
+<stringAttribute key="maximum" value=""/>
 <stringAttribute key="maximumMeasurementCount" value="10000"/>
+<stringAttribute key="minimum" value=""/>
 <stringAttribute key="number of DSE iterations" value=""/>
 <intAttribute key="numberOfEvaluatedSystemStates" value="1"/>
 <booleanAttribute key="numberOfEvaluatedSystemStatesEnabled" value="false"/>
@@ -115,11 +125,11 @@
 <stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
+<stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations_perf.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>
@@ -140,11 +150,15 @@
 <stringAttribute key="solver" value="LQNS (Layered Queueing Network Solver)"/>
 <intAttribute key="solvingTimeLimit" value="1"/>
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
+<stringAttribute key="stepwidth" value=""/>
 <booleanAttribute key="store results as CSV" value="true"/>
 <booleanAttribute key="store results as EMF" value="true"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
 <stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>
 <booleanAttribute key="useConfidenceStopCondition" value="false"/>
+<booleanAttribute key="useFixedSeed" value="false"/>
+<stringAttribute key="variable" value=""/>
 <stringAttribute key="variationId" value="Default Variation"/>
+<booleanAttribute key="verboseLogging" value="false"/>
 </launchConfiguration>

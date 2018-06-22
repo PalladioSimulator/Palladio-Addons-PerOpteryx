@@ -207,6 +207,10 @@
     <semanticResources>peropteryx/Solution.featuresolution</semanticResources>
     <semanticResources>peropteryx/FCompletion.featurecompletion</semanticResources>
     <semanticResources>peropteryx/Features.featureobjective</semanticResources>
+    <semanticResources>peropteryx/qmldeclarations_perf.qmldeclarations</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2018-06-22-143655.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2018-06-22-143655.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2018-06-22-143655.designdecision</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" representation="_zv_wAWFaEeetxOZObiabqg">
