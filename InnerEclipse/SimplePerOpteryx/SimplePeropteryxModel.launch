@@ -14,7 +14,7 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
-<stringAttribute key="EDP2RepositoryID" value=""/>
+<stringAttribute key="EDP2RepositoryID" value="_urdQgHYqEei6C5tf67WwLg"/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
@@ -63,6 +63,7 @@
 <stringAttribute key="accuracyQualityAnnotationFile" value=""/>
 <stringAttribute key="allCandidates" value=""/>
 <stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.analysis.maintainability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
@@ -125,7 +126,7 @@
 <stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="SensorFramework"/>
+<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
