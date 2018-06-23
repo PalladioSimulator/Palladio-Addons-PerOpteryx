@@ -22,8 +22,7 @@ public class ControlFlowAssemblyWeaving extends AssemblyWeaving {
 	 */
 	@Override
 	public void weave(IWeavingInstruction instruction) {
-		// TODO Auto-generated method stub
-
+		super.weave(instruction);
 	}
 
 }

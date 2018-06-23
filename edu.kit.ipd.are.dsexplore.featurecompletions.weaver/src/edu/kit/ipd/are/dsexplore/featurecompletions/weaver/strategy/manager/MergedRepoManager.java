@@ -60,6 +60,11 @@ public final class MergedRepoManager {
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
 		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
 	}
+	
+	//TODO new
+	public List<List<RepositoryComponent>> getAffectedComponentsByFCCListGrouped(CompletionComponent fccs) {
+		return this.mergedRepo.getAffectedComponentsByFCCListGrouped(fccs);
+	}
 
 	/**
 	 * Creates and add a adapter component to the concern solution repository.
