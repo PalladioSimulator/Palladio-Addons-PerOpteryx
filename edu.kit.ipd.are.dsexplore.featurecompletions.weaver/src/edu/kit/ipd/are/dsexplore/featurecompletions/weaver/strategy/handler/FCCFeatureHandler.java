@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 
 import FeatureCompletionModel.ComplementumVisnetis;
@@ -70,6 +72,42 @@ public class FCCFeatureHandler {
 			}
 		}
 		return result;
+	}
+	
+	//TODO added for extension
+		public List<ProvidedRole> getProvidedRolesOf(CompletionComponent fcc, ComplementumVisnetis cv) throws FCCWeaverException {
+
+			List<ProvidedRole> result = new ArrayList<>();
+			List<ProvidedRole> allProvidedRoles = this.mergedRepoManager.getAllProvidedRoles();
+			for (ProvidedRole providedRole : allProvidedRoles) {
+				EList<OperationSignature> allSignatures = ((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+				for (OperationSignature operationSignature : allSignatures) {
+					boolean match = this.isFeature(operationSignature);
+					match = match && this.areEqual(cv, this.getCVOf(operationSignature));
+					if (match) {
+						result.add(providedRole);
+						break;
+					}
+				}
+			}
+			return result;
+		}
+
+	/**
+		 * @param operationSignature
+		 * @return
+		 */
+		private ComplementumVisnetis getCVOf(OperationSignature operationSignature) {
+			StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(operationSignature).get(0);
+			return this.getCVFrom(stereotypeApplication).get();
+		}
+
+	/**
+	 * @param operationSignature
+	 * @return
+	 */
+	private boolean isFeature(OperationSignature operationSignature) {
+		return EMFProfileFilter.isAnnotated(operationSignature);
 	}
 
 	/**

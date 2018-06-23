@@ -6,6 +6,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 import java.util.List;
 
 import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import FeatureCompletionModel.CompletionComponent;
@@ -28,5 +29,5 @@ public interface IWeavingInstruction {
 	 */
 	public ResourceContainer getResourceContainer();
 	
-	public Pair<CompletionComponent, List<OperationInterface>> getFccWithConsumedFeatures();
+	public Pair<CompletionComponent, List<ProvidedRole>> getFccWithProvidedRoles();
 }

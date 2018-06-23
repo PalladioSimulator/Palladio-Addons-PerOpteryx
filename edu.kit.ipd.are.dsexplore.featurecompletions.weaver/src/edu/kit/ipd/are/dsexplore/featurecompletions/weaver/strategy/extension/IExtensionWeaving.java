@@ -16,6 +16,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmU
  *
  */
 interface IExtensionWeaving {
+	void setFcComponent(RepositoryComponent component);
+	RepositoryComponent getFcComponent();
+	
 	void setAdapter(RepositoryComponent component);
 
 	void setAdapter(AssemblyContext assembly);

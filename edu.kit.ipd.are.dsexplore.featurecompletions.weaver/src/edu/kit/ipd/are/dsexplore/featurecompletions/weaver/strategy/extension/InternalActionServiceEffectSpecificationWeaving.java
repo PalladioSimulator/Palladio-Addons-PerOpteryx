@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.seff.AbstractAction;
@@ -70,7 +71,8 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 				
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
-					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), instruction.getFccWithConsumedFeatures().second.get(0));
+					//TODO welche ProvidedRole??? bei mehreren???
+					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
 					//TODO print SEFF
 //					Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 //					Map<String, Object> m = reg.getExtensionToFactoryMap();

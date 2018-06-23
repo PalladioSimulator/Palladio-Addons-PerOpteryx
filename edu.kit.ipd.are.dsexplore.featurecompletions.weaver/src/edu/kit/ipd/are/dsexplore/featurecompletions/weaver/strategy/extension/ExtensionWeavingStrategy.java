@@ -11,6 +11,7 @@ import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.InternalAction;
@@ -57,6 +58,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	private RepositoryComponent currentAdapter;
 	private AssemblyContext currentAC;
+	
+	private RepositoryComponent fcComponent;
 
 	public ExtensionWeavingStrategy(PCMInstance pcmToAdapt, MergedRepository mergedRepo, FeatureCompletion fc, InclusionMechanism im) {
 		this.pcmToAdapt = pcmToAdapt;
@@ -188,7 +191,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 				}
 			}
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
-			Pair<CompletionComponent, List<OperationInterface>> pair = new Pair<CompletionComponent, List<OperationInterface>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getFullfillingInterfacesFor(advice.getCompletion()));
+			//Pair<CompletionComponent, List<OperationInterface>> pair = new Pair<CompletionComponent, List<OperationInterface>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getFullfillingInterfacesFor(advice.getCompletion()));
+			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getProvidedRolesOf(ig.getFCCByVisnetis(advice.getCompletion()), (advice.getCompletion())));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */));
 		}
 
@@ -211,13 +215,30 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			UsageModelWeaving umw = ExtensionWeavingFactory.getExtensionUsageModelWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 			
 			// Weave it ..
-			rw.weave(instruction);
-			asw.weave(instruction);
-			alw.weave(instruction);
+			//rw.weave(instruction);
+			
+			//alw.weave(instruction);
 			sew.weave(instruction);
-			umw.weave(instruction);
+			asw.weave(instruction);
+			//umw.weave(instruction);
 		}
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IExtensionWeaving#setFcComponent(org.palladiosimulator.pcm.repository.RepositoryComponent)
+	 */
+	@Override
+	public void setFcComponent(RepositoryComponent component) {
+		this.fcComponent = component;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IExtensionWeaving#getFcComponent()
+	 */
+	@Override
+	public RepositoryComponent getFcComponent() {
+		return fcComponent;
 	}
 	
 	

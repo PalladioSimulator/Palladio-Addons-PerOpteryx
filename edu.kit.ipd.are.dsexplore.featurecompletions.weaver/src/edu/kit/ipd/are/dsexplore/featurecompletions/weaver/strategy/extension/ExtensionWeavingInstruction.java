@@ -22,7 +22,8 @@ import featureSolution.Advice;
  */
 public class ExtensionWeavingInstruction implements IWeavingInstruction {
 
-	private final Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures;
+	//private final Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures;
+	private final Pair<CompletionComponent, List<ProvidedRole>> fccWithProvidedRoles;
 	
 	private final Advice advice;
 	
@@ -34,11 +35,11 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	 * @param advice
 	 * @param weavingLocations
 	 */
-	public ExtensionWeavingInstruction(Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer) {
+	public ExtensionWeavingInstruction(Pair<CompletionComponent, List<ProvidedRole>> fccWithProvidedRoles, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer) {
 		this.advice = advice;
 		this.weavingLocations = weavingLocations;
 		this.resourceContainer = resourceContainer;
-		this.fccWithConsumedFeatures = fccWithConsumedFeatures;
+		this.fccWithProvidedRoles = fccWithProvidedRoles;
 	}
 
 	/**
@@ -65,7 +66,7 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	/**
 	 * @return the fccWithConsumedFeatures
 	 */
-	public Pair<CompletionComponent, List<OperationInterface>> getFccWithConsumedFeatures() {
-		return fccWithConsumedFeatures;
+	public Pair<CompletionComponent, List<ProvidedRole>> getFccWithProvidedRoles() {
+		return fccWithProvidedRoles;
 	}
 }

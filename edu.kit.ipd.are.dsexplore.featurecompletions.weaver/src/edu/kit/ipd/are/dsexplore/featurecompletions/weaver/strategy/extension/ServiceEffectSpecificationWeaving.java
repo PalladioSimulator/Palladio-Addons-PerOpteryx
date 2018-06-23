@@ -4,7 +4,9 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
@@ -37,27 +39,30 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @param seff 
 	 * @param internalAction
 	 * @param appears
-	 * @param operationInterface 
+	 * @param operationProvidedRole 
 	 */
-	protected void addFCCallTo(ServiceEffectSpecification seff, AbstractAction internalAction, Appearance appears, OperationInterface operationInterface) {	
+	protected void addFCCallTo(ServiceEffectSpecification seff, AbstractAction internalAction, Appearance appears, OperationProvidedRole operationProvidedRole) {	
 		AbstractAction predecessor = internalAction.getPredecessor_AbstractAction();
 		AbstractAction successor = internalAction.getSuccessor_AbstractAction();
 		
 		switch (appears) {
 		case BEFORE:
-			addFCBetween(predecessor, internalAction, createExternalCallAction(operationInterface), seff);
+			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);
 			break;
 		case AFTER:
-			addFCBetween(internalAction, successor, createExternalCallAction(operationInterface), seff);		
+			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);		
 			break;
 		case AROUND:
-			addFCBetween(predecessor, internalAction, createExternalCallAction(operationInterface), seff);
-			addFCBetween(internalAction, successor, createExternalCallAction(operationInterface), seff);	
+			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);
+			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);	
 			break;
 		default:
 			break;
 		}
 		
+		//TODO add new required role for added fc call
+		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(operationProvidedRole);
+		seff.getBasicComponent_ServiceEffectSpecification().getRequiredRoles_InterfaceRequiringEntity().add(requiredRole);
 	
 	}
 
