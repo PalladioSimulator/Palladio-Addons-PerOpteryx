@@ -3,8 +3,10 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
+import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
@@ -60,10 +62,13 @@ public abstract class ServiceEffectSpecificationWeaving {
 			break;
 		}
 		
-		//TODO add new required role for added fc call
+		//TODO add required role only if not yet existing
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(operationProvidedRole);
-		seff.getBasicComponent_ServiceEffectSpecification().getRequiredRoles_InterfaceRequiringEntity().add(requiredRole);
-	
+		EList<RequiredRole> allRequiredRoles = seff.getBasicComponent_ServiceEffectSpecification().getRequiredRoles_InterfaceRequiringEntity();
+		if (allRequiredRoles.stream().noneMatch(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId()))) {
+			allRequiredRoles.add(requiredRole);
+		}
+			
 	}
 
 	/**

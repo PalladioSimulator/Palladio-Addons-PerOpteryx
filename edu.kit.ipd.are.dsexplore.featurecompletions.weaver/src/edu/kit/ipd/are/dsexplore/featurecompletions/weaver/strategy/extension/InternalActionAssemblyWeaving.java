@@ -66,7 +66,9 @@ public class InternalActionAssemblyWeaving extends AssemblyWeaving {
 			RequiredRole requiredRole = requiredAssemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity().stream().filter(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getId())).collect(Collectors.toList()).get(0); //TODO sollte eigentlich nur 1 required role geben??
 			AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, requiredAssemblyContext),
 					Pair.of((OperationProvidedRole) providedRole, providedAssemblyContext));
-			this.parent.getPCMSystemManager().addConnectors(connector);
+			if (!this.parent.getPCMSystemManager().existConnector(connector)) {
+				this.parent.getPCMSystemManager().addConnectors(connector);
+			}
 		}
 	}
 
