@@ -1,10 +1,18 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -12,11 +20,13 @@ import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.seff.InternalAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.transformations.EMFHelper;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
@@ -168,7 +178,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 				for (Connector connector : connectors) {
 					boolean match = ((AssemblyConnector) connector).getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream().anyMatch(signature -> signature.getId().equals(sig.getId()));
 					if (match) {
-						locations.add(new ExternalCallWeavingLocation(sig, (AssemblyConnector) connector));
+						AssemblyContext affectedContext = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector();
+						RepositoryComponent affectedComponent = affectedContext.getEncapsulatedComponent__AssemblyContext();
+						locations.add(new ExternalCallWeavingLocation(sig, (AssemblyConnector) connector, affectedComponent, affectedContext));
 					}
 				}
 			} else if (placementStrategy instanceof InternalActionPlacementStrategyImpl) {
@@ -217,12 +229,18 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			// Weave it ..
 			//rw.weave(instruction);
 			
-			//alw.weave(instruction);
+			
 			sew.weave(instruction);
 			asw.weave(instruction);
+			alw.weave(instruction);
 			//umw.weave(instruction);
 		}
 		
+		
+		System.out.println("--------------- ExtensionWeavingStrategy.weave finished --------------");
+		//TODO print pcm
+		savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
+		//TODO print pcm
 	}
 
 	/* (non-Javadoc)
@@ -241,5 +259,21 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		return fcComponent;
 	}
 	
+	//For debug purpose
+	public static void savePcmInstanceToFile(PCMInstance pcmInstance, String filePath) {
+		saveToXMIFile(pcmInstance.getAllocation(), filePath + ".allocation");
+		List<Repository> repositories = pcmInstance.getRepositories();
+		for (Repository repository : repositories) {
+			saveToXMIFile(repository, filePath + "_" + repository.getEntityName() + ".repository");
+		}
+		//saveToXMIFile(pcmInstance.getResourceEnvironment(), filePath + ".resourceenvironment");
+		//saveToXMIFile(pcmInstance.getResourceRepository(), filePath + ".resourcetype");
+		saveToXMIFile(pcmInstance.getSystem(), filePath + ".system");
+		saveToXMIFile(pcmInstance.getUsageModel(), filePath + ".usagemodel");
+	}
+	
+	public static void saveToXMIFile(EObject modelToSave, String fileName) {
+		EMFHelper.saveToXMIFile(modelToSave, fileName);
+	}
 	
 }
