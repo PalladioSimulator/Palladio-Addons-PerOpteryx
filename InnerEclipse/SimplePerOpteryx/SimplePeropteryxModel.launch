@@ -87,7 +87,7 @@
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
 <stringAttribute key="featureConfig" value="pathmap://PCM_MODELS/ConnectorConfig.featureconfig"/>
-<stringAttribute key="indivPerGeneration" value="2"/>
+<stringAttribute key="indivPerGeneration" value="250"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
