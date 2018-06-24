@@ -4,13 +4,13 @@
 *.ctxt
 *.ear
 *.jar
+*.java._trace
 *.log
 *.nar
 *.rar
 *.tar.gz
 *.war
 *.zip
-*.java._trace
 hs_err_pid*
 
 # Xtext
@@ -67,6 +67,8 @@ tmp/
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+Network Trash Folder
+Temporary Items
 
 # Linux
 .directory
