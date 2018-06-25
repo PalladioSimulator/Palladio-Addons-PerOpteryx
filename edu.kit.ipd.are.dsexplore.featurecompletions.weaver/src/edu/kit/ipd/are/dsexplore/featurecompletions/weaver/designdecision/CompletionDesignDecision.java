@@ -26,7 +26,7 @@ public class CompletionDesignDecision {
 	private FeatureCompletionDegree generateCompletionDegreeWith(FeatureCompletion featureCompletion) {
 		FeatureCompletionDegree completionDegree = specificFactory.eINSTANCE.createFeatureCompletionDegree();
 		completionDegree.setPrimaryChanged(featureCompletion);
-		completionDegree.getClassDesignOptions().add(this.merged);
+		completionDegree.getClassDesignOptions().add(featureCompletion);
 		return completionDegree;
 	}
 
