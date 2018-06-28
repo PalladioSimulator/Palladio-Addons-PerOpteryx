@@ -14,6 +14,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import featureSolution.Advice;
+import featureSolution.InclusionMechanism;
 
 /**
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
@@ -30,16 +31,19 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	private final List<? extends IWeavingLocation> weavingLocations;
 	
 	private final ResourceContainer resourceContainer;
+	
+	private final InclusionMechanism inclusionMechanism;
 
 	/**
 	 * @param advice
 	 * @param weavingLocations
 	 */
-	public ExtensionWeavingInstruction(Pair<CompletionComponent, List<ProvidedRole>> fccWithProvidedRoles, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer) {
+	public ExtensionWeavingInstruction(Pair<CompletionComponent, List<ProvidedRole>> fccWithProvidedRoles, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer, InclusionMechanism inclusonMechanism) {
 		this.advice = advice;
 		this.weavingLocations = weavingLocations;
 		this.resourceContainer = resourceContainer;
 		this.fccWithProvidedRoles = fccWithProvidedRoles;
+		this.inclusionMechanism = inclusonMechanism;
 	}
 
 	/**
@@ -68,5 +72,12 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	 */
 	public Pair<CompletionComponent, List<ProvidedRole>> getFccWithProvidedRoles() {
 		return fccWithProvidedRoles;
+	}
+
+	/**
+	 * @return the inclusionMechanism
+	 */
+	public InclusionMechanism getInclusionMechanism() {
+		return inclusionMechanism;
 	}
 }

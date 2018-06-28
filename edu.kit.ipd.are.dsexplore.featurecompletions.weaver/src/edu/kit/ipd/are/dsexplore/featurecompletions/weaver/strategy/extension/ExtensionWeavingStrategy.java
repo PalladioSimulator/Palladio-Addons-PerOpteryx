@@ -205,7 +205,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
 			//Pair<CompletionComponent, List<OperationInterface>> pair = new Pair<CompletionComponent, List<OperationInterface>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getFullfillingInterfacesFor(advice.getCompletion()));
 			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getProvidedRolesOf(ig.getFCCByVisnetis(advice.getCompletion()), (advice.getCompletion())));
-			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */));
+			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */, extensionIncl));
 		}
 
 		System.out.println("--------------- ExtensionWeavingStrategy.determineInstructions --------------");

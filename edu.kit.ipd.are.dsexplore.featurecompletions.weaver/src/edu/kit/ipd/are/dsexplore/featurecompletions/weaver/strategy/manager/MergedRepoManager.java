@@ -62,8 +62,8 @@ public final class MergedRepoManager {
 	}
 	
 	//TODO new
-	public List<List<RepositoryComponent>> getAffectedComponentsByFCCListGrouped(CompletionComponent fccs) {
-		return this.mergedRepo.getAffectedComponentsByFCCListGrouped(fccs);
+	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
+		return this.mergedRepo.getAffectedComponentsByProvidedRole(fccs, providedRole);
 	}
 
 	/**
@@ -166,5 +166,9 @@ public final class MergedRepoManager {
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
 		return this.mergedRepo.getAllProvidedRoles();
+	}
+	
+	public List<RepositoryComponent> getAllRepositoryComponents() {
+		return this.mergedRepo.getAllRepositoryComponents();
 	}
 }

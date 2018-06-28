@@ -15,6 +15,7 @@ import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.core.composition.RequiredDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.SinkRole;
@@ -361,4 +362,6 @@ public class PcmSystemManager {
 		this.addAssemblyContext(assemblyContext);
 		return assemblyContext;
 	}
+
+	
 }

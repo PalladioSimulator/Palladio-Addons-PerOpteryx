@@ -96,8 +96,8 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 	}
 	
 	//TODO grouped by solution(repository)
-	public List<List<RepositoryComponent>> getAffectedComponentsByFCCListGrouped(CompletionComponent fccs) {
-		List<List<RepositoryComponent>> affectedComponentsGrouped = new ArrayList<>();
+	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
+		//List<List<RepositoryComponent>> affectedComponentsGrouped = new ArrayList<>();
 		for (Repository repo : this.repositories) {
 			List<RepositoryComponent> affectedComponents = new ArrayList<>();
 			for (RepositoryComponent rcs : repo.getComponents__Repository()) {
@@ -106,9 +106,12 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 					affectedComponents.add(rcs);
 				}
 			}
-			affectedComponentsGrouped.add(affectedComponents);
+			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
+				return affectedComponents;
+			}
+			
 		}
-		return affectedComponentsGrouped;
+		return null;
 	}
 
 	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
@@ -158,6 +161,15 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 			}
 		}
 		return prs;
+	}
+	
+	public List<RepositoryComponent> getAllRepositoryComponents() {
+		List<RepositoryComponent> result = new ArrayList<>();
+
+		for (Repository repo : this.repositories) {
+			result.addAll(repo.getComponents__Repository());
+		}
+		return result;
 	}
 
 	@Override

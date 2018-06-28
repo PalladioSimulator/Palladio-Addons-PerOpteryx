@@ -16,4 +16,7 @@ public interface IWeavingLocation {
 	public RepositoryComponent getAffectedComponent();
 	
 	public AssemblyContext getAffectedContext();
+	
+	public void setAddedFCCAssemblyContext(AssemblyContext assemblyContext);
+	public AssemblyContext getAddedFCCAssemblyContext();
 }

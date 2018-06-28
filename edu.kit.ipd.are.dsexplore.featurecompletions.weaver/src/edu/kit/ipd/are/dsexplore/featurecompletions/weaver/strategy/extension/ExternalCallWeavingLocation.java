@@ -22,6 +22,8 @@ public class ExternalCallWeavingLocation implements IWeavingLocation {
 	private final RepositoryComponent affectedComponent; //TODO Componenten oder COntext??
 	
 	private final AssemblyContext affectedContext; //TODO Componenten oder COntext??
+	
+	private AssemblyContext addedFCCAssemblyContext;
 
 	/**
 	 * @param affectedSignature
@@ -60,6 +62,22 @@ public class ExternalCallWeavingLocation implements IWeavingLocation {
 	 */
 	public AssemblyContext getAffectedContext() {
 		return affectedContext;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#getAddedFCCAssemblyContext()
+	 */
+	@Override
+	public AssemblyContext getAddedFCCAssemblyContext() {
+		return addedFCCAssemblyContext;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#setAddedFCCAssemblyContext(org.palladiosimulator.pcm.core.composition.AssemblyContext)
+	 */
+	@Override
+	public void setAddedFCCAssemblyContext(AssemblyContext assemblyContext) {
+		this.addedFCCAssemblyContext = assemblyContext;
 	}
 	
 	
