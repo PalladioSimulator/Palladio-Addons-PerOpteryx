@@ -3,7 +3,6 @@
  */
 package org.palladiosimulator.qes.generator;
 
-import javax.annotation.Generated;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
@@ -15,7 +14,6 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 @SuppressWarnings("all")
-@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {

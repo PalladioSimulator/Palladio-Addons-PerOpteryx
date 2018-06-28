@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SimuCom Instance Plug-in
+Bundle-SymbolicName: de.uka.ipd.sdq.temporary;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: main.SimuComControl
+Require-Bundle: de.uka.ipd.sdq.simulation,
+ de.uka.ipd.sdq.simulation.abstractsimengine,
+ de.uka.ipd.sdq.simucomframework,
+ de.uka.ipd.sdq.simucomframework.simucomstatus,
+ de.uka.ipd.sdq.simucomframework.variables,
+ org.apache.log4j,
+ org.eclipse.osgi,
+ de.uka.ipd.sdq.scheduler,
+ org.jscience,
+ org.palladiosimulator.probeframework,
+ org.palladiosimulator.metricspec,
+ org.palladiosimulator.reliability,
+ org.palladiosimulator.analyzer.accuracy,
+ de.uka.ipd.sdq.probfunction.math,
+ org.palladiosimulator.measurementframework;bundle-version="1.0.0",
+ org.palladiosimulator.edp2;bundle-version="2.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: bin/,
+ .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

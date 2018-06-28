@@ -3,13 +3,11 @@
  */
 package org.palladiosimulator.qes;
 
-import javax.annotation.Generated;
 import org.palladiosimulator.qes.AbstractQualityEffectSpecificationRuntimeModule;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 @SuppressWarnings("all")
-@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationRuntimeModule extends AbstractQualityEffectSpecificationRuntimeModule {
 }

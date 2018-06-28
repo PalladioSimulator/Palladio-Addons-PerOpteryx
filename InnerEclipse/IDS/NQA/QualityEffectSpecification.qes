@@ -1,2 +1,1 @@
-For{Component(Role(InfrastructureProvided) and Assembly(not AnyAssembly with Component(Name("Sensor"))))}Do{NQA("SensorCoverage" = "-")}
-For{Component(Annotation("Annotation") and Assembly(not AnyAssembly with Component(Name("Sensor"))))}Do{NQA("SensorCoverage" = "-")}
+For{Component(Name("Scheduler"))}Do{NQA("Security"="-")}

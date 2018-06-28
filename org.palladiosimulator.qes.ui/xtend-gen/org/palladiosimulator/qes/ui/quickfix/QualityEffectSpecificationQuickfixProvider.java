@@ -3,7 +3,6 @@
  */
 package org.palladiosimulator.qes.ui.quickfix;
 
-import javax.annotation.Generated;
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
 
 /**
@@ -12,6 +11,5 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
  */
 @SuppressWarnings("all")
-@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationQuickfixProvider extends DefaultQuickfixProvider {
 }
