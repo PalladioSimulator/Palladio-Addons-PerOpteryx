@@ -3,6 +3,13 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
+import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.RequiredRole;
+
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+
 /**
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
@@ -19,5 +26,16 @@ public abstract class RepositoryWeaving {
 	/**
 	 * @param instruction
 	 */
-	public abstract void weave(IWeavingInstruction instruction);
+	public void weave(IWeavingInstruction instruction) {
+		//add required role only if not yet existing
+		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0);
+		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedRole);
+		for (IWeavingLocation location : instruction.getWeavingLocations()) {
+			EList<RequiredRole> allRequiredRoles = location.getAffectedContext().getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity();
+			if (allRequiredRoles.stream().noneMatch(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId()))) {
+				allRequiredRoles.add(requiredRole);
+			}
+		}
+		
+	}
 }

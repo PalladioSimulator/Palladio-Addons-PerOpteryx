@@ -79,21 +79,6 @@ public abstract class AssemblyWeaving {
 		}
 		
 		addConnectorsToFCC(instruction);
-		
-		
-		//TODO print assembly
-//		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-//		Map<String, Object> m = reg.getExtensionToFactoryMap();
-//		m.put("xmi", new XMIResourceFactoryImpl());
-//		Resource resource = (Resource) new ResourceSetImpl().createResource(URI.createFileURI("C:/Users/Maxi/Documents/system.xmi"));
-//		resource.getContents().add(this.parent.getPCMToAdapt().getSystem());
-//		try {
-//			resource.save(Collections.EMPTY_MAP);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		//TODO print assembly
 	}
 
 	/**

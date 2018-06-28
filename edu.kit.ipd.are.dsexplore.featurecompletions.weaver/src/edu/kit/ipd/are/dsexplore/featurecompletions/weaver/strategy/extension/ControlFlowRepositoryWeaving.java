@@ -22,8 +22,7 @@ public class ControlFlowRepositoryWeaving extends RepositoryWeaving {
 	 */
 	@Override
 	public void weave(IWeavingInstruction instruction) {
-		// TODO Auto-generated method stub
-
+		super.weave(instruction);
 	}
 
 }

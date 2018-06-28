@@ -217,22 +217,20 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	public void weave() throws FCCWeaverException {
 		System.out.println("--------------- ExtensionWeavingStrategy.weave --------------");
 		
-		AllocationWeaving alw = new AllocationWeaving(this);
+		AllocationWeaving allocationWeaving = new AllocationWeaving(this);
 		
 		
 		for (IWeavingInstruction instruction : this.instructions) {
-			RepositoryWeaving rw = ExtensionWeavingFactory.getExtensionRepositoryWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
-			AssemblyWeaving asw = ExtensionWeavingFactory.getExtensionAssemblyWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
-			ServiceEffectSpecificationWeaving sew = ExtensionWeavingFactory.getExtensionSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
-			UsageModelWeaving umw = ExtensionWeavingFactory.getExtensionUsageModelWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			RepositoryWeaving reporitoryWeaving = ExtensionWeavingFactory.getExtensionRepositoryWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			AssemblyWeaving assemblyWeaving = ExtensionWeavingFactory.getExtensionAssemblyWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			ServiceEffectSpecificationWeaving seffWeaving = ExtensionWeavingFactory.getExtensionSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			//UsageModelWeaving umw = ExtensionWeavingFactory.getExtensionUsageModelWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 			
 			// Weave it ..
-			//rw.weave(instruction);
-			
-			
-			sew.weave(instruction);
-			asw.weave(instruction);
-			alw.weave(instruction);
+			seffWeaving.weave(instruction);
+			reporitoryWeaving.weave(instruction);
+			assemblyWeaving.weave(instruction);
+			allocationWeaving.weave(instruction);
 			//umw.weave(instruction);
 		}
 		

@@ -78,19 +78,6 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
 					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
-					//TODO print SEFF
-//					Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-//					Map<String, Object> m = reg.getExtensionToFactoryMap();
-//					m.put("xmi", new XMIResourceFactoryImpl());
-//					Resource resource = (Resource) new ResourceSetImpl().createResource(URI.createFileURI("C:/Users/Maxi/Documents/seff.xmi"));
-//					resource.getContents().add(seff);
-//					try {
-//						resource.save(Collections.EMPTY_MAP);
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					//TODO print SEFF
 				}
 			}
 			

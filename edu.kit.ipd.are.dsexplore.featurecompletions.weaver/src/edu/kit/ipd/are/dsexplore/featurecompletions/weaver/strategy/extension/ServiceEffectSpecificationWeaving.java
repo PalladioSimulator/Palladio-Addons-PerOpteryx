@@ -61,14 +61,23 @@ public abstract class ServiceEffectSpecificationWeaving {
 		default:
 			break;
 		}
-		
-		//TODO add required role only if not yet existing
+		//do in Repository Weaving
+		//addRequiredRoleFor(seff, operationProvidedRole);
+			
+	}
+
+	/**
+	 * @param seff
+	 * @param operationProvidedRole
+	 */
+	//TODO wird in Repository weaving gemacht
+	private void addRequiredRoleFor(ServiceEffectSpecification seff, OperationProvidedRole operationProvidedRole) {
+		//add required role only if not yet existing
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(operationProvidedRole);
 		EList<RequiredRole> allRequiredRoles = seff.getBasicComponent_ServiceEffectSpecification().getRequiredRoles_InterfaceRequiringEntity();
 		if (allRequiredRoles.stream().noneMatch(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId()))) {
 			allRequiredRoles.add(requiredRole);
 		}
-			
 	}
 
 	/**
@@ -80,7 +89,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 			OperationSignature calledService = (OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);
-			//TODO add required role to component?
+			//TODO add role to ext call?
 	//		externalCallAction.setRole_ExternalService((OperationRequiredRole) externalCallInfo.requiredRole);
 	//		externalCallAction.getInputVariableUsages__CallAction().addAll(this.copy(externalCallInfo.inputVariableUsages));
 	//		externalCallAction.getReturnVariableUsage__CallReturnAction().addAll(this.copy(externalCallInfo.returnVariableUsage));
