@@ -1,1 +1,3 @@
 For{Component(Name("Scheduler"))}Do{NQA("Security"="-")}
+For{Component(Id("_NeaygFhGEd6UHd_VhJH9SQ"))}Do{NQA("Security"="+")}
+For{Component(Role(InfrastructureRequiredProvided))}Do{NQA("Security"="0")}

@@ -8,4 +8,8 @@
     <mapping href="MappingRepository.qualitymodel#_aecNwFprEeeQAfxZnxEbow"/>
     <input href="../QmlDimensions/IntrusionDetectionSystem.qmlcontracttype#_ndtXoGG2EeiEUbMgG_u56Q"/>
   </transformations>
+  <transformations id="_eTHRQHrZEeiy6cOD977wWQ" entityName="SecurityIdentity">
+    <mapping href="MappingRepository.qualitymodel#_5COu0NgXEeaLjpjNe6VzHQ"/>
+    <input href="../QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+  </transformations>
 </QualityModel:TransformationRepository>

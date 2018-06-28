@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QualityModel:ReasoningSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0"/>
+<QualityModel:ReasoningSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
+  <components id="_vXL2QHrZEeiy6cOD977wWQ" entityName="Database">
+    <reasonings href="QualityModels/ReasoningRepository.qualitymodel#_0HNFIHrYEeiy6cOD977wWQ"/>
+    <component xsi:type="repository:BasicComponent" href="../BRS/brs.repository#_sQC2sNo4EdyCSNQKlT1LxA"/>
+  </components>
+</QualityModel:ReasoningSystem>
