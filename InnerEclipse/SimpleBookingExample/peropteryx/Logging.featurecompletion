@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1" id="_BQux0OQYEeeDc5WJsIYxgA" name="Logging">
+  <featureObjectives href="Logging.featureobjective#_zEouQOGgEeemVJ0YF1ddSA"/>
+  <completionComponents id="_qGwiUOTXEeeT85tFTnTIqQ" name="Appender" requiredComponents="_LinOEOTYEeeT85tFTnTIqQ">
+    <perimeterProviding id="_6bVkEuTXEeeT85tFTnTIqQ"/>
+    <perimeterRequiring id="_6zUmQeTXEeeT85tFTnTIqQ"/>
+  </completionComponents>
+  <completionComponents id="_LinOEOTYEeeT85tFTnTIqQ" name="Layout">
+    <perimeterProviding id="_MifWsuTYEeeT85tFTnTIqQ"/>
+    <perimeterRequiring id="_M1H-0eTYEeeT85tFTnTIqQ"/>
+  </completionComponents>
+  <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="Logger" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
+    <perimeterProviding id="_e3NgsOTXEeeT85tFTnTIqQ">
+      <featureProviding href="Logging.featureobjective#_PGRNAOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_S2n5MOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_RkaqcOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_TH4BQOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_IWwoEeGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_5QEVwOGgEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_C9hCcOWGEeeT85tFTnTIqQ"/>
+      <featureProviding href="Logging.featureobjective#_SbWScOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_R3VmcOGhEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#__mtHseGgEeemVJ0YF1ddSA"/>
+      <featureProviding href="Logging.featureobjective#_TY-YUOGhEeemVJ0YF1ddSA"/>
+    </perimeterProviding>
+    <perimeterRequiring id="_fhZGIeTXEeeT85tFTnTIqQ"/>
+  </completionComponents>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tGBoc-TaEeeT85tFTnTIqQ" name="ConsoleLogging" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_PGRNAOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileLogging" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_RkaqcOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lb-cgeWGEeeT85tFTnTIqQ" name="SQLDatabaseLogging" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_R3VmcOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_MX218eWGEeeT85tFTnTIqQ" name="NoSQLDatabaseLogging" description="" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_C9hCcOWGEeeT85tFTnTIqQ"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_1XUJMeTaEeeT85tFTnTIqQ" name="PatternLayout" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_SbWScOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Mr2wAeWGEeeT85tFTnTIqQ" name="CSVLayout" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_S2n5MOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_NA0TYeWGEeeT85tFTnTIqQ" name="JSONLayout" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_TH4BQOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_NYvEIeWGEeeT85tFTnTIqQ" name="XMLLayout" visnetum="COMPONENT">
+    <complementaryFeature href="Logging.featureobjective#_TY-YUOGhEeemVJ0YF1ddSA"/>
+  </complementa>
+  <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
+  <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
+</FeatureCompletion:FeatureCompletion>
