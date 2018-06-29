@@ -170,48 +170,88 @@ public class QesFinder {
 
 	}
 
-	private Map<String, Set<RepositoryComponent>> getAnnotationMap(PCMInstance instance) {
-		Map<String, Set<RepositoryComponent>> annotations = new HashMap<String, Set<RepositoryComponent>>();
-		final Set<RepositoryComponent> components = new HashSet<RepositoryComponent>();
-		for (final Connector connector : instance.getSystem().getConnectors__ComposedStructure()) {
-			String annotation = getAnnotatio(connector);
-			// TODO
-			if (connector instanceof AssemblyConnectorImpl) {
-				final AssemblyConnectorImpl assemblyConnector = (AssemblyConnectorImpl) connector;
-				RepositoryComponent requiringComponent = assemblyConnector.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-				RepositoryComponent providingComponent = assemblyConnector.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-			} else if (connector instanceof ProvidedDelegationConnectorImpl) {
-				final ProvidedDelegationConnectorImpl delegationConnector = (ProvidedDelegationConnectorImpl) connector;
-				final RepositoryComponent providingComponent = delegationConnector.getAssemblyContext_ProvidedDelegationConnector().getEncapsulatedComponent__AssemblyContext();
-			}
-			
+	private static void put(Map<String, Set<RepositoryComponent>> annotationMap, Set<String> annotations, RepositoryComponent component) {
+		if(annotations == null || annotations.isEmpty()) {
+			return;
 		}
-		return annotations;
+		for (String annotation : annotations) {
+			if(annotation == null || annotation.length() == 0) {
+				continue;
+			}
+			if(annotationMap.containsKey(annotation)) {
+				annotationMap.get(annotation).add(component);
+			} else {
+				final Set<RepositoryComponent> components = new HashSet<RepositoryComponent>();
+				components.add(component);
+				annotationMap.put(annotation, components);
+			}
+		}
 	}
 	
-	private static String getAnnotatio(EObject object) {
-		if (StereotypeAPI.hasStereotypeApplications(object) == false) {
-			return null;
+	private static void put(Map<String, Set<RepositoryComponent>> annotationMap, RepositoryComponent component) {
+		put(annotationMap, getAnnotatios(component), component);
+	}
+	
+	private static void put(Map<String, Set<RepositoryComponent>> annotationMap, AssemblyConnectorImpl connector) {
+		Set<String> annotations = getAnnotatios(connector);
+		final RepositoryComponent requiring = connector.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
+		put(annotationMap, annotations, requiring);
+		put(annotationMap, requiring);
+		final RepositoryComponent providing = connector.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
+		put(annotationMap, annotations, providing);
+		put(annotationMap, providing);
+	}
+	
+	private static void put(Map<String, Set<RepositoryComponent>> annotationMap, ProvidedDelegationConnectorImpl connector) {
+		Set<String> annotations = getAnnotatios(connector);
+		final RepositoryComponent providing = connector.getAssemblyContext_ProvidedDelegationConnector().getEncapsulatedComponent__AssemblyContext();
+		put(annotationMap, annotations, providing);
+		put(annotationMap, providing);
+	}
+		
+	private static Map<String, Set<RepositoryComponent>> getAnnotationMap(PCMInstance instance) {
+		Map<String, Set<RepositoryComponent>> annotations = new HashMap<String, Set<RepositoryComponent>>();
+		for (final Connector connector : instance.getSystem().getConnectors__ComposedStructure()) {
+			if (connector instanceof AssemblyConnectorImpl) {
+				put(annotations, (AssemblyConnectorImpl) connector);
+			} else if (connector instanceof ProvidedDelegationConnectorImpl) {
+				put(annotations, (ProvidedDelegationConnectorImpl) connector);
+			}
 		}
+		return Collections.unmodifiableMap(annotations);
+	}
+	
+	private static Set<String> getAnnotatios(EObject object) {
+		if (StereotypeAPI.hasStereotypeApplications(object) == false) {
+			return Collections.emptySet();
+		}
+		Set<String> annotatios = new HashSet<String>();
 		for (final Stereotype stereotype : StereotypeAPI.getAppliedStereotypes(object)) {
 			for (final EObject refs : stereotype.eCrossReferences()) {
-				if (refs instanceof ComplementumVisnetis) {
-					return ((ComplementumVisnetis) refs).getName();
+				if (refs instanceof FeatureCompletionModel.NamedElement) {
+					annotatios.add(((FeatureCompletionModel.NamedElement) refs).getName());
+				}
+				if (refs instanceof de.uka.ipd.sdq.featuremodel.NamedElement) {
+					annotatios.add(((de.uka.ipd.sdq.featuremodel.NamedElement) refs).getName());
+				}
+				if (refs instanceof org.palladiosimulator.pcm.core.entity.NamedElement) {
+					annotatios.add(((org.palladiosimulator.pcm.core.entity.NamedElement) refs).getEntityName());
 				}
 			}
 		}
-		return null;
+		return Collections.unmodifiableSet(annotatios);
 	}
 
 	private Set<String> getComponents(final Annotation annotation) {
-		final Set<String> effectedComponents = new HashSet<>();
-
-		for (final RepositoryComponent component : componentGraph) {
-
-
+		String name = annotation.getAnnotation();
+		if(annotationMap.containsKey(name) == false) {
+			return Collections.emptySet();
 		}
-
-		return effectedComponents;
+		Set<String> components = new HashSet<String>();
+		for (RepositoryComponent component : annotationMap.get(name)) {
+			components.add(component.getId());
+		}
+		return Collections.unmodifiableSet(components);
 	}
 
 	private Set<String> getComponents(final Assembly assembly) {

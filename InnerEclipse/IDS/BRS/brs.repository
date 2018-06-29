@@ -1202,7 +1202,4 @@
     <dataTypes__Repository xsi:type="repository:CollectionDataType" id="_91dz1miwEd631pecjlFspw" entityName="ReportItems" innerType_CollectionDataType="_4pLVIGiwEd631pecjlFspw"/>
     <dataTypes__Repository xsi:type="repository:CompositeDataType" id="_U8QwR2ixEd631pecjlFspw" entityName="Data"/>
   </repository:Repository>
-  <emfprofileapplication:ProfileApplication>
-    <importedProfiles nsURI="http://are.ipd.kit.edu/ConcernAnnotationProfile" location="platform:/resource/AnnotationProfile/annotations.emfprofile_diagram"/>
-  </emfprofileapplication:ProfileApplication>
 </xmi:XMI>
