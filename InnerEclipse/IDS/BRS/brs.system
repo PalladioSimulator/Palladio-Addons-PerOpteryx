@@ -91,4 +91,11 @@
       <providedInterface__OperationProvidedRole href="brs.repository#_MeXLUFekEd6zR8NNmb-sJg"/>
     </providedRoles_InterfaceProvidingEntity>
   </system:System>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_ec0F8FhJEd6UHd_VhJH9SQ">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_LNnQQBfiEeixnp8iZNZNhA"/>
+      <includeComplementumVisnetis href="../../SimplePerOpteryx/peropteryx/FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
 </xmi:XMI>
