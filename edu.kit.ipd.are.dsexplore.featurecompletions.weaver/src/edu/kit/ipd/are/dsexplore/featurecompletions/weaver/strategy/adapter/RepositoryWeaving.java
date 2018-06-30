@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
@@ -38,16 +39,18 @@ public abstract class RepositoryWeaving {
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
+		ProvidedRole prOfSolution = weavingInstruction.getFCCWithConsumedFeatures().getSecond().get(0);
+		Repository targetRepository = (Repository) prOfSolution.eContainer().eContainer();
 		String uniqueAdapterName = FCCUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
 		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
-			this.parent.setAdapter(this.parent.getMergedRepoManager().createAndAddAdapter(uniqueAdapterName));
+			this.parent.setAdapter(this.parent.getMergedRepoManager().createAndAddAdapter(uniqueAdapterName, targetRepository));
 		} else {
-			this.parent.setAdapter(this.getOrCreateAdapterComponent(uniqueAdapterName));
+			this.parent.setAdapter(this.getOrCreateAdapterComponent(uniqueAdapterName, targetRepository));
 		}
 	}
 
-	private RepositoryComponent getOrCreateAdapterComponent(String name) {
-		return this.getExistingAdapter().orElseGet(() -> this.parent.getMergedRepoManager().createAndAddAdapter(name));
+	private RepositoryComponent getOrCreateAdapterComponent(String name, Repository targetRepository) {
+		return this.getExistingAdapter().orElseGet(() -> this.parent.getMergedRepoManager().createAndAddAdapter(name, targetRepository));
 	}
 
 	// Assumption: When multiple == false then for each concern solution there

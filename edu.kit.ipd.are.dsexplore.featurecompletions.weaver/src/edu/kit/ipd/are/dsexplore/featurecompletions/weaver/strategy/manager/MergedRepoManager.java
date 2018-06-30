@@ -44,9 +44,11 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 * @return the first filtered component.
 	 */
 	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
-		for (RepositoryComponent c : this.mergedRepo.getAsRepoWithoutStereotypes().getComponents__Repository()) {
-			if (searchCriteria.test(c)) {
-				return Optional.of(c);
+		for (Repository repo : this.mergedRepo) {
+			for (RepositoryComponent c : repo.getComponents__Repository()) {
+				if (searchCriteria.test(c)) {
+					return Optional.of(c);
+				}
 			}
 		}
 		return Optional.empty();
@@ -70,8 +72,8 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 *            - The name of the adapter component.
 	 * @return the created adapter component.
 	 */
-	public RepositoryComponent createAndAddAdapter(String name) {
-		return this.mergedRepo.createAndAddAdapter(name);
+	public RepositoryComponent createAndAddAdapter(String name, Repository solutionRepo) {
+		return this.mergedRepo.createAndAddAdapter(name, solutionRepo);
 	}
 
 	/**
