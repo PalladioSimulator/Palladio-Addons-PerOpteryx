@@ -47,7 +47,7 @@ public class AllocationWeaving {
 			AllocationContext allocationContext = this.parent.getPCMAllocationManager().getAllocationContextContaining(allocatedComponent);
 			resourceContainer = allocationContext.getResourceContainer_AllocationContext();
 			
-			//TODO alle FCC auf 1 ResourceContainer??
+			//TODO nur die zur Weaving location gehrenden Contexts auf selben ResourceConainer mappen
 			//add allocation contexts for unallocated assembly contexts (aka FCC ac)
 			List<AssemblyContext> allContexts = this.parent.getPCMSystemManager().getAssemblyContextsBy(context -> true);
 			for (AssemblyContext assemblyContext : allContexts) {

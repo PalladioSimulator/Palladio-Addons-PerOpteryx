@@ -5,6 +5,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandlerFactory;
 
@@ -47,14 +49,20 @@ public abstract class AssemblyWeaving {
 	}
 	
 	public void weave(IWeavingInstruction instruction) {
-		ProvidedRole providedRole = instruction.getFccWithProvidedRoles().second.get(0); //TODO welche providedRole nehmen???
-		RepositoryComponent initialComponent = this.parent.getMergedRepoManager().getComponentBy(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId()))).get();
-		CompletionComponent fcc = instruction.getFccWithProvidedRoles().first;
-		List<RepositoryComponent> components = this.parent.getMergedRepoManager().getAffectedComponentsByProvidedRole(fcc, providedRole);
+		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRoles().first;
+		ProvidedRole providedRole = instruction.getFccWithProvidedRoles().second.get(0); //use Solution 0 -> TODO decide which solution
+		//1. determine all needed other feature completion components
+		FCCStructureHandler fccHandler = new FCCStructureHandler(perimeterProvidingFCC, this.parent.getMergedRepoManager());
+		List<CompletionComponent> allFCCs = fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);
+		allFCCs.add(perimeterProvidingFCC);
+		//2. choose realizing component for each fcc according to selected solution/CV
+		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, Arrays.asList(instruction.getAdvice().getCompletion()));
+		
+		System.out.println("--------------- AssemblyWeaving.weave --------------");
 		
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			List<AssemblyContext> createdAssemblyContexts = new ArrayList<>();
-			for (RepositoryComponent repositoryComponent : components) {	//TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
+			for (RepositoryComponent repositoryComponent : realizingComponents) {	//TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
 				//TODO decide if solution components are added multiple times
 				if (instruction.getInclusionMechanism().isMultiple()) {
 					AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);
@@ -70,9 +78,9 @@ public abstract class AssemblyWeaving {
 			for (AssemblyContext assemblyContext : createdAssemblyContexts) { //TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
 				//create connectors
 				for (RequiredRole requiredRole : assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
-					ProvidedRole compProvidedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, this.parent.getMergedRepoManager().getAllProvidedRoles());
+					ProvidedRole compProvidedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, getAllProvidedRolesOf(createdAssemblyContexts));
 					AssemblyContext providedAssemblyContext = getAssemblyContextProviding(compProvidedRole, createdAssemblyContexts);
-
+	
 					AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, assemblyContext),
 							Pair.of((OperationProvidedRole) compProvidedRole, providedAssemblyContext));
 					if (instruction.getInclusionMechanism().isMultiple()) {
@@ -102,7 +110,14 @@ public abstract class AssemblyWeaving {
 				this.parent.getPCMSystemManager().addConnectors(connector);
 			}
 		}
-		
+	}
+	
+	/**
+	 * @param createdAssemblyContexts
+	 * @return
+	 */
+	private List<ProvidedRole> getAllProvidedRolesOf(List<AssemblyContext> createdAssemblyContexts) {
+		return createdAssemblyContexts.stream().flatMap(ac -> ac.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream()).collect(Collectors.toList());
 	}
 
 

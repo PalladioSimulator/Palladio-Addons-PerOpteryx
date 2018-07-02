@@ -16,6 +16,7 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 
@@ -64,6 +65,11 @@ public final class MergedRepoManager {
 	//TODO new
 	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
 		return this.mergedRepo.getAffectedComponentsByProvidedRole(fccs, providedRole);
+	}
+	
+	//TODO new for extension
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+		return this.mergedRepo.getRealizingComponentsByFCCList(fccs, providedRole, cvs);
 	}
 
 	/**

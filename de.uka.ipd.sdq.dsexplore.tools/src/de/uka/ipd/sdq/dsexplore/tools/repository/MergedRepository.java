@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.osgi.framework.hooks.weaving.WeavingException;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -16,6 +17,7 @@ import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
@@ -95,6 +97,61 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 		return new ArrayList<>(affectedComponents);
 	}
 	
+	//TODO new for extension
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+
+		for (Repository repo : this.repositories) {
+			List<RepositoryComponent> affectedComponents = new ArrayList<>();
+			for (CompletionComponent completionComponent : fccs) {
+				List<RepositoryComponent> realizingComponents = new ArrayList<RepositoryComponent>();
+				for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+					List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+					if (this.anyContainedInList(realizedCCs, Arrays.asList(completionComponent)) /*&& anyCVcontainedInList(rcs, cvs)*/) {
+						realizingComponents.add(rcs);
+					}
+				}
+				if (realizingComponents.size() != 1) {
+					RepositoryComponent component = getComponentRealizingCV(realizingComponents, cvs);
+					affectedComponents.add(component);
+				} else {
+					affectedComponents.addAll(realizingComponents);
+				}
+			}
+			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
+				return affectedComponents;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * @param realizingComponents
+	 * @param cvs
+	 */
+	private RepositoryComponent getComponentRealizingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
+		for (RepositoryComponent repositoryComponent : realizingComponents) {
+			List<ComplementumVisnetis> fullfilledCVs = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumVisnetis.class);
+			if (anyCVcontainedInList(fullfilledCVs, cvs)) {
+				return repositoryComponent;
+			}
+		}
+		throw new WeavingException("no realizing component for completion components found or ambigous components found");
+	}
+
+	/**
+	 * @param rcs
+	 * @param cvs
+	 * @return
+	 */
+	private boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
+		for (ComplementumVisnetis complementumVisnetis : fullfilledCVs) {
+			if (cvs.stream().anyMatch(cv -> cv.getId().equals(complementumVisnetis.getId()))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	//TODO grouped by solution(repository)
 	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
 		//List<List<RepositoryComponent>> affectedComponentsGrouped = new ArrayList<>();

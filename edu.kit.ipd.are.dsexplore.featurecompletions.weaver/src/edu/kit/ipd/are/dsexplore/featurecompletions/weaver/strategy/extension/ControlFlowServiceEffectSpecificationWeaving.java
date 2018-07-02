@@ -65,7 +65,7 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 				
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
-					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0))); //use Solution 0 -> TODO decide which solution
 				}
 			}
 

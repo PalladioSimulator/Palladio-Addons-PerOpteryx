@@ -28,7 +28,7 @@ public abstract class RepositoryWeaving {
 	 */
 	public void weave(IWeavingInstruction instruction) {
 		//add required role only if not yet existing
-		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0);
+		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedRole);
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			EList<RequiredRole> allRequiredRoles = location.getAffectedContext().getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity();

@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -203,8 +204,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 				}
 			}
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
-			//Pair<CompletionComponent, List<OperationInterface>> pair = new Pair<CompletionComponent, List<OperationInterface>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getFullfillingInterfacesFor(advice.getCompletion()));
-			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getProvidedRolesOf(ig.getFCCByVisnetis(advice.getCompletion()), (advice.getCompletion())));
+			ComplementumVisnetis cv = advice.getCompletion();
+			//Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getProvidedRolesOf(ig.getFCCByVisnetis(advice.getCompletion()), (advice.getCompletion())));
+			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc), new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, fc));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */, extensionIncl));
 		}
 
@@ -231,7 +233,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			reporitoryWeaving.weave(instruction);
 			assemblyWeaving.weave(instruction);
 			allocationWeaving.weave(instruction);
-			//umw.weave(instruction);
+
 		}
 		
 		
@@ -259,19 +261,27 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	
 	//For debug purpose
 	public static void savePcmInstanceToFile(PCMInstance pcmInstance, String filePath) {
-		saveToXMIFile(pcmInstance.getAllocation(), filePath + ".allocation");
+		saveToXMIFile(copyOf(pcmInstance.getAllocation()), filePath + ".allocation");
 		List<Repository> repositories = pcmInstance.getRepositories();
 		for (Repository repository : repositories) {
-			saveToXMIFile(repository, filePath + "_" + repository.getEntityName() + ".repository");
+			saveToXMIFile(copyOf(repository), filePath + "_" + repository.getEntityName() + ".repository");
 		}
 		//saveToXMIFile(pcmInstance.getResourceEnvironment(), filePath + ".resourceenvironment");
 		//saveToXMIFile(pcmInstance.getResourceRepository(), filePath + ".resourcetype");
-		saveToXMIFile(pcmInstance.getSystem(), filePath + ".system");
-		saveToXMIFile(pcmInstance.getUsageModel(), filePath + ".usagemodel");
+		saveToXMIFile(copyOf(pcmInstance.getSystem()), filePath + ".system");
+		saveToXMIFile(copyOf(pcmInstance.getUsageModel()), filePath + ".usagemodel");
 	}
 	
 	public static void saveToXMIFile(EObject modelToSave, String fileName) {
 		EMFHelper.saveToXMIFile(modelToSave, fileName);
+	}
+	
+	private static EObject copyOf(EObject obj) {
+//		Copier copier = new Copier();
+//		EObject newObj = copier.copy(obj);
+//		copier.copyReferences();
+//		return newObj;
+		return obj;
 	}
 	
 }

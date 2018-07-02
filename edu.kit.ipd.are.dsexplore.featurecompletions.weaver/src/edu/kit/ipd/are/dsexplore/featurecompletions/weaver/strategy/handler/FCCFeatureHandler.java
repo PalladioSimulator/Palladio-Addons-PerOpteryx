@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,9 +12,11 @@ import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PerimeterProviding;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
@@ -75,23 +78,51 @@ public class FCCFeatureHandler {
 	}
 	
 	//TODO added for extension
-		public List<ProvidedRole> getProvidedRolesOf(CompletionComponent fcc, ComplementumVisnetis cv) throws FCCWeaverException {
+	public CompletionComponent getPerimeterProvidingFCCFor(ComplementumVisnetis cv, FeatureCompletion fc) throws FCCWeaverException {
+		Feature feature = cv.getComplementaryFeature();
+		CompletionComponent fcc = null;
+		
+		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
+			if (fccCurrent.getPerimeterProviding().getFeatureProviding().stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
+				fcc = fccCurrent;
+			}
+		}
+		return fcc;
+	}
+	
+	//TODO added for extension
+	public List<ProvidedRole> getProvidedRolesOf(CompletionComponent fcc, ComplementumVisnetis cv) throws FCCWeaverException {
 
-			List<ProvidedRole> result = new ArrayList<>();
-			List<ProvidedRole> allProvidedRoles = this.mergedRepoManager.getAllProvidedRoles();
-			for (ProvidedRole providedRole : allProvidedRoles) {
-				EList<OperationSignature> allSignatures = ((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
-				for (OperationSignature operationSignature : allSignatures) {
-					boolean match = this.isFeature(operationSignature);
-					match = match && this.areEqual(cv, this.getCVOf(operationSignature));
-					if (match) {
-						result.add(providedRole);
-						break;
-					}
+		List<ProvidedRole> result = new ArrayList<>();
+		List<ProvidedRole> allProvidedRoles = this.mergedRepoManager.getAllProvidedRoles();
+		for (ProvidedRole providedRole : allProvidedRoles) {
+			EList<OperationSignature> allSignatures = ((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+			for (OperationSignature operationSignature : allSignatures) {
+				boolean match = this.isFeature(operationSignature);
+				match = match && this.areEqual(cv, this.getCVOf(operationSignature));
+				if (match) {
+					result.add(providedRole);
+					break;
 				}
 			}
-			return result;
 		}
+		return result;
+	}
+	
+	//TODO added for extension
+	public List<ProvidedRole> getPerimeterProvidedRolesFor(ComplementumVisnetis cv, FeatureCompletion fc) throws FCCWeaverException {
+		Feature feature = cv.getComplementaryFeature();
+		List<ProvidedRole> result = new ArrayList<ProvidedRole>();
+		
+		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
+			if (fccCurrent.getPerimeterProviding().getFeatureProviding().stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
+				List<RepositoryComponent> components = this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent));
+				List<ProvidedRole> providedRoles = components.stream().map(component -> component.getProvidedRoles_InterfaceProvidingEntity().get(0)).collect(Collectors.toList()); //TODO Annahme: Completion Component mit Perimeter Providing hat nur genau 1 Provided Role 
+				result.addAll(providedRoles);
+			}
+		}
+		return result;
+	}
 
 	/**
 		 * @param operationSignature
