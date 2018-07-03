@@ -1435,7 +1435,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.palladiosimulator.editors.sirius.resourceenvironment/description/resourceenvironment.odesign#//@ownedViewpoints[name='ResourceEnvironment']/@ownedRepresentations[name='ResourceEnvironment%20Diagram']/@defaultLayer/@containerMappings[name='ResourceContainer']/@subContainerMappings[name='ProcessingResourceSpecification%20Container']/@subNodeMappings[name='Number%20of%20Replicas']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_O-ImyJn6Eeeq0d2p6xwmTg" name="Processing Rate: 100">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_O-ImyJn6Eeeq0d2p6xwmTg" name="Processing Rate: 10000">
           <target xmi:type="resourceenvironment:ProcessingResourceSpecification" href="palladio/environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg"/>
           <semanticElements xmi:type="resourceenvironment:ProcessingResourceSpecification" href="palladio/environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_O-ImyZn6Eeeq0d2p6xwmTg" showIcon="false" labelAlignment="LEFT">
