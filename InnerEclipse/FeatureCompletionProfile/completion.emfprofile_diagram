@@ -27,6 +27,9 @@
       <extensions xmi:type="emfprofile:Extension" xmi:id="_uElqXnYVEeirzP2CXhR6Fg">
         <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition/AssemblyConnector"/>
       </extensions>
+      <extensions xmi:type="emfprofile:Extension" xmi:id="_ShoegH9_Eei20_C43HUsIQ">
+        <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition/ProvidedDelegationConnector"/>
+      </extensions>
     </eClassifiers>
     <eClassifiers xmi:type="emfprofile:Stereotype" xmi:id="_uElqX3YVEeirzP2CXhR6Fg" name="featureCompletionSolution">
       <eSuperTypes xmi:type="ecore:EClass" href="http://www.modelversioning.org/emfprofile/application/1.1#//StereotypeApplication"/>
