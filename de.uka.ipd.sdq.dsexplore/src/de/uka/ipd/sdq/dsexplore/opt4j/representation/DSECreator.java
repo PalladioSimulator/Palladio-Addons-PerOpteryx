@@ -10,8 +10,8 @@ import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.facade.IModule;
+import de.uka.ipd.sdq.dsexplore.facade.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;

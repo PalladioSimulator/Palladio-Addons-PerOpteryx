@@ -1,12 +1,14 @@
-package de.uka.ipd.sdq.dsexplore;
+package de.uka.ipd.sdq.dsexplore.facade;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import de.uka.ipd.sdq.dsexplore.facade.IModule;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
-
+/**
+ * The one and only registry for {@link IModule IModules}.
+ * 
+ * @author Dominik Fuchss
+ *
+ */
 public final class ModuleRegistry {
 	private ModuleRegistry() {
 	}
@@ -17,7 +19,14 @@ public final class ModuleRegistry {
 		return ModuleRegistry.MODULE_REGISTRY;
 	}
 
-	private List<IModule> modules = Arrays.asList(new FCCModule());
+	private List<IModule> modules = new ArrayList<>();
+
+	public void loadModule(IModule module) {
+		if (this.modules.contains(module)) {
+			return;
+		}
+		this.modules.add(module);
+	}
 
 	public List<IModule> getModules() {
 		return new ArrayList<>(this.modules);

@@ -2,9 +2,11 @@ package de.uka.ipd.sdq.dsexplore.analysis.cost;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
@@ -29,6 +31,8 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
+import de.uka.ipd.sdq.dsexplore.facade.IModule;
+import de.uka.ipd.sdq.dsexplore.facade.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
@@ -54,7 +58,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	/** Logger for log4j. */
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.cost");
 
-	private CostRepository costModel;
+	private List<CostRepository> costModels;
 
 	private DSEWorkflowConfiguration configuration;
 
@@ -73,7 +77,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	 * @return
 	 */
 	private double getInitialCost(PCMInstance pcmInstance) {
-		List<Cost> costs = this.costModel.getCost();
+		List<Cost> costs = this.getCosts();
 		double sum = 0;
 		for (Iterator<Cost> iterator = costs.iterator(); iterator.hasNext();) {
 			Cost cost = iterator.next();
@@ -159,12 +163,12 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	 * @return
 	 */
 	private double getOperatingCost(PCMInstance pcmInstance) {
-		List<Cost> costs = this.costModel.getCost();
 		double sum = 0;
-		for (Iterator<Cost> iterator = costs.iterator(); iterator.hasNext();) {
-			Cost cost = iterator.next();
-			if (this.doesCostApply(cost, pcmInstance)) {
-				sum += cost.getOperatingCost();
+		for (CostRepository cr : this.costModels) {
+			for (Cost cost : this.getCosts()) {
+				if (this.doesCostApply(cost, pcmInstance)) {
+					sum += cost.getOperatingCost();
+				}
 			}
 		}
 
@@ -173,7 +177,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
 	private void updateCostModel(PCMInstance pcmInstance) {
 
-		List<Cost> allCosts = this.costModel.getCost();
+		List<Cost> allCosts = this.getCosts();
 
 		this.createCostsForReplicas(allCosts, pcmInstance);
 
@@ -331,8 +335,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		double initialCost = this.getInitialCost(pcm);
 		double operatingCost = this.getOperatingCost(pcm);
-		this.previousCostResults.put(pheno.getNumericID(), new CostAnalysisResult(CostUtil.getTotalCost(initialCost, operatingCost, this.costModel.getInterest(), this.costModel.getTimePeriodYears()),
-				initialCost, operatingCost, pcm, this.criterionToAspect, (CostSolverQualityAttributeDeclaration) this.qualityAttribute));
+		this.previousCostResults.put(pheno.getNumericID(),
+				new CostAnalysisResult(CostUtil.getTotalCost(initialCost, operatingCost, this.costModels.get(0).getInterest(), this.costModels.get(0).getTimePeriodYears()), initialCost, operatingCost,
+						pcm, this.criterionToAspect, (CostSolverQualityAttributeDeclaration) this.qualityAttribute));
 		CostUtil.getInstance().resetCache();
 	}
 
@@ -344,8 +349,9 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 			EcoreUtil.resolveAll(currentCostModel.eResource());
 
 			if (this.costModelChanged(currentCostModel)) {
-
-				this.costModel = currentCostModel;
+				// DTHF1
+				throw new RuntimeException("Currently not supported .. (and not needed)");
+				// this.costModel = currentCostModel;
 
 			}
 
@@ -361,35 +367,31 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	private boolean costModelChanged(CostRepository currentCostModel) {
 
 		for (Cost eachCost : currentCostModel.getCost()) {
-
 			if (eachCost instanceof ComponentCost) {
-
-				if (this.costModel.getCost().stream().anyMatch(this.contains((ComponentCost) eachCost)) == false) {
-
+				if (!this.getCosts().stream().anyMatch(this.contains((ComponentCost) eachCost))) {
 					return true;
-
 				}
-
 			}
-
 		}
-
 		return false;
 
 	}
 
 	private Predicate<Cost> contains(ComponentCost givenCost) {
-
 		return cost -> (cost instanceof ComponentCost) && (((ComponentCost) cost).getRepositoryComponent().getId().equals(givenCost.getRepositoryComponent().getId()));
-
 	}
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 
 		CostRepository costs = this.getCostModel(configuration);
-		this.costModel = costs;
-
+		this.costModels = new ArrayList<>();
+		Set<CostRepository> additionals = new HashSet<>();
+		for (IModule module : ModuleRegistry.getModuleRegistry().getModules()) {
+			additionals.addAll(module.getAnalysisExtension().getAdditionalCostRepositories());
+		}
+		this.costModels.add(costs);
+		this.costModels.addAll(additionals);
 		this.initialiseCriteria(configuration);
 
 		this.configuration = configuration;
@@ -440,6 +442,14 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void setBlackboard(MDSDBlackboard blackboard) {
 		this.blackboard = blackboard;
+	}
+
+	private List<Cost> getCosts() {
+		List<Cost> res = new ArrayList<>();
+		for (CostRepository cr : this.costModels) {
+			res.addAll(cr.getCost());
+		}
+		return res;
 	}
 
 }
