@@ -12,6 +12,7 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
+import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
@@ -20,6 +21,8 @@ import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -36,7 +39,7 @@ public final class FCCWeaver {
 	public final static String CONCERN_REPSITORY_DESCRIPTION = "Include components of all reused concerns.";
 
 	private final MergedRepository mergedRepo;
-	private final Constructor strategy;
+	private final Constructor strategyContructor;
 	private final InclusionMechanism im;
 	private final FeatureCompletion fc;
 
@@ -44,8 +47,7 @@ public final class FCCWeaver {
 		this.mergedRepo = solutions;
 		this.im = this.determineIM(solutions);
 		this.fc = this.determineFC(initialPartition);
-		this.strategy = this.determineStrategy();
-
+		this.strategyContructor = this.determineStrategy();
 	}
 
 	private InclusionMechanism determineIM(MergedRepository solutions) {
@@ -56,6 +58,9 @@ public final class FCCWeaver {
 //			if (meachanisms.size() != 0) {
 //				continue;
 //			}
+			if (meachanisms.size() != 1) {
+				continue;
+			}
 			if (meachanism == null) {
 				meachanism = meachanisms.get(0);
 			} else if (!meachanism.getId().equals(meachanisms.get(0).getId())) {
@@ -89,10 +94,14 @@ public final class FCCWeaver {
 
 	private Choice fccChoice;
 	private List<Choice> featureChoices;
+	private List<Choice> allocationChoices;
+
+	private IWeavingStrategy strategy;
 
 	public void nextDecodeStart() {
 		this.fccChoice = null;
 		this.featureChoices = new ArrayList<>();
+		this.allocationChoices = new ArrayList<>();
 	}
 
 	public void grabChoices(List<Choice> notTransformedChoices) {
@@ -101,26 +110,44 @@ public final class FCCWeaver {
 				this.fccChoice = c;
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
 				this.featureChoices.add(c);
+			} else if (c.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
+				this.addAllocationDegreeIfNeeded(c);
 			}
+
 		}
 
 		notTransformedChoices.remove(this.fccChoice);
 		for (Choice fc : this.featureChoices) {
 			notTransformedChoices.remove(fc);
 		}
+		for (Choice ac : this.allocationChoices) {
+			notTransformedChoices.remove(ac);
+		}
+
+	}
+
+	private void addAllocationDegreeIfNeeded(Choice ac) {
+		boolean hasFCC = this.isAllocationDegreeWithFCC(ac.getDegreeOfFreedomInstance());
+		if (!hasFCC) {
+			return;
+		}
+		this.allocationChoices.add(ac);
+	}
+
+	private boolean isAllocationDegreeWithFCC(DegreeOfFreedomInstance degreeOfFreedomInstance) {
+		return degreeOfFreedomInstance instanceof AllocationDegree && degreeOfFreedomInstance.getPrimaryChanged() instanceof CompletionComponent;
 	}
 
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
-		IWeavingStrategy strategy = this.strategy.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
-		//TODO strategy.initialize(locations); does not work
-		strategy.initialize(locations, featureChoices);
-		strategy.weave();
+		this.strategy = this.strategyContructor.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
+		this.strategy.initialize(locations, this.featureChoices, this.allocationChoices);
+		this.strategy.weave();
 		return pcmToAdopt;
 	}
 
 	public List<Choice> getConvertedFCCClassChoices() {
-		return new ArrayList<>();
+		return this.strategy.getConvertedFCCClassChoices();
 	}
 
 	private List<Pair<ComplementumVisnetis, WeavingLocation>> determineLocations(PCMInstance original) {

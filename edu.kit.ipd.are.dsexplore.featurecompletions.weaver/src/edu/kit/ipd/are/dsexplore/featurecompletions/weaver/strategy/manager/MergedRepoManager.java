@@ -1,6 +1,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -10,6 +11,7 @@ import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -27,7 +29,7 @@ import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
  * @author scheerer
  *
  */
-public final class MergedRepoManager {
+public final class MergedRepoManager implements Iterable<Repository> {
 
 	private MergedRepository mergedRepo = null;
 
@@ -43,9 +45,11 @@ public final class MergedRepoManager {
 	 * @return the first filtered component.
 	 */
 	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
-		for (RepositoryComponent c : this.mergedRepo.getAsRepoWithoutStereotypes().getComponents__Repository()) {
-			if (searchCriteria.test(c)) {
-				return Optional.of(c);
+		for (Repository repo : this.mergedRepo) {
+			for (RepositoryComponent c : repo.getComponents__Repository()) {
+				if (searchCriteria.test(c)) {
+					return Optional.of(c);
+				}
 			}
 		}
 		return Optional.empty();
@@ -79,8 +83,8 @@ public final class MergedRepoManager {
 	 *            - The name of the adapter component.
 	 * @return the created adapter component.
 	 */
-	public RepositoryComponent createAndAddAdapter(String name) {
-		return this.mergedRepo.createAndAddAdapter(name);
+	public RepositoryComponent createAndAddAdapter(String name, Repository solutionRepo) {
+		return this.mergedRepo.createAndAddAdapter(name, solutionRepo);
 	}
 
 	/**
@@ -176,5 +180,10 @@ public final class MergedRepoManager {
 	
 	public List<RepositoryComponent> getAllRepositoryComponents() {
 		return this.mergedRepo.getAllRepositoryComponents();
+	}
+	
+	@Override
+	public Iterator<Repository> iterator() {
+		return this.mergedRepo.iterator();
 	}
 }

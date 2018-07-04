@@ -5,8 +5,14 @@
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_bgFX8JmYEeeDvYNI8KVQWQ" entityName="Provided_CompA_ComponentA_SolA" providedInterface__OperationProvidedRole="_VwU_0JmYEeeDvYNI8KVQWQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_h4MJgJmYEeeDvYNI8KVQWQ" entityName="Required_CompB_ComponentA_SolA" requiredInterface__OperationRequiredRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_2jYUQJmaEee4PoOYbWOA6A" describedService__SEFF="_yAD6EJmaEee4PoOYbWOA6A">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_3QrfIJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_3QrfIZmaEee4PoOYbWOA6A"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_3QrfIZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_3QrfIJmaEee4PoOYbWOA6A"/>
+        <steps_Behaviour xsi:type="seff:StartAction" id="_3QrfIJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_3QrfIZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_yvRgkH8EEeiQyp7aPIMdmQ" entityName="VeryImpressive" predecessor_AbstractAction="_3QrfIJmaEee4PoOYbWOA6A" successor_AbstractAction="_3QrfIZmaEee4PoOYbWOA6A">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="1000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_UUrhMJmYEeeDvYNI8KVQWQ" entityName="ComponentB_SolA">

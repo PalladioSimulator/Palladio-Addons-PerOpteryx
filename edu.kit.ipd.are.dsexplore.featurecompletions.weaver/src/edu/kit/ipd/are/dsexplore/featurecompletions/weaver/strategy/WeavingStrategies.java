@@ -37,7 +37,7 @@ public enum WeavingStrategies {
 			return null;
 		}
 		for (WeavingStrategies strategy : WeavingStrategies.values()) {
-			if (strategy.mechanism == mechanism.getClass()) {
+			if (strategy.mechanism.isAssignableFrom(mechanism.getClass())) {
 				return strategy.strategy;
 			}
 		}

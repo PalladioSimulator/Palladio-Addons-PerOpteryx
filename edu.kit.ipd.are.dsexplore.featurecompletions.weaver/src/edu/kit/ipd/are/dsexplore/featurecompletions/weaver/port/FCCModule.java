@@ -15,11 +15,18 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblem
 public class FCCModule implements IModule {
 	public static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.featurecompletions.weaver");
 
-	private final Pointer<FCCWeaver> weaver = new Pointer<>();
+	private final Pointer<FCCWeaver> weaver;
 
-	private final FCCProblemExtension problem = new FCCProblemExtension(this.weaver);
-	private final FCCCreateExtension creator = new FCCCreateExtension();
-	private final FCCDecoderExtension decoder = new FCCDecoderExtension(this.weaver);
+	private final FCCProblemExtension problem;
+	private final FCCCreateExtension creator;
+	private final FCCDecoderExtension decoder;
+
+	public FCCModule() {
+		this.weaver = new Pointer<>();
+		this.problem = new FCCProblemExtension(this.weaver);
+		this.creator = new FCCCreateExtension();
+		this.decoder = new FCCDecoderExtension(this.weaver);
+	}
 
 	@Override
 	public void reset() {

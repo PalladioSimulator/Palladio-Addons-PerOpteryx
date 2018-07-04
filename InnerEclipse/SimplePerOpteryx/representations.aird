@@ -207,6 +207,10 @@
     <semanticResources>peropteryx/Solution.featuresolution</semanticResources>
     <semanticResources>peropteryx/FCompletion.featurecompletion</semanticResources>
     <semanticResources>peropteryx/Features.featureobjective</semanticResources>
+    <semanticResources>peropteryx/qmldeclarations_perf.qmldeclarations</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/allCandidates0_2018-06-22-143655.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/population0_2018-06-22-143655.designdecision</semanticResources>
+    <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2018-06-22-143655.designdecision</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" representation="_zv_wAWFaEeetxOZObiabqg">
@@ -1431,7 +1435,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.palladiosimulator.editors.sirius.resourceenvironment/description/resourceenvironment.odesign#//@ownedViewpoints[name='ResourceEnvironment']/@ownedRepresentations[name='ResourceEnvironment%20Diagram']/@defaultLayer/@containerMappings[name='ResourceContainer']/@subContainerMappings[name='ProcessingResourceSpecification%20Container']/@subNodeMappings[name='Number%20of%20Replicas']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_O-ImyJn6Eeeq0d2p6xwmTg" name="Processing Rate: 100">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_O-ImyJn6Eeeq0d2p6xwmTg" name="Processing Rate: 10000">
           <target xmi:type="resourceenvironment:ProcessingResourceSpecification" href="palladio/environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg"/>
           <semanticElements xmi:type="resourceenvironment:ProcessingResourceSpecification" href="palladio/environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg"/>
           <ownedStyle xmi:type="diagram:Square" xmi:id="_O-ImyZn6Eeeq0d2p6xwmTg" showIcon="false" labelAlignment="LEFT">
