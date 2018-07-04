@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_Dbn-kGFfEeetxOZObiabqg">
-  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="CostContractType">
-    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="ContractType">
+    <dimensions href="../../../plugin/de.uka.ipd.sdq.dsexplore.analysis.maintainability/Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
   </qmlDeclarations>
-  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="CostContract" contractType="_Gw0_1GFfEeetxOZObiabqg">
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="Contract" contractType="_Gw0_1GFfEeetxOZObiabqg">
     <criteria xsi:type="QMLContract:Objective" id="_XJ0ngGFfEeetxOZObiabqg">
-      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <dimension href="../../../plugin/de.uka.ipd.sdq.dsexplore.analysis.maintainability/Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
       <aspects xsi:type="QMLContract:Value" id="_amT8hGFfEeetxOZObiabqg"/>
     </criteria>
   </qmlDeclarations>
-  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="CostProfile">
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="Profile">
     <usageModel href="../palladio/usage.usagemodel#/"/>
     <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_gblGwGFfEeetxOZObiabqg" requireContract="_Qv-JgmFfEeetxOZObiabqg">
       <usageScenario href="../palladio/usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>

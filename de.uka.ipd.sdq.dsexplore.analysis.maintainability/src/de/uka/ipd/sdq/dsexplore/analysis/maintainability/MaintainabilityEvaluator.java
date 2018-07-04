@@ -2,7 +2,6 @@ package de.uka.ipd.sdq.dsexplore.analysis.maintainability;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,14 +10,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.DataType;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.system.SystemPackage;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
 import de.uhd.ifi.se.pcm.bppcm.datamodel.DataModel;
@@ -38,12 +36,13 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import edu.kit.ipd.sdq.kamp.model.modificationmarks.AbstractModification;
-import edu.kit.ipd.sdq.kamp.model.modificationmarks.ChangePropagationStep;
 import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.ISFieldOfActivityAnnotationsFactory;
 import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.ISFieldOfActivityAnnotationsRepository;
 import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.impl.ISFieldOfActivityAnnotationsFactoryImpl;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.AbstractISModificationRepository;
+import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModificationmarksFactory;
+import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyComponent;
+import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.impl.ISModificationmarksFactoryImpl;
 import edu.kit.ipd.sdq.kamp4req.core.ReqArchitectureVersion;
 import edu.kit.ipd.sdq.kamp4req.core.ReqChangePropagationAnalysis;
 import edu.kit.ipd.sdq.kamp4req.model.modificationmarks.ReqModificationmarksFactory;
@@ -57,6 +56,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 
 	private Repository repository;
 	private org.palladiosimulator.pcm.system.System system;
+	private org.palladiosimulator.pcm.system.System baseSystem;
 	private ComponentInternalDependencyRepository componentInternalDependencyRepository;
 	private OrganizationEnvironmentModel organizationEnvironmentModel;
 	private DataModel dataModel;
@@ -77,50 +77,88 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		system = pheno.getPCMInstance().getSystem();
-		repository = pheno.getPCMInstance().getRepositories().get(0);
 		usageModels.put("", pheno.getPCMInstance().getUsageModel());
+		ReqModificationmarksFactory reqModificationmarksFactory = new ReqModificationmarksFactoryImpl();
+		this.internalModificationMarkRepository = reqModificationmarksFactory.createReqModificationRepository();
+		this.reqSeedModifications = reqModificationmarksFactory.createReqSeedModifications();
+		this.internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
 
-		for (Repository rep : pheno.getPCMInstance().getRepositories()) {
-			System.out.println(rep.getEntityName());
-			for (RepositoryComponent r : rep.getComponents__Repository()) {
-				System.out.println("component: " + r.getEntityName());
+		for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
+			RepositoryComponent component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
+
+			for (Repository rep : pheno.getPCMInstance().getRepositories()) {
+				for (RepositoryComponent r : rep.getComponents__Repository()) {
+					if (component == r) {
+						repository = rep;
+						break;
+					}
+				}
 			}
-			for (Interface i : rep.getInterfaces__Repository()) {
-				System.out.println("interface: " + i.getEntityName());
-			}
-			for (DataType d : rep.getDataTypes__Repository()) {
-				System.out.println("data type: " + d.toString());
+
+			if (repository != null) {
+				break;
 			}
 		}
+		logger.info("repository '" + repository.getEntityName() + "' registered");
 
-		// reqSeedModifications.getDataTypeModifications().add();
+		for (RepositoryComponent c : repository.getComponents__Repository()) {
+			System.out.println("component :" + c.getEntityName());
+		}
+		for (Interface c : repository.getInterfaces__Repository()) {
+			System.out.println("interface :" + c.getEntityName());
+		}
+		for (DataType c : repository.getDataTypes__Repository()) {
+			System.out.println("data type :" + c.toString());
+		}
+		for (AssemblyContext c : system.getAssemblyContexts__ComposedStructure()) {
+			System.out.println("assembled component: " + c.getEncapsulatedComponent__AssemblyContext().getEntityName());
+		}
+		System.out.println("------------------------");
+
+		for (AssemblyContext baseAssemblyContext : baseSystem.getAssemblyContexts__ComposedStructure()) {
+			boolean contains = false;
+			for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
+				if (baseAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId()
+						.equals(assemblyContext.getEncapsulatedComponent__AssemblyContext().getId())) {
+					contains = true;
+					break;
+				}
+			}
+			if (!contains) {
+				ISModificationmarksFactory isModificationmarksFactory = new ISModificationmarksFactoryImpl();
+				ISModifyComponent isModifyComponent = isModificationmarksFactory.createISModifyComponent();
+				isModifyComponent.setAffectedElement(baseAssemblyContext.getEncapsulatedComponent__AssemblyContext());
+				reqSeedModifications.getComponentModifications().add(isModifyComponent);
+			}
+		}
 
 		ReqArchitectureVersion reqArchitectureVersion = new ReqArchitectureVersion("version", repository, system,
 				fieldOfActivityRepository, internalModificationMarkRepository, componentInternalDependencyRepository,
 				usageModels, dataModel, organizationEnvironmentModel, null, null, null);
 		double changeImpact = evaluateChangeImpact(reqArchitectureVersion);
-		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(), new MaintainabilityAnalysisResult(5.0,
-				this.criterionToAspect, (MaintainabilityQualityAttributeDeclaration) this.qualityAttribute));
+		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(),
+				new MaintainabilityAnalysisResult(changeImpact, this.criterionToAspect,
+						(MaintainabilityQualityAttributeDeclaration) this.qualityAttribute));
 
 	}
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
-		logger.info("maintainability evaluator initialise");
 		this.initialiseCriteria(configuration);
 		this.configuration = configuration;
 		this.componentInternalDependencyRepository = getComponentInternalDependencyRepositoryModel(configuration);
 		this.dataModel = getDataModel(configuration);
 		this.organizationEnvironmentModel = getOrganizationEnvironmentModel(configuration);
+		this.baseSystem = getBaseSystemModel(configuration);
 
 		ISFieldOfActivityAnnotationsFactory fieldOfActivityAnnotationsFactory = new ISFieldOfActivityAnnotationsFactoryImpl();
 		this.fieldOfActivityRepository = fieldOfActivityAnnotationsFactory
 				.createISFieldOfActivityAnnotationsRepository();
 
-		ReqModificationmarksFactory reqModificationmarksFactory = new ReqModificationmarksFactoryImpl();
-		this.internalModificationMarkRepository = reqModificationmarksFactory.createReqModificationRepository();
-		this.reqSeedModifications = reqModificationmarksFactory.createReqSeedModifications();
-		this.internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
+		for (AssemblyContext c : baseSystem.getAssemblyContexts__ComposedStructure()) {
+			System.out.println("assembled component: " + c.getEncapsulatedComponent__AssemblyContext().getEntityName());
+		}
+		System.out.println("_______________________");
 	}
 
 	@Override
@@ -188,6 +226,27 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	}
 
 	/**
+	 * returns a SystemModel or throws an exception.
+	 *
+	 * @param configuration.getRawConfiguration()
+	 * @return DataModel which is not null
+	 * @throws CoreException
+	 *             if the model could not be loaded.
+	 */
+	private org.palladiosimulator.pcm.system.System getBaseSystemModel(DSEWorkflowConfiguration configuration)
+			throws CoreException {
+		String systemModelFileName = configuration.getRawConfiguration()
+				.getAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, "");
+		baseSystem = (org.palladiosimulator.pcm.system.System) EMFHelper.loadFromXMIFile(systemModelFileName,
+				SystemPackage.eINSTANCE);
+		if (baseSystem == null) {
+			throw new CoreException(new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0,
+					"SystemModel " + systemModelFileName + " could not be loaded.", null));
+		}
+		return baseSystem;
+	}
+
+	/**
 	 * returns a OrganizationEnvironmentModel or throws an exception.
 	 *
 	 * @param configuration.getRawConfiguration()
@@ -213,17 +272,20 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		ReqChangePropagationAnalysis reqChangePropagationAnalysis = new ReqChangePropagationAnalysis();
 		reqChangePropagationAnalysis.runChangePropagationAnalysis(version);
 
-		List<String> list = new LinkedList<String>();
-		for (ChangePropagationStep step : internalModificationMarkRepository.getChangePropagationSteps()) {
-			TreeIterator<EObject> objectsToSearch = step.eAllContents();
-			while (objectsToSearch.hasNext()) {
-				Object object = objectsToSearch.next();
-				if (object instanceof AbstractModification<?, ?>) {
-					AbstractModification<?, ?> modification = (AbstractModification<?, ?>) object;
-					list.add(((Entity) modification.getAffectedElement()).getId());
-				}
-			}
-		}
-		return list.size();
+		// List<String> list = new LinkedList<String>();
+		// for (ChangePropagationStep step :
+		// internalModificationMarkRepository.getChangePropagationSteps()) {
+		// TreeIterator<EObject> objectsToSearch = step.eAllContents();
+		// while (objectsToSearch.hasNext()) {
+		// Object object = objectsToSearch.next();
+		// if (object instanceof AbstractModification<?, ?>) {
+		// AbstractModification<?, ?> modification = (AbstractModification<?, ?>)
+		// object;
+		// list.add(((Entity) modification.getAffectedElement()).getId());
+		// }
+		// }
+		// }
+		return internalModificationMarkRepository.getChangePropagationSteps().size()
+				+ internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
 	}
 }

@@ -22,6 +22,7 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 	private Text textComponentInternalDependencyRepositoryModel;
 	private Text textDataModel;
 	private Text textOrganizationEnvironmentModel;
+	private Text textSystemModel;
 
 	@Override
 	public void createControl(final Composite parent) {
@@ -61,6 +62,13 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		TabHelper.createFileInputSection(container, modifyListener, "OrganizationEnvironmentModel File",
 				DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_EXTENSION, textOrganizationEnvironmentModel,
 				getShell(), DSEConstantsContainer.DEFAULT_ORGANIZATION_ENVIRONMENT_FILE);
+		/**
+		 * Add base System input section
+		 */
+		this.textSystemModel = new Text(container, SWT.SINGLE | SWT.BORDER);
+		TabHelper.createFileInputSection(container, modifyListener, "base System File",
+				DSEConstantsContainer.SYSTEM_MODEL_EXTENSION, textSystemModel,
+				getShell(), DSEConstantsContainer.DEFAULT_SYSTEM_MODEL_FILE);
 	}
 
 	@Override
@@ -89,6 +97,11 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		} catch (final CoreException e) {
 			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.DATA_MODEL_FILE, e.getMessage());
 		}
+		try {
+			this.textSystemModel.setText(configuration.getAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, ""));
+		} catch (final CoreException e) {
+			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.SYSTEM_MODEL_FILE, e.getMessage());
+		}
 	}
 
 	@Override
@@ -98,6 +111,7 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		configuration.setAttribute(DSEConstantsContainer.DATA_MODEL_FILE, this.textDataModel.getText());
 		configuration.setAttribute(DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_FILE,
 				this.textOrganizationEnvironmentModel.getText());
+		configuration.setAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, this.textSystemModel.getText());
 	}
 
 	@Override
@@ -131,7 +145,7 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		String extension = DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION[0].replace("*", "");
 		if (this.textComponentInternalDependencyRepositoryModel.getText().equals("")
 				|| !this.textComponentInternalDependencyRepositoryModel.getText().contains(extension)) {
-			setErrorMessage("ComponentInternalDependencyRepository is missing!");
+			setErrorMessage("ComponentInternalDependencyRepositoryModel is missing!");
 			return false;
 		}
 		extension = DSEConstantsContainer.DATA_MODEL_EXTENSION[0].replace("*", "");
@@ -143,6 +157,12 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		if (this.textOrganizationEnvironmentModel.getText().equals("")
 				|| !this.textOrganizationEnvironmentModel.getText().contains(extension)) {
 			setErrorMessage("OrganizationEnvironmentModel is missing!");
+			return false;
+		}
+		extension = DSEConstantsContainer.SYSTEM_MODEL_EXTENSION[0].replace("*", "");
+		if (this.textSystemModel.getText().equals("")
+				|| !this.textSystemModel.getText().contains(extension)) {
+			setErrorMessage("SystemModel is missing!");
 			return false;
 		}
 		return true;
