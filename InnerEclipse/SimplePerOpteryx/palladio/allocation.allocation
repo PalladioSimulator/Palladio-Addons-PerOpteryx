@@ -6,8 +6,4 @@
     <resourceContainer_AllocationContext href="environment.resourceenvironment#_PqLbkGFeEeetxOZObiabqg"/>
     <assemblyContext_AllocationContext href="assembly.system#_2VS28GFdEeetxOZObiabqg"/>
   </allocationContexts_Allocation>
-  <allocationContexts_Allocation id="_hqeYQGFeEeetxOZObiabqg" entityName="Allocation_Assembly_PaymentProvider-1">
-    <resourceContainer_AllocationContext href="environment.resourceenvironment#_PqLbkGFeEeetxOZObiabqg"/>
-    <assemblyContext_AllocationContext href="assembly.system#_5vDBAGFdEeetxOZObiabqg"/>
-  </allocationContexts_Allocation>
 </allocation:Allocation>
