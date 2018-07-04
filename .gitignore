@@ -21,6 +21,7 @@ xtend-gen/
 # Palladio
 de.uka.ipd.sdq.temporary/
 org.palladiosimulator.temporary/
+PerOpteryx_results_woven/
 PerOpteryx_results/
 
 # Eclipse 
@@ -90,3 +91,6 @@ $RECYCLE.BIN/
 ehthumbs_vista.db
 ehthumbs.db
 Thumbs.db
+
+# To add an empty directory
+!.gitkeep
