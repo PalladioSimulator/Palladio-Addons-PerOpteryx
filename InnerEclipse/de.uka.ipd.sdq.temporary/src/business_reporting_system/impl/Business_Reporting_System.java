@@ -22,7 +22,7 @@ this.model = model;
 
 	
 	logger.info("Creating composed structure Business_Reporting_System");
-	myAC_Webserver = new brs_repository.impl.WebServer
+	myAC_Webserver = new brs_repository.impl.WebServer3
 	      	("_N8Qq8No_EdyxgfK4Hy_RFA", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_N8Qq8No_EdyxgfK4Hy_RFA", model);
 	myAC_Scheduler = new brs_repository.impl.Scheduler
 	      	("_T00ZwNo_EdyxgfK4Hy_RFA", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_T00ZwNo_EdyxgfK4Hy_RFA", model);
@@ -32,7 +32,7 @@ this.model = model;
 	      	("_cWmNkNo_EdyxgfK4Hy_RFA", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_cWmNkNo_EdyxgfK4Hy_RFA", model);
 	myAC_Cache = new brs_repository.impl.CacheInfo
 	      	("_e5UB8No_EdyxgfK4Hy_RFA", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_e5UB8No_EdyxgfK4Hy_RFA", model);
-	myAC_GraphicalReporting__GraphicalReporting_ = new brs_repository.impl.GraphicalReporting
+	myAC_GraphicalReporting__GraphicalReporting_ = new brs_repository.impl.GraphicalReporting2
 	      	("_YH_kEFeoEd6zR8NNmb-sJg", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_YH_kEFeoEd6zR8NNmb-sJg", model);
 	myAC_OnlineReporting__OnlineReporting_ = new brs_repository.impl.OnlineReporting
 	      	("_iR-r0FeoEd6zR8NNmb-sJg", "file:/Users/Schneider/Universität/Masterarbeit/Palladio/PerOpteryxPlus/InnerEclipse/de.uka.ipd.sdq.temporary/model/platform/resource/IDS/BRS/brs.systemcand.system#_iR-r0FeoEd6zR8NNmb-sJg", model);
@@ -53,7 +53,7 @@ this.model = model;
 } 
 	// Composed child components member variables
 	protected 
-	   brs_repository.impl.WebServer 
+	   brs_repository.impl.WebServer3 
 	      myAC_Webserver = null;
 	protected 
 	   brs_repository.impl.Scheduler 
@@ -68,7 +68,7 @@ this.model = model;
 	   brs_repository.impl.CacheInfo 
 	      myAC_Cache = null;
 	protected 
-	   brs_repository.impl.GraphicalReporting 
+	   brs_repository.impl.GraphicalReporting2 
 	      myAC_GraphicalReporting__GraphicalReporting_ = null;
 	protected 
 	   brs_repository.impl.OnlineReporting 
@@ -99,7 +99,7 @@ this.model = model;
 	}
 
 	private void initAC_Webserver() {
-		brs_repository.impl.contexts.WebServerContext context = new brs_repository.impl.contexts.WebServerContext(
+		brs_repository.impl.contexts.WebServer3Context context = new brs_repository.impl.contexts.WebServer3Context(
 			/* From Connector _Q6ZZYMSGEd2CxsWT-lM9kQ */
 			myAC_Scheduler.getPortProvided_IBRSSystem_Scheduler()
 		);
@@ -120,7 +120,7 @@ this.model = model;
 			/* From Connector _kBloQFeoEd6zR8NNmb-sJg */
 			myAC_OnlineReporting__OnlineReporting_.getPortProvided_IReporting_OnlineReporting(),
 			/* From Connector _ecj5cFeoEd6zR8NNmb-sJg */
-			myAC_GraphicalReporting__GraphicalReporting_.getPortProvided_IReporting_GraphicalReporting(),
+			myAC_GraphicalReporting__GraphicalReporting_.getPortProvided_IGraphicalReport_GraphicalReporting2(),
 			/* From Connector _ec0F8FhJEd6UHd_VhJH9SQ */
 			myAC_UserManagement__UserManagement_.getPortProvided_IUserMgmt_UserManagement()
 		);
@@ -183,7 +183,7 @@ this.model = model;
 		myAC_Cache.setContext(context);
 	}
 	private void initAC_GraphicalReporting__GraphicalReporting_() {
-		brs_repository.impl.contexts.GraphicalReportingContext context = new brs_repository.impl.contexts.GraphicalReportingContext(
+		brs_repository.impl.contexts.GraphicalReporting2Context context = new brs_repository.impl.contexts.GraphicalReporting2Context(
 			/* From Connector _JmTnwHqQEd6uqIqMUZizUw */
 			myAssembly_CoreGraphicEngine__CoreReportingEngine2_.getPortProvided_IReporting_CoreReportingEngine2()
 		);

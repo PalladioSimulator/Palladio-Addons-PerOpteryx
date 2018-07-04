@@ -2,17 +2,22 @@
 <QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_Dbn-kGFfEeetxOZObiabqg">
   <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="CostContractType">
     <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="CostContract" contractType="_Gw0_1GFfEeetxOZObiabqg">
     <criteria xsi:type="QMLContract:Objective" id="_XJ0ngGFfEeetxOZObiabqg">
       <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
       <aspects xsi:type="QMLContract:Value" id="_amT8hGFfEeetxOZObiabqg"/>
     </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_HgN7gHrJEeinO5RnxBk0ZQ">
+      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Mean" id="_JP8zwnrJEeinO5RnxBk0ZQ"/>
+    </criteria>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="CostProfile">
-    <usageModel href="../palladio/usage.usagemodel#/"/>
+    <usageModel href="../palladio/newUsageModel.usagemodel#/"/>
     <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_gblGwGFfEeetxOZObiabqg" requireContract="_Qv-JgmFfEeetxOZObiabqg">
-      <usageScenario href="../palladio/usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
+      <usageScenario href="../palladio/newUsageModel.usagemodel#_20LxIHrKEeiIT9X_eTGV7w"/>
     </requirements>
   </qmlDeclarations>
 </QMLDeclarations:QMLDeclarations>

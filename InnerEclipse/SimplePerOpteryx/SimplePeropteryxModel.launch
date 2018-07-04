@@ -64,7 +64,7 @@
 <stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
@@ -93,7 +93,7 @@
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="/tmp/lqns"/>
+<stringAttribute key="lqnsOutputDir" value="/Users/axelbusch/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/tmp"/>
 <stringAttribute key="lqsimOutputDir" value="D:\Projects\src\eclipse-palladio"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
@@ -119,7 +119,7 @@
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclaration_cost_perf.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>
@@ -144,7 +144,7 @@
 <booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
-<stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>
+<stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/newUsageModel.usagemodel"/>
 <booleanAttribute key="useConfidenceStopCondition" value="false"/>
 <stringAttribute key="variationId" value="Default Variation"/>
 </launchConfiguration>

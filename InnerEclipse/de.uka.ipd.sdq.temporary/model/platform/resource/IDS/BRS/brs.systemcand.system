@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:stoex="http://sdq.ipd.uka.de/StochasticExpressions/2.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2">
   <system:System id="_Mkm7gNo_EdyxgfK4Hy_RFA" entityName="Business_Reporting_System">
     <assemblyContexts__ComposedStructure id="_N8Qq8No_EdyxgfK4Hy_RFA" entityName="AC_Webserver">
-      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_6bAEENo5EdyCSNQKlT1LxA"/>
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_6bAEENo5EdyCSNQKlT1LxA3"/>
     </assemblyContexts__ComposedStructure>
     <assemblyContexts__ComposedStructure id="_T00ZwNo_EdyxgfK4Hy_RFA" entityName="AC_Scheduler">
       <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_jpoagNo4EdyCSNQKlT1LxA"/>
@@ -23,7 +23,7 @@
       <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_nEBdwNo4EdyCSNQKlT1LxA"/>
     </assemblyContexts__ComposedStructure>
     <assemblyContexts__ComposedStructure id="_YH_kEFeoEd6zR8NNmb-sJg" entityName="AC_GraphicalReporting &lt;GraphicalReporting>">
-      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_LP3icFelEd6zR8NNmb-sJg"/>
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_4uxs0GOKEeWmJ6LLpeOQRQ"/>
     </assemblyContexts__ComposedStructure>
     <assemblyContexts__ComposedStructure id="_iR-r0FeoEd6zR8NNmb-sJg" entityName="AC_OnlineReporting &lt;OnlineReporting>">
       <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repositorycand.repository#_M0cTkFelEd6zR8NNmb-sJg"/>
@@ -48,10 +48,10 @@
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_Q6ZZYMSGEd2CxsWT-lM9kQ" entityName="Connector AC_Webserver -> AC_Scheduler" requiringAssemblyContext_AssemblyConnector="_N8Qq8No_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_T00ZwNo_EdyxgfK4Hy_RFA">
       <providedRole_AssemblyConnector href="brs.repositorycand.repository#_Wm_OINo5EdyCSNQKlT1LxA"/>
-      <requiredRole_AssemblyConnector href="brs.repositorycand.repository#_76rHENo5EdyCSNQKlT1LxA"/>
+      <requiredRole_AssemblyConnector href="brs.repositorycand.repository#_76rHENo5EdyCSNQKlT1LxA3"/>
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_ecj5cFeoEd6zR8NNmb-sJg" entityName="Connector AC_Scheduler -> Assembly_GraphicalReporting &lt;GraphicalReporting>" requiringAssemblyContext_AssemblyConnector="_T00ZwNo_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_YH_kEFeoEd6zR8NNmb-sJg">
-      <providedRole_AssemblyConnector href="brs.repositorycand.repository#_QM9ukFelEd6zR8NNmb-sJg"/>
+      <providedRole_AssemblyConnector href="brs.repositorycand.repository#_9WDZ8GOKEeWmJ6LLpeOQRQ"/>
       <requiredRole_AssemblyConnector href="brs.repositorycand.repository#_8cgw8FemEd6zR8NNmb-sJg"/>
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_kBloQFeoEd6zR8NNmb-sJg" entityName="Connector AC_Scheduler -> Assembly_OnlineReporting &lt;OnlineReporting>" requiringAssemblyContext_AssemblyConnector="_T00ZwNo_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_iR-r0FeoEd6zR8NNmb-sJg">
@@ -68,7 +68,7 @@
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_JmTnwHqQEd6uqIqMUZizUw" entityName="Connector Assembly_GraphicalReporting &lt;GraphicalReporting> -> Assembly_CoreReportingEngine2_gr &lt;CoreReportingEngine2>" requiringAssemblyContext_AssemblyConnector="_YH_kEFeoEd6zR8NNmb-sJg" providingAssemblyContext_AssemblyConnector="_Gnz2UHqQEd6uqIqMUZizUw">
       <providedRole_AssemblyConnector href="brs.repositorycand.repository#_y8ErgHqPEd6uqIqMUZizUw"/>
-      <requiredRole_AssemblyConnector href="brs.repositorycand.repository#_TNCNUFelEd6zR8NNmb-sJg"/>
+      <requiredRole_AssemblyConnector href="brs.repositorycand.repository#__S12wGOKEeWmJ6LLpeOQRQ"/>
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_KgFIYHqQEd6uqIqMUZizUw" entityName="Connector Assembly_CoreReportingEngine2_gr &lt;CoreReportingEngine2> -> AC_CacheInfo" requiringAssemblyContext_AssemblyConnector="_Gnz2UHqQEd6uqIqMUZizUw" providingAssemblyContext_AssemblyConnector="_e5UB8No_EdyxgfK4Hy_RFA">
       <providedRole_AssemblyConnector href="brs.repositorycand.repository#_gEK9cNo9EdyxgfK4Hy_RFA"/>
@@ -79,7 +79,7 @@
       <requiredRole_AssemblyConnector href="brs.repositorycand.repository#_03FmsHqPEd6uqIqMUZizUw"/>
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_Fc1jsLcOEd2_9rSHIHHezA" entityName="ProvDelegation Provided_IHTTP -> Provided_IHTTP_WebServer" outerProvidedRole_ProvidedDelegationConnector="_zyc0ANo_EdyxgfK4Hy_RFA" assemblyContext_ProvidedDelegationConnector="_N8Qq8No_EdyxgfK4Hy_RFA">
-      <innerProvidedRole_ProvidedDelegationConnector href="brs.repositorycand.repository#_7gSRINo5EdyCSNQKlT1LxA"/>
+      <innerProvidedRole_ProvidedDelegationConnector href="brs.repositorycand.repository#_7gSRINo5EdyCSNQKlT1LxA3"/>
     </connectors__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_RsJe0FekEd6zR8NNmb-sJg" entityName="ProvDelegation Provided_IAdmin -> Provided_IAdmin_ReportingEngine" outerProvidedRole_ProvidedDelegationConnector="_QgwCsFekEd6zR8NNmb-sJg" assemblyContext_ProvidedDelegationConnector="_VmpjwNo_EdyxgfK4Hy_RFA">
       <innerProvidedRole_ProvidedDelegationConnector href="brs.repositorycand.repository#_WjvysGo2Ed631pecjlFspw"/>

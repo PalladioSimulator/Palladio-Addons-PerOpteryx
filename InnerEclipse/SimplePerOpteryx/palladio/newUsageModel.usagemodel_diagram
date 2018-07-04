@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel" xmi:id="_u8kUoHrKEeiIT9X_eTGV7w" type="PCM Usage Model" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_20R3wHrKEeiIT9X_eTGV7w" type="2004">
+    <children xmi:type="notation:DecorationNode" xmi:id="_20R3xXrKEeiIT9X_eTGV7w" type="5017"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_20R3xnrKEeiIT9X_eTGV7w" type="7012">
+      <children xmi:type="notation:Shape" xmi:id="_Cp9FQHrLEeiIT9X_eTGV7w" type="3014" fontName=".SF NS Text">
+        <children xmi:type="notation:DecorationNode" xmi:id="_Cp9FQnrLEeiIT9X_eTGV7w" type="7013">
+          <children xmi:type="notation:Node" xmi:id="_Cp9sUHrLEeiIT9X_eTGV7w" type="3001">
+            <styles xmi:type="notation:DescriptionStyle" xmi:id="_Cp9sUXrLEeiIT9X_eTGV7w"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_Cp9sUnrLEeiIT9X_eTGV7w" fontName=".SF NS Text"/>
+            <styles xmi:type="notation:LineStyle" xmi:id="_Cp9sU3rLEeiIT9X_eTGV7w"/>
+            <element xmi:type="usagemodel:Start" href="newUsageModel.usagemodel#_Cp73IHrLEeiIT9X_eTGV7w"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cp9sVHrLEeiIT9X_eTGV7w"/>
+          </children>
+          <children xmi:type="notation:Shape" xmi:id="_Cp-TYHrLEeiIT9X_eTGV7w" type="3002" fontName=".SF NS Text">
+            <element xmi:type="usagemodel:Stop" href="newUsageModel.usagemodel#_Cp73IXrLEeiIT9X_eTGV7w"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cp-TYXrLEeiIT9X_eTGV7w" x="80"/>
+          </children>
+          <children xmi:type="notation:Shape" xmi:id="_DoFhcHrLEeiIT9X_eTGV7w" type="3003" fontName=".SF NS Text">
+            <children xmi:type="notation:DecorationNode" xmi:id="_DoFhcnrLEeiIT9X_eTGV7w" type="5004"/>
+            <children xmi:type="notation:DecorationNode" xmi:id="_DoFhc3rLEeiIT9X_eTGV7w" type="7002">
+              <styles xmi:type="notation:SortingStyle" xmi:id="_DoFhdHrLEeiIT9X_eTGV7w"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_DoFhdXrLEeiIT9X_eTGV7w"/>
+            </children>
+            <element xmi:type="usagemodel:EntryLevelSystemCall" href="newUsageModel.usagemodel#_DJIUkHrLEeiIT9X_eTGV7w"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DoFhcXrLEeiIT9X_eTGV7w" x="-9" y="44"/>
+          </children>
+        </children>
+        <element xmi:type="usagemodel:ScenarioBehaviour" href="newUsageModel.usagemodel#_Cp7QEHrLEeiIT9X_eTGV7w"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Cp9FQXrLEeiIT9X_eTGV7w" x="144" y="-4"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_GRnIcHrLEeiIT9X_eTGV7w" type="3016">
+        <children xmi:type="notation:DecorationNode" xmi:id="_GRnIdXrLEeiIT9X_eTGV7w" type="5016"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_GRnIcXrLEeiIT9X_eTGV7w"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_GRnIcnrLEeiIT9X_eTGV7w" fontName=".SF NS Text"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_GRnIc3rLEeiIT9X_eTGV7w"/>
+        <element xmi:type="usagemodel:OpenWorkload" href="newUsageModel.usagemodel#//@usageScenario_UsageModel.0/@workload_UsageScenario"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GRnIdHrLEeiIT9X_eTGV7w" x="204" y="137"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_20R3wXrKEeiIT9X_eTGV7w"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_20R3wnrKEeiIT9X_eTGV7w" fontName=".SF NS Text"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_20R3w3rKEeiIT9X_eTGV7w"/>
+    <element xmi:type="usagemodel:UsageScenario" href="newUsageModel.usagemodel#_20LxIHrKEeiIT9X_eTGV7w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_20R3xHrKEeiIT9X_eTGV7w" x="80" y="56" width="377" height="237"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_u8kUoXrKEeiIT9X_eTGV7w"/>
+  <element xmi:type="usagemodel:UsageModel" href="newUsageModel.usagemodel#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_Efr30HrLEeiIT9X_eTGV7w" type="4002" source="_Cp9sUHrLEeiIT9X_eTGV7w" target="_DoFhcHrLEeiIT9X_eTGV7w">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Efr30XrLEeiIT9X_eTGV7w" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Efr30nrLEeiIT9X_eTGV7w" points="[10, 4, -50, -21]$[39, 23, -21, -2]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EfwJQHrLEeiIT9X_eTGV7w" id="(0.2079207920792079,0.46808510638297873)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_F1EWYHrLEeiIT9X_eTGV7w" type="4002" source="_DoFhcHrLEeiIT9X_eTGV7w" target="_Cp-TYHrLEeiIT9X_eTGV7w">
+    <styles xmi:type="notation:FontStyle" xmi:id="_F1EWYXrLEeiIT9X_eTGV7w" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_F1EWYnrLEeiIT9X_eTGV7w" points="[7, -10, -23, 29]$[27, -24, -3, 15]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_F1FkgHrLEeiIT9X_eTGV7w" id="(0.7326732673267327,0.2127659574468085)"/>
+  </edges>
+</notation:Diagram>

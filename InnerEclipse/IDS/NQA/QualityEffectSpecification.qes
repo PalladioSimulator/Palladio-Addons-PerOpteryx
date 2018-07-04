@@ -1,3 +1,3 @@
 For{Component(Role(InfrastructureRequiredProvided) and Name("CoreOnlineEngine"))}Do{NQA("Security"="+")}
-For{Component(Role(InfrastructureRequiredProvided) and Id(not "_vXL2QHrZEeiy6cOD977wWQ"))}Do{NQA("Security"="-")}
-For{Component(Annotation("MyAnnotation"))}Do{NQA("Security"="0")}
+For{Component(Role(InfrastructureRequiredProvided) and Id(not "_P48uoGo2Ed631pecjlFspw"))}Do{NQA("Security"="-")}
+For{Component(Annotation("MyAnnotation") and Assembly(not AnyAssembly with Component(Name("TEST"))))}Do{NQA("Security"="--")}

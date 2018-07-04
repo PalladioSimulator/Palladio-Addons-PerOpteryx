@@ -209,6 +209,7 @@
     <semanticResources>peropteryx/Features.featureobjective</semanticResources>
     <semanticResources>palladio/assembly.system.bak</semanticResources>
     <semanticResources>http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0</semanticResources>
+    <semanticResources>tmp/pcm2lqn-2018-06-28-140417.in.lqxo</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" repPath="#_2TSncHUgEeiWQbkxWPll_w">
