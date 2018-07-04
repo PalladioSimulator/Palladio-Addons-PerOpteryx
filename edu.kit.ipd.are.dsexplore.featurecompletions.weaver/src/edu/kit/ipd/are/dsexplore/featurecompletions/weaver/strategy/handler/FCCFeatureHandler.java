@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
+import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
@@ -54,7 +56,7 @@ public class FCCFeatureHandler {
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
 		// TODO Welche Provided Roles?
-		Feature providedECCFeature = this.getFeatureProvidedBy(fcc);
+		Feature providedFCCFeature = this.getFeatureProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 
 		for (Pair<Entity, ComplementumVisnetis> partAndCV : this.extractProvidedCVs()) {
@@ -161,6 +163,11 @@ public class FCCFeatureHandler {
 	 */
 	private boolean isFeature(OperationSignature operationSignature) {
 		return EMFProfileFilter.isAnnotated(operationSignature);
+	}
+	
+	//TODO added for extension
+	private boolean isFeature(OperationInterface operationInterface) {
+		return EMFProfileFilter.isAnnotated(operationInterface);
 	}
 
 	/**

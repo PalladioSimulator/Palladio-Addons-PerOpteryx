@@ -150,7 +150,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<IWeavingInstruction> instructions;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 		
 		List<IWeavingInstruction> instructions = this.determineInstructions();
@@ -282,6 +282,15 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 //		copier.copyReferences();
 //		return newObj;
 		return obj;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy#getConvertedFCCClassChoices()
+	 */
+	@Override
+	public List<Choice> getConvertedFCCClassChoices() {
+		// TODO implement
+		return null;
 	}
 	
 }
