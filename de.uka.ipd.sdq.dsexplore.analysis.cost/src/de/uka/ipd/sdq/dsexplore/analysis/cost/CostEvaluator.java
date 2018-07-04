@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -164,14 +163,11 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	 */
 	private double getOperatingCost(PCMInstance pcmInstance) {
 		double sum = 0;
-		for (CostRepository cr : this.costModels) {
-			for (Cost cost : this.getCosts()) {
-				if (this.doesCostApply(cost, pcmInstance)) {
-					sum += cost.getOperatingCost();
-				}
+		for (Cost cost : this.getCosts()) {
+			if (this.doesCostApply(cost, pcmInstance)) {
+				sum += cost.getOperatingCost();
 			}
 		}
-
 		return sum;
 	}
 
@@ -327,8 +323,8 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 	@Override
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor) throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		PCMInstance pcm = pheno.getPCMInstance();
-
-		this.reloadCostModelIfNecessary();
+		// Disabled by DTHF1
+		// this.reloadCostModelIfNecessary();
 
 		// Important: "Read in" the right PCM instance first.
 		this.updateCostModel(pcm);
@@ -341,46 +337,30 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 		CostUtil.getInstance().resetCache();
 	}
 
-	private void reloadCostModelIfNecessary() {
-
-		try {
-
-			CostRepository currentCostModel = this.getCostModel(this.configuration);
-			EcoreUtil.resolveAll(currentCostModel.eResource());
-
-			if (this.costModelChanged(currentCostModel)) {
-				// DTHF1
-				throw new RuntimeException("Currently not supported .. (and not needed)");
-				// this.costModel = currentCostModel;
-
-			}
-
-		} catch (CoreException e) {
-
-			// TODO Logging
-			return;
-
-		}
-
-	}
-
-	private boolean costModelChanged(CostRepository currentCostModel) {
-
-		for (Cost eachCost : currentCostModel.getCost()) {
-			if (eachCost instanceof ComponentCost) {
-				if (!this.getCosts().stream().anyMatch(this.contains((ComponentCost) eachCost))) {
-					return true;
-				}
-			}
-		}
-		return false;
-
-	}
-
-	private Predicate<Cost> contains(ComponentCost givenCost) {
-		return cost -> (cost instanceof ComponentCost) && (((ComponentCost) cost).getRepositoryComponent().getId().equals(givenCost.getRepositoryComponent().getId()));
-	}
-
+	/*
+	 * private void reloadCostModelIfNecessary() { try { CostRepository
+	 * currentCostModel = this.getCostModel(this.configuration);
+	 * EcoreUtil.resolveAll(currentCostModel.eResource()); if
+	 * (this.costModelChanged(currentCostModel)) { // DTHF1 throw new
+	 * RuntimeException("Currently not supported .. (and not needed)"); //
+	 * this.costModel = currentCostModel;
+	 *
+	 * } } catch (CoreException e) { // TODO Logging return; } }
+	 *
+	 * private boolean costModelChanged(CostRepository currentCostModel) {
+	 *
+	 * for (Cost eachCost : currentCostModel.getCost()) { if (eachCost
+	 * instanceof ComponentCost) { if
+	 * (!this.getCosts().stream().anyMatch(this.contains((ComponentCost)
+	 * eachCost))) { return true; } } } return false;
+	 *
+	 * }
+	 *
+	 * private Predicate<Cost> contains(ComponentCost givenCost) { return cost
+	 * -> (cost instanceof ComponentCost) && (((ComponentCost)
+	 * cost).getRepositoryComponent().getId().equals(givenCost.
+	 * getRepositoryComponent().getId())); }
+	 */
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 
