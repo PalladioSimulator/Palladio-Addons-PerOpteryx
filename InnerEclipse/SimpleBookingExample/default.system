@@ -32,8 +32,12 @@
   <emfprofileapplication:ProfileApplication>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_VreA0C6MEd-Jla2o7wkBzQ">
       <extension href="../FeatureCompletionProfile/completion.emfprofile_diagram#_eXBxIBfiEeixnp8iZNZNhA"/>
-      <solutionRepositories href="peropteryx/solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
-      <solutionRepositories href="peropteryx/solutions/solutionB.repository#_l0s-IJpjEeeEPdMZenYK9Q"/>
+      <solutionRepositories href="peropteryx/solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
+      <solutionRepositories href="peropteryx/solutions/Log4j2.repository#_xrUmkHueEeiQ2-JKBP-N_g"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_cIRFIC6MEd-Jla2o7wkBzQ">
+      <extension href="../FeatureCompletionProfile/completion.emfprofile_diagram#_LNnQQBfiEeixnp8iZNZNhA"/>
+      <includeComplementumVisnetis href="peropteryx/Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

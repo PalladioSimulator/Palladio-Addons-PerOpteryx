@@ -65,8 +65,8 @@
 <stringAttribute key="allocationFile" value="platform:/resource/SimpleBookingExample/default.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="Reliability Solver Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
@@ -132,7 +132,7 @@
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/default.profile.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/cost.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>

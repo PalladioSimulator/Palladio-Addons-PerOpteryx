@@ -175,6 +175,34 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
       <usesMechanism xsi:type="featureSolution:ExtensionInclusion" href="../extension.fcdsl#_ZZ"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_JKkMoOfNEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_dpty0OTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_PA5G0OfNEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_QldQ4OfNEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_LinOEOTYEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_xaIRkO8EEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_o-0S8PiYEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_FfgFMPiZEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
+      <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_o-0S8PiYEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_0FPKABfiEeixnp8iZNZNhA"/>
+      <fulfills href="../Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

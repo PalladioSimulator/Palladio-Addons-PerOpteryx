@@ -30,7 +30,7 @@ ExtensionInclusion extensionIncl _ZZ {
 		Advice {
 			appears BEFORE 
 			pointCut allActionsIn
-			Completion ConsoleLogging
+			Completion FileLogging
 		},
 		Advice {
 			appears BEFORE 
