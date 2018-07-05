@@ -25,5 +25,6 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  de.uhd.ifi.se.pcm.bppcm,
  edu.kit.ipd.sdq.kamp4req,
  edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ edu.kit.ipd.sdq.kamp
 Bundle-Vendor: sdq.ipd.uka.de

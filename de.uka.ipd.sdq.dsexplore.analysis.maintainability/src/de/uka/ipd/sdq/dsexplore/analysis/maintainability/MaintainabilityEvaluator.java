@@ -12,8 +12,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.repository.DataType;
-import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.system.SystemPackage;
@@ -51,114 +49,56 @@ import edu.kit.ipd.sdq.kamp4req.model.modificationmarks.impl.ReqModificationmark
 
 public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnalysis {
 
-	private DSEWorkflowConfiguration configuration;
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.maintainability");
 
-	private Repository repository;
-	private org.palladiosimulator.pcm.system.System system;
 	private org.palladiosimulator.pcm.system.System baseSystem;
 	private ComponentInternalDependencyRepository componentInternalDependencyRepository;
 	private OrganizationEnvironmentModel organizationEnvironmentModel;
 	private DataModel dataModel;
-	private Map<String, UsageModel> usageModels;
-	private AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository;
-	private ISFieldOfActivityAnnotationsRepository fieldOfActivityRepository;
-	private ReqSeedModifications reqSeedModifications;
 
 	private Map<Long, MaintainabilityAnalysisResult> previousMaintainabilityAnalysisResults;
 
 	public MaintainabilityEvaluator() {
 		super(new MaintainabilityQualityAttributeDeclaration());
-		this.usageModels = new HashMap<String, UsageModel>();
 		this.previousMaintainabilityAnalysisResults = new HashMap<Long, MaintainabilityAnalysisResult>();
 	}
 
 	@Override
 	public void analyse(PCMPhenotype pheno, IProgressMonitor monitor)
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
-		system = pheno.getPCMInstance().getSystem();
+		org.palladiosimulator.pcm.system.System system = pheno.getPCMInstance().getSystem();
+		Map<String, UsageModel> usageModels = new HashMap<String, UsageModel>();
 		usageModels.put("", pheno.getPCMInstance().getUsageModel());
+		Repository repository = getRepository(system, pheno.getPCMInstance().getRepositories());
 		ReqModificationmarksFactory reqModificationmarksFactory = new ReqModificationmarksFactoryImpl();
-		this.internalModificationMarkRepository = reqModificationmarksFactory.createReqModificationRepository();
-		this.reqSeedModifications = reqModificationmarksFactory.createReqSeedModifications();
-		this.internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
+		ISFieldOfActivityAnnotationsFactory fieldOfActivityAnnotationsFactory = new ISFieldOfActivityAnnotationsFactoryImpl();
+		ISFieldOfActivityAnnotationsRepository fieldOfActivityRepository = fieldOfActivityAnnotationsFactory
+				.createISFieldOfActivityAnnotationsRepository();
+		AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository = reqModificationmarksFactory
+				.createReqModificationRepository();
+		ReqSeedModifications reqSeedModifications = reqModificationmarksFactory.createReqSeedModifications();
+		internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
+		ReqArchitectureVersion reqArchitectureVersion = null;
 
-		for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
-			RepositoryComponent component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
+		createAndAddComponentSeedModification(system, reqSeedModifications);
 
-			for (Repository rep : pheno.getPCMInstance().getRepositories()) {
-				for (RepositoryComponent r : rep.getComponents__Repository()) {
-					if (component == r) {
-						repository = rep;
-						break;
-					}
-				}
-			}
-
-			if (repository != null) {
-				break;
-			}
-		}
-		logger.info("repository '" + repository.getEntityName() + "' registered");
-
-		for (RepositoryComponent c : repository.getComponents__Repository()) {
-			System.out.println("component :" + c.getEntityName());
-		}
-		for (Interface c : repository.getInterfaces__Repository()) {
-			System.out.println("interface :" + c.getEntityName());
-		}
-		for (DataType c : repository.getDataTypes__Repository()) {
-			System.out.println("data type :" + c.toString());
-		}
-		for (AssemblyContext c : system.getAssemblyContexts__ComposedStructure()) {
-			System.out.println("assembled component: " + c.getEncapsulatedComponent__AssemblyContext().getEntityName());
-		}
-		System.out.println("------------------------");
-
-		for (AssemblyContext baseAssemblyContext : baseSystem.getAssemblyContexts__ComposedStructure()) {
-			boolean contains = false;
-			for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
-				if (baseAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId()
-						.equals(assemblyContext.getEncapsulatedComponent__AssemblyContext().getId())) {
-					contains = true;
-					break;
-				}
-			}
-			if (!contains) {
-				ISModificationmarksFactory isModificationmarksFactory = new ISModificationmarksFactoryImpl();
-				ISModifyComponent isModifyComponent = isModificationmarksFactory.createISModifyComponent();
-				isModifyComponent.setAffectedElement(baseAssemblyContext.getEncapsulatedComponent__AssemblyContext());
-				reqSeedModifications.getComponentModifications().add(isModifyComponent);
-			}
-		}
-
-		ReqArchitectureVersion reqArchitectureVersion = new ReqArchitectureVersion("version", repository, system,
+		// at the moment, REMOVE modification is analysed
+		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, baseSystem,
 				fieldOfActivityRepository, internalModificationMarkRepository, componentInternalDependencyRepository,
 				usageModels, dataModel, organizationEnvironmentModel, null, null, null);
-		double changeImpact = evaluateChangeImpact(reqArchitectureVersion);
+		double changeImpact = evaluateChangeImpact(reqArchitectureVersion, internalModificationMarkRepository);
 		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(),
 				new MaintainabilityAnalysisResult(changeImpact, this.criterionToAspect,
 						(MaintainabilityQualityAttributeDeclaration) this.qualityAttribute));
-
 	}
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.initialiseCriteria(configuration);
-		this.configuration = configuration;
 		this.componentInternalDependencyRepository = getComponentInternalDependencyRepositoryModel(configuration);
 		this.dataModel = getDataModel(configuration);
 		this.organizationEnvironmentModel = getOrganizationEnvironmentModel(configuration);
 		this.baseSystem = getBaseSystemModel(configuration);
-
-		ISFieldOfActivityAnnotationsFactory fieldOfActivityAnnotationsFactory = new ISFieldOfActivityAnnotationsFactoryImpl();
-		this.fieldOfActivityRepository = fieldOfActivityAnnotationsFactory
-				.createISFieldOfActivityAnnotationsRepository();
-
-		for (AssemblyContext c : baseSystem.getAssemblyContexts__ComposedStructure()) {
-			System.out.println("assembled component: " + c.getEncapsulatedComponent__AssemblyContext().getEntityName());
-		}
-		System.out.println("_______________________");
 	}
 
 	@Override
@@ -268,24 +208,77 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		return organizationEnvironmentModel;
 	}
 
-	private double evaluateChangeImpact(ReqArchitectureVersion version) {
+	/**
+	 * returns a repository model or throws an exception.
+	 *
+	 * @throws CoreException
+	 *             if the model could not be loaded.
+	 */
+	private Repository getRepository(org.palladiosimulator.pcm.system.System system, List<Repository> candidates)
+			throws CoreException {
+		Repository repository = null;
+		for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
+			RepositoryComponent component = assemblyContext.getEncapsulatedComponent__AssemblyContext();
+			for (Repository rep : candidates) {
+				for (RepositoryComponent r : rep.getComponents__Repository()) {
+					if (component == r) {
+						repository = rep;
+						break;
+					}
+				}
+			}
+			if (repository != null) {
+				break;
+			}
+		}
+		if (repository == null) {
+			throw new CoreException(
+					new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Repository could not be loaded.", null));
+		} else {
+			logger.info("repository '" + repository.getEntityName() + "' registered");
+		}
+		return repository;
+	}
+
+	/**
+	 * run KAMP
+	 * 
+	 * @param version
+	 * @param internalModificationMarkRepository
+	 * @return
+	 */
+	private double evaluateChangeImpact(ReqArchitectureVersion version,
+			AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository) {
 		ReqChangePropagationAnalysis reqChangePropagationAnalysis = new ReqChangePropagationAnalysis();
 		reqChangePropagationAnalysis.runChangePropagationAnalysis(version);
-
-		// List<String> list = new LinkedList<String>();
-		// for (ChangePropagationStep step :
-		// internalModificationMarkRepository.getChangePropagationSteps()) {
-		// TreeIterator<EObject> objectsToSearch = step.eAllContents();
-		// while (objectsToSearch.hasNext()) {
-		// Object object = objectsToSearch.next();
-		// if (object instanceof AbstractModification<?, ?>) {
-		// AbstractModification<?, ?> modification = (AbstractModification<?, ?>)
-		// object;
-		// list.add(((Entity) modification.getAffectedElement()).getId());
-		// }
-		// }
-		// }
 		return internalModificationMarkRepository.getChangePropagationSteps().size()
 				+ internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
+	}
+
+	/**
+	 * create component seed modification for every component, which is contained in
+	 * the base assembly, but not in the current assembly
+	 * 
+	 * @param system
+	 * @param reqSeedModifications
+	 */
+	private void createAndAddComponentSeedModification(org.palladiosimulator.pcm.system.System system,
+			ReqSeedModifications reqSeedModifications) {
+		for (AssemblyContext baseAssemblyContext : baseSystem.getAssemblyContexts__ComposedStructure()) {
+			boolean contains = false;
+			for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
+				if (baseAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId()
+						.equals(assemblyContext.getEncapsulatedComponent__AssemblyContext().getId())) {
+					contains = true;
+					break;
+				}
+			}
+			if (!contains) {
+				ISModificationmarksFactory isModificationmarksFactory = new ISModificationmarksFactoryImpl();
+				ISModifyComponent isModifyComponent = isModificationmarksFactory.createISModifyComponent();
+				isModifyComponent.setAffectedElement(baseAssemblyContext.getEncapsulatedComponent__AssemblyContext());
+				reqSeedModifications.getComponentModifications().add(isModifyComponent);
+			}
+		}
 	}
 }
