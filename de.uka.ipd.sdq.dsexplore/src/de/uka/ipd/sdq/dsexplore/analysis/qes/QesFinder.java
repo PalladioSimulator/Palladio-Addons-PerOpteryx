@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.modelversioning.emfprofile.Stereotype;
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.mdsdprofiles.api.StereotypeAPI;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -226,34 +227,43 @@ public class QesFinder {
 			return Collections.emptySet();
 		}
 		Set<String> annotatios = new HashSet<String>();
-		for (final Stereotype stereotype : StereotypeAPI.getAppliedStereotypes(object)) {
-			for (final EObject refs : stereotype.eCrossReferences()) {
-				if (refs instanceof FeatureCompletionModel.NamedElement) {
-					annotatios.add(((FeatureCompletionModel.NamedElement) refs).getName());
-				}
-				if (refs instanceof de.uka.ipd.sdq.featuremodel.NamedElement) {
-					annotatios.add(((de.uka.ipd.sdq.featuremodel.NamedElement) refs).getName());
-				}
-				if (refs instanceof org.palladiosimulator.pcm.core.entity.NamedElement) {
-					annotatios.add(((org.palladiosimulator.pcm.core.entity.NamedElement) refs).getEntityName());
-				}
-			}
+		for (final StereotypeApplication application : StereotypeAPI.getStereotypeApplications(object)) {
+			annotatios.add(application.getStereotype().getName());
 		}
 		return Collections.unmodifiableSet(annotatios);
 	}
 
 	private Set<String> getComponents(final Annotation annotation) {
-		String name = annotation.getAnnotation();
-		if(annotationMap.containsKey(name) == false) {
+		if (annotationMap == null || annotationMap.isEmpty() || annotation == null) {
 			return Collections.emptySet();
 		}
-		Set<String> components = new HashSet<String>();
-		for (RepositoryComponent component : annotationMap.get(name)) {
-			components.add(component.getId());
+		final String name = annotation.getAnnotation();
+		if(name == null || name.length() == 0 || annotationMap.containsKey(name) == false) {
+			return Collections.emptySet();
 		}
-		return Collections.unmodifiableSet(components);
+		
+		final Set<String> annotatedComponents = new HashSet<String>();
+		for (RepositoryComponent component : annotationMap.get(name)) {
+			annotatedComponents.add(component.getId());
+		}
+		
+		final boolean isNot = annotation.isNot();
+		if(isNot) {
+			Set<String> notAnnotatedComponents = new HashSet<String>();
+			for (RepositoryComponent component : componentGraph) {
+				final String id = component.getId();
+				if (annotatedComponents.contains(id) == false) {
+					notAnnotatedComponents.add(id);
+				}
+			}
+			return Collections.unmodifiableSet(notAnnotatedComponents);
+		} 
+		
+		return Collections.unmodifiableSet(annotatedComponents);
 	}
+	
 
+	
 	private Set<String> getComponents(final Assembly assembly) {
 		final Set<String> effectedComponents = new HashSet<>();
 
