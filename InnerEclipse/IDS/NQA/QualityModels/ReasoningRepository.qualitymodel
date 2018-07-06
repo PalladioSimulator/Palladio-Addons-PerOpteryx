@@ -8,4 +8,8 @@
     <transformations href="TransformationRepository.qualitymodel#_aje1gGG5EeiEUbMgG_u56Q"/>
     <output href="../QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
   </reasonings>
+  <reasonings id="_0HNFIHrYEeiy6cOD977wWQ" entityName="SecurityIdentitySecurity">
+    <transformations href="TransformationRepository.qualitymodel#_eTHRQHrZEeiy6cOD977wWQ"/>
+    <output href="../QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+  </reasonings>
 </QualityModel:ReasoningRepository>

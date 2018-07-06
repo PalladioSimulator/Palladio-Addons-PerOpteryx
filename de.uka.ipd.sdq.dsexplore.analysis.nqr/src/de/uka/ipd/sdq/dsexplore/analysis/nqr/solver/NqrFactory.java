@@ -605,6 +605,8 @@ public class NqrFactory {
         return null;
     }
 
-    public void setInstance(PCMInstance pcmInstance) {}
+    public void setInstance(PCMInstance pcmInstance) {
+    	System.err.println(pcmInstance); // TODO debug
+    }
 
 }

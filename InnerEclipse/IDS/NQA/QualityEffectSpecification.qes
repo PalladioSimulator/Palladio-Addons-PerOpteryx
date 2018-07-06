@@ -1,2 +1,5 @@
-For{Component(Role(InfrastructureProvided) and Assembly(not AnyAssembly with Component(Name("Sensor"))))}Do{NQA("SensorCoverage" = "-")}
-For{Component(Annotation("Annotation") and Assembly(not AnyAssembly with Component(Name("Sensor"))))}Do{NQA("SensorCoverage" = "-")}
+//For{Component(Role(InfrastructureRequiredProvided) and Name("CoreOnlineEngine"))}Do{NQA("Security"="+")}
+//For{Component(Role(InfrastructureRequiredProvided) and Id(not "_P48uoGo2Ed631pecjlFspw"))}Do{NQA("Security"="-")}
+//For{Component(Annotation("target") and Assembly(not AnyAssembly with Component(Name("TEST"))))}Do{NQA("Security"="--")}
+For{Component(Role(InfrastructureRequiredProvided) and Annotation("target"))}Do{NQA("Security"="+")}
+For{Component(Role(InfrastructureRequiredProvided) and Annotation(not "target"))}Do{NQA("Security"="-")}
