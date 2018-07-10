@@ -4,6 +4,7 @@
   <rm:property key="resolveFrom" value="release"/>
 
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^edu\.kit\.ipd\.are\.dsexplore.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.nqr.*" />
