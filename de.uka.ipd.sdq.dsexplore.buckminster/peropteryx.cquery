@@ -5,7 +5,9 @@
     <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.dsexplore.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" sourceLevel="REQUIRE" useWorkspace="false"/>
+    <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.pcm\.nqr.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" sourceLevel="REQUIRE" useWorkspace="false"/>
+    <cq:advisorNode namePattern="^org\.palladiosimulator\.qualitymodel.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern=".*" sourceLevel="REJECT"/>
 </cq:componentQuery>

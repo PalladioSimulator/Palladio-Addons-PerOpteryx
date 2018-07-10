@@ -6,9 +6,10 @@
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
-  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.nqr.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.nqr.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qualitymodel.*" />
 
   <rm:redirect pattern="^org\.palladiosimulator\.solver.*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap"/>
   <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/SimuCom/trunk/org.palladiosimulator.simucom.buckminster/simucom.rmap"/>
