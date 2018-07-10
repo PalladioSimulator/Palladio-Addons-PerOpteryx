@@ -21,6 +21,10 @@
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
   <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
   href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
+  
+  <rm:redirect pattern=".*"
+  href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Framework/trunk/org.palladiosimulator.analyzer.buckminster/analyzer.rmap" />
+
 
   <rm:searchPath name="peropteryxgit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
@@ -37,6 +41,22 @@
     <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/releases/latest/"/>
     </rm:provider>      
+  </rm:searchPath>
+  <rm:searchPath name="AbstractSimEngine">
+      <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/nightly/"/>
+      </rm:provider>
+      <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/releases/latest/"/>
+      </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="SimuCom">
+      <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/nightly/"/>
+      </rm:provider>
+      <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/releases/latest/"/>
+      </rm:provider>
   </rm:searchPath>
   
 </rm:rmap>
