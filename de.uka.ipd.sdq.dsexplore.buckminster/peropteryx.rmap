@@ -12,7 +12,15 @@
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qualitymodel.*" />
 
   <rm:redirect pattern="^org\.palladiosimulator\.solver.*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap"/>
-  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/SimuCom/trunk/org.palladiosimulator.simucom.buckminster/simucom.rmap"/>
+  <rm:locator pattern="^org\.palladiosimulator\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simucontroller.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.pcm\.codegen.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.scheduler.*" searchPathRef="Scheduler" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation$" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
+  <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
+  href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
 
   <rm:searchPath name="peropteryxgit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
