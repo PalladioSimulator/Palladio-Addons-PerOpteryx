@@ -61,11 +61,11 @@ public class SimpleQMLProfileItemProvider extends GenericQMLProfileItemProvider 
 	 * @generated
 	 */
 	protected void addUsageModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SimpleQMLProfile_usageModel_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SimpleQMLProfile_usageModel_feature",
-								"_UI_SimpleQMLProfile_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_SimpleQMLProfile_usageModel_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_SimpleQMLProfile_usageModel_feature",
+						"_UI_SimpleQMLProfile_type"),
 				QMLProfilePackage.Literals.SIMPLE_QML_PROFILE__USAGE_MODEL, true, false, true, null, null, null));
 	}
 

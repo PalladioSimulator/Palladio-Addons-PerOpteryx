@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public class AssembledComponentDegreeImpl extends ClassAsReferenceDegreeImpl implements AssembledComponentDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected AssembledComponentDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssembledComponentDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.ASSEMBLED_COMPONENT_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.ASSEMBLED_COMPONENT_DEGREE;
+	}
 
 } // AssembledComponentDegreeImpl

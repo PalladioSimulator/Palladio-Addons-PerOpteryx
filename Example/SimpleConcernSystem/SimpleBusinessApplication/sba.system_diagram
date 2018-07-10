@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="CompositeModel" name="sba.system_diagram" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" type="2002" fontName=".SF NS Text">
+    <children xsi:type="notation:DecorationNode" type="5012"/>
+    <children xsi:type="notation:DecorationNode" type="7002">
+      <children xsi:type="notation:Shape" type="3006" fontName=".SF NS Text">
+        <children xsi:type="notation:DecorationNode" type="5009"/>
+        <children xsi:type="notation:Shape" type="3007" fontName=".SF NS Text">
+          <children xsi:type="notation:DecorationNode" type="5007">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="sba.repository#_7aQFsN58EeeWjoCvywdeUA"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:Shape" type="3008" fontName=".SF NS Text">
+          <children xsi:type="notation:DecorationNode" type="5008">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="sba.repository#_9TNLYN58EeeWjoCvywdeUA"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <element href="sba.system#_HxiygN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="39" y="183"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3006" fontName=".SF NS Text">
+        <children xsi:type="notation:DecorationNode" type="5009"/>
+        <children xsi:type="notation:Shape" type="3007" fontName=".SF NS Text">
+          <children xsi:type="notation:DecorationNode" type="5007">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="sba.repository#_79hx4N58EeeWjoCvywdeUA"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <children xsi:type="notation:Shape" type="3008" fontName=".SF NS Text">
+          <children xsi:type="notation:DecorationNode" type="5008">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="sba.repository#_86YbsN58EeeWjoCvywdeUA"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <element href="sba.system#_LKo1QN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="415" y="131"/>
+      </children>
+      <children xsi:type="notation:Shape" type="3006" fontName=".SF NS Text">
+        <children xsi:type="notation:DecorationNode" type="5009"/>
+        <children xsi:type="notation:Shape" type="3007" fontName=".SF NS Text">
+          <children xsi:type="notation:DecorationNode" type="5007">
+            <layoutConstraint xsi:type="notation:Location" y="5"/>
+          </children>
+          <element href="sba.repository#_8Zf8MN58EeeWjoCvywdeUA"/>
+          <layoutConstraint xsi:type="notation:Bounds"/>
+        </children>
+        <element href="sba.system#_M2esAN59EeeWjoCvywdeUA"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="755" y="171"/>
+      </children>
+    </children>
+    <children xsi:type="notation:Shape" type="3011" fontName=".SF NS Text">
+      <children xsi:type="notation:DecorationNode" type="5013">
+        <layoutConstraint xsi:type="notation:Location" y="5"/>
+      </children>
+      <element href="sba.system#_R2ZioN59EeeWjoCvywdeUA"/>
+      <layoutConstraint xsi:type="notation:Bounds" x="-59" y="196"/>
+    </children>
+    <element href="sba.system#_HK_I0N59EeeWjoCvywdeUA"/>
+    <layoutConstraint xsi:type="notation:Bounds" x="176" y="52" width="925"/>
+  </children>
+  <styles xsi:type="notation:DiagramStyle"/>
+  <element href="sba.system#_HK_I0N59EeeWjoCvywdeUA"/>
+  <edges xsi:type="notation:Connector" type="4004" source="//@children.0/@children.1/@children.0/@children.2" target="//@children.0/@children.1/@children.1/@children.1">
+    <styles xsi:type="notation:FontStyle" fontName=".SF NS Text"/>
+    <element href="sba.system#_OJek8N59EeeWjoCvywdeUA"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[7, 0, -193, 50]$[193, -49, -7, 1]"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.23333333333333334,0.5666666666666667)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="4004" source="//@children.0/@children.1/@children.1/@children.2" target="//@children.0/@children.1/@children.2/@children.1">
+    <styles xsi:type="notation:FontStyle" fontName=".SF NS Text"/>
+    <element href="sba.system#_PbfmcN59EeeWjoCvywdeUA"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[7, 0, -165, -40]$[172, 39, 0, -1]"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="4006" source="//@children.0/@children.2" target="//@children.0/@children.1/@children.0/@children.1">
+    <styles xsi:type="notation:FontStyle" fontName=".SF NS Text"/>
+    <element href="sba.system#_T8cpIN59EeeWjoCvywdeUA"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[30, 0, -99, -51]$[124, 50, -5, -1]"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.16666666666666666,0.43333333333333335)"/>
+  </edges>
+</notation:Diagram>

@@ -23,129 +23,117 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DecisionSpaceImpl#getDegreesOfFreedom
- * <em>Degrees Of Freedom</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.impl.DecisionSpaceImpl#getDegreesOfFreedom <em>Degrees Of Freedom</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DecisionSpaceImpl extends NamedElementImpl implements DecisionSpace {
-    /**
-     * The cached value of the '{@link #getDegreesOfFreedom() <em>Degrees Of Freedom</em>}'
-     * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getDegreesOfFreedom()
-     * @generated
-     * @ordered
-     */
-    protected EList<DegreeOfFreedomInstance> degreesOfFreedom;
+	/**
+	 * The cached value of the '{@link #getDegreesOfFreedom() <em>Degrees Of Freedom</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getDegreesOfFreedom()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DegreeOfFreedomInstance> degreesOfFreedom;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected DecisionSpaceImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DecisionSpaceImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return designdecisionPackage.Literals.DECISION_SPACE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return designdecisionPackage.Literals.DECISION_SPACE;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EList<DegreeOfFreedomInstance> getDegreesOfFreedom() {
-        if (this.degreesOfFreedom == null) {
-            this.degreesOfFreedom = new EObjectContainmentEList<DegreeOfFreedomInstance>(DegreeOfFreedomInstance.class,
-                    this, designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM);
-        }
-        return this.degreesOfFreedom;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DegreeOfFreedomInstance> getDegreesOfFreedom() {
+		if (degreesOfFreedom == null) {
+			degreesOfFreedom = new EObjectContainmentEList<DegreeOfFreedomInstance>(DegreeOfFreedomInstance.class, this, designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM);
+		}
+		return degreesOfFreedom;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-            final NotificationChain msgs) {
-        switch (featureID) {
-        case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-            return ((InternalEList<?>) this.getDegreesOfFreedom()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
+			return ((InternalEList<?>) getDegreesOfFreedom()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-            return this.getDegreesOfFreedom();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
+			return getDegreesOfFreedom();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-            this.getDegreesOfFreedom().clear();
-            this.getDegreesOfFreedom().addAll((Collection<? extends DegreeOfFreedomInstance>) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
+			getDegreesOfFreedom().clear();
+			getDegreesOfFreedom().addAll((Collection<? extends DegreeOfFreedomInstance>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-            this.getDegreesOfFreedom().clear();
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
+			getDegreesOfFreedom().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
-            return this.degreesOfFreedom != null && !this.degreesOfFreedom.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case designdecisionPackage.DECISION_SPACE__DEGREES_OF_FREEDOM:
+			return degreesOfFreedom != null && !degreesOfFreedom.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // DecisionSpaceImpl

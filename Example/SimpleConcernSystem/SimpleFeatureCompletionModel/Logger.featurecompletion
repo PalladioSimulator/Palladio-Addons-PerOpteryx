@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1">
+  <featureCompletions id="_6sJJwOABEeejfInt2IIwaA" name="Logger" description="This is a logger feature completion">
+    <featureObjectives href="Logger.featureobjective#_RI9uEOPREeeAZZsxprVXFA"/>
+    <completionComponents id="_kPYzYOACEeeRbZI5ff6AcQ" name="DataCollector" description="This is the DataCollector Completion Component" requiredComponents="_zKrcEOAEEee0c7T3_fmbuQ">
+      <perimeterProviding id="_wUPacOAEEee0c7T3_fmbuQ" name="CollectsDataFor">
+        <featureProviding href="Logger.featureobjective#_ZOg_kOAFEee0c7T3_fmbuQ"/>
+        <featureProviding href="Logger.featureobjective#_aHt4cOAFEee0c7T3_fmbuQ"/>
+      </perimeterProviding>
+    </completionComponents>
+    <completionComponents id="_zKrcEOAEEee0c7T3_fmbuQ" name="Appender" description="This is the Appender Completion Component">
+      <perimeterRequiring id="_FxES8eAGEee0c7T3_fmbuQ" name="RequiresDatabase" complementum="_-pJqgeAEEee0c7T3_fmbuQ"/>
+    </completionComponents>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_9q2WkeABEeejfInt2IIwaA" name="FileLogging" description="">
+      <complementaryFeature href="Logger.featureobjective#_ZOg_kOAFEee0c7T3_fmbuQ"/>
+    </complementa>
+    <complementa id="_-pJqgeAEEee0c7T3_fmbuQ" name="Database"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_-eW6UuAFEee0c7T3_fmbuQ" name="SQL Logging">
+      <complementaryFeature href="Logger.featureobjective#_aHt4cOAFEee0c7T3_fmbuQ"/>
+    </complementa>
+  </featureCompletions>
+</FeatureCompletion:FeatureCompletionRepository>

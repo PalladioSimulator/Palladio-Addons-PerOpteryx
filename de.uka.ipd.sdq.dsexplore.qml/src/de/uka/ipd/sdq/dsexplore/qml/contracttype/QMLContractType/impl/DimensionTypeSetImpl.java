@@ -155,7 +155,7 @@ public class DimensionTypeSetImpl extends DimensionTypeImpl implements Dimension
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "ORDER_can_only_exist_with_RELATIONSEMANTICS",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

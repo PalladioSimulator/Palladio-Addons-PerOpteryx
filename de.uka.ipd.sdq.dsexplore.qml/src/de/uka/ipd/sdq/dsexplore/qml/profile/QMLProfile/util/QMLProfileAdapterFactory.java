@@ -131,104 +131,104 @@ public class QMLProfileAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	* Creates an adapter for the <code>target</code>.
-	* <!-- begin-user-doc --> <!-- end-user-doc -->
-	* @param target the object to adapt.
-	* @return the adapter for the <code>target</code>.
-	* @generated
-	*/
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile <em>Simple QML Profile</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile <em>Simple QML Profile</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.SimpleQMLProfile
+	 * @generated
+	 */
 	public Adapter createSimpleQMLProfileAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile <em>Generic QML Profile</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile <em>Generic QML Profile</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.GenericQMLProfile
+	 * @generated
+	 */
 	public Adapter createGenericQMLProfileAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement <em>Requirement</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement <em>Requirement</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
 	* cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	* end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.Requirement
+	 * @generated
+	 */
 	public Adapter createRequirementAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile <em>Refined QML Profile</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile <em>Refined QML Profile</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.RefinedQMLProfile
+	 * @generated
+	 */
 	public Adapter createRefinedQMLProfileAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement <em>Usage Scenario Requirement</em>}'.
-	* <!-- begin-user-doc --> This default implementation
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement <em>Usage Scenario Requirement</em>}'.
+	 * <!-- begin-user-doc --> This default implementation
 	* returns null so that we can easily ignore cases; it's useful to ignore a case when
 	* inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.UsageScenarioRequirement
+	 * @generated
+	 */
 	public Adapter createUsageScenarioRequirementAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement <em>Entry Level System Call Requirement</em>}'.
-	* <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement <em>Entry Level System Call Requirement</em>}'.
+	 * <!-- begin-user-doc --> This default
 	* implementation returns null so that we can easily ignore cases; it's useful to ignore a case
 	* when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.EntryLevelSystemCallRequirement
+	 * @generated
+	 */
 	public Adapter createEntryLevelSystemCallRequirementAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	* that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all
 	* the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.identifier.Identifier
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.identifier.Identifier
+	 * @generated
+	 */
 	public Adapter createIdentifierAdapter() {
 		return null;
 	}
@@ -249,38 +249,38 @@ public class QMLProfileAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
-	* <!-- begin-user-doc
+	 * Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
+	 * <!-- begin-user-doc
 	* --> This default implementation returns null so that we can easily ignore cases; it's useful
 	* to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see org.palladiosimulator.pcm.core.entity.Entity
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see org.palladiosimulator.pcm.core.entity.Entity
+	 * @generated
+	 */
 	public Adapter createEntityAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
+	 * @generated
+	 */
 	public Adapter createQMLDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for the default case.
-	* <!-- begin-user-doc --> This default
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This default
 	* implementation returns null. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @generated
+	 */
 	public Adapter createEObjectAdapter() {
 		return null;
 	}

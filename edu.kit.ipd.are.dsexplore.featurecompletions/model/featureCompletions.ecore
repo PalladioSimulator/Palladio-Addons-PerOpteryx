@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="FeatureCompletionModel" nsURI="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1"
+    nsPrefix="FeatureCompletion">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    <details key="featureObjective" value="featureObjective.ecore#/"/>
+    <details key="identifier" value="../../de.uka.ipd.sdq.identifier/model/identifier.ecore#/"/>
+    <details key="pcm" value="../../../plugin/org.palladiosimulator.pcm/model/pcm.ecore#/"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureCompletionRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureCompletions" upperBound="-1"
+        eType="#//FeatureCompletion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureCompletion" eSuperTypes="#//DescribedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="requiredComponentsHaveToBePartOfCompletion"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="requiredComponentsHaveToBePartOfCompletion" value="&#xA;&#x9;&#x9;&#x9;completionComponents.requiredComponents->exists(self.completionComponents)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureObjectives" lowerBound="1"
+        eType="ecore:EClass featureObjective.ecore#//FeatureObjective"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completionComponents" upperBound="-1"
+        eType="#//CompletionComponent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complementa" lowerBound="1"
+        upperBound="-1" eType="#//Complementum" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="architectureConstraints"
+        upperBound="-1" eType="#//ArchitectureConstraints" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompletionComponent" eSuperTypes="#//ConstrainableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredComponents" upperBound="-1"
+        eType="#//CompletionComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perimeterProviding" eType="#//PerimeterProviding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="componentConstraints" upperBound="-1"
+        eType="#//ArchitectureConstraints" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perimeterRequiring" eType="#//PerimeterRequiring"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescribedElement" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" eSuperTypes="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PerimeterProviding" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureProviding" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass featureObjective.ecore#//Feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplementumVisnetis" eSuperTypes="#//Complementum #//ConstrainableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complementaryFeature" lowerBound="1"
+        eType="ecore:EClass featureObjective.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiresComplementum" upperBound="-1"
+        eType="#//Complementum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visnetum">
+    <eLiterals name="SIGNATURE"/>
+    <eLiterals name="INTERFACE" value="1"/>
+    <eLiterals name="INTERFACE_REQUIRES" value="2"/>
+    <eLiterals name="INTERFACE_PROVIDES" value="3"/>
+    <eLiterals name="COMPONENT" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Replication">
+    <eLiterals name="SINGLE"/>
+    <eLiterals name="DOUBLE" value="1"/>
+    <eLiterals name="ANY" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Complementum" eSuperTypes="#//DescribedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="replication" lowerBound="1"
+        eType="#//Replication" defaultValueLiteral="SINGLE"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visnetum" lowerBound="1"
+        eType="#//Visnetum" defaultValueLiteral="SIGNATURE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArchitectureConstraints" eSuperTypes="#//DescribedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraint" lowerBound="1"
+        eType="#//Constraint" defaultValueLiteral="ANY"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="architectureElements" lowerBound="1"
+        upperBound="-1" eType="#//ConstrainableElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Constraint">
+    <eLiterals name="ANY"/>
+    <eLiterals name="TOGETHER" value="1"/>
+    <eLiterals name="ISOLATED" value="2"/>
+    <eLiterals name="SEPARATED" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstrainableElement" eSuperTypes="#//DescribedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PerimeterRequiring" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complementum" upperBound="-1"
+        eType="#//Complementum"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" documentation="@author Jan Keim" name="ConcernModelEditor" version="11.1.1.201610211630">
+  <ownedViewpoints documentation="@author Jan Keim" name="concern repository editor" modelFileExtension="concernmodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" documentation="@author Jan Keim" name="Concern Overview Diagram" initialisation="true" domainClass="ConcernModel.ConcernRepository">
+      <metamodel href="http://are.ipd.kit.edu/ConcernModel/1.0.1#/"/>
+      <metamodel href="http://edu.kit.ipd.are/ConcernStrategyModel/1.0#/"/>
+      <defaultLayer documentation="@author Jan Keim" name="Default">
+        <nodeMappings name="Concern Node" doubleClickDescription="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='getDetails']" domainClass="ConcernModel.Concern">
+          <style xsi:type="style:SquareDescription" sizeComputationExpression="16" labelPosition="node" resizeKind="NSEW" width="14" height="6">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <toolSections name="Concerns">
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="getDetails" mappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Concern" nodeMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer/@nodeMappings[name='Concern%20Node']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ConcernModel.Concern" referenceName="concerns">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Concern ' + container.concerns->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Direct Edit Label">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="NamedElementDirectEdit">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" documentation="@author Jan Keim" name="Concern Detail Diagram" initialisation="true" domainClass="ConcernModel.Concern">
+      <metamodel href="http://are.ipd.kit.edu/ConcernModel/1.0.1#/"/>
+      <metamodel href="http://edu.kit.ipd.are/ConcernStrategyModel/1.0#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="Deployment Constraint Edge" deletionDescription="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='Deployment%20Constraint%20Edge']" sourceMapping="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Deployment%20Constraint%20Container']" targetMapping="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container'] //@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']" targetFinderExpression="[self.annotations/]" reconnections="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.3/@ownedTools[name='reconnectConstraint']">
+          <style sizeComputationExpression="2" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_purple']"/>
+            <centerLabelStyleDescription showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Elementary Concern Requirement Edge" deletionDescription="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Elementary%20Concern%20Requirement%20Edge']" sourceMapping="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']" targetMapping="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']" targetFinderExpression="[self.requires/]" reconnections="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Elementary%20Concern%20Requirement']">
+          <style sizeComputationExpression="2" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="['requires'/]">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_orange']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Concern Container" semanticCandidatesExpression="var:self" domainClass="ConcernModel.Concern">
+          <subNodeMappings name="Concern Strategy Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Concern%20Strategy%20Node']" semanticCandidatesExpression="feature:eAllContents" domainClass="ConcernModel.ConcernStrategy">
+            <style xsi:type="style:SquareDescription" labelExpression="[self.name/]" iconPath="/concernmodeleditor.design/icons/strategy-icon.png" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+            </style>
+          </subNodeMappings>
+          <subContainerMappings name="Annotation Target Container" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Target']/@tools.1" semanticCandidatesExpression="feature:eAllContents" domainClass="AnnotationTarget" childrenPresentation="List">
+            <subNodeMappings name="Annotation Target Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Target']/@tools.0" semanticCandidatesExpression="[self/]" domainClass="AnnotationTarget">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Max Amount = ' + self.maxAmount/]" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="[self.name/]" iconPath="/concernmodeleditor.design/icons/target-icon.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="Elementary Concern Component Container" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Elementary%20Concern']" semanticCandidatesExpression="feature:eAllContents" domainClass="ElementaryConcernComponent">
+            <subContainerMappings name="Annotation Enrich Container" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Enrich%20Node']/@tools.1" semanticCandidatesExpression="feature:eAllContents" domainClass="AnnotationEnrich" childrenPresentation="List">
+              <subNodeMappings name="Annotation Enrich Node" labelDirectEdit="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Annotation%20Enrich%20Node']/@tools.0" semanticCandidatesExpression="[self/]" domainClass="AnnotationEnrich">
+                <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="['Max Amount = ' +self.maxAmount/]" sizeComputationExpression="8" labelPosition="node" resizeKind="NSEW" width="8" height="3">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                </style>
+              </subNodeMappings>
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/org.palladiosimulator.architecturaltemplates.edit/icons/full/obj16/Role2Component.gif">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </style>
+            </subContainerMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+            </style>
+          </subContainerMappings>
+          <subContainerMappings name="Deployment Constraint Container" semanticCandidatesExpression="feature:eAllContents" domainClass="DeploymentConstraint" childrenPresentation="List">
+            <subNodeMappings name="Deployment Constraint Node" semanticCandidatesExpression="var:self" domainClass="DeploymentConstraint">
+              <style xsi:type="style:SquareDescription" labelExpression="[self.association/]" sizeComputationExpression="16" labelPosition="node" resizeKind="NSEW" width="16" height="3">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="DeploymentConstraint">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Elementary Concerns">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Elementary Concern Component" containerMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ElementaryConcernComponent" referenceName="components">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['ECC ' + container.components->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="Elementary Concern Requirement" forceRefresh="true">
+            <source name="source">
+              <subVariables xsi:type="tool_1:AcceleoVariable" name="oldTarget" computationExpression="[self/]"/>
+            </source>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[element/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="requires" valueExpression="[target/]"/>
+                <subModelOperations xsi:type="tool_1:Unset" featureName="requires" elementExpression="[oldTarget/]"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Elementary Concern Requirement" precondition="[not preTarget.toString().equalsIgnoreCase(preSource.toString())/]" edgeMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@edgeMappings[name='Elementary%20Concern%20Requirement%20Edge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[source/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="requires" valueExpression="[target/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="Elementary Concern Requirement Edge">
+            <element name="element">
+              <subVariables xsi:type="tool_1:SelectModelElementVariable" name="oldTarget" candidatesExpression="[requires/]" multiple="true" message="Select and conform the target of the edge you want to delete"/>
+            </element>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[element/]">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="requires" elementExpression="[oldTarget/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Annotations">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Annotation Enrich" containerMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Elementary%20Concern%20Component%20Container']/@subContainerMappings[name='Annotation%20Enrich%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="AnnotationEnrich" referenceName="annotationenrich">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['AnnotationEnrich ' + container.annotationenrich->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Annotation Target" containerMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Annotation%20Target%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="AnnotationTarget" referenceName="annotationtarget">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['AT ' + container.annotationtarget->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Strategy">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Concern Strategy" nodeMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subNodeMappings[name='Concern%20Strategy%20Node']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="ConcernModel.ConcernStrategy" referenceName="strategies">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['CS ' + container.strategies->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Deployment Constraints">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Deployment Constraint" containerMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@containerMappings[name='Concern%20Container']/@subContainerMappings[name='Deployment%20Constraint%20Container']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="DeploymentConstraint" referenceName="constraints"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="addConstraintAnnotation" label="Add Constraint Annotation" edgeMappings="//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer/@edgeMappings[name='Deployment%20Constraint%20Edge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[source/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="annotations" valueExpression="[target/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectConstraint">
+            <source name="source">
+              <subVariables xsi:type="tool_1:AcceleoVariable" name="oldTarget" computationExpression="[self/]"/>
+            </source>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[element/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="annotations" valueExpression="[target/]"/>
+                <subModelOperations xsi:type="tool_1:Unset" featureName="annotations" elementExpression="[oldTarget/]"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="Deployment Constraint Edge">
+            <element name="element">
+              <subVariables xsi:type="tool_1:SelectModelElementVariable" name="oldTarget" candidatesExpression="[annotations/]" message="Select and confirm the constraint target that you want to delete"/>
+            </element>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[element/]">
+                <subModelOperations xsi:type="tool_1:Unset" featureName="annotations" elementExpression="[oldTarget/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Direct Edit Label">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="NamedElementDirectEdit">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Concern Strategy Node">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0.replace('Strategy: ', '')/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ToolGroup" name="Annotation Target">
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Target Node (Amount)">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="maxAmount" valueExpression="[arg0.replace('Max Amount = ', '').toInteger()/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Target Container">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Elementary Concern">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ToolGroup" name="Annotation Enrich Node">
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Enrich Node (Amount)">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="maxAmount" valueExpression="[arg0.replace('Max Amount = ', '').toInteger()/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool:DirectEditLabel" name="Annotation Enrich Container">
+              <mask mask="{0}"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

@@ -791,6 +791,10 @@ public class DimensionTypeScaleItemProvider extends DimensionTypeItemProvider {
 
 		newChildDescriptors
 				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
+						ResourceenvironmentFactory.eINSTANCE.createHDDProcessingResourceSpecification()));
+
+		newChildDescriptors
+				.add(createChildParameter(QMLContractTypePackage.Literals.DIMENSION_TYPE_SCALE__SCALE_ELEMENTS,
 						AllocationFactory.eINSTANCE.createAllocationContext()));
 
 		newChildDescriptors

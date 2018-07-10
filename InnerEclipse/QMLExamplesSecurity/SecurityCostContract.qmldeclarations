@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" id="_HszfIEXwEeer5JtvxHqL2g">
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_IBYA8kXwEeer5JtvxHqL2g" entityName="SecurityCostContract">
+    <criteria xsi:type="QMLContract:Objective" id="_MVW-oEXwEeer5JtvxHqL2g">
+      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Value" id="_RQYHJEXwEeer5JtvxHqL2g"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_PBhC4EXwEeer5JtvxHqL2g">
+      <dimension href="Security.qmlcontracttype#_SSqgAEXvEeeKzrt5EpePag"/>
+      <aspects xsi:type="QMLContract:Value" id="_QNzP1EXwEeer5JtvxHqL2g"/>
+    </criteria>
+    <contractType href="SecurityCostContractType.qmldeclarations#_M5vThEXvEeeKzrt5EpePag"/>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>

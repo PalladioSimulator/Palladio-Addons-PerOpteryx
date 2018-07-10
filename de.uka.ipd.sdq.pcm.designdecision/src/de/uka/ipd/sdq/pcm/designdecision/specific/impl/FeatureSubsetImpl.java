@@ -24,114 +24,105 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureSubsetImpl#getFeature
- * <em>Feature</em>}</li>
+ *   <li>{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.FeatureSubsetImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureSubsetImpl extends EObjectImpl implements FeatureSubset {
-    /**
-     * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference list. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @see #getFeature()
-     * @generated
-     * @ordered
-     */
-    protected EList<Feature> feature;
+	/**
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> feature;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected FeatureSubsetImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureSubsetImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.FEATURE_SUBSET;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.FEATURE_SUBSET;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public EList<Feature> getFeature() {
-        if (this.feature == null) {
-            this.feature = new EObjectResolvingEList<Feature>(Feature.class, this,
-                    specificPackage.FEATURE_SUBSET__FEATURE);
-        }
-        return this.feature;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Feature> getFeature() {
+		if (feature == null) {
+			feature = new EObjectResolvingEList<Feature>(Feature.class, this, specificPackage.FEATURE_SUBSET__FEATURE);
+		}
+		return feature;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-        switch (featureID) {
-        case specificPackage.FEATURE_SUBSET__FEATURE:
-            return this.getFeature();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case specificPackage.FEATURE_SUBSET__FEATURE:
+			return getFeature();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(final int featureID, final Object newValue) {
-        switch (featureID) {
-        case specificPackage.FEATURE_SUBSET__FEATURE:
-            this.getFeature().clear();
-            this.getFeature().addAll((Collection<? extends Feature>) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case specificPackage.FEATURE_SUBSET__FEATURE:
+			getFeature().clear();
+			getFeature().addAll((Collection<? extends Feature>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public void eUnset(final int featureID) {
-        switch (featureID) {
-        case specificPackage.FEATURE_SUBSET__FEATURE:
-            this.getFeature().clear();
-            return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case specificPackage.FEATURE_SUBSET__FEATURE:
+			getFeature().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(final int featureID) {
-        switch (featureID) {
-        case specificPackage.FEATURE_SUBSET__FEATURE:
-            return this.feature != null && !this.feature.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case specificPackage.FEATURE_SUBSET__FEATURE:
+			return feature != null && !feature.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // FeatureSubsetImpl

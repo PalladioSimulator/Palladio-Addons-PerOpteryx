@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public class DiscreteComponentParamDegreeImpl extends DiscreteRangeDegreeImpl implements DiscreteComponentParamDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected DiscreteComponentParamDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DiscreteComponentParamDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.DISCRETE_COMPONENT_PARAM_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.DISCRETE_COMPONENT_PARAM_DEGREE;
+	}
 
 } // DiscreteComponentParamDegreeImpl

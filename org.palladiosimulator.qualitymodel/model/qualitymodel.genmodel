@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.palladiosimulator.qualitymodel/src" modelPluginID="org.palladiosimulator.qualitymodel"
+    modelName="QualityModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" copyrightFields="false" usedGenPackages="../../org.palladiosimulator.pcm/model/pcm.genmodel#//pcm platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier ../../de.uka.ipd.sdq.probfunction/model/ProbabilityFunction.genmodel#//probfunction ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLProfile.genmodel#//QMLDeclarations ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLProfile.genmodel#//QMLContract ../../de.uka.ipd.sdq.dsexplore.qml/model/QMLProfile.genmodel#//QMLContractType platform:/plugin/de.uka.ipd.sdq.stoex/model/stoex.genmodel#//stoex platform:/plugin/de.uka.ipd.sdq.units/model/Units.genmodel#//units"
+    importOrganizing="true">
+  <foreignModel>qualitymodel.ecore</foreignModel>
+  <genPackages prefix="QualityModel" basePackage="org.palladiosimulator" disposableProviderFactory="true"
+      ecorePackage="qualitymodel.ecore#/">
+    <genClasses ecoreClass="qualitymodel.ecore#//Nqr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Nqr/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Nqr/dimension"/>
+      <genOperations ecoreOperation="qualitymodel.ecore#//Nqr/toString"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//Mapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Mapping/mappingEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Mapping/identity"/>
+      <genOperations ecoreOperation="qualitymodel.ecore#//Mapping/toString"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="qualitymodel.ecore#//Transformation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Transformation/mapping"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Transformation/input"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="qualitymodel.ecore#//Reasoning">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Reasoning/transformations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//Reasoning/output"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="qualitymodel.ecore#//Reduction"/>
+    <genClasses ecoreClass="qualitymodel.ecore#//QuantityReduction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//QuantityReduction/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//StatisticReduction"/>
+    <genClasses ecoreClass="qualitymodel.ecore#//MappingRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//MappingRepository/mappings"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//MappingEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//MappingEntry/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//MappingEntry/key"/>
+      <genOperations ecoreOperation="qualitymodel.ecore#//MappingEntry/toString"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//TransformationRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//TransformationRepository/transformations"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//ReasoningRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//ReasoningRepository/reasonings"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//NqrRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//NqrRepository/nqrs"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//ReasoningComponent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//ReasoningComponent/nqrs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//ReasoningComponent/reasonings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//ReasoningComponent/component"/>
+    </genClasses>
+    <genClasses ecoreClass="qualitymodel.ecore#//ReasoningSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference qualitymodel.ecore#//ReasoningSystem/components"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

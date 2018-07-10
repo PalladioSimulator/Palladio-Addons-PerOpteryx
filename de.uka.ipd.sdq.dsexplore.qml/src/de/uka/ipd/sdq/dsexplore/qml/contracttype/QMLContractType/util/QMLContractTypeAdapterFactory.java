@@ -184,65 +184,65 @@ public class QMLContractTypeAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	* Creates an adapter for the <code>target</code>.
-	* <!-- begin-user-doc --> <!-- end-user-doc -->
-	* @param target the object to adapt.
-	* @return the adapter for the <code>target</code>.
-	* @generated
-	*/
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet <em>Dimension Type Set</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet <em>Dimension Type Set</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeSet
+	 * @generated
+	 */
 	public Adapter createDimensionTypeSetAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType <em>Dimension Type</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType <em>Dimension Type</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionType
+	 * @generated
+	 */
 	public Adapter createDimensionTypeAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics <em>Relation Semantics</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics <em>Relation Semantics</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.RelationSemantics
+	 * @generated
+	 */
 	public Adapter createRelationSemanticsAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element <em>Element</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element <em>Element</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
 	* cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	* end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Element
+	 * @generated
+	 */
 	public Adapter createElementAdapter() {
 		return null;
 	}
@@ -263,14 +263,14 @@ public class QMLContractTypeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum <em>Dimension Type Enum</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum <em>Dimension Type Enum</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeEnum
+	 * @generated
+	 */
 	public Adapter createDimensionTypeEnumAdapter() {
 		return null;
 	}
@@ -291,120 +291,120 @@ public class QMLContractTypeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric <em>Dimension Type Numeric</em>}'.
-	* <!-- begin-user-doc --> This default implementation
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric <em>Dimension Type Numeric</em>}'.
+	 * <!-- begin-user-doc --> This default implementation
 	* returns null so that we can easily ignore cases; it's useful to ignore a case when
 	* inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeNumeric
+	 * @generated
+	 */
 	public Adapter createDimensionTypeNumericAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange <em>Numeric Range</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange <em>Numeric Range</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	* that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all
 	* the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.NumericRange
+	 * @generated
+	 */
 	public Adapter createNumericRangeAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType <em>QML Contract Type</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType <em>QML Contract Type</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	* null so that we can easily ignore cases; it's useful to ignore a case when inheritance will
 	* catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.QMLContractType
+	 * @generated
+	 */
 	public Adapter createQMLContractTypeAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository <em>Unit Repository</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository <em>Unit Repository</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.UnitRepository
+	 * @generated
+	 */
 	public Adapter createUnitRepositoryAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository <em>Dimension Type Repository</em>}'.
-	* <!-- begin-user-doc --> This default implementation
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository <em>Dimension Type Repository</em>}'.
+	 * <!-- begin-user-doc --> This default implementation
 	* returns null so that we can easily ignore cases; it's useful to ignore a case when
 	* inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeRepository
+	 * @generated
+	 */
 	public Adapter createDimensionTypeRepositoryAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension <em>Dimension</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension <em>Dimension</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	* that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all
 	* the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension
+	 * @generated
+	 */
 	public Adapter createDimensionAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeScale <em>Dimension Type Scale</em>}'.
-	* <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeScale <em>Dimension Type Scale</em>}'.
+	 * <!-- begin-user-doc -->
 	* This default implementation returns null so that we can easily ignore cases;
 	* it's useful to ignore a case when inheritance will catch all the cases anyway.
 	* <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeScale
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.DimensionTypeScale
+	 * @generated
+	 */
 	public Adapter createDimensionTypeScaleAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.ScaleElement <em>Scale Element</em>}'.
-	* <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.ScaleElement <em>Scale Element</em>}'.
+	 * <!-- begin-user-doc -->
 	* This default implementation returns null so that we can easily ignore cases;
 	* it's useful to ignore a case when inheritance will catch all the cases anyway.
 	* <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.ScaleElement
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.ScaleElement
+	 * @generated
+	 */
 	public Adapter createScaleElementAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.identifier.Identifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so
 	* that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all
 	* the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.identifier.Identifier
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.identifier.Identifier
+	 * @generated
+	 */
 	public Adapter createIdentifierAdapter() {
 		return null;
 	}
@@ -425,38 +425,38 @@ public class QMLContractTypeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
-	* <!-- begin-user-doc
+	 * Creates a new adapter for an object of class '{@link org.palladiosimulator.pcm.core.entity.Entity <em>Entity</em>}'.
+	 * <!-- begin-user-doc
 	* --> This default implementation returns null so that we can easily ignore cases; it's useful
 	* to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see org.palladiosimulator.pcm.core.entity.Entity
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see org.palladiosimulator.pcm.core.entity.Entity
+	 * @generated
+	 */
 	public Adapter createEntityAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
-	* <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration <em>QML Declaration</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	* so that we can easily ignore cases; it's useful to ignore a case when inheritance will catch
 	* all the cases anyway. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.QMLDeclaration
+	 * @generated
+	 */
 	public Adapter createQMLDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	* Creates a new adapter for the default case.
-	* <!-- begin-user-doc --> This default
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This default
 	* implementation returns null. <!-- end-user-doc -->
-	* @return the new adapter.
-	* @generated
-	*/
+	 * @return the new adapter.
+	 * @generated
+	 */
 	public Adapter createEObjectAdapter() {
 		return null;
 	}

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.are.dsexplore.featurecompletions/src"
+    modelPluginID="edu.kit.ipd.are.dsexplore.featurecompletions" modelName="FeatureCompletions"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier"
+    importOrganizing="true">
+  <foreignModel>featureCompletions.ecore</foreignModel>
+  <foreignModel>featureObjective.ecore</foreignModel>
+  <foreignModel>featureSolution.ecore</foreignModel>
+  <genPackages prefix="FeatureCompletion" disposableProviderFactory="true" ecorePackage="featureCompletions.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureCompletions.ecore#//Visnetum">
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/SIGNATURE"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE_REQUIRES"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE_PROVIDES"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/COMPONENT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureCompletions.ecore#//Replication">
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Replication/SINGLE"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Replication/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Replication/ANY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureCompletions.ecore#//Constraint">
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Constraint/ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Constraint/TOGETHER"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Constraint/ISOLATED"/>
+      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Constraint/SEPARATED"/>
+    </genEnums>
+    <genClasses ecoreClass="featureCompletions.ecore#//FeatureCompletionRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletionRepository/featureCompletions"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//FeatureCompletion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/featureObjectives"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/completionComponents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//FeatureCompletion/complementa"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//CompletionComponent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/requiredComponents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/perimeterProviding"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/componentConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//CompletionComponent/perimeterRequiring"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//DescribedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//DescribedElement/description"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//PerimeterProviding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterProviding/featureProviding"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//ComplementumVisnetis">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ComplementumVisnetis/complementaryFeature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ComplementumVisnetis/requiresComplementum"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//Complementum">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//Complementum/replication"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//Complementum/visnetum"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//ArchitectureConstraints">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureCompletions.ecore#//ArchitectureConstraints/constraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//ArchitectureConstraints/architectureElements"/>
+    </genClasses>
+    <genClasses ecoreClass="featureCompletions.ecore#//ConstrainableElement"/>
+    <genClasses ecoreClass="featureCompletions.ecore#//PerimeterRequiring">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureCompletions.ecore#//PerimeterRequiring/complementum"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="FeatureObjective" disposableProviderFactory="true" ecorePackage="featureObjective.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureObjective.ecore#//AttributeTypes">
+      <genEnumLiterals ecoreEnumLiteral="featureObjective.ecore#//AttributeTypes/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="featureObjective.ecore#//AttributeTypes/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="featureObjective.ecore#//AttributeTypes/REAL"/>
+    </genEnums>
+    <genClasses ecoreClass="featureObjective.ecore#//FeatureObjective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//FeatureObjective/rootFeature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//FeatureObjective/constraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//FeatureObjective/annotatableElement"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//Feature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Feature/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Feature/childrelation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Feature/simpleMandatory"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Feature/simpleOptional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Feature/featuregroup"/>
+      <genOperations ecoreOperation="featureObjective.ecore#//Feature/EachAttributeNameDefinedJustOnce">
+        <genParameters ecoreParameter="featureObjective.ecore#//Feature/EachAttributeNameDefinedJustOnce/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//Feature/EachAttributeNameDefinedJustOnce/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featureObjective.ecore#//Attribute">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Attribute/range"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featureObjective.ecore#//IntervalRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//IntervalRange/lowerBoundIncluded"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//IntervalRange/upperBoundIncluded"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featureObjective.ecore#//ChildRelation"/>
+    <genClasses ecoreClass="featureObjective.ecore#//Simple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Simple/optionalChildren"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Simple/mandatoryChildren"/>
+      <genOperations ecoreOperation="featureObjective.ecore#//Simple/atLeastOneChild">
+        <genParameters ecoreParameter="featureObjective.ecore#//Simple/atLeastOneChild/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//Simple/atLeastOneChild/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//FeatureGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//FeatureGroup/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//FeatureGroup/max"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureObjective.ecore#//FeatureGroup/children"/>
+      <genOperations ecoreOperation="featureObjective.ecore#//FeatureGroup/XORorORImpliesChildrenAreMandatory">
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/XORorORImpliesChildrenAreMandatory/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/XORorORImpliesChildrenAreMandatory/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="featureObjective.ecore#//FeatureGroup/ALLImpliesCardinalitiesToBeMinusOne">
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/ALLImpliesCardinalitiesToBeMinusOne/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/ALLImpliesCardinalitiesToBeMinusOne/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="featureObjective.ecore#//FeatureGroup/ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne">
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/ORImpliesCardinalitiesMinToBeOneAndMaxToBeMinusOne/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="featureObjective.ecore#//FeatureGroup/XORImpliesCardinalitiesToBeOne">
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/XORImpliesCardinalitiesToBeOne/diagnostics"/>
+        <genParameters ecoreParameter="featureObjective.ecore#//FeatureGroup/XORImpliesCardinalitiesToBeOne/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featureObjective.ecore#//Constraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Constraint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureObjective.ecore#//Constraint/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//Constraint/description"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//RequiredConstraint"/>
+    <genClasses ecoreClass="featureObjective.ecore#//ProhibitsConstraint"/>
+    <genClasses ecoreClass="featureObjective.ecore#//IntegerIntervalRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//IntegerIntervalRange/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//IntegerIntervalRange/from"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//IntegerAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//IntegerAttribute/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//DoubleAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//DoubleAttribute/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//StringAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureObjective.ecore#//StringAttribute/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="featureObjective.ecore#//ExternalObjectAttribute"/>
+  </genPackages>
+  <genPackages prefix="FeatureSolution" disposableProviderFactory="true" ecorePackage="featureSolution.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureSolution.ecore#//Appearance">
+      <genEnumLiterals ecoreEnumLiteral="featureSolution.ecore#//Appearance/BEFORE"/>
+      <genEnumLiterals ecoreEnumLiteral="featureSolution.ecore#//Appearance/AFTER"/>
+      <genEnumLiterals ecoreEnumLiteral="featureSolution.ecore#//Appearance/AROUND"/>
+    </genEnums>
+    <genClasses ecoreClass="featureSolution.ecore#//SolutionRepository">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//SolutionRepository/solutions"/>
+    </genClasses>
+    <genClasses ecoreClass="featureSolution.ecore#//Solution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//Solution/inclusionInstructions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//Solution/solutionComponents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featureSolution.ecore#//InclusionMechanism">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureSolution.ecore#//InclusionMechanism/multiple"/>
+    </genClasses>
+    <genClasses ecoreClass="featureSolution.ecore#//AdapterInclusion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureSolution.ecore#//AdapterInclusion/appears"/>
+    </genClasses>
+    <genClasses ecoreClass="featureSolution.ecore#//ExtensionInclusion"/>
+    <genClasses ecoreClass="featureSolution.ecore#//SolutionComponent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featureSolution.ecore#//SolutionComponent/realizes"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

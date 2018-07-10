@@ -61,11 +61,11 @@ public class RefinedQMLProfileItemProvider extends GenericQMLProfileItemProvider
 	 * @generated
 	 */
 	protected void addBaseProfilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_RefinedQMLProfile_baseProfile_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_RefinedQMLProfile_baseProfile_feature",
-								"_UI_RefinedQMLProfile_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_RefinedQMLProfile_baseProfile_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_RefinedQMLProfile_baseProfile_feature",
+						"_UI_RefinedQMLProfile_type"),
 				QMLProfilePackage.Literals.REFINED_QML_PROFILE__BASE_PROFILE, true, false, true, null, null, null));
 	}
 

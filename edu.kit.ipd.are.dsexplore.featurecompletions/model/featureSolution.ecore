@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="featureSolution" nsURI="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0"
+    nsPrefix="featureSolution">
+  <eClassifiers xsi:type="ecore:EClass" name="InclusionMechanism" abstract="true"
+      eSuperTypes="featureCompletions.ecore#//DescribedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiple" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdapterInclusion" eSuperTypes="#//InclusionMechanism">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
+        eType="#//Appearance" defaultValueLiteral="BEFORE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionInclusion" eSuperTypes="#//InclusionMechanism"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
+    <eLiterals name="BEFORE"/>
+    <eLiterals name="AFTER" value="1"/>
+    <eLiterals name="AROUND" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>

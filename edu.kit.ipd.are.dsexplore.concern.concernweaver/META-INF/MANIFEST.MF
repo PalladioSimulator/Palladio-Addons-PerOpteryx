@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Concernweaver
+Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.concern.concernweaver
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.modelversioning.emfprofile.registry
+Require-Bundle: org.palladiosimulator.solver;bundle-version="3.0.0",
+ org.apache.commons.io;bundle-version="2.2.0",
+ org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.0",
+ de.uka.ipd.sdq.workflow;bundle-version="2.1.0",
+ org.modelversioning.emfprofile;bundle-version="1.1.0",
+ org.palladiosimulator.pcm,
+ de.uka.ipd.sdq.pcm.designdecision,
+ edu.kit.ipd.are.dsexplore.featurecompletions,
+ de.uka.ipd.sdq.dsexplore.tools

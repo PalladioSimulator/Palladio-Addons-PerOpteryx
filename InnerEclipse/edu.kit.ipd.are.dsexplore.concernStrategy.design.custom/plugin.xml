@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.CreateFeatureBelow"
+            id="CreateFeatureBelow">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ChangeMandatoryOptional"
+            id="ChangeMandatoryOptional">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ChangeChildrenRelationshipType"
+            id="ChangeChildrenRelationshipType">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ReconnectConstraintEdge"
+            id="ReconnectConstraintEdge">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ChangeFeatureParent"
+            id="ChangeFeatureParent">
+      </javaActions>
+     <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.DeleteFeatureFromConstraints"
+            id="DeleteFeatureFromConstraints">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.CreateConfigNode"
+            id="CreateConfigNode">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ChangeIntegerRangeValues"
+            id="ChangeIntegerRangeValues">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.ipd.are.dsexplore.concernStrategy.design.custom.java.ChangeContinousRangeValues"
+            id="ChangeContinousRangeValues">
+      </javaActions>
+      
+	</extension>
+</plugin>

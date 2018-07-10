@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="qualitymodel" nsURI="http://palladiosimulator.org/QualityModel/1.0"
+    nsPrefix="QualityModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Nqr" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (eIsProxy()) return super.toString(); return &quot;Nqr (&quot; + dimension.getEntityName() + &quot; = &quot; + (value instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral ? ((de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral) value).getValues().get(0).getEntityName() : value.getId()) + &quot;)&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//ValueLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContractType.ecore#//Dimension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (eIsProxy()) return super.toString(); final StringBuilder builder = new StringBuilder(&quot;Mapping [&quot;); builder.append(identity instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral ? ((de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral) identity).getValues().get(0).getEntityName() : identity.getId()).append(&quot;,(&quot;); for (final Object object : mappingEntries) builder.append(object.toString()); return builder.append(&quot;)]&quot;).toString();"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingEntries" upperBound="-1"
+        eType="#//MappingEntry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identity" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//ValueLiteral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transformation" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
+        eType="#//Mapping"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContractType.ecore#//Dimension">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="input"/>
+        <details key="namespace" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reasoning" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformations" lowerBound="1"
+        upperBound="-1" eType="#//Transformation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContractType.ecore#//Dimension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reduction" abstract="true" interface="true"
+      eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QuantityReduction" eSuperTypes="#//Reduction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
+        eType="#//Mapping"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StatisticReduction" eSuperTypes="#//Reduction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" ordered="false"
+        upperBound="-1" eType="#//Mapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingEntry" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (eIsProxy()) return super.toString(); final StringBuilder builder = new StringBuilder(key.size() * 3); String prefix = &quot;&quot;; for (final Object object : key) { builder.append(prefix); prefix = &quot;,&quot;; builder.append(object instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral ? ((de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral) object).getValues().get(0).getEntityName() : ((ValueLiteral) object).getId()); } return builder.append(&quot;=&quot;).append( (value instanceof de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral ? ((de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.SetLiteral) value).getValues().get(0).getEntityName() : value.getId())) .toString();"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//ValueLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore#//ValueLiteral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransformationRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformations" upperBound="-1"
+        eType="#//Transformation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReasoningRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reasonings" upperBound="-1"
+        eType="#//Reasoning" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NqrRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nqrs" upperBound="-1" eType="#//Nqr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReasoningComponent" eSuperTypes="platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nqrs" upperBound="-1" eType="#//Nqr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reasonings" upperBound="-1"
+        eType="#//Reasoning"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReasoningSystem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//ReasoningComponent" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

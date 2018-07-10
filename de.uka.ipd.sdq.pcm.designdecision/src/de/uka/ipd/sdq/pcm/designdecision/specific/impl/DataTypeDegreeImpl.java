@@ -19,23 +19,21 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  * @generated
  */
 public abstract class DataTypeDegreeImpl extends DegreeOfFreedomInstanceImpl implements DataTypeDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected DataTypeDegreeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DataTypeDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.DATA_TYPE_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.DATA_TYPE_DEGREE;
+	}
 
 } // DataTypeDegreeImpl

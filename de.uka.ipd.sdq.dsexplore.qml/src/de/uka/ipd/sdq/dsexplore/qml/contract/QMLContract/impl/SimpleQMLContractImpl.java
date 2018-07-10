@@ -185,7 +185,7 @@ public class SimpleQMLContractImpl extends GenericQMLContractImpl implements Sim
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "all_DIMENSIONs_must_be_from_same_CONTRACTTYPE",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

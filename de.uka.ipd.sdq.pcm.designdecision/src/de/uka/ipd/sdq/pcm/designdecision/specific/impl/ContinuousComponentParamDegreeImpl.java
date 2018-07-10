@@ -17,25 +17,22 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImpl
-        implements ContinuousComponentParamDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected ContinuousComponentParamDegreeImpl() {
-        super();
-    }
+public class ContinuousComponentParamDegreeImpl extends ContinuousRangeDegreeImpl implements ContinuousComponentParamDegree {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContinuousComponentParamDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.CONTINUOUS_COMPONENT_PARAM_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.CONTINUOUS_COMPONENT_PARAM_DEGREE;
+	}
 
 } // ContinuousComponentParamDegreeImpl

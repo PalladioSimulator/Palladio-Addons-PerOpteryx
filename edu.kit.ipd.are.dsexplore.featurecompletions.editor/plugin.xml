@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated featureCompletions -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="FeatureCompletionModel.presentation.FeatureCompletionModelWizardID"
+            name="%_UI_FeatureCompletionModelWizard_label"
+            class="FeatureCompletionModel.presentation.FeatureCompletionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureCompletionModelFile.gif">
+         <description>%_UI_FeatureCompletionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated featureCompletions -->
+      <editor
+            id="FeatureCompletionModel.presentation.FeatureCompletionEditorID"
+            name="%_UI_FeatureCompletionEditor_label"
+            icon="icons/full/obj16/FeatureCompletionModelFile.gif"
+            extensions="featurecompletion"
+            class="FeatureCompletionModel.presentation.FeatureCompletionEditor"
+            contributorClass="FeatureCompletionModel.presentation.FeatureCompletionActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated featureCompletions -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="featureObjective.presentation.FeatureObjectiveModelWizardID"
+            name="%_UI_FeatureObjectiveModelWizard_label"
+            class="featureObjective.presentation.FeatureObjectiveModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureObjectiveModelFile.gif">
+         <description>%_UI_FeatureObjectiveModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated featureCompletions -->
+      <editor
+            id="featureObjective.presentation.FeatureObjectiveEditorID"
+            name="%_UI_FeatureObjectiveEditor_label"
+            icon="icons/full/obj16/FeatureObjectiveModelFile.gif"
+            extensions="featureobjective"
+            class="featureObjective.presentation.FeatureObjectiveEditor"
+            contributorClass="featureObjective.presentation.FeatureObjectiveActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated featureCompletions -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="featureSolution.presentation.FeatureSolutionModelWizardID"
+            name="%_UI_FeatureSolutionModelWizard_label"
+            class="featureSolution.presentation.FeatureSolutionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureSolutionModelFile.gif">
+         <description>%_UI_FeatureSolutionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated featureCompletions -->
+      <editor
+            id="featureSolution.presentation.FeatureSolutionEditorID"
+            name="%_UI_FeatureSolutionEditor_label"
+            icon="icons/full/obj16/FeatureSolutionModelFile.gif"
+            extensions="featuresolution"
+            class="featureSolution.presentation.FeatureSolutionEditor"
+            contributorClass="featureSolution.presentation.FeatureSolutionActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

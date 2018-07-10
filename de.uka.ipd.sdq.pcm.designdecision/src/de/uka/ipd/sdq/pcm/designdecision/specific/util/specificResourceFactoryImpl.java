@@ -14,29 +14,28 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 /**
  * <!-- begin-user-doc --> The <b>Resource Factory</b> associated with the package. <!--
  * end-user-doc -->
- *
  * @see de.uka.ipd.sdq.pcm.designdecision.specific.util.specificResourceImpl
  * @generated
  */
 public class specificResourceFactoryImpl extends ResourceFactoryImpl {
-    /**
-     * Creates an instance of the resource factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    public specificResourceFactoryImpl() {
-        super();
-    }
+	/**
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public specificResourceFactoryImpl() {
+		super();
+	}
 
-    /**
-     * Creates an instance of the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    public Resource createResource(final URI uri) {
-        final XMLResource result = new specificResourceImpl(uri);
-        return result;
-    }
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Resource createResource(URI uri) {
+		XMLResource result = new specificResourceImpl(uri);
+		return result;
+	}
 
 } // specificResourceFactoryImpl

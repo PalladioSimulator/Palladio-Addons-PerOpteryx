@@ -18,23 +18,21 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
  * @generated
  */
 public abstract class SelectionRuleImpl extends OCLRuleImpl implements SelectionRule {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected SelectionRuleImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SelectionRuleImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return gdofPackage.Literals.SELECTION_RULE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return gdofPackage.Literals.SELECTION_RULE;
+	}
 
 } // SelectionRuleImpl

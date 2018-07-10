@@ -15,23 +15,21 @@ import de.uka.ipd.sdq.pcm.designdecision.gdof.gdofPackage;
  * @generated
  */
 public class DecoratorModelDescriptionImpl extends EObjectImpl implements DecoratorModelDescription {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected DecoratorModelDescriptionImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DecoratorModelDescriptionImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return gdofPackage.Literals.DECORATOR_MODEL_DESCRIPTION;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return gdofPackage.Literals.DECORATOR_MODEL_DESCRIPTION;
+	}
 
 } // DecoratorModelDescriptionImpl

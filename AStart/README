@@ -1,0 +1,6 @@
+This project stuff as Run Configurations to start the "Inner eclipse"
+and (maybe later) other useful stuff for a 'newbe' like myself.
+
+- Please use the formatter of this project (and maybe activate the save actions in preferences)
+- Use InnerEclipse.launch to open the "InnerEclipse"
+- If some project is "red" try Project->Clean and F5

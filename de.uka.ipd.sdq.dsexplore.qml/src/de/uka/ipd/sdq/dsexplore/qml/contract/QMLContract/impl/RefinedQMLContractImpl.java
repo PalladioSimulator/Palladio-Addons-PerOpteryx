@@ -181,7 +181,7 @@ public class RefinedQMLContractImpl extends GenericQMLContractImpl implements Re
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "contract_cannot_refine_itself",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

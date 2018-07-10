@@ -157,7 +157,7 @@ public class DimensionTypeEnumImpl extends DimensionTypeImpl implements Dimensio
 								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic",
 										new Object[] { "ORDER_can_only_exist_with_RELATIONSEMANTICS_and_vice_versa",
 												EObjectValidator.getObjectLabel(this, context) }),
-						new Object[] { this }));
+								new Object[] { this }));
 			}
 			return false;
 		}

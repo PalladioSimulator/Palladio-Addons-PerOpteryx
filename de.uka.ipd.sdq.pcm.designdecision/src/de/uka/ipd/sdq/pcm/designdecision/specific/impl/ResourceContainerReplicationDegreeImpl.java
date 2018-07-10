@@ -17,25 +17,22 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificPackage;
  *
  * @generated
  */
-public class ResourceContainerReplicationDegreeImpl extends DiscreteRangeDegreeImpl
-        implements ResourceContainerReplicationDegree {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    protected ResourceContainerReplicationDegreeImpl() {
-        super();
-    }
+public class ResourceContainerReplicationDegreeImpl extends DiscreteRangeDegreeImpl implements ResourceContainerReplicationDegree {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceContainerReplicationDegreeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return specificPackage.Literals.RESOURCE_CONTAINER_REPLICATION_DEGREE;
+	}
 
 } // ResourceContainerReplicationDegreeImpl

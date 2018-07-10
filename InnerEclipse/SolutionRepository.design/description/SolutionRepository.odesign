@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" documentation="@author Jan Keim" name="SolutionRepository" version="11.1.1.201610211630">
+  <ownedViewpoints documentation="@author Jan Keim" name="SolutionRepository Editor" modelFileExtension="solutionmodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" documentation="@author Jan Keim" name="Solution Repository Diagram" domainClass="SolutionModel.SolutionRepository">
+      <metamodel href="http://are.ipd.kit.edu/SolutionModel/1.0.0#/"/>
+      <defaultLayer documentation="@author Jan Keim" name="Default">
+        <nodeMappings name="Solution Node" labelDirectEdit="//@ownedViewpoints[name='SolutionRepository%20Editor']/@ownedRepresentations[name='Solution%20Repository%20Diagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Solution%20Name']" documentation="@author Jan Keim" domainClass="SolutionModel.Solution">
+          <style xsi:type="style:SquareDescription" showIcon="false" sizeComputationExpression="7" labelPosition="node" resizeKind="NSEW" width="7" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <toolSections documentation="@author Jan Keim" name="Create">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Solution" nodeMappings="//@ownedViewpoints[name='SolutionRepository%20Editor']/@ownedRepresentations[name='Solution%20Repository%20Diagram']/@defaultLayer/@nodeMappings[name='Solution%20Node']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[container/]">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="SolutionModel.Solution" referenceName="solutions">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="['Concern ' + container.solutions->size()/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections documentation="@author Jan Keim" name="Edit">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="Solution Name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="[self/]">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="[arg0/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

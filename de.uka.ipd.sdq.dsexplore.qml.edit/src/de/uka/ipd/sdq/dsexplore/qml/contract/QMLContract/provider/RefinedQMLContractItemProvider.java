@@ -61,11 +61,11 @@ public class RefinedQMLContractItemProvider extends GenericQMLContractItemProvid
 	 * @generated
 	 */
 	protected void addBaseContractPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_RefinedQMLContract_baseContract_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_RefinedQMLContract_baseContract_feature",
-								"_UI_RefinedQMLContract_type"),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_RefinedQMLContract_baseContract_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_RefinedQMLContract_baseContract_feature",
+						"_UI_RefinedQMLContract_type"),
 				QMLContractPackage.Literals.REFINED_QML_CONTRACT__BASE_CONTRACT, true, false, true, null, null, null));
 	}
 
