@@ -149,7 +149,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	private List<Choice> allocationChoices;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		// TODO featureChoices
 		List<WeavingInstruction> instructions = this.determineInstructions(locations);
 		this.instructions = instructions;

@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<featureSolution:ExtensionInclusion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" id="_co0LQE7qEeis1daiLySeOA"/>
+<featureSolution:ExtensionInclusion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_co0LQE7qEeis1daiLySeOA">
+  <pointCut entityName="selectAllPayCalls">
+    <placementStrategy xsi:type="featureSolution:ExternalCallPlacementStrategy">
+      <matchingSignature xsi:type="repository:OperationSignature" href="../palladio/repository.repository#_lIfeoGFbEeetxOZObiabqg"/>
+    </placementStrategy>
+  </pointCut>
+  <pointCut entityName="selectAllInternalActions">
+    <placementStrategy xsi:type="featureSolution:InternalActionPlacementStrategy">
+      <matchingInternalAction href="../palladio/repository.repository#_7PXlcFgMEei2HIrwbrBXqg"/>
+    </placementStrategy>
+  </pointCut>
+  <pointCut entityName="selectAllLoops">
+    <placementStrategy xsi:type="featureSolution:ControlFlowPlacementStrategy">
+      <matchingControlFlow xsi:type="seff:LoopAction" href="../palladio/repository.repository#__R7b8FgMEei2HIrwbrBXqg"/>
+    </placementStrategy>
+  </pointCut>
+  <advice entityName="placeCV_A" pointCut="//@pointCut.0">
+    <Completion href="FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>
+  </advice>
+</featureSolution:ExtensionInclusion>

@@ -56,7 +56,7 @@ public abstract class AssemblyWeaving {
 		List<CompletionComponent> allFCCs = fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);
 		allFCCs.add(perimeterProvidingFCC);
 		//2. choose realizing component for each fcc according to selected solution/CV
-		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, Arrays.asList(instruction.getAdvice().getCompletion()));
+		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, instruction.getAdvice().getCompletion().getFeatures());
 		
 		System.out.println("--------------- AssemblyWeaving.weave --------------");
 		

@@ -35,6 +35,7 @@ import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
@@ -148,10 +149,14 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	///////////////////// INITIALIZE //////////////////////////
 	private List<IWeavingInstruction> instructions;
+	
+	private Choice fccChoice;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
+		
+		this.fccChoice = fccChoice;
 		
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
@@ -204,8 +209,10 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 				}
 			}
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
-			ComplementumVisnetis cv = advice.getCompletion();
-			//Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(ig.getFCCByVisnetis(advice.getCompletion()), new FCCFeatureHandler(this.mrm).getProvidedRolesOf(ig.getFCCByVisnetis(advice.getCompletion()), (advice.getCompletion())));
+			
+			//TODO anhand welchen CVs CompeltionComponents bestimmen?? 
+			ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
+			
 			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc), new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, fc));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */, extensionIncl));
 		}

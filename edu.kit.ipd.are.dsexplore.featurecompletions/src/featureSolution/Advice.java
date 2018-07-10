@@ -2,7 +2,6 @@
  */
 package featureSolution;
 
-import FeatureCompletionModel.ComplementumVisnetis;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
@@ -82,29 +81,29 @@ public interface Advice extends EObject, NamedElement {
 	void setAppears(Appearance value);
 
 	/**
-	 * Returns the value of the '<em><b>Completion</b></em>' reference.
+	 * Returns the value of the '<em><b>Completion</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Completion</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Completion</em>' reference.
-	 * @see #setCompletion(ComplementumVisnetis)
+	 * @return the value of the '<em>Completion</em>' containment reference.
+	 * @see #setCompletion(FeatureSelection)
 	 * @see featureSolution.FeatureSolutionPackage#getAdvice_Completion()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	ComplementumVisnetis getCompletion();
+	FeatureSelection getCompletion();
 
 	/**
-	 * Sets the value of the '{@link featureSolution.Advice#getCompletion <em>Completion</em>}' reference.
+	 * Sets the value of the '{@link featureSolution.Advice#getCompletion <em>Completion</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Completion</em>' reference.
+	 * @param value the new value of the '<em>Completion</em>' containment reference.
 	 * @see #getCompletion()
 	 * @generated
 	 */
-	void setCompletion(ComplementumVisnetis value);
+	void setCompletion(FeatureSelection value);
 
 } // Advice

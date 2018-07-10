@@ -141,7 +141,7 @@ public final class FCCWeaver {
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
 		this.strategy = this.strategyContructor.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
-		this.strategy.initialize(locations, this.featureChoices, this.allocationChoices);
+		this.strategy.initialize(locations, this.fccChoice, this.featureChoices, this.allocationChoices);
 		this.strategy.weave();
 		return pcmToAdopt;
 	}

@@ -2,14 +2,15 @@
  */
 package featureSolution.impl;
 
-import FeatureCompletionModel.ComplementumVisnetis;
 import featureSolution.Advice;
 import featureSolution.Appearance;
+import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.PointCut;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -63,14 +64,14 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	protected Appearance appears = APPEARS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCompletion() <em>Completion</em>}' reference.
+	 * The cached value of the '{@link #getCompletion() <em>Completion</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCompletion()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplementumVisnetis completion;
+	protected FeatureSelection completion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,15 +156,7 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplementumVisnetis getCompletion() {
-		if (completion != null && completion.eIsProxy()) {
-			InternalEObject oldCompletion = (InternalEObject)completion;
-			completion = (ComplementumVisnetis)eResolveProxy(oldCompletion);
-			if (completion != oldCompletion) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FeatureSolutionPackage.ADVICE__COMPLETION, oldCompletion, completion));
-			}
-		}
+	public FeatureSelection getCompletion() {
 		return completion;
 	}
 
@@ -172,20 +165,47 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComplementumVisnetis basicGetCompletion() {
-		return completion;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCompletion(ComplementumVisnetis newCompletion) {
-		ComplementumVisnetis oldCompletion = completion;
+	public NotificationChain basicSetCompletion(FeatureSelection newCompletion, NotificationChain msgs) {
+		FeatureSelection oldCompletion = completion;
 		completion = newCompletion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.ADVICE__COMPLETION, oldCompletion, completion));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.ADVICE__COMPLETION, oldCompletion, newCompletion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompletion(FeatureSelection newCompletion) {
+		if (newCompletion != completion) {
+			NotificationChain msgs = null;
+			if (completion != null)
+				msgs = ((InternalEObject)completion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureSolutionPackage.ADVICE__COMPLETION, null, msgs);
+			if (newCompletion != null)
+				msgs = ((InternalEObject)newCompletion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureSolutionPackage.ADVICE__COMPLETION, null, msgs);
+			msgs = basicSetCompletion(newCompletion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.ADVICE__COMPLETION, newCompletion, newCompletion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FeatureSolutionPackage.ADVICE__COMPLETION:
+				return basicSetCompletion(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -202,8 +222,7 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 			case FeatureSolutionPackage.ADVICE__APPEARS:
 				return getAppears();
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
-				if (resolve) return getCompletion();
-				return basicGetCompletion();
+				return getCompletion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -223,7 +242,7 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 				setAppears((Appearance)newValue);
 				return;
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
-				setCompletion((ComplementumVisnetis)newValue);
+				setCompletion((FeatureSelection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,7 +263,7 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 				setAppears(APPEARS_EDEFAULT);
 				return;
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
-				setCompletion((ComplementumVisnetis)null);
+				setCompletion((FeatureSelection)null);
 				return;
 		}
 		super.eUnset(featureID);

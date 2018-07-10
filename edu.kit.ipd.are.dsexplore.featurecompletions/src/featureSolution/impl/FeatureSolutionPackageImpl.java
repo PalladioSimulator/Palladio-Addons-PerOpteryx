@@ -16,6 +16,7 @@ import featureSolution.ControlFlow;
 import featureSolution.ControlFlowPlacementStrategy;
 import featureSolution.ExtensionInclusion;
 import featureSolution.ExternalCallPlacementStrategy;
+import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.Import;
@@ -113,6 +114,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EClass importEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureSelectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -437,6 +445,33 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFeatureSelection() {
+		return featureSelectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureSelection_Completion() {
+		return (EReference)featureSelectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureSelection_Features() {
+		return (EReference)featureSelectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
 	}
@@ -522,6 +557,10 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		createEAttribute(importEClass, IMPORT__IMPORT_URI);
 		createEReference(importEClass, IMPORT__REPOSITORY);
 
+		featureSelectionEClass = createEClass(FEATURE_SELECTION);
+		createEReference(featureSelectionEClass, FEATURE_SELECTION__COMPLETION);
+		createEReference(featureSelectionEClass, FEATURE_SELECTION__FEATURES);
+
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
 		placementPolicyEEnum = createEEnum(PLACEMENT_POLICY);
@@ -569,6 +608,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		internalActionPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
 		controlFlowPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
 		adviceEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
+		featureSelectionEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(inclusionMechanismEClass, InclusionMechanism.class, "InclusionMechanism", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -600,11 +640,15 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEClass(adviceEClass, Advice.class, "Advice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdvice_PointCut(), this.getPointCut(), null, "pointCut", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAdvice_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdvice_Completion(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "Completion", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdvice_Completion(), this.getFeatureSelection(), null, "Completion", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImport_Repository(), theRepositoryPackage.getRepository(), null, "repository", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(featureSelectionEClass, FeatureSelection.class, "FeatureSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureSelection_Completion(), theFeatureCompletionPackage.getFeatureCompletion(), null, "Completion", null, 1, 1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureSelection_Features(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "Features", null, 1, -1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");

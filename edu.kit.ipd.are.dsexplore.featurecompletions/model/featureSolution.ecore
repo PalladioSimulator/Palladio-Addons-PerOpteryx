@@ -17,7 +17,6 @@
         eType="#//Advice" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
         eType="#//Import" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
     <eLiterals name="BEFORE"/>
@@ -53,10 +52,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" eType="#//PointCut"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" eType="ecore:EClass featureCompletions.ecore#//ComplementumVisnetis"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" eType="#//FeatureSelection"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="repository" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/Repository"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureSelection" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" lowerBound="1"
+        eType="ecore:EClass featureCompletions.ecore#//FeatureCompletion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Features" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass featureCompletions.ecore#//ComplementumVisnetis"/>
   </eClassifiers>
 </ecore:EPackage>
