@@ -25,17 +25,17 @@ ExtensionInclusion extensionIncl _ZZ {
 		Advice {
 			appears BEFORE 
 			pointCut allBookCalls
-			Completion FileLogging
+			Completion Logging(FileLogging,PatternLayout)
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allActionsIn
-			Completion FileLogging
+			Completion Logging(FileLogging,PatternLayout)
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allControlFlowsIn
-			Completion FileLogging
+			Completion Logging(FileLogging,PatternLayout)
 		}
 	}
 }

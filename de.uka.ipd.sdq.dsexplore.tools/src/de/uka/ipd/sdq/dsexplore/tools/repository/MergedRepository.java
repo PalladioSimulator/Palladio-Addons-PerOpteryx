@@ -6,12 +6,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.osgi.framework.hooks.weaving.WeavingException;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -138,8 +140,22 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 	 */
 	private RepositoryComponent getComponentRealizingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-			List<ComplementumVisnetis> fullfilledCVs = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumVisnetis.class);
-			if (anyCVcontainedInList(fullfilledCVs, cvs)) {
+			
+			//Visnetum at component
+			List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumVisnetis.class);
+			//Visnetum at interface
+			List<ComplementumVisnetis> fullfilledByInterfaceCVs = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), ComplementumVisnetis.class).stream())
+					.collect(Collectors.toList());
+			//Visnetum at signature
+			List<ComplementumVisnetis> fullfilledBySignatureCVs = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
+					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumVisnetis.class).stream())
+					.collect(Collectors.toList());
+			//TODO verschiedene targets betrachten -> component, interface, signature
+			if (anyCVcontainedInList(fullfilledByComponentCVs, cvs) ||
+				anyCVcontainedInList(fullfilledByInterfaceCVs, cvs) ||
+				anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
 				return repositoryComponent;
 			}
 		}
