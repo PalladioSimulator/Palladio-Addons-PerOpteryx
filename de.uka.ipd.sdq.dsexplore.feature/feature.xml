@@ -85,6 +85,8 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.palladiosimulator.pcm.edp2.measuringpoint"/>
       <import plugin="org.palladiosimulator.recorderframework.edp2" version="2.0.2" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.simucomframework" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="edu.kit.ipd.are.dsexplore.featurecompletions" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.qualitymodel" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
