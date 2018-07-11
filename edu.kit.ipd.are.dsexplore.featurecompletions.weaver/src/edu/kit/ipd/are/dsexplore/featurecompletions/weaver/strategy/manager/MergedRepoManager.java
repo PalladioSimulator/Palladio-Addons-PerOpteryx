@@ -66,6 +66,11 @@ public final class MergedRepoManager implements Iterable<Repository> {
 		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
 	}
 	
+	//TODO new for extension
+	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
+		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs, repo));
+	}
+	
 	//TODO new
 	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
 		return this.mergedRepo.getAffectedComponentsByProvidedRole(fccs, providedRole);

@@ -65,8 +65,8 @@
 <stringAttribute key="allocationFile" value="platform:/resource/SimpleBookingExample/default.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="Reliability Solver Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
@@ -101,7 +101,7 @@
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="/tmp/lqns"/>
+<stringAttribute key="lqnsOutputDir" value="E:/tmp/lqns"/>
 <stringAttribute key="lqsimOutputDir" value="C:\Users\Maxi\Workspace_Peropteryx\InnerEclipse\SimpleBookingExample\PerOpteryx_results"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
@@ -111,7 +111,7 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="2"/>
+<stringAttribute key="maxIterations" value="3"/>
 <stringAttribute key="maximum" value=""/>
 <stringAttribute key="maximumMeasurementCount" value="10"/>
 <stringAttribute key="minimum" value=""/>
@@ -132,7 +132,7 @@
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/cost.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/default.profile.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>

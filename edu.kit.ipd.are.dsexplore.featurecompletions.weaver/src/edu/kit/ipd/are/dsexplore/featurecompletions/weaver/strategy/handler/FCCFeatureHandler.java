@@ -134,13 +134,15 @@ public class FCCFeatureHandler {
 	}
 	
 	//TODO added for extension
-	public List<ProvidedRole> getPerimeterProvidedRolesFor(ComplementumVisnetis cv, FeatureCompletion fc) throws FCCWeaverException {
+	public List<ProvidedRole> getPerimeterProvidedRolesFor(ComplementumVisnetis cv, FeatureCompletion fc, Repository repo) throws FCCWeaverException {
 		Feature feature = cv.getComplementaryFeature();
 		List<ProvidedRole> result = new ArrayList<ProvidedRole>();
 		
 		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
 			if (fccCurrent.getPerimeterProviding().getFeatureProviding().stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
-				List<RepositoryComponent> components = this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent));
+				//List<RepositoryComponent> components = this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent));
+				//TODO select only providedRoles for current solution Choice
+				List<RepositoryComponent> components = this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent), repo);
 				List<ProvidedRole> providedRoles = components.stream().map(component -> component.getProvidedRoles_InterfaceProvidingEntity().get(0)).collect(Collectors.toList()); //TODO Annahme: Completion Component mit Perimeter Providing hat nur genau 1 Provided Role 
 				result.addAll(providedRoles);
 			}

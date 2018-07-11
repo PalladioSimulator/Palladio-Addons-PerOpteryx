@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0">
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
   <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4IiINEeSC6_3TPN1J7A"/>
     <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2)^6.2539)+145"/>
     <processingRateOperatingFunction specification="0"/>
-    <processingresourcespecification href="default.resourceenvironment#//@resourceContainer_ResourceEnvironment.0/@activeResourceSpecifications_ResourceContainer.0"/>
   </cost>
   <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4JiINEeSC6_3TPN1J7A"/>
     <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2)^6.2539)+145"/>
     <processingRateOperatingFunction specification="0"/>
-    <processingresourcespecification href="default.resourceenvironment#//@resourceContainer_ResourceEnvironment.1/@activeResourceSpecifications_ResourceContainer.0"/>
   </cost>
   <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4KiINEeSC6_3TPN1J7A"/>
     <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2)^6.2539)+145"/>
     <processingRateOperatingFunction specification="0"/>
-    <processingresourcespecification href="default.resourceenvironment#//@resourceContainer_ResourceEnvironment.2/@activeResourceSpecifications_ResourceContainer.0"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
-    <repositoryComponent xsi:type="BasicComponent" href="default.repository#_ZZH7IC6IEd-Jla2o7wkBzQ"/>
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_ZZH7IC6IEd-Jla2o7wkBzQ"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="150.0">
-    <repositoryComponent xsi:type="BasicComponent" href="default.repository#_YyVn8C6IEd-Jla2o7wkBzQ"/>
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_YyVn8C6IEd-Jla2o7wkBzQ"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
-    <repositoryComponent xsi:type="BasicComponent" href="default.repository#_Z2udIC6IEd-Jla2o7wkBzQ"/>
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_Z2udIC6IEd-Jla2o7wkBzQ"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="400.0">
-    <repositoryComponent xsi:type="BasicComponent" href="default.repository#__VPcQOtlEd-m3_hR0FtH3Q"/>
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#__VPcQOtlEd-m3_hR0FtH3Q"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="peropteryx/solutions/Log4j2.repository#_JKkMoOfNEeeT85tFTnTIqQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="1100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="peropteryx/solutions/Log4j1.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
   </cost>
 </cost:CostRepository>

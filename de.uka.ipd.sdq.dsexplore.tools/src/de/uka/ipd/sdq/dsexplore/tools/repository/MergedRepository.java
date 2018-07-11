@@ -107,6 +107,20 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 		return new ArrayList<>(affectedComponents);
 	}
 	
+	//TODO added for extension
+	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
+		Set<RepositoryComponent> affectedComponents = new HashSet<>();
+
+		for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (this.anyContainedInList(realizedCCs, fccs)) {
+				affectedComponents.add(rcs);
+			}
+		}
+
+		return new ArrayList<>(affectedComponents);
+	}
+	
 	//TODO new for extension
 	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
 

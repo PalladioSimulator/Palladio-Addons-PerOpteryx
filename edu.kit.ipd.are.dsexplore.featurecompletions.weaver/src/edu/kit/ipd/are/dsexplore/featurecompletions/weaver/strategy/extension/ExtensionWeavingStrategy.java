@@ -151,12 +151,14 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<IWeavingInstruction> instructions;
 	
 	private Choice fccChoice;
+	private Choice fcSolutionChoice;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fcSolutionChoice, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 		
 		this.fccChoice = fccChoice;
+		this.fcSolutionChoice = fcSolutionChoice;
 		
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
@@ -213,7 +215,12 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			//TODO anhand welchen CVs CompeltionComponents bestimmen?? 
 			ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
 			
-			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc), new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, fc));
+			//Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc), new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, fc));
+			//TODO create for current solution choice
+			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<CompletionComponent, List<ProvidedRole>>(
+						new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc), 
+						new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, fc, (Repository) fcSolutionChoice.getValue())
+					);
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations, null/* TODO */, extensionIncl));
 		}
 
@@ -246,7 +253,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		
 		System.out.println("--------------- ExtensionWeavingStrategy.weave finished --------------");
 		//TODO print pcm
-		savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
+		//savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
 		//TODO print pcm
 	}
 
@@ -297,7 +304,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	@Override
 	public List<Choice> getConvertedFCCClassChoices() {
 		// TODO implement
-		return null;
+		return new ArrayList<Choice>();
 	}
 	
 }

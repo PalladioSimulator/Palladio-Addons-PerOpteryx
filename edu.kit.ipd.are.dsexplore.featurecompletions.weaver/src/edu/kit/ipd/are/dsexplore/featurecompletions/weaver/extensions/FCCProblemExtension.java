@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -27,6 +28,7 @@ import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
@@ -54,6 +56,34 @@ public class FCCProblemExtension implements IProblemExtension {
 	public void initializeProblem(MDSDBlackboard blackboard, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, PCMInstance initialInstance, CostRepository costRepo) {
 		this.initialInstance = initialInstance;
 		this.determineFCCDecisions(blackboard, dds, initialCandidate, costRepo);
+		
+		//TODO add solution degree
+		createSolutionDegree(dds, initialCandidate, blackboard);
+	}
+
+	/**
+	 * @param dds
+	 * @param initialCandidate
+	 * @param blackboard 
+	 */
+	private void createSolutionDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, MDSDBlackboard blackboard) {
+		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		System pcmSystem = initialPartition.getSystem();
+		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
+		
+		//TODO add solutionDegree
+		ClassAsReferenceDegree solutionDegree = specificFactory.eINSTANCE.createClassAsReferenceDegree();
+		
+		for (Repository repository : solutionRepos) {
+			solutionDegree.getClassDesignOptions().add(repository);
+		}
+		solutionDegree.setPrimaryChanged(solutionDegree.getClassDesignOptions().get(0)); //TODO auf was setzen??
+		
+		ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+		choice.setDegreeOfFreedomInstance(solutionDegree);
+		choice.setChosenValue(solutionDegree.getClassDesignOptions().get(0));
+		initialCandidate.add(choice);
+		dds.add(solutionDegree);
 	}
 
 	@Override
