@@ -64,6 +64,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="de.uka.ipd.sdq.featuremodel" version="2.1.0" match="compatible"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.qml" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.tools" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.dsexplore.facade" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.pcm.cost" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.types"/>
       <import plugin="de.uka.ipd.sdq.pcm.designdecision" version="1.3.0" match="greaterOrEqual"/>
@@ -260,6 +261,13 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
 
    <plugin
          id="de.uka.ipd.sdq.dsexplore.tools"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+<plugin
+         id="de.uka.ipd.sdq.dsexplore.facade"
          download-size="0"
          install-size="0"
          version="0.0.0"
