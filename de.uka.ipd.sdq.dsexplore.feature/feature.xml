@@ -237,13 +237,6 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
          unpack="false"/>
 
    <plugin
-         id="edu.kit.ipd.are.dsexplore.featurecompletions.design"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.kit.ipd.are.dsexplore.featurecompletions.edit"
          download-size="0"
          install-size="0"
