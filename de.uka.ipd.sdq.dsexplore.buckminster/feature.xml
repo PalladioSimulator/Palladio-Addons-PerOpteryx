@@ -20,7 +20,7 @@
       <import plugin="de.uka.ipd.sdq.dsexplore.qml.handling" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.analyzer.resultdecorator" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.solver" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="edu.kit.ipd.are.dsexplore.featurecompletions" version="1.0.1" match="greaterOrEqual"/>
+      <import plugin="edu.kit.ipd.are.dsexplore.featurecompletions" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.qualitymodel" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
