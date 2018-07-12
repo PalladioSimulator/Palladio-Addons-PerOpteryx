@@ -19,3 +19,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
  de.uka.ipd.sdq.identifier.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.edit

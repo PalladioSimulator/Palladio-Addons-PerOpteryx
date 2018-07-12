@@ -21,3 +21,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: de.uka.ipd.sdq.workflow.launchconfig.tabs
 Bundle-Vendor: sdq.ipd.uka.de
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.reliability

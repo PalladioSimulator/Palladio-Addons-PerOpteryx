@@ -26,3 +26,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units.edit;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.uka.ipd.sdq.pcm.cost.edit

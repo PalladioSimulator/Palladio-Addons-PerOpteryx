@@ -24,3 +24,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.editors.commons.propertytabs;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.uka.ipd.sdq.pcm.cost.editor

@@ -22,3 +22,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
  de.uka.ipd.sdq.units.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.uka.ipd.sdq.pcm.nqr.editor
