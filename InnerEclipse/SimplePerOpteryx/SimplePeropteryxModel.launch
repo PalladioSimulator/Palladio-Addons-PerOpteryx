@@ -14,7 +14,7 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
-<stringAttribute key="EDP2RepositoryID" value="_4iPBwHujEeiJ4LhYUoG31Q"/>
+<stringAttribute key="EDP2RepositoryID" value=""/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
@@ -63,17 +63,15 @@
 <stringAttribute key="accuracyQualityAnnotationFile" value=""/>
 <stringAttribute key="allCandidates" value=""/>
 <stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.analysis.maintainability" value="Maintainability Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
 <stringAttribute key="cacheInstances" value=""/>
 <booleanAttribute key="clear" value="false"/>
-<stringAttribute key="componentInternalDependencyRepositoryFile" value="platform:/resource/SimplePerOpteryx/palladio/internal.componentinternaldependencies"/>
 <stringAttribute key="confidenceBatchSize" value="200"/>
 <stringAttribute key="confidenceHalfWidth" value="10"/>
 <stringAttribute key="confidenceLevel" value="95"/>
@@ -84,7 +82,6 @@
 <stringAttribute key="convValue" value="0.001"/>
 <stringAttribute key="costFile" value="platform:/resource/SimplePerOpteryx/peropteryx/costmodel.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
-<stringAttribute key="dataModelFile" value="platform:/resource/SimplePerOpteryx/palladio/data.datamodel"/>
 <intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
 <stringAttribute key="designDecisionFile" value="design.designdecision"/>
@@ -98,13 +95,13 @@
 <stringAttribute key="fixedSeed3" value="3"/>
 <stringAttribute key="fixedSeed4" value="4"/>
 <stringAttribute key="fixedSeed5" value="5"/>
-<stringAttribute key="indivPerGeneration" value="10"/>
+<stringAttribute key="indivPerGeneration" value="5"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="C:\git\PerOpteryxPlus\InnerEclipse\SimplePerOpteryx\tmp"/>
+<stringAttribute key="lqnsOutputDir" value="D:/tmp/lqns"/>
 <stringAttribute key="lqsimOutputDir" value="D:\Projects\src\eclipse-palladio"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
@@ -125,15 +122,14 @@
 <booleanAttribute key="numberOfExactDecimalPlacesEnabled" value="false"/>
 <booleanAttribute key="optimisationOnly" value="false"/>
 <booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
-<stringAttribute key="organizationEnvironmentModelFile" value="platform:/resource/SimplePerOpteryx/palladio/organization.organizationenvironmentmodel"/>
 <stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
+<stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations_perf.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>
@@ -156,8 +152,7 @@
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
 <stringAttribute key="stepwidth" value=""/>
 <booleanAttribute key="store results as CSV" value="true"/>
-<booleanAttribute key="store results as EMF" value="true"/>
-<stringAttribute key="systemModelFile" value="platform:/resource/SimplePerOpteryx/palladio/assembly.system"/>
+<booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
 <stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>

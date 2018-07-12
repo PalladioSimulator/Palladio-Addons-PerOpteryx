@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
@@ -51,7 +52,9 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 		AssemblyContext providedAssemblyContext = assemblyConnectorToReplace.getProvidingAssemblyContext_AssemblyConnector();
 
 		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, this.parent.getAdapterAssemblyContext(), providedAssemblyContext);
-		this.addConnector(new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
+		Connector newConnector = new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo);
+		newConnector.setId(assemblyConnectorToReplace.getId());
+		this.addConnector(newConnector);
 	}
 
 	private void createAssemblyConnectorFromRequiredEndToAdapter(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {
@@ -60,7 +63,10 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 		AssemblyContext requiredAssemblyContext = assemblyConnectorToReplace.getRequiringAssemblyContext_AssemblyConnector();
 
 		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, this.parent.getAdapterAssemblyContext());
-		this.addConnector(new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo));
+		Connector newConnector = new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo);
+		// DO THIS ONLY AT ONE CONNECTOR TO PREVENT ERRORS
+		// newConnector.setId(assemblyConnectorToReplace.getId());
+		this.addConnector(newConnector);
 	}
 
 	private List<ProvidedRole> getProvidedRolesOfAdapter() {

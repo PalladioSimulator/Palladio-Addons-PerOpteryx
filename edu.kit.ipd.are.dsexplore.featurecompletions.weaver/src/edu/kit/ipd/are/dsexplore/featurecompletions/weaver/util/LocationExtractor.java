@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -25,9 +26,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 public final class LocationExtractor {
-	public static List<WeavingLocation> extractLocation(Pair<AssemblyConnector, ComplementumVisnetis> connector, PCMInstance pcm) {
+	public static List<WeavingLocation> extractLocation(Pair<Connector, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
-		AssemblyContext target = connector.first.getProvidingAssemblyContext_AssemblyConnector();
+		AssemblyContext target = LocationExtractor.getAssemblyContext(connector.first);
+
 		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
 
 		switch (visnetum) {
@@ -42,6 +44,17 @@ public final class LocationExtractor {
 		}
 
 		throw new Error("Unidentified Visnetum " + visnetum);
+	}
+
+	private static AssemblyContext getAssemblyContext(Connector connector) {
+		if (connector instanceof AssemblyConnector) {
+			AssemblyContext target = ((AssemblyConnector) connector).getProvidingAssemblyContext_AssemblyConnector();
+			return target;
+		} else if (connector instanceof ProvidedDelegationConnector) {
+			AssemblyContext target = ((ProvidedDelegationConnector) connector).getAssemblyContext_ProvidedDelegationConnector();
+			return target;
+		}
+		return null;
 	}
 
 	private static EList<Connector> getAllConnectors(PCMInstance pcm) {

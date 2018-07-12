@@ -9,4 +9,6 @@ public interface IModule {
 	ICreateExtension getCreateExtension();
 
 	IDecodeExtension getDecodeExtension();
+
+	IAnalysisExtension getAnalysisExtension();
 }

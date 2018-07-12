@@ -3,20 +3,36 @@
 
   <rm:property key="resolveFrom" value="release"/>
 
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" />
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
-  <rm:locator searchPathRef="peropteryxsvn" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.dsexplore.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^edu\.kit\.ipd\.are\.dsexplore.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.designdecision.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.cost.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.nqr.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qualitymodel.*" />
 
-  <rm:redirect pattern="^org\.palladiosimulator\.solver.*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap"/>
-  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/SimuCom/trunk/org.palladiosimulator.simucom.buckminster/simucom.rmap"/>
+  <rm:locator pattern="^org\.palladiosimulator\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simucontroller.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.pcm\.codegen.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation$" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
+  <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
+  href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
+  
+  <rm:redirect pattern=".*"
+  href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Framework/trunk/org.palladiosimulator.analyzer.buckminster/analyzer.rmap" />
 
-  <rm:searchPath name="peropteryxsvn">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
-      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Addons/PerOpteryx/trunk/{0}">
+
+  <rm:searchPath name="peropteryxgit">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
+      <rm:uri format="{0}/GIT,{1}">
+	    <bc:propertyRef key="workspace.root" />
       	<bc:propertyRef key="buckminster.component" />
       </rm:uri>
+      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-Addons-PerOpteryx"/>      
+      <rm:property key="git.auto.fetch" value="true"/>
     </rm:provider>
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/nightly/"/>
@@ -24,6 +40,22 @@
     <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/releases/latest/"/>
     </rm:provider>      
+  </rm:searchPath>
+  <rm:searchPath name="AbstractSimEngine">
+      <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/nightly/"/>
+      </rm:provider>
+      <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/releases/latest/"/>
+      </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="SimuCom">
+      <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/nightly/"/>
+      </rm:provider>
+      <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/releases/latest/"/>
+      </rm:provider>
   </rm:searchPath>
   
 </rm:rmap>

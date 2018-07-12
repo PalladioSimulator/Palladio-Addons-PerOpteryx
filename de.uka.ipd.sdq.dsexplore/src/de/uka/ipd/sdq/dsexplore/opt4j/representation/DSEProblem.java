@@ -28,10 +28,11 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.SchedulingPolicy;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
+import de.uka.ipd.sdq.dsexplore.Modules;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
 import de.uka.ipd.sdq.dsexplore.facade.IModule;
+import de.uka.ipd.sdq.dsexplore.facade.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
@@ -121,6 +122,7 @@ public class DSEProblem {
 		this.specificDesignDecisionFactory = specificFactoryImpl.init();
 
 		// this.initTransformationRepository(pcmPartition);
+		Modules.loadModules();
 
 		if (newProblem) {
 			this.initialiseProblem();

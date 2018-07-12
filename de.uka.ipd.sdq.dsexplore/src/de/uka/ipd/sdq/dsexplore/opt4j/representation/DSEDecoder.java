@@ -25,7 +25,6 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import com.google.inject.Inject;
 
-import de.uka.ipd.sdq.dsexplore.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.designdecisions.alternativecomponents.AlternativeComponent;
 import de.uka.ipd.sdq.dsexplore.exception.ChoiceOutOfBoundsException;
@@ -33,6 +32,7 @@ import de.uka.ipd.sdq.dsexplore.exception.ExceptionHelper;
 import de.uka.ipd.sdq.dsexplore.exception.InvalidChoiceForDegreeException;
 import de.uka.ipd.sdq.dsexplore.facade.IDecodeExtension;
 import de.uka.ipd.sdq.dsexplore.facade.IModule;
+import de.uka.ipd.sdq.dsexplore.facade.ModuleRegistry;
 import de.uka.ipd.sdq.dsexplore.gdof.GenomeToCandidateModelTransformation;
 import de.uka.ipd.sdq.dsexplore.helper.DegreeOfFreedomHelper;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
