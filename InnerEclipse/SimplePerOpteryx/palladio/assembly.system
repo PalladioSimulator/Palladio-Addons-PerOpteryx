@@ -7,7 +7,7 @@
     <assemblyContexts__ComposedStructure id="_5vDBAGFdEeetxOZObiabqg" entityName="Assembly_PaymentProvider-1">
       <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="repository.repository#_4JzMYGFbEeetxOZObiabqg"/>
     </assemblyContexts__ComposedStructure>
-    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_9JfHkGFdEeetxOZObiabqg" entityName="newAssemblyConnector" requiringAssemblyContext_AssemblyConnector="_2VS28GFdEeetxOZObiabqg" providingAssemblyContext_AssemblyConnector="_5vDBAGFdEeetxOZObiabqg">
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_9JfHkGFdEeetxOZObiabq" entityName="newAssemblyConnector" requiringAssemblyContext_AssemblyConnector="_2VS28GFdEeetxOZObiabqg" providingAssemblyContext_AssemblyConnector="_5vDBAGFdEeetxOZObiabqg">
       <providedRole_AssemblyConnector href="repository.repository#_-5O40GFbEeetxOZObiabqg"/>
       <requiredRole_AssemblyConnector href="repository.repository#_2dnXYGFbEeetxOZObiabqg"/>
     </connectors__ComposedStructure>
@@ -22,9 +22,7 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_gNGQwGFdEeetxOZObiabqg">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_eXBxIBfiEeixnp8iZNZNhA"/>
       <solutionRepositories href="../peropteryx/solutions/solutionA.repository#_FS8AUJmYEeeDvYNI8KVQWQ"/>
-      <solutionRepositories href="../peropteryx/solutions/solutionB.repository#_l0s-IJpjEeeEPdMZenYK9Q"/>
     </stereotypeApplications>
-
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_9JfHkGFdEeetxOZObiabq">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_LNnQQBfiEeixnp8iZNZNhA"/>
       <includeComplementumVisnetis href="../peropteryx/FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>

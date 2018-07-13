@@ -34,7 +34,7 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:transformation" appliedTo="_l0s-IJpjEeeEPdMZenYK9Q">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
-      <usesMechanism xsi:type="featureSolution:ExtensionInclusion" href="../extension.fcdsl#_ZZ"/>
+      <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="../Solution.featuresolution#_KQ7R8CeuEeiIeo5GuXQT1g"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_7TQKYJpjEeeEPdMZenYK9Q">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
@@ -47,10 +47,6 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_5hV18JplEee_CIQQKJtzCQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
       <realizes href="../FCompletion.featurecompletion#_X-aVoCeuEeiIeo5GuXQT1g"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_3uJaAJplEee_CIQQKJtzCQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_0uhXkBfiEeixnp8iZNZNhA"/>
-      <fulfills href="../FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

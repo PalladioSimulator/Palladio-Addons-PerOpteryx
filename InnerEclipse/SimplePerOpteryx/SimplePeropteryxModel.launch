@@ -152,7 +152,7 @@
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
 <stringAttribute key="stepwidth" value=""/>
 <booleanAttribute key="store results as CSV" value="true"/>
-<booleanAttribute key="store results as EMF" value="true"/>
+<booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
 <stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>

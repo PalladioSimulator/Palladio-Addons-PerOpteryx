@@ -24,3 +24,4 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.palladiosimulator.mdsdprofiles;bundle-version="1.0.1",
  org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1"
 Bundle-Vendor: sdq.ipd.uka.de
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.nqr

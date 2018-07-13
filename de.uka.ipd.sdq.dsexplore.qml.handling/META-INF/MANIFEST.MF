@@ -16,3 +16,4 @@ Export-Package: de.uka.ipd.sdq.dsexplore.qml.handling,
  de.uka.ipd.sdq.dsexplore.qml.pcm.reader,
  de.uka.ipd.sdq.dsexplore.qml.reader
 Bundle-Vendor: sdq.ipd.uka.de
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.qml.handling

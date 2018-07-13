@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
@@ -55,10 +54,6 @@ public final class FCCWeaver {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {
 			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
-			//TODO: does not make sense?
-//			if (meachanisms.size() != 0) {
-//				continue;
-//			}
 			if (meachanisms.size() != 1) {
 				continue;
 			}
@@ -161,15 +156,15 @@ public final class FCCWeaver {
 	private List<Pair<ComplementumVisnetis, WeavingLocation>> determineLocations(PCMInstance original) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
 		System pcmSystem = original.getSystem();
-		List<Pair<AssemblyConnector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
-		for (Pair<AssemblyConnector, ComplementumVisnetis> connector : availableCVs) {
+		List<Pair<Connector, ComplementumVisnetis>> availableCVs = this.extractAvailableCVs(pcmSystem);
+		for (Pair<Connector, ComplementumVisnetis> connector : availableCVs) {
 			List<WeavingLocation> location = LocationExtractor.extractLocation(connector, original);
 			result.addAll(this.getPairs(connector, location));
 		}
 		return result;
 	}
 
-	private Collection<? extends Pair<ComplementumVisnetis, WeavingLocation>> getPairs(Pair<AssemblyConnector, ComplementumVisnetis> connector, List<WeavingLocation> locations) {
+	private Collection<? extends Pair<ComplementumVisnetis, WeavingLocation>> getPairs(Pair<Connector, ComplementumVisnetis> connector, List<WeavingLocation> locations) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
 		for (WeavingLocation location : locations) {
 			result.add(Pair.of(connector.second, location));
@@ -177,15 +172,15 @@ public final class FCCWeaver {
 		return result;
 	}
 
-	private List<Pair<AssemblyConnector, ComplementumVisnetis>> extractAvailableCVs(System pcmSystem) {
-		List<Pair<AssemblyConnector, ComplementumVisnetis>> result = new ArrayList<>();
+	private List<Pair<Connector, ComplementumVisnetis>> extractAvailableCVs(System pcmSystem) {
+		List<Pair<Connector, ComplementumVisnetis>> result = new ArrayList<>();
 
 		for (Connector c : pcmSystem.getConnectors__ComposedStructure()) {
 			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class, "target");
 			if (cv.isEmpty()) {
 				continue;
 			}
-			result.add(Pair.of((AssemblyConnector) c, cv.get(0)));
+			result.add(Pair.of(c, cv.get(0)));
 		}
 
 		return result;
