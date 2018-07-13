@@ -22,6 +22,7 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -90,6 +91,8 @@ public final class FCCWeaver {
 	private Choice fccChoice;
 	private List<Choice> featureChoices;
 	private List<Choice> allocationChoices;
+	//TODO for choice of FC solution
+	private Choice fcSolutionChoice;
 
 	private IWeavingStrategy strategy;
 
@@ -107,10 +110,15 @@ public final class FCCWeaver {
 				this.featureChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
 				this.addAllocationDegreeIfNeeded(c);
-			}
+			} else if (c.getDegreeOfFreedomInstance() instanceof ClassAsReferenceDegree) { //TODO eigene SolutionDegree Klasse erstellen
+				this.fcSolutionChoice = c;
+			} 
 
 		}
 
+		//TODO remove solutionChoice
+		notTransformedChoices.remove(this.fcSolutionChoice);
+		
 		notTransformedChoices.remove(this.fccChoice);
 		for (Choice fc : this.featureChoices) {
 			notTransformedChoices.remove(fc);
@@ -136,7 +144,7 @@ public final class FCCWeaver {
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
 		this.strategy = this.strategyContructor.create(pcmToAdopt, this.mergedRepo, this.fc, this.im);
-		this.strategy.initialize(locations, this.featureChoices, this.allocationChoices);
+		this.strategy.initialize(locations, this.fcSolutionChoice, this.fccChoice, this.featureChoices, this.allocationChoices);
 		this.strategy.weave();
 		return pcmToAdopt;
 	}

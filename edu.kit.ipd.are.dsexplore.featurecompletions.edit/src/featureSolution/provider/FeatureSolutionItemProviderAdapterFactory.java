@@ -118,6 +118,190 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.PlacementStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PlacementStrategyItemProvider placementStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.PlacementStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPlacementStrategyAdapter() {
+		if (placementStrategyItemProvider == null) {
+			placementStrategyItemProvider = new PlacementStrategyItemProvider(this);
+		}
+
+		return placementStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.ExternalCallPlacementStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalCallPlacementStrategyItemProvider externalCallPlacementStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.ExternalCallPlacementStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalCallPlacementStrategyAdapter() {
+		if (externalCallPlacementStrategyItemProvider == null) {
+			externalCallPlacementStrategyItemProvider = new ExternalCallPlacementStrategyItemProvider(this);
+		}
+
+		return externalCallPlacementStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.InternalActionPlacementStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InternalActionPlacementStrategyItemProvider internalActionPlacementStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.InternalActionPlacementStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInternalActionPlacementStrategyAdapter() {
+		if (internalActionPlacementStrategyItemProvider == null) {
+			internalActionPlacementStrategyItemProvider = new InternalActionPlacementStrategyItemProvider(this);
+		}
+
+		return internalActionPlacementStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.ControlFlowPlacementStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ControlFlowPlacementStrategyItemProvider controlFlowPlacementStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.ControlFlowPlacementStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createControlFlowPlacementStrategyAdapter() {
+		if (controlFlowPlacementStrategyItemProvider == null) {
+			controlFlowPlacementStrategyItemProvider = new ControlFlowPlacementStrategyItemProvider(this);
+		}
+
+		return controlFlowPlacementStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.PointCut} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PointCutItemProvider pointCutItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.PointCut}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPointCutAdapter() {
+		if (pointCutItemProvider == null) {
+			pointCutItemProvider = new PointCutItemProvider(this);
+		}
+
+		return pointCutItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.Advice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdviceItemProvider adviceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.Advice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdviceAdapter() {
+		if (adviceItemProvider == null) {
+			adviceItemProvider = new AdviceItemProvider(this);
+		}
+
+		return adviceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.Import} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImportItemProvider importItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.Import}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImportAdapter() {
+		if (importItemProvider == null) {
+			importItemProvider = new ImportItemProvider(this);
+		}
+
+		return importItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.FeatureSelection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureSelectionItemProvider featureSelectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.FeatureSelection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureSelectionAdapter() {
+		if (featureSelectionItemProvider == null) {
+			featureSelectionItemProvider = new FeatureSelectionItemProvider(this);
+		}
+
+		return featureSelectionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,6 +402,14 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	public void dispose() {
 		if (adapterInclusionItemProvider != null) adapterInclusionItemProvider.dispose();
 		if (extensionInclusionItemProvider != null) extensionInclusionItemProvider.dispose();
+		if (placementStrategyItemProvider != null) placementStrategyItemProvider.dispose();
+		if (externalCallPlacementStrategyItemProvider != null) externalCallPlacementStrategyItemProvider.dispose();
+		if (internalActionPlacementStrategyItemProvider != null) internalActionPlacementStrategyItemProvider.dispose();
+		if (controlFlowPlacementStrategyItemProvider != null) controlFlowPlacementStrategyItemProvider.dispose();
+		if (pointCutItemProvider != null) pointCutItemProvider.dispose();
+		if (adviceItemProvider != null) adviceItemProvider.dispose();
+		if (importItemProvider != null) importItemProvider.dispose();
+		if (featureSelectionItemProvider != null) featureSelectionItemProvider.dispose();
 	}
 
 }

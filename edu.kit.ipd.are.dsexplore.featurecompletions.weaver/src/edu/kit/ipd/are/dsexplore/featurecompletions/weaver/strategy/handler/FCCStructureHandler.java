@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.function.Function;
 
+import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import FeatureCompletionModel.CompletionComponent;
@@ -32,6 +33,19 @@ public class FCCStructureHandler {
 		return structure;
 		// return this.getAnnotatedComponents(false).flatMap(eachComponent ->
 		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
+	}
+	
+	//TODO new for extension
+	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
+		List<CompletionComponent> result = new ArrayList<CompletionComponent>();
+		if (!fcc.getRequiredComponents().isEmpty()) {
+			EList<CompletionComponent> requiredFCCs = fcc.getRequiredComponents();
+			result.addAll(requiredFCCs);
+			for (CompletionComponent completionComponent : requiredFCCs) {
+				result.addAll(getFCCsRequiredBy(completionComponent));
+			}
+		}
+		return result;
 	}
 
 	public <T> List<T> getStructureOfECCAndRequiredAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {

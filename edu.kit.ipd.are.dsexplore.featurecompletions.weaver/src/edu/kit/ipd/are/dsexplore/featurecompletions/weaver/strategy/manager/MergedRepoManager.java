@@ -1,11 +1,16 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import org.osgi.framework.hooks.weaving.WeavingException;
 import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -18,8 +23,10 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 
 /**
  * This class provides all operations performed on a {@link MergedRepository}
@@ -63,6 +70,94 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 */
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
 		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
+	}
+
+	// TODO new for extension
+	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
+		Set<RepositoryComponent> affectedComponents = new HashSet<>();
+		// TODO wenn das MergedRepo dann eh nur noch eine Solution enthält, kann
+		// der repo-Parameter wegfallen
+		for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (this.anyContainedInList(realizedCCs, fccs)) {
+				affectedComponents.add(rcs);
+			}
+		}
+
+		return new ArrayList<>(affectedComponents);
+	}
+
+	// TODO new for extension
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+		for (Repository repo : this.mergedRepo) {
+			List<RepositoryComponent> affectedComponents = new ArrayList<>();
+			for (CompletionComponent completionComponent : fccs) {
+				List<RepositoryComponent> realizingComponents = new ArrayList<>();
+				for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+					List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+					if (this.anyContainedInList(realizedCCs, Arrays.asList(
+							completionComponent)) /*
+													 * && anyCVcontainedInList
+													 * (rcs, cvs)
+													 */) {
+						realizingComponents.add(rcs);
+					}
+				}
+				if (realizingComponents.size() != 1) {
+					RepositoryComponent component = MergedRepoManager.getComponentFullfillingCV(realizingComponents, cvs);
+					affectedComponents.add(component);
+				} else {
+					affectedComponents.addAll(realizingComponents);
+				}
+			}
+			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
+				return affectedComponents;
+			}
+		}
+		return null;
+	}
+
+	// TODO new for extension
+	public static RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
+		for (RepositoryComponent repositoryComponent : realizingComponents) {
+
+			// Visnetum at component
+			List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumVisnetis.class);
+			// Visnetum at interface
+			List<ComplementumVisnetis> fullfilledByInterfaceCVs = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), ComplementumVisnetis.class).stream())
+					.collect(Collectors.toList());
+			// Visnetum at signature
+			List<ComplementumVisnetis> fullfilledBySignatureCVs = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
+					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumVisnetis.class).stream()).collect(Collectors.toList());
+			// TODO verschiedene targets betrachten -> component, interface,
+			// signature
+			if (MergedRepoManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) || MergedRepoManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
+					|| MergedRepoManager.anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
+				return repositoryComponent;
+			}
+		}
+		throw new WeavingException("no realizing component for completion components found or ambigous components found");
+	}
+
+	private static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
+		for (ComplementumVisnetis complementumVisnetis : fullfilledCVs) {
+			if (cvs.stream().anyMatch(cv -> cv.getId().equals(complementumVisnetis.getId()))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// TODO added for extension
+	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
+		for (CompletionComponent completionComponent : realizedCCs) {
+			if (listToContainedIn.contains(completionComponent)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

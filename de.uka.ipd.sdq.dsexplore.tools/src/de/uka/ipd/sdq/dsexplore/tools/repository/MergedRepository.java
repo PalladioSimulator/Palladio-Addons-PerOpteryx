@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
@@ -28,44 +29,44 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
  */
 public final class MergedRepository extends EObjectImpl implements Iterable<Repository> {
 	private final Set<Repository> repositories;
-	// private Repository repoWithoutAnnotations;
+	private Repository repoWithoutAnnotations;
 
 	public MergedRepository(Repository... repositories) {
 		this.repositories = new HashSet<>();
 		this.repositories.addAll(Arrays.asList(repositories));
-		// this.createRepo();
+		this.createRepo();
 	}
 
 	public MergedRepository(List<Repository> repositories) {
 		this.repositories = new HashSet<>();
 		this.repositories.addAll(repositories);
-		// this.createRepo();
+		this.createRepo();
 	}
 
 	public MergedRepository(Set<Repository> repositories) {
 		this.repositories = new HashSet<>();
 		this.repositories.addAll(repositories);
-		// this.createRepo();
+		this.createRepo();
 	}
 
-	// private void createRepo() {
-	// Repository repo = RepositoryFactory.eINSTANCE.createRepository();
-	// repo.setEntityName("MergedRepo");
-	// repo.setId("MergedRepo" + this.hashCode());
-	// for (Repository r : this.repositories) {
-	// Repository copy = this.copyOf(r);
-	// repo.getComponents__Repository().addAll(copy.getComponents__Repository());
-	// }
-	// this.repoWithoutAnnotations = repo;
-	//
-	// }
+	private void createRepo() {
+		Repository repo = RepositoryFactory.eINSTANCE.createRepository();
+		repo.setEntityName("MergedRepo");
+		repo.setId("MergedRepo" + this.hashCode());
+		for (Repository r : this.repositories) {
+			Repository copy = this.copyOf(r);
+			repo.getComponents__Repository().addAll(copy.getComponents__Repository());
+		}
+		this.repoWithoutAnnotations = repo;
 
-	// private Repository copyOf(Repository repo) {
-	// Copier copier = new Copier();
-	// Repository newRepo = (Repository) copier.copy(repo);
-	// copier.copyReferences();
-	// return newRepo;
-	// }
+	}
+
+	private Repository copyOf(Repository repo) {
+		Copier copier = new Copier();
+		Repository newRepo = (Repository) copier.copy(repo);
+		copier.copyReferences();
+		return newRepo;
+	}
 
 	public List<CostRepository> getCostRepos() {
 		Set<CostRepository> repos = new HashSet<>();
@@ -124,13 +125,9 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 		return adapter;
 	}
 
-	// private void addAdapter(BasicComponent adapter) {
-	// this.repoWithoutAnnotations.getComponents__Repository().add(adapter);
-	// }
-
-	// public Repository getAsRepoWithoutStereotypes() {
-	// return this.repoWithoutAnnotations;
-	// }
+	public Repository getAsRepoWithoutStereotypes() {
+		return this.repoWithoutAnnotations;
+	}
 
 	public List<ProvidedRole> getAllProvidedRoles() {
 		List<ProvidedRole> prs = new ArrayList<>();

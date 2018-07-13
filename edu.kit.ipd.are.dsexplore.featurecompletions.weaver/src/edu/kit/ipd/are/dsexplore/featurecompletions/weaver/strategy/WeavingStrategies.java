@@ -5,8 +5,10 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterWeavingStrategy;
-import featureSolution.AdapterInclusion;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ExtensionWeavingStrategy;
 import featureSolution.InclusionMechanism;
+import featureSolution.impl.AdapterInclusionImpl;
+import featureSolution.impl.ExtensionInclusionImpl;
 
 /**
  * Create mapping between {@link InclusionMechanism} and
@@ -16,8 +18,7 @@ import featureSolution.InclusionMechanism;
  *
  */
 public enum WeavingStrategies {
-
-	ADAPTER(AdapterInclusion.class, AdapterWeavingStrategy::new);
+	ADAPTER(AdapterInclusionImpl.class, AdapterWeavingStrategy::new), EXTENSION(ExtensionInclusionImpl.class, ExtensionWeavingStrategy::new);
 
 	private final Class<? extends InclusionMechanism> mechanism;
 	private final Constructor strategy;
