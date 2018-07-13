@@ -1,9 +1,12 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.palladiosimulator.pcm.repository.EventGroup;
@@ -21,6 +24,7 @@ import org.palladiosimulator.pcm.repository.SourceRole;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 
 /**
  * This class provides all operations performed on a {@link MergedRepository}
@@ -68,17 +72,52 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	
 	//TODO new for extension
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
-		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs, repo));
-	}
-	
-	//TODO new
-	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
-		return this.mergedRepo.getAffectedComponentsByProvidedRole(fccs, providedRole);
+		Set<RepositoryComponent> affectedComponents = new HashSet<>();
+		//TODO wenn das MergedRepo dann eh nur noch eine Solution enthält, kann der repo-Parameter wegfallen 
+		for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (this.anyContainedInList(realizedCCs, fccs)) {
+				affectedComponents.add(rcs);
+			}
+		}
+
+		return new ArrayList<>(affectedComponents);
 	}
 	
 	//TODO new for extension
 	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
-		return this.mergedRepo.getRealizingComponentsByFCCList(fccs, providedRole, cvs);
+		for (Repository repo : mergedRepo) {
+			List<RepositoryComponent> affectedComponents = new ArrayList<>();
+			for (CompletionComponent completionComponent : fccs) {
+				List<RepositoryComponent> realizingComponents = new ArrayList<RepositoryComponent>();
+				for (RepositoryComponent rcs : repo.getComponents__Repository()) {
+					List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+					if (this.anyContainedInList(realizedCCs, Arrays.asList(completionComponent)) /*&& anyCVcontainedInList(rcs, cvs)*/) {
+						realizingComponents.add(rcs);
+					}
+				}
+				if (realizingComponents.size() != 1) {
+					RepositoryComponent component = MergedRepository.getComponentFullfillingCV(realizingComponents, cvs);
+					affectedComponents.add(component);
+				} else {
+					affectedComponents.addAll(realizingComponents);
+				}
+			}
+			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
+				return affectedComponents;
+			}
+		}
+		return null;
+	}
+	
+	//TODO added for extension
+	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
+		for (CompletionComponent completionComponent : realizedCCs) {
+			if (listToContainedIn.contains(completionComponent)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -181,10 +220,6 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
 		return this.mergedRepo.getAllProvidedRoles();
-	}
-	
-	public List<RepositoryComponent> getAllRepositoryComponents() {
-		return this.mergedRepo.getAllRepositoryComponents();
 	}
 	
 	@Override

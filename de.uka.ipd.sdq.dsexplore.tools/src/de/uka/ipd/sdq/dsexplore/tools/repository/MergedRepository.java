@@ -108,6 +108,7 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 	}
 	
 	//TODO added for extension
+	//TODO Anmerkung: wenn das MergedRepo dann eh nur noch eine Solution enthält, kann der repo-Parameter wegfallen und die Methode sollte dann äquivalent zur obigen sein
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
 		Set<RepositoryComponent> affectedComponents = new HashSet<>();
 
@@ -121,38 +122,11 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 		return new ArrayList<>(affectedComponents);
 	}
 	
-	//TODO new for extension
-	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
-
-		for (Repository repo : this.repositories) {
-			List<RepositoryComponent> affectedComponents = new ArrayList<>();
-			for (CompletionComponent completionComponent : fccs) {
-				List<RepositoryComponent> realizingComponents = new ArrayList<RepositoryComponent>();
-				for (RepositoryComponent rcs : repo.getComponents__Repository()) {
-					List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-					if (this.anyContainedInList(realizedCCs, Arrays.asList(completionComponent)) /*&& anyCVcontainedInList(rcs, cvs)*/) {
-						realizingComponents.add(rcs);
-					}
-				}
-				if (realizingComponents.size() != 1) {
-					RepositoryComponent component = getComponentRealizingCV(realizingComponents, cvs);
-					affectedComponents.add(component);
-				} else {
-					affectedComponents.addAll(realizingComponents);
-				}
-			}
-			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
-				return affectedComponents;
-			}
-		}
-		return null;
-	}
-	
 	/**
 	 * @param realizingComponents
 	 * @param cvs
 	 */
-	private RepositoryComponent getComponentRealizingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
+	public static RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
 			
 			//Visnetum at component
@@ -181,32 +155,13 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 	 * @param cvs
 	 * @return
 	 */
-	private boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
+	private static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
 		for (ComplementumVisnetis complementumVisnetis : fullfilledCVs) {
 			if (cvs.stream().anyMatch(cv -> cv.getId().equals(complementumVisnetis.getId()))) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	//TODO grouped by solution(repository)
-	public List<RepositoryComponent> getAffectedComponentsByProvidedRole(CompletionComponent fccs, ProvidedRole providedRole) {
-		//List<List<RepositoryComponent>> affectedComponentsGrouped = new ArrayList<>();
-		for (Repository repo : this.repositories) {
-			List<RepositoryComponent> affectedComponents = new ArrayList<>();
-			for (RepositoryComponent rcs : repo.getComponents__Repository()) {
-				List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-				if (this.anyContainedInList(realizedCCs, Arrays.asList(fccs))) {
-					affectedComponents.add(rcs);
-				}
-			}
-			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
-				return affectedComponents;
-			}
-			
-		}
-		return null;
 	}
 
 	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
@@ -256,15 +211,6 @@ public final class MergedRepository extends EObjectImpl implements Iterable<Repo
 			}
 		}
 		return prs;
-	}
-	
-	public List<RepositoryComponent> getAllRepositoryComponents() {
-		List<RepositoryComponent> result = new ArrayList<>();
-
-		for (Repository repo : this.repositories) {
-			result.addAll(repo.getComponents__Repository());
-		}
-		return result;
 	}
 
 	@Override
