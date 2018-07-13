@@ -3,20 +3,21 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.palladiosimulator.pcm.repository.Repository;
+
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionRepository;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 
 public class CompletionDesignDecision {
 
 	private final FeatureCompletionRepository fcRepository;
-	private final MergedRepository merged;
+	private final List<Repository> solutions;
 
-	public CompletionDesignDecision(FeatureCompletionRepository fcRepository, MergedRepository merged) {
+	public CompletionDesignDecision(FeatureCompletionRepository fcRepository, List<Repository> solutions) {
 		this.fcRepository = fcRepository;
-		this.merged = merged;
+		this.solutions = solutions;
 	}
 
 	public List<FeatureCompletionDegree> generateFCCDegrees() {
@@ -26,7 +27,7 @@ public class CompletionDesignDecision {
 	private FeatureCompletionDegree generateCompletionDegreeWith(FeatureCompletion featureCompletion) {
 		FeatureCompletionDegree completionDegree = specificFactory.eINSTANCE.createFeatureCompletionDegree();
 		completionDegree.setPrimaryChanged(featureCompletion);
-		completionDegree.getClassDesignOptions().add(featureCompletion);
+		completionDegree.getClassDesignOptions().addAll(this.solutions);
 		return completionDegree;
 	}
 

@@ -2,14 +2,11 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -39,29 +36,22 @@ public abstract class RepositoryWeaving {
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
-		ProvidedRole prOfSolution = weavingInstruction.getFCCWithConsumedFeatures().getSecond().get(0);
-		Repository targetRepository = (Repository) prOfSolution.eContainer().eContainer();
 		String uniqueAdapterName = FCCUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
 		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
-			this.parent.setAdapter(this.parent.getMergedRepoManager().createAndAddAdapter(uniqueAdapterName, targetRepository));
+			this.parent.setAdapter(this.parent.getSolutionManager().createAndAddAdapter(uniqueAdapterName));
 		} else {
-			this.parent.setAdapter(this.getOrCreateAdapterComponent(uniqueAdapterName, targetRepository));
+			this.parent.setAdapter(this.getOrCreateAdapterComponent(uniqueAdapterName));
 		}
 	}
 
-	private RepositoryComponent getOrCreateAdapterComponent(String name, Repository targetRepository) {
-		return this.getExistingAdapter().orElseGet(() -> this.parent.getMergedRepoManager().createAndAddAdapter(name, targetRepository));
+	private RepositoryComponent getOrCreateAdapterComponent(String name) {
+		return this.getExistingAdapter(name).orElseGet(() -> this.parent.getSolutionManager().createAndAddAdapter(name));
 	}
 
 	// Assumption: When multiple == false then for each concern solution there
 	// may exist only a single adapter component tops.
-	private Optional<RepositoryComponent> getExistingAdapter() {
-		return this.parent.getMergedRepoManager().getComponentBy(this.getAdapterComponentSearchCriteria());
-	}
-
-	// An adapter component is not annotated
-	private Predicate<RepositoryComponent> getAdapterComponentSearchCriteria() {
-		return component -> !EMFProfileFilter.isAnnotated(component);
+	private Optional<RepositoryComponent> getExistingAdapter(String name) {
+		return this.parent.getSolutionManager().getComponentByName(name);
 	}
 
 	private void connectAdapterTo(List<ProvidedRole> providedECCFeatures) throws FCCWeaverException {
@@ -74,12 +64,34 @@ public abstract class RepositoryWeaving {
 	}
 
 	private RequiredRole createComplimentaryRequiredRoleOf(ProvidedRole providedRole) throws FCCWeaverException {
-		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, this.parent.getMergedRepoManager()).orElseThrow(() -> new FCCWeaverException(ErrorMessage.unsupportedRole()));
+		RoleHandler roleHandler = RoleHandlerFactory.getBy(providedRole, this.parent.getSolutionManager()).orElseThrow(() -> new FCCWeaverException(ErrorMessage.unsupportedRole()));
 		return roleHandler.createRequiredRoleOf(providedRole);
 	}
 
-	private boolean isNotAlreadyContainedInAdapter(RequiredRole requiredRole) {
-		return !this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole -> FCCUtil.referencesSameInterface(eachRequRole, requiredRole));
+	protected boolean isNotAlreadyContainedInAdapter(RequiredRole requiredRole) {
+		RepositoryComponent rc = this.parent.getAdapterComponent();
+		for (RequiredRole role : rc.getRequiredRoles_InterfaceRequiringEntity()) {
+			if (role.getEntityName().equals(requiredRole.getEntityName())) {
+				return false;
+			}
+		}
+		return true;
+		// return
+		// !this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole
+		// -> FCCUtil.referencesSameInterface(eachRequRole, requiredRole));
+	}
+
+	protected boolean isNotAlreadyContainedInAdapter(ProvidedRole providedRole) {
+		RepositoryComponent rc = this.parent.getAdapterComponent();
+		for (ProvidedRole role : rc.getProvidedRoles_InterfaceProvidingEntity()) {
+			if (role.getEntityName().equals(providedRole.getEntityName())) {
+				return false;
+			}
+		}
+		return true;
+		// return
+		// !this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().stream().anyMatch(eachRequRole
+		// -> FCCUtil.referencesSameInterface(eachRequRole, requiredRole));
 	}
 
 	/**

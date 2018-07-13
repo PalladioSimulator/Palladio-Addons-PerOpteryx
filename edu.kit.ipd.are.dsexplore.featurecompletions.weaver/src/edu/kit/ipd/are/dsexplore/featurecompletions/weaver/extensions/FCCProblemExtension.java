@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -19,7 +18,6 @@ import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
 import de.uka.ipd.sdq.dsexplore.facade.IProblemExtension;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pointer;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
@@ -28,7 +26,6 @@ import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
@@ -42,7 +39,7 @@ import featureObjective.Feature;
 public class FCCProblemExtension implements IProblemExtension {
 
 	// SEE de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob
-	static final String INITIAL_PCM_MODEL_PARTITION_ID = "initialPCModelPartitionID";
+	public static final String INITIAL_PCM_MODEL_PARTITION_ID = "initialPCModelPartitionID";
 
 	private final Pointer<FCCWeaver> weaver;
 
@@ -56,34 +53,6 @@ public class FCCProblemExtension implements IProblemExtension {
 	public void initializeProblem(MDSDBlackboard blackboard, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, PCMInstance initialInstance, CostRepository costRepo) {
 		this.initialInstance = initialInstance;
 		this.determineFCCDecisions(blackboard, dds, initialCandidate, costRepo);
-		
-		//TODO add solution degree
-		createSolutionDegree(dds, initialCandidate, blackboard);
-	}
-
-	/**
-	 * @param dds
-	 * @param initialCandidate
-	 * @param blackboard 
-	 */
-	private void createSolutionDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, MDSDBlackboard blackboard) {
-		PCMResourceSetPartition initialPartition = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
-		System pcmSystem = initialPartition.getSystem();
-		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
-		
-		//TODO add solutionDegree
-		ClassAsReferenceDegree solutionDegree = specificFactory.eINSTANCE.createClassAsReferenceDegree();
-		
-		for (Repository repository : solutionRepos) {
-			solutionDegree.getClassDesignOptions().add(repository);
-		}
-		solutionDegree.setPrimaryChanged(solutionDegree.getClassDesignOptions().get(0)); //TODO auf was setzen??
-		
-		ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
-		choice.setDegreeOfFreedomInstance(solutionDegree);
-		choice.setChosenValue(solutionDegree.getClassDesignOptions().get(0));
-		initialCandidate.add(choice);
-		dds.add(solutionDegree);
 	}
 
 	@Override
@@ -110,17 +79,17 @@ public class FCCProblemExtension implements IProblemExtension {
 		return fcd;
 	}
 
-	private void determineFCCDecisions(MDSDBlackboard blackboard, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, CostRepository costRepo) {
+	private FeatureCompletionDegree determineFCCDecisions(MDSDBlackboard blackboard, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, CostRepository costRepo) {
 		FeatureCompletionRepository fcRepo = this.getFCRepository(blackboard).orElse(null);
 		if (fcRepo == null) {
-			return;
+			return null;
 		}
 		try {
-			this.createFCCDegreeBy(blackboard, costRepo, fcRepo, dds, initialCandidate);
+			return this.createFCCDegreeBy(blackboard, costRepo, fcRepo, dds, initialCandidate);
 		} catch (Exception ex) {
 			FCCModule.logger.error("Error while creating FeatureCompletionDegree ..: " + ex.getMessage());
 			ex.printStackTrace();
-			return;
+			return null;
 		}
 
 	}
@@ -135,25 +104,27 @@ public class FCCProblemExtension implements IProblemExtension {
 		}
 	}
 
-	private void createFCCDegreeBy(MDSDBlackboard blackboard, CostRepository costRepo, FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
+	private FeatureCompletionDegree createFCCDegreeBy(MDSDBlackboard blackboard, CostRepository costRepo, FeatureCompletionRepository fcRepo, List<DegreeOfFreedomInstance> dds,
+			ListGenotype<Choice> initialCandidate) {
 		this.initializeWeaver(blackboard, costRepo);
-		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo, this.weaver.get().getMergedRepo()).generateFCCDegrees();
+		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo, this.weaver.get().getSolutionRepositories()).generateFCCDegrees();
 		if (featureCompletionDegrees.size() != 1) {
 			FCCModule.logger.warn("FCCRepo count: " + featureCompletionDegrees.size() + " -> skipping!");
-			return;
+			return null;
 		}
 		FeatureCompletionDegree degree = featureCompletionDegrees.get(0);
 		this.createClassChoice(degree, dds, initialCandidate);
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
+		return degree;
 	}
 
-	private void createClassChoice(FeatureCompletionDegree concernDegree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
+	private void createClassChoice(FeatureCompletionDegree fccDegree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
 		ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
-		choice.setDegreeOfFreedomInstance(concernDegree);
-		choice.setChosenValue(concernDegree.getClassDesignOptions().get(0));
+		choice.setDegreeOfFreedomInstance(fccDegree);
+		choice.setChosenValue(fccDegree.getClassDesignOptions().get(0));
 		initialCandidate.add(choice);
-		dds.add(concernDegree);
+		dds.add(fccDegree);
 	}
 
 	private void initializeWeaver(MDSDBlackboard blackboard, CostRepository costModel) {
@@ -164,14 +135,13 @@ public class FCCProblemExtension implements IProblemExtension {
 		System pcmSystem = initialPartition.getSystem();
 
 		List<Repository> solutionRepos = StereotypeAPIHelper.getViaStereoTypeFrom(pcmSystem, Repository.class);
-		MergedRepository merged = solutionRepos.size() > 0 ? new MergedRepository(solutionRepos) : null;
 
-		if (merged == null) {
+		if (solutionRepos == null || solutionRepos.isEmpty()) {
 			// No solutions accessible via stereotype
 			return;
 		}
 
-		this.weaver.set(new FCCWeaver(initialPartition, merged, costModel));
+		this.weaver.set(new FCCWeaver(blackboard, solutionRepos, costModel));
 
 	}
 

@@ -13,20 +13,20 @@ import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class RoleHandlerFactory {
 
-	private final static HashMap<Predicate<Role>, Function<MergedRepoManager, RoleHandler>> roleHandlerMap = new HashMap<>();
+	private final static HashMap<Predicate<Role>, Function<SolutionManager, RoleHandler>> roleHandlerMap = new HashMap<>();
 	static {
 		RoleHandlerFactory.roleHandlerMap.put(RoleHandlerFactory.isOperationRole(), mergedRepoManager -> new OperationRoleHandler(mergedRepoManager));
 		RoleHandlerFactory.roleHandlerMap.put(RoleHandlerFactory.isSinkOrSourceRole(), mergedRepoManager -> new SinkSourceRoleHandler(mergedRepoManager));
 	}
 
-	public static Optional<RoleHandler> getBy(Role role, MergedRepoManager mergedRepoManager) {
-		Iterator<Entry<Predicate<Role>, Function<MergedRepoManager, RoleHandler>>> iterator = RoleHandlerFactory.roleHandlerMap.entrySet().iterator();
+	public static Optional<RoleHandler> getBy(Role role, SolutionManager mergedRepoManager) {
+		Iterator<Entry<Predicate<Role>, Function<SolutionManager, RoleHandler>>> iterator = RoleHandlerFactory.roleHandlerMap.entrySet().iterator();
 		while (iterator.hasNext()) {
-			Entry<Predicate<Role>, Function<MergedRepoManager, RoleHandler>> current = iterator.next();
+			Entry<Predicate<Role>, Function<SolutionManager, RoleHandler>> current = iterator.next();
 			if (current.getKey().test(role)) {
 				return Optional.of(current.getValue().apply(mergedRepoManager));
 			}

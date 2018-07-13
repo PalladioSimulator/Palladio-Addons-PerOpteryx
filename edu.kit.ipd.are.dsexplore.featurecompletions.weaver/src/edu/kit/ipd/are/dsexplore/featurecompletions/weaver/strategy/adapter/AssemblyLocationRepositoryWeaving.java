@@ -6,8 +6,6 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import FeatureCompletionModel.ComplementumVisnetis;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 /**
@@ -29,10 +27,15 @@ public class AssemblyLocationRepositoryWeaving extends RepositoryWeaving {
 
 		OperationRequiredRole requiredConnectionEnd = location.getRequiredRole_AssemblyConnector();
 		OperationProvidedRole providedConnectionEnd = location.getProvidedRole_AssemblyConnector();
-		ProvidedRole newProvidedRole = this.parent.getMergedRepoManager().createProvidedRoleBy(requiredConnectionEnd);
-		RequiredRole newRequiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedConnectionEnd);
-		this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity().add(newProvidedRole);
-		this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().add(newRequiredRole);
+		ProvidedRole newProvidedRole = this.parent.getSolutionManager().createProvidedRoleBy(requiredConnectionEnd);
+		RequiredRole newRequiredRole = this.parent.getSolutionManager().createRequiredRoleBy(providedConnectionEnd);
+
+		if (this.isNotAlreadyContainedInAdapter(newProvidedRole)) {
+			this.parent.getAdapterComponent().getProvidedRoles_InterfaceProvidingEntity().add(newProvidedRole);
+		}
+		if (this.isNotAlreadyContainedInAdapter(newRequiredRole)) {
+			this.parent.getAdapterComponent().getRequiredRoles_InterfaceRequiringEntity().add(newRequiredRole);
+		}
 	}
 
 }

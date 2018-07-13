@@ -6,11 +6,11 @@ import org.palladiosimulator.pcm.repository.Role;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class SinkSourceRoleHandler extends RoleHandler {
 
-	public SinkSourceRoleHandler(MergedRepoManager mergedRepoManager) {
+	public SinkSourceRoleHandler(SolutionManager mergedRepoManager) {
 		super(mergedRepoManager);
 	}
 
@@ -33,11 +33,11 @@ public class SinkSourceRoleHandler extends RoleHandler {
 
 	@Override
 	public RequiredRole createRequiredRoleOf(ProvidedRole providedRole) {
-		return this.mergedRepoManager.createRequiredRoleBy((SinkRole) providedRole);
+		return this.solutionManager.createRequiredRoleBy((SinkRole) providedRole);
 	}
 
 	@Override
 	public ProvidedRole createRequiredRoleOf(RequiredRole providedRole) {
-		return this.mergedRepoManager.createProvidedRoleBy((SourceRole) providedRole);
+		return this.solutionManager.createProvidedRoleBy((SourceRole) providedRole);
 	}
 }

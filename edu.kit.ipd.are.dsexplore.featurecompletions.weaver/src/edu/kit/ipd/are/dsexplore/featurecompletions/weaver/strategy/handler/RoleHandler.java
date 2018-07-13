@@ -7,14 +7,14 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public abstract class RoleHandler {
 
-	protected MergedRepoManager mergedRepoManager;
+	protected SolutionManager solutionManager;
 
-	public RoleHandler(MergedRepoManager mergedRepoManager) {
-		this.mergedRepoManager = mergedRepoManager;
+	public RoleHandler(SolutionManager mergedRepoManager) {
+		this.solutionManager = mergedRepoManager;
 	}
 
 	@SuppressWarnings("unchecked")
