@@ -243,8 +243,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			//UsageModelWeaving umw = ExtensionWeavingFactory.getExtensionUsageModelWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 			
 			// Weave it ..
-			seffWeaving.weave(instruction);
 			reporitoryWeaving.weave(instruction);
+			seffWeaving.weave(instruction);
+			
 			assemblyWeaving.weave(instruction);
 			allocationWeaving.weave(instruction);
 

@@ -4,6 +4,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
@@ -12,6 +13,7 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
+import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
@@ -47,16 +49,18 @@ public abstract class ServiceEffectSpecificationWeaving {
 		AbstractAction predecessor = internalAction.getPredecessor_AbstractAction();
 		AbstractAction successor = internalAction.getSuccessor_AbstractAction();
 		
+		OperationRequiredRole fcRequiredRole = getFcRequiredRole(internalAction, operationProvidedRole.getProvidedInterface__OperationProvidedRole());
+		
 		switch (appears) {
 		case BEFORE:
-			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);
+			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);
 			break;
 		case AFTER:
-			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);		
+			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);		
 			break;
 		case AROUND:
-			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);
-			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole()), seff);	
+			addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);
+			addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);	
 			break;
 		default:
 			break;
@@ -64,6 +68,22 @@ public abstract class ServiceEffectSpecificationWeaving {
 		//do in Repository Weaving
 		//addRequiredRoleFor(seff, operationProvidedRole);
 			
+	}
+
+	/**
+	 * @param internalAction
+	 * @param operationInterface 
+	 * @return
+	 */
+	private OperationRequiredRole getFcRequiredRole(AbstractAction internalAction, OperationInterface operationInterface) {
+		BasicComponent comp = (BasicComponent) internalAction.eContainer().eContainer();
+		
+		for (RequiredRole requiredRole : comp.getRequiredRoles_InterfaceRequiringEntity()) {
+			if (((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId().equals(operationInterface.getId())) {
+				return (OperationRequiredRole) requiredRole;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -82,15 +102,16 @@ public abstract class ServiceEffectSpecificationWeaving {
 
 	/**
 	 * @param operationInterface
+	 * @param fcRequiredRole 
 	 * @return
 	 */
-	ExternalCallAction createExternalCallAction(OperationInterface operationInterface) {
+	ExternalCallAction createExternalCallAction(OperationInterface operationInterface, OperationRequiredRole fcRequiredRole) {
 			ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
 			OperationSignature calledService = (OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);
 			//TODO add role to ext call?
-	//		externalCallAction.setRole_ExternalService((OperationRequiredRole) externalCallInfo.requiredRole);
+			externalCallAction.setRole_ExternalService(fcRequiredRole);
 	//		externalCallAction.getInputVariableUsages__CallAction().addAll(this.copy(externalCallInfo.inputVariableUsages));
 	//		externalCallAction.getReturnVariableUsage__CallReturnAction().addAll(this.copy(externalCallInfo.returnVariableUsage));
 			return externalCallAction;
