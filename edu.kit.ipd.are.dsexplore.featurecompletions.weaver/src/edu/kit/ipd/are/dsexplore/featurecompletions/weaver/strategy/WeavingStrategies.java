@@ -1,9 +1,9 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.FeatureCompletion;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ExtensionWeavingStrategy;
 import featureSolution.InclusionMechanism;
@@ -42,6 +42,6 @@ public enum WeavingStrategies {
 
 	@FunctionalInterface
 	public interface Constructor {
-		IWeavingStrategy create(PCMInstance pcmToAdapt, MergedRepository mergedRepo, FeatureCompletion fc, InclusionMechanism im);
+		IWeavingStrategy create(PCMInstance pcmToAdapt, Repository solution, FeatureCompletion fc, InclusionMechanism im);
 	}
 }

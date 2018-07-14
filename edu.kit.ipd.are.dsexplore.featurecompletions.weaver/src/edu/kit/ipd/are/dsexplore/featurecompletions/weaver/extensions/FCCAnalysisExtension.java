@@ -28,7 +28,7 @@ public class FCCAnalysisExtension implements IAnalysisExtension {
 			return new ArrayList<>();
 		}
 		Set<CostRepository> result = new HashSet<>();
-		for (Repository solution : weaver.getMergedRepo()) {
+		for (Repository solution : weaver.getSolutionRepositories()) {
 			List<CostRepository> additionalCosts = StereotypeAPIHelper.getViaStereoTypeFrom(solution, CostRepository.class, "cost");
 			result.addAll(additionalCosts);
 		}

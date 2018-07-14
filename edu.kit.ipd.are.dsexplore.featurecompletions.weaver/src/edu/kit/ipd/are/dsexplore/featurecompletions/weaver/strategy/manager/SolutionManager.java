@@ -3,14 +3,14 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.hooks.weaving.WeavingException;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -35,27 +35,18 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
  * @author scheerer
  *
  */
-public final class MergedRepoManager implements Iterable<Repository> {
+public final class SolutionManager {
 
-	private MergedRepository mergedRepo = null;
+	private Repository solution = null;
 
-	public MergedRepoManager(MergedRepository mergedRepo) {
-		this.mergedRepo = mergedRepo;
+	public SolutionManager(Repository solution) {
+		this.solution = solution;
 	}
 
-	/**
-	 * Filters the component which satisfies the given predicate.
-	 *
-	 * @param searchCriteria
-	 *            - The search criteria for filtering the components.
-	 * @return the first filtered component.
-	 */
-	public Optional<RepositoryComponent> getComponentBy(Predicate<RepositoryComponent> searchCriteria) {
-		for (Repository repo : this.mergedRepo) {
-			for (RepositoryComponent c : repo.getComponents__Repository()) {
-				if (searchCriteria.test(c)) {
-					return Optional.of(c);
-				}
+	public Optional<RepositoryComponent> getComponentByName(String name) {
+		for (RepositoryComponent c : this.solution.getComponents__Repository()) {
+			if (c.getEntityName().equals(name)) {
+				return Optional.of(c);
 			}
 		}
 		return Optional.empty();
@@ -69,7 +60,15 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 * @return all components annotated by a set of annotations.
 	 */
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs) {
-		return new ArrayList<>(this.mergedRepo.getAffectedComponentsByFCCList(fccs));
+		Set<RepositoryComponent> affectedComponents = new HashSet<>();
+		for (RepositoryComponent rcs : this.solution.getComponents__Repository()) {
+			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+			if (this.anyContainedInList(realizedCCs, fccs)) {
+				affectedComponents.add(rcs);
+			}
+
+		}
+		return new ArrayList<>(affectedComponents);
 	}
 
 	// TODO new for extension
@@ -89,31 +88,30 @@ public final class MergedRepoManager implements Iterable<Repository> {
 
 	// TODO new for extension
 	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
-		for (Repository repo : this.mergedRepo) {
-			List<RepositoryComponent> affectedComponents = new ArrayList<>();
-			for (CompletionComponent completionComponent : fccs) {
-				List<RepositoryComponent> realizingComponents = new ArrayList<>();
-				for (RepositoryComponent rcs : repo.getComponents__Repository()) {
-					List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-					if (this.anyContainedInList(realizedCCs, Arrays.asList(
-							completionComponent)) /*
-													 * && anyCVcontainedInList
-													 * (rcs, cvs)
-													 */) {
-						realizingComponents.add(rcs);
-					}
-				}
-				if (realizingComponents.size() != 1) {
-					RepositoryComponent component = MergedRepoManager.getComponentFullfillingCV(realizingComponents, cvs);
-					affectedComponents.add(component);
-				} else {
-					affectedComponents.addAll(realizingComponents);
+		List<RepositoryComponent> affectedComponents = new ArrayList<>();
+		for (CompletionComponent completionComponent : fccs) {
+			List<RepositoryComponent> realizingComponents = new ArrayList<>();
+			for (RepositoryComponent rcs : this.solution.getComponents__Repository()) {
+				List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
+				if (this.anyContainedInList(realizedCCs, Arrays.asList(
+						completionComponent)) /*
+												 * && anyCVcontainedInList (rcs,
+												 * cvs)
+												 */) {
+					realizingComponents.add(rcs);
 				}
 			}
-			if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
-				return affectedComponents;
+			if (realizingComponents.size() != 1) {
+				RepositoryComponent component = SolutionManager.getComponentFullfillingCV(realizingComponents, cvs);
+				affectedComponents.add(component);
+			} else {
+				affectedComponents.addAll(realizingComponents);
 			}
 		}
+		if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
+			return affectedComponents;
+		}
+
 		return null;
 	}
 
@@ -133,8 +131,8 @@ public final class MergedRepoManager implements Iterable<Repository> {
 					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumVisnetis.class).stream()).collect(Collectors.toList());
 			// TODO verschiedene targets betrachten -> component, interface,
 			// signature
-			if (MergedRepoManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) || MergedRepoManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
-					|| MergedRepoManager.anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
+			if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) || SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
+					|| SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
 				return repositoryComponent;
 			}
 		}
@@ -167,8 +165,17 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 *            - The name of the adapter component.
 	 * @return the created adapter component.
 	 */
-	public RepositoryComponent createAndAddAdapter(String name, Repository solutionRepo) {
-		return this.mergedRepo.createAndAddAdapter(name, solutionRepo);
+	public RepositoryComponent createAndAddAdapter(String name) {
+		BasicComponent adapter = this.createAdapter(name);
+		this.solution.getComponents__Repository().add(adapter);
+		return adapter;
+	}
+
+	private BasicComponent createAdapter(String name) {
+		BasicComponent adapter = RepositoryFactory.eINSTANCE.createBasicComponent();
+		adapter.setComponentType(ComponentType.BUSINESS_COMPONENT);
+		adapter.setEntityName(name);
+		return adapter;
 	}
 
 	/**
@@ -259,11 +266,16 @@ public final class MergedRepoManager implements Iterable<Repository> {
 	 * @return the provided role space.
 	 */
 	public List<ProvidedRole> getAllProvidedRoles() {
-		return this.mergedRepo.getAllProvidedRoles();
+		List<ProvidedRole> prs = new ArrayList<>();
+		for (RepositoryComponent c : this.solution.getComponents__Repository()) {
+			List<ProvidedRole> role = c.getProvidedRoles_InterfaceProvidingEntity();
+			prs.addAll(role);
+		}
+		return prs;
 	}
 
-	@Override
-	public Iterator<Repository> iterator() {
-		return this.mergedRepo.iterator();
+	public Repository getRepository() {
+		return this.solution;
 	}
+
 }

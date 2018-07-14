@@ -11,14 +11,14 @@ import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import FeatureCompletionModel.CompletionComponent;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class FCCStructureHandler {
 
 	private final CompletionComponent fcc;
-	private final MergedRepoManager mergedRepoManager;
+	private final SolutionManager mergedRepoManager;
 
-	public FCCStructureHandler(CompletionComponent fcc, MergedRepoManager mergedRepoManager) {
+	public FCCStructureHandler(CompletionComponent fcc, SolutionManager mergedRepoManager) {
 		this.fcc = fcc;
 		this.mergedRepoManager = mergedRepoManager;
 	}

@@ -94,7 +94,7 @@ public class AllocationWeaving {
 
 	private Stream<AssemblyContext> getECCAndRequiredAssemblyContexts(CompletionComponent fcc) {
 		try {
-			return new FCCStructureHandler(fcc, this.parent.getMergedRepoManager()).getStructureOfECCAndRequiredAccordingTo(this.getAssemblyContextCollector()).stream();
+			return new FCCStructureHandler(fcc, this.parent.getSolutionManager()).getStructureOfECCAndRequiredAccordingTo(this.getAssemblyContextCollector()).stream();
 		} catch (FCCWeaverException ex) {
 			throw new RuntimeException(ex);
 		}
