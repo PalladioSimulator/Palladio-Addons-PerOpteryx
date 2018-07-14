@@ -134,14 +134,13 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<IWeavingInstruction> instructions;
 
 	private Choice fccChoice;
-	private Choice fcSolutionChoice;
+	//private Choice fcSolutionChoice;
 
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 
 		this.fccChoice = fccChoice;
-		this.fcSolutionChoice = this.fcSolutionChoice;
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
@@ -211,7 +210,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			// fc));
 			// TODO create for current solution choice
 			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
-					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, this.fc, (Repository) this.fcSolutionChoice.getValue()));
+					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations,
 					null/* TODO */, extensionIncl));
 		}
