@@ -1,63 +1,90 @@
-*.aird
-
-# Java #
+# Java
+.mtj.tmp/
 *.class
+*.ctxt
+*.ear
+*.jar
+*.log
+*.nar
+*.rar
+*.tar.gz
+*.war
+*.zip
+hs_err_pid*
 
-###Eclipse###
+# Xtext
+*._trace
+*.xtendbin
+src-gen/
+xtend-gen/
 
-*.pydevproject
-.metadata
-.gradle
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
+# Palladio
+org.palladiosimulator.temporary/
+PerOpteryx_results/
 
-# External tool builders
-.externalToolBuilders/
-
-# CDT-specific
-.cproject
-
-# PDT-specific
+# Eclipse
+.autotools
 .buildpath
-
-# sbteclipse plugin
+.cache-main
+.cproject
+.externalToolBuilders/
+.factorypath
+.gradle
+.loadpath
+.metadata
+.recommenders
+.recommenders/
+.scala_dependencies
+.settings/
+.springBeans
 .target
-
-# TeXlipse plugin
+.tern-project
 .texlipse
+.worksheet
+*.aird
+*.bak
+*.launch
+*.pydevproject
+*.swp
+*.tmp
+*~.nib
+bin/
+local.properties
+tmp/
 
-
-###OSX###
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-
-# Thumbnails
+# macOS
 ._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
+.apdisk
 .AppleDB
 .AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-InnerEclipse/IDS/BRS/PerOpteryx_results/
-InnerEclipse/org.palladiosimulator.temporary/
-InnerEclipse/SimplePerOpteryx/palladio/PerOpteryx_results_woven/
+.AppleDouble
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
+.DS_Store
+.fseventsd
+.LSOverride
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Linux
+.directory
+.fuse_hidden*
+.nfs*
+.Trash-*
+*~
+
+# Windows
+[Dd]esktop.ini
+*.cab
+*.lnk
+*.msi
+*.msix
+*.msm
+*.msp
+*.stackdump
+$RECYCLE.BIN/
+ehthumbs_vista.db
+ehthumbs.db
+Thumbs.db
