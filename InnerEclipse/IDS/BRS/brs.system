@@ -93,11 +93,8 @@
   </system:System>
   <emfprofileapplication:ProfileApplication>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_Fc1jsLcOEd2_9rSHIHHezA">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_ShoegH9_Eei20_C43HUsIQ"/>
+      <extension href="../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_ShoegH9_Eei20_C43HUsIQ"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_RsJe0FekEd6zR8NNmb-sJg">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_ShoegH9_Eei20_C43HUsIQ"/>
-    </stereotypeApplications>
-    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>
