@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_zVBCMGHJEeiPqrnsj91qxg">
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_5SaT1GJwEeilNM7vlVMhZA" entityName="CostSecurityType">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_KNdkImHLEeiPqrnsj91qxg" entityName="CostSecurityContract" contractType="_5SaT1GJwEeilNM7vlVMhZA">
+    <criteria xsi:type="QMLContract:Objective" id="_a0qm8GHLEeiPqrnsj91qxg">
+      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Value" id="_rg-91GHMEeiPqrnsj91qxg"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_bZSW8GHLEeiPqrnsj91qxg">
+      <dimension href="QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+      <aspects xsi:type="QMLContract:Value" id="_uGCUhGHMEeiPqrnsj91qxg"/>
+    </criteria>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_zYbQoGHLEeiPqrnsj91qxg" entityName="CostSecurityProfile">
+    <usageModel href="../BRS/brs.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_JaxtgGHMEeiPqrnsj91qxg" requireContract="_KNdkImHLEeiPqrnsj91qxg">
+      <usageScenario href="../BRS/brs.usagemodel#_qhsIYNpBEdyxgfK4Hy_RFA"/>
+    </requirements>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>
