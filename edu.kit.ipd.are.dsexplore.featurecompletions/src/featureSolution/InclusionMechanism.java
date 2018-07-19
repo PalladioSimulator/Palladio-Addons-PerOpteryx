@@ -33,7 +33,7 @@ public interface InclusionMechanism extends DescribedElement {
 	 * @return the value of the '<em>Multiple</em>' attribute.
 	 * @see #setMultiple(boolean)
 	 * @see featureSolution.FeatureSolutionPackage#getInclusionMechanism_Multiple()
-	 * @model default="false" transient="true"
+	 * @model default="false"
 	 * @generated
 	 */
 	boolean isMultiple();

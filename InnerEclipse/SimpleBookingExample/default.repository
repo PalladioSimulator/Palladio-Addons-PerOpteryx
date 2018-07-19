@@ -9,7 +9,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_pLhAYC6JEd-Jla2o7wkBzQ" predecessor_AbstractAction="_0EkNkC6JEd-Jla2o7wkBzQ"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_vGuakC6JEd-Jla2o7wkBzQ" entityName="action" predecessor_AbstractAction="_pLgZUC6JEd-Jla2o7wkBzQ" successor_AbstractAction="_0EkNkC6JEd-Jla2o7wkBzQ">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="400000"/>
+          <specification_ParametericResourceDemand specification="40000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="1.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
@@ -49,7 +49,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_pwkOMC6JEd-Jla2o7wkBzQ" predecessor_AbstractAction="_DIhMgOtZEd-m3_hR0FtH3Q"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_HcazEC6KEd-Jla2o7wkBzQ" predecessor_AbstractAction="_pwjnIC6JEd-Jla2o7wkBzQ" successor_AbstractAction="_DIhMgOtZEd-m3_hR0FtH3Q">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="500000"/>
+          <specification_ParametericResourceDemand specification="50000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="1.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
@@ -72,7 +72,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_qUBgkS6JEd-Jla2o7wkBzQ" predecessor_AbstractAction="_QG_9kC6KEd-Jla2o7wkBzQ"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_QG_9kC6KEd-Jla2o7wkBzQ" predecessor_AbstractAction="_qUBgkC6JEd-Jla2o7wkBzQ" successor_AbstractAction="_qUBgkS6JEd-Jla2o7wkBzQ">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="300000"/>
+          <specification_ParametericResourceDemand specification="30000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="1.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
@@ -88,7 +88,7 @@
             <steps_Behaviour xsi:type="seff:StopAction" id="_vWuAgOtZEd-m3_hR0FtH3Q" predecessor_AbstractAction="_QG_9kC6KEd-Jla2o7wkBzQ2"/>
             <steps_Behaviour xsi:type="seff:InternalAction" id="_QG_9kC6KEd-Jla2o7wkBzQ2" entityName="bankPayment" predecessor_AbstractAction="_vWtZcOtZEd-m3_hR0FtH3Q" successor_AbstractAction="_vWuAgOtZEd-m3_hR0FtH3Q">
               <resourceDemand_Action>
-                <specification_ParametericResourceDemand specification="300000"/>
+                <specification_ParametericResourceDemand specification="30000"/>
                 <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
               </resourceDemand_Action>
               <internalFailureOccurrenceDescriptions__InternalAction failureProbability="1.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
@@ -102,7 +102,7 @@
             <steps_Behaviour xsi:type="seff:StopAction" id="_v0KxgetZEd-m3_hR0FtH3Q" predecessor_AbstractAction="_QS5rkC6KEd-Jla2o7wkBzQ2"/>
             <steps_Behaviour xsi:type="seff:InternalAction" id="_QS5rkC6KEd-Jla2o7wkBzQ2" entityName="CCpayment" predecessor_AbstractAction="_v0KxgOtZEd-m3_hR0FtH3Q" successor_AbstractAction="_v0KxgetZEd-m3_hR0FtH3Q">
               <resourceDemand_Action>
-                <specification_ParametericResourceDemand specification="400000"/>
+                <specification_ParametericResourceDemand specification="40000"/>
                 <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
               </resourceDemand_Action>
               <internalFailureOccurrenceDescriptions__InternalAction failureProbability="3.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
@@ -124,14 +124,14 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_Ahd-0etmEd-m3_hR0FtH3Q" predecessor_AbstractAction="_5R5l8O13Ed-XnbkEivYoKw"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_c1GMgOtmEd-m3_hR0FtH3Q" entityName="checkCache" predecessor_AbstractAction="_Ahd-0OtmEd-m3_hR0FtH3Q" successor_AbstractAction="_fEh4gOtmEd-m3_hR0FtH3Q">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="0.5"/>
+          <specification_ParametericResourceDemand specification="5000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="2.5E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>
       </steps_Behaviour>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_fEh4gOtmEd-m3_hR0FtH3Q" entityName="determineCheapest" predecessor_AbstractAction="_c1GMgOtmEd-m3_hR0FtH3Q" successor_AbstractAction="_5R5l8O13Ed-XnbkEivYoKw">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="2.5"/>
+          <specification_ParametericResourceDemand specification="25000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="1.0E-4" softwareInducedFailureType__InternalFailureOccurrenceDescription="_PL68dtrQEd-YZv0HsvRIgQ"/>

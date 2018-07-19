@@ -11,7 +11,7 @@
     <activeResourceSpecifications_ResourceContainer id="_psq4IiINEeSC6_3TPN1J7A" MTTR="6.0" MTTF="300000.0">
       <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
       <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-      <processingRate_ProcessingResourceSpecification specification="2000000000"/>
+      <processingRate_ProcessingResourceSpecification specification="1500000000"/>
     </activeResourceSpecifications_ResourceContainer>
   </resourceContainer_ResourceEnvironment>
   <resourceContainer_ResourceEnvironment id="_h3wXgC6MEd-Jla2o7wkBzQ" entityName="server2">
@@ -25,7 +25,7 @@
     <activeResourceSpecifications_ResourceContainer id="_psq4KiINEeSC6_3TPN1J7A" MTTR="4.0" MTTF="275000.0">
       <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
       <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-      <processingRate_ProcessingResourceSpecification specification="2000000000"/>
+      <processingRate_ProcessingResourceSpecification specification="1000000000"/>
     </activeResourceSpecifications_ResourceContainer>
   </resourceContainer_ResourceEnvironment>
 </resourceenvironment:ResourceEnvironment>
