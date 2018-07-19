@@ -116,7 +116,28 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.createClassChoice(degree, dds, initialCandidate);
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
+		//TODO add dof for multiple-flag in inclusion mechanism
+		this.createMultipleInclusionDegree(degree, dds, initialCandidate);
 		return degree;
+	}
+
+	/**
+	 * @param degree 
+	 * @param dds
+	 * @param initialCandidate 
+	 */
+	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
+		// TODO add dof for multiple-flag in inclusion mechanism
+		FeatureDegree multipleInclusionDegree = specificFactory.eINSTANCE.createFeatureDegree();
+		
+		multipleInclusionDegree.setEntityName("multiple_inclusion");
+		multipleInclusionDegree.setPrimaryChanged(degree.getPrimaryChanged()); //TODO auf was setzen??
+			
+		FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
+		choice.setDegreeOfFreedomInstance(multipleInclusionDegree);
+		choice.setSelected(false);
+		initialCandidate.add(choice);
+		dds.add(multipleInclusionDegree);
 	}
 
 	private void createClassChoice(FeatureCompletionDegree fccDegree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {

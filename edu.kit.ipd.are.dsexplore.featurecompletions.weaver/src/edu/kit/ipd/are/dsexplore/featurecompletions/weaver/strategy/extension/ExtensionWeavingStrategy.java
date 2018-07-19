@@ -19,6 +19,7 @@ import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
@@ -134,13 +135,17 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<IWeavingInstruction> instructions;
 
 	private Choice fccChoice;
-	//private Choice fcSolutionChoice;
+	private Choice multipleInclusionChoice;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 
 		this.fccChoice = fccChoice;
+		this.multipleInclusionChoice = multipleInclusionChoice;
+		//TODO wo/wie setzen, present oder active?
+		this.im.setMultiple(((FeatureChoice) this.multipleInclusionChoice).isSelected());
+		((FeatureChoice) this.multipleInclusionChoice).setPresent(((FeatureChoice) this.multipleInclusionChoice).isSelected());
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
