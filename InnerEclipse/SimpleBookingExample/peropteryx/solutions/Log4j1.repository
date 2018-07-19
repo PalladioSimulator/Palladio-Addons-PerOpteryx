@@ -94,6 +94,19 @@
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_M-IvQIs8EeiLsrMCg8rAxg" entityName="SQLDatabase">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_QrzT0Ys8EeiLsrMCg8rAxg" entityName="OperationProvidedRole_write" providedInterface__OperationProvidedRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_foTIV4s8EeiLsrMCg8rAxg" describedService__SEFF="_TzUIQO8FEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_k-BP0os8EeiLsrMCg8rAxg" successor_AbstractAction="_o0PTfIs8EeiLsrMCg8rAxg"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_o0PTfIs8EeiLsrMCg8rAxg" entityName="SQLwrite" predecessor_AbstractAction="_k-BP0os8EeiLsrMCg8rAxg" successor_AbstractAction="_piaoEIs8EeiLsrMCg8rAxg">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="1000000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_piaoEIs8EeiLsrMCg8rAxg" predecessor_AbstractAction="_o0PTfIs8EeiLsrMCg8rAxg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_EuoOUOQTEeeDc5WJsIYxgA" entityName="ILog4j1Log">
       <signatures__OperationInterface id="_VB1XEOQTEeeDc5WJsIYxgA" entityName="log"/>
     </interfaces__Repository>
@@ -104,7 +117,7 @@
       <signatures__OperationInterface id="_W6dsoOQTEeeDc5WJsIYxgA" entityName="format"/>
     </interfaces__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_QT0ikO8FEeeT85tFTnTIqQ" entityName="ISQLDatabase">
-      <signatures__OperationInterface id="_TzUIQO8FEeeT85tFTnTIqQ" entityName="write"/>
+      <signatures__OperationInterface id="_TzUIQO8FEeeT85tFTnTIqQ" entityName="SQLwrite"/>
     </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
@@ -151,6 +164,10 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_DNzk0PiYEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
       <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_DNzk0PiYEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRY3YVEeirzP2CXhR6Fg"/>
+      <requires href="../Logging.featurecompletion#_RVapIOZXEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

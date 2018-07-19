@@ -6,6 +6,7 @@ package featureSolution.provider;
 import FeatureCompletionModel.provider.FeatureCompletionsEditPlugin;
 
 import featureSolution.Advice;
+import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 
 import java.util.Collection;
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -53,7 +55,6 @@ public class AdviceItemProvider
 
 			addPointCutPropertyDescriptor(object);
 			addAppearsPropertyDescriptor(object);
-			addCompletionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -103,25 +104,33 @@ public class AdviceItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Completion feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCompletionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Advice_Completion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Advice_Completion_feature", "_UI_Advice_type"),
-				 FeatureSolutionPackage.Literals.ADVICE__COMPLETION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.ADVICE__COMPLETION);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -165,6 +174,9 @@ public class AdviceItemProvider
 			case FeatureSolutionPackage.ADVICE__APPEARS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case FeatureSolutionPackage.ADVICE__COMPLETION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -179,6 +191,11 @@ public class AdviceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(FeatureSolutionPackage.Literals.ADVICE__COMPLETION,
+				 FeatureSolutionFactory.eINSTANCE.createFeatureSelection()));
 	}
 
 	/**

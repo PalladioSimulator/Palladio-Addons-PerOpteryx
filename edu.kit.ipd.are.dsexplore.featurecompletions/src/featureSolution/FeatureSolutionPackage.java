@@ -475,22 +475,13 @@ public interface FeatureSolutionPackage extends EPackage {
 	int IMPORT__IMPORT_URI = 0;
 
 	/**
-	 * The feature id for the '<em><b>Repository</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT__REPOSITORY = 1;
-
-	/**
 	 * The number of structural features of the '<em>Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_FEATURE_COUNT = 2;
+	int IMPORT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.impl.FeatureSelectionImpl <em>Feature Selection</em>}' class.
@@ -826,17 +817,6 @@ public interface FeatureSolutionPackage extends EPackage {
 	EAttribute getImport_ImportURI();
 
 	/**
-	 * Returns the meta object for the reference '{@link featureSolution.Import#getRepository <em>Repository</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Repository</em>'.
-	 * @see featureSolution.Import#getRepository()
-	 * @see #getImport()
-	 * @generated
-	 */
-	EReference getImport_Repository();
-
-	/**
 	 * Returns the meta object for class '{@link featureSolution.FeatureSelection <em>Feature Selection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1131,14 +1111,6 @@ public interface FeatureSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMPORT__IMPORT_URI = eINSTANCE.getImport_ImportURI();
-
-		/**
-		 * The meta object literal for the '<em><b>Repository</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IMPORT__REPOSITORY = eINSTANCE.getImport_Repository();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.impl.FeatureSelectionImpl <em>Feature Selection</em>}' class.

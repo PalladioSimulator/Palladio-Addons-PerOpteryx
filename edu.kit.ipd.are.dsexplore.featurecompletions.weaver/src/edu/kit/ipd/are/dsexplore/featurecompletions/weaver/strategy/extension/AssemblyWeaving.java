@@ -58,8 +58,14 @@ public abstract class AssemblyWeaving {
 		//2. choose realizing component for each fcc according to selected solution/CV
 		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, instruction.getAdvice().getCompletion().getFeatures());
 		
-		System.out.println("--------------- AssemblyWeaving.weave --------------");
+		//TODO 3. in case of any required complementa -> add additional components
+		if (fccHandler.requiresComplementa(realizingComponents)) {
+			realizingComponents.addAll(fccHandler.getRequiredComplementa(realizingComponents));
+		}
 		
+		System.out.println("");
+		
+		//3. weave in components
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			List<AssemblyContext> createdAssemblyContexts = new ArrayList<>();
 			for (RepositoryComponent repositoryComponent : realizingComponents) {	//TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
@@ -112,6 +118,7 @@ public abstract class AssemblyWeaving {
 		}
 	}
 	
+
 	/**
 	 * @param createdAssemblyContexts
 	 * @return

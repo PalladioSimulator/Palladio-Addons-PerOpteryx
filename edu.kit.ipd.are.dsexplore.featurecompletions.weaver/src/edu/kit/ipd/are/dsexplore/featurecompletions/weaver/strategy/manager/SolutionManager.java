@@ -23,8 +23,10 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
+import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.impl.ComplementumImpl;
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 
@@ -276,6 +278,19 @@ public final class SolutionManager {
 
 	public Repository getRepository() {
 		return this.solution;
+	}
+
+	/**
+	 * @param complementum
+	 * @return
+	 */
+	public RepositoryComponent getFulfillingComponentForComplementum(ComplementumImpl complementum) {
+		for (RepositoryComponent c : this.solution.getComponents__Repository()) {
+			if (c.getEntityName().equals(complementum.getName())) {
+				return c;
+			}
+		}
+		return null;
 	}
 
 }

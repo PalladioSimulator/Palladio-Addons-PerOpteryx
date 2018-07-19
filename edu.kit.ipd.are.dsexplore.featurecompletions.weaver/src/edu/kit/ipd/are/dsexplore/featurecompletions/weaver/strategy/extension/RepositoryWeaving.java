@@ -35,7 +35,6 @@ public abstract class RepositoryWeaving {
 			if (allRequiredRoles.stream().noneMatch(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId()))) {
 				allRequiredRoles.add(requiredRole);
 			}
-		}
-		
+		}	
 	}
 }

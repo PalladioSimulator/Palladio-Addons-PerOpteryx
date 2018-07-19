@@ -150,6 +150,19 @@
         </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_bpEV0ItAEeiLsrMCg8rAxg" entityName="SQLDatabase">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_fAtnEYtAEeiLsrMCg8rAxg" entityName="OperationProvidedRole_write" providedInterface__OperationProvidedRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_mzV154tAEeiLsrMCg8rAxg" describedService__SEFF="_TzUIQO8FEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_uFrbEotAEeiLsrMCg8rAxg" successor_AbstractAction="_vUbGLItAEeiLsrMCg8rAxg"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_vUbGLItAEeiLsrMCg8rAxg" entityName="SQLwrite" predecessor_AbstractAction="_uFrbEotAEeiLsrMCg8rAxg" successor_AbstractAction="_wEwW4ItAEeiLsrMCg8rAxg">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="1000000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_wEwW4ItAEeiLsrMCg8rAxg" predecessor_AbstractAction="_vUbGLItAEeiLsrMCg8rAxg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_jgVb8OfMEeeT85tFTnTIqQ" entityName="ILog4j2Log">
       <signatures__OperationInterface id="_oRT3oOfMEeeT85tFTnTIqQ" entityName="log"/>
     </interfaces__Repository>
@@ -242,6 +255,10 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_PA5G0OfNEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
       <fulfills href="../Logging.featurecompletion#_tGBoc-TaEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_xaIRkO8EEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRY3YVEeirzP2CXhR6Fg"/>
+      <requires href="../Logging.featurecompletion#_RVapIOZXEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

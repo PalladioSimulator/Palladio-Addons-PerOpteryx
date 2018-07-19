@@ -63,7 +63,6 @@ public class ImportItemProvider
 			super.getPropertyDescriptors(object);
 
 			addImportURIPropertyDescriptor(object);
-			addRepositoryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,28 +85,6 @@ public class ImportItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Repository feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRepositoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Import_repository_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Import_repository_feature", "_UI_Import_type"),
-				 FeatureSolutionPackage.Literals.IMPORT__REPOSITORY,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
