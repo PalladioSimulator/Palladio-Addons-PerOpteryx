@@ -2,6 +2,7 @@ package de.uka.ipd.sdq.dsexplore.analysis.maintainability;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,16 +12,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.system.SystemPackage;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
-import de.uhd.ifi.se.pcm.bppcm.datamodel.DataModel;
-import de.uhd.ifi.se.pcm.bppcm.datamodel.DatamodelPackage;
-import de.uhd.ifi.se.pcm.bppcm.organizationenvironmentmodel.OrganizationEnvironmentModel;
-import de.uhd.ifi.se.pcm.bppcm.organizationenvironmentmodel.OrganizationenvironmentmodelPackage;
 import de.uka.ipd.sdq.componentInternalDependencies.ComponentInternalDependenciesPackage;
 import de.uka.ipd.sdq.componentInternalDependencies.ComponentInternalDependencyRepository;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
@@ -31,6 +32,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
+import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -40,6 +42,7 @@ import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.impl.ISFieldOfAc
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.AbstractISModificationRepository;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModificationmarksFactory;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyComponent;
+import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyInterface;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.impl.ISModificationmarksFactoryImpl;
 import edu.kit.ipd.sdq.kamp4req.core.ReqArchitectureVersion;
 import edu.kit.ipd.sdq.kamp4req.core.ReqChangePropagationAnalysis;
@@ -53,8 +56,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 
 	private org.palladiosimulator.pcm.system.System baseSystem;
 	private ComponentInternalDependencyRepository componentInternalDependencyRepository;
-	private OrganizationEnvironmentModel organizationEnvironmentModel;
-	private DataModel dataModel;
 
 	private Map<Long, MaintainabilityAnalysisResult> previousMaintainabilityAnalysisResults;
 
@@ -80,12 +81,15 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
 		ReqArchitectureVersion reqArchitectureVersion = null;
 
-		createAndAddComponentSeedModification(system, reqSeedModifications);
+		PCMResourceSetPartition r = (PCMResourceSetPartition) blackboard
+				.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 
-		// at the moment, REMOVE modification is analysed
+		createAndAddComponentSeedModifications(system, baseSystem, reqSeedModifications);
+		createAndAddInterfaceSeedModifications(system, baseSystem, reqSeedModifications);
+
 		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, baseSystem,
 				fieldOfActivityRepository, internalModificationMarkRepository, componentInternalDependencyRepository,
-				usageModels, dataModel, organizationEnvironmentModel, null, null, null);
+				usageModels, null, null, null, null, null);
 		double changeImpact = evaluateChangeImpact(reqArchitectureVersion, internalModificationMarkRepository);
 		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(),
 				new MaintainabilityAnalysisResult(changeImpact, this.criterionToAspect,
@@ -96,8 +100,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.initialiseCriteria(configuration);
 		this.componentInternalDependencyRepository = getComponentInternalDependencyRepositoryModel(configuration);
-		this.dataModel = getDataModel(configuration);
-		this.organizationEnvironmentModel = getOrganizationEnvironmentModel(configuration);
 		this.baseSystem = getBaseSystemModel(configuration);
 	}
 
@@ -147,25 +149,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	}
 
 	/**
-	 * returns a DataModel or throws an exception.
-	 *
-	 * @param configuration.getRawConfiguration()
-	 * @return DataModel which is not null
-	 * @throws CoreException
-	 *             if the model could not be loaded.
-	 */
-	private DataModel getDataModel(DSEWorkflowConfiguration configuration) throws CoreException {
-		String dataModelFileName = configuration.getRawConfiguration()
-				.getAttribute(DSEConstantsContainer.DATA_MODEL_FILE, "");
-		dataModel = (DataModel) EMFHelper.loadFromXMIFile(dataModelFileName, DatamodelPackage.eINSTANCE);
-		if (dataModel == null) {
-			throw new CoreException(new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0,
-					"DataModel " + dataModelFileName + " could not be loaded.", null));
-		}
-		return dataModel;
-	}
-
-	/**
 	 * returns a SystemModel or throws an exception.
 	 *
 	 * @param configuration.getRawConfiguration()
@@ -184,28 +167,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 					"SystemModel " + systemModelFileName + " could not be loaded.", null));
 		}
 		return baseSystem;
-	}
-
-	/**
-	 * returns a OrganizationEnvironmentModel or throws an exception.
-	 *
-	 * @param configuration.getRawConfiguration()
-	 * @return OrganizationEnvironmentModel which is not null
-	 * @throws CoreException
-	 *             if the model could not be loaded.
-	 */
-	private OrganizationEnvironmentModel getOrganizationEnvironmentModel(DSEWorkflowConfiguration configuration)
-			throws CoreException {
-		String organizationEnvironmentModelFileName = configuration.getRawConfiguration()
-				.getAttribute(DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_FILE, "");
-		organizationEnvironmentModel = (OrganizationEnvironmentModel) EMFHelper
-				.loadFromXMIFile(organizationEnvironmentModelFileName, OrganizationenvironmentmodelPackage.eINSTANCE);
-		if (organizationEnvironmentModel == null) {
-			throw new CoreException(new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0,
-					"OrganizationEnvironmentModel " + organizationEnvironmentModelFileName + " could not be loaded.",
-					null));
-		}
-		return organizationEnvironmentModel;
 	}
 
 	/**
@@ -235,7 +196,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 			throw new CoreException(
 					new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "Repository could not be loaded.", null));
 		} else {
-			logger.info("repository '" + repository.getEntityName() + "' registered");
+			logger.info("Repository '" + repository.getEntityName() + "' registered.");
 		}
 		return repository;
 	}
@@ -245,30 +206,33 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 * 
 	 * @param version
 	 * @param internalModificationMarkRepository
-	 * @return
+	 * @return change impact metric
 	 */
 	private double evaluateChangeImpact(ReqArchitectureVersion version,
 			AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository) {
 		ReqChangePropagationAnalysis reqChangePropagationAnalysis = new ReqChangePropagationAnalysis();
 		reqChangePropagationAnalysis.runChangePropagationAnalysis(version);
-		return internalModificationMarkRepository.getChangePropagationSteps().size()
-				+ internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
+
+		return internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
 	}
 
 	/**
 	 * create component seed modification for every component, which is contained in
-	 * the base assembly, but not in the current assembly
+	 * the current assembly, but not in the base assembly
 	 * 
 	 * @param system
+	 *            current
+	 * @param system
+	 *            base
 	 * @param reqSeedModifications
 	 */
-	private void createAndAddComponentSeedModification(org.palladiosimulator.pcm.system.System system,
-			ReqSeedModifications reqSeedModifications) {
-		for (AssemblyContext baseAssemblyContext : baseSystem.getAssemblyContexts__ComposedStructure()) {
+	private void createAndAddComponentSeedModifications(org.palladiosimulator.pcm.system.System system,
+			org.palladiosimulator.pcm.system.System baseSystem, ReqSeedModifications reqSeedModifications) {
+		for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
 			boolean contains = false;
-			for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
-				if (baseAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId()
-						.equals(assemblyContext.getEncapsulatedComponent__AssemblyContext().getId())) {
+			for (AssemblyContext baseAssemblyContext : baseSystem.getAssemblyContexts__ComposedStructure()) {
+				if (assemblyContext.getEncapsulatedComponent__AssemblyContext().getId()
+						.equals(baseAssemblyContext.getEncapsulatedComponent__AssemblyContext().getId())) {
 					contains = true;
 					break;
 				}
@@ -276,9 +240,57 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 			if (!contains) {
 				ISModificationmarksFactory isModificationmarksFactory = new ISModificationmarksFactoryImpl();
 				ISModifyComponent isModifyComponent = isModificationmarksFactory.createISModifyComponent();
-				isModifyComponent.setAffectedElement(baseAssemblyContext.getEncapsulatedComponent__AssemblyContext());
+				isModifyComponent.setAffectedElement(assemblyContext.getEncapsulatedComponent__AssemblyContext());
 				reqSeedModifications.getComponentModifications().add(isModifyComponent);
+				logger.info("Component '" + assemblyContext.getEncapsulatedComponent__AssemblyContext().getEntityName()
+						+ "' initially marked.");
 			}
 		}
+	}
+
+	/**
+	 * create interface seed modification for every interface, which is contained in
+	 * the current assembly, but not in the base assembly
+	 * 
+	 * @param system
+	 *            current
+	 * @param system
+	 *            base
+	 * @param reqSeedModifications
+	 */
+	private void createAndAddInterfaceSeedModifications(org.palladiosimulator.pcm.system.System system,
+			org.palladiosimulator.pcm.system.System baseSystem, ReqSeedModifications reqSeedModifications) {
+		List<OperationInterface> baseOperationInterfaces = getOperationInterfacesOfAssemblyContext(baseSystem);
+		for (OperationInterface operationInterface : getOperationInterfacesOfAssemblyContext(system)) {
+			boolean contains = false;
+			for (OperationInterface baseOperationInterface : baseOperationInterfaces) {
+				if (baseOperationInterface.getId().equals(operationInterface.getId())) {
+					contains = true;
+					break;
+				}
+			}
+			if (!contains) {
+				ISModificationmarksFactory isModificationmarksFactory = new ISModificationmarksFactoryImpl();
+				ISModifyInterface isModifyInterface = isModificationmarksFactory.createISModifyInterface();
+				isModifyInterface.setAffectedElement(operationInterface);
+				reqSeedModifications.getInterfaceModifications().add(isModifyInterface);
+				logger.info("Interface '" + operationInterface.getEntityName() + "' initially marked.");
+			}
+		}
+	}
+
+	private List<OperationInterface> getOperationInterfacesOfAssemblyContext(
+			org.palladiosimulator.pcm.system.System system) {
+		List<OperationInterface> list = new LinkedList<>();
+		for (AssemblyContext assemblyContext : system.getAssemblyContexts__ComposedStructure()) {
+			for (ProvidedRole providedRole : assemblyContext.getEncapsulatedComponent__AssemblyContext()
+					.getProvidedRoles_InterfaceProvidingEntity()) {
+				OperationInterface operationInterface = ((OperationProvidedRole) providedRole)
+						.getProvidedInterface__OperationProvidedRole();
+				if (!list.contains(operationInterface))
+					list.add(operationInterface);
+			}
+		}
+		return list;
 	}
 }

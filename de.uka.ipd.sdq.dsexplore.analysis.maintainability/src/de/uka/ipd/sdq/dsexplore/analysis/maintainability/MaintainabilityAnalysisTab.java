@@ -20,8 +20,6 @@ import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
 
 	private Text textComponentInternalDependencyRepositoryModel;
-	private Text textDataModel;
-	private Text textOrganizationEnvironmentModel;
 	private Text textSystemModel;
 
 	@Override
@@ -49,26 +47,12 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 				textComponentInternalDependencyRepositoryModel, getShell(),
 				DSEConstantsContainer.DEFAULT_COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE);
 		/**
-		 * Add DataModel input section
-		 */
-		this.textDataModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "DataModel File",
-				DSEConstantsContainer.DATA_MODEL_EXTENSION, textDataModel, getShell(),
-				DSEConstantsContainer.DEFAULT_DATA_MODEL_FILE);
-		/**
-		 * Add OrganizationEnvironmentModel input section
-		 */
-		this.textOrganizationEnvironmentModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "OrganizationEnvironmentModel File",
-				DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_EXTENSION, textOrganizationEnvironmentModel,
-				getShell(), DSEConstantsContainer.DEFAULT_ORGANIZATION_ENVIRONMENT_FILE);
-		/**
 		 * Add base System input section
 		 */
 		this.textSystemModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "base System File",
-				DSEConstantsContainer.SYSTEM_MODEL_EXTENSION, textSystemModel,
-				getShell(), DSEConstantsContainer.DEFAULT_SYSTEM_MODEL_FILE);
+		TabHelper.createFileInputSection(container, modifyListener, "SystemModel File",
+				DSEConstantsContainer.SYSTEM_MODEL_EXTENSION, textSystemModel, getShell(),
+				DSEConstantsContainer.DEFAULT_SYSTEM_MODEL_FILE);
 	}
 
 	@Override
@@ -86,18 +70,6 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 					e.getMessage());
 		}
 		try {
-			this.textOrganizationEnvironmentModel
-					.setText(configuration.getAttribute(DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_FILE, ""));
-		} catch (final CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_FILE,
-					e.getMessage());
-		}
-		try {
-			this.textDataModel.setText(configuration.getAttribute(DSEConstantsContainer.DATA_MODEL_FILE, ""));
-		} catch (final CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.DATA_MODEL_FILE, e.getMessage());
-		}
-		try {
 			this.textSystemModel.setText(configuration.getAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, ""));
 		} catch (final CoreException e) {
 			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.SYSTEM_MODEL_FILE, e.getMessage());
@@ -108,9 +80,6 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 	public void performApply(final ILaunchConfigurationWorkingCopy configuration) {
 		configuration.setAttribute(DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE,
 				this.textComponentInternalDependencyRepositoryModel.getText());
-		configuration.setAttribute(DSEConstantsContainer.DATA_MODEL_FILE, this.textDataModel.getText());
-		configuration.setAttribute(DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_FILE,
-				this.textOrganizationEnvironmentModel.getText());
 		configuration.setAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, this.textSystemModel.getText());
 	}
 
@@ -148,20 +117,8 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 			setErrorMessage("ComponentInternalDependencyRepositoryModel is missing!");
 			return false;
 		}
-		extension = DSEConstantsContainer.DATA_MODEL_EXTENSION[0].replace("*", "");
-		if (this.textDataModel.getText().equals("") || !this.textDataModel.getText().contains(extension)) {
-			setErrorMessage("DataModel is missing!");
-			return false;
-		}
-		extension = DSEConstantsContainer.ORGANIZATION_ENVIRONMENT_MODEL_EXTENSION[0].replace("*", "");
-		if (this.textOrganizationEnvironmentModel.getText().equals("")
-				|| !this.textOrganizationEnvironmentModel.getText().contains(extension)) {
-			setErrorMessage("OrganizationEnvironmentModel is missing!");
-			return false;
-		}
 		extension = DSEConstantsContainer.SYSTEM_MODEL_EXTENSION[0].replace("*", "");
-		if (this.textSystemModel.getText().equals("")
-				|| !this.textSystemModel.getText().contains(extension)) {
+		if (this.textSystemModel.getText().equals("") || !this.textSystemModel.getText().contains(extension)) {
 			setErrorMessage("SystemModel is missing!");
 			return false;
 		}

@@ -55,8 +55,6 @@ public class DSEConstantsContainer {
 	public static final String ARCHIVE_CANDIDATES = "archiveCandidates";
 
 	public static final String COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE = "componentInternalDependencyRepositoryFile";
-	public static final String DATA_MODEL_FILE = "dataModelFile";
-	public static final String ORGANIZATION_ENVIRONMENT_MODEL_FILE = "organizationEnvironmentModelFile";
 	public static final String SYSTEM_MODEL_FILE = "systemModelFile";
 
 	public static final String DESIGN_DECISION_FILE = "designDecisionFile";
@@ -75,9 +73,6 @@ public class DSEConstantsContainer {
 	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
 	public static final String[] COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION = new String[] {
 			"*.componentinternaldependencies" };
-	public static final String[] DATA_MODEL_EXTENSION = new String[] { "*.datamodel" };
-	public static final String[] ORGANIZATION_ENVIRONMENT_MODEL_EXTENSION = new String[] {
-			"*.organizationenvironmentmodel" };
 	public static final String[] SYSTEM_MODEL_EXTENSION = new String[] { "*.system" };
 
 	/**
@@ -355,9 +350,6 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
 	/** Default URI for the component internal dependency model file. */
 	public static final String DEFAULT_COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE = "";
-	/** Default URI for the organisation environment model file. */
-	public static final String DEFAULT_ORGANIZATION_ENVIRONMENT_FILE = "";
-	/** Default URI for the data model file. */
-	public static final String DEFAULT_DATA_MODEL_FILE = "";
+	/** Default URI for the system model file. */
 	public static final String DEFAULT_SYSTEM_MODEL_FILE = "";
 }
