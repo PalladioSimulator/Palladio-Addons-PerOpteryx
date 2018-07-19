@@ -43,7 +43,6 @@ PerOpteryx_results/
 .worksheet
 *.aird
 *.bak
-*.launch
 *.pydevproject
 *.swp
 *.tmp
