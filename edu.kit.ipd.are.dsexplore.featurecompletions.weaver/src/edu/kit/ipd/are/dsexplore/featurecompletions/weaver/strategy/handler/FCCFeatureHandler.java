@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.pcm.core.entity.InterfaceProvidingEntity;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -17,10 +16,6 @@ import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
-import org.palladiosimulator.pcm.repository.RepositoryFactory;
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
-import org.palladiosimulator.pcm.repository.impl.OperationInterfaceImpl;
-import org.palladiosimulator.solver.transformations.EMFHelper;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
@@ -70,20 +65,24 @@ public class FCCFeatureHandler {
 			}
 
 			if (partAndCV.first instanceof OperationInterface) {
-				for (RepositoryComponent comps : solutionManager.getRepository().getComponents__Repository()) {
-					for (ProvidedRole provided: comps.getProvidedRoles_InterfaceProvidingEntity()) {
-						if (provided instanceof OperationProvidedRole)
-							if (FCCUtil.areEqual(((OperationProvidedRole)provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first))
+				for (RepositoryComponent comps : this.solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole) {
+							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first)) {
 								result.add(provided);
+							}
+						}
 					}
 				}
 			} else if (partAndCV.first instanceof OperationSignature) {
-				OperationInterface parentPartAndCVFirst = (OperationInterface)partAndCV.first.eContainer();
-				for (RepositoryComponent comps : solutionManager.getRepository().getComponents__Repository()) {
-					for (ProvidedRole provided: comps.getProvidedRoles_InterfaceProvidingEntity()) {
-						if (provided instanceof OperationProvidedRole)
-							if (FCCUtil.areEqual(((OperationProvidedRole)provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst))
+				OperationInterface parentPartAndCVFirst = (OperationInterface) partAndCV.first.eContainer();
+				for (RepositoryComponent comps : this.solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole) {
+							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst)) {
 								result.add(provided);
+							}
+						}
 					}
 				}
 			} else if (partAndCV.first instanceof RepositoryComponent) {

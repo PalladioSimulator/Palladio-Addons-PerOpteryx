@@ -117,9 +117,10 @@ public final class FCCWeaver {
 		return degreeOfFreedomInstance instanceof AllocationDegree && degreeOfFreedomInstance.getPrimaryChanged() instanceof CompletionComponent;
 	}
 
-	public PCMInstance getWeavedInstance() {
+	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 
-		PCMInstance pcmToAdopt = new PCMInstance(this.getCopyOfUnweavedPCMPartition());
+		// PCMInstance pcmToAdopt = new
+		// PCMInstance(this.getCopyOfUnweavedPCMPartition());
 		Repository solution = (Repository) this.fccChoice.getValue();
 		InclusionMechanism im = this.determineIM(Arrays.asList(solution));
 		WeavingStrategies.Constructor strategyContructor = this.determineStrategy(im);
