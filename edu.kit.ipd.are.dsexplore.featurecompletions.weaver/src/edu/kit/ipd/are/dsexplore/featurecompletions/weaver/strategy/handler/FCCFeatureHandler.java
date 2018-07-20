@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.core.entity.InterfaceProvidingEntity;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -16,6 +17,9 @@ import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.pcm.repository.RepositoryFactory;
+import org.palladiosimulator.pcm.repository.RepositoryPackage;
+import org.palladiosimulator.pcm.repository.impl.OperationInterfaceImpl;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
@@ -66,9 +70,15 @@ public class FCCFeatureHandler {
 
 			if (partAndCV.first instanceof OperationInterface) {
 				OperationInterface oi = (OperationInterface) partAndCV.first;
-				// TODO Later
+				OperationProvidedRole pr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
+				pr.setProvidedInterface__OperationProvidedRole(oi);
+				result.add(pr);
 			} else if (partAndCV.first instanceof OperationSignature) {
-				// TODO Later
+				OperationInterface oi = RepositoryFactory.eINSTANCE.createOperationInterface();
+				oi.getSignatures__OperationInterface().add((OperationSignature)partAndCV.first);
+				OperationProvidedRole pr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
+				pr.setProvidedInterface__OperationProvidedRole(oi);
+				result.add(pr);
 			} else if (partAndCV.first instanceof RepositoryComponent) {
 				RepositoryComponent rc = (RepositoryComponent) partAndCV.first;
 				result.addAll(rc.getProvidedRoles_InterfaceProvidingEntity());
