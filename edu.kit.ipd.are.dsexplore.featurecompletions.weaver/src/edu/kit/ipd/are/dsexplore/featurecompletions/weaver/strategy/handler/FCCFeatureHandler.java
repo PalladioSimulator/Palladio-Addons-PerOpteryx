@@ -20,6 +20,7 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
 import org.palladiosimulator.pcm.repository.RepositoryPackage;
 import org.palladiosimulator.pcm.repository.impl.OperationInterfaceImpl;
+import org.palladiosimulator.solver.transformations.EMFHelper;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
@@ -69,16 +70,22 @@ public class FCCFeatureHandler {
 			}
 
 			if (partAndCV.first instanceof OperationInterface) {
-				OperationInterface oi = (OperationInterface) partAndCV.first;
-				OperationProvidedRole pr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
-				pr.setProvidedInterface__OperationProvidedRole(oi);
-				result.add(pr);
+				for (RepositoryComponent comps : solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided: comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole)
+							if (FCCUtil.areEqual(((OperationProvidedRole)provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first))
+								result.add(provided);
+					}
+				}
 			} else if (partAndCV.first instanceof OperationSignature) {
-				OperationInterface oi = RepositoryFactory.eINSTANCE.createOperationInterface();
-				oi.getSignatures__OperationInterface().add((OperationSignature)partAndCV.first);
-				OperationProvidedRole pr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
-				pr.setProvidedInterface__OperationProvidedRole(oi);
-				result.add(pr);
+				OperationInterface parentPartAndCVFirst = (OperationInterface)partAndCV.first.eContainer();
+				for (RepositoryComponent comps : solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided: comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole)
+							if (FCCUtil.areEqual(((OperationProvidedRole)provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst))
+								result.add(provided);
+					}
+				}
 			} else if (partAndCV.first instanceof RepositoryComponent) {
 				RepositoryComponent rc = (RepositoryComponent) partAndCV.first;
 				result.addAll(rc.getProvidedRoles_InterfaceProvidingEntity());
