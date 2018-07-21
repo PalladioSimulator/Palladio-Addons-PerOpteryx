@@ -31,6 +31,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.AdvicePlacementDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
@@ -118,7 +119,23 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
 		//TODO add dof for multiple-flag in inclusion mechanism
 		this.createMultipleInclusionDegree(degree, dds, initialCandidate);
+		//TODO add dof for advice placement policy
+		this.createAdvicePlacementDegree(dds, initialCandidate, this.weaver.get().getSolutionRepositories());
 		return degree;
+	}
+
+	/**
+	 * @param dds
+	 * @param initialCandidate
+	 * @param solutions 
+	 */
+	private void createAdvicePlacementDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
+		List<FeatureChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(solutions).generateAdvicePlacementDegrees();
+		
+		for (FeatureChoice featureChoice : advicePlacementDegrees) {
+			initialCandidate.add(featureChoice);
+			dds.add(featureChoice.getDegreeOfFreedomInstance());
+		}
 	}
 
 	/**

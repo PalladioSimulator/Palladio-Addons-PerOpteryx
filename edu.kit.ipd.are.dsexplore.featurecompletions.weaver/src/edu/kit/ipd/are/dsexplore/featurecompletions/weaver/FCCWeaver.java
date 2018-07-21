@@ -75,6 +75,8 @@ public final class FCCWeaver {
 	private Choice fccChoice;
 	private List<Choice> featureChoices;
 	private List<Choice> allocationChoices;
+	// TODO add dof for advice placements
+	private List<Choice> advicePlacementChoices;
 	// TODO add dof for multiple-flag in inclusion mechanism
 	private Choice multipleInclusionChoice;
 
@@ -85,6 +87,7 @@ public final class FCCWeaver {
 		this.multipleInclusionChoice = null;
 		this.featureChoices = new ArrayList<>();
 		this.allocationChoices = new ArrayList<>();
+		this.advicePlacementChoices = new ArrayList<>();
 	}
 
 	public void grabChoices(List<Choice> notTransformedChoices) {
@@ -94,6 +97,9 @@ public final class FCCWeaver {
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("multiple_inclusion")) {
 				// TODO add dof for multiple-flag in inclusion mechanism
 				this.multipleInclusionChoice = c;
+			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("advice")) {
+				// TODO add dof for advice placements
+				this.advicePlacementChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
 				this.featureChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
@@ -109,7 +115,9 @@ public final class FCCWeaver {
 		for (Choice ac : this.allocationChoices) {
 			notTransformedChoices.remove(ac);
 		}
-
+		for (Choice ac : this.advicePlacementChoices) {
+			notTransformedChoices.remove(ac);
+		}
 	}
 
 	private void addAllocationDegreeIfNeeded(Choice ac) {
@@ -133,7 +141,7 @@ public final class FCCWeaver {
 
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
 		this.strategy = strategyContructor.create(pcmToAdopt, solution, this.fc, im);
-		this.strategy.initialize(locations, this.fccChoice, this.featureChoices, this.allocationChoices, this.multipleInclusionChoice);
+		this.strategy.initialize(locations, this.fccChoice, this.featureChoices, this.allocationChoices, this.multipleInclusionChoice, this.advicePlacementChoices);
 		this.strategy.weave();
 		return pcmToAdopt;
 	}

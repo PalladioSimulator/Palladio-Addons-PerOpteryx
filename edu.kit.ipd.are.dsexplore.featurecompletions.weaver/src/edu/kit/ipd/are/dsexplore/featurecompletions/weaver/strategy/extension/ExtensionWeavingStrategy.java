@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
@@ -136,19 +137,34 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	private Choice fccChoice;
 	private Choice multipleInclusionChoice;
+	// TODO add dof for advice placements
+	private List<Choice> advicePlacementChoices;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 
 		this.fccChoice = fccChoice;
+		
 		this.multipleInclusionChoice = multipleInclusionChoice;
 		//TODO wo/wie setzen, present oder active?
 		this.im.setMultiple(((FeatureChoice) this.multipleInclusionChoice).isSelected());
 		((FeatureChoice) this.multipleInclusionChoice).setPresent(((FeatureChoice) this.multipleInclusionChoice).isSelected());
+		
+		this.advicePlacementChoices = advicePlacementChoices;
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
+	}
+
+	/**
+	 * 
+	 */
+	private List<Advice> getSelectedAdvices() {
+		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((FeatureChoice) choice).isSelected()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
+		//TODO wo/wie setzen, present oder active?
+		advicePlacementChoices.stream().forEach(choice -> ((FeatureChoice) choice).setPresent(((FeatureChoice) choice).isSelected()));
+		return selectedAdvices;
 	}
 
 	/**
@@ -159,7 +175,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		ExtensionInclusionImpl extensionIncl = (ExtensionInclusionImpl) this.im;
 
-		for (Advice advice : extensionIncl.getAdvice()) {
+		//for (Advice advice : extensionIncl.getAdvice()) {
+		for (Advice advice : this.getSelectedAdvices()) {
 			PointCut pointCut = advice.getPointCut();
 			PlacementStrategy placementStrategy = pointCut.getPlacementStrategy();
 			List<IWeavingLocation> locations = new ArrayList<>();

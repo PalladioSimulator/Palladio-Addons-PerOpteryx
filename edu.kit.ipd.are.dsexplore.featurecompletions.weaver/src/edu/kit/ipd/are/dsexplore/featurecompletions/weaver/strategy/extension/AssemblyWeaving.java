@@ -65,7 +65,7 @@ public abstract class AssemblyWeaving {
 		
 		System.out.println("");
 		
-		//3. weave in components
+		//4. weave in components
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			List<AssemblyContext> createdAssemblyContexts = new ArrayList<>();
 			for (RepositoryComponent repositoryComponent : realizingComponents) {	//TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
