@@ -26,16 +26,19 @@ multiple ExtensionInclusion extensionIncl _ZZ {
 			appears BEFORE 
 			pointCut allBookCalls
 			Completion Logging(SQLDatabaseLogging,PatternLayout)
+			placementPolicy OBLIGATORY
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allActionsIn
 			Completion Logging(SQLDatabaseLogging,PatternLayout)
+			placementPolicy OBLIGATORY
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allControlFlowsIn
 			Completion Logging(SQLDatabaseLogging,PatternLayout)
+			placementPolicy MANDATORY
 		}
 	}
 }

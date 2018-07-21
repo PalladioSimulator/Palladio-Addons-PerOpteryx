@@ -114,6 +114,8 @@ public class FeatureCompletionValidator extends EObjectValidator {
 				return validateReplication((Replication)value, diagnostics, context);
 			case FeatureCompletionPackage.CONSTRAINT:
 				return validateConstraint((Constraint)value, diagnostics, context);
+			case FeatureCompletionPackage.PLACEMENT_POLICY:
+				return validatePlacementPolicy((PlacementPolicy)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -282,6 +284,15 @@ public class FeatureCompletionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConstraint(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlacementPolicy(PlacementPolicy placementPolicy, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

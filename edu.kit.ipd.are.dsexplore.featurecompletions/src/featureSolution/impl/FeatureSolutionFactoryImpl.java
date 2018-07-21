@@ -82,8 +82,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 		switch (eDataType.getClassifierID()) {
 			case FeatureSolutionPackage.APPEARANCE:
 				return createAppearanceFromString(eDataType, initialValue);
-			case FeatureSolutionPackage.PLACEMENT_POLICY:
-				return createPlacementPolicyFromString(eDataType, initialValue);
 			case FeatureSolutionPackage.CONTROL_FLOW:
 				return createControlFlowFromString(eDataType, initialValue);
 			default:
@@ -101,8 +99,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 		switch (eDataType.getClassifierID()) {
 			case FeatureSolutionPackage.APPEARANCE:
 				return convertAppearanceToString(eDataType, instanceValue);
-			case FeatureSolutionPackage.PLACEMENT_POLICY:
-				return convertPlacementPolicyToString(eDataType, instanceValue);
 			case FeatureSolutionPackage.CONTROL_FLOW:
 				return convertControlFlowToString(eDataType, instanceValue);
 			default:
@@ -227,26 +223,6 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * @generated
 	 */
 	public String convertAppearanceToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PlacementPolicy createPlacementPolicyFromString(EDataType eDataType, String initialValue) {
-		PlacementPolicy result = PlacementPolicy.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPlacementPolicyToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

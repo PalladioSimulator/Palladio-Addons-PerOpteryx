@@ -23,7 +23,6 @@ import featureSolution.Import;
 import featureSolution.InclusionMechanism;
 
 import featureSolution.InternalActionPlacementStrategy;
-import featureSolution.PlacementPolicy;
 import featureSolution.PlacementStrategy;
 import featureSolution.PointCut;
 import org.eclipse.emf.ecore.EAttribute;
@@ -128,13 +127,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EEnum appearanceEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum placementPolicyEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -418,6 +410,15 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAdvice_PlacementPolicy() {
+		return (EAttribute)adviceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getImport() {
 		return importEClass;
 	}
@@ -465,15 +466,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getPlacementPolicy() {
-		return placementPolicyEEnum;
 	}
 
 	/**
@@ -543,6 +535,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		createEReference(adviceEClass, ADVICE__POINT_CUT);
 		createEAttribute(adviceEClass, ADVICE__APPEARS);
 		createEReference(adviceEClass, ADVICE__COMPLETION);
+		createEAttribute(adviceEClass, ADVICE__PLACEMENT_POLICY);
 
 		importEClass = createEClass(IMPORT);
 		createEAttribute(importEClass, IMPORT__IMPORT_URI);
@@ -553,7 +546,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
-		placementPolicyEEnum = createEEnum(PLACEMENT_POLICY);
 		controlFlowEEnum = createEEnum(CONTROL_FLOW);
 	}
 
@@ -631,6 +623,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEReference(getAdvice_PointCut(), this.getPointCut(), null, "pointCut", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAdvice_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAdvice_Completion(), this.getFeatureSelection(), null, "Completion", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdvice_PlacementPolicy(), theFeatureCompletionPackage.getPlacementPolicy(), "placementPolicy", "MANDATORY", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -644,11 +637,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		addEEnumLiteral(appearanceEEnum, Appearance.BEFORE);
 		addEEnumLiteral(appearanceEEnum, Appearance.AFTER);
 		addEEnumLiteral(appearanceEEnum, Appearance.AROUND);
-
-		initEEnum(placementPolicyEEnum, PlacementPolicy.class, "PlacementPolicy");
-		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.MANDATORY);
-		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OBLIGATORY);
-		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.PROHIBITED);
 
 		initEEnum(controlFlowEEnum, ControlFlow.class, "ControlFlow");
 		addEEnumLiteral(controlFlowEEnum, ControlFlow.LOOP);

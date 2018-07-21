@@ -447,13 +447,22 @@ public interface FeatureSolutionPackage extends EPackage {
 	int ADVICE__COMPLETION = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Placement Policy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE__PLACEMENT_POLICY = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Advice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADVICE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int ADVICE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.impl.ImportImpl <em>Import</em>}' class.
@@ -541,17 +550,6 @@ public interface FeatureSolutionPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureSolution.PlacementPolicy
-	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getPlacementPolicy()
-	 * @generated
-	 */
-	int PLACEMENT_POLICY = 12;
-
-
-	/**
 	 * The meta object id for the '{@link featureSolution.ControlFlow <em>Control Flow</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,7 +557,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getControlFlow()
 	 * @generated
 	 */
-	int CONTROL_FLOW = 13;
+	int CONTROL_FLOW = 12;
 
 
 	/**
@@ -796,6 +794,17 @@ public interface FeatureSolutionPackage extends EPackage {
 	EReference getAdvice_Completion();
 
 	/**
+	 * Returns the meta object for the attribute '{@link featureSolution.Advice#getPlacementPolicy <em>Placement Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Placement Policy</em>'.
+	 * @see featureSolution.Advice#getPlacementPolicy()
+	 * @see #getAdvice()
+	 * @generated
+	 */
+	EAttribute getAdvice_PlacementPolicy();
+
+	/**
 	 * Returns the meta object for class '{@link featureSolution.Import <em>Import</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -857,16 +866,6 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAppearance();
-
-	/**
-	 * Returns the meta object for enum '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Placement Policy</em>'.
-	 * @see featureSolution.PlacementPolicy
-	 * @generated
-	 */
-	EEnum getPlacementPolicy();
 
 	/**
 	 * Returns the meta object for enum '{@link featureSolution.ControlFlow <em>Control Flow</em>}'.
@@ -1095,6 +1094,14 @@ public interface FeatureSolutionPackage extends EPackage {
 		EReference ADVICE__COMPLETION = eINSTANCE.getAdvice_Completion();
 
 		/**
+		 * The meta object literal for the '<em><b>Placement Policy</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ADVICE__PLACEMENT_POLICY = eINSTANCE.getAdvice_PlacementPolicy();
+
+		/**
 		 * The meta object literal for the '{@link featureSolution.impl.ImportImpl <em>Import</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1147,16 +1154,6 @@ public interface FeatureSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum APPEARANCE = eINSTANCE.getAppearance();
-
-		/**
-		 * The meta object literal for the '{@link featureSolution.PlacementPolicy <em>Placement Policy</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureSolution.PlacementPolicy
-		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getPlacementPolicy()
-		 * @generated
-		 */
-		EEnum PLACEMENT_POLICY = eINSTANCE.getPlacementPolicy();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.ControlFlow <em>Control Flow</em>}' enum.

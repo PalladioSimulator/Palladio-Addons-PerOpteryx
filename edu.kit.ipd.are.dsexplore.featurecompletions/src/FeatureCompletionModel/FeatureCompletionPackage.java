@@ -715,6 +715,17 @@ public interface FeatureCompletionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link FeatureCompletionModel.PlacementPolicy <em>Placement Policy</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see FeatureCompletionModel.PlacementPolicy
+	 * @see FeatureCompletionModel.impl.FeatureCompletionPackageImpl#getPlacementPolicy()
+	 * @generated
+	 */
+	int PLACEMENT_POLICY = 14;
+
+
+	/**
 	 * Returns the meta object for class '{@link FeatureCompletionModel.FeatureCompletionRepository <em>Repository</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1064,6 +1075,16 @@ public interface FeatureCompletionPackage extends EPackage {
 	EEnum getConstraint();
 
 	/**
+	 * Returns the meta object for enum '{@link FeatureCompletionModel.PlacementPolicy <em>Placement Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Placement Policy</em>'.
+	 * @see FeatureCompletionModel.PlacementPolicy
+	 * @generated
+	 */
+	EEnum getPlacementPolicy();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1376,6 +1397,16 @@ public interface FeatureCompletionPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum CONSTRAINT = eINSTANCE.getConstraint();
+
+		/**
+		 * The meta object literal for the '{@link FeatureCompletionModel.PlacementPolicy <em>Placement Policy</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see FeatureCompletionModel.PlacementPolicy
+		 * @see FeatureCompletionModel.impl.FeatureCompletionPackageImpl#getPlacementPolicy()
+		 * @generated
+		 */
+		EEnum PLACEMENT_POLICY = eINSTANCE.getPlacementPolicy();
 
 	}
 

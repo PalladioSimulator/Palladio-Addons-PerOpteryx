@@ -2,6 +2,7 @@
  */
 package featureSolution;
 
+import FeatureCompletionModel.PlacementPolicy;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
@@ -17,6 +18,7 @@ import org.palladiosimulator.pcm.core.entity.NamedElement;
  *   <li>{@link featureSolution.Advice#getPointCut <em>Point Cut</em>}</li>
  *   <li>{@link featureSolution.Advice#getAppears <em>Appears</em>}</li>
  *   <li>{@link featureSolution.Advice#getCompletion <em>Completion</em>}</li>
+ *   <li>{@link featureSolution.Advice#getPlacementPolicy <em>Placement Policy</em>}</li>
  * </ul>
  *
  * @see featureSolution.FeatureSolutionPackage#getAdvice()
@@ -105,5 +107,35 @@ public interface Advice extends EObject, NamedElement {
 	 * @generated
 	 */
 	void setCompletion(FeatureSelection value);
+
+	/**
+	 * Returns the value of the '<em><b>Placement Policy</b></em>' attribute.
+	 * The default value is <code>"MANDATORY"</code>.
+	 * The literals are from the enumeration {@link FeatureCompletionModel.PlacementPolicy}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Placement Policy</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Placement Policy</em>' attribute.
+	 * @see FeatureCompletionModel.PlacementPolicy
+	 * @see #setPlacementPolicy(PlacementPolicy)
+	 * @see featureSolution.FeatureSolutionPackage#getAdvice_PlacementPolicy()
+	 * @model default="MANDATORY" required="true"
+	 * @generated
+	 */
+	PlacementPolicy getPlacementPolicy();
+
+	/**
+	 * Sets the value of the '{@link featureSolution.Advice#getPlacementPolicy <em>Placement Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Placement Policy</em>' attribute.
+	 * @see FeatureCompletionModel.PlacementPolicy
+	 * @see #getPlacementPolicy()
+	 * @generated
+	 */
+	void setPlacementPolicy(PlacementPolicy value);
 
 } // Advice

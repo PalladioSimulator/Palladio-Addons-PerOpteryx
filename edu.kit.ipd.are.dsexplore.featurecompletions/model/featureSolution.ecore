@@ -24,11 +24,6 @@
     <eLiterals name="AFTER" value="1"/>
     <eLiterals name="AROUND" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="PlacementPolicy">
-    <eLiterals name="MANDATORY" literal="MANDATORY"/>
-    <eLiterals name="OBLIGATORY" value="1" literal="OBLIGATORY"/>
-    <eLiterals name="PROHIBITED" value="2" literal="PROHIBITED"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PlacementStrategy"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExternalCallPlacementStrategy" eSuperTypes="#//PlacementStrategy">
     <eStructuralFeatures xsi:type="ecore:EReference" name="matchingSignature" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/Signature"/>
@@ -55,6 +50,8 @@
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" eType="#//FeatureSelection"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placementPolicy" lowerBound="1"
+        eType="ecore:EEnum featureCompletions.ecore#//PlacementPolicy" defaultValueLiteral="MANDATORY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -2,6 +2,7 @@
  */
 package featureSolution.impl;
 
+import FeatureCompletionModel.PlacementPolicy;
 import featureSolution.Advice;
 import featureSolution.Appearance;
 import featureSolution.FeatureSelection;
@@ -28,6 +29,7 @@ import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
  *   <li>{@link featureSolution.impl.AdviceImpl#getPointCut <em>Point Cut</em>}</li>
  *   <li>{@link featureSolution.impl.AdviceImpl#getAppears <em>Appears</em>}</li>
  *   <li>{@link featureSolution.impl.AdviceImpl#getCompletion <em>Completion</em>}</li>
+ *   <li>{@link featureSolution.impl.AdviceImpl#getPlacementPolicy <em>Placement Policy</em>}</li>
  * </ul>
  *
  * @generated
@@ -72,6 +74,26 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	 * @ordered
 	 */
 	protected FeatureSelection completion;
+
+	/**
+	 * The default value of the '{@link #getPlacementPolicy() <em>Placement Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlacementPolicy()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PlacementPolicy PLACEMENT_POLICY_EDEFAULT = PlacementPolicy.MANDATORY;
+
+	/**
+	 * The cached value of the '{@link #getPlacementPolicy() <em>Placement Policy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlacementPolicy()
+	 * @generated
+	 * @ordered
+	 */
+	protected PlacementPolicy placementPolicy = PLACEMENT_POLICY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,6 +221,27 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PlacementPolicy getPlacementPolicy() {
+		return placementPolicy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPlacementPolicy(PlacementPolicy newPlacementPolicy) {
+		PlacementPolicy oldPlacementPolicy = placementPolicy;
+		placementPolicy = newPlacementPolicy == null ? PLACEMENT_POLICY_EDEFAULT : newPlacementPolicy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY, oldPlacementPolicy, placementPolicy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -223,6 +266,8 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 				return getAppears();
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
 				return getCompletion();
+			case FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY:
+				return getPlacementPolicy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,6 +288,9 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 				return;
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
 				setCompletion((FeatureSelection)newValue);
+				return;
+			case FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY:
+				setPlacementPolicy((PlacementPolicy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -265,6 +313,9 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
 				setCompletion((FeatureSelection)null);
 				return;
+			case FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY:
+				setPlacementPolicy(PLACEMENT_POLICY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -283,6 +334,8 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 				return appears != APPEARS_EDEFAULT;
 			case FeatureSolutionPackage.ADVICE__COMPLETION:
 				return completion != null;
+			case FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY:
+				return placementPolicy != PLACEMENT_POLICY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -299,6 +352,8 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (appears: ");
 		result.append(appears);
+		result.append(", placementPolicy: ");
+		result.append(placementPolicy);
 		result.append(')');
 		return result.toString();
 	}

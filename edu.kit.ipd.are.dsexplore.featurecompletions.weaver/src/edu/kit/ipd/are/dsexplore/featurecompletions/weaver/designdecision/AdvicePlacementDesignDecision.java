@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.repository.Repository;
 
+import FeatureCompletionModel.PlacementPolicy;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
@@ -50,7 +51,10 @@ public class AdvicePlacementDesignDecision {
 				choice.setDegreeOfFreedomInstance(adviceDegree);
 				choice.setSelected(false);
 				
-				result.add(choice);
+				if (advice.getPlacementPolicy() == PlacementPolicy.OBLIGATORY) { //only add degree if placement is obligatory
+					choice.setIsActive(true);
+					result.add(choice);
+				}
 			}
 		}
 		

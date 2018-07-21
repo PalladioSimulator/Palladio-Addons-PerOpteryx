@@ -55,6 +55,7 @@ public class AdviceItemProvider
 
 			addPointCutPropertyDescriptor(object);
 			addAppearsPropertyDescriptor(object);
+			addPlacementPolicyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,6 +96,28 @@ public class AdviceItemProvider
 				 getString("_UI_Advice_appears_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Advice_appears_feature", "_UI_Advice_type"),
 				 FeatureSolutionPackage.Literals.ADVICE__APPEARS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Placement Policy feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlacementPolicyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Advice_placementPolicy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Advice_placementPolicy_feature", "_UI_Advice_type"),
+				 FeatureSolutionPackage.Literals.ADVICE__PLACEMENT_POLICY,
 				 true,
 				 false,
 				 false,
@@ -172,6 +195,7 @@ public class AdviceItemProvider
 
 		switch (notification.getFeatureID(Advice.class)) {
 			case FeatureSolutionPackage.ADVICE__APPEARS:
+			case FeatureSolutionPackage.ADVICE__PLACEMENT_POLICY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case FeatureSolutionPackage.ADVICE__COMPLETION:

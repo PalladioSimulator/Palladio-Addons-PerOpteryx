@@ -18,6 +18,7 @@ import org.palladiosimulator.solver.transformations.EMFHelper;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
+import FeatureCompletionModel.PlacementPolicy;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
@@ -32,6 +33,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmU
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 import featureSolution.Advice;
+import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
 import featureSolution.PlacementStrategy;
 import featureSolution.PointCut;
@@ -162,6 +164,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	private List<Advice> getSelectedAdvices() {
 		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((FeatureChoice) choice).isSelected()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
+		//add mandatory advices
+		selectedAdvices.addAll(((ExtensionInclusion) this.im).getAdvice().stream().filter(advice -> advice.getPlacementPolicy() == PlacementPolicy.MANDATORY).collect(Collectors.toList()));
+		
 		//TODO wo/wie setzen, present oder active?
 		advicePlacementChoices.stream().forEach(choice -> ((FeatureChoice) choice).setPresent(((FeatureChoice) choice).isSelected()));
 		return selectedAdvices;

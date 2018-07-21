@@ -16,6 +16,7 @@ import FeatureCompletionModel.FeatureCompletionRepository;
 import FeatureCompletionModel.NamedElement;
 import FeatureCompletionModel.PerimeterProviding;
 import FeatureCompletionModel.PerimeterRequiring;
+import FeatureCompletionModel.PlacementPolicy;
 import FeatureCompletionModel.Replication;
 import FeatureCompletionModel.Visnetum;
 
@@ -144,6 +145,13 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * @generated
 	 */
 	private EEnum constraintEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum placementPolicyEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -528,6 +536,15 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getPlacementPolicy() {
+		return placementPolicyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FeatureCompletionFactory getFeatureCompletionFactory() {
 		return (FeatureCompletionFactory)getEFactoryInstance();
 	}
@@ -596,6 +613,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		visnetumEEnum = createEEnum(VISNETUM);
 		replicationEEnum = createEEnum(REPLICATION);
 		constraintEEnum = createEEnum(CONSTRAINT);
+		placementPolicyEEnum = createEEnum(PLACEMENT_POLICY);
 	}
 
 	/**
@@ -702,6 +720,11 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		addEEnumLiteral(constraintEEnum, Constraint.TOGETHER);
 		addEEnumLiteral(constraintEEnum, Constraint.ISOLATED);
 		addEEnumLiteral(constraintEEnum, Constraint.SEPARATED);
+
+		initEEnum(placementPolicyEEnum, PlacementPolicy.class, "PlacementPolicy");
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.MANDATORY);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OBLIGATORY);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.PROHIBITED);
 
 		// Create resource
 		createResource(eNS_URI);
