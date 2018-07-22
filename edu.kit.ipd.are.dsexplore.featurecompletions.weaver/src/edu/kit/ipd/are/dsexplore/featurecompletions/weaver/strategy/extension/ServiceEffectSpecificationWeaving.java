@@ -4,6 +4,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -45,7 +46,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @param appears
 	 * @param operationProvidedRole 
 	 */
-	protected void addFCCallTo(ServiceEffectSpecification seff, AbstractAction internalAction, Appearance appears, OperationProvidedRole operationProvidedRole) {	
+	protected void addFCCallTo(ResourceDemandingBehaviour seff, AbstractAction internalAction, Appearance appears, OperationProvidedRole operationProvidedRole) {	
 		AbstractAction predecessor = internalAction.getPredecessor_AbstractAction();
 		AbstractAction successor = internalAction.getSuccessor_AbstractAction();
 		
@@ -75,8 +76,14 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @param operationInterface 
 	 * @return
 	 */
-	private OperationRequiredRole getFcRequiredRole(AbstractAction internalAction, OperationInterface operationInterface) {
-		BasicComponent comp = (BasicComponent) internalAction.eContainer().eContainer();
+	protected OperationRequiredRole getFcRequiredRole(AbstractAction internalAction, OperationInterface operationInterface) {
+		//BasicComponent comp = (BasicComponent) internalAction.eContainer().eContainer();
+		BasicComponent comp = null;
+		EObject container = internalAction.eContainer();
+		while (!(container instanceof BasicComponent)) { //search for containing component
+			container = container.eContainer();
+		}
+		comp = (BasicComponent) container;
 		
 		for (RequiredRole requiredRole : comp.getRequiredRoles_InterfaceRequiringEntity()) {
 			if (((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId().equals(operationInterface.getId())) {
@@ -123,8 +130,8 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @param externalCallAction
 	 * @param seff
 	 */
-	void addFCBetween(AbstractAction previous, AbstractAction next, ExternalCallAction externalCallAction, ServiceEffectSpecification seff) {
-		((ResourceDemandingBehaviour) seff).getSteps_Behaviour().add(externalCallAction);
+	void addFCBetween(AbstractAction previous, AbstractAction next, ExternalCallAction externalCallAction, ResourceDemandingBehaviour seff) {
+		seff.getSteps_Behaviour().add(externalCallAction);
 		previous.setSuccessor_AbstractAction(externalCallAction);
 		externalCallAction.setPredecessor_AbstractAction(previous);
 		externalCallAction.setSuccessor_AbstractAction(next);

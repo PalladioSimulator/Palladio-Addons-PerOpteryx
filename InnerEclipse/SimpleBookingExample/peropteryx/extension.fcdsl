@@ -4,19 +4,19 @@ import "platform:/resource/SimpleBookingExample/peropteryx/Logging.featurecomple
 multiple ExtensionInclusion extensionIncl _ZZ {
 	description bla
 	pointCut {
-		PointCut allBookCalls {
+		PointCut allPayCalls {
 			placementStrategy ExternalCallPlacementStrategy {
-				matchingSignature book
+				matchingSignature pay
 			}
 		},
 		PointCut allActionsIn {
 			placementStrategy InternalActionPlacementStrategy {
-				forAllInternalActionsIn BookingSystem
+				forAllInternalActionsIn "Payment System"
 			}
 		},
 		PointCut allControlFlowsIn {
 			placementStrategy ControlFlowPlacementStrategy {
-				forAllControlFlowsIn "Payment System"
+				forAllControlFlowsIn BookingSystem
 			}
 		}
 	}
@@ -24,7 +24,7 @@ multiple ExtensionInclusion extensionIncl _ZZ {
 	advice {
 		Advice {
 			appears BEFORE 
-			pointCut allBookCalls
+			pointCut allPayCalls
 			Completion Logging(SQLDatabaseLogging,PatternLayout)
 			placementPolicy OBLIGATORY
 		},
@@ -35,10 +35,10 @@ multiple ExtensionInclusion extensionIncl _ZZ {
 			placementPolicy OBLIGATORY
 		},
 		Advice {
-			appears BEFORE 
+			appears AROUND 
 			pointCut allControlFlowsIn
 			Completion Logging(SQLDatabaseLogging,PatternLayout)
-			placementPolicy MANDATORY
+			placementPolicy OBLIGATORY
 		}
 	}
 }

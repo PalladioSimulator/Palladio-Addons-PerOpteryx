@@ -77,7 +77,7 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 				
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
-					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0))); //use Solution 0 -> TODO decide which solution
+					addFCCallTo((ResourceDemandingBehaviour) seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0))); //use Solution 0 -> TODO decide which solution
 				}
 			}
 			

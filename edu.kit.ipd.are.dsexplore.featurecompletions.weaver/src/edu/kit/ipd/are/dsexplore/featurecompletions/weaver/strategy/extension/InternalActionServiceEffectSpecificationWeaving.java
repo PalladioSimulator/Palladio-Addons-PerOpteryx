@@ -72,7 +72,7 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
 					//TODO welche ProvidedRole??? bei mehreren???
-					addFCCallTo(seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0))); //use Solution 0 -> TODO decide which solution
+					addFCCallTo((ResourceDemandingBehaviour) seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0))); //use Solution 0 -> TODO decide which solution
 				}
 			}
 			
