@@ -4,9 +4,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.qml.handling.QMLConstantsContainer;
 
 /**
- * constants of DSE. QML-related constants are found in
- * {@link QMLConstantsContainer}.
- * 
+ * constants of DSE. QML-related constants are found in {@link QMLConstantsContainer}.
  * @author martens
  *
  */
@@ -21,24 +19,20 @@ public class DSEConstantsContainer {
 
 	public static final String SEARCH_METHOD = "search method";
 
-	/** Messages for the selection combo box */
+	/** Messages for the selection combo box*/
 	public static final String SEARCH_EVOLUTIONARY = "Evolutionary search";
 	public static final String SEARCH_RANDOM = "Random search";
-	/**
-	 * whether the rule based search should explore the full search tree up to the
-	 * depth given by the number of iterations.
+	/** whether the rule based search should explore the full search
+	 * tree up to the depth given by the number of iterations.
 	 */
 	public static final String SEARCH_RULE = "Full rule-based search";
-	/**
-	 * Suboptimal candidates are pruned from the search tree and not further
-	 * explored per iteration.
-	 */
+	/** Suboptimal candidates are pruned from the search tree and not further
+	 * explored per iteration.*/
 	public static final String SEARCH_RULE_OPT = "Rule-based search optimal only";
 	public static final String SEARCH_EVOLUTIONARY_WITH_BAYES = "Evolutionary search with Bayesian learning (experimental)";
 
 	/**
-	 * This must not be used as a key directly, but the quality attribute has to be
-	 * appended.
+	 * This must not be used as a key directly, but the quality attribute has to be appended.
 	 */
 	private static final String ANALYSIS_METHOD_PREFIX = "analysisMethod";
 
@@ -53,6 +47,7 @@ public class DSEConstantsContainer {
 	public static final String CACHE_INSTANCES = "cacheInstances";
 	public static final String ALL_CANDIDATES = "allCandidates";
 	public static final String ARCHIVE_CANDIDATES = "archiveCandidates";
+	public static final String QUALITY_EFFECT_SPECIFICATION_FILE = "qualityEffectSpecificationFile";
 
 	public static final String COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE = "componentInternalDependencyRepositoryFile";
 	public static final String SYSTEM_MODEL_FILE = "systemModelFile";
@@ -62,41 +57,40 @@ public class DSEConstantsContainer {
 	public static final String QML_DEFINITION_FILE = "qmlDefinitionFile";
 
 	/**
-	 * Set the file extensions which the dialog can use to filter the files it shows
-	 * to the argument.
+	 * Set the file extensions which the dialog can use to filter the files it
+	 * shows to the argument.
 	 */
 	public static final String[] COST_MODEL_EXTENSION = new String[] { "*.cost" };
 	public static final String[] NQR_MODEL_EXTENSION = new String[] { "*.nqr" };
-	public static final String[] REASONING_MODEL_EXTENSION = new String[] { "*.qualitymodel" };
-	public static final String[] QML_CONTRACT_EXTENSION = new String[] { "*.qmlcontracttype" };
+	public static final String[] REASONING_MODEL_EXTENSION = new String[] {"*.qualitymodel"};
+	public static final String[] QML_CONTRACT_EXTENSION = new String[] {"*.qmlcontracttype"};
+	public static final String[] QUALITY_EFFECT_SPECIFICATION_EXTENSION = new String[] {"*.qes"};
 
 	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
-	public static final String[] COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION = new String[] {
-			"*.componentinternaldependencies" };
+	public static final String[] COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION = new String[] { "*.componentinternaldependencies" };
 	public static final String[] SYSTEM_MODEL_EXTENSION = new String[] { "*.system" };
-
+	
 	/**
-	 * Set the file extensions which the dialog can use to filter the files it shows
-	 * to the argument.
+	 * Set the file extensions which the dialog can use to filter the files it
+	 * shows to the argument.
 	 */
 	public static final String[] CSV_EXTENSION = new String[] { "*.csv" };
-	public static final String[] CANDIDATE_EXTENSION = new String[] { "*.csv", "*.designdecision" };
+	public static final String[] CANDIDATE_EXTENSION = new String[] { "*.csv" , "*.designdecision" };
 
 	/**
-	 * Set the file extensions which the dialog can use to filter the files it shows
-	 * to the argument.
+	 * Set the file extensions which the dialog can use to filter the files it
+	 * shows to the argument.
 	 */
 	public static final String[] DESIGNDECISION_EXTENSION = new String[] { "*.designdecision" };
 
-	public static final String QML_DEFINITION_EXTENSION = new String("*.qmldeclarations");
+	public static final String QML_DEFINITION_EXTENSION = new String ("*.qmldeclarations");
 
-	// TODO: delete
-	// XXX: use 'new
-	// QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName()'
-	// instead
-	// public static final String MEAN_RESPONSE_TIME_QUALITY = "mean response time";
-	// public static final String COST_QUALITY = "cost";
-	// public static final String POFOD_QUALITY = "POFOD";
+	//TODO: delete
+	//XXX: use 'new QMLDimensionReader().getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getEntityName()' instead
+	//	public static final String MEAN_RESPONSE_TIME_QUALITY = "mean response time";
+	//	public static final String COST_QUALITY = "cost";
+	//	public static final String POFOD_QUALITY = "POFOD";
+
 
 	/**
 	 * TODO: Move this to {@link AnalysisQualityAttributes}?
@@ -115,98 +109,72 @@ public class DSEConstantsContainer {
 		},
 		PERFORMANCE_QUALITY {
 			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.performance";
-			}
-
+			public String getName() { return "de.uka.ipd.sdq.dsexplore.performance"; }
 			@Override
-			public String getPrettyName() {
-				return "Performance";
-			}
-		},
+			public String getPrettyName() { return "Performance"; }},
 		COST_QUALITY {
-			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.cost";
-			}
-
-			@Override
-			public String getPrettyName() {
-				return "Costs";
-			}
-		},
+				@Override
+				public String getName() {	return "de.uka.ipd.sdq.dsexplore.cost";	}
+				@Override
+				public String getPrettyName() { return "Costs"; }},
 		RELIABILITY_QUALITY {
-			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.reliability";
-			}
-
-			@Override
-			public String getPrettyName() {
-				return "Reliability";
-			}
-		},
+					@Override
+					public String getName() { return "de.uka.ipd.sdq.dsexplore.reliability" ;		}
+					@Override
+					public String getPrettyName() { return "Reliability"; }},
 		SECURITY_QUALITY {
-			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.security";
-			}
-
-			@Override
-			public String getPrettyName() {
-				return "Security";
-			}
-		},
+						@Override
+						public String getName() { return "de.uka.ipd.sdq.dsexplore.security" ;		}
+						@Override
+						public String getPrettyName() { return "Security"; }},
 		NEW_SECURITY_QUALITY {
-			@Override
-			public String getName() {
-				return "edu.kit.ipd.are.dsexplore.analysis.security";
-			}
+							@Override
+							public String getName() {
+								return "edu.kit.ipd.are.dsexplore.analysis.security";
+							}
 
-			@Override
-			public String getPrettyName() {
+							@Override
+							public String getPrettyName() {
 				return "Security";
-			}
-		},
+							}
+						},
 		NQR_QUALITY {
-			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.nqr";
-			}
-
-			@Override
-			public String getPrettyName() {
-				return "Non-quantifiable";
-			}
-		},
+							@Override
+							public String getName() { return "de.uka.ipd.sdq.dsexplore.nqr" ;		}
+							@Override
+							public String getPrettyName() {
+								return "Non-quantifiable";
+							}
+						},
 		REASONING_QUALITY {
-			@Override
-			public String getName() {
-				return "de.uka.ipd.sdq.dsexplore.reasoning";
-			}
+							@Override
+							public String getName() {
+								return "de.uka.ipd.sdq.dsexplore.reasoning";
+							}
 
-			@Override
-			public String getPrettyName() {
-				return "Qualitative Reasoning";
-			}
-		};
+							@Override
+							public String getPrettyName() {
+								return "Qualitative Reasoning";
+							}
+						};
+
 
 		public abstract String getName();
 
-		public static QualityAttribute getQualityAttribute(String name) {
-			if (name.equals(PERFORMANCE_QUALITY.getName())) {
+		public static QualityAttribute getQualityAttribute(String name){
+			if (name.equals(PERFORMANCE_QUALITY.getName())){
 				return PERFORMANCE_QUALITY;
 			} else if (name.equals(MAINTAINABILITY_QUALITY.getName())) {
 				return MAINTAINABILITY_QUALITY;
-			} else if (name.equals(RELIABILITY_QUALITY.getName())) {
+			} else if (name.equals(RELIABILITY_QUALITY.getName())){
 				return RELIABILITY_QUALITY;
-			} else if (name.equals(COST_QUALITY.getName())) {
+			} else if (name.equals(COST_QUALITY.getName())){
 				return COST_QUALITY;
-			} else if (name.equals(SECURITY_QUALITY.getName())) {
+			} else if (name.equals(SECURITY_QUALITY.getName())){
 				return SECURITY_QUALITY;
 			} else if (name.equals(NEW_SECURITY_QUALITY.getName())) {
 				return NEW_SECURITY_QUALITY;
-			} else if (name.equals(NQR_QUALITY.getName())) {
+			} else if (name.equals(NQR_QUALITY.getName())){
 				return NQR_QUALITY;
 			} else if (name.equals(REASONING_QUALITY.getName())) {
 				return REASONING_QUALITY;
@@ -222,10 +190,10 @@ public class DSEConstantsContainer {
 	public static final String DESIGN_DECISIONS_ONLY = "designDecisionsOnly";
 	public static final String OPTIMISATION_ONLY = "optimisationOnly";
 
-	public static final String NONE = "none";
 
-	public static final String getAnalysisMethod(QualityAttribute qualityAttribute) {
-		return ANALYSIS_METHOD_PREFIX + qualityAttribute.getName();
+	public static final String NONE = "none";
+	public static final String getAnalysisMethod(QualityAttribute qualityAttribute){
+		return ANALYSIS_METHOD_PREFIX+qualityAttribute.getName();
 	}
 
 	public static final String ALPHA = "alpha";
@@ -234,12 +202,10 @@ public class DSEConstantsContainer {
 
 	public static final String DSE_ITERATIONS = "number of DSE iterations";
 
-	// public static final String COST_COMBINE_COST_TYPES = "DSE combine cost
-	// types";
-	// public static final String COST_CONSIDER_INITIAL = "DSE consider initial
-	// costs";
-	// public static final String COST_CONSIDER_OPERATING = "DSE consider opearting
-	// costs";
+	//	public static final String COST_COMBINE_COST_TYPES = "DSE combine cost types";
+	//	public static final String COST_CONSIDER_INITIAL = "DSE consider initial costs";
+	//	public static final String COST_CONSIDER_OPERATING = "DSE consider opearting costs";
+
 
 	/*
 	 * Configuration of heuristics
@@ -282,50 +248,50 @@ public class DSEConstantsContainer {
 	 * Termination Criteria related constants
 	 */
 
-	// General
+	//General
 	public static final String TC_GENERAL_USE_TERMINATION_CRITERIA = "Use Termination Criteria";
 	public static final String TC_GENERAL_COMPARISION_MODE = "Run in comparision mode";
 
-	// Composed Criteria
+	//Composed Criteria
 	public static final String TC_COMPOSED_CRITERIA_ACTIVATE = "Activate composed Criteria";
 	public static final String TC_COMPOSED_CRITERIA_EXPRESSION = "Composed Criteria Expression";
 
-	// Maximum Generation Number Criterion
+	//Maximum Generation Number Criterion
 	public static final String TC_MAX_NUM_OF_GEN_ACTIVATE = "Activate Maximum number of generation";
 	public static final String TC_MAX_NUM_OF_GEN_LIMIT = "Maximum Number Of Generations";
 
-	// Elapsed Time Criterion
+	//Elapsed Time Criterion
 	public static final String TC_ELAPSED_TIME_ACTIVATE = "Activate Elapsed Time Criterion";
 	public static final String TC_ELAPSED_TIME_TYPE = "Type of the measured time";
 	public static final String TC_ELAPSED_TIME_TIME_LIMIT = "Time in minutes";
 
-	// No New Pareto Optimal Candidates Found Criterion
+	//No New Pareto Optimal Candidates Found Criterion
 	public static final String TC_NO_NEW_CANDIDATES_ACTIVATE = "Activate No New Pareto Optimal Candidates";
 	public static final String TC_NO_NEW_CANDIDATES_ITERATIONS_WITHOUT = "Iterations without new Pareto optimal candidates";
 
-	// Pareto Optimal Set Stability
+	//Pareto Optimal Set Stability
 	public static final String TC_SET_STABILITY_ACTIVATE = "Activate Pareto Optimal Set Stability";
 	public static final String TC_SET_STABILITY_MODE = "Evaluation Mode";
 	public static final String TC_SET_STABILITY_MINIMUM_ITERATION_TO_SURVIVE = "Minimum iterations to survive";
 	public static final String TC_SET_STABILITY_NUMBER_OF_SURVIVORS_EXACT = "Exact number of survivors";
 	public static final String TC_SET_STABILITY_NUMBER_OF_SURVIVORS_PERCENTAGE = "Percentage number of survivors";
 
-	// Minimal Quality Criteria Value
+	//Minimal Quality Criteria Value
 	public static final String TC_MINIMAL_VALUES_ACTIVATE = "Activate Minimal Quality Criteria Value";
 	public static final String TC_MINIMAL_VALUES_CANDIDATES_TO_CONFORM = "Number of candidates to conform";
 	public static final String TC_MINIMAL_VALUES_CONFIGURED_OBJECTIVES = "Configured objectives with values";
 
-	// A Given Pareto Front is Reached
+	//A Given Pareto Front is Reached
 	public static final String TC_PARETO_FRONT_IS_REACHED_ACTIVATE = "Activate a Given Pareto Front Is reached";
 	public static final String TC_PARETO_FRONT_IS_REACHED_PERCENTAGES_TO_COVER = "Percentages to cover";
 	public static final String TC_PARETO_FRONT_IS_REACHED_PATH_TO_FRONT_FILE = "Path to the pareto front description file";
 
-	// Insignificant Set Quality Improvement
+	//Insignificant Set Quality Improvement
 	public static final String TC_INSIGNIFICANT_SET_IMPROVEMENT_ACTIVATE = "Activate Insignificant Set Quality Improvement";
 	public static final String TC_INSIGNIFICANT_SET_IMPROVEMENT_GENERATION_X = "Number of the n-x generation";
 	public static final String TC_INSIGNIFICANT_SET_IMPROVEMENT_CONFIGURED_OBJECTIVES = "Configured Objectives with averages";
 
-	// Insignificant Pareto Front Change
+	//Insignificant Pareto Front Change
 	public static final String TC_INSIGNIFICANT_FRONT_CHANGE_ACTIVATE = "Activate Insignificant Pareto Front Change";
 	public static final String TC_INSIGNIFICANT_FRONT_CHANGE_GENERATION_X = "Number of the n-x generation for front";
 	public static final String TC_INSIGNIFICANT_FRONT_CHANGE_IMPROVEMENT = "Minimum percentage improvement";
