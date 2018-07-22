@@ -12,7 +12,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -32,13 +31,9 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
-import de.uka.ipd.sdq.dsexplore.launch.MoveInitialPCMModelPartitionJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.ISFieldOfActivityAnnotationsFactory;
-import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.ISFieldOfActivityAnnotationsRepository;
-import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.impl.ISFieldOfActivityAnnotationsFactoryImpl;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.AbstractISModificationRepository;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModificationmarksFactory;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyComponent;
@@ -69,27 +64,20 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		org.palladiosimulator.pcm.system.System system = pheno.getPCMInstance().getSystem();
 		Map<String, UsageModel> usageModels = new HashMap<String, UsageModel>();
-		usageModels.put("", pheno.getPCMInstance().getUsageModel());
 		Repository repository = getRepository(system, pheno.getPCMInstance().getRepositories());
 		ReqModificationmarksFactory reqModificationmarksFactory = new ReqModificationmarksFactoryImpl();
-		ISFieldOfActivityAnnotationsFactory fieldOfActivityAnnotationsFactory = new ISFieldOfActivityAnnotationsFactoryImpl();
-		ISFieldOfActivityAnnotationsRepository fieldOfActivityRepository = fieldOfActivityAnnotationsFactory
-				.createISFieldOfActivityAnnotationsRepository();
 		AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository = reqModificationmarksFactory
 				.createReqModificationRepository();
 		ReqSeedModifications reqSeedModifications = reqModificationmarksFactory.createReqSeedModifications();
 		internalModificationMarkRepository.setSeedModifications(reqSeedModifications);
 		ReqArchitectureVersion reqArchitectureVersion = null;
 
-		PCMResourceSetPartition r = (PCMResourceSetPartition) blackboard
-				.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
-
 		createAndAddComponentSeedModifications(system, baseSystem, reqSeedModifications);
 		createAndAddInterfaceSeedModifications(system, baseSystem, reqSeedModifications);
 
-		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, baseSystem,
-				fieldOfActivityRepository, internalModificationMarkRepository, componentInternalDependencyRepository,
-				usageModels, null, null, null, null, null);
+		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, system, null,
+				internalModificationMarkRepository, componentInternalDependencyRepository, usageModels, null, null,
+				null, null, null);
 		double changeImpact = evaluateChangeImpact(reqArchitectureVersion, internalModificationMarkRepository);
 		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(),
 				new MaintainabilityAnalysisResult(changeImpact, this.criterionToAspect,
@@ -131,8 +119,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 *
 	 * @param configuration.getRawConfiguration()
 	 * @return ComponentInternalDependencyRepository which is not null
-	 * @throws CoreException
-	 *             if the model could not be loaded.
+	 * @throws CoreException if the model could not be loaded.
 	 */
 	private ComponentInternalDependencyRepository getComponentInternalDependencyRepositoryModel(
 			DSEWorkflowConfiguration configuration) throws CoreException {
@@ -153,8 +140,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 *
 	 * @param configuration.getRawConfiguration()
 	 * @return DataModel which is not null
-	 * @throws CoreException
-	 *             if the model could not be loaded.
+	 * @throws CoreException if the model could not be loaded.
 	 */
 	private org.palladiosimulator.pcm.system.System getBaseSystemModel(DSEWorkflowConfiguration configuration)
 			throws CoreException {
@@ -172,8 +158,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	/**
 	 * returns a repository model or throws an exception.
 	 *
-	 * @throws CoreException
-	 *             if the model could not be loaded.
+	 * @throws CoreException if the model could not be loaded.
 	 */
 	private Repository getRepository(org.palladiosimulator.pcm.system.System system, List<Repository> candidates)
 			throws CoreException {
@@ -220,10 +205,8 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 * create component seed modification for every component, which is contained in
 	 * the current assembly, but not in the base assembly
 	 * 
-	 * @param system
-	 *            current
-	 * @param system
-	 *            base
+	 * @param system               current
+	 * @param system               base
 	 * @param reqSeedModifications
 	 */
 	private void createAndAddComponentSeedModifications(org.palladiosimulator.pcm.system.System system,
@@ -252,10 +235,8 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 * create interface seed modification for every interface, which is contained in
 	 * the current assembly, but not in the base assembly
 	 * 
-	 * @param system
-	 *            current
-	 * @param system
-	 *            base
+	 * @param system               current
+	 * @param system               base
 	 * @param reqSeedModifications
 	 */
 	private void createAndAddInterfaceSeedModifications(org.palladiosimulator.pcm.system.System system,
