@@ -7,11 +7,11 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class OperationRoleHandler extends RoleHandler {
 
-	public OperationRoleHandler(MergedRepoManager mergedRepoManager) {
+	public OperationRoleHandler(SolutionManager mergedRepoManager) {
 		super(mergedRepoManager);
 	}
 
@@ -32,11 +32,11 @@ public class OperationRoleHandler extends RoleHandler {
 
 	@Override
 	public RequiredRole createRequiredRoleOf(ProvidedRole providedRole) {
-		return this.mergedRepoManager.createRequiredRoleBy((OperationProvidedRole) providedRole);
+		return this.solutionManager.createRequiredRoleBy((OperationProvidedRole) providedRole);
 	}
 
 	@Override
 	public ProvidedRole createRequiredRoleOf(RequiredRole requiredRole) {
-		return this.mergedRepoManager.createProvidedRoleBy((OperationRequiredRole) requiredRole);
+		return this.solutionManager.createProvidedRoleBy((OperationRequiredRole) requiredRole);
 	}
 }

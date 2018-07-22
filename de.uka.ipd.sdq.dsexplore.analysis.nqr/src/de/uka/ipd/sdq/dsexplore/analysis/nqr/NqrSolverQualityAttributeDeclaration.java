@@ -1,10 +1,10 @@
 package de.uka.ipd.sdq.dsexplore.analysis.nqr;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisQualityAttributeDeclaration;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
@@ -28,7 +28,7 @@ public class NqrSolverQualityAttributeDeclaration implements IAnalysisQualityAtt
         return dimensions.add(dimension);
     }
 
-    public boolean addAllDimensions(final List<Dimension> dimensions) {
+    public boolean addAllDimensions(final Collection<Dimension> dimensions) {
         boolean addAll = true;
         for (Dimension dimension : dimensions) {
             addAll &= addDimension(dimension);

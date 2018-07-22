@@ -44,3 +44,4 @@ Import-Package: javax.measure,
  org.palladiosimulator.edp2.impl,
  org.palladiosimulator.edp2.models.ExperimentData,
  org.palladiosimulator.edp2.models.Repository
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.simucom

@@ -4,7 +4,7 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
@@ -22,7 +22,7 @@ interface IAdapterWeaving {
 	AssemblyContext getAdapterAssemblyContext();
 
 	// Managers
-	MergedRepoManager getMergedRepoManager();
+	SolutionManager getSolutionManager();
 
 	PcmAllocationManager getPCMAllocationManager();
 

@@ -37,3 +37,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.analyzer.resultdecorator;visibility:=reexport,
  org.palladiosimulator.analyzer.resultdecorator.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.uka.ipd.sdq.pcm.designdecision.edit

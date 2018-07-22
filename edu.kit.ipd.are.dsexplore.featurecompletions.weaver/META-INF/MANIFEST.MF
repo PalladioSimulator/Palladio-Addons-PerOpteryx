@@ -14,3 +14,4 @@ Require-Bundle: org.palladiosimulator.solver,
  org.opt4j,
  org.modelversioning.emfprofile
 Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.weaver

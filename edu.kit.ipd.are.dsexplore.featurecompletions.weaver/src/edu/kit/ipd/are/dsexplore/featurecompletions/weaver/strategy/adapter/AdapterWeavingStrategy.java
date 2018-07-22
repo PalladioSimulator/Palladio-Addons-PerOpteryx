@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -13,7 +14,6 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
-import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
@@ -26,27 +26,27 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstr
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.MergedRepoManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 import featureSolution.InclusionMechanism;
 
 public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving {
 
 	private final PCMInstance pcmToAdapt;
-	private final MergedRepository mergedRepo;
+	private final Repository solution;
 	private final FeatureCompletion fc;
 	private final InclusionMechanism im;
 
 	private RepositoryComponent currentAdapter;
 	private AssemblyContext currentAC;
 
-	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, MergedRepository mergedRepo, FeatureCompletion fc, InclusionMechanism im) {
+	public AdapterWeavingStrategy(PCMInstance pcmToAdapt, Repository solution, FeatureCompletion fc, InclusionMechanism im) {
 		this.pcmToAdapt = pcmToAdapt;
-		this.mergedRepo = mergedRepo;
+		this.solution = solution;
 		this.fc = fc;
 		this.im = im;
 		this.initManagers();
@@ -104,14 +104,14 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	}
 
 	// Managers
-	private MergedRepoManager mrm;
+	private SolutionManager mrm;
 	private PcmAllocationManager pam;
 	private PcmServiceEffectSpecificationManager pseffm;
 	private PcmSystemManager psm;
 	private PcmUsageModelManager pumm;
 
 	private void initManagers() {
-		this.mrm = new MergedRepoManager(this.mergedRepo);
+		this.mrm = new SolutionManager(this.solution);
 		this.pam = new PcmAllocationManager(this.pcmToAdapt.getAllocation());
 		this.pseffm = new PcmServiceEffectSpecificationManager();
 		this.psm = new PcmSystemManager(this.pcmToAdapt.getSystem());
@@ -120,7 +120,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	}
 
 	@Override
-	public MergedRepoManager getMergedRepoManager() {
+	public SolutionManager getSolutionManager() {
 		return this.mrm;
 	}
 
@@ -149,7 +149,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	private List<Choice> allocationChoices;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<Choice> featureChoices, List<Choice> allocationChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
 		// TODO featureChoices
 		List<WeavingInstruction> instructions = this.determineInstructions(locations);
 		this.instructions = instructions;

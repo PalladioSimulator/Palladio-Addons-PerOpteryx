@@ -23,13 +23,18 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.Visnetum;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 public final class LocationExtractor {
-	public static List<WeavingLocation> extractLocation(Pair<Connector, ComplementumVisnetis> connector, PCMInstance pcm) {
+	public static List<WeavingLocation> extractLocation(Pair<String, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
-		AssemblyContext target = LocationExtractor.getAssemblyContext(connector.first);
-
+		AssemblyContext target = LocationExtractor.getAssemblyContext(pcm, connector.first);
+		if (target == null) {
+			// Zombee Connector
+			FCCModule.logger.debug("Zombee found: " + connector);
+			return new ArrayList<>();
+		}
 		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
 
 		switch (visnetum) {
@@ -44,6 +49,15 @@ public final class LocationExtractor {
 		}
 
 		throw new Error("Unidentified Visnetum " + visnetum);
+	}
+
+	private static AssemblyContext getAssemblyContext(PCMInstance pcm, String connectorID) {
+		for (Connector connector : pcm.getSystem().getConnectors__ComposedStructure()) {
+			if (connector.getId().equals(connectorID)) {
+				return LocationExtractor.getAssemblyContext(connector);
+			}
+		}
+		return null;
 	}
 
 	private static AssemblyContext getAssemblyContext(Connector connector) {

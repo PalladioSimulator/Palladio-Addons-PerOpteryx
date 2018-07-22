@@ -64,7 +64,6 @@ public class FCCDecoderExtension implements IDecodeExtension {
 		if (weaver == null) {
 			return new ArrayList<>();
 		}
-
 		return weaver.getConvertedFCCClassChoices();
 	}
 

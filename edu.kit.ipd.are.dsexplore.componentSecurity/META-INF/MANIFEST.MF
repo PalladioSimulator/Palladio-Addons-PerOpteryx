@@ -26,3 +26,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.simucomframework;bundle-version="1.0.0",
  de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.componentSecurity

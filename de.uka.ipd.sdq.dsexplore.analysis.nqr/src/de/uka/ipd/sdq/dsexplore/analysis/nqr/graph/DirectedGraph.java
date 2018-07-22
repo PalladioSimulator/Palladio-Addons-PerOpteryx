@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringJoiner;
-
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.entity.InterfaceProvidingEntity;
-
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
+import org.palladiosimulator.solver.models.PCMInstance;
 import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 
 /**
@@ -28,11 +28,6 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
  */
 public final class DirectedGraph<T> implements Iterable<T> {
 
-    /**
-     *
-     * @param pheno
-     * @return
-     */
     public static final DirectedGraph<String> createDirectedComponentGraph(final PCMPhenotype pheno) {
         final DirectedGraph<String> graph = new DirectedGraph<String>();
         for (final Connector c : pheno.getPCMInstance().getSystem().getConnectors__ComposedStructure()) {
@@ -40,9 +35,9 @@ public final class DirectedGraph<T> implements Iterable<T> {
                 final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
                 graph.addEdge(
                         ac.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext()
-                        .getId(),
+                                .getId(),
                         ac.basicGetProvidingAssemblyContext_AssemblyConnector()
-                        .getEncapsulatedComponent__AssemblyContext().getId());
+                                .getEncapsulatedComponent__AssemblyContext().getId());
             }
         }
         return graph;
@@ -50,7 +45,7 @@ public final class DirectedGraph<T> implements Iterable<T> {
 
     /**
      * TODO
-     * 
+     *
      * @param pheno
      * @param interfaceProvidingEntity
      * @return
@@ -63,9 +58,9 @@ public final class DirectedGraph<T> implements Iterable<T> {
                 final AssemblyConnectorImpl ac = (AssemblyConnectorImpl) c;
                 graph.addEdge(
                         ac.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext()
-                        .getId(),
+                                .getId(),
                         ac.basicGetProvidingAssemblyContext_AssemblyConnector()
-                        .getEncapsulatedComponent__AssemblyContext().getId());
+                                .getEncapsulatedComponent__AssemblyContext().getId());
             }
         }
         return graph;

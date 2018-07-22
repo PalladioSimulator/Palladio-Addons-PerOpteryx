@@ -1,14 +1,13 @@
 package de.uka.ipd.sdq.dsexplore.analysis.nqr.solver;
 
 import java.util.List;
-
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 
 public class ReasoningProxy {
 
     // private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.nqr");
 
-    private final ProxyFactory factory;
+    private final NqrFactory factory;
     private final Dimension output;
     private final List<TransformationProxy> transformations;
     private final ReductionProxy reduction;
@@ -17,7 +16,11 @@ public class ReasoningProxy {
         return reduction.reset();
     }
 
-    public ReasoningProxy(Dimension output, List<TransformationProxy> transformations, ProxyFactory factory) {
+    public Dimension getOutput() {
+        return output;
+    }
+
+    public ReasoningProxy(Dimension output, List<TransformationProxy> transformations, NqrFactory factory) {
         this.output = output;
         this.transformations = transformations;
         this.factory = factory;

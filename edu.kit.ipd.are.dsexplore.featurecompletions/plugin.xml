@@ -34,4 +34,5 @@
             class="featureSolution.FeatureSolutionPackage"
             genModel="model/featureCompletions.genmodel"/>
    </extension>
+
 </plugin>
