@@ -19,7 +19,7 @@
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation$" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
-  <rm:locator pattern="^org\.palladiosimulator\.solver.*" searchPathRef="Solver" failOnError="true" />
+  <rm:locator pattern="^org\.palladiosimulator\.solver.*" searchPathRef="PCMSolver" failOnError="true" />
 
   <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
   href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
@@ -51,7 +51,7 @@
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/releases/latest/"/>
       </rm:provider>
   </rm:searchPath>
- <rm:searchPath name="Solver">
+ <rm:searchPath name="PCMSolver">
       <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/solver/nightly/"/>
       </rm:provider>
