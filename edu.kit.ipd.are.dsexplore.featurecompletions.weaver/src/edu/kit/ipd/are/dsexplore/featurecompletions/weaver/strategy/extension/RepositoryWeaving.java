@@ -8,14 +8,12 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-
 /**
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
  *
  */
-public abstract class RepositoryWeaving {
+public class RepositoryWeaving {
 
 	protected final IExtensionWeaving parent;
 

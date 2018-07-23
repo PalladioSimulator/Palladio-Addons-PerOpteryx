@@ -117,9 +117,9 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.createClassChoice(degree, dds, initialCandidate);
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
-		//TODO add dof for multiple-flag in inclusion mechanism
+		//add dof for multiple-flag in inclusion mechanism
 		this.createMultipleInclusionDegree(degree, dds, initialCandidate);
-		//TODO add dof for advice placement policy
+		//add dof for advice placement policy
 		this.createAdvicePlacementDegree(dds, initialCandidate, this.weaver.get().getSolutionRepositories());
 		return degree;
 	}
@@ -144,7 +144,7 @@ public class FCCProblemExtension implements IProblemExtension {
 	 * @param initialCandidate 
 	 */
 	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
-		// TODO add dof for multiple-flag in inclusion mechanism
+		//add dof for multiple-flag in inclusion mechanism
 		FeatureDegree multipleInclusionDegree = specificFactory.eINSTANCE.createFeatureDegree();
 		
 		multipleInclusionDegree.setEntityName("multiple_inclusion");

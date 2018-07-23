@@ -45,7 +45,7 @@ public class AdvicePlacementDesignDecision {
 			for (Advice advice : ((ExtensionInclusion) im).getAdvice()) {
 				FeatureDegree adviceDegree = specificFactory.eINSTANCE.createFeatureDegree();
 				adviceDegree.setEntityName("advice");
-				adviceDegree.setPrimaryChanged(advice); //TODO auf was setzen??
+				adviceDegree.setPrimaryChanged(advice);
 				
 				FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
 				choice.setDegreeOfFreedomInstance(adviceDegree);

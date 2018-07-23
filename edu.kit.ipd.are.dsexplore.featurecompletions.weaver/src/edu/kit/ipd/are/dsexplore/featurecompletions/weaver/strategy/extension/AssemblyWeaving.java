@@ -3,20 +3,11 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -41,7 +32,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.Role
  * 
  *
  */
-public abstract class AssemblyWeaving {
+public class AssemblyWeaving {
 	protected final IExtensionWeaving parent;
 
 	public AssemblyWeaving(IExtensionWeaving parent) {
@@ -58,18 +49,16 @@ public abstract class AssemblyWeaving {
 		//2. choose realizing component for each fcc according to selected solution/CV
 		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, instruction.getAdvice().getCompletion().getFeatures());
 		
-		//TODO 3. in case of any required complementa -> add additional components
+		//3. in case of any required complementa -> add additional components
 		if (fccHandler.requiresComplementa(realizingComponents)) {
 			realizingComponents.addAll(fccHandler.getRequiredComplementa(realizingComponents));
 		}
 		
-		System.out.println("");
-		
 		//4. weave in components
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			List<AssemblyContext> createdAssemblyContexts = new ArrayList<>();
-			for (RepositoryComponent repositoryComponent : realizingComponents) {	//TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
-				//TODO decide if solution components are added multiple times
+			for (RepositoryComponent repositoryComponent : realizingComponents) {	
+				//decide if solution components are added multiple times
 				if (instruction.getInclusionMechanism().isMultiple()) {
 					AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);
 					createdAssemblyContexts.add(newAssemblyContext);
@@ -81,7 +70,7 @@ public abstract class AssemblyWeaving {
 			}
 			
 			List<Connector> createdConnectors = new ArrayList<>();
-			for (AssemblyContext assemblyContext : createdAssemblyContexts) { //TODO decide which solution to choose, matching selected signture in weaved SEFF!!!!!
+			for (AssemblyContext assemblyContext : createdAssemblyContexts) { 
 				//create connectors
 				for (RequiredRole requiredRole : assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
 					ProvidedRole compProvidedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, getAllProvidedRolesOf(createdAssemblyContexts));
@@ -90,7 +79,7 @@ public abstract class AssemblyWeaving {
 					AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, assemblyContext),
 							Pair.of((OperationProvidedRole) compProvidedRole, providedAssemblyContext));
 					if (instruction.getInclusionMechanism().isMultiple()) {
-						//TODO only add if solution components are added multiple times
+						//only add if solution components are added multiple times
 						createdConnectors.add(connector);
 					} else if (!this.parent.getPCMSystemManager().existConnector(connector)) {
 						//only add if not already existing 

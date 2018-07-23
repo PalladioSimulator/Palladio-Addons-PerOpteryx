@@ -8,7 +8,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
  * 
  *
  */
-public abstract class UsageModelWeaving {
+public class UsageModelWeaving {
 
 	protected final IExtensionWeaving parent;
 
@@ -16,5 +16,8 @@ public abstract class UsageModelWeaving {
 		this.parent = parent;
 	}
 
-	public abstract void weave(IWeavingInstruction instruction);
+	public void weave(IWeavingInstruction instruction) {
+		//nothing to do here in this strategy
+		//but good to have it in case of future modifications
+	}
 }

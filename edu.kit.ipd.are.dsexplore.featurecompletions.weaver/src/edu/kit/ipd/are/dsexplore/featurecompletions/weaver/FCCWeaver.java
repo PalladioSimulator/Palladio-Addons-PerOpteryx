@@ -75,9 +75,9 @@ public final class FCCWeaver {
 	private Choice fccChoice;
 	private List<Choice> featureChoices;
 	private List<Choice> allocationChoices;
-	// TODO add dof for advice placements
+	//dof for advice placements
 	private List<Choice> advicePlacementChoices;
-	// TODO add dof for multiple-flag in inclusion mechanism
+	//dof for multiple-flag in inclusion mechanism
 	private Choice multipleInclusionChoice;
 
 	private IWeavingStrategy strategy;
@@ -95,10 +95,10 @@ public final class FCCWeaver {
 			if (c.getDegreeOfFreedomInstance() instanceof FeatureCompletionDegree) {
 				this.fccChoice = c;
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("multiple_inclusion")) {
-				// TODO add dof for multiple-flag in inclusion mechanism
+				//add dof for multiple-flag in inclusion mechanism
 				this.multipleInclusionChoice = c;
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("advice")) {
-				// TODO add dof for advice placements
+				//add dof for advice placements
 				this.advicePlacementChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
 				this.featureChoices.add(c);

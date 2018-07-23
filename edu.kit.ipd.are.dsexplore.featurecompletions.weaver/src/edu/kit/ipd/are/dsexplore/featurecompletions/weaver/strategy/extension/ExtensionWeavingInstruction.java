@@ -3,12 +3,9 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Signature;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import FeatureCompletionModel.CompletionComponent;
@@ -23,7 +20,6 @@ import featureSolution.InclusionMechanism;
  */
 public class ExtensionWeavingInstruction implements IWeavingInstruction {
 
-	//private final Pair<CompletionComponent, List<OperationInterface>> fccWithConsumedFeatures;
 	private final Pair<CompletionComponent, List<ProvidedRole>> fccWithProvidedRoles;
 	
 	private final Advice advice;

@@ -3,7 +3,6 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationInterface;
@@ -14,10 +13,7 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
-import org.palladiosimulator.pcm.seff.ResourceDemandingSEFF;
 import org.palladiosimulator.pcm.seff.SeffFactory;
-import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
-
 import featureSolution.Appearance;
 
 /**
@@ -65,10 +61,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 			break;
 		default:
 			break;
-		}
-		//do in Repository Weaving
-		//addRequiredRoleFor(seff, operationProvidedRole);
-			
+		}			
 	}
 
 	/**
@@ -77,7 +70,6 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @return
 	 */
 	protected OperationRequiredRole getFcRequiredRole(AbstractAction internalAction, OperationInterface operationInterface) {
-		//BasicComponent comp = (BasicComponent) internalAction.eContainer().eContainer();
 		BasicComponent comp = null;
 		EObject container = internalAction.eContainer();
 		while (!(container instanceof BasicComponent)) { //search for containing component
@@ -94,20 +86,6 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	/**
-	 * @param seff
-	 * @param operationProvidedRole
-	 */
-	//TODO wird in Repository weaving gemacht
-	private void addRequiredRoleFor(ServiceEffectSpecification seff, OperationProvidedRole operationProvidedRole) {
-		//add required role only if not yet existing
-		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(operationProvidedRole);
-		EList<RequiredRole> allRequiredRoles = seff.getBasicComponent_ServiceEffectSpecification().getRequiredRoles_InterfaceRequiringEntity();
-		if (allRequiredRoles.stream().noneMatch(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationRequiredRole) requiredRole).getRequiredInterface__OperationRequiredRole().getId()))) {
-			allRequiredRoles.add(requiredRole);
-		}
-	}
-
-	/**
 	 * @param operationInterface
 	 * @param fcRequiredRole 
 	 * @return
@@ -117,10 +95,9 @@ public abstract class ServiceEffectSpecificationWeaving {
 			OperationSignature calledService = (OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);
-			//TODO add role to ext call?
+			//add role to ext call
 			externalCallAction.setRole_ExternalService(fcRequiredRole);
-	//		externalCallAction.getInputVariableUsages__CallAction().addAll(this.copy(externalCallInfo.inputVariableUsages));
-	//		externalCallAction.getReturnVariableUsage__CallReturnAction().addAll(this.copy(externalCallInfo.returnVariableUsage));
+	
 			return externalCallAction;
 		}
 

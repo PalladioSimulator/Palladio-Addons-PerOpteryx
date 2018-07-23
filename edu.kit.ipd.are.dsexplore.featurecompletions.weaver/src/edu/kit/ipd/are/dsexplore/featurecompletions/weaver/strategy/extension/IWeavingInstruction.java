@@ -5,7 +5,6 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.List;
 
-import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
