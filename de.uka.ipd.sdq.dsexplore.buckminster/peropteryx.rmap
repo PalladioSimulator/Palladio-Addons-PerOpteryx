@@ -11,7 +11,6 @@
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qualitymodel.*" />
-  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.solver.*" />
 
   <rm:locator pattern="^org\.palladiosimulator\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simucontroller.*" searchPathRef="SimuCom" failOnError="true"/>
@@ -20,6 +19,7 @@
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation$" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
+  <rm:locator pattern="^org\.palladiosimulator\.solver.*" searchPathRef="Solver" failOnError="true" />
 
   <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
   href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
@@ -50,6 +50,7 @@
       <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/releases/latest/"/>
       </rm:provider>
+  </rm:searchPath>
  <rm:searchPath name="Solver">
       <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/solver/nightly/"/>
