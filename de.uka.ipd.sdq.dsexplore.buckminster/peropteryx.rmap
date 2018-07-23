@@ -27,7 +27,7 @@
   href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Framework/trunk/org.palladiosimulator.analyzer.buckminster/analyzer.rmap" />
 
   <rm:redirect pattern="^org\.palladiosimulator\.solver.*"
-  https://svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap" />
+  href="https://svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Solver/trunk/org.palladiosimulator.solver.buckminster/solver.rmap" />
 
 
   <rm:searchPath name="peropteryxgit">
