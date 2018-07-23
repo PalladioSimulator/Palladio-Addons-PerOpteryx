@@ -8,7 +8,12 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
-
+/**
+ * This class handles weaving of the PCM allocation model.
+ * 
+ * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ * 
+ */
 public class AllocationWeaving {
 
 	private final IExtensionWeaving parent;
@@ -19,6 +24,13 @@ public class AllocationWeaving {
 
 	private ResourceContainer resourceContainer;
 
+	/**
+	 * Applies the weaving operation on the allocation model. 
+	 * FC components are allocated on arbitrary resource containers, as PerOpteryx takes care of rearranging allocations in its DSE.
+	 * 
+	 * @param instruction the weaving instruction to apply.
+	 * @throws FCCWeaverException
+	 */
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();

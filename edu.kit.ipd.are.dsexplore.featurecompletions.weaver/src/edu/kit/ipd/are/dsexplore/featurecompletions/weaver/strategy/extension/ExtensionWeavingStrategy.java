@@ -19,9 +19,11 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PlacementPolicy;
+
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
@@ -32,6 +34,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmS
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
+
 import featureSolution.Advice;
 import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
@@ -43,7 +46,10 @@ import featureSolution.impl.ExternalCallPlacementStrategyImpl;
 import featureSolution.impl.InternalActionPlacementStrategyImpl;
 
 /**
- * Taken from AdapterWeavingStrategy //TODO adopt for Extension Mechanism
+ * This is the central class handling the extension weaving mechanism. 
+ * It is initialized with the present degrees of freedom and triggers the weaving operations for the PCM submodels (repository/seff, system, usage, allocation).
+ * 
+ * (It is based on the AdapterWeavingStrategy)
  *
  * @author Maximilian Eckert (maxieckert@web.de)
  *
@@ -137,11 +143,23 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	///////////////////// INITIALIZE //////////////////////////
 	private List<IWeavingInstruction> instructions;
 
+	//choices for fc solution
 	private Choice fccChoice;
+	//choices for multiple-flag
 	private Choice multipleInclusionChoice;
-	// TODO add dof for advice placements
+	//choices for advice placements
 	private List<Choice> advicePlacementChoices;
 
+	/**
+	 * Initializes the extension weaving mechanism.
+	 * 
+	 * @param locations not used in extension mechanism, as locations are determined by dsl.
+	 * @param fccChoice solution choice.
+	 * @param featureChoices feature choices.
+	 * @param allocationChoices allocation choices for fcc components.
+	 * @param multipleInclusionChoice multiple-flag choice.
+	 * @param advicePlacementChoices advice placement (mandatory/optional) choices.
+	 */
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
@@ -149,7 +167,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		this.fccChoice = fccChoice;
 		
 		this.multipleInclusionChoice = multipleInclusionChoice;
-		//TODO wo/wie setzen, present oder active?
+		//TODO present or active?
 		this.im.setMultiple(((FeatureChoice) this.multipleInclusionChoice).isSelected());
 		((FeatureChoice) this.multipleInclusionChoice).setPresent(((FeatureChoice) this.multipleInclusionChoice).isSelected());
 		
@@ -160,7 +178,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	}
 
 	/**
+	 * Determines all advices that will be weaved into the system.
 	 * 
+	 * @return selected advices that will be weaved.
 	 */
 	private List<Advice> getSelectedAdvices() {
 		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((FeatureChoice) choice).isSelected()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
@@ -173,7 +193,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	}
 
 	/**
-	 * @return
+	 * Calculates all weaving instructions. Each advice will be mapped to a corresponding weaving instruction.
+	 * 
+	 * @return all weaving instructions.
 	 */
 	private List<IWeavingInstruction> determineInstructions() {
 		List<IWeavingInstruction> instructions = new ArrayList<>();
@@ -187,15 +209,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			List<IWeavingLocation> locations = new ArrayList<>();
 			if (placementStrategy instanceof ExternalCallPlacementStrategyImpl) {
 				Signature sig = ((ExternalCallPlacementStrategyImpl) placementStrategy).getMatchingSignature();
-				// TODO find all occurences of signature sig in pcm
+				//find all occurences of signature sig in pcm
 
-				List<Connector> connectors = this.psm.getConnectorsBy(connector -> connector instanceof AssemblyConnector ? true
-						/*
-						 * ((AssemblyConnector)
-						 * connector).getProvidedRole_AssemblyConnector().
-						 * getProvidedInterface__OperationProvidedRole().
-						 * getSignatures__OperationInterface().contains(sig)
-						 */ : false);
+				List<Connector> connectors = this.psm.getConnectorsBy(connector -> connector instanceof AssemblyConnector ? true : false);
 
 				for (Connector connector : connectors) {
 					boolean match = ((AssemblyConnector) connector).getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()
@@ -207,7 +223,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 					}
 				}
 			} else if (placementStrategy instanceof InternalActionPlacementStrategyImpl) {
-				// TODO find all internal actions in component
+				//find all internal actions in component
 				RepositoryComponent component = ((InternalActionPlacementStrategyImpl) placementStrategy).getForAllInternalActionsIn();
 
 				List<AssemblyContext> contexts = this.psm.getAssemblyContextsInstantiating(component);
@@ -216,7 +232,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 					locations.add(new InternalActionWeavingLocation(component, assemblyContext));
 				}
 			} else if (placementStrategy instanceof ControlFlowPlacementStrategyImpl) {
-				// TODO find all control flows in component
+				//find all control flows in component
 				RepositoryComponent component = ((ControlFlowPlacementStrategyImpl) placementStrategy).getForAllControlFlowsIn();
 
 				List<AssemblyContext> contexts = this.psm.getAssemblyContextsInstantiating(component);
@@ -230,12 +246,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			// TODO anhand welchen CVs CompeltionComponents bestimmen??
 			ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
 
-			// Pair<CompletionComponent, List<ProvidedRole>> pair = new
-			// Pair<CompletionComponent, List<ProvidedRole>>(new
-			// FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, fc),
-			// new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv,
-			// fc));
-			// TODO create for current solution choice
+			//create for current solution choice
 			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
 					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations,
@@ -246,6 +257,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		return instructions;
 	}
 
+	/**
+	 * Applies weaving operations to the PCM submodels.
+	 */
 	@Override
 	public void weave() throws FCCWeaverException {
 		System.out.println("--------------- ExtensionWeavingStrategy.weave --------------");
@@ -298,7 +312,12 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		return this.fcComponent;
 	}
 
-	// For debug purpose
+	/**
+	 * Saves a PCM-instance to file. (Debug purpose only, as PCM-instance is not usable any longer after save operation!)
+	 * 
+	 * @param pcmInstance the PCM-instance to save.
+	 * @param filePath the file path.
+	 */
 	public static void savePcmInstanceToFile(PCMInstance pcmInstance, String filePath) {
 		ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(pcmInstance.getAllocation()), filePath + ".allocation");
 		List<Repository> repositories = pcmInstance.getRepositories();

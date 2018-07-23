@@ -7,9 +7,10 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
+ * Models an control flow weaving location; that is a component in which a fc will be added to all control flows. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class ControlFlowWeavingLocation implements IWeavingLocation {
 

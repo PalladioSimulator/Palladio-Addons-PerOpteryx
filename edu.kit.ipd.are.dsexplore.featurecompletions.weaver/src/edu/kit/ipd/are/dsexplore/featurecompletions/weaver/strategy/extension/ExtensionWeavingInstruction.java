@@ -14,9 +14,10 @@ import featureSolution.Advice;
 import featureSolution.InclusionMechanism;
 
 /**
+ * Models a extension weaving instruction. An extension weaving instruction contains of the advice to be applied at several weaving locations and the fc to be inserted.
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class ExtensionWeavingInstruction implements IWeavingInstruction {
 

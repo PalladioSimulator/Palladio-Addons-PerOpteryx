@@ -9,9 +9,10 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Signature;
 
 /**
+ * Models an external call weaving location; that is a signature/connector at which a fc will be added. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class ExternalCallWeavingLocation implements IWeavingLocation {
 	

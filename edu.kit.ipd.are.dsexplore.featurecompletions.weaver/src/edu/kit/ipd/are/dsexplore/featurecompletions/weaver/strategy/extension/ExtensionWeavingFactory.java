@@ -19,6 +19,7 @@ import featureSolution.impl.InternalActionPlacementStrategyImpl;
 
 
 /**
+ * Factory class for providing the proper (SEFF) weaving implementation depending on the placement strategy.
  * 
  * @author Maximilian Eckert (maxieckert@web.de)
  *
@@ -33,7 +34,7 @@ public class ExtensionWeavingFactory {
 	}
 
 	/**
-	 * Returns the proper subSEFFweaving-class based on the weaving location.
+	 * Returns the proper SEFFweaving-class based on the weaving location.
 	 *
 	 * @param placementStrategy
 	 *            - Contains the informations that are necessary to get the

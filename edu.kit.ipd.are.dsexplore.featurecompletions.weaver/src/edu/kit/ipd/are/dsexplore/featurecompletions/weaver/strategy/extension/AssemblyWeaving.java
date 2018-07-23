@@ -28,9 +28,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.Role
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandlerFactory;
 
 /**
+ * This class handles weaving of the PCM assembly/system model. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class AssemblyWeaving {
 	protected final IExtensionWeaving parent;
@@ -39,6 +40,15 @@ public class AssemblyWeaving {
 		this.parent = parent;
 	}
 	
+	/**
+	 * Applies the weaving operation on the assembly model. 
+	 * Firstly, all required fc components are determined, according to the fc meta-architecture.
+	 * Secondly, realizing components for each fcc are chosen, according to selected solution/CV.
+	 * Thirdly, in case of any required complementa, additional components are added.
+	 * Fourth, the components are assembled into the system and connected by assembly connectors.
+	 * 
+	 * @param instruction the weaving instruction to apply.
+	 */
 	public void weave(IWeavingInstruction instruction) {
 		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRoles().first;
 		ProvidedRole providedRole = instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution

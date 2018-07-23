@@ -15,9 +15,10 @@ import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
 /**
+ * This class handles weaving of the PCM repository model specifically for the internal action placement strategy. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
@@ -30,10 +31,12 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 		super(parent);
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ServiceEffectSpecificationWeaving#weave(edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingInstruction)
+	/**
+	 * Applies the weaving operation on the SEFF for the internal action placement strategy.
+	 * For this, the specified component will be searched for all internal actions and fc calls will be added according to the specified appearance.  
+	 * 
+	 * @param instruction the weaving instruction to apply.
 	 */
-	@Override
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
 
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();

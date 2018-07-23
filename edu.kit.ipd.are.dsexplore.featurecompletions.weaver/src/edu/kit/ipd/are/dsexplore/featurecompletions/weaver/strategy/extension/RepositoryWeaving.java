@@ -9,9 +9,10 @@ import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
 /**
+ * This class handles weaving of the PCM repository model. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class RepositoryWeaving {
 
@@ -22,7 +23,9 @@ public class RepositoryWeaving {
 	}
 
 	/**
-	 * @param instruction
+	 * Applies the weaving operation on the repository model. Required roles for fc calls are added as needed.
+	 * 
+	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
 		//add required role only if not yet existing

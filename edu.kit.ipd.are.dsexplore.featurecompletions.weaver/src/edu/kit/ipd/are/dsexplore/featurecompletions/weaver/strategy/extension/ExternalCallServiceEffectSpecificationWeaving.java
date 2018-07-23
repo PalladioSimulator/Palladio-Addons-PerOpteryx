@@ -21,9 +21,10 @@ import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 
 /**
+ * This class handles weaving of the PCM repository model specifically for the external call placement strategy. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
@@ -34,10 +35,12 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 		super(parent);
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ServiceEffectSpecificationWeaving#weave(edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingInstruction)
+	/**
+	 * Applies the weaving operation on the SEFF for the externa call placement strategy.
+	 * For this, all components will be searched for matching signatures/external calls and fc calls will be added according to the specified appearance.  
+	 * 
+	 * @param instruction the weaving instruction to apply.
 	 */
-	@Override
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {

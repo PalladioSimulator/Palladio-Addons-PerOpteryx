@@ -17,9 +17,10 @@ import org.palladiosimulator.pcm.seff.SeffFactory;
 import featureSolution.Appearance;
 
 /**
+ * This class handles weaving of the PCM abstract behavior description model (SEFF). 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public abstract class ServiceEffectSpecificationWeaving {
 
@@ -32,15 +33,19 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	/**
-	 * @param instruction
+	 * Applies weaving instruction on SEFF.
+	 * 
+	 * @param instruction the instruction to apply.
 	 */
 	public abstract void weave(IWeavingInstruction instruction);
 
 	/**
-	 * @param seff 
-	 * @param internalAction
-	 * @param appears
-	 * @param operationProvidedRole 
+	 * Adds a fc call to a SEFF at the specified position.
+	 * 
+	 * @param seff the SEFF.
+	 * @param internalAction the position at which the fc call will be added.
+	 * @param appears specifies whether the call will be added BEFORE, AFTER or AROUND the specified position
+	 * @param operationProvidedRole provided role of the fc call to add.
 	 */
 	protected void addFCCallTo(ResourceDemandingBehaviour seff, AbstractAction internalAction, Appearance appears, OperationProvidedRole operationProvidedRole) {	
 		AbstractAction predecessor = internalAction.getPredecessor_AbstractAction();
@@ -65,9 +70,11 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	/**
-	 * @param internalAction
-	 * @param operationInterface 
-	 * @return
+	 * Determines the fc required role of the component containing the specified internal action.
+	 * 
+	 * @param internalAction the internal action.
+	 * @param operationInterface inteface of the fc.
+	 * @return the fc required role.
 	 */
 	protected OperationRequiredRole getFcRequiredRole(AbstractAction internalAction, OperationInterface operationInterface) {
 		BasicComponent comp = null;
@@ -86,9 +93,11 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	/**
-	 * @param operationInterface
-	 * @param fcRequiredRole 
-	 * @return
+	 * Creates an external call action with the specified interface and required role.
+	 * 
+	 * @param operationInterface the interface of the external call.
+	 * @param fcRequiredRole the required role of the component.
+	 * @return an external call action with the specified interface and required role.
 	 */
 	ExternalCallAction createExternalCallAction(OperationInterface operationInterface, OperationRequiredRole fcRequiredRole) {
 			ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
@@ -102,10 +111,12 @@ public abstract class ServiceEffectSpecificationWeaving {
 		}
 
 	/**
-	 * @param predecessor
-	 * @param internalAction
-	 * @param externalCallAction
-	 * @param seff
+	 * Adds an external call action between two actions of a SEFF.
+	 * 
+	 * @param previous first action.
+	 * @param next second action.
+	 * @param externalCallAction external call action to add.
+	 * @param seff the seff.
 	 */
 	void addFCBetween(AbstractAction previous, AbstractAction next, ExternalCallAction externalCallAction, ResourceDemandingBehaviour seff) {
 		seff.getSteps_Behaviour().add(externalCallAction);

@@ -7,9 +7,10 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
+ * Models an internal action weaving location; that is a component in which a fc will be added to all internal actions. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class InternalActionWeavingLocation implements IWeavingLocation {
 

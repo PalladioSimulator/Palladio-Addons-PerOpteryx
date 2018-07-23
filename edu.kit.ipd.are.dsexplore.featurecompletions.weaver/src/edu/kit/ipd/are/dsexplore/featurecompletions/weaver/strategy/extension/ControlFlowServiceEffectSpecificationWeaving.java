@@ -21,9 +21,10 @@ import org.palladiosimulator.pcm.seff.StopAction;
 import featureSolution.Appearance;
 
 /**
+ * This class handles weaving of the PCM repository model specifically for the control flow placement strategy. 
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
@@ -34,10 +35,12 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 		super(parent);
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ServiceEffectSpecificationWeaving#weave(edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingInstruction)
+	/**
+	 * Applies the weaving operation on the SEFF for the control flow placement strategy.
+	 * For this, the specified component will be searched for all control flows and fc calls will be added within them according to the specified appearance.  
+	 * 
+	 * @param instruction the weaving instruction to apply.
 	 */
-	@Override
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {
