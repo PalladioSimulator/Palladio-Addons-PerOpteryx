@@ -66,7 +66,7 @@
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="Reliability Solver Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
@@ -84,7 +84,7 @@
 <stringAttribute key="crossover rate" value="0.5"/>
 <intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
-<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExample/simpleexample.designdecision"/>
+<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExampleAdapter/simpleexample.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
@@ -101,7 +101,7 @@
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="/Users/Schneider/Universität/Masterarbeit/Masterarbeit/Workspace/PerOpteryxPlus/InnerEclipse/SimpleBookingExampleAdapter/tmo"/>
+<stringAttribute key="lqnsOutputDir" value="D:\tmp"/>
 <stringAttribute key="lqsimOutputDir" value="C:\Users\Maxi\Workspace_Peropteryx\InnerEclipse\SimpleBookingExample\PerOpteryx_results"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
@@ -128,11 +128,11 @@
 <stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
+<stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExampleAdapter/default.profile.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExampleAdapter/perf_cost.qmldeclarations"/>
 <stringAttribute key="qmlcontracttypeFile" value=""/>
 <stringAttribute key="qualitymodelReductionFile" value=""/>
 <stringAttribute key="qualitymodelSystemFile" value=""/>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ASCII"?>
-<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_vjBzcI8dEeis9ZtcLSNYRQ">
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="7.0" from="1.75">
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_RfLb8I82Eei4R-S-EgPX0Q">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="200.0" from="50.0">
     <primaryChanged href="default.resourceenvironment#_g7HJEC6MEd-Jla2o7wkBzQ"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="8.0" from="2.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="300.0" from="75.0">
     <primaryChanged href="default.resourceenvironment#_h3wXgC6MEd-Jla2o7wkBzQ"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="6.0" from="1.5">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="400.0" from="100.0">
     <primaryChanged href="default.resourceenvironment#_vxqJwS6QEd-pNfzbJsur0g"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
@@ -41,7 +41,6 @@
   <degreesOfFreedom xsi:type="specific:FeatureCompletionDegree">
     <primaryChanged href="peropteryx/Logging.featurecompletion#_BQux0OQYEeeDc5WJsIYxgA"/>
     <classDesignOptions href="peropteryx/solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
-    <classDesignOptions href="peropteryx/solutions/Log4j2.repository#_xrUmkHueEeiQ2-JKBP-N_g"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AllocationDegree">
     <primaryChanged href="peropteryx/Logging.featurecompletion#_LinOEOTYEeeT85tFTnTIqQ"/>
