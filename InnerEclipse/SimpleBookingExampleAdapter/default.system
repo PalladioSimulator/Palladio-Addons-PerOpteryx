@@ -33,7 +33,6 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_VreA0C6MEd-Jla2o7wkBzQ">
       <extension href="../FeatureCompletionProfile/completion.emfprofile_diagram#_eXBxIBfiEeixnp8iZNZNhA"/>
       <solutionRepositories href="peropteryx/solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
-      <solutionRepositories href="peropteryx/solutions/Log4j2.repository#_xrUmkHueEeiQ2-JKBP-N_g"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_cIRFIC6MEd-Jla2o7wkBzQ">
       <extension href="../FeatureCompletionProfile/completion.emfprofile_diagram#_LNnQQBfiEeixnp8iZNZNhA"/>

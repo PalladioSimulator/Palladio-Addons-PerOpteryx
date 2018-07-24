@@ -84,7 +84,7 @@
 <stringAttribute key="crossover rate" value="0.5"/>
 <intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
-<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExample/simpleexample.designdecision"/>
+<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExampleAdapter/simpleexample.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
@@ -101,7 +101,7 @@
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="C:\Users\windows\Downloads\Dominik\runtime-New_configuration(1)\SimpleBookingExampleAdapter\tmp2"/>
+<stringAttribute key="lqnsOutputDir" value="D:\tmp"/>
 <stringAttribute key="lqsimOutputDir" value="C:\Users\Maxi\Workspace_Peropteryx\InnerEclipse\SimpleBookingExample\PerOpteryx_results"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
