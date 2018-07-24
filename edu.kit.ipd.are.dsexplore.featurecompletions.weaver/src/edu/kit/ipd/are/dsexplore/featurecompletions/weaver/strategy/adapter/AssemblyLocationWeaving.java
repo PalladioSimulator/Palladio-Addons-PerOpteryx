@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.CompositionFactory;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -43,6 +44,11 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 	private void replaceWithAssemblyConnectorsToAdapter(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {
 		this.createAssemblyConnectorFromAdapterToProvidedEndOf(assemblyConnectorToReplace);
 		this.createAssemblyConnectorFromRequiredEndToAdapter(assemblyConnectorToReplace);
+		// Added orphan assembly context
+		Connector orphan = CompositionFactory.eINSTANCE.createAssemblyConnector();
+		orphan.setId(assemblyConnectorToReplace.getId());
+		orphan.setEntityName("Zombee-" + assemblyConnectorToReplace.getEntityName());
+		this.addConnector(orphan);
 	}
 
 	private void createAssemblyConnectorFromAdapterToProvidedEndOf(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {
@@ -53,7 +59,7 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 
 		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, this.parent.getAdapterAssemblyContext(), providedAssemblyContext);
 		Connector newConnector = new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo);
-		newConnector.setId(assemblyConnectorToReplace.getId());
+		// newConnector.setId(assemblyConnectorToReplace.getId());
 		this.addConnector(newConnector);
 	}
 

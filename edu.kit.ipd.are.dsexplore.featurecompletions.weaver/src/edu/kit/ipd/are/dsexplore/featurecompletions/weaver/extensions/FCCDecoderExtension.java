@@ -54,7 +54,7 @@ public class FCCDecoderExtension implements IDecodeExtension {
 		if (weaver == null) {
 			return;
 		}
-		PCMInstance weaved = weaver.getWeavedInstance();
+		PCMInstance weaved = weaver.getWeavedInstance(pcm.get());
 		pcm.set(weaved);
 	}
 
