@@ -22,19 +22,12 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.Visnetum;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 public final class LocationExtractor {
 	public static List<WeavingLocation> extractLocation(Pair<String, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
 		AssemblyContext target = LocationExtractor.getAssemblyContext(pcm, connector.first);
-		if (target == null) {
-			// Zombee Connector
-			FCCModule.logger.debug("Zombee found: " + connector);
-			return new ArrayList<>();
-		}
 		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
 
 		switch (visnetum) {
@@ -123,11 +116,31 @@ public final class LocationExtractor {
 	}
 
 	private static boolean containsAffectedRole(Connector connector, Role affectedRole) {
-		for (EObject ref : connector.eCrossReferences()) {
-			if (FCCUtil.areEqual(ref, affectedRole)) {
+
+		if (connector instanceof AssemblyConnector) {
+			AssemblyConnector ac = (AssemblyConnector) connector;
+			if (ac.getProvidedRole_AssemblyConnector().getId().equals(affectedRole.getId())) {
+				return true;
+			}
+			if (ac.getRequiredRole_AssemblyConnector().getId().equals(affectedRole.getId())) {
 				return true;
 			}
 		}
+
+		if (connector instanceof ProvidedDelegationConnector) {
+			ProvidedDelegationConnector pdc = (ProvidedDelegationConnector) connector;
+			if (pdc.getInnerProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId())) {
+				return true;
+			}
+			if (pdc.getOuterProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId())) {
+				return true;
+			}
+		}
+		// for (EObject ref : connector.eCrossReferences()) {
+		// if (FCCUtil.areEqual(ref, affectedRole)) {
+		// return true;
+		// }
+		// }
 		return false;
 
 	}
