@@ -5,7 +5,6 @@
     <completionComponents id="_16UT0PwsEeeksIwNL6l_iA" name="Sensor">
       <perimeterProviding id="_WI57MPwtEeeksIwNL6l_iA" name="Logging">
         <featureProviding href="ids.featureobjective#_GAa0sfwtEeeksIwNL6l_iA"/>
-        <featureProviding href="ids.featureobjective#_s9nzsPwuEeeueJ0KPUiSsg"/>
       </perimeterProviding>
     </completionComponents>
     <completionComponents id="_4yDV8PwsEeeksIwNL6l_iA" name="Analyzer" requiredComponents="_16UT0PwsEeeksIwNL6l_iA"/>

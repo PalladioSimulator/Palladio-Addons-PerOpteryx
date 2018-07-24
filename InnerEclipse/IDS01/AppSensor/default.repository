@@ -1477,9 +1477,16 @@
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
       <realizes href="../concern/ids.featurecompletion#_16UT0PwsEeeksIwNL6l_iA"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_vCoUgNWBEeWS-LePWVyd9g">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_0FPKABfiEeixnp8iZNZNhA"/>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_VhkI0PRJEea6Vaei_-mjTQ">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqanYVEeirzP2CXhR6Fg"/>
       <fulfills href="../concern/ids.featurecompletion#_-QzLsvwuEeeueJ0KPUiSsg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_NfQg8NWAEeWS-LePWVyd9g">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_H9kdMNWEEeWS-LePWVyd9g">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
+      <realizes href="../concern/ids.featurecompletion#_16UT0PwsEeeksIwNL6l_iA"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
