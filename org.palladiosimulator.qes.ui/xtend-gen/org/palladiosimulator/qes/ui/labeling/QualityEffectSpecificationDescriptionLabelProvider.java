@@ -3,7 +3,6 @@
  */
 package org.palladiosimulator.qes.ui.labeling;
 
-import javax.annotation.Generated;
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
 
 /**
@@ -12,6 +11,5 @@ import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
 @SuppressWarnings("all")
-@Generated("org.eclipse.xtend.core.compiler.XtendGenerator")
 public class QualityEffectSpecificationDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
 }
