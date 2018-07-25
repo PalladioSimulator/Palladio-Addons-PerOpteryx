@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import org.eclipse.debug.internal.ui.views.memory.PropertyChangeNotifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -30,14 +29,14 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
 public final class LocationExtractor {
 	public static List<WeavingLocation> extractLocation(Pair<String, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
-		Connector connectorInstance = getConnector(pcm, connector.first);
+		Connector connectorInstance = LocationExtractor.getConnector(pcm, connector.first);
 		switch (visnetum) {
 		case INTERFACE:
-			return extractWeavingLocationFromInterface(connectorInstance, pcm);
+			return LocationExtractor.extractWeavingLocationFromInterface(connectorInstance, pcm);
 		case INTERFACE_PROVIDES:
-			return extractWeavingLocationsFromProvidedInterface(connectorInstance, pcm);
+			return LocationExtractor.extractWeavingLocationsFromProvidedInterface(connectorInstance, pcm);
 		case INTERFACE_REQUIRES:
-			return extractWeavingLocationsFromRequiredInterface(connectorInstance, pcm);
+			return LocationExtractor.extractWeavingLocationsFromRequiredInterface(connectorInstance, pcm);
 		default:
 			break;
 		}
@@ -46,63 +45,64 @@ public final class LocationExtractor {
 	}
 
 	private static List<WeavingLocation> extractWeavingLocationFromInterface(Connector conn, PCMInstance pcm) {
-		List<WeavingLocation> result = new ArrayList<WeavingLocation>();
-		result.addAll(extractWeavingLocationsFromProvidedInterface(conn, pcm));
-		result.addAll(extractWeavingLocationsFromRequiredInterface(conn, pcm));
-		
-		List<OperationSignature> osis = new ArrayList<OperationSignature>();
-		for (WeavingLocation wlocs : result)
+		List<WeavingLocation> result = new ArrayList<>();
+		result.addAll(LocationExtractor.extractWeavingLocationsFromProvidedInterface(conn, pcm));
+		result.addAll(LocationExtractor.extractWeavingLocationsFromRequiredInterface(conn, pcm));
+
+		List<OperationSignature> osis = new ArrayList<>();
+		for (WeavingLocation wlocs : result) {
 			osis.addAll(wlocs.getAffectedSignatures());
+		}
 		WeavingLocation merged = new WeavingLocation(osis, conn);
 		return Arrays.asList(merged);
 	}
 
 	private static List<WeavingLocation> extractWeavingLocationsFromProvidedInterface(Connector conn, PCMInstance pcm) {
-		if (conn instanceof AssemblyConnector)
-			return handleAssemblyConnectorProvidesSide((AssemblyConnector) conn, pcm);
-		if (conn instanceof ProvidedDelegationConnector)
-			return handleProvidedDelegationConnectorProvidesSide((ProvidedDelegationConnector) conn, pcm);
+		if (conn instanceof AssemblyConnector) {
+			return LocationExtractor.handleAssemblyConnectorProvidesSide((AssemblyConnector) conn, pcm);
+		}
+		if (conn instanceof ProvidedDelegationConnector) {
+			return LocationExtractor.handleProvidedDelegationConnectorProvidesSide((ProvidedDelegationConnector) conn, pcm);
+		}
 		throw new FCCWeaverException("Unknown Connector!");
 	}
 
 	private static List<WeavingLocation> extractWeavingLocationsFromRequiredInterface(Connector conn, PCMInstance pcm) {
-		if (conn instanceof AssemblyConnector)
-			return handleAssemblyConnectorRequiresSide((AssemblyConnector) conn, pcm);
-		if (conn instanceof ProvidedDelegationConnector)
-			return handleProvidedDelegationConnectorRequiresSide((ProvidedDelegationConnector) conn, pcm);
+		if (conn instanceof AssemblyConnector) {
+			return LocationExtractor.handleAssemblyConnectorRequiresSide((AssemblyConnector) conn, pcm);
+		}
+		if (conn instanceof ProvidedDelegationConnector) {
+			return LocationExtractor.handleProvidedDelegationConnectorRequiresSide((ProvidedDelegationConnector) conn, pcm);
+		}
 		throw new FCCWeaverException("Unknown Connector!");
 	}
 
-	private static List<WeavingLocation> handleProvidedDelegationConnectorRequiresSide(ProvidedDelegationConnector conn,
-			PCMInstance pcm) {
-		List<WeavingLocation> result = new ArrayList<WeavingLocation>();
+	private static List<WeavingLocation> handleProvidedDelegationConnectorRequiresSide(ProvidedDelegationConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
 
-		List<OperationSignature> osis = conn.getInnerProvidedRole_ProvidedDelegationConnector()
-				.getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+		List<OperationSignature> osis = conn.getInnerProvidedRole_ProvidedDelegationConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
 		result.add(new WeavingLocation(osis, conn));
 		return result;
 	}
 
-	private static List<WeavingLocation> handleProvidedDelegationConnectorProvidesSide(ProvidedDelegationConnector conn,
-			PCMInstance pcm) {
-		List<WeavingLocation> result = new ArrayList<WeavingLocation>();
+	private static List<WeavingLocation> handleProvidedDelegationConnectorProvidesSide(ProvidedDelegationConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
 
-		List<OperationSignature> osis = conn.getOuterProvidedRole_ProvidedDelegationConnector()
-				.getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+		List<OperationSignature> osis = conn.getOuterProvidedRole_ProvidedDelegationConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
 		result.add(new WeavingLocation(osis, conn));
 		return result;
 	}
 
 	private static List<WeavingLocation> handleAssemblyConnectorRequiresSide(AssemblyConnector conn, PCMInstance pcm) {
-		List<WeavingLocation> result = new ArrayList<WeavingLocation>();
-		
+		List<WeavingLocation> result = new ArrayList<>();
+
 		List<OperationSignature> osis = conn.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface();
 		result.add(new WeavingLocation(osis, conn));
 		return result;
 	}
 
 	private static List<WeavingLocation> handleAssemblyConnectorProvidesSide(AssemblyConnector conn, PCMInstance pcm) {
-		List<WeavingLocation> result = new ArrayList<WeavingLocation>();
+		List<WeavingLocation> result = new ArrayList<>();
 
 		List<OperationSignature> osis = conn.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
 		result.add(new WeavingLocation(osis, conn));
@@ -132,8 +132,7 @@ public final class LocationExtractor {
 			AssemblyContext target = ((AssemblyConnector) connector).getProvidingAssemblyContext_AssemblyConnector();
 			return target;
 		} else if (connector instanceof ProvidedDelegationConnector) {
-			AssemblyContext target = ((ProvidedDelegationConnector) connector)
-					.getAssemblyContext_ProvidedDelegationConnector();
+			AssemblyContext target = ((ProvidedDelegationConnector) connector).getAssemblyContext_ProvidedDelegationConnector();
 			return target;
 		}
 		return null;
@@ -160,8 +159,7 @@ public final class LocationExtractor {
 		return signatures;
 	}
 
-	private static List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos,
-			PCMInstance pcm) {
+	private static List<WeavingLocation> getWeavingLocationsFrom(List<JoinPointInfo> extractedJoinPointInfos, PCMInstance pcm) {
 		List<WeavingLocation> locations = new ArrayList<>();
 		for (JoinPointInfo info : extractedJoinPointInfos) {
 			List<WeavingLocation> locs = LocationExtractor.toWeavingLocations(info, pcm);
@@ -193,25 +191,34 @@ public final class LocationExtractor {
 
 	private static boolean containsAffectedRole(Connector connector, Role affectedRole) {
 
-//		if (connector instanceof AssemblyConnector) {
-//			AssemblyConnector ac = (AssemblyConnector) connector;
-//			if (ac.getProvidedRole_AssemblyConnector().getId().equals(affectedRole.getId())) {
-//				return true;
-//			}
-//			if (ac.getRequiredRole_AssemblyConnector().getId().equals(affectedRole.getId())) {
-//				return true;
-//			}
-//		}
-//
-//		if (connector instanceof ProvidedDelegationConnector) {
-//			ProvidedDelegationConnector pdc = (ProvidedDelegationConnector) connector;
-//			if (pdc.getInnerProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId())) {
-//				return true;
-//			}
-//			if (pdc.getOuterProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId())) {
-//				return true;
-//			}
-//		}
+		// if (connector instanceof AssemblyConnector) {
+		// AssemblyConnector ac = (AssemblyConnector) connector;
+		// if
+		// (ac.getProvidedRole_AssemblyConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// if
+		// (ac.getRequiredRole_AssemblyConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// }
+		//
+		// if (connector instanceof ProvidedDelegationConnector) {
+		// ProvidedDelegationConnector pdc = (ProvidedDelegationConnector)
+		// connector;
+		// if
+		// (pdc.getInnerProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// if
+		// (pdc.getOuterProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// }
 		for (EObject ref : connector.eCrossReferences()) {
 			if (FCCUtil.areEqual(ref, affectedRole)) {
 				return true;
@@ -238,8 +245,7 @@ public final class LocationExtractor {
 	}
 
 	private static List<OperationSignature> getAllSignaturesOfInterfaceReferencedBy(EObject object) {
-		return LocationExtractor.getSignaturesFrom(
-				(Interface) LocationExtractor.getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
+		return LocationExtractor.getSignaturesFrom((Interface) LocationExtractor.getCrossReferencedElementFrom(object, obj -> obj instanceof Interface));
 	}
 
 	private static List<JoinPointInfo> getInterfaceJoinPointInfosFrom(RepositoryComponent component) {
@@ -270,8 +276,10 @@ public final class LocationExtractor {
 		/**
 		 * The constructor.
 		 *
-		 * @param affectedRole       - The affected role.
-		 * @param affectedSignatures - The affected signatures.
+		 * @param affectedRole
+		 *            - The affected role.
+		 * @param affectedSignatures
+		 *            - The affected signatures.
 		 */
 		public JoinPointInfo(Role affectedRole, List<? extends OperationSignature> affectedSignatures) {
 			this.affectedRole = Optional.of(affectedRole);
@@ -282,8 +290,10 @@ public final class LocationExtractor {
 		/**
 		 * The constructor.
 		 *
-		 * @param affectedConnector  - The affected connector.
-		 * @param affectedSignatures - The affected signatures.
+		 * @param affectedConnector
+		 *            - The affected connector.
+		 * @param affectedSignatures
+		 *            - The affected signatures.
 		 */
 		public JoinPointInfo(Connector affectedConnector, List<? extends OperationSignature> affectedSignatures) {
 			this.affectedRole = Optional.empty();
