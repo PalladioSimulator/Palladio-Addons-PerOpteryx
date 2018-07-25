@@ -27,6 +27,7 @@ import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
@@ -79,6 +80,8 @@ public final class FCCWeaver {
 	private List<Choice> advicePlacementChoices;
 	//dof for multiple-flag in inclusion mechanism
 	private Choice multipleInclusionChoice;
+	//TODO dof for cv choice
+	private List<Choice> cvChoices;
 
 	private IWeavingStrategy strategy;
 
@@ -88,6 +91,7 @@ public final class FCCWeaver {
 		this.featureChoices = new ArrayList<>();
 		this.allocationChoices = new ArrayList<>();
 		this.advicePlacementChoices = new ArrayList<>();
+		this.cvChoices = new ArrayList<>();
 	}
 
 	public void grabChoices(List<Choice> notTransformedChoices) {
@@ -104,6 +108,9 @@ public final class FCCWeaver {
 				this.featureChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
 				this.addAllocationDegreeIfNeeded(c);
+			} else if (c.getDegreeOfFreedomInstance() instanceof ClassAsReferenceDegree  && c.getDegreeOfFreedomInstance().getEntityName().equals("cv")) {
+				//add dof for advice placements //TODO meta-model?
+				this.cvChoices.add(c);
 			}
 		}
 
@@ -117,6 +124,9 @@ public final class FCCWeaver {
 		}
 		for (Choice ac : this.advicePlacementChoices) {
 			notTransformedChoices.remove(ac);
+		}
+		for (Choice c : this.cvChoices) {
+			notTransformedChoices.remove(c);
 		}
 	}
 
@@ -141,7 +151,7 @@ public final class FCCWeaver {
 
 		List<Pair<ComplementumVisnetis, WeavingLocation>> locations = this.determineLocations(pcmToAdopt);
 		this.strategy = strategyContructor.create(pcmToAdopt, solution, this.fc, im);
-		this.strategy.initialize(locations, this.fccChoice, this.featureChoices, this.allocationChoices, this.multipleInclusionChoice, this.advicePlacementChoices);
+		this.strategy.initialize(locations, this.fccChoice, this.featureChoices, this.allocationChoices, this.multipleInclusionChoice, this.advicePlacementChoices, this.cvChoices);
 		this.strategy.weave();
 		return pcmToAdopt;
 	}

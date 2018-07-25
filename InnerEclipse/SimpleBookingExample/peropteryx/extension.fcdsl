@@ -1,7 +1,7 @@
 import "platform:/resource/SimpleBookingExample/default.repository"
 import "platform:/resource/SimpleBookingExample/peropteryx/Logging.featurecompletion"
 
-multiple ExtensionInclusion extensionIncl _ZZ {
+ExtensionInclusion extensionIncl _ZZ {
 	description bla
 	pointCut {
 		PointCut allPayCalls {

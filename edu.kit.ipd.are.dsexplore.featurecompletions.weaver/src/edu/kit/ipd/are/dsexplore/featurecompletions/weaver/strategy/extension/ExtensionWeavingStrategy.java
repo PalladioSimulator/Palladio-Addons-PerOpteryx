@@ -149,6 +149,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private Choice multipleInclusionChoice;
 	//choices for advice placements
 	private List<Choice> advicePlacementChoices;
+	//TODO choices for cv selection
+	private List<Choice> cvChoices;
 
 	/**
 	 * Initializes the extension weaving mechanism.
@@ -161,7 +163,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 * @param advicePlacementChoices advice placement (mandatory/optional) choices.
 	 */
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices, List<Choice> cvChoices) {
 		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
 
 		this.fccChoice = fccChoice;
@@ -172,9 +174,24 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		((FeatureChoice) this.multipleInclusionChoice).setPresent(((FeatureChoice) this.multipleInclusionChoice).isSelected());
 		
 		this.advicePlacementChoices = advicePlacementChoices;
+		
+		this.cvChoices = cvChoices;
+		//TODO set selected cv choices
+		this.setSelectedCVChoices();
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
+	}
+
+	/**
+	 * 
+	 */
+	private void setSelectedCVChoices() {
+		List<ComplementumVisnetis> cvs = cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
+		for (Advice advice : ((ExtensionInclusion) this.im).getAdvice()) {
+			advice.getCompletion().getFeatures().clear();
+			advice.getCompletion().getFeatures().addAll(cvs);
+		}
 	}
 
 	/**

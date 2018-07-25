@@ -214,7 +214,7 @@ public class FCCFeatureHandler {
 		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(ComplementumVisnetis.class);
 	}
 
-	private List<Pair<Entity, ComplementumVisnetis>> extractProvidedCVs() {
+	public List<Pair<Entity, ComplementumVisnetis>> extractProvidedCVs() {
 		List<Pair<Entity, ComplementumVisnetis>> result = new ArrayList<>();
 		Repository pcmRepo = this.solutionManager.getRepository();
 

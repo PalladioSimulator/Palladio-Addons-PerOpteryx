@@ -32,6 +32,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.AdvicePlacementDesignDecision;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.ComplementumVisnetisDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
@@ -121,7 +122,24 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.createMultipleInclusionDegree(degree, dds, initialCandidate);
 		//add dof for advice placement policy
 		this.createAdvicePlacementDegree(dds, initialCandidate, this.weaver.get().getSolutionRepositories());
+		//TODO add dof for cv selection
+		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, this.weaver.get().getSolutionRepositories());
 		return degree;
+	}
+
+	/**
+	 * @param degree
+	 * @param dds
+	 * @param degree
+	 * @param solutions 
+	 */
+	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
+		List<ClassChoice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, solutions).generateComplementumVisnetisDegrees();
+		
+		for (ClassChoice classChoice : complementumVisnetisDegrees) {
+			initialCandidate.add(classChoice);
+			dds.add(classChoice.getDegreeOfFreedomInstance());
+		}
 	}
 
 	/**
