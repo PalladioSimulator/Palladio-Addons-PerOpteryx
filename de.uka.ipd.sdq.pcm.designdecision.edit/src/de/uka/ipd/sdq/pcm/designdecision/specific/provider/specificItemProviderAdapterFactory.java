@@ -691,6 +691,75 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MultipleInclusionDegreeItemProvider multipleInclusionDegreeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMultipleInclusionDegreeAdapter() {
+		if (multipleInclusionDegreeItemProvider == null) {
+			multipleInclusionDegreeItemProvider = new MultipleInclusionDegreeItemProvider(this);
+		}
+
+		return multipleInclusionDegreeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdvicePlacementDegreeItemProvider advicePlacementDegreeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdvicePlacementDegreeAdapter() {
+		if (advicePlacementDegreeItemProvider == null) {
+			advicePlacementDegreeItemProvider = new AdvicePlacementDegreeItemProvider(this);
+		}
+
+		return advicePlacementDegreeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComplementumVisnetisDegreeItemProvider complementumVisnetisDegreeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComplementumVisnetisDegreeAdapter() {
+		if (complementumVisnetisDegreeItemProvider == null) {
+			complementumVisnetisDegreeItemProvider = new ComplementumVisnetisDegreeItemProvider(this);
+		}
+
+		return complementumVisnetisDegreeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -843,6 +912,12 @@ public class specificItemProviderAdapterFactory extends specificAdapterFactory i
 			featureCompletionDegreeItemProvider.dispose();
 		if (featureDegreeItemProvider != null)
 			featureDegreeItemProvider.dispose();
+		if (multipleInclusionDegreeItemProvider != null)
+			multipleInclusionDegreeItemProvider.dispose();
+		if (advicePlacementDegreeItemProvider != null)
+			advicePlacementDegreeItemProvider.dispose();
+		if (complementumVisnetisDegreeItemProvider != null)
+			complementumVisnetisDegreeItemProvider.dispose();
 	}
 
 }

@@ -257,6 +257,33 @@ public interface specificFactory extends EFactory {
 	FeatureDegree createFeatureDegree();
 
 	/**
+	 * Returns a new object of class '<em>Multiple Inclusion Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiple Inclusion Degree</em>'.
+	 * @generated
+	 */
+	MultipleInclusionDegree createMultipleInclusionDegree();
+
+	/**
+	 * Returns a new object of class '<em>Advice Placement Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Advice Placement Degree</em>'.
+	 * @generated
+	 */
+	AdvicePlacementDegree createAdvicePlacementDegree();
+
+	/**
+	 * Returns a new object of class '<em>Complementum Visnetis Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complementum Visnetis Degree</em>'.
+	 * @generated
+	 */
+	ComplementumVisnetisDegree createComplementumVisnetisDegree();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
