@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.pcm.allocation.Allocation;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.CompositionFactory;
@@ -69,6 +71,8 @@ public final class FCCWeaver {
 
 	private final Set<String> originalAssemblyContexts;
 
+	private final Set<String> originalAllocationContexts;
+
 	private final class ProvidedDelegationConnectorData {
 		final String operationInnerProvidedRoleId;
 		final String operationOuterRequiredRoleId;
@@ -94,8 +98,10 @@ public final class FCCWeaver {
 
 		private AssemblyConnectorData(AssemblyConnector ac) {
 			this.name = ac.getEntityName();
-			this.operationProvidedRoleInterfaceId = ac.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getId();
-			this.operationRequiredRoleInterfaceId = ac.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getId();
+			this.operationProvidedRoleInterfaceId = ac.getProvidedRole_AssemblyConnector()
+					.getProvidedInterface__OperationProvidedRole().getId();
+			this.operationRequiredRoleInterfaceId = ac.getRequiredRole_AssemblyConnector()
+					.getRequiredInterface__OperationRequiredRole().getId();
 			this.operationProvidedRoleId = ac.getProvidedRole_AssemblyConnector().getId();
 			this.operationRequiredRoleId = ac.getRequiredRole_AssemblyConnector().getId();
 			this.providedAssemblyContextId = ac.getProvidingAssemblyContext_AssemblyConnector().getId();
@@ -107,14 +113,24 @@ public final class FCCWeaver {
 	public FCCWeaver(MDSDBlackboard blackboard, List<Repository> solutions, CostRepository costModel) {
 		this.solutions = solutions;
 		this.blackboard = blackboard;
-		PCMResourceSetPartition inital = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
-		this.fc = this.determineFC(inital);
+		PCMResourceSetPartition initial = (PCMResourceSetPartition) blackboard
+				.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		this.fc = this.determineFC(initial);
 		// ConnectorID -> CV
-		this.availableCVs = this.extractAvailableCVs(inital.getSystem());
-		this.originalAssemblyConnectors = this.saveOriginalAssemblyConnectors(inital.getSystem());
-		this.originalProvidedDelegationConnectors = this.saveOriginalProvidedDelegationConnectors(inital.getSystem());
-		this.originalAssemblyContexts = this.saveOriginalAssemblyContexts(inital.getSystem());
+		this.availableCVs = this.extractAvailableCVs(initial.getSystem());
+		this.originalAssemblyConnectors = this.saveOriginalAssemblyConnectors(initial.getSystem());
+		this.originalProvidedDelegationConnectors = this.saveOriginalProvidedDelegationConnectors(initial.getSystem());
+		this.originalAssemblyContexts = this.saveOriginalAssemblyContexts(initial.getSystem());
 
+		this.originalAllocationContexts = this.saveOriginalAllocationContexts(initial.getAllocation());
+
+	}
+
+	private Set<String> saveOriginalAllocationContexts(Allocation allocation) {
+		Set<String> result = new HashSet<String>();
+		for (AllocationContext alloc : allocation.getAllocationContexts_Allocation())
+			result.add(alloc.getId());
+		return result;
 	}
 
 	private Set<String> saveOriginalAssemblyContexts(System system) {
@@ -131,10 +147,6 @@ public final class FCCWeaver {
 			if (!(c instanceof ProvidedDelegationConnector)) {
 				continue;
 			}
-			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class, "target");
-			if (cv.isEmpty()) {
-				continue;
-			}
 
 			ProvidedDelegationConnector pcd = (ProvidedDelegationConnector) c;
 			result.put(pcd.getId(), new ProvidedDelegationConnectorData(pcd));
@@ -148,10 +160,6 @@ public final class FCCWeaver {
 			if (!(c instanceof AssemblyConnector)) {
 				continue;
 			}
-			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class, "target");
-			if (cv.isEmpty()) {
-				continue;
-			}
 
 			AssemblyConnector ac = (AssemblyConnector) c;
 			result.put(ac.getId(), new AssemblyConnectorData(ac));
@@ -160,7 +168,8 @@ public final class FCCWeaver {
 	}
 
 	private FeatureCompletion determineFC(PCMResourceSetPartition initialPartition) {
-		List<FeatureCompletionRepository> fcrs = initialPartition.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
+		List<FeatureCompletionRepository> fcrs = initialPartition
+				.getElement(FeatureCompletionPackage.eINSTANCE.getFeatureCompletionRepository());
 		if (fcrs == null || fcrs.size() != 1) {
 			return null;
 		}
@@ -215,7 +224,8 @@ public final class FCCWeaver {
 	}
 
 	private boolean isAllocationDegreeWithFCC(DegreeOfFreedomInstance degreeOfFreedomInstance) {
-		return degreeOfFreedomInstance instanceof AllocationDegree && degreeOfFreedomInstance.getPrimaryChanged() instanceof CompletionComponent;
+		return degreeOfFreedomInstance instanceof AllocationDegree
+				&& degreeOfFreedomInstance.getPrimaryChanged() instanceof CompletionComponent;
 	}
 
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
@@ -259,6 +269,24 @@ public final class FCCWeaver {
 			}
 		}
 
+		List<Connector> copyConn = new ArrayList<>(pcmToAdopt.getSystem().getConnectors__ComposedStructure());
+		for (Connector c : copyConn) {
+			if (c instanceof AssemblyConnector)
+				if (!this.originalAssemblyConnectors.containsKey(c.getId())) {
+					pcmToAdopt.getSystem().getConnectors__ComposedStructure().remove(c);
+				}
+			if (c instanceof ProvidedDelegationConnector)
+				if (!this.originalProvidedDelegationConnectors.containsKey(c.getId())) {
+					pcmToAdopt.getSystem().getConnectors__ComposedStructure().remove(c);
+				}
+		}
+
+		List<AllocationContext> copyAllocs = new ArrayList<AllocationContext>(
+				pcmToAdopt.getAllocation().getAllocationContexts_Allocation());
+		for (AllocationContext allocs : copyAllocs) {
+			if (!this.originalAllocationContexts.contains(allocs.getId()))
+				pcmToAdopt.getAllocation().getAllocationContexts_Allocation().remove(allocs);
+		}
 	}
 
 	private void handleAssemblyConnector(AssemblyConnector c, PCMInstance pcmToAdopt) {
@@ -267,25 +295,35 @@ public final class FCCWeaver {
 		System system = pcmToAdopt.getSystem();
 
 		boolean original = true;
-		original = original && c.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getId().equals(acd.operationProvidedRoleInterfaceId);
-		original = original && c.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getId().equals(acd.operationRequiredRoleInterfaceId);
-		original = original && c.getProvidingAssemblyContext_AssemblyConnector().getId().equals(acd.providedAssemblyContextId);
-		original = original && c.getRequiringAssemblyContext_AssemblyConnector().getId().equals(acd.requiredAssemblyContextId);
+		original = original && c.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole()
+				.getId().equals(acd.operationProvidedRoleInterfaceId);
+		original = original && c.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole()
+				.getId().equals(acd.operationRequiredRoleInterfaceId);
+		original = original
+				&& c.getProvidingAssemblyContext_AssemblyConnector().getId().equals(acd.providedAssemblyContextId);
+		original = original
+				&& c.getRequiringAssemblyContext_AssemblyConnector().getId().equals(acd.requiredAssemblyContextId);
+		original = original && c.getEntityName().equals(acd.name);
 		if (original) {
 			return;
 		}
 
-		AssemblyConnector requiredEnd = (AssemblyConnector) FCCWeaver.getConnectorBy(system, currentId + "-requiredEnd");
+		AssemblyConnector requiredEnd = (AssemblyConnector) FCCWeaver.getConnectorBy(system,
+				currentId + "-requiredEnd");
 		system.getConnectors__ComposedStructure().remove(requiredEnd);
 		system.getConnectors__ComposedStructure().remove(c);
 
 		AssemblyConnector assemblyConnector = CompositionFactory.eINSTANCE.createAssemblyConnector();
 		assemblyConnector.setEntityName(acd.name);
 		assemblyConnector.setId(currentId);
-		assemblyConnector.setRequiredRole_AssemblyConnector(this.getRoleByRequiredInterfaceId(pcmToAdopt, acd.operationRequiredRoleInterfaceId, acd.operationRequiredRoleId));
-		assemblyConnector.setRequiringAssemblyContext_AssemblyConnector(this.getAssemblyContextById(system, acd.requiredAssemblyContextId));
-		assemblyConnector.setProvidedRole_AssemblyConnector(this.getRoleByProvidedInterfaceId(pcmToAdopt, acd.operationProvidedRoleInterfaceId, acd.operationProvidedRoleId));
-		assemblyConnector.setProvidingAssemblyContext_AssemblyConnector(this.getAssemblyContextById(system, acd.providedAssemblyContextId));
+		assemblyConnector.setRequiredRole_AssemblyConnector(this.getRoleByRequiredInterfaceId(pcmToAdopt,
+				acd.operationRequiredRoleInterfaceId, acd.operationRequiredRoleId));
+		assemblyConnector.setRequiringAssemblyContext_AssemblyConnector(
+				this.getAssemblyContextById(system, acd.requiredAssemblyContextId));
+		assemblyConnector.setProvidedRole_AssemblyConnector(this.getRoleByProvidedInterfaceId(pcmToAdopt,
+				acd.operationProvidedRoleInterfaceId, acd.operationProvidedRoleId));
+		assemblyConnector.setProvidingAssemblyContext_AssemblyConnector(
+				this.getAssemblyContextById(system, acd.providedAssemblyContextId));
 
 		system.getConnectors__ComposedStructure().add(assemblyConnector);
 
@@ -312,7 +350,8 @@ public final class FCCWeaver {
 		return null;
 	}
 
-	private OperationProvidedRole getRoleByProvidedInterfaceId(PCMInstance pcmInstance, String operationProvidedRoleInterfaceId, String operationProvidedRoleId) {
+	private OperationProvidedRole getRoleByProvidedInterfaceId(PCMInstance pcmInstance,
+			String operationProvidedRoleInterfaceId, String operationProvidedRoleId) {
 		OperationProvidedRole opr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
 		opr.setId(operationProvidedRoleId);
 		Interface opi = this.getInterfaceById(pcmInstance, operationProvidedRoleInterfaceId);
@@ -320,7 +359,8 @@ public final class FCCWeaver {
 		return opr;
 	}
 
-	private OperationRequiredRole getRoleByRequiredInterfaceId(PCMInstance pcmInstance, String operationRequiredRoleInterfaceId, String operationRequiredRoleId) {
+	private OperationRequiredRole getRoleByRequiredInterfaceId(PCMInstance pcmInstance,
+			String operationRequiredRoleInterfaceId, String operationRequiredRoleId) {
 		OperationRequiredRole orr = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
 		orr.setId(operationRequiredRoleId);
 		Interface opi = this.getInterfaceById(pcmInstance, operationRequiredRoleInterfaceId);
@@ -342,7 +382,8 @@ public final class FCCWeaver {
 
 		for (Pair<String, ComplementumVisnetis> connector : this.availableCVs) {
 			List<WeavingLocation> location = LocationExtractor.extractLocation(connector, original);
-			result.addAll(this.getPairs(Pair.of(FCCWeaver.getConnectorBy(pcmSystem, connector.first), connector.second), location));
+			result.addAll(this.getPairs(Pair.of(FCCWeaver.getConnectorBy(pcmSystem, connector.first), connector.second),
+					location));
 		}
 		return result;
 	}
@@ -356,7 +397,8 @@ public final class FCCWeaver {
 		return null;
 	}
 
-	private Collection<? extends Pair<ComplementumVisnetis, WeavingLocation>> getPairs(Pair<Connector, ComplementumVisnetis> connector, List<WeavingLocation> locations) {
+	private Collection<? extends Pair<ComplementumVisnetis, WeavingLocation>> getPairs(
+			Pair<Connector, ComplementumVisnetis> connector, List<WeavingLocation> locations) {
 		List<Pair<ComplementumVisnetis, WeavingLocation>> result = new ArrayList<>();
 		for (WeavingLocation location : locations) {
 			result.add(Pair.of(connector.second, location));
@@ -368,7 +410,8 @@ public final class FCCWeaver {
 		List<Pair<String, ComplementumVisnetis>> result = new ArrayList<>();
 
 		for (Connector c : pcmSystem.getConnectors__ComposedStructure()) {
-			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class, "target");
+			List<ComplementumVisnetis> cv = StereotypeAPIHelper.getViaStereoTypeFrom(c, ComplementumVisnetis.class,
+					"target");
 			if (cv.isEmpty()) {
 				continue;
 			}
@@ -385,7 +428,8 @@ public final class FCCWeaver {
 	private InclusionMechanism determineIM(List<Repository> solutions) {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {
-			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo, InclusionMechanism.class, "transformation");
+			List<InclusionMechanism> meachanisms = StereotypeAPIHelper.getViaStereoTypeFrom(repo,
+					InclusionMechanism.class, "transformation");
 			if (meachanisms.size() != 1) {
 				continue;
 			}
@@ -407,7 +451,8 @@ public final class FCCWeaver {
 	}
 
 	private PCMResourceSetPartition getCopyOfUnweavedPCMPartition() {
-		PCMResourceSetPartition original = (PCMResourceSetPartition) this.blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		PCMResourceSetPartition original = (PCMResourceSetPartition) this.blackboard
+				.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
 		PCMResourceSetPartition copy = new PCMResourceSetPartition();
 		ResourceSet copyResourceSet = copy.getResourceSet();
 		List<Resource> resourceList = original.getResourceSet().getResources();
