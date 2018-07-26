@@ -26,10 +26,13 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblemExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -98,17 +101,17 @@ public final class FCCWeaver {
 		for (Choice c : notTransformedChoices) {
 			if (c.getDegreeOfFreedomInstance() instanceof FeatureCompletionDegree) {
 				this.fccChoice = c;
-			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("multiple_inclusion")) {
+			} else if (c.getDegreeOfFreedomInstance() instanceof MultipleInclusionDegree) {
 				//add dof for multiple-flag in inclusion mechanism
 				this.multipleInclusionChoice = c;
-			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree && c.getDegreeOfFreedomInstance().getEntityName().equals("advice")) {
+			} else if (c.getDegreeOfFreedomInstance() instanceof AdvicePlacementDegree) {
 				//add dof for advice placements
 				this.advicePlacementChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
 				this.featureChoices.add(c);
 			} else if (c.getDegreeOfFreedomInstance() instanceof AllocationDegree) {
 				this.addAllocationDegreeIfNeeded(c);
-			} else if (c.getDegreeOfFreedomInstance() instanceof ClassAsReferenceDegree  && c.getDegreeOfFreedomInstance().getEntityName().equals("cv")) {
+			} else if (c.getDegreeOfFreedomInstance() instanceof ComplementumVisnetisDegree) {
 				//add dof for advice placements //TODO meta-model?
 				this.cvChoices.add(c);
 			}

@@ -20,6 +20,7 @@ import de.uka.ipd.sdq.dsexplore.facade.IProblemExtension;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pointer;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
@@ -28,6 +29,7 @@ import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
@@ -35,6 +37,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.Advice
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.ComplementumVisnetisDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.MultipleInclusionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import featureObjective.Feature;
 
@@ -119,7 +122,7 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
 		//add dof for multiple-flag in inclusion mechanism
-		this.createMultipleInclusionDegree(degree, dds, initialCandidate);
+		this.createMultipleInclusionDegree(degree, dds, initialCandidate, this.weaver.get().getSolutionRepositories());
 		//add dof for advice placement policy
 		this.createAdvicePlacementDegree(dds, initialCandidate, this.weaver.get().getSolutionRepositories());
 		//TODO add dof for cv selection
@@ -148,9 +151,9 @@ public class FCCProblemExtension implements IProblemExtension {
 	 * @param solutions 
 	 */
 	private void createAdvicePlacementDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<FeatureChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(solutions).generateAdvicePlacementDegrees();
+		List<BoolChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(solutions).generateAdvicePlacementDegrees();
 		
-		for (FeatureChoice featureChoice : advicePlacementDegrees) {
+		for (BoolChoice featureChoice : advicePlacementDegrees) {
 			initialCandidate.add(featureChoice);
 			dds.add(featureChoice.getDegreeOfFreedomInstance());
 		}
@@ -161,18 +164,12 @@ public class FCCProblemExtension implements IProblemExtension {
 	 * @param dds
 	 * @param initialCandidate 
 	 */
-	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
+	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
 		//add dof for multiple-flag in inclusion mechanism
-		FeatureDegree multipleInclusionDegree = specificFactory.eINSTANCE.createFeatureDegree();
+		BoolChoice choice = new MultipleInclusionDesignDecision(solutions).generateMultipleInclusionDegree();
 		
-		multipleInclusionDegree.setEntityName("multiple_inclusion");
-		multipleInclusionDegree.setPrimaryChanged(degree.getPrimaryChanged()); //TODO auf was setzen??
-			
-		FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
-		choice.setDegreeOfFreedomInstance(multipleInclusionDegree);
-		choice.setSelected(false);
 		initialCandidate.add(choice);
-		dds.add(multipleInclusionDegree);
+		dds.add(choice.getDegreeOfFreedomInstance());
 	}
 
 	private void createClassChoice(FeatureCompletionDegree fccDegree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {

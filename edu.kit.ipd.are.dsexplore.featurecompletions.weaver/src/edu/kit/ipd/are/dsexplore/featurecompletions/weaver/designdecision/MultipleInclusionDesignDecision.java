@@ -3,24 +3,19 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.palladiosimulator.pcm.repository.Repository;
 
-import FeatureCompletionModel.PlacementPolicy;
+import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
-import featureSolution.AdapterInclusion;
-import featureSolution.Advice;
-import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
 
 /**
@@ -28,38 +23,31 @@ import featureSolution.InclusionMechanism;
  * 
  *
  */
-public class AdvicePlacementDesignDecision {
+public class MultipleInclusionDesignDecision {
 
-	private final InclusionMechanism im;
-	
+	private InclusionMechanism im;
+
 	/**
-	 * 
+	 * @param solutions
 	 */
-	public AdvicePlacementDesignDecision(List<Repository> solutions) {
+	public MultipleInclusionDesignDecision(List<Repository> solutions) {
 		this.im = determineIM(solutions);
 	}
-	
-	//TODO meta model degree instead of using feature degree?
-	public List<BoolChoice> generateAdvicePlacementDegrees() {
-		List<BoolChoice> result = new ArrayList<>();
+
+	/**
+	 * @return
+	 */
+	public BoolChoice generateMultipleInclusionDegree() {
+		MultipleInclusionDegree multipleInclusionDegree = specificFactory.eINSTANCE.createMultipleInclusionDegree();
 		
-		if (im instanceof ExtensionInclusion) {
-			for (Advice advice : ((ExtensionInclusion) im).getAdvice()) {
-				AdvicePlacementDegree advicePlacementDegree = specificFactory.eINSTANCE.createAdvicePlacementDegree();
-				advicePlacementDegree.setEntityName("advice");
-				advicePlacementDegree.setPrimaryChanged(advice);
-				
-				BoolChoice choice = designdecisionFactory.eINSTANCE.createBoolChoice();
-				choice.setDegreeOfFreedomInstance(advicePlacementDegree);
-				choice.setChosenValue(false);
-				
-				if (advice.getPlacementPolicy() == PlacementPolicy.OBLIGATORY) { //only add degree if placement is obligatory
-					result.add(choice);
-				}
-			}
-		}
-		
-		return result;
+		multipleInclusionDegree.setEntityName("multiple_inclusion");
+		multipleInclusionDegree.setPrimaryChanged(im); //TODO auf was setzen??
+			
+		BoolChoice choice = designdecisionFactory.eINSTANCE.createBoolChoice();
+		choice.setChosenValue(false);
+		choice.setDegreeOfFreedomInstance(multipleInclusionDegree);
+
+		return choice;
 	}
 	
 	//TODO replication in FCCWeaver???

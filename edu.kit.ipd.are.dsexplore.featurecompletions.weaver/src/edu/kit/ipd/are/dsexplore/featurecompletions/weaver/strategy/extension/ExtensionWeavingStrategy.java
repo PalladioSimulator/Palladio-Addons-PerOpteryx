@@ -21,6 +21,7 @@ import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PlacementPolicy;
 
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 
@@ -169,9 +170,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		this.fccChoice = fccChoice;
 		
 		this.multipleInclusionChoice = multipleInclusionChoice;
-		//TODO present or active?
-		this.im.setMultiple(((FeatureChoice) this.multipleInclusionChoice).isSelected());
-		((FeatureChoice) this.multipleInclusionChoice).setPresent(((FeatureChoice) this.multipleInclusionChoice).isSelected());
+		this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
 		
 		this.advicePlacementChoices = advicePlacementChoices;
 		
@@ -200,12 +199,10 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 * @return selected advices that will be weaved.
 	 */
 	private List<Advice> getSelectedAdvices() {
-		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((FeatureChoice) choice).isSelected()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
+		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((BoolChoice) choice).isChosenValue()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
 		//add mandatory advices
 		selectedAdvices.addAll(((ExtensionInclusion) this.im).getAdvice().stream().filter(advice -> advice.getPlacementPolicy() == PlacementPolicy.MANDATORY).collect(Collectors.toList()));
-		
-		//TODO wo/wie setzen, present oder active?
-		advicePlacementChoices.stream().forEach(choice -> ((FeatureChoice) choice).setPresent(((FeatureChoice) choice).isSelected()));
+
 		return selectedAdvices;
 	}
 

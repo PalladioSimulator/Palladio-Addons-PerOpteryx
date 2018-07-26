@@ -7,29 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.pcm.repository.Repository;
 
-import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
-import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
-import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureObjective.Feature;
 import featureObjective.FeatureGroup;
-import featureObjective.impl.FeatureGroupImpl;
 import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
 
@@ -70,7 +63,7 @@ public class ComplementumVisnetisDesignDecision {
 		}
 		//add dof for each feature group
 		for (FeatureGroup featureGroup : featureGroups) {
-			ClassDegree cvDegree = specificFactory.eINSTANCE.createClassAsReferenceDegree();
+			ComplementumVisnetisDegree cvDegree = specificFactory.eINSTANCE.createComplementumVisnetisDegree();
 			cvDegree.setEntityName("cv");
 			cvDegree.setPrimaryChanged(featureGroup);
 			//TODO add only features that are supported by all solutions??
