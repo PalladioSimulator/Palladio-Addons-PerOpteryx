@@ -1,4 +1,5 @@
 //For{Component(Role(InfrastructureRequiredProvided) and Annotation("target"))}Do{NQA("Security"="+")}
 //For{Component(Role(InfrastructureRequiredProvided) and Annotation(not "target"))}Do{NQA("Security"="-")}
-For{Component(Assembly(AnyAssembly with Component(Role(InfrastructureRequiredProvided))) and Annotation("target"))}Do{NQA("Security"="+")}
-For{Component(Assembly(AnyAssembly with Component(Role(InfrastructureRequiredProvided))) and Annotation(not "target"))}Do{NQA("Security"="-")}
+//For{Component(Assembly(AnyAssembly with Component(Role(InfrastructureRequiredProvided))) and Annotation("target"))}Do{NQA("Security"="+")}
+//For{Component(Assembly(AnyAssembly with Component(Role(InfrastructureRequiredProvided))) and Annotation(not "target"))}Do{NQA("Security"="-")}
+For{Component(Name("AdminProxy") and Annotation("target"))}Do{NQA("Security"="0")}

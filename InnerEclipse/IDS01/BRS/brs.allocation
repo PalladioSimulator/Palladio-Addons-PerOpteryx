@@ -38,4 +38,8 @@
     <resourceContainer_AllocationContext href="brs.resourceenvironment#_L0Dy4dpAEdyxgfK4Hy_RFA"/>
     <assemblyContext_AllocationContext href="brs.system#_Gnz2UHqQEd6uqIqMUZizUw"/>
   </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_41r8kJDIEeiRa_U7UVT0UA" entityName="Allocation_AC_AdminProxy &lt;AdminProxy>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_8-cpgNo_EdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_gGuPEItPEeiLZrwYZak7Mw"/>
+  </allocationContexts_Allocation>
 </allocation:Allocation>
