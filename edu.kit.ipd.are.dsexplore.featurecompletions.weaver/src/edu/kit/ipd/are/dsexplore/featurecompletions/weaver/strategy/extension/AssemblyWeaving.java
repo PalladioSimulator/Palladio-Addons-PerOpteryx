@@ -22,6 +22,7 @@ import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandler;
@@ -50,6 +51,8 @@ public class AssemblyWeaving {
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
+		FCCModule.logger.debug("Assembly Extension Weaving");
+		
 		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRoles().first;
 		ProvidedRole providedRole = instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution
 		//1. determine all needed other feature completion components

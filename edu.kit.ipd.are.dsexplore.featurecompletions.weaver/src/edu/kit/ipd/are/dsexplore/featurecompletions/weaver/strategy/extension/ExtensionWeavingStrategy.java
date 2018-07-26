@@ -24,7 +24,7 @@ import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
-
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
@@ -165,7 +165,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices, List<Choice> cvChoices) {
-		System.out.println("--------------- ExtensionWeavingStrategy.initialize --------------");
+		FCCModule.logger.debug("Initializing Extension Weaving Strategy");
 
 		this.fccChoice = fccChoice;
 		
@@ -180,6 +180,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
+		
+		FCCModule.logger.debug("Initialized " + instructions.size() + " instructions with " + instructions.stream().flatMap(instr -> instr.getWeavingLocations().stream()).count() + " weaving locations");
 	}
 
 	/**
@@ -267,7 +269,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 					null/* TODO */, extensionIncl));
 		}
 
-		System.out.println("--------------- ExtensionWeavingStrategy.determineInstructions --------------");
+		FCCModule.logger.debug("Extension Weaving Strategy: Determine Weaving Locations");
 		return instructions;
 	}
 
@@ -276,7 +278,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	@Override
 	public void weave() throws FCCWeaverException {
-		System.out.println("--------------- ExtensionWeavingStrategy.weave --------------");
+		FCCModule.logger.debug("Extension Weaving Strategy: Start Weaving");
 
 		AllocationWeaving allocationWeaving = new AllocationWeaving(this);
 		AssemblyWeaving assemblyWeaving = new AssemblyWeaving(this);
@@ -295,7 +297,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		}
 
-		System.out.println("--------------- ExtensionWeavingStrategy.weave finished --------------");
+		FCCModule.logger.debug("Extension Weaving Strategy: Weaving Finished");
 		// TODO print pcm
 		//savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
 		// TODO print pcm

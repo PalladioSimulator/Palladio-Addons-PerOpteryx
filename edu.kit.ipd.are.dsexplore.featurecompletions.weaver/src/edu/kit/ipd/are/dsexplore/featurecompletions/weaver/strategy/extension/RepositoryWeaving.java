@@ -8,6 +8,8 @@ import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
+
 /**
  * This class handles weaving of the PCM repository model. 
  * 
@@ -28,6 +30,7 @@ public class RepositoryWeaving {
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
+		FCCModule.logger.debug("Repository Extension Weaving");
 		//add required role only if not yet existing
 		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedRole);

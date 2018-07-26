@@ -18,6 +18,7 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.StartAction;
 import org.palladiosimulator.pcm.seff.StopAction;
 
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import featureSolution.Appearance;
 
 /**
@@ -42,6 +43,8 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
+		FCCModule.logger.debug("Control Flow SEFF Extension Weaving");
+		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {
 			//This is ok, as we know we only have InternalActionWeavingLocations in this Strategy

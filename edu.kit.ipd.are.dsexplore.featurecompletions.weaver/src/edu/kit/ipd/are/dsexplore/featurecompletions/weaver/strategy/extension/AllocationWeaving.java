@@ -6,6 +6,7 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
 /**
@@ -32,6 +33,7 @@ public class AllocationWeaving {
 	 * @throws FCCWeaverException
 	 */
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
+		FCCModule.logger.debug("Allocation Extension Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation location : locations) {
