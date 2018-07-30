@@ -97,7 +97,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PlacementPolicy">
     <eLiterals name="MANDATORY"/>
-    <eLiterals name="OBLIGATORY" value="1"/>
-    <eLiterals name="PROHIBITED" value="2"/>
+    <eLiterals name="OPTIONAL" value="1"/>
   </eClassifiers>
 </ecore:EPackage>

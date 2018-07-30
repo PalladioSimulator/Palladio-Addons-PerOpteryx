@@ -723,8 +723,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 		initEEnum(placementPolicyEEnum, PlacementPolicy.class, "PlacementPolicy");
 		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.MANDATORY);
-		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OBLIGATORY);
-		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.PROHIBITED);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OPTIONAL);
 
 		// Create resource
 		createResource(eNS_URI);

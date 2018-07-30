@@ -29,24 +29,14 @@ public enum PlacementPolicy implements Enumerator {
 	MANDATORY(0, "MANDATORY", "MANDATORY"),
 
 	/**
-	 * The '<em><b>OBLIGATORY</b></em>' literal object.
+	 * The '<em><b>OPTIONAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OBLIGATORY_VALUE
+	 * @see #OPTIONAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OBLIGATORY(1, "OBLIGATORY", "OBLIGATORY"),
-
-	/**
-	 * The '<em><b>PROHIBITED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROHIBITED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROHIBITED(2, "PROHIBITED", "PROHIBITED");
+	OPTIONAL(1, "OPTIONAL", "OPTIONAL");
 
 	/**
 	 * The '<em><b>MANDATORY</b></em>' literal value.
@@ -64,34 +54,19 @@ public enum PlacementPolicy implements Enumerator {
 	public static final int MANDATORY_VALUE = 0;
 
 	/**
-	 * The '<em><b>OBLIGATORY</b></em>' literal value.
+	 * The '<em><b>OPTIONAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>OBLIGATORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>OPTIONAL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OBLIGATORY
+	 * @see #OPTIONAL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OBLIGATORY_VALUE = 1;
-
-	/**
-	 * The '<em><b>PROHIBITED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROHIBITED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROHIBITED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROHIBITED_VALUE = 2;
+	public static final int OPTIONAL_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Placement Policy</b></em>' enumerators.
@@ -102,8 +77,7 @@ public enum PlacementPolicy implements Enumerator {
 	private static final PlacementPolicy[] VALUES_ARRAY =
 		new PlacementPolicy[] {
 			MANDATORY,
-			OBLIGATORY,
-			PROHIBITED,
+			OPTIONAL,
 		};
 
 	/**
@@ -161,8 +135,7 @@ public enum PlacementPolicy implements Enumerator {
 	public static PlacementPolicy get(int value) {
 		switch (value) {
 			case MANDATORY_VALUE: return MANDATORY;
-			case OBLIGATORY_VALUE: return OBLIGATORY;
-			case PROHIBITED_VALUE: return PROHIBITED;
+			case OPTIONAL_VALUE: return OPTIONAL;
 		}
 		return null;
 	}

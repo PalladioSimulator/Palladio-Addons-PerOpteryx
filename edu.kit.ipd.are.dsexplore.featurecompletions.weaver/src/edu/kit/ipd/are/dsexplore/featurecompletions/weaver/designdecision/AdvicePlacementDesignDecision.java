@@ -53,7 +53,7 @@ public class AdvicePlacementDesignDecision {
 				choice.setDegreeOfFreedomInstance(advicePlacementDegree);
 				choice.setChosenValue(false);
 				
-				if (advice.getPlacementPolicy() == PlacementPolicy.OBLIGATORY) { //only add degree if placement is obligatory
+				if (advice.getPlacementPolicy() == PlacementPolicy.OPTIONAL) { //only add degree if placement is obligatory
 					result.add(choice);
 				}
 			}
