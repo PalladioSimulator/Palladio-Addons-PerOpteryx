@@ -12,11 +12,14 @@ import org.palladiosimulator.pcm.repository.Repository;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
@@ -52,26 +55,24 @@ public class ComplementumVisnetisDesignDecision {
 	/**
 	 * @return
 	 */
-	public List<ClassChoice> generateComplementumVisnetisDegrees() {
-		List<ClassChoice> result = new ArrayList<ClassChoice>();
+	public List<Choice> generateComplementumVisnetisDegrees() {
+		List<Choice> result = new ArrayList<>();
 		
-//		List<FeatureGroup> featureGroups = new ArrayList<FeatureGroup>();
-//
-//		for (Feature feature : features) {
-//			if (feature.eContainer() instanceof FeatureGroup) {
-//				featureGroups.add((FeatureGroup) feature.eContainer());
-//			}
-//		}
 		//add dof for each feature group
 		for (FeatureList featureList : featureLists) {
+			//TODO handle optional cvs
+			if (containsOptionalCVs(featureList)) {
+				result.addAll(createOptionalCVChoice(featureList));
+				continue;
+			}
+			
 			ComplementumVisnetisDegree cvDegree = specificFactory.eINSTANCE.createComplementumVisnetisDegree();
 			cvDegree.setEntityName("cv");
 			cvDegree.setPrimaryChanged(featureList);
 			//TODO add only features that are supported by all solutions??
 			for (ComplementumVisnetis cv : featureList.getFeatures()) {
-				//if (featureSupportedByAllSolutions(feature)) {
-					cvDegree.getClassDesignOptions().add(cv);
-				//}
+				cvDegree.getClassDesignOptions().add(cv);
+
 			}
 			
 			
@@ -82,6 +83,30 @@ public class ComplementumVisnetisDesignDecision {
 			result.add(choice);
 		}
 		
+		return result;
+	}
+	
+	/**
+	 * @param featureList
+	 * @return
+	 */
+	private boolean containsOptionalCVs(FeatureList featureList) {
+		return featureList.getFeatures().stream().anyMatch(cv -> cv.getComplementaryFeature().getSimpleOptional() != null);
+	}
+
+	public List<FeatureChoice> createOptionalCVChoice(FeatureList featureList) {
+		List<FeatureChoice> result = new ArrayList<>();
+		for (ComplementumVisnetis cv : featureList.getFeatures()) {
+			FeatureDegree optionalCVDegree = specificFactory.eINSTANCE.createFeatureDegree();
+			optionalCVDegree.setEntityName("optional_cv");
+			optionalCVDegree.setPrimaryChanged(cv);
+			
+			FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
+			choice.setDegreeOfFreedomInstance(optionalCVDegree);
+			choice.setSelected(false);
+			
+			result.add(choice);
+		}
 		return result;
 	}
 	

@@ -154,6 +154,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<Choice> cvChoices;
 	
 	private List<ComplementumVisnetis> selectedCVs;
+	private List<Choice> optionalFeatureChoices;
 
 	/**
 	 * Initializes the extension weaving mechanism.
@@ -177,8 +178,11 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		this.advicePlacementChoices = advicePlacementChoices;
 		
 		this.cvChoices = cvChoices;
+		this.optionalFeatureChoices = featureChoices;
 		//TODO set selected cv choices
 		this.setSelectedCVs();
+		
+		
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
@@ -191,7 +195,12 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	private void setSelectedCVs() {
 		this.selectedCVs = cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
-		
+		for (Choice choice : this.optionalFeatureChoices) {
+			if (((FeatureChoice) choice).isSelected()) {
+				selectedCVs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
+				((FeatureChoice) choice).setPresent(true);
+			}
+		}
 	}
 
 	/**

@@ -29,6 +29,7 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassAsReferenceDegree;
@@ -125,11 +126,12 @@ public final class FCCWeaver {
 		//TODO check if choices are consistent/valid (selected cvs are supported by selected solution
 		boolean solutionChoiceValid = checkSolutionChoiceValid();
 		if (!solutionChoiceValid) {
-			//TODO this is a dirty fix
+			//TODO this is a dirty fix, what if no valid solutions exists??
 			List<EObject> solutions = ((FeatureCompletionDegree) fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
 			fccChoice.setValue(solutions.get(new Random().nextInt(solutions.size())));
 			grabChoices(notTransformedChoices);
 		}
+		
 
 		notTransformedChoices.remove(this.fccChoice);
 		notTransformedChoices.remove(this.multipleInclusionChoice);
@@ -153,6 +155,12 @@ public final class FCCWeaver {
 	private boolean checkSolutionChoiceValid() {
 		Repository solution = (Repository) this.fccChoice.getValue();
 		List<ComplementumVisnetis> cvs = this.cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
+		//add optional cvs if selected
+		for (Choice choice : featureChoices) {
+			if (((FeatureChoice) choice).isSelected()) {
+				cvs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
+			}
+		}
 		
 		FCCFeatureHandler featureHandler = new FCCFeatureHandler(new SolutionManager(solution));
 		List<ComplementumVisnetis> supportedCVs = featureHandler.extractProvidedCVs().stream().map(pair -> pair.second).collect(Collectors.toList());

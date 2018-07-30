@@ -23,6 +23,7 @@
         <featureProviding href="Logging.featureobjective#_R3VmcOGhEeemVJ0YF1ddSA"/>
         <featureProviding href="Logging.featureobjective#__mtHseGgEeemVJ0YF1ddSA"/>
         <featureProviding href="Logging.featureobjective#_TY-YUOGhEeemVJ0YF1ddSA"/>
+        <featureProviding href="Logging.featureobjective#_muAD0JNMEei8wsTJtgXi_w"/>
       </perimeterProviding>
       <perimeterRequiring id="_fhZGIeTXEeeT85tFTnTIqQ"/>
     </completionComponents>
@@ -52,5 +53,8 @@
     </complementa>
     <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
     <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_CPxWwpNNEei8wsTJtgXi_w" name="AdvancedFiltering">
+      <complementaryFeature href="Logging.featureobjective#_muAD0JNMEei8wsTJtgXi_w"/>
+    </complementa>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>

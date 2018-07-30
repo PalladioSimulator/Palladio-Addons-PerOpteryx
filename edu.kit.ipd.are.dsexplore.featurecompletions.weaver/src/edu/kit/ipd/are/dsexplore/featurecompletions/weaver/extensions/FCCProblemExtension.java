@@ -137,11 +137,11 @@ public class FCCProblemExtension implements IProblemExtension {
 	 * @param solutions 
 	 */
 	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<ClassChoice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, solutions).generateComplementumVisnetisDegrees();
+		List<Choice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, solutions).generateComplementumVisnetisDegrees();
 		
-		for (ClassChoice classChoice : complementumVisnetisDegrees) {
-			initialCandidate.add(classChoice);
-			dds.add(classChoice.getDegreeOfFreedomInstance());
+		for (Choice choice : complementumVisnetisDegrees) {
+			initialCandidate.add(choice);
+			dds.add(choice.getDegreeOfFreedomInstance());
 		}
 	}
 
