@@ -112,6 +112,15 @@ public interface FeatureSolutionFactory extends EFactory {
 	FeatureSelection createFeatureSelection();
 
 	/**
+	 * Returns a new object of class '<em>Feature List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature List</em>'.
+	 * @generated
+	 */
+	FeatureList createFeatureList();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

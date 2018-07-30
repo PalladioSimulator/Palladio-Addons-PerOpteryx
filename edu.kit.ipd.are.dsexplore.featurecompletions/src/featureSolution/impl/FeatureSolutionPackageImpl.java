@@ -16,6 +16,7 @@ import featureSolution.ControlFlow;
 import featureSolution.ControlFlowPlacementStrategy;
 import featureSolution.ExtensionInclusion;
 import featureSolution.ExternalCallPlacementStrategy;
+import featureSolution.FeatureList;
 import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
@@ -120,6 +121,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EClass featureSelectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureListEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -455,8 +463,26 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureSelection_Features() {
+	public EReference getFeatureSelection_FeatureLists() {
 		return (EReference)featureSelectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFeatureList() {
+		return featureListEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureList_Features() {
+		return (EReference)featureListEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -542,7 +568,10 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		featureSelectionEClass = createEClass(FEATURE_SELECTION);
 		createEReference(featureSelectionEClass, FEATURE_SELECTION__COMPLETION);
-		createEReference(featureSelectionEClass, FEATURE_SELECTION__FEATURES);
+		createEReference(featureSelectionEClass, FEATURE_SELECTION__FEATURE_LISTS);
+
+		featureListEClass = createEClass(FEATURE_LIST);
+		createEReference(featureListEClass, FEATURE_LIST__FEATURES);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
@@ -630,7 +659,10 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		initEClass(featureSelectionEClass, FeatureSelection.class, "FeatureSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureSelection_Completion(), theFeatureCompletionPackage.getFeatureCompletion(), null, "Completion", null, 1, 1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureSelection_Features(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "Features", null, 1, -1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureSelection_FeatureLists(), this.getFeatureList(), null, "featureLists", null, 1, -1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(featureListEClass, FeatureList.class, "FeatureList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureList_Features(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "features", null, 1, -1, FeatureList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");

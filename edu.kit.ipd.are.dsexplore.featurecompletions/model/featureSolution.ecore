@@ -59,7 +59,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureSelection" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" lowerBound="1"
         eType="ecore:EClass featureCompletions.ecore#//FeatureCompletion"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Features" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureLists" lowerBound="1"
+        upperBound="-1" eType="#//FeatureList" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
         upperBound="-1" eType="ecore:EClass featureCompletions.ecore#//ComplementumVisnetis"/>
   </eClassifiers>
 </ecore:EPackage>

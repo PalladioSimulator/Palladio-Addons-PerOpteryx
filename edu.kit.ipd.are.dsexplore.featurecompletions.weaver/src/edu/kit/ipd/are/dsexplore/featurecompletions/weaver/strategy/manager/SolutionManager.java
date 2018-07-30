@@ -89,7 +89,7 @@ public final class SolutionManager {
 	}
 
 	// TODO new for extension
-	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(CompletionComponent perimeterProvidingFCC, List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
 		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (CompletionComponent completionComponent : fccs) {
 			List<RepositoryComponent> realizingComponents = new ArrayList<>();
@@ -103,11 +103,12 @@ public final class SolutionManager {
 					realizingComponents.add(rcs);
 				}
 			}
-			if (realizingComponents.size() != 1) {
-				RepositoryComponent component = SolutionManager.getComponentFullfillingCV(realizingComponents, cvs);
-				affectedComponents.add(component);
+			if (completionComponent == perimeterProvidingFCC && realizingComponents.size() == 1) {
+				//this is the realizing component for the perimeter provided FCC -> no further filtering necessary
+				affectedComponents.add(realizingComponents.get(0));
 			} else {
-				affectedComponents.addAll(realizingComponents);
+				RepositoryComponent component = this.getComponentFullfillingCV(realizingComponents, cvs);
+				affectedComponents.add(component);
 			}
 		}
 		if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
@@ -118,7 +119,7 @@ public final class SolutionManager {
 	}
 
 	// TODO new for extension
-	public static RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
+	public RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
 
 			// Visnetum at component
@@ -133,12 +134,13 @@ public final class SolutionManager {
 					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumVisnetis.class).stream()).collect(Collectors.toList());
 			// TODO verschiedene targets betrachten -> component, interface,
 			// signature
-			if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) || SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
+			if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) 
+					|| SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
 					|| SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
 				return repositoryComponent;
 			}
 		}
-		throw new WeavingException("no realizing component for completion components found or ambigous components found");
+		throw new WeavingException("no realizing component for a cv in " + cvs.stream().map(cv -> cv.getName()).reduce((s1,s2) -> s1 + "," + s2).get() + " found or ambigous components found in solution repo " + this.solution.getEntityName());
 	}
 
 	private static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {

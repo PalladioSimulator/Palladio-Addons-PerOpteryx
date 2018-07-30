@@ -24,6 +24,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.Solu
 import featureObjective.Feature;
 import featureObjective.FeatureGroup;
 import featureSolution.ExtensionInclusion;
+import featureSolution.FeatureList;
 import featureSolution.InclusionMechanism;
 
 /**
@@ -35,7 +36,7 @@ public class ComplementumVisnetisDesignDecision {
 
 	private FeatureCompletion fc;
 	private List<Repository> solutions;
-	private List<Feature> features;
+	private List<FeatureList> featureLists;
 
 	/**
 	 * @param degree
@@ -45,7 +46,7 @@ public class ComplementumVisnetisDesignDecision {
 		this.fc = (FeatureCompletion) degree.getPrimaryChanged();
 		this.solutions = solutions;
 		//TODO von welchem Advice Features/CV holen?
-		this.features = ((ExtensionInclusion) determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatures().stream().map(cv -> cv.getComplementaryFeature()).collect(Collectors.toList());
+		this.featureLists = ((ExtensionInclusion) determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
 	}
 
 	/**
@@ -54,23 +55,23 @@ public class ComplementumVisnetisDesignDecision {
 	public List<ClassChoice> generateComplementumVisnetisDegrees() {
 		List<ClassChoice> result = new ArrayList<ClassChoice>();
 		
-		List<FeatureGroup> featureGroups = new ArrayList<FeatureGroup>();
-
-		for (Feature feature : features) {
-			if (feature.eContainer() instanceof FeatureGroup) {
-				featureGroups.add((FeatureGroup) feature.eContainer());
-			}
-		}
+//		List<FeatureGroup> featureGroups = new ArrayList<FeatureGroup>();
+//
+//		for (Feature feature : features) {
+//			if (feature.eContainer() instanceof FeatureGroup) {
+//				featureGroups.add((FeatureGroup) feature.eContainer());
+//			}
+//		}
 		//add dof for each feature group
-		for (FeatureGroup featureGroup : featureGroups) {
+		for (FeatureList featureList : featureLists) {
 			ComplementumVisnetisDegree cvDegree = specificFactory.eINSTANCE.createComplementumVisnetisDegree();
 			cvDegree.setEntityName("cv");
-			cvDegree.setPrimaryChanged(featureGroup);
+			cvDegree.setPrimaryChanged(featureList);
 			//TODO add only features that are supported by all solutions??
-			for (Feature feature : featureGroup.getChildren()) {
-				if (featureSupportedByAllSolutions(feature)) {
-					cvDegree.getClassDesignOptions().add(cvProvidingFeature(feature));
-				}
+			for (ComplementumVisnetis cv : featureList.getFeatures()) {
+				//if (featureSupportedByAllSolutions(feature)) {
+					cvDegree.getClassDesignOptions().add(cv);
+				//}
 			}
 			
 			

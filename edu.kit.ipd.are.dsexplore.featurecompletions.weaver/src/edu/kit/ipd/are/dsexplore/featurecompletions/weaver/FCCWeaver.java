@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,6 +42,8 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
 import featureSolution.InclusionMechanism;
 
@@ -116,6 +121,15 @@ public final class FCCWeaver {
 				this.cvChoices.add(c);
 			}
 		}
+		
+		//TODO check if choices are consistent/valid (selected cvs are supported by selected solution
+		boolean solutionChoiceValid = checkSolutionChoiceValid();
+		if (!solutionChoiceValid) {
+			//TODO this is a dirty fix
+			List<EObject> solutions = ((FeatureCompletionDegree) fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
+			fccChoice.setValue(solutions.get(new Random().nextInt(solutions.size())));
+			grabChoices(notTransformedChoices);
+		}
 
 		notTransformedChoices.remove(this.fccChoice);
 		notTransformedChoices.remove(this.multipleInclusionChoice);
@@ -131,6 +145,21 @@ public final class FCCWeaver {
 		for (Choice c : this.cvChoices) {
 			notTransformedChoices.remove(c);
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	private boolean checkSolutionChoiceValid() {
+		Repository solution = (Repository) this.fccChoice.getValue();
+		List<ComplementumVisnetis> cvs = this.cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
+		
+		FCCFeatureHandler featureHandler = new FCCFeatureHandler(new SolutionManager(solution));
+		List<ComplementumVisnetis> supportedCVs = featureHandler.extractProvidedCVs().stream().map(pair -> pair.second).collect(Collectors.toList());
+		
+		boolean valid = cvs.stream().allMatch(cv -> supportedCVs.stream().anyMatch(supportedCV -> supportedCV.getId().equals(cv.getId())));
+		java.lang.System.out.println("------------ checkChoicesValid: " + valid + " -----------");
+		return valid;
 	}
 
 	private void addAllocationDegreeIfNeeded(Choice ac) {

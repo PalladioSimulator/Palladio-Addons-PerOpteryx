@@ -302,6 +302,29 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.FeatureList} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureListItemProvider featureListItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.FeatureList}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureListAdapter() {
+		if (featureListItemProvider == null) {
+			featureListItemProvider = new FeatureListItemProvider(this);
+		}
+
+		return featureListItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -410,6 +433,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 		if (adviceItemProvider != null) adviceItemProvider.dispose();
 		if (importItemProvider != null) importItemProvider.dispose();
 		if (featureSelectionItemProvider != null) featureSelectionItemProvider.dispose();
+		if (featureListItemProvider != null) featureListItemProvider.dispose();
 	}
 
 }

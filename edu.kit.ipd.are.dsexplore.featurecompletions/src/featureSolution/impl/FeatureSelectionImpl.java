@@ -2,22 +2,24 @@
  */
 package featureSolution.impl;
 
-import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
 
+import featureSolution.FeatureList;
 import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionPackage;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
 
 /**
@@ -29,7 +31,7 @@ import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
  * </p>
  * <ul>
  *   <li>{@link featureSolution.impl.FeatureSelectionImpl#getCompletion <em>Completion</em>}</li>
- *   <li>{@link featureSolution.impl.FeatureSelectionImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link featureSolution.impl.FeatureSelectionImpl#getFeatureLists <em>Feature Lists</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,14 +48,14 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 	protected FeatureCompletion completion;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+	 * The cached value of the '{@link #getFeatureLists() <em>Feature Lists</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeatures()
+	 * @see #getFeatureLists()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplementumVisnetis> features;
+	protected EList<FeatureList> featureLists;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,11 +119,25 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplementumVisnetis> getFeatures() {
-		if (features == null) {
-			features = new EObjectResolvingEList<ComplementumVisnetis>(ComplementumVisnetis.class, this, FeatureSolutionPackage.FEATURE_SELECTION__FEATURES);
+	public EList<FeatureList> getFeatureLists() {
+		if (featureLists == null) {
+			featureLists = new EObjectContainmentEList<FeatureList>(FeatureList.class, this, FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS);
 		}
-		return features;
+		return featureLists;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				return ((InternalEList<?>)getFeatureLists()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -135,8 +151,8 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 			case FeatureSolutionPackage.FEATURE_SELECTION__COMPLETION:
 				if (resolve) return getCompletion();
 				return basicGetCompletion();
-			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURES:
-				return getFeatures();
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				return getFeatureLists();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,9 +169,9 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 			case FeatureSolutionPackage.FEATURE_SELECTION__COMPLETION:
 				setCompletion((FeatureCompletion)newValue);
 				return;
-			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURES:
-				getFeatures().clear();
-				getFeatures().addAll((Collection<? extends ComplementumVisnetis>)newValue);
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				getFeatureLists().clear();
+				getFeatureLists().addAll((Collection<? extends FeatureList>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,8 +188,8 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 			case FeatureSolutionPackage.FEATURE_SELECTION__COMPLETION:
 				setCompletion((FeatureCompletion)null);
 				return;
-			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURES:
-				getFeatures().clear();
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				getFeatureLists().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -189,8 +205,8 @@ public class FeatureSelectionImpl extends NamedElementImpl implements FeatureSel
 		switch (featureID) {
 			case FeatureSolutionPackage.FEATURE_SELECTION__COMPLETION:
 				return completion != null;
-			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURES:
-				return features != null && !features.isEmpty();
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				return featureLists != null && !featureLists.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

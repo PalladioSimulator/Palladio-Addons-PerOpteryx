@@ -5,7 +5,6 @@ package featureSolution.provider;
 
 import FeatureCompletionModel.provider.FeatureCompletionsEditPlugin;
 
-import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionPackage;
 
 import java.util.Collection;
@@ -17,24 +16,35 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link featureSolution.FeatureSelection} object.
+ * This is the item provider adapter for a {@link featureSolution.FeatureList} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureSelectionItemProvider extends NamedElementItemProvider {
+public class FeatureListItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FeatureSelectionItemProvider(AdapterFactory adapterFactory) {
+	public FeatureListItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,26 +59,25 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCompletionPropertyDescriptor(object);
-			addFeatureListsPropertyDescriptor(object);
+			addFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Completion feature.
+	 * This adds a property descriptor for the Features feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCompletionPropertyDescriptor(Object object) {
+	protected void addFeaturesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FeatureSelection_Completion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSelection_Completion_feature", "_UI_FeatureSelection_type"),
-				 FeatureSolutionPackage.Literals.FEATURE_SELECTION__COMPLETION,
+				 getString("_UI_FeatureList_features_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureList_features_feature", "_UI_FeatureList_type"),
+				 FeatureSolutionPackage.Literals.FEATURE_LIST__FEATURES,
 				 true,
 				 false,
 				 true,
@@ -78,36 +87,14 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature Lists feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFeatureListsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FeatureSelection_featureLists_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSelection_featureLists_feature", "_UI_FeatureSelection_type"),
-				 FeatureSolutionPackage.Literals.FEATURE_SELECTION__FEATURE_LISTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns FeatureSelection.gif.
+	 * This returns FeatureList.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureSelection"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureList"));
 	}
 
 	/**
@@ -118,10 +105,7 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureSelection)object).getEntityName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FeatureSelection_type") :
-			getString("_UI_FeatureSelection_type") + " " + label;
+		return getString("_UI_FeatureList_type");
 	}
 	
 

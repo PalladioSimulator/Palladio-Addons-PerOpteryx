@@ -152,6 +152,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<Choice> advicePlacementChoices;
 	//TODO choices for cv selection
 	private List<Choice> cvChoices;
+	
+	private List<ComplementumVisnetis> selectedCVs;
 
 	/**
 	 * Initializes the extension weaving mechanism.
@@ -176,7 +178,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		
 		this.cvChoices = cvChoices;
 		//TODO set selected cv choices
-		this.setSelectedCVChoices();
+		this.setSelectedCVs();
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
@@ -187,12 +189,9 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	/**
 	 * 
 	 */
-	private void setSelectedCVChoices() {
-		List<ComplementumVisnetis> cvs = cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
-		for (Advice advice : ((ExtensionInclusion) this.im).getAdvice()) {
-			advice.getCompletion().getFeatures().clear();
-			advice.getCompletion().getFeatures().addAll(cvs);
-		}
+	private void setSelectedCVs() {
+		this.selectedCVs = cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
+		
 	}
 
 	/**
@@ -260,7 +259,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
 
 			// TODO anhand welchen CVs CompeltionComponents bestimmen??
-			ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
+			//ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
+			ComplementumVisnetis cv = selectedCVs.get(0);
 
 			//create for current solution choice
 			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
@@ -370,6 +370,14 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	public List<Choice> getConvertedFCCClassChoices() {
 		// TODO implement
 		return new ArrayList<>();
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IExtensionWeaving#getSelectedCVs()
+	 */
+	@Override
+	public List<ComplementumVisnetis> getSelectedCVs() {
+		return this.selectedCVs;
 	}
 
 }

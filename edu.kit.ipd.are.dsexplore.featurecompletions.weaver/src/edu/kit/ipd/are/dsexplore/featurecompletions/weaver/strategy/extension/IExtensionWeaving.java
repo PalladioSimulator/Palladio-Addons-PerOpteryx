@@ -1,9 +1,12 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
+import java.util.List;
+
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
@@ -39,4 +42,8 @@ interface IExtensionWeaving {
 	PcmSystemManager getPCMSystemManager();
 
 	PcmUsageModelManager getPCMUsageModelManager();
+	/**
+	 * @return
+	 */
+	List<ComplementumVisnetis> getSelectedCVs();
 }

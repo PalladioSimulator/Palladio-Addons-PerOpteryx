@@ -521,13 +521,13 @@ public interface FeatureSolutionPackage extends EPackage {
 	int FEATURE_SELECTION__COMPLETION = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * The feature id for the '<em><b>Feature Lists</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_SELECTION__FEATURES = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int FEATURE_SELECTION__FEATURE_LISTS = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Feature Selection</em>' class.
@@ -539,6 +539,34 @@ public interface FeatureSolutionPackage extends EPackage {
 	int FEATURE_SELECTION_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link featureSolution.impl.FeatureListImpl <em>Feature List</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see featureSolution.impl.FeatureListImpl
+	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getFeatureList()
+	 * @generated
+	 */
+	int FEATURE_LIST = 11;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LIST__FEATURES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Feature List</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LIST_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -546,7 +574,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getAppearance()
 	 * @generated
 	 */
-	int APPEARANCE = 11;
+	int APPEARANCE = 12;
 
 
 	/**
@@ -557,7 +585,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getControlFlow()
 	 * @generated
 	 */
-	int CONTROL_FLOW = 12;
+	int CONTROL_FLOW = 13;
 
 
 	/**
@@ -847,15 +875,36 @@ public interface FeatureSolutionPackage extends EPackage {
 	EReference getFeatureSelection_Completion();
 
 	/**
-	 * Returns the meta object for the reference list '{@link featureSolution.FeatureSelection#getFeatures <em>Features</em>}'.
+	 * Returns the meta object for the containment reference list '{@link featureSolution.FeatureSelection#getFeatureLists <em>Feature Lists</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Features</em>'.
-	 * @see featureSolution.FeatureSelection#getFeatures()
+	 * @return the meta object for the containment reference list '<em>Feature Lists</em>'.
+	 * @see featureSolution.FeatureSelection#getFeatureLists()
 	 * @see #getFeatureSelection()
 	 * @generated
 	 */
-	EReference getFeatureSelection_Features();
+	EReference getFeatureSelection_FeatureLists();
+
+	/**
+	 * Returns the meta object for class '{@link featureSolution.FeatureList <em>Feature List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature List</em>'.
+	 * @see featureSolution.FeatureList
+	 * @generated
+	 */
+	EClass getFeatureList();
+
+	/**
+	 * Returns the meta object for the reference list '{@link featureSolution.FeatureList#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Features</em>'.
+	 * @see featureSolution.FeatureList#getFeatures()
+	 * @see #getFeatureList()
+	 * @generated
+	 */
+	EReference getFeatureList_Features();
 
 	/**
 	 * Returns the meta object for enum '{@link featureSolution.Appearance <em>Appearance</em>}'.
@@ -1138,12 +1187,30 @@ public interface FeatureSolutionPackage extends EPackage {
 		EReference FEATURE_SELECTION__COMPLETION = eINSTANCE.getFeatureSelection_Completion();
 
 		/**
+		 * The meta object literal for the '<em><b>Feature Lists</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_SELECTION__FEATURE_LISTS = eINSTANCE.getFeatureSelection_FeatureLists();
+
+		/**
+		 * The meta object literal for the '{@link featureSolution.impl.FeatureListImpl <em>Feature List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see featureSolution.impl.FeatureListImpl
+		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getFeatureList()
+		 * @generated
+		 */
+		EClass FEATURE_LIST = eINSTANCE.getFeatureList();
+
+		/**
 		 * The meta object literal for the '<em><b>Features</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE_SELECTION__FEATURES = eINSTANCE.getFeatureSelection_Features();
+		EReference FEATURE_LIST__FEATURES = eINSTANCE.getFeatureList_Features();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
