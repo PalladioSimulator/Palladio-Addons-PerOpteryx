@@ -23,27 +23,20 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.Visnetum;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 public final class LocationExtractor {
 	public static List<WeavingLocation> extractLocation(Pair<String, ComplementumVisnetis> connector, PCMInstance pcm) {
 		Visnetum visnetum = connector.second.getVisnetum();
-		AssemblyContext target = LocationExtractor.getAssemblyContext(pcm, connector.first);
-		if (target == null) {
-			// Zombee Connector
-			FCCModule.logger.debug("Zombee found: " + connector);
-			return new ArrayList<>();
-		}
-		RepositoryComponent component = target.getEncapsulatedComponent__AssemblyContext();
-
+		Connector connectorInstance = LocationExtractor.getConnector(pcm, connector.first);
 		switch (visnetum) {
 		case INTERFACE:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getInterfaceJoinPointInfosFrom(component), pcm);
+			return LocationExtractor.extractWeavingLocationFromInterface(connectorInstance, pcm);
 		case INTERFACE_PROVIDES:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getProvidedInterfaceJoinPointInfosFrom(component), pcm);
+			return LocationExtractor.extractWeavingLocationsFromProvidedInterface(connectorInstance, pcm);
 		case INTERFACE_REQUIRES:
-			return LocationExtractor.getWeavingLocationsFrom(LocationExtractor.getRequiredInterfaceJoinPointInfosFrom(component), pcm);
+			return LocationExtractor.extractWeavingLocationsFromRequiredInterface(connectorInstance, pcm);
 		default:
 			break;
 		}
@@ -51,10 +44,84 @@ public final class LocationExtractor {
 		throw new Error("Unidentified Visnetum " + visnetum);
 	}
 
+	private static List<WeavingLocation> extractWeavingLocationFromInterface(Connector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
+		result.addAll(LocationExtractor.extractWeavingLocationsFromProvidedInterface(conn, pcm));
+		result.addAll(LocationExtractor.extractWeavingLocationsFromRequiredInterface(conn, pcm));
+
+		List<OperationSignature> osis = new ArrayList<>();
+		for (WeavingLocation wlocs : result) {
+			osis.addAll(wlocs.getAffectedSignatures());
+		}
+		WeavingLocation merged = new WeavingLocation(osis, conn);
+		return Arrays.asList(merged);
+	}
+
+	private static List<WeavingLocation> extractWeavingLocationsFromProvidedInterface(Connector conn, PCMInstance pcm) {
+		if (conn instanceof AssemblyConnector) {
+			return LocationExtractor.handleAssemblyConnectorProvidesSide((AssemblyConnector) conn, pcm);
+		}
+		if (conn instanceof ProvidedDelegationConnector) {
+			return LocationExtractor.handleProvidedDelegationConnectorProvidesSide((ProvidedDelegationConnector) conn, pcm);
+		}
+		throw new FCCWeaverException("Unknown Connector!");
+	}
+
+	private static List<WeavingLocation> extractWeavingLocationsFromRequiredInterface(Connector conn, PCMInstance pcm) {
+		if (conn instanceof AssemblyConnector) {
+			return LocationExtractor.handleAssemblyConnectorRequiresSide((AssemblyConnector) conn, pcm);
+		}
+		if (conn instanceof ProvidedDelegationConnector) {
+			return LocationExtractor.handleProvidedDelegationConnectorRequiresSide((ProvidedDelegationConnector) conn, pcm);
+		}
+		throw new FCCWeaverException("Unknown Connector!");
+	}
+
+	private static List<WeavingLocation> handleProvidedDelegationConnectorRequiresSide(ProvidedDelegationConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
+
+		List<OperationSignature> osis = conn.getInnerProvidedRole_ProvidedDelegationConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+		result.add(new WeavingLocation(osis, conn));
+		return result;
+	}
+
+	private static List<WeavingLocation> handleProvidedDelegationConnectorProvidesSide(ProvidedDelegationConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
+
+		List<OperationSignature> osis = conn.getOuterProvidedRole_ProvidedDelegationConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+		result.add(new WeavingLocation(osis, conn));
+		return result;
+	}
+
+	private static List<WeavingLocation> handleAssemblyConnectorRequiresSide(AssemblyConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
+
+		List<OperationSignature> osis = conn.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface();
+		result.add(new WeavingLocation(osis, conn));
+		return result;
+	}
+
+	private static List<WeavingLocation> handleAssemblyConnectorProvidesSide(AssemblyConnector conn, PCMInstance pcm) {
+		List<WeavingLocation> result = new ArrayList<>();
+
+		List<OperationSignature> osis = conn.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
+		result.add(new WeavingLocation(osis, conn));
+		return result;
+	}
+
 	private static AssemblyContext getAssemblyContext(PCMInstance pcm, String connectorID) {
 		for (Connector connector : pcm.getSystem().getConnectors__ComposedStructure()) {
 			if (connector.getId().equals(connectorID)) {
 				return LocationExtractor.getAssemblyContext(connector);
+			}
+		}
+		return null;
+	}
+
+	private static Connector getConnector(PCMInstance pcm, String connectorID) {
+		for (Connector connector : pcm.getSystem().getConnectors__ComposedStructure()) {
+			if (connector.getId().equals(connectorID)) {
+				return connector;
 			}
 		}
 		return null;
@@ -123,6 +190,35 @@ public final class LocationExtractor {
 	}
 
 	private static boolean containsAffectedRole(Connector connector, Role affectedRole) {
+
+		// if (connector instanceof AssemblyConnector) {
+		// AssemblyConnector ac = (AssemblyConnector) connector;
+		// if
+		// (ac.getProvidedRole_AssemblyConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// if
+		// (ac.getRequiredRole_AssemblyConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// }
+		//
+		// if (connector instanceof ProvidedDelegationConnector) {
+		// ProvidedDelegationConnector pdc = (ProvidedDelegationConnector)
+		// connector;
+		// if
+		// (pdc.getInnerProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// if
+		// (pdc.getOuterProvidedRole_ProvidedDelegationConnector().getId().equals(affectedRole.getId()))
+		// {
+		// return true;
+		// }
+		// }
 		for (EObject ref : connector.eCrossReferences()) {
 			if (FCCUtil.areEqual(ref, affectedRole)) {
 				return true;

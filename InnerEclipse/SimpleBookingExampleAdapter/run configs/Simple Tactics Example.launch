@@ -19,9 +19,6 @@
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
 <intAttribute key="Iterations without new Pareto optimal candidates" value="1"/>
-<booleanAttribute key="LINEDebug" value="true"/>
-<stringAttribute key="LINEOutputDir" value="D:\Projects\src\eclipse-palladio"/>
-<stringAttribute key="LINEPropFile" value="D:\Projects\src\eclipse-palladioLINE.properties"/>
 <booleanAttribute key="LQNS Stop On Message Loss" value="true"/>
 <booleanAttribute key="LQSIM Stop On Message Loss" value="true"/>
 <intAttribute key="Maximum Number Of Generations" value="1"/>
@@ -40,7 +37,7 @@
 <stringAttribute key="Processing rate threshold for high utilisation" value="0.8"/>
 <stringAttribute key="Reallocation threshold for utilisation difference" value="0.5"/>
 <booleanAttribute key="Run in comparision mode" value="false"/>
-<stringAttribute key="SREOutputDir" value="D:\Projects\src\eclipse-palladio"/>
+<stringAttribute key="SREOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
 <booleanAttribute key="SREUseInputModel" value="false"/>
 <stringAttribute key="Server consolidation threshold for low utilisation" value="0.3"/>
 <stringAttribute key="Server expansion maximum number of reallocations" value="1"/>
@@ -62,11 +59,11 @@
 <stringAttribute key="Weight of server expansion heuristic" value="0.5"/>
 <stringAttribute key="accuracyQualityAnnotationFile" value=""/>
 <stringAttribute key="allCandidates" value=""/>
-<stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
+<stringAttribute key="allocationFile" value="platform:/resource/SimpleBookingExample/default.allocation"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value=""/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value=""/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value=""/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
 <stringAttribute key="blocks" value=""/>
@@ -80,14 +77,14 @@
 <stringAttribute key="confidenceModelElementURI" value=""/>
 <booleanAttribute key="confidenceUseAutomaticBatches" value="true"/>
 <stringAttribute key="convValue" value="0.001"/>
-<stringAttribute key="costFile" value="platform:/resource/SimplePerOpteryx/peropteryx/costmodel.cost"/>
+<stringAttribute key="costFile" value="platform:/resource/Simple Tactics Example/default.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
-<intAttribute key="datasourceID" value="0"/>
+<intAttribute key="datasourceID" value="2"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
-<stringAttribute key="designDecisionFile" value="design.designdecision"/>
+<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExample/simpleexample.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
-<stringAttribute key="experimentRun" value="MyRun"/>
+<stringAttribute key="experimentRun" value="Simple Tactics Example"/>
 <stringAttribute key="featureConfig" value="pathmap://PCM_MODELS/ConnectorConfig.featureconfig"/>
 <stringAttribute key="fixedSeed0" value="0"/>
 <stringAttribute key="fixedSeed1" value="1"/>
@@ -95,14 +92,14 @@
 <stringAttribute key="fixedSeed3" value="3"/>
 <stringAttribute key="fixedSeed4" value="4"/>
 <stringAttribute key="fixedSeed5" value="5"/>
-<stringAttribute key="indivPerGeneration" value="5"/>
+<stringAttribute key="indivPerGeneration" value="3"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="D:/tmp/lqns"/>
-<stringAttribute key="lqsimOutputDir" value="D:\Projects\src\eclipse-palladio"/>
+<stringAttribute key="lqnsOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
+<stringAttribute key="lqsimOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
 <stringAttribute key="markovModelFile" value=""/>
@@ -111,36 +108,32 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="2"/>
+<stringAttribute key="maxIterations" value="3"/>
 <stringAttribute key="maximum" value=""/>
-<stringAttribute key="maximumMeasurementCount" value="10000"/>
+<stringAttribute key="maximumMeasurementCount" value="1000"/>
 <stringAttribute key="minimum" value=""/>
+<stringAttribute key="mwRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
 <stringAttribute key="number of DSE iterations" value=""/>
 <intAttribute key="numberOfEvaluatedSystemStates" value="1"/>
 <booleanAttribute key="numberOfEvaluatedSystemStatesEnabled" value="false"/>
 <intAttribute key="numberOfExactDecimalPlaces" value="1"/>
 <booleanAttribute key="numberOfExactDecimalPlacesEnabled" value="false"/>
 <booleanAttribute key="optimisationOnly" value="false"/>
-<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
-<stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
+<stringAttribute key="outpath" value="de.uka.ipd.sdq.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
 <stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimplePerOpteryx/peropteryx/qmldeclarations_perf.qmldeclarations"/>
-<stringAttribute key="qmlcontracttypeFile" value=""/>
-<stringAttribute key="qualitymodelReductionFile" value=""/>
-<stringAttribute key="qualitymodelSystemFile" value=""/>
-<booleanAttribute key="reliability.simulateFailures" value="false"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/default.profile.qmldeclarations"/>
 <stringAttribute key="rmiRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
 <stringAttribute key="runTime" value=""/>
 <stringAttribute key="samplingDist" value="1.0"/>
 <stringAttribute key="saveFileDefault" value=""/>
 <booleanAttribute key="saveResultsToFileEnabled" value="false"/>
 <stringAttribute key="search method" value="Evolutionary search"/>
-<stringAttribute key="simTime" value="150000"/>
+<stringAttribute key="simTime" value="1500000000"/>
 <booleanAttribute key="simulateAccuracy" value="false"/>
 <booleanAttribute key="simulateFailures" value="false"/>
 <booleanAttribute key="simulateLinkingResources" value="false"/>
@@ -152,10 +145,10 @@
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
 <stringAttribute key="stepwidth" value=""/>
 <booleanAttribute key="store results as CSV" value="true"/>
-<booleanAttribute key="store results as EMF" value="false"/>
+<booleanAttribute key="store results as EMF" value="true"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
-<stringAttribute key="usageFile" value="platform:/resource/SimplePerOpteryx/palladio/usage.usagemodel"/>
+<stringAttribute key="usageFile" value="platform:/resource/SimpleBookingExample/default.usagemodel"/>
 <booleanAttribute key="useConfidenceStopCondition" value="false"/>
 <booleanAttribute key="useFixedSeed" value="false"/>
 <stringAttribute key="variable" value=""/>
