@@ -260,6 +260,10 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRY3YVEeirzP2CXhR6Fg"/>
       <requires href="../Logging.featurecompletion#_RVapIOZXEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_JKkMoOfNEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_CPxWwpNNEei8wsTJtgXi_w"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

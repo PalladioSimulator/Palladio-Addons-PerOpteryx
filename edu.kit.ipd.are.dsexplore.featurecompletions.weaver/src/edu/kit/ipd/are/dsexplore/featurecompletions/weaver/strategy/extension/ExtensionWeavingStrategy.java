@@ -8,10 +8,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Signature;
+import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.EMFHelper;
 
@@ -238,8 +241,11 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 				List<Connector> connectors = this.psm.getConnectorsBy(connector -> connector instanceof AssemblyConnector ? true : false);
 
 				for (Connector connector : connectors) {
-					boolean match = ((AssemblyConnector) connector).getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()
-							.anyMatch(signature -> signature.getId().equals(sig.getId()));
+					
+					//TODO alle Komp-SEFFs nach ExternalCalls mit entsprechender Sig durchsuchen!!
+					RepositoryComponent comp = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
+					boolean match = ((BasicComponent) comp).getServiceEffectSpecifications__BasicComponent().stream().anyMatch(seff -> ((ResourceDemandingBehaviour) seff).getSteps_Behaviour().stream().anyMatch(action -> action instanceof ExternalCallAction && ((ExternalCallAction) action).getCalledService_ExternalService().getId().equals(sig.getId())));
+					//
 					if (match) {
 						AssemblyContext affectedContext = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector();
 						RepositoryComponent affectedComponent = affectedContext.getEncapsulatedComponent__AssemblyContext();
