@@ -1071,7 +1071,14 @@
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_vhKHIYsrEeiLZrwYZak7Mw" describedService__SEFF="_HVO6AaSLEd-ujcVHnT0lvg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_vhKHIosrEeiLZrwYZak7Mw" entityName="start" successor_AbstractAction="_StWvIIssEeiLZrwYZak7Mw"/>
       <steps_Behaviour xsi:type="seff:StopAction" id="_vhKuMIsrEeiLZrwYZak7Mw" entityName="stop" predecessor_AbstractAction="_StWvIIssEeiLZrwYZak7Mw"/>
-      <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_StWvIIssEeiLZrwYZak7Mw" predecessor_AbstractAction="_vhKHIosrEeiLZrwYZak7Mw" successor_AbstractAction="_vhKuMIsrEeiLZrwYZak7Mw" calledService_ExternalService="_HVO6AaSLEd-ujcVHnT0lvg" role_ExternalService="_tr7D0IsrEeiLZrwYZak7Mw"/>
+      <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_StWvIIssEeiLZrwYZak7Mw" predecessor_AbstractAction="_vhKHIosrEeiLZrwYZak7Mw" successor_AbstractAction="_vhKuMIsrEeiLZrwYZak7Mw" calledService_ExternalService="_HVO6AaSLEd-ujcVHnT0lvg" role_ExternalService="_tr7D0IsrEeiLZrwYZak7Mw">
+        <inputVariableUsages__CallAction>
+          <variableCharacterisation_VariableUsage>
+            <specification_VariableCharacterisation specification="&quot;login&quot;"/>
+          </variableCharacterisation_VariableUsage>
+          <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="type"/>
+        </inputVariableUsages__CallAction>
+      </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_vhKuMYsrEeiLZrwYZak7Mw" describedService__SEFF="_HVO6AqSLEd-ujcVHnT0lvg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_vhKuMosrEeiLZrwYZak7Mw" entityName="start" successor_AbstractAction="_dF4CIIssEeiLZrwYZak7Mw"/>

@@ -108,9 +108,14 @@
   <emfprofileapplication:ProfileApplication>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_a_NGMItQEeiLZrwYZak7Mw">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqXnYVEeirzP2CXhR6Fg"/>
+      <includeComplementumVisnetis href="../logger/Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_8NnL0ItQEeiLZrwYZak7Mw">
       <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqXnYVEeirzP2CXhR6Fg"/>
+      <includeComplementumVisnetis href="../logger/Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_Mkm7gNo_EdyxgfK4Hy_RFA">
+      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqY3YVEeirzP2CXhR6Fg"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

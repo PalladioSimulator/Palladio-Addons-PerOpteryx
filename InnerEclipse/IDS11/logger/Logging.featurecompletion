@@ -19,7 +19,7 @@
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tGBoc-TaEeeT85tFTnTIqQ" name="ConsoleLogging" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_PGRNAOGhEeemVJ0YF1ddSA"/>
     </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileLogging" visnetum="INTERFACE_REQUIRES">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileLogging" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_RkaqcOGhEeemVJ0YF1ddSA"/>
     </complementa>
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lb-cgeWGEeeT85tFTnTIqQ" name="SQLDatabaseLogging" visnetum="INTERFACE">

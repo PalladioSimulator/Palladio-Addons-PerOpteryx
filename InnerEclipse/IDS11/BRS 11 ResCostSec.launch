@@ -62,10 +62,10 @@
 <stringAttribute key="Weight of server expansion heuristic" value="0.5"/>
 <stringAttribute key="accuracyQualityAnnotationFile" value=""/>
 <stringAttribute key="allCandidates" value=""/>
-<stringAttribute key="allocationFile" value="platform:/resource/IDS01/BRS/brs.allocation"/>
+<stringAttribute key="allocationFile" value="platform:/resource/IDS11/BRS/brs.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="NQR Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
@@ -81,11 +81,11 @@
 <stringAttribute key="confidenceModelElementURI" value=""/>
 <booleanAttribute key="confidenceUseAutomaticBatches" value="true"/>
 <stringAttribute key="convValue" value="0.001"/>
-<stringAttribute key="costFile" value="platform:/resource/IDS01/BRS/brs.cost"/>
+<stringAttribute key="costFile" value="platform:/resource/IDS11/BRS/brs.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
-<intAttribute key="datasourceID" value="-1"/>
+<intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="1"/>
-<stringAttribute key="designDecisionFile" value="platform:/resource/IDS01/BRS/brs.designdecision"/>
+<stringAttribute key="designDecisionFile" value="platform:/resource/IDS11/BRS/brs.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
 <stringAttribute key="experimentRun" value="MyRun"/>
@@ -102,7 +102,7 @@
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="/var/folders/5d/cjlmrc9n6ts0w_vkg1bl99jc0000gn/T/PO/"/>
+<stringAttribute key="lqnsOutputDir" value="C:\tmp"/>
 <stringAttribute key="lqsimOutputDir" value="D:\Programme\eclipse\eclipse-galileo-PCMnightly"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
@@ -123,19 +123,19 @@
 <booleanAttribute key="numberOfEvaluatedSystemStatesEnabled" value="false"/>
 <intAttribute key="numberOfExactDecimalPlaces" value="1"/>
 <booleanAttribute key="numberOfExactDecimalPlacesEnabled" value="false"/>
-<booleanAttribute key="optimisationOnly" value="false"/>
+<booleanAttribute key="optimisationOnly" value="true"/>
 <stringAttribute key="outpath" value="de.uka.ipd.sdq.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
+<stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/IDS01/NQA/CostSecurity.qmldeclarations"/>
-<stringAttribute key="qmlcontracttypeFile" value="platform:/resource/IDS01/NQA/QmlDimensions/SignAlgebra.qmlcontracttype"/>
-<stringAttribute key="qualityEffectSpecificationFile" value="platform:/resource/IDS01/NQA/QualityEffectSpecification.qes"/>
-<stringAttribute key="qualitymodelReductionFile" value="platform:/resource/IDS01/NQA/QualityModels/StatisticReduction.qualitymodel"/>
-<stringAttribute key="qualitymodelSystemFile" value="platform:/resource/IDS01/NQA/EmptyReasoningComponentRepository.qualitymodel"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/IDS11/NQA/ResponsetimeCostSecurity.qmldeclarations"/>
+<stringAttribute key="qmlcontracttypeFile" value="platform:/resource/IDS11/NQA/QmlDimensions/SignAlgebra.qmlcontracttype"/>
+<stringAttribute key="qualityEffectSpecificationFile" value="platform:/resource/IDS11/NQA/QualityEffectSpecification.qes"/>
+<stringAttribute key="qualitymodelReductionFile" value="platform:/resource/IDS11/NQA/QualityModels/StatisticReduction.qualitymodel"/>
+<stringAttribute key="qualitymodelSystemFile" value="platform:/resource/IDS11/NQA/EmptyReasoningComponentRepository.qualitymodel"/>
 <stringAttribute key="rmiRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
 <stringAttribute key="runTime" value=""/>
 <stringAttribute key="samplingDist" value="1.0"/>
@@ -157,7 +157,7 @@
 <booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
-<stringAttribute key="usageFile" value="platform:/resource/IDS01/BRS/brs.usagemodel"/>
+<stringAttribute key="usageFile" value="platform:/resource/IDS11/BRS/brs.usagemodel"/>
 <booleanAttribute key="useConfidenceStopCondition" value="false"/>
 <booleanAttribute key="useFixedSeed" value="false"/>
 <stringAttribute key="variable" value=""/>

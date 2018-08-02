@@ -65,7 +65,7 @@
 <stringAttribute key="allocationFile" value="platform:/resource/IDS01/BRS/brs.allocation"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="NQR Analysis"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
@@ -83,7 +83,7 @@
 <stringAttribute key="convValue" value="0.001"/>
 <stringAttribute key="costFile" value="platform:/resource/IDS01/BRS/brs.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
-<intAttribute key="datasourceID" value="-1"/>
+<intAttribute key="datasourceID" value="0"/>
 <intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="1"/>
 <stringAttribute key="designDecisionFile" value="platform:/resource/IDS01/BRS/brs.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
@@ -123,11 +123,11 @@
 <booleanAttribute key="numberOfEvaluatedSystemStatesEnabled" value="false"/>
 <intAttribute key="numberOfExactDecimalPlaces" value="1"/>
 <booleanAttribute key="numberOfExactDecimalPlacesEnabled" value="false"/>
-<booleanAttribute key="optimisationOnly" value="true"/>
+<booleanAttribute key="optimisationOnly" value="false"/>
 <stringAttribute key="outpath" value="org.palladiosimulator.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
+<stringAttribute key="persistenceFramework" value="SensorFramework"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>

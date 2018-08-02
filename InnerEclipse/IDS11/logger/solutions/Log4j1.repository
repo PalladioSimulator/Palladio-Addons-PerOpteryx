@@ -102,10 +102,6 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
       <realizes href="../Logging.featurecompletion#_dpty0OTXEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_zCcD8OQTEeeDc5WJsIYxgA">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
-      <fulfills href="../Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
-    </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_2hBDoOQTEeeDc5WJsIYxgA">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
       <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
@@ -121,6 +117,10 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_DNzk0PiYEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
       <realizes href="../Logging.featurecompletion#_qGwiUOTXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_VB1XEOQTEeeDc5WJsIYxgA">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_FRgVU48iEeigYNA_85R82A"/>
+      <fulfills href="../Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
