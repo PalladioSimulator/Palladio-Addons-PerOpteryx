@@ -38,4 +38,16 @@
     <resourceContainer_AllocationContext href="brs.resourceenvironment#_L0Dy4dpAEdyxgfK4Hy_RFA"/>
     <assemblyContext_AllocationContext href="brs.system#_Gnz2UHqQEd6uqIqMUZizUw"/>
   </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_aKRE8JZWEeiCAdTfYu3MZg" entityName="Allocation_Assembly_Log4j1Logger &lt;Log4j1Logger> &lt;Log4j1Logger>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_8-cpgNo_EdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_Wtl_MJZVEeiCAdTfYu3MZg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_c18oEJZWEeiCAdTfYu3MZg" entityName="Allocation_Assembly_Log4j1SQLDatabaseAppender &lt;Log4j1SQLDatabaseAppender> &lt;Log4j1SQLDatabaseAppender>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_IwYkwSYYEd-qOJxMJOMJYA"/>
+    <assemblyContext_AllocationContext href="brs.system#_d2LLcJZVEeiCAdTfYu3MZg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_eRmGsJZWEeiCAdTfYu3MZg" entityName="Allocation_Assembly_Log4j1PatternFormatter &lt;Log4j1PatternFormatter> &lt;Log4j1PatternFormatter>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_IwYkwSYYEd-qOJxMJOMJYA"/>
+    <assemblyContext_AllocationContext href="brs.system#_osf0wJZVEeiCAdTfYu3MZg"/>
+  </allocationContexts_Allocation>
 </allocation:Allocation>
