@@ -34,7 +34,9 @@ import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import edu.kit.ipd.sdq.kamp.model.modificationmarks.ChangePropagationStep;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.AbstractISModificationRepository;
+import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISChangePropagationDueToInterfaceDependencies;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModificationmarksFactory;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyComponent;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.ISModifyInterface;
@@ -78,7 +80,9 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, system, null,
 				internalModificationMarkRepository, componentInternalDependencyRepository, usageModels, null, null,
 				null, null, null);
+				
 		double changeImpact = evaluateChangeImpact(reqArchitectureVersion, internalModificationMarkRepository);
+		
 		this.previousMaintainabilityAnalysisResults.put(pheno.getNumericID(),
 				new MaintainabilityAnalysisResult(changeImpact, this.criterionToAspect,
 						(MaintainabilityQualityAttributeDeclaration) this.qualityAttribute));
@@ -195,10 +199,18 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	 */
 	private double evaluateChangeImpact(ReqArchitectureVersion version,
 			AbstractISModificationRepository<ReqSeedModifications> internalModificationMarkRepository) {
+		int changeImpact = 0;
+		
 		ReqChangePropagationAnalysis reqChangePropagationAnalysis = new ReqChangePropagationAnalysis();
 		reqChangePropagationAnalysis.runChangePropagationAnalysis(version);
-
-		return internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
+		
+		for (ChangePropagationStep step : internalModificationMarkRepository.getChangePropagationSteps()) {
+			if(step instanceof ISChangePropagationDueToInterfaceDependencies) {
+				changeImpact += ((ISChangePropagationDueToInterfaceDependencies) step).getSignatureModifications().size();
+			}
+		}
+		changeImpact += internalModificationMarkRepository.getSeedModifications().getComponentModifications().size();
+		return changeImpact; 
 	}
 
 	/**

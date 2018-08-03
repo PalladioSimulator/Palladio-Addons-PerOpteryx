@@ -3,6 +3,7 @@
   <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="CostContractType">
     <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
     <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+    <dimensions href="../../plugin/de.uka.ipd.sdq.dsexplore.analysis.maintainability/Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="CostContract" contractType="_Gw0_1GFfEeetxOZObiabqg">
     <criteria xsi:type="QMLContract:Objective" id="_XJ0ngGFfEeetxOZObiabqg">
@@ -12,6 +13,10 @@
     <criteria xsi:type="QMLContract:Objective" id="_70yw8I8mEeik0-dvUgR00g">
       <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
       <aspects xsi:type="QMLContract:Mean" id="_A1JFYo8nEeik0-dvUgR00g"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_b1uwEJTIEeisqPRIx6jadA">
+      <dimension href="../../plugin/de.uka.ipd.sdq.dsexplore.analysis.maintainability/Maintainability.qmlcontracttype#_zq4ZAG-1EeifXO1xpz6bOQ"/>
+      <aspects xsi:type="QMLContract:Value" id="_conllJTIEeisqPRIx6jadA"/>
     </criteria>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="CostProfile">
