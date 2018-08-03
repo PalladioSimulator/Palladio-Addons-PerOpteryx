@@ -34,11 +34,14 @@
     <assemblyContexts__ComposedStructure id="_Gnz2UHqQEd6uqIqMUZizUw" entityName="Assembly_CoreGraphicEngine &lt;CoreReportingEngine2>">
       <encapsulatedComponent__AssemblyContext xsi:type="repository:CompositeComponent" href="brs.repository#_wrGucHqPEd6uqIqMUZizUw"/>
     </assemblyContexts__ComposedStructure>
-    <assemblyContexts__ComposedStructure id="_gGuPEItPEeiLZrwYZak7Mw" entityName="AC_AdminProxy">
-      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_vKiMUIsqEeiLZrwYZak7Mw"/>
+    <assemblyContexts__ComposedStructure id="_Wtl_MJZVEeiCAdTfYu3MZg" entityName="Assembly_Log4j1Logger &lt;Log4j1Logger>">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
     </assemblyContexts__ComposedStructure>
-    <assemblyContexts__ComposedStructure id="_q6FLAJQCEeiJn6Nv0wn4nQ" entityName="Assembly_AdminProxy &lt;AdminProxy>">
-      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_vKiMUIsqEeiLZrwYZak7Mw"/>
+    <assemblyContexts__ComposedStructure id="_d2LLcJZVEeiCAdTfYu3MZg" entityName="Assembly_Log4j1SQLDatabaseAppender &lt;Log4j1SQLDatabaseAppender>">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_DNzk0PiYEeeT85tFTnTIqQ"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_osf0wJZVEeiCAdTfYu3MZg" entityName="Assembly_Log4j1PatternFormatter &lt;Log4j1PatternFormatter>">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_99omMOQTEeeDc5WJsIYxgA"/>
     </assemblyContexts__ComposedStructure>
     <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_eiDYgNo_EdyxgfK4Hy_RFA" entityName="Connector AC_ReportingEngine -> AC_DB" requiringAssemblyContext_AssemblyConnector="_VmpjwNo_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_cWmNkNo_EdyxgfK4Hy_RFA">
       <providedRole_AssemblyConnector href="brs.repository#_uD-dANo5EdyCSNQKlT1LxA"/>
@@ -84,19 +87,23 @@
       <providedRole_AssemblyConnector href="brs.repository#_uD-dANo5EdyCSNQKlT1LxA"/>
       <requiredRole_AssemblyConnector href="brs.repository#_03FmsHqPEd6uqIqMUZizUw"/>
     </connectors__ComposedStructure>
-    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_q0H-MItVEeimBcSrP5ZwmA" entityName="ProvDelegation Provided_IHTTP -> Provided_IHTTP_WebServer" outerProvidedRole_ProvidedDelegationConnector="_zyc0ANo_EdyxgfK4Hy_RFA" assemblyContext_ProvidedDelegationConnector="_N8Qq8No_EdyxgfK4Hy_RFA">
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_Fc1jsLcOEd2_9rSHIHHezA" entityName="ProvDelegation Provided_IHTTP -> Provided_IHTTP_WebServer" outerProvidedRole_ProvidedDelegationConnector="_zyc0ANo_EdyxgfK4Hy_RFA" assemblyContext_ProvidedDelegationConnector="_N8Qq8No_EdyxgfK4Hy_RFA">
       <innerProvidedRole_ProvidedDelegationConnector href="brs.repository#_7gSRINo5EdyCSNQKlT1LxA"/>
     </connectors__ComposedStructure>
-    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_968QUItQEeiLZrwYZak7Mw" entityName="ProvDelegation Provided_IAdmin -> Provided_IAdmin_HttpProxy" outerProvidedRole_ProvidedDelegationConnector="_QgwCsFekEd6zR8NNmb-sJg" assemblyContext_ProvidedDelegationConnector="_gGuPEItPEeiLZrwYZak7Mw">
-      <innerProvidedRole_ProvidedDelegationConnector href="brs.repository#__asBEIsqEeiLZrwYZak7Mw"/>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_RsJe0FekEd6zR8NNmb-sJg" entityName="ProvDelegation Provided_IAdmin -> Provided_IAdmin_ReportingEngine" outerProvidedRole_ProvidedDelegationConnector="_QgwCsFekEd6zR8NNmb-sJg" assemblyContext_ProvidedDelegationConnector="_VmpjwNo_EdyxgfK4Hy_RFA">
+      <innerProvidedRole_ProvidedDelegationConnector href="brs.repository#_WjvysGo2Ed631pecjlFspw"/>
     </connectors__ComposedStructure>
-    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_4U80sJQCEeiJn6Nv0wn4nQ" entityName="Connector AC_AdminProxy -> Assembly_AdminProxy &lt;AdminProxy>" requiringAssemblyContext_AssemblyConnector="_gGuPEItPEeiLZrwYZak7Mw" providingAssemblyContext_AssemblyConnector="_q6FLAJQCEeiJn6Nv0wn4nQ">
-      <providedRole_AssemblyConnector href="brs.repository#__asBEIsqEeiLZrwYZak7Mw"/>
-      <requiredRole_AssemblyConnector href="brs.repository#_7Y8C4IsqEeiLZrwYZak7Mw"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_cqJdMJZVEeiCAdTfYu3MZg" entityName="Connector AC_Webserver -> Assembly_Log4j1Logger &lt;Log4j1Logger>" requiringAssemblyContext_AssemblyConnector="_N8Qq8No_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_Wtl_MJZVEeiCAdTfYu3MZg">
+      <providedRole_AssemblyConnector href="brs.repository#_OyV5gOQUEeeDc5WJsIYxgA"/>
+      <requiredRole_AssemblyConnector href="brs.repository#_QkokQJZSEeiCAdTfYu3MZg"/>
     </connectors__ComposedStructure>
-    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_4_DhoJQCEeiJn6Nv0wn4nQ" entityName="Connector Assembly_AdminProxy &lt;AdminProxy> -> AC_CoreOnlineEngine" requiringAssemblyContext_AssemblyConnector="_q6FLAJQCEeiJn6Nv0wn4nQ" providingAssemblyContext_AssemblyConnector="_VmpjwNo_EdyxgfK4Hy_RFA">
-      <providedRole_AssemblyConnector href="brs.repository#_WjvysGo2Ed631pecjlFspw"/>
-      <requiredRole_AssemblyConnector href="brs.repository#_7Y8C4IsqEeiLZrwYZak7Mw"/>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_nCa4kJZVEeiCAdTfYu3MZg" entityName="Connector Assembly_Log4j1Logger &lt;Log4j1Logger> -> Assembly_Log4j1SQLDatabaseAppender &lt;Log4j1SQLDatabaseAppender>" requiringAssemblyContext_AssemblyConnector="_Wtl_MJZVEeiCAdTfYu3MZg" providingAssemblyContext_AssemblyConnector="_d2LLcJZVEeiCAdTfYu3MZg">
+      <providedRole_AssemblyConnector href="brs.repository#_T2-WgPiYEeeT85tFTnTIqQ"/>
+      <requiredRole_AssemblyConnector href="brs.repository#_fp33UOQUEeeDc5WJsIYxgA"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_sRBEYJZVEeiCAdTfYu3MZg" entityName="Connector Assembly_Log4j1SQLDatabaseAppender &lt;Log4j1SQLDatabaseAppender> -> Assembly_Log4j1PatternFormatter &lt;Log4j1PatternFormatter>" requiringAssemblyContext_AssemblyConnector="_d2LLcJZVEeiCAdTfYu3MZg" providingAssemblyContext_AssemblyConnector="_osf0wJZVEeiCAdTfYu3MZg">
+      <providedRole_AssemblyConnector href="brs.repository#_R8JjEOQUEeeDc5WJsIYxgA"/>
+      <requiredRole_AssemblyConnector href="brs.repository#_SRZf0PiYEeeT85tFTnTIqQ"/>
     </connectors__ComposedStructure>
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_zyc0ANo_EdyxgfK4Hy_RFA" entityName="Provided_IHTTP">
       <providedInterface__OperationProvidedRole href="brs.repository#_36kHoNo5EdyCSNQKlT1LxA"/>
@@ -106,18 +113,9 @@
     </providedRoles_InterfaceProvidingEntity>
   </system:System>
   <emfprofileapplication:ProfileApplication>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:target">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqXnYVEeirzP2CXhR6Fg"/>
-      <includeComplementumVisnetis href="../logger/Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_Fc1jsLcOEd2_9rSHIHHezA">
+      <extension href="../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_ShoegH9_Eei20_C43HUsIQ"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_Mkm7gNo_EdyxgfK4Hy_RFA">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqY3YVEeirzP2CXhR6Fg"/>
-      <solutionRepositories href="../logger/solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:target" appliedTo="_4U80sJQCEeiJn6Nv0wn4nQ">
-      <extension href="../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqXnYVEeirzP2CXhR6Fg"/>
-      <includeComplementumVisnetis href="../logger/Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
-    </stereotypeApplications>
-    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

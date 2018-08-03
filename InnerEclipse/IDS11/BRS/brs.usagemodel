@@ -3,16 +3,10 @@
   <usageScenario_UsageModel id="_qhsIYNpBEdyxgfK4Hy_RFA" entityName="BRS_usage_scenario">
     <scenarioBehaviour_UsageScenario id="_qh-cQNpBEdyxgfK4Hy_RFA" entityName="defaultUsageScenarioBehaviour">
       <actions_ScenarioBehaviour xsi:type="usagemodel:Start" id="_qiGYENpBEdyxgfK4Hy_RFA" successor="__aMyMGu_Ed650qyoIpbFeQ"/>
-      <actions_ScenarioBehaviour xsi:type="usagemodel:Stop" id="_qiKCcNpBEdyxgfK4Hy_RFA" predecessor="_D0sAgGvAEd650qyoIpbFeQ"/>
-      <actions_ScenarioBehaviour xsi:type="usagemodel:EntryLevelSystemCall" id="_D0sAgGvAEd650qyoIpbFeQ" successor="_qiKCcNpBEdyxgfK4Hy_RFA" predecessor="_2VnlYGuVEd629YsFMvxaFg">
-        <providedRole_EntryLevelSystemCall href="brs.system#_zyc0ANo_EdyxgfK4Hy_RFA"/>
-        <operationSignature__EntryLevelSystemCall href="brs.repository#_HVO6AaSLEd-ujcVHnT0lvg"/>
-        <inputParameterUsages_EntryLevelSystemCall>
-          <variableCharacterisation_VariableUsage type="VALUE">
-            <specification_VariableCharacterisation specification="&quot;logout&quot;"/>
-          </variableCharacterisation_VariableUsage>
-          <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="type"/>
-        </inputParameterUsages_EntryLevelSystemCall>
+      <actions_ScenarioBehaviour xsi:type="usagemodel:Stop" id="_qiKCcNpBEdyxgfK4Hy_RFA" predecessor="_DM4jcFelEd6zR8NNmb-sJg"/>
+      <actions_ScenarioBehaviour xsi:type="usagemodel:EntryLevelSystemCall" id="_DM4jcFelEd6zR8NNmb-sJg" successor="_qiKCcNpBEdyxgfK4Hy_RFA" predecessor="_D0sAgGvAEd650qyoIpbFeQ">
+        <providedRole_EntryLevelSystemCall href="brs.system#_QgwCsFekEd6zR8NNmb-sJg"/>
+        <operationSignature__EntryLevelSystemCall href="brs.repository#_HVW106SLEd-ujcVHnT0lvg"/>
       </actions_ScenarioBehaviour>
       <actions_ScenarioBehaviour xsi:type="usagemodel:Loop" id="_fkev4GuVEd629YsFMvxaFg" successor="_2VnlYGuVEd629YsFMvxaFg" predecessor="__aMyMGu_Ed650qyoIpbFeQ">
         <loopIteration_Loop specification="5"/>
@@ -142,6 +136,16 @@
         <inputParameterUsages_EntryLevelSystemCall>
           <variableCharacterisation_VariableUsage type="VALUE">
             <specification_VariableCharacterisation specification="&quot;login&quot;"/>
+          </variableCharacterisation_VariableUsage>
+          <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="type"/>
+        </inputParameterUsages_EntryLevelSystemCall>
+      </actions_ScenarioBehaviour>
+      <actions_ScenarioBehaviour xsi:type="usagemodel:EntryLevelSystemCall" id="_D0sAgGvAEd650qyoIpbFeQ" successor="_DM4jcFelEd6zR8NNmb-sJg" predecessor="_2VnlYGuVEd629YsFMvxaFg">
+        <providedRole_EntryLevelSystemCall href="brs.system#_zyc0ANo_EdyxgfK4Hy_RFA"/>
+        <operationSignature__EntryLevelSystemCall href="brs.repository#_HVO6AaSLEd-ujcVHnT0lvg"/>
+        <inputParameterUsages_EntryLevelSystemCall>
+          <variableCharacterisation_VariableUsage type="VALUE">
+            <specification_VariableCharacterisation specification="&quot;logout&quot;"/>
           </variableCharacterisation_VariableUsage>
           <namedReference__VariableUsage xsi:type="stoex:VariableReference" referenceName="type"/>
         </inputParameterUsages_EntryLevelSystemCall>
