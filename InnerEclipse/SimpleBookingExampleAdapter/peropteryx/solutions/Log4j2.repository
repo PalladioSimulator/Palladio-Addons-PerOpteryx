@@ -66,7 +66,6 @@
     <components__Repository xsi:type="repository:BasicComponent" id="_xaIRkO8EEeeT85tFTnTIqQ" entityName="Log4j2SQLDatabaseAppender">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_IG8nwO8FEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_DDQrcO8FEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
-      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_ioae0O8GEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Database" requiredInterface__OperationRequiredRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IHPisO8FEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
         <steps_Behaviour xsi:type="seff:StartAction" id="_IHPise8FEeeT85tFTnTIqQ" successor_AbstractAction="_btBewPkyEeeT85tFTnTIqQ"/>
         <steps_Behaviour xsi:type="seff:StopAction" id="_IHPisu8FEeeT85tFTnTIqQ" predecessor_AbstractAction="_dk-e4PkyEeeT85tFTnTIqQ"/>
@@ -77,7 +76,7 @@
           </resourceDemand_Action>
         </steps_Behaviour>
         <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_co0_sPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_btBewPkyEeeT85tFTnTIqQ" successor_AbstractAction="_0em6MP-iEeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_DDQrcO8FEeeT85tFTnTIqQ"/>
-        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_dk-e4PkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_0em6MP-iEeeT85tFTnTIqQ" successor_AbstractAction="_IHPisu8FEeeT85tFTnTIqQ" calledService_ExternalService="_TzUIQO8FEeeT85tFTnTIqQ" role_ExternalService="_ioae0O8GEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_dk-e4PkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_0em6MP-iEeeT85tFTnTIqQ" successor_AbstractAction="_IHPisu8FEeeT85tFTnTIqQ" calledService_ExternalService="_TzUIQO8FEeeT85tFTnTIqQ"/>
         <steps_Behaviour xsi:type="seff:InternalAction" id="_0em6MP-iEeeT85tFTnTIqQ" entityName="db write overhead" predecessor_AbstractAction="_co0_sPkyEeeT85tFTnTIqQ" successor_AbstractAction="_dk-e4PkyEeeT85tFTnTIqQ">
           <resourceDemand_Action>
             <specification_ParametericResourceDemand specification="DoublePMF[(2210000.0; 0.1476)(5420000.0; 0.7765)(8630000.0; 0.0281)(1.184E7; 0.0098)(1.505E7; 0.0267)(1.826E7; 0.0077)(2.147E7; 0.0012)(2.468E7; 0.0017)(2.789E7; 0.0004)(3.11E7; 0.0003)]"/>
@@ -110,7 +109,6 @@
     <components__Repository xsi:type="repository:BasicComponent" id="_FfgFMPiZEeeT85tFTnTIqQ" entityName="Log4j2NoSQLDatabaseAppender">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_L_vfEPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_K2_HQPiZEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
-      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_XKwmAPiZEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Database" requiredInterface__OperationRequiredRole="_O5moIPiZEeeT85tFTnTIqQ"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_L_wGIPiZEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
         <steps_Behaviour xsi:type="seff:StartAction" id="_L_wGIfiZEeeT85tFTnTIqQ" successor_AbstractAction="_v07BIPkyEeeT85tFTnTIqQ"/>
         <steps_Behaviour xsi:type="seff:StopAction" id="_L_wGIviZEeeT85tFTnTIqQ" predecessor_AbstractAction="_xbVlUPkyEeeT85tFTnTIqQ"/>
@@ -121,7 +119,7 @@
           </resourceDemand_Action>
         </steps_Behaviour>
         <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_wfkgoPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_v07BIPkyEeeT85tFTnTIqQ" successor_AbstractAction="_xbVlUPkyEeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_K2_HQPiZEeeT85tFTnTIqQ"/>
-        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_xbVlUPkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_wfkgoPkyEeeT85tFTnTIqQ" successor_AbstractAction="_L_wGIviZEeeT85tFTnTIqQ" calledService_ExternalService="_RUYBcPiZEeeT85tFTnTIqQ" role_ExternalService="_XKwmAPiZEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_xbVlUPkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_wfkgoPkyEeeT85tFTnTIqQ" successor_AbstractAction="_L_wGIviZEeeT85tFTnTIqQ" calledService_ExternalService="_RUYBcPiZEeeT85tFTnTIqQ"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_gxjhIPiZEeeT85tFTnTIqQ" entityName="Log4j2CSVFormatter">
