@@ -269,15 +269,49 @@ public class QesFinder {
 
 		final boolean isNot = assembly.isNot();
 		final AssemblyType type = assembly.getType();
-		if (isNot && (type == AssemblyType.ANY)) {
-			return effectedComponents; // not any?
-		}
-
+		
 		final Set<String> assemblyComponents = getComponents(assembly.getComponent());
 		if (assemblyComponents.isEmpty()) {
 			return effectedComponents;
 		}
 
+		if (isNot && (type == AssemblyType.ANY)) {
+			final Set<String> assembling = new HashSet<>();
+			for (final RepositoryComponent component : componentGraph) {
+				for (final String id : assemblyComponents) {
+					if (id.equalsIgnoreCase(component.getId())) {
+						for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {					
+							assembling.add(edge.getId());
+						}
+					}
+				}
+			}
+			
+			for (final RepositoryComponent component : componentGraph) {
+				boolean hasAssembly = false;
+				for (final RepositoryComponent edge : componentGraph.edgesFrom(component)) {
+					for (final String id : assemblyComponents) {
+						if (id.equalsIgnoreCase(edge.getId())) {
+							hasAssembly = true;
+							break;
+						}
+					}
+				}
+				
+				for (final String id : assembling) {
+					if (id.equalsIgnoreCase(component.getId())) {
+						hasAssembly = true;
+						break;
+					}
+				}
+				
+				if(hasAssembly == false) { 
+					effectedComponents.add(component.getId());
+				}
+			}
+			return effectedComponents;
+		}
+		
 		boolean provided = true;
 		boolean required = true;
 

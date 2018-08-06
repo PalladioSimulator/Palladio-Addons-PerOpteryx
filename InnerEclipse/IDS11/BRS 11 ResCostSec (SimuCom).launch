@@ -114,7 +114,7 @@
 <intAttribute key="maxDomain" value="256"/>
 <stringAttribute key="maxIterations" value="2"/>
 <stringAttribute key="maximum" value=""/>
-<stringAttribute key="maximumMeasurementCount" value="10"/>
+<stringAttribute key="maximumMeasurementCount" value="50"/>
 <stringAttribute key="minimum" value=""/>
 <stringAttribute key="mwRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
 <stringAttribute key="nqrFile" value="platform:/resource/BRS Optimisation Tactics/NQR/SecurityAnnotations.nqr"/>
@@ -145,7 +145,7 @@
 <stringAttribute key="saveFileDefault" value=""/>
 <booleanAttribute key="saveResultsToFileEnabled" value="false"/>
 <stringAttribute key="search method" value="Evolutionary search"/>
-<stringAttribute key="simTime" value="300"/>
+<stringAttribute key="simTime" value="150000"/>
 <booleanAttribute key="simulateAccuracy" value="false"/>
 <booleanAttribute key="simulateFailures" value="false"/>
 <booleanAttribute key="simulateLinkingResources" value="false"/>
