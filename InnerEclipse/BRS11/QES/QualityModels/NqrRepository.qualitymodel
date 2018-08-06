@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QualityModel:NqrRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QualityModel="http://palladiosimulator.org/QualityModel/1.0">
+  <nqrs id="_yWpBkHmHEeiww8JmbTEi7A" entityName="Security+">
+    <value xsi:type="QMLContract:SetLiteral" id="_AvxDQnmIEeiww8JmbTEi7A">
+      <values href="../QmlDimensions/SignAlgebra.qmlcontracttype#_jNQhkNG_EeawIo61R7faCw"/>
+    </value>
+    <dimension href="../QmlDimensions/Security.qmlcontracttype#_4eO4MGGcEeiEUbMgG_u56Q"/>
+  </nqrs>
+  <nqrs id="_XATGcJmPEeiHqKg8OsQONw" entityName="Maintainability+">
+    <value xsi:type="QMLContract:SetLiteral" id="_XVLxUpmPEeiHqKg8OsQONw">
+      <values href="../QmlDimensions/SignAlgebra.qmlcontracttype#_jNQhkNG_EeawIo61R7faCw"/>
+    </value>
+    <dimension href="../QmlDimensions/Maintainability.qmlcontracttype#_zJSYgGG3EeiEUbMgG_u56Q"/>
+  </nqrs>
+</QualityModel:NqrRepository>

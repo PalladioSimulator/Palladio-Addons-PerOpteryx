@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_a7UQIF_REeWV1oHpCYQEmQ">
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_beRzQF_REeWV1oHpCYQEmQ" entityName="BRSProfile">
+    <usageModel href="fastbrs-closed2.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:EntryLevelSystemCallRequirement" id="_0Wd00V_REeWV1oHpCYQEmQ" requireContract="_mlfYQl_REeWV1oHpCYQEmQ">
+      <entryLevelSystemCall href="fastbrs-closed2.usagemodel#_2VnlYGuVEd629YsFMvxaFg"/>
+    </requirements>
+    <requirements xsi:type="QMLProfile:EntryLevelSystemCallRequirement" id="_-IJxUV_REeWV1oHpCYQEmQ" requireContract="_mlfYQl_REeWV1oHpCYQEmQ">
+      <entryLevelSystemCall href="fastbrs-closed2.usagemodel#_VMS-oGuWEd629YsFMvxaFg"/>
+    </requirements>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_r_iViKCrEd-s9uTaURBRS2" entityName="BRSContractType">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="pathmap://PCM_MODELS/Dimension_throughput.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA2"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_mlfYQl_REeWV1oHpCYQEmQ" entityName="BRSContract" contractType="_r_iViKCrEd-s9uTaURBRS2">
+    <criteria xsi:type="QMLContract:Objective" id="_owa-wF_REeWV1oHpCYQEmQ">
+      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Mean" id="_uwm_kl_REeWV1oHpCYQEmQ"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_sTom0F_REeWV1oHpCYQEmQ">
+      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Value" id="_tl2cpF_REeWV1oHpCYQEmQ"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_l0CRsGv8EeWsYNDfcUj4jg">
+      <dimension href="pathmap://PCM_MODELS/Dimension_throughput.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA2"/>
+      <aspects xsi:type="QMLContract:Mean" id="_oAT8Amv8EeWsYNDfcUj4jg"/>
+    </criteria>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>

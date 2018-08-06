@@ -1,0 +1,36 @@
+//getAllInnerComponents Context ComposedStructure
+getAllInnerComponents() : Set(AssemblyContext) = self.assemblyContexts__ComposedStructure->select(c | c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))->union(self.assemblyContexts__ComposedStructure.encapsulatedComponent__AssemblyContext ->select(c | c.oclIsKindOf(ComposedStructure)).oclAsType(Set(ComposedStructure)).getAllInnerComponents)
+
+(
+//vereinfachtes getAllInnerComponents
+getAllInnerComponents() : Set(AssemblyContext) = self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))
+)
+
+//def function getAllInnerComponents
+def : getAllInnerComponents() : Set{assemblyContexts__ComposedStructure} = self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))
+
+//select all Assembly Contexts
+self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))
+
+//working with a Set
+Set{assemblyContexts__ComposedStructure} = self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))
+
+//getReplaceableComponents Context System
+def : getReplaceableComponents : Set (AssemblyContext) = self.getAllInnerComponents
+
+//context AssemblyContext getConnectorsToUpdateProvidedSide (selectionRule(AssemblyConnector.requiredRole))
+def : getConnectorsToUpdateProvidedSide : Set{AssemblyConnector} = self.parentStructure__AssemblyContext.assemblyConnectors__ComposedStructure->select(conn | conn.providingAssemblyContext = self)
+
+//context AssemblyContext getComposedStructureToUpdateConnectors (selectionRule(ComposedStructure.assemblyConnectors))
+def : getComposedStructureToUpdateConnectors : ComposedStructure = self.parentStructure__AssemblyContext
+
+//helper
+self.components__Repository->select(c| c.entityName.matches('WebServer')).providedRoles_InterfaceProvidingEntity.entityName = self.components__Repository->select(c| c.entityName.matches('WebServer2')).providedRoles_InterfaceProvidingEntity.entityName
+
+Here just working ocls
+-------------------------------------
+//works: selectionRule(AssemblyConnector.providedRole)
+self.parentStructure__AssemblyContext.connectors__ComposedStructure->selectByType(AssemblyConnector)->select(conn | conn.providingAssemblyContext_AssemblyConnector = self)
+/////////////////////////////////////
+//works: selectionRule(AssemblyConnector.requiredRole)
+self.parentStructure__AssemblyContext.connectors__ComposedStructure->selectByType(AssemblyConnector)->select(conn | conn.requiringAssemblyContext_AssemblyConnector = self)

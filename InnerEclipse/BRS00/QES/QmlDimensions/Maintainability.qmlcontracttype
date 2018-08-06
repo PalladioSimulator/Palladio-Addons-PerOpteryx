@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" id="_zJSYgGG3EeiEUbMgG_u56Q" entityName="Maintainability">
+  <type xsi:type="QMLContractType:DimensionTypeSet" id="_i2CUYNG_EeawIo61R7faCw">
+    <relationSemantics id="_qJ15MNG_EeawIo61R7faCw" relSem="increasing"/>
+    <elements id="_Q9pGsdKUEeaWjZzpqkUBZg" entityName="++"/>
+    <elements id="_jNQhkNG_EeawIo61R7faCw" entityName="+"/>
+    <elements id="_lfN9IdG_EeawIo61R7faCw" entityName="0"/>
+    <elements id="_pHbZ8dG_EeawIo61R7faCw" entityName="-"/>
+    <elements id="_XpJ8cdKUEeaWjZzpqkUBZg" entityName="--"/>
+    <order id="_iMkQ09KUEeaWjZzpqkUBZg" biggerElement="_Q9pGsdKUEeaWjZzpqkUBZg" smallerElement="_jNQhkNG_EeawIo61R7faCw"/>
+    <order id="_jJU0A9KUEeaWjZzpqkUBZg" biggerElement="_jNQhkNG_EeawIo61R7faCw" smallerElement="_lfN9IdG_EeawIo61R7faCw"/>
+    <order id="_q2_qU9KUEeaWjZzpqkUBZg" biggerElement="_lfN9IdG_EeawIo61R7faCw" smallerElement="_pHbZ8dG_EeawIo61R7faCw"/>
+    <order id="_xBSpY9KUEeaWjZzpqkUBZg" biggerElement="_pHbZ8dG_EeawIo61R7faCw" smallerElement="_XpJ8cdKUEeaWjZzpqkUBZg"/>
+  </type>
+</QMLContractType:Dimension>

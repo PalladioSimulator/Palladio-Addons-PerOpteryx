@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdof:DoFRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:gdof="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0">
+  <dofs id="_phVDoOXeEeW12YhmvkYeJgj" name="Component Selection (GraphicalReporting)" primaryChangeable="_GCmjcOK4EeW-Q_hV9sRWrw">
+    <changeableElementDescriptions id="_GCmjcOK4EeW-Q_hV9sRWrw" name="getReplaceableComponents (primary)">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext/encapsulatedComponent__AssemblyContext"/>
+      <valueRule mainOclQuery="self.getCompatibleComps()">
+        <helperDefinition mainOclQuery="getCompatibleComponents() : Set(repository::RepositoryComponent) = self.encapsulatedComponent__AssemblyContext.repository__RepositoryComponent.components__Repository->select(c|c.offersAllInterfaces(self.allNeededProvidedInterfaces()) &amp;&amp; c.requiresAtMostInterfaces(self.allAllowedRequiredInterfaces()))&#xA;">
+          <helperDefinition mainOclQuery="allNeededProvidedInterfaces() : Set(OperationInterface) = self.parentStructure__AssemblyContext.connectors__ComposedStructure->select(c|c.oclIsKindOf(AssemblyConnector))->select(ac|ac.oclAsType(AssemblyConnector).providingAssemblyContext_AssemblyConnector = self).oclAsType(AssemblyConnector).requiredRole_AssemblyConnector.requiredInterface__OperationRequiredRole">
+            <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+          </helperDefinition>
+          <helperDefinition mainOclQuery="allAllowedRequiredInterfaces() : Set(OperationInterface) = self.parentStructure__AssemblyContext.connectors__ComposedStructure->select(c|c.oclIsKindOf(AssemblyConnector))->select(ac|ac.oclAsType(AssemblyConnector).requiringAssemblyContext_AssemblyConnector = self).oclAsType(AssemblyConnector).providedRole_AssemblyConnector.providedInterface__OperationProvidedRole">
+            <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+          </helperDefinition>
+          <helperDefinition mainOclQuery="offersAllInterfaces(i : Set(OperationInterface)) : Boolean = ">
+            <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
+          </helperDefinition>
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+        </helperDefinition>
+      </valueRule>
+      <selectionRule xsi:type="gdof:InstanceSelectionRule" mainOclQuery="getReplaceableComponents() : Set(AssemblyContext) = self.getAllInnerComponents()" contextInstance="_GCmjcOK4EeW-Q_hV9sRWrw">
+        <helperDefinition mainOclQuery="getAllInnerComponents() : Set(AssemblyContext) = self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))->union(self.assemblyContexts__ComposedStructure.encapsulatedComponent__AssemblyContext->select(c|c.oclIsKindOf(pcm::core::composition::ComposedStructure)).oclAsType(Set(pcm::core::composition::ComposedStructure)).getAllInnerComponents())">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/ComposedStructure"/>
+        </helperDefinition>
+      </selectionRule>
+    </changeableElementDescriptions>
+    <changeableElementDescriptions id="_hQb7AOLqEeW5S6ofMDHWoQ" name="getConnectorsToUpdateProvidedSide">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector/providedRole_AssemblyConnector"/>
+      <valueRule mainOclQuery="self.getProvidedRole()">
+        <helperDefinition mainOclQuery="getProvidedRole () : repository::OperationProvidedRole = self.providedRole_AssemblyConnector->select(pr|pr.providedInterface__OperationProvidedRole = self.requiredRole_AssemblyConnector.requiredInterface__OperationRequiredRole)->asOrderedSet()->first()">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector"/>
+        </helperDefinition>
+      </valueRule>
+      <selectionRule xsi:type="gdof:InstanceSelectionRule" mainOclQuery="self.getProvidedConnectors()" contextInstance="_GCmjcOK4EeW-Q_hV9sRWrw">
+        <helperDefinition mainOclQuery="getProvidedConnectors() : Set(pcm::core::composition::AssemblyConnector) = self.parentStructure__AssemblyContext.connectors__ComposedStructure->select(c|c.oclIsKindOf(AssemblyConnector))->select(ac|ac.oclAsType(AssemblyConnector).providingAssemblyContext_AssemblyConnector = self).oclAsType(pcm::core::composition::AssemblyConnector)->asSet()">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+        </helperDefinition>
+      </selectionRule>
+    </changeableElementDescriptions>
+    <changeableElementDescriptions id="_rCOoYOLuEeW5S6ofMDHWoQ" name="getConnectorsToUpdateRequiredSide">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector/requiredRole_AssemblyConnector"/>
+      <valueRule mainOclQuery="self.getRequiredRoles()">
+        <helperDefinition mainOclQuery="getRequiredRoles() : Set(repository::RequiredRole) = self.requiringAssemblyContext_AssemblyConnector.encapsulatedComponent__AssemblyContext.requiredRoles_InterfaceRequiringEntity->select(rr| self.providedRole_AssemblyConnector.providedInterface__OperationProvidedRole = rr.oclAsType(repository::OperationRequiredRole).requiredInterface__OperationRequiredRole)">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector"/>
+        </helperDefinition>
+      </valueRule>
+      <selectionRule xsi:type="gdof:InstanceSelectionRule" mainOclQuery="self.getRequiredConnectors()" contextInstance="_GCmjcOK4EeW-Q_hV9sRWrw">
+        <helperDefinition mainOclQuery="getRequiredConnectors() : Set(AssemblyConnector) = self.parentStructure__AssemblyContext.connectors__ComposedStructure->selectByType(AssemblyConnector)->select(conn | conn.requiringAssemblyContext_AssemblyConnector = self)">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext"/>
+        </helperDefinition>
+      </selectionRule>
+    </changeableElementDescriptions>
+  </dofs>
+</gdof:DoFRepository>

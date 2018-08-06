@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" timePeriodYears="5" interest="0.02">
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEAE8NYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEBTENYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEBTFNYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEBTGNYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEBTHNYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEB6IdYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEB6JdYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEB6KdYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost" fixedOperatingCost="22.0">
+    <processingresourcespecification href="brs.resourceenvironment#_nEB6LdYpEeG1tZ5PjRtRiA"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/10*1.5)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_6bAEENo5EdyCSNQKlT1LxA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="150.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_6bAEENo5EdyCSNQKlT1LxA2"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="80.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_6bAEENo5EdyCSNQKlT1LxA3"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_yfDS4OTrEeeT85tFTnTIqQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_DNzk0PiYEeeT85tFTnTIqQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_99omMOQTEeeDc5WJsIYxgA"/>
+  </cost>
+</cost:CostRepository>

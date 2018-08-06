@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdof:DoFRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:gdof="http://sdq.ipd.uka.de/DesignDecision/GDoF/3.0">
+  <dofs id="_bPZcoJK8EeWJDIwQxvqPEA" name="Component Selection" primaryChangeable="_hevTwJK8EeWJDIwQxvqPEA">
+    <changeableElementDescriptions id="_hevTwJK8EeWJDIwQxvqPEA" name="primary changed">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyContext/encapsulatedComponent__AssemblyContext"/>
+      <valueRule mainOclQuery="self.getAllInnerComponents()">
+        <helperDefinition mainOclQuery="getAllInnerComponents() : Set(AssemblyContext) = self.assemblyContexts__ComposedStructure->select(c | not c.encapsulatedComponent__AssemblyContext.oclIsKindOf(subsystem::SubSystem))">
+          <contextClass href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/ComposedStructure"/>
+        </helperDefinition>
+      </valueRule>
+    </changeableElementDescriptions>
+    <changeableElementDescriptions id="_q3-UAJK8EeWJDIwQxvqPEA" name="provided roles">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector/providedRole__AssemblyConnector"/>
+      <selectionRule xsi:type="gdof:InstanceSelectionRule" mainOclQuery="self.parentStructure__AssemblyContext.connectors__ComposedStructure->selectByType(AssemblyConnector)->select(conn | conn.providingAssemblyContext_AssemblyConnector = self)" contextInstance="_hevTwJK8EeWJDIwQxvqPEA"/>
+    </changeableElementDescriptions>
+    <changeableElementDescriptions id="_1zFmoJLQEeWRO5_VUAt_bg" name="required roles">
+      <changeable xsi:type="ecore:EReference" href="../org.palladiosimulator.pcm/model/pcm.ecore#//core/composition/AssemblyConnector/requiredRole__AssemblyConnector"/>
+      <selectionRule xsi:type="gdof:InstanceSelectionRule" mainOclQuery="self.parentStructure__AssemblyContext.connectors__ComposedStructure->selectByType(AssemblyConnector)->select(conn | conn.requiringAssemblyContext_AssemblyConnector = self)" contextInstance="_hevTwJK8EeWJDIwQxvqPEA"/>
+    </changeableElementDescriptions>
+  </dofs>
+</gdof:DoFRepository>

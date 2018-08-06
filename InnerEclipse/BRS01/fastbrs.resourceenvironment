@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resourceenvironment:ResourceEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2">
+  <linkingResources__ResourceEnvironment id="_KOZo4FrZEeWQBousyLympQ" connectedResourceContainers_LinkingResource="_-tXrIFrXEeWQBousyLympQ _n1X_sFrXEeWQBousyLympQ _6HkksFrXEeWQBousyLympQ _8yhvEFrXEeWQBousyLympQ _n1X_sFrXEeWQBousyLympQc4 _n1X_sFrXEeWQBousyLympQc33 _n1X_sFrXEeWQBousyLympQc32 _n1X_sFrXEeWQBousyLympQc3">
+    <communicationLinkResourceSpecifications_LinkingResource id="_KOfIcFrZEeWQBousyLympQ">
+      <communicationLinkResourceType_CommunicationLinkResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_o3sScH2AEdyH8uerKnHYug"/>
+      <latency_CommunicationLinkResourceSpecification specification="0"/>
+      <throughput_CommunicationLinkResourceSpecification specification="100000000"/>
+    </communicationLinkResourceSpecifications_LinkingResource>
+  </linkingResources__ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_n1X_sFrXEeWQBousyLympQ" entityName="m1.small.1">
+    <activeResourceSpecifications_ResourceContainer id="_rqkIkFrXEeWQBousyLympQ">
+      <schedulingPolicy href="ExactSchedulers.resourcetype#edu.kit.ipd.sdq.pcm.simulation.scheduler.exact.win7"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 1200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_6HkksFrXEeWQBousyLympQ" entityName="m1.small.2">
+    <activeResourceSpecifications_ResourceContainer id="_7FbUEFrXEeWQBousyLympQ">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 1200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_8yhvEFrXEeWQBousyLympQ" entityName="m1.small.3">
+    <activeResourceSpecifications_ResourceContainer id="_9aRrkFrXEeWQBousyLympQ">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 1200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_-tXrIFrXEeWQBousyLympQ" entityName="m1.small.4">
+    <activeResourceSpecifications_ResourceContainer id="__PObAFrXEeWQBousyLympQ">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 1200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_n1X_sFrXEeWQBousyLympQc3" entityName="c3.1">
+    <activeResourceSpecifications_ResourceContainer id="_rqkIkFrXEeWQBousyLympQc31" numberOfReplicas="8">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 4200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_n1X_sFrXEeWQBousyLympQc32" entityName="c3.2">
+    <activeResourceSpecifications_ResourceContainer id="_rqkIkFrXEeWQBousyLympQc32" numberOfReplicas="8">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 4200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_n1X_sFrXEeWQBousyLympQc33" entityName="c3.3">
+    <activeResourceSpecifications_ResourceContainer id="_rqkIkFrXEeWQBousyLympQc33" numberOfReplicas="8">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 4200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_n1X_sFrXEeWQBousyLympQc4" entityName="c3.4">
+    <activeResourceSpecifications_ResourceContainer id="_rqkIkFrXEeWQBousyLympQc34" numberOfReplicas="8">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="10 * 4200 / 1200"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+</resourceenvironment:ResourceEnvironment>
