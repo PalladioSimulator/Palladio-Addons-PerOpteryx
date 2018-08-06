@@ -65,7 +65,7 @@
     <stringAttribute key="allocationFile" value="platform:/resource/SimpleBookingExampleAdapter/default.allocation"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-    <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
+    <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
     <stringAttribute key="archiveCandidates" value=""/>
@@ -150,7 +150,7 @@
     <booleanAttribute key="simulateThroughputOfLinkingResources" value="true"/>
     <stringAttribute key="simulatorId" value="de.uka.ipd.sdq.codegen.simucontroller.simucom"/>
     <booleanAttribute key="singleResults" value="false"/>
-    <stringAttribute key="solver" value="LQSIM (Layered Queueing Simulation)"/>
+    <stringAttribute key="solver" value="LQNS (Layered Queueing Network Solver)"/>
     <intAttribute key="solvingTimeLimit" value="1"/>
     <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
     <stringAttribute key="stepwidth" value=""/>
