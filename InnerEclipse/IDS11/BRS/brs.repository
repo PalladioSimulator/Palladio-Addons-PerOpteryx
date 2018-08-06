@@ -121,6 +121,7 @@
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_PmVo4FekEd6zR8NNmb-sJg" entityName="Provided_IAdmin_ReportingEngine" providedInterface__OperationProvidedRole="_MeXLUFekEd6zR8NNmb-sJg"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_tOgNkNo5EdyCSNQKlT1LxA" entityName="Required_IInnerDB_ReportingEngine" requiredInterface__OperationRequiredRole="_AshHQKfFEd-L5vB0MCctNg"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_gXZbcNo9EdyxgfK4Hy_RFA" entityName="Required_ICache_ReportingEngine" requiredInterface__OperationRequiredRole="_cooDoNo9EdyxgfK4Hy_RFA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_diCscJcvEeiLOLSpFYxcCg" entityName="Required_ILog4j1Log_InnerCoreReportingEngine" requiredInterface__OperationRequiredRole="_EuoOUOQTEeeDc5WJsIYxgA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_YSGFENo5EdyCSNQKlT1LxA" describedService__SEFF="_HVL2saSLEd-ujcVHnT0lvg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_YSGsINo5EdyCSNQKlT1LxA" successor_AbstractAction="_SyL_cNo8EdyxgfK4Hy_RFA"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="_SyL_cNo8EdyxgfK4Hy_RFA" entityName="prepare" predecessor_AbstractAction="_YSGsINo5EdyCSNQKlT1LxA" successor_AbstractAction="_r7-wEPZkEdySh74qedEhsw">
@@ -206,15 +207,17 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_PmVo4VekEd6zR8NNmb-sJg" describedService__SEFF="_HVW106SLEd-ujcVHnT0lvg">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_PmVo4lekEd6zR8NNmb-sJg" successor_AbstractAction="_tUnPoFekEd6zR8NNmb-sJg"/>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_PmVo41ekEd6zR8NNmb-sJg" predecessor_AbstractAction="_tUnPoFekEd6zR8NNmb-sJg"/>
-      <steps_Behaviour xsi:type="seff:InternalAction" id="_tUnPoFekEd6zR8NNmb-sJg" entityName="doMaintenance" predecessor_AbstractAction="_PmVo4lekEd6zR8NNmb-sJg" successor_AbstractAction="_PmVo41ekEd6zR8NNmb-sJg">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_PmVo4lekEd6zR8NNmb-sJg" successor_AbstractAction="_ulT5kJfGEeixsdYJDc67eg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_PmVo41ekEd6zR8NNmb-sJg" predecessor_AbstractAction="_wyNO8JfGEeixsdYJDc67eg"/>
+      <steps_Behaviour xsi:type="seff:InternalAction" id="_tUnPoFekEd6zR8NNmb-sJg" entityName="doMaintenance" predecessor_AbstractAction="_ulT5kJfGEeixsdYJDc67eg" successor_AbstractAction="_wyNO8JfGEeixsdYJDc67eg">
         <resourceDemand_Action>
           <specification_ParametericResourceDemand specification="150/100"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
         <internalFailureOccurrenceDescriptions__InternalAction failureProbability="4.2E-6" softwareInducedFailureType__InternalFailureOccurrenceDescription="_jU4hN81bEd-r24qTXVke6A"/>
       </steps_Behaviour>
+      <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_ulT5kJfGEeixsdYJDc67eg" predecessor_AbstractAction="_PmVo4lekEd6zR8NNmb-sJg" successor_AbstractAction="_tUnPoFekEd6zR8NNmb-sJg" calledService_ExternalService="_VB1XEOQTEeeDc5WJsIYxgA" role_ExternalService="_diCscJcvEeiLOLSpFYxcCg"/>
+      <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_wyNO8JfGEeixsdYJDc67eg" predecessor_AbstractAction="_tUnPoFekEd6zR8NNmb-sJg" successor_AbstractAction="_PmVo41ekEd6zR8NNmb-sJg" calledService_ExternalService="_VB1XEOQTEeeDc5WJsIYxgA" role_ExternalService="_diCscJcvEeiLOLSpFYxcCg"/>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_zdawYF84Ed6-caU7WM0FRw" describedService__SEFF="_HVMdwKSLEd-ujcVHnT0lvg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_z0hBwF84Ed6-caU7WM0FRw" successor_AbstractAction="_eNgcsGiyEd631pecjlFspw"/>
@@ -662,10 +665,12 @@
     <connectors__ComposedStructure xsi:type="composition:RequiredDelegationConnector" id="_LusfQGo3Ed631pecjlFspw" entityName="ReqDelegation Required_IDB_CRESingleMessageAdapter -> Required_IDB_CoreReportingEngine" innerRequiredRole_RequiredDelegationConnector="_VVnLoGo2Ed631pecjlFspw" outerRequiredRole_RequiredDelegationConnector="_YDMzQGo2Ed631pecjlFspw" assemblyContext_RequiredDelegationConnector="_GldUkGo3Ed631pecjlFspw"/>
     <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_JGft8Go3Ed631pecjlFspw" entityName="ProvDelegation Provided_IAdmin_CoreReportingEngine -> Provided_IAdmin_ReportingEngine" innerProvidedRole_ProvidedDelegationConnector="_PmVo4FekEd6zR8NNmb-sJg" outerProvidedRole_ProvidedDelegationConnector="_WjvysGo2Ed631pecjlFspw" assemblyContext_ProvidedDelegationConnector="_Fjb24Go3Ed631pecjlFspw"/>
     <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_JTMGIGo3Ed631pecjlFspw" entityName="ProvDelegation Provided_IReporting_CoreReportingEngine -> Provided_IReporting_ReportingEngine" innerProvidedRole_ProvidedDelegationConnector="_YSFeANo5EdyCSNQKlT1LxA" outerProvidedRole_ProvidedDelegationConnector="_XKu6MGo2Ed631pecjlFspw" assemblyContext_ProvidedDelegationConnector="_Fjb24Go3Ed631pecjlFspw"/>
+    <connectors__ComposedStructure xsi:type="composition:RequiredDelegationConnector" id="_9TqrAJcvEeiLOLSpFYxcCg" entityName="ReqDelegation Required_ILog4j1Log_InnerCoreReportingEngine -> Required_ILog4j1Log_CoreOnlineEngine" innerRequiredRole_RequiredDelegationConnector="_diCscJcvEeiLOLSpFYxcCg" outerRequiredRole_RequiredDelegationConnector="_ctwv0JcvEeiLOLSpFYxcCg" assemblyContext_RequiredDelegationConnector="_Fjb24Go3Ed631pecjlFspw"/>
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_WjvysGo2Ed631pecjlFspw" entityName="Provided_IAdmin_CoreReportingEngine" providedInterface__OperationProvidedRole="_MeXLUFekEd6zR8NNmb-sJg"/>
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_XKu6MGo2Ed631pecjlFspw" entityName="Provided_IReporting_CoreReportingEngine" providedInterface__OperationProvidedRole="_Ebo4ANo5EdyCSNQKlT1LxA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_XlnfYGo2Ed631pecjlFspw" entityName="Required_ICache_CoreReportingEngine" requiredInterface__OperationRequiredRole="_cooDoNo9EdyxgfK4Hy_RFA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_YDMzQGo2Ed631pecjlFspw" entityName="Required_IDB_CoreReportingEngine" requiredInterface__OperationRequiredRole="_bt-WENo5EdyCSNQKlT1LxA"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_ctwv0JcvEeiLOLSpFYxcCg" entityName="Required_ILog4j1Log_CoreOnlineEngine" requiredInterface__OperationRequiredRole="_EuoOUOQTEeeDc5WJsIYxgA"/>
   </components__Repository>
   <components__Repository xsi:type="repository:BasicComponent" id="_RJLAYGo2Ed631pecjlFspw" entityName="CRESingleMessageAdapter">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Uu6_EGo2Ed631pecjlFspw" entityName="Provided_IDB_CRESingleMessageAdapter" providedInterface__OperationProvidedRole="_AshHQKfFEd-L5vB0MCctNg"/>

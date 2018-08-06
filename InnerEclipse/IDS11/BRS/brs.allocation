@@ -50,4 +50,8 @@
     <resourceContainer_AllocationContext href="brs.resourceenvironment#_IwYkwSYYEd-qOJxMJOMJYA"/>
     <assemblyContext_AllocationContext href="brs.system#_osf0wJZVEeiCAdTfYu3MZg"/>
   </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_Q4QPgJcxEeiLOLSpFYxcCg" entityName="Allocation_Assembly_Log4j1Logger_CoreOnlineEngine &lt;Log4j1Logger> &lt;Log4j1Logger>">
+    <resourceContainer_AllocationContext href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
+    <assemblyContext_AllocationContext href="brs.system#_UiKx8JcwEeiLOLSpFYxcCg"/>
+  </allocationContexts_Allocation>
 </allocation:Allocation>

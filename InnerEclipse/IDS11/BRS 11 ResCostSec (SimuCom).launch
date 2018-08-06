@@ -14,11 +14,14 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
-<stringAttribute key="EDP2RepositoryID" value=""/>
+<stringAttribute key="EDP2RepositoryID" value="_NsPkUJciEeidoKQQ23Foig"/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
 <intAttribute key="Iterations without new Pareto optimal candidates" value="1"/>
+<booleanAttribute key="LINEDebug" value="true"/>
+<stringAttribute key="LINEOutputDir" value="C:\Users\Anne\Programme\eclipse\pcm-nightly-2015-07-13"/>
+<stringAttribute key="LINEPropFile" value="C:\Users\Anne\Programme\eclipse\pcm-nightly-2015-07-13LINE.properties"/>
 <booleanAttribute key="LQNS Stop On Message Loss" value="true"/>
 <booleanAttribute key="LQSIM Stop On Message Loss" value="true"/>
 <intAttribute key="Maximum Number Of Generations" value="1"/>
@@ -37,7 +40,7 @@
 <stringAttribute key="Processing rate threshold for high utilisation" value="0.8"/>
 <stringAttribute key="Reallocation threshold for utilisation difference" value="0.5"/>
 <booleanAttribute key="Run in comparision mode" value="false"/>
-<stringAttribute key="SREOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
+<stringAttribute key="SREOutputDir" value="D:\Programme\eclipse\eclipse-galileo-PCMnightly"/>
 <booleanAttribute key="SREUseInputModel" value="false"/>
 <stringAttribute key="Server consolidation threshold for low utilisation" value="0.3"/>
 <stringAttribute key="Server expansion maximum number of reallocations" value="1"/>
@@ -59,16 +62,17 @@
 <stringAttribute key="Weight of server expansion heuristic" value="0.5"/>
 <stringAttribute key="accuracyQualityAnnotationFile" value=""/>
 <stringAttribute key="allCandidates" value=""/>
-<stringAttribute key="allocationFile" value="platform:/resource/SimpleBookingExample/default.allocation"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="none"/>
+<stringAttribute key="allocationFile" value="platform:/resource/IDS11/BRS/brs.allocation"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="NQR Analysis"/>
+<stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
 <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
 <stringAttribute key="archiveCandidates" value=""/>
+<stringAttribute key="bad_container_name" value="\BRS Optimisation Tactics\brs.settings"/>
 <stringAttribute key="blocks" value=""/>
 <stringAttribute key="cacheInstances" value=""/>
-<booleanAttribute key="clear" value="false"/>
+<booleanAttribute key="clear" value="true"/>
 <stringAttribute key="confidenceBatchSize" value="200"/>
 <stringAttribute key="confidenceHalfWidth" value="10"/>
 <stringAttribute key="confidenceLevel" value="95"/>
@@ -77,14 +81,14 @@
 <stringAttribute key="confidenceModelElementURI" value=""/>
 <booleanAttribute key="confidenceUseAutomaticBatches" value="true"/>
 <stringAttribute key="convValue" value="0.001"/>
-<stringAttribute key="costFile" value="platform:/resource/Simple Tactics Example/default.cost"/>
+<stringAttribute key="costFile" value="platform:/resource/IDS11/BRS/brs.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
-<intAttribute key="datasourceID" value="2"/>
-<intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="2"/>
-<stringAttribute key="designDecisionFile" value="platform:/resource/SimpleBookingExample/simpleexample.designdecision"/>
+<intAttribute key="datasourceID" value="-1"/>
+<intAttribute key="de.uka.ipd.sdq.workflowengine.debuglevel" value="1"/>
+<stringAttribute key="designDecisionFile" value="platform:/resource/IDS11/BRS/brs.designdecision"/>
 <booleanAttribute key="designDecisionsOnly" value="false"/>
 <stringAttribute key="eventMiddlewareRepositoryFile" value="pathmap://PCM_MODELS/default_event_middleware.repository"/>
-<stringAttribute key="experimentRun" value="Simple Tactics Example"/>
+<stringAttribute key="experimentRun" value="MyRun"/>
 <stringAttribute key="featureConfig" value="pathmap://PCM_MODELS/ConnectorConfig.featureconfig"/>
 <stringAttribute key="fixedSeed0" value="0"/>
 <stringAttribute key="fixedSeed1" value="1"/>
@@ -92,14 +96,14 @@
 <stringAttribute key="fixedSeed3" value="3"/>
 <stringAttribute key="fixedSeed4" value="4"/>
 <stringAttribute key="fixedSeed5" value="5"/>
-<stringAttribute key="indivPerGeneration" value="3"/>
+<stringAttribute key="indivPerGeneration" value="2"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
 <stringAttribute key="itLimit" value="50"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
-<stringAttribute key="lqnsOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
-<stringAttribute key="lqsimOutputDir" value="D:\Programme\eclipse\eclipse-kepler-dsl-sr1"/>
+<stringAttribute key="lqnsOutputDir" value="/var/folders/5d/cjlmrc9n6ts0w_vkg1bl99jc0000gn/T/PO/"/>
+<stringAttribute key="lqsimOutputDir" value="D:\Programme\eclipse\eclipse-galileo-PCMnightly"/>
 <stringAttribute key="lqsimoutput" value="XML Output"/>
 <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>
 <stringAttribute key="markovModelFile" value=""/>
@@ -108,32 +112,40 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="3"/>
+<stringAttribute key="maxIterations" value="2"/>
 <stringAttribute key="maximum" value=""/>
-<stringAttribute key="maximumMeasurementCount" value="1000"/>
+<stringAttribute key="maximumMeasurementCount" value="10"/>
 <stringAttribute key="minimum" value=""/>
 <stringAttribute key="mwRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
+<stringAttribute key="nqrFile" value="platform:/resource/BRS Optimisation Tactics/NQR/SecurityAnnotations.nqr"/>
 <stringAttribute key="number of DSE iterations" value=""/>
 <intAttribute key="numberOfEvaluatedSystemStates" value="1"/>
 <booleanAttribute key="numberOfEvaluatedSystemStatesEnabled" value="false"/>
 <intAttribute key="numberOfExactDecimalPlaces" value="1"/>
 <booleanAttribute key="numberOfExactDecimalPlacesEnabled" value="false"/>
 <booleanAttribute key="optimisationOnly" value="false"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
 <stringAttribute key="outpath" value="de.uka.ipd.sdq.temporary"/>
 <stringAttribute key="output" value="XML Output"/>
 <booleanAttribute key="peropteryx_println_enabled" value="false"/>
-<stringAttribute key="persistenceFramework" value="SensorFramework"/>
+<stringAttribute key="persistenceFramework" value="Experiment Data Persistency &amp; Presentation (EDP2)"/>
 <stringAttribute key="predefinedInstances" value=""/>
 <stringAttribute key="printInt" value="10"/>
 <stringAttribute key="psQuantum" value="0.001"/>
-<stringAttribute key="qmlDefinitionFile" value="platform:/resource/SimpleBookingExample/default.profile.qmldeclarations"/>
+<stringAttribute key="qmlDefinitionFile" value="platform:/resource/IDS11/NQA/ResponsetimeCostSecurity.qmldeclarations"/>
+<stringAttribute key="qmlcontracttypeFile" value="platform:/resource/IDS11/NQA/QmlDimensions/SignAlgebra.qmlcontracttype"/>
+<stringAttribute key="qualityEffectSpecificationFile" value="platform:/resource/IDS11/NQA/QualityEffectSpecification.qes"/>
+<stringAttribute key="qualitymodelReductionFile" value="platform:/resource/IDS11/NQA/QualityModels/StatisticReduction.qualitymodel"/>
+<stringAttribute key="qualitymodelSystemFile" value="platform:/resource/IDS11/NQA/EmptyReasoningComponentRepository.qualitymodel"/>
 <stringAttribute key="rmiRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
 <stringAttribute key="runTime" value=""/>
 <stringAttribute key="samplingDist" value="1.0"/>
 <stringAttribute key="saveFileDefault" value=""/>
 <booleanAttribute key="saveResultsToFileEnabled" value="false"/>
 <stringAttribute key="search method" value="Evolutionary search"/>
-<stringAttribute key="simTime" value="1500000000"/>
+<stringAttribute key="simTime" value="300"/>
 <booleanAttribute key="simulateAccuracy" value="false"/>
 <booleanAttribute key="simulateFailures" value="false"/>
 <booleanAttribute key="simulateLinkingResources" value="false"/>
@@ -145,13 +157,13 @@
 <booleanAttribute key="solvingTimeLimitEnabled" value="false"/>
 <stringAttribute key="stepwidth" value=""/>
 <booleanAttribute key="store results as CSV" value="true"/>
-<booleanAttribute key="store results as EMF" value="true"/>
+<booleanAttribute key="store results as EMF" value="false"/>
 <stringAttribute key="tactics probability when mating" value="0.6"/>
 <stringAttribute key="underCoeff" value="0.5"/>
-<stringAttribute key="usageFile" value="platform:/resource/SimpleBookingExample/default.usagemodel"/>
+<stringAttribute key="usageFile" value="platform:/resource/IDS11/BRS/brs.usagemodel"/>
 <booleanAttribute key="useConfidenceStopCondition" value="false"/>
 <booleanAttribute key="useFixedSeed" value="false"/>
 <stringAttribute key="variable" value=""/>
-<stringAttribute key="variationId" value="Default Variation"/>
+<stringAttribute key="variationId" value=""/>
 <booleanAttribute key="verboseLogging" value="false"/>
 </launchConfiguration>
