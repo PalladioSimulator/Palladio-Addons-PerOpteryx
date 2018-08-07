@@ -19,7 +19,6 @@ import de.uka.ipd.sdq.workflow.launchconfig.tabs.TabHelper;
 
 public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILaunchConfigurationTab {
 
-	private Text textComponentInternalDependencyRepositoryModel;
 	private Text textSystemModel;
 
 	@Override
@@ -39,14 +38,6 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 		setControl(container);
 		container.setLayout(new GridLayout());
 		/**
-		 * Add ComponentInternalDependencyRepository model input section
-		 */
-		this.textComponentInternalDependencyRepositoryModel = new Text(container, SWT.SINGLE | SWT.BORDER);
-		TabHelper.createFileInputSection(container, modifyListener, "ComponentInternalDependencyRepository File",
-				DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION,
-				textComponentInternalDependencyRepositoryModel, getShell(),
-				DSEConstantsContainer.DEFAULT_COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE);
-		/**
 		 * Add base System input section
 		 */
 		this.textSystemModel = new Text(container, SWT.SINGLE | SWT.BORDER);
@@ -63,13 +54,6 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 	@Override
 	public void initializeFrom(final ILaunchConfiguration configuration) {
 		try {
-			this.textComponentInternalDependencyRepositoryModel.setText(
-					configuration.getAttribute(DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE, ""));
-		} catch (final CoreException e) {
-			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE,
-					e.getMessage());
-		}
-		try {
 			this.textSystemModel.setText(configuration.getAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, ""));
 		} catch (final CoreException e) {
 			LaunchConfigPlugin.errorLogger(getName(), DSEConstantsContainer.SYSTEM_MODEL_FILE, e.getMessage());
@@ -78,8 +62,6 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 
 	@Override
 	public void performApply(final ILaunchConfigurationWorkingCopy configuration) {
-		configuration.setAttribute(DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE,
-				this.textComponentInternalDependencyRepositoryModel.getText());
 		configuration.setAttribute(DSEConstantsContainer.SYSTEM_MODEL_FILE, this.textSystemModel.getText());
 	}
 
@@ -111,13 +93,7 @@ public class MaintainabilityAnalysisTab extends FileNamesInputTab implements ILa
 
 	@Override
 	public boolean isValid(final ILaunchConfiguration launchConfig) {
-		String extension = DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION[0].replace("*", "");
-		if (this.textComponentInternalDependencyRepositoryModel.getText().equals("")
-				|| !this.textComponentInternalDependencyRepositoryModel.getText().contains(extension)) {
-			setErrorMessage("ComponentInternalDependencyRepositoryModel is missing!");
-			return false;
-		}
-		extension = DSEConstantsContainer.SYSTEM_MODEL_EXTENSION[0].replace("*", "");
+		String extension = DSEConstantsContainer.SYSTEM_MODEL_EXTENSION[0].replace("*", "");
 		if (this.textSystemModel.getText().equals("") || !this.textSystemModel.getText().contains(extension)) {
 			setErrorMessage("SystemModel is missing!");
 			return false;

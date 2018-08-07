@@ -49,7 +49,6 @@ public class DSEConstantsContainer {
 	public static final String ARCHIVE_CANDIDATES = "archiveCandidates";
 	public static final String QUALITY_EFFECT_SPECIFICATION_FILE = "qualityEffectSpecificationFile";
 
-	public static final String COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE = "componentInternalDependencyRepositoryFile";
 	public static final String SYSTEM_MODEL_FILE = "systemModelFile";
 
 	public static final String DESIGN_DECISION_FILE = "designDecisionFile";
@@ -67,7 +66,6 @@ public class DSEConstantsContainer {
 	public static final String[] QUALITY_EFFECT_SPECIFICATION_EXTENSION = new String[] {"*.qes"};
 
 	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
-	public static final String[] COMPONENT_INTERNAL_DEPENDENCY_MODEL_EXTENSION = new String[] { "*.componentinternaldependencies" };
 	public static final String[] SYSTEM_MODEL_EXTENSION = new String[] { "*.system" };
 	
 	/**
@@ -314,8 +312,6 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_DESIGN_DECISION_FILE = "";
 	/** Default URI for the QML criteria definitions file. */
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
-	/** Default URI for the component internal dependency model file. */
-	public static final String DEFAULT_COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE = "";
 	/** Default URI for the system model file. */
 	public static final String DEFAULT_SYSTEM_MODEL_FILE = "";
 }

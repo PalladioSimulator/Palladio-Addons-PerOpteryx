@@ -21,8 +21,6 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.system.SystemPackage;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
 
-import de.uka.ipd.sdq.componentInternalDependencies.ComponentInternalDependenciesPackage;
-import de.uka.ipd.sdq.componentInternalDependencies.ComponentInternalDependencyRepository;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
@@ -52,7 +50,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.analysis.maintainability");
 
 	private org.palladiosimulator.pcm.system.System baseSystem;
-	private ComponentInternalDependencyRepository componentInternalDependencyRepository;
 
 	private Map<Long, MaintainabilityAnalysisResult> previousMaintainabilityAnalysisResults;
 
@@ -78,7 +75,7 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		createAndAddInterfaceSeedModifications(system, baseSystem, reqSeedModifications);
 
 		reqArchitectureVersion = new ReqArchitectureVersion("version", repository, system, null,
-				internalModificationMarkRepository, componentInternalDependencyRepository, usageModels, null, null,
+				internalModificationMarkRepository, null, usageModels, null, null,
 				null, null, null);
 				
 		double changeImpact = evaluateChangeImpact(reqArchitectureVersion, internalModificationMarkRepository);
@@ -91,7 +88,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.initialiseCriteria(configuration);
-		this.componentInternalDependencyRepository = getComponentInternalDependencyRepositoryModel(configuration);
 		this.baseSystem = getBaseSystemModel(configuration);
 	}
 
@@ -116,27 +112,6 @@ public class MaintainabilityEvaluator extends AbstractAnalysis implements IAnaly
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		criterions.addAll(this.criteriaList);
 		return criterions;
-	}
-
-	/**
-	 * returns a ComponentInternalDependencyRepository or throws an exception.
-	 *
-	 * @param configuration.getRawConfiguration()
-	 * @return ComponentInternalDependencyRepository which is not null
-	 * @throws CoreException if the model could not be loaded.
-	 */
-	private ComponentInternalDependencyRepository getComponentInternalDependencyRepositoryModel(
-			DSEWorkflowConfiguration configuration) throws CoreException {
-		String componentInternalDependencyRepositoryFileName = configuration.getRawConfiguration()
-				.getAttribute(DSEConstantsContainer.COMPONENT_INTERNAL_DEPENDENCY_MODEL_FILE, "");
-		componentInternalDependencyRepository = (ComponentInternalDependencyRepository) EMFHelper.loadFromXMIFile(
-				componentInternalDependencyRepositoryFileName, ComponentInternalDependenciesPackage.eINSTANCE);
-		if (componentInternalDependencyRepository == null) {
-			throw new CoreException(
-					new Status(IStatus.ERROR, "de.uka.ipd.sdq.dsexplore", 0, "ComponentInternalDependencyRepository "
-							+ componentInternalDependencyRepositoryFileName + " could not be loaded.", null));
-		}
-		return componentInternalDependencyRepository;
 	}
 
 	/**
