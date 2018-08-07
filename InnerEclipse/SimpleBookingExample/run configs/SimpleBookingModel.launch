@@ -14,7 +14,7 @@
 <stringAttribute key="Configured objectives with values" value=""/>
 <booleanAttribute key="Consider QML bounds" value="false"/>
 <stringAttribute key="Decrease processing rate factor" value="0.25"/>
-<stringAttribute key="EDP2RepositoryID" value="platform:/resource/SimpleBookingExample/Palladio%20simulation%20database2"/>
+<stringAttribute key="EDP2RepositoryID" value="_DoDi8I2oEeidQrwnNIyjKQ"/>
 <stringAttribute key="Evaluation Mode" value="EXACT_NUMBER"/>
 <intAttribute key="Exact number of survivors" value="1"/>
 <stringAttribute key="Increase processing rate factor" value="0.25"/>
@@ -79,7 +79,7 @@
 <stringAttribute key="confidenceModelElementName" value=""/>
 <stringAttribute key="confidenceModelElementURI" value=""/>
 <booleanAttribute key="confidenceUseAutomaticBatches" value="true"/>
-<stringAttribute key="convValue" value="0.001"/>
+<stringAttribute key="convValue" value="0.00001"/>
 <stringAttribute key="costFile" value="platform:/resource/SimpleBookingExample/default.cost"/>
 <stringAttribute key="crossover rate" value="0.5"/>
 <intAttribute key="datasourceID" value="0"/>
@@ -97,7 +97,7 @@
 <stringAttribute key="fixedSeed5" value="5"/>
 <stringAttribute key="indivPerGeneration" value="20"/>
 <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
-<stringAttribute key="itLimit" value="50"/>
+<stringAttribute key="itLimit" value="500"/>
 <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
 <stringAttribute key="logFile" value=""/>
 <stringAttribute key="lqnPragmas" value=""/>
@@ -113,7 +113,7 @@
 <intAttribute key="maxDomain" value="256"/>
 <stringAttribute key="maxIterations" value="3"/>
 <stringAttribute key="maximum" value=""/>
-<stringAttribute key="maximumMeasurementCount" value="10"/>
+<stringAttribute key="maximumMeasurementCount" value="100"/>
 <stringAttribute key="minimum" value=""/>
 <stringAttribute key="number of DSE iterations" value=""/>
 <intAttribute key="numberOfEvaluatedSystemStates" value="1"/>
@@ -138,12 +138,12 @@
 <stringAttribute key="qualitymodelSystemFile" value=""/>
 <booleanAttribute key="reliability.simulateFailures" value="false"/>
 <stringAttribute key="rmiRepositoryFile" value="pathmap://PCM_MODELS/Glassfish.repository"/>
-<stringAttribute key="runTime" value=""/>
+<stringAttribute key="runTime" value="250000"/>
 <stringAttribute key="samplingDist" value="1.0"/>
 <stringAttribute key="saveFileDefault" value=""/>
 <booleanAttribute key="saveResultsToFileEnabled" value="false"/>
 <stringAttribute key="search method" value="Evolutionary search"/>
-<stringAttribute key="simTime" value="15"/>
+<stringAttribute key="simTime" value="150"/>
 <booleanAttribute key="simulateAccuracy" value="false"/>
 <booleanAttribute key="simulateFailures" value="false"/>
 <booleanAttribute key="simulateLinkingResources" value="false"/>
