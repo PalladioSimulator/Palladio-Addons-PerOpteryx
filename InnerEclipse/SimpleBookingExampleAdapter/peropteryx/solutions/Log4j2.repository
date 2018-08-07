@@ -210,7 +210,7 @@
       <realizes href="../Logging.featurecompletion#_LinOEOTYEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_oRT3oOfMEeeT85tFTnTIqQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#/0/fulfillsComplementumVisnetis/@extensions.1"/>
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
       <fulfills href="../Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
