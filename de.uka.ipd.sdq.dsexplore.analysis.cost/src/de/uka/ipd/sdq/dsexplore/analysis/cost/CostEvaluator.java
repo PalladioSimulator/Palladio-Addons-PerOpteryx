@@ -59,6 +59,8 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
 	private List<CostRepository> costModels;
 
+	private QesCostExtension qesModel;
+
 	private DSEWorkflowConfiguration configuration;
 
 	private Map<Long, CostAnalysisResult> previousCostResults = new HashMap<>();
@@ -175,9 +177,16 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		List<Cost> allCosts = this.getCosts();
 
+		if (qesModel != null) {
+            qesModel.updateModel(pcmInstance);
+        }
+
 		this.createCostsForReplicas(allCosts, pcmInstance);
 
 		for (Cost cost : allCosts) {
+			if (cost instanceof ComponentCost && qesModel != null) {
+                qesModel.evaluateQesModel((ComponentCost) cost);
+            }
 
 			// fix links between model elements (maybe this is not needed
 			// anymore...)
@@ -376,6 +385,7 @@ public class CostEvaluator extends AbstractAnalysis implements IAnalysis {
 
 		this.configuration = configuration;
 
+		this.qesModel = new QesCostExtension(configuration);
 	}
 
 	/**

@@ -15,15 +15,17 @@
   <rm:locator pattern="^org\.palladiosimulator\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simucontroller.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.pcm\.codegen.*" searchPathRef="SimuCom" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.scheduler.*" searchPathRef="Scheduler" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation$" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.simulation.*" searchPathRef="AbstractSimEngine" failOnError="true"/>
+  <rm:locator pattern="^org\.palladiosimulator\.solver.*" searchPathRef="PCMSolver" failOnError="true" />
+
   <rm:redirect pattern="^org\.palladiosimulator\.reliability.*"
   href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Analyzer-Reliability/master/org.palladiosimulator.reliability.buckminster/reliability.rmap" />
   
   <rm:redirect pattern=".*"
   href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Analyzer/Framework/trunk/org.palladiosimulator.analyzer.buckminster/analyzer.rmap" />
-
 
   <rm:searchPath name="peropteryxgit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
@@ -49,6 +51,22 @@
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/abstractsimengine/releases/latest/"/>
       </rm:provider>
   </rm:searchPath>
+ <rm:searchPath name="PCMSolver">
+      <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/solver/nightly/"/>
+      </rm:provider>
+      <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+          <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/solver/releases/latest/"/>
+      </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="Scheduler">
+    <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/supporting/scheduler/nightly/"/>
+    </rm:provider>
+    <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/supporting/scheduler/releases/latest/"/>
+    </rm:provider>
+</rm:searchPath>
   <rm:searchPath name="SimuCom">
       <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/nightly/"/>
@@ -56,6 +74,5 @@
       <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/releases/latest/"/>
       </rm:provider>
-  </rm:searchPath>
-  
+  </rm:searchPath>  
 </rm:rmap>

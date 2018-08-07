@@ -28,10 +28,13 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  edu.kit.ipd.are.dsexplore.featurecompletions,
  de.uka.ipd.sdq.dsexplore.tools,
  de.uka.ipd.sdq.dsexplore.facade,
- edu.kit.ipd.are.dsexplore.featurecompletions.weaver
+ edu.kit.ipd.are.dsexplore.featurecompletions.weaver,
+ org.palladiosimulator.qes,
+ org.eclipse.xtext
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.analysis,
+ de.uka.ipd.sdq.dsexplore.analysis.qes,
  de.uka.ipd.sdq.dsexplore.constraints,
  de.uka.ipd.sdq.dsexplore.exception,
  de.uka.ipd.sdq.dsexplore.helper,

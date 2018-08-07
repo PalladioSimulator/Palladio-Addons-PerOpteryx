@@ -65,10 +65,26 @@ public class FCCFeatureHandler {
 			}
 
 			if (partAndCV.first instanceof OperationInterface) {
-				OperationInterface oi = (OperationInterface) partAndCV.first;
-				// TODO Later
+				for (RepositoryComponent comps : this.solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole) {
+							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first)) {
+								result.add(provided);
+							}
+						}
+					}
+				}
 			} else if (partAndCV.first instanceof OperationSignature) {
-				// TODO Later
+				OperationInterface parentPartAndCVFirst = (OperationInterface) partAndCV.first.eContainer();
+				for (RepositoryComponent comps : this.solutionManager.getRepository().getComponents__Repository()) {
+					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
+						if (provided instanceof OperationProvidedRole) {
+							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst)) {
+								result.add(provided);
+							}
+						}
+					}
+				}
 			} else if (partAndCV.first instanceof RepositoryComponent) {
 				RepositoryComponent rc = (RepositoryComponent) partAndCV.first;
 				result.addAll(rc.getProvidedRoles_InterfaceProvidingEntity());

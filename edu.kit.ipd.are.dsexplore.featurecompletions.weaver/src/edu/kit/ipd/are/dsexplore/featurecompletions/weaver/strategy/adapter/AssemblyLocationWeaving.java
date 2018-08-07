@@ -65,7 +65,7 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 		ConnectionInfo connectionInfo = new ConnectionInfo(requiredRole, providedRole, requiredAssemblyContext, this.parent.getAdapterAssemblyContext());
 		Connector newConnector = new AssemblyConnectorGenerator(this.parent.getPCMSystemManager()).createConnectorBy(connectionInfo);
 		// DO THIS ONLY AT ONE CONNECTOR TO PREVENT ERRORS
-		// newConnector.setId(assemblyConnectorToReplace.getId());
+		newConnector.setId(assemblyConnectorToReplace.getId() + "-requiredEnd");
 		this.addConnector(newConnector);
 	}
 
