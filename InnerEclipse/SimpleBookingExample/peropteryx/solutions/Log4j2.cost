@@ -30,4 +30,7 @@
   <cost xsi:type="cost:ComponentCostPerInstance" componentInitialCost="500.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j2.repository#_bpEV0ItAEeiLsrMCg8rAxg"/>
   </cost>
+  <cost xsi:type="cost:ComponentCostPerInstance" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j2.repository#_hGNeMJtKEeiYReZFY0WRHg"/>
+  </cost>
 </cost:CostRepository>
