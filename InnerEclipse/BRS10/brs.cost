@@ -48,14 +48,11 @@
   <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
   </cost>
-  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="15.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
   </cost>
-  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="20.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_yfDS4OTrEeeT85tFTnTIqQ"/>
-  </cost>
-  <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
-    <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_DNzk0PiYEeeT85tFTnTIqQ"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="10.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="brs.repository#_99omMOQTEeeDc5WJsIYxgA"/>

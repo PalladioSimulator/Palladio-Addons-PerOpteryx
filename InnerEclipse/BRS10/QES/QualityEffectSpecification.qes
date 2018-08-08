@@ -1,2 +1,2 @@
 For{Component(Role(InfrastructureRequiredProvided) and Assembly(AnyAssembly with Component(Name("Log4j1Logger"))))}Do{NQA("Maintainability"="+")}
-For{Component(Role(InfrastructureRequiredProvided) and Assembly(not AnyAssembly with Component(Name("Log4j1Logger"))))}Do{NQA("Maintainability"="-s")}
+For{Component(Role(InfrastructureRequiredProvided) and Assembly(not AnyAssembly with Component(Name("Log4j1Logger"))))}Do{NQA("Maintainability"="-")}

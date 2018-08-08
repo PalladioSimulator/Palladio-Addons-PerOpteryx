@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="ASCII"?>
-<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_W6ARYJm0Eei5Lc1X1kaJwg">
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_iAIUUJtAEeittKRUMiyAQA">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_8-cpgNo_EdyxgfK4Hy_RFA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_EX6xcdpAEdyxgfK4Hy_RFA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_U2Nv4dpAEdyxgfK4Hy_RFA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_L0Dy4dpAEdyxgfK4Hy_RFA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_IwYkwSYYEd-qOJxMJOMJYA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_PQNu8SYYEd-qOJxMJOMJYA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_PwyscSYYEd-qOJxMJOMJYA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_QEbaISYYEd-qOJxMJOMJYA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
-  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="100.0" from="25.0">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="40.0" from="10.0">
     <primaryChanged href="brs.resourceenvironment#_QgPzcSYYEd-qOJxMJOMJYA"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AssembledComponentDegree">
     <primaryChanged href="brs.system#_3oRyUJmcEeiHYZDN2uZX-A"/>
     <classDesignOptions href="brs.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
-    <classDesignOptions href="brs.repository#_DNzk0PiYEeeT85tFTnTIqQ"/>
     <classDesignOptions href="brs.repository#_yfDS4OTrEeeT85tFTnTIqQ"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:AssembledComponentDegree">

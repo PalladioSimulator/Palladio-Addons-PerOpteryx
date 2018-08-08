@@ -42,6 +42,9 @@
   <assemblyContexts__ComposedStructure id="_3oRyUJmcEeiHYZDN2uZX-A" entityName="Assembly_Log4j1ConsoleAppender &lt;Log4j1ConsoleAppender>">
     <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
   </assemblyContexts__ComposedStructure>
+  <assemblyContexts__ComposedStructure id="_OjD4wJmtEei5SNpYr_jEYA" entityName="Assembly_Log4j1Logger_HTTP &lt;Log4j1Logger>">
+    <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="brs.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
+  </assemblyContexts__ComposedStructure>
   <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_eiDYgNo_EdyxgfK4Hy_RFA" entityName="Connector AC_ReportingEngine -> AC_DB" requiringAssemblyContext_AssemblyConnector="_VmpjwNo_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_cWmNkNo_EdyxgfK4Hy_RFA">
     <providedRole_AssemblyConnector href="brs.repository#_uD-dANo5EdyCSNQKlT1LxA"/>
     <requiredRole_AssemblyConnector href="brs.repository#_YDMzQGo2Ed631pecjlFspw"/>
@@ -103,6 +106,14 @@
   <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_7Lc-IJmcEeiHYZDN2uZX-A" entityName="Connector Assembly_Log4j1ConsoleAppender &lt;Log4j1ConsoleAppender> -> Assembly_Log4j1PatternFormatter &lt;Log4j1PatternFormatter>" requiringAssemblyContext_AssemblyConnector="_3oRyUJmcEeiHYZDN2uZX-A" providingAssemblyContext_AssemblyConnector="_Ume1wJmXEeiHqKg8OsQONw">
     <providedRole_AssemblyConnector href="brs.repository#_R8JjEOQUEeeDc5WJsIYxgA"/>
     <requiredRole_AssemblyConnector href="brs.repository#_gWUGkOQUEeeDc5WJsIYxgA"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_SjscoJmtEei5SNpYr_jEYA" entityName="Connector AC_Webserver -> Assembly_Log4j1Logger_HTTP &lt;Log4j1Logger>" requiringAssemblyContext_AssemblyConnector="_N8Qq8No_EdyxgfK4Hy_RFA" providingAssemblyContext_AssemblyConnector="_OjD4wJmtEei5SNpYr_jEYA">
+    <providedRole_AssemblyConnector href="brs.repository#_OyV5gOQUEeeDc5WJsIYxgA"/>
+    <requiredRole_AssemblyConnector href="brs.repository#_9ic3cJmsEei5SNpYr_jEYA"/>
+  </connectors__ComposedStructure>
+  <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_YU8pkJmtEei5SNpYr_jEYA" entityName="Connector Assembly_Log4j1Logger_HTTP &lt;Log4j1Logger> -> Assembly_Log4j1ConsoleAppender &lt;Log4j1ConsoleAppender>" requiringAssemblyContext_AssemblyConnector="_OjD4wJmtEei5SNpYr_jEYA" providingAssemblyContext_AssemblyConnector="_3oRyUJmcEeiHYZDN2uZX-A">
+    <providedRole_AssemblyConnector href="brs.repository#_RI3E8OQUEeeDc5WJsIYxgA"/>
+    <requiredRole_AssemblyConnector href="brs.repository#_fp33UOQUEeeDc5WJsIYxgA"/>
   </connectors__ComposedStructure>
   <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_zyc0ANo_EdyxgfK4Hy_RFA" entityName="Provided_IHTTP">
     <providedInterface__OperationProvidedRole href="brs.repository#_36kHoNo5EdyCSNQKlT1LxA"/>
