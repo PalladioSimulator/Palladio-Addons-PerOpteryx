@@ -271,9 +271,9 @@ public class QesFinder {
 		final AssemblyType type = assembly.getType();
 		
 		final Set<String> assemblyComponents = getComponents(assembly.getComponent());
-		if (assemblyComponents.isEmpty()) {
-			return effectedComponents;
-		}
+		//if (assemblyComponents.isEmpty()) {
+		//	return effectedComponents;
+		//}
 
 		if (isNot && (type == AssemblyType.ANY)) {
 			final Set<String> assembling = new HashSet<>();
