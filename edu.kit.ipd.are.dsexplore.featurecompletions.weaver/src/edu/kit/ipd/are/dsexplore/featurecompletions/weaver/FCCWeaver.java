@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
@@ -25,12 +26,22 @@ import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.CompositionFactory;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
+import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RepositoryFactory;
+import org.palladiosimulator.pcm.seff.AbstractAction;
+import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
+import org.palladiosimulator.pcm.seff.AbstractLoopAction;
+import org.palladiosimulator.pcm.seff.BranchAction;
+import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.LoopAction;
+import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
+import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -58,9 +69,11 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ExtensionWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.AssemblyConnectorData;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ExternalCallActionData;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ProvidedDelegationConnectorData;
 import featureSolution.InclusionMechanism;
@@ -84,6 +97,7 @@ public final class FCCWeaver {
 
 	private final Set<String> originalAssemblyContexts;
 	private final Set<String> originalAllocationContexts;
+	private final Map<String, ExternalCallActionData> originalExternalCalls;
 
 	public FCCWeaver(MDSDBlackboard blackboard, List<Repository> solutions, CostRepository costModel) {
 		this.solutions = solutions;
@@ -97,6 +111,44 @@ public final class FCCWeaver {
 		this.originalAssemblyContexts = this.saveOriginalAssemblyContexts(initial.getSystem());
 		this.originalAllocationContexts = this.saveOriginalAllocationContexts(initial.getAllocation());
 
+		this.originalExternalCalls = this.saveOriginalExternalCalls(initial.getSystem());
+	}
+
+	/**
+	 * @param system
+	 * @return
+	 */
+	private Map<String, ExternalCallActionData> saveOriginalExternalCalls(System system) {
+		Map<String, ExternalCallActionData> result = new HashMap<>();
+		for (AssemblyContext ac : system.getAssemblyContexts__ComposedStructure()) {
+			BasicComponent comp = (BasicComponent) ac.getEncapsulatedComponent__AssemblyContext();
+			for (ServiceEffectSpecification seff : comp.getServiceEffectSpecifications__BasicComponent()) {
+				for (ExternalCallAction externalCallAction : this.getExternalCallActions((ResourceDemandingBehaviour) seff)) {
+					result.put(externalCallAction.getId(), new ExternalCallActionData(comp, externalCallAction.getRole_ExternalService()));
+				}
+			}
+		}
+		return result;
+	}
+	
+	private List<ExternalCallAction> getExternalCallActions(ResourceDemandingBehaviour seff) {
+		List<ExternalCallAction> result = new ArrayList<>();
+
+		List<AbstractAction> actions = seff.getSteps_Behaviour();
+		for (AbstractAction abstractAction : actions) {
+			if (abstractAction instanceof ExternalCallAction) {
+				result.add((ExternalCallAction) abstractAction);
+			} else if (abstractAction instanceof BranchAction) {
+				EList<AbstractBranchTransition> branches = ((BranchAction) abstractAction).getBranches_Branch();
+				for (AbstractBranchTransition abstractBranchTransition : branches) {
+					result.addAll(getExternalCallActions(abstractBranchTransition.getBranchBehaviour_BranchTransition()));
+				}
+			} else if (abstractAction instanceof AbstractLoopAction) {
+				result.addAll(getExternalCallActions(((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop()));
+			}
+		}
+
+		return result;
 	}
 
 	private Set<String> saveOriginalAllocationContexts(Allocation allocation) {
@@ -256,7 +308,7 @@ public final class FCCWeaver {
 	}
 
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
-
+		//List<String> calls = ((ExtensionWeavingStrategy) this.strategy).getWeavedExternalCalls();
 		this.unweave(pcmToAdopt);
 
 		// PCMInstance pcmToAdopt = new
@@ -316,6 +368,50 @@ public final class FCCWeaver {
 				pcmToAdopt.getAllocation().getAllocationContexts_Allocation().remove(allocs);
 			}
 		}
+		
+		//unweave external calls
+		Map<String, ExternalCallActionData> copyExternalCallIDs = this.saveOriginalExternalCalls(pcmToAdopt.getSystem());
+		for (Entry<String, ExternalCallActionData> copyExternalCallID : copyExternalCallIDs.entrySet()) {
+			if (!this.originalExternalCalls.containsKey(copyExternalCallID.getKey()) && !this.existsConnectorWithProvidedRole(copyExternalCallID.getValue().getOperationRequiredRoleId())) {
+				this.removeExternalCallAction(copyExternalCallID.getKey(), pcmToAdopt);
+			}
+		}
+	}
+
+	/**
+	 * @param key
+	 * @param pcmToAdopt
+	 */
+	private void removeExternalCallAction(String key, PCMInstance pcmToAdopt) {
+		for (AssemblyContext ac : pcmToAdopt.getSystem().getAssemblyContexts__ComposedStructure()) {
+			BasicComponent comp = (BasicComponent) ac.getEncapsulatedComponent__AssemblyContext();
+			for (ServiceEffectSpecification seff : comp.getServiceEffectSpecifications__BasicComponent()) {
+				for (ExternalCallAction externalCallAction : this.getExternalCallActions((ResourceDemandingBehaviour) seff)) {
+					if (externalCallAction.getId().equals(key)) {
+						//remove call action
+						AbstractAction prev = externalCallAction.getPredecessor_AbstractAction();
+						AbstractAction next = externalCallAction.getSuccessor_AbstractAction();
+						prev.setSuccessor_AbstractAction(next);
+						next.setPredecessor_AbstractAction(prev);
+						ResourceDemandingBehaviour containingSeff = (ResourceDemandingBehaviour) externalCallAction.eContainer();
+						containingSeff.getSteps_Behaviour().remove(externalCallAction);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param operationRequiredRoleId
+	 * @return
+	 */
+	private boolean existsConnectorWithProvidedRole(String operationRequiredRoleId) {
+		for ( Entry<String, AssemblyConnectorData> c : this.originalAssemblyConnectors.entrySet()) {
+			if (operationRequiredRoleId.equals(c.getValue().operationRequiredRoleId)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void handleAssemblyConnector(AssemblyConnector c, PCMInstance pcmToAdopt) {
