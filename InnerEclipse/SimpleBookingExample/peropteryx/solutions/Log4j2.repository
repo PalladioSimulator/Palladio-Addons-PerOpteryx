@@ -264,6 +264,10 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
       <fulfills href="../Logging.featurecompletion#_CPxWwpNNEei8wsTJtgXi_w"/>
     </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementum" appliedTo="_QT0ikO8FEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#__L2VgJY7EeiFlpJZKhVb7g"/>
+      <provides href="../Logging.featurecompletion#_RVapIOZXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>
 </xmi:XMI>

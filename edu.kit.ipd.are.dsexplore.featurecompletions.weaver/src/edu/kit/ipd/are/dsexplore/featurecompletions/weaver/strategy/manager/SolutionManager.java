@@ -287,9 +287,13 @@ public final class SolutionManager {
 	 * @return
 	 */
 	public RepositoryComponent getFulfillingComponentForComplementum(ComplementumImpl complementum) {
-		for (RepositoryComponent c : this.solution.getComponents__Repository()) {
-			if (c.getEntityName().equals(complementum.getName())) {
-				return c;
+		for (RepositoryComponent c : this.solution.getComponents__Repository()) { //Complementum has to be in solution repo!
+			//if (c.getEntityName().equals(complementum.getName())) {
+			for (ProvidedRole role : c.getProvidedRoles_InterfaceProvidingEntity()) {
+				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), Complementum.class);
+				if (!complementa.isEmpty() && complementa.get(0).getId().equals(complementum.getId())) {
+					return c;
+				}
 			}
 		}
 		return null;
