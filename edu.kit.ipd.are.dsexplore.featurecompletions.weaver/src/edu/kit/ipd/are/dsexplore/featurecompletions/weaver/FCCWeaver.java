@@ -249,8 +249,9 @@ public final class FCCWeaver {
 		}
 
 		//TODO check if choices are consistent/valid (selected cvs are supported by selected solution
+		int checkedSolutionsCounter = 0; //to prevent an infinite loop if there is no appropriate solution
 		boolean solutionChoiceValid = checkSolutionChoiceValid();
-		if (!solutionChoiceValid) {
+		if (!solutionChoiceValid && checkedSolutionsCounter < 20) {	//TODO constant choice?
 			//TODO this is a dirty fix, what if no valid solutions exists??
 			List<EObject> solutions = ((FeatureCompletionDegree) fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
 			fccChoice.setValue(solutions.get(new Random().nextInt(solutions.size())));
