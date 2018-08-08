@@ -4,7 +4,8 @@
     <childrelation xsi:type="featureObjective:Simple">
       <optionalChildren id="_IhmWoJNMEei8wsTJtgXi_w" name="SupplementaryFeatures" simpleOptional="//@rootFeature/@childrelation">
         <childrelation xsi:type="featureObjective:FeatureGroup" min="0">
-          <children id="_muAD0JNMEei8wsTJtgXi_w" name="AdvancedFiltering" simpleOptional="//@rootFeature/@childrelation"/>
+          <children id="_muAD0JNMEei8wsTJtgXi_w" name="FilteredLogging" simpleOptional="//@rootFeature/@childrelation"/>
+          <children id="_fBNPQJr3EeiGWdCH8kHCMA" name="LocationInfoLogging" simpleOptional="//@rootFeature/@childrelation"/>
         </childrelation>
       </optionalChildren>
       <mandatoryChildren id="__mtHseGgEeemVJ0YF1ddSA" name="WriteTarget" simpleMandatory="//@rootFeature/@childrelation">

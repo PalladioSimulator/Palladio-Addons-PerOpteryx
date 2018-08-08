@@ -53,8 +53,11 @@
     </complementa>
     <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
     <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_CPxWwpNNEei8wsTJtgXi_w" name="AdvancedFiltering">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_CPxWwpNNEei8wsTJtgXi_w" name="FilteredLogging">
       <complementaryFeature href="Logging.featureobjective#_muAD0JNMEei8wsTJtgXi_w"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_zgq9Epr3EeiGWdCH8kHCMA" name="LocationInfoLogging">
+      <complementaryFeature href="Logging.featureobjective#_fBNPQJr3EeiGWdCH8kHCMA"/>
     </complementa>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>
