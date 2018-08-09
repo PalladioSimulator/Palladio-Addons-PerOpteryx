@@ -1,10 +1,12 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
@@ -24,14 +26,20 @@ import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PlacementPolicy;
 
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
+import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
@@ -149,6 +157,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	//choices for fc solution
 	private Choice fccChoice;
+	//choices for allocation
+	private List<Choice> allocationChoices;
 	//choices for multiple-flag
 	private Choice multipleInclusionChoice;
 	//choices for advice placements
@@ -158,6 +168,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	
 	private List<ComplementumVisnetis> selectedCVs;
 	private List<Choice> optionalFeatureChoices;
+
 
 	/**
 	 * Initializes the extension weaving mechanism.
@@ -174,6 +185,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		FCCModule.logger.debug("Initializing Extension Weaving Strategy");
 
 		this.fccChoice = fccChoice;
+		this.allocationChoices = allocationChoices;
 		
 		this.multipleInclusionChoice = multipleInclusionChoice;
 		this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
@@ -375,16 +387,44 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		return obj;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.
-	 * IWeavingStrategy#getConvertedFCCClassChoices()
-	 */
 	@Override
 	public List<Choice> getConvertedFCCClassChoices() {
-		// TODO implement
-		return new ArrayList<>();
+		List<Choice> allocChoices = new ArrayList<>();
+		for (Choice fccClassChoice : this.allocationChoices) {
+			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			List<AssemblyContext> assemblyContexts = this.getComponentsIntantiatingFCC(fcc);
+			for (AssemblyContext assemblyContext : assemblyContexts) {
+				try {
+					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
+					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
+					ad.setPrimaryChanged(alloc);
+					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
+					choice.setDegreeOfFreedomInstance(ad);
+					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
+					allocChoices.add(choice);
+				} catch (Exception e) {
+					FCCModule.logger.warn(e.getMessage());
+				}
+			}
+		}
+		return allocChoices;
+	}
+
+
+	/**
+	 * @param fcc
+	 * @return
+	 */
+	private List<AssemblyContext> getComponentsIntantiatingFCC(CompletionComponent fcc) {
+		List<AssemblyContext> result = new ArrayList<>();
+		//search for component instantiating fcc
+		for (AssemblyContext ac : this.psm.getAssemblyContextsBy(ac -> true)) {
+			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
+			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { //1 component should only realize 1 fcc
+				result.add(ac);
+			}
+		}
+		return result;
 	}
 
 	/* (non-Javadoc)
