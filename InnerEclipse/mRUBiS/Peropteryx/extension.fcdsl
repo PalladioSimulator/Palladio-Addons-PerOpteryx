@@ -9,9 +9,14 @@ ExtensionInclusion extensionIncl _ZZ {
 				matchingSignature persistBid
 			}
 		},
-		PointCut allActionsIn {
+		PointCut allActionsInQueryServiceBean {
 			placementStrategy InternalActionPlacementStrategy {
 				forAllInternalActionsIn QueryServiceBean
+			}
+		},
+		PointCut allActionsInBasicQueryServiceBean {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn BasicQueryServiceBean
 			}
 		},
 		PointCut allControlFlowsIn {
@@ -25,20 +30,26 @@ ExtensionInclusion extensionIncl _ZZ {
 		Advice {
 			appears BEFORE 
 			pointCut allCalls
-			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout,JSONLayout})
-			placementPolicy MANDATORY
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging,NoSQLDatabaseLogging}, {PatternLayout,JSONLayout})
+			placementPolicy OPTIONAL
 		},
 		Advice {
 			appears BEFORE 
-			pointCut allActionsIn
+			pointCut allActionsInQueryServiceBean
 			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
-			placementPolicy MANDATORY
+			placementPolicy OPTIONAL
 		},
 		Advice {
-			appears AROUND 
+			appears BEFORE 
+			pointCut allActionsInBasicQueryServiceBean
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
+			placementPolicy OPTIONAL
+		},
+		Advice {
+			appears BEFORE 
 			pointCut allControlFlowsIn
 			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
-			placementPolicy MANDATORY
+			placementPolicy OPTIONAL
 		}
 	}
 }

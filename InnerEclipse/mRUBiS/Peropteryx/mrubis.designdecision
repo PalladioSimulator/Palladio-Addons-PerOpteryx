@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_fDKhwJvhEeis8ceY40h_VA">
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_TVxskJvsEei9aYoBlPueUg">
   <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="5.7" from="1.425">
     <primaryChanged href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
     <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
@@ -93,6 +93,7 @@
     <classDesignOptions href="Logging.featurecompletion#_tGBoc-TaEeeT85tFTnTIqQ"/>
     <classDesignOptions href="Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
     <classDesignOptions href="Logging.featurecompletion#_Lb-cgeWGEeeT85tFTnTIqQ"/>
+    <classDesignOptions href="Logging.featurecompletion#_MX218eWGEeeT85tFTnTIqQ"/>
   </degreesOfFreedom>
   <degreesOfFreedom xsi:type="specific:ComplementumVisnetisDegree" entityName="cv">
     <primaryChanged href="extension.fcdsl#//@advice.0/@Completion/@featureLists.1"/>

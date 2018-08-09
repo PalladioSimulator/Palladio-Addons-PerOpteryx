@@ -598,14 +598,21 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_DuljPCj-EeelRJRTle_aYg" predecessor_AbstractAction="_DuljPSj-EeelRJRTle_aYg"/>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_DuPk-Cj-EeelRJRTle_aYg" describedService__SEFF="_Dt0HKyj-EeelRJRTle_aYg">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_DumKQij-EeelRJRTle_aYg"/>
-      <steps_Behaviour xsi:type="seff:InternalAction" id="_DumKQij-EeelRJRTle_aYg" entityName="IA  @position: de.hpi.sam.rubis.queryservice.impl.BasicQueryServiceBean.java.BasicQueryServiceBean.findUserByNickname() from 7735 to 7970" predecessor_AbstractAction="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_DumKQSj-EeelRJRTle_aYg">
-        <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="DoublePDF[(1.1294450759887695;0)(1.336446762084961;0.8454108697828046)(1.5434107780456543;0.09468521669502553)(1.7503652572631836;0.01606445801221099)(1.9576430320739746;0.009808827945150636)(2.16251277923584;0.00565508958062256)(2.367274284362793;0.003903513161845661)(2.5794410705566406;0.005254729256330698)(2.7861952781677246;0.009858872985687118)(2.98848819732666;0.002352116905214693)(3.2007908821105957;0.0011009908918026225)(3.347489356994629;7.506756080472426E-4)(3.605792999267578;8.507656891202082E-4)(3.822330951690674;0.002452206986287659)(3.9820618629455566;7.506756080472426E-4)(4.160775184631348;2.5022520268241417E-4)(4.414559364318848;1.0009008107296567E-4)(4.623435974121094;2.0018016214593134E-4)(4.781089855194092;5.0045040536482834E-5)(4.978699279785157;5.0045040536482834E-5)(5.316915035247803;0)(5.3454179763793945;1.0009008107296567E-4)(5.597830844879151;5.0045040536482834E-5)(6.607754707336426;0)(6.608754707336426;5.0045040536482834E-5)(7.186214923858643;0)(7.344624042510986;2.5022520268241417E-4)]"/>
-          <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-        </resourceDemand_Action>
+      <steps_Behaviour xsi:type="seff:StartAction" id="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_5N2sBJvsEei9aYoBlPueUg"/>
+      <steps_Behaviour xsi:type="seff:LoopAction" id="_5N2sBJvsEei9aYoBlPueUg" entityName="loop" predecessor_AbstractAction="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_DumKQSj-EeelRJRTle_aYg">
+        <bodyBehaviour_Loop xsi:type="seff:ResourceDemandingSEFF" id="_8y3q45vsEei9aYoBlPueUg">
+          <steps_Behaviour xsi:type="seff:StartAction" id="_-HRSApvsEei9aYoBlPueUg" successor_AbstractAction="_DumKQij-EeelRJRTle_aYg"/>
+          <steps_Behaviour xsi:type="seff:InternalAction" id="_DumKQij-EeelRJRTle_aYg" entityName="IA  @position: de.hpi.sam.rubis.queryservice.impl.BasicQueryServiceBean.java.BasicQueryServiceBean.findUserByNickname() from 7735 to 7970" predecessor_AbstractAction="_-HRSApvsEei9aYoBlPueUg" successor_AbstractAction="_AUNqsJvtEei9aYoBlPueUg">
+            <resourceDemand_Action>
+              <specification_ParametericResourceDemand specification="DoublePDF[(1.1294450759887695;0)(1.336446762084961;0.8454108697828046)(1.5434107780456543;0.09468521669502553)(1.7503652572631836;0.01606445801221099)(1.9576430320739746;0.009808827945150636)(2.16251277923584;0.00565508958062256)(2.367274284362793;0.003903513161845661)(2.5794410705566406;0.005254729256330698)(2.7861952781677246;0.009858872985687118)(2.98848819732666;0.002352116905214693)(3.2007908821105957;0.0011009908918026225)(3.347489356994629;7.506756080472426E-4)(3.605792999267578;8.507656891202082E-4)(3.822330951690674;0.002452206986287659)(3.9820618629455566;7.506756080472426E-4)(4.160775184631348;2.5022520268241417E-4)(4.414559364318848;1.0009008107296567E-4)(4.623435974121094;2.0018016214593134E-4)(4.781089855194092;5.0045040536482834E-5)(4.978699279785157;5.0045040536482834E-5)(5.316915035247803;0)(5.3454179763793945;1.0009008107296567E-4)(5.597830844879151;5.0045040536482834E-5)(6.607754707336426;0)(6.608754707336426;5.0045040536482834E-5)(7.186214923858643;0)(7.344624042510986;2.5022520268241417E-4)]"/>
+              <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+            </resourceDemand_Action>
+          </steps_Behaviour>
+          <steps_Behaviour xsi:type="seff:StopAction" id="_AUNqsJvtEei9aYoBlPueUg" predecessor_AbstractAction="_DumKQij-EeelRJRTle_aYg"/>
+        </bodyBehaviour_Loop>
+        <iterationCount_LoopAction specification="20"/>
       </steps_Behaviour>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_DumKQSj-EeelRJRTle_aYg" predecessor_AbstractAction="_DumKQij-EeelRJRTle_aYg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_DumKQSj-EeelRJRTle_aYg" predecessor_AbstractAction="_5N2sBJvsEei9aYoBlPueUg"/>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_DuPk-Sj-EeelRJRTle_aYg" describedService__SEFF="_Dt0HLCj-EeelRJRTle_aYg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_DumKQyj-EeelRJRTle_aYg" successor_AbstractAction="_DumKRSj-EeelRJRTle_aYg"/>
