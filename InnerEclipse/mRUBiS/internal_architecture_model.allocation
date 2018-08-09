@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ASCII"?>
+<allocation:Allocation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" id="_DCYkgyj-EeelRJRTle_aYg" entityName="SoMoX Reverse Engineered Allocation Model">
+  <targetResourceEnvironment_Allocation href="internal_architecture_model.resourceenvironment#/"/>
+  <system_Allocation href="internal_architecture_model.system#_DCYkgCj-EeelRJRTle_aYg"/>
+  <allocationContexts_Allocation id="_DuQzESj-EeelRJRTle_aYg" entityName="ItemRegistrationServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzECj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzFSj-EeelRJRTle_aYg" entityName="QueryServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzFCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzGSj-EeelRJRTle_aYg" entityName="AboutMeServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzGCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzHSj-EeelRJRTle_aYg" entityName="BrowseCategoriesServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzHCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzISj-EeelRJRTle_aYg" entityName="InventoryServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzICj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzJSj-EeelRJRTle_aYg" entityName="AuthenticationServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzJCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzKSj-EeelRJRTle_aYg" entityName="BusinessObjectsPersistenceServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzKCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzLSj-EeelRJRTle_aYg" entityName="BrowseRegionsServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzLCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzMSj-EeelRJRTle_aYg" entityName="BuyNowServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzMCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzNSj-EeelRJRTle_aYg" entityName="BasicQueryServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzNCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzOSj-EeelRJRTle_aYg" entityName="QuantificationServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzOCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzPSj-EeelRJRTle_aYg" entityName="QuantificationServiceInnerBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzPCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzQSj-EeelRJRTle_aYg" entityName="BidServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzQCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzRSj-EeelRJRTle_aYg" entityName="ReputationServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzRCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzSSj-EeelRJRTle_aYg" entityName="ViewUserInfoServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzSCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_DuQzTSj-EeelRJRTle_aYg" entityName="UserRegistrationServiceBean">
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzTCj-EeelRJRTle_aYg"/>
+  </allocationContexts_Allocation>
+</allocation:Allocation>

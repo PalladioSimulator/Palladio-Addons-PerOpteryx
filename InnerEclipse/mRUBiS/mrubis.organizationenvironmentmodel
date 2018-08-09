@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organizationenvironmentmodel:OrganizationEnvironmentModel xmlns:Identifier_1.0="http://sdq.ipd.uka.de/Identifier/1.0" xmlns:organizationenvironmentmodel="http://palladiosimulator.org/PalladioComponentModel/5.1/bp/OrganizationEnvironmentModel" entityName="mrubis">
+  <roles Identifier_1.0:id="_mhuMMzJxEei_oZsDV5ZduA" entityName="Seller"/>
+  <roles Identifier_1.0:id="_VVY3gDJ7Eei_oZsDV5ZduA" entityName="Buyer"/>
+  <roles Identifier_1.0:id="_d1iToDJ7Eei_oZsDV5ZduA" entityName="User"/>
+  <roles Identifier_1.0:id="_IVwYUFv8EeiXGLNkHfgeEA" entityName="Bidder"/>
+</organizationenvironmentmodel:OrganizationEnvironmentModel>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2">
+  <system:System id="_DCYkgCj-EeelRJRTle_aYg" entityName="SoMoX Reverse Engineered System">
+    <assemblyContexts__ComposedStructure id="_DuQzECj-EeelRJRTle_aYg" entityName="ItemRegistrationServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DsxlUCj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzFCj-EeelRJRTle_aYg" entityName="QueryServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Ds-ZoSj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzGCj-EeelRJRTle_aYg" entityName="AboutMeServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DtsyYCj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzHCj-EeelRJRTle_aYg" entityName="BrowseCategoriesServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dtunkyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzICj-EeelRJRTle_aYg" entityName="InventoryServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DtvOoCj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzJCj-EeelRJRTle_aYg" entityName="AuthenticationServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DtvOpij-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzKCj-EeelRJRTle_aYg" entityName="BusinessObjectsPersistenceServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DtvOqij-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzLCj-EeelRJRTle_aYg" entityName="BrowseRegionsServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DtzgFCj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzMCj-EeelRJRTle_aYg" entityName="BuyNowServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dt0HIyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzNCj-EeelRJRTle_aYg" entityName="BasicQueryServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dt0HJyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzOCj-EeelRJRTle_aYg" entityName="QuantificationServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dt6Nwyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzPCj-EeelRJRTle_aYg" entityName="QuantificationServiceInnerBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dt_tUyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzQCj-EeelRJRTle_aYg" entityName="BidServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_Dt_tWCj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzRCj-EeelRJRTle_aYg" entityName="ReputationServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DuAUYyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzSCj-EeelRJRTle_aYg" entityName="ViewUserInfoServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DuAUZyj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <assemblyContexts__ComposedStructure id="_DuQzTCj-EeelRJRTle_aYg" entityName="UserRegistrationServiceBean">
+      <encapsulatedComponent__AssemblyContext xsi:type="repository:BasicComponent" href="internal_architecture_model.repository#_DuNvwSj-EeelRJRTle_aYg"/>
+    </assemblyContexts__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzEyj-EeelRJRTle_aYg" entityName="ItemRegistrationService" outerProvidedRole_ProvidedDelegationConnector="_DuQzEij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzECj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Ds-ZoCj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzFyj-EeelRJRTle_aYg" entityName="QueryService" outerProvidedRole_ProvidedDelegationConnector="_DuQzFij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzGyj-EeelRJRTle_aYg" entityName="AboutMeService" outerProvidedRole_ProvidedDelegationConnector="_DuQzGij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzGCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dtunkij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzHyj-EeelRJRTle_aYg" entityName="BrowseCategoriesService" outerProvidedRole_ProvidedDelegationConnector="_DuQzHij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzHCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DtunmSj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzIyj-EeelRJRTle_aYg" entityName="InventoryService" outerProvidedRole_ProvidedDelegationConnector="_DuQzIij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzICj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DtvOpSj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzJyj-EeelRJRTle_aYg" entityName="AuthenticationService" outerProvidedRole_ProvidedDelegationConnector="_DuQzJij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzKyj-EeelRJRTle_aYg" entityName="BusinessObjectsPersistenceService" outerProvidedRole_ProvidedDelegationConnector="_DuQzKij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzLyj-EeelRJRTle_aYg" entityName="BrowseRegionsService" outerProvidedRole_ProvidedDelegationConnector="_DuQzLij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzLCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dt0HIij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzMyj-EeelRJRTle_aYg" entityName="BuyNowService" outerProvidedRole_ProvidedDelegationConnector="_DuQzMij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzMCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dt0HJij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzNyj-EeelRJRTle_aYg" entityName="BasicQueryService" outerProvidedRole_ProvidedDelegationConnector="_DuQzNij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzOyj-EeelRJRTle_aYg" entityName="QuantificationService" outerProvidedRole_ProvidedDelegationConnector="_DuQzOij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzOCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dt_tUij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzPyj-EeelRJRTle_aYg" entityName="QuantificationServiceInner" outerProvidedRole_ProvidedDelegationConnector="_DuQzPij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzPCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_Dt_tVyj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzQyj-EeelRJRTle_aYg" entityName="BidService" outerProvidedRole_ProvidedDelegationConnector="_DuQzQij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzQCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzRyj-EeelRJRTle_aYg" entityName="ReputationService" outerProvidedRole_ProvidedDelegationConnector="_DuQzRij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzRCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DuAUZij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzSyj-EeelRJRTle_aYg" entityName="ViewUserInfoService" outerProvidedRole_ProvidedDelegationConnector="_DuQzSij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzSCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DuNvwCj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:ProvidedDelegationConnector" id="_DuQzTyj-EeelRJRTle_aYg" entityName="UserRegistrationService" outerProvidedRole_ProvidedDelegationConnector="_DuQzTij-EeelRJRTle_aYg" assemblyContext_ProvidedDelegationConnector="_DuQzTCj-EeelRJRTle_aYg">
+      <innerProvidedRole_ProvidedDelegationConnector href="internal_architecture_model.repository#_DuNvxCj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaICj-EeelRJRTle_aYg" entityName="Assembly Connector from ItemRegistrationServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzECj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW3Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaISj-EeelRJRTle_aYg" entityName="Assembly Connector from ItemRegistrationServiceBean to AuthenticationServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzECj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW3ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaIij-EeelRJRTle_aYg" entityName="Assembly Connector from ItemRegistrationServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzECj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW3yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaIyj-EeelRJRTle_aYg" entityName="Assembly Connector from AboutMeServiceBean to AuthenticationServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzGCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW1yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaJCj-EeelRJRTle_aYg" entityName="Assembly Connector from AboutMeServiceBean to QueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzGCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW2Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaJSj-EeelRJRTle_aYg" entityName="Assembly Connector from BrowseCategoriesServiceBean to QueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzHCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW2Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaJij-EeelRJRTle_aYg" entityName="Assembly Connector from BrowseCategoriesServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzHCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW2ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaJyj-EeelRJRTle_aYg" entityName="Assembly Connector from InventoryServiceBean to QueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzICj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO94Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaKCj-EeelRJRTle_aYg" entityName="Assembly Connector from InventoryServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzICj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO94Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaKSj-EeelRJRTle_aYg" entityName="Assembly Connector from AuthenticationServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW4Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaKij-EeelRJRTle_aYg" entityName="Assembly Connector from BrowseRegionsServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzLCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW1ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaKyj-EeelRJRTle_aYg" entityName="Assembly Connector from BuyNowServiceBean to AuthenticationServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzMCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW4Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaLCj-EeelRJRTle_aYg" entityName="Assembly Connector from BuyNowServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzMCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW4ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaLSj-EeelRJRTle_aYg" entityName="Assembly Connector from BuyNowServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzMCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW4yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaLij-EeelRJRTle_aYg" entityName="Assembly Connector from BuyNowServiceBean to InventoryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzMCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzICj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOpSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW5Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuRaLyj-EeelRJRTle_aYg" entityName="Assembly Connector from QuantificationServiceBean to QuantificationServiceInnerBean" requiringAssemblyContext_AssemblyConnector="_DuQzOCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzPCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt_tVyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW1Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBMCj-EeelRJRTle_aYg" entityName="Assembly Connector from BidServiceBean to AuthenticationServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzQCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO94ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBMSj-EeelRJRTle_aYg" entityName="Assembly Connector from BidServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzQCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO94yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBMij-EeelRJRTle_aYg" entityName="Assembly Connector from BidServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzQCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO95Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBMyj-EeelRJRTle_aYg" entityName="Assembly Connector from BidServiceBean to QueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzQCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO95Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBNCj-EeelRJRTle_aYg" entityName="Assembly Connector from BidServiceBean to InventoryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzQCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzICj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOpSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuO95ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBNSj-EeelRJRTle_aYg" entityName="Assembly Connector from ReputationServiceBean to AuthenticationServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzRCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzJCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW0Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBNij-EeelRJRTle_aYg" entityName="Assembly Connector from ReputationServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzRCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW0Sj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBNyj-EeelRJRTle_aYg" entityName="Assembly Connector from ReputationServiceBean to QueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzRCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzFCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtsLUCj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW0ij-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBOCj-EeelRJRTle_aYg" entityName="Assembly Connector from ReputationServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzRCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW0yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBOSj-EeelRJRTle_aYg" entityName="Assembly Connector from ViewUserInfoServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzSCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW1Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBOij-EeelRJRTle_aYg" entityName="Assembly Connector from UserRegistrationServiceBean to BusinessObjectsPersistenceServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzTCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzKCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_DtzgEyj-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW2yj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <connectors__ComposedStructure xsi:type="composition:AssemblyConnector" id="_DuSBOyj-EeelRJRTle_aYg" entityName="Assembly Connector from UserRegistrationServiceBean to BasicQueryServiceBean" requiringAssemblyContext_AssemblyConnector="_DuQzTCj-EeelRJRTle_aYg" providingAssemblyContext_AssemblyConnector="_DuQzNCj-EeelRJRTle_aYg">
+      <providedRole_AssemblyConnector href="internal_architecture_model.repository#_Dt6Nwij-EeelRJRTle_aYg"/>
+      <requiredRole_AssemblyConnector href="internal_architecture_model.repository#_DuOW3Cj-EeelRJRTle_aYg"/>
+    </connectors__ComposedStructure>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzEij-EeelRJRTle_aYg" entityName="ItemRegistrationService 0 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DsxlUSj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzFij-EeelRJRTle_aYg" entityName="QueryService 1 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Ds-Zoij-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzGij-EeelRJRTle_aYg" entityName="AboutMeService 2 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DtsyYSj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzHij-EeelRJRTle_aYg" entityName="BrowseCategoriesService 3 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DtunlCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzIij-EeelRJRTle_aYg" entityName="InventoryService 4 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DtvOoSj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzJij-EeelRJRTle_aYg" entityName="AuthenticationService 5 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DtvOpyj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzKij-EeelRJRTle_aYg" entityName="BusinessObjectsPersistenceService 6 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DtvOqyj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzLij-EeelRJRTle_aYg" entityName="BrowseRegionsService 7 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt0HICj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzMij-EeelRJRTle_aYg" entityName="BuyNowService 8 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt0HJCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzNij-EeelRJRTle_aYg" entityName="BasicQueryService 9 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt0HKCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzOij-EeelRJRTle_aYg" entityName="QuantificationService 10 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt600Cj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzPij-EeelRJRTle_aYg" entityName="QuantificationServiceInner 11 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt_tVCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzQij-EeelRJRTle_aYg" entityName="BidService 12 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_Dt_tWSj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzRij-EeelRJRTle_aYg" entityName="ReputationService 13 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DuAUZCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzSij-EeelRJRTle_aYg" entityName="ViewUserInfoService 14 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DuA7cCj-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_DuQzTij-EeelRJRTle_aYg" entityName="UserRegistrationService 15 (prov)(sys)">
+      <providedInterface__OperationProvidedRole href="internal_architecture_model.repository#_DuNvwij-EeelRJRTle_aYg"/>
+    </providedRoles_InterfaceProvidingEntity>
+  </system:System>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:featureCompletionSolution" appliedTo="_DCYkgCj-EeelRJRTle_aYg">
+      <extension href="../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqY3YVEeirzP2CXhR6Fg"/>
+      <solutionRepositories href="Peropteryx/solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
+      <solutionRepositories href="Peropteryx/solutions/Log4j2.repository#_xrUmkHueEeiQ2-JKBP-N_g"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

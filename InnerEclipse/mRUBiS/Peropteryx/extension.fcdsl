@@ -1,0 +1,44 @@
+import "platform:/resource/mRUBiS/internal_architecture_model.repository"
+import "platform:/resource/mRUBiS/Peropteryx/Logging.featurecompletion"
+
+ExtensionInclusion extensionIncl _ZZ {
+	description bla
+	pointCut {
+		PointCut allCalls {
+			placementStrategy ExternalCallPlacementStrategy {
+				matchingSignature persistBid
+			}
+		},
+		PointCut allActionsIn {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn QueryServiceBean
+			}
+		},
+		PointCut allControlFlowsIn {
+			placementStrategy ControlFlowPlacementStrategy {
+				forAllControlFlowsIn BasicQueryServiceBean
+			}
+		}
+	}
+	
+	advice {
+		Advice {
+			appears BEFORE 
+			pointCut allCalls
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout,JSONLayout})
+			placementPolicy MANDATORY
+		},
+		Advice {
+			appears BEFORE 
+			pointCut allActionsIn
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
+			placementPolicy MANDATORY
+		},
+		Advice {
+			appears AROUND 
+			pointCut allControlFlowsIn
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
+			placementPolicy MANDATORY
+		}
+	}
+}

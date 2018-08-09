@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ASCII"?>
+<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" xmlns:specific="http://sdq.ipd.uka.de/DesignDecision/Specific/3.0" id="_fDKhwJvhEeis8ceY40h_VA">
+  <degreesOfFreedom xsi:type="specific:ContinuousProcessingRateDegree" lowerBoundIncluded="false" to="5.7" from="1.425">
+    <primaryChanged href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <processingresourcetype href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzESj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzFSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzGSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzHSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzISj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzJSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzKSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzLSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzMSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzNSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzOSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzPSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzQSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzRSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzSSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AllocationDegree">
+    <primaryChanged href="../internal_architecture_model.allocation#_DuQzTSj-EeelRJRTle_aYg"/>
+    <classDesignOptions href="../internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:FeatureCompletionDegree">
+    <primaryChanged href="Logging.featurecompletion#_BQux0OQYEeeDc5WJsIYxgA"/>
+    <classDesignOptions href="solutions/Log4j1.repository#_unXGUHueEeiQ2-JKBP-N_g"/>
+    <classDesignOptions href="solutions/Log4j2.repository#_xrUmkHueEeiQ2-JKBP-N_g"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:MultipleInclusionDegree" entityName="multiple_inclusion">
+    <primaryChanged href="extension.fcdsl#_ZZ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AdvicePlacementDegree" entityName="advice">
+    <primaryChanged href="extension.fcdsl#//@advice.0"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AdvicePlacementDegree" entityName="advice">
+    <primaryChanged href="extension.fcdsl#//@advice.1"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AdvicePlacementDegree" entityName="advice">
+    <primaryChanged href="extension.fcdsl#//@advice.2"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:AdvicePlacementDegree" entityName="advice">
+    <primaryChanged href="extension.fcdsl#//@advice.3"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:ComplementumVisnetisDegree" entityName="cv">
+    <primaryChanged href="extension.fcdsl#//@advice.0/@Completion/@featureLists.0"/>
+    <classDesignOptions href="Logging.featurecompletion#_tGBoc-TaEeeT85tFTnTIqQ"/>
+    <classDesignOptions href="Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
+    <classDesignOptions href="Logging.featurecompletion#_Lb-cgeWGEeeT85tFTnTIqQ"/>
+  </degreesOfFreedom>
+  <degreesOfFreedom xsi:type="specific:ComplementumVisnetisDegree" entityName="cv">
+    <primaryChanged href="extension.fcdsl#//@advice.0/@Completion/@featureLists.1"/>
+    <classDesignOptions href="Logging.featurecompletion#_1XUJMeTaEeeT85tFTnTIqQ"/>
+    <classDesignOptions href="Logging.featurecompletion#_NA0TYeWGEeeT85tFTnTIqQ"/>
+  </degreesOfFreedom>
+</designdecision:DecisionSpace>
