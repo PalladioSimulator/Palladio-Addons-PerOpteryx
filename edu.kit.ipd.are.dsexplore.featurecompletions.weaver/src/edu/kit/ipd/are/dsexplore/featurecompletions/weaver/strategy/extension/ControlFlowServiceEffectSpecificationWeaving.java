@@ -13,6 +13,8 @@ import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
 import org.palladiosimulator.pcm.seff.AbstractLoopAction;
 import org.palladiosimulator.pcm.seff.BranchAction;
+import org.palladiosimulator.pcm.seff.ForkAction;
+import org.palladiosimulator.pcm.seff.ForkedBehaviour;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.StartAction;
@@ -91,6 +93,22 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 							AbstractAction stop = getStopAction(loopSEFF.getSteps_Behaviour());
 							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
 							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+						}
+					} else if (abstractAction instanceof ForkAction) {
+						EList<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
+						for (ForkedBehaviour forkedSEFF : forkedSEFFs) {
+							if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
+								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
+								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
+								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
+								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
+								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
+								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
+								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							}
 						}
 					}
 				}

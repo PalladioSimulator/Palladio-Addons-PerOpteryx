@@ -39,6 +39,8 @@ import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
 import org.palladiosimulator.pcm.seff.AbstractLoopAction;
 import org.palladiosimulator.pcm.seff.BranchAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.ForkAction;
+import org.palladiosimulator.pcm.seff.ForkedBehaviour;
 import org.palladiosimulator.pcm.seff.LoopAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
@@ -145,6 +147,11 @@ public final class FCCWeaver {
 				}
 			} else if (abstractAction instanceof AbstractLoopAction) {
 				result.addAll(getExternalCallActions(((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop()));
+			} else if (abstractAction instanceof ForkAction) {
+				EList<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
+				for (ForkedBehaviour forkedBehaviour : forkedSEFFs) {
+					result.addAll(getExternalCallActions(forkedBehaviour));
+				}
 			}
 		}
 
