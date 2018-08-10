@@ -434,5 +434,15 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	public List<ComplementumVisnetis> getSelectedCVs() {
 		return this.selectedCVs;
 	}
+	
+	//TODO Annahme: es kann nur 1 optionales Feature existieren!
+	public ComplementumVisnetis getSelectedOptionalCV() {
+		for (ComplementumVisnetis cv : this.selectedCVs) {
+			if (cv.getComplementaryFeature().getSimpleOptional() != null) {
+				return cv;
+			}
+		}
+		return null;
+	}
 
 }

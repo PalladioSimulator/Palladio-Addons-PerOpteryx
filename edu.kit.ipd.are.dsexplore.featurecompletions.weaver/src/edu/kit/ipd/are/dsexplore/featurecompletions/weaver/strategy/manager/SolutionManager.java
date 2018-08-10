@@ -15,6 +15,7 @@ import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -293,6 +294,26 @@ public final class SolutionManager {
 				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), Complementum.class);
 				if (!complementa.isEmpty() && complementa.get(0).getId().equals(complementum.getId())) {
 					return c;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param operationInterface
+	 * @param selectedOptionalCV
+	 * @return
+	 */
+	//TODO welche Signatur nehmen, wenn kein optionales feature ausgewahlt???
+	public OperationSignature getFulfillingSignatureFrom(OperationInterface operationInterface, ComplementumVisnetis selectedOptionalCV) {
+		if (selectedOptionalCV == null) {
+			return operationInterface.getSignatures__OperationInterface().get(0);
+		} else {
+			for (OperationSignature sig : operationInterface.getSignatures__OperationInterface()) {
+				List<ComplementumVisnetis> fulfilledCVs = StereotypeAPIHelper.getViaStereoTypeFrom(sig, ComplementumVisnetis.class);
+				if (fulfilledCVs.stream().anyMatch(cv -> cv.getId().equals(selectedOptionalCV.getId()))) {
+					return sig;
 				}
 			}
 		}

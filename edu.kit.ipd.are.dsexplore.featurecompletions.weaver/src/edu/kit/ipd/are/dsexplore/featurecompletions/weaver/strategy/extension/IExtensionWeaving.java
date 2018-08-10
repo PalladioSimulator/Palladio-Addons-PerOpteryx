@@ -46,4 +46,6 @@ interface IExtensionWeaving {
 	 * @return
 	 */
 	List<ComplementumVisnetis> getSelectedCVs();
+	
+	ComplementumVisnetis getSelectedOptionalCV();
 }
