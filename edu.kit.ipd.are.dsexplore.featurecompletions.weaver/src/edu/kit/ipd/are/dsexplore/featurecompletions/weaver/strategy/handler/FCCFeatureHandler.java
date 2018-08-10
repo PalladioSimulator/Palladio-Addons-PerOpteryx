@@ -151,7 +151,7 @@ public class FCCFeatureHandler {
 	}
 
 	// TODO added for extension
-	public List<ProvidedRole> getPerimeterProvidedRolesFor(ComplementumVisnetis cv, FeatureCompletion fc, Repository repo) throws FCCWeaverException {
+	public ProvidedRole getPerimeterProvidedRoleFor(ComplementumVisnetis cv, FeatureCompletion fc, Repository repo) throws FCCWeaverException {
 		Feature feature = cv.getComplementaryFeature();
 		List<ProvidedRole> result = new ArrayList<>();
 
@@ -166,7 +166,10 @@ public class FCCFeatureHandler {
 				result.addAll(providedRoles);
 			}
 		}
-		return result;
+		if (result.size() != 1) {
+			throw new FCCWeaverException("there should only be one perimteter role providing the selected cv");
+		}
+		return result.get(0);
 	}
 
 	/**

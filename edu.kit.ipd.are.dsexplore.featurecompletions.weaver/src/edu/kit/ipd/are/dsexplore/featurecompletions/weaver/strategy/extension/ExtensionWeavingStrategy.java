@@ -290,8 +290,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			ComplementumVisnetis cv = selectedCVs.get(0);
 
 			//create for current solution choice
-			Pair<CompletionComponent, List<ProvidedRole>> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
-					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
+			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
+					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations,
 					null/* TODO */, extensionIncl));
 		}

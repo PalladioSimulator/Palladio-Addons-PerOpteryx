@@ -68,15 +68,15 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 							EList<AbstractAction> branchSteps = abstractBranchTransition.getBranchBehaviour_BranchTransition().getSteps_Behaviour();
 							if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
 								AbstractAction start = getStartAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
 								AbstractAction stop = getStopAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
 								AbstractAction start = getStartAction(branchSteps);
 								AbstractAction stop = getStopAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							}
 						}
 					} else if (abstractAction instanceof AbstractLoopAction) {
@@ -84,30 +84,30 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 						ResourceDemandingBehaviour loopSEFF = ((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop();
 						if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
 							AbstractAction start = getStartAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 						} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
 							AbstractAction stop = getStopAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 						} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
 							AbstractAction start = getStartAction(loopSEFF.getSteps_Behaviour());
 							AbstractAction stop = getStopAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
-							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 						}
 					} else if (abstractAction instanceof ForkAction) {
 						EList<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
 						for (ForkedBehaviour forkedSEFF : forkedSEFFs) {
 							if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
 								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
 								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
 								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
 								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
-								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0)));
+								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
 							}
 						}
 					}

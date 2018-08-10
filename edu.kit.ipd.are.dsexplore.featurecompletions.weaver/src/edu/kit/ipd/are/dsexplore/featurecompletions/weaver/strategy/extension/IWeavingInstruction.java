@@ -29,7 +29,7 @@ public interface IWeavingInstruction {
 	 */
 	public ResourceContainer getResourceContainer();
 	
-	public Pair<CompletionComponent, List<ProvidedRole>> getFccWithProvidedRoles();
+	public Pair<CompletionComponent, ProvidedRole> getFccWithProvidedRole();
 	
 	public InclusionMechanism getInclusionMechanism();
 }

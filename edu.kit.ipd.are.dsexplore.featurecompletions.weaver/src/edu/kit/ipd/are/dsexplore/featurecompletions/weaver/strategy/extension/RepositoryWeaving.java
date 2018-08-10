@@ -32,7 +32,7 @@ public class RepositoryWeaving {
 	public void weave(IWeavingInstruction instruction) {
 		FCCModule.logger.debug("Repository Extension Weaving");
 		//add required role only if not yet existing
-		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution
+		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond(); 
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedRole);
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
 			EList<RequiredRole> allRequiredRoles = location.getAffectedContext().getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity();
