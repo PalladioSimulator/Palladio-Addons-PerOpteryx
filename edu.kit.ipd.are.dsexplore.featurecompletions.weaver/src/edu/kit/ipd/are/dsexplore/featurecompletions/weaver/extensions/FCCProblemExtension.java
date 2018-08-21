@@ -12,7 +12,6 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
@@ -20,26 +19,19 @@ import de.uka.ipd.sdq.dsexplore.facade.IProblemExtension;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pointer;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
-import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.AdvicePlacementDesignDecision;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.ComplementumVisnetisDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.MultipleInclusionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
-import featureObjective.Feature;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExtension;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 
 public class FCCProblemExtension implements IProblemExtension {
 
@@ -120,56 +112,11 @@ public class FCCProblemExtension implements IProblemExtension {
 		FeatureCompletionDegree degree = featureCompletionDegrees.get(0);
 		this.createClassChoice(degree, dds, initialCandidate);
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
-		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
-		//add dof for multiple-flag in inclusion mechanism
-		this.createMultipleInclusionDegree(degree, dds, initialCandidate, this.weaver.get().getSolutionRepositories());
-		//add dof for advice placement policy
-		this.createAdvicePlacementDegree(dds, initialCandidate, this.weaver.get().getSolutionRepositories());
-		//TODO add dof for cv selection
-		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, this.weaver.get().getSolutionRepositories());
+
+		IStrategyExtension extension = WeavingStrategies.getStrategy(this.weaver.get().getInclusionMechanism()).getExtension();
+		extension.additionalCreateFCCDegreeBy(degree, dds, initialCandidate, this.weaver.get());
+
 		return degree;
-	}
-
-	/**
-	 * @param degree
-	 * @param dds
-	 * @param degree
-	 * @param solutions 
-	 */
-	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<Choice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, solutions).generateComplementumVisnetisDegrees();
-		
-		for (Choice choice : complementumVisnetisDegrees) {
-			initialCandidate.add(choice);
-			dds.add(choice.getDegreeOfFreedomInstance());
-		}
-	}
-
-	/**
-	 * @param dds
-	 * @param initialCandidate
-	 * @param solutions 
-	 */
-	private void createAdvicePlacementDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<BoolChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(solutions).generateAdvicePlacementDegrees();
-		
-		for (BoolChoice featureChoice : advicePlacementDegrees) {
-			initialCandidate.add(featureChoice);
-			dds.add(featureChoice.getDegreeOfFreedomInstance());
-		}
-	}
-
-	/**
-	 * @param degree 
-	 * @param dds
-	 * @param initialCandidate 
-	 */
-	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		//add dof for multiple-flag in inclusion mechanism
-		BoolChoice choice = new MultipleInclusionDesignDecision(solutions).generateMultipleInclusionDegree();
-		
-		initialCandidate.add(choice);
-		dds.add(choice.getDegreeOfFreedomInstance());
 	}
 
 	private void createClassChoice(FeatureCompletionDegree fccDegree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
@@ -195,59 +142,6 @@ public class FCCProblemExtension implements IProblemExtension {
 		}
 
 		this.weaver.set(new FCCWeaver(blackboard, solutionRepos, costModel));
-
-	}
-
-	/**
-	 * Determine {@link OptionalAsDegree}-DoFs.
-	 *
-	 * @param cd
-	 *            the concern degree
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @param fcRepo
-	 *            the concern repo
-	 * @author Dominik Fuchss
-	 */
-	private void determineOptionalAsDegreeDecisions(FeatureCompletionDegree cd, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FeatureCompletionRepository fcRepo) {
-		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
-		List<CompletionComponent> fccs = c.getCompletionComponents();
-		List<Feature> features = new ArrayList<>();
-
-		for (CompletionComponent ecc : fccs) {
-			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
-			if (provided.isEmpty()) {
-				FCCModule.logger.error(ecc + " does not provide a Feature.");
-				continue;
-			}
-			// INFO:
-			// For now only features which are directly mapped to an ECC will be
-			// mentioned here ..
-			// Maybe someone will decide to search features recursively .. then
-			// you can use this line ..
-			// this.getThisAndSubfeatures(features, feature);
-			features.addAll(provided);
-		}
-
-		List<Feature> optionals = new ArrayList<>();
-		for (Feature f : features) {
-			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
-			// not needed so far.
-			boolean isOptional = f.getSimpleOptional() != null;
-			if (isOptional) {
-				optionals.add(f);
-			}
-		}
-		for (Feature op : optionals) {
-			FeatureDegree oad = specificFactory.eINSTANCE.createFeatureDegree();
-			oad.setPrimaryChanged(op);
-			dds.add(oad);
-			FeatureChoice ch = designdecisionFactory.eINSTANCE.createFeatureChoice();
-			ch.setDegreeOfFreedomInstance(oad);
-			initialCandidate.add(ch);
-		}
 
 	}
 

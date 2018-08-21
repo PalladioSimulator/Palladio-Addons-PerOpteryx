@@ -1,7 +1,6 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,6 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PlacementPolicy;
-
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
@@ -38,15 +36,14 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
-
 import featureSolution.Advice;
 import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
@@ -58,9 +55,11 @@ import featureSolution.impl.ExternalCallPlacementStrategyImpl;
 import featureSolution.impl.InternalActionPlacementStrategyImpl;
 
 /**
- * This is the central class handling the extension weaving mechanism. 
- * It is initialized with the present degrees of freedom and triggers the weaving operations for the PCM submodels (repository/seff, system, usage, allocation).
- * 
+ * This is the central class handling the extension weaving mechanism. It is
+ * initialized with the present degrees of freedom and triggers the weaving
+ * operations for the PCM submodels (repository/seff, system, usage,
+ * allocation).
+ *
  * (It is based on the AdapterWeavingStrategy)
  *
  * @author Maximilian Eckert (maxieckert@web.de)
@@ -155,64 +154,71 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	///////////////////// INITIALIZE //////////////////////////
 	private List<IWeavingInstruction> instructions;
 
-	//choices for fc solution
+	// choices for fc solution
 	private Choice fccChoice;
-	//choices for allocation
+	// choices for allocation
 	private List<Choice> allocationChoices;
-	//choices for multiple-flag
+	// choices for multiple-flag
 	private Choice multipleInclusionChoice;
-	//choices for advice placements
+	// choices for advice placements
 	private List<Choice> advicePlacementChoices;
-	//TODO choices for cv selection
+	// TODO choices for cv selection
 	private List<Choice> cvChoices;
-	
+
 	private List<ComplementumVisnetis> selectedCVs;
 	private List<Choice> optionalFeatureChoices;
 
-
 	/**
 	 * Initializes the extension weaving mechanism.
-	 * 
-	 * @param locations not used in extension mechanism, as locations are determined by dsl.
-	 * @param fccChoice solution choice.
-	 * @param featureChoices feature choices.
-	 * @param allocationChoices allocation choices for fcc components.
-	 * @param multipleInclusionChoice multiple-flag choice.
-	 * @param advicePlacementChoices advice placement (mandatory/optional) choices.
+	 *
+	 * @param locations
+	 *            not used in extension mechanism, as locations are determined
+	 *            by dsl.
+	 * @param fccChoice
+	 *            solution choice.
+	 * @param featureChoices
+	 *            feature choices.
+	 * @param allocationChoices
+	 *            allocation choices for fcc components.
+	 * @param multipleInclusionChoice
+	 *            multiple-flag choice.
+	 * @param advicePlacementChoices
+	 *            advice placement (mandatory/optional) choices.
 	 */
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices, Choice multipleInclusionChoice, List<Choice> advicePlacementChoices, List<Choice> cvChoices) {
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> allocationChoices) {
 		FCCModule.logger.debug("Initializing Extension Weaving Strategy");
 
 		this.fccChoice = fccChoice;
 		this.allocationChoices = allocationChoices;
-		
-		this.multipleInclusionChoice = multipleInclusionChoice;
+
+		ExtensionStrategyExtension ese = (ExtensionStrategyExtension) WeavingStrategies.EXTENSION.getExtension();
+
+		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
-		
-		this.advicePlacementChoices = advicePlacementChoices;
-		
-		this.cvChoices = cvChoices;
-		this.optionalFeatureChoices = featureChoices;
-		//TODO set selected cv choices
+
+		this.advicePlacementChoices = ese.advicePlacementChoices;
+
+		this.cvChoices = ese.cvChoices;
+		this.optionalFeatureChoices = ese.featureChoices;
+		// TODO set selected cv choices
 		this.setSelectedCVs();
-		
-		
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
-		
-		FCCModule.logger.debug("Initialized " + instructions.size() + " instructions with " + instructions.stream().flatMap(instr -> instr.getWeavingLocations().stream()).count() + " weaving locations");
+
+		FCCModule.logger
+				.debug("Initialized " + instructions.size() + " instructions with " + instructions.stream().flatMap(instr -> instr.getWeavingLocations().stream()).count() + " weaving locations");
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void setSelectedCVs() {
-		this.selectedCVs = cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
+		this.selectedCVs = this.cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
 		for (Choice choice : this.optionalFeatureChoices) {
 			if (((FeatureChoice) choice).isSelected()) {
-				selectedCVs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
+				this.selectedCVs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
 				((FeatureChoice) choice).setPresent(true);
 			}
 		}
@@ -220,20 +226,22 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	/**
 	 * Determines all advices that will be weaved into the system.
-	 * 
+	 *
 	 * @return selected advices that will be weaved.
 	 */
 	private List<Advice> getSelectedAdvices() {
-		List<Advice> selectedAdvices = advicePlacementChoices.stream().filter(choice -> ((BoolChoice) choice).isChosenValue()).map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
-		//add mandatory advices
+		List<Advice> selectedAdvices = this.advicePlacementChoices.stream().filter(choice -> ((BoolChoice) choice).isChosenValue())
+				.map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
+		// add mandatory advices
 		selectedAdvices.addAll(((ExtensionInclusion) this.im).getAdvice().stream().filter(advice -> advice.getPlacementPolicy() == PlacementPolicy.MANDATORY).collect(Collectors.toList()));
 
 		return selectedAdvices;
 	}
 
 	/**
-	 * Calculates all weaving instructions. Each advice will be mapped to a corresponding weaving instruction.
-	 * 
+	 * Calculates all weaving instructions. Each advice will be mapped to a
+	 * corresponding weaving instruction.
+	 *
 	 * @return all weaving instructions.
 	 */
 	private List<IWeavingInstruction> determineInstructions() {
@@ -241,22 +249,24 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		ExtensionInclusionImpl extensionIncl = (ExtensionInclusionImpl) this.im;
 
-		//for (Advice advice : extensionIncl.getAdvice()) {
+		// for (Advice advice : extensionIncl.getAdvice()) {
 		for (Advice advice : this.getSelectedAdvices()) {
 			PointCut pointCut = advice.getPointCut();
 			PlacementStrategy placementStrategy = pointCut.getPlacementStrategy();
 			List<IWeavingLocation> locations = new ArrayList<>();
 			if (placementStrategy instanceof ExternalCallPlacementStrategyImpl) {
 				Signature sig = ((ExternalCallPlacementStrategyImpl) placementStrategy).getMatchingSignature();
-				//find all occurences of signature sig in pcm
+				// find all occurences of signature sig in pcm
 
 				List<Connector> connectors = this.psm.getConnectorsBy(connector -> connector instanceof AssemblyConnector ? true : false);
 
 				for (Connector connector : connectors) {
-					
-					//TODO alle Komp-SEFFs nach ExternalCalls mit entsprechender Sig durchsuchen!!
+
+					// TODO alle Komp-SEFFs nach ExternalCalls mit
+					// entsprechender Sig durchsuchen!!
 					RepositoryComponent comp = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
-					boolean match = ((BasicComponent) comp).getServiceEffectSpecifications__BasicComponent().stream().anyMatch(seff -> ((ResourceDemandingBehaviour) seff).getSteps_Behaviour().stream().anyMatch(action -> action instanceof ExternalCallAction && ((ExternalCallAction) action).getCalledService_ExternalService().getId().equals(sig.getId())));
+					boolean match = ((BasicComponent) comp).getServiceEffectSpecifications__BasicComponent().stream().anyMatch(seff -> ((ResourceDemandingBehaviour) seff).getSteps_Behaviour().stream()
+							.anyMatch(action -> action instanceof ExternalCallAction && ((ExternalCallAction) action).getCalledService_ExternalService().getId().equals(sig.getId())));
 					//
 					if (match) {
 						AssemblyContext affectedContext = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector();
@@ -265,7 +275,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 					}
 				}
 			} else if (placementStrategy instanceof InternalActionPlacementStrategyImpl) {
-				//find all internal actions in component
+				// find all internal actions in component
 				RepositoryComponent component = ((InternalActionPlacementStrategyImpl) placementStrategy).getForAllInternalActionsIn();
 
 				List<AssemblyContext> contexts = this.psm.getAssemblyContextsInstantiating(component);
@@ -274,7 +284,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 					locations.add(new InternalActionWeavingLocation(component, assemblyContext));
 				}
 			} else if (placementStrategy instanceof ControlFlowPlacementStrategyImpl) {
-				//find all control flows in component
+				// find all control flows in component
 				RepositoryComponent component = ((ControlFlowPlacementStrategyImpl) placementStrategy).getForAllControlFlowsIn();
 
 				List<AssemblyContext> contexts = this.psm.getAssemblyContextsInstantiating(component);
@@ -286,10 +296,11 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, new FCCFeatureHandler(this.mrm), this.pcmToAdapt);
 
 			// TODO anhand welchen CVs CompeltionComponents bestimmen??
-			//ComplementumVisnetis cv = advice.getCompletion().getFeatures().get(0);
-			ComplementumVisnetis cv = selectedCVs.get(0);
+			// ComplementumVisnetis cv =
+			// advice.getCompletion().getFeatures().get(0);
+			ComplementumVisnetis cv = this.selectedCVs.get(0);
 
-			//create for current solution choice
+			// create for current solution choice
 			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
 					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
 			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations,
@@ -314,11 +325,11 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		for (IWeavingInstruction instruction : this.instructions) {
 			ServiceEffectSpecificationWeaving seffWeaving = ExtensionWeavingFactory.getExtensionSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
-			
+
 			// Weave it ..
 			repositoryWeaving.weave(instruction);
 			seffWeaving.weave(instruction);
-			
+
 			assemblyWeaving.weave(instruction);
 			allocationWeaving.weave(instruction);
 
@@ -326,7 +337,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		FCCModule.logger.debug("Extension Weaving Strategy: Weaving Finished");
 		// TODO print pcm
-		//savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
+		// savePcmInstanceToFile(pcmToAdapt,
+		// "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
 		// TODO print pcm
 	}
 
@@ -356,10 +368,13 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	}
 
 	/**
-	 * Saves a PCM-instance to file. (Debug purpose only, as PCM-instance is not usable any longer after save operation!)
-	 * 
-	 * @param pcmInstance the PCM-instance to save.
-	 * @param filePath the file path.
+	 * Saves a PCM-instance to file. (Debug purpose only, as PCM-instance is not
+	 * usable any longer after save operation!)
+	 *
+	 * @param pcmInstance
+	 *            the PCM-instance to save.
+	 * @param filePath
+	 *            the file path.
 	 */
 	public static void savePcmInstanceToFile(PCMInstance pcmInstance, String filePath) {
 		ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(pcmInstance.getAllocation()), filePath + ".allocation");
@@ -410,32 +425,42 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		return allocChoices;
 	}
 
-
 	/**
 	 * @param fcc
 	 * @return
 	 */
 	private List<AssemblyContext> getComponentsIntantiatingFCC(CompletionComponent fcc) {
 		List<AssemblyContext> result = new ArrayList<>();
-		//search for component instantiating fcc
+		// search for component instantiating fcc
 		for (AssemblyContext ac : this.psm.getAssemblyContextsBy(ac -> true)) {
 			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
-			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { //1 component should only realize 1 fcc
+			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1
+																				// component
+																				// should
+																				// only
+																				// realize
+																				// 1
+																				// fcc
 				result.add(ac);
 			}
 		}
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IExtensionWeaving#getSelectedCVs()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.
+	 * IExtensionWeaving#getSelectedCVs()
 	 */
 	@Override
 	public List<ComplementumVisnetis> getSelectedCVs() {
 		return this.selectedCVs;
 	}
-	
-	//TODO Annahme: es kann nur 1 optionales Feature existieren!
+
+	// TODO Annahme: es kann nur 1 optionales Feature existieren!
+	@Override
 	public ComplementumVisnetis getSelectedOptionalCV() {
 		for (ComplementumVisnetis cv : this.selectedCVs) {
 			if (cv.getComplementaryFeature().getSimpleOptional() != null) {
