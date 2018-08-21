@@ -25,20 +25,20 @@ ExtensionInclusion extensionIncl _ZZ {
 		Advice {
 			appears BEFORE 
 			pointCut allPayCalls
-			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout}, {AdvancedFiltering})
-			placementPolicy OPTIONAL
+			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
+			placementPolicy MANDATORY
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allActionsIn
 			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
-			placementPolicy OPTIONAL
+			placementPolicy MANDATORY
 		},
 		Advice {
 			appears AROUND 
 			pointCut allControlFlowsIn
 			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
-			placementPolicy OPTIONAL
+			placementPolicy MANDATORY
 		}
 	}
 }

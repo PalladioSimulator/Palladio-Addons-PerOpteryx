@@ -14,6 +14,8 @@ import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.SeffFactory;
+
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import featureSolution.Appearance;
 
 /**
@@ -101,7 +103,8 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 */
 	ExternalCallAction createExternalCallAction(OperationInterface operationInterface, OperationRequiredRole fcRequiredRole) {
 			ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
-			OperationSignature calledService = (OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
+			OperationSignature calledService = this.parent.getMergedRepoManager().getFulfillingSignatureFrom(operationInterface, this.parent.getSelectedOptionalCV());
+					//(OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);
 			//add role to ext call

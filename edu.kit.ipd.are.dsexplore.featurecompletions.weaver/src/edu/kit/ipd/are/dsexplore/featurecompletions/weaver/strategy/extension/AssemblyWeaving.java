@@ -53,8 +53,8 @@ public class AssemblyWeaving {
 	public void weave(IWeavingInstruction instruction) {
 		FCCModule.logger.debug("Assembly Extension Weaving");
 		
-		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRoles().first;
-		ProvidedRole providedRole = instruction.getFccWithProvidedRoles().getSecond().get(0); //use Solution 0 -> TODO decide which solution
+		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRole().first;
+		ProvidedRole providedRole = instruction.getFccWithProvidedRole().getSecond(); 
 		//1. determine all needed other feature completion components
 		FCCStructureHandler fccHandler = new FCCStructureHandler(perimeterProvidingFCC, this.parent.getMergedRepoManager());
 		List<CompletionComponent> allFCCs = fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);

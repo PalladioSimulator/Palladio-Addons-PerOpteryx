@@ -30,6 +30,8 @@ import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
 import org.palladiosimulator.pcm.seff.AbstractLoopAction;
 import org.palladiosimulator.pcm.seff.BranchAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
+import org.palladiosimulator.pcm.seff.ForkAction;
+import org.palladiosimulator.pcm.seff.ForkedBehaviour;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.system.System;
@@ -135,26 +137,6 @@ public final class FCCUnweaver {
 				}
 			}
 		}
-	}
-
-	private List<ExternalCallAction> getExternalCallActions(ResourceDemandingBehaviour seff) {
-		List<ExternalCallAction> result = new ArrayList<>();
-
-		List<AbstractAction> actions = seff.getSteps_Behaviour();
-		for (AbstractAction abstractAction : actions) {
-			if (abstractAction instanceof ExternalCallAction) {
-				result.add((ExternalCallAction) abstractAction);
-			} else if (abstractAction instanceof BranchAction) {
-				EList<AbstractBranchTransition> branches = ((BranchAction) abstractAction).getBranches_Branch();
-				for (AbstractBranchTransition abstractBranchTransition : branches) {
-					result.addAll(this.getExternalCallActions(abstractBranchTransition.getBranchBehaviour_BranchTransition()));
-				}
-			} else if (abstractAction instanceof AbstractLoopAction) {
-				result.addAll(this.getExternalCallActions(((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop()));
-			}
-		}
-
-		return result;
 	}
 
 	private boolean existsConnectorWithProvidedRole(String operationRequiredRoleId) {
@@ -301,6 +283,31 @@ public final class FCCUnweaver {
 				}
 			}
 		}
+		return result;
+	}
+
+	private List<ExternalCallAction> getExternalCallActions(ResourceDemandingBehaviour seff) {
+		List<ExternalCallAction> result = new ArrayList<>();
+
+		List<AbstractAction> actions = seff.getSteps_Behaviour();
+		for (AbstractAction abstractAction : actions) {
+			if (abstractAction instanceof ExternalCallAction) {
+				result.add((ExternalCallAction) abstractAction);
+			} else if (abstractAction instanceof BranchAction) {
+				EList<AbstractBranchTransition> branches = ((BranchAction) abstractAction).getBranches_Branch();
+				for (AbstractBranchTransition abstractBranchTransition : branches) {
+					result.addAll(this.getExternalCallActions(abstractBranchTransition.getBranchBehaviour_BranchTransition()));
+				}
+			} else if (abstractAction instanceof AbstractLoopAction) {
+				result.addAll(this.getExternalCallActions(((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop()));
+			} else if (abstractAction instanceof ForkAction) {
+				EList<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
+				for (ForkedBehaviour forkedBehaviour : forkedSEFFs) {
+					result.addAll(this.getExternalCallActions(forkedBehaviour));
+				}
+			}
+		}
+
 		return result;
 	}
 

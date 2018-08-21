@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_zEouQOGgEeemVJ0YF1ddSA" name="LoggingFeatures">
+  <rootFeature id="_5QEVwOGgEeemVJ0YF1ddSA" name="Logging">
+    <childrelation xsi:type="featureObjective:Simple">
+      <optionalChildren id="_IhmWoJNMEei8wsTJtgXi_w" name="SupplementaryFeatures" simpleOptional="//@rootFeature/@childrelation">
+        <childrelation xsi:type="featureObjective:FeatureGroup" min="0">
+          <children id="_muAD0JNMEei8wsTJtgXi_w" name="AdvancedFiltering" simpleOptional="//@rootFeature/@childrelation"/>
+        </childrelation>
+      </optionalChildren>
+      <mandatoryChildren id="__mtHseGgEeemVJ0YF1ddSA" name="WriteTarget" simpleMandatory="//@rootFeature/@childrelation">
+        <childrelation xsi:type="featureObjective:FeatureGroup">
+          <children id="_PGRNAOGhEeemVJ0YF1ddSA" name="ConsoleLogging"/>
+          <children id="_RkaqcOGhEeemVJ0YF1ddSA" name="FileLogging"/>
+          <children id="_R3VmcOGhEeemVJ0YF1ddSA" name="SQLDatabaseLogging"/>
+          <children id="_C9hCcOWGEeeT85tFTnTIqQ" name="NoSQLDatabaseLogging"/>
+        </childrelation>
+      </mandatoryChildren>
+      <mandatoryChildren id="_IWwoEeGhEeemVJ0YF1ddSA" name="Layout" simpleMandatory="//@rootFeature/@childrelation">
+        <childrelation xsi:type="featureObjective:FeatureGroup">
+          <children id="_SbWScOGhEeemVJ0YF1ddSA" name="PatternLayout"/>
+          <children id="_S2n5MOGhEeemVJ0YF1ddSA" name="CSVLayout"/>
+          <children id="_TH4BQOGhEeemVJ0YF1ddSA" name="JSONLayout"/>
+          <children id="_TY-YUOGhEeemVJ0YF1ddSA" name="XMLLayout"/>
+        </childrelation>
+      </mandatoryChildren>
+    </childrelation>
+  </rootFeature>
+</featureObjective:FeatureObjective>
