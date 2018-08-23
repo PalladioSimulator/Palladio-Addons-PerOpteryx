@@ -165,7 +165,6 @@ public class FeatureObjectiveActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("featureobjective-settings"));
 		toolBarManager.add(new Separator("featureobjective-additions"));
 	}

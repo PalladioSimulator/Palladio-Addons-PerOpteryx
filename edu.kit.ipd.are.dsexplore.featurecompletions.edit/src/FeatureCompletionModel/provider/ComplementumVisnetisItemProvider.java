@@ -14,8 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link FeatureCompletionModel.ComplementumVisnetis} object.
@@ -47,7 +45,6 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 
 			addComplementaryFeaturePropertyDescriptor(object);
 			addRequiresComplementumPropertyDescriptor(object);
-			addOptionalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,28 +94,6 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Optional feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOptionalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ComplementumVisnetis_optional_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ComplementumVisnetis_optional_feature", "_UI_ComplementumVisnetis_type"),
-				 FeatureCompletionPackage.Literals.COMPLEMENTUM_VISNETIS__OPTIONAL,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns ComplementumVisnetis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,12 +129,6 @@ public class ComplementumVisnetisItemProvider extends ComplementumItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ComplementumVisnetis.class)) {
-			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

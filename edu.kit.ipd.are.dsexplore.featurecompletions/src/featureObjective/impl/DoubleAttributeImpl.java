@@ -152,7 +152,7 @@ public class DoubleAttributeImpl extends AttributeImpl implements DoubleAttribut
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (defaultValue: ");
 		result.append(defaultValue);
 		result.append(')');

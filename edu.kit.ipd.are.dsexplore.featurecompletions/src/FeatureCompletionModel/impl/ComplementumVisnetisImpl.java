@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <ul>
  *   <li>{@link FeatureCompletionModel.impl.ComplementumVisnetisImpl#getComplementaryFeature <em>Complementary Feature</em>}</li>
  *   <li>{@link FeatureCompletionModel.impl.ComplementumVisnetisImpl#getRequiresComplementum <em>Requires Complementum</em>}</li>
- *   <li>{@link FeatureCompletionModel.impl.ComplementumVisnetisImpl#isOptional <em>Optional</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,26 +55,6 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 	 * @ordered
 	 */
 	protected EList<Complementum> requiresComplementum;
-
-	/**
-	 * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOptional()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean OPTIONAL_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOptional()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean optional = OPTIONAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,27 +130,6 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isOptional() {
-		return optional;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOptional(boolean newOptional) {
-		boolean oldOptional = optional;
-		optional = newOptional;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL, oldOptional, optional));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -180,8 +138,6 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 				return basicGetComplementaryFeature();
 			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM:
 				return getRequiresComplementum();
-			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL:
-				return isOptional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,9 +158,6 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 				getRequiresComplementum().clear();
 				getRequiresComplementum().addAll((Collection<? extends Complementum>)newValue);
 				return;
-			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL:
-				setOptional((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -223,9 +176,6 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM:
 				getRequiresComplementum().clear();
 				return;
-			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL:
-				setOptional(OPTIONAL_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -242,26 +192,8 @@ public class ComplementumVisnetisImpl extends ComplementumImpl implements Comple
 				return complementaryFeature != null;
 			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM:
 				return requiresComplementum != null && !requiresComplementum.isEmpty();
-			case FeatureCompletionPackage.COMPLEMENTUM_VISNETIS__OPTIONAL:
-				return optional != OPTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (optional: ");
-		result.append(optional);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ComplementumVisnetisImpl

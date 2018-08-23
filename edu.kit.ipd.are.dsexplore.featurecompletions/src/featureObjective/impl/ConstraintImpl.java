@@ -257,7 +257,7 @@ public abstract class ConstraintImpl extends NamedElementImpl implements Constra
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: ");
 		result.append(description);
 		result.append(')');

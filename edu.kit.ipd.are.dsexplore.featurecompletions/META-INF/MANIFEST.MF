@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Feature Completion Meta Model
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: are.ipd.kit.edu
 Bundle-Localization: plugin
 Export-Package: FeatureCompletionModel,
  FeatureCompletionModel.impl,
