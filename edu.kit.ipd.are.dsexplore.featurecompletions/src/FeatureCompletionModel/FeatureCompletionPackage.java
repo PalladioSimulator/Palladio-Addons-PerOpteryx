@@ -565,13 +565,22 @@ public interface FeatureCompletionPackage extends EPackage {
 	int COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM = COMPLEMENTUM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS__OPTIONAL = COMPLEMENTUM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Complementum Visnetis</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEMENTUM_VISNETIS_FEATURE_COUNT = COMPLEMENTUM_FEATURE_COUNT + 2;
+	int COMPLEMENTUM_VISNETIS_FEATURE_COUNT = COMPLEMENTUM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link FeatureCompletionModel.impl.ArchitectureConstraintsImpl <em>Architecture Constraints</em>}' class.
@@ -950,6 +959,17 @@ public interface FeatureCompletionPackage extends EPackage {
 	EReference getComplementumVisnetis_RequiresComplementum();
 
 	/**
+	 * Returns the meta object for the attribute '{@link FeatureCompletionModel.ComplementumVisnetis#isOptional <em>Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Optional</em>'.
+	 * @see FeatureCompletionModel.ComplementumVisnetis#isOptional()
+	 * @see #getComplementumVisnetis()
+	 * @generated
+	 */
+	EAttribute getComplementumVisnetis_Optional();
+
+	/**
 	 * Returns the meta object for class '{@link FeatureCompletionModel.Complementum <em>Complementum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1287,6 +1307,14 @@ public interface FeatureCompletionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPLEMENTUM_VISNETIS__REQUIRES_COMPLEMENTUM = eINSTANCE.getComplementumVisnetis_RequiresComplementum();
+
+		/**
+		 * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPLEMENTUM_VISNETIS__OPTIONAL = eINSTANCE.getComplementumVisnetis_Optional();
 
 		/**
 		 * The meta object literal for the '{@link FeatureCompletionModel.impl.ComplementumImpl <em>Complementum</em>}' class.

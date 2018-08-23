@@ -163,6 +163,7 @@ public class FeatureCompletionActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("featurecompletion-settings"));
 		toolBarManager.add(new Separator("featurecompletion-additions"));
 	}

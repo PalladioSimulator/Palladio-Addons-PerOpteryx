@@ -14,16 +14,19 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
@@ -32,6 +35,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmS
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
+import featureObjective.Feature;
 import featureSolution.InclusionMechanism;
 
 public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving {
@@ -150,26 +154,49 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> allocationChoices) {
-		// TODO featureChoices
-		List<WeavingInstruction> instructions = this.determineInstructions(locations);
+		AdapterStrategyExtension ase = (AdapterStrategyExtension) WeavingStrategies.ADAPTER.getExtension();
+
+		List<WeavingInstruction> instructions = this.determineInstructions(locations, ase.optionalFeatures);
 		this.instructions = instructions;
 		this.allocationChoices = allocationChoices;
 	}
 
-	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
+	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<BoolChoice> optionalFeatures) {
 		FCCFeatureHandler fccfh = new FCCFeatureHandler(this.mrm);
-		// System pcmSystem = this.pcmToAdapt.getSystem();
-		// List<Pair<Entity, ComplementumVisnetis>> providedCVs =
-		// this.extractProvidedCVs();
 		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, fccfh, this.pcmToAdapt);
 		List<WeavingInstruction> instructions = new ArrayList<>();
+
+		List<Feature> shallFeatures = new ArrayList<>();
+		List<Feature> notShallFeatures = new ArrayList<>();
+		this.getFeatures(optionalFeatures, shallFeatures, notShallFeatures);
+
 		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
 			instructions.add(ig.generate(targetLoc));
 		}
 
-		// this.applyOptionalAsDegree(optChoice, instructions);
-		return instructions;
+		List<WeavingInstruction> result = new ArrayList<>();
 
+		for (WeavingInstruction is : instructions) {
+			List<Feature> features = is.getFCCWithConsumedFeatures().first.getPerimeterProviding().getFeatureProviding();
+			if (features.stream().anyMatch(f -> shallFeatures.contains(f))) {
+				// Selected
+				result.add(is);
+			} else if (features.stream().anyMatch(f -> !shallFeatures.contains(f) && !notShallFeatures.contains(f))) {
+				// Or Mandatory
+				result.add(is);
+			}
+		}
+
+		return result;
+
+	}
+
+	private void getFeatures(List<BoolChoice> optionalFeatures, List<Feature> shall, List<Feature> notShall) {
+		for (BoolChoice ch : optionalFeatures) {
+			FeatureDegree fd = (FeatureDegree) ch.getDegreeOfFreedomInstance();
+			Feature f = (Feature) fd.getPrimaryChanged();
+			(ch.isChosenValue() ? shall : notShall).add(f);
+		}
 	}
 
 	@Override

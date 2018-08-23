@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see FeatureCompletionModel.FeatureCompletionPackage#getFeatureCompletion()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='requiredComponentsHaveToBePartOfCompletion'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot requiredComponentsHaveToBePartOfCompletion='\n\t\t\tcompletionComponents.requiredComponents->exists(self.completionComponents)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot requiredComponentsHaveToBePartOfCompletion='\n\t\t\tcompletionComponents.requiredComponents-&gt;exists(self.completionComponents)'"
  * @generated
  */
 public interface FeatureCompletion extends DescribedElement {

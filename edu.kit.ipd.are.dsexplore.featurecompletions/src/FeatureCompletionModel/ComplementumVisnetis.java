@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link FeatureCompletionModel.ComplementumVisnetis#getComplementaryFeature <em>Complementary Feature</em>}</li>
  *   <li>{@link FeatureCompletionModel.ComplementumVisnetis#getRequiresComplementum <em>Requires Complementum</em>}</li>
+ *   <li>{@link FeatureCompletionModel.ComplementumVisnetis#isOptional <em>Optional</em>}</li>
  * </ul>
  *
  * @see FeatureCompletionModel.FeatureCompletionPackage#getComplementumVisnetis()
@@ -65,5 +66,32 @@ public interface ComplementumVisnetis extends Complementum, ConstrainableElement
 	 * @generated
 	 */
 	EList<Complementum> getRequiresComplementum();
+
+	/**
+	 * Returns the value of the '<em><b>Optional</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Optional</em>' attribute.
+	 * @see #setOptional(boolean)
+	 * @see FeatureCompletionModel.FeatureCompletionPackage#getComplementumVisnetis_Optional()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isOptional();
+
+	/**
+	 * Sets the value of the '{@link FeatureCompletionModel.ComplementumVisnetis#isOptional <em>Optional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Optional</em>' attribute.
+	 * @see #isOptional()
+	 * @generated
+	 */
+	void setOptional(boolean value);
 
 } // ComplementumVisnetis

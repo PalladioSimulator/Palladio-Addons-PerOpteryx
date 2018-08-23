@@ -372,7 +372,7 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (min: ");
 		result.append(min);
 		result.append(", max: ");
