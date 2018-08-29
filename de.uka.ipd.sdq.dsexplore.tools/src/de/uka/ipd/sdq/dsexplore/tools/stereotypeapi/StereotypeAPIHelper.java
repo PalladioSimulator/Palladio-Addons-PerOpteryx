@@ -61,4 +61,15 @@ public final class StereotypeAPIHelper {
 		}
 		return res;
 	}
+
+	public static StereotypeApplication getStereotype(EObject base, String stereotype) {
+		List<StereotypeApplication> appls = EMFProfileFilter.getStereotypeApplicationsFrom(base);
+		for (StereotypeApplication appl : appls) {
+			if (!appl.getStereotype().getName().equalsIgnoreCase(stereotype)) {
+				continue;
+			}
+			return appl;
+		}
+		return null;
+	}
 }

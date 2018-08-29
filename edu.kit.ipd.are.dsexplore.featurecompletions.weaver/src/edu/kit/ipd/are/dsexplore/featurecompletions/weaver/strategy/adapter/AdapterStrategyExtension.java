@@ -2,15 +2,18 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
+import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.genotype.ListGenotype;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.system.System;
 
-import FeatureCompletionModel.FeatureCompletion;
+import FeatureCompletionModel.ComplementumVisnetis;
+import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
@@ -64,12 +67,12 @@ public class AdapterStrategyExtension implements IStrategyExtension {
 
 	@Override
 	public void additionalCreateFCCDegreeBy(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FCCWeaver fccWeaver) {
-		FeatureCompletion fc = (FeatureCompletion) degree.getPrimaryChanged();
-		Set<Feature> features = this.getOptionalFeatures(fc);
+		Set<Pair<Connector, ComplementumVisnetis>> features = this.getOptionalFeatures(fccWeaver);
 		// Add Choices
-		for (Feature optional : features) {
+		for (Pair<Connector, ComplementumVisnetis> optional : features) {
 			FeatureDegree fd = specificFactory.eINSTANCE.createFeatureDegree();
-			fd.setPrimaryChanged(optional);
+			fd.setPrimaryChanged(optional.first);
+			fd.setEntityName(optional.second.getName());
 			BoolChoice bc = designdecisionFactory.eINSTANCE.createBoolChoice();
 			bc.setDegreeOfFreedomInstance(fd);
 			dds.add(fd);
@@ -77,17 +80,22 @@ public class AdapterStrategyExtension implements IStrategyExtension {
 		}
 	}
 
-	private Set<Feature> getOptionalFeatures(FeatureCompletion fc) {
-		Set<Feature> res = new HashSet<>();
-		Feature root = fc.getFeatureObjectives().getRootFeature();
-		Queue<Feature> features = new LinkedList<>();
-		features.add(root);
-
-		while (!features.isEmpty()) {
-			Feature current = features.poll();
-			// TODO DTHF1
+	private Set<Pair<Connector, ComplementumVisnetis>> getOptionalFeatures(FCCWeaver fccWeaver) {
+		Set<Pair<Connector, ComplementumVisnetis>> res = new HashSet<>();
+		System system = fccWeaver.getInitialSystem();
+		for (Connector connector : system.getConnectors__ComposedStructure()) {
+			this.handleConnector(connector, res);
 		}
+
 		return res;
+	}
+
+	private void handleConnector(Connector connector, Set<Pair<Connector, ComplementumVisnetis>> res) {
+		StereotypeApplication st = StereotypeAPIHelper.getStereotype(connector, "target");
+		if (st == null) {
+			return;
+		}
+
 	}
 
 }

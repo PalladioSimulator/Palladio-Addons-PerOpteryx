@@ -39,6 +39,7 @@ public final class FCCWeaver {
 	private final List<Repository> solutions;
 	private final FeatureCompletion fc;
 	private final InclusionMechanism im;
+	private final System initialSystem;
 
 	// ConnectorID -> CV
 	private final List<Pair<String, ComplementumVisnetis>> availableCVs;
@@ -47,6 +48,7 @@ public final class FCCWeaver {
 	public FCCWeaver(MDSDBlackboard blackboard, List<Repository> solutions, CostRepository costModel) {
 		this.solutions = solutions;
 		PCMResourceSetPartition initial = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		this.initialSystem = initial.getSystem();
 		this.fc = this.determineFC(initial);
 		this.im = this.determineIM(this.solutions);
 		this.availableCVs = this.extractAvailableCVs(initial.getSystem());
@@ -197,5 +199,9 @@ public final class FCCWeaver {
 			throw new FCCWeaverException("No Strategy found for " + im);
 		}
 		return strategy;
+	}
+
+	public System getInitialSystem() {
+		return this.initialSystem;
 	}
 }
