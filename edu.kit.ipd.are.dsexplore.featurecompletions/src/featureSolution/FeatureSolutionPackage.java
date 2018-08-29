@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.palladiosimulator.pcm.core.entity.EntityPackage;
 
 /**
@@ -575,7 +576,6 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	int APPEARANCE = 12;
-
 
 	/**
 	 * The meta object id for the '{@link featureSolution.ControlFlow <em>Control Flow</em>}' enum.

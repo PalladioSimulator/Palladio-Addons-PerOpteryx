@@ -59,7 +59,7 @@ public interface FeatureSelection extends EObject, NamedElement {
 	 * The list contents are of type {@link featureSolution.FeatureList}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Feature Lists</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Feature Lists</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

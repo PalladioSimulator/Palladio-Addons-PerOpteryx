@@ -4,7 +4,6 @@ package featureSolution;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extension Inclusion</b></em>'.
@@ -24,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ExtensionInclusion extends InclusionMechanism {
-
 	/**
 	 * Returns the value of the '<em><b>Point Cut</b></em>' containment reference list.
 	 * The list contents are of type {@link featureSolution.PointCut}.
@@ -72,4 +70,5 @@ public interface ExtensionInclusion extends InclusionMechanism {
 	 * @generated
 	 */
 	EList<Import> getImports();
+
 } // ExtensionInclusion

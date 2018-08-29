@@ -18,10 +18,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
 
 /**
@@ -30,8 +32,7 @@ import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AdviceItemProvider 
-	extends NamedElementItemProvider {
+public class AdviceItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -180,7 +181,7 @@ public class AdviceItemProvider
 			getString("_UI_Advice_type") :
 			getString("_UI_Advice_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

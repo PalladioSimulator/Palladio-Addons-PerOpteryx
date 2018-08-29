@@ -4,6 +4,7 @@ package featureSolution.provider;
 
 
 import featureSolution.FeatureSolutionPackage;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class InternalActionPlacementStrategyItemProvider extends PlacementStrate
 	public String getText(Object object) {
 		return getString("_UI_InternalActionPlacementStrategy_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

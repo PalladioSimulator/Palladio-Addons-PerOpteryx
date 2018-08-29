@@ -40,15 +40,6 @@ public interface FeatureObjectiveFactory extends EFactory {
 	Feature createFeature();
 
 	/**
-	 * Returns a new object of class '<em>Simple</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple</em>'.
-	 * @generated
-	 */
-	Simple createSimple();
-
-	/**
 	 * Returns a new object of class '<em>Feature Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,51 +65,6 @@ public interface FeatureObjectiveFactory extends EFactory {
 	 * @generated
 	 */
 	ProhibitsConstraint createProhibitsConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Integer Interval Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Integer Interval Range</em>'.
-	 * @generated
-	 */
-	IntegerIntervalRange createIntegerIntervalRange();
-
-	/**
-	 * Returns a new object of class '<em>Integer Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Integer Attribute</em>'.
-	 * @generated
-	 */
-	IntegerAttribute createIntegerAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Double Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Double Attribute</em>'.
-	 * @generated
-	 */
-	DoubleAttribute createDoubleAttribute();
-
-	/**
-	 * Returns a new object of class '<em>String Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Attribute</em>'.
-	 * @generated
-	 */
-	StringAttribute createStringAttribute();
-
-	/**
-	 * Returns a new object of class '<em>External Object Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>External Object Attribute</em>'.
-	 * @generated
-	 */
-	ExternalObjectAttribute createExternalObjectAttribute();
 
 	/**
 	 * Returns the package supported by this factory.

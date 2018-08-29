@@ -713,7 +713,6 @@ public interface FeatureCompletionPackage extends EPackage {
 	 */
 	int CONSTRAINT = 13;
 
-
 	/**
 	 * The meta object id for the '{@link FeatureCompletionModel.PlacementPolicy <em>Placement Policy</em>}' enum.
 	 * <!-- begin-user-doc -->

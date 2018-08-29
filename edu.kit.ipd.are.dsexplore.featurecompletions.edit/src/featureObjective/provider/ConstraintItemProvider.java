@@ -136,7 +136,7 @@ public class ConstraintItemProvider extends NamedElementItemProvider {
 			getString("_UI_Constraint_type") :
 			getString("_UI_Constraint_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

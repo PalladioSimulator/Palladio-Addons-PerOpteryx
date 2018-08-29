@@ -3,7 +3,9 @@
 package featureSolution;
 
 import FeatureCompletionModel.PlacementPolicy;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.palladiosimulator.pcm.core.entity.NamedElement;
 
 /**
@@ -86,7 +88,7 @@ public interface Advice extends EObject, NamedElement {
 	 * Returns the value of the '<em><b>Completion</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Completion</em>' reference isn't clear,
+	 * If the meaning of the '<em>Completion</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

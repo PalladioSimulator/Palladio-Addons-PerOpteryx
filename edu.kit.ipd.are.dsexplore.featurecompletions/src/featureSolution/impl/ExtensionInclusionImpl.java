@@ -7,11 +7,16 @@ import featureSolution.ExtensionInclusion;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.Import;
 import featureSolution.PointCut;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +45,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * @ordered
 	 */
 	protected EList<PointCut> pointCut;
+
 	/**
 	 * The cached value of the '{@link #getAdvice() <em>Advice</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -49,6 +55,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * @ordered
 	 */
 	protected EList<Advice> advice;
+
 	/**
 	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,6 +65,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * @ordered
 	 */
 	protected EList<Import> imports;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

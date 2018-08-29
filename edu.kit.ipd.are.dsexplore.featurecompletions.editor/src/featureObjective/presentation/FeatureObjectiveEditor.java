@@ -68,6 +68,7 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 
 import org.eclipse.swt.layout.FillLayout;
 
@@ -163,32 +164,55 @@ import FeatureCompletionModel.provider.FeatureCompletionItemProviderAdapterFacto
 import de.uka.ipd.sdq.identifier.provider.IdentifierItemProviderAdapterFactory;
 
 import de.uka.ipd.sdq.probfunction.provider.ProbfunctionItemProviderAdapterFactory;
+
 import de.uka.ipd.sdq.stoex.provider.StoexItemProviderAdapterFactory;
+
 import de.uka.ipd.sdq.units.provider.UnitsItemProviderAdapterFactory;
+
 import featureSolution.provider.FeatureSolutionItemProviderAdapterFactory;
 
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.palladiosimulator.pcm.allocation.provider.AllocationItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.core.composition.provider.CompositionItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.core.entity.provider.EntityItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.core.provider.CoreItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.parameter.provider.ParameterItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.protocol.provider.ProtocolItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.provider.PcmItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.qosannotations.provider.QosannotationsItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.qosannotations.qos_performance.provider.QosPerformanceItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.qosannotations.qos_reliability.provider.QosReliabilityItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.reliability.provider.ReliabilityItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.repository.provider.RepositoryItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.resourceenvironment.provider.ResourceenvironmentItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.resourcetype.provider.ResourcetypeItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.seff.provider.SeffItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.seff.seff_performance.provider.SeffPerformanceItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.seff.seff_reliability.provider.SeffReliabilityItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.subsystem.provider.SubsystemItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.system.provider.SystemItemProviderAdapterFactory;
+
 import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapterFactory;
 
 
@@ -437,6 +461,8 @@ public class FeatureObjectiveEditor
 	 */
 	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
+			protected boolean dispatching;
+
 			@Override
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
@@ -452,21 +478,26 @@ public class FeatureObjectiveEditor
 							else {
 								resourceToDiagnosticMap.remove(resource);
 							}
-
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 public void run() {
-											 updateProblemIndication();
-										 }
-									 });
-							}
+							dispatchUpdateProblemIndication();
 							break;
 						}
 					}
 				}
 				else {
 					super.notifyChanged(notification);
+				}
+			}
+
+			protected void dispatchUpdateProblemIndication() {
+				if (updateProblemIndication && !dispatching) {
+					dispatching = true;
+					getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							 public void run() {
+								 dispatching = false;
+								 updateProblemIndication();
+							 }
+						 });
 				}
 			}
 
@@ -479,14 +510,7 @@ public class FeatureObjectiveEditor
 			protected void unsetTarget(Resource target) {
 				basicUnsetTarget(target);
 				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
-					getSite().getShell().getDisplay().asyncExec
-						(new Runnable() {
-							 public void run() {
-								 updateProblemIndication();
-							 }
-						 });
-				}
+				dispatchUpdateProblemIndication();
 			}
 		};
 
@@ -611,8 +635,9 @@ public class FeatureObjectiveEditor
 	 */
 	protected void handleChangedResources() {
 		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+			ResourceSet resourceSet = editingDomain.getResourceSet();
 			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
+				changedResources.addAll(resourceSet.getResources());
 			}
 			editingDomain.getCommandStack().flush();
 
@@ -621,7 +646,7 @@ public class FeatureObjectiveEditor
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
-						resource.load(Collections.EMPTY_MAP);
+						resource.load(resourceSet.getLoadOptions());
 					}
 					catch (IOException exception) {
 						if (!resourceToDiagnosticMap.containsKey(resource)) {
@@ -684,14 +709,11 @@ public class FeatureObjectiveEditor
 			}
 
 			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				markerHelper.deleteMarkers(editingDomain.getResourceSet());
-				if (diagnostic.getSeverity() != Diagnostic.OK) {
-					try {
-						markerHelper.createMarkers(diagnostic);
-					}
-					catch (CoreException exception) {
-						FeatureCompletionsEditorPlugin.INSTANCE.log(exception);
-					}
+				try {
+					markerHelper.updateMarkers(diagnostic);
+				}
+				catch (CoreException exception) {
+					FeatureCompletionsEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		}
@@ -1099,6 +1121,7 @@ public class FeatureObjectiveEditor
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1282,7 +1305,9 @@ public class FeatureObjectiveEditor
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {
 					 public void run() {
-						 setActivePage(0);
+						 if (!getContainer().isDisposed()) {
+							 setActivePage(0);
+						 }
 					 }
 				 });
 		}
@@ -1322,9 +1347,9 @@ public class FeatureObjectiveEditor
 		if (getPageCount() <= 1) {
 			setPageText(0, "");
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder)getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
-				getContainer().setSize(point.x, point.y + 6);
+				Rectangle clientArea = getContainer().getClientArea();
+				getContainer().setSize(point.x,  2 * point.y - clientArea.height - clientArea.y);
 			}
 		}
 	}
@@ -1340,9 +1365,9 @@ public class FeatureObjectiveEditor
 		if (getPageCount() > 1) {
 			setPageText(0, getString("_UI_SelectionPage_label"));
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder)getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
-				getContainer().setSize(point.x, point.y - 6);
+				Rectangle clientArea = getContainer().getClientArea();
+				getContainer().setSize(point.x, clientArea.height + clientArea.y);
 			}
 		}
 	}
@@ -1368,17 +1393,16 @@ public class FeatureObjectiveEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
 	@Override
-	public Object getAdapter(Class key) {
+	public <T> T getAdapter(Class<T> key) {
 		if (key.equals(IContentOutlinePage.class)) {
-			return showOutlineView() ? getContentOutlinePage() : null;
+			return showOutlineView() ? key.cast(getContentOutlinePage()) : null;
 		}
 		else if (key.equals(IPropertySheetPage.class)) {
-			return getPropertySheetPage();
+			return key.cast(getPropertySheetPage());
 		}
 		else if (key.equals(IGotoMarker.class)) {
-			return this;
+			return key.cast(this);
 		}
 		else {
 			return super.getAdapter(key);
@@ -1404,6 +1428,7 @@ public class FeatureObjectiveEditor
 
 					// Set up the tree viewer.
 					//
+					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1457,7 +1482,7 @@ public class FeatureObjectiveEditor
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
-			new ExtendedPropertySheetPage(editingDomain) {
+			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
 					FeatureObjectiveEditor.this.setSelectionToViewer(selection);
@@ -1551,7 +1576,9 @@ public class FeatureObjectiveEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					List<Resource> resources = editingDomain.getResourceSet().getResources();
+					for (int i = 0; i < resources.size(); ++i) {
+						Resource resource = resources.get(i);
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
 								long timeStamp = resource.getTimeStamp();

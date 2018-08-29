@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.tests;singleton:=true
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
@@ -21,4 +22,3 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.tests

@@ -4,7 +4,9 @@ package featureSolution.tests;
 
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.PointCut;
+
 import junit.framework.TestCase;
+
 import junit.textui.TestRunner;
 
 /**

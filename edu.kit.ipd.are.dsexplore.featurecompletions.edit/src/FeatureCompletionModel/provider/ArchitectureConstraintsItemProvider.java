@@ -119,7 +119,7 @@ public class ArchitectureConstraintsItemProvider extends DescribedElementItemPro
 			getString("_UI_ArchitectureConstraints_type") :
 			getString("_UI_ArchitectureConstraints_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

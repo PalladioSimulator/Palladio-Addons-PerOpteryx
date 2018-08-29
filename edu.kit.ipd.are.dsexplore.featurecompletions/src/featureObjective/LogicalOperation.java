@@ -1,6 +1,6 @@
 /**
  */
-package featureSolution;
+package featureObjective;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,121 +10,95 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Placement Policy</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Logical Operation</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see featureSolution.FeatureSolutionPackage#getPlacementPolicy()
+ * @see featureObjective.FeatureObjectivePackage#getLogicalOperation()
  * @model
  * @generated
  */
-public enum PlacementPolicy implements Enumerator {
+public enum LogicalOperation implements Enumerator {
 	/**
-	 * The '<em><b>MANDATORY</b></em>' literal object.
+	 * The '<em><b>OR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MANDATORY_VALUE
+	 * @see #OR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MANDATORY(0, "MANDATORY", "MANDATORY"),
+	OR(1, "OR", "OR"),
 
 	/**
-	 * The '<em><b>OBLIGATORY</b></em>' literal object.
+	 * The '<em><b>XOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OBLIGATORY_VALUE
+	 * @see #XOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OBLIGATORY(1, "OBLIGATORY", "OBLIGATORY"),
+	XOR(2, "XOR", "XOR");
 
 	/**
-	 * The '<em><b>PROHIBITED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROHIBITED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROHIBITED(2, "PROHIBITED", "PROHIBITED");
-
-	/**
-	 * The '<em><b>MANDATORY</b></em>' literal value.
+	 * The '<em><b>OR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>MANDATORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>OR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MANDATORY
+	 * @see #OR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MANDATORY_VALUE = 0;
+	public static final int OR_VALUE = 1;
 
 	/**
-	 * The '<em><b>OBLIGATORY</b></em>' literal value.
+	 * The '<em><b>XOR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>OBLIGATORY</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>XOR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OBLIGATORY
+	 * @see #XOR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OBLIGATORY_VALUE = 1;
+	public static final int XOR_VALUE = 2;
 
 	/**
-	 * The '<em><b>PROHIBITED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>PROHIBITED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #PROHIBITED
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROHIBITED_VALUE = 2;
-
-	/**
-	 * An array of all the '<em><b>Placement Policy</b></em>' enumerators.
+	 * An array of all the '<em><b>Logical Operation</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PlacementPolicy[] VALUES_ARRAY =
-		new PlacementPolicy[] {
-			MANDATORY,
-			OBLIGATORY,
-			PROHIBITED,
+	private static final LogicalOperation[] VALUES_ARRAY =
+		new LogicalOperation[] {
+			OR,
+			XOR,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Placement Policy</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Logical Operation</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<PlacementPolicy> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<LogicalOperation> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Placement Policy</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Logical Operation</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static PlacementPolicy get(String literal) {
+	public static LogicalOperation get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			PlacementPolicy result = VALUES_ARRAY[i];
+			LogicalOperation result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -133,16 +107,16 @@ public enum PlacementPolicy implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Placement Policy</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Logical Operation</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static PlacementPolicy getByName(String name) {
+	public static LogicalOperation getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			PlacementPolicy result = VALUES_ARRAY[i];
+			LogicalOperation result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -151,18 +125,17 @@ public enum PlacementPolicy implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Placement Policy</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Logical Operation</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static PlacementPolicy get(int value) {
+	public static LogicalOperation get(int value) {
 		switch (value) {
-			case MANDATORY_VALUE: return MANDATORY;
-			case OBLIGATORY_VALUE: return OBLIGATORY;
-			case PROHIBITED_VALUE: return PROHIBITED;
+			case OR_VALUE: return OR;
+			case XOR_VALUE: return XOR;
 		}
 		return null;
 	}
@@ -194,7 +167,7 @@ public enum PlacementPolicy implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PlacementPolicy(int value, String name, String literal) {
+	private LogicalOperation(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -238,4 +211,4 @@ public enum PlacementPolicy implements Enumerator {
 		return literal;
 	}
 	
-} //PlacementPolicy
+} //LogicalOperation

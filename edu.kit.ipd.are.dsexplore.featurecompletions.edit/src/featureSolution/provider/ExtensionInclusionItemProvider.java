@@ -4,9 +4,9 @@ package featureSolution.provider;
 
 
 import featureSolution.ExtensionInclusion;
-
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -105,7 +106,7 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 			getString("_UI_ExtensionInclusion_type") :
 			getString("_UI_ExtensionInclusion_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

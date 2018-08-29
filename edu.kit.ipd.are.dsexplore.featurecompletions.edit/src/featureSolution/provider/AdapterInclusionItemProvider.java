@@ -96,7 +96,7 @@ public class AdapterInclusionItemProvider extends InclusionMechanismItemProvider
 			getString("_UI_AdapterInclusion_type") :
 			getString("_UI_AdapterInclusion_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

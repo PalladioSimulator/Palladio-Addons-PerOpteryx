@@ -24,6 +24,12 @@ import FeatureCompletionModel.util.FeatureCompletionValidator;
 
 import de.uka.ipd.sdq.identifier.IdentifierPackage;
 
+import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
+
+import de.uka.ipd.sdq.stoex.StoexPackage;
+
+import de.uka.ipd.sdq.units.UnitsPackage;
+
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
@@ -38,7 +44,10 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.palladiosimulator.pcm.PcmPackage;
 
 /**
@@ -181,7 +190,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link FeatureCompletionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -195,16 +204,24 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		if (isInited) return (FeatureCompletionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FeatureCompletionPackageImpl());
+		Object registeredFeatureCompletionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		FeatureCompletionPackageImpl theFeatureCompletionPackage = registeredFeatureCompletionPackage instanceof FeatureCompletionPackageImpl ? (FeatureCompletionPackageImpl)registeredFeatureCompletionPackage : new FeatureCompletionPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		IdentifierPackage.eINSTANCE.eClass();
 		PcmPackage.eINSTANCE.eClass();
+		ProbfunctionPackage.eINSTANCE.eClass();
+		StoexPackage.eINSTANCE.eClass();
+		UnitsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
-		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
+		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(registeredPackage instanceof FeatureObjectivePackageImpl ? registeredPackage : FeatureObjectivePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI);
+		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(registeredPackage instanceof FeatureSolutionPackageImpl ? registeredPackage : FeatureSolutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureCompletionPackage.createPackageContents();
@@ -218,7 +235,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theFeatureCompletionPackage, 
+			(theFeatureCompletionPackage,
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
 					 return FeatureCompletionValidator.INSTANCE;
@@ -228,7 +245,6 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		// Mark meta-data to indicate it can't be changed
 		theFeatureCompletionPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeatureCompletionPackage.eNS_URI, theFeatureCompletionPackage);
 		return theFeatureCompletionPackage;
@@ -744,15 +760,15 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * @generated
 	 */
 	protected void createImportAnnotations() {
-		String source = "http://www.eclipse.org/OCL/Import";	
+		String source = "http://www.eclipse.org/OCL/Import";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
-			 "featureObjective", "featureObjective.ecore#/",
-			 "identifier", "../../de.uka.ipd.sdq.identifier/model/identifier.ecore#/",
-			 "pcm", "../../../plugin/org.palladiosimulator.pcm/model/pcm.ecore#/"
+			   "ecore", "http://www.eclipse.org/emf/2002/Ecore",
+			   "featureObjective", "featureObjective.ecore#/",
+			   "identifier", "../../de.uka.ipd.sdq.identifier/model/identifier.ecore#/",
+			   "pcm", "../../../plugin/org.palladiosimulator.pcm/model/pcm.ecore#/"
 		   });
 	}
 
@@ -763,20 +779,20 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
+			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });
 		addAnnotation
-		  (featureCompletionEClass, 
-		   source, 
+		  (featureCompletionEClass,
+		   source,
 		   new String[] {
-			 "constraints", "requiredComponentsHaveToBePartOfCompletion"
+			   "constraints", "requiredComponentsHaveToBePartOfCompletion"
 		   });
 	}
 
@@ -787,12 +803,12 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 		addAnnotation
-		  (featureCompletionEClass, 
-		   source, 
+		  (featureCompletionEClass,
+		   source,
 		   new String[] {
-			 "requiredComponentsHaveToBePartOfCompletion", "\n\t\t\tcompletionComponents.requiredComponents->exists(self.completionComponents)"
+			   "requiredComponentsHaveToBePartOfCompletion", "\n\t\t\tcompletionComponents.requiredComponents->exists(self.completionComponents)"
 		   });
 	}
 

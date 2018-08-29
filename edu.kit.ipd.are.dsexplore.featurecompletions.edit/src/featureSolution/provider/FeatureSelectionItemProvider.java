@@ -6,6 +6,7 @@ package featureSolution.provider;
 import FeatureCompletionModel.provider.FeatureCompletionsEditPlugin;
 
 import featureSolution.FeatureSelection;
+import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 
 import java.util.Collection;
@@ -16,8 +17,11 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.palladiosimulator.pcm.core.entity.provider.NamedElementItemProvider;
 
@@ -50,7 +54,6 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addCompletionPropertyDescriptor(object);
-			addFeatureListsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -78,25 +81,33 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature Lists feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFeatureListsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FeatureSelection_featureLists_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureSelection_featureLists_feature", "_UI_FeatureSelection_type"),
-				 FeatureSolutionPackage.Literals.FEATURE_SELECTION__FEATURE_LISTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.FEATURE_SELECTION__FEATURE_LISTS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -123,7 +134,7 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 			getString("_UI_FeatureSelection_type") :
 			getString("_UI_FeatureSelection_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -135,6 +146,12 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(FeatureSelection.class)) {
+			case FeatureSolutionPackage.FEATURE_SELECTION__FEATURE_LISTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -148,6 +165,11 @@ public class FeatureSelectionItemProvider extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(FeatureSolutionPackage.Literals.FEATURE_SELECTION__FEATURE_LISTS,
+				 FeatureSolutionFactory.eINSTANCE.createFeatureList()));
 	}
 
 	/**

@@ -100,7 +100,7 @@ public class NamedElementItemProvider extends IdentifierItemProvider {
 			getString("_UI_NamedElement_type") :
 			getString("_UI_NamedElement_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

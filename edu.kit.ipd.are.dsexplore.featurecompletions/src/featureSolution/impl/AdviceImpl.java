@@ -3,6 +3,7 @@
 package featureSolution.impl;
 
 import FeatureCompletionModel.PlacementPolicy;
+
 import featureSolution.Advice;
 import featureSolution.Appearance;
 import featureSolution.FeatureSelection;
@@ -10,12 +11,13 @@ import featureSolution.FeatureSolutionPackage;
 import featureSolution.PointCut;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.palladiosimulator.pcm.core.entity.impl.NamedElementImpl;
 
 /**
@@ -349,7 +351,7 @@ public class AdviceImpl extends NamedElementImpl implements Advice {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (appears: ");
 		result.append(appears);
 		result.append(", placementPolicy: ");

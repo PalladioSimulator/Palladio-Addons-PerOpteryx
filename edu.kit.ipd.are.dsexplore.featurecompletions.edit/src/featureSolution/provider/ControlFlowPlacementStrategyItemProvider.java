@@ -90,7 +90,7 @@ public class ControlFlowPlacementStrategyItemProvider extends PlacementStrategyI
 	public String getText(Object object) {
 		return getString("_UI_ControlFlowPlacementStrategy_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

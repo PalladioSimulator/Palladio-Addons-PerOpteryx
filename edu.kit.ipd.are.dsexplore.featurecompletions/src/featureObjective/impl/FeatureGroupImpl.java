@@ -5,6 +5,7 @@ package featureObjective.impl;
 import featureObjective.Feature;
 import featureObjective.FeatureGroup;
 import featureObjective.FeatureObjectivePackage;
+import featureObjective.LogicalOperation;
 
 import featureObjective.util.FeatureObjectiveValidator;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
@@ -38,63 +40,42 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureObjective.impl.FeatureGroupImpl#getMin <em>Min</em>}</li>
- *   <li>{@link featureObjective.impl.FeatureGroupImpl#getMax <em>Max</em>}</li>
- *   <li>{@link featureObjective.impl.FeatureGroupImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link featureObjective.impl.FeatureGroupImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link featureObjective.impl.FeatureGroupImpl#getOperation <em>Operation</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup {
+public class FeatureGroupImpl extends MinimalEObjectImpl.Container implements FeatureGroup {
 	/**
-	 * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMin()
+	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MIN_EDEFAULT = 1;
+	protected EList<Feature> features;
 
 	/**
-	 * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
+	 * The default value of the '{@link #getOperation() <em>Operation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMin()
+	 * @see #getOperation()
 	 * @generated
 	 * @ordered
 	 */
-	protected int min = MIN_EDEFAULT;
+	protected static final LogicalOperation OPERATION_EDEFAULT = LogicalOperation.OR;
 
 	/**
-	 * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
+	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMax()
+	 * @see #getOperation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MAX_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMax()
-	 * @generated
-	 * @ordered
-	 */
-	protected int max = MAX_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChildren()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Feature> children;
+	protected LogicalOperation operation = OPERATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,53 +101,32 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMin() {
-		return min;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMin(int newMin) {
-		int oldMin = min;
-		min = newMin;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureObjectivePackage.FEATURE_GROUP__MIN, oldMin, min));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getMax() {
-		return max;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMax(int newMax) {
-		int oldMax = max;
-		max = newMax;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureObjectivePackage.FEATURE_GROUP__MAX, oldMax, max));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getChildren() {
-		if (children == null) {
-			children = new EObjectContainmentEList<Feature>(Feature.class, this, FeatureObjectivePackage.FEATURE_GROUP__CHILDREN);
+	public EList<Feature> getFeatures() {
+		if (features == null) {
+			features = new EObjectContainmentEList<Feature>(Feature.class, this, FeatureObjectivePackage.FEATURE_GROUP__FEATURES);
 		}
-		return children;
+		return features;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogicalOperation getOperation() {
+		return operation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperation(LogicalOperation newOperation) {
+		LogicalOperation oldOperation = operation;
+		operation = newOperation == null ? OPERATION_EDEFAULT : newOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureObjectivePackage.FEATURE_GROUP__OPERATION, oldOperation, operation));
 	}
 
 	/**
@@ -277,8 +237,8 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
+				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -291,12 +251,10 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				return getMin();
-			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				return getMax();
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				return getChildren();
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
+				return getFeatures();
+			case FeatureObjectivePackage.FEATURE_GROUP__OPERATION:
+				return getOperation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,15 +268,12 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				setMin((Integer)newValue);
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
+				getFeatures().clear();
+				getFeatures().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				setMax((Integer)newValue);
-				return;
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				getChildren().clear();
-				getChildren().addAll((Collection<? extends Feature>)newValue);
+			case FeatureObjectivePackage.FEATURE_GROUP__OPERATION:
+				setOperation((LogicalOperation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -332,14 +287,11 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				setMin(MIN_EDEFAULT);
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
+				getFeatures().clear();
 				return;
-			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				setMax(MAX_EDEFAULT);
-				return;
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				getChildren().clear();
+			case FeatureObjectivePackage.FEATURE_GROUP__OPERATION:
+				setOperation(OPERATION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -353,12 +305,10 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-				return min != MIN_EDEFAULT;
-			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
-				return max != MAX_EDEFAULT;
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
-				return children != null && !children.isEmpty();
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
+				return features != null && !features.isEmpty();
+			case FeatureObjectivePackage.FEATURE_GROUP__OPERATION:
+				return operation != OPERATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -372,11 +322,9 @@ public class FeatureGroupImpl extends ChildRelationImpl implements FeatureGroup 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (min: ");
-		result.append(min);
-		result.append(", max: ");
-		result.append(max);
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (operation: ");
+		result.append(operation);
 		result.append(')');
 		return result.toString();
 	}

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link featureObjective.FeatureObjective#getRootFeature <em>Root Feature</em>}</li>
+ *   <li>{@link featureObjective.FeatureObjective#getFeatureGroups <em>Feature Groups</em>}</li>
  *   <li>{@link featureObjective.FeatureObjective#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link featureObjective.FeatureObjective#getAnnotatableElement <em>Annotatable Element</em>}</li>
  * </ul>
@@ -28,30 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface FeatureObjective extends DescribedElement {
 	/**
-	 * Returns the value of the '<em><b>Root Feature</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Feature Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link featureObjective.FeatureGroup}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Root Feature</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Feature Groups</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Feature</em>' containment reference.
-	 * @see #setRootFeature(Feature)
-	 * @see featureObjective.FeatureObjectivePackage#getFeatureObjective_RootFeature()
+	 * @return the value of the '<em>Feature Groups</em>' containment reference list.
+	 * @see featureObjective.FeatureObjectivePackage#getFeatureObjective_FeatureGroups()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
-	Feature getRootFeature();
-
-	/**
-	 * Sets the value of the '{@link featureObjective.FeatureObjective#getRootFeature <em>Root Feature</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root Feature</em>' containment reference.
-	 * @see #getRootFeature()
-	 * @generated
-	 */
-	void setRootFeature(Feature value);
+	EList<FeatureGroup> getFeatureGroups();
 
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
