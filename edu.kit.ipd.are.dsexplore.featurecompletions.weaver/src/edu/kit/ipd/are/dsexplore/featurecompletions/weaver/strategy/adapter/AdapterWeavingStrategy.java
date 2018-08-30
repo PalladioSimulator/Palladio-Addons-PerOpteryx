@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -35,7 +36,6 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmS
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
-import featureObjective.Feature;
 import featureSolution.InclusionMechanism;
 
 public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving {
@@ -166,36 +166,26 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, fccfh, this.pcmToAdapt);
 		List<WeavingInstruction> instructions = new ArrayList<>();
 
-		List<Feature> shallFeatures = new ArrayList<>();
-		List<Feature> notShallFeatures = new ArrayList<>();
-		this.getFeatures(optionalFeatures, shallFeatures, notShallFeatures);
+		List<Connector> notShallConnectors = new ArrayList<>();
+		this.getNotShallConnectorsFeatures(optionalFeatures, notShallConnectors);
 
 		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
 			instructions.add(ig.generate(targetLoc));
 		}
 
-		List<WeavingInstruction> result = new ArrayList<>();
-
-		for (WeavingInstruction is : instructions) {
-			List<Feature> features = is.getFCCWithConsumedFeatures().first.getPerimeterProviding().getFeatureProviding();
-			if (features.stream().anyMatch(f -> shallFeatures.contains(f))) {
-				// Selected
-				result.add(is);
-			} else if (features.stream().anyMatch(f -> !shallFeatures.contains(f) && !notShallFeatures.contains(f))) {
-				// Or Mandatory
-				result.add(is);
-			}
-		}
-
-		return result;
+		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation()));
+		return instructions;
 
 	}
 
-	private void getFeatures(List<BoolChoice> optionalFeatures, List<Feature> shall, List<Feature> notShall) {
+	private void getNotShallConnectorsFeatures(List<BoolChoice> optionalFeatures, List<Connector> notShall) {
 		for (BoolChoice ch : optionalFeatures) {
 			FeatureDegree fd = (FeatureDegree) ch.getDegreeOfFreedomInstance();
-			Feature f = (Feature) fd.getPrimaryChanged();
-			(ch.isChosenValue() ? shall : notShall).add(f);
+			@SuppressWarnings("unchecked")
+			Pair<Connector, ComplementumVisnetis> f = (Pair<Connector, ComplementumVisnetis>) fd.getPrimaryChanged();
+			if (!ch.isChosenValue()) {
+				notShall.add(f.first);
+			}
 		}
 	}
 

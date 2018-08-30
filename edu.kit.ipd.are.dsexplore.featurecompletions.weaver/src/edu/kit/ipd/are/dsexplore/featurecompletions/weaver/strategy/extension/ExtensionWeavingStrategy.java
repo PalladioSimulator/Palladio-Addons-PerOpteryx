@@ -449,7 +449,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.
 	 * IExtensionWeaving#getSelectedCVs()
@@ -463,9 +463,10 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	@Override
 	public ComplementumVisnetis getSelectedOptionalCV() {
 		for (ComplementumVisnetis cv : this.selectedCVs) {
-			if (cv.getComplementaryFeature().getSimpleOptional() != null) {
-				return cv;
-			}
+			// TODO Maxi repair it
+			// if (cv.getComplementaryFeature().getSimpleOptional() != null) {
+			// return cv;
+			// }
 		}
 		return null;
 	}

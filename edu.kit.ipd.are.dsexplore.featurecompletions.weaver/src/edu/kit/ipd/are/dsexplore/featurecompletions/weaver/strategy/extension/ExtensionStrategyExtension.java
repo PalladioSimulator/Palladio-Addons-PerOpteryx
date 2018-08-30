@@ -189,7 +189,9 @@ public class ExtensionStrategyExtension implements IStrategyExtension {
 		for (Feature f : features) {
 			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
 			// not needed so far.
-			boolean isOptional = f.getSimpleOptional() != null;
+
+			// TODO Maxi repair it
+			boolean isOptional = false; // f.getSimpleOptional() != null;
 			if (isOptional) {
 				optionals.add(f);
 			}

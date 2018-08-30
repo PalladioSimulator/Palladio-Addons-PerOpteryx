@@ -8,6 +8,7 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
 
 public class FCCCreateExtension implements ICreateExtension {
@@ -15,12 +16,12 @@ public class FCCCreateExtension implements ICreateExtension {
 
 	@Override
 	public boolean shallHandle(DegreeOfFreedomInstance degree) {
-		return degree instanceof MultipleInclusionDegree || degree instanceof AdvicePlacementDegree;
+		return degree instanceof MultipleInclusionDegree || degree instanceof AdvicePlacementDegree || degree instanceof FeatureDegree;
 	}
 
 	@Override
 	public Choice getChoice(DegreeOfFreedomInstance degree) {
-		if (degree instanceof MultipleInclusionDegree || degree instanceof AdvicePlacementDegree) {
+		if (degree instanceof MultipleInclusionDegree || degree instanceof AdvicePlacementDegree || degree instanceof FeatureDegree) {
 			BoolChoice choice = designdecisionFactory.eINSTANCE.createBoolChoice();
 			choice.setChosenValue(this.random.nextBoolean());
 			return choice;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision;
 
@@ -16,7 +16,6 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
-import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
@@ -25,14 +24,14 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureObjective.Feature;
-import featureObjective.FeatureGroup;
 import featureSolution.ExtensionInclusion;
 import featureSolution.FeatureList;
 import featureSolution.InclusionMechanism;
 
 /**
- * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
- * 
+ * @author Maximilian Eckert (maximilian.eckert@student.kit.edu,
+ *         maxieckert@web.de)
+ *
  *
  */
 public class ComplementumVisnetisDesignDecision {
@@ -43,13 +42,13 @@ public class ComplementumVisnetisDesignDecision {
 
 	/**
 	 * @param degree
-	 * @param solutions 
+	 * @param solutions
 	 */
 	public ComplementumVisnetisDesignDecision(FeatureCompletionDegree degree, List<Repository> solutions) {
 		this.fc = (FeatureCompletion) degree.getPrimaryChanged();
 		this.solutions = solutions;
-		//TODO von welchem Advice Features/CV holen?
-		this.featureLists = ((ExtensionInclusion) determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
+		// TODO von welchem Advice Features/CV holen?
+		this.featureLists = ((ExtensionInclusion) this.determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
 	}
 
 	/**
@@ -57,41 +56,43 @@ public class ComplementumVisnetisDesignDecision {
 	 */
 	public List<Choice> generateComplementumVisnetisDegrees() {
 		List<Choice> result = new ArrayList<>();
-		
-		//add dof for each feature group
-		for (FeatureList featureList : featureLists) {
-			//TODO handle optional cvs
-			if (containsOptionalCVs(featureList)) {
-				result.addAll(createOptionalCVChoice(featureList));
+
+		// add dof for each feature group
+		for (FeatureList featureList : this.featureLists) {
+			// TODO handle optional cvs
+			if (this.containsOptionalCVs(featureList)) {
+				result.addAll(this.createOptionalCVChoice(featureList));
 				continue;
 			}
-			
+
 			ComplementumVisnetisDegree cvDegree = specificFactory.eINSTANCE.createComplementumVisnetisDegree();
 			cvDegree.setEntityName("cv");
 			cvDegree.setPrimaryChanged(featureList);
-			//TODO add only features that are supported by all solutions??
+			// TODO add only features that are supported by all solutions??
 			for (ComplementumVisnetis cv : featureList.getFeatures()) {
 				cvDegree.getClassDesignOptions().add(cv);
 
 			}
-			
-			
+
 			ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
 			choice.setDegreeOfFreedomInstance(cvDegree);
 			choice.setChosenValue(cvDegree.getClassDesignOptions().get(0));
-			
+
 			result.add(choice);
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * @param featureList
 	 * @return
 	 */
 	private boolean containsOptionalCVs(FeatureList featureList) {
-		return featureList.getFeatures().stream().anyMatch(cv -> cv.getComplementaryFeature().getSimpleOptional() != null);
+		// TODO Maxi repair it
+		// return featureList.getFeatures().stream().anyMatch(cv ->
+		// cv.getComplementaryFeature().getSimpleOptional() != null);
+		return false;
 	}
 
 	public List<FeatureChoice> createOptionalCVChoice(FeatureList featureList) {
@@ -100,22 +101,23 @@ public class ComplementumVisnetisDesignDecision {
 			FeatureDegree optionalCVDegree = specificFactory.eINSTANCE.createFeatureDegree();
 			optionalCVDegree.setEntityName("optional_cv");
 			optionalCVDegree.setPrimaryChanged(cv);
-			
+
 			FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
 			choice.setDegreeOfFreedomInstance(optionalCVDegree);
 			choice.setSelected(false);
-			
+
 			result.add(choice);
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @param feature
 	 * @return
 	 */
 	private ComplementumVisnetis cvProvidingFeature(Feature feature) {
-		return fc.getComplementa().stream().filter(c -> c instanceof ComplementumVisnetis).map(c -> (ComplementumVisnetis) c).filter(cv -> cv.getComplementaryFeature().getId().equals(feature.getId())).findAny().get();
+		return this.fc.getComplementa().stream().filter(c -> c instanceof ComplementumVisnetis).map(c -> (ComplementumVisnetis) c)
+				.filter(cv -> cv.getComplementaryFeature().getId().equals(feature.getId())).findAny().get();
 	}
 
 	/**
@@ -123,8 +125,9 @@ public class ComplementumVisnetisDesignDecision {
 	 * @return
 	 */
 	private boolean featureSupportedByAllSolutions(Feature feature) {
-		for (Repository solution : solutions) {
-			List<Feature> providedFeatures = new FCCFeatureHandler(new SolutionManager(solution)).extractProvidedCVs().stream().map(pair -> pair.second.getComplementaryFeature()).collect(Collectors.toList());
+		for (Repository solution : this.solutions) {
+			List<Feature> providedFeatures = new FCCFeatureHandler(new SolutionManager(solution)).extractProvidedCVs().stream().map(pair -> pair.second.getComplementaryFeature())
+					.collect(Collectors.toList());
 			if (!providedFeatures.stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
 				return false;
 			}
@@ -132,7 +135,7 @@ public class ComplementumVisnetisDesignDecision {
 		return true;
 	}
 
-	//TODO replication in FCCWeaver???
+	// TODO replication in FCCWeaver???
 	private InclusionMechanism determineIM(List<Repository> solutions) {
 		InclusionMechanism meachanism = null;
 		for (Repository repo : solutions) {

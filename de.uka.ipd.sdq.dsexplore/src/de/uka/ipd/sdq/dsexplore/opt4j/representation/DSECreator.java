@@ -20,14 +20,12 @@ import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.ContinousRangeChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.DiscreteRangeChoice;
-import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteRangeDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.IndicatorDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.OrderedIntegerDegree;
 
@@ -124,10 +122,6 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 			choice = module.getCreateExtension().getChoice(degree);
 		} else if (degree instanceof IndicatorDegree) {
 			choice = this.processIndicator(degree, factory);
-		} else if (degree instanceof FeatureDegree) {
-			FeatureChoice setOrNotSet = factory.createFeatureChoice();
-			setOrNotSet.setSelected(this.random.nextBoolean());
-			choice = setOrNotSet;
 		} else if (degree instanceof DiscreteDegree) {
 			DiscreteRangeChoice discChoice = factory.createDiscreteRangeChoice();
 			discChoice.setChosenValue(this.createIntegerValue((DiscreteDegree) degree));
