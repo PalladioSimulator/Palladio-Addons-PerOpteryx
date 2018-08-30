@@ -33,8 +33,8 @@
   <rm:locator pattern="^org\.palladiosimulator\.pcm.*" searchPathRef="Editors" failOnError="false"/>
   
   <rm:locator pattern="^org\.palladiosimulator\.recorderframework.*" searchPathRef="RecorderFramework" failOnError="true"/>
-  <rm:redirect pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/SensorFramework/trunk/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
-  <rm:redirect pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/SensorFramework/trunk/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
+  <rm:redirect pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-QuAL-SensorFramework/master/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
+  <rm:redirect pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-QuAL-SensorFramework/master/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
 
   <rm:redirect pattern="^org\.palladiosimulator\.architecturaltemplates.*"
 		href="https://raw.githubusercontent.com/PalladioSimulator/Architectural-Templates/master/org.palladiosimulator.architecturaltemplates.buckminster/architecturaltemplates.rmap" />
