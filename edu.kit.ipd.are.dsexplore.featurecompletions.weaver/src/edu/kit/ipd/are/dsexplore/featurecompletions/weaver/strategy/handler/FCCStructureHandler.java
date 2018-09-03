@@ -2,7 +2,6 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
-import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.impl.ComplementumImpl;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
@@ -39,15 +37,15 @@ public class FCCStructureHandler {
 		// return this.getAnnotatedComponents(false).flatMap(eachComponent ->
 		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
 	}
-	
-	//TODO new for extension
+
+	// TODO new for extension
 	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
-		List<CompletionComponent> result = new ArrayList<CompletionComponent>();
+		List<CompletionComponent> result = new ArrayList<>();
 		if (!fcc.getRequiredComponents().isEmpty()) {
 			EList<CompletionComponent> requiredFCCs = fcc.getRequiredComponents();
 			result.addAll(requiredFCCs);
 			for (CompletionComponent completionComponent : requiredFCCs) {
-				result.addAll(getFCCsRequiredBy(completionComponent));
+				result.addAll(this.getFCCsRequiredBy(completionComponent));
 			}
 		}
 		return result;
@@ -94,7 +92,8 @@ public class FCCStructureHandler {
 	 * @return
 	 */
 	public boolean requiresComplementa(List<RepositoryComponent> realizingComponents) {
-		return realizingComponents.stream().anyMatch(component -> !StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumImpl.class).stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()).isEmpty());
+		return realizingComponents.stream().anyMatch(component -> !StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumImpl.class).stream()
+				.filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()).isEmpty());
 	}
 
 	/**
@@ -102,12 +101,20 @@ public class FCCStructureHandler {
 	 * @return
 	 */
 	public List<RepositoryComponent> getRequiredComplementa(List<RepositoryComponent> realizingComponents) {
-		List<RepositoryComponent> result = new ArrayList<RepositoryComponent>();
+		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
 			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
-			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()); //TODO nur ComplementumImpl hier betrachten, keine ComplVisnetis
+			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()); // TODO
+																																								// nur
+																																								// ComplementumImpl
+																																								// hier
+																																								// betrachten,
+																																								// keine
+																																								// ComplVisnetis
 			if (!requiredComplementa.isEmpty()) {
-				result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(requiredComplementa.get(0))); //TODO mehrere Complementa?
+				result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(requiredComplementa.get(0))); // TODO
+																														// mehrere
+																														// Complementa?
 			}
 		}
 		return result;

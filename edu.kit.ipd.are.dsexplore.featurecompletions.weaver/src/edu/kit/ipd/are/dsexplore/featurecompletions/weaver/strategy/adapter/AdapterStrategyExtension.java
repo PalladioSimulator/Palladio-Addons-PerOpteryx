@@ -9,9 +9,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationInterface;
-import org.palladiosimulator.pcm.repository.OperationSignature;
+import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 
@@ -29,6 +27,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExtension;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FeatureHelper;
 
 public class AdapterStrategyExtension implements IStrategyExtension {
 	List<BoolChoice> optionalFeatures;
@@ -62,22 +61,15 @@ public class AdapterStrategyExtension implements IStrategyExtension {
 			@SuppressWarnings("unchecked")
 			Pair<Connector, ComplementumVisnetis> feature = (Pair<Connector, ComplementumVisnetis>) ((FeatureDegree) ch.getDegreeOfFreedomInstance()).getPrimaryChanged();
 			if (!solutionFeatures.contains(feature.second)) {
-				throw new FCCWeaverException("Feature " + feature + " not found in Solution " + solution);
+				throw new FCCWeaverException("Feature " + feature + " not found in Solution " + solution.getEntityName());
 			}
 		}
 	}
 
 	private List<ComplementumVisnetis> getFeatures(Repository solution) {
-		// TODO DTHF1 other fulfillsComplementumVisnetis
 		List<ComplementumVisnetis> allFeatures = new ArrayList<>();
-		for (Interface iface : solution.getInterfaces__Repository()) {
-			if (!(iface instanceof OperationInterface)) {
-				continue;
-			}
-			for (OperationSignature os : ((OperationInterface) iface).getSignatures__OperationInterface()) {
-				List<ComplementumVisnetis> cvs = StereotypeAPIHelper.getViaStereoTypeFrom(os, ComplementumVisnetis.class);
-				allFeatures.addAll(cvs);
-			}
+		for (Pair<Entity, ComplementumVisnetis> cvs : FeatureHelper.getCVsFromRepo(solution)) {
+			allFeatures.add(cvs.second);
 		}
 		return allFeatures;
 	}

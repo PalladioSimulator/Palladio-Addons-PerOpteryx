@@ -95,7 +95,7 @@
     <stringAttribute key="fixedSeed3" value="3"/>
     <stringAttribute key="fixedSeed4" value="4"/>
     <stringAttribute key="fixedSeed5" value="5"/>
-    <stringAttribute key="indivPerGeneration" value="3"/>
+    <stringAttribute key="indivPerGeneration" value="5"/>
     <booleanAttribute key="infiniteTaskMultiplicity" value="true"/>
     <stringAttribute key="itLimit" value="50"/>
     <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>

@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
@@ -24,7 +23,6 @@ import FeatureCompletionModel.PerimeterProviding;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
@@ -162,7 +160,7 @@ public class FCCFeatureHandler {
 				// TODO select only providedRoles for current solution Choice
 				List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent), repo);
 				List<ProvidedRole> providedRoles = components.stream().map(component -> component.getProvidedRoles_InterfaceProvidingEntity().get(0)).collect(Collectors.toList()); // TODO
-																																								// Role
+				// Role
 				result.addAll(providedRoles);
 			}
 		}
@@ -234,34 +232,7 @@ public class FCCFeatureHandler {
 	}
 
 	public List<Pair<Entity, ComplementumVisnetis>> extractProvidedCVs() {
-		List<Pair<Entity, ComplementumVisnetis>> result = new ArrayList<>();
-		Repository pcmRepo = this.solutionManager.getRepository();
-
-		for (RepositoryComponent rc : pcmRepo.getComponents__Repository()) {
-			List<ComplementumVisnetis> cvsRc = StereotypeAPIHelper.getViaStereoTypeFrom(rc, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-			for (ComplementumVisnetis cv : cvsRc) {
-				result.add(Pair.of(rc, cv));
-			}
-		}
-		for (Interface iface : pcmRepo.getInterfaces__Repository()) {
-			if (!(iface instanceof OperationInterface)) {
-				continue;
-			}
-			OperationInterface opIface = (OperationInterface) iface;
-			List<ComplementumVisnetis> cvsIface = StereotypeAPIHelper.getViaStereoTypeFrom(opIface, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-			for (ComplementumVisnetis cv : cvsIface) {
-				result.add(Pair.of(opIface, cv));
-			}
-
-			for (OperationSignature opSig : opIface.getSignatures__OperationInterface()) {
-				List<ComplementumVisnetis> cvsSig = StereotypeAPIHelper.getViaStereoTypeFrom(opSig, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
-				for (ComplementumVisnetis cv : cvsSig) {
-					result.add(Pair.of(opSig, cv));
-				}
-			}
-		}
-
-		return result;
+		return FeatureHelper.getCVsFromRepo(this.solutionManager.getRepository());
 	}
 
 	// private List<ProvidedRole> getProvidedRoleSpace() {
