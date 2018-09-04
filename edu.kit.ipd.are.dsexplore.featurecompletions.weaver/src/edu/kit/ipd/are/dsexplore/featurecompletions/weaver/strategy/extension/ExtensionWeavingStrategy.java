@@ -201,9 +201,10 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		this.advicePlacementChoices = ese.advicePlacementChoices;
 
 		this.cvChoices = ese.cvChoices;
-		this.optionalFeatureChoices = ese.featureChoices;
-		// TODO set selected cv choices
+		//set selected cv choices
 		this.setSelectedCVs();
+		//TODO map cvChoices to CV names for better readability in result candidates sheet
+		//ese.cvChoices.stream().forEach(choice -> choice.setValue(((SelectedCV) choice.getValue()).getComplementumVisnetis()));
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;

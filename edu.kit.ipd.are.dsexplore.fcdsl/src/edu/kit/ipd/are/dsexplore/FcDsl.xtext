@@ -63,7 +63,7 @@ FeatureList returns featureSolution::FeatureList:
 ;
 
 SelectedCV returns featureSolution::SelectedCV:
-	(optional?='optional')? complementumVisnetis=[FeatureCompletionModel::ComplementumVisnetis|EString];
+	(optional?='optional')? complementumVisnetis=[FeatureCompletionModel::ComplementumVisnetis|EString]; 
 
 Import returns featureSolution::Import:
 	'import' importURI=EString ;

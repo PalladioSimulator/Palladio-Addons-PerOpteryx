@@ -60,7 +60,7 @@ public class AssemblyWeaving {
 		List<CompletionComponent> allFCCs = fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);
 		allFCCs.add(perimeterProvidingFCC);
 		//2. choose realizing component for each fcc according to selected solution/CV
-		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(perimeterProvidingFCC, allFCCs, providedRole, parent.getSelectedCVs());
+		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, parent.getSelectedCVs());
 		
 		//3. in case of any required complementa -> add additional components
 		if (fccHandler.requiresComplementa(realizingComponents)) {

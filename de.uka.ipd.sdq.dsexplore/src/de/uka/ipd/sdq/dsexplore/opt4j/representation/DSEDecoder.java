@@ -53,6 +53,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AssembledComponentDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.CapacityDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ClassDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousProcessingRateDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ContinuousRangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.DiscreteProcessingRateDegree;
@@ -67,6 +68,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
+import featureSolution.SelectedCV;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into
@@ -592,6 +594,8 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			// result = "[FeatureChoice] Selected: " + (ch.isSelected() ? "T" :
 			// "F") + " Present: " + (ch.isPresent() ? "T" : "F");
 			result = "[FeatureChoice] Present: " + (ch.isPresent() ? "TRUE" : "FALSE");
+		} else if (choice.getDegreeOfFreedomInstance() instanceof ComplementumVisnetisDegree) {
+			result = "[SelectedCV]: " + ((SelectedCV) choice.getValue()).getComplementumVisnetis();
 		}
 		return result;
 	}

@@ -90,7 +90,7 @@ public final class SolutionManager {
 	}
 
 	// TODO new for extension
-	public List<RepositoryComponent> getRealizingComponentsByFCCList(CompletionComponent perimeterProvidingFCC, List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
 		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (CompletionComponent completionComponent : fccs) {
 			List<RepositoryComponent> realizingComponents = new ArrayList<>();
@@ -104,13 +104,8 @@ public final class SolutionManager {
 					realizingComponents.add(rcs);
 				}
 			}
-			if (completionComponent == perimeterProvidingFCC && realizingComponents.size() == 1) {
-				//this is the realizing component for the perimeter provided FCC -> no further filtering necessary
-				affectedComponents.add(realizingComponents.get(0));
-			} else {
-				RepositoryComponent component = this.getComponentFullfillingCV(realizingComponents, cvs);
-				affectedComponents.add(component);
-			}
+			RepositoryComponent component = this.getComponentFullfillingCV(realizingComponents, cvs);
+			affectedComponents.add(component);
 		}
 		if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
 			return affectedComponents;

@@ -159,7 +159,8 @@ public class FCCFeatureHandler {
 				// this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent));
 				// TODO select only providedRoles for current solution Choice
 				List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent), repo);
-				List<ProvidedRole> providedRoles = components.stream().map(component -> component.getProvidedRoles_InterfaceProvidingEntity().get(0)).collect(Collectors.toList()); // TODO
+				RepositoryComponent component = this.solutionManager.getComponentFullfillingCV(components, Arrays.asList(cv));
+				List<ProvidedRole> providedRoles = component.getProvidedRoles_InterfaceProvidingEntity(); // TODO welche Iface??
 				// Role
 				result.addAll(providedRoles);
 			}
