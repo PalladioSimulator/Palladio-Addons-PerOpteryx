@@ -68,6 +68,7 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 			case FeatureSolutionPackage.IMPORT: return createImport();
 			case FeatureSolutionPackage.FEATURE_SELECTION: return createFeatureSelection();
 			case FeatureSolutionPackage.FEATURE_LIST: return createFeatureList();
+			case FeatureSolutionPackage.SELECTED_CV: return createSelectedCV();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -215,6 +216,16 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	public FeatureList createFeatureList() {
 		FeatureListImpl featureList = new FeatureListImpl();
 		return featureList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SelectedCV createSelectedCV() {
+		SelectedCVImpl selectedCV = new SelectedCVImpl();
+		return selectedCV;
 	}
 
 	/**

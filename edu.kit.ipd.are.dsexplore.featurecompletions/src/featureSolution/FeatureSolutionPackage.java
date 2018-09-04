@@ -550,7 +550,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	int FEATURE_LIST = 11;
 
 	/**
-	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -568,6 +568,43 @@ public interface FeatureSolutionPackage extends EPackage {
 	int FEATURE_LIST_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link featureSolution.impl.SelectedCVImpl <em>Selected CV</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see featureSolution.impl.SelectedCVImpl
+	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getSelectedCV()
+	 * @generated
+	 */
+	int SELECTED_CV = 12;
+
+	/**
+	 * The feature id for the '<em><b>Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTED_CV__OPTIONAL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Complementum Visnetis</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTED_CV__COMPLEMENTUM_VISNETIS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Selected CV</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTED_CV_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -575,7 +612,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getAppearance()
 	 * @generated
 	 */
-	int APPEARANCE = 12;
+	int APPEARANCE = 13;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.ControlFlow <em>Control Flow</em>}' enum.
@@ -585,7 +622,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getControlFlow()
 	 * @generated
 	 */
-	int CONTROL_FLOW = 13;
+	int CONTROL_FLOW = 14;
 
 
 	/**
@@ -896,15 +933,47 @@ public interface FeatureSolutionPackage extends EPackage {
 	EClass getFeatureList();
 
 	/**
-	 * Returns the meta object for the reference list '{@link featureSolution.FeatureList#getFeatures <em>Features</em>}'.
+	 * Returns the meta object for the containment reference list '{@link featureSolution.FeatureList#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Features</em>'.
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
 	 * @see featureSolution.FeatureList#getFeatures()
 	 * @see #getFeatureList()
 	 * @generated
 	 */
 	EReference getFeatureList_Features();
+
+	/**
+	 * Returns the meta object for class '{@link featureSolution.SelectedCV <em>Selected CV</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Selected CV</em>'.
+	 * @see featureSolution.SelectedCV
+	 * @generated
+	 */
+	EClass getSelectedCV();
+
+	/**
+	 * Returns the meta object for the attribute '{@link featureSolution.SelectedCV#isOptional <em>Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Optional</em>'.
+	 * @see featureSolution.SelectedCV#isOptional()
+	 * @see #getSelectedCV()
+	 * @generated
+	 */
+	EAttribute getSelectedCV_Optional();
+
+	/**
+	 * Returns the meta object for the reference '{@link featureSolution.SelectedCV#getComplementumVisnetis <em>Complementum Visnetis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Complementum Visnetis</em>'.
+	 * @see featureSolution.SelectedCV#getComplementumVisnetis()
+	 * @see #getSelectedCV()
+	 * @generated
+	 */
+	EReference getSelectedCV_ComplementumVisnetis();
 
 	/**
 	 * Returns the meta object for enum '{@link featureSolution.Appearance <em>Appearance</em>}'.
@@ -1205,12 +1274,38 @@ public interface FeatureSolutionPackage extends EPackage {
 		EClass FEATURE_LIST = eINSTANCE.getFeatureList();
 
 		/**
-		 * The meta object literal for the '<em><b>Features</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FEATURE_LIST__FEATURES = eINSTANCE.getFeatureList_Features();
+
+		/**
+		 * The meta object literal for the '{@link featureSolution.impl.SelectedCVImpl <em>Selected CV</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see featureSolution.impl.SelectedCVImpl
+		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getSelectedCV()
+		 * @generated
+		 */
+		EClass SELECTED_CV = eINSTANCE.getSelectedCV();
+
+		/**
+		 * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SELECTED_CV__OPTIONAL = eINSTANCE.getSelectedCV_Optional();
+
+		/**
+		 * The meta object literal for the '<em><b>Complementum Visnetis</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTED_CV__COMPLEMENTUM_VISNETIS = eINSTANCE.getSelectedCV_ComplementumVisnetis();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.

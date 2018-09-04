@@ -5,15 +5,6 @@ package featureSolution.impl;
 import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
-
-import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
-import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
-
-import de.uka.ipd.sdq.stoex.StoexPackage;
-
-import de.uka.ipd.sdq.units.UnitsPackage;
-
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
@@ -35,6 +26,7 @@ import featureSolution.InternalActionPlacementStrategy;
 import featureSolution.PlacementStrategy;
 import featureSolution.PointCut;
 
+import featureSolution.SelectedCV;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -146,6 +138,13 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass selectedCVEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum appearanceEEnum = null;
 
 	/**
@@ -183,7 +182,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link FeatureSolutionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -197,24 +196,16 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		if (isInited) return (FeatureSolutionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredFeatureSolutionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		FeatureSolutionPackageImpl theFeatureSolutionPackage = registeredFeatureSolutionPackage instanceof FeatureSolutionPackageImpl ? (FeatureSolutionPackageImpl)registeredFeatureSolutionPackage : new FeatureSolutionPackageImpl();
+		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FeatureSolutionPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		IdentifierPackage.eINSTANCE.eClass();
 		PcmPackage.eINSTANCE.eClass();
-		ProbfunctionPackage.eINSTANCE.eClass();
-		StoexPackage.eINSTANCE.eClass();
-		UnitsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
-		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(registeredPackage instanceof FeatureCompletionPackageImpl ? registeredPackage : FeatureCompletionPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
-		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(registeredPackage instanceof FeatureObjectivePackageImpl ? registeredPackage : FeatureObjectivePackage.eINSTANCE);
+		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
+		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureSolutionPackage.createPackageContents();
@@ -229,6 +220,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		// Mark meta-data to indicate it can't be changed
 		theFeatureSolutionPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeatureSolutionPackage.eNS_URI, theFeatureSolutionPackage);
 		return theFeatureSolutionPackage;
@@ -509,6 +501,33 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSelectedCV() {
+		return selectedCVEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSelectedCV_Optional() {
+		return (EAttribute)selectedCVEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSelectedCV_ComplementumVisnetis() {
+		return (EReference)selectedCVEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
 	}
@@ -591,6 +610,10 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 		featureListEClass = createEClass(FEATURE_LIST);
 		createEReference(featureListEClass, FEATURE_LIST__FEATURES);
+
+		selectedCVEClass = createEClass(SELECTED_CV);
+		createEAttribute(selectedCVEClass, SELECTED_CV__OPTIONAL);
+		createEReference(selectedCVEClass, SELECTED_CV__COMPLEMENTUM_VISNETIS);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
@@ -681,7 +704,11 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEReference(getFeatureSelection_FeatureLists(), this.getFeatureList(), null, "featureLists", null, 1, -1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureListEClass, FeatureList.class, "FeatureList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureList_Features(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "features", null, 1, -1, FeatureList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureList_Features(), this.getSelectedCV(), null, "features", null, 1, -1, FeatureList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(selectedCVEClass, SelectedCV.class, "SelectedCV", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSelectedCV_Optional(), ecorePackage.getEBoolean(), "optional", "false", 1, 1, SelectedCV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSelectedCV_ComplementumVisnetis(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "complementumVisnetis", null, 1, 1, SelectedCV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");

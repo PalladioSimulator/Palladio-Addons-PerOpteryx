@@ -5,15 +5,6 @@ package featureObjective.impl;
 import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
-
-import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
-import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
-
-import de.uka.ipd.sdq.stoex.StoexPackage;
-
-import de.uka.ipd.sdq.units.UnitsPackage;
-
 import featureObjective.AttributeTypes;
 import featureObjective.Constraint;
 import featureObjective.Feature;
@@ -136,7 +127,7 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link FeatureObjectivePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -150,24 +141,16 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		if (isInited) return (FeatureObjectivePackage)EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredFeatureObjectivePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		FeatureObjectivePackageImpl theFeatureObjectivePackage = registeredFeatureObjectivePackage instanceof FeatureObjectivePackageImpl ? (FeatureObjectivePackageImpl)registeredFeatureObjectivePackage : new FeatureObjectivePackageImpl();
+		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FeatureObjectivePackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		IdentifierPackage.eINSTANCE.eClass();
 		PcmPackage.eINSTANCE.eClass();
-		ProbfunctionPackage.eINSTANCE.eClass();
-		StoexPackage.eINSTANCE.eClass();
-		UnitsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
-		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(registeredPackage instanceof FeatureCompletionPackageImpl ? registeredPackage : FeatureCompletionPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI);
-		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(registeredPackage instanceof FeatureSolutionPackageImpl ? registeredPackage : FeatureSolutionPackage.eINSTANCE);
+		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
+		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureObjectivePackage.createPackageContents();
@@ -181,7 +164,7 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theFeatureObjectivePackage,
+			(theFeatureObjectivePackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
 					 return FeatureObjectiveValidator.INSTANCE;
@@ -191,6 +174,7 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		// Mark meta-data to indicate it can't be changed
 		theFeatureObjectivePackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeatureObjectivePackage.eNS_URI, theFeatureObjectivePackage);
 		return theFeatureObjectivePackage;
@@ -524,30 +508,30 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * @generated
 	 */
 	protected void createGenModelAnnotations() {
-		String source = "http://www.eclipse.org/uml2/1.1.0/GenModel";
+		String source = "http://www.eclipse.org/uml2/1.1.0/GenModel";	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(0),
-		   source,
+		  (featureGroupEClass.getEOperations().get(0), 
+		   source, 
 		   new String[] {
-			   "body", "true \r\n--(self.groupType = GroupTypes::OR or self.groupType = GroupTypes::XOR) implies self.children->forAll(c|c.isMandatory)\r\n"
-		   });
+			 "body", "true \r\n--(self.groupType = GroupTypes::OR or self.groupType = GroupTypes::XOR) implies self.children->forAll(c|c.isMandatory)\r\n"
+		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(1),
-		   source,
+		  (featureGroupEClass.getEOperations().get(1), 
+		   source, 
 		   new String[] {
-			   "body", "true \r\n --self.groupType = GroupTypes::ALL implies (self.min = -1 and self.max = -1)\r\n"
-		   });
+			 "body", "true \r\n --self.groupType = GroupTypes::ALL implies (self.min = -1 and self.max = -1)\r\n"
+		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(2),
-		   source,
+		  (featureGroupEClass.getEOperations().get(2), 
+		   source, 
 		   new String[] {
-			   "body", "true \r\n--self.groupType = GroupTypes::OR implies (self.min = 1  and self.max = -1)"
-		   });
+			 "body", "true \r\n--self.groupType = GroupTypes::OR implies (self.min = 1  and self.max = -1)"
+		   });	
 		addAnnotation
-		  (featureGroupEClass.getEOperations().get(3),
-		   source,
+		  (featureGroupEClass.getEOperations().get(3), 
+		   source, 
 		   new String[] {
-			   "body", "true \r\n --self.groupType = GroupTypes::XOR implies (self.min = 1 and self.max = 1)\r\n"
+			 "body", "true \r\n --self.groupType = GroupTypes::XOR implies (self.min = 1 and self.max = 1)\r\n"
 		   });
 	}
 

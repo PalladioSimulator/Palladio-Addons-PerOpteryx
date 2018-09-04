@@ -121,6 +121,15 @@ public interface FeatureSolutionFactory extends EFactory {
 	FeatureList createFeatureList();
 
 	/**
+	 * Returns a new object of class '<em>Selected CV</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Selected CV</em>'.
+	 * @generated
+	 */
+	SelectedCV createSelectedCV();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

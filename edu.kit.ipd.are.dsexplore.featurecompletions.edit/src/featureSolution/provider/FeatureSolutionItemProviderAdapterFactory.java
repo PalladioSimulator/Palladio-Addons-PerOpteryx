@@ -325,6 +325,29 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link featureSolution.SelectedCV} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SelectedCVItemProvider selectedCVItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link featureSolution.SelectedCV}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSelectedCVAdapter() {
+		if (selectedCVItemProvider == null) {
+			selectedCVItemProvider = new SelectedCVItemProvider(this);
+		}
+
+		return selectedCVItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,6 +457,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 		if (importItemProvider != null) importItemProvider.dispose();
 		if (featureSelectionItemProvider != null) featureSelectionItemProvider.dispose();
 		if (featureListItemProvider != null) featureListItemProvider.dispose();
+		if (selectedCVItemProvider != null) selectedCVItemProvider.dispose();
 	}
 
 }

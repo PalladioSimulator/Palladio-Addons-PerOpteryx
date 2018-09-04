@@ -2,20 +2,22 @@
  */
 package featureSolution.impl;
 
-import FeatureCompletionModel.ComplementumVisnetis;
-
 import featureSolution.FeatureList;
 import featureSolution.FeatureSolutionPackage;
 
+import featureSolution.SelectedCV;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,14 +34,14 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class FeatureListImpl extends MinimalEObjectImpl.Container implements FeatureList {
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplementumVisnetis> features;
+	protected EList<SelectedCV> features;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,11 +67,25 @@ public class FeatureListImpl extends MinimalEObjectImpl.Container implements Fea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplementumVisnetis> getFeatures() {
+	public EList<SelectedCV> getFeatures() {
 		if (features == null) {
-			features = new EObjectResolvingEList<ComplementumVisnetis>(ComplementumVisnetis.class, this, FeatureSolutionPackage.FEATURE_LIST__FEATURES);
+			features = new EObjectContainmentEList<SelectedCV>(SelectedCV.class, this, FeatureSolutionPackage.FEATURE_LIST__FEATURES);
 		}
 		return features;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FeatureSolutionPackage.FEATURE_LIST__FEATURES:
+				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -97,7 +113,7 @@ public class FeatureListImpl extends MinimalEObjectImpl.Container implements Fea
 		switch (featureID) {
 			case FeatureSolutionPackage.FEATURE_LIST__FEATURES:
 				getFeatures().clear();
-				getFeatures().addAll((Collection<? extends ComplementumVisnetis>)newValue);
+				getFeatures().addAll((Collection<? extends SelectedCV>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

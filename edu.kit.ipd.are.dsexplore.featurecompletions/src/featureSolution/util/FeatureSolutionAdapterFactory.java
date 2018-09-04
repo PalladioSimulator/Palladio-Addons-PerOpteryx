@@ -121,6 +121,10 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureListAdapter();
 			}
 			@Override
+			public Adapter caseSelectedCV(SelectedCV object) {
+				return createSelectedCVAdapter();
+			}
+			@Override
 			public Adapter caseIdentifier(Identifier object) {
 				return createIdentifierAdapter();
 			}
@@ -321,6 +325,20 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link featureSolution.SelectedCV <em>Selected CV</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see featureSolution.SelectedCV
+	 * @generated
+	 */
+	public Adapter createSelectedCVAdapter() {
 		return null;
 	}
 

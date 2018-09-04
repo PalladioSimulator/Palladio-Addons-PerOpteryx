@@ -25,7 +25,7 @@ ExtensionInclusion extensionIncl _ZZ {
 		Advice {
 			appears BEFORE 
 			pointCut allPayCalls
-			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
+			Completion Logging({ConsoleLogging,FileLogging, optional NoSQLDatabaseLogging}, {PatternLayout})
 			placementPolicy MANDATORY
 		},
 		Advice {

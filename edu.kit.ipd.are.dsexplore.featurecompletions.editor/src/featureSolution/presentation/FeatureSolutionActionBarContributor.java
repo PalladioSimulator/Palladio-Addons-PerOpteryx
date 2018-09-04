@@ -165,7 +165,6 @@ public class FeatureSolutionActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("featuresolution-settings"));
 		toolBarManager.add(new Separator("featuresolution-additions"));
 	}

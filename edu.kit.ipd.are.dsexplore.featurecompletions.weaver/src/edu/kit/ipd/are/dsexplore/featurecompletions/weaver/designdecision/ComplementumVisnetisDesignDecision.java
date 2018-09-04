@@ -27,6 +27,7 @@ import featureObjective.Feature;
 import featureSolution.ExtensionInclusion;
 import featureSolution.FeatureList;
 import featureSolution.InclusionMechanism;
+import featureSolution.SelectedCV;
 
 /**
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu,
@@ -69,8 +70,8 @@ public class ComplementumVisnetisDesignDecision {
 			cvDegree.setEntityName("cv");
 			cvDegree.setPrimaryChanged(featureList);
 			// TODO add only features that are supported by all solutions??
-			for (ComplementumVisnetis cv : featureList.getFeatures()) {
-				cvDegree.getClassDesignOptions().add(cv);
+			for (SelectedCV cv : featureList.getFeatures()) {
+				cvDegree.getClassDesignOptions().add(cv.getComplementumVisnetis());
 
 			}
 
@@ -97,10 +98,10 @@ public class ComplementumVisnetisDesignDecision {
 
 	public List<FeatureChoice> createOptionalCVChoice(FeatureList featureList) {
 		List<FeatureChoice> result = new ArrayList<>();
-		for (ComplementumVisnetis cv : featureList.getFeatures()) {
+		for (SelectedCV cv : featureList.getFeatures()) {
 			FeatureDegree optionalCVDegree = specificFactory.eINSTANCE.createFeatureDegree();
 			optionalCVDegree.setEntityName("optional_cv");
-			optionalCVDegree.setPrimaryChanged(cv);
+			optionalCVDegree.setPrimaryChanged(cv.getComplementumVisnetis());
 
 			FeatureChoice choice = designdecisionFactory.eINSTANCE.createFeatureChoice();
 			choice.setDegreeOfFreedomInstance(optionalCVDegree);

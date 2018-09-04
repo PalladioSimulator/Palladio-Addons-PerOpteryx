@@ -68,8 +68,6 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-
 import org.eclipse.swt.layout.FillLayout;
 
 import org.eclipse.swt.widgets.Composite;
@@ -459,8 +457,6 @@ public class FeatureCompletionEditor
 	 */
 	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
-			protected boolean dispatching;
-
 			@Override
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
@@ -476,26 +472,21 @@ public class FeatureCompletionEditor
 							else {
 								resourceToDiagnosticMap.remove(resource);
 							}
-							dispatchUpdateProblemIndication();
+
+							if (updateProblemIndication) {
+								getSite().getShell().getDisplay().asyncExec
+									(new Runnable() {
+										 public void run() {
+											 updateProblemIndication();
+										 }
+									 });
+							}
 							break;
 						}
 					}
 				}
 				else {
 					super.notifyChanged(notification);
-				}
-			}
-
-			protected void dispatchUpdateProblemIndication() {
-				if (updateProblemIndication && !dispatching) {
-					dispatching = true;
-					getSite().getShell().getDisplay().asyncExec
-						(new Runnable() {
-							 public void run() {
-								 dispatching = false;
-								 updateProblemIndication();
-							 }
-						 });
 				}
 			}
 
@@ -508,7 +499,14 @@ public class FeatureCompletionEditor
 			protected void unsetTarget(Resource target) {
 				basicUnsetTarget(target);
 				resourceToDiagnosticMap.remove(target);
-				dispatchUpdateProblemIndication();
+				if (updateProblemIndication) {
+					getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							 public void run() {
+								 updateProblemIndication();
+							 }
+						 });
+				}
 			}
 		};
 
@@ -633,9 +631,8 @@ public class FeatureCompletionEditor
 	 */
 	protected void handleChangedResources() {
 		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
-			ResourceSet resourceSet = editingDomain.getResourceSet();
 			if (isDirty()) {
-				changedResources.addAll(resourceSet.getResources());
+				changedResources.addAll(editingDomain.getResourceSet().getResources());
 			}
 			editingDomain.getCommandStack().flush();
 
@@ -644,7 +641,7 @@ public class FeatureCompletionEditor
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
-						resource.load(resourceSet.getLoadOptions());
+						resource.load(Collections.EMPTY_MAP);
 					}
 					catch (IOException exception) {
 						if (!resourceToDiagnosticMap.containsKey(resource)) {
@@ -707,11 +704,14 @@ public class FeatureCompletionEditor
 			}
 
 			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				try {
-					markerHelper.updateMarkers(diagnostic);
-				}
-				catch (CoreException exception) {
-					FeatureCompletionsEditorPlugin.INSTANCE.log(exception);
+				markerHelper.deleteMarkers(editingDomain.getResourceSet());
+				if (diagnostic.getSeverity() != Diagnostic.OK) {
+					try {
+						markerHelper.createMarkers(diagnostic);
+					}
+					catch (CoreException exception) {
+						FeatureCompletionsEditorPlugin.INSTANCE.log(exception);
+					}
 				}
 			}
 		}
@@ -1119,7 +1119,6 @@ public class FeatureCompletionEditor
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1303,9 +1302,7 @@ public class FeatureCompletionEditor
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {
 					 public void run() {
-						 if (!getContainer().isDisposed()) {
-							 setActivePage(0);
-						 }
+						 setActivePage(0);
 					 }
 				 });
 		}
@@ -1345,9 +1342,9 @@ public class FeatureCompletionEditor
 		if (getPageCount() <= 1) {
 			setPageText(0, "");
 			if (getContainer() instanceof CTabFolder) {
+				((CTabFolder)getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
-				Rectangle clientArea = getContainer().getClientArea();
-				getContainer().setSize(point.x,  2 * point.y - clientArea.height - clientArea.y);
+				getContainer().setSize(point.x, point.y + 6);
 			}
 		}
 	}
@@ -1363,9 +1360,9 @@ public class FeatureCompletionEditor
 		if (getPageCount() > 1) {
 			setPageText(0, getString("_UI_SelectionPage_label"));
 			if (getContainer() instanceof CTabFolder) {
+				((CTabFolder)getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
-				Rectangle clientArea = getContainer().getClientArea();
-				getContainer().setSize(point.x, clientArea.height + clientArea.y);
+				getContainer().setSize(point.x, point.y - 6);
 			}
 		}
 	}
@@ -1391,16 +1388,17 @@ public class FeatureCompletionEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
-	public <T> T getAdapter(Class<T> key) {
+	public Object getAdapter(Class key) {
 		if (key.equals(IContentOutlinePage.class)) {
-			return showOutlineView() ? key.cast(getContentOutlinePage()) : null;
+			return showOutlineView() ? getContentOutlinePage() : null;
 		}
 		else if (key.equals(IPropertySheetPage.class)) {
-			return key.cast(getPropertySheetPage());
+			return getPropertySheetPage();
 		}
 		else if (key.equals(IGotoMarker.class)) {
-			return key.cast(this);
+			return this;
 		}
 		else {
 			return super.getAdapter(key);
@@ -1426,7 +1424,6 @@ public class FeatureCompletionEditor
 
 					// Set up the tree viewer.
 					//
-					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1480,7 +1477,7 @@ public class FeatureCompletionEditor
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage =
-			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
+			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
 					FeatureCompletionEditor.this.setSelectionToViewer(selection);
@@ -1574,9 +1571,7 @@ public class FeatureCompletionEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					List<Resource> resources = editingDomain.getResourceSet().getResources();
-					for (int i = 0; i < resources.size(); ++i) {
-						Resource resource = resources.get(i);
+					for (Resource resource : editingDomain.getResourceSet().getResources()) {
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
 								long timeStamp = resource.getTimeStamp();

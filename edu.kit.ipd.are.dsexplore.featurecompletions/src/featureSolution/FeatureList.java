@@ -2,8 +2,6 @@
  */
 package featureSolution;
 
-import FeatureCompletionModel.ComplementumVisnetis;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,19 +24,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface FeatureList extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Features</b></em>' reference list.
-	 * The list contents are of type {@link FeatureCompletionModel.ComplementumVisnetis}.
+	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
+	 * The list contents are of type {@link featureSolution.SelectedCV}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Features</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Features</em>' reference list.
+	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see featureSolution.FeatureSolutionPackage#getFeatureList_Features()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ComplementumVisnetis> getFeatures();
+	EList<SelectedCV> getFeatures();
 
 } // FeatureList

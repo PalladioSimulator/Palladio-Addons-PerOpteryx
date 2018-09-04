@@ -28,6 +28,7 @@ import org.palladiosimulator.pcm.repository.Signature
 import featureSolution.FeatureSelection
 import FeatureCompletionModel.FeatureCompletion
 import featureSolution.FeatureList
+import featureSolution.SelectedCV
 
 /**
  * This class contains custom scoping description.
@@ -51,17 +52,17 @@ class FcDslScopeProvider extends AbstractFcDslScopeProvider {
 //	   		scope_Advice_completion(ctx as Advice, ref)	
 	   } else if (ctx instanceof FeatureSelection && ref == FeatureSolutionPackage.Literals.FEATURE_SELECTION__COMPLETION) {
 	   		scope_FeatureSelection_completion(ctx as FeatureSelection, ref)
-	   } else if (ctx instanceof FeatureList && ref == FeatureSolutionPackage.Literals.FEATURE_LIST__FEATURES) {
-	   		scope_FeatureList_features(ctx as FeatureList, ref)
+	   } else if (ctx instanceof SelectedCV && ref == FeatureSolutionPackage.Literals.SELECTED_CV__COMPLEMENTUM_VISNETIS) {
+	   		scope_SelectedCV_ComplementumVisnetis(ctx as SelectedCV, ref)
 	   } else {
 	   		super.getScope(ctx, ref)
 	   }
 	}
 	
-	def scope_FeatureList_features(FeatureList selection, EReference reference) {
+	def scope_SelectedCV_ComplementumVisnetis(SelectedCV selectedCV, EReference reference) {
 		var List<IEObjectDescription> descriptions = new ArrayList<IEObjectDescription>
 		
-		val rootElement = EcoreUtil2.getRootContainer(selection)
+		val rootElement = EcoreUtil2.getRootContainer(selectedCV)
 		val resource = getRepositoryResource(rootElement, FEATURE_COMPLETION_FILE_EXTENSION)
 
 		val candidates = EcoreUtil2.getAllContentsOfType(resource.contents.get(0), ComplementumVisnetis)
