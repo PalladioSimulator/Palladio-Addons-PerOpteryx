@@ -61,17 +61,17 @@ public class ComplementumVisnetisDesignDecision {
 		// add dof for each feature group
 		for (FeatureList featureList : this.featureLists) {
 			// TODO handle optional cvs
-			if (this.containsOptionalCVs(featureList)) {
-				result.addAll(this.createOptionalCVChoice(featureList));
-				continue;
-			}
+//			if (this.containsOptionalCVs(featureList)) {
+//				result.addAll(this.createOptionalCVChoice(featureList));
+//				continue;
+//			}
 
 			ComplementumVisnetisDegree cvDegree = specificFactory.eINSTANCE.createComplementumVisnetisDegree();
 			cvDegree.setEntityName("cv");
 			cvDegree.setPrimaryChanged(featureList);
 			// TODO add only features that are supported by all solutions??
-			for (SelectedCV cv : featureList.getFeatures()) {
-				cvDegree.getClassDesignOptions().add(cv.getComplementumVisnetis());
+			for (SelectedCV selectedCV : featureList.getFeatures()) {
+				cvDegree.getClassDesignOptions().add(selectedCV);
 
 			}
 
@@ -90,10 +90,7 @@ public class ComplementumVisnetisDesignDecision {
 	 * @return
 	 */
 	private boolean containsOptionalCVs(FeatureList featureList) {
-		// TODO Maxi repair it
-		// return featureList.getFeatures().stream().anyMatch(cv ->
-		// cv.getComplementaryFeature().getSimpleOptional() != null);
-		return false;
+		return featureList.getFeatures().stream().anyMatch(selectedcv -> selectedcv.isOptional());
 	}
 
 	public List<FeatureChoice> createOptionalCVChoice(FeatureList featureList) {

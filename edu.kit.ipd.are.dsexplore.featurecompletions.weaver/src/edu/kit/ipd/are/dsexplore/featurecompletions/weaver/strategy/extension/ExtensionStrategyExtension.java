@@ -2,8 +2,10 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EObject;
 import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.pcm.repository.Repository;
 
@@ -32,6 +34,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExt
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureObjective.Feature;
+import featureSolution.SelectedCV;
 
 public class ExtensionStrategyExtension implements IStrategyExtension {
 
@@ -51,7 +54,7 @@ public class ExtensionStrategyExtension implements IStrategyExtension {
 	}
 
 	@Override
-	public void grabChoices(Repository solution, List<Choice> notTransformedChoices) {
+	public void grabChoices(Choice fccChoice, List<Choice> notTransformedChoices) {
 		for (Choice c : notTransformedChoices) {
 			if (c.getDegreeOfFreedomInstance() instanceof MultipleInclusionDegree) {
 				// add dof for multiple-flag in inclusion mechanism
@@ -70,21 +73,21 @@ public class ExtensionStrategyExtension implements IStrategyExtension {
 		// TODO check if choices are consistent/valid (selected cvs are
 		// supported by selected solution
 		// to prevent an infinite loop if there is no appropriate solution
-		// int checkedSolutionsCounter = 0;
-		boolean solutionChoiceValid = this.checkSolutionChoiceValid(solution);
-		if (!solutionChoiceValid) {
-			throw new FCCWeaverException("Invalid solution.");
+		int checkedSolutionsCounter = 0;
+		boolean solutionChoiceValid = this.checkSolutionChoiceSupportsSelectedCVs((Repository) fccChoice.getValue())
+									&& this.checkSolutionChoiceSupportsAllNonOptionalCVs((Repository) fccChoice.getValue());
+//		if (!solutionChoiceValid) {
+//			throw new FCCWeaverException("Invalid solution."); //this does not work, as FCCWeaverException is a RuntimeException!
+//		}
+		
+		 if (!solutionChoiceValid && checkedSolutionsCounter < 20) { 
+			 // TODO constant choice? 
+			 // TODO this is a dirty fix, what if no valid solutions exists?? 
+			 List<EObject> solutions = ((FeatureCompletionDegree) fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
+			 fccChoice.setValue(solutions.get(new Random().nextInt(solutions.size())));
+			 this.grabChoices(fccChoice, notTransformedChoices); 
 		}
-		/*
-		 * if (!solutionChoiceValid && checkedSolutionsCounter < 20) { // TODO
-		 * constant choice? // TODO this is a dirty fix, what if no valid
-		 * solutions exists?? List<EObject> solutions =
-		 * ((FeatureCompletionDegree)
-		 * this.fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
-		 * this.fccChoice.setValue(solutions.get(new
-		 * Random().nextInt(solutions.size())));
-		 * this.grabChoices(notTransformedChoices); }
-		 */
+		 
 		notTransformedChoices.remove(this.multipleInclusionChoice);
 		for (Choice ac : this.advicePlacementChoices) {
 			notTransformedChoices.remove(ac);
@@ -95,19 +98,28 @@ public class ExtensionStrategyExtension implements IStrategyExtension {
 
 	}
 
-	private boolean checkSolutionChoiceValid(Repository solution) {
-		List<ComplementumVisnetis> cvs = this.cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
-		// add optional cvs if selected
-		for (Choice choice : this.featureChoices) {
-			if (((FeatureChoice) choice).isSelected()) {
-				cvs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
-			}
-		}
+	private boolean checkSolutionChoiceSupportsAllNonOptionalCVs(Repository solution) {
+		List<SelectedCV> allSelectedCVs = this.cvChoices.stream()
+				.map(choice -> (ComplementumVisnetisDegree) choice.getDegreeOfFreedomInstance())
+				.flatMap(cvDegree -> cvDegree.getClassDesignOptions().stream().map(option -> (SelectedCV) option))
+				.filter(selectedCV -> !selectedCV.isOptional())
+				.collect(Collectors.toList());
 
 		FCCFeatureHandler featureHandler = new FCCFeatureHandler(new SolutionManager(solution));
 		List<ComplementumVisnetis> supportedCVs = featureHandler.extractProvidedCVs().stream().map(pair -> pair.second).collect(Collectors.toList());
 
-		boolean valid = cvs.stream().allMatch(cv -> supportedCVs.stream().anyMatch(supportedCV -> supportedCV.getId().equals(cv.getId())));
+		boolean valid = allSelectedCVs.stream().allMatch(cv -> supportedCVs.stream().anyMatch(supportedCV -> supportedCV.getId().equals(cv.getComplementumVisnetis().getId())));
+		java.lang.System.out.println("Solution: " + solution.getEntityName() + " ------------ optional checkChoicesValid: " + valid + " -----------");
+		return valid;
+	}
+	
+	private boolean checkSolutionChoiceSupportsSelectedCVs(Repository solution) {
+		List<SelectedCV> cvs = this.cvChoices.stream().map(choice -> (SelectedCV) choice.getValue()).collect(Collectors.toList());
+
+		FCCFeatureHandler featureHandler = new FCCFeatureHandler(new SolutionManager(solution));
+		List<ComplementumVisnetis> supportedCVs = featureHandler.extractProvidedCVs().stream().map(pair -> pair.second).collect(Collectors.toList());
+
+		boolean valid = cvs.stream().allMatch(cv -> supportedCVs.stream().anyMatch(supportedCV -> supportedCV.getId().equals(cv.getComplementumVisnetis().getId())));
 		java.lang.System.out.println("------------ checkChoicesValid: " + valid + " -----------");
 		return valid;
 	}
@@ -166,44 +178,45 @@ public class ExtensionStrategyExtension implements IStrategyExtension {
 	 * @author Dominik Fuchss
 	 */
 	private void determineOptionalAsDegreeDecisions(FeatureCompletionDegree cd, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate) {
-		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
-		List<CompletionComponent> fccs = c.getCompletionComponents();
-		List<Feature> features = new ArrayList<>();
-
-		for (CompletionComponent ecc : fccs) {
-			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
-			if (provided.isEmpty()) {
-				FCCModule.logger.error(ecc + " does not provide a Feature.");
-				continue;
-			}
-			// INFO:
-			// For now only features which are directly mapped to an ECC will be
-			// mentioned here ..
-			// Maybe someone will decide to search features recursively .. then
-			// you can use this line ..
-			// this.getThisAndSubfeatures(features, feature);
-			features.addAll(provided);
-		}
-
-		List<Feature> optionals = new ArrayList<>();
-		for (Feature f : features) {
-			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
-			// not needed so far.
-
-			// TODO Maxi repair it
-			boolean isOptional = false; // f.getSimpleOptional() != null;
-			if (isOptional) {
-				optionals.add(f);
-			}
-		}
-		for (Feature op : optionals) {
-			FeatureDegree oad = specificFactory.eINSTANCE.createFeatureDegree();
-			oad.setPrimaryChanged(op);
-			dds.add(oad);
-			FeatureChoice ch = designdecisionFactory.eINSTANCE.createFeatureChoice();
-			ch.setDegreeOfFreedomInstance(oad);
-			initialCandidate.add(ch);
-		}
+		//TODO dont use this mechanism
+		
+//		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
+//		List<CompletionComponent> fccs = c.getCompletionComponents();
+//		List<Feature> features = new ArrayList<>();
+//
+//		for (CompletionComponent ecc : fccs) {
+//			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
+//			if (provided.isEmpty()) {
+//				FCCModule.logger.error(ecc + " does not provide a Feature.");
+//				continue;
+//			}
+//			// INFO:
+//			// For now only features which are directly mapped to an ECC will be
+//			// mentioned here ..
+//			// Maybe someone will decide to search features recursively .. then
+//			// you can use this line ..
+//			// this.getThisAndSubfeatures(features, feature);
+//			features.addAll(provided);
+//		}
+//
+//		List<Feature> optionals = new ArrayList<>();
+//		for (Feature f : features) {
+//			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
+//			// not needed so far.
+//
+//			boolean isOptional = false; // f.getSimpleOptional() != null;
+//			if (isOptional) {
+//				optionals.add(f);
+//			}
+//		}
+//		for (Feature op : optionals) {
+//			FeatureDegree oad = specificFactory.eINSTANCE.createFeatureDegree();
+//			oad.setPrimaryChanged(op);
+//			dds.add(oad);
+//			FeatureChoice ch = designdecisionFactory.eINSTANCE.createFeatureChoice();
+//			ch.setDegreeOfFreedomInstance(oad);
+//			initialCandidate.add(ch);
+//		}
 
 	}
 

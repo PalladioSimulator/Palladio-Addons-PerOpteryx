@@ -45,6 +45,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmU
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 import featureSolution.Advice;
+import featureSolution.SelectedCV;
 import featureSolution.ExtensionInclusion;
 import featureSolution.InclusionMechanism;
 import featureSolution.PlacementStrategy;
@@ -215,13 +216,15 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 *
 	 */
 	private void setSelectedCVs() {
-		this.selectedCVs = this.cvChoices.stream().map(choice -> (ComplementumVisnetis) choice.getValue()).collect(Collectors.toList());
-		for (Choice choice : this.optionalFeatureChoices) {
-			if (((FeatureChoice) choice).isSelected()) {
-				this.selectedCVs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
-				((FeatureChoice) choice).setPresent(true);
-			}
-		}
+		this.selectedCVs = this.cvChoices.stream().map(choice -> ((SelectedCV) choice.getValue()).getComplementumVisnetis()).collect(Collectors.toList());
+
+		//TODO optional features
+//		for (Choice choice : this.optionalFeatureChoices) {
+//			if (((FeatureChoice) choice).isSelected()) {
+//				this.selectedCVs.add((ComplementumVisnetis) ((FeatureChoice) choice).getDegreeOfFreedomInstance().getPrimaryChanged());
+//				((FeatureChoice) choice).setPresent(true);
+//			}
+//		}
 	}
 
 	/**

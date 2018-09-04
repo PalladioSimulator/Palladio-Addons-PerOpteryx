@@ -95,7 +95,7 @@ public final class FCCWeaver {
 		}
 
 		Repository solution = (Repository) this.fccChoice.getValue();
-		this.determineStrategy(this.im).getExtension().grabChoices(solution, notTransformedChoices);
+		this.determineStrategy(this.im).getExtension().grabChoices(fccChoice, notTransformedChoices);
 	}
 
 	private void addAllocationDegreeIfNeeded(Choice ac) {

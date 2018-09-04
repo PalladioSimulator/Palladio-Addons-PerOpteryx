@@ -41,14 +41,14 @@ public class AdapterStrategyExtension implements IStrategyExtension {
 	}
 
 	@Override
-	public void grabChoices(Repository solution, List<Choice> notTransformedChoices) {
+	public void grabChoices(Choice fccChoice, List<Choice> notTransformedChoices) {
 		for (Choice c : notTransformedChoices) {
 			if (c.getDegreeOfFreedomInstance() instanceof FeatureDegree) {
 				this.optionalFeatures.add((BoolChoice) c);
 			}
 		}
 		this.optionalFeatures.forEach(f -> notTransformedChoices.remove(f));
-		this.checkPossibleSolution(solution);
+		this.checkPossibleSolution((Repository) fccChoice.getValue());
 	}
 
 	private void checkPossibleSolution(Repository solution) {
