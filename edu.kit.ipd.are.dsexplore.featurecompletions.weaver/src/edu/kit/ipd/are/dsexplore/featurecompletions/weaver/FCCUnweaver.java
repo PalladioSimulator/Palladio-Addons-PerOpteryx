@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -38,13 +39,22 @@ import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
+
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblemExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.AssemblyConnectorData;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ExternalCallActionData;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.ProvidedDelegationConnectorData;
 
+/**
+ * This class is responsible for unweaving the adopted PCM instance. 
+ * All applied changes will be removed, so that the PCM instance is brought back to its original state.
+ *
+ * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ *
+ */
 public final class FCCUnweaver {
 	// ConnectorID -> Data
 	private final Map<String, AssemblyConnectorData> originalAssemblyConnectors;
@@ -66,6 +76,11 @@ public final class FCCUnweaver {
 
 	// UNWEAVE IT
 
+	/**
+	 * Applies the unweaving process on the PCM instance.
+	 * @param pcmToAdopt the PCM instance.
+	 * @param availableCVs
+	 */
 	public void unweave(PCMInstance pcmToAdopt, List<Pair<String, ComplementumVisnetis>> availableCVs) {
 		List<String> neccessaryIds = availableCVs.stream().map(t -> t.first).collect(Collectors.toList());
 		List<Connector> copy = new ArrayList<>(pcmToAdopt.getSystem().getConnectors__ComposedStructure());
@@ -111,7 +126,9 @@ public final class FCCUnweaver {
 			}
 		}
 
-		// unweave external calls
+		/**
+		 *  Unweave external calls. This is specific for the behaviour inclusion mechanism.
+		 */
 		Map<String, ExternalCallActionData> copyExternalCallIDs = this.saveOriginalExternalCalls(pcmToAdopt.getSystem());
 		for (Entry<String, ExternalCallActionData> copyExternalCallID : copyExternalCallIDs.entrySet()) {
 			if (!this.originalExternalCalls.containsKey(copyExternalCallID.getKey()) && !this.existsConnectorWithProvidedRole(copyExternalCallID.getValue().getOperationRequiredRoleId())) {
