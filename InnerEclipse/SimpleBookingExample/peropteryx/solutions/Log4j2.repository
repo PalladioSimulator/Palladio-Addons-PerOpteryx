@@ -216,7 +216,7 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:transformation" appliedTo="_xrUmkHueEeiQ2-JKBP-N_g">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
-      <usesMechanism xsi:type="featureSolution:ExtensionInclusion" href="../extension.fcdsl#_ZZ"/>
+      <usesMechanism xsi:type="featureSolution:BehaviourInclusion" href="../behaviour.fcdsl#_ZZ"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_JKkMoOfNEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
