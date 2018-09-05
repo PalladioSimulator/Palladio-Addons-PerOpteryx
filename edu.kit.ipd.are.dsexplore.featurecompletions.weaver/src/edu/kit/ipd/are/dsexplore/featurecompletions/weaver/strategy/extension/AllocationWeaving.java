@@ -17,9 +17,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
  */
 public class AllocationWeaving {
 
-	private final IExtensionWeaving parent;
+	private final IBehaviourWeaving parent;
 
-	public AllocationWeaving(IExtensionWeaving parent) {
+	public AllocationWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
 	}
 
@@ -33,7 +33,7 @@ public class AllocationWeaving {
 	 * @throws FCCWeaverException
 	 */
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
-		FCCModule.logger.debug("Allocation Extension Weaving");
+		FCCModule.logger.debug("Allocation Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation location : locations) {

@@ -58,7 +58,7 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION: return createAdapterInclusion();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION: return createExtensionInclusion();
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION: return createBehaviourInclusion();
 			case FeatureSolutionPackage.PLACEMENT_STRATEGY: return createPlacementStrategy();
 			case FeatureSolutionPackage.EXTERNAL_CALL_PLACEMENT_STRATEGY: return createExternalCallPlacementStrategy();
 			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY: return createInternalActionPlacementStrategy();
@@ -123,9 +123,9 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionInclusion createExtensionInclusion() {
-		ExtensionInclusionImpl extensionInclusion = new ExtensionInclusionImpl();
-		return extensionInclusion;
+	public BehaviourInclusion createBehaviourInclusion() {
+		BehaviourInclusionImpl behaviourInclusion = new BehaviourInclusionImpl();
+		return behaviourInclusion;
 	}
 
 	/**

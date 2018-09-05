@@ -46,17 +46,17 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.Solu
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 import featureSolution.Advice;
 import featureSolution.SelectedCV;
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
 import featureSolution.PlacementStrategy;
 import featureSolution.PointCut;
 import featureSolution.impl.ControlFlowPlacementStrategyImpl;
-import featureSolution.impl.ExtensionInclusionImpl;
+import featureSolution.impl.BehaviourInclusionImpl;
 import featureSolution.impl.ExternalCallPlacementStrategyImpl;
 import featureSolution.impl.InternalActionPlacementStrategyImpl;
 
 /**
- * This is the central class handling the extension weaving mechanism. It is
+ * This is the central class handling the Behaviour weaving mechanism. It is
  * initialized with the present degrees of freedom and triggers the weaving
  * operations for the PCM submodels (repository/seff, system, usage,
  * allocation).
@@ -66,7 +66,7 @@ import featureSolution.impl.InternalActionPlacementStrategyImpl;
  * @author Maximilian Eckert (maxieckert@web.de)
  *
  */
-public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWeaving {
+public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWeaving {
 
 	private final PCMInstance pcmToAdapt;
 	private final Repository solution;
@@ -78,7 +78,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 	private RepositoryComponent fcComponent;
 
-	public ExtensionWeavingStrategy(PCMInstance pcmToAdapt, Repository solution, FeatureCompletion fc, InclusionMechanism im) {
+	public BehaviourWeavingStrategy(PCMInstance pcmToAdapt, Repository solution, FeatureCompletion fc, InclusionMechanism im) {
 		this.pcmToAdapt = pcmToAdapt;
 		this.solution = solution;
 		this.fc = fc;
@@ -170,10 +170,10 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<Choice> optionalFeatureChoices;
 
 	/**
-	 * Initializes the extension weaving mechanism.
+	 * Initializes the Behaviour weaving mechanism.
 	 *
 	 * @param locations
-	 *            not used in extension mechanism, as locations are determined
+	 *            not used in Behaviour mechanism, as locations are determined
 	 *            by dsl.
 	 * @param fccChoice
 	 *            solution choice.
@@ -188,12 +188,12 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> allocationChoices) {
-		FCCModule.logger.debug("Initializing Extension Weaving Strategy");
+		FCCModule.logger.debug("Initializing Behaviour Weaving Strategy");
 
 		this.fccChoice = fccChoice;
 		this.allocationChoices = allocationChoices;
 
-		ExtensionStrategyExtension ese = (ExtensionStrategyExtension) WeavingStrategies.EXTENSION.getExtension();
+		BehaviourStrategyExtension ese = (BehaviourStrategyExtension) WeavingStrategies.BEHAVIOUR.getExtension();
 
 		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
@@ -237,7 +237,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		List<Advice> selectedAdvices = this.advicePlacementChoices.stream().filter(choice -> ((BoolChoice) choice).isChosenValue())
 				.map(choice -> (Advice) choice.getDegreeOfFreedomInstance().getPrimaryChanged()).collect(Collectors.toList());
 		// add mandatory advices
-		selectedAdvices.addAll(((ExtensionInclusion) this.im).getAdvice().stream().filter(advice -> advice.getPlacementPolicy() == PlacementPolicy.MANDATORY).collect(Collectors.toList()));
+		selectedAdvices.addAll(((BehaviourInclusion) this.im).getAdvice().stream().filter(advice -> advice.getPlacementPolicy() == PlacementPolicy.MANDATORY).collect(Collectors.toList()));
 
 		return selectedAdvices;
 	}
@@ -251,9 +251,8 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	private List<IWeavingInstruction> determineInstructions() {
 		List<IWeavingInstruction> instructions = new ArrayList<>();
 
-		ExtensionInclusionImpl extensionIncl = (ExtensionInclusionImpl) this.im;
+		BehaviourInclusionImpl behaviourIncl = (BehaviourInclusionImpl) this.im;
 
-		// for (Advice advice : extensionIncl.getAdvice()) {
 		for (Advice advice : this.getSelectedAdvices()) {
 			PointCut pointCut = advice.getPointCut();
 			PlacementStrategy placementStrategy = pointCut.getPlacementStrategy();
@@ -307,11 +306,11 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 			// create for current solution choice
 			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
 					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.fccChoice.getValue()));
-			instructions.add(new ExtensionWeavingInstruction(pair, advice, locations,
-					null/* TODO */, extensionIncl));
+			instructions.add(new BehaviourWeavingInstruction(pair, advice, locations,
+					null/* TODO */, behaviourIncl));
 		}
 
-		FCCModule.logger.debug("Extension Weaving Strategy: Determine Weaving Locations");
+		FCCModule.logger.debug("Behaviour Weaving Strategy: Determine Weaving Locations");
 		return instructions;
 	}
 
@@ -320,7 +319,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 */
 	@Override
 	public void weave() throws FCCWeaverException {
-		FCCModule.logger.debug("Extension Weaving Strategy: Start Weaving");
+		FCCModule.logger.debug("Behaviour Weaving Strategy: Start Weaving");
 
 		AllocationWeaving allocationWeaving = new AllocationWeaving(this);
 		AssemblyWeaving assemblyWeaving = new AssemblyWeaving(this);
@@ -328,7 +327,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 		UsageModelWeaving usageModelWeaving = new UsageModelWeaving(this);
 
 		for (IWeavingInstruction instruction : this.instructions) {
-			ServiceEffectSpecificationWeaving seffWeaving = ExtensionWeavingFactory.getExtensionSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
+			ServiceEffectSpecificationWeaving seffWeaving = BehaviourWeavingFactory.getBehaviourSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
 
 			// Weave it ..
 			repositoryWeaving.weave(instruction);
@@ -339,7 +338,7 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 
 		}
 
-		FCCModule.logger.debug("Extension Weaving Strategy: Weaving Finished");
+		FCCModule.logger.debug("Behaviour Weaving Strategy: Weaving Finished");
 		// TODO print pcm
 		// savePcmInstanceToFile(pcmToAdapt,
 		// "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
@@ -381,17 +380,17 @@ public class ExtensionWeavingStrategy implements IWeavingStrategy, IExtensionWea
 	 *            the file path.
 	 */
 	public static void savePcmInstanceToFile(PCMInstance pcmInstance, String filePath) {
-		ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(pcmInstance.getAllocation()), filePath + ".allocation");
+		BehaviourWeavingStrategy.saveToXMIFile(BehaviourWeavingStrategy.copyOf(pcmInstance.getAllocation()), filePath + ".allocation");
 		List<Repository> repositories = pcmInstance.getRepositories();
 		for (Repository repository : repositories) {
-			ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(repository), filePath + "_" + repository.getEntityName() + ".repository");
+			BehaviourWeavingStrategy.saveToXMIFile(BehaviourWeavingStrategy.copyOf(repository), filePath + "_" + repository.getEntityName() + ".repository");
 		}
 		// saveToXMIFile(pcmInstance.getResourceEnvironment(), filePath +
 		// ".resourceenvironment");
 		// saveToXMIFile(pcmInstance.getResourceRepository(), filePath +
 		// ".resourcetype");
-		ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(pcmInstance.getSystem()), filePath + ".system");
-		ExtensionWeavingStrategy.saveToXMIFile(ExtensionWeavingStrategy.copyOf(pcmInstance.getUsageModel()), filePath + ".usagemodel");
+		BehaviourWeavingStrategy.saveToXMIFile(BehaviourWeavingStrategy.copyOf(pcmInstance.getSystem()), filePath + ".system");
+		BehaviourWeavingStrategy.saveToXMIFile(BehaviourWeavingStrategy.copyOf(pcmInstance.getUsageModel()), filePath + ".usagemodel");
 	}
 
 	public static void saveToXMIFile(EObject modelToSave, String fileName) {

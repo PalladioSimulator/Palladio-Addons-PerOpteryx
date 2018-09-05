@@ -24,13 +24,13 @@ import featureSolution.impl.InternalActionPlacementStrategyImpl;
  * @author Maximilian Eckert (maxieckert@web.de)
  *
  */
-public class ExtensionWeavingFactory {
+public class BehaviourWeavingFactory {
 
-	private static final HashMap<Class<? extends PlacementStrategy>, Function<IExtensionWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
+	private static final HashMap<Class<? extends PlacementStrategy>, Function<IBehaviourWeaving, ServiceEffectSpecificationWeaving>> seffWeaverMap = new HashMap<>();
 	static {
-		ExtensionWeavingFactory.seffWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallServiceEffectSpecificationWeaving::new);
-		ExtensionWeavingFactory.seffWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionServiceEffectSpecificationWeaving::new);
-		ExtensionWeavingFactory.seffWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowServiceEffectSpecificationWeaving::new);
+		BehaviourWeavingFactory.seffWeaverMap.put(ExternalCallPlacementStrategyImpl.class, ExternalCallServiceEffectSpecificationWeaving::new);
+		BehaviourWeavingFactory.seffWeaverMap.put(InternalActionPlacementStrategyImpl.class, InternalActionServiceEffectSpecificationWeaving::new);
+		BehaviourWeavingFactory.seffWeaverMap.put(ControlFlowPlacementStrategyImpl.class, ControlFlowServiceEffectSpecificationWeaving::new);
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class ExtensionWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IExtensionWeaving, ServiceEffectSpecificationWeaving> getExtensionSeffWeaverBy(PlacementStrategy placementStrategy) {
-		return ExtensionWeavingFactory.seffWeaverMap.get(placementStrategy.getClass());
+	public static Function<IBehaviourWeaving, ServiceEffectSpecificationWeaving> getBehaviourSeffWeaverBy(PlacementStrategy placementStrategy) {
+		return BehaviourWeavingFactory.seffWeaverMap.get(placementStrategy.getClass());
 	}
 	
 }

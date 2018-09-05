@@ -18,9 +18,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
  */
 public class RepositoryWeaving {
 
-	protected final IExtensionWeaving parent;
+	protected final IBehaviourWeaving parent;
 
-	public RepositoryWeaving(IExtensionWeaving parent) {
+	public RepositoryWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
 	}
 
@@ -30,7 +30,7 @@ public class RepositoryWeaving {
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
-		FCCModule.logger.debug("Repository Extension Weaving");
+		FCCModule.logger.debug("Repository Behaviour Weaving");
 		//add required role only if not yet existing
 		OperationProvidedRole providedRole = (OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond(); 
 		RequiredRole requiredRole = this.parent.getMergedRepoManager().createRequiredRoleBy(providedRole);

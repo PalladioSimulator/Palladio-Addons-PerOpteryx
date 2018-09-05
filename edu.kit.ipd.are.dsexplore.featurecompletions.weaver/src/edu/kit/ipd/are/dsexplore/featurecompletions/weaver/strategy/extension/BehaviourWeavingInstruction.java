@@ -14,12 +14,12 @@ import featureSolution.Advice;
 import featureSolution.InclusionMechanism;
 
 /**
- * Models a extension weaving instruction. An extension weaving instruction contains of the advice to be applied at several weaving locations and the fc to be inserted.
+ * Models a Behaviour weaving instruction. An Behaviour weaving instruction contains of the advice to be applied at several weaving locations and the fc to be inserted.
  * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
  */
-public class ExtensionWeavingInstruction implements IWeavingInstruction {
+public class BehaviourWeavingInstruction implements IWeavingInstruction {
 
 	private final Pair<CompletionComponent, ProvidedRole> fccWithProvidedRole;
 	
@@ -35,7 +35,7 @@ public class ExtensionWeavingInstruction implements IWeavingInstruction {
 	 * @param advice
 	 * @param weavingLocations
 	 */
-	public ExtensionWeavingInstruction(Pair<CompletionComponent, ProvidedRole> fccWithProvidedRole, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer, InclusionMechanism inclusonMechanism) {
+	public BehaviourWeavingInstruction(Pair<CompletionComponent, ProvidedRole> fccWithProvidedRole, Advice advice, List<? extends IWeavingLocation> weavingLocations, ResourceContainer resourceContainer, InclusionMechanism inclusonMechanism) {
 		this.advice = advice;
 		this.weavingLocations = weavingLocations;
 		this.resourceContainer = resourceContainer;

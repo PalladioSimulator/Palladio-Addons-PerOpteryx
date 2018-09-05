@@ -95,26 +95,26 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link featureSolution.ExtensionInclusion} instances.
+	 * This keeps track of the one adapter used for all {@link featureSolution.BehaviourInclusion} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtensionInclusionItemProvider extensionInclusionItemProvider;
+	protected BehaviourInclusionItemProvider behaviourInclusionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link featureSolution.ExtensionInclusion}.
+	 * This creates an adapter for a {@link featureSolution.BehaviourInclusion}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createExtensionInclusionAdapter() {
-		if (extensionInclusionItemProvider == null) {
-			extensionInclusionItemProvider = new ExtensionInclusionItemProvider(this);
+	public Adapter createBehaviourInclusionAdapter() {
+		if (behaviourInclusionItemProvider == null) {
+			behaviourInclusionItemProvider = new BehaviourInclusionItemProvider(this);
 		}
 
-		return extensionInclusionItemProvider;
+		return behaviourInclusionItemProvider;
 	}
 
 	/**
@@ -447,7 +447,7 @@ public class FeatureSolutionItemProviderAdapterFactory extends FeatureSolutionAd
 	 */
 	public void dispose() {
 		if (adapterInclusionItemProvider != null) adapterInclusionItemProvider.dispose();
-		if (extensionInclusionItemProvider != null) extensionInclusionItemProvider.dispose();
+		if (behaviourInclusionItemProvider != null) behaviourInclusionItemProvider.dispose();
 		if (placementStrategyItemProvider != null) placementStrategyItemProvider.dispose();
 		if (externalCallPlacementStrategyItemProvider != null) externalCallPlacementStrategyItemProvider.dispose();
 		if (internalActionPlacementStrategyItemProvider != null) internalActionPlacementStrategyItemProvider.dispose();

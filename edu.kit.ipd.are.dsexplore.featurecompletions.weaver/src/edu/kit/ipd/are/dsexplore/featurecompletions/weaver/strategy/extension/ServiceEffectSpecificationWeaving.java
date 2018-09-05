@@ -28,9 +28,9 @@ public abstract class ServiceEffectSpecificationWeaving {
 
 	private final SeffFactory seffFactory = SeffFactory.eINSTANCE;
 	
-	protected final IExtensionWeaving parent;
+	protected final IBehaviourWeaving parent;
 
-	public ServiceEffectSpecificationWeaving(IExtensionWeaving parent) {
+	public ServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
 	}
 

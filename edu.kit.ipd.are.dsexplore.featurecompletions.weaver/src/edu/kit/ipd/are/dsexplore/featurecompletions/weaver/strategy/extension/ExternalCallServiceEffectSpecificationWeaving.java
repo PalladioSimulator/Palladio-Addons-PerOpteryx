@@ -33,7 +33,7 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 	/**
 	 * @param parent
 	 */
-	public ExternalCallServiceEffectSpecificationWeaving(IExtensionWeaving parent) {
+	public ExternalCallServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
 
@@ -44,7 +44,7 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
-		FCCModule.logger.debug("External Call SEFF Extension Weaving");
+		FCCModule.logger.debug("External Call SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {

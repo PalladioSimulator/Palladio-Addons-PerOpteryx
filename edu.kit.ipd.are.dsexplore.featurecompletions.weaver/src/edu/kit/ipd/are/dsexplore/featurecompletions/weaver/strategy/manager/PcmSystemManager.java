@@ -130,7 +130,7 @@ public class PcmSystemManager {
 		// this.getAllAssemblyContexts().filter(searchCriteria).findFirst();
 	}
 	
-	//TODO added for extension
+	//TODO added for Behaviour
 	public List<AssemblyContext> getAssemblyContextsBy(Predicate<AssemblyContext> searchCriteria) {
 		List<AssemblyContext> result = new ArrayList<>();
 		for (AssemblyContext ac : this.getAllAssemblyContexts()) {

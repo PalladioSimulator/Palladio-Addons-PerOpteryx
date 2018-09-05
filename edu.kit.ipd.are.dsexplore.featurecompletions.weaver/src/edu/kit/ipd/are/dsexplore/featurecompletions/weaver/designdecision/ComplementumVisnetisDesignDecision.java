@@ -24,7 +24,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverExcepti
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureObjective.Feature;
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.FeatureList;
 import featureSolution.InclusionMechanism;
 import featureSolution.SelectedCV;
@@ -49,7 +49,7 @@ public class ComplementumVisnetisDesignDecision {
 		this.fc = (FeatureCompletion) degree.getPrimaryChanged();
 		this.solutions = solutions;
 		// TODO von welchem Advice Features/CV holen?
-		this.featureLists = ((ExtensionInclusion) this.determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
+		this.featureLists = ((BehaviourInclusion) this.determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
 	}
 
 	/**

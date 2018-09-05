@@ -34,7 +34,7 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 	/**
 	 * @param parent
 	 */
-	public ControlFlowServiceEffectSpecificationWeaving(IExtensionWeaving parent) {
+	public ControlFlowServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
 
@@ -45,7 +45,7 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
-		FCCModule.logger.debug("Control Flow SEFF Extension Weaving");
+		FCCModule.logger.debug("Control Flow SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {

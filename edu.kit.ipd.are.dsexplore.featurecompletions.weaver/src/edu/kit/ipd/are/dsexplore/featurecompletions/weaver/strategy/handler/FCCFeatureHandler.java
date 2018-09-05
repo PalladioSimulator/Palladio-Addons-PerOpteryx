@@ -100,7 +100,7 @@ public class FCCFeatureHandler {
 		return result;
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	public List<OperationInterface> getFullfillingInterfacesFor(ComplementumVisnetis cv) throws FCCWeaverException {
 
 		List<OperationInterface> result = new ArrayList<>();
@@ -116,7 +116,7 @@ public class FCCFeatureHandler {
 		return result;
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	public CompletionComponent getPerimeterProvidingFCCFor(ComplementumVisnetis cv, FeatureCompletion fc) throws FCCWeaverException {
 		Feature feature = cv.getComplementaryFeature();
 		CompletionComponent fcc = null;
@@ -129,7 +129,7 @@ public class FCCFeatureHandler {
 		return fcc;
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	public List<ProvidedRole> getProvidedRolesOf(CompletionComponent fcc, ComplementumVisnetis cv) throws FCCWeaverException {
 
 		List<ProvidedRole> result = new ArrayList<>();
@@ -148,7 +148,7 @@ public class FCCFeatureHandler {
 		return result;
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	public ProvidedRole getPerimeterProvidedRoleFor(ComplementumVisnetis cv, FeatureCompletion fc, Repository repo) throws FCCWeaverException {
 		Feature feature = cv.getComplementaryFeature();
 		List<ProvidedRole> result = new ArrayList<>();
@@ -188,7 +188,7 @@ public class FCCFeatureHandler {
 		return EMFProfileFilter.isAnnotated(operationSignature);
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	private boolean isFeature(OperationInterface operationInterface) {
 		return EMFProfileFilter.isAnnotated(operationInterface);
 	}
@@ -198,7 +198,7 @@ public class FCCFeatureHandler {
 	 * @param cvOf
 	 * @return
 	 */
-	// TODO added for extension
+	// TODO added for Behaviour
 	private boolean areEqual(ComplementumVisnetis cv, ComplementumVisnetis cvOf) {
 		return cv.getId().equals(cvOf.getId());
 	}
@@ -207,7 +207,7 @@ public class FCCFeatureHandler {
 	 * @param iface
 	 * @return
 	 */
-	// TODO added for extension
+	// TODO added for Behaviour
 	private ComplementumVisnetis getCVOf(OperationInterface iface) {
 		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(iface).get(0);
 		return this.getCVFrom(stereotypeApplication).get();
@@ -217,7 +217,7 @@ public class FCCFeatureHandler {
 	 * @param stereotypeApplication
 	 * @return
 	 */
-	// TODO added for extension
+	// TODO added for Behaviour
 	private Optional<ComplementumVisnetis> getCVFrom(StereotypeApplication stereotypeApplication) {
 		List<ComplementumVisnetis> cvs = this.getCVsFrom(stereotypeApplication);
 		return cvs.isEmpty() ? Optional.empty() : Optional.of(cvs.get(0));
@@ -227,7 +227,7 @@ public class FCCFeatureHandler {
 	 * @param stereotypeApplication
 	 * @return
 	 */
-	// TODO added for extension
+	// TODO added for Behaviour
 	private List<ComplementumVisnetis> getCVsFrom(StereotypeApplication stereotypeApplication) {
 		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(ComplementumVisnetis.class);
 	}

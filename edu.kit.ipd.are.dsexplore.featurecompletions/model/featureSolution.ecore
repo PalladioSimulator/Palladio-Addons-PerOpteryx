@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtensionInclusion" eSuperTypes="#//InclusionMechanism">
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviourInclusion" eSuperTypes="#//InclusionMechanism">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" upperBound="-1"
         eType="#//PointCut" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="advice" upperBound="-1"

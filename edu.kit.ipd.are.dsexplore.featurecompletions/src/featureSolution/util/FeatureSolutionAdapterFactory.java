@@ -81,8 +81,8 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 				return createAdapterInclusionAdapter();
 			}
 			@Override
-			public Adapter caseExtensionInclusion(ExtensionInclusion object) {
-				return createExtensionInclusionAdapter();
+			public Adapter caseBehaviourInclusion(BehaviourInclusion object) {
+				return createBehaviourInclusionAdapter();
 			}
 			@Override
 			public Adapter casePlacementStrategy(PlacementStrategy object) {
@@ -189,16 +189,16 @@ public class FeatureSolutionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link featureSolution.ExtensionInclusion <em>Extension Inclusion</em>}'.
+	 * Creates a new adapter for an object of class '{@link featureSolution.BehaviourInclusion <em>Behaviour Inclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see featureSolution.ExtensionInclusion
+	 * @see featureSolution.BehaviourInclusion
 	 * @generated
 	 */
-	public Adapter createExtensionInclusionAdapter() {
+	public Adapter createBehaviourInclusionAdapter() {
 		return null;
 	}
 

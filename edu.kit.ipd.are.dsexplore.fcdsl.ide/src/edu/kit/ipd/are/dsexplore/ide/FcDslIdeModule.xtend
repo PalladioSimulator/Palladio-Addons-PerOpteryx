@@ -7,5 +7,5 @@ package edu.kit.ipd.are.dsexplore.ide
 /**
  * Use this class to register ide components.
  */
-class FcDslIdeModule extends AbstractFcDslIdeModule {
+class FcDslIdeModule /*extends AbstractFcDslIdeModule*/ {
 }

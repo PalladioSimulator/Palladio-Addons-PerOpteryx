@@ -166,9 +166,9 @@
     <genClasses ecoreClass="featureSolution.ecore#//AdapterInclusion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureSolution.ecore#//AdapterInclusion/appears"/>
     </genClasses>
-    <genClasses ecoreClass="featureSolution.ecore#//ExtensionInclusion">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureSolution.ecore#//ExtensionInclusion/appears"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureSolution.ecore#//ExtensionInclusion/placementStrategy"/>
+    <genClasses ecoreClass="featureSolution.ecore#//BehaviourInclusion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featureSolution.ecore#//BehaviourInclusion/appears"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featureSolution.ecore#//BehaviourInclusion/placementStrategy"/>
     </genClasses>
     <genClasses ecoreClass="featureSolution.ecore#//PlacementStrategy"/>
     <genClasses ecoreClass="featureSolution.ecore#//ExternalCallPlacementStrategy">

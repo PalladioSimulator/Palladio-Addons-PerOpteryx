@@ -35,9 +35,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.Role
  * 
  */
 public class AssemblyWeaving {
-	protected final IExtensionWeaving parent;
+	protected final IBehaviourWeaving parent;
 
-	public AssemblyWeaving(IExtensionWeaving parent) {
+	public AssemblyWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
 	}
 	
@@ -51,7 +51,7 @@ public class AssemblyWeaving {
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
-		FCCModule.logger.debug("Assembly Extension Weaving");
+		FCCModule.logger.debug("Assembly Behaviour Weaving");
 		
 		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRole().first;
 		ProvidedRole providedRole = instruction.getFccWithProvidedRole().getSecond(); 

@@ -3,7 +3,7 @@
 package featureSolution.impl;
 
 import featureSolution.Advice;
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.Import;
 import featureSolution.PointCut;
@@ -22,20 +22,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Extension Inclusion</b></em>'.
+ * An implementation of the model object '<em><b>Behaviour Inclusion</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getPointCut <em>Point Cut</em>}</li>
- *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getAdvice <em>Advice</em>}</li>
- *   <li>{@link featureSolution.impl.ExtensionInclusionImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getPointCut <em>Point Cut</em>}</li>
+ *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getAdvice <em>Advice</em>}</li>
+ *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getImports <em>Imports</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExtensionInclusionImpl extends InclusionMechanismImpl implements ExtensionInclusion {
+public class BehaviourInclusionImpl extends InclusionMechanismImpl implements BehaviourInclusion {
 	/**
 	 * The cached value of the '{@link #getPointCut() <em>Point Cut</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -71,7 +71,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtensionInclusionImpl() {
+	protected BehaviourInclusionImpl() {
 		super();
 	}
 
@@ -82,7 +82,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FeatureSolutionPackage.Literals.EXTENSION_INCLUSION;
+		return FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 */
 	public EList<PointCut> getPointCut() {
 		if (pointCut == null) {
-			pointCut = new EObjectContainmentEList<PointCut>(PointCut.class, this, FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT);
+			pointCut = new EObjectContainmentEList<PointCut>(PointCut.class, this, FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT);
 		}
 		return pointCut;
 	}
@@ -104,7 +104,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 */
 	public EList<Advice> getAdvice() {
 		if (advice == null) {
-			advice = new EObjectContainmentEList<Advice>(Advice.class, this, FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE);
+			advice = new EObjectContainmentEList<Advice>(Advice.class, this, FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE);
 		}
 		return advice;
 	}
@@ -116,7 +116,7 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	 */
 	public EList<Import> getImports() {
 		if (imports == null) {
-			imports = new EObjectContainmentEList<Import>(Import.class, this, FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS);
+			imports = new EObjectContainmentEList<Import>(Import.class, this, FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS);
 		}
 		return imports;
 	}
@@ -129,11 +129,11 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 				return ((InternalEList<?>)getPointCut()).basicRemove(otherEnd, msgs);
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 				return ((InternalEList<?>)getAdvice()).basicRemove(otherEnd, msgs);
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -147,11 +147,11 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 				return getPointCut();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 				return getAdvice();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return getImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -166,15 +166,15 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 				getPointCut().clear();
 				getPointCut().addAll((Collection<? extends PointCut>)newValue);
 				return;
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 				getAdvice().clear();
 				getAdvice().addAll((Collection<? extends Advice>)newValue);
 				return;
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				getImports().clear();
 				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
@@ -190,13 +190,13 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 				getPointCut().clear();
 				return;
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 				getAdvice().clear();
 				return;
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				getImports().clear();
 				return;
 		}
@@ -211,14 +211,14 @@ public class ExtensionInclusionImpl extends InclusionMechanismImpl implements Ex
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 				return pointCut != null && !pointCut.isEmpty();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 				return advice != null && !advice.isEmpty();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return imports != null && !imports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ExtensionInclusionImpl
+} //BehaviourInclusionImpl

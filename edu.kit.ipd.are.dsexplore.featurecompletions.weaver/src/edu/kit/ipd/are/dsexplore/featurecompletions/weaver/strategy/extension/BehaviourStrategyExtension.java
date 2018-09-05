@@ -36,7 +36,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.Solu
 import featureObjective.Feature;
 import featureSolution.SelectedCV;
 
-public class ExtensionStrategyExtension implements IStrategyExtension {
+public class BehaviourStrategyExtension implements IStrategyExtension {
 
 	List<Choice> featureChoices;
 	// dof for advice placements

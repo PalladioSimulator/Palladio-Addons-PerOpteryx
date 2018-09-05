@@ -20,7 +20,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import featureSolution.AdapterInclusion;
 import featureSolution.Advice;
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
 
 /**
@@ -43,8 +43,8 @@ public class AdvicePlacementDesignDecision {
 	public List<BoolChoice> generateAdvicePlacementDegrees() {
 		List<BoolChoice> result = new ArrayList<>();
 		
-		if (im instanceof ExtensionInclusion) {
-			for (Advice advice : ((ExtensionInclusion) im).getAdvice()) {
+		if (im instanceof BehaviourInclusion) {
+			for (Advice advice : ((BehaviourInclusion) im).getAdvice()) {
 				AdvicePlacementDegree advicePlacementDegree = specificFactory.eINSTANCE.createAdvicePlacementDegree();
 				advicePlacementDegree.setEntityName("advice");
 				advicePlacementDegree.setPrimaryChanged(advice);

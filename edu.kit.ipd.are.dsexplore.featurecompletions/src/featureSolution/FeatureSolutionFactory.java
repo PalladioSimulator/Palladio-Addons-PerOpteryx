@@ -31,13 +31,13 @@ public interface FeatureSolutionFactory extends EFactory {
 	AdapterInclusion createAdapterInclusion();
 
 	/**
-	 * Returns a new object of class '<em>Extension Inclusion</em>'.
+	 * Returns a new object of class '<em>Behaviour Inclusion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extension Inclusion</em>'.
+	 * @return a new object of class '<em>Behaviour Inclusion</em>'.
 	 * @generated
 	 */
-	ExtensionInclusion createExtensionInclusion();
+	BehaviourInclusion createBehaviourInclusion();
 
 	/**
 	 * Returns a new object of class '<em>Placement Strategy</em>'.

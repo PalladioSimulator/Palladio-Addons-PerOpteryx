@@ -74,7 +74,7 @@ public final class SolutionManager {
 		return new ArrayList<>(affectedComponents);
 	}
 
-	// TODO new for extension
+	// TODO new for Behaviour
 	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
 		Set<RepositoryComponent> affectedComponents = new HashSet<>();
 		// TODO wenn das MergedRepo dann eh nur noch eine Solution enthält, kann
@@ -89,7 +89,7 @@ public final class SolutionManager {
 		return new ArrayList<>(affectedComponents);
 	}
 
-	// TODO new for extension
+	// TODO new for Behaviour
 	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
 		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (CompletionComponent completionComponent : fccs) {
@@ -114,7 +114,7 @@ public final class SolutionManager {
 		return null;
 	}
 
-	// TODO new for extension
+	// TODO new for Behaviour
 	public RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
 
@@ -148,7 +148,7 @@ public final class SolutionManager {
 		return false;
 	}
 
-	// TODO added for extension
+	// TODO added for Behaviour
 	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
 		for (CompletionComponent completionComponent : realizedCCs) {
 			if (listToContainedIn.contains(completionComponent)) {

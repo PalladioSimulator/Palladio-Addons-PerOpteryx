@@ -3,7 +3,7 @@
 package featureSolution.provider;
 
 
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 
@@ -19,19 +19,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link featureSolution.ExtensionInclusion} object.
+ * This is the item provider adapter for a {@link featureSolution.BehaviourInclusion} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvider {
+public class BehaviourInclusionItemProvider extends InclusionMechanismItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionInclusionItemProvider(AdapterFactory adapterFactory) {
+	public BehaviourInclusionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,9 +62,9 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__POINT_CUT);
-			childrenFeatures.add(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__ADVICE);
-			childrenFeatures.add(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__IMPORTS);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__POINT_CUT);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__ADVICE);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__IMPORTS);
 		}
 		return childrenFeatures;
 	}
@@ -83,14 +83,14 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 	}
 
 	/**
-	 * This returns ExtensionInclusion.gif.
+	 * This returns BehaviourInclusion.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExtensionInclusion"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BehaviourInclusion"));
 	}
 
 	/**
@@ -101,12 +101,12 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExtensionInclusion)object).getName();
+		String label = ((BehaviourInclusion)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ExtensionInclusion_type") :
-			getString("_UI_ExtensionInclusion_type") + " " + label;
+			getString("_UI_BehaviourInclusion_type") :
+			getString("_UI_BehaviourInclusion_type") + " " + label;
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -119,10 +119,10 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExtensionInclusion.class)) {
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__POINT_CUT:
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__ADVICE:
-			case FeatureSolutionPackage.EXTENSION_INCLUSION__IMPORTS:
+		switch (notification.getFeatureID(BehaviourInclusion.class)) {
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -142,17 +142,17 @@ public class ExtensionInclusionItemProvider extends InclusionMechanismItemProvid
 
 		newChildDescriptors.add
 			(createChildParameter
-				(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__POINT_CUT,
+				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__POINT_CUT,
 				 FeatureSolutionFactory.eINSTANCE.createPointCut()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__ADVICE,
+				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__ADVICE,
 				 FeatureSolutionFactory.eINSTANCE.createAdvice()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(FeatureSolutionPackage.Literals.EXTENSION_INCLUSION__IMPORTS,
+				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__IMPORTS,
 				 FeatureSolutionFactory.eINSTANCE.createImport()));
 	}
 

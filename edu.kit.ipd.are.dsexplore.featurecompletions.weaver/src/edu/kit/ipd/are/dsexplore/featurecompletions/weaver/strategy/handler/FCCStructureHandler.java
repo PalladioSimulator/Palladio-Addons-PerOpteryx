@@ -38,7 +38,7 @@ public class FCCStructureHandler {
 		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
 	}
 
-	// TODO new for extension
+	// TODO new for Behaviour
 	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
 		List<CompletionComponent> result = new ArrayList<>();
 		if (!fcc.getRequiredComponents().isEmpty()) {

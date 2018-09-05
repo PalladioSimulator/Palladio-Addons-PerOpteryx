@@ -7,10 +7,10 @@ import "http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" as featureSolution
 import "http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1" as FeatureCompletionModel
 import "platform:/resource/org.palladiosimulator.pcm/model/pcm.ecore#//repository" as repository
 
-ExtensionInclusion returns featureSolution::ExtensionInclusion:
+BehaviourInclusion returns featureSolution::BehaviourInclusion:
 	(imports+=Import)*
 	(multiple?='multiple')?
-	'ExtensionInclusion'
+	'BehaviourInclusion'
 	name=EString
 	id=EString
 	'{'
@@ -21,7 +21,7 @@ ExtensionInclusion returns featureSolution::ExtensionInclusion:
 
 
 InclusionMechanism returns featureSolution::InclusionMechanism:
-	ExtensionInclusion
+	BehaviourInclusion
 ;
 
 PlacementStrategy returns featureSolution::PlacementStrategy:

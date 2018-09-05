@@ -29,7 +29,7 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 	/**
 	 * @param parent
 	 */
-	public InternalActionServiceEffectSpecificationWeaving(IExtensionWeaving parent) {
+	public InternalActionServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
 
@@ -40,7 +40,7 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
-		FCCModule.logger.debug("Internal Action SEFF Extension Weaving");
+		FCCModule.logger.debug("Internal Action SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
 		for (IWeavingLocation weavingLocation : locations) {

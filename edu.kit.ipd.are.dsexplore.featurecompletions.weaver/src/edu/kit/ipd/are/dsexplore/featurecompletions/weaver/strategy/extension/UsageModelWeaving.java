@@ -11,14 +11,14 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
  */
 public class UsageModelWeaving {
 
-	protected final IExtensionWeaving parent;
+	protected final IBehaviourWeaving parent;
 
-	public UsageModelWeaving(IExtensionWeaving parent) {
+	public UsageModelWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
 	}
 
 	/**
-	 * As the extension mechanism operates on intra component behaviour, there is nothing to do here.
+	 * As the Behaviour mechanism operates on intra component behaviour, there is nothing to do here.
 	 * 
 	 * @param instruction
 	 */
