@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.repository.BasicComponent;

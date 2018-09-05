@@ -1,4 +1,4 @@
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.HashMap;
 import java.util.function.Function;

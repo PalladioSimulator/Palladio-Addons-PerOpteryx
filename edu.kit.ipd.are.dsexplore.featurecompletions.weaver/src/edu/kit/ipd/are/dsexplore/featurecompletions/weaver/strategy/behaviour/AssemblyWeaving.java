@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension;
+package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.ArrayList;
 import java.util.List;
