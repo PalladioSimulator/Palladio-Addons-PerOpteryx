@@ -4,12 +4,14 @@ package featureSolution.impl;
 
 import featureSolution.Advice;
 import featureSolution.BehaviourInclusion;
+import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.Import;
 import featureSolution.PointCut;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -31,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getPointCut <em>Point Cut</em>}</li>
  *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getAdvice <em>Advice</em>}</li>
  *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link featureSolution.impl.BehaviourInclusionImpl#getFeatureCompletion <em>Feature Completion</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +69,16 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 	 * @ordered
 	 */
 	protected EList<Import> imports;
+
+	/**
+	 * The cached value of the '{@link #getFeatureCompletion() <em>Feature Completion</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureCompletion()
+	 * @generated
+	 * @ordered
+	 */
+	protected FeatureSelection featureCompletion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,6 +140,49 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FeatureSelection getFeatureCompletion() {
+		return featureCompletion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFeatureCompletion(FeatureSelection newFeatureCompletion, NotificationChain msgs) {
+		FeatureSelection oldFeatureCompletion = featureCompletion;
+		featureCompletion = newFeatureCompletion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION, oldFeatureCompletion, newFeatureCompletion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFeatureCompletion(FeatureSelection newFeatureCompletion) {
+		if (newFeatureCompletion != featureCompletion) {
+			NotificationChain msgs = null;
+			if (featureCompletion != null)
+				msgs = ((InternalEObject)featureCompletion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION, null, msgs);
+			if (newFeatureCompletion != null)
+				msgs = ((InternalEObject)newFeatureCompletion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION, null, msgs);
+			msgs = basicSetFeatureCompletion(newFeatureCompletion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION, newFeatureCompletion, newFeatureCompletion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -135,6 +192,8 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 				return ((InternalEList<?>)getAdvice()).basicRemove(otherEnd, msgs);
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
+				return basicSetFeatureCompletion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -153,6 +212,8 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 				return getAdvice();
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return getImports();
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
+				return getFeatureCompletion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -178,6 +239,9 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 				getImports().clear();
 				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
+				setFeatureCompletion((FeatureSelection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -199,6 +263,9 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				getImports().clear();
 				return;
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
+				setFeatureCompletion((FeatureSelection)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -217,6 +284,8 @@ public class BehaviourInclusionImpl extends InclusionMechanismImpl implements Be
 				return advice != null && !advice.isEmpty();
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
 				return imports != null && !imports.isEmpty();
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
+				return featureCompletion != null;
 		}
 		return super.eIsSet(featureID);
 	}

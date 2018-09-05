@@ -18,6 +18,8 @@
         eType="#//Advice" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
         eType="#//Import" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureCompletion" lowerBound="1"
+        eType="#//FeatureSelection" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
     <eLiterals name="BEFORE"/>
@@ -48,8 +50,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" eType="#//PointCut"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
         eType="#//Appearance" defaultValueLiteral="BEFORE"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" eType="#//FeatureSelection"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="placementPolicy" lowerBound="1"
         eType="ecore:EEnum featureCompletions.ecore#//PlacementPolicy" defaultValueLiteral="MANDATORY"/>
   </eClassifiers>

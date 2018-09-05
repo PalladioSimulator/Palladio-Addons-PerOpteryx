@@ -16,6 +16,7 @@ BehaviourInclusion returns featureSolution::BehaviourInclusion:
 	'{'
 		'description' description=EString
 		('pointCut' '{' pointCut+=PointCut ( "," pointCut+=PointCut)* '}' )?
+		'featureCompletion' featureCompletion=FeatureSelection
 		('advice' '{' advice+=Advice ( "," advice+=Advice)* '}' )?
 	'}';
 
@@ -47,9 +48,7 @@ Advice returns featureSolution::Advice:
 	'Advice'
 	'{'
 		'appears' appears=Appearance
-		('pointCut' pointCut=[featureSolution::PointCut|EString])?
-//		('Completion' Completion=[FeatureCompletionModel::ComplementumVisnetis|EString])?
-		('Completion' Completion=FeatureSelection)?
+		('pointCut' pointCut=[featureSolution::PointCut|EString])?		
 		'placementPolicy' placementPolicy=PlacementPolicy
 	'}';
 	

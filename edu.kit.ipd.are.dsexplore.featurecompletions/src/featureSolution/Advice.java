@@ -19,7 +19,6 @@ import org.palladiosimulator.pcm.core.entity.NamedElement;
  * <ul>
  *   <li>{@link featureSolution.Advice#getPointCut <em>Point Cut</em>}</li>
  *   <li>{@link featureSolution.Advice#getAppears <em>Appears</em>}</li>
- *   <li>{@link featureSolution.Advice#getCompletion <em>Completion</em>}</li>
  *   <li>{@link featureSolution.Advice#getPlacementPolicy <em>Placement Policy</em>}</li>
  * </ul>
  *
@@ -83,32 +82,6 @@ public interface Advice extends EObject, NamedElement {
 	 * @generated
 	 */
 	void setAppears(Appearance value);
-
-	/**
-	 * Returns the value of the '<em><b>Completion</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Completion</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Completion</em>' containment reference.
-	 * @see #setCompletion(FeatureSelection)
-	 * @see featureSolution.FeatureSolutionPackage#getAdvice_Completion()
-	 * @model containment="true"
-	 * @generated
-	 */
-	FeatureSelection getCompletion();
-
-	/**
-	 * Sets the value of the '{@link featureSolution.Advice#getCompletion <em>Completion</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Completion</em>' containment reference.
-	 * @see #getCompletion()
-	 * @generated
-	 */
-	void setCompletion(FeatureSelection value);
 
 	/**
 	 * Returns the value of the '<em><b>Placement Policy</b></em>' attribute.

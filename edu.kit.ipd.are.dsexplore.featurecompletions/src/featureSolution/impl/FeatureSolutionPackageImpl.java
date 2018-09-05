@@ -303,6 +303,15 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBehaviourInclusion_FeatureCompletion() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPlacementStrategy() {
 		return placementStrategyEClass;
 	}
@@ -420,17 +429,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAdvice_Completion() {
-		return (EReference)adviceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getAdvice_PlacementPolicy() {
-		return (EAttribute)adviceEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)adviceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -579,6 +579,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__POINT_CUT);
 		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__ADVICE);
 		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__IMPORTS);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__FEATURE_COMPLETION);
 
 		placementStrategyEClass = createEClass(PLACEMENT_STRATEGY);
 
@@ -598,7 +599,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		adviceEClass = createEClass(ADVICE);
 		createEReference(adviceEClass, ADVICE__POINT_CUT);
 		createEAttribute(adviceEClass, ADVICE__APPEARS);
-		createEReference(adviceEClass, ADVICE__COMPLETION);
 		createEAttribute(adviceEClass, ADVICE__PLACEMENT_POLICY);
 
 		importEClass = createEClass(IMPORT);
@@ -674,6 +674,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEReference(getBehaviourInclusion_PointCut(), this.getPointCut(), null, "pointCut", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehaviourInclusion_Advice(), this.getAdvice(), null, "advice", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehaviourInclusion_Imports(), this.getImport(), null, "imports", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_FeatureCompletion(), this.getFeatureSelection(), null, "featureCompletion", null, 1, 1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placementStrategyEClass, PlacementStrategy.class, "PlacementStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -693,7 +694,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEClass(adviceEClass, Advice.class, "Advice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdvice_PointCut(), this.getPointCut(), null, "pointCut", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAdvice_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdvice_Completion(), this.getFeatureSelection(), null, "Completion", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAdvice_PlacementPolicy(), theFeatureCompletionPackage.getPlacementPolicy(), "placementPolicy", "MANDATORY", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -49,7 +49,7 @@ public class ComplementumVisnetisDesignDecision {
 		this.fc = (FeatureCompletion) degree.getPrimaryChanged();
 		this.solutions = solutions;
 		// TODO von welchem Advice Features/CV holen?
-		this.featureLists = ((BehaviourInclusion) this.determineIM(solutions)).getAdvice().get(0).getCompletion().getFeatureLists();
+		this.featureLists = ((BehaviourInclusion) this.determineIM(solutions)).getFeatureCompletion().getFeatureLists();
 	}
 
 	/**

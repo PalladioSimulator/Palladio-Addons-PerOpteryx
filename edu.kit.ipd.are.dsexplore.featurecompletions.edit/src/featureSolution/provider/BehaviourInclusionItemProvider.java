@@ -65,6 +65,7 @@ public class BehaviourInclusionItemProvider extends InclusionMechanismItemProvid
 			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__POINT_CUT);
 			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__ADVICE);
 			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__IMPORTS);
+			childrenFeatures.add(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION);
 		}
 		return childrenFeatures;
 	}
@@ -123,6 +124,7 @@ public class BehaviourInclusionItemProvider extends InclusionMechanismItemProvid
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__POINT_CUT:
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__ADVICE:
 			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__IMPORTS:
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,6 +156,11 @@ public class BehaviourInclusionItemProvider extends InclusionMechanismItemProvid
 			(createChildParameter
 				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__IMPORTS,
 				 FeatureSolutionFactory.eINSTANCE.createImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION,
+				 FeatureSolutionFactory.eINSTANCE.createFeatureSelection()));
 	}
 
 }

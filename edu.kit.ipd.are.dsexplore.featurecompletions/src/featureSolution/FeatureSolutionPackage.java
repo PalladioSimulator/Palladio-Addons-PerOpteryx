@@ -253,13 +253,22 @@ public interface FeatureSolutionPackage extends EPackage {
 	int BEHAVIOUR_INCLUSION__IMPORTS = INCLUSION_MECHANISM_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Feature Completion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOUR_INCLUSION__FEATURE_COMPLETION = INCLUSION_MECHANISM_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Behaviour Inclusion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOUR_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 3;
+	int BEHAVIOUR_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.impl.PlacementStrategyImpl <em>Placement Strategy</em>}' class.
@@ -439,22 +448,13 @@ public interface FeatureSolutionPackage extends EPackage {
 	int ADVICE__APPEARS = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Completion</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADVICE__COMPLETION = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Placement Policy</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADVICE__PLACEMENT_POLICY = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int ADVICE__PLACEMENT_POLICY = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Advice</em>' class.
@@ -463,7 +463,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADVICE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int ADVICE_FEATURE_COUNT = EntityPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.impl.ImportImpl <em>Import</em>}' class.
@@ -711,6 +711,17 @@ public interface FeatureSolutionPackage extends EPackage {
 	EReference getBehaviourInclusion_Imports();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link featureSolution.BehaviourInclusion#getFeatureCompletion <em>Feature Completion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Feature Completion</em>'.
+	 * @see featureSolution.BehaviourInclusion#getFeatureCompletion()
+	 * @see #getBehaviourInclusion()
+	 * @generated
+	 */
+	EReference getBehaviourInclusion_FeatureCompletion();
+
+	/**
 	 * Returns the meta object for class '{@link featureSolution.PlacementStrategy <em>Placement Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -846,17 +857,6 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAdvice_Appears();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link featureSolution.Advice#getCompletion <em>Completion</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Completion</em>'.
-	 * @see featureSolution.Advice#getCompletion()
-	 * @see #getAdvice()
-	 * @generated
-	 */
-	EReference getAdvice_Completion();
 
 	/**
 	 * Returns the meta object for the attribute '{@link featureSolution.Advice#getPlacementPolicy <em>Placement Policy</em>}'.
@@ -1088,6 +1088,14 @@ public interface FeatureSolutionPackage extends EPackage {
 		EReference BEHAVIOUR_INCLUSION__IMPORTS = eINSTANCE.getBehaviourInclusion_Imports();
 
 		/**
+		 * The meta object literal for the '<em><b>Feature Completion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOUR_INCLUSION__FEATURE_COMPLETION = eINSTANCE.getBehaviourInclusion_FeatureCompletion();
+
+		/**
 		 * The meta object literal for the '{@link featureSolution.impl.PlacementStrategyImpl <em>Placement Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1202,14 +1210,6 @@ public interface FeatureSolutionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ADVICE__APPEARS = eINSTANCE.getAdvice_Appears();
-
-		/**
-		 * The meta object literal for the '<em><b>Completion</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ADVICE__COMPLETION = eINSTANCE.getAdvice_Completion();
 
 		/**
 		 * The meta object literal for the '<em><b>Placement Policy</b></em>' attribute feature.

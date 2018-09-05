@@ -20,24 +20,21 @@ BehaviourInclusion behaviourIncl _ZZ {
 			}
 		}
 	}
-	
+	featureCompletion Logging({Logging, LocationInfoLogging}, {ConsoleLogging,FileLogging}, {PatternLayout})
 	advice {
 		Advice {
 			appears BEFORE 
 			pointCut allPayCalls
-			Completion Logging({Logging, LocationInfoLogging}, {ConsoleLogging,FileLogging}, {PatternLayout})
 			placementPolicy MANDATORY
 		},
 		Advice {
 			appears BEFORE 
 			pointCut allActionsIn
-			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
 			placementPolicy MANDATORY
 		},
 		Advice {
 			appears AROUND 
 			pointCut allControlFlowsIn
-			Completion Logging({ConsoleLogging,FileLogging,SQLDatabaseLogging}, {PatternLayout})
 			placementPolicy MANDATORY
 		}
 	}
