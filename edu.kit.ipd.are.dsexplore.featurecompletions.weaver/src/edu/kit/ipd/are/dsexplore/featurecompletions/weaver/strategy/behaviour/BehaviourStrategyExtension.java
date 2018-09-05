@@ -34,6 +34,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExt
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureObjective.Feature;
+import featureSolution.InclusionMechanism;
 import featureSolution.SelectedCV;
 
 public class BehaviourStrategyExtension implements IStrategyExtension {
@@ -130,16 +131,16 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 	public void additionalCreateFCCDegreeBy(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FCCWeaver weaver) {
 		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate);
 		// add dof for multiple-flag in inclusion mechanism
-		this.createMultipleInclusionDegree(degree, dds, initialCandidate, weaver.getSolutionRepositories());
+		this.createMultipleInclusionDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
 		// add dof for advice placement policy
-		this.createAdvicePlacementDegree(dds, initialCandidate, weaver.getSolutionRepositories());
+		this.createAdvicePlacementDegree(dds, initialCandidate, weaver.getInclusionMechanism());
 		// TODO add dof for cv selection
-		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, weaver.getSolutionRepositories());
+		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
 
 	}
 
-	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<Choice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, solutions).generateComplementumVisnetisDegrees();
+	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {
+		List<Choice> complementumVisnetisDegrees = new ComplementumVisnetisDesignDecision(degree, im).generateComplementumVisnetisDegrees();
 
 		for (Choice choice : complementumVisnetisDegrees) {
 			initialCandidate.add(choice);
@@ -147,8 +148,8 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 		}
 	}
 
-	private void createAdvicePlacementDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
-		List<BoolChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(solutions).generateAdvicePlacementDegrees();
+	private void createAdvicePlacementDegree(List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {
+		List<BoolChoice> advicePlacementDegrees = new AdvicePlacementDesignDecision(im).generateAdvicePlacementDegrees();
 
 		for (BoolChoice featureChoice : advicePlacementDegrees) {
 			initialCandidate.add(featureChoice);
@@ -156,9 +157,9 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 		}
 	}
 
-	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, List<Repository> solutions) {
+	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {
 		// add dof for multiple-flag in inclusion mechanism
-		BoolChoice choice = new MultipleInclusionDesignDecision(solutions).generateMultipleInclusionDegree();
+		BoolChoice choice = new MultipleInclusionDesignDecision(im).generateMultipleInclusionDegree();
 
 		initialCandidate.add(choice);
 		dds.add(choice.getDegreeOfFreedomInstance());
